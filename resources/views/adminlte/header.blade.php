@@ -15,7 +15,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="{{asset('adminlte/img/user2-160x160.jpg')}}" class="user-image img-circle elevation-2"
                     alt="User Image">
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+            <span class="d-none d-md-inline"> {{Auth::user()->name}} {{Auth::user()->surname}}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
@@ -24,7 +24,7 @@
                         alt="User Image">
 
                     <p>
-                        Alexander Pierce - Web Developer
+                        {{Auth::user()->name}} {{Auth::user()->surname}}- Web Developer
                         <small>Member since Nov. 2012</small>
                     </p>
                 </li>

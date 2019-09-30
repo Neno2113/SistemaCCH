@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user', function () {
     return view('sistema.user.users');
 });
+
+//Rutas de usuarios
+Route::post('/user', 'UserController@store');
+Route::get('/user/{id}', 'UserController@show');

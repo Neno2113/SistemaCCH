@@ -9,14 +9,33 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function store(Request $request){
-        
-        $name = $request->input('name', true);
-        $email = $request->input('email', true);
-        $role = $request->input('role', true);
-        $password = $request->input('password', true);
+    public function store(Request $request)
+    {
 
-        if (!empty($name)) {
+        $validar = $request->validate([
+            'name' => 'required|alpha|',
+            'surname' => 'required|alpha',
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+        if (empty($validar)){
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        }else{
+            $name = $request->input('name', true);
+            $surname = $request->input('surname', true);
+            $edad = $request->input('edad', true);
+            $email = $request->input('email', true);
+            $role = $request->input('role', true);
+            $password = $request->input('password', true);
+            $direccion = $request->input('direccion', true);
+            $telefono = $request->input('telefono', true);
+            $celular = $request->input('celular', true);
 
             $pwd = Hash::make($password);
 
@@ -25,6 +44,11 @@ class UserController extends Controller
             $user->email = $email;
             $user->password = $pwd;
             $user->role = $role;
+            $user->direccion = $direccion;
+            $user->telefono = $telefono;
+            $user->celular = $celular;
+            $user->surname = $surname;
+            $user->edad = $edad;
 
             $user->save();
 
@@ -33,14 +57,30 @@ class UserController extends Controller
                 'status' => 'success',
                 'user' => $user
             ];
-        } else {
-            $data = [
-                'code' => 400,
-                'status' => 'error',
-                'message' => 'Envia los datos correctamente'
-            ];
         }
 
         return response()->json($data, $data['code']);
     }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if (is_object($user)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'user' => $user
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
 }
