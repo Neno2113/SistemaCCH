@@ -1,9 +1,12 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
+    var tabla;
+
     function init() {
         listar();
         mostrarForm(false);
+        $("#btn-edit").hide();
     }
 
     function limpiar() {
@@ -18,8 +21,25 @@ $(document).ready(function() {
         $("#password").val("");
     }
 
-    $("#btn-guardar").click(function(e) {
+    $("#formulario").submit( function(e){
+        var nombre = $("#name").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var role = $("#role").val();
+        var error = $("#error").val();
         e.preventDefault();
+
+        if(nombre.val == '' || nombre.val == null){
+            bootbox.alert("EL nombre esta vacio");
+            // error.addClass("block");
+            // error.innerHTML=error.innerHTML + '<li>Por favor complete el correo</li>';
+        }
+    });
+
+    $("#btn-guardar").click(function(e) {
+        // validacion(e);
+        e.preventDefault();
+        
         var user = {
             name: $("#name").val(),
             surname: $("#surname").val(),
@@ -42,6 +62,8 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     bootbox.alert("Se registro y creo usuario correctamente");
                     limpiar();
+                    tabla.ajax.reload();
+                    mostrarForm(false);
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
@@ -57,7 +79,7 @@ $(document).ready(function() {
     });
 
     function listar() {
-        var tabla = $("#users").DataTable({
+        tabla = $("#users").DataTable({
             serverSide: true,
             ajax: "api/users",
             columns: [
@@ -70,33 +92,44 @@ $(document).ready(function() {
                 { data: "celular" },
                 { data: "direccion" },
                 { data: "edad" },
-                { data: "Editar" }
+                { data: "Editar", orderable: false, searchable: false },
+                { data: "Eliminar", orderable: false, searchable: false }
             ]
         });
     }
+    setInterval(function(){
+        tabla.ajax.reload();
+    }, 30000)
 
-    function mostrarForm(flag){
+    function mostrarForm(flag) {
         limpiar();
-        if(flag){
+        if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
-          
-        }else{
+        } else {
             $("#listadoUsers").show();
-            $("#registroForm").hide()
+            $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
         }
     }
 
-    $("#btnAgregar").click(function(e){
+    $("#btnAgregar").click(function(e) {
         mostrarForm(true);
-    })
-    $("#btnCancelar").click(function(e){
+    });
+    $("#btnCancelar").click(function(e) {
         mostrarForm(false);
-    })
+    });
+
+   
+        
+
+   
+
+  
+  
 
     init();
 });

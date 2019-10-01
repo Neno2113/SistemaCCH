@@ -23,6 +23,13 @@ Route::get('users', function() {
     $users = App\User::query();
     
     return DataTables::eloquent($users)
-            ->addColumn('Editar', 'probando AddColumn')
-            ->toJson();
+            ->addColumn('Editar', function($user){
+               return '<button id="btnEdit" onclick="mostrar('.$user->id.')" class="btn btn-warning"> <i class="fas fa-user-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function($user){
+                return '<button onclick="eliminar('.$user->id.')" class="btn btn-danger"> <i class="fas fa-user-times"></i></button>';
+            })
+            
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
 })->name('datatable.users');

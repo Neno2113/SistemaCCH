@@ -25,4 +25,6 @@ Route::get('/user', function () {
 
 //Rutas de usuarios
 Route::post('/user', 'UserController@store');
-Route::get('/user/{id}', 'UserController@show');
+Route::put('/user/edit', 'UserController@update');
+Route::post('/user/delete/{id}', 'UserController@destroy');
+Route::post('/user/{id}', 'UserController@show');

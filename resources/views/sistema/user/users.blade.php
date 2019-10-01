@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <button class="btn btn-primary mb-3" id="btnAgregar"> Agregar</button>
+        <button class="btn btn-primary mb-3" id="btnAgregar">Crear <i class="fas fa-user-plus"></i></button>
     </div>
 
     <div class="row d-flex justify-content-center">
@@ -17,6 +17,7 @@
                     <hr>
                     <div class="row ">
                         <div class="col-md-4">
+                            <input type="hidden" name="id" id="id" value="">
                             <label for="name">Nombre(*):</label>
                             <input type="text" name="name" id="name" class="form-control">
                         </div>
@@ -76,15 +77,24 @@
                             <label for="name">Rol(*):</label>
                             <select name="" id="role" class="form-control">
                                 <option value=""></option>
-                                <option value="0">Adminitrador</option>
-                                <option value="1">Soporte</option>
-                                <option value="2">Oficina</option>
-                                <option value="3">General</option>
+                                <option value="Administrador">Adminitrador</option>
+                                <option value="Soporte">Soporte</option>
+                                <option value="Oficina">Oficina</option>
+                                <option value="General">General</option>
                             </select>
                         </div>
                     </div>
 
-                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="error" id="error">
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Registrar" id="btn-guardar"  class="btn btn-lg btn-info mt-4">
+                    <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
                 </form>
             </div>
         </div>
@@ -105,22 +115,9 @@
                 <th>Direccion</th>
                 <th>Edad</th>
                 <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
-        {{-- <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Telefono</th>
-                <th>Celular</th>
-                <th>Direccion</th>
-                <th>Edad</th>
-            </tr>
-        </tfoot> --}}
     </table>
 </div>
 <div class="container">
@@ -132,5 +129,95 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/user.js')}}"></script>
+
+<script>
+    function mostrar(id_user) {
+        $.post("user/" + id_user, function(data, status) {
+            // data = JSON.parse(data);
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+
+            // console.log(data);
+            $("#id").val(data.user.id);
+            $("#name").val(data.user.name);
+            $("#surname").val(data.user.surname);
+            $("#edad").val(data.user.edad);
+            $("#telefono").val(data.user.telefono);
+            $("#celular").val(data.user.celular);
+            $("#direccion").val(data.user.direccion);
+            $("#email").val(data.user.email);
+            $("#role").val(data.user.role);
+        });
+    }
+
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
+        var user = {
+            id: $("#id").val(),
+            name: $("#name").val(),
+            surname: $("#surname").val(),
+            email: $("#email").val(),
+            edad: $("#edad").val(),
+            telefono: $("#telefono").val(),
+            celular: $("#celular").val(),
+            direccion: $("#direccion").val(),
+            role: $("#role").val(),
+            password: $("#password").val()
+        };
+     
+        $.ajax({
+            url: "user/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(user),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizado correctamente el usuario");
+                    $("#name").val("");
+                    $("#surname").val("");
+                    $("#edad").val("");
+                    $("#telefono").val("");
+                    $("#celular").val("");
+                    $("#direccion").val("");
+                    $("#email").val("");
+                    $("#role").val("");
+                    $("#password").val("");
+                    $("#listadoUsers").show();
+                    $("#registroForm").hide();
+                    $("#btnCancelar").hide();
+                    $("#btn-edit").hide();
+                    $("#btn-guardar").show();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion del usuario verifique los datos suministrados!!"
+                );
+            }
+        });
+       
+    });
+
+    function eliminar(id_user){
+        bootbox.confirm("¿Estas seguro de eliminar este usuario?", function(result){
+            if(result){
+                $.post("user/delete/" + id_user, function(){
+                    // bootbox.alert(e);
+                    bootbox.alert("Usuario eliminado correctamente");
+                })
+            }
+        })
+    }
+
+</script>
 
 @endsection
