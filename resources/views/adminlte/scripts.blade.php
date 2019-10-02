@@ -10,6 +10,9 @@
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js"></script>
+
+<script src="{{asset('jquery-validation/dist/jquery.validate.min.js')}}"></script>
+
 <!-- Booboxjs -->
 <script src="{{asset('/adminlte/plugins/bootbox/bootbox.min.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/bootbox/bootbox.locales.min.js')}}"></script>

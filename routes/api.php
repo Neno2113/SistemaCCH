@@ -33,3 +33,34 @@ Route::get('users', function() {
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
 })->name('datatable.users');
+
+
+Route::get('compositions', function() {
+
+    $compositions = App\Composition::query();
+    
+    return DataTables::eloquent($compositions)
+            ->addColumn('Editar', function($composition){
+               return '<button id="btnEdit" onclick="mostrar('.$composition->id.')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function($composition){
+                return '<button onclick="eliminar('.$composition->id.')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+})->name('datatable.compositions');
+
+Route::get('suppliers', function() {
+
+    $suppliers = App\Supplier::query();
+    
+    return DataTables::eloquent($suppliers)
+            ->addColumn('Editar', function($supplier){
+               return '<button id="btnEdit" onclick="mostrar('.$supplier->id.')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function($supplier){
+                return '<button onclick="eliminar('.$supplier->id.')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+})->name('datatable.compositions');

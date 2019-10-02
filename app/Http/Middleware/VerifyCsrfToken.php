@@ -22,6 +22,10 @@ class VerifyCsrfToken extends Middleware
         //
         'http://localhost/sistemaCCH/public/user',
         'http://localhost/sistemaCCH/public/user/*',
-        'http://localhost/sistemaCCH/public/user/edit/*'
+        'http://localhost/sistemaCCH/public/user/edit/*',
+        'http://localhost/sistemaCCH/public/composition',
+        'http://localhost/sistemaCCH/public/composition/*',
+        'http://localhost/sistemaCCH/public/supplier',
+        'http://localhost/sistemaCCH/public/supplier/*',
     ];
 }

@@ -1,6 +1,48 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
+    $("#formulario").validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 3
+            },
+            surname: {
+                required: true,
+                minlength: 4
+            },
+            edad: "required",
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 8
+            }
+        },
+        messages: {
+            name: {
+                required: "Introduzca el nombre",
+                minlength: "Debe contener al menos 3 letras"
+            },
+            surname: {
+                required: "Introduzca el apellido",
+                minlength: "Debe contener al menos 4 letras"
+            },
+            edad: "La edad es obligatoria",
+            email: {
+                required: "El email es obligatorio",
+                email: "Debe itroducir un email valido"
+            },
+            password: {
+                required: "La contraseña es obligatoria",
+                minlength: "Debe contener al menos 8 caracteres"
+            }
+        }
+    })
+   
+
     var tabla;
 
     function init() {
@@ -20,21 +62,6 @@ $(document).ready(function() {
         $("#role").val("");
         $("#password").val("");
     }
-
-    $("#formulario").submit( function(e){
-        var nombre = $("#name").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var role = $("#role").val();
-        var error = $("#error").val();
-        e.preventDefault();
-
-        if(nombre.val == '' || nombre.val == null){
-            bootbox.alert("EL nombre esta vacio");
-            // error.addClass("block");
-            // error.innerHTML=error.innerHTML + '<li>Por favor complete el correo</li>';
-        }
-    });
 
     $("#btn-guardar").click(function(e) {
         // validacion(e);
@@ -72,7 +99,7 @@ $(document).ready(function() {
             },
             error: function() {
                 bootbox.alert(
-                    "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
                 );
             }
         });
@@ -123,13 +150,6 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-   
-        
-
-   
-
-  
-  
 
     init();
 });

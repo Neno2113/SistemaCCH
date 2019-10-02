@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <button class="btn btn-primary mb-3" id="btnAgregar">Crear <i class="fas fa-user-plus"></i></button>
+        <button class="btn btn-danger mb-3" id="btnCancelar">Cancelar</button>
     </div>
 
     <div class="row d-flex justify-content-center">
@@ -19,14 +20,14 @@
                         <div class="col-md-4">
                             <input type="hidden" name="id" id="id" value="">
                             <label for="name">Nombre(*):</label>
-                            <input type="text" name="name" id="name" class="form-control">
+                            <input type="text" name="name" id="name"  class="form-control" pattern="[a-zA-Z]">
                         </div>
                         <div class="col-md-4">
                             <label for="surname">Apellido(*):</label>
-                            <input type="text" name="surname" id="surname" class="form-control">
+                            <input type="text" name="surname" id="surname" class="form-control" >
                         </div>
                         <div class="col-md-4">
-                            <label for="edad">Edad(*):</label>
+                            <label for="edad">Edad:</label>
                             <input type="text" name="edad" id="edad" class="form-control">
                         </div>
                     </div>
@@ -42,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="celular">Celular(*):</label>
+                            <label for="celular">Celular:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -52,7 +53,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="direccion">Direccion(*):</label>
+                            <label for="direccion">Direccion:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-address-card"></i></span>
@@ -71,12 +72,12 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="password">Contraseña(*):</label>
-                            <input type="password" name="password" id="password" class="form-control">
+                            <input type="password" name="password" id="password"  class="form-control">
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="name">Rol(*):</label>
+                            <label for="name">Rol:</label>
                             <select name="" id="role" class="form-control">
-                                <option value=""></option>
+                                <option value="General"></option>
                                 <option value="Administrador">Adminitrador</option>
                                 <option value="Soporte">Soporte</option>
                                 <option value="Oficina">Oficina</option>
@@ -102,7 +103,7 @@
 </div>
 
 <div class="container" id="listadoUsers">
-    <table id="users" class="table table-striped table-bordered" style="width: 100%">
+    <table id="users" class="table table-striped table-bordered table-responsive" style="width: 100%">
         <thead>
             <tr>
                 <th>ID</th>
@@ -120,11 +121,7 @@
         </thead>
     </table>
 </div>
-<div class="container">
-    <div class="row">
-        <button class="btn btn-danger mt-3" id="btnCancelar">Cancelar</button>
-    </div>
-</div>
+
 
 
 @include('adminlte/scripts')
@@ -138,6 +135,7 @@
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btn-edit").show();
+            $("#btnAgregar").hide();
             $("#btn-guardar").hide();
 
             // console.log(data);
@@ -177,6 +175,7 @@
             success: function(datos) {
                 if (datos.status == "success") {
                     bootbox.alert("Se actualizado correctamente el usuario");
+                    $("#id").val("");
                     $("#name").val("");
                     $("#surname").val("");
                     $("#edad").val("");

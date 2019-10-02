@@ -13,7 +13,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('adminlte/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('adminlte/img/images.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}} {{Auth::user()->surname}}</a>
@@ -40,14 +40,61 @@
                   <p>Usuarios</p>
                 </a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+            <i class="far fa-address-book"></i>
+              <p>
+                Clientes
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/sistemaCCH/public/client" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Editar</p>
+                  <p>Clientes</p>
                 </a>
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+            <i class="fas fa-shipping-fast"></i>
+              <p>
+                Suplidores
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/sistemaCCH/public/supplier" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Suplidores</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+      
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+            <i class="fas fa-fill-drip"></i>
+              <p>
+                Composiciones
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/sistemaCCH/public/composition" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Composiciones</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
       
         </ul>
       </nav>
