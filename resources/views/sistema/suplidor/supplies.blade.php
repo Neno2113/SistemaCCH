@@ -70,7 +70,8 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="terminos_de_pago">Terminos de pago(*):</label>
-                            <input type="text" name="terminos_de_pago" id="terminos_de_pago" class="form-control" placeholder="Cantidad en dias para pagar">
+                            <input type="text" name="terminos_de_pago" id="terminos_de_pago" class="form-control"
+                                placeholder="Cantidad en dias para pagar">
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="nota">Nota:</label>
@@ -86,10 +87,12 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="suppliers" class="table table-striped table-bordered " style="width: 100%; margin-left:-36px;">
+<div class="" id="listadoUsers">
+    <table id="suppliers" class="table table-striped table-bordered " style="width: 100%;">
         <thead>
             <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Direccion</th>
@@ -100,10 +103,25 @@
                 <th>Email</th>
                 <th>Terminos de pago</th>
                 <th>Nota</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
         </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Contacto</th>
+                <th>Telefono 1</th>
+                <th>Telefono 2</th>
+                <th>Celular</th>
+                <th>Email</th>
+                <th>Terminos de pago</th>
+                <th>Nota</th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
@@ -113,7 +131,7 @@
 @include('adminlte/scripts')
 <script src="{{asset('js/suplidor.js')}}"></script>
 <script>
-        function mostrar(id_supplier) {
+    function mostrar(id_supplier) {
             $.post("supplier/" + id_supplier, function(data, status) {
            
                 $("#listadoUsers").hide();

@@ -20,16 +20,16 @@
                         <div class="col-md-6">
                             <input type="hidden" name="id" id="id" value="">
                             <label for="codigo composicion">Codigo composicion(*):</label>
-                            <input type="text" name="codigo_composicion" id="codigo_composicion"  class="form-control">
+                            <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control">
                         </div>
                         <div class="col-md-6">
                             <label for="nombre composicion">Nombre composicion(*):</label>
-                            <input type="text" name="nombre_composicion" id="nombre_composicion" class="form-control" >
+                            <input type="text" name="nombre_composicion" id="nombre_composicion" class="form-control">
                         </div>
                     </div>
-                   
 
-                    <input type="submit" value="Registrar" id="btn-guardar"  class="btn btn-lg btn-info mt-4">
+
+                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
                     <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
                 </form>
             </div>
@@ -41,14 +41,26 @@
     <table id="compositions" class="table table-striped table-bordered" style="width: 100%">
         <thead>
             <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
                 <th>ID</th>
                 <th>Codigo composicion</th>
                 <th>Nombre composicion</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+
             </tr>
         </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>ID</th>
+                <th>Codigo composicion</th>
+                <th>Nombre composicion</th>
+            </tr>
+        </tfoot>
     </table>
+
 </div>
 
 

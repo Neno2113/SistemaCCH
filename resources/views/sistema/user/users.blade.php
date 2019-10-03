@@ -20,11 +20,11 @@
                         <div class="col-md-4">
                             <input type="hidden" name="id" id="id" value="">
                             <label for="name">Nombre(*):</label>
-                            <input type="text" name="name" id="name"  class="form-control" pattern="[a-zA-Z]">
+                            <input type="text" name="name" id="name" class="form-control" pattern="[a-zA-Z]">
                         </div>
                         <div class="col-md-4">
                             <label for="surname">Apellido(*):</label>
-                            <input type="text" name="surname" id="surname" class="form-control" >
+                            <input type="text" name="surname" id="surname" class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label for="edad">Edad:</label>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="password">Contraseña(*):</label>
-                            <input type="password" name="password" id="password"  class="form-control">
+                            <input type="password" name="password" id="password" class="form-control">
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="name">Rol:</label>
@@ -94,7 +94,7 @@
                         </div>
                     </div>
 
-                    <input type="submit" value="Registrar" id="btn-guardar"  class="btn btn-lg btn-info mt-4">
+                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
                     <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
                 </form>
             </div>
@@ -106,6 +106,8 @@
     <table id="users" class="table table-striped table-bordered table-responsive" style="width: 100%">
         <thead>
             <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -115,10 +117,26 @@
                 <th>Celular</th>
                 <th>Direccion</th>
                 <th>Edad</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+
             </tr>
         </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Telefono</th>
+                <th>Celular</th>
+                <th>Direccion</th>
+                <th>Edad</th>
+
+            </tr>
+        </tfoot>
     </table>
 </div>
 

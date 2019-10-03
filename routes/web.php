@@ -57,3 +57,6 @@ Route::post('/supplier', 'SupplierController@store');
 Route::post('/supplier/{id}', 'SupplierController@show');
 Route::put('/supplier/edit', 'SupplierController@update');
 Route::post('/supplier/delete/{id}', 'SupplierController@destroy');
+
+//Rutas clientes
+Route::post('/client', 'ClientController@store');

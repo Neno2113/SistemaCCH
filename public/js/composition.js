@@ -78,13 +78,15 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#compositions").DataTable({
             serverSide: true,
+            responsive: true,
             ajax: "api/compositions",
             columns: [
+                { data: "Editar", orderable: false, searchable: false },
+                { data: "Eliminar", orderable: false, searchable: false },
                 { data: "id" },
                 { data: "codigo_composicion" },
                 { data: "nombre_composicion" },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false }
+              
             ]
         });
     }

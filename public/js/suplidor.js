@@ -120,8 +120,11 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#suppliers").DataTable({
             serverSide: true,
+            responsive: true,
             ajax: "api/suppliers",
             columns: [
+                { data: "Editar", orderable: false, searchable: false },
+                { data: "Eliminar", orderable: false, searchable: false },
                 { data: "id" },
                 { data: "nombre" },
                 { data: "direccion" },
@@ -132,8 +135,7 @@ $(document).ready(function() {
                 { data: "email" },
                 { data: "terminos_de_pago" },
                 { data: "nota" },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false }
+               
             ]
         });
     }

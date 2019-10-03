@@ -64,3 +64,19 @@ Route::get('suppliers', function() {
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
 })->name('datatable.compositions');
+
+Route::get('clients', function() {
+
+    $clients = App\Client::query();
+    
+    return DataTables::eloquent($clients)
+            ->addColumn('Editar', function($client){
+               return '<button id="btnEdit" onclick="mostrar('.$client->id.')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+            })
+         
+            ->addColumn('Eliminar', function($client){
+                return '<button onclick="eliminar('.$client->id.')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+})->name('datatable.compositions');

@@ -108,8 +108,11 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#users").DataTable({
             serverSide: true,
+            responsive: true,
             ajax: "api/users",
             columns: [
+                { data: "Editar", orderable: false, searchable: false },
+                { data: "Eliminar", orderable: false, searchable: false },
                 { data: "id" },
                 { data: "name" },
                 { data: "surname" },
@@ -119,9 +122,12 @@ $(document).ready(function() {
                 { data: "celular" },
                 { data: "direccion" },
                 { data: "edad" },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false }
-            ]
+               
+            ],
+            order: [[2, 'asc']],
+            // rowGroup: {
+            //     dataSrc: 'name'
+            // }
         });
     }
     setInterval(function(){
