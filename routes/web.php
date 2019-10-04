@@ -60,3 +60,10 @@ Route::post('/supplier/delete/{id}', 'SupplierController@destroy');
 
 //Rutas clientes
 Route::post('/client', 'ClientController@store');
+Route::post('/client/{id}', 'ClientController@show');
+Route::put('/client/edit', 'ClientController@update');
+Route::post('/client/delete/{id}', 'ClientController@destroy');
+
+Route::post('/client', 'ClientBranchController@selectClient');
+
+Route::get('clients', 'ClientBranchController@select');

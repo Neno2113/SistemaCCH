@@ -136,7 +136,11 @@ $(document).ready(function() {
                 { data: "terminos_de_pago" },
                 { data: "nota" },
                
-            ]
+            ],
+            order: [[2, 'asc']],
+            rowGroup: {
+                dataSrc: 'nombre'
+            }
         });
     }
     setInterval(function(){

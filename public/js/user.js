@@ -121,13 +121,12 @@ $(document).ready(function() {
                 { data: "telefono" },
                 { data: "celular" },
                 { data: "direccion" },
-                { data: "edad" },
-               
+                { data: "edad" },  
             ],
             order: [[2, 'asc']],
-            // rowGroup: {
-            //     dataSrc: 'name'
-            // }
+            rowGroup: {
+                dataSrc: 'role'
+            }
         });
     }
     setInterval(function(){

@@ -37,9 +37,13 @@ $(document).ready(function() {
                 required: "Este campo es obligatorio",
                 minlength: "Debe contener al menos 4 letras"
             },
-            contacnto_cliente_principal:{
+            contacto_cliente_principal:{
                 required: "Este campo es obligatorio",
                 minlength: "Debe contener al menos 4 letras"
+            },
+            telefono_1: {
+                required: "Este campo es obligatorio",
+                minlength: "Debe contener al menos 10 caracteres"
             },
             email_principal: {
                 required: "El email es obligatorio",
@@ -59,6 +63,8 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+        $("#results").hide();
+   
     }
 
     function limpiar() {
@@ -123,6 +129,11 @@ $(document).ready(function() {
                 );
             }
         });
+
+        
+
+
+
     });
 
     function listar() {
@@ -137,17 +148,23 @@ $(document).ready(function() {
                 { data: "direccion_principal" },
                 { data: "contacto_cliente_principal" },
                 { data: "telefono_1" },
+                { data: "telefono_2" },
+                { data: "telefono_3" },
                 { data: "celular_principal" },
                 { data: "email_principal" },
                 { data: "condiciones_credito" },
-              
+                { data: "notas" },
+                { data: "autorizacion_credito_req" },
+                { data: "redistribucion_tallas" },
+                { data: "factura_desglosada_talla" },
             ],
             order: [[2, 'asc']],
             rowGroup: {
-                dataSrc: 'name'
+                dataSrc: 'nombre_cliente'
             }
         });
     }
+
     setInterval(function(){
         tabla.ajax.reload();
     }, 30000)
@@ -159,11 +176,15 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#radios").show();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
+            $("#autorizacion_credito_req").hide();
+            $("#redistribucion_tallas").hide();
+            $("#factura_desglosada_tallas").hide();
         }
     }
 

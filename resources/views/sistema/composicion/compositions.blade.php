@@ -38,7 +38,7 @@
 </div>
 
 <div class="container" id="listadoUsers">
-    <table id="compositions" class="table table-striped table-bordered" style="width: 100%">
+    <table id="compositions" class="table table-striped table-bordered datatables" >
         <thead>
             <tr>
                 <th>Editar</th>

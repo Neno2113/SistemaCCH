@@ -16,16 +16,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte/css/adminlte.min.css')}}">
-
+  <!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" />
   <link rel="stylesheet" type="text/css"
     href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css" />
   <link rel="stylesheet" type="text/css"
     href="https://cdn.datatables.net/rowgroup/1.1.0/css/rowGroup.bootstrap4.min.css" />
-  
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+  <!-- Icheck -->
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('css/styles.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
