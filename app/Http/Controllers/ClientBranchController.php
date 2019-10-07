@@ -12,6 +12,7 @@ class ClientBranchController extends Controller
     public function store(Request $request){
 
         $validar = $request->validate([
+            'client_id' => 'required',
             'nombre_sucursal' => 'required',
             'telefono_sucursal' => 'required',
             'direccion' => 'required'
@@ -25,12 +26,27 @@ class ClientBranchController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
+            $random = rand(9, 99);
+            $nombre_sucursal = $request->input('nombre_sucursal', true);
+            $cliente_id = $request->input('client_id', true);
+            $telefono_sucursal = $request->input('telefono_sucursal', true);
+            $direccion = $request->input('direccion', true);
+            $codigo_sucursal = "$cliente_id-$random";
 
-            
+            $client_branch = new ClientBranch();
+
+            $client_branch->cliente_id =  $cliente_id;
+            $client_branch->codigo_sucursal = $codigo_sucursal;
+            $client_branch->nombre_sucursal = $nombre_sucursal;
+            $client_branch->telefono_sucursal = $telefono_sucursal;
+            $client_branch->direccion = $direccion;
+
+            $client_branch->save();
 
             $data = [
                 'code' => 200,
-                'status' => 'success'
+                'status' => 'success',
+                'sucursal' => $client_branch
             ];
         }
 
@@ -50,17 +66,98 @@ class ClientBranchController extends Controller
         }
         return response()->json($data);
     }
+    
+    public function show($id)
+    {
+        $client_branch = ClientBranch::find($id);
 
+        if (is_object($client_branch)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'branch' => $client_branch
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
 
-    public function selectClient(){
-        $client = Client::all();
-
-        return response()->json([
-            'code' => 200,
-            'status'=> 'success',
-            'client' => $client
-        ],200);
+        return \response()->json($data, $data['code']);
     }
+
+    public function update(Request $request)
+    {
+        $validar = $request->validate([
+            'id' => 'required',
+            'client_id' => 'required',
+            'nombre_sucursal' => 'required',
+            'telefono_sucursal' => 'required',
+            'direccion' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id', true);
+            $nombre_sucursal = $request->input('nombre_sucursal', true);
+            $cliente_id = $request->input('client_id', true);
+            $telefono_sucursal = $request->input('telefono_sucursal', true);
+            $direccion = $request->input('direccion', true);
+
+            $client_branch = ClientBranch::find($id);
+            
+            $client_branch->cliente_id =  $cliente_id;
+            $client_branch->nombre_sucursal = $nombre_sucursal;
+            $client_branch->telefono_sucursal = $telefono_sucursal;
+            $client_branch->direccion = $direccion;
+
+            $client_branch->save();
+        
+            $client_branch->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'branch' => $client_branch
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+       
+    }
+
+    public function destroy($id)
+    {
+        $client_branch = ClientBranch::find($id);
+
+        if (!empty($client_branch)) {
+            $client_branch->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'branch' => $client_branch
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
+
+
+   
 
 
 }

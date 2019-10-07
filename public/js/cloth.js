@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("[data-mask]").inputmask();
 
     $("#formulario").validate({
         rules: {
@@ -34,9 +35,17 @@ $(document).ready(function() {
     }
 
     function limpiar() {
-        $("#codigo_composicion").val("");
-        $("#nombre_composicion").val("");
-     
+        $("#referencia").val("");
+        $("#precio_usd").val("");
+        $("#tipo_tela").val("");
+        $("#ancho_cortable").val("");
+        $("#peso").val("");
+        $("#elasticidad_trama").val("");
+        $("#encogimiento_trama").val("");
+        $("#elasticidad_urdimbre").val("");
+        $("#encogimiento_urdimbre").val("");
+        $("#suplidores").val("").trigger("change");
+        $("#compositions").val("").trigger("change");
     }
 
  
@@ -44,20 +53,31 @@ $(document).ready(function() {
     $("#btn-guardar").click(function(e){
         e.preventDefault();
         
-        var composition = {
-            codigo_composicion: $("#codigo_composicion").val(),
-            nombre_composicion: $("#nombre_composicion").val()
+        var cloth = {
+            id_suplidor: $("#suplidores").val(),
+            id_composiciones: $("#compositions").val(),
+            referencia: $("#referencia").val(),
+            precio_usd: $("#precio_usd").val(),
+            tipo_tela: $("#tipo_tela").val(),
+            ancho_cortable: $("#ancho_cortable").val(),
+            peso: $("#peso").val(),
+            elasticidad_trama: $("#elasticidad_trama").val(),
+            elasticidad_urdimbre: $("#elasticidad_urdimbre").val(),
+            encogimiento_trama: $("#encogimiento_trama").val(),
+            encogimiento_urdimbre: $("#encogimiento_urdimbre").val(),
         };
 
+        // console.log(JSON.stringify(cloth));
+
         $.ajax({
-            url: "composition",
+            url: "cloth",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(composition),
+            data: JSON.stringify(cloth),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro la composicion");
+                    bootbox.alert("Se registro la tela correctamente");
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);

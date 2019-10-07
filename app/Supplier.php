@@ -11,4 +11,10 @@ class Supplier extends Model
     protected $fillable = [
         'id', 'nombre', 'direccion', 'contacto_suplidor', 'telefono_1', 'telefono_2','celular','email','terminos_de_pago','nota'
     ];
+
+
+    public function telas()
+    {
+        return $this->hasMany('App\Cloth');
+    }
 }

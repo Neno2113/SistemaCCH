@@ -44,7 +44,6 @@
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
-                <th>Codigo composicion</th>
                 <th>Nombre composicion</th>
 
             </tr>
@@ -55,7 +54,6 @@
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
-                <th>Codigo composicion</th>
                 <th>Nombre composicion</th>
             </tr>
         </tfoot>

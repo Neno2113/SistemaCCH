@@ -88,3 +88,21 @@ Route::get('clients', function() {
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
 })->name('datatable.compositions');
+
+
+
+Route::get('branches', function() {
+
+    $branches = App\ClientBranch::query();
+    
+    return DataTables::eloquent($branches)
+            ->addColumn('Editar', function($branch){
+               return '<button id="btnEdit" onclick="mostrar('.$branch->id.')" class="btn btn-warning"> <i class="fas fa-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function($branch){
+                return '<button onclick="eliminar('.$branch->id.')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
+            
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+})->name('datatable.branches');

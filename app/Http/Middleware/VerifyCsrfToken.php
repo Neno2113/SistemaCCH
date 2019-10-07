@@ -28,6 +28,9 @@ class VerifyCsrfToken extends Middleware
         'http://localhost/sistemaCCH/public/supplier',
         'http://localhost/sistemaCCH/public/supplier/*',
         'http://localhost/sistemaCCH/public/client',
-        'http://localhost/sistemaCCH/public/client/*'
+        'http://localhost/sistemaCCH/public/client/*',
+        'http://localhost/sistemaCCH/public/client-branch',
+        'http://localhost/sistemaCCH/public/client-branch/*',
+        'http://localhost/sistemaCCH/public/cloth',
     ];
 }

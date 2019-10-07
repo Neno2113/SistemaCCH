@@ -70,56 +70,7 @@
                     <br>
                     <br>
 
-                    {{-- <div class="row">
-                        <div class="col-md-12 mt-5">
-                            <button class="btn btn-secondary" type="button" data-toggle="collapse"
-                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Agregar sucursales
-                            </button>
-                            </p>
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    <form action="" id="formSucursales">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label for="codigo_sucursal">Codigo sucursal</label>
-                                                <input type="text" name="codigo_sucursal" id="codigo_sucursal"
-                                                    class="form-control">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="nombre_sucursal">Nombre Sucursal(*):</label>
-                                                <input type="text" name="nombre_sucursal" id="nombre_sucursal"
-                                                    class="form-control">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="telefono_sucursal">Telefono sucursal(*):</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i
-                                                                class="fas fa-phone"></i></span>
-                                                    </div>
-                                                    <input type="text" id="telefono_sucursal" class="form-control"
-                                                        data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 mt-2">
-                                                <label for="direccion">Direccion(*):</label>
-                                                <input type="text" name="direccion" id="direccion" class="form-control">
-                                            </div>
-
-                                            <div class="col-md-8 mt-4 d-flex justify-content-end">
-                                                <input type="submit" value="Guardar" class="btn btn-success">
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> --}}
+                  
 
                     <div class="row">
                         <div class="col-md-4 mt-3">
@@ -290,12 +241,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mt-2">
+                        <div class="col-md-6 mt-4">
                             <label for="nombre_sucursal">Nombre Sucursal(*)</label>
                             <input type="text" name="nombre_sucursal" id="nombre_sucursal" class="form-control"
                                 placeholder="Puede ser el nombre mas la direccion">
                         </div>
-                        <div class="col-md-6 mt-2">
+                        <div class="col-md-6 mt-4">
                             <label for="telefono_sucursal">Telefono(*):</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -332,6 +283,7 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/client.js')}}"></script>
+<script src="{{asset('js/client_branch.js')}}"></script>
 <script>
     function mostrar(id_client) {
         $.post("client/" + id_client, function(data, status) {
@@ -480,6 +432,8 @@
             cache: true
         }
     })
+
+
 
 </script>
 

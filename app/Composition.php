@@ -12,6 +12,11 @@ class Composition extends Model
     protected $fillable = [
         'id', 'codigo_composicion', 'nombre_composicion'
     ];
+
+    public function telas()
+    {
+        return $this->hasMany('App\Cloth');
+    }
         
     
 }
