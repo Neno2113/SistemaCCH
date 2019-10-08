@@ -46,6 +46,15 @@ $(document).ready(function() {
         $("#encogimiento_urdimbre").val("");
         $("#suplidores").val("").trigger("change");
         $("#compositions").val("").trigger("change");
+        $("#compositions_2").val("").trigger("change");
+        $("#compositions_3").val("").trigger("change");
+        $("#compositions_4").val("").trigger("change");
+        $("#compositions_5").val("").trigger("change");
+        $("#porcentaje_mat_1").val("");
+        $("#porcentaje_mat_2").val("");
+        $("#porcentaje_mat_3").val("");
+        $("#porcentaje_mat_4").val("");
+        $("#porcentaje_mat_5").val("");
     }
 
  
@@ -65,6 +74,16 @@ $(document).ready(function() {
             elasticidad_urdimbre: $("#elasticidad_urdimbre").val(),
             encogimiento_trama: $("#encogimiento_trama").val(),
             encogimiento_urdimbre: $("#encogimiento_urdimbre").val(),
+            composiciones: $("#composiciones").val(),
+            composiciones_2: $("#composiciones_2").val(),
+            composiciones_3: $("#composiciones_3").val(),
+            composiciones_4: $("#composiciones_4").val(),
+            composiciones_5: $("#composiciones_5").val(),
+            porcentaje_mat_1: $("#porcentaje_mat_1").val(),
+            porcentaje_mat_2: $("#porcentaje_mat_2").val(),
+            porcentaje_mat_3: $("#porcentaje_mat_3").val(),
+            porcentaje_mat_4: $("#porcentaje_mat_4").val(),
+            porcentaje_mat_5: $("#porcentaje_mat_5").val()
         };
 
         // console.log(JSON.stringify(cloth));
@@ -96,17 +115,34 @@ $(document).ready(function() {
     });
 
     function listar() {
-        tabla = $("#compositions").DataTable({
+        tabla = $("#cloths").DataTable({
             serverSide: true,
             responsive: true,
-            ajax: "api/compositions",
+            ajax: "api/cloths",
             columns: [
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
-                { data: "id" },
-                { data: "nombre_composicion" },
+                { data: "id", name: 'tela.id' },
+                { data: "nombre", name: "suplidor.nombre" },
+                { data: "precio_usd", name: "tela.precio_usd" },
+                { data: "tipo_tela", name: "tela.tipo_tela" },
+                { data: "peso", name: "tela.peso" },
+                { data: "ancho_cortable", name: "tela.ancho_cortable" },
+                { data: "elasticidad_trama", name: "tela.elasticidad_trama" },
+                { data: "elasticidad_urdimbre", name: "tela.elasticidad_urdimbre" },
+                { data: "encogimiento_trama", name: "tela.encogimiento_trama" },
+                { data: "encogimiento_urdimbre", name: "tela.encogimiento_urdimbre" },
+                { data: "composicion", name: "tela.composicion" },
+                { data: "composicion_2", name: "tela.composicion_2" },
+                { data: "composicion_3", name: "tela.composicion_3" },
+                { data: "composicion_4", name: "tela.composicion_4" },
+                { data: "composicion_5", name: "tela.composicion_5" },
               
-            ]
+            ],
+            order: [[2, 'asc']],
+            rowGroup: {
+                dataSrc: 'nombre'
+            }
         });
     }
     setInterval(function(){

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use  Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -114,7 +115,7 @@ class UserController extends Controller
             $pwd = Hash::make($password);
 
             $user = User::find($id);
-            
+
             $user->name = $name;
             $user->email = $email;
             $user->password = $pwd;
@@ -135,7 +136,6 @@ class UserController extends Controller
         }
 
         return response()->json($data, $data['code']);
-       
     }
 
     public function destroy($id)
@@ -158,5 +158,22 @@ class UserController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
+    }
+
+
+    public function users()
+    {
+        $users = User::query();
+
+        return DataTables::eloquent($users)
+            ->addColumn('Editar', function ($user) {
+                return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning"> <i class="fas fa-user-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function ($user) {
+                return '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger"> <i class="fas fa-user-times"></i></button>';
+            })
+
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
     }
 }

@@ -25,10 +25,9 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="direccion_principal">Composiciones(*):</label>
-                            <select name="tags[]" id="compositions" class="form-control select2" multiple="multiple">
-
-                            </select>
+                            <button type="button" class="btn btn-secondary btn-block mt-4" data-toggle="modal"
+                                data-target=".bd-composition-modal-lg">Agregar composiciones <i
+                                    class="fas fa-fill-drip"></i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -37,8 +36,9 @@
                             <input type="text" name="referencia" id="referencia" class="form-control">
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="precio_usd">Precio USD:</label>
-                            <input type="text" name="precio_usd" id="precio_usd" class="form-control">
+                            <label for="precio_usd">Precio USD por yarda:</label>
+                            <input type="text" name="precio_usd" id="precio_usd" class="form-control"
+                            data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="telefono_2">Tipo tela:</label>
@@ -96,13 +96,26 @@
 </div>
 
 <div class="container" id="listadoUsers">
-    <table id="compositions" class="table table-striped table-bordered datatables">
+    <table id="cloths" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
-                <th>Nombre composicion</th>
+                <th>Nombre Suplidor</th>
+                <th>Precio USD/Yarda</th>
+                <th>Tipo tela</th>
+                <th>Peso</th>
+                <th>Ancho cortable</th>
+                <th>Elasticidad en trama</th>
+                <th>Elasticidad en urdimbre</th>
+                <th>Encogimiento en trama</th>
+                <th>Encogimiento en urdimbre</th>
+                <th>Composicion</th>
+                <th>Composicion 2</th>
+                <th>Composicion 3</th>
+                <th>Composicion 4</th>
+                <th>Composicion 5</th>
 
             </tr>
         </thead>
@@ -112,7 +125,20 @@
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
-                <th>Nombre composicion</th>
+                <th>Nombre Suplidor</th>
+                <th>Precio USD/Yarda</th>
+                <th>Tipo tela</th>
+                <th>Peso</th>
+                <th>Ancho cortable</th>
+                <th>Elasticidad en trama</th>
+                <th>Elasticidad en urdimbre</th>
+                <th>Encogimiento en trama</th>
+                <th>Encogimiento en urdimbre</th>
+                <th>Composicion</th>
+                <th>Composicion 2</th>
+                <th>Composicion 3</th>
+                <th>Composicion 4</th>
+                <th>Composicion 5</th>
             </tr>
         </tfoot>
     </table>
@@ -120,15 +146,131 @@
 </div>
 
 
+<!-- Modal -->
+
+<div class="modal fade bd-composition-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Composiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="compositionForm" class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Material No.1">Material No.1</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="tags[]" id="composiciones" class="form-control select2">
+
+                            </select>
+                        </div>
+                        <div class="col-md-2 ml-5">
+                            <label for="Porcentaje Mat.No.1">Porcentaje Mat.No.1</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1" class="form-control"
+                            data-inputmask='"mask": "99.99"' data-mask>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Material No.2">Material No.2</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="tags[]" id="composiciones_2" class="form-control select2">
+
+                            </select>
+                        </div>
+                        <div class="col-md-2 ml-5">
+                            <label for="Porcentaje Mat.No.2">Porcentaje Mat.No.2</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2" class="form-control"
+                            data-inputmask='"mask": "99.99"' data-mask>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Material No.3">Material No.3</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="tags[]" id="composiciones_3" class="form-control select2">
+
+                            </select>
+                        </div>
+                        <div class="col-md-2 ml-5">
+                            <label for="Porcentaje Mat.No.3">Porcentaje Mat.No.3</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3" class="form-control"
+                            data-inputmask='"mask": "99.99"' data-mask>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Material No.4">Material No.4</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="tags[]" id="composiciones_4" class="form-control select2">
+
+                            </select>
+                        </div>
+                        <div class="col-md-2 ml-5">
+                            <label for="Porcentaje Mat.No.4">Porcentaje Mat.No.4</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4" class="form-control"
+                            data-inputmask='"mask": "99.99"' data-mask>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Material No.5">Material No.5</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="tags[]" id="composiciones_5" class="form-control select2">
+
+                            </select>
+                        </div>
+                        <div class="col-md-2 ml-5">
+                            <label for="Porcentaje Mat.No.5">Porcentaje Mat.No.5</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5" class="form-control"
+                            data-inputmask='"mask": "99.99"' data-mask>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-end mt-5 mr-1">
+                        <div class="col-md-2 ml-5">
+                            <label for="Total">Total</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="porcentaje_mat_total" id="porcentaje_mat_total" class="form-control">
+                        </div>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 @include('adminlte/scripts')
 <script src="{{asset('js/cloth.js')}}"></script>
 
 <script>
-    function mostrar(id_composition) {
-        $.post("composition/" + id_composition, function(data, status) {
-            // data = JSON.parse(data);
+    function mostrar(id_cloth) {
+        $.post("cloth/" + id_cloth, function(data, status) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#btnCancelar").show();
@@ -136,10 +278,21 @@
             $("#btn-edit").show();
             $("#btn-guardar").hide();
 
-            // console.log(data);
-            $("#id").val(data.composition.id);
-            $("#codigo_composicion").val(data.composition.codigo_composicion);
-            $("#nombre_composicion").val(data.composition.nombre_composicion);
+            $("#id").val(data.tela.id);
+            $("#referencia").val(data.tela.referencia);
+            $("#precio_usd").val(data.tela.precio_usd);
+            // $("#porcentaje_mat_1").val(data.tela.composicion);
+            // $("#porcentaje_mat_2").val(data.tela.compsicion_2);
+            // $("#porcentaje_mat_3").val(data.tela.compsicion_3);
+            // $("#porcentaje_mat_4").val(data.tela.compsicion_4);
+            // $("#porcentaje_mat_5").val(data.tela.compsicion_5);
+            $("#tipo_tela").val(data.tela.tipo_tela);
+            $("#ancho_cortable").val(data.tela.ancho_cortable);
+            $("#peso").val(data.tela.peso);
+            $("#elasticidad_trama").val(data.tela.elasticidad_trama);
+            $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre);
+            $("#encogimiento_trama").val(data.tela.encogimiento_trama);
+            $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre);
            
         });
     }
@@ -147,21 +300,42 @@
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
-        var composition = {
+        var cloth = {
             id: $("#id").val(),
-            codigo_composicion: $("#codigo_composicion").val(),
-            nombre_composicion: $("#nombre_composicion").val()
+            id_suplidor: $("#suplidores").val(),
+            id_composiciones: $("#compositions").val(),
+            referencia: $("#referencia").val(),
+            precio_usd: $("#precio_usd").val(),
+            tipo_tela: $("#tipo_tela").val(),
+            ancho_cortable: $("#ancho_cortable").val(),
+            peso: $("#peso").val(),
+            elasticidad_trama: $("#elasticidad_trama").val(),
+            elasticidad_urdimbre: $("#elasticidad_urdimbre").val(),
+            encogimiento_trama: $("#encogimiento_trama").val(),
+            encogimiento_urdimbre: $("#encogimiento_urdimbre").val(),
+            composiciones: $("#composiciones").val(),
+            composiciones_2: $("#composiciones_2").val(),
+            composiciones_3: $("#composiciones_3").val(),
+            composiciones_4: $("#composiciones_4").val(),
+            composiciones_5: $("#composiciones_5").val(),
+            porcentaje_mat_1: $("#porcentaje_mat_1").val(),
+            porcentaje_mat_2: $("#porcentaje_mat_2").val(),
+            porcentaje_mat_3: $("#porcentaje_mat_3").val(),
+            porcentaje_mat_4: $("#porcentaje_mat_4").val(),
+            porcentaje_mat_5: $("#porcentaje_mat_5").val()
         };
-     
+
+        // console.log(JSON.stringify(cloth));
+
         $.ajax({
-            url: "composition/edit",
+            url: "cloth/edit",
             type: "PUT",
             dataType: "json",
-            data: JSON.stringify(composition),
+            data: JSON.stringify(cloth),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
+                    bootbox.alert("Se actualizo la tela correctamente");
                     $("#id").val("");
                     $("#codigo_composicion").val("");
                     $("#nombre_composicion").val("");
@@ -186,11 +360,10 @@
        
     });
 
-    function eliminar(id_composition){
-        bootbox.confirm("¿Estas seguro de eliminar esta composicion?", function(result){
+    function eliminar(id_cloth){
+        bootbox.confirm("¿Estas seguro de eliminar esta tela?", function(result){
             if(result){
-                $.post("composition/delete/" + id_composition, function(){
-                    // bootbox.alert(e);
+                $.post("cloth/delete/" + id_cloth, function(){
                     bootbox.alert("Composicion eliminada correctamente");
                 })
             }
@@ -218,8 +391,48 @@
         }
     })
 
-    $("#compositions").select2({
-        placeholder: "Elige las composiciones...",
+    $("#composiciones").select2({
+        placeholder: "Busca una composicion",
+        ajax: {
+            url: 'compositions',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.nombre_composicion,
+                            id: item.nombre_composicion
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    $("#composiciones_2").select2({
+        placeholder: "Busca una composicion",
+        ajax: {
+            url: 'compositions',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.nombre_composicion,
+                            id: item.nombre_composicion
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    $("#composiciones_3").select2({
+        placeholder: "Busca una composicion",
         ajax: {
             url: 'compositions',
             dataType: 'json',
@@ -237,6 +450,48 @@
             cache: true
         }
     })
+
+    $("#composiciones_4").select2({
+        placeholder: "Busca una composicion",
+        ajax: {
+            url: 'compositions',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.nombre_composicion,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    $("#composiciones_5").select2({
+        placeholder: "Busca una composicion",
+        ajax: {
+            url: 'compositions',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.nombre_composicion,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+  
 
 </script>
 

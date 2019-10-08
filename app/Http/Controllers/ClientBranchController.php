@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 use App\ClientBranch;
+use Yajra\DataTables\Facades\DataTables;
 
 class ClientBranchController extends Controller
 {
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $validar = $request->validate([
             'client_id' => 'required',
@@ -51,22 +53,22 @@ class ClientBranchController extends Controller
         }
 
         return response()->json($data, $data['code']);
-
     }
 
 
-    public function select(Request $request){
+    public function select(Request $request)
+    {
         $data = [];
 
-        if($request->has('q')){
+        if ($request->has('q')) {
             $search = $request->q;
             $data = Client::select("id", "nombre_cliente")
-                            ->where('nombre_cliente', 'LIKE',"%$search%")
-                            ->get(); 
+                ->where('nombre_cliente', 'LIKE', "%$search%")
+                ->get();
         }
         return response()->json($data);
     }
-    
+
     public function show($id)
     {
         $client_branch = ClientBranch::find($id);
@@ -113,14 +115,14 @@ class ClientBranchController extends Controller
             $direccion = $request->input('direccion', true);
 
             $client_branch = ClientBranch::find($id);
-            
+
             $client_branch->cliente_id =  $cliente_id;
             $client_branch->nombre_sucursal = $nombre_sucursal;
             $client_branch->telefono_sucursal = $telefono_sucursal;
             $client_branch->direccion = $direccion;
 
             $client_branch->save();
-        
+
             $client_branch->save();
 
             $data = [
@@ -131,7 +133,6 @@ class ClientBranchController extends Controller
         }
 
         return response()->json($data, $data['code']);
-       
     }
 
     public function destroy($id)
@@ -156,8 +157,19 @@ class ClientBranchController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function branches()
+    {
+        $branches = ClientBranch::query()->with('cliente');
 
-   
+        return DataTables::eloquent($branches)
+            ->addColumn('Editar', function ($branch) {
+                return '<button id="btnEdit" onclick="mostrar(' . $branch->id . ')" class="btn btn-warning"> <i class="fas fa-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function ($branch) {
+                return '<button onclick="eliminar(' . $branch->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
 
-
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+    }
 }

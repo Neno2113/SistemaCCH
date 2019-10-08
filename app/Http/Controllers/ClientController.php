@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use Yajra\DataTables\Facades\DataTables;
 
 class ClientController extends Controller
 {
@@ -178,5 +179,29 @@ class ClientController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
+    }
+
+    public function clients(){
+        $clients = Client::query();
+
+        return DataTables::eloquent($clients)
+            ->addColumn('Editar', function ($client) {
+                return '<button id="btnEdit" onclick="mostrar(' . $client->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+            })
+            ->editColumn('autorizacion_credito_req', function ($client) {
+                return ($client->autorizacion_credito_req == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('redistribucion_tallas', function ($client) {
+                return ($client->redistribucion_tallas == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('factura_desglosada_talla', function ($client) {
+                return ($client->factura_desglosada_talla == 1 ? 'Si' : 'No');
+            })
+            ->addColumn('Eliminar', function ($client) {
+                return '<button onclick="eliminar(' . $client->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+
     }
 }

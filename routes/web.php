@@ -81,3 +81,6 @@ Route::post('/client-branch/delete/{id}', 'ClientBranchController@destroy');
 Route::post('/cloth', 'ClothController@store');
 Route::get('suplidores', 'ClothController@selectSuplidor');
 Route::get('compositions', 'ClothController@selectComposition');
+Route::post('/cloth/{id}', 'ClothController@show');
+Route::put('/cloth/edit', 'ClothController@update');
+Route::post('/cloth/delete/{id}', 'ClothController@destroy');

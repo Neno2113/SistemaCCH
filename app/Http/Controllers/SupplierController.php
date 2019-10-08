@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Supplier;
+use Yajra\DataTables\Facades\DataTables;
 
 class SupplierController extends Controller
 {
@@ -36,7 +37,7 @@ class SupplierController extends Controller
             $email = $request->input('email', true);
             $terminos_pago = $request->input('terminos_de_pago', true);
             $nota = $request->input('nota', true);
-            
+
             $suplidor = new Supplier();
             $suplidor->nombre = $nombre;
             $suplidor->direccion = $direccion;
@@ -47,7 +48,7 @@ class SupplierController extends Controller
             $suplidor->email = $email;
             $suplidor->terminos_de_pago = $terminos_pago;
             $suplidor->nota = $nota;
-          
+
 
             $suplidor->save();
 
@@ -113,7 +114,7 @@ class SupplierController extends Controller
             $nota = $request->input('nota', true);
 
             $supplier = Supplier::find($id);
-            
+
             $supplier->nombre = $nombre;
             $supplier->direccion = $direccion;
             $supplier->contacto_suplidor = $contacto_suplidor;
@@ -123,7 +124,7 @@ class SupplierController extends Controller
             $supplier->email = $email;
             $supplier->terminos_de_pago = $terminos_pago;
             $supplier->nota = $nota;
-           
+
 
             $supplier->save();
 
@@ -135,11 +136,11 @@ class SupplierController extends Controller
         }
 
         return response()->json($data, $data['code']);
-       
     }
 
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $supplier = Supplier::find($id);
 
         if (!empty($supplier)) {
@@ -160,4 +161,18 @@ class SupplierController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function suppliers()
+    {
+        $suppliers = Supplier::query();
+
+        return DataTables::eloquent($suppliers)
+            ->addColumn('Editar', function ($supplier) {
+                return '<button id="btnEdit" onclick="mostrar(' . $supplier->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function ($supplier) {
+                return '<button onclick="eliminar(' . $supplier->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+    }
 }

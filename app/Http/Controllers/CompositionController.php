@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Composition;
+use Yajra\DataTables\Facades\DataTables;
 
 class CompositionController extends Controller
 {
@@ -25,11 +26,11 @@ class CompositionController extends Controller
         } else {
             $codgo_composicion = $request->input('codigo_composicion', true);
             $nombre_composicion = $request->input('nombre_composicion', true);
-            
+
             $composition = new Composition();
             $composition->codigo_composicion = $codgo_composicion;
             $composition->nombre_composicion = $nombre_composicion;
-          
+
 
             $composition->save();
 
@@ -84,13 +85,13 @@ class CompositionController extends Controller
             $codgo_composicion = $request->input('codigo_composicion', true);
             $nombre_composicion = $request->input('nombre_composicion', true);
 
-            
+
 
             $composition = Composition::find($id);
-            
+
             $composition->codigo_composicion = $codgo_composicion;
             $composition->nombre_composicion = $nombre_composicion;
-           
+
 
             $composition->save();
 
@@ -102,7 +103,6 @@ class CompositionController extends Controller
         }
 
         return response()->json($data, $data['code']);
-       
     }
 
     public function destroy($id)
@@ -125,5 +125,20 @@ class CompositionController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
+    }
+
+    public function compositions()
+    {
+        $compositions = Composition::query();
+
+        return DataTables::eloquent($compositions)
+            ->addColumn('Editar', function ($composition) {
+                return '<button id="btnEdit" onclick="mostrar(' . $composition->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function ($composition) {
+                return '<button onclick="eliminar(' . $composition->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
     }
 }
