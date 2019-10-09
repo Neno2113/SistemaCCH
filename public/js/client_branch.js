@@ -86,11 +86,6 @@ $(document).ready(function() {
                 );
             }
         });
-
-        
-
-
-
     });
 
     function listar() {
@@ -101,14 +96,15 @@ $(document).ready(function() {
             columns: [
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
-                { data: "codigo_sucursal" },
-                { data: "nombre_sucursal" },
-                { data: "telefono_sucursal" },
-                { data: "direccion" }
+                { data: "nombre_cliente", name: 'cliente.nombre_cliente' },
+                { data: "codigo_sucursal", name: 'cliente_sucursales.codigo_sucursal' },
+                { data: "nombre_sucursal", name: 'cliente_sucursales.nombre_sucursal' },
+                { data: "telefono_sucursal", name: 'cliente_sucursales.telefono_sucursal' },
+                { data: "direccion", name: 'cliente_sucursales.direccion' }
             ],
             order: [[2, 'asc']],
             rowGroup: {
-                dataSrc: 'nombre_sucursal'
+                dataSrc: 'nombre_cliente'
             }
         });
     }

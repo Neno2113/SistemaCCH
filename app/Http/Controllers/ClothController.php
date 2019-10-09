@@ -16,7 +16,10 @@ class ClothController extends Controller
         $validar = $request->validate([
             'id_suplidor' => 'required',
             'referencia' => 'required',
-            'tipo_tela' => 'required|alpha'
+            'tipo_tela' => 'required|alpha',
+            'composiciones' => 'required',
+            'porcentaje_mat_1' => 'required'
+            
         ]);
 
         if (empty($validar)) {

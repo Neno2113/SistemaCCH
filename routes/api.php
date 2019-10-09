@@ -32,3 +32,5 @@ Route::get('clients', 'ClientController@clients');
 Route::get('branches', 'ClientBranchController@branches');
 
 Route::get('cloths', 'ClothController@cloths');
+
+Route::get('rollos', 'RollosController@rollos');

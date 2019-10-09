@@ -44,6 +44,10 @@ Route::get('/composition', function () {
 Route::get('/cloth', function () {
     return view('sistema.cloth.cloth');
 });
+
+Route::get('/rollos', function () {
+    return view('sistema.rollos.rollos');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -70,6 +74,7 @@ Route::post('/client', 'ClientController@store');
 Route::post('/client/{id}', 'ClientController@show');
 Route::put('/client/edit', 'ClientController@update');
 Route::post('/client/delete/{id}', 'ClientController@destroy');
+
 //Sucursales
 Route::get('clients', 'ClientBranchController@select');
 Route::post('/client-branch', 'ClientBranchController@store');
@@ -84,3 +89,7 @@ Route::get('compositions', 'ClothController@selectComposition');
 Route::post('/cloth/{id}', 'ClothController@show');
 Route::put('/cloth/edit', 'ClothController@update');
 Route::post('/cloth/delete/{id}', 'ClothController@destroy');
+
+//Rutas rollos
+Route::get('cloths', 'RollosController@selectCloth');
+Route::post('/rollos', 'RollosController@store');

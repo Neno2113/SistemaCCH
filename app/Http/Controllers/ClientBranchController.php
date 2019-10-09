@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 use App\ClientBranch;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class ClientBranchController extends Controller
@@ -159,9 +160,11 @@ class ClientBranchController extends Controller
 
     public function branches()
     {
-        $branches = ClientBranch::query()->with('cliente');
+        $branches = DB::table('cliente_sucursales')->join('cliente', 'cliente_sucursales.cliente_id', '=', 'cliente.id')
+        ->select(['cliente_sucursales.id', 'cliente.nombre_cliente', 'cliente_sucursales.codigo_sucursal','cliente_sucursales.nombre_sucursal',
+        'cliente_sucursales.telefono_sucursal','cliente_sucursales.direccion']);
 
-        return DataTables::eloquent($branches)
+        return DataTables::of($branches)
             ->addColumn('Editar', function ($branch) {
                 return '<button id="btnEdit" onclick="mostrar(' . $branch->id . ')" class="btn btn-warning"> <i class="fas fa-edit"></i></button>';
             })

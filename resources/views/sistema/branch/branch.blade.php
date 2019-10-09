@@ -14,6 +14,7 @@
             <tr>
                 <th>Editar</th>
                 <th>Eliminar</th>
+                <th>Nombre cliente</th>
                 <th>Codigo sucursal</th>
                 <th>Nombre  sucursal</th>
                 <th>Telefono sucursal</th>
@@ -26,6 +27,7 @@
             <tr>
                 <th>Editar</th>
                 <th>Eliminar</th>
+                <th>Nombre cliente</th>
                 <th>Codigo sucursal</th>
                 <th>Nombre  sucursal</th>
                 <th>Telefono sucursal</th>

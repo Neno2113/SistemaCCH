@@ -41,7 +41,7 @@
                             data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_2">Tipo tela:</label>
+                            <label for="telefono_2">Tipo tela(*):</label>
                             <select name="tipo_tela" id="tipo_tela" class="form-control">
                                 <option value=""></option>
                                 <option value="Denim">Denim</option>
@@ -55,7 +55,7 @@
 
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="email_principal">Peso(*):</label>
+                            <label for="email_principal">Peso:</label>
                             <input type="text" name="peso" id="peso" class="form-control">
                         </div>
                         <div class="col-md-4 mt-3">
@@ -64,24 +64,24 @@
                                 data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="elasticidad_trama">Elasticidad en trama(*):</label>
+                            <label for="elasticidad_trama">Elasticidad en trama:</label>
                             <input type="text" id="elasticidad_trama" class="form-control"
                                 data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row" id="radios">
                         <div class="col-md-4 mt-4">
-                            <label for="elasticidad_urdimbre">Elasticidad en urdimbre(*):</label>
+                            <label for="elasticidad_urdimbre">Elasticidad en urdimbre:</label>
                             <input type="text" id="elasticidad_urdimbre" class="form-control"
                                 data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <label for="encogimiento_trama">Encogimiento en trama(*):</label>
+                            <label for="encogimiento_trama">Encogimiento en trama:</label>
                             <input type="text" id="encogimiento_trama" class="form-control"
                                 data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <label for="encogimiento_urdimbre">Encogimiento en urdimbre(*):</label>
+                            <label for="encogimiento_urdimbre">Encogimiento en urdimbre:</label>
                             <input type="text" id="encogimiento_urdimbre" class="form-control"
                                 data-inputmask='"mask": "99.99"' data-mask>
                         </div>
@@ -101,7 +101,7 @@
             <tr>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th>ID</th>
+                <th>Referencia</th>
                 <th>Nombre Suplidor</th>
                 <th>Precio USD/Yarda</th>
                 <th>Tipo tela</th>
@@ -124,7 +124,7 @@
             <tr>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th>ID</th>
+                <th>Referencia</th>
                 <th>Nombre Suplidor</th>
                 <th>Precio USD/Yarda</th>
                 <th>Tipo tela</th>
@@ -162,7 +162,7 @@
                 <form action="" id="compositionForm" class="form-group">
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="Material No.1">Material No.1</label>
+                            <label for="Material No.1">Material No.1(*)</label>
                         </div>
                         <div class="col-md-4">
                             <select name="tags[]" id="composiciones" class="form-control select2">
@@ -170,7 +170,7 @@
                             </select>
                         </div>
                         <div class="col-md-2 ml-5">
-                            <label for="Porcentaje Mat.No.1">Porcentaje Mat.No.1</label>
+                            <label for="Porcentaje Mat.No.1">Porcentaje Mat.No.1(*)</label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1" class="form-control"
@@ -369,129 +369,6 @@
             }
         })
     }
-
-    
-    $("#suplidores").select2({
-        placeholder: "Elige un suplidor...",
-        ajax: {
-            url: 'suplidores',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.nombre+' - '+ item.contacto_suplidor,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-    $("#composiciones").select2({
-        placeholder: "Busca una composicion",
-        ajax: {
-            url: 'compositions',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.nombre_composicion,
-                            id: item.nombre_composicion
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-    $("#composiciones_2").select2({
-        placeholder: "Busca una composicion",
-        ajax: {
-            url: 'compositions',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.nombre_composicion,
-                            id: item.nombre_composicion
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-    $("#composiciones_3").select2({
-        placeholder: "Busca una composicion",
-        ajax: {
-            url: 'compositions',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.nombre_composicion,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-    $("#composiciones_4").select2({
-        placeholder: "Busca una composicion",
-        ajax: {
-            url: 'compositions',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.nombre_composicion,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-    $("#composiciones_5").select2({
-        placeholder: "Busca una composicion",
-        ajax: {
-            url: 'compositions',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.nombre_composicion,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-  
 
 </script>
 

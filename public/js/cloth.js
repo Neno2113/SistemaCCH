@@ -3,24 +3,40 @@ $(document).ready(function() {
 
     $("#formulario").validate({
         rules: {
-            codigo_composicion: {
-                required: true,
-                minlength: 1
+            id_suplidor: {
+                required: true
             },
-            nombre_composicion: {
+            referencia: {
                 required: true,
-                minlength: 1
+                minlength: 3
             },
+            tipo_tela: {
+                required: true
+            },
+            composiciones: {
+                required: true
+            },
+            porcentaje_mat_1: {
+                required: true
+            }
           
         },
         messages: {
-            codigo_composicion: {
-                required: "Introduzca el codigo de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            id_suplidor: {
+                required: "**Este campo es obligatorio**"
             },
-            nombre_composicion: {
-                required: "Introduzca el nombre de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            referencia: {
+                required: "**Este campo es obligatorio**",
+                minlength: "Este campo debe tener al menos 3 caracteres"
+            },
+            tipo_tela: {
+                required: "**Este campo es obligatorio**"
+            },
+            composiciones: {
+                required: "**Este campo es obligatorio**"
+            },
+            porcentaje_mat_1: {
+                required: "**Este campo es obligatorio**"
             }
         }
     })
@@ -32,6 +48,127 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+
+        $("#composiciones").select2({
+            placeholder: "Busca una composicion",
+            ajax: {
+                url: 'compositions',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                text: item.nombre_composicion,
+                                id: item.nombre_composicion
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        })
+
+        $("#composiciones_2").select2({
+            placeholder: "Busca una composicion",
+            ajax: {
+                url: 'compositions',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                text: item.nombre_composicion,
+                                id: item.nombre_composicion
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        })
+    
+        $("#composiciones_3").select2({
+            placeholder: "Busca una composicion",
+            ajax: {
+                url: 'compositions',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                text: item.nombre_composicion,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        })
+    
+        $("#composiciones_4").select2({
+            placeholder: "Busca una composicion",
+            ajax: {
+                url: 'compositions',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                text: item.nombre_composicion,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        })
+    
+        $("#composiciones_5").select2({
+            placeholder: "Busca una composicion",
+            ajax: {
+                url: 'compositions',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                text: item.nombre_composicion,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        })
+        
+        $("#suplidores").select2({
+            placeholder: "Busca un suplidor...",
+            ajax: {
+                url: 'suplidores',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                text: item.nombre+' - '+ item.contacto_suplidor,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        })
+    
     }
 
     function limpiar() {
@@ -86,8 +223,6 @@ $(document).ready(function() {
             porcentaje_mat_5: $("#porcentaje_mat_5").val()
         };
 
-        // console.log(JSON.stringify(cloth));
-
         $.ajax({
             url: "cloth",
             type: "POST",
@@ -122,7 +257,7 @@ $(document).ready(function() {
             columns: [
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
-                { data: "id", name: 'tela.id' },
+                { data: "referencia", name: 'tela.referencia' },
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "precio_usd", name: "tela.precio_usd" },
                 { data: "tipo_tela", name: "tela.tipo_tela" },
