@@ -132,6 +132,23 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="far fa-clipboard"></i>
+              <p>
+                Producto
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/sistemaCCH/public/product" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Producto</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
 
       </ul>

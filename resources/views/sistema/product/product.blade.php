@@ -11,51 +11,79 @@
     <div class="row d-flex justify-content-center">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center bg-secondary">
-                <h4>Rollos</h4>
+                <h4>Producto</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de rollos:</h5>
+                    <h5>Formulario de creacion de producto:</h5>
                     <hr>
                     <div class="row ">
                         <div class="col-md-3">
+                            <label for="nombre_cliente" class="">Marca(*):</label>
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="nombre_cliente">Suplidor(*):</label>
-                            <select name="tags[]" id="suplidores" class="form-control select2">
+                            <select name="marca" id="marca" class="form-control">
+                                <option value="" selected>Elige una marca...</option>
+                                <option value="L">Lavish</option>
+                                <option value="M">Mythos</option>
+                                <option value="P">Lavish Premium</option>
+                            </select>
+                        </div>
 
+                        <div class="col-md-3">
+                            <label for="" class="">Genero(*):</label>
+                            <select name="genero" id="genero" class="form-control">
+                                <option value="" selected>Elige un genero...</option>
+                                <option value="1">Hombre</option>
+                                <option value="2">Mujer</option>
+                                <option value="3">Niño</option>
+                                <option value="4">Niña</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="" class="">Tipo producto(*):</label>
+                            <select name="tipo_producto" id="tipo_producto" class="form-control">
+                                <option value="" selected>Elige un tipo...</option>
+                                <option value="0">Pantalon</option>
+                                <option value="1">Bermuda</option>
+                                <option value="2">Capri</option>
+                                <option value="3">Falda</option>
+                                <option value="4">Short</option>
+                                <option value="5">Jacket</option>
+                                <option value="6">Camisa</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="nombre_cliente">Tela(*):</label>
-                            <select name="tags[]" id="cloths" class="form-control select2">
-
+                            <label for="" class="">Categoria(*):</label>
+                            <select name="categoria" id="categoria" class="form-control">
+                                <option value="">Elige una categoria</option>
+                                <option value="0">Basico</option>
+                                <option value="1">Semi-basico</option>
+                                <option value="2">Moda</option>
+                                <option value="3">T-plus</option>
+                                <option value="4">Escolar</option>
+                                <option value="5">Tubito</option>
+                                <option value="6">Talla alto</option>
+                                <option value="7">Super plus</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label for="">Fecha compra(*):</label>
-                            <input type="date" name="" id="fecha_compra" class="form-control">
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="">No.Factura de compra(*):</label>
-                            <input type="text" name="" id="no_factura_compra" class="form-control">
-                        </div>
-
                     </div>
                     <div class="row">
-                        <div class="col-md-4 mt-2">
-                            <label for="">Codigo(*):</label>
-                            <input type="text" name="" id="codigo_rollo" class="form-control">
+                        <div class="col-md-3 mt-3">
+                            <label for="">Referencia:</label>
+                            <input type="text" name="referencia" id="referencia" class="form-control">
+                            <input type="hidden" name="" id="sec" value="" >
                         </div>
-                        <div class="col-md-4 mt-2">
-                            <label for="">Tono(*):</label>
-                            <input type="text" name="" id="num_tono" class="form-control">
+                        <div class="col-md-3 mt-5">
+                            <button class="btn btn-secondary" id="btnGenerar">Generar</button>
                         </div>
-
-
-                        <div class="col-md-4 mt-2">
-                            <label for="">Longitud en yarda(*):</label>
-                            <input type="text" name="" id="longitud_yarda" class="form-control">
+                    </div>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="" class="d-flex justify-content-center">Descripcion(*):</label>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
@@ -67,7 +95,7 @@
         </div>
     </div>
 
-    <div class="container" id="listadoUsers">
+    {{-- <div class="container" id="listadoUsers">
         <table id="rollos" class="table table-striped table-bordered datatables">
             <thead>
                 <tr>
@@ -100,55 +128,13 @@
             </tfoot>
         </table>
 
-    </div>
-
-
-    {{-- <table id="table-data" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th>Suplidor</th>
-                <th>Referencia</th>
-                <th>Codigo</th>
-                <th>Tono</th>
-                <th>Fecha de compra</th>
-                <th>Longitud en yarda</th>
-                <th>Guardado</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="tr_clone">
-                <th><select name="tags[]" id="suplidores" class="form-control select2 suplidor"></select></th>
-                <th><select name="tags[]" id="cloths" class="form-control select2 suplidor"></select></th>
-                <th><input type="text" name="" id="codigo_rollo" class="form-control"></th>
-                <th><input type="text" name="" id="num_tono" class="form-control"></th>
-                <th><input type="date" name="" id="fecha_compra" class="form-control"></th>
-                <th><input type="text" name="" id="longitud_yarda" class="form-control"></th>
-                <th><button  id="" class="btn btn-success btn-guardar">Guardar</button></th>
-                
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Suplidor</th>
-                <th>Referencia</th>
-                <th>Codigo</th>
-                <th>Tono</th>
-                <th>Fecha de compra</th>
-                <th>Longitud en yarda</th>
-                <th>Guardado</th>
-                
-            </tr>
-        </tfoot>
-    </table> --}}
-
-
+    </div> --}}
 
 </div>
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/rollos.js')}}"></script>
+<script src="{{asset('js/product.js')}}"></script>
 
 <script>
     function mostrar(id_rollo) {

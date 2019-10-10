@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <button class="btn btn-primary mb-3" id="btnAgregar">Crear <i class="fas fa-user-plus"></i></button>
-        <button class="btn btn-danger mb-3" id="btnCancelar">Cancelar</button>
+        <button class="btn btn-primary mb-3 btn-lg" id="btnAgregar"><i class="fas fa-user-plus"></i></button>
+        <button class="btn btn-danger mb-3 btn-lg" id="btnCancelar"><i class="fas fa-window-close"></i></button>
     </div>
 
     <div class="row d-flex justify-content-center">
@@ -169,60 +169,7 @@
         });
     }
 
-    $("#btn-edit").click(function(e) {
-        e.preventDefault();
-        var user = {
-            id: $("#id").val(),
-            name: $("#name").val(),
-            surname: $("#surname").val(),
-            email: $("#email").val(),
-            edad: $("#edad").val(),
-            telefono: $("#telefono").val(),
-            celular: $("#celular").val(),
-            direccion: $("#direccion").val(),
-            role: $("#role").val(),
-            password: $("#password").val()
-        };
-     
-        $.ajax({
-            url: "user/edit",
-            type: "PUT",
-            dataType: "json",
-            data: JSON.stringify(user),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
-                    $("#id").val("");
-                    $("#name").val("");
-                    $("#surname").val("");
-                    $("#edad").val("");
-                    $("#telefono").val("");
-                    $("#celular").val("");
-                    $("#direccion").val("");
-                    $("#email").val("");
-                    $("#role").val("");
-                    $("#password").val("");
-                    $("#listadoUsers").show();
-                    $("#registroForm").hide();
-                    $("#btnCancelar").hide();
-                    $("#btn-edit").hide();
-                    $("#btn-guardar").show();
-
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error durante la actualizacion del usuario verifique los datos suministrados!!"
-                );
-            }
-        });
-       
-    });
+  
 
     function eliminar(id_user){
         bootbox.confirm("¿Estas seguro de eliminar este usuario?", function(result){
@@ -230,6 +177,7 @@
                 $.post("user/delete/" + id_user, function(){
                     // bootbox.alert(e);
                     bootbox.alert("Usuario eliminado correctamente");
+                    $("#users").DataTable().ajax.reload();
                 })
             }
         })

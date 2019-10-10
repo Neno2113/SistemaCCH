@@ -28,8 +28,8 @@ $(document).ready(function() {
     var tabla
 
     function init() {
-        listar();
-        mostrarForm(false);
+        // listar();
+        // mostrarForm(false);
         $("#btn-edit").hide();
     }
 
@@ -39,31 +39,71 @@ $(document).ready(function() {
      
     }
 
- 
+
+    $("#btnGenerar").on('click', function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url: "product/lastdigit",
+            type: "GET",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var i = Number(datos.sec);
+                    i = (i + 0.1).toFixed(1).split('.').join("");
+                    console.log(i);
+                    $("#sec").val(i);
+                    var marca = $("#marca").val();
+                    var genero = $("#genero").val();
+                    var tipo_producto = $("#tipo_producto").val();
+                    var categoria = $("#categoria").val();
+                    var year = new Date().getFullYear().toString().substr(-2);
+                    var referencia = marca + genero + tipo_producto + categoria+'-'+year+i;
+                   
+                    $("#referencia").val(referencia);
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error !!"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    
+        
+    });
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
         
-        var composition = {
-            codigo_composicion: $("#codigo_composicion").val(),
-            nombre_composicion: $("#nombre_composicion").val()
+        var product = {
+            referencia: $("#referencia").val(),
+            descripcion: $("#descripcion").val(),
+            sec: $("#sec").val()
         };
 
+        // console.log(JSON.stringify(product));
+
         $.ajax({
-            url: "composition",
+            url: "product",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(composition),
+            data: JSON.stringify(product),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro la composicion");
+                    bootbox.alert("Se genero la referencia!!");
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
                 } else {
                     bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
+                        "Se genero la referencia"
                     );
                 }
             },

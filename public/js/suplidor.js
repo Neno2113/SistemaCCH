@@ -143,9 +143,56 @@ $(document).ready(function() {
             }
         });
     }
-    setInterval(function(){
-        tabla.ajax.reload();
-    }, 30000)
+   
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
+
+        var suplidor = {
+            id: $("#id").val(),
+             nombre: $("#nombre").val(),
+            direccion: $("#direccion").val(),
+            contacto_suplidor: $("#contacto_suplidor").val(),
+            telefono_1: $("#telefono_1").val(),
+            telefono_2: $("#telefono_2").val(),
+            celular: $("#celular").val(),
+            email: $("#email").val(),
+            terminos_de_pago: $("#terminos_de_pago").val(),
+            nota: $("#nota").val()
+        };
+
+        $.ajax({
+            url: "supplier/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(suplidor),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizo el suplidor correctamente");
+                    $("#id").val("");
+                    limpiar();
+                    tabla.ajax.reload();
+                    $("#listadoUsers").show();
+                    $("#registroForm").hide();
+                    $("#btnCancelar").hide();
+                    $("#btn-edit").hide();
+                    $("#btn-guardar").show();
+                    $("#btnAgregar").show();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion del suplidor"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+       
+    });
 
     function mostrarForm(flag) {
         limpiar();

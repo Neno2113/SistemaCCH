@@ -77,7 +77,101 @@ class RollosController extends Controller
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
     }
-    
+
+    public function show($id)
+    {
+        $rollo = Rollos::find($id)->load('suplidor')
+                                  ->load('tela');
+
+        if (is_object($rollo)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'rollo' => $rollo
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
+    public function update(Request $request)
+    {
+        $validar = $request->validate([
+            'id_suplidor' => 'required',
+            'id_tela' => 'required',
+            'codigo_rollo' => 'required',
+            'num_tono' => 'required',
+            'no_factura_compra' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id', true);
+            $id_user = \auth()->user()->id;
+            $id_suplidor = $request->input('id_suplidor', true);
+            $id_tela = $request->input('id_tela', true);
+            $codigo_rollo = $request->input('codigo_rollo', true);
+            $num_tono = $request->input('num_tono', true);
+            $fecha_compra = $request->input('fecha_compra', true);
+            $longitud_yarda = $request->input('longitud_yarda', true);
+            $no_factura_compra = $request->input('no_factura_compra', true);
+
+            $rollo = Rollos::find($id);
+
+            $rollo->id_user = $id_user;
+            $rollo->id_suplidor = $id_suplidor;
+            $rollo->id_tela = $id_tela;
+            $rollo->codigo_rollo = $codigo_rollo;
+            $rollo->num_tono = $num_tono;
+            $rollo->fecha_compra = $fecha_compra;
+            $rollo->longitud_yarda = $longitud_yarda;
+            $rollo->no_factura_compra = $no_factura_compra;
+
+            $rollo->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'rollo' => $rollo
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroy($id)
+    {
+        $rollo = Rollos::find($id);
+
+        if (!empty($rollo)) {
+            $rollo->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'rollo' => $rollo
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
 
     
 

@@ -40,6 +40,27 @@ $(document).ready(function() {
         // mostrarForm(false);
         $("#btn-edit").hide();
         // $("#results").hide();
+
+        
+    $("#clientes").select2({
+        placeholder: "Elige un cliente...",
+        ajax: {
+            url: 'clients',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.nombre_cliente,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
    
     }
 
@@ -109,9 +130,63 @@ $(document).ready(function() {
         });
     }
 
-    setInterval(function(){
-        tabla.ajax.reload();
-    }, 30000)
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
+
+        var client_branch = {
+            id: $("#id").val(),
+            client_id : $("#clientes").val(),
+            nombre_sucursal: $("#nombre_sucursal").val(),
+            telefono_sucursal: $("#telefono_sucursal").val(),
+            direccion: $("#direccion").val(),
+        
+        };
+        
+        // console.log(JSON.stringify(client_branch));
+        $.ajax({
+            url: "client-branch/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(client_branch),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizo correctamente la sucursal!!");
+                    $("#id").val("");
+                    limpiar();
+                    tabla.ajax.reload();
+                    $("#btn-edit").hide();
+                    $("#btn-guardar-branch").show();
+                    $("#exampleModal").modal('hide');
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la sucursal"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+       
+    });
+
+    // setInterval(function(){
+    //     tabla.ajax.reload();
+    // }, 30000)
+
+    $("#btn-close").click(function(e){
+        e.preventDefault();
+        $("#id").val("");
+        $("#nombre_sucursal").val("");
+        $("#telefono_sucursal").val("");
+        $("#direccion").val("");
+        $("#clientes").val("");
+        
+    })
 
    
 

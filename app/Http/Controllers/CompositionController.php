@@ -12,7 +12,6 @@ class CompositionController extends Controller
     {
 
         $validar = $request->validate([
-            'codigo_composicion' => 'required',
             'nombre_composicion' => 'required'
         ]);
 
@@ -24,11 +23,11 @@ class CompositionController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $codgo_composicion = $request->input('codigo_composicion', true);
+            // $codgo_composicion = $request->input('codigo_composicion', true);
             $nombre_composicion = $request->input('nombre_composicion', true);
 
             $composition = new Composition();
-            $composition->codigo_composicion = $codgo_composicion;
+            // $composition->codigo_composicion = $codgo_composicion;
             $composition->nombre_composicion = $nombre_composicion;
 
 
@@ -69,7 +68,6 @@ class CompositionController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'codigo_composicion' => 'required',
             'nombre_composicion' => 'required'
         ]);
 
@@ -82,14 +80,14 @@ class CompositionController extends Controller
             ];
         } else {
             $id = $request->input('id', true);
-            $codgo_composicion = $request->input('codigo_composicion', true);
+            // $codgo_composicion = $request->input('codigo_composicion', true);
             $nombre_composicion = $request->input('nombre_composicion', true);
 
 
 
             $composition = Composition::find($id);
 
-            $composition->codigo_composicion = $codgo_composicion;
+            // $composition->codigo_composicion = $codgo_composicion;
             $composition->nombre_composicion = $nombre_composicion;
 
 

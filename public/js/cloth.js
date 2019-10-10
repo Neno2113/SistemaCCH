@@ -280,10 +280,71 @@ $(document).ready(function() {
             }
         });
     }
-    setInterval(function(){
-      tabla.ajax.reload();
-    }, 30000)
 
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
+
+        var cloth = {
+            id: $("#id").val(),
+            id_suplidor: $("#suplidores").val(),
+            id_composiciones: $("#compositions").val(),
+            referencia: $("#referencia").val(),
+            precio_usd: $("#precio_usd").val(),
+            tipo_tela: $("#tipo_tela").val(),
+            ancho_cortable: $("#ancho_cortable").val(),
+            peso: $("#peso").val(),
+            elasticidad_trama: $("#elasticidad_trama").val(),
+            elasticidad_urdimbre: $("#elasticidad_urdimbre").val(),
+            encogimiento_trama: $("#encogimiento_trama").val(),
+            encogimiento_urdimbre: $("#encogimiento_urdimbre").val(),
+            composiciones: $("#composiciones").val(),
+            composiciones_2: $("#composiciones_2").val(),
+            composiciones_3: $("#composiciones_3").val(),
+            composiciones_4: $("#composiciones_4").val(),
+            composiciones_5: $("#composiciones_5").val(),
+            porcentaje_mat_1: $("#porcentaje_mat_1").val(),
+            porcentaje_mat_2: $("#porcentaje_mat_2").val(),
+            porcentaje_mat_3: $("#porcentaje_mat_3").val(),
+            porcentaje_mat_4: $("#porcentaje_mat_4").val(),
+            porcentaje_mat_5: $("#porcentaje_mat_5").val()
+        };
+
+        // console.log(JSON.stringify(cloth));
+
+        $.ajax({
+            url: "cloth/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(cloth),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizo la tela correctamente");
+                    limpiar();
+                    tabla.ajax.reload();
+                    $("#id").val("");
+                    $("#listadoUsers").show();
+                    $("#registroForm").hide();
+                    $("#btnCancelar").hide();
+                    $("#btn-edit").hide();
+                    $("#btn-guardar").show();
+                    $("#btnAgregar").show();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+       
+    });
+  
     function mostrarForm(flag) {
         limpiar();
         if (flag) {

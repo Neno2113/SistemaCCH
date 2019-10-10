@@ -129,9 +129,58 @@ $(document).ready(function() {
             }
         });
     }
-    setInterval(function(){
-        tabla.ajax.reload();
-    }, 30000)
+
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
+        var user = {
+            id: $("#id").val(),
+            name: $("#name").val(),
+            surname: $("#surname").val(),
+            email: $("#email").val(),
+            edad: $("#edad").val(),
+            telefono: $("#telefono").val(),
+            celular: $("#celular").val(),
+            direccion: $("#direccion").val(),
+            role: $("#role").val(),
+            password: $("#password").val()
+        };
+     
+        $.ajax({
+            url: "user/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(user),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizado correctamente el usuario");
+                    $("#id").val("");
+                    limpiar();
+                    tabla.ajax.reload();
+                    $("#listadoUsers").show();
+                    $("#registroForm").hide();
+                    $("#btnCancelar").hide();
+                    $("#btn-edit").hide();
+                    $("#btn-guardar").show();
+                    $("#btnAgregar").show();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+       
+    });
+    // setInterval(function(){
+    //     tabla.ajax.reload();
+    // }, 30000)
 
     function mostrarForm(flag) {
         limpiar();

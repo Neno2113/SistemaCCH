@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <button class="btn btn-primary mb-3" id="btnAgregar">Create <i class="fas fa-plus"></i></button>
-        <button class="btn btn-danger mb-3" id="btnCancelar">Cancel <i class="fas fa-window-close"></i></button>
+        <button class="btn btn-primary btn-lg mb-2" id="btnAgregar"><i class="fas fa-plus"></i></button>
+        <button class="btn btn-danger btn-lg mb-2" id="btnCancelar"><i class="fas fa-window-close"></i></button>
     </div>
 
     <div class="row d-flex justify-content-center">
@@ -151,58 +151,10 @@
                 $("#celular").val(data.supplier.celular);
                 $("#email").val(data.supplier.email);
                 $("#terminos_de_pago").val(data.supplier.terminos_de_pago);
+                $("#nota").val(data.supplier.nota);
                
             });
         }
-    
-        $("#btn-edit").click(function(e) {
-            e.preventDefault();
-    
-            var suplidor = {
-                id: $("#id").val(),
-                 nombre: $("#nombre").val(),
-                direccion: $("#direccion").val(),
-                contacto_suplidor: $("#contacto_suplidor").val(),
-                telefono_1: $("#telefono_1").val(),
-                telefono_2: $("#telefono_2").val(),
-                celular: $("#celular").val(),
-                email: $("#email").val(),
-                terminos_de_pago: $("#terminos_de_pago").val(),
-                nota: $("#nota").val()
-            };
-
-            $.ajax({
-                url: "supplier/edit",
-                type: "PUT",
-                dataType: "json",
-                data: JSON.stringify(suplidor),
-                contentType: "application/json",
-                success: function(datos) {
-                    if (datos.status == "success") {
-                        bootbox.alert("Se actualizo el suplidor correctamente");
-                        $("#id").val("");
-                        $("#codigo_composicion").val("");
-                        $("#nombre_composicion").val("");
-                        $("#listadoUsers").show();
-                        $("#registroForm").hide();
-                        $("#btnCancelar").hide();
-                        $("#btn-edit").hide();
-                        $("#btn-guardar").show();
-    
-                    } else {
-                        bootbox.alert(
-                            "Ocurrio un error durante la actualizacion del suplidor"
-                        );
-                    }
-                },
-                error: function() {
-                    bootbox.alert(
-                        "Ocurrio un error!!"
-                    );
-                }
-            });
-           
-        });
     
         function eliminar(id_supplier){
             bootbox.confirm("¿Estas seguro de eliminar este suplidor?", function(result){
@@ -210,6 +162,7 @@
                     $.post("supplier/delete/" + id_supplier, function(){
                         // bootbox.alert(e);
                         bootbox.alert("Suplidor eliminado!!");
+                        $("#suppliers").DataTable().ajax.reload();
                     })
                 }
             })

@@ -26,7 +26,7 @@ $(document).ready(function() {
 
     function init() {
         listar();
-        // mostrarForm(false);
+        mostrarForm(true);
         $("#btn-edit").hide();
 
         // var table = $("#table-data")[0];
@@ -80,11 +80,11 @@ $(document).ready(function() {
     }
 
     function limpiar() {
-        $("#suplidores").val("").trigger("change");
-        $("#cloths").val("").trigger("change");
+        // $("#suplidores").val("").trigger("change");
+        // $("#cloths").val("").trigger("change");
         $("#codigo_rollo").val("");
         $("#num_tono").val("");
-        $("#fecha_compra").val("");
+        // $("#fecha_compra").val("");
         $("#longitud_yarda").val("");
 
     }
@@ -106,14 +106,14 @@ $(document).ready(function() {
             url: "rollos",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(rollos),
+            data: JSON.stringify(rollo),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
                     bootbox.alert("Se registro el rollo correctamente!!");
                     limpiar();
                     tabla.ajax.reload();
-                    mostrarForm(false);
+                    // mostrarForm(false);
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -138,18 +138,68 @@ $(document).ready(function() {
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "id", name: "rollos.id" },
                 { data: "nombre", name: "suplidor.nombre" },
-                { data: "referencia", name: "tela.ferencia" },
+                { data: "referencia", name: "tela.ferencia", searchable: false },
                 { data: "codigo_rollo", name: "rollos.codigo_rollo" },
                 { data: "num_tono", name: "rollos.num_tono" },
                 { data: "fecha_compra", name: "rollos.fecha_compra" },
                 { data: "no_factura_compra", name: "rollos.no_factura_compra" },
                 { data: "longitud_yarda", name: "rollos.longitud_yarda" },
-            ]
+            ],
+            order: [[2, 'asc']],
+            rowGroup: {
+                dataSrc: 'referencia'
+            }
         });
     }
-    // setInterval(function() {
-    //     tabla.ajax.reload();
-    // }, 30000);
+  
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
+
+        var rollo = {
+            id: $("#id").val(),
+            id_suplidor: $("#suplidores").val(),
+            id_tela: $("#cloths").val(),
+            codigo_rollo: $("#codigo_rollo").val(),
+            num_tono: $("#num_tono").val(),
+            fecha_compra: $("#fecha_compra").val(),
+            longitud_yarda: $("#longitud_yarda").val(),
+            no_factura_compra: $("#no_factura_compra").val()
+        };
+
+        // console.log(JSON.stringify(rollo));
+        $.ajax({
+            url: "rollo/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(rollo),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizado correctamente el rollo !!");
+                    tabla.ajax.reload();
+                    limpiar();
+                    $("#id").val("");
+                    $("#listadoUsers").show();
+                    $("#registroForm").hide();
+                    $("#btnCancelar").hide();
+                    $("#btn-edit").hide();
+                    $("#btn-guardar").show();
+                    $("#btnAgregar").show();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+       
+    });
 
     function mostrarForm(flag) {
         limpiar();

@@ -64,6 +64,26 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         $("#results").hide();
+
+        $("#clientes").select2({
+            placeholder: "Elige un cliente...",
+            ajax: {
+                url: 'clients',
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                text: item.nombre_cliente,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        })
    
     }
 
@@ -130,10 +150,6 @@ $(document).ready(function() {
             }
         });
 
-        
-
-
-
     });
 
     function listar() {
@@ -164,10 +180,60 @@ $(document).ready(function() {
             }
         });
     }
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
 
-    setInterval(function(){
-        tabla.ajax.reload();
-    }, 30000)
+        var client = {
+            id: $("#id").val(),
+            nombre_cliente: $("#nombre_cliente").val(),
+            direccion_principal: $("#direccion_principal").val(),
+            contacto_cliente_principal: $("#contacto_cliente_principal").val(),
+            telefono_1: $("#telefono_1").val(),
+            telefono_2: $("#telefono_2").val(),
+            telefono_3: $("#telefono_3").val(),
+            celular_principal: $("#celular_principal").val(),
+            email_principal: $("#email_principal").val(),
+            condiciones_credito: $("#condiciones_credito").val(),
+            autorizacion_credito_req: $("input[name='r1']:checked").val(),
+            notas: $("#notas").val(),
+            redistribucion_tallas: $("input[name='r2']:checked").val(),
+            factura_desglosada_talla: $("input[name='r3']:checked").val()
+        };
+        
+        // console.log(JSON.stringify(client));
+        $.ajax({
+            url: "client/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(client),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizado correctamente el usuario");
+                    $("#id").val("");
+                    limpiar();
+                    tabla.ajax.reload();
+                    $("#listadoUsers").show();
+                    $("#registroForm").hide();
+                    $("#btnCancelar").hide();
+                    $("#btn-edit").hide();
+                    $("#btn-guardar").show();
+                    $("#btnAgregar").show();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+       
+    });
 
     function mostrarForm(flag) {
         limpiar();

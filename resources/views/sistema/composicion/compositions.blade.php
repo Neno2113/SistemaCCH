@@ -19,10 +19,10 @@
                     <div class="row ">
                         <div class="col-md-6">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="codigo composicion">Codigo composicion(*):</label>
-                            <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control">
+                            {{-- <label for="codigo composicion">Codigo composicion(*):</label>
+                            <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control"> --}}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="nombre composicion">Nombre composicion(*):</label>
                             <input type="text" name="nombre_composicion" id="nombre_composicion" class="form-control">
                         </div>
@@ -86,54 +86,13 @@
         });
     }
 
-    $("#btn-edit").click(function(e) {
-        e.preventDefault();
-
-        var composition = {
-            id: $("#id").val(),
-            codigo_composicion: $("#codigo_composicion").val(),
-            nombre_composicion: $("#nombre_composicion").val()
-        };
-     
-        $.ajax({
-            url: "composition/edit",
-            type: "PUT",
-            dataType: "json",
-            data: JSON.stringify(composition),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
-                    $("#id").val("");
-                    $("#codigo_composicion").val("");
-                    $("#nombre_composicion").val("");
-                    $("#listadoUsers").show();
-                    $("#registroForm").hide();
-                    $("#btnCancelar").hide();
-                    $("#btn-edit").hide();
-                    $("#btn-guardar").show();
-
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
-            }
-        });
-       
-    });
-
     function eliminar(id_composition){
         bootbox.confirm("¿Estas seguro de eliminar esta composicion?", function(result){
             if(result){
                 $.post("composition/delete/" + id_composition, function(){
                     // bootbox.alert(e);
                     bootbox.alert("Composicion eliminada correctamente");
+                    $("#compositions").DataTable().ajax.reload();
                 })
             }
         })
