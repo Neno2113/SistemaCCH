@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de creacion de producto:</h5>
+                    <h5>Formulario de creacion de referencia de producto:</h5>
                     <hr>
                     <div class="row ">
                         <div class="col-md-3">
@@ -95,20 +95,15 @@
         </div>
     </div>
 
-    {{-- <div class="container" id="listadoUsers">
-        <table id="rollos" class="table table-striped table-bordered datatables">
+    <div class="container" id="listadoUsers">
+        <table id="products" class="table table-striped table-bordered datatables">
             <thead>
                 <tr>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>ID</th>
-                    <th>Nombre Suplidor</th>
-                    <th>Referencia tela</th>
-                    <th>Codigo</th>
-                    <th>Tono</th>
-                    <th>Fecha compra</th>
-                    <th>No. factura compra</th>
-                    <th>Longitud en yardas</th>
+                    <th>Usuario Gen</th>
+                    <th>Referencia producto</th>
+                    <th>Descripcion</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -116,19 +111,14 @@
                 <tr>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>ID</th>
-                    <th>Nombre Suplidor</th>
-                    <th>Referencia tela</th>
-                    <th>Codigo</th>
-                    <th>Tono</th>
-                    <th>Fecha compra</th>
-                    <th>No. factura compra</th>
-                    <th>Longitud en yardas</th>
+                    <th>Usuario Gen</th>
+                    <th>Referencia producto</th>
+                    <th>Descripcion</th>
                 </tr>
             </tfoot>
         </table>
 
-    </div> --}}
+    </div>
 
 </div>
 
@@ -137,8 +127,8 @@
 <script src="{{asset('js/product.js')}}"></script>
 
 <script>
-    function mostrar(id_rollo) {
-        $.post("rollo/" + id_rollo, function(data, status) {
+    function mostrar(id_prouct) {
+        $.post("product/" + id_prouct, function(data, status) {
             // data = JSON.parse(data);
             $("#listadoUsers").hide();
             $("#registroForm").show();
@@ -147,25 +137,20 @@
             $("#btn-edit").show();
             $("#btn-guardar").hide();
 
-            // console.log(data);
-            // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
-            $("#id").val(data.rollo.id);
-            $("#codigo_rollo").val(data.rollo.codigo_rollo);
-            $("#num_tono").val(data.rollo.num_tono);
-            $("#no_factura_compra").val(data.rollo.no_factura_compra);
-            $("#fecha_compra").val(data.rollo.fecha_compra);
-            $("#longitud_yarda").val(data.rollo.longitud_yarda);
+            $("#id").val(data.product.id);
+            $("#referencia").val(data.product.referencia_producto);
+            $("#descripcion").val(data.product.descripcion);
         });
     }
 
 
-    function eliminar(id_rollo){
-        bootbox.confirm("¿Estas seguro de eliminar este rollo?", function(result){
+    function eliminar(id_prouct){
+        bootbox.confirm("¿Estas seguro de eliminar esta referencia?", function(result){
             if(result){
-                $.post("rollo/delete/" + id_rollo, function(){
+                $.post("product/delete/" + id_prouct, function(){
                     // bootbox.alert(e);
-                    bootbox.alert("Rollo eliminado correctamente!!");
-                    $("#rollos").DataTable().ajax.reload();
+                    bootbox.alert("Referencia eliminada correctamente!!");
+                    $("#products").DataTable().ajax.reload();
                 })
             }
         })

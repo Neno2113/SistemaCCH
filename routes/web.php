@@ -52,6 +52,10 @@ Route::get('/rollos', function () {
 Route::get('/product', function () {
     return view('sistema.product.product');
 });
+
+Route::get('/corte', function () {
+    return view('sistema.corte.corte');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -104,3 +108,6 @@ Route::post('/rollo/delete/{id}', 'RollosController@destroy');
 //Rutas productos
 Route::get('product/lastdigit', 'ProductController@getDigits');
 Route::post('/product', 'ProductController@store');
+Route::post('/product/{id}', 'ProductController@show');
+Route::put('/product/edit', 'ProductController@update');
+Route::post('/product/delete/{id}', 'ProductController@destroy');

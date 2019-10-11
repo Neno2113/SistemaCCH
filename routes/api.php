@@ -20,7 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('users', 'UserController@users');
 
 Route::get('compositions','CompositionController@compositions');
@@ -34,3 +33,7 @@ Route::get('branches', 'ClientBranchController@branches');
 Route::get('cloths', 'ClothController@cloths');
 
 Route::get('rollos', 'RollosController@rollos');
+
+Route::get('rollos_corte', 'CorteController@rollos');
+
+Route::get('products', 'ProductController@products');

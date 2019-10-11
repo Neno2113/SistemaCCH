@@ -1,85 +1,70 @@
 $(document).ready(function() {
 
+    $("#formulario").validate({
+        rules: {
+            codigo_composicion: {
+                required: true,
+                minlength: 1
+            },
+            nombre_composicion: {
+                required: true,
+                minlength: 1
+            },
+          
+        },
+        messages: {
+            codigo_composicion: {
+                required: "Introduzca el codigo de composicion",
+                minlength: "Debe contener al menos 1 letra"
+            },
+            nombre_composicion: {
+                required: "Introduzca el nombre de composicion",
+                minlength: "Debe contener al menos 1 letra"
+            }
+        }
+    })
+   
+
+    var tabla
+
     function init() {
-        listar();
+        // listar();
+        listarRollos();
         mostrarForm(false);
         $("#btn-edit").hide();
     }
 
     function limpiar() {
-        $("#marca").val("");
-        $("#genero").val("");
-        $("#tipo_producto").val("");
-        $("#categoria").val("");
-        $("#sec").val("");
-        $("#referencia").val("");
-        $("#descripcion").val("");
+        $("#codigo_composicion").val("");
+        $("#nombre_composicion").val("");
      
     }
 
-
-    $("#btnGenerar").on('click', function(e){
-        e.preventDefault();
-
-        $.ajax({
-            url: "product/lastdigit",
-            type: "GET",
-            dataType: "json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    var i = Number(datos.sec);
-                    $("#sec").val(i);
-                    i = (i + 0.1).toFixed(1).split('.').join("");
-                    console.log(i);
-                    var marca = $("#marca").val();
-                    var genero = $("#genero").val();
-                    var tipo_producto = $("#tipo_producto").val();
-                    var categoria = $("#categoria").val();
-                    var year = new Date().getFullYear().toString().substr(-2);
-                    var referencia = marca + genero + tipo_producto + categoria+'-'+year+i;
-                   
-                    $("#referencia").val(referencia);
-
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error !!"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
-            }
-        });
-    
-        
-    });
+ 
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
         
-        var product = {
-            referencia: $("#referencia").val(),
-            descripcion: $("#descripcion").val(),
-            sec: $("#sec").val()
+        var composition = {
+            codigo_composicion: $("#codigo_composicion").val(),
+            nombre_composicion: $("#nombre_composicion").val()
         };
 
         $.ajax({
-            url: "product",
+            url: "composition",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(product),
+            data: JSON.stringify(composition),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se genero la referencia!!");
+                    bootbox.alert("Se registro la composicion");
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
                 } else {
                     bootbox.alert(
-                        "Se genero la referencia"
+                        "Ocurrio un error durante la creacion de la composicion"
                     );
                 }
             },
@@ -91,23 +76,36 @@ $(document).ready(function() {
         });
     });
 
-    var tabla
-
     function listar() {
-        tabla = $("#products").DataTable({
+        tabla = $("#compositions").DataTable({
             serverSide: true,
             responsive: true,
-            ajax: "api/products",
+            ajax: "api/compositions",
             columns: [
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
-                { data: "name", name: "users.name" },
-                { data: "referencia_producto", name: "producto.referencia_producto" },
-                { data: "descripcion", name: "producto.descripcion" }              
+                { data: "id" },
+                { data: "nombre_composicion" },
+              
+            ]
+        });
+    }
+
+    function listarRollos() {
+        tabla = $("#rollos").DataTable({
+            serverSide: true,
+            responsive: true,
+            ajax: "api/rollos_corte",
+            columns: [
+                { data: "id", name: "rollos.id" },
+                { data: "referencia", name: "tela.referencia" },
+                { data: "codigo_rollo", name: "rollos.codigo_rollo" },
+                { data: "longitud_yarda", name: "rollos.longitud_yarda" },
+                { data: "Editar", orderable: false, searchable: false },
             ],
-            order: [[2, 'asc']],
+            order: [[2, 'desc']],
             rowGroup: {
-                dataSrc: 'name'
+                dataSrc: 'referencia'
             }
         });
     }
@@ -115,20 +113,17 @@ $(document).ready(function() {
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
-        var product = {
+        var composition = {
             id: $("#id").val(),
-            referencia: $("#referencia").val(),
-            descripcion: $("#descripcion").val(),
-            sec: $("#sec").val()
+            codigo_composicion: $("#codigo_composicion").val(),
+            nombre_composicion: $("#nombre_composicion").val()
         };
-
-        console.log(product);
-
+     
         $.ajax({
-            url: "product/edit",
+            url: "composition/edit",
             type: "PUT",
             dataType: "json",
-            data: JSON.stringify(product),
+            data: JSON.stringify(composition),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
@@ -146,13 +141,13 @@ $(document).ready(function() {
 
                 } else {
                     bootbox.alert(
-                        "Ocurrio un error durante la actualizacion"
+                        "Ocurrio un error durante la actualizacion de la composicion"
                     );
                 }
             },
             error: function() {
                 bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                    "Ocurrio un error!!"
                 );
             }
         });
