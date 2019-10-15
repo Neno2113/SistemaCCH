@@ -114,7 +114,23 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             ajax: "api/branches",
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                 {
+                    extend: 'excelHtml5',
+                    autoFilter: true,
+                    sheetName: 'Exported data'
+                },
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }
+                ],
             columns: [
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "nombre_cliente", name: 'cliente.nombre_cliente' },
@@ -130,7 +146,7 @@ $(document).ready(function() {
         });
     }
 
-    $("#btn-edit").click(function(e) {
+    $("#btn-edit-branch").click(function(e) {
         e.preventDefault();
 
         var client_branch = {

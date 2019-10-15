@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('title', 'Cortes')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -154,7 +156,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <table class="table  table-bordered">
+                    <table class="table  table-bordered table-responsive">
                         <thead>
                             <tr>
                                 <th>Tipo producto</th>
@@ -236,51 +238,51 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-md-1">
+                    <div class="col-lg-1 col-xs-">
                         <label for="" class="ml-4">A</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">B</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">C</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">D</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">E</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
                     <div class="col-md-1">
-                        <label for="">F</label>
+                        <label for="" class="ml-4">F</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">G</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">H</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">I</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">J</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">K</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1">
                         <label for="" class="ml-4">L</label>
                         <input type="text" name="" id="" class="form-control">
                     </div>

@@ -17,7 +17,6 @@ $(document).ready(function() {
      
     }
 
-
     $("#btnGenerar").on('click', function(e){
         e.preventDefault();
 
@@ -28,16 +27,26 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     var i = Number(datos.sec);
+                    var e = Number(datos.sec);
                     $("#sec").val(i);
                     i = (i + 0.1).toFixed(1).split('.').join("");
-                    console.log(i);
                     var marca = $("#marca").val();
                     var genero = $("#genero").val();
                     var tipo_producto = $("#tipo_producto").val();
                     var categoria = $("#categoria").val();
                     var year = new Date().getFullYear().toString().substr(-2);
                     var referencia = marca + genero + tipo_producto + categoria+'-'+year+i;
-                   
+                    
+                    if(genero == 3 || genero == 4){
+                        $("#mostrarRef2").show();
+                        $("#sec").val(e + 0.1);
+                        // console.log($("#sec").val());
+                        e = (e + 0.2).toFixed(1).split('.').join("");
+                        $("#referencia_2").val(marca + genero + tipo_producto + categoria+'-'+year+e);
+                        
+                    }else{
+                        $("#mostrarRef2").hide();
+                    }
                     $("#referencia").val(referencia);
 
                 } else {
@@ -61,6 +70,7 @@ $(document).ready(function() {
         
         var product = {
             referencia: $("#referencia").val(),
+            referencia_2: $("#referencia_2").val(),
             descripcion: $("#descripcion").val(),
             sec: $("#sec").val()
         };
@@ -98,7 +108,23 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             ajax: "api/products",
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                 {
+                    extend: 'excelHtml5',
+                    autoFilter: true,
+                    sheetName: 'Exported data'
+                },
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }
+                ],
             columns: [
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "name", name: "users.name" },
@@ -172,6 +198,7 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
+            $("#mostrarRef2").hide();
         }
     }
 

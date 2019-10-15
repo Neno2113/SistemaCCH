@@ -133,7 +133,23 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             ajax: "api/rollos",
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                 {
+                    extend: 'excelHtml5',
+                    autoFilter: true,
+                    sheetName: 'Exported data'
+                },
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }
+                ],
             columns: [
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "id", name: "rollos.id" },

@@ -56,6 +56,10 @@ Route::get('/product', function () {
 Route::get('/corte', function () {
     return view('sistema.corte.corte');
 });
+
+Route::get('/sku', function () {
+    return view('sistema.sku.sku');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -64,12 +68,13 @@ Route::put('/user/edit', 'UserController@update');
 Route::post('/user/delete/{id}', 'UserController@destroy');
 Route::post('/user/{id}', 'UserController@show');
 
-
 //Rutas composition
 Route::post('/composition', 'CompositionController@store');
 Route::post('/composition/{id}', 'CompositionController@show');
 Route::put('/composition/edit', 'CompositionController@update');
 Route::post('/composition/delete/{id}', 'CompositionController@destroy');
+Route::get('/text', 'CompositionController@test_page');
+Route::get('/text-read', 'CompositionController@read_test');
 
 //Rutas suplidor
 Route::post('/supplier', 'SupplierController@store');

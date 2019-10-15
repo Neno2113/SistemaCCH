@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('title', 'Clientes')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -70,7 +72,7 @@
                     <br>
                     <br>
 
-                  
+
 
                     <div class="row">
                         <div class="col-md-4 mt-3">
@@ -138,6 +140,28 @@
                                 class="form-control" readonly>
                         </div>
                         <div class="col-md-4 mt-4">
+                            <label for="autorizacion_credito_req">¿Acepta segundas?(*):</label>
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary7" name="r4" value="1" checked>
+                                    <label for="radioPrimary7">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary8" name="r4" value="0">
+                                    <label for="radioPrimary8">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="text" name="acepta_segundas" id="acepta_segundas" class="form-control"
+                                readonly>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-2">
                             <label for="autorizacion_credito_req">¿Acepta factura desglosada por tallas?(*):</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
@@ -156,9 +180,7 @@
                             <input type="text" name="factura_desglosada_tallas" id="factura_desglosada_tallas"
                                 class="form-control" readonly>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-2">
                             <label for="notas">Notas:</label>
                             <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
                         </div>
@@ -176,41 +198,45 @@
     <table id="clients" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th>Nombre Cliente</th>
-                <th>Direccion Principal</th>
+                <th>Cliente</th>
+                <th>Direccion </th>
                 <th>Contacto</th>
-                <th>Telefono 1</th>
-                <th>Telefono 2</th>
-                <th>Telefono 3</th>
-                <th>Celular Principal</th>
+                <th>Tel 1</th>
+                <th>Tel 2</th>
+                <th>Tel 3</th>
+                <th>Celular </th>
                 <th>Email</th>
                 <th>Condiciones de Credito</th>
                 <th>Notas</th>
                 <th>Autorizacion de Credito requerida</th>
                 <th>Acepta redistribucion de tallas</th>
                 <th>Acepta factura desglosada por tallas</th>
+                <th>Acepta segundas</th>
             </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th>Nombre Cliente</th>
-                <th>Direccion Principal</th>
+                <th>Cliente</th>
+                <th>Direccion</th>
                 <th>Contacto</th>
-                <th>Telefono 1</th>
-                <th>Telefono 2</th>
-                <th>Telefono 3</th>
-                <th>Celular Principal</th>
+                <th>Tel 1</th>
+                <th>Tel 2</th>
+                <th>Tel 3</th>
+                <th>Celular </th>
                 <th>Email</th>
                 <th>Condiciones de Credito</th>
                 <th>Notas</th>
                 <th>Autorizacion de Credito requerida</th>
                 <th>Acepta redistribucion de tallas</th>
                 <th>Acepta factura desglosada por tallas</th>
+                <th>Acepta segundas</th>
             </tr>
         </tfoot>
     </table>
@@ -297,8 +323,9 @@
             $("#autorizacion_credito_req").show();
             $("#redistribucion_tallas").show();
             $("#factura_desglosada_tallas").show();
+            $("#acepta_segundas").show();
 
-            let result1, result2, result3; 
+            let result1, result2, result3, result4; 
             if(data.client.autorizacion_credito_req == 1){
                 result1 = 'Si';
             }else{
@@ -317,6 +344,12 @@
                 result3 = 'No';
             }
 
+            if(data.client.acepta_segundas == 1){
+                result4 = 'Si';
+            }else{
+                result4 = 'No';
+            }
+
             // console.log(typeof data.client.autorizacion_credito_req);
             $("#id").val(data.client.id);
             $("#nombre_cliente").val(data.client.nombre_cliente);
@@ -332,6 +365,7 @@
             $("#notas").val(data.client.notas);
             $("#redistribucion_tallas").val(result2);
             $("#factura_desglosada_tallas").val(result3);
+            $("#acepta_segundas").val(result4);
            
         });
     }

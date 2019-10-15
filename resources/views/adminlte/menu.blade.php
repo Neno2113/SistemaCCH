@@ -41,8 +41,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link ">
             <i class="far fa-address-book"></i>
             <p>
               Clientes
@@ -64,8 +64,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link ">
             <i class="fas fa-shipping-fast"></i>
             <p>
               Suplidores
@@ -81,8 +81,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
             <i class="fas fa-fill-drip"></i>
             <p>
               Composiciones
@@ -98,8 +98,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link">
             <i class="fas fa-tshirt"></i>
             <p>
               Tela
@@ -115,8 +115,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link ">
             <i class="fas fa-dolly-flatbed"></i>
             <p>
               Rollos
@@ -132,8 +132,25 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link ">
+                <i class="fas fa-barcode"></i>
+              <p>
+                SKU
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/sistemaCCH/public/sku" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SKU</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
               <i class="far fa-clipboard"></i>
               <p>
                 Producto
@@ -149,8 +166,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
               <i class="fas fa-cut"></i>
               <p>
                 Corte

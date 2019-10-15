@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Composition;
 use Yajra\DataTables\Facades\DataTables;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Reader\Xls;
 
 class CompositionController extends Controller
 {
@@ -130,13 +133,44 @@ class CompositionController extends Controller
         $compositions = Composition::query();
 
         return DataTables::eloquent($compositions)
+            ->addColumn('Expandir', function ($composition) {
+                return "";
+            })
             ->addColumn('Editar', function ($composition) {
-                return '<button id="btnEdit" onclick="mostrar(' . $composition->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $composition->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
             })
             ->addColumn('Eliminar', function ($composition) {
-                return '<button onclick="eliminar(' . $composition->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+                return '<button onclick="eliminar(' . $composition->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
+    }
+
+    public function test_page(){
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello Word !');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('hello_word.xlsx');
+    }
+
+    public function read_test(){
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $reader = $spreadsheet->load("UPC_code_1110.xlsx");
+        $worksheet = $reader->getActiveSheet();
+        $rows = [];
+        foreach ($worksheet->getRowIterator() as $row){
+            $cellIteratorr = $row->getCellIterator();
+            $cellIteratorr->setIterateOnlyExistingCells(false);
+            $cells = [];
+            foreach ($cellIteratorr as $cell){
+                $cells[] = $cell->getValue();
+            }
+            $rows[] = $cells;
+        }
+
+        return $rows;
+
     }
 }

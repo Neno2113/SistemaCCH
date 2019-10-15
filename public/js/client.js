@@ -120,7 +120,8 @@ $(document).ready(function() {
             autorizacion_credito_req: $("input[name='r1']:checked").val(),
             notas: $("#notas").val(),
             redistribucion_tallas: $("input[name='r2']:checked").val(),
-            factura_desglosada_talla: $("input[name='r3']:checked").val()
+            factura_desglosada_talla: $("input[name='r3']:checked").val(),
+            acepta_segundas: $("input[name='r4']:checked").val()
         };
 
         // console.log(JSON.stringify(client));
@@ -157,7 +158,23 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             ajax: "api/clients",
+            dom: 'Bfrtip',
+            buttons: [
+            'copyHtml5',
+             {
+                extend: 'excelHtml5',
+                autoFilter: true,
+                sheetName: 'Exported data'
+            },
+            'csvHtml5',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL'
+            }
+            ],
             columns: [
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "nombre_cliente" },
@@ -173,6 +190,7 @@ $(document).ready(function() {
                 { data: "autorizacion_credito_req" },
                 { data: "redistribucion_tallas" },
                 { data: "factura_desglosada_talla" },
+                { data: "acepta_segundas" },
             ],
             order: [[2, 'asc']],
             rowGroup: {
@@ -197,7 +215,8 @@ $(document).ready(function() {
             autorizacion_credito_req: $("input[name='r1']:checked").val(),
             notas: $("#notas").val(),
             redistribucion_tallas: $("input[name='r2']:checked").val(),
-            factura_desglosada_talla: $("input[name='r3']:checked").val()
+            factura_desglosada_talla: $("input[name='r3']:checked").val(),
+            acepta_segundas: $("input[name='r4']:checked").val()
         };
         
         // console.log(JSON.stringify(client));
@@ -251,6 +270,7 @@ $(document).ready(function() {
             $("#autorizacion_credito_req").hide();
             $("#redistribucion_tallas").hide();
             $("#factura_desglosada_tallas").hide();
+            $("#acepta_segundas").hide();
         }
     }
 

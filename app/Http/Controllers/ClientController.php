@@ -28,7 +28,7 @@ class ClientController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-           
+
             $nombre_cliente = $request->input('nombre_cliente', true);
             $direccion_principal = $request->input('direccion_principal', true);
             $contacto_cliente_principal = $request->input('contacto_cliente_principal', true);
@@ -42,7 +42,8 @@ class ClientController extends Controller
             $notas = $request->input('notas', true);
             $redistribucion_tallas = $request->input('redistribucion_tallas', true);
             $factura_desglosada_talla = $request->input('factura_desglosada_talla', true);
-           
+            $acepta_segundas = $request->input('acepta_segundas', true);
+
 
             $cliente = new Client();
             $cliente->nombre_cliente = $nombre_cliente;
@@ -58,6 +59,7 @@ class ClientController extends Controller
             $cliente->notas = $notas;
             $cliente->redistribucion_tallas = $redistribucion_tallas;
             $cliente->factura_desglosada_talla = $factura_desglosada_talla;
+            $cliente->acepta_segundas = $acepta_segundas;
 
             $cliente->save();
 
@@ -126,11 +128,10 @@ class ClientController extends Controller
             $notas = $request->input('notas', true);
             $redistribucion_tallas = $request->input('redistribucion_tallas', true);
             $factura_desglosada_talla = $request->input('factura_desglosada_talla', true);
-
-            
+            $acepta_segundas = $request->input('acepta_segundas', true);
 
             $client = Client::find($id);
-            
+
             $client->nombre_cliente = $nombre_cliente;
             $client->direccion_principal = $direccion_principal;
             $client->contacto_cliente_principal = $contacto_cliente_principal;
@@ -144,7 +145,8 @@ class ClientController extends Controller
             $client->notas = $notas;
             $client->redistribucion_tallas = $redistribucion_tallas;
             $client->factura_desglosada_talla = $factura_desglosada_talla;
-           
+            $client->acepta_segundas = $acepta_segundas;
+
 
             $client->save();
 
@@ -156,7 +158,6 @@ class ClientController extends Controller
         }
 
         return response()->json($data, $data['code']);
-       
     }
 
     public function destroy($id)
@@ -181,12 +182,16 @@ class ClientController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function clients(){
+    public function clients()
+    {
         $clients = Client::query();
 
         return DataTables::eloquent($clients)
+            ->addColumn('Expandir', function ($client) {
+                return "";
+            })
             ->addColumn('Editar', function ($client) {
-                return '<button id="btnEdit" onclick="mostrar(' . $client->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $client->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
             })
             ->editColumn('autorizacion_credito_req', function ($client) {
                 return ($client->autorizacion_credito_req == 1 ? 'Si' : 'No');
@@ -197,11 +202,13 @@ class ClientController extends Controller
             ->editColumn('factura_desglosada_talla', function ($client) {
                 return ($client->factura_desglosada_talla == 1 ? 'Si' : 'No');
             })
+            ->editColumn('acepta_segundas', function ($client) {
+                return ($client->acepta_segundas == 1 ? 'Si' : 'No');
+            })
             ->addColumn('Eliminar', function ($client) {
-                return '<button onclick="eliminar(' . $client->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+                return '<button onclick="eliminar(' . $client->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
-
     }
 }

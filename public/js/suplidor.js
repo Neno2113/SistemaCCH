@@ -87,6 +87,7 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             celular: $("#celular").val(),
             email: $("#email").val(),
+            tipo_suplidor: $("#tipo_suplidor").val(),
             terminos_de_pago: $("#terminos_de_pago").val(),
             nota: $("#nota").val()
         };
@@ -122,18 +123,35 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             ajax: "api/suppliers",
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                 {
+                    extend: 'excelHtml5',
+                    autoFilter: true,
+                    sheetName: 'Exported data'
+                },
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }
+                ],
             columns: [
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "id" },
                 { data: "nombre" },
-                { data: "direccion" },
                 { data: "contacto_suplidor" },
                 { data: "telefono_1" },
                 { data: "telefono_2" },
                 { data: "celular" },
                 { data: "email" },
+                { data: "tipo_suplidor" },
                 { data: "terminos_de_pago" },
+                { data: "direccion" },
                 { data: "nota" },
                
             ],
@@ -156,6 +174,7 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             celular: $("#celular").val(),
             email: $("#email").val(),
+            tipo_suplidor: $("#tipo_suplidor").val(),
             terminos_de_pago: $("#terminos_de_pago").val(),
             nota: $("#nota").val()
         };

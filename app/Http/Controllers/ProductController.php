@@ -27,11 +27,13 @@ class ProductController extends Controller
         } else {
 
             $referencia = $request->input('referencia', true);
+            $referencia_2 = $request->input('referencia_2', true);
             $descripcion = $request->input('descripcion', true);
             $sec = $request->input('sec', true);
-           
+
             $product = new Product();
             $product->referencia_producto = $referencia;
+            $product->referencia_producto_2 = $referencia_2;
             $product->descripcion = $descripcion;
             $product->sec = $sec + 0.1;
             $product->id_user = \auth()->user()->id;
@@ -51,17 +53,20 @@ class ProductController extends Controller
     public function products()
     {
         $products = DB::table('producto')->join('users', 'producto.id_user', '=', 'users.id')
-        ->select(['producto.id', 'users.name', 'users.surname', 'producto.referencia_producto','producto.descripcion']);
+            ->select(['producto.id', 'users.name', 'users.surname', 'producto.referencia_producto', 'producto.descripcion']);
 
         return DataTables::of($products)
-            ->editColumn('name', function($product){
+            ->addColumn('Expandir', function ($product) {
+                return "";
+            })
+            ->editColumn('name', function ($product) {
                 return "$product->name $product->surname";
             })
             ->addColumn('Editar', function ($product) {
-                return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
             })
             ->addColumn('Eliminar', function ($product) {
-                return '<button onclick="eliminar(' . $product->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+                return '<button onclick="eliminar(' . $product->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
@@ -107,9 +112,9 @@ class ProductController extends Controller
             $referencia = $request->input('referencia', true);
             $descripcion = $request->input('descripcion', true);
             $sec = $request->input('sec', true);
-           
+
             $product = Product::find($id);
-    
+
             $product->referencia_producto = $referencia;
             $product->descripcion = $descripcion;
             $product->sec = $sec;
@@ -150,12 +155,13 @@ class ProductController extends Controller
     }
 
 
-    public function getDigits(){
+    public function getDigits()
+    {
         $product = Product::orderBy('sec', 'desc')->first();
 
         $sec = $product->sec;
 
-        if(empty($sec)){
+        if (empty($sec)) {
             $sec = 0.0;
 
             $data = [
@@ -163,15 +169,14 @@ class ProductController extends Controller
                 'status' => 'success',
                 'sec' => $sec
             ];
-    
-        }else{
+        } else {
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'sec' => $sec
             ];
         }
-                 
+
         return response()->json($data, $data['code']);
     }
 }

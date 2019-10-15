@@ -96,6 +96,21 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             ajax: "api/rollos_corte",
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                 {
+                    extend: 'excelHtml5',
+                    autoFilter: true,
+                    sheetName: 'Exported data'
+                },
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }
+                ],
             columns: [
                 { data: "id", name: "rollos.id" },
                 { data: "referencia", name: "tela.referencia" },

@@ -5,6 +5,7 @@
     text-align: center;
 }
 
-/* .datatables-rollos {
-    width: 100%;
-} */
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before{
+    top: 30%;
+    left: 30%;
+}

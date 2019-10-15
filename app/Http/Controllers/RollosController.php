@@ -36,7 +36,7 @@ class RollosController extends Controller
             $fecha_compra = $request->input('fecha_compra', true);
             $longitud_yarda = $request->input('longitud_yarda', true);
             $no_factura_compra = $request->input('no_factura_compra', true);
-        
+
 
             $rollos = new Rollos();
             $rollos->id_user = $id_user;
@@ -47,7 +47,7 @@ class RollosController extends Controller
             $rollos->fecha_compra = $fecha_compra;
             $rollos->no_factura_compra = $no_factura_compra;
             $rollos->longitud_yarda = $longitud_yarda;
-           
+
             $rollos->save();
 
             $data = [
@@ -60,19 +60,25 @@ class RollosController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function rollos(){
+    public function rollos()
+    {
 
         $rollos = DB::table('rollos')->join('suplidor', 'rollos.id_suplidor', '=', 'suplidor.id')
-                                     ->join('tela', 'rollos.id_tela', '=', 'tela.id')
-        ->select(['rollos.id', 'tela.referencia','suplidor.nombre', 'rollos.codigo_rollo', 'rollos.num_tono', 
-        'rollos.no_factura_compra', 'rollos.fecha_compra', 'rollos.longitud_yarda']);
+            ->join('tela', 'rollos.id_tela', '=', 'tela.id')
+            ->select([
+                'rollos.id', 'tela.referencia', 'suplidor.nombre', 'rollos.codigo_rollo', 'rollos.num_tono',
+                'rollos.no_factura_compra', 'rollos.fecha_compra', 'rollos.longitud_yarda'
+            ]);
 
         return DataTables::of($rollos)
+            ->addColumn('Expandir', function ($rollo) {
+                return "";
+            })
             ->addColumn('Editar', function ($rollo) {
-                return '<button id="btnEdit" onclick="mostrar(' . $rollo->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $rollo->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
             })
             ->addColumn('Eliminar', function ($rollo) {
-                return '<button onclick="eliminar(' . $rollo->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+                return '<button onclick="eliminar(' . $rollo->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
@@ -81,7 +87,7 @@ class RollosController extends Controller
     public function show($id)
     {
         $rollo = Rollos::find($id)->load('suplidor')
-                                  ->load('tela');
+            ->load('tela');
 
         if (is_object($rollo)) {
             $data = [
@@ -173,7 +179,7 @@ class RollosController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    
+
 
     public function selectCloth(Request $request)
     {

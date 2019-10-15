@@ -12,7 +12,7 @@ class Client extends Model
     protected $fillable = [
         'nombre_cliente', 'direccion_principal','contacto_cliente_principal','telefono_1','telefono_2','telefono_3',
         'celular_principal','email_principal','condiciones_credito','autorizacion_credito_req','notas','redistribucion_tallas',
-        'factura_desglosada_talla'
+        'factura_desglosada_talla', 'acepta_segundas'
     ];
 
     public function clienteSucursal(){

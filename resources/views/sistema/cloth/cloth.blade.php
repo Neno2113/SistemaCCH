@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('title', 'Telas')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -99,12 +101,13 @@
     <table id="cloths" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>Referencia</th>
-                <th>Nombre Suplidor</th>
+                <th>Suplidor</th>
                 <th>Precio USD/Yarda</th>
-                <th>Tipo tela</th>
+                <th>Tela</th>
                 <th>Peso</th>
                 <th>Ancho cortable</th>
                 <th>Elasticidad en trama</th>
@@ -122,12 +125,13 @@
         <tbody></tbody>
         <tfoot>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>Referencia</th>
-                <th>Nombre Suplidor</th>
+                <th>Suplidor</th>
                 <th>Precio USD/Yarda</th>
-                <th>Tipo tela</th>
+                <th>Tela</th>
                 <th>Peso</th>
                 <th>Ancho cortable</th>
                 <th>Elasticidad en trama</th>

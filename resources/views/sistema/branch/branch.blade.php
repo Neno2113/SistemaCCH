@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('title', 'Sucursales')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -12,6 +14,7 @@
     <table id="branches" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>Nombre cliente</th>
@@ -25,6 +28,7 @@
         <tbody></tbody>
         <tfoot>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>Nombre cliente</th>
@@ -94,7 +98,7 @@
             <div class="modal-footer">
                 <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal" >Close</button>
                 <button type="submit" id="btn-guardar-branch" class="btn btn-primary">Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-primary">Actualizar</button>
+                <button type="submit" id="btn-edit-branch" class="btn btn-primary">Actualizar</button>
             </div>
             </form>
         </div>

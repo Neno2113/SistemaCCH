@@ -161,15 +161,20 @@ class ClientBranchController extends Controller
     public function branches()
     {
         $branches = DB::table('cliente_sucursales')->join('cliente', 'cliente_sucursales.cliente_id', '=', 'cliente.id')
-        ->select(['cliente_sucursales.id', 'cliente.nombre_cliente', 'cliente_sucursales.codigo_sucursal','cliente_sucursales.nombre_sucursal',
-        'cliente_sucursales.telefono_sucursal','cliente_sucursales.direccion']);
+            ->select([
+                'cliente_sucursales.id', 'cliente.nombre_cliente', 'cliente_sucursales.codigo_sucursal', 'cliente_sucursales.nombre_sucursal',
+                'cliente_sucursales.telefono_sucursal', 'cliente_sucursales.direccion'
+            ]);
 
         return DataTables::of($branches)
+            ->addColumn('Expandir', function ($branch) {
+                return "";
+            })
             ->addColumn('Editar', function ($branch) {
-                return '<button id="btnEdit" onclick="mostrar(' . $branch->id . ')" class="btn btn-warning"> <i class="fas fa-edit"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $branch->id . ')" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i></button>';
             })
             ->addColumn('Eliminar', function ($branch) {
-                return '<button onclick="eliminar(' . $branch->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+                return '<button onclick="eliminar(' . $branch->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
             })
 
             ->rawColumns(['Editar', 'Eliminar'])

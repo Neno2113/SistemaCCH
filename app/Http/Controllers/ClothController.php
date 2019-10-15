@@ -19,7 +19,7 @@ class ClothController extends Controller
             'tipo_tela' => 'required|alpha',
             'composiciones' => 'required',
             'porcentaje_mat_1' => 'required'
-            
+
         ]);
 
         if (empty($validar)) {
@@ -279,16 +279,21 @@ class ClothController extends Controller
     public function cloths()
     {
         $cloths = DB::table('tela')->join('suplidor', 'tela.id_suplidor', '=', 'suplidor.id')
-        ->select(['tela.id', 'tela.referencia', 'suplidor.nombre', 'tela.precio_usd','tela.composicion','tela.composicion_2', 
-        'tela.composicion_3','tela.composicion_4','tela.composicion_5','tela.tipo_tela','tela.ancho_cortable','tela.peso',
-        'tela.elasticidad_trama','tela.elasticidad_urdimbre','tela.encogimiento_trama','tela.encogimiento_urdimbre']);
+            ->select([
+                'tela.id', 'tela.referencia', 'suplidor.nombre', 'tela.precio_usd', 'tela.composicion', 'tela.composicion_2',
+                'tela.composicion_3', 'tela.composicion_4', 'tela.composicion_5', 'tela.tipo_tela', 'tela.ancho_cortable', 'tela.peso',
+                'tela.elasticidad_trama', 'tela.elasticidad_urdimbre', 'tela.encogimiento_trama', 'tela.encogimiento_urdimbre'
+            ]);
 
         return DataTables::of($cloths)
+            ->addColumn('Expandir', function ($cloth) {
+                return "";
+            })
             ->addColumn('Editar', function ($cloth) {
-                return '<button id="btnEdit" onclick="mostrar(' . $cloth->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $cloth->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit fa-1x"></i></button>';
             })
             ->addColumn('Eliminar', function ($cloth) {
-                return '<button onclick="eliminar(' . $cloth->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+                return '<button onclick="eliminar(' . $cloth->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser fa-1x"></i></button>';
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);

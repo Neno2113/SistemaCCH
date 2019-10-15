@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('title', 'Suplidor')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -69,11 +71,26 @@
                             <input type="email" name="email" id="email" class="form-control">
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="terminos_de_pago">Terminos de pago(*):</label>
-                            <input type="text" name="terminos_de_pago" id="terminos_de_pago" class="form-control"
-                                placeholder="Cantidad en dias para pagar">
+                            <label for="terminos_de_pago">Tipo suplidor(*):</label>
+                            <select name="tipo_suplidor" id="tipo_suplidor" class="form-control">
+                                <option value="">Elige un tipo...</option>
+                                <option value="Material">Material</option>
+                                <option value="Lavanderia">Lavanderia</option>
+                                <option value="Servicio">Servicio</option>
+                            </select>
                         </div>
                         <div class="col-md-4 mt-3">
+                            <label for="terminos_de_pago">Terminos de pago(*):</label>
+                            <select name="terminos_pago" id="terminos_de_pago" class="form-control">
+                                <option value="Contado">Al contado</option>
+                                <option value="30 dias">30 dias</option>
+                                <option value="60 dias">60 dias</option>
+                                <option value="90 dias">90 dias</option>
+                                <option value="120 dias">120 dias</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-12">
                             <label for="nota">Nota:</label>
                             <textarea name="nota" id="nota" cols="30" rows="1" class="form-control"></textarea>
                         </div>
@@ -88,37 +105,41 @@
 </div>
 
 <div class="container" id="listadoUsers">
-    <table id="suppliers" class="table table-striped table-bordered datatables" >
+    <table id="suppliers" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Direccion</th>
                 <th>Contacto</th>
-                <th>Telefono 1</th>
-                <th>Telefono 2</th>
+                <th>Tel 1</th>
+                <th>Tel 2</th>
                 <th>Celular</th>
                 <th>Email</th>
+                <th>Tipo</th>
                 <th>Terminos de pago</th>
+                <th>Direccion</th>
                 <th>Nota</th>
             </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Direccion</th>
                 <th>Contacto</th>
-                <th>Telefono 1</th>
-                <th>Telefono 2</th>
+                <th>Tel 1</th>
+                <th>Tel 2</th>
                 <th>Celular</th>
                 <th>Email</th>
+                <th>Tipo</th>
                 <th>Terminos de pago</th>
+                <th>Direccion</th>
                 <th>Nota</th>
             </tr>
         </tfoot>
@@ -150,6 +171,7 @@
                 $("#telefono_2").val(data.supplier.telefono_2);
                 $("#celular").val(data.supplier.celular);
                 $("#email").val(data.supplier.email);
+                $("#tipo_suplidor").val(data.supplier.tipo_suplidor);
                 $("#terminos_de_pago").val(data.supplier.terminos_de_pago);
                 $("#nota").val(data.supplier.nota);
                

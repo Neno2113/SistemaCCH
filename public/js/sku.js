@@ -41,39 +41,39 @@ $(document).ready(function() {
 
  
 
-    $("#btn-guardar").click(function(e){
-        e.preventDefault();
+    // $("#btn-guardar").click(function(e){
+    //     e.preventDefault();
         
-        var composition = {
-            codigo_composicion: $("#codigo_composicion").val(),
-            nombre_composicion: $("#nombre_composicion").val()
-        };
+    //     // var data = new FormData()
+    //     // jQuery.each(jQuery('#file')[0].files, function(i, file){
+    //     //     data.append('file-'+i, file);
+    //     // })
 
-        $.ajax({
-            url: "composition",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(composition),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Se registro la composicion");
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
-            }
-        });
-    });
+    //     // $.ajax({
+    //     //     url: "composition",
+    //     //     type: "POST",
+    //     //     dataType: "json",
+    //     //     data: JSON.stringify(composition),
+    //     //     contentType: "application/json",
+    //     //     success: function(datos) {
+    //     //         if (datos.status == "success") {
+    //     //             bootbox.alert("Se registro la composicion");
+    //     //             limpiar();
+    //     //             tabla.ajax.reload();
+    //     //             mostrarForm(false);
+    //     //         } else {
+    //     //             bootbox.alert(
+    //     //                 "Ocurrio un error durante la creacion de la composicion"
+    //     //             );
+    //     //         }
+    //     //     },
+    //     //     error: function() {
+    //     //         bootbox.alert(
+    //     //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+    //     //         );
+    //     //     }
+    //     // });
+    // });
 
     function listar() {
         tabla = $("#compositions").DataTable({

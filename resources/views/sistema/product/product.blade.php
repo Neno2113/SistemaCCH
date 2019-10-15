@@ -1,5 +1,8 @@
 @extends('adminlte.layout')
 
+
+@section('title', 'Productos')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -72,7 +75,12 @@
                         <div class="col-md-3 mt-3">
                             <label for="">Referencia:</label>
                             <input type="text" name="referencia" id="referencia" class="form-control">
-                            <input type="hidden" name="" id="sec" value="" >
+                            <input type="hidden" name="" id="sec" value="">
+                        </div>
+                        <div class="col-md-3 mt-3" id="mostrarRef2">
+                            <label for="">Referencia 2:</label>
+                            <input type="text" name="referencia_" id="referencia_2" class="form-control">
+                            <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-5">
                             <button class="btn btn-secondary" id="btnGenerar">Generar</button>
@@ -83,7 +91,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="" class="d-flex justify-content-center">Descripcion(*):</label>
-                            <textarea name="descripcion" id="descripcion" cols="30" rows="1" class="form-control"></textarea>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="1"
+                                class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
@@ -99,9 +108,10 @@
         <table id="products" class="table table-striped table-bordered datatables">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>Usuario Gen</th>
+                    <th>Usuario </th>
                     <th>Referencia producto</th>
                     <th>Descripcion</th>
                 </tr>
@@ -109,9 +119,10 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
+                    <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>Usuario Gen</th>
+                    <th>Usuario</th>
                     <th>Referencia producto</th>
                     <th>Descripcion</th>
                 </tr>

@@ -17,7 +17,8 @@ class SupplierController extends Controller
             'contacto_suplidor' => 'required',
             'telefono_1' => 'required',
             'email' => 'required|email',
-            'terminos_de_pago' => 'required'
+            'terminos_de_pago' => 'required',
+            'tipo_suplidor' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -35,6 +36,7 @@ class SupplierController extends Controller
             $telefono_2 = $request->input('telefono_2', true);
             $celular = $request->input('celular', true);
             $email = $request->input('email', true);
+            $tipo_suplidor = $request->input('tipo_suplidor', true);
             $terminos_pago = $request->input('terminos_de_pago', true);
             $nota = $request->input('nota', true);
 
@@ -46,6 +48,7 @@ class SupplierController extends Controller
             $suplidor->telefono_2 = $telefono_2;
             $suplidor->celular = $celular;
             $suplidor->email = $email;
+            $suplidor->tipo_suplidor = $tipo_suplidor;
             $suplidor->terminos_de_pago = $terminos_pago;
             $suplidor->nota = $nota;
 
@@ -111,6 +114,7 @@ class SupplierController extends Controller
             $celular = $request->input('celular', true);
             $email = $request->input('email', true);
             $terminos_pago = $request->input('terminos_de_pago', true);
+            $tipo_suplidor = $request->input('tipo_suplidor', true);
             $nota = $request->input('nota', true);
 
             $supplier = Supplier::find($id);
@@ -122,6 +126,7 @@ class SupplierController extends Controller
             $supplier->telefono_2 = $telefono_2;
             $supplier->celular = $celular;
             $supplier->email = $email;
+            $supplier->tipo_suplidor = $tipo_suplidor;
             $supplier->terminos_de_pago = $terminos_pago;
             $supplier->nota = $nota;
 
@@ -166,11 +171,14 @@ class SupplierController extends Controller
         $suppliers = Supplier::query();
 
         return DataTables::eloquent($suppliers)
+            ->addColumn('Expandir', function ($cloth) {
+                return "";
+            })
             ->addColumn('Editar', function ($supplier) {
-                return '<button id="btnEdit" onclick="mostrar(' . $supplier->id . ')" class="btn btn-warning" > <i class="fas fa-edit"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $supplier->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
             })
             ->addColumn('Eliminar', function ($supplier) {
-                return '<button onclick="eliminar(' . $supplier->id . ')" class="btn btn-danger"> <i class="fas fa-eraser"></i></button>';
+                return '<button onclick="eliminar(' . $supplier->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);

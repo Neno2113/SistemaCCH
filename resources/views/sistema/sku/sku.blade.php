@@ -1,7 +1,7 @@
 @extends('adminlte.layout')
 
-@section('title', 'Compisiciones')
-    
+@section('title', 'SKU')
+
 
 @section('content')
 <div class="container">
@@ -13,26 +13,21 @@
     <div class="row d-flex justify-content-center">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center bg-secondary">
-                <h4>Composiciones</h4>
+                <h4>SKU</h4>
             </div>
             <div class="card-body">
-                <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de composiciones:</h5>
+                <form action="" method="post" enctype="multipart/form-data" id="formulario" class="form-group carta panel-body">
+                    <h5>Importar SKUs:</h5>
                     <hr>
                     <div class="row ">
-                        <div class="col-md-6">
-                            <input type="hidden" name="id" id="id" value="">
-                            {{-- <label for="codigo composicion">Codigo composicion(*):</label>
-                            <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control"> --}}
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <h5>Favor seleccionar el archivo con los SKU</h5>
                         </div>
-                        <div class="col-md-12">
-                            <label for="nombre composicion">Nombre composicion(*):</label>
-                            <input type="text" name="nombre_composicion" id="nombre_composicion" class="form-control">
+                        <div class="col-md-12 d-flex justify-content-center mt-2">
+                            <input type="file" name="" id="" class="form control">
                         </div>
                     </div>
-
-
-                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
+                    <input type="submit" value="Guardar" id="btn-guardar" class="btn btn-lg btn-info mt-4 d-flex justify-content-center">
                     <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
                 </form>
             </div>
@@ -40,37 +35,13 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="compositions" class="table table-striped table-bordered datatables" >
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre composicion</th>
 
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre composicion</th>
-            </tr>
-        </tfoot>
-    </table>
-
-</div>
 
 
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/composition.js')}}"></script>
+<script src="{{asset('js/sku.js')}}"></script>
 
 <script>
     function mostrar(id_composition) {

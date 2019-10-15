@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('title', 'Usuarios')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -106,6 +108,7 @@
     <table id="users" class="table table-striped table-bordered datatables" >
         <thead>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
@@ -123,6 +126,7 @@
         <tbody></tbody>
         <tfoot>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>ID</th>
