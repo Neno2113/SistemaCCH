@@ -256,6 +256,7 @@ $(document).ready(function() {
             ajax: "api/cloths",
             dom: 'Bfrtip',
             buttons: [
+                'pageLength',
                 'copyHtml5',
                  {
                     extend: 'excelHtml5',

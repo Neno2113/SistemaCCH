@@ -10,6 +10,6 @@ class SKU extends Model
 
 
     protected $fillable = [
-        'id', 'sku', 'talla'
+        'id', 'sku', 'talla', 'created_at', 'updated_at'
     ];
 }

@@ -31,7 +31,6 @@
                                 <option value="P">Lavish Premium</option>
                             </select>
                         </div>
-
                         <div class="col-md-3">
                             <label for="" class="">Genero(*):</label>
                             <select name="genero" id="genero" class="form-control">
@@ -42,7 +41,6 @@
                                 <option value="4">Niña</option>
                             </select>
                         </div>
-
                         <div class="col-md-3">
                             <label for="" class="">Tipo producto(*):</label>
                             <select name="tipo_producto" id="tipo_producto" class="form-control">
@@ -89,18 +87,33 @@
                     <hr>
                     <br>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4 mt-3">
+                            <label for="precio_lista">Precio lista(*):</label>
+                            <input type="text" name="precio_lista" id="precio_lista" class="form-control">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="precio_venta_publico">Precio publico(*):</label>
+                            <input type="text" name="precio_venta_publico" id="precio_venta_publico"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-4 mt-5">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target=".bd-example-modal-lg">Asignar SKU</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
                             <label for="" class="d-flex justify-content-center">Descripcion(*):</label>
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control"></textarea>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4">
-                        <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-secondary mt-4">
-                    </div>
-                </form>
             </div>
+            <div class="card-footer text-muted d-flex justify-content-end">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-secondary mt-4">
+            </div>
+            </form>
         </div>
     </div>
 
@@ -131,6 +144,133 @@
 
     </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Asignar SKU</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="BrachForm">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar" value="General">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU A</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar2" value="A">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU B</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar3" value="B">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU C</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar4" value="C">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU D</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar5" value="D">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU E</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar6" value="E">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU F</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar7" value="F">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU G</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar8" value="G">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU H</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar9" value="H">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU I</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar10" value="I">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU J</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar11" value="J">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU K</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar12" value="K">Asignar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="">SKU L</label>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary mb-2" id="btn-asignar13" value="L">Asignar</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 </div>
 
 

@@ -98,6 +98,7 @@ $(document).ready(function() {
             ajax: "api/rollos_corte",
             dom: 'Bfrtip',
             buttons: [
+                'pageLength',
                 'copyHtml5',
                  {
                     extend: 'excelHtml5',

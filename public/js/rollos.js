@@ -135,6 +135,7 @@ $(document).ready(function() {
             ajax: "api/rollos",
             dom: 'Bfrtip',
             buttons: [
+                'pageLength',
                 'copyHtml5',
                  {
                     extend: 'excelHtml5',

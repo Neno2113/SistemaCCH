@@ -4,19 +4,31 @@
 
 
 @section('content')
+
+
 <div class="container">
     <div class="row">
-        <button class="btn btn-primary mb-3" id="btnAgregar">Create <i class="fas fa-plus"></i></button>
-        <button class="btn btn-danger mb-3" id="btnCancelar">Cancel <i class="fas fa-window-close"></i></button>
+        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
+        <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
     </div>
 
+    @if(Session::has('msg'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong class="d-flex justify-content-center">{{Session::get('msg')}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="row d-flex justify-content-center">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center bg-secondary">
                 <h4>SKU</h4>
             </div>
             <div class="card-body">
-                <form action="" method="post" enctype="multipart/form-data" id="formulario" class="form-group carta panel-body">
+                <form action="/sistemaCCH/public/text-read" method="POST" enctype="multipart/form-data" id="formulario"
+                    class="form-group carta panel-body">
+                    @csrf
                     <h5>Importar SKUs:</h5>
                     <hr>
                     <div class="row ">
@@ -24,19 +36,39 @@
                             <h5>Favor seleccionar el archivo con los SKU</h5>
                         </div>
                         <div class="col-md-12 d-flex justify-content-center mt-2">
-                            <input type="file" name="" id="" class="form control">
+                            <input type="file" name="sku" id="" class="form control">
                         </div>
                     </div>
-                    <input type="submit" value="Guardar" id="btn-guardar" class="btn btn-lg btn-info mt-4 d-flex justify-content-center">
-                    <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
-                </form>
             </div>
+            <div class="card-footer text-muted d-flex justify-content-center">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-secondary mt-4">
+            </div>
+            </form>
         </div>
     </div>
 </div>
+<div class="container" id="listadoUsers">
+    <table id="skus" class="table table-striped table-bordered datatables">
+        <thead>
+            <tr>
+                {{-- <th></th> --}}
+                <th>ID</th>
+                <th>SKU</th>
+            
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                 {{-- <th></th> --}}
+                <th>ID</th>
+                <th>SKU</th>
+            </tr>
+        </tfoot>
+    </table>
 
-
-
+</div>
 
 
 

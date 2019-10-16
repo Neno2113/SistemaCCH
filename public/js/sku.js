@@ -76,11 +76,12 @@ $(document).ready(function() {
     // });
 
     function listar() {
-        tabla = $("#compositions").DataTable({
+        tabla = $("#skus").DataTable({
             serverSide: true,
-            responsive: true,
+            // responsive: true,
             dom: 'Bfrtip',
             buttons: [
+                'pageLength',
                 'copyHtml5',
                  {
                     extend: 'excelHtml5',
@@ -94,13 +95,11 @@ $(document).ready(function() {
                     pageSize: 'LEGAL'
                 }
                 ],
-            ajax: "api/compositions",
+            ajax: "api/skus",
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
+                // { data: "Expandir", orderable: false, searchable: false },
                 { data: "id" },
-                { data: "nombre_composicion" },
+                { data: "sku" },
               
             ]
         });

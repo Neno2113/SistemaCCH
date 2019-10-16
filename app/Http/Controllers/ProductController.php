@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use App\SKU;
 
 class ProductController extends Controller
 {
@@ -178,5 +179,25 @@ class ProductController extends Controller
         }
 
         return response()->json($data, $data['code']);
+    }
+
+    public function asignarSKU(Request $request){
+        $val = 0;
+        $sku = SKU::where('asignado', $val)->get()->first();
+        \json_encode($sku);
+        $id = $sku['id'];
+
+        $talla = $request->input('talla');
+
+        var_dump($id);
+        die();
+
+        // $data = [
+        //     'code' => 200,
+        //     'status' => 'success',
+        //     'sku' => $sku
+        // ];
+
+        // return response()->json($data, $data['code']);
     }
 }

@@ -101,6 +101,8 @@ $(document).ready(function() {
         });
     });
 
+   
+
     var tabla
 
     function listar() {
@@ -110,6 +112,7 @@ $(document).ready(function() {
             ajax: "api/products",
             dom: 'Bfrtip',
             buttons: [
+                'pageLength',
                 'copyHtml5',
                  {
                     extend: 'excelHtml5',
@@ -207,6 +210,460 @@ $(document).ready(function() {
     });
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);
+    });
+
+    $("#btn-asignar").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar2").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar2").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar3").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar3").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar4").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar4").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar5").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar5").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar6").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar6").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar7").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar7").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar8").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar8").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar9").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar9").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar10").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar10").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+    $("#btn-asignar11").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar11").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar12").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar12").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
+    });
+
+    $("#btn-asignar13").click(function(e){
+        e.preventDefault();
+        
+        var asignacion = {
+            talla: $("#btn-asignar13").val(),
+        };
+
+        console.log(JSON.stringify(asignacion));
+
+        // $.ajax({
+        //     url: "product",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(product),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             bootbox.alert("Se genero la referencia!!");
+        //             limpiar();
+        //             tabla.ajax.reload();
+        //             mostrarForm(false);
+        //         } else {
+        //             bootbox.alert(
+        //                 "Se genero la referencia"
+        //             );
+        //         }
+        //     },
+        //     error: function() {
+        //         bootbox.alert(
+        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+        //         );
+        //     }
+        // });
     });
   
 

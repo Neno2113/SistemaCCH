@@ -81,6 +81,7 @@ $(document).ready(function() {
             responsive: true,
             dom: 'Bfrtip',
             buttons: [
+                'pageLength',
                 'copyHtml5',
                  {
                     extend: 'excelHtml5',

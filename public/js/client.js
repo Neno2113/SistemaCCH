@@ -160,6 +160,7 @@ $(document).ready(function() {
             ajax: "api/clients",
             dom: 'Bfrtip',
             buttons: [
+            'pageLength',
             'copyHtml5',
              {
                 extend: 'excelHtml5',

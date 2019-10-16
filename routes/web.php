@@ -73,8 +73,8 @@ Route::post('/composition', 'CompositionController@store');
 Route::post('/composition/{id}', 'CompositionController@show');
 Route::put('/composition/edit', 'CompositionController@update');
 Route::post('/composition/delete/{id}', 'CompositionController@destroy');
-Route::get('/text', 'CompositionController@test_page');
-Route::get('/text-read', 'CompositionController@read_test');
+// Route::get('/text', 'CompositionController@test_page');
+// Route::get('/text-read', 'CompositionController@read_test');
 
 //Rutas suplidor
 Route::post('/supplier', 'SupplierController@store');
@@ -116,3 +116,8 @@ Route::post('/product', 'ProductController@store');
 Route::post('/product/{id}', 'ProductController@show');
 Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');
+Route::get('product/sku', 'ProductController@asignarSKU');
+
+
+//SKU
+Route::Post('/text-read', 'SKUController@read_file');
