@@ -116,8 +116,7 @@ Route::post('/product', 'ProductController@store');
 Route::post('/product/{id}', 'ProductController@show');
 Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');
-Route::get('product/sku', 'ProductController@asignarSKU');
-
+Route::post('sku', 'ProductController@asignarSKU');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');

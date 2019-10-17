@@ -10,6 +10,10 @@ use App\SKU;
 
 class ProductController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth', ['except'=>['asignarSKU']]);
+    // }
     public function store(Request $request)
     {
 
@@ -26,16 +30,25 @@ class ProductController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-
             $referencia = $request->input('referencia', true);
             $referencia_2 = $request->input('referencia_2', true);
             $descripcion = $request->input('descripcion', true);
+            $descripcion_2 = $request->input('descripcion_2', true);
+            $precio_lista = $request->input('precio_lista');
+            $precio_lista_2 = $request->input('precio_lista_2');
+            $precio_venta_publico = $request->input('precio_venta_publico');
+            $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
             $sec = $request->input('sec', true);
 
             $product = new Product();
             $product->referencia_producto = $referencia;
             $product->referencia_producto_2 = $referencia_2;
             $product->descripcion = $descripcion;
+            $product->descripcion_2 = $descripcion_2;
+            $product->precio_lista = $precio_lista;
+            $product->precio_lista_2 = $precio_lista_2;
+            $product->precio_venta_publico = $precio_venta_publico;
+            $product->precio_venta_publico_2 = $precio_venta_publico_2;
             $product->sec = $sec + 0.1;
             $product->id_user = \auth()->user()->id;
 
@@ -54,7 +67,8 @@ class ProductController extends Controller
     public function products()
     {
         $products = DB::table('producto')->join('users', 'producto.id_user', '=', 'users.id')
-            ->select(['producto.id', 'users.name', 'users.surname', 'producto.referencia_producto', 'producto.descripcion']);
+            ->select(['producto.id', 'users.name', 'users.surname', 'producto.referencia_producto', 'producto.descripcion'
+            , 'producto.referencia_producto_2', 'producto.precio_lista', 'producto.precio_venta_publico']);
 
         return DataTables::of($products)
             ->addColumn('Expandir', function ($product) {
@@ -112,12 +126,22 @@ class ProductController extends Controller
             $id = $request->input('id', true);
             $referencia = $request->input('referencia', true);
             $descripcion = $request->input('descripcion', true);
+            $descripcion_2 = $request->input('descripcion_2', true);
+            $precio_lista = $request->input('precio_lista');
+            $precio_lista_2 = $request->input('precio_lista_2');
+            $precio_venta_publico = $request->input('precio_venta_publico');
+            $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
             $sec = $request->input('sec', true);
 
             $product = Product::find($id);
 
             $product->referencia_producto = $referencia;
+            $product->descripcion_2 = $descripcion_2;
             $product->descripcion = $descripcion;
+            $product->precio_lista = $precio_lista;
+            $product->precio_lista_2 = $precio_lista_2;
+            $product->precio_venta_publico = $precio_venta_publico;
+            $product->precio_venta_publico_2 = $precio_venta_publico_2;
             $product->sec = $sec;
             // $product->id_user = \auth()->user()->id;
 
@@ -188,16 +212,21 @@ class ProductController extends Controller
         $id = $sku['id'];
 
         $talla = $request->input('talla');
+        $referencia = $request->input('referencia');
 
-        var_dump($id);
-        die();
+        $sku_update = SKU::find($id);
+        $sku_update->talla = $talla;
+        $sku_update->referencia_producto = $referencia;
+        $sku_update->asignado = 1;
 
-        // $data = [
-        //     'code' => 200,
-        //     'status' => 'success',
-        //     'sku' => $sku
-        // ];
+        $sku_update->save();
 
-        // return response()->json($data, $data['code']);
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'sku' => $sku_update
+        ];
+
+        return response()->json($data, $data['code']);
     }
 }

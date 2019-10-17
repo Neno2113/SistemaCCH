@@ -36,6 +36,7 @@ class VerifyCsrfToken extends Middleware
         'http://localhost/sistemaCCH/public/rollos',
         'http://localhost/sistemaCCH/public/rollo/*',
         'http://localhost/sistemaCCH/public/product',
-        'http://localhost/sistemaCCH/public/product/*'
+        'http://localhost/sistemaCCH/public/product/*',
+        'http://localhost/sistemaCCH/public/sku'
     ];
 }

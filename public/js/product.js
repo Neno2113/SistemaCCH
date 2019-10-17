@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("[data-mask]").inputmask();
 
     function init() {
         listar();
@@ -14,7 +15,11 @@ $(document).ready(function() {
         $("#sec").val("");
         $("#referencia").val("");
         $("#descripcion").val("");
-     
+        $("#precio_lista").val("");
+        $("#precio_venta_publico").val("");
+        $("#descripcion_2").val("");
+        $("#precio_lista_2").val("");
+        $("#precio_venta_publico_2").val("");
     }
 
     $("#btnGenerar").on('click', function(e){
@@ -36,18 +41,28 @@ $(document).ready(function() {
                     var categoria = $("#categoria").val();
                     var year = new Date().getFullYear().toString().substr(-2);
                     var referencia = marca + genero + tipo_producto + categoria+'-'+year+i;
+                    $('#btn-sku').attr("disabled", false);
                     
                     if(genero == 3 || genero == 4){
                         $("#mostrarRef2").show();
+                        $("#precios_2").show();
+                        $("#descripcion_ref2").show();
                         $("#sec").val(e + 0.1);
-                        // console.log($("#sec").val());
                         e = (e + 0.2).toFixed(1).split('.').join("");
                         $("#referencia_2").val(marca + genero + tipo_producto + categoria+'-'+year+e);
                         
                     }else{
                         $("#mostrarRef2").hide();
+                        $("#precios_2").hide();
+                        $("#descripcion_ref2").hide();
+                        $("#referencia_2").val("");
+                        $("#descripcion_2").val("");
+                        $("#precio_lista_2").val("");
+                        $("#precio_venta_publico_2").val("");
                     }
+                   
                     $("#referencia").val(referencia);
+                    $("#referencia_talla").val(referencia);
 
                 } else {
                     bootbox.alert(
@@ -72,8 +87,15 @@ $(document).ready(function() {
             referencia: $("#referencia").val(),
             referencia_2: $("#referencia_2").val(),
             descripcion: $("#descripcion").val(),
+            descripcion_2: $("#descripcion_2").val(),
+            precio_lista_2: $("#precio_lista_2").val(),
+            precio_lista: $("#precio_lista").val(),
+            precio_venta_publico: $("#precio_venta_publico").val(),
+            precio_venta_publico_2: $("#precio_venta_publico_2").val(),
             sec: $("#sec").val()
         };
+
+        console.log(JSON.stringify(product));
 
         $.ajax({
             url: "product",
@@ -87,6 +109,7 @@ $(document).ready(function() {
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
+                    $("#referencia_talla").val("");
                 } else {
                     bootbox.alert(
                         "Se genero la referencia"
@@ -132,6 +155,8 @@ $(document).ready(function() {
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "name", name: "users.name" },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
+                { data: "precio_lista", name: "producto.precio_lista" },
+                { data: "precio_venta_publico", name: "producto.precio_venta_publico" },
                 { data: "descripcion", name: "producto.descripcion" }              
             ],
             order: [[2, 'asc']],
@@ -148,10 +173,15 @@ $(document).ready(function() {
             id: $("#id").val(),
             referencia: $("#referencia").val(),
             descripcion: $("#descripcion").val(),
+            referencia_2: $("#referencia_2").val(),
+            precio_lista: $("#precio_lista").val(),
+            precio_lista_2: $("#precio_lista_2").val(),
+            precio_venta_publico_2: $("#precio_venta_publico_2").val(),
+            precio_venta_publico: $("#precio_venta_publico").val(),
             sec: $("#sec").val()
         };
 
-        console.log(product);
+        // console.log(product);
 
         $.ajax({
             url: "product/edit",
@@ -202,6 +232,9 @@ $(document).ready(function() {
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#mostrarRef2").hide();
+            $("#precios_2").hide();
+            $("#descripcion_ref2").hide();
+            $("#btn-sku").attr("disabled", true);
         }
     }
 
@@ -217,34 +250,32 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Error"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
     });
 
     $("#btn-asignar2").click(function(e){
@@ -252,34 +283,32 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar2").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar2").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar3").click(function(e){
@@ -287,34 +316,32 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar3").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar3").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar4").click(function(e){
@@ -322,34 +349,32 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar4").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar4").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar5").click(function(e){
@@ -357,174 +382,201 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar5").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar5").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar6").click(function(e){
         e.preventDefault();
+
+        let gen = $("#genero").val();
         
-        var asignacion = {
-            talla: $("#btn-asignar6").val(),
-        };
-
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        if(gen == 3 || gen == 4){
+            var asignacion = {
+                talla: $("#btn-asignar6").val(),
+                referencia: $("#referencia_2").val()
+            };
+        }else{
+            var asignacion = {
+                talla: $("#btn-asignar6").val(),
+                referencia: $("#referencia").val()
+            };
+        }
+        
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar6").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar7").click(function(e){
         e.preventDefault();
+
+        let gen = $("#genero").val();
+
+        if(gen == 3 || gen == 4){
+            var asignacion = {
+                talla: $("#btn-asignar7").val(),
+                referencia: $("#referencia_2").val()
+            };
+        }else{
+            var asignacion = {
+                talla: $("#btn-asignar7").val(),
+                referencia: $("#referencia").val()
+            };
+        }
         
-        var asignacion = {
-            talla: $("#btn-asignar7").val(),
-        };
-
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        // console.log(JSON.stringify(asignacion));
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar7").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar8").click(function(e){
         e.preventDefault();
+
+        let gen = $("#genero").val();
         
-        var asignacion = {
-            talla: $("#btn-asignar8").val(),
-        };
-
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        if(gen == 3 || gen == 4){
+            var asignacion = {
+                talla: $("#btn-asignar8").val(),
+                referencia: $("#referencia_2").val()
+            };
+        }else{
+            var asignacion = {
+                talla: $("#btn-asignar8").val(),
+                referencia: $("#referencia").val()
+            };
+        }
+      
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar8").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar9").click(function(e){
         e.preventDefault();
+
+        let gen = $("#genero").val();
+
+        if(gen == 3 || gen == 4){
+            var asignacion = {
+                talla: $("#btn-asignar9").val(),
+                referencia: $("#referencia_2").val()
+            };
+        }else{
+            var asignacion = {
+                talla: $("#btn-asignar9").val(),
+                referencia: $("#referencia").val()
+            };
+        }
         
-        var asignacion = {
-            talla: $("#btn-asignar9").val(),
-        };
-
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar9").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar10").click(function(e){
@@ -532,68 +584,64 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar10").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar10").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
     $("#btn-asignar11").click(function(e){
         e.preventDefault();
         
         var asignacion = {
             talla: $("#btn-asignar11").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar11").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar12").click(function(e){
@@ -601,34 +649,32 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar12").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar12").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
 
     $("#btn-asignar13").click(function(e){
@@ -636,36 +682,33 @@ $(document).ready(function() {
         
         var asignacion = {
             talla: $("#btn-asignar13").val(),
+            referencia: $("#referencia").val()
         };
 
-        console.log(JSON.stringify(asignacion));
-
-        // $.ajax({
-        //     url: "product",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(product),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             bootbox.alert("Se genero la referencia!!");
-        //             limpiar();
-        //             tabla.ajax.reload();
-        //             mostrarForm(false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Se genero la referencia"
-        //             );
-        //         }
-        //     },
-        //     error: function() {
-        //         bootbox.alert(
-        //             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-        //         );
-        //     }
-        // });
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU asignado!!");
+                    tabla.ajax.reload();
+                    $("#btn-asignar13").attr("disabled", true);
+                } else {
+                    bootbox.alert(
+                        "Se genero la referencia"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
     });
   
-
     init();
 });

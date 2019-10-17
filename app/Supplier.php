@@ -10,7 +10,7 @@ class Supplier extends Model
 
     protected $fillable = [
         'id', 'nombre', 'direccion', 'contacto_suplidor', 'telefono_1', 'telefono_2','celular',
-        'email','terminos_de_pago','nota', 'tipo_suplidor'
+        'email','terminos_de_pago','nota', 'tipo_suplidor','rnc'
     ];
 
 

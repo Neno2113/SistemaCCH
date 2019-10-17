@@ -100,6 +100,8 @@ $(document).ready(function() {
                 // { data: "Expandir", orderable: false, searchable: false },
                 { data: "id" },
                 { data: "sku" },
+                { data: "referencia_producto" },
+                { data: "talla" },
               
             ]
         });

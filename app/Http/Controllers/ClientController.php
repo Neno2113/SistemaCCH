@@ -13,6 +13,7 @@ class ClientController extends Controller
 
         $validar = $request->validate([
             'nombre_cliente' => 'required',
+            'rnc' => 'required',
             'direccion_principal' => 'required',
             'contacto_cliente_principal' => 'required',
             'telefono_1' => 'required',
@@ -32,6 +33,7 @@ class ClientController extends Controller
             $nombre_cliente = $request->input('nombre_cliente', true);
             $direccion_principal = $request->input('direccion_principal', true);
             $contacto_cliente_principal = $request->input('contacto_cliente_principal', true);
+            $rnc = $request->input('rnc');
             $telefono_1 = $request->input('telefono_1', true);
             $telefono_2 = $request->input('telefono_2', true);
             $telefono_3 = $request->input('telefono_3', true);
@@ -48,6 +50,7 @@ class ClientController extends Controller
             $cliente = new Client();
             $cliente->nombre_cliente = $nombre_cliente;
             $cliente->direccion_principal = $direccion_principal;
+            $cliente->rnc = $rnc;
             $cliente->contacto_cliente_principal = $contacto_cliente_principal;
             $cliente->telefono_1 = $telefono_1;
             $cliente->telefono_2 = $telefono_2;
@@ -117,6 +120,7 @@ class ClientController extends Controller
             $id = $request->input('id', true);
             $nombre_cliente = $request->input('nombre_cliente', true);
             $direccion_principal = $request->input('direccion_principal', true);
+            $rnc = $request->input('rnc');
             $contacto_cliente_principal = $request->input('contacto_cliente_principal', true);
             $telefono_1 = $request->input('telefono_1', true);
             $telefono_2 = $request->input('telefono_2', true);
@@ -135,6 +139,7 @@ class ClientController extends Controller
             $client->nombre_cliente = $nombre_cliente;
             $client->direccion_principal = $direccion_principal;
             $client->contacto_cliente_principal = $contacto_cliente_principal;
+            $client->rnc = $rnc;
             $client->telefono_1 = $telefono_1;
             $client->telefono_2 = $telefono_2;
             $client->telefono_3 = $telefono_3;

@@ -18,7 +18,7 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de clientes:</h5>
+                    <h5><strong> Formulario de registro de clientes:</strong></h5>
                     <hr>
                     <div class="row ">
                         <div class="col-md-4">
@@ -27,14 +27,14 @@
                             <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control">
                         </div>
                         <div class="col-md-4">
+                            <label for="rnc">RNC(*):</label>
+                            <input type="text" name="rnc" id="rnc" class="form-control">
+                        </div>
+                        <div class="col-md-4">
                             <label for="direccion_principal">Direccion principal(*):</label>
                             <input type="text" name="direccion_principal" id="direccion_principal" class="form-control">
                         </div>
-                        <div class="col-md-4">
-                            <label for="contacto_cliente">Contacto cliente(*):</label>
-                            <input type="text" name="contacto_cliente_principal" id="contacto_cliente_principal"
-                                class="form-control">
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-4 mt-3">
@@ -70,9 +70,8 @@
                     </div>
 
                     <br>
+                    <hr>
                     <br>
-
-
 
                     <div class="row">
                         <div class="col-md-4 mt-3">
@@ -90,6 +89,13 @@
                             <input type="email" name="email_principal" id="email_principal" class="form-control">
                         </div>
                         <div class="col-md-4 mt-3">
+                            <label for="contacto_cliente">Contacto cliente(*):</label>
+                            <input type="text" name="contacto_cliente_principal" id="contacto_cliente_principal"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mt-3">
                             <label for="condiciones_credito">Condiciones de credito(*):</label>
                             <select name="condiciones_credito" id="condiciones_credito" class="form-control">
                                 <option value="Contado">Al contado</option>
@@ -100,6 +106,9 @@
                             </select>
                         </div>
                     </div>
+                    <br>
+                    <hr>
+                    <br>
                     <div class="row" id="radios">
                         <div class="col-md-4 mt-4">
                             <label for="autorizacion_credito_req">¿Autorizacion de credito requerida?</label>
@@ -180,8 +189,10 @@
                             <input type="text" name="factura_desglosada_tallas" id="factura_desglosada_tallas"
                                 class="form-control" readonly>
                         </div>
-                        <div class="col-md-6 mt-2">
-                            <label for="notas">Notas:</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <label for="notas" class="d-flex justify-content-center">Notas:</label>
                             <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
@@ -202,7 +213,7 @@
                 <th>Editar</th>
                 <th>Eliminar</th>
                 <th>Cliente</th>
-                <th>Direccion </th>
+                <th>RNC</th>
                 <th>Contacto</th>
                 <th>Tel 1</th>
                 <th>Tel 2</th>
@@ -210,6 +221,7 @@
                 <th>Celular </th>
                 <th>Email</th>
                 <th>Condiciones de Credito</th>
+                <th>Direccion </th>
                 <th>Notas</th>
                 <th>Autorizacion de Credito requerida</th>
                 <th>Acepta redistribucion de tallas</th>
@@ -223,8 +235,8 @@
                 <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th>Cliente</th>
-                <th>Direccion</th>
+                <th>Cliente</th>  
+                <th>RNC</th>
                 <th>Contacto</th>
                 <th>Tel 1</th>
                 <th>Tel 2</th>
@@ -232,6 +244,7 @@
                 <th>Celular </th>
                 <th>Email</th>
                 <th>Condiciones de Credito</th>
+                <th>Direccion</th>
                 <th>Notas</th>
                 <th>Autorizacion de Credito requerida</th>
                 <th>Acepta redistribucion de tallas</th>
@@ -241,10 +254,7 @@
         </tfoot>
     </table>
 </div>
-
-
 {{-- Modal Sucursales --}}
-
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">

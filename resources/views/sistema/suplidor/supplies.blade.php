@@ -5,8 +5,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <button class="btn btn-primary btn-lg mb-2" id="btnAgregar"><i class="fas fa-plus"></i></button>
-        <button class="btn btn-danger btn-lg mb-2" id="btnCancelar"><i class="fas fa-window-close"></i></button>
+        <button class="btn btn-primary  mb-2" id="btnAgregar"><i class="fas fa-th-list"></i></button>
+        <button class="btn btn-danger  mb-2" id="btnCancelar"><i class="fas fa-window-close"></i></button>
     </div>
 
     <div class="row d-flex justify-content-center">
@@ -24,9 +24,9 @@
                             <label for="nombre">Nombre(*):</label>
                             <input type="text" name="nombre" id="nombre" class="form-control">
                         </div>
-                        <div class="col-md-4">
-                            <label for="direccion">Direccion(*):</label>
-                            <input type="text" name="direccion" id="direccion" class="form-control">
+                        <div class="col-md-4">  
+                            <label for="rnc">RNC(*):</label>
+                            <input type="text" name="rnc" id="rnc" class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label for="contacto_suplidor">Contacto suplidor(*):</label>
@@ -90,7 +90,13 @@
                             </select>
 
                         </div>
-                        <div class="col-md-12">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="direccion">Direccion(*):</label>
+                            <textarea name="direccion" id="direccion" cols="30" rows="1" class="form-control"></textarea>
+                        </div>
+                        <div class="col-md-6 mt-3">
                             <label for="nota">Nota:</label>
                             <textarea name="nota" id="nota" cols="30" rows="1" class="form-control"></textarea>
                         </div>
@@ -113,6 +119,7 @@
                 <th>Eliminar</th>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>RNC</th>
                 <th>Contacto</th>
                 <th>Tel 1</th>
                 <th>Tel 2</th>
@@ -132,6 +139,7 @@
                 <th>Eliminar</th>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>RNC</th>
                 <th>Contacto</th>
                 <th>Tel 1</th>
                 <th>Tel 2</th>

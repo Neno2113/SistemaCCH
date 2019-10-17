@@ -33,6 +33,7 @@ class SupplierController extends Controller
             $direccion = $request->input('direccion', true);
             $contacto_suplidor = $request->input('contacto_suplidor', true);
             $telefono_1 = $request->input('telefono_1', true);
+            $rnc = $request->input('rnc');
             $telefono_2 = $request->input('telefono_2', true);
             $celular = $request->input('celular', true);
             $email = $request->input('email', true);
@@ -42,6 +43,7 @@ class SupplierController extends Controller
 
             $suplidor = new Supplier();
             $suplidor->nombre = $nombre;
+            $suplidor->rnc = $rnc;
             $suplidor->direccion = $direccion;
             $suplidor->contacto_suplidor = $contacto_suplidor;
             $suplidor->telefono_1 = $telefono_1;
@@ -107,6 +109,7 @@ class SupplierController extends Controller
         } else {
             $id = $request->input('id', true);
             $nombre = $request->input('nombre', true);
+            $rnc = $request->input('rnc');
             $direccion = $request->input('direccion', true);
             $contacto_suplidor = $request->input('contacto_suplidor', true);
             $telefono_1 = $request->input('telefono_1', true);
@@ -121,6 +124,7 @@ class SupplierController extends Controller
 
             $supplier->nombre = $nombre;
             $supplier->direccion = $direccion;
+            $supplier->rnc = $rnc;
             $supplier->contacto_suplidor = $contacto_suplidor;
             $supplier->telefono_1 = $telefono_1;
             $supplier->telefono_2 = $telefono_2;

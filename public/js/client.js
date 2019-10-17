@@ -5,7 +5,7 @@ $(document).ready(function() {
         rules: {
             nombre_cliente: {
                 required: true,
-                minlength: 5
+                minlength: 3
             },
             direccion_principal: {
                 required: true,
@@ -31,7 +31,7 @@ $(document).ready(function() {
         messages: {
             nombre_cliente: {
                 required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 5 letras"
+                minlength: "Debe contener al menos 3 letras"
             },
             direccion_principal: {
                 required: "Este campo es obligatorio",
@@ -101,6 +101,7 @@ $(document).ready(function() {
         $("#notas").val("");
         $("#redistribucion_tallas").val("");
         $("#factura_desglosada_talla").val("");
+        $("#rnc").val("");
     }
 
     $("#btn-guardar").click(function(e) {
@@ -111,6 +112,7 @@ $(document).ready(function() {
             nombre_cliente: $("#nombre_cliente").val(),
             direccion_principal: $("#direccion_principal").val(),
             contacto_cliente_principal: $("#contacto_cliente_principal").val(),
+            rnc: $("#rnc").val(),
             telefono_1: $("#telefono_1").val(),
             telefono_2: $("#telefono_2").val(),
             telefono_3: $("#telefono_3").val(),
@@ -123,8 +125,6 @@ $(document).ready(function() {
             factura_desglosada_talla: $("input[name='r3']:checked").val(),
             acepta_segundas: $("input[name='r4']:checked").val()
         };
-
-        // console.log(JSON.stringify(client));
 
         $.ajax({
             url: "client",
@@ -179,7 +179,7 @@ $(document).ready(function() {
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "nombre_cliente" },
-                { data: "direccion_principal" },
+                { data: "rnc" },
                 { data: "contacto_cliente_principal" },
                 { data: "telefono_1" },
                 { data: "telefono_2" },
@@ -187,6 +187,7 @@ $(document).ready(function() {
                 { data: "celular_principal" },
                 { data: "email_principal" },
                 { data: "condiciones_credito" },
+                { data: "direccion_principal" },
                 { data: "notas" },
                 { data: "autorizacion_credito_req" },
                 { data: "redistribucion_tallas" },
@@ -207,6 +208,7 @@ $(document).ready(function() {
             nombre_cliente: $("#nombre_cliente").val(),
             direccion_principal: $("#direccion_principal").val(),
             contacto_cliente_principal: $("#contacto_cliente_principal").val(),
+            rnc: $("#rnc").val(),
             telefono_1: $("#telefono_1").val(),
             telefono_2: $("#telefono_2").val(),
             telefono_3: $("#telefono_3").val(),

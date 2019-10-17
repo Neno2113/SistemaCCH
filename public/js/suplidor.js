@@ -73,6 +73,7 @@ $(document).ready(function() {
         $("#email").val("");
         $("#terminos_de_pago").val("");
         $("#nota").val("");
+        $("#rnc").val("");
     }
 
     $("#btn-guardar").click(function(e) {
@@ -81,6 +82,7 @@ $(document).ready(function() {
         
         var suplidor = {
             nombre: $("#nombre").val(),
+            rnc: $("#rnc").val(),
             direccion: $("#direccion").val(),
             contacto_suplidor: $("#contacto_suplidor").val(),
             telefono_1: $("#telefono_1").val(),
@@ -145,6 +147,7 @@ $(document).ready(function() {
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "id" },
                 { data: "nombre" },
+                { data: "rnc" },
                 { data: "contacto_suplidor" },
                 { data: "telefono_1" },
                 { data: "telefono_2" },
@@ -168,7 +171,8 @@ $(document).ready(function() {
 
         var suplidor = {
             id: $("#id").val(),
-             nombre: $("#nombre").val(),
+            nombre: $("#nombre").val(),
+            rnc: $("#rnc").val(),
             direccion: $("#direccion").val(),
             contacto_suplidor: $("#contacto_suplidor").val(),
             telefono_1: $("#telefono_1").val(),
