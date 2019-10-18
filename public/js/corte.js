@@ -327,6 +327,7 @@ $(document).ready(function() {
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });
   
