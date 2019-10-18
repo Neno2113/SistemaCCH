@@ -67,7 +67,7 @@ class RollosController extends Controller
             ->join('tela', 'rollos.id_tela', '=', 'tela.id')
             ->select([
                 'rollos.id', 'tela.referencia', 'suplidor.nombre', 'rollos.codigo_rollo', 'rollos.num_tono',
-                'rollos.no_factura_compra', 'rollos.fecha_compra', 'rollos.longitud_yarda'
+                'rollos.no_factura_compra', 'rollos.fecha_compra', 'rollos.longitud_yarda', 'rollos.corte_utilizado'
             ]);
 
         return DataTables::of($rollos)

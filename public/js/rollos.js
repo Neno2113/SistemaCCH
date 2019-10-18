@@ -160,6 +160,7 @@ $(document).ready(function() {
                 { data: "num_tono", name: "rollos.num_tono" },
                 { data: "fecha_compra", name: "rollos.fecha_compra" },
                 { data: "no_factura_compra", name: "rollos.no_factura_compra" },
+                { data: "corte_utilizado", name: "rollos.corte_utilizado" },
                 { data: "longitud_yarda", name: "rollos.longitud_yarda" },
             ],
             order: [[2, 'asc']],

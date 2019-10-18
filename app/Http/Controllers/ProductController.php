@@ -184,8 +184,11 @@ class ProductController extends Controller
     {
         $product = Product::orderBy('sec', 'desc')->first();
 
-        $sec = $product->sec;
-
+        if(\is_object($product)){
+            $sec = $product->sec;
+        }
+        
+        // $sec = $product->sec;
         if (empty($sec)) {
             $sec = 0.0;
 
@@ -195,6 +198,7 @@ class ProductController extends Controller
                 'sec' => $sec
             ];
         } else {
+           
             $data = [
                 'code' => 200,
                 'status' => 'success',

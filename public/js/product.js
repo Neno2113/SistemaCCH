@@ -60,6 +60,11 @@ $(document).ready(function() {
                         $("#precio_lista_2").val("");
                         $("#precio_venta_publico_2").val("");
                     }
+
+                    bootbox.alert(
+                        "Referencia de producto generada exitosamente!!"
+                    );
+
                    
                     $("#referencia").val(referencia);
                     $("#referencia_talla").val(referencia);

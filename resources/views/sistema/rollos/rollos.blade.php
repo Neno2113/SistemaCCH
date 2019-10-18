@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <button class="btn btn-primary mb-3 btn-lg" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-            <button class="btn btn-danger mb-3 btn-lg" id="btnCancelar"><i class="fas fa-window-close"></i></button>
+            <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-th-list"></i></button>
+            <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
@@ -39,8 +39,8 @@
                         </div>
 
                         <div class="col-md-3">
-                            <label for="">No.Factura de compra(*):</label>
-                            <input type="text" name="" id="no_factura_compra" class="form-control">
+                            <label for="">Factura(*):</label>
+                            <input type="text" name="" id="no_factura_compra" placeholder="Numero" class="form-control">
                         </div>
 
                     </div>
@@ -83,6 +83,7 @@
                     <th>Tono</th>
                     <th>Fecha compra</th>
                     <th>Factura compra</th>
+                    <th>Corte asignado</th>
                     <th>Longitud en yardas</th>
                 </tr>
             </thead>
@@ -99,7 +100,8 @@
                     <th>Tono</th>
                     <th>Fecha compra</th>
                     <th>Factura compra</th>
-                    <th>Longitud en yardas</th>
+                    <th>Corte asignado</th>
+                    <th>Longitud en yardas</th> 
                 </tr>
             </tfoot>
         </table>

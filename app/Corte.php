@@ -10,7 +10,7 @@ class Corte extends Model
 
     protected $fillable = [
         'id', 'tela_id', 'producto_id','fecha_corte', 'no_marcada','ancho_cortable', 'largo_marcada',
-        'aprovechamiento', 'fase'
+        'aprovechamiento', 'fase', 'sec'
     ];
 
     public function user()

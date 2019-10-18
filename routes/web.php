@@ -120,3 +120,12 @@ Route::post('sku', 'ProductController@asignarSKU');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
+
+//Corte
+Route::get('corte/lastdigit', 'CorteController@getDigits');
+Route::get('products', 'CorteController@selectProduct');
+Route::post('/asignar/{id}', 'CorteController@asignar');
+Route::post('/corte', 'CorteController@store');
+
+//Talla
+Route::post('/talla', 'TallaController@store');
