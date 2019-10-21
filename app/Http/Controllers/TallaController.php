@@ -38,6 +38,10 @@ class TallaController extends Controller
             $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l; 
                     
             $talla = new Talla();
+            $corte = Corte::find($corte_id);
+
+            $corte->total = $total;
+            $corte->save();
 
             $talla->corte_id = $corte_id;
             $talla->a = $a;
@@ -53,6 +57,8 @@ class TallaController extends Controller
             $talla->k = $k;
             $talla->l = $l;
             $talla->total = $total;
+
+            $talla->save();
             
             $data = [
                 'code' => 200,

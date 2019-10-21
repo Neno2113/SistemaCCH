@@ -3,15 +3,18 @@
 @section('title', 'Suplidor')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <button class="btn btn-primary  mb-2" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-        <button class="btn btn-danger  mb-2" id="btnCancelar"><i class="fas fa-window-close"></i></button>
-    </div>
+{{-- <div class="container"> --}}
+<div class="row mt-3 ml-4">
+    <button class="btn btn-primary  mb-2" id="btnAgregar"><i class="fas fa-th-list"></i></button>
+    <button class="btn btn-danger  mb-2" id="btnCancelar"><i class="fas fa-window-close"></i></button>
+</div>
 
-    <div class="row d-flex justify-content-center">
+<div class="row">
+    <div class="col-12">
+
+
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
+            <div class="card-header text-center bg-light border-top">
                 <h4>Suplidor</h4>
             </div>
             <div class="card-body">
@@ -24,7 +27,7 @@
                             <label for="nombre">Nombre(*):</label>
                             <input type="text" name="nombre" id="nombre" class="form-control">
                         </div>
-                        <div class="col-md-4">  
+                        <div class="col-md-4">
                             <label for="rnc">RNC(*):</label>
                             <input type="text" name="rnc" id="rnc" class="form-control">
                         </div>
@@ -94,21 +97,24 @@
                     <div class="row">
                         <div class="col-md-6 mt-3">
                             <label for="direccion">Direccion(*):</label>
-                            <textarea name="direccion" id="direccion" cols="30" rows="1" class="form-control"></textarea>
+                            <textarea name="direccion" id="direccion" cols="30" rows="1"
+                                class="form-control"></textarea>
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="nota">Nota:</label>
                             <textarea name="nota" id="nota" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
-
-                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
-                    <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
-                </form>
             </div>
+            <div class="card-footer bg-light text-muted d-flex justify-content-end">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+            </div>
+            </form>
         </div>
     </div>
 </div>
+{{-- </div> --}}
 
 <div class="container" id="listadoUsers">
     <table id="suppliers" class="table table-striped table-bordered datatables">

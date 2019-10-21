@@ -3,15 +3,16 @@
 @section('title', 'Telas')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <button class="btn btn-primary mb-3" id="btnAgregar">Create <i class="fas fa-plus"></i></button>
-        <button class="btn btn-danger mb-3" id="btnCancelar">Cancel <i class="fas fa-window-close"></i></button>
-    </div>
+{{-- <div class="container"> --}}
+<div class="row mt-3 ml-3">
+    <button class="btn btn-primary mb-3" id="btnAgregar">Create <i class="fas fa-plus"></i></button>
+    <button class="btn btn-danger mb-3" id="btnCancelar">Cancel <i class="fas fa-window-close"></i></button>
+</div>
 
-    <div class="row d-flex justify-content-center">
+<div class="row">
+    <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
+            <div class="card-header text-center bg-light border-top">
                 <h4>Telas</h4>
             </div>
             <div class="card-body">
@@ -40,7 +41,7 @@
                         <div class="col-md-4 mt-3">
                             <label for="precio_usd">Precio USD por yarda:</label>
                             <input type="text" name="precio_usd" id="precio_usd" class="form-control"
-                            data-inputmask='"mask": "99.99"' data-mask>
+                                data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="telefono_2">Tipo tela(*):</label>
@@ -88,14 +89,16 @@
                                 data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
-
-                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
-                    <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
-                </form>
             </div>
+            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+            </div>
+            </form>
         </div>
     </div>
 </div>
+{{-- </div> --}}
 
 <div class="container" id="listadoUsers">
     <table id="cloths" class="table table-striped table-bordered datatables">
@@ -178,7 +181,7 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1" class="form-control"
-                            data-inputmask='"mask": "99.99"' data-mask>
+                                data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -195,7 +198,7 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2" class="form-control"
-                            data-inputmask='"mask": "99.99"' data-mask>
+                                data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -212,7 +215,7 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3" class="form-control"
-                            data-inputmask='"mask": "99.99"' data-mask>
+                                data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -229,7 +232,7 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4" class="form-control"
-                            data-inputmask='"mask": "99.99"' data-mask>
+                                data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -246,7 +249,7 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5" class="form-control"
-                            data-inputmask='"mask": "99.99"' data-mask>
+                                data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row d-flex justify-content-end mt-5 mr-1">
@@ -254,7 +257,8 @@
                             <label for="Total">Total</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" name="porcentaje_mat_total" id="porcentaje_mat_total" class="form-control">
+                            <input type="text" name="porcentaje_mat_total" id="porcentaje_mat_total"
+                                class="form-control">
                         </div>
                     </div>
 

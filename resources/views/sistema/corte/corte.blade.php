@@ -3,31 +3,29 @@
 @section('title', 'Cortes')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-th-list"></i></button>
-        <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button>
-    </div>
-
-    <div class="row d-flex justify-content-center">
+{{-- <div class="container "> --}}
+<div class="row mt-3 ml-3">
+    <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-th-list"></i></button>
+    <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button>
+</div>
+<div class="row">
+    <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
-                <h4>Corte</h4>
+            <div class="card-header text-center bg-light border-top">
+                <h4>Formulario de creacion de corte:</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de creacion de corte:</h5>
-                    <hr>
                     <div class="row">
                         {{-- <h5 class="mb-3">Generar numero de corte</h5> --}}
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-6 mt-3">
                             <label for="">Numero corte(*):</label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
-                            <input type="text" name="numero_corte" id="numero_corte" class="form-control text-center">
+                            <input type="text" name="numero_corte" id="numero_corte" class="form-control text-center" readonly>
                         </div>
                         <div class="col-md-4 mt-5">
-                            <button class="btn btn-secondary btn-lg" id="btn-generar" name="btn-generar">Generar</button>
+                            <button class="btn btn-primary btn-lg" id="btn-generar" name="btn-generar">Generar</button>
                         </div>
                     </div>
                     <br>
@@ -62,17 +60,17 @@
                                 data-inputmask='"mask": "99.99%"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-outline-primary btn-block mt-4" data-toggle="modal"
+                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide" data-toggle="modal"
                                 data-target=".bd-rollo-modal-lg">Agregar rollos <i
                                     class="fa fa-dolly-flatbed"></i></button>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-outline-primary btn-block mt-4" data-toggle="modal"
+                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2" data-toggle="modal"
                                 data-target=".bd-talla-modal-xl">Definir Corte <i class="fa fa-cut"></i></button>
                         </div>
                     </div>
             </div>
-            <div class="card-footer text-muted d-flex justify-content-end">
+            <div class="card-footer text-muted d-flex justify-content-end border-bottom">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
             </div>
@@ -81,30 +79,48 @@
         </div>
     </div>
 </div>
+{{-- </div> --}}
 
-{{-- <div class="container" id="listadoUsers">
-    <table id="compositions" class="table table-striped table-bordered datatables" >
+<div class="container" id="listadoUsers">
+    <table id="cortes" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre composicion</th>
-
+                <th>Usuario</th>
+                <th>No.Corte</th>
+                <th>Producto</th>
+                <th>Fecha</th>
+                <th>Fase</th>
+                <th>Total</th>
+                <th>Aprovechamiento</th>
+                <th>No.Marcada</th>
+                <th>L.Marcada</th>
+                <th>A.Marcada</th>
             </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
             <tr>
+                <th></th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre composicion</th>
+                <th>Usuario</th>
+                <th>No.Corte</th>
+                <th>Producto</th>
+                <th>Fecha</th>
+                <th>Fase</th>
+                <th>Total</th>
+                <th>Aprovechamiento</th>
+                <th>No.Marcada</th>
+                <th>L.Marcada</th>
+                <th>A.Marcada</th>
             </tr>
         </tfoot>
     </table>
 
-</div> --}}
+</div>
 
 <!-- Modal -->
 <div class="modal fade bd-rollo-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -171,12 +187,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                    <div class="row">
-                            <label for="">Corte: </label>
-                            <div class="col-md-6">
-                                <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center">
-                            </div>
-                        </div>
+                <div class="row">
+                    <label for="">Corte: </label>
+                    <div class="col-md-6 mb-2">
+                        <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center">
+                    </div>
+                </div>
                 <div class="row">
                     <table class="table  table-bordered table-responsive">
                         <thead>
@@ -328,8 +344,8 @@
 <script src="{{asset('js/corte.js')}}"></script>
 
 <script>
-    function mostrar(id_composition) {
-        $.post("composition/" + id_composition, function(data, status) {
+    function mostrar(id_corte) {
+        $.post("corte/" + id_corte, function(data, status) {
             // data = JSON.parse(data);
             $("#listadoUsers").hide();
             $("#registroForm").show();
@@ -337,22 +353,30 @@
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
+            $("#fila1").show();
+            $("#fila2").show();
+            $("#fila3").show();
+            $("#btn-generar").hide();
+            $("#edit-hide").hide();
+            $("#edit-hide2").hide();
 
             // console.log(data);
-            $("#id").val(data.composition.id);
-            $("#codigo_composicion").val(data.composition.codigo_composicion);
-            $("#nombre_composicion").val(data.composition.nombre_composicion);
+            $("#id").val(data.corte.id);
+            $("#numero_corte").val(data.corte.numero_corte);
+            $("#no_marcada").val(data.corte.no_marcada);
+            $("#ancho_marcada").val(data.corte.ancho_marcada);
+            $("#largo_marcada").val(data.corte.largo_marcada);
+            $("#aprovechamiento").val(data.corte.aprovechamiento);
            
         });
     }
 
-    function eliminar(id_composition){
-        bootbox.confirm("¿Estas seguro de eliminar esta composicion?", function(result){
+    function eliminar(id_corte){
+        bootbox.confirm("¿Estas seguro de eliminar este corte?", function(result){
             if(result){
-                $.post("composition/delete/" + id_composition, function(){
-                    // bootbox.alert(e);
-                    bootbox.alert("Composicion eliminada correctamente");
-                    $("#compositions").DataTable().ajax.reload();
+                $.post("corte/delete/" + id_corte, function(data){
+                    bootbox.alert("Corte <strong>"+ data.corte.numero_corte+ "</strong> eliminado correctamente");
+                    $("#cortes").DataTable().ajax.reload();
                 })
             }
         })
@@ -373,6 +397,7 @@
                     bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> asignado correctamente al corte: <strong>"
                         +datos.rollo.corte_utilizado+"</strong>");
                     $("#btn-guardar").attr("disabled", false);
+                    $("#rollos").DataTable().ajax.reload();
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante esta operacion!!"

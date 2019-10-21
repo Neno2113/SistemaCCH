@@ -39,3 +39,5 @@ Route::get('rollos_corte', 'CorteController@rollos');
 Route::get('products', 'ProductController@products');
 
 Route::get('skus', 'SKUController@skus');
+
+Route::get('cortes', 'CorteController@cortes');

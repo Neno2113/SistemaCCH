@@ -3,21 +3,23 @@
 @section('title', 'Rollos')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-th-list"></i></button>
-            <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button>
-        </div>
+{{-- <div class="container"> --}}
+<div class="row">
+    <div class="col-md-6 mt-3 ml-3">
+        <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-th-list"></i></button>
+        <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button>
     </div>
-    <div class="row d-flex justify-content-center">
+</div>
+<div class="row">
+    <div class="col-12">
+
+
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
-                <h4>Rollos</h4>
+            <div class="card-header text-center bg-light border-top">
+                <h4>Formulario de registro de rollos:</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de rollos:</h5>
                     <hr>
                     <div class="row ">
                         <div class="col-md-3">
@@ -44,7 +46,7 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-4 mt-2">
                             <label for="">Codigo(*):</label>
                             <input type="text" name="" id="codigo_rollo" class="form-control">
@@ -60,56 +62,57 @@
                             <input type="text" name="" id="longitud_yarda" class="form-control">
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4">
-                        <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-secondary mt-4">
-                    </div>
-                </form>
             </div>
+            <div class="card-footer bg-light text-muted d-flex justify-content-end">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+            </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <div class="container" id="listadoUsers">
-        <table id="rollos" class="table table-striped table-bordered datatables">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
-                    <th>Suplidor</th>
-                    <th>Tela</th>
-                    <th>Codigo</th>
-                    <th>Tono</th>
-                    <th>Fecha compra</th>
-                    <th>Factura compra</th>
-                    <th>Corte asignado</th>
-                    <th>Longitud en yardas</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
-                    <th>Suplidor</th>
-                    <th>Tela</th>
-                    <th>Codigo</th>
-                    <th>Tono</th>
-                    <th>Fecha compra</th>
-                    <th>Factura compra</th>
-                    <th>Corte asignado</th>
-                    <th>Longitud en yardas</th> 
-                </tr>
-            </tfoot>
-        </table>
+<div class="container" id="listadoUsers">
+    <table id="rollos" class="table table-striped table-bordered datatables">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>ID</th>
+                <th>Suplidor</th>
+                <th>Tela</th>
+                <th>Codigo</th>
+                <th>Tono</th>
+                <th>Fecha compra</th>
+                <th>Factura compra</th>
+                <th>Corte asignado</th>
+                <th>Longitud en yardas</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>ID</th>
+                <th>Suplidor</th>
+                <th>Tela</th>
+                <th>Codigo</th>
+                <th>Tono</th>
+                <th>Fecha compra</th>
+                <th>Factura compra</th>
+                <th>Corte asignado</th>
+                <th>Longitud en yardas</th>
+            </tr>
+        </tfoot>
+    </table>
 
-    </div>
+</div>
 
 
-    {{-- <table id="table-data" class="table table-striped table-bordered datatables">
+{{-- <table id="table-data" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th>Suplidor</th>
@@ -150,7 +153,7 @@
 
 
 
-</div>
+{{-- </div> --}}
 
 
 @include('adminlte/scripts')

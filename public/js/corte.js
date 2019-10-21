@@ -29,7 +29,7 @@ $(document).ready(function() {
     var tabla
 
     function init() {
-        // listar();
+        listar();
         listarRollos();
         mostrarForm(false);
         $("#btn-edit").hide();
@@ -69,6 +69,8 @@ $(document).ready(function() {
                     $("#fila1").show();
                     $("#fila2").show();
                     $("#fila3").show();
+                    $("#edit-hide").show();
+                    $("#edit-hide2").show();
                     bootbox.alert(
                         "Numero de corte generado exitosamente!!"
                     );
@@ -107,8 +109,6 @@ $(document).ready(function() {
         }
     })
 
-
-
     $("#btn-guardar").click(function(e){
         e.preventDefault();
 
@@ -140,7 +140,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     bootbox.alert("Corte creado !!");
                     limpiar();
-                    tabla.ajax.reload();
+                    // tabla.ajax.reload();
                     mostrarForm(false);
                     $('#btn-generar').attr("disabled", false);
 
@@ -168,6 +168,7 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
+                                // tabla.ajax.reload();
                                 bootbox.alert("Se asignaron un total de: <strong>"+datos.talla.total+"</strong> entre todas las tallas digitadas");
                                 $("#a").val(""),
                                 $("#b").val(""),
@@ -180,7 +181,9 @@ $(document).ready(function() {
                                 $("#i").val(""),
                                 $("#j").val(""),
                                 $("#k").val(""),
-                                $("#l").val("");            
+                                $("#l").val("");    
+                                // tabla.ajax.reload();  
+                                $("#cortes").DataTable().ajax.reload();      
                                 
                             } else {
                                 bootbox.alert(
@@ -210,17 +213,45 @@ $(document).ready(function() {
     });
 
     function listar() {
-        tabla = $("#compositions").DataTable({
+        tabla = $("#cortes").DataTable({
             serverSide: true,
             responsive: true,
-            ajax: "api/compositions",
+            dom: 'Bfrtip',
+            buttons: [
+                'pageLength',
+                'copyHtml5',
+                 {
+                    extend: 'excelHtml5',
+                    autoFilter: true,
+                    sheetName: 'Exported data'
+                },
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }
+                ],
+            ajax: "api/cortes",
             columns: [
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
-                { data: "id" },
-                { data: "nombre_composicion" },
-              
-            ]
+                { data: "name", name: 'users.name' },
+                { data: "numero_corte", name: 'corte.numero_corte' },
+                { data: "referencia_producto", name: 'producto.referencia_producto' },
+                { data: "fecha_corte", name: 'corte.fecha_corte' },
+                { data: "fase", name: 'corte.fase' },
+                { data: "total", name: 'corte.total' },
+                { data: "aprovechamiento", name: 'corte.aprovechamiento' },
+                { data: "no_marcada", name: 'corte.no_marcada' },
+                { data: "largo_marcada", name: 'corte.largo_marcada' },
+                { data: "ancho_marcada", name: 'corte.ancho_marcada' },
+            ],
+            order: [[2, 'asc']],
+            rowGroup: {
+                dataSrc: 'fase' 
+            }
         });
     }
 
@@ -262,25 +293,27 @@ $(document).ready(function() {
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
-        var composition = {
+        var corte = {
             id: $("#id").val(),
-            codigo_composicion: $("#codigo_composicion").val(),
-            nombre_composicion: $("#nombre_composicion").val()
+            producto_id: $("#productos").val(),
+            no_marcada: $("#no_marcada").val(),
+            ancho_marcada: $("#ancho_marcada").val(),
+            largo_marcada: $("#largo_marcada").val(),
+            aprovechamiento: $("#aprovechamiento").val()
         };
-     
+
         $.ajax({
-            url: "composition/edit",
+            url: "corte/edit",
             type: "PUT",
             dataType: "json",
-            data: JSON.stringify(composition),
+            data: JSON.stringify(corte),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
                     bootbox.alert("Se actualizado correctamente el usuario");
                     limpiar();
-                    tabla.ajax.reload();
+                    $("#cortes").DataTable().ajax.reload();
                     $("#id").val("");
-                    $("#nombre_composicion").val("");
                     $("#listadoUsers").show();
                     $("#registroForm").hide();
                     $("#btnCancelar").hide();
@@ -302,7 +335,7 @@ $(document).ready(function() {
         });
        
     });
-   
+
 
     function mostrarForm(flag) {
         limpiar();
@@ -324,6 +357,7 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        $("#btn-generar").show();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {

@@ -10,12 +10,23 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::
     left: 30%;
 }
 
-.formulario{
-    position: relative;
+.work-area{
+position: relative;
 border-radius: 3px;
 background: #ffffff;
 border-top: 3px solid #d2d6de;
 margin-bottom: 20px;
 width: 100%;
 box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+.card-header h4{
+    padding-top:15px;
+}
+
+.card-body{
+ background:#dfdfdf;
+}
+
+.card-body form {
+    padding: 15px;
 }

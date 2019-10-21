@@ -133,56 +133,62 @@
           </ul>
         </li>
         <li class="nav-item has-treeview">
-            <a href="#" class="nav-link ">
-                <i class="fas fa-barcode"></i>
-              <p>
-                SKU
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/sistemaCCH/public/sku" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>SKU</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <a href="#" class="nav-link ">
+            <i class="fas fa-barcode"></i>
+            <p>
+              SKU
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/sku" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>SKU</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link ">
-              <i class="far fa-clipboard"></i>
-              <p>
-                Producto
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/sistemaCCH/public/product" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Producto</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link ">
-              <i class="fas fa-cut"></i>
-              <p>
-                Corte
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/sistemaCCH/public/corte" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Corte</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <a href="#" class="nav-link ">
+            <i class="far fa-clipboard"></i>
+            <p>
+              Producto
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/product" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Producto</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link ">
+            <i class="fas fa-cut"></i>
+            <p>
+              Corte
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/corte" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Corte</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/corte-consulta" class="nav-link">
+                <i class="fas fa-search"></i>
+                <p>Consulta</p>
+              </a>
+            </li>
+          </ul>
+        </li>
 
 
       </ul>

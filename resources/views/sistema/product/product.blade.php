@@ -4,22 +4,21 @@
 @section('title', 'Productos')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-            <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
-        </div>
+{{-- <div class="container"> --}}
+<div class="row">
+    <div class="col-md-6 mt-3 ">
+        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
+        <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
     </div>
-    <div class="row d-flex justify-content-center">
+</div>
+<div class="row ">
+    <div class="col-12 ">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
-                <h4>Producto</h4>
+            <div class="card-header text-center border-top bg-light">
+                <h4>Formulario de creacion de referencia de producto:</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de creacion de referencia de producto:</h5>
-                    <hr>
                     <div class="row ">
                         <div class="col-md-3">
                             <label for="nombre_cliente" class="">Marca(*):</label>
@@ -81,10 +80,10 @@
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-5">
-                            <button class="btn btn-secondary" id="btnGenerar">Generar</button>
+                            <button class="btn btn-primary" id="btnGenerar">Generar</button>
                         </div>
                         <div class="col-md-3 mt-5">
-                            <button type="button" class="btn btn-secondary  btn-block" data-toggle="modal"
+                            <button type="button" class="btn btn-info  btn-block" data-toggle="modal"
                                 data-target=".bd-sku-modal-xl" id="btn-sku">Asignar SKU</button>
                         </div>
                     </div>
@@ -128,43 +127,44 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer text-muted d-flex justify-content-end">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4">
-                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-secondary mt-4">
+            <div class="card-footer bg-light text-muted d-flex justify-content-end">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>
             </form>
         </div>
     </div>
+</div>
 
-    <div class="container" id="listadoUsers">
-        <table id="products" class="table table-striped table-bordered datatables">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>Usuario </th>
-                    <th>Referencia producto</th>
-                    <th>Precio lista</th>
-                    <th>Precio venta publico</th>
-                    <th>Descripcion</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>Usuario</th>
-                    <th>Referencia producto</th>
-                    <th>Precio lista</th>
-                    <th>Precio venta publico</th>
-                    <th>Descripcion</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+<div class="container" id="listadoUsers">
+    <table id="products" class="table table-striped table-bordered datatables">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>Usuario </th>
+                <th>Referencia producto</th>
+                <th>Precio lista</th>
+                <th>Precio venta publico</th>
+                <th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>Usuario</th>
+                <th>Referencia producto</th>
+                <th>Precio lista</th>
+                <th>Precio venta publico</th>
+                <th>Descripcion</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 </div>
 <!-- Modal -->
 <div class="modal fade bd-sku-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -326,7 +326,7 @@
         </div>
     </div>
 </div>
-</div>
+{{-- </div> --}}
 
 
 @include('adminlte/scripts')

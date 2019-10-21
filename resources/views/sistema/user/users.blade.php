@@ -3,15 +3,16 @@
 @section('title', 'Usuarios')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <button class="btn btn-primary mb-3 btn-lg" id="btnAgregar"><i class="fas fa-user-plus"></i></button>
-        <button class="btn btn-danger mb-3 btn-lg" id="btnCancelar"><i class="fas fa-window-close"></i></button>
-    </div>
+{{-- <div class="container"> --}}
+<div class="row mt-3 ml-3">
+    <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-user-plus"></i></button>
+    <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button>
+</div>
 
-    <div class="row d-flex justify-content-center">
+<div class="row ">
+    <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
+            <div class="card-header text-center bg-light border-top">
                 <h4>Registro</h4>
             </div>
             <div class="card-body">
@@ -95,17 +96,19 @@
                             </ul>
                         </div>
                     </div>
-
-                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
-                    <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
-                </form>
             </div>
+            <div class="card-footer bg-light text-muted d-flex justify-content-end">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+            </div>
+            </form>
         </div>
     </div>
 </div>
+{{-- </div> --}}
 
 <div class="container" id="listadoUsers">
-    <table id="users" class="table table-striped table-bordered datatables" >
+    <table id="users" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>

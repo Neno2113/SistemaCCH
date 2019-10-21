@@ -41,5 +41,6 @@ class VerifyCsrfToken extends Middleware
         'http://localhost/sistemaCCH/public/asignar/*',
         'http://localhost/sistemaCCH/public/corte',
         'http://localhost/sistemaCCH/public/talla',
+        'http://localhost/sistemaCCH/public/corte/*',
     ];
 }

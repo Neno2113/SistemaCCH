@@ -2,12 +2,10 @@
 
 @section('title', 'SKU')
 
-
 @section('content')
 
-
 <div class="container">
-    <div class="row">
+    <div class="row mt-3 ml-3">
         <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
         <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
     </div>
@@ -22,8 +20,8 @@
     @endif
     <div class="row d-flex justify-content-center">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
-                <h4>SKU</h4>
+            <div class="card-header text-center bg-secondary border-top">
+                <h4>Favor seleccionar el excel con los SKU</h4>
             </div>
             <div class="card-body">
                 <form action="/sistemaCCH/public/text-read" method="POST" enctype="multipart/form-data" id="formulario"
@@ -33,16 +31,15 @@
                     <hr>
                     <div class="row ">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <h5>Favor seleccionar el archivo con los SKU</h5>
+                            <h5></h5>
                         </div>
                         <div class="col-md-12 d-flex justify-content-center mt-2">
                             <input type="file" name="sku" id="" class="form control">
                         </div>
                     </div>
             </div>
-            <div class="card-footer text-muted d-flex justify-content-center">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4">
-                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-secondary mt-4">
+            <div class="card-footer text-muted d-flex justify-content-center border-bottom">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-primary mt-4">
             </div>
             </form>
         </div>

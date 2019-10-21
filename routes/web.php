@@ -60,6 +60,10 @@ Route::get('/corte', function () {
 Route::get('/sku', function () {
     return view('sistema.sku.sku');
 });
+
+Route::get('/corte-consulta', function () {
+    return view('sistema.corte.consulta');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -126,6 +130,9 @@ Route::get('corte/lastdigit', 'CorteController@getDigits');
 Route::get('products', 'CorteController@selectProduct');
 Route::post('/asignar/{id}', 'CorteController@asignar');
 Route::post('/corte', 'CorteController@store');
+Route::post('/corte/{id}', 'CorteController@show');
+Route::put('/corte/edit', 'CorteController@update');
+Route::post('/corte/delete/{id}', 'CorteController@destroy');
 
 //Talla
 Route::post('/talla', 'TallaController@store');

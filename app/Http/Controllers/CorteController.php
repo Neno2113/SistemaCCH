@@ -66,6 +66,32 @@ class CorteController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function cortes()
+    {
+        $cortes = DB::table('corte')->join('users', 'corte.user_id', '=', 'users.id')
+            ->join('producto', 'corte.producto_id', '=', 'producto.id')
+            // ->join('tallas', 'corte.tallas_id', '=', 'tallas.id')
+            ->select(['corte.id', 'users.name', 'users.surname', 'corte.numero_corte', 'producto.referencia_producto'
+            , 'producto.referencia_producto_2', 'corte.fecha_corte', 'corte.no_marcada', 'corte.ancho_marcada', 'corte.largo_marcada',
+            'corte.aprovechamiento', 'corte.fase', 'corte.total']);
+
+        return DataTables::of($cortes)
+            ->addColumn('Expandir', function ($corte) {
+                return "";
+            })
+            ->editColumn('name', function ($corte) {
+                return "$corte->name $corte->surname";
+            })
+            ->addColumn('Editar', function ($corte) {
+                return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+            })
+            ->addColumn('Eliminar', function ($corte) {
+                return '<button onclick="eliminar(' . $corte->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Editar', 'Eliminar'])
+            ->make(true);
+    }
+
 
 
     public function rollos()
@@ -81,6 +107,92 @@ class CorteController extends Controller
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
+    }
+
+
+    public function show($id)
+    {
+        $corte = Corte::find($id);
+
+        if (is_object($corte)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'corte' => $corte
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
+    public function update(Request $request)
+    {
+        $validar = $request->validate([
+            'producto_id' => 'required',
+            'aprovechamiento' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id', true);
+            $producto_id = $request->input('producto_id');
+            $no_marcada = $request->input('no_marcada');
+            $ancho_marcada = $request->input('ancho_marcada');
+            $largo_marcada = $request->input('largo_marcada');
+            $aprovechamiento = $request->input('aprovechamiento');
+            
+            $corte = Corte::find($id);
+
+            $corte->producto_id = $producto_id;
+            $corte->no_marcada = $no_marcada;
+            $corte->ancho_marcada = $ancho_marcada;
+            $corte->largo_marcada = $largo_marcada;
+            $corte->aprovechamiento = trim($aprovechamiento, '%');
+           
+            $corte->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'corte' => $corte
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroy($id)
+    {
+        $corte = Corte::find($id);
+
+        if (!empty($corte)) {
+            $corte->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'corte' => $corte
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
     }
 
     public function getDigits()
