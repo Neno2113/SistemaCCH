@@ -235,6 +235,21 @@ class CorteController extends Controller
         return response()->json($data);
     }
 
+
+    public function selectCorte(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Corte::join('producto', 'corte.producto_id', '=', 'producto.id')
+                ->select("corte.id", "corte.numero_corte", "corte.fase", "producto.referencia_producto")
+                ->where('numero_corte', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+
     public function asignar($id, Request $request)
     {
         $rollo = Rollos::find($id);

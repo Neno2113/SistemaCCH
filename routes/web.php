@@ -64,6 +64,10 @@ Route::get('/sku', function () {
 Route::get('/corte-consulta', function () {
     return view('sistema.corte.consulta');
 });
+
+Route::get('/lavanderia', function () {
+    return view('sistema.lavanderia.lavanderia');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -133,6 +137,13 @@ Route::post('/corte', 'CorteController@store');
 Route::post('/corte/{id}', 'CorteController@show');
 Route::put('/corte/edit', 'CorteController@update');
 Route::post('/corte/delete/{id}', 'CorteController@destroy');
+Route::get('cortes', 'CorteController@selectCorte');
 
 //Talla
 Route::post('/talla', 'TallaController@store');
+Route::get('/talla/search/{id}', 'TallaController@show');
+
+//Lavanderia
+Route::get('lavanderia/lastdigit', 'LavanderiaController@getDigits');
+Route::post('/lavanderia', 'LavanderiaController@store');
+Route::post('/lavanderia/{id}', 'LavanderiaController@show');

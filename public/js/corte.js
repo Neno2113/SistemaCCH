@@ -28,6 +28,7 @@ $(document).ready(function() {
 
     var tabla
 
+    //Funcion que se ejecuta al inicio 
     function init() {
         listar();
         listarRollos();
@@ -35,6 +36,7 @@ $(document).ready(function() {
         $("#btn-edit").hide();
     }
 
+    //funcion para limpiar el formulario(los inputs)
     function limpiar() {
         $("#numero_corte").val("");
         $("#sec").val("");
@@ -47,6 +49,7 @@ $(document).ready(function() {
         $("#aprovechamiento").val("");
     }
 
+    //funcion para generar codigo de corte
     $("#btn-generar").on('click', function(e){
         e.preventDefault();
 
@@ -89,6 +92,8 @@ $(document).ready(function() {
         });
     });
 
+    //Select2 productos
+
     $("#productos").select2({
         placeholder: "Busca una referencia de producto...",
         ajax: {
@@ -108,7 +113,29 @@ $(document).ready(function() {
             cache: true
         }
     })
+     //Select2 cortes para consulta
 
+    $("#cortesSearch").select2({
+        placeholder: "Busca un numero de corte...",
+        ajax: {
+            url: 'cortes',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.numero_corte+' - '+item.fase  +' | Producto: '+item.referencia_producto,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e){
         e.preventDefault();
 
@@ -128,8 +155,8 @@ $(document).ready(function() {
             aprovechamiento: $("#aprovechamiento").val()
         };
 
-        // console.log(JSON.stringify(corte));
-
+        // funcion que se ejecuta con el callback de la funcion para guardar
+        //esta almacena las cantidades por tallas
         $.ajax({
             url: "corte",
             type: "POST",
@@ -212,6 +239,7 @@ $(document).ready(function() {
         });
     });
 
+    //funcion para listar en el Datatable
     function listar() {
         tabla = $("#cortes").DataTable({
             serverSide: true,
@@ -255,6 +283,7 @@ $(document).ready(function() {
         });
     }
 
+    //funcion para listar rollos sin corte asigando
     function listarRollos() {
         tabla = $("#rollos").DataTable({
             serverSide: true,
@@ -290,6 +319,7 @@ $(document).ready(function() {
         });
     }
 
+    //funcion para editar
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
@@ -335,6 +365,49 @@ $(document).ready(function() {
         });
        
     });
+
+    $("#btn-buscar").click(function(e) {
+        e.preventDefault();
+
+       
+        var id = $("#cortesSearch").val()
+        
+        $.ajax({
+            url: "talla/search/"+ id,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se consulto correctamente!!");
+                    $("#a").val(datos.talla.a);
+                    $("#b").val(datos.talla.b);
+                    $("#c").val(datos.talla.c);
+                    $("#d").val(datos.talla.d);
+                    $("#e").val(datos.talla.e);
+                    $("#f").val(datos.talla.f);
+                    $("#g").val(datos.talla.g);
+                    $("#h").val(datos.talla.h);
+                    $("#i").val(datos.talla.i);
+                    $("#j").val(datos.talla.j);
+                    $("#k").val(datos.talla.k);
+                    $("#l").val(datos.talla.l);
+                    $("#total").val(datos.talla.total);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+       
+    });
+
 
 
     function mostrarForm(flag) {

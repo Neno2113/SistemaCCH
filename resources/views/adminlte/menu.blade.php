@@ -83,9 +83,9 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="fas fa-fill-drip"></i>
+            <i class="fas fa-toolbox"></i>
             <p>
-              Composiciones
+              Utilidades
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -96,34 +96,12 @@
                 <p>Composiciones</p>
               </a>
             </li>
-          </ul>
-        </li>
-        <li class="nav-item has-treeview ">
-          <a href="#" class="nav-link">
-            <i class="fas fa-tshirt"></i>
-            <p>
-              Tela
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="/sistemaCCH/public/cloth" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Telas</p>
               </a>
             </li>
-          </ul>
-        </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link ">
-            <i class="fas fa-dolly-flatbed"></i>
-            <p>
-              Rollos
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="/sistemaCCH/public/rollos" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -183,14 +161,19 @@
             </li>
             <li class="nav-item">
               <a href="/sistemaCCH/public/corte-consulta" class="nav-link">
-                <i class="fas fa-search"></i>
+                <i class="far fa-circle nav-icon"></i>
                 <p>Consulta</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/lavanderia" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Envio lavanderia</p>
               </a>
             </li>
           </ul>
         </li>
-
-
+    
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

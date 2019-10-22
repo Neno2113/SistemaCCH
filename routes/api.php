@@ -41,3 +41,5 @@ Route::get('products', 'ProductController@products');
 Route::get('skus', 'SKUController@skus');
 
 Route::get('cortes', 'CorteController@cortes');
+
+Route::get('lavanderias', 'LavanderiaController@lavanderias');

@@ -69,4 +69,26 @@ class TallaController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function show($id)
+    {
+    
+        $talla = Talla::where('corte_id', $id)->get()->first();
+
+        if (is_object($talla)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'talla' => $talla
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'ocurrio un error!!'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
 }
