@@ -61,13 +61,42 @@ $(document).ready(function() {
                         $("#precio_venta_publico_2").val("");
                     }
 
+                    $("#referencia").val(referencia);
+                    $("#referencia_talla").val(referencia);
+
                     bootbox.alert(
                         "Referencia de producto generada exitosamente!!"
                     );
 
-                   
-                    $("#referencia").val(referencia);
-                    $("#referencia_talla").val(referencia);
+                    var referencias = {
+                        referencia: $("#referencia").val(),
+                        referencia_2: $("#referencia_2").val(),
+                        sec: $("#sec").val()
+                    };
+            
+                    $.ajax({
+                        url: "product_ref",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(referencias),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                            //    console.log(datos);
+                               $("#id_producto").val(datos.producto.id);
+                                
+                            } else {
+                                bootbox.alert(
+                                    "Se genero la referencia"
+                                );
+                            }
+                        },
+                        error: function() {
+                            bootbox.alert(
+                                "Ocurrio un error, al crear el producto"
+                            );
+                        }
+                    });
 
                 } else {
                     bootbox.alert(
@@ -89,18 +118,15 @@ $(document).ready(function() {
         e.preventDefault();
         
         var product = {
-            referencia: $("#referencia").val(),
-            referencia_2: $("#referencia_2").val(),
+            id: $("#id_producto").val(),
             descripcion: $("#descripcion").val(),
             descripcion_2: $("#descripcion_2").val(),
             precio_lista_2: $("#precio_lista_2").val(),
             precio_lista: $("#precio_lista").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
-            sec: $("#sec").val()
+          
         };
-
-        console.log(JSON.stringify(product));
 
         $.ajax({
             url: "product",
@@ -115,6 +141,18 @@ $(document).ready(function() {
                     tabla.ajax.reload();
                     mostrarForm(false);
                     $("#referencia_talla").val("");
+                    $("#btn-asignar").attr("disabled", false);
+                    $("#btn-asignar2").attr("disabled", false);
+                    $("#btn-asignar3").attr("disabled", false);
+                    $("#btn-asignar4").attr("disabled", false);
+                    $("#btn-asignar5").attr("disabled", false);
+                    $("#btn-asignar6").attr("disabled", false);
+                    $("#btn-asignar7").attr("disabled", false);
+                    $("#btn-asignar8").attr("disabled", false);
+                    $("#btn-asignar9").attr("disabled", false);
+                    $("#btn-asignar10").attr("disabled", false);
+                    $("#btn-asignar11").attr("disabled", false);
+                    $("#btn-asignar12").attr("disabled", false);
                 } else {
                     bootbox.alert(
                         "Se genero la referencia"
@@ -207,6 +245,7 @@ $(document).ready(function() {
                     $("#btn-edit").hide();
                     $("#btn-guardar").show();
                     $("#btnAgregar").show();
+                    $("#sec").val("");
 
                 } else {
                     bootbox.alert(
@@ -254,6 +293,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar").val(),
             referencia: $("#referencia").val()
         };
@@ -287,6 +327,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar2").val(),
             referencia: $("#referencia").val()
         };
@@ -320,6 +361,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar3").val(),
             referencia: $("#referencia").val()
         };
@@ -353,6 +395,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar4").val(),
             referencia: $("#referencia").val()
         };
@@ -386,6 +429,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar5").val(),
             referencia: $("#referencia").val()
         };
@@ -422,11 +466,13 @@ $(document).ready(function() {
         
         if(gen == 3 || gen == 4){
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar6").val(),
                 referencia: $("#referencia_2").val()
             };
         }else{
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar6").val(),
                 referencia: $("#referencia").val()
             };
@@ -464,11 +510,13 @@ $(document).ready(function() {
 
         if(gen == 3 || gen == 4){
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar7").val(),
                 referencia: $("#referencia_2").val()
             };
         }else{
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar7").val(),
                 referencia: $("#referencia").val()
             };
@@ -507,6 +555,7 @@ $(document).ready(function() {
         
         if(gen == 3 || gen == 4){
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar8").val(),
                 referencia: $("#referencia_2").val()
             };
@@ -549,11 +598,13 @@ $(document).ready(function() {
 
         if(gen == 3 || gen == 4){
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar9").val(),
                 referencia: $("#referencia_2").val()
             };
         }else{
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar9").val(),
                 referencia: $("#referencia").val()
             };
@@ -588,6 +639,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar10").val(),
             referencia: $("#referencia").val()
         };
@@ -620,6 +672,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar11").val(),
             referencia: $("#referencia").val()
         };
@@ -653,6 +706,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar12").val(),
             referencia: $("#referencia").val()
         };
@@ -686,6 +740,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var asignacion = {
+            id: $("#id_producto").val(), 
             talla: $("#btn-asignar13").val(),
             referencia: $("#referencia").val()
         };

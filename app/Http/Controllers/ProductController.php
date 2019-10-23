@@ -16,9 +16,8 @@ class ProductController extends Controller
     // }
     public function store(Request $request)
     {
-
         $validar = $request->validate([
-            'referencia' => 'required',
+            'precio_lista' => 'required',
             'descripcion' => 'required'
         ]);
 
@@ -30,28 +29,61 @@ class ProductController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $referencia = $request->input('referencia', true);
-            $referencia_2 = $request->input('referencia_2', true);
+            $id = $request->input('id');
             $descripcion = $request->input('descripcion', true);
             $descripcion_2 = $request->input('descripcion_2', true);
             $precio_lista = $request->input('precio_lista');
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
-            $sec = $request->input('sec', true);
+            
 
-            $product = new Product();
-            $product->referencia_producto = $referencia;
-            $product->referencia_producto_2 = $referencia_2;
+            $product = Product::find($id);
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
             $product->precio_lista = $precio_lista;
             $product->precio_lista_2 = $precio_lista_2;
             $product->precio_venta_publico = $precio_venta_publico;
             $product->precio_venta_publico_2 = $precio_venta_publico_2;
-            $product->sec = $sec + 0.1;
-            $product->id_user = \auth()->user()->id;
+           
+            $product->save();
 
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'producto' => $product
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function guardarReferencias(Request $request)
+    {
+
+        $validar = $request->validate([
+            'referencia' => 'required',
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $referencia = $request->input('referencia', true);
+            $referencia_2 = $request->input('referencia2', true);
+            $sec = $request->input('sec', true);
+     
+            $product = new Product();
+            $product->referencia_producto = $referencia;
+            $product->referencia_producto_2 = $referencia_2;
+            $product->id_user = \auth()->user()->id;
+            $product->sec = $sec + 0.1;
+           
+         
             $product->save();
 
             $data = [
@@ -213,12 +245,21 @@ class ProductController extends Controller
         $val = 0;
         $sku = SKU::where('asignado', $val)->get()->first();
         \json_encode($sku);
+        
+        if(empty($sku)){
+            $val = null;
+            $sku = SKU::where('asignado', $val)->get()->first();
+            \json_encode($sku);
+        }
+
         $id = $sku['id'];
 
+        $producto_id = $request->input('id');
         $talla = $request->input('talla');
         $referencia = $request->input('referencia');
 
         $sku_update = SKU::find($id);
+        $sku_update->producto_id = $producto_id;
         $sku_update->talla = $talla;
         $sku_update->referencia_producto = $referencia;
         $sku_update->asignado = 1;

@@ -13,11 +13,11 @@
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center bg-light border-top">
-                <h4>Envio lavanderia</h4>
+                <h4><strong>Envio lavanderia</strong></h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de envio a lavanderia:</h5>
+                    <h5><strong> Formulario de envio a lavanderia:</strong></h5>
                     <hr>
                     <div class="row">
                         <div class="col-6">
@@ -30,7 +30,18 @@
                             <button id="btn-generar" class="btn btn-success ">Generar</button>
                         </div>
                     </div>
+                    <br><br>
+                    <hr>
+
                     <div class="row mt-5">
+                        <div class="col-12">
+                            <label for="">Producto(*):</label>
+                            <select name="tags[]" id="productos" class="form-control select2" style="width:100%">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
                         <div class="col-6" id="cortes">
                             <label for="">Corte(*):</label>
                             <select name="tags[]" id="cortesSearch" class="form-control select2">
@@ -41,11 +52,14 @@
                             <input type="text" name="" id="numero_corte" readonly class="form-control">
                         </div>
                         <div class="col-6">
-                            <label for="">Lavanderia(*):</label>
-                            <select name="tags[]" id="lavanderiaSearch" class="form-control select2">
+                            <label for="">Lavanderia (*):</label>
+                            <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
                             </select>
                         </div>
                     </div>
+
+                    <hr>
+
                     <div class="row mt-5">
                         <div class="col-4">
                             <label for="">Fecha(*):</label>
@@ -56,13 +70,7 @@
                             <label for="">Cantidad(*):</label>
                             <input type="text" name="" id="cantidad" class="form-control">
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            <label for="">Receta de lavado(*):</label>
-                            <textarea name="" id="receta_lavado" cols="30" rows="1" class="form-control"></textarea>
-                        </div>
-                        <div class="col-4 ml-5 pl-4 mt-2">
+                        <div class="col-4 pl-5">
                             <label for="">¿Estandar incluido?</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
@@ -80,6 +88,12 @@
                             </div>
                             <input type="text" name="estandar_incluido" id="estandar_incluido"
                                 class="form-control text-center" readonly>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label for="">Receta de lavado(*):</label>
+                            <textarea name="" id="receta_lavado" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
             </div>

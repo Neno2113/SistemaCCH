@@ -39,6 +39,9 @@ $(document).ready(function() {
         $("#receta_lavado").val("");
         $("#cantidad").val("");
         $("#estandar_incluido").val("");
+        $("#productos").val("").trigger("change");
+        $("#corteSearch").val("").trigger("change");
+        $("#suplidores").val("").trigger("change");
      
     }
 
@@ -79,7 +82,7 @@ $(document).ready(function() {
     });
 
     $("#cortesSearch").select2({
-        placeholder: "Busca un numero de corte...",
+        placeholder: "Buscar un numero de corte...",
         ajax: {
             url: 'cortes',
             dataType: 'json',
@@ -98,6 +101,46 @@ $(document).ready(function() {
         }
     })
 
+    $("#suplidores").select2({
+        placeholder: "Buscar una lavanderia...",
+        ajax: {
+            url: 'suplidores',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.nombre+' - '+ item.contacto_suplidor,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    $("#productos").select2({
+        placeholder: "Busca una referencia de producto...",
+        ajax: {
+            url: 'products',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.referencia_producto,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
@@ -105,6 +148,8 @@ $(document).ready(function() {
         var lavanderia = {
             sec: $("#sec").val(),
             numero_envio: $("#numero_envio").val(),
+            producto_id: $("#productos").val(),
+            suplidor_id: $("#suplidores").val(),
             corte_id: $("#cortesSearch").val(),
             fecha_envio: $("#fecha_envio").val(),
             cantidad: $("#cantidad").val(),

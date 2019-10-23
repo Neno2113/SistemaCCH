@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Lavanderia;
 use App\Corte;
+use App\Supplier;
+use App\SKU;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+
 
 class LavanderiaController extends Controller
 {
@@ -28,24 +31,36 @@ class LavanderiaController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            
+
             $sec = $request->input('sec');
             $numero_envio = $request->input('numero_envio');
             $corte_id = $request->input('corte_id');
+            $producto_id = $request->input('producto_id');
             $fecha_envio = $request->input('fecha_envio');
             $cantidad = $request->input('cantidad');
+            $suplidor_id = $request->input('suplidor_id');
             $receta_lavado = $request->input('receta_lavado');
             $estandar_incluido = $request->input('estandar_incluido');
 
             $lavanderia = new Lavanderia();
             $corte = Corte::find($corte_id);
+            $sku = SKU::where('talla', 'LIKE', 'General')
+                ->where('producto_id', 'LIKE', "%$producto_id%")->get()->first();
+
+            $sku_gen = $sku['id'];
+
+            if (empty($sku_gen)) {
+                $sku_gen = "";
+            }
 
             $corte->fase = 'Lavanderia';
-
             $corte->save();
 
             $lavanderia->numero_envio = $numero_envio;
             $lavanderia->corte_id = $corte_id;
+            $lavanderia->producto_id = $producto_id;
+            $lavanderia->id_sku = $sku_gen;
+            $lavanderia->suplidor_id = $suplidor_id;
             $lavanderia->fecha_envio = $fecha_envio;
             $lavanderia->cantidad = $cantidad;
             $lavanderia->receta_lavado = $receta_lavado;
@@ -67,8 +82,9 @@ class LavanderiaController extends Controller
     public function lavanderias()
     {
         $lavanderia = DB::table('lavanderia')->join('corte', 'lavanderia.corte_id', '=', 'corte.id')
-            ->select(['lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado'
-            , 'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase']);
+            ->select([
+                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase'
+            ]);
 
         return DataTables::of($lavanderia)
             ->addColumn('Expandir', function ($lavanderia) {
@@ -108,6 +124,34 @@ class LavanderiaController extends Controller
         return \response()->json($data, $data['code']);
     }
 
+    public function selectSuplidor(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Supplier::select("id", "nombre", "contacto_suplidor")
+                ->where('tipo_suplidor', 'LIKE', 'Lavanderia')
+                ->where('nombre', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+
+    public function selectCorte(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Corte::select("id", "numero_corte", "fase")
+                ->where('fase', 'LIKE', 'Produccion')
+                ->where('numero_corte', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+
 
 
     public function getDigits()
@@ -135,5 +179,14 @@ class LavanderiaController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
+    }
+
+
+
+    public function imprimir()
+    {
+        $pdf = \PDF::loadView('sistema.lavanderia.test-pdf');
+        // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        return $pdf->download('ejemplo.pdf');
     }
 }

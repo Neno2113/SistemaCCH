@@ -121,6 +121,7 @@ Route::post('/rollo/delete/{id}', 'RollosController@destroy');
 //Rutas productos
 Route::get('product/lastdigit', 'ProductController@getDigits');
 Route::post('/product', 'ProductController@store');
+Route::post('/product_ref', 'ProductController@guardarReferencias');
 Route::post('/product/{id}', 'ProductController@show');
 Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');
@@ -147,3 +148,8 @@ Route::get('/talla/search/{id}', 'TallaController@show');
 Route::get('lavanderia/lastdigit', 'LavanderiaController@getDigits');
 Route::post('/lavanderia', 'LavanderiaController@store');
 Route::post('/lavanderia/{id}', 'LavanderiaController@show');
+Route::get('suplidores', 'LavanderiaController@selectSuplidor');
+Route::get('cortes', 'LavanderiaController@selectCorte');
+
+//test factura
+Route::get('/imprimir', 'LavanderiaController@imprimir')->name('print');

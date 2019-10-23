@@ -23,6 +23,7 @@
                         <div class="col-md-3">
                             <label for="nombre_cliente" class="">Marca(*):</label>
                             <input type="hidden" name="id" id="id" value="">
+                            <input type="hidden" name="id" id="id_producto" value="">
                             <select name="marca" id="marca" class="form-control">
                                 <option value="" selected>Elige una marca...</option>
                                 <option value="L">Lavish</option>
@@ -346,6 +347,10 @@
             $("#id").val(data.product.id);
             $("#referencia").val(data.product.referencia_producto);
             $("#descripcion").val(data.product.descripcion);
+            $("#precio_lista").val(data.product.precio_lista);
+            $("#precio_lista_2").val(data.product.precio_lista_2);
+            $("#precio_venta_publico").val(data.product.precio_venta_publico);
+            $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
         });
     }
 
