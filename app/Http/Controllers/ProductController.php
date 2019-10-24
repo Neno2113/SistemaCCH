@@ -74,7 +74,7 @@ class ProductController extends Controller
             ];
         } else {
             $referencia = $request->input('referencia', true);
-            $referencia_2 = $request->input('referencia2', true);
+            $referencia_2 = $request->input('referencia_2', true);
             $sec = $request->input('sec', true);
      
             $product = new Product();
@@ -163,7 +163,7 @@ class ProductController extends Controller
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
-            $sec = $request->input('sec', true);
+            // $sec = $request->input('sec', true);
 
             $product = Product::find($id);
 
@@ -174,7 +174,7 @@ class ProductController extends Controller
             $product->precio_lista_2 = $precio_lista_2;
             $product->precio_venta_publico = $precio_venta_publico;
             $product->precio_venta_publico_2 = $precio_venta_publico_2;
-            $product->sec = $sec;
+            // $product->sec = $sec;
             // $product->id_user = \auth()->user()->id;
 
             $product->save();

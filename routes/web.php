@@ -148,8 +148,8 @@ Route::get('/talla/search/{id}', 'TallaController@show');
 Route::get('lavanderia/lastdigit', 'LavanderiaController@getDigits');
 Route::post('/lavanderia', 'LavanderiaController@store');
 Route::post('/lavanderia/{id}', 'LavanderiaController@show');
-Route::get('suplidores', 'LavanderiaController@selectSuplidor');
+Route::get('suplidores_lav', 'LavanderiaController@selectSuplidor');
 Route::get('cortes', 'LavanderiaController@selectCorte');
-
-//test factura
-Route::get('/imprimir', 'LavanderiaController@imprimir')->name('print');
+Route::get('/imprimir/conduce/{id}', 'LavanderiaController@imprimir')->name('print');
+Route::put('/lavanderia/edit', 'LavanderiaController@update');
+Route::post('/lavanderia/delete/{id}', 'LavanderiaController@destroy');

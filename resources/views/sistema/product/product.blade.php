@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-md-3 mt-3" id="mostrarRef2">
                             <label for="">Referencia 2:</label>
-                            <input type="text" name="referencia_" id="referencia_2" class="form-control">
+                            <input type="text" name="referencia_2" id="referencia_2" class="form-control">
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-5">

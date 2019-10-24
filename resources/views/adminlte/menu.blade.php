@@ -168,7 +168,7 @@
             <li class="nav-item">
               <a href="/sistemaCCH/public/lavanderia" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Envio lavanderia</p>
+                <p>Lavanderia</p>
               </a>
             </li>
           </ul>

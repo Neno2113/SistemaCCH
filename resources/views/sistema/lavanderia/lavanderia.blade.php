@@ -5,8 +5,8 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar">Create <i class="fas fa-plus"></i></button>
-    <button class="btn btn-danger mb-3" id="btnCancelar">Cancel <i class="fas fa-window-close"></i></button>
+    <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
+    <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
 </div>
 
 <div class="row">
@@ -34,10 +34,15 @@
                     <hr>
 
                     <div class="row mt-5">
-                        <div class="col-12">
+                        <div class="col-12" id="producto">
                             <label for="">Producto(*):</label>
                             <select name="tags[]" id="productos" class="form-control select2" style="width:100%">
                             </select>
+                        </div>
+                        <div class="col-12" id="productoEdit">
+                            <label for="">Producto(*):</label>
+                            <input type="text" name="" id="referencia_producto" class="form-control text-center"
+                                readonly>
                         </div>
                     </div>
 
@@ -49,12 +54,16 @@
                         </div>
                         <div class="col-6" id="corteEdit">
                             <label for="">Corte(*):</label>
-                            <input type="text" name="" id="numero_corte" readonly class="form-control">
+                            <input type="text" name="" id="numero_corte" readonly class="form-control text-center">
                         </div>
-                        <div class="col-6">
+                        <div class="col-6" id="suplidor">
                             <label for="">Lavanderia (*):</label>
                             <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
                             </select>
+                        </div>
+                        <div class="col-6" id="lavanderia">
+                            <label for="">Lavanderia (*):</label>
+                            <input type="text" name="" id="suplidor" class="form-control text-center" readonly>
                         </div>
                     </div>
 
@@ -91,16 +100,17 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-12">
+                        <div class="col-6">
                             <label for="">Receta de lavado(*):</label>
                             <textarea name="" id="receta_lavado" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
             </div>
-            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
+            <div class="card-footer bg-light text-muted border-bottom d-flex justify-content-end">
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>
+
             </form>
         </div>
     </div>
@@ -112,12 +122,13 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Opciones</th>
                 <th>Num. Envio</th>
                 <th>Num. Corte</th>
+                <th>Referencia</th>
                 <th>Fecha Envio</th>
                 <th>Cantidad</th>
+                <th>Lavanderia</th>
                 <th>Fase</th>
                 <th>Receta</th>
                 <th>Estandar incluido</th>
@@ -127,12 +138,13 @@
         <tfoot>
             <tr>
                 <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Opciones</th>
                 <th>Num. Envio</th>
                 <th>Num. Corte</th>
+                <th>Referencia</th>
                 <th>Fecha Envio</th>
                 <th>Cantidad</th>
+                <th>Lavanderia</th>
                 <th>Fase</th>
                 <th>Receta</th>
                 <th>Estandar incluido</th>
@@ -161,6 +173,11 @@
             $("#cortes").hide();
             $("#corteEdit").show();
             $("#estandar_incluido").show();
+            $("#producto").hide();
+            $("#productoEdit").show();
+            $("#lavanderia").show();
+            $("#suplidor").hide();
+           
 
             let result;
             if(data.lavanderia.estandar_incluido == 1){
@@ -174,21 +191,20 @@
             $("#fecha_envio").val(data.lavanderia.fecha_envio);
             $("#cantidad").val(data.lavanderia.cantidad);
             $("#numero_corte").val(data.lavanderia.corte.numero_corte);
+            $("#referencia_producto").val(data.lavanderia.producto.referencia_producto);
             $("#receta_lavado").val(data.lavanderia.receta_lavado);
             $("#estandar_incluido").val(result);
             
-         
         });
     }
 
-   
 
-    function eliminar(id_cloth){
-        bootbox.confirm("¿Estas seguro de eliminar esta tela?", function(result){
+    function eliminar(id_lavanderia){
+        bootbox.confirm("¿Estas seguro de eliminar este conduce de envio?", function(result){
             if(result){
-                $.post("cloth/delete/" + id_cloth, function(){
-                    bootbox.alert("Composicion eliminada correctamente");
-                    $("#cloths").DataTable().ajax.reload();
+                $.post("lavanderia/delete/" + id_lavanderia, function(){
+                    bootbox.alert("Conduce a lavanderia eliminada correctamente");
+                    $("#lavanderias").DataTable().ajax.reload();
                 })
             }
         })

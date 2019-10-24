@@ -104,7 +104,7 @@ $(document).ready(function() {
     $("#suplidores").select2({
         placeholder: "Buscar una lavanderia...",
         ajax: {
-            url: 'suplidores',
+            url: 'suplidores_lav',
             dataType: 'json',
             delay: 250,
             processResults: function(data){
@@ -207,12 +207,13 @@ $(document).ready(function() {
             ajax: "api/lavanderias",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "numero_envio", name: "lavanderia.numero_envio" },
                 { data: "numero_corte", name: "corte.numero_corte" },
+                { data: "referencia_producto", name: "producto.referencia_producto" },
                 { data: "fecha_envio", name: "lavanderia.fecha_envio" },
                 { data: "cantidad", name: "lavanderia.cantidad" },
+                { data: "nombre", name: "suplidor.nombre" },
                 { data: "fase", name: "corte.fase" },
                 { data: "receta_lavado", name: "lavanderia.receta_lavado" },
                 { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
@@ -224,17 +225,19 @@ $(document).ready(function() {
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
-        var composition = {
-            id: $("#id").val(),
-            codigo_composicion: $("#codigo_composicion").val(),
-            nombre_composicion: $("#nombre_composicion").val()
+        var lavanderia = {
+            numero_envio: $("#numero_envio").val(),
+            fecha_envio: $("#fecha_envio").val(),
+            cantidad: $("#cantidad").val(),
+            receta_lavado: $("#receta_lavado").val(),
+            estandar_incluido: $("input[name='r1']:checked").val(),
         };
      
         $.ajax({
-            url: "composition/edit",
+            url: "lavanderia/edit",
             type: "PUT",
             dataType: "json",
-            data: JSON.stringify(composition),
+            data: JSON.stringify(lavanderia),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
@@ -265,7 +268,6 @@ $(document).ready(function() {
        
     });
    
-
     function mostrarForm(flag) {
         limpiar();
         if (flag) {
@@ -279,7 +281,9 @@ $(document).ready(function() {
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#corteEdit").hide();
+            $("#productoEdit").hide();
             $("#estandar_incluido").hide();
+            $("#lavanderia").hide();
         }
     }
 
@@ -287,6 +291,10 @@ $(document).ready(function() {
         mostrarForm(true);
         $("#cortes").show();
         $("#corteEdit").hide();
+        $("#productos").show();
+        $("#productoEdit").hide();
+        $("#lavanderia").hide();
+        $("#suplidor").show();
     });
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);

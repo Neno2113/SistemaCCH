@@ -59,7 +59,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('adminlte/footer')
 
 
-
+  {{-- <script>
+    $("#btn").on('click', function(){
+      $("#btn").addClass("active");
+    })
+    
+  </script> --}}
 
 
     {{-- @include('adminlte/scripts') --}}

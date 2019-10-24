@@ -82,30 +82,32 @@ class LavanderiaController extends Controller
     public function lavanderias()
     {
         $lavanderia = DB::table('lavanderia')->join('corte', 'lavanderia.corte_id', '=', 'corte.id')
-            ->select([
-                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase'
-            ]);
+            ->join('producto', 'lavanderia.producto_id', '=', 'producto.id')
+            ->join('suplidor', 'suplidor_id', '=', 'suplidor.id')
+            ->select(['lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase'
+            ,'producto.referencia_producto', 'suplidor.nombre']);
 
         return DataTables::of($lavanderia)
             ->addColumn('Expandir', function ($lavanderia) {
                 return "";
             })
             ->editColumn('estandar_incluido', function ($lavanderia) {
-                return ($lavanderia->estandar_incluido == 1 ? 'Si' : 'No');;
+                return ($lavanderia->estandar_incluido == 1 ? 'Si' : 'No');
             })
-            ->addColumn('Editar', function ($lavanderia) {
-                return '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+            ->addColumn('Opciones', function ($lavanderia) {
+                return '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $lavanderia->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>'.
+                '<a href="imprimir/conduce/'.$lavanderia->id .'" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
             })
-            ->addColumn('Eliminar', function ($lavanderia) {
-                return '<button onclick="eliminar(' . $lavanderia->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
-            })
-            ->rawColumns(['Editar', 'Eliminar'])
+            ->rawColumns(['Opciones'])
             ->make(true);
     }
 
     public function show($id)
     {
-        $lavanderia = Lavanderia::find($id)->load('corte');
+        $lavanderia = Lavanderia::find($id)->load('corte')
+                                          ->load('producto')
+                                          ->load('suplidor');  
 
         if (is_object($lavanderia)) {
             $data = [
@@ -123,6 +125,68 @@ class LavanderiaController extends Controller
 
         return \response()->json($data, $data['code']);
     }
+
+    public function update(Request $request)
+    {
+        $validar = $request->validate([
+            'cantidad' => 'required',
+            'receta_lavado' => 'required'
+        ]);
+
+        if (empty($validar)) {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id', true);
+            $fecha_envio = $request->input('fecha_envio');
+            $cantidad = $request->input('cantidad');
+            $receta_lavado = $request->input('receta_lavado');
+            $estandar_incluido = $request->input('estandar_incluido');
+
+            $lavanderia = Lavanderia::find($id);
+     
+            $lavanderia->fecha_envio = $fecha_envio;
+            $lavanderia->cantidad = $cantidad;
+            $lavanderia->receta_lavado = $receta_lavado;
+            $lavanderia->estandar_incluido = $estandar_incluido;
+
+            $lavanderia->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'lavanderia' => $lavanderia
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroy($id)
+    {
+        $lavanderia = Lavanderia::find($id);
+
+        if (!empty($lavanderia)) {
+            $lavanderia->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'lavanderia' => $lavanderia
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
+
 
     public function selectSuplidor(Request $request)
     {
@@ -182,11 +246,14 @@ class LavanderiaController extends Controller
     }
 
 
-
-    public function imprimir()
+    public function imprimir($id)
     {
-        $pdf = \PDF::loadView('sistema.lavanderia.test-pdf');
-        // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-        return $pdf->download('ejemplo.pdf');
+        $lavanderia = Lavanderia::find($id)->load('corte')
+                                ->load('sku')
+                                ->load('suplidor')
+                                ->load('producto');
+
+        $pdf = \PDF::loadView('sistema.lavanderia.conduce', \compact('lavanderia'));
+        return $pdf->download('conduce.pdf');
     }
 }
