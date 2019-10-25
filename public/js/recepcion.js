@@ -34,57 +34,16 @@ $(document).ready(function() {
     }
 
     function limpiar() {
-        $("#numero_envio").val("");
-        $("#fecha_envio").val("");
-        $("#receta_lavado").val("");
-        $("#cantidad").val("");
-        $("#estandar_incluido").val("");
-        $("#productos").val("").trigger("change");
-        $("#corteSearch").val("").trigger("change");
-        $("#suplidores").val("").trigger("change");
-     
+        $("#fecha_recepcion").val("");
+        $("#cantidad_recibida").val("");
+        $("#cortesSearch").val("").trigger("change");
+        $("#lavanderias").val("").trigger("change");
     }
-
-    //funcion para generar codigo de corte
-    $("#btn-generar").on('click', function(e){
-        e.preventDefault();
-
-        $.ajax({
-            url: "lavanderia/lastdigit",
-            type: "GET",
-            dataType: "json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    var i = Number(datos.sec);
-                    $("#sec").val(i);
-                    i = (i + 0.01).toFixed(2).split('.').join("");
-                  
-                    var referencia ='EL-'+i;
-                               
-                    $("#numero_envio").val(referencia);
-                    $('#btn-generar').attr("disabled", true);
-                    bootbox.alert(
-                        "Numero de envio generado exitosamente!!"
-                    );
-
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error !!"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
-            }
-        });
-    });
 
     $("#cortesSearch").select2({
         placeholder: "Buscar un numero de corte Ex:2019-xxx",
         ajax: {
-            url: 'cortes',
+            url: 'cortes_rec',
             dataType: 'json',
             delay: 250,
             processResults: function(data){
@@ -101,37 +60,17 @@ $(document).ready(function() {
         }
     })
 
-    $("#suplidores").select2({
-        placeholder: "Buscar una lavanderia por su nombre ",
+    $("#lavanderias").select2({
+        placeholder: "Buscar un numero de envio Ex:EL-xxx",
         ajax: {
-            url: 'suplidores_lav',
+            url: 'lavanderia_rec',
             dataType: 'json',
             delay: 250,
             processResults: function(data){
                 return {
                     results: $.map(data, function(item){
                         return {
-                            text: item.nombre+' - '+ item.contacto_suplidor,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-    $("#productos").select2({
-        placeholder: "Busca la referencia de producto Ex: P100-xxxx",
-        ajax: {
-            url: 'producto_env',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.referencia_producto,
+                            text: item.numero_envio,
                             id: item.id
                         }
                     })
@@ -145,47 +84,45 @@ $(document).ready(function() {
     $("#btn-guardar").click(function(e){
         e.preventDefault();
         
-        var lavanderia = {
-            sec: $("#sec").val(),
-            numero_envio: $("#numero_envio").val(),
-            producto_id: $("#productos").val(),
-            suplidor_id: $("#suplidores").val(),
+        var recepcion = {
             corte_id: $("#cortesSearch").val(),
-            fecha_envio: $("#fecha_envio").val(),
-            cantidad: $("#cantidad").val(),
-            receta_lavado: $("#receta_lavado").val(),
-            estandar_incluido: $("input[name='r1']:checked").val(),
+            id_lavanderia: $("#lavanderias").val(),
+            fecha_recepcion: $("#fecha_recepcion").val(),
+            cantidad_recibida: $("#cantidad_recibida").val(),
+            estandar_recibido: $("input[name='r1']:checked").val(),
         };
 
+
         $.ajax({
-            url: "lavanderia",
+            url: "recepcion",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(lavanderia),
+            data: JSON.stringify(recepcion),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Registro");
+                    bootbox.alert("Hi!! here goes almost everything important from the form of Lavanderia");
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
-                    $('#btn-generar').attr("disabled", false);
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
                     );
                 }
             },
-            error: function() {
+            error: function(datos) {
+                console.log(datos.responseJSON.message);
+               
                 bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                    "Error: "+ datos.responseJSON.message
                 );
             }
         });
     });
 
     function listar() {
-        tabla = $("#lavanderias").DataTable({
+        tabla = $("#compositions").DataTable({
             serverSide: true,
             responsive: true,
             dom: 'Bfrtip',
@@ -204,19 +141,13 @@ $(document).ready(function() {
                     pageSize: 'LEGAL'
                 }
                 ],
-            ajax: "api/lavanderias",
+            ajax: "api/compositions",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Opciones", orderable: false, searchable: false },
-                { data: "numero_envio", name: "lavanderia.numero_envio" },
-                { data: "numero_corte", name: "corte.numero_corte" },
-                { data: "referencia_producto", name: "producto.referencia_producto" },
-                { data: "fecha_envio", name: "lavanderia.fecha_envio" },
-                { data: "cantidad", name: "lavanderia.cantidad" },
-                { data: "enviado", name: "lavanderia.enviado" },
-                { data: "nombre", name: "suplidor.nombre" },
-                { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
-                { data: "receta_lavado", name: "lavanderia.receta_lavado" },
+                { data: "Editar", orderable: false, searchable: false },
+                { data: "Eliminar", orderable: false, searchable: false },
+                { data: "id" },
+                { data: "nombre_composicion" },
               
             ]
         });
@@ -225,19 +156,17 @@ $(document).ready(function() {
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
-        var lavanderia = {
-            numero_envio: $("#numero_envio").val(),
-            fecha_envio: $("#fecha_envio").val(),
-            cantidad: $("#cantidad").val(),
-            receta_lavado: $("#receta_lavado").val(),
-            estandar_incluido: $("input[name='r1']:checked").val(),
+        var composition = {
+            id: $("#id").val(),
+            codigo_composicion: $("#codigo_composicion").val(),
+            nombre_composicion: $("#nombre_composicion").val()
         };
      
         $.ajax({
-            url: "lavanderia/edit",
+            url: "composition/edit",
             type: "PUT",
             dataType: "json",
-            data: JSON.stringify(lavanderia),
+            data: JSON.stringify(composition),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
@@ -268,6 +197,7 @@ $(document).ready(function() {
        
     });
    
+
     function mostrarForm(flag) {
         limpiar();
         if (flag) {
@@ -280,21 +210,11 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
-            $("#corteEdit").hide();
-            $("#productoEdit").hide();
-            $("#estandar_incluido").hide();
-            $("#lavanderia").hide();
         }
     }
 
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
-        $("#cortes").show();
-        $("#corteEdit").hide();
-        $("#productos").show();
-        $("#productoEdit").hide();
-        $("#lavanderia").hide();
-        $("#suplidor").show();
     });
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);

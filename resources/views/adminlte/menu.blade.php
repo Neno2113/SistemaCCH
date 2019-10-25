@@ -171,9 +171,15 @@
                 <p>Lavanderia</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/recepcion" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Recepcion</p>
+              </a>
+            </li>
           </ul>
         </li>
-    
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

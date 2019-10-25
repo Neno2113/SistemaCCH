@@ -7,6 +7,7 @@ use App\Lavanderia;
 use App\Corte;
 use App\Supplier;
 use App\SKU;
+use App\Product;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -44,6 +45,7 @@ class LavanderiaController extends Controller
 
             $lavanderia = new Lavanderia();
             $corte = Corte::find($corte_id);
+            $producto = Product::find($producto_id);
             $sku = SKU::where('talla', 'LIKE', 'General')
                 ->where('producto_id', 'LIKE', "%$producto_id%")->get()->first();
 
@@ -52,7 +54,8 @@ class LavanderiaController extends Controller
             if (empty($sku_gen)) {
                 $sku_gen = "";
             }
-
+            $producto->enviado_lavanderia = 1;
+            $producto->save();
             $corte->fase = 'Lavanderia';
             $corte->save();
 
@@ -85,7 +88,7 @@ class LavanderiaController extends Controller
             ->join('producto', 'lavanderia.producto_id', '=', 'producto.id')
             ->join('suplidor', 'suplidor_id', '=', 'suplidor.id')
             ->select(['lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase'
-            ,'producto.referencia_producto', 'suplidor.nombre']);
+            ,'producto.referencia_producto', 'suplidor.nombre', 'lavanderia.enviado']);
 
         return DataTables::of($lavanderia)
             ->addColumn('Expandir', function ($lavanderia) {
@@ -94,8 +97,12 @@ class LavanderiaController extends Controller
             ->editColumn('estandar_incluido', function ($lavanderia) {
                 return ($lavanderia->estandar_incluido == 1 ? 'Si' : 'No');
             })
+            ->editColumn('enviado', function ($lavanderia) {
+                return ($lavanderia->enviado == 1 ? 'Si' : 'No');
+            })
             ->addColumn('Opciones', function ($lavanderia) {
-                return '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
+                return 
+                '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
                 '<button onclick="eliminar(' . $lavanderia->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>'.
                 '<a href="imprimir/conduce/'.$lavanderia->id .'" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
             })
@@ -202,6 +209,20 @@ class LavanderiaController extends Controller
         return response()->json($data);
     }
 
+    public function selectProducto(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Product::select("id", "referencia_producto", "referencia_producto_2")
+                ->where('enviado_lavanderia', 'LIKE', '0')
+                ->where('referencia_producto', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+
     public function selectCorte(Request $request)
     {
         $data = [];
@@ -252,6 +273,8 @@ class LavanderiaController extends Controller
                                 ->load('sku')
                                 ->load('suplidor')
                                 ->load('producto');
+
+        $lavanderia->enviado = 1;
 
         $pdf = \PDF::loadView('sistema.lavanderia.conduce', \compact('lavanderia'));
         return $pdf->download('conduce.pdf');

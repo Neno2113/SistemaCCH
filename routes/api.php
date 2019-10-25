@@ -43,3 +43,5 @@ Route::get('skus', 'SKUController@skus');
 Route::get('cortes', 'CorteController@cortes');
 
 Route::get('lavanderias', 'LavanderiaController@lavanderias');
+
+Route::get('lavanderia-envio', 'LavanderiaController@lavanderiaEnvio');

@@ -46,5 +46,6 @@ class VerifyCsrfToken extends Middleware
         'http://localhost/sistemaCCH/public/lavanderia/*',
         'http://localhost/sistemaCCH/public/product_ref',
         'http://localhost/sistemaCCH/public/imprimir/conduce/*',
+        'http://localhost/sistemaCCH/public/recepcion',
     ];
 }

@@ -68,6 +68,10 @@ Route::get('/corte-consulta', function () {
 Route::get('/lavanderia', function () {
     return view('sistema.lavanderia.lavanderia');
 });
+
+Route::get('/recepcion', function () {
+    return view('sistema.recepcion.recepcion');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -149,7 +153,15 @@ Route::get('lavanderia/lastdigit', 'LavanderiaController@getDigits');
 Route::post('/lavanderia', 'LavanderiaController@store');
 Route::post('/lavanderia/{id}', 'LavanderiaController@show');
 Route::get('suplidores_lav', 'LavanderiaController@selectSuplidor');
+Route::get('producto_env', 'LavanderiaController@selectProducto');
 Route::get('cortes', 'LavanderiaController@selectCorte');
 Route::get('/imprimir/conduce/{id}', 'LavanderiaController@imprimir')->name('print');
 Route::put('/lavanderia/edit', 'LavanderiaController@update');
 Route::post('/lavanderia/delete/{id}', 'LavanderiaController@destroy');
+Route::get('/conduce/{id}', 'LavanderiaController@Agregar');
+
+
+//Recepcion o Terminacion
+Route::get('cortes_rec', 'RecepcionController@selectCorte');
+Route::get('lavanderia_rec', 'RecepcionController@selectLavanderia');
+Route::post('/recepcion', 'RecepcionController@store');

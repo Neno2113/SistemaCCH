@@ -7,6 +7,8 @@
 <div class="row mt-3 ml-3">
     <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
     <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
+    {{-- <button class="btn btn-secondary mb-3 ml-2" id="edit-hide2" data-toggle="modal"
+        data-target=".bd-talla-modal-xl"> <i class="fas fa-print"></i></button> --}}
 </div>
 
 <div class="row">
@@ -128,10 +130,10 @@
                 <th>Referencia</th>
                 <th>Fecha Envio</th>
                 <th>Cantidad</th>
+                <th>Enviado</th>
                 <th>Lavanderia</th>
-                <th>Fase</th>
-                <th>Receta</th>
                 <th>Estandar incluido</th>
+                <th>Receta</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -144,10 +146,10 @@
                 <th>Referencia</th>
                 <th>Fecha Envio</th>
                 <th>Cantidad</th>
+                <th>Enviado</th>
                 <th>Lavanderia</th>
-                <th>Fase</th>
-                <th>Receta</th>
                 <th>Estandar incluido</th>
+                <th>Receta</th>
             </tr>
         </tfoot>
     </table>

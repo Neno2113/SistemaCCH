@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row mt-2">
         <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar sucursales
             <i class="fas fa-building"></i></button>
     </div>

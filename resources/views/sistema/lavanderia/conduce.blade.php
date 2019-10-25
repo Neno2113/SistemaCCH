@@ -43,17 +43,17 @@
       width: 170px;
     }
 
-    h1 {
+    h4 {
       border-top: 1px solid #5D6975;
       border-bottom: 1px solid #5D6975;
       color: #5D6975;
-      font-size: 2.4em;
+      font-size: 2.0em;
       line-height: 1.4em;
       font-weight: normal;
       text-align: center;
       margin: 0 0 20px 0;
       background: url({{asset('adminlte/img/dimension.png')}});
-      margin-right: 25px;
+      margin-right: 93px;
     }
 
     #project {
@@ -61,6 +61,8 @@
       margin-top: 100px;
       border: 1px solid black;
       padding: 10px;
+      /* margin-bottom: 15px; */
+      /* margin-top: 15px; */
     }
 
     #project span {
@@ -81,7 +83,9 @@
     #company {
       float: right;
       text-align: right;
-      margin-right: 46%;
+      margin-right: 60%;
+      padding-top: 15px;
+      
     }
 
     #project div,
@@ -186,16 +190,17 @@
 
 <body>
   <header class="clearfix">
-    <div id="logo">
+    {{-- <div id="logo">
       <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
-    </div>
-    <h1>Conduce de envio: {{$lavanderia->numero_envio}}</h1>
+    </div> --}}
+    
     <div id="company" class="clearfix">
       <div>Confecciones Carmen Herrera, SRL</div>
       <div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
       <div>(809) 699-8400</div>
       <div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
     </div>
+    <h4>Conduce de envio: {{$lavanderia->numero_envio}}</h4>
     <div id="project">
       <h3 class="enviado">Enviado a:</h3>
       <div><span>Codigo</span>{{$lavanderia->suplidor->rnc}}</div>
@@ -207,7 +212,7 @@
     </div>
   </header>
   <main>
-    <table>
+    <table id="detalle">
       <thead>
         <tr>
           <th class="sku">Cant</th>
@@ -219,10 +224,12 @@
         </tr>
       </thead>
       <tbody>
+       
         <tr>
           <td class="sku">{{$lavanderia->cantidad}}</td>
           <td class="sku">{{$lavanderia->sku->sku}}</td>
-          <td class="sku">{{$lavanderia->producto->referencia_producto}}</td>
+          <td class="sku">{{$lavanderia->producto->referencia_producto}}  
+          {{$lavanderia->producto->referencia_producto_2}}</td>
           <td class="sku">UNIDAD</td>
           <td class="sku"> 
           @if ($lavanderia->estandar_incluido == 1)
@@ -232,13 +239,14 @@
           @endif</td>
           <td class="sku">{{$lavanderia->cantidad}}</td>
         </tr>
-        <tr>
+      
+        {{-- <tr>
             <td class="service"></td>
             <td class="desc"></td>
-            <td class="sku">{{$lavanderia->producto->referencia_producto_2}}</td>
+            <td class="sku">{{}}</td>
             <td class="qty"></td>
             <td class="total"></td>
-          </tr>
+          </tr> --}}
           {{-- <tr>
             <td class="service">SEO</td>
             <td class="desc">Optimize the site for search engines (SEO)</td>
@@ -282,4 +290,26 @@
   </footer>
 </body>
 
+{{-- <script src="{{asset('js/lavanderia.js')}}"></script> --}}
+
+{{-- <script>
+
+  function asignar(id){
+    $.get("conduce/" + id_lavanderia, function(data, status) {
+           
+      var cont;
+      var fila = '<tr id="fila'+cont+'"">'+
+      '<td>'+data.lavanderia.cantidad+'</td>'+
+      '<td>'+data.lavanderia.sku.sku+'</td>'+
+      '<td>'+data.lavanderia.cantidad+'</td>'+
+      '<td>'+data.lavanderia.producto.referencia_producto+'</td>'+
+      '<td>''</td>'
+           
+    });
+
+    
+  }
+
+</script> --}}
 </html>
+
