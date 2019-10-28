@@ -82,6 +82,7 @@ class ProductController extends Controller
             $product->referencia_producto_2 = $referencia_2;
             $product->id_user = \auth()->user()->id;
             $product->sec = $sec + 0.1;
+            $product->enviado_lavanderia = 0;
            
          
             $product->save();

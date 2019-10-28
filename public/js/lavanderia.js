@@ -42,6 +42,8 @@ $(document).ready(function() {
         $("#productos").val("").trigger("change");
         $("#corteSearch").val("").trigger("change");
         $("#suplidores").val("").trigger("change");
+        $("#suplidoresEdit").val("").trigger("change");
+        $("#cortesSearchEdit").val("").trigger("change");
      
     }
 
@@ -82,9 +84,29 @@ $(document).ready(function() {
     });
 
     $("#cortesSearch").select2({
-        placeholder: "Buscar un numero de corte Ex:2019-xxx",
+        placeholder: "Buscar un numero de corte Ej: 2019-xxx",
         ajax: {
             url: 'cortes',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.numero_corte+' - '+item.fase,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    $("#cortesSearchEdit").select2({
+        placeholder: "Buscar un numero de corte Ej: 2019-xxx",
+        ajax: {
+            url: 'cortes_edit',
             dataType: 'json',
             delay: 250,
             processResults: function(data){
@@ -125,6 +147,26 @@ $(document).ready(function() {
         placeholder: "Busca la referencia de producto Ex: P100-xxxx",
         ajax: {
             url: 'producto_env',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.referencia_producto,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    $("#productosEdit").select2({
+        placeholder: "Busca la referencia de producto Ex: P100-xxxx",
+        ajax: {
+            url: 'producto_env_edit',
             dataType: 'json',
             delay: 250,
             processResults: function(data){
@@ -226,6 +268,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var lavanderia = {
+            producto_id: $("#productosEdit").val(),
+            suplidor_id: $("#suplidores").val(),
+            corte_id: $("#cortesSearchEdit").val(),
             numero_envio: $("#numero_envio").val(),
             fecha_envio: $("#fecha_envio").val(),
             cantidad: $("#cantidad").val(),
@@ -252,7 +297,7 @@ $(document).ready(function() {
                     $("#btn-edit").hide();
                     $("#btn-guardar").show();
                     $("#btnAgregar").show();
-
+                    mostrarForm(false);
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"
@@ -275,6 +320,9 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#corteADD").show();
+            $("#productoADD").show();
+           
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -282,22 +330,28 @@ $(document).ready(function() {
             $("#btnAgregar").show();
             $("#corteEdit").hide();
             $("#productoEdit").hide();
+            $("#referencia_producto").hide();
+            $("#numero_corte").hide();
+            $("#suplidor_lavanderia").hide();
             $("#estandar_incluido").hide();
-            $("#lavanderia").hide();
+           
+           
         }
     }
 
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
-        $("#cortes").show();
-        $("#corteEdit").hide();
-        $("#productos").show();
-        $("#productoEdit").hide();
-        $("#lavanderia").hide();
-        $("#suplidor").show();
+        // $("#cortes").show();
+        // $("#corteEdit").hide();
+        // $("#productos").show();
+        // $("#productoEdit").hide();
+        // $("#lavanderia").hide();
+        // $("#suplidor").show();
     });
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);
+       
+
     });
   
 

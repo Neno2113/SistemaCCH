@@ -13,18 +13,23 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::
 .work-area{
 position: relative;
 border-radius: 3px;
-background: #ffffff;
-border-top: 3px solid #d2d6de;
+background: #fefffe;
+border-top: 1px solid #31343940;
 margin-bottom: 20px;
 width: 100%;
 box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
+
+.card-header{
+    background:#7d7d7d6b;
+}
 .card-header h4{
     padding-top:15px;
+    color: black;
 }
 
 .card-body{
- background:#dfdfdf;
+ background:#f0f0f0;
 }
 
 .card-body form {
@@ -40,4 +45,19 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 .select2-container--default .select2-selection--single{
     padding: 7px;
     padding-bottom: 28px;
+    border: 1px solid;
 }
+
+.form-control[readonly]{
+    background-color: white;
+}
+
+form input[type= "date"],
+input[type = "text"],
+input[type = "email"],
+select.form-control,
+textarea.form-control
+{
+    border: 1px solid;
+}
+

@@ -45,3 +45,5 @@ Route::get('cortes', 'CorteController@cortes');
 Route::get('lavanderias', 'LavanderiaController@lavanderias');
 
 Route::get('lavanderia-envio', 'LavanderiaController@lavanderiaEnvio');
+
+Route::get('recepciones', 'RecepcionController@recepciones');

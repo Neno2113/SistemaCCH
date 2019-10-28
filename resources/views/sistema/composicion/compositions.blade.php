@@ -12,7 +12,7 @@
 
     <div class="row d-flex justify-content-center">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary">
+            <div class="card-header text-center ">
                 <h4>Composiciones</h4>
             </div>
             <div class="card-body">

@@ -14,7 +14,7 @@
 
 
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-light border-top">
+            <div class="card-header text-center  border-top">
                 <h4>Suplidor</h4>
             </div>
             <div class="card-body">
@@ -36,7 +36,7 @@
                             <input type="text" name="contacto_suplidor" id="contacto_suplidor" class="form-control">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-1">
                         <div class="col-md-4 mt-3">
                             <label for="telefono_1">Telefono 1(*):</label>
                             <div class="input-group">
@@ -68,6 +68,7 @@
                             </div>
                         </div>
                     </div>
+                    <br><hr><br>
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="email">Email(*):</label>
@@ -94,7 +95,7 @@
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-1">
                         <div class="col-md-6 mt-3">
                             <label for="direccion">Direccion(*):</label>
                             <textarea name="direccion" id="direccion" cols="30" rows="1"
@@ -106,7 +107,7 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer bg-light text-muted d-flex justify-content-end">
+            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom border-top">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>

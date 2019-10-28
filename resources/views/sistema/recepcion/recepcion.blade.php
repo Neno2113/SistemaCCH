@@ -14,7 +14,7 @@
 <div class="row ">
     <div class="col-12 ">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center border-top bg-light">
+            <div class="card-header text-center border-top ">
                 <h4>Formulario de recepcion de lavanderia:</h4>
             </div>
             <div class="card-body">
@@ -22,13 +22,30 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="">Corte(*):</label>
-                            <select name="tags[]" id="cortesSearch" class="form-control select2">
-                            </select>
+                            <input type="hidden" name="" id="id">
+                            <div id="corteAdd">
+                                <select name="tags[]" id="cortesSearch" class="form-control select2">
+                                </select>
+                            </div>
+
+                            <div id=corteEdit>
+                                <select name="tags[]" id="cortesSearchEdit" class="form-control select2">
+                                </select>
+                            </div>
+
+                            <input type="text" name="corte" id="corte" class="form-control mt-2" readonly>
                         </div>
                         <div class="col-6">
                             <label for="">Num. Envio</label>
-                            <select name="tags[]" id="lavanderias" class="form-control select2">
-                            </select>
+                            <div id="lavanderiaAdd">
+                                <select name="tags[]" id="lavanderias" class="form-control select2">
+                                </select>
+                            </div>
+                            <div id="lavanderiaEdit">
+                                <select name="tags[]" id="lavanderiasEdit" class="form-control select2">
+                                </select>
+                            </div>
+                            <input type="text" name="lavanderia" id="lavanderia" class="form-control mt-2" readonly>
                         </div>
                     </div>
                     <hr>
@@ -59,10 +76,11 @@
                                     </label>
                                 </div>
                             </div>
+                            <input type="text" name="" id="estandar_recibido" class="form-control " readonly>
                         </div>
                     </div>
             </div>
-            <div class="card-footer bg-light text-muted d-flex justify-content-end">
+            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom border-top">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>
@@ -71,36 +89,40 @@
     </div>
 </div>
 
-{{-- <div class="container" id="listadoUsers">
-    <table id="products" class="table table-striped table-bordered datatables">
+<div class="container" id="listadoUsers">
+    <table id="recepciones" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Usuario </th>
-                <th>Referencia producto</th>
-                <th>Precio lista</th>
-                <th>Precio venta publico</th>
-                <th>Descripcion</th>
+                <th>Acciones</th>
+                <th>Num. Recepcion</th>
+                <th>F. Recepcion </th>
+                <th>C. Recibida</th>
+                <th>Corte</th>
+                <th>Num. Envio</th>
+                <th>F. Envio</th>
+                <th>Cantidad Enviada</th>
+                <th>Estandar Recibido</th>
             </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
             <tr>
                 <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Usuario</th>
-                <th>Referencia producto</th>
-                <th>Precio lista</th>
-                <th>Precio venta publico</th>
-                <th>Descripcion</th>
+                <th>Acciones</th>
+                <th>Num. Recepcion</th>
+                <th>F. Recepcion </th>
+                <th>C. Recibida</th>
+                <th>Corte</th>
+                <th>Num. Envio</th>
+                <th>F. Envio</th>
+                <th>Cantidad Enviada</th>
+                <th>Estandar Recibido</th>
             </tr>
         </tfoot>
     </table>
 </div>
-</div> --}}
+</div>
 
 
 
@@ -108,34 +130,45 @@
 <script src="{{asset('js/recepcion.js')}}"></script>
 
 <script>
-    function mostrar(id_prouct) {
-        $.post("product/" + id_prouct, function(data, status) {
-            // data = JSON.parse(data);
+    function mostrar(id_recepcion) {
+        $.get("recepcion/" + id_recepcion, function(data, status) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
+            $("#estandar_recibido").show();
+            $("#lavanderia").show();
+            $("#corte").show();
+            $("#corteAdd").hide();
+            $("#corteEdit").show();
+            $("#lavanderiaAdd").hide();
+            $("#lavanderiaEdit").show();
 
-            $("#id").val(data.product.id);
-            $("#referencia").val(data.product.referencia_producto);
-            $("#descripcion").val(data.product.descripcion);
-            $("#precio_lista").val(data.product.precio_lista);
-            $("#precio_lista_2").val(data.product.precio_lista_2);
-            $("#precio_venta_publico").val(data.product.precio_venta_publico);
-            $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
+            let result;
+            if(data.recepcion.estandar_recibido == 1){
+                result = 'Si'
+            }else{
+                result = 'No'
+            }       
+
+            $("#id").val(data.recepcion.id);
+            $("#corte").val('Corte elegido: '+data.recepcion.corte.numero_corte);
+            $("#lavanderia").val('Numero de envio: '+data.recepcion.lavanderia.numero_envio);
+            $("#fecha_recepcion").val(data.recepcion.fecha_recepcion);
+            $("#cantidad_recibida").val(data.recepcion.cantidad_recibida);
+            $("#estandar_recibido").val('Estandar recbido: '+result);
         });
     }
 
-
-    function eliminar(id_prouct){
-        bootbox.confirm("¿Estas seguro de eliminar esta referencia?", function(result){
+    function eliminar(id_recepcion){
+        bootbox.confirm("¿Estas seguro de eliminar esta recepcion?", function(result){
             if(result){
-                $.post("product/delete/" + id_prouct, function(){
+                $.post("recepcion/delete/" + id_recepcion, function(){
                     // bootbox.alert(e);
-                    bootbox.alert("Referencia eliminada correctamente!!");
-                    $("#products").DataTable().ajax.reload();
+                    bootbox.alert("Recepcion eliminada correctamente!!");
+                    $("#recepciones").DataTable().ajax.reload();
                 })
             }
         })

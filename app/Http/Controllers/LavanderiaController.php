@@ -68,6 +68,8 @@ class LavanderiaController extends Controller
             $lavanderia->cantidad = $cantidad;
             $lavanderia->receta_lavado = $receta_lavado;
             $lavanderia->estandar_incluido = $estandar_incluido;
+            $lavanderia->enviado = 1;
+            $lavanderia->recibido = 0;
             $lavanderia->sec = $sec + 0.01;
 
             $lavanderia->save();
@@ -152,9 +154,15 @@ class LavanderiaController extends Controller
             $cantidad = $request->input('cantidad');
             $receta_lavado = $request->input('receta_lavado');
             $estandar_incluido = $request->input('estandar_incluido');
+            $corte_id = $request->input('corte_id');
+            $producto_id = $request->input('producto_id');
+            $suplidor_id = $request->input('suplidor_id');
 
             $lavanderia = Lavanderia::find($id);
-     
+            
+            $lavanderia->suplidor_id = $suplidor_id;
+            $lavanderia->corte_id = $corte_id;
+            $lavanderia->producto_id = $producto_id;
             $lavanderia->fecha_envio = $fecha_envio;
             $lavanderia->cantidad = $cantidad;
             $lavanderia->receta_lavado = $receta_lavado;
@@ -223,6 +231,19 @@ class LavanderiaController extends Controller
         return response()->json($data);
     }
 
+    public function selectProductoEdit(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Product::select("id", "referencia_producto", "referencia_producto_2")
+                ->where('referencia_producto', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+
     public function selectCorte(Request $request)
     {
         $data = [];
@@ -231,6 +252,19 @@ class LavanderiaController extends Controller
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
                 ->where('fase', 'LIKE', 'Produccion')
+                ->where('numero_corte', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+
+    public function selectCorteEdit(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Corte::select("id", "numero_corte", "fase")
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }

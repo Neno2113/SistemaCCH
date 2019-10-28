@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-light border-top">
+            <div class="card-header text-center  border-top">
                 <h4><strong>Envio lavanderia</strong></h4>
             </div>
             <div class="card-body">
@@ -38,35 +38,45 @@
                     <div class="row mt-5">
                         <div class="col-12" id="producto">
                             <label for="">Producto(*):</label>
-                            <select name="tags[]" id="productos" class="form-control select2" style="width:100%">
-                            </select>
-                        </div>
-                        <div class="col-12" id="productoEdit">
-                            <label for="">Producto(*):</label>
-                            <input type="text" name="" id="referencia_producto" class="form-control text-center"
+                            <div id="productoADD">
+                                <select name="tags[]" id="productos" class="form-control select2" style="width:100%">
+                                </select>
+                            </div>
+                            <div id="productoEdit" class="mt-3">
+                                <select name="tags[]" id="productosEdit" class="form-control select2" style="width:100%">
+                                </select>
+                            </div>
+                            <input type="text" name="" id="referencia_producto" class="form-control text-center mt-3"
                                 readonly>
                         </div>
+
                     </div>
 
                     <div class="row mt-3">
                         <div class="col-6" id="cortes">
                             <label for="">Corte(*):</label>
-                            <select name="tags[]" id="cortesSearch" class="form-control select2">
-                            </select>
+                            <div id="corteADD">
+                                <select name="tags[]" id="cortesSearch" class="form-control select2">
+                                </select>
+                            </div>
+                           
+                            <div id="corteEdit">
+                                <select name="tags[]" id="cortesSearchEdit" class="form-control select2">
+                                </select>
+                            </div>
+                            <input type="text" name="" id="numero_corte" readonly class="form-control text-center mt-3">
                         </div>
-                        <div class="col-6" id="corteEdit">
-                            <label for="">Corte(*):</label>
-                            <input type="text" name="" id="numero_corte" readonly class="form-control text-center">
-                        </div>
+
                         <div class="col-6" id="suplidor">
                             <label for="">Lavanderia (*):</label>
                             <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
                             </select>
+                            <div id="lavanderia">
+                            </div>
+                            <input type="text" name="suplidor_lavanderia" id="suplidor_lavanderia"
+                                class="form-control text-center mt-3" readonly>
                         </div>
-                        <div class="col-6" id="lavanderia">
-                            <label for="">Lavanderia (*):</label>
-                            <input type="text" name="" id="suplidor" class="form-control text-center" readonly>
-                        </div>
+
                     </div>
 
                     <hr>
@@ -172,13 +182,18 @@
             $("#btn-guardar").hide();
             $("#numero_corte").show();
             $("#btn-generar").hide();
-            $("#cortes").hide();
+            $("#referencia_producto").show();
             $("#corteEdit").show();
-            $("#estandar_incluido").show();
-            $("#producto").hide();
+            $("#corteADD").hide();
             $("#productoEdit").show();
-            $("#lavanderia").show();
-            $("#suplidor").hide();
+             $("#productoADD").hide();
+            $("#estandar_incluido").show();
+            $("#suplidor_lavanderia").show();
+            // $("#productoEdit").show();
+            // $("#lavanderia").show();
+            // // $("#suplidor").hide();
+            // $("#productoADD").hide();
+            // $("#corteADD").hide();
            
 
             let result;
@@ -192,10 +207,12 @@
             $("#numero_envio").val(data.lavanderia.numero_envio);
             $("#fecha_envio").val(data.lavanderia.fecha_envio);
             $("#cantidad").val(data.lavanderia.cantidad);
-            $("#numero_corte").val(data.lavanderia.corte.numero_corte);
-            $("#referencia_producto").val(data.lavanderia.producto.referencia_producto);
+            $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte);
+            $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto);
             $("#receta_lavado").val(data.lavanderia.receta_lavado);
             $("#estandar_incluido").val(result);
+            $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre);
+            // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
             
         });
     }

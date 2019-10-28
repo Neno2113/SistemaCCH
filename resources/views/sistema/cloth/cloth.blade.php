@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-light border-top">
+            <div class="card-header text-center  border-top">
                 <h4>Telas</h4>
             </div>
             <div class="card-body">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom">
+            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom border-top">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>

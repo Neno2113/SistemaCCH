@@ -154,7 +154,9 @@ Route::post('/lavanderia', 'LavanderiaController@store');
 Route::post('/lavanderia/{id}', 'LavanderiaController@show');
 Route::get('suplidores_lav', 'LavanderiaController@selectSuplidor');
 Route::get('producto_env', 'LavanderiaController@selectProducto');
+Route::get('producto_env_edit', 'LavanderiaController@selectProductoEdit');
 Route::get('cortes', 'LavanderiaController@selectCorte');
+Route::get('cortes_edit', 'LavanderiaController@selectCorteEdit');
 Route::get('/imprimir/conduce/{id}', 'LavanderiaController@imprimir')->name('print');
 Route::put('/lavanderia/edit', 'LavanderiaController@update');
 Route::post('/lavanderia/delete/{id}', 'LavanderiaController@destroy');
@@ -163,5 +165,10 @@ Route::get('/conduce/{id}', 'LavanderiaController@Agregar');
 
 //Recepcion o Terminacion
 Route::get('cortes_rec', 'RecepcionController@selectCorte');
+Route::get('corte_rec_edit', 'RecepcionController@selectCorteEdit');
 Route::get('lavanderia_rec', 'RecepcionController@selectLavanderia');
+Route::get('lavanderia_rec_edit', 'RecepcionController@selectLavanderiaEdit');
 Route::post('/recepcion', 'RecepcionController@store');
+Route::get('/recepcion/{id}', 'RecepcionController@show');
+Route::put('/recepcion/edit', 'RecepcionController@update');
+Route::post('/recepcion/delete/{id}', 'RecepcionController@destroy');
