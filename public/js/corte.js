@@ -3,25 +3,42 @@ $(document).ready(function() {
 
     $("#formulario").validate({
         rules: {
-            codigo_composicion: {
+            no_marcada: {
                 required: true,
-                minlength: 1
+                minlength: 1,
+                number: true
             },
-            nombre_composicion: {
+            ancho_marcada: {
                 required: true,
-                minlength: 1
+                minlength: 1,
+                number: true
             },
+            largo_marcada: {
+                required: true,
+                minlength: 1,
+                number: true
+            },
+          
           
         },
         messages: {
-            codigo_composicion: {
-                required: "Introduzca el codigo de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            no_marcada: {
+                required: "El numero de marcada es obligatorio",
+                minlength: "Debe contener al menos 1 numero",
+                number: "Este campo solo admite numeros"
             },
-            nombre_composicion: {
-                required: "Introduzca el nombre de composicion",
-                minlength: "Debe contener al menos 1 letra"
-            }
+            ancho_marcada: {
+                required: "El ancho de la marcada es obligatorio",
+                minlength: "Debe contener al menos 1 numero",
+                number: "Este campo solo admite numeros"
+            },
+            largo_marcada: {
+                required: "El largo de la marcada es obligatorio",
+                minlength: "Debe contener al menos 1 numero",
+                number: "Este campo solo admite numeros"
+            },
+           
+
         }
     })
    

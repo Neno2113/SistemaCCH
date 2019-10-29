@@ -2,24 +2,34 @@ $(document).ready(function() {
 
     $("#formulario").validate({
         rules: {
-            codigo_composicion: {
+            fecha_envio: {
                 required: true,
                 minlength: 1
             },
-            nombre_composicion: {
+            cantidad: {
                 required: true,
-                minlength: 1
+                minlength: 1,
+                number: true
             },
+            receta_lavado: {
+                required: true,
+                minlength: 10
+            }
           
         },
         messages: {
-            codigo_composicion: {
-                required: "Introduzca el codigo de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            fecha_envio: {
+                required: "La fecha en envio es obligatoria",
+                minlength: "La fecha en envio es obligatoria"
             },
-            nombre_composicion: {
-                required: "Introduzca el nombre de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            cantidad: {
+                required: "La cantidad es un campo numerico obligatorio.",
+                minlength: "La cantidad es un campo numerico obligatorio.",
+                number: "Este campo solo admite numeros."
+            },
+            receta_lavado: {
+                required: "La receta de lavado es obligatoria",
+                minlength: "La receta de lavado debe conteneer al menos 10 caracteres"
             }
         }
     })
@@ -32,6 +42,11 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
     }
+
+
+    $("#receta_lavado").on('keyup', function(){
+        $("#btn-guardar").attr('disabled', false);
+    })
 
     function limpiar() {
         $("#numero_envio").val("");
@@ -334,6 +349,7 @@ $(document).ready(function() {
             $("#numero_corte").hide();
             $("#suplidor_lavanderia").hide();
             $("#estandar_incluido").hide();
+            $("#btn-guardar").attr('disabled', true);
            
            
         }

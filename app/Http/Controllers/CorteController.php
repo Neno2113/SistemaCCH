@@ -32,7 +32,7 @@ class CorteController extends Controller
         } else {
             $numero_corte = $request->input('numero_corte');
             $producto_id = $request->input('producto_id');
-            $fecha_corte = $request->input('fecha_corte');
+            // $fecha_corte = $request->input('fecha_corte');
             $no_marcada = $request->input('no_marcada');
             $ancho_marcada = $request->input('ancho_marcada');
             $largo_marcada = $request->input('largo_marcada');
@@ -41,12 +41,14 @@ class CorteController extends Controller
             $sec = $request->input('sec');
             $fase = 'Produccion';
 
+            $date = date('20y-m-d');
+
             $corte = new Corte();
 
             $corte->numero_corte = $numero_corte;
             $corte->producto_id = $producto_id;
             $corte->user_id = \auth()->user()->id;
-            $corte->fecha_corte = $fecha_corte;
+            $corte->fecha_corte = $date;
             $corte->no_marcada = $no_marcada;
             $corte->largo_marcada = $largo_marcada;
             $corte->ancho_marcada = $ancho_marcada;
@@ -81,6 +83,9 @@ class CorteController extends Controller
             })
             ->editColumn('name', function ($corte) {
                 return "$corte->name $corte->surname";
+            })
+            ->editColumn('fecha_corte', function ($corte) {
+                return date("d-m-20y", strtotime($corte->fecha_corte));
             })
             ->addColumn('Editar', function ($corte) {
                 return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';

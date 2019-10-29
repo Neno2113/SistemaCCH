@@ -1,6 +1,8 @@
 @extends('adminlte.layout')
 
-@section('title', 'Usuarios')
+@section('seccion', 'Usuarios')
+
+@section('title', 'Usuario')
 
 @section('content')
 {{-- <div class="container"> --}}
@@ -12,7 +14,13 @@
 <div class="row ">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center  border-top">
+            <div class="card-header text-center ">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
                 <h4>Registro</h4>
             </div>
             <div class="card-body">
@@ -97,7 +105,7 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom border-top">
+            <div class="card-footer  text-muted d-flex justify-content-end">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>

@@ -15,13 +15,16 @@ position: relative;
 border-radius: 3px;
 background: #fefffe;
 border-top: 1px solid #31343940;
+border-left: 1px solid #31343940;
+border-right: 1px solid #31343940;
 margin-bottom: 20px;
 width: 100%;
 box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 .card-header{
-    background:#7d7d7d6b;
+    background:#7d7d7d4d;
+    border: 1px solid #31343940;
 }
 .card-header h4{
     padding-top:15px;
@@ -29,11 +32,18 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 .card-body{
- background:#f0f0f0;
+ background:#f7f4f4;
+ border-left: 1px solid#06090f73;
+ border-right: 1px solid #06090f73;
 }
 
 .card-body form {
     padding: 15px;
+}
+
+.card-footer{
+    border: 1px solid #31343940;
+    background: #e3e3e3;
 }
 
 .corteSearch{
@@ -45,7 +55,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 .select2-container--default .select2-selection--single{
     padding: 7px;
     padding-bottom: 28px;
-    border: 1px solid;
+    border: 1px solid #31343940;
 }
 
 .form-control[readonly]{
@@ -55,9 +65,20 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 form input[type= "date"],
 input[type = "text"],
 input[type = "email"],
+input[type = "password"]
 select.form-control,
 textarea.form-control
 {
-    border: 1px solid;
+    border: 1px solid #31343940;
 }
+
+.error {
+    color: red;
+    background-color: #e6f0ff;
+   
+ }
+
+ label .error {
+    text-align: center;
+ }
 

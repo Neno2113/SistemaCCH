@@ -2,7 +2,7 @@
 
 @section('seccion', 'Cortes')
 
-@section('title', 'Recepcion')
+@section('title', 'Perdidas')
 
 
 @section('content')
@@ -18,13 +18,42 @@
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center ">
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de recepcion de lavanderia:</h4>
+                <h4>Formulario de reporte de perdidas:</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
+                    <h4>Generacion de codigo:</h4>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Tipo de perdida(*)</label>
+                            <select name="tipo_perdida" id="tipo_perdida" class="form-control">
+                                <option value=""></option>
+                                <option value="Normal">Normal</option>
+                                <option value="Segundas">Segundas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 mt-4 pt-2 mr-3">
+                            <input type="text" name="no_perdida" id="no_perdida" class="form-control" readonly>
+                        </div>
+                        <div class="col-3">
+                            <div class="mt-4 pt-2">
+                                <button class="btn btn-primary ">Generar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
                     <div class="row">
                         <div class="col-6">
                             <label for="">Corte(*):</label>
@@ -33,58 +62,34 @@
                                 <select name="cortesSearch" id="cortesSearch" class="form-control select2">
                                 </select>
                             </div>
-
-                            <div id=corteEdit>
-                                <select name="tags[]" id="cortesSearchEdit" class="form-control select2">
-                                </select>
-                            </div>
-
-                            <input type="text" name="corte" id="corte" class="form-control mt-2" readonly>
                         </div>
                         <div class="col-6">
-                            <label for="">Num. Envio</label>
-                            <div id="lavanderiaAdd">
-                                <select name="tags[]" id="lavanderias" class="form-control select2">
-                                </select>
-                            </div>
-                            <div id="lavanderiaEdit">
-                                <select name="tags[]" id="lavanderiasEdit" class="form-control select2">
-                                </select>
-                            </div>
-                            <input type="text" name="lavanderia" id="lavanderia" class="form-control mt-2" readonly>
+                            <label for="">Fecha(*)</label>
+                            <input type="date" name="fecha" id="fecha" class="form-control">
                         </div>
                     </div>
-                    <hr>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-4">
-                            <label for="">Fecha(*):</label>
-                            <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control">
+                    <div class="row mt-2">
+                        <div class="col-6 mt-1">
+                            <label for="">Fase(*):</label>
+                            <select name="fase" id="fase" class="form-control">
+                                <option value=""></option>
+                                <option value="Produccion">Produccion</option>
+                                <option value="Procesos secos">Procesos secos</option>
+                                <option value="Lavanderia">Lavanderia</option>
+                                <option value="Terminacion">Terminacion</option>
+                                <option value="Almacen">Terminado o almacen</option>
+                            </select>
                         </div>
-                        <div class="col-4">
-                            <label for="">Cantidad Rec.(*):</label>
-                            <input type="text" name="cantidad_recibida" id="cantidad_recibida" class="form-control">
+                        <div class="col-6 mt-1">
+                            <label for="">Motivo(*):</label>
+                            <select name="motivo" id="motivo" class="form-control">
+                                <option value=""></option>
+                            </select>
                         </div>
-                        <div class="col-4 pl-5">
-                            <label for="">¿Estandar recibido?</label>
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
-                                    <label for="radioPrimary1">
-                                        Si
-                                    </label>
-                                </div>
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary2" value="0" name="r1">
-                                    <label for="radioPrimary2">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                            <input type="text" name="" id="estandar_recibido" class="form-control " readonly>
-                        </div>
+
                     </div>
+
+
             </div>
             <div class="card-footer text-muted d-flex justify-content-end ">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
@@ -95,7 +100,7 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
+{{-- <div class="container" id="listadoUsers">
     <table id="recepciones" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
@@ -127,13 +132,13 @@
             </tr>
         </tfoot>
     </table>
-</div>
+</div> --}}
 </div>
 
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/recepcion.js')}}"></script>
+<script src="{{asset('js/perdidas.js')}}"></script>
 
 <script>
     function mostrar(id_recepcion) {

@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('seccion', 'Sku')
+
 @section('title', 'SKU')
 
 @section('content')
@@ -20,8 +22,14 @@
     @endif
     <div class="row d-flex justify-content-center">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center bg-secondary border-top">
-                <h4>Favor seleccionar el excel con los SKU</h4>
+            <div class="card-header text-center ">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
+                <h4>Importacion de SKU</h4>
             </div>
             <div class="card-body">
                 <form action="/sistemaCCH/public/text-read" method="POST" enctype="multipart/form-data" id="formulario"
@@ -38,7 +46,7 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer text-muted d-flex justify-content-center border-bottom">
+            <div class="card-footer text-muted d-flex justify-content-center">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-primary mt-4">
             </div>
             </form>
@@ -53,7 +61,7 @@
                 <th>SKU</th>
                 <th>Producto</th>
                 <th>Talla</th>
-            
+
             </tr>
         </thead>
         <tbody></tbody>

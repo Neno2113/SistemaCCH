@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('seccion', 'Utilidades')
+
 @section('title', 'Compisiciones')
     
 

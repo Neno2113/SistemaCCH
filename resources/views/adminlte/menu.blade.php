@@ -159,12 +159,12 @@
                 <p>Corte</p>
               </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="/sistemaCCH/public/corte-consulta" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Consulta</p>
               </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <a href="/sistemaCCH/public/lavanderia" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -175,6 +175,12 @@
               <a href="/sistemaCCH/public/recepcion" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Recepcion</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/perdida" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Perdidas</p>
               </a>
             </li>
           </ul>

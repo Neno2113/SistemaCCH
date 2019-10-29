@@ -92,12 +92,15 @@ class RecepcionController extends Controller
             ->addColumn('Expandir', function ($recepcion) {
                 return "";
             })
-            ->editColumn('estandar_recibido', function ($lavanderia) {
-                return ($lavanderia->estandar_recibido == 1 ? 'Si' : 'No');
+            ->editColumn('estandar_recibido', function ($recepcion) {
+                return ($recepcion->estandar_recibido == 1 ? 'Si' : 'No');
             })
-            // ->editColumn('enviado', function ($lavanderia) {
-            //     return ($lavanderia->enviado == 1 ? 'Si' : 'No');
-            // })
+            ->editColumn('fecha_recepcion', function ($recepcion) {
+                return date("d-m-20y", strtotime($recepcion->fecha_recepcion));
+            })
+            ->editColumn('fecha_envio', function ($recepcion) {
+                return date("d-m-20y", strtotime($recepcion->fecha_envio));
+            })
             ->addColumn('Opciones', function ($recepcion) {
                 return
                     '<button id="btnEdit" onclick="mostrar(' . $recepcion->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .

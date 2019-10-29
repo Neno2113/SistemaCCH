@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('seccion', 'Suplidores')
+
 @section('title', 'Suplidor')
 
 @section('content')
@@ -14,7 +16,13 @@
 
 
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center  border-top">
+            <div class="card-header text-center">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
                 <h4>Suplidor</h4>
             </div>
             <div class="card-body">
@@ -68,7 +76,8 @@
                             </div>
                         </div>
                     </div>
-                    <br><hr><br>
+                    <br>
+                    <hr><br>
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="email">Email(*):</label>
@@ -107,7 +116,7 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer bg-light text-muted d-flex justify-content-end border-bottom border-top">
+            <div class="card-footer  d-flex justify-content-end ">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>

@@ -72,6 +72,10 @@ Route::get('/lavanderia', function () {
 Route::get('/recepcion', function () {
     return view('sistema.recepcion.recepcion');
 });
+
+Route::get('/perdida', function () {
+    return view('sistema.perdidas.perdida');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -172,3 +176,7 @@ Route::post('/recepcion', 'RecepcionController@store');
 Route::get('/recepcion/{id}', 'RecepcionController@show');
 Route::put('/recepcion/edit', 'RecepcionController@update');
 Route::post('/recepcion/delete/{id}', 'RecepcionController@destroy');
+
+
+//Perdida
+Route::get('cortes_perd', 'PerdidaController@selectCorte');

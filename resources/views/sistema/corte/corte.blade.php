@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('seccion', 'Corte')
+
 @section('title', 'Cortes')
 
 @section('content')
@@ -11,7 +13,13 @@
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center  border-top">
+            <div class="card-header text-center ">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
                 <h4>Formulario de creacion de corte:</h4>
             </div>
             <div class="card-body">
@@ -22,7 +30,8 @@
                             <label for="">Numero corte(*):</label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
-                            <input type="text" name="numero_corte" id="numero_corte" class="form-control text-center" readonly>
+                            <input type="text" name="numero_corte" id="numero_corte" class="form-control text-center"
+                                readonly>
                         </div>
                         <div class="col-md-4 mt-5">
                             <button class="btn btn-primary btn-lg" id="btn-generar" name="btn-generar">Generar</button>
@@ -65,12 +74,13 @@
                                     class="fa fa-dolly-flatbed"></i></button>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2" data-toggle="modal"
-                                data-target=".bd-talla-modal-xl">Definir Corte <i class="fa fa-cut"></i></button>
+                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2"
+                                data-toggle="modal" data-target=".bd-talla-modal-xl">Definir Corte <i
+                                    class="fa fa-cut"></i></button>
                         </div>
                     </div>
             </div>
-            <div class="card-footer text-muted d-flex justify-content-end border-bottom border-top">
+            <div class="card-footer text-muted d-flex justify-content-end">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
             </div>

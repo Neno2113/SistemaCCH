@@ -1,28 +1,46 @@
 $(document).ready(function() {
 
-    $("#formulario").validate({
-        rules: {
-            codigo_composicion: {
-                required: true,
-                minlength: 1
+    
+              $("#formulario").validate({
+            rules: {
+                cortesSearch: {
+                    required: true,
+                    minlength: 1
+                },
+                lavanderias: {
+                    required: true,
+                    minlength: 1
+                    
+                },
+                fecha_recepcion: {
+                    required: true,
+                    minlength: 1
+                },
+                cantidad_recibida: {
+                    required: true,
+                    minlength: 2
+                }
+              
             },
-            nombre_composicion: {
-                required: true,
-                minlength: 1
-            },
-          
-        },
-        messages: {
-            codigo_composicion: {
-                required: "Introduzca el codigo de composicion",
-                minlength: "Debe contener al menos 1 letra"
-            },
-            nombre_composicion: {
-                required: "Introduzca el nombre de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            messages: {
+                codigo_composicion: {
+                    required: "El numero de corte es obligatorio"
+                },
+                nombre_composicion: {
+                    required: "La lavanderia es obligatoria"
+                },
+                fecha_recepcion: {
+                    required: "La fecha de recepcion es obligatoria"
+                },
+                cantidad_recibida: {
+                    required: "La cantidad recibida es un campo obligatorio",
+                    minlength: "La cantidad recibida es un campo numerico obligatorio"
+                }
             }
-        }
-    })
+        })
+      
+    
+   
    
 
     var tabla
@@ -31,8 +49,15 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+
+        validate();
     }
 
+    $("#cantidad_recibida").on('keyup', function(){
+        $("#btn-guardar").attr("disabled", false);
+    })
+
+        
     function limpiar() {
         $("#fecha_recepcion").val("");
         $("#cantidad_recibida").val("");
@@ -123,7 +148,7 @@ $(document).ready(function() {
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-        
+       
         var recepcion = {
             corte_id: $("#cortesSearch").val(),
             id_lavanderia: $("#lavanderias").val(),
@@ -131,7 +156,6 @@ $(document).ready(function() {
             cantidad_recibida: $("#cantidad_recibida").val(),
             estandar_recibido: $("input[name='r1']:checked").val(),
         };
-
 
         $.ajax({
             url: "recepcion",
@@ -265,6 +289,7 @@ $(document).ready(function() {
             $("#corte").hide();
             $("#corteEdit").hide();
             $("#lavanderiaEdit").hide();
+            $("#btn-guardar").attr("disabled", true);
         }
     }
 

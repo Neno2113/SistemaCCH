@@ -102,6 +102,9 @@ class LavanderiaController extends Controller
             ->editColumn('enviado', function ($lavanderia) {
                 return ($lavanderia->enviado == 1 ? 'Si' : 'No');
             })
+            ->editColumn('fecha_envio', function ($lavanderia) {
+                return date("d-m-20y", strtotime($lavanderia->fecha_envio));
+            })
             ->addColumn('Opciones', function ($lavanderia) {
                 return 
                 '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.

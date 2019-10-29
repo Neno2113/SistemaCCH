@@ -1,5 +1,7 @@
 @extends('adminlte.layout')
 
+@section('seccion', 'Cortes')
+
 @section('title', 'Lavanderia')
 
 @section('content')
@@ -14,7 +16,13 @@
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center  border-top">
+            <div class="card-header text-center ">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
                 <h4><strong>Envio lavanderia</strong></h4>
             </div>
             <div class="card-body">
@@ -43,7 +51,8 @@
                                 </select>
                             </div>
                             <div id="productoEdit" class="mt-3">
-                                <select name="tags[]" id="productosEdit" class="form-control select2" style="width:100%">
+                                <select name="tags[]" id="productosEdit" class="form-control select2"
+                                    style="width:100%">
                                 </select>
                             </div>
                             <input type="text" name="" id="referencia_producto" class="form-control text-center mt-3"
@@ -59,7 +68,7 @@
                                 <select name="tags[]" id="cortesSearch" class="form-control select2">
                                 </select>
                             </div>
-                           
+
                             <div id="corteEdit">
                                 <select name="tags[]" id="cortesSearchEdit" class="form-control select2">
                                 </select>
@@ -84,12 +93,12 @@
                     <div class="row mt-5">
                         <div class="col-4">
                             <label for="">Fecha(*):</label>
-                            <input type="date" name="" id="fecha_envio" class="form-control">
+                            <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
                         </div>
 
                         <div class="col-4">
                             <label for="">Cantidad(*):</label>
-                            <input type="text" name="" id="cantidad" class="form-control">
+                            <input type="text" name="cantidad" id="cantidad" class="form-control">
                         </div>
                         <div class="col-4 pl-5">
                             <label for="">¿Estandar incluido?</label>
@@ -114,11 +123,11 @@
                     <div class="row mt-3">
                         <div class="col-6">
                             <label for="">Receta de lavado(*):</label>
-                            <textarea name="" id="receta_lavado" cols="30" rows="1" class="form-control"></textarea>
+                            <textarea name="receta_lavado" id="receta_lavado" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
             </div>
-            <div class="card-footer bg-light text-muted border-bottom d-flex justify-content-end">
+            <div class="card-footer   d-flex justify-content-end">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>
