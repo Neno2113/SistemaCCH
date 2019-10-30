@@ -33,20 +33,28 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="">Tipo de perdida(*)</label>
+                            <input type="hidden" name="id" id="id" value="">
+                            <input type="hidden" name="sec" id="sec" value="">
+                            <input type="hidden" name="sec_segunda" id="sec_segunda" value="">
                             <select name="tipo_perdida" id="tipo_perdida" class="form-control">
-                                <option value=""></option>
+                                <option value="Normal"></option>
                                 <option value="Normal">Normal</option>
                                 <option value="Segundas">Segundas</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Referencia producto(*):</label>
+                            <select name="productos" id="productos" class="form-control select2">
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-3 mt-4 pt-2 mr-3">
-                            <input type="text" name="no_perdida" id="no_perdida" class="form-control" readonly>
+                            <input type="text" name="no_perdida" id="no_perdida" class="form-control text-center" readonly>
                         </div>
                         <div class="col-3">
                             <div class="mt-4 pt-2">
-                                <button class="btn btn-primary ">Generar</button>
+                                <button class="btn btn-primary " id="btn-generar">Generar</button>
                             </div>
                         </div>
                     </div>
@@ -57,7 +65,6 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="">Corte(*):</label>
-                            <input type="hidden" name="" id="id">
                             <div id="corteAdd">
                                 <select name="cortesSearch" id="cortesSearch" class="form-control select2">
                                 </select>
@@ -86,9 +93,17 @@
                                 <option value=""></option>
                             </select>
                         </div>
-
                     </div>
-
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2"
+                                data-toggle="modal" data-target=".bd-talla-modal-xl">Reportar perdidas 
+                                 <i class="fas fa-sort-alpha-down"></i></button>
+                        </div>
+                    </div>
 
             </div>
             <div class="card-footer text-muted d-flex justify-content-end ">
@@ -100,20 +115,20 @@
     </div>
 </div>
 
-{{-- <div class="container" id="listadoUsers">
-    <table id="recepciones" class="table table-striped table-bordered datatables">
+<div class="container" id="listadoUsers">
+    <table id="perdidas" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>
                 <th>Acciones</th>
-                <th>Num. Recepcion</th>
-                <th>F. Recepcion </th>
-                <th>C. Recibida</th>
+                <th>Num. Perdida</th>
+                <th>Tipo perdida </th>
+                <th>Fecha</th>
                 <th>Corte</th>
-                <th>Num. Envio</th>
-                <th>F. Envio</th>
-                <th>Cantidad Enviada</th>
-                <th>Estandar Recibido</th>
+                <th>Ref. Producto</th>
+                <th>Fase</th>
+                <th>Motivo</th>
+                <th>Perdida sin talla</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -121,18 +136,136 @@
             <tr>
                 <th></th>
                 <th>Acciones</th>
-                <th>Num. Recepcion</th>
-                <th>F. Recepcion </th>
-                <th>C. Recibida</th>
+                <th>Num. Perdida</th>
+                <th>Tipo perdida </th>
+                <th>Fecha</th>
                 <th>Corte</th>
-                <th>Num. Envio</th>
-                <th>F. Envio</th>
-                <th>Cantidad Enviada</th>
-                <th>Estandar Recibido</th>
+                <th>Ref. Producto</th>
+                <th>Fase</th>
+                <th>Motivo</th>
+                <th>Perdida sin talla</th>
             </tr>
         </tfoot>
     </table>
-</div> --}}
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reportas perdidas(*):</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label for="">Elija el genero: </label>
+                    <div class="col-md-6 mb-2">
+                        <select name="genero" id="genero" class="form-control">
+                            <option value="Niño"></option>
+                            <option value="Niño">Niño</option>
+                            <option value="Niña">Niña</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Mujer Plus">Mujer Plus</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Tipo producto</th>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>C</th>
+                                <th>D</th>
+                                <th>E</th>
+                                <th>F</th>
+                                <th>G</th>
+                                <th>H</th>
+                                <th>I</th>
+                                <th>J</th>
+                                <th>K</th>
+                                <th>L</th>
+                            </tr>
+                        </thead>
+                        <tr id="tallas">
+                            
+                        </tr>
+                    
+                    </table>
+                </div>
+                <br>
+                <br>
+                <div class="row mt-2">
+                    <div class="col-lg-1 col-xs-">
+                        <label for="" class="ml-4">A</label>
+                        <input type="text" name="" id="a" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">B</label>
+                        <input type="text" name="" id="b" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">C</label>
+                        <input type="text" name="" id="c" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">D</label>
+                        <input type="text" name="" id="d" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">E</label>
+                        <input type="text" name="" id="e" class="form-control">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="" class="ml-4">F</label>
+                        <input type="text" name="" id="f" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">G</label>
+                        <input type="text" name="" id="g" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">H</label>
+                        <input type="text" name="" id="h" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">I</label>
+                        <input type="text" name="" id="i" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">J</label>
+                        <input type="text" name="" id="j" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">K</label>
+                        <input type="text" name="" id="k" class="form-control">
+                    </div>
+                    <div class="col-lg-1">
+                        <label for="" class="ml-4">L</label>
+                        <input type="text" name="" id="l" class="form-control">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <label for="" class="mt-4">Talla x:</label>
+                    <div class="col-md-6 mt-3">
+                        <input type="text" name="talla_x" id="talla_x" class="form-control text-center" 
+                        placeholder="Solo utilizar esta talla cuando la talla no sea conocida">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -1,93 +1,161 @@
 $(document).ready(function() {
-
-    
     $("#formulario").validate({
-  rules: {
-      cortesSearch: {
-          required: true,
-          minlength: 1
-      },
-      lavanderias: {
-          required: true,
-          minlength: 1
-          
-      },
-      fecha_recepcion: {
-          required: true,
-          minlength: 1
-      },
-      cantidad_recibida: {
-          required: true,
-          minlength: 2
-      }
-    
-  },
-  messages: {
-      codigo_composicion: {
-          required: "El numero de corte es obligatorio"
-      },
-      nombre_composicion: {
-          required: "La lavanderia es obligatoria"
-      },
-      fecha_recepcion: {
-          required: "La fecha de recepcion es obligatoria"
-      },
-      cantidad_recibida: {
-          required: "La cantidad recibida es un campo obligatorio",
-          minlength: "La cantidad recibida es un campo numerico obligatorio"
-      }
-  }
-})
+        rules: {
+            cortesSearch: {
+                required: true,
+                minlength: 1
+            },
+            lavanderias: {
+                required: true,
+                minlength: 1
+            },
+            fecha_recepcion: {
+                required: true,
+                minlength: 1
+            },
+            cantidad_recibida: {
+                required: true,
+                minlength: 2
+            }
+        },
+        messages: {
+            codigo_composicion: {
+                required: "El numero de corte es obligatorio"
+            },
+            nombre_composicion: {
+                required: "La lavanderia es obligatoria"
+            },
+            fecha_recepcion: {
+                required: "La fecha de recepcion es obligatoria"
+            },
+            cantidad_recibida: {
+                required: "La cantidad recibida es un campo obligatorio",
+                minlength:
+                    "La cantidad recibida es un campo numerico obligatorio"
+            }
+        }
+    });
 
+    var tabla;
 
-
-
-
-var tabla
-
-function init() {
-listar();
-mostrarForm(false);
-$("#btn-edit").hide();
-}
-
-$("#fase").change(function(){
-    var val = $(this).val();
-    if(val == "Produccion"){
-        $("#motivo").html(
-            "<option value='Error del operador'>1. Error del operador</option>"+
-            "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>"+
-            "<option value='Defecto de tela'>3. Defecto de tela</option>"+
-            "<option value='Fallo en Dpto.corte'>4. Fallo en Dpto.corte</option>"+
-            "<option value='Extraviado'>5. Extraviado</option>"
-            )
-    }else if(val == "Procesos secos"){
-        $("#motivo").html(
-            "<option value='Error del operador'>1. Error del operador</option>"+
-            "<option value='Extraviado'>2. Extraviado</option>"
-            )
-    }else if(val == "Lavanderia"){
-        $("#motivo").html(
-            "<option value='Rotos'>1. Rotos</option>"+
-            "<option value='Manchados'>2. Manchados</option>"+
-            "<option value='Extraviado'>3. Extraviado</option>"
-            )
-    }else if(val == "Terminacion"){
-        $("#motivo").html(
-            "<option value='Error del operador'>1. Error del operador</option>"+
-            "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>"+
-            "<option value='Defecto de tela'>3. Defecto de tela</option>"+
-            "<option value='Fallo en Dpto. corte'>4. Fallo en Dpto. corte</option>"+
-            "<option value='Extraviado'>5. Extraviado </option>"
-            )
-    }else if(val == "Almacen"){
-        $("#motivo").html(
-            "<option value='Extraviado'>1. Extraviado</option>"+
-            "<option value='Termita'>2. Termita</option>"+
-            "<option value='Reaccion luz'>3. Reaccion a la luz</option>"
-            )
+    function init() {
+        listar();
+        mostrarForm(false);
+        $("#btn-edit").hide();
     }
-});
+
+    $("#fase").change(function() {
+        var val = $(this).val();
+        if (val == "Produccion") {
+            $("#motivo").html(
+                "<option value='Error del operador'>1. Error del operador</option>" +
+                    "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
+                    "<option value='Defecto de tela'>3. Defecto de tela</option>" +
+                    "<option value='Fallo en Dpto.corte'>4. Fallo en Dpto.corte</option>" +
+                    "<option value='Extraviado'>5. Extraviado</option>"
+            );
+        } else if (val == "Procesos secos") {
+            $("#motivo").html(
+                "<option value='Error del operador'>1. Error del operador</option>" +
+                    "<option value='Extraviado'>2. Extraviado</option>"
+            );
+        } else if (val == "Lavanderia") {
+            $("#motivo").html(
+                "<option value='Rotos'>1. Rotos</option>" +
+                    "<option value='Manchados'>2. Manchados</option>" +
+                    "<option value='Extraviado'>3. Extraviado</option>"
+            );
+        } else if (val == "Terminacion") {
+            $("#motivo").html(
+                "<option value='Error del operador'>1. Error del operador</option>" +
+                    "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
+                    "<option value='Defecto de tela'>3. Defecto de tela</option>" +
+                    "<option value='Fallo en Dpto. corte'>4. Fallo en Dpto. corte</option>" +
+                    "<option value='Extraviado'>5. Extraviado </option>"
+            );
+        } else if (val == "Almacen") {
+            $("#motivo").html(
+                "<option value='Extraviado'>1. Extraviado</option>" +
+                    "<option value='Termita'>2. Termita</option>" +
+                    "<option value='Reaccion luz'>3. Reaccion a la luz</option>"
+            );
+        } else if (val == "") {
+            $("#motivo").html("<option value=''> </option>");
+        }
+    });
+
+    $("#genero").change(function() {
+        var val = $(this).val();
+        if (val == "Niño") {
+            $("#tallas").html(
+                            "<th>Niño</th>"+
+                            "<th>2</th>"+
+                            "<th>4</th>"+
+                            "<th>6</th>"+
+                            "<th>8</th>"+
+                            "<th>10</th>"+
+                            "<th>12</th>"+
+                            "<th>14</th>"+
+                            "<th>16</th>"
+            );
+        } else if (val == "Niña") {
+            $("#tallas").html(
+                "<th>Niña</th>"+
+                "<th>2</th>"+
+                "<th>4</th>"+
+                "<th>6</th>"+
+                "<th>8</th>"+
+                "<th>10</th>"+
+                "<th>12</th>"+
+                "<th>14</th>"+
+                "<th>16</th>"
+            );
+        } else if (val == "Mujer") {
+            $("#tallas").html(
+                "<th>Dama TA</th>"+
+                "<th>0/0</th>"+
+                "<th>1/2</th>"+
+                "<th>3/4</th>"+
+                "<th>5/6</th>"+
+                "<th>7/8</th>"+
+                "<th>9/10</th>"+
+                "<th>11/12</th>"+
+                "<th>13/14</th>"+
+                "<th>15/16</th>"+
+                "<th>17/18</th>"+
+                "<th>19/20</th>"+
+                "<th>21/22</th>"
+            );
+        } else if (val == "Mujer Plus") {
+            $("#tallas").html(
+                "<th>Dama Plus</th>"+
+                "<th>12W</th>"+
+                "<th>14W</th>"+
+                "<th>16W</th>"+
+                "<th>18W</th>"+
+                "<th>20W</th>"+
+                "<th>22W</th>"+
+                "<th>24W</th>"+
+                "<th>26W</th>"
+            );
+        } else if (val == "Hombre") {
+            $("#tallas").html(
+                "<th>Caballero Skinny</th>"+
+                "<th>28</th>"+
+                "<th>29</th>"+
+                "<th>30</th>"+
+                "<th>32</th>"+
+                "<th>34</th>"+
+                "<th>36</th>"+
+                "<th>38</th>"+
+                "<th>40</th>"+
+                "<th>42</th>"+
+                "<th>44</th>"
+            );
+        } else if (val == "") {
+            $("#motivo").html("<option value=''> </option>");
+        }
+    });
 
 
 
@@ -95,194 +163,305 @@ $("#fase").change(function(){
 
 
 
-$("#cantidad_recibida").on('keyup', function(){
-$("#btn-guardar").attr("disabled", false);
-})
+
+    $("#a").on("keyup", function() {
+        $("#btn-guardar").attr("disabled", false);
+    });
+
+    function limpiar() {
+        $("#fase").val("");
+        $("#motivo").val("");
+        $("#cortesSearch").val("").trigger("change");
+        $("#productos").val("").trigger("change");
+        $("#no_perdida").val("");
+        $("#sec").val("");
+        $("#sec_segunda").val("");
+        $("#tipo_perdida").val("");
+        $("#fecha").val("");
+        $("#a").val("");
+        $("#b").val("");
+        $("#c").val("");
+        $("#e").val("");
+        $("#f").val("");
+        $("#g").val("");
+        $("#h").val("");
+        $("#i").val("");
+        $("#j").val("");
+        $("#k").val("");
+        $("#l").val("");
+
+    }
+
+    $("#cortesSearch").select2({
+        placeholder: "Buscar un numero de corte Ej: 2019-xxx",
+        ajax: {
+            url: "cortes_perd",
+            dataType: "json",
+            delay: 250,
+            processResults: function(data) {
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            text: item.numero_corte + " - " + item.fase,
+                            id: item.id
+                        };
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+    $("#productos").select2({
+        placeholder: "Busca una referencia de producto...",
+        ajax: {
+            url: 'products',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: $.map(data, function(item){
+                        return {
+                            text: item.referencia_producto,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    })
+
+    //funcion para generar codigo de perdida o segunda
+    $("#btn-generar").on("click", function(e) {
+        e.preventDefault();
+
+            $.ajax({
+                url: "perdida/lastdigit",
+                type: "GET",
+                dataType: "json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        var i = Number(datos.sec);
+                        $("#sec").val(i);
+                        i = (i + 0.01)
+                            .toFixed(2)
+                            .split(".")
+                            .join("");
+                        var referencia = "PE-" + i;
+
+                        $("#no_perdida").val(referencia);
+
+                        bootbox.alert(
+                            "Numero de perdida generado exitosamente!!"
+                        );
+                    } else {
+                        bootbox.alert("Ocurrio un error !!");
+                    }
+                },
+                error: function() {
+                    bootbox.alert("Ocurrio un error!!");
+                }
+            });
+       
+           
+    });
+
+    $("#btn-guardar").click(function(e) {
+        e.preventDefault();
+
+        var perdida = {
+            corte_id: $("#cortesSearch").val(),
+            fecha: $("#fecha").val(),
+            tipo_perdida: $("#tipo_perdida").val(),
+            fase: $("#fase").val(),
+            motivo: $("#motivo").val(),
+            no_perdida: $("#no_perdida").val(),
+            sec: $("#sec").val(),
+            producto_id: $("#productos").val(),
+            perdida_x: $("#talla_x").val()
+        };
+
+        $.ajax({
+            url: "perdida",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(perdida),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                
+                    bootbox.alert(
+                        "Se registro correctamente la perdida: "+ datos.perdida.no_perdida
+                    );
+                    limpiar();
+                    tabla.ajax.reload();
+                    mostrarForm(false);
+
+                    var talla = {
+                        perdida_id: datos.perdida.id,
+                        a: $("#a").val(),
+                        b: $("#b").val(),
+                        c: $("#c").val(),
+                        d: $("#d").val(),
+                        e: $("#e").val(),
+                        f: $("#f").val(),
+                        g: $("#g").val(),
+                        h: $("#h").val(),   
+                        i: $("#i").val(),
+                        j: $("#j").val(),
+                        k: $("#k").val(),
+                        l: $("#l").val()
+                    };
+
+                    $.ajax({
+                        url: "perdida_tallas",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(talla),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                               
+                                limpiar();
+            
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function(datos) {
+                            console.log(datos.responseJSON.message);
+            
+                            bootbox.alert("Error: " + datos.responseJSON.message);
+                        }
+                    });
 
 
-function limpiar() {
-$("#fecha_recepcion").val("");
-$("#cantidad_recibida").val("");
-$("#cortesSearch").val("").trigger("change");
-$("#lavanderias").val("").trigger("change");
-}
 
-$("#cortesSearch").select2({
-placeholder: "Buscar un numero de corte Ej: 2019-xxx",
-ajax: {
-  url: 'cortes_perd',
-  dataType: 'json',
-  delay: 250,
-  processResults: function(data){
-      return {
-          results: $.map(data, function(item){
-              return {
-                  text: item.numero_corte+' - '+item.fase,
-                  id: item.id
-              }
-          })
-      };
-  },
-  cache: true
-}
-})
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.message);
 
+                bootbox.alert("Error: " + datos.responseJSON.message);
+            }
+        });
+    });
 
+    function listar() {
+        tabla = $("#perdidas").DataTable({
+            serverSide: true,
+            responsive: true,
+            dom: "Bfrtip",
+            buttons: [
+                "pageLength",
+                "copyHtml5",
+                {
+                    extend: "excelHtml5",
+                    autoFilter: true,
+                    sheetName: "Exported data"
+                },
+                "csvHtml5",
+                {
+                    extend: "pdfHtml5",
+                    orientation: "landscape",
+                    pageSize: "LEGAL"
+                }
+            ],
+            ajax: "api/perdidas",
+            columns: [
+                { data: "Expandir", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
+                { data: "no_perdida", name: "perdidas.no_perdida" },
+                { data: "tipo_perdida", name: "perdidas.tipo_perdida" },
+                {data: "fecha",name: "perdidas.fecha"},
+                { data: "numero_corte", name: "corte.numero_corte" },
+                { data: "referencia_producto", name: "producto.referencia_producto" },
+                { data: "fase", name: "perdidas.fase" },
+                { data: "motivo", name: "perdidas.motivo" },
+                {data: "perdida_x",name: "perdidas.perdida_x"}
+            ]
+        });
+    }
 
-$("#btn-guardar").click(function(e){
-e.preventDefault();
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
 
-var recepcion = {
-  corte_id: $("#cortesSearch").val(),
-  id_lavanderia: $("#lavanderias").val(),
-  fecha_recepcion: $("#fecha_recepcion").val(),
-  cantidad_recibida: $("#cantidad_recibida").val(),
-  estandar_recibido: $("input[name='r1']:checked").val(),
-};
+        var recepcion = {
+            id: $("#id").val(),
+            corte_id: $("#cortesSearchEdit").val(),
+            id_lavanderia: $("#lavanderiasEdit").val(),
+            fecha_recepcion: $("#fecha_recepcion").val(),
+            cantidad_recibida: $("#cantidad_recibida").val(),
+            estandar_recibido: $("input[name='r1']:checked").val()
+        };
 
-$.ajax({
-  url: "recepcion",
-  type: "POST",
-  dataType: "json",
-  data: JSON.stringify(recepcion),
-  contentType: "application/json",
-  success: function(datos) {
-      if (datos.status == "success") {
-          bootbox.alert("Hi!! here goes almost everything important from the form of Lavanderia");
-          limpiar();
-          tabla.ajax.reload();
-          mostrarForm(false);
-      } else {
-          bootbox.alert(
-              "Ocurrio un error durante la creacion de la composicion"
-          );
-      }
-  },
-  error: function(datos) {
-      console.log(datos.responseJSON.message);
-     
-      bootbox.alert(
-          "Error: "+ datos.responseJSON.message
-      );
-  }
-});
-});
+        // console.log(JSON.stringify(recepcion));
 
-function listar() {
-tabla = $("#recepciones").DataTable({
-  serverSide: true,
-  responsive: true,
-  dom: 'Bfrtip',
-  buttons: [
-      'pageLength',
-      'copyHtml5',
-       {
-          extend: 'excelHtml5',
-          autoFilter: true,
-          sheetName: 'Exported data'
-      },
-      'csvHtml5',
-      {
-          extend: 'pdfHtml5',
-          orientation: 'landscape',
-          pageSize: 'LEGAL'
-      }
-      ],
-  ajax: "api/recepciones",
-  columns: [
-      { data: "Expandir", orderable: false, searchable: false },
-      { data: "Opciones", orderable: false, searchable: false },
-      { data: "id", name: "recepcion.id" },
-      { data: "fecha_recepcion", name: "recepcion.fecha_recepcion" },
-      { data: "cantidad_recibida", name: "recepcion.cantidad_recibida" },
-      { data: "numero_corte", name: "corte.numero_corte" },
-      { data: "numero_envio", name: "lavanderia.numero_envio" },
-      { data: "fecha_envio", name: "lavanderia.fecha_envio" },
-      { data: "cantidad", name: "lavanderia.cantidad" },
-      { data: "estandar_recibido", name: "recepcion.estandar_recibido" },
-    
-  ]
-});
-}
+        $.ajax({
+            url: "recepcion/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(recepcion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se actualizo correctamente la recepcion");
+                    limpiar();
+                    tabla.ajax.reload();
+                    mostrarForm(false);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                bootbox.alert("Error: " + datos.responseJSON.message);
+            }
+        });
+    });
 
-$("#btn-edit").click(function(e) {
-e.preventDefault();
+    function mostrarForm(flag) {
+        limpiar();
+        if (flag) {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#estandar_recibido").hide();
+            $("#lavanderia").hide();
+            $("#corte").hide();
+            $("#corteAdd").show();
+            $("#corteEdit").hide();
+            $("#lavanderiaAdd").show();
+            $("#lavanderiaEdit").hide();
+        } else {
+            $("#listadoUsers").show();
+            $("#registroForm").hide();
+            $("#btnCancelar").hide();
+            $("#btnAgregar").show();
+            $("#estandar_recibido").hide();
+            $("#lavanderia").hide();
+            $("#corte").hide();
+            $("#corteEdit").hide();
+            $("#lavanderiaEdit").hide();
+              $("#btn-guardar").attr("disabled", true);
+        }
+    }
 
-var recepcion = {
-  id: $("#id").val(),
-  corte_id: $("#cortesSearchEdit").val(),
-  id_lavanderia: $("#lavanderiasEdit").val(),
-  fecha_recepcion: $("#fecha_recepcion").val(),
-  cantidad_recibida: $("#cantidad_recibida").val(),
-  estandar_recibido: $("input[name='r1']:checked").val(),
-};
+    $("#btnAgregar").click(function(e) {
+        mostrarForm(true);
+    });
+    $("#btnCancelar").click(function(e) {
+        mostrarForm(false);
+    });
 
-// console.log(JSON.stringify(recepcion));
-
-$.ajax({
-  url: "recepcion/edit",
-  type: "PUT",
-  dataType: "json",
-  data: JSON.stringify(recepcion),
-  contentType: "application/json",
-  success: function(datos) {
-      if (datos.status == "success") {
-          bootbox.alert("Se actualizo correctamente la recepcion");
-          limpiar();
-          tabla.ajax.reload();
-          mostrarForm(false);
-      
-      } else {
-          bootbox.alert(
-              "Ocurrio un error durante la actualizacion de la composicion"
-          );
-      }
-  },
-  error: function(datos) {
-      bootbox.alert(
-          "Error: "+ datos.responseJSON.message
-      );
-  }
-});
-
-});
-
-
-function mostrarForm(flag) {
-limpiar();
-if (flag) {
-  $("#listadoUsers").hide();
-  $("#registroForm").show();
-  $("#btnCancelar").show();
-  $("#btnAgregar").hide();
-  $("#estandar_recibido").hide();
-  $("#lavanderia").hide();
-  $("#corte").hide();
-  $("#corteAdd").show();
-  $("#corteEdit").hide();
-  $("#lavanderiaAdd").show();
-  $("#lavanderiaEdit").hide();
-} else {
-  $("#listadoUsers").show();
-  $("#registroForm").hide();
-  $("#btnCancelar").hide();
-  $("#btnAgregar").show();
-  $("#estandar_recibido").hide();
-  $("#lavanderia").hide();
-  $("#corte").hide();
-  $("#corteEdit").hide();
-  $("#lavanderiaEdit").hide();
-//   $("#btn-guardar").attr("disabled", true);
-}
-}
-
-$("#btnAgregar").click(function(e) {
-mostrarForm(true);
-});
-$("#btnCancelar").click(function(e) {
-mostrarForm(false);
-});
-
-
-init();
+    init();
 });

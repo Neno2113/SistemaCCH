@@ -180,3 +180,7 @@ Route::post('/recepcion/delete/{id}', 'RecepcionController@destroy');
 
 //Perdida
 Route::get('cortes_perd', 'PerdidaController@selectCorte');
+Route::get('perdida/lastdigit', 'PerdidaController@getDigits');
+Route::get('segunda/lastdigit', 'PerdidaController@getSegundaDigits');
+Route::post('/perdida', 'PerdidaController@store');
+Route::post('/perdida_tallas', 'PerdidaController@storeTalla');
