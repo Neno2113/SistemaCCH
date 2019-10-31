@@ -165,6 +165,7 @@ Route::get('/imprimir/conduce/{id}', 'LavanderiaController@imprimir')->name('pri
 Route::put('/lavanderia/edit', 'LavanderiaController@update');
 Route::post('/lavanderia/delete/{id}', 'LavanderiaController@destroy');
 Route::get('/conduce/{id}', 'LavanderiaController@Agregar');
+Route::post('/cantidades', 'LavanderiaController@cantidad');
 
 
 //Recepcion o Terminacion

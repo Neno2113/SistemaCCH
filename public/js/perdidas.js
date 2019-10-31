@@ -87,6 +87,18 @@ $(document).ready(function() {
     $("#genero").change(function() {
         var val = $(this).val();
         if (val == "Niño") {
+            $("#ta").html("2");
+            $("#tb").html("4");
+            $("#tc").html("6");
+            $("#td").html("8");
+            $("#te").html("10");
+            $("#tf").html("12");
+            $("#tg").html("14");
+            $("#th").html("16");
+            $("#i").attr('disabled', true);
+            $("#j").attr('disabled', true);
+            $("#k").attr('disabled', true);
+            $("#l").attr('disabled', true);
             $("#tallas").html(
                             "<th>Niño</th>"+
                             "<th>2</th>"+
@@ -99,6 +111,18 @@ $(document).ready(function() {
                             "<th>16</th>"
             );
         } else if (val == "Niña") {
+            $("#ta").html("2");
+            $("#tb").html("4");
+            $("#tc").html("6");
+            $("#td").html("8");
+            $("#te").html("10");
+            $("#tf").html("12");
+            $("#tg").html("14");
+            $("#th").html("16");
+            $("#i").attr('disabled', true);
+            $("#j").attr('disabled', true);
+            $("#k").attr('disabled', true);
+            $("#l").attr('disabled', true);
             $("#tallas").html(
                 "<th>Niña</th>"+
                 "<th>2</th>"+
@@ -111,6 +135,22 @@ $(document).ready(function() {
                 "<th>16</th>"
             );
         } else if (val == "Mujer") {
+            $("#ta").html("0/0");
+            $("#tb").html("1/2");
+            $("#tc").html("3/4");
+            $("#td").html("5/6");
+            $("#te").html("7/8");
+            $("#tf").html("9/10");
+            $("#tg").html("11/12");
+            $("#th").html("13/14");
+            $("#ti").html("15/16");
+            $("#tj").html("17/18");
+            $("#tk").html("19/20");
+            $("#tl").html("21/22");
+            $("#i").attr('disabled', false);
+            $("#j").attr('disabled', false);
+            $("#k").attr('disabled', false);
+            $("#l").attr('disabled', false);
             $("#tallas").html(
                 "<th>Dama TA</th>"+
                 "<th>0/0</th>"+
@@ -127,6 +167,18 @@ $(document).ready(function() {
                 "<th>21/22</th>"
             );
         } else if (val == "Mujer Plus") {
+            $("#ta").html("12W");
+            $("#tb").html("14W");
+            $("#tc").html("16W");
+            $("#td").html("18W");
+            $("#te").html("20W");
+            $("#tf").html("22W");
+            $("#tg").html("24W");
+            $("#th").html("26W");
+            $("#i").attr('disabled', true);
+            $("#j").attr('disabled', true);
+            $("#k").attr('disabled', true);
+            $("#l").attr('disabled', true);
             $("#tallas").html(
                 "<th>Dama Plus</th>"+
                 "<th>12W</th>"+
@@ -139,6 +191,20 @@ $(document).ready(function() {
                 "<th>26W</th>"
             );
         } else if (val == "Hombre") {
+            $("#ta").html("28");
+            $("#tb").html("29");
+            $("#tc").html("30");
+            $("#td").html("32");
+            $("#te").html("34");
+            $("#tf").html("36");
+            $("#tg").html("38");
+            $("#th").html("40");
+            $("#ti").html("42");
+            $("#tj").html("44");
+            $("#i").attr('disabled', false);
+            $("#j").attr('disabled', false);
+            $("#k").attr('disabled', true);
+            $("#l").attr('disabled', true);
             $("#tallas").html(
                 "<th>Caballero Skinny</th>"+
                 "<th>28</th>"+
@@ -380,12 +446,12 @@ $(document).ready(function() {
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "no_perdida", name: "perdidas.no_perdida" },
                 { data: "tipo_perdida", name: "perdidas.tipo_perdida" },
-                {data: "fecha",name: "perdidas.fecha"},
+                { data: "fecha",name: "perdidas.fecha"},
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
                 { data: "fase", name: "perdidas.fase" },
                 { data: "motivo", name: "perdidas.motivo" },
-                {data: "perdida_x",name: "perdidas.perdida_x"}
+                {data: "perdida_X",name: "perdidas.perdida_X"}
             ]
         });
     }

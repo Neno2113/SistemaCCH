@@ -48,6 +48,53 @@ $(document).ready(function() {
         $("#btn-guardar").attr('disabled', false);
     })
 
+    $("#fecha_envio").on('change', function(){
+        var corte = {
+            corte_id: $("#cortesSearch").val(),
+            producto_id: $("#productos").val()
+        };
+
+        $.ajax({
+            url: "cantidades",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(corte),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let cantidad_restante = datos.total_enviado;
+                    let cantidad_corte = datos.total_cortado;
+                    let cantidad_perdida = datos.perdidas;
+                    let parcial = datos.parcial;
+
+                    let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
+                    if(cantidad < 0){
+                        cantidad = 0
+                    }
+
+                    if(cantidad_restante == null || cantidad_restante == 0 && parcial == null || parcial == 0){
+                        
+                        cantidad = cantidad_corte - cantidad_perdida;
+                    }
+
+                    $("#cantidad").val(cantidad);
+                  
+                    bootbox.alert("La cantidad recomendada para enviar es: "+cantidad);
+                   
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error"
+                );
+            }
+        });
+    })
+
     function limpiar() {
         $("#numero_envio").val("");
         $("#fecha_envio").val("");
@@ -111,10 +158,14 @@ $(document).ready(function() {
                             text: item.numero_corte+' - '+item.fase,
                             id: item.id
                         }
-                    })
+                    })   
+                    
                 };
+
+                
             },
-            cache: true
+            cache: true,
+
         }
     })
 

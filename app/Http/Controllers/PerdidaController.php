@@ -94,6 +94,7 @@ class PerdidaController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
+            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l; 
         
             $tallas = new TallasPerdidas();
 
@@ -110,6 +111,7 @@ class PerdidaController extends Controller
             $tallas->j = $j;
             $tallas->k = $k;
             $tallas->l = $l;
+            $tallas->total = $total;
 
             $tallas->save();
 
@@ -137,9 +139,9 @@ class PerdidaController extends Controller
             ->editColumn('fecha', function ($perdida) {
                 return date("d-m-20y", strtotime($perdida->fecha));
             })
-            // ->editColumn('name', function ($product) {
-            //     return "$product->name $product->surname";
-            // })
+            ->editColumn('perdida_X', function ($perdida) {
+                return ($perdida->perdida_X == null ? 0 : 0);
+            })
             ->addColumn('Opciones', function ($perdida) {
                 return '<button id="btnEdit" onclick="mostrar(' . $perdida->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
                 '<button onclick="eliminar(' . $perdida->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
