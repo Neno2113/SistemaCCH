@@ -143,15 +143,16 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Opciones</th>
+                <th>Actions</th>
                 <th>Num. Envio</th>
                 <th>Num. Corte</th>
-                <th>Referencia</th>
-                <th>Fecha Envio</th>
-                <th>Cantidad</th>
+                <th>Ref.</th>
+                <th>Fecha Env.</th>
                 <th>Enviado</th>
-                <th>Lavanderia</th>
-                <th>Estandar incluido</th>
+                <th>T. Enviado</th>
+                <th>T. Cortado</th>
+                <th>Lav.</th>
+                <th>Estandar </th>
                 <th>Receta</th>
             </tr>
         </thead>
@@ -159,15 +160,16 @@
         <tfoot>
             <tr>
                 <th></th>
-                <th>Opciones</th>
+                <th>Actions</th>
                 <th>Num. Envio</th>
                 <th>Num. Corte</th>
-                <th>Referencia</th>
-                <th>Fecha Envio</th>
-                <th>Cantidad</th>
+                <th>Ref.</th>
+                <th>Fecha Env.</th>
                 <th>Enviado</th>
-                <th>Lavanderia</th>
-                <th>Estandar incluido</th>
+                <th>T. Enviado</th>
+                <th>T. Cortado</th>
+                <th>Lav.</th>
+                <th>Estandar </th>
                 <th>Receta</th>
             </tr>
         </tfoot>

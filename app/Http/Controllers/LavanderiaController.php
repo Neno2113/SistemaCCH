@@ -66,6 +66,7 @@ class LavanderiaController extends Controller
 
             $porcentaje = ($total_enviado/$cant_total) * 100;
 
+
             if($porcentaje > 90.00){
                 $corte->fase = 'Lavanderia';
                 $corte->save();
@@ -92,7 +93,8 @@ class LavanderiaController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'lavanderia' => $lavanderia
+                'lavanderia' => $lavanderia,
+                'porcentaje' => $porcentaje
             ];
         }
 
@@ -172,7 +174,10 @@ class LavanderiaController extends Controller
             ->join('producto', 'lavanderia.producto_id', '=', 'producto.id')
             ->join('suplidor', 'suplidor_id', '=', 'suplidor.id')
             ->select([
-                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase', 'producto.referencia_producto', 'suplidor.nombre', 'lavanderia.enviado'
+                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 
+                'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase', 
+                'producto.referencia_producto', 'suplidor.nombre', 'lavanderia.enviado', 'lavanderia.total_enviado'
+                , 'corte.total', 'lavanderia.cantidad_parcial'
             ]);
 
         return DataTables::of($lavanderia)

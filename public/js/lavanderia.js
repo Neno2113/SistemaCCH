@@ -51,7 +51,8 @@ $(document).ready(function() {
     $("#fecha_envio").on('change', function(){
         var corte = {
             corte_id: $("#cortesSearch").val(),
-            producto_id: $("#productos").val()
+            producto_id: $("#productos").val(),
+            cantidad: $("#cantidad").val()
         };
 
         $.ajax({
@@ -320,13 +321,18 @@ $(document).ready(function() {
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
                 { data: "fecha_envio", name: "lavanderia.fecha_envio" },
-                { data: "cantidad", name: "lavanderia.cantidad" },
-                { data: "enviado", name: "lavanderia.enviado" },
+                { data: "cantidad_parcial", name: "lavanderia.cantidad_parcial" },
+                { data: "total_enviado", name: "lavanderia.total_enviado" },
+                { data: "total", name: "corte.total" },
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
                 { data: "receta_lavado", name: "lavanderia.receta_lavado" },
               
-            ]
+            ],
+            order: [[2, 'asc']],
+            rowGroup: {
+                dataSrc: 'numero_corte'
+            }
         });
     }
 

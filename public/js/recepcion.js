@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     
-              $("#formulario").validate({
+    $("#formulario").validate({
             rules: {
                 cortesSearch: {
                     required: true,
@@ -16,10 +16,7 @@ $(document).ready(function() {
                     required: true,
                     minlength: 1
                 },
-                cantidad_recibida: {
-                    required: true,
-                    minlength: 2
-                }
+              
               
             },
             messages: {
@@ -32,16 +29,11 @@ $(document).ready(function() {
                 fecha_recepcion: {
                     required: "La fecha de recepcion es obligatoria"
                 },
-                cantidad_recibida: {
-                    required: "La cantidad recibida es un campo obligatorio",
-                    minlength: "La cantidad recibida es un campo numerico obligatorio"
-                }
+              
             }
-        })
+    })
       
-    
-   
-   
+
 
     var tabla
 
@@ -49,8 +41,6 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
-
-        validate();
     }
 
     $("#cantidad_recibida").on('keyup', function(){
@@ -115,7 +105,7 @@ $(document).ready(function() {
                 return {
                     results: $.map(data, function(item){
                         return {
-                            text: item.numero_envio+' - Cantidad: '+ item.cantidad,
+                            text: item.numero_envio+' - Cantidad enviada: '+ item.total_enviado,
                             id: item.id
                         }
                     })
@@ -143,6 +133,60 @@ $(document).ready(function() {
             },
             cache: true
         }
+    })
+
+    $("#fecha_recepcion").on('change', function(){
+        var recepcion = {
+            corte_id: $("#cortesSearch").val(),
+            lavanderia_id: $("#lavanderias").val(),
+            cantidad: $("#cantidad_recibida").val()
+        };
+
+        $.ajax({
+            url: "cantidades_recibidas",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(recepcion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    console.log(datos);
+                    let total_enviado = datos.total_enviado;
+                    let cantidad_corte = datos.total_cortado;
+                    let cantidad_perdida = datos.perdidas;
+                    let parcial = datos.envio_parcial;
+                    let total_recibido = datos.total_recibido;
+
+                    $("#cantidad_recibida").val(parcial);
+                    bootbox.alert("La cantidad a recibir de este envio es: "+parcial);
+
+                    // let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
+                    // if(cantidad < 0){
+                    //     cantidad = 0
+                    // }
+
+                    if(total_recibido == null || total_recibido == 0){
+                        $("#cantidad_restante").val(cantidad_corte - cantidad_perdida); 
+                    }else{
+                        $("#cantidad_restante").val(cantidad_corte - total_recibido - cantidad_perdida); 
+                        // bootbox.alert("Se han recibido: "+total_recibido+" de: "+ total_enviado);
+                    }   
+
+                    
+                
+                   
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error"
+                );
+            }
+        });
     })
 
 
@@ -211,14 +255,20 @@ $(document).ready(function() {
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "id", name: "recepcion.id" },
                 { data: "fecha_recepcion", name: "recepcion.fecha_recepcion" },
-                { data: "cantidad_recibida", name: "recepcion.cantidad_recibida" },
+                { data: "recibido_parcial", name: "recepcion.recibido_parcial" },
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "numero_envio", name: "lavanderia.numero_envio" },
                 { data: "fecha_envio", name: "lavanderia.fecha_envio" },
-                { data: "cantidad", name: "lavanderia.cantidad" },
+                // { data: "cantidad", name: "lavanderia.cantidad" },
+                { data: "total_recibido", name: "recepcion.total_recibido" },
+                { data: "total", name: "corte.total" },
                 { data: "estandar_recibido", name: "recepcion.estandar_recibido" },
               
-            ]
+            ],
+            order: [[2, 'asc']],
+            rowGroup: {
+                dataSrc: 'numero_corte'
+            }
         });
     }
 

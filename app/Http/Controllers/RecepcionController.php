@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Recepcion;
 use App\Corte;
 use App\Lavanderia;
+use App\Perdida;
+use App\TallasPerdidas;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -39,24 +41,35 @@ class RecepcionController extends Controller
             $lavanderia = Lavanderia::find($id_lavanderia);
 
             $cantidad = $lavanderia->cantidad;
-            $porciento = $cantidad + $cantidad_recibida;
+            // $porciento = $cantidad + $cantidad_recibida;
 
-            $pc_l = ($cantidad * 100) / ($cantidad + $cantidad_recibida);
-            $pc_r = ($cantidad_recibida * 100) / ($cantidad + $cantidad_recibida);
+            // $pc_l = ($cantidad * 100) / ($cantidad + $cantidad_recibida);
+            // $pc_r = ($cantidad_recibida * 100) / ($cantidad + $cantidad_recibida);
 
-            if ($pc_r > 47.36) {
+            // if ($pc_r > 47.36) {
                 $lavanderia->recibido = 1;
                 $lavanderia->save();
 
                 $corte = Corte::find($corte_id);
-                $corte->fase = 'Terminacion';
-                $corte->save();
+                
+                $recepcion_total = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
+                $total_recibido = $recepcion_total['total_recibido'];
+                $total_cortado = $corte['total'];
+
+                $porcentaje = ($total_recibido/$total_cortado) * 100;
+
+                if($porcentaje > 90.00){
+                    $corte->fase = 'Terminacion';
+                    $corte->save();
+                }
 
                 $recepcion = new Recepcion();
                 $recepcion->corte_id = $corte_id;
                 $recepcion->id_lavanderia = $id_lavanderia;
                 $recepcion->fecha_recepcion = $fecha_recepcion;
-                $recepcion->cantidad_recibida = $cantidad_recibida;
+                $recepcion->recibido_parcial = $cantidad_recibida;
+                $recepcion->total_recibido = $cantidad_recibida + $total_recibido;
+                $recepcion->pendiente = $total_cortado - $cantidad_recibida - $total_recibido;
                 $recepcion->estandar_recibido = $estandar_recibido;
 
                 $recepcion->save();
@@ -66,17 +79,84 @@ class RecepcionController extends Controller
                     'status' => 'success',
                     'recepcion' => $recepcion
                 ];
-            } else {
-                $data = [
-                    'code' => 422,
-                    'status' => 'error',
-                    'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida 
-                    equivale a menos del 90% de la cantidad enviada.'
-                ];
-            }
+            // } else {
+                // $data = [
+                //     'code' => 422,
+                //     'status' => 'error',
+                //     'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida 
+                //     equivale a menos del 90% de la cantidad enviada.'
+                // ];
+            // }
         }
 
         return response()->json($data, $data['code']);
+    }
+
+    public function cantidad(Request $request)
+    {
+        $validate = $request->validate([
+            'corte_id' => 'required'
+        ]);
+
+        if (empty($validate)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        }else{
+
+            $corte_id = $request->input('corte_id');
+            $lavanderia_id = $request->input('lavanderia_id');
+            $lavanderia = Lavanderia::find($lavanderia_id);
+
+            $cantidad_parcial = $lavanderia['cantidad_parcial'];
+
+            $corte = Corte::find($corte_id);
+            $cantidad_total = $corte['total'];
+
+            $perdida = Perdida::where('corte_id', 'LIKE', "$corte_id")->select('id')->get();
+            $perdida_id = array();
+
+            $longitud = count($perdida);
+
+            for ($i=0; $i < $longitud; $i++) { 
+                array_push($perdida_id, $perdida[$i]['id']);
+            }   
+           
+            $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
+            $totales = array();
+           
+            $lent = count($talla_perdida);
+
+            for ($i=0; $i < $lent; $i++) { 
+                array_push($totales, $talla_perdida[$i]['total']);
+                
+            }   
+            $cant_perdida = array_sum($totales);
+
+            $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
+                                            ->get()->last();
+            $total_parcial = $cantidad_enviada['cantidad_parcial'];
+            $total_enviado = $cantidad_enviada['total_enviado'];
+
+            $recepcion = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
+            $total_recibido = $recepcion['total_recibido'];
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'envio_parcial' => $cantidad_parcial,
+                'total_cortado' => $cantidad_total,
+                'perdidas' => $cant_perdida,
+                'total_enviado' => $total_enviado,
+                'total_recibido' => $total_recibido
+
+            ];
+
+        }
+        return \response()->json($data, $data['code']);
     }
 
     public function recepciones()
@@ -84,8 +164,9 @@ class RecepcionController extends Controller
         $recepciones = DB::table('recepcion')->join('corte', 'recepcion.corte_id', '=', 'corte.id')
             ->join('lavanderia', 'recepcion.id_lavanderia', '=', 'lavanderia.id')
             ->select([
-                'recepcion.id', 'recepcion.fecha_recepcion', 'recepcion.cantidad_recibida', 'recepcion.estandar_recibido',
-                'corte.numero_corte', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.cantidad'
+                'recepcion.id', 'recepcion.fecha_recepcion', 'recepcion.recibido_parcial', 'recepcion.estandar_recibido',
+                'corte.numero_corte', 'corte.total', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.cantidad', 
+                'recepcion.total_recibido'
             ]);
 
         return DataTables::of($recepciones)
@@ -141,7 +222,7 @@ class RecepcionController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
-                ->where('fase', 'LIKE', 'Lavanderia')
+                // ->where('fase', 'LIKE', 'Lavanderia')
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }
@@ -169,9 +250,9 @@ class RecepcionController extends Controller
 
         if ($request->has('q')) {
             $search = $request->q;
-            $data = Lavanderia::select("id", "numero_envio", "enviado", "recibido", "cantidad")
-                ->where('enviado', 'LIKE', '1')
-                ->where('recibido', 'LIKE', '0')
+            $data = Lavanderia::select("id", "numero_envio", "enviado", "recibido", "total_enviado")
+                // ->where('enviado', 'LIKE', '1')
+                // ->where('recibido', 'LIKE', '0')
                 ->where('numero_envio', 'LIKE', "%$search%")
                 ->get();
         }

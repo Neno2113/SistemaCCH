@@ -226,10 +226,6 @@ $(document).ready(function() {
 
 
 
-
-
-
-
     $("#a").on("keyup", function() {
         $("#btn-guardar").attr("disabled", false);
     });
@@ -452,36 +448,85 @@ $(document).ready(function() {
                 { data: "fase", name: "perdidas.fase" },
                 { data: "motivo", name: "perdidas.motivo" },
                 {data: "perdida_X",name: "perdidas.perdida_X"}
-            ]
+            ],
+            order: [[2, 'asc']],
+            rowGroup: {
+                dataSrc: 'numero_corte'
+            }
         });
     }
 
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
-        var recepcion = {
+        var perdida = {
             id: $("#id").val(),
-            corte_id: $("#cortesSearchEdit").val(),
-            id_lavanderia: $("#lavanderiasEdit").val(),
-            fecha_recepcion: $("#fecha_recepcion").val(),
-            cantidad_recibida: $("#cantidad_recibida").val(),
-            estandar_recibido: $("input[name='r1']:checked").val()
+            corte_id: $("#cortesSearch").val(),
+            fecha: $("#fecha").val(),
+            tipo_perdida: $("#tipo_perdida").val(),
+            fase: $("#fase").val(),
+            motivo: $("#motivo").val(),
+            no_perdida: $("#no_perdida").val(),
+            producto_id: $("#productos").val(),
+            perdida_x: $("#talla_x").val()
         };
 
-        // console.log(JSON.stringify(recepcion));
-
         $.ajax({
-            url: "recepcion/edit",
+            url: "perdida/edit",
             type: "PUT",
             dataType: "json",
-            data: JSON.stringify(recepcion),
+            data: JSON.stringify(perdida),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizo correctamente la recepcion");
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
+                    bootbox.alert("Se actualizo correctamente la perdida");
+                  
+                    var talla = {
+                        perdida_id: datos.perdida.id,
+                        a: $("#a").val(),
+                        b: $("#b").val(),
+                        c: $("#c").val(),
+                        d: $("#d").val(),
+                        e: $("#e").val(),
+                        f: $("#f").val(),
+                        g: $("#g").val(),
+                        h: $("#h").val(),   
+                        i: $("#i").val(),
+                        j: $("#j").val(),
+                        k: $("#k").val(),
+                        l: $("#l").val()
+                    };
+
+                    console.log(JSON.stringify(talla));
+
+                    $.ajax({
+                        url: "talla_perdidas/edit",
+                        type: "PUT",
+                        dataType: "json",
+                        data: JSON.stringify(talla),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                bootbox.alert("Tallas actualizadas correctamente!!")
+                                limpiar();
+                                tabla.ajax.reload();
+                                mostrarForm(false);
+            
+            
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function(datos) {
+                            console.log(datos.responseJSON.message);
+            
+                            bootbox.alert("Error: " + datos.responseJSON.message);
+                        }
+                    });
+
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"
@@ -508,6 +553,7 @@ $(document).ready(function() {
             $("#corteEdit").hide();
             $("#lavanderiaAdd").show();
             $("#lavanderiaEdit").hide();
+            $("#referencia_producto").show();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -518,7 +564,8 @@ $(document).ready(function() {
             $("#corte").hide();
             $("#corteEdit").hide();
             $("#lavanderiaEdit").hide();
-              $("#btn-guardar").attr("disabled", true);
+            $("#btn-guardar").attr("disabled", true);
+            $("#referencia_producto").hide();
         }
     }
 

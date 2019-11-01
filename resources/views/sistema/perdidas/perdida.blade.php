@@ -37,20 +37,23 @@
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="sec_segunda" id="sec_segunda" value="">
                             <select name="tipo_perdida" id="tipo_perdida" class="form-control">
-                                <option value="Normal"></option>
+                                <option value=""></option>
                                 <option value="Normal">Normal</option>
                                 <option value="Segundas">Segundas</option>
                             </select>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6" id="productoAdd">
                             <label for="">Referencia producto(*):</label>
                             <select name="productos" id="productos" class="form-control select2">
                             </select>
+                            <input type="text" name="referencia_producto" id="referencia_producto" class="form-control mt-2">
                         </div>
+                      
                     </div>
                     <div class="row">
                         <div class="col-3 mt-4 pt-2 mr-3">
-                            <input type="text" name="no_perdida" id="no_perdida" class="form-control text-center" readonly>
+                            <input type="text" name="no_perdida" id="no_perdida" class="form-control text-center"
+                                readonly>
                         </div>
                         <div class="col-3">
                             <div class="mt-4 pt-2">
@@ -68,6 +71,9 @@
                             <div id="corteAdd">
                                 <select name="cortesSearch" id="cortesSearch" class="form-control select2">
                                 </select>
+                            </div>
+                            <div id="corteEdit" class="mt-2">
+                                <input type="text" name="numero_corte" id="numero_corte" class="form-control">
                             </div>
                         </div>
                         <div class="col-6">
@@ -100,8 +106,8 @@
                     <div class="row">
                         <div class="col-4">
                             <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2"
-                                data-toggle="modal" data-target=".bd-talla-modal-xl">Reportar perdidas 
-                                 <i class="fas fa-sort-alpha-down"></i></button>
+                                data-toggle="modal" data-target=".bd-talla-modal-xl">Reportar perdidas
+                                <i class="fas fa-sort-alpha-down"></i></button>
                         </div>
                     </div>
 
@@ -195,9 +201,9 @@
                             </tr>
                         </thead>
                         <tr id="tallas">
-                            
+
                         </tr>
-                    
+
                     </table>
                 </div>
                 <br>
@@ -205,59 +211,59 @@
                 <div class="row mt-2">
                     <div class="col-lg-1 col-xs-">
                         <label for="" class="ml-4" id="ta">A</label>
-                        <input type="text" name="" id="a" class="form-control">
+                        <input type="text" name="" id="a" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tb">B</label>
-                        <input type="text" name="" id="b" class="form-control">
+                        <input type="text" name="" id="b" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tc">C</label>
-                        <input type="text" name="" id="c" class="form-control">
+                        <input type="text" name="" id="c" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="td">D</label>
-                        <input type="text" name="" id="d" class="form-control">
+                        <input type="text" name="" id="d" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="te">E</label>
-                        <input type="text" name="" id="e" class="form-control">
+                        <input type="text" name="" id="e" class="form-control text-center">
                     </div>
                     <div class="col-md-1">
                         <label for="" class="ml-4" id="tf">F</label>
-                        <input type="text" name="" id="f" class="form-control">
+                        <input type="text" name="" id="f" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tg">G</label>
-                        <input type="text" name="" id="g" class="form-control">
+                        <input type="text" name="" id="g" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="th">H</label>
-                        <input type="text" name="" id="h" class="form-control">
+                        <input type="text" name="" id="h" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="ti">I</label>
-                        <input type="text" name="" id="i" class="form-control">
+                        <input type="text" name="" id="i" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tj">J</label>
-                        <input type="text" name="" id="j" class="form-control">
+                        <input type="text" name="" id="j" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tk">K</label>
-                        <input type="text" name="" id="k" class="form-control">
+                        <input type="text" name="" id="k" class="form-control text-center">
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tl">L</label>
-                        <input type="text" name="" id="l" class="form-control">
+                        <input type="text" name="" id="l" class="form-control text-center">
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <label for="" class="mt-4">Talla x:</label>
                     <div class="col-md-6 mt-3">
-                        <input type="text" name="talla_x" id="talla_x" class="form-control text-center" 
-                        placeholder="Solo utilizar esta talla cuando la talla no sea conocida">
+                        <input type="text" name="talla_x" id="talla_x" class="form-control text-center"
+                            placeholder="Solo utilizar esta talla cuando la talla no sea conocida">
                     </div>
                 </div>
             </div>
@@ -274,8 +280,8 @@
 <script src="{{asset('js/perdidas.js')}}"></script>
 
 <script>
-    function mostrar(id_recepcion) {
-        $.get("recepcion/" + id_recepcion, function(data, status) {
+    function mostrar(id_perdida) {
+        $.get("perdida/" + id_perdida, function(data, status) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#btnCancelar").show();
@@ -285,34 +291,49 @@
             $("#estandar_recibido").show();
             $("#lavanderia").show();
             $("#corte").show();
-            $("#corteAdd").hide();
+            // $("#corteAdd").hide();
             $("#corteEdit").show();
-            $("#lavanderiaAdd").hide();
-            $("#lavanderiaEdit").show();
+            $("#btn-generar").hide();
+            $("#productoEdit").show();
+            $("#referencia_producto").show();
+            console.log(data);
 
-            let result;
-            if(data.recepcion.estandar_recibido == 1){
-                result = 'Si'
-            }else{
-                result = 'No'
-            }       
+            $("#id").val(data.perdida.id);
+            $("#no_perdida").val(data.perdida.no_perdida);
+            $("#tipo_perdida").val(data.perdida.tipo_perdida).change();
+            $("#referencia_producto").val('Producto seleccionado: '+data.perdida.producto.referencia_producto);
+            $("#fecha").val(data.perdida.fecha);
+            $("#fase").val(data.perdida.fase).change();
+            $("#motivo").val(data.perdida.motivo).change();
+            $("#numero_corte").val('Corte seleccionado: '+data.perdida.corte.numero_corte);
 
-            $("#id").val(data.recepcion.id);
-            $("#corte").val('Corte elegido: '+data.recepcion.corte.numero_corte);
-            $("#lavanderia").val('Numero de envio: '+data.recepcion.lavanderia.numero_envio);
-            $("#fecha_recepcion").val(data.recepcion.fecha_recepcion);
-            $("#cantidad_recibida").val(data.recepcion.cantidad_recibida);
-            $("#estandar_recibido").val('Estandar recbido: '+result);
+            $("#a").val(data.tallas.a);
+            $("#b").val(data.tallas.b);
+            $("#c").val(data.tallas.c);
+            $("#d").val(data.tallas.d);
+            $("#e").val(data.tallas.e);
+            $("#f").val(data.tallas.f);
+            $("#g").val(data.tallas.g);
+            $("#h").val(data.tallas.h);
+            $("#i").val(data.tallas.i);
+            $("#j").val(data.tallas.j);
+            $("#k").val(data.tallas.k);
+            $("#l").val(data.tallas.l);
+            $("#i").attr('disabled', false);
+            $("#j").attr('disabled', false);
+            $("#k").attr('disabled', false);
+            $("#l").attr('disabled', false);
+            
         });
     }
 
-    function eliminar(id_recepcion){
-        bootbox.confirm("¿Estas seguro de eliminar esta recepcion?", function(result){
+    function eliminar(id_perdida){
+        bootbox.confirm("¿Estas seguro de eliminar esta perdida?", function(result){
             if(result){
-                $.post("recepcion/delete/" + id_recepcion, function(){
+                $.post("perdida/delete/" + id_perdida, function(){
                     // bootbox.alert(e);
                     bootbox.alert("Recepcion eliminada correctamente!!");
-                    $("#recepciones").DataTable().ajax.reload();
+                    $("#perdidas").DataTable().ajax.reload();
                 })
             }
         })

@@ -177,6 +177,7 @@ Route::post('/recepcion', 'RecepcionController@store');
 Route::get('/recepcion/{id}', 'RecepcionController@show');
 Route::put('/recepcion/edit', 'RecepcionController@update');
 Route::post('/recepcion/delete/{id}', 'RecepcionController@destroy');
+Route::post('/cantidades_recibidas', 'RecepcionController@cantidad');
 
 
 //Perdida
@@ -185,3 +186,7 @@ Route::get('perdida/lastdigit', 'PerdidaController@getDigits');
 Route::get('segunda/lastdigit', 'PerdidaController@getSegundaDigits');
 Route::post('/perdida', 'PerdidaController@store');
 Route::post('/perdida_tallas', 'PerdidaController@storeTalla');
+Route::get('/perdida/{id}', 'PerdidaController@show');
+Route::put('/perdida/edit', 'PerdidaController@update');
+Route::put('/talla_perdidas/edit', 'PerdidaController@updateTallas');
+Route::post('/perdida/delete/{id}', 'PerdidaController@destroy');

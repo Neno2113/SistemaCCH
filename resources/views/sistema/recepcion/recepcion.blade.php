@@ -62,9 +62,13 @@
                             <label for="">Fecha(*):</label>
                             <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control">
                         </div>
-                        <div class="col-4">
+                        <div class="col-2">
                             <label for="">Cantidad Rec.(*):</label>
                             <input type="text" name="cantidad_recibida" id="cantidad_recibida" class="form-control">
+                        </div>
+                        <div class="col-2">
+                            <label for="">Restante por recibir:</label>
+                            <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control">
                         </div>
                         <div class="col-4 pl-5">
                             <label for="">¿Estandar recibido?</label>
@@ -107,7 +111,8 @@
                 <th>Corte</th>
                 <th>Num. Envio</th>
                 <th>F. Envio</th>
-                <th>Cantidad Enviada</th>
+                <th>Cant. Recibida</th>
+                <th>Total</th>
                 <th>Estandar Recibido</th>
             </tr>
         </thead>
@@ -122,7 +127,8 @@
                 <th>Corte</th>
                 <th>Num. Envio</th>
                 <th>F. Envio</th>
-                <th>Cantidad Enviada</th>
+                <th>Cant. Recibida</th>
+                <th>Total</th>
                 <th>Estandar Recibido</th>
             </tr>
         </tfoot>

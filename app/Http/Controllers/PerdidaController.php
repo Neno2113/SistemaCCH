@@ -153,6 +153,166 @@ class PerdidaController extends Controller
             ->make(true);
     }
 
+    public function show($id)
+    {
+        $perdida = Perdida::find($id)->load('corte')
+            ->load('producto');
+            // ->load('talla');
+
+        $talla_perdida = TallasPerdidas::where('perdida_id', $id)->get()->first();  
+
+
+        if (is_object($perdida)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'perdida' => $perdida,
+                'tallas' => $talla_perdida
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'Ocurrio un error'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
+    public function update(Request $request)
+    {
+        $validar = $request->validate([
+            'no_perdida' => 'required',
+            'fecha' => 'required',
+            'tipo_perdida' => 'required',
+            'fase' => 'required',
+            'motivo' => 'required'
+        ]);
+
+        if (empty($validar)) {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id');
+            $corte_id = $request->input('corte_id');
+            $fecha = $request->input('fecha');
+            $tipo_perdida = $request->input('tipo_perdida');
+            $fase = $request->input('fase');
+            $motivo = $request->input('motivo');
+            $no_perdida = $request->input('no_perdida');
+            $sec = $request->input('sec');
+            $perdida_x = $request->input('perdida_x');
+            $producto_id = $request->input('producto_id');
+
+        
+            $perdida = Perdida::find($id);
+
+            $perdida->corte_id = $corte_id;
+            $perdida->fecha = $fecha;
+            $perdida->tipo_perdida = $tipo_perdida;
+            $perdida->fase = $fase;
+            $perdida->motivo = $motivo;
+            $perdida->no_perdida = $no_perdida;
+            $perdida->sec = $sec + 0.01;
+            $perdida->producto_id = $producto_id;
+            $perdida->perdida_x = $perdida_x;
+
+            $perdida->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'perdida' => $perdida
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function updateTallas(Request $request)
+    {
+        $validar = $request->validate([
+            'perdida_id' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $perdida_id = $request->input('perdida_id');
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
+            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l; 
+        
+            $tallas = TallasPerdidas::where('perdida_id', $perdida_id)->get()->first();
+
+            $tallas->a = $a;
+            $tallas->b = $b;
+            $tallas->c = $c;
+            $tallas->d = $d;
+            $tallas->e = $e;
+            $tallas->f = $f;
+            $tallas->g = $g;
+            $tallas->h = $h;
+            $tallas->i = $i;
+            $tallas->j = $j;
+            $tallas->k = $k;
+            $tallas->l = $l;
+            $tallas->total = $total;
+
+            $tallas->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'talla_perdida' => $tallas
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroy($id)
+    {
+        $perdida = Perdida::find($id);
+
+        if (!empty($perdida)) {
+            $perdida->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'perdida' => $perdida
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
+
+
     
     
 
