@@ -7,8 +7,8 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar">Create <i class="fas fa-plus"></i></button>
-    <button class="btn btn-danger mb-3" id="btnCancelar">Cancel <i class="fas fa-window-close"></i></button>
+    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
+    <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
 </div>
 
 <div class="row">

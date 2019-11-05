@@ -48,7 +48,7 @@ $(document).ready(function() {
         $("#btn-guardar").attr('disabled', false);
     })
 
-    $("#fecha_envio").on('change', function(){
+    $("#cortesSearch").on('change', function(){
         var corte = {
             corte_id: $("#cortesSearch").val(),
             producto_id: $("#productos").val(),
@@ -407,6 +407,8 @@ $(document).ready(function() {
             $("#suplidor_lavanderia").hide();
             $("#estandar_incluido").hide();
             $("#btn-guardar").attr('disabled', true);
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
            
            
         }

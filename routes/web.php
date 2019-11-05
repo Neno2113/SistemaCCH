@@ -76,6 +76,10 @@ Route::get('/recepcion', function () {
 Route::get('/perdida', function () {
     return view('sistema.perdidas.perdida');
 });
+
+Route::get('/almacen', function () {
+    return view('sistema.almacen.almacen');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -190,3 +194,10 @@ Route::get('/perdida/{id}', 'PerdidaController@show');
 Route::put('/perdida/edit', 'PerdidaController@update');
 Route::put('/talla_perdidas/edit', 'PerdidaController@updateTallas');
 Route::post('/perdida/delete/{id}', 'PerdidaController@destroy');
+
+
+//Almacen
+Route::get('cortes-almacen', 'AlmacenController@selectCorte');
+Route::get('productos-almacen', 'AlmacenController@selectProducto');
+Route::post('/almacen', 'AlmacenController@store');
+Route::get('almacen/{id}', 'AlmacenController@show');

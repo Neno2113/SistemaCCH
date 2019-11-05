@@ -82,7 +82,7 @@
             </div>
             <div class="card-footer text-muted d-flex justify-content-end">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
-                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
+                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>
 
             </form>

@@ -210,6 +210,8 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
         }
     }
 

@@ -7,8 +7,8 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-4">
-    <button class="btn btn-primary mb-3" id="btnAgregar">Crear <i class="fas fa-user-plus"></i></button>
-    <button class="btn btn-danger mb-3" id="btnCancelar">Cancelar</button>
+    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-user-plus"></i></button>
+    <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
     <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar sucursales
         <i class="fas fa-building"></i></button>
 </div>

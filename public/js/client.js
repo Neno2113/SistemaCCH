@@ -274,6 +274,8 @@ $(document).ready(function() {
             $("#redistribucion_tallas").hide();
             $("#factura_desglosada_tallas").hide();
             $("#acepta_segundas").hide();
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
         }
     }
 

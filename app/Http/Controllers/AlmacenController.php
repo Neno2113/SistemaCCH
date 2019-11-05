@@ -1,0 +1,177 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Product;
+use App\Corte;
+use App\Almacen;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
+
+class AlmacenController extends Controller
+{
+
+    public function store(Request $request)
+    {
+
+        $validar = $request->validate([
+            'producto_id' => 'required',
+            'corte_id' => 'required',
+            'ubicacion' => 'required',
+            'tono' => 'required',
+            'intensidad_proceso_seco' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+
+            $producto_id = $request->input('producto_id');
+            $corte_id = $request->input('corte_id');
+            $ubicacion = $request->input('ubicacion');
+            $tono = $request->input('tono');
+            $intensidad_proceso_seco = $request->input('intensidad_proceso_seco');
+            $atributo_no_1 = $request->input('atributo_no_1');
+            $atributo_no_2 = $request->input('atributo_no_2');
+            $atributo_no_3 = $request->input('atributo_no_3');
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
+
+            $almacen = new Almacen();
+            $corte = Corte::find($corte_id);
+            $producto = Product::find($producto_id);
+
+            $producto->ubicacion = $ubicacion;
+            $producto->tono = $tono;
+            $producto->intensidad_proceso_seco = $intensidad_proceso_seco;
+            $producto->atributo_no_1 = $atributo_no_1;
+            $producto->atributo_no_2 = $atributo_no_2;
+            $producto->atributo_no_3 = $atributo_no_3;
+
+            $producto->save();
+
+            $corte->fase = 'Almacen';
+            $corte->save();
+
+            $almacen->producto_id = $producto_id;
+            $almacen->corte_id = $corte_id;
+            $almacen->user_id = \auth()->user()->id;
+            $almacen->a = $a;
+            $almacen->b = $b;
+            $almacen->c = $c;
+            $almacen->d = $d;
+            $almacen->e = $e;
+            $almacen->f = $f;
+            $almacen->g = $g;
+            $almacen->h = $h;
+            $almacen->i = $i;
+            $almacen->j = $j;
+            $almacen->k = $k;
+            $almacen->l = $l;
+            $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
+            $almacen->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'almacen' => $almacen
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function almacenes()
+    {
+        $almacen = DB::table('almacen')->join('corte', 'almacen.corte_id', '=', 'corte.id')
+            ->join('producto', 'almacen.producto_id', '=', 'producto.id')
+            ->join('users', 'almacen.user_id', '=', 'users.id')
+            ->select(['almacen.id', 'almacen.total', 'corte.numero_corte', 'corte.total as totalCorte',
+                'corte.fase', 'producto.referencia_producto', 'users.name', 'users.surname'
+            ]);
+
+        return DataTables::of($almacen)
+            ->addColumn('Expandir', function ($almacen) {
+                return "";
+            })
+            ->editColumn('name', function ($almacen){
+                return "$almacen->name $almacen->surname";
+            })
+            ->addColumn('Opciones', function ($almacen) {
+                return
+                    '<button id="btnEdit" onclick="mostrar(' . $almacen->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .
+                    '<button onclick="eliminar(' . $almacen->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
+                    
+            })
+            ->rawColumns(['Opciones'])
+            ->make(true);
+    }
+
+    public function show($id)
+    {
+        $almacen = Almacen::find($id)->load('producto')->load('corte');
+
+        if (is_object($almacen)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'almacen' => $almacen
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
+
+
+    public function selectProducto(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Product::select("id", "referencia_producto", "referencia_producto_2")
+                // ->where('enviado_lavanderia', 'LIKE', '0')
+                ->where('referencia_producto', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+
+    public function selectCorte(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Corte::select("id", "numero_corte", "fase")
+                ->where('fase', 'LIKE', 'Terminacion')
+                ->where('numero_corte', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+}

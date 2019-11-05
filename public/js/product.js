@@ -279,6 +279,8 @@ $(document).ready(function() {
             $("#precios_2").hide();
             $("#descripcion_ref2").hide();
             $("#btn-sku").attr("disabled", true);
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
         }
     }
 

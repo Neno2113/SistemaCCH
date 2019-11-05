@@ -78,7 +78,7 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#compositions").DataTable({
             serverSide: true,
-            responsive: true,
+            // responsive: true,
             dom: 'Bfrtip',
             buttons: [
                 'pageLength',
@@ -98,8 +98,7 @@ $(document).ready(function() {
             ajax: "api/compositions",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "id" },
                 { data: "nombre_composicion" },
               
@@ -164,6 +163,8 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
         }
     }
 

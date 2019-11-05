@@ -162,24 +162,24 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reportas perdidas(*):</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Reportar perdidas(*):</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <label for="">Elija el genero: </label>
-                    <div class="col-md-6 mb-2">
-                        <select name="genero" id="genero" class="form-control">
-                            <option value="Niño"></option>
-                            <option value="Niño">Niño</option>
-                            <option value="Niña">Niña</option>
-                            <option value="Hombre">Hombre</option>
-                            <option value="Mujer">Mujer</option>
-                            <option value="Mujer Plus">Mujer Plus</option>
-                        </select>
-                    </div>
+                        <label for="">Referencia producto: </label>
+                        <div class="col-md-6 mb-2">
+                            <input type="text" name="genero" id="genero" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="sub-genero" id="sub-genero" class="form-control">
+                                <option value=""></option>
+                                <option value="Mujer">Mujer</option>
+                                <option value="Mujer Plus">Mujer plus</option>
+                            </select>
+                        </div>
                 </div>
                 <div class="row">
                     <table class="table table-bordered table-responsive">

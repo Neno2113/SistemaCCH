@@ -178,6 +178,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="/sistemaCCH/public/almacen" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Almacen</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/sistemaCCH/public/perdida" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Perdidas</p>

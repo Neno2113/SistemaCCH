@@ -38,7 +38,7 @@ $(document).ready(function() {
     function init() {
         listar();
         // mostrarForm(false);
-        $("#btn-edit").hide();
+        $("#btn-edit-branch").hide();
         // $("#results").hide();
 
         
@@ -204,6 +204,12 @@ $(document).ready(function() {
         $("#clientes").val("");
         
     })
+
+    $("#btn-agregar").click(function(e){
+        e.preventDefault();
+        $("#btn-edit-branch").hide();
+        $("#btn-guardar-branch").show();
+   })
 
    
 

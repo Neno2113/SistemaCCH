@@ -443,6 +443,8 @@ $(document).ready(function() {
             $("#fila2").hide();
             $("#fila3").hide();
             $("#btn-guardar").attr("disabled", true);
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
         }
     }
 

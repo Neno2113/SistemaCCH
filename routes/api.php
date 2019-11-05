@@ -49,3 +49,5 @@ Route::get('lavanderia-envio', 'LavanderiaController@lavanderiaEnvio');
 Route::get('recepciones', 'RecepcionController@recepciones');
 
 Route::get('perdidas', 'PerdidaController@perdidas');
+
+Route::get('almacenes', 'AlmacenController@almacenes');

@@ -84,9 +84,85 @@ $(document).ready(function() {
         }
     });
 
-    $("#genero").change(function() {
-        var val = $(this).val();
-        if (val == "Niño") {
+    $("#productos").change(function() {
+        let val = $("#productos option:selected").text();
+        let genero = val.substring(1,2); 
+
+        if (genero == "2") {
+            $("#genero").val('Mujer: '+val);
+            $("#sub-genero").show();
+          
+             $("#sub-genero").on('change', function(){
+                var subGenero = $("#sub-genero").val();
+             
+                if(subGenero == "Mujer"){
+                  
+                   $("#ta").html("0/0");
+                   $("#tb").html("1/2");
+                   $("#tc").html("3/4");
+                   $("#td").html("5/6");
+                   $("#te").html("7/8");
+                   $("#tf").html("9/10");
+                   $("#tg").html("11/12");
+                   $("#th").html("13/14");
+                   $("#ti").html("15/16");
+                   $("#tj").html("17/18");
+                   $("#tk").html("19/20");
+                   $("#tl").html("21/22");
+                   $("#i").attr('disabled', false);
+                   $("#j").attr('disabled', false);
+                   $("#k").attr('disabled', false);
+                   $("#l").attr('disabled', false);
+                   $("#tallas").html(
+                       "<th>Dama TA</th>"+
+                       "<th>0/0</th>"+
+                       "<th>1/2</th>"+
+                       "<th>3/4</th>"+
+                       "<th>5/6</th>"+
+                       "<th>7/8</th>"+
+                       "<th>9/10</th>"+
+                       "<th>11/12</th>"+
+                       "<th>13/14</th>"+
+                       "<th>15/16</th>"+
+                       "<th>17/18</th>"+
+                       "<th>19/20</th>"+
+                       "<th>21/22</th>"
+               );
+               }else if (subGenero == "Mujer Plus"){
+                //    $("#genero").val('Mujer plus: '+val);
+                   $("#sub-genero").show();
+                   $("#ta").html("12W");
+                   $("#tb").html("14W");
+                   $("#tc").html("16W");
+                   $("#td").html("18W");
+                   $("#te").html("20W");
+                   $("#tf").html("22W");
+                   $("#tg").html("24W");
+                   $("#th").html("26W");
+                   $("#i").attr('disabled', true);
+                   $("#j").attr('disabled', true);
+                   $("#k").attr('disabled', true);
+                   $("#l").attr('disabled', true);
+                   $("#tallas").html(
+                       "<th>Dama Plus</th>"+
+                       "<th>12W</th>"+
+                       "<th>14W</th>"+
+                       "<th>16W</th>"+
+                       "<th>18W</th>"+
+                       "<th>20W</th>"+
+                       "<th>22W</th>"+
+                       "<th>24W</th>"+
+                       "<th>26W</th>"
+                   );
+               }
+          
+            
+        });
+    }
+        
+        if (genero == "3") {
+            $("#genero").val('Niño: '+val);
+            $("#sub-genero").hide();
             $("#ta").html("2");
             $("#tb").html("4");
             $("#tc").html("6");
@@ -110,7 +186,9 @@ $(document).ready(function() {
                             "<th>14</th>"+
                             "<th>16</th>"
             );
-        } else if (val == "Niña") {
+        } else if (genero == "4") {
+            $("#genero").val('Niña: '+val);
+            $("#sub-genero").hide();
             $("#ta").html("2");
             $("#tb").html("4");
             $("#tc").html("6");
@@ -134,63 +212,9 @@ $(document).ready(function() {
                 "<th>14</th>"+
                 "<th>16</th>"
             );
-        } else if (val == "Mujer") {
-            $("#ta").html("0/0");
-            $("#tb").html("1/2");
-            $("#tc").html("3/4");
-            $("#td").html("5/6");
-            $("#te").html("7/8");
-            $("#tf").html("9/10");
-            $("#tg").html("11/12");
-            $("#th").html("13/14");
-            $("#ti").html("15/16");
-            $("#tj").html("17/18");
-            $("#tk").html("19/20");
-            $("#tl").html("21/22");
-            $("#i").attr('disabled', false);
-            $("#j").attr('disabled', false);
-            $("#k").attr('disabled', false);
-            $("#l").attr('disabled', false);
-            $("#tallas").html(
-                "<th>Dama TA</th>"+
-                "<th>0/0</th>"+
-                "<th>1/2</th>"+
-                "<th>3/4</th>"+
-                "<th>5/6</th>"+
-                "<th>7/8</th>"+
-                "<th>9/10</th>"+
-                "<th>11/12</th>"+
-                "<th>13/14</th>"+
-                "<th>15/16</th>"+
-                "<th>17/18</th>"+
-                "<th>19/20</th>"+
-                "<th>21/22</th>"
-            );
-        } else if (val == "Mujer Plus") {
-            $("#ta").html("12W");
-            $("#tb").html("14W");
-            $("#tc").html("16W");
-            $("#td").html("18W");
-            $("#te").html("20W");
-            $("#tf").html("22W");
-            $("#tg").html("24W");
-            $("#th").html("26W");
-            $("#i").attr('disabled', true);
-            $("#j").attr('disabled', true);
-            $("#k").attr('disabled', true);
-            $("#l").attr('disabled', true);
-            $("#tallas").html(
-                "<th>Dama Plus</th>"+
-                "<th>12W</th>"+
-                "<th>14W</th>"+
-                "<th>16W</th>"+
-                "<th>18W</th>"+
-                "<th>20W</th>"+
-                "<th>22W</th>"+
-                "<th>24W</th>"+
-                "<th>26W</th>"
-            );
-        } else if (val == "Hombre") {
+        } else if (genero == "1") {
+            $("#genero").val('Hombre: '+val);
+            $("#sub-genero").hide();
             $("#ta").html("28");
             $("#tb").html("29");
             $("#tc").html("30");
@@ -553,7 +577,7 @@ $(document).ready(function() {
             $("#corteEdit").hide();
             $("#lavanderiaAdd").show();
             $("#lavanderiaEdit").hide();
-            $("#referencia_producto").show();
+            $("#referencia_producto").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -566,6 +590,9 @@ $(document).ready(function() {
             $("#lavanderiaEdit").hide();
             $("#btn-guardar").attr("disabled", true);
             $("#referencia_producto").hide();
+            $("#btn-generar").show();
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
         }
     }
 

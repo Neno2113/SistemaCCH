@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row mt-2">
-        <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar sucursales
+        <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg" id="btn-agregar">Agregar sucursales
             <i class="fas fa-building"></i></button>
     </div>
 </div>
@@ -100,7 +100,7 @@
             <div class="modal-footer">
                 <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal" >Close</button>
                 <button type="submit" id="btn-guardar-branch" class="btn btn-primary">Guardar</button>
-                <button type="submit" id="btn-edit-branch" class="btn btn-primary">Actualizar</button>
+                <button type="submit" id="btn-edit-branch" class="btn btn-warning">Actualizar</button>
             </div>
             </form>
         </div>
@@ -119,8 +119,9 @@
             $("#exampleModal").modal('show');
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
-            $("#btn-edit").show();
+            $("#btn-edit-branch").show();
             $("#btn-guardar-branch").hide();
+
          
             $("#id").val(data.branch.id);
             $("#nombre_sucursal").val(data.branch.nombre_sucursal);

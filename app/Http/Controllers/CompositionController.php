@@ -136,13 +136,12 @@ class CompositionController extends Controller
             ->addColumn('Expandir', function ($composition) {
                 return "";
             })
-            ->addColumn('Editar', function ($composition) {
-                return '<button id="btnEdit" onclick="mostrar(' . $composition->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+            ->addColumn('Opciones', function ($composition) {
+                return '<button id="btnEdit" onclick="mostrar(' . $composition->id . ')" class="btn btn-warning btn-sm ml-2" > <i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $composition->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
             })
-            ->addColumn('Eliminar', function ($composition) {
-                return '<button onclick="eliminar(' . $composition->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
-            })
-            ->rawColumns(['Editar', 'Eliminar'])
+           
+            ->rawColumns(['Opciones', 'Eliminar'])
             ->make(true);
     }
 

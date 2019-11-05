@@ -231,6 +231,8 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
         }
     }
 
