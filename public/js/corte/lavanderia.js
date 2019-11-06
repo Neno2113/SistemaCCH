@@ -48,7 +48,7 @@ $(document).ready(function() {
         $("#btn-guardar").attr('disabled', false);
     })
 
-    $("#cortesSearch").on('change', function(){
+    $("#fecha_envio").on('change', function(){
         var corte = {
             corte_id: $("#cortesSearch").val(),
             producto_id: $("#productos").val(),
@@ -103,7 +103,7 @@ $(document).ready(function() {
         $("#cantidad").val("");
         $("#estandar_incluido").val("");
         $("#productos").val("").trigger("change");
-        $("#corteSearch").val("").trigger("change");
+        $("#cortesSearch").val("").trigger("change");
         $("#suplidores").val("").trigger("change");
         $("#suplidoresEdit").val("").trigger("change");
         $("#cortesSearchEdit").val("").trigger("change");
@@ -128,6 +128,7 @@ $(document).ready(function() {
                                
                     $("#numero_envio").val(referencia);
                     $('#btn-generar').attr("disabled", true);
+                    $("#formularioLavanderia").show();
                     bootbox.alert(
                         "Numero de envio generado exitosamente!!"
                     );
@@ -210,46 +211,6 @@ $(document).ready(function() {
         }
     })
 
-    $("#productos").select2({
-        placeholder: "Busca la referencia de producto Ex: P100-xxxx",
-        ajax: {
-            url: 'producto_env',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.referencia_producto,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
-    $("#productosEdit").select2({
-        placeholder: "Busca la referencia de producto Ex: P100-xxxx",
-        ajax: {
-            url: 'producto_env_edit',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.referencia_producto,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
-
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
@@ -257,7 +218,6 @@ $(document).ready(function() {
         var lavanderia = {
             sec: $("#sec").val(),
             numero_envio: $("#numero_envio").val(),
-            producto_id: $("#productos").val(),
             suplidor_id: $("#suplidores").val(),
             corte_id: $("#cortesSearch").val(),
             fecha_envio: $("#fecha_envio").val(),
@@ -394,6 +354,7 @@ $(document).ready(function() {
             $("#btnAgregar").hide();
             $("#corteADD").show();
             $("#productoADD").show();
+            $('#btn-generar').attr("disabled", false);
            
         } else {
             $("#listadoUsers").show();
@@ -409,6 +370,7 @@ $(document).ready(function() {
             $("#btn-guardar").attr('disabled', true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
+            $("#formularioLavanderia").hide();
            
            
         }
@@ -416,12 +378,8 @@ $(document).ready(function() {
 
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
-        // $("#cortes").show();
-        // $("#corteEdit").hide();
-        // $("#productos").show();
-        // $("#productoEdit").hide();
-        // $("#lavanderia").hide();
-        // $("#suplidor").show();
+
+      
     });
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);

@@ -277,7 +277,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/perdidas.js')}}"></script>
+<script src="{{asset('js/corte/perdidas.js')}}"></script>
 
 <script>
     function mostrar(id_perdida) {

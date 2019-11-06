@@ -338,7 +338,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/product.js')}}"></script>
+<script src="{{asset('js/producto/product.js')}}"></script>
 
 <script>
     function mostrar(id_prouct) {

@@ -43,7 +43,7 @@
                     <br><br>
                     <hr>
 
-                    <div class="row mt-5">
+                    {{-- <div class="row mt-5" id="formularioLavanderia">
                         <div class="col-12" id="producto">
                             <label for="">Producto(*):</label>
                             <div id="productoADD">
@@ -59,71 +59,74 @@
                                 readonly>
                         </div>
 
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-6" id="cortes">
-                            <label for="">Corte(*):</label>
-                            <div id="corteADD">
-                                <select name="tags[]" id="cortesSearch" class="form-control select2">
-                                </select>
-                            </div>
-
-                            <div id="corteEdit">
-                                <select name="tags[]" id="cortesSearchEdit" class="form-control select2">
-                                </select>
-                            </div>
-                            <input type="text" name="" id="numero_corte" readonly class="form-control text-center mt-3">
-                        </div>
-
-                        <div class="col-6" id="suplidor">
-                            <label for="">Lavanderia (*):</label>
-                            <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
-                            </select>
-                            <div id="lavanderia">
-                            </div>
-                            <input type="text" name="suplidor_lavanderia" id="suplidor_lavanderia"
-                                class="form-control text-center mt-3" readonly>
-                        </div>
-
-                    </div>
-
-                    <hr>
-
-                    <div class="row mt-5">
-                        <div class="col-4">
-                            <label for="">Fecha(*):</label>
-                            <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
-                        </div>
-
-                        <div class="col-4">
-                            <label for="">Cantidad(*):</label>
-                            <input type="text" name="cantidad" id="cantidad" class="form-control">
-                        </div>
-                        <div class="col-4 pl-5">
-                            <label for="">¿Estandar incluido?</label>
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
-                                    <label for="radioPrimary1">
-                                        Si
-                                    </label>
+                    </div> --}}
+                    <div id="formularioLavanderia">
+                        <div class="row mt-3">
+                            <div class="col-6" id="cortes">
+                                <label for="">Corte(*):</label>
+                                <div id="corteADD">
+                                    <select name="tags[]" id="cortesSearch" class="form-control select2">
+                                    </select>
                                 </div>
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary2" value="0" name="r1">
-                                    <label for="radioPrimary2">
-                                        No
-                                    </label>
+
+                                <div id="corteEdit">
+                                    <select name="tags[]" id="cortesSearchEdit" class="form-control select2">
+                                    </select>
                                 </div>
+                                <input type="text" name="" id="numero_corte" readonly
+                                    class="form-control text-center mt-3">
                             </div>
-                            <input type="text" name="estandar_incluido" id="estandar_incluido"
-                                class="form-control text-center" readonly>
+
+                            <div class="col-6" id="suplidor">
+                                <label for="">Lavanderia (*):</label>
+                                <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
+                                </select>
+                                <div id="lavanderia">
+                                </div>
+                                <input type="text" name="suplidor_lavanderia" id="suplidor_lavanderia"
+                                    class="form-control text-center mt-3" readonly>
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            <label for="">Receta de lavado(*):</label>
-                            <textarea name="receta_lavado" id="receta_lavado" cols="30" rows="1" class="form-control"></textarea>
+
+                        <hr>
+
+                        <div class="row mt-5">
+                            <div class="col-4">
+                                <label for="">Fecha(*):</label>
+                                <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
+                            </div>
+
+                            <div class="col-4">
+                                <label for="">Cantidad(*):</label>
+                                <input type="text" name="cantidad" id="cantidad" class="form-control">
+                            </div>
+                            <div class="col-4 pl-5">
+                                <label for="">¿Estandar incluido?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
+                                        <label for="radioPrimary1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary2" value="0" name="r1">
+                                        <label for="radioPrimary2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <input type="text" name="estandar_incluido" id="estandar_incluido"
+                                    class="form-control text-center" readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <label for="">Receta de lavado(*):</label>
+                                <textarea name="receta_lavado" id="receta_lavado" cols="30" rows="1"
+                                    class="form-control"></textarea>
+                            </div>
                         </div>
                     </div>
             </div>
@@ -180,7 +183,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/lavanderia.js')}}"></script>
+<script src="{{asset('js/corte/lavanderia.js')}}"></script>
 
 <script>
     function mostrar(id_lavanderia) {

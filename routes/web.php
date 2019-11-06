@@ -80,6 +80,10 @@ Route::get('/perdida', function () {
 Route::get('/almacen', function () {
     return view('sistema.almacen.almacen');
 });
+
+Route::get('/producto-terminado', function () {
+    return view('sistema.product.terminado');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -201,3 +205,7 @@ Route::get('cortes-almacen', 'AlmacenController@selectCorte');
 Route::get('productos-almacen', 'AlmacenController@selectProducto');
 Route::post('/almacen', 'AlmacenController@store');
 Route::get('almacen/{id}', 'AlmacenController@show');
+Route::put('/almacen/edit', 'AlmacenController@update');
+Route::post('/almacen/delete/{id}', 'AlmacenController@destroy');
+Route::post('/almacen/producto', 'AlmacenController@corteProducto');
+Route::post('/almacen/imagen', 'AlmacenController@upload');

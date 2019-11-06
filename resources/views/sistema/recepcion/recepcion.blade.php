@@ -139,7 +139,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/recepcion.js')}}"></script>
+<script src="{{asset('js/corte/recepcion.js')}}"></script>
 
 <script>
     function mostrar(id_recepcion) {

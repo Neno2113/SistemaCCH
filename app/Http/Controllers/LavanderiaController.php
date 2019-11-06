@@ -39,7 +39,6 @@ class LavanderiaController extends Controller
             $sec = $request->input('sec');
             $numero_envio = $request->input('numero_envio');
             $corte_id = $request->input('corte_id');
-            $producto_id = $request->input('producto_id');
             $fecha_envio = $request->input('fecha_envio');
             $cantidad = $request->input('cantidad');
             $suplidor_id = $request->input('suplidor_id');
@@ -48,6 +47,7 @@ class LavanderiaController extends Controller
 
             $lavanderia = new Lavanderia();
             $corte = Corte::find($corte_id);
+            $producto_id = $corte['producto_id'];
             $producto = Product::find($producto_id);
             $sku = SKU::where('talla', 'LIKE', 'General')
                 ->where('producto_id', 'LIKE', "%$producto_id%")->get()->first();
@@ -117,11 +117,13 @@ class LavanderiaController extends Controller
         }else{
 
             $corte_id = $request->input('corte_id');
-            $producto_id = $request->input('producto_id');
+           
+           
             $talla = Lavanderia::where('corte_id', 'LIKE', "$corte_id")->get()->last();
             $total = $talla['cantidad'];
 
             $corte = Corte::find($corte_id);
+            $producto_id = $corte['producto_id'];
             $cantidad_total = $corte['total'];
 
             $perdida = Perdida::where('corte_id', 'LIKE', "$corte_id")->select('id')->get();
@@ -250,6 +252,8 @@ class LavanderiaController extends Controller
             $suplidor_id = $request->input('suplidor_id');
 
             $lavanderia = Lavanderia::find($id);
+            $corte = Corte::find($corte_id);
+            $producto_id = $corte['producto_id'];
 
             $lavanderia->suplidor_id = $suplidor_id;
             $lavanderia->corte_id = $corte_id;

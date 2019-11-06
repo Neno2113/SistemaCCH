@@ -30,19 +30,29 @@
                     <hr>
                     <br><br>
                     <div class="row">
-                        <div class="col-md-6" id="producto">
+                        {{-- <div class="col-md-6" id="producto">
                             <label for="">Producto(*):</label>
                             <div id="productoADD">
                                 <input type="hidden" name="id" id="id">
                                 <select name="tags[]" id="productos" class="form-control select2" style="width:100%">
                                 </select>
-                                <input type="text" name="referencia_producto" id="referencia_producto" class="form-control mt-2" readonly>
+                                <input type="text" name="referencia_producto" id="referencia_producto"
+                                    class="form-control mt-2" readonly>
                             </div>
-                        </div>
-                        <div class="col-md-6 ">
+                        </div> --}}
+                        <div class="col-md-12 ">
                             <label for="">Corte(*):</label>
-                            <select name="tags[]" id="cortesSearch" class="form-control select2" style="width:100%">
-                            </select>
+                            <div id="corteAdd">
+                                <input type="hidden" name="id" id="id">
+                                <select name="tags[]" id="cortesSearch" class="form-control select2" style="width:100%">
+                                </select>
+                            </div>
+                            <div id="corteEdit">
+                                <select name="tags[]" id="cortesSearchEdit" class="form-control select2"
+                                    style="width:100%">
+                                </select>
+                            </div>
+
                             <input type="text" name="numero_corte" id="numero_corte" class="form-control mt-2" readonly>
                         </div>
                     </div>
@@ -124,32 +134,45 @@
                     </div>
                     <br>
                     <hr>
+                </form>
+                <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                     <div class="row mt-2">
                         <div class="col-md-3">
                             <label for="">Imagen frente:</label>
-                            <input type="file" src="" alt="" class="form-control">
+                            <input type="hidden" name="corte_id" id="corte_id" value="">
+                            <input type="hidden" name="corte_id_edit" id="corte_id_edit" value="">
+                            <input type="file" src="" name="imagen_frente" id="imagen_frente" alt=""
+                                class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="">Imagen trasera:</label>
-                            <input type="file" src="" alt="" class="form-control">
+                            <input type="file" src="" alt="" name="imagen_trasera" id="imagen_trasera"
+                                class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="">Imagen perfil:</label>
-                            <input type="file" src="" alt="" class="form-control">
+                            <input type="file" src="" alt="" name="imagen_perfil" id="imagen_perfil"
+                                class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="">Imagen bolsillo:</label>
-                            <input type="file" src="" alt="" class="form-control">
+                            <input type="file" src="" alt="" name="imagen_bolsillo" id="imagen_bolsillo"
+                                class="form-control">
                         </div>
                     </div>
-
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <input type="submit" value="Subir" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="card-footer   d-flex justify-content-end">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
                 <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
             </div>
 
-            </form>
+
         </div>
     </div>
 </div>
@@ -301,7 +324,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/almacen.js')}}"></script>
+<script src="{{asset('js/corte/almacen.js')}}"></script>
 
 <script>
     function mostrar(id_almacen) {
@@ -312,15 +335,18 @@
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
-
-            console.log(data)
+            $("#referencia_producto").show();
+            $("#numero_corte").show();
+            $("#corteEdit").show();
+            $("#corteAdd").hide();
+          
            
             
             $("#id").val(data.almacen.id);
             $("#referencia_producto").val('Referencia elegida: '+data.almacen.producto.referencia_producto);
             $("#numero_corte").val('Corte elegido: '+data.almacen.corte.numero_corte);
             $("#ubicacion").val(data.almacen.producto.ubicacion);
-            $("#tono").val(data.almacen.producto.tono);
+            $("#tono").val("");
             $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
             $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
             $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
@@ -342,12 +368,12 @@
     }
 
 
-    function eliminar(id_lavanderia){
-        bootbox.confirm("¿Estas seguro de eliminar este conduce de envio?", function(result){
+    function eliminar(id_almacen){
+        bootbox.confirm("¿Estas seguro de eliminar este producto de almacen?", function(result){
             if(result){
-                $.post("lavanderia/delete/" + id_lavanderia, function(){
-                    bootbox.alert("Conduce a lavanderia eliminada correctamente");
-                    $("#lavanderias").DataTable().ajax.reload();
+                $.post("almacen/delete/" + id_almacen, function(){
+                    bootbox.alert("Producto de almacen eliminado correctamente!!");
+                    $("#almacenes").DataTable().ajax.reload();
                 })
             }
         })

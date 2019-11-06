@@ -351,7 +351,7 @@
 </div>
 
 @include('adminlte/scripts')
-<script src="{{asset('js/corte.js')}}"></script>
+<script src="{{asset('js/corte/corte.js')}}"></script>
 
 <script>
     function mostrar(id_corte) {
