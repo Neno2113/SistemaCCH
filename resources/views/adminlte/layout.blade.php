@@ -29,6 +29,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Icheck -->
   <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 
+  <!--Ekko Lightbox  -->
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.css')}}">
+
   <!-- Select2 -->
   <link rel="stylesheet" href="{{asset('adminlte/plugins/select2/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">

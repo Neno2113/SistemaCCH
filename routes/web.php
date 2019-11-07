@@ -84,6 +84,10 @@ Route::get('/almacen', function () {
 Route::get('/producto-terminado', function () {
     return view('sistema.product.terminado');
 });
+
+Route::get('/existencia', function () {
+    return view('sistema.existencia.existencia');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -142,6 +146,7 @@ Route::post('/product/{id}', 'ProductController@show');
 Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');
 Route::post('sku', 'ProductController@asignarSKU');
+Route::get('producto/terminado/{filname}', 'ProductController@getImage');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
@@ -209,3 +214,6 @@ Route::put('/almacen/edit', 'AlmacenController@update');
 Route::post('/almacen/delete/{id}', 'AlmacenController@destroy');
 Route::post('/almacen/producto', 'AlmacenController@corteProducto');
 Route::post('/almacen/imagen', 'AlmacenController@upload');
+
+//Existencia
+Route::get('producto_existencia', 'ExistenciaController@selectProduct');

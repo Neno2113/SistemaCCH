@@ -61,6 +61,7 @@ class AlmacenController extends Controller
             $producto->atributo_no_1 = $atributo_no_1;
             $producto->atributo_no_2 = $atributo_no_2;
             $producto->atributo_no_3 = $atributo_no_3;
+            $producto->producto_terminado = 1;
 
             $producto->save();
 
@@ -340,6 +341,15 @@ class AlmacenController extends Controller
 
                 if(empty($corte_id) && !empty($corte_id_edit) ){
                     $corte_id = $corte_id_edit;
+
+                    $corte = Corte::find($corte_id);
+                    $producto_id = $corte['producto_id'];
+                    $producto = Product::find($producto_id);
+                    $producto->imagen_frente = $image_name_1;
+                    $producto->imagen_trasero = $image_name_2;
+                    $producto->imagen_perfil = $image_name_3;
+                    $producto->imagen_bolsillo = $image_name_4;
+                    $producto->save();
                     
                 }else{
                     $corte = Corte::find($corte_id);

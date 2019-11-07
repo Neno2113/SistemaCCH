@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Product;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -278,24 +279,41 @@ class ProductController extends Controller
 
     public function productoTerminado()
     {
-        $products = DB::table('producto')->join('users', 'producto.id_user', '=', 'users.id')
-            ->select(['producto.id', 'users.name', 'users.surname', 'producto.referencia_producto', 'producto.descripcion'
-            , 'producto.referencia_producto_2', 'producto.precio_lista', 'producto.precio_venta_publico']);
+        $products = DB::table('producto')->select(['producto.id', 'producto.referencia_producto', 'producto.descripcion', 'producto.tono'
+            , 'producto.precio_lista', 'producto.precio_venta_publico'])
+            ->where('producto.producto_terminado', 'LIKE', '1');
 
         return DataTables::of($products)
             ->addColumn('Expandir', function ($product) {
                 return "";
             })
-            ->editColumn('name', function ($product) {
-                return "$product->name $product->surname";
+            
+            ->addColumn('Opciones', function ($product) {
+                return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-eye fa-lg"></i></button>';
             })
-            ->addColumn('Editar', function ($product) {
-                return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
-            })
-            ->addColumn('Eliminar', function ($product) {
-                return '<button onclick="eliminar(' . $product->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
-            })
-            ->rawColumns(['Editar', 'Eliminar'])
+         
+            ->rawColumns(['Opciones'])
             ->make(true);
+    }
+
+    public function getImage($filename){
+        
+        $isset = \Storage::disk('producto')->exists($filename);
+        if($isset){
+           
+            $file = \Storage::disk('producto')->get($filename);
+
+            //Devolver imagen
+            return new Response($file, 200);
+
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'La imagen no existe'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
     }
 }

@@ -471,6 +471,10 @@ $(document).ready(function() {
             $("#referencia_producto").hide();
             $("#numero_corte").hide();
             $("#corteEdit").hide();
+            // $("#frente").hide();
+            // $("#trasera").hide();
+            // $("#perfil").hide();
+            // $("#bolsillo").hide();
         }
     }
 

@@ -51,3 +51,5 @@ Route::get('recepciones', 'RecepcionController@recepciones');
 Route::get('perdidas', 'PerdidaController@perdidas');
 
 Route::get('almacenes', 'AlmacenController@almacenes');
+
+Route::get('producto-terminado', 'ProductController@productoTerminado');

@@ -82,3 +82,19 @@ textarea.form-control
     text-align: center;
  }
 
+ .galeria{
+    padding: 20px;
+    border: 1px solid #31343940;
+    border-radius: 25px;
+    padding-top: 34px;
+ }
+
+ .prod_img {
+    border: double #ccc;
+ }
+
+ .rounded {
+    width: 96px;
+    height: 139px;
+ }
+

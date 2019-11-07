@@ -24,6 +24,10 @@
 <!-- Booboxjs -->
 <script src="{{asset('/adminlte/plugins/bootbox/bootbox.min.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/bootbox/bootbox.locales.min.js')}}"></script>
+
+<!-- Ekko lightbox-->
+<script src="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
+
 <!-- InputMASK -->
 <script src="{{asset('adminlte/plugins/inputmask/jquery.inputmask.bundle.js')}}"></script>
 <!-- AdminLTE App -->

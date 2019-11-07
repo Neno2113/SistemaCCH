@@ -7,8 +7,11 @@
 @section('content')
 
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
-    <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
+    <div class="col-md-6">
+        <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
+        <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
+        <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i> ir a producto terminado </a>
+    </div>
 
 </div>
 
@@ -141,21 +144,25 @@
                             <label for="">Imagen frente:</label>
                             <input type="hidden" name="corte_id" id="corte_id" value="">
                             <input type="hidden" name="corte_id_edit" id="corte_id_edit" value="">
+                            <img src="" alt="" id="frente" class="rounded img-fluid img-thumbnail">
                             <input type="file" src="" name="imagen_frente" id="imagen_frente" alt=""
                                 class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="">Imagen trasera:</label>
+                            <img src="" alt="" id="trasera" class="rounded img-fluid img-thumbnail">
                             <input type="file" src="" alt="" name="imagen_trasera" id="imagen_trasera"
                                 class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="">Imagen perfil:</label>
+                            <img src="" alt="" id="perfil" class="rounded img-fluid img-thumbnail">
                             <input type="file" src="" alt="" name="imagen_perfil" id="imagen_perfil"
                                 class="form-control">
                         </div>
                         <div class="col-md-3">
                             <label for="">Imagen bolsillo:</label>
+                            <img src="" alt="" id="bolsillo" class="rounded img-fluid img-thumbnail">
                             <input type="file" src="" alt="" name="imagen_bolsillo" id="imagen_bolsillo"
                                 class="form-control">
                         </div>
@@ -364,6 +371,10 @@
             $("#k").val(data.almacen.k);
             $("#l").val(data.almacen.l);
             $("#genero").val(data.almacen.producto.referencia_producto);
+            $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
+            $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
+            $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
+            $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
         });
     }
 

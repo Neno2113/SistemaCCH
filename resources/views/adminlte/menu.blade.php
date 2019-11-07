@@ -144,13 +144,13 @@
             </li>
           </ul>
           <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Producto terminado</p>
-                </a>
-              </li>
-            </ul>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Producto terminado</p>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link ">
@@ -199,8 +199,23 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link ">
+            <i class="fas fa-random"></i>
+            <p>
+              Existencias
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/existencia" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Existencia</p>
+              </a>
+            </li>
 
-      </ul>
+          </ul>
     </nav>
     <!-- /.sidebar-menu -->
   </div>
