@@ -98,3 +98,8 @@ textarea.form-control
     height: 139px;
  }
 
+
+ .table-bordered td, .table-bordered th{
+     border: none;
+     border-top: 1px solid #dee2e6;
+ }

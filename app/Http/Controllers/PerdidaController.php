@@ -39,7 +39,7 @@ class PerdidaController extends Controller
             $motivo = $request->input('motivo');
             $no_perdida = $request->input('no_perdida');
             $sec = $request->input('sec');
-            $perdida_x = $request->input('perdida_x');
+            // $perdida_x = $request->input('perdida_x');
             $producto_id = $request->input('producto_id');
 
         
@@ -53,7 +53,7 @@ class PerdidaController extends Controller
             $perdida->no_perdida = $no_perdida;
             $perdida->sec = $sec + 0.01;
             $perdida->producto_id = $producto_id;
-            $perdida->perdida_x = $perdida_x;
+            // $perdida->perdida_x = $perdida_x;
 
             $perdida->save();
 
@@ -94,7 +94,8 @@ class PerdidaController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
-            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l; 
+            $x = $request->input('talla_x');
+            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l+$x; 
         
             $tallas = new TallasPerdidas();
 
@@ -111,6 +112,7 @@ class PerdidaController extends Controller
             $tallas->j = $j;
             $tallas->k = $k;
             $tallas->l = $l;
+            $tallas->talla_x = $x;
             $tallas->total = $total;
 
             $tallas->save();

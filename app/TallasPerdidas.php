@@ -14,6 +14,6 @@ class TallasPerdidas extends Model
 
     public function perdida()
     {
-        return $this->belongsTo('App\Perdida', 'perdidas_id');
+        return $this->belongsTo('App\Perdida', 'perdida_id');
     }
 }

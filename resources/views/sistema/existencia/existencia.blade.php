@@ -12,10 +12,20 @@
         <select name="tags[]" id="productoSearch" class="form-control select2" style="width:100%">
         </select>
     </div>
+    <div class="col-md-3 mt-4 pt-2">
+        <select name="tipo_consulta" id="tipo_consulta" class="form-control">
+            <option value="Totales">Tipo de consulta</option>
+            <option value="Detallada">Detallada</option>
+            <option value="Totales">Totales</option>
+        </select>
+    </div>
+    <div class="col-md-3 mt-4 pt-2">
+        <button class="btn btn-success" id="btn-consultar">Consultar</button>
+    </div>
 </div>
 
 <div class="col-md-12 pt-3 pl-3 pb-3">
-    <table class="table  table-bordered table-responsive mt-3">
+    <table class="table  table-bordered table-responsive mt-3" >
         <thead>
             <tr>
                 <th>Codigo Transaccion</th>
@@ -37,7 +47,10 @@
                
             </tr>
         </thead>
-        <tr>
+        <tbody id="transacciones">
+
+        </tbody>
+        {{-- <tr>
             <th>CP</th>
             <th>CP-2018</th>
             <th>P100-1908</th>
@@ -162,7 +175,7 @@
             <th>0</th>
             <th>0</th>
             <th>0</th>
-        </tr>
+        </tr> --}}
     </table>
 </div>
 

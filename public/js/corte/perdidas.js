@@ -334,7 +334,15 @@ $(document).ready(function() {
                             .toFixed(2)
                             .split(".")
                             .join("");
-                        var referencia = "PE-" + i;
+
+                        var tipo_perdida = $("#tipo_perdida").val()
+                
+                        if(tipo_perdida == 'Segundas'){
+                            var referencia = "SE-" + i;
+                        }else if(tipo_perdida = 'Normal'){
+                            var referencia = "PE-" + i;
+                        }
+                      
 
                         $("#no_perdida").val(referencia);
 
@@ -365,7 +373,6 @@ $(document).ready(function() {
             no_perdida: $("#no_perdida").val(),
             sec: $("#sec").val(),
             producto_id: $("#productos").val(),
-            perdida_x: $("#talla_x").val()
         };
 
         $.ajax({
@@ -380,9 +387,8 @@ $(document).ready(function() {
                     bootbox.alert(
                         "Se registro correctamente la perdida: "+ datos.perdida.no_perdida
                     );
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
+                    // limpiar();
+                   
 
                     var talla = {
                         perdida_id: datos.perdida.id,
@@ -397,7 +403,8 @@ $(document).ready(function() {
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
-                        l: $("#l").val()
+                        l: $("#l").val(),
+                        talla_x: $("#talla_x").val()
                     };
 
                     $.ajax({
@@ -408,7 +415,9 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                               
+                                
+                                tabla.ajax.reload();
+                                mostrarForm(false);
                                 limpiar();
             
                             } else {
