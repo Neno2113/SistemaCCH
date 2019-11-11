@@ -40,10 +40,13 @@ class PerdidaController extends Controller
             $no_perdida = $request->input('no_perdida');
             $sec = $request->input('sec');
             // $perdida_x = $request->input('perdida_x');
-            $producto_id = $request->input('producto_id');
+            // $producto_id = $request->input('producto_id');
 
         
             $perdida = new Perdida();
+            $corte = Corte::find($corte_id);
+            $producto_id = $corte['producto_id'];
+
 
             $perdida->corte_id = $corte_id;
             $perdida->fecha = $fecha;
@@ -208,8 +211,6 @@ class PerdidaController extends Controller
             $no_perdida = $request->input('no_perdida');
             $sec = $request->input('sec');
             $perdida_x = $request->input('perdida_x');
-            $producto_id = $request->input('producto_id');
-
         
             $perdida = Perdida::find($id);
 
@@ -220,7 +221,6 @@ class PerdidaController extends Controller
             $perdida->motivo = $motivo;
             $perdida->no_perdida = $no_perdida;
             $perdida->sec = $sec + 0.01;
-            $perdida->producto_id = $producto_id;
             $perdida->perdida_x = $perdida_x;
 
             $perdida->save();
@@ -325,7 +325,8 @@ class PerdidaController extends Controller
 
         if ($request->has('q')) {
             $search = $request->q;
-            $data = Corte::select("id", "numero_corte", "fase")
+            $data = Corte::join('producto', 'corte.producto_id', 'producto.id')
+                ->select("corte.id", "corte.numero_corte", "corte.fase", "producto.referencia_producto")
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }

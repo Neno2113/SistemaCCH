@@ -24,160 +24,73 @@
     </div>
 </div>
 
-<div class="col-md-12 pt-3 pl-3 pb-3">
-    <table class="table  table-bordered table-responsive mt-3" >
-        <thead>
-            <tr>
-                <th>Codigo Transaccion</th>
-                <th>No. transaccion</th>
-                <th>Ref. Producto</th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>E</th>
-                <th>F</th>
-                <th>G</th>
-                <th>H</th>
-                <th>I</th>
-                <th>J</th>
-                <th>K</th>
-                <th>L</th>
-                <th>X</th>
-               
-            </tr>
-        </thead>
-        <tbody id="transacciones">
 
-        </tbody>
-        {{-- <tr>
-            <th>CP</th>
-            <th>CP-2018</th>
-            <th>P100-1908</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>50</th>
-            <th>0</th>
-        </tr>
-        <tr>
-            <th>PE</th>
-            <th>PE-001</th>
-            <th>P100-1908</th>
-            <th></th>
-            <th></th>
-            <th>4</th>
-            <th>6</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>3</th>
-        </tr>
-        <tr>
-            <th>OD</th>
-            <th>OD-001</th>
-            <th>P100-1908</th>
-            <th>10</th>
-            <th></th>
-            <th></th>
-            <th>10</th>
-            <th></th>
-            <th>10</th>
-            <th></th>
-            <th>10</th>
-            <th>10</th>
-            <th></th>
-            <th>10</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>Conduce</th>
-            <th>??-001</th>
-            <th>P100-1908</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>FA</th>
-            <th>FA-001</th>
-            <th>P100-1908</th>
-            <th>10</th>
-            <th>20</th>
-            <th>30</th>
-            <th>10</th>
-            <th>10</th>
-            <th>20</th>
-            <th>10</th>
-            <th>10</th>
-            <th>20</th>
-            <th>10</th>
-            <th>30</th>
-            <th>5</th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>SE</th>
-            <th>SE-001</th>
-            <th>P100-1908</th>
-            <th>5</th>
-            <th></th>
-            <th>3</th>
-            <th></th>
-            <th></th>
-            <th>5</th>
-            <th></th>
-            <th>10</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>Total</th>
-            <th></th>
-            <th></th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-        </tr> --}}
-    </table>
+
+
+<div class="row">
+    <div class="col-md-10 pt-3 pl-3 pb-3">
+        <table class="table  table-bordered table-responsive mt-3">
+            <thead>
+                <tr>
+                    <th>Codigo Transaccion</th>
+                    <th>No. transaccion</th>
+                    <th>Ref. Producto</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
+                    <th>H</th>
+                    <th>I</th>
+                    <th>J</th>
+                    <th>K</th>
+                    <th>L</th>
+                    <th>X</th>
+
+                </tr>
+            </thead>
+            <tbody id="transacciones">
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th></th>
+                    <th id="ref"></th>
+                    <th id="a"></th>
+                    <th id="b"></th>
+                    <th id="c"></th>
+                    <th id="d"></th>
+                    <th id="e"></th>
+                    <th id="f"></th>
+                    <th id="g"></th>
+                    <th id="h"></th>
+                    <th id="i"></th>
+                    <th id="j"></th>
+                    <th id="k"></th>
+                    <th id="l"></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+    <div class="col-md-2 " style="margin-top: 26.8%">
+        <button id="btn-guardar" name="btn-guardar" class="btn btn-secondary"><i class="fas fa-sync"></i></button>
+    </div>
+
+
+
+
 </div>
+
+
+
+
+
 
 
 
@@ -233,6 +146,8 @@
             $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
         });
     }
+
+
 
 
     function eliminar(id_almacen){

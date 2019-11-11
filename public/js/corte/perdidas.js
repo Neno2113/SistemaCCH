@@ -44,6 +44,8 @@ $(document).ready(function() {
         $("#btn-edit").hide();
     }
 
+  
+
     $("#fase").change(function() {
         var val = $(this).val();
         if (val == "Produccion") {
@@ -84,10 +86,36 @@ $(document).ready(function() {
         }
     });
 
-    $("#productos").change(function() {
-        let val = $("#productos option:selected").text();
-        let genero = val.substring(1,2); 
+    $("#cortesSearch").change(function() {
+        let val = $("#cortesSearch option:selected").text();
 
+        let genero = val.substring(22,23); 
+        let fase = val.substring(11, 14)
+        
+        if(fase == 'Alm'){
+            $("#fase").val('Almacen')
+        }else if(fase == 'Lav'){
+            $("#fase").val('Lavanderia')
+        }else if(fase == 'Pro'){
+            $("#fase").val('Produccion')
+            $("#motivo").html(
+                "<div class='dropdown-menu'>"+
+                "<option   class='dropdown-item'  value='Error del operador'>1. Error del operador</option>" +
+                    "<option class='dropdown-item'  value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
+                    "<option class='dropdown-item' value='Defecto de tela'>3. Defecto de tela</option>" +
+                    "<option class='dropdown-item' value='Fallo en Dpto.corte'>4. Fallo en Dpto.corte</option>" +
+                    "<option class='dropdown-item' value='Extraviado'>5. Extraviado</option>"+
+                    "<hr>"+
+                    "<option class='dropdown-item' value='Error del operador'>1. Error del operador</option>" +
+                    "<option class='dropdown-item' value='Extraviado'>2. Extraviado</option>"+
+                "</div>"
+
+
+            );
+        }else if(fase == 'Ter'){
+            $("#fase").val('Terminacion')
+        }
+    
         if (genero == "2") {
             $("#genero").val('Mujer: '+val);
             $("#sub-genero").show();
@@ -288,7 +316,7 @@ $(document).ready(function() {
                 return {
                     results: $.map(data, function(item) {
                         return {
-                            text: item.numero_corte + " - " + item.fase,
+                            text: item.numero_corte + " - " + item.fase + " - "+ item.referencia_producto,
                             id: item.id
                         };
                     })
@@ -372,7 +400,7 @@ $(document).ready(function() {
             motivo: $("#motivo").val(),
             no_perdida: $("#no_perdida").val(),
             sec: $("#sec").val(),
-            producto_id: $("#productos").val(),
+            // producto_id: $("#productos").val(),
         };
 
         $.ajax({

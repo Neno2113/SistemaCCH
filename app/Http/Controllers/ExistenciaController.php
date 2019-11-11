@@ -8,6 +8,8 @@ use App\Product;
 use App\Talla;
 use App\Perdida;
 use App\TallasPerdidas;
+use App\Almacen;
+use App\Existencia;
 
 class ExistenciaController extends Controller
 {
@@ -62,6 +64,20 @@ class ExistenciaController extends Controller
 
         $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get()->load('perdida');
 
+
+        //Almacen
+        $almacen = Almacen::where('producto_id', $producto_id)->select('id')->get();
+
+        $almacenes = array();
+
+        $longitudAlmacen = count($almacen);
+
+        for ($i=0; $i < $longitudAlmacen ; $i++) { 
+            array_push($almacenes, $almacen[$i]['id']);
+        }
+
+        $tallasAlmacen = Almacen::whereIn('id', $almacenes)->get();
+
         //respuesta 
         $data = [
             'code' => 200,
@@ -106,14 +122,85 @@ class ExistenciaController extends Controller
             'j_seg' => $tallasSegundas->sum('j'),
             'k_seg' => $tallasSegundas->sum('k'),
             'l_seg' => $tallasSegundas->sum('l'),
-            'x_seg' => $tallasSegundas->sum('talla_x')
-
-
+            'x_seg' => $tallasSegundas->sum('talla_x'),
+            'tallasAlmacen' => $tallasAlmacen,
+            'a_alm' => $tallasAlmacen->sum('a'),
+            'b_alm' => $tallasAlmacen->sum('b'),
+            'c_alm' => $tallasAlmacen->sum('c'),
+            'd_alm' => $tallasAlmacen->sum('d'),
+            'e_alm' => $tallasAlmacen->sum('e'),
+            'f_alm' => $tallasAlmacen->sum('f'),
+            'g_alm' => $tallasAlmacen->sum('g'),
+            'h_alm' => $tallasAlmacen->sum('h'),
+            'i_alm' => $tallasAlmacen->sum('i'),
+            'j_alm' => $tallasAlmacen->sum('j'),
+            'k_alm' => $tallasAlmacen->sum('k'),
+            'l_alm' => $tallasAlmacen->sum('l'),
+            'x_alm' => $tallasAlmacen->sum('talla_x')
 
         ];
 
 
         return \response()->json($data, $data['code']);
+    }
+
+    public function store(Request $request)
+    {
+
+        $validar = $request->validate([
+            'producto_id' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $producto_id = $request->input('producto_id');
+
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
+
+            $existencia = new Existencia();
+
+            $existencia->producto_id = $producto_id;
+            $existencia->a = $a;
+            $existencia->b = $b;
+            $existencia->c = $c;
+            $existencia->d = $d;
+            $existencia->e = $e;
+            $existencia->f = $f;
+            $existencia->g = $g;
+            $existencia->h = $h;
+            $existencia->i = $i;
+            $existencia->j = $j;
+            $existencia->k = $k;
+            $existencia->l = $l;
+            $existencia->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
+            $existencia->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'existencia' => $existencia
+            ];
+        }
+
+        return response()->json($data, $data['code']);
     }
 
     public function selectProduct(Request $request)

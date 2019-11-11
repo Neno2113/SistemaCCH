@@ -31,7 +31,7 @@
                     <hr>
                     <br>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-10">
                             <label for="">Tipo de perdida(*)</label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
@@ -42,12 +42,12 @@
                                 <option value="Segundas">Segundas</option>
                             </select>
                         </div>
-                        <div class="col-6" id="productoAdd">
+                        {{-- <div class="col-6" id="productoAdd">
                             <label for="">Referencia producto(*):</label>
                             <select name="productos" id="productos" class="form-control select2">
                             </select>
                             <input type="text" name="referencia_producto" id="referencia_producto" class="form-control mt-2">
-                        </div>
+                        </div> --}}
                       
                     </div>
                     <div class="row">
