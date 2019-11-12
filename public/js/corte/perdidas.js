@@ -94,26 +94,47 @@ $(document).ready(function() {
         
         if(fase == 'Alm'){
             $("#fase").val('Almacen')
+            $("#motivo").html(
+                "<option disabled><strong>Almacen</strong></option>"+
+                "<option value='Extraviado'>1. Extraviado</option>" +
+                "<option value='Termita'>2. Termita</option>" +
+                "<option value='Reaccion luz'>3. Reaccion a la luz</option>"
+            );
         }else if(fase == 'Lav'){
             $("#fase").val('Lavanderia')
+            $("#motivo").html(
+                "<option disabled><strong>Lavanderia</strong></option>"+
+                "<option value='Rotos'>1. Rotos</option>" +
+                "<option value='Manchados'>2. Manchados</option>" +
+                "<option value='Extraviado'>3. Extraviado</option>"
+            );
+            
         }else if(fase == 'Pro'){
             $("#fase").val('Produccion')
             $("#motivo").html(
                 "<div class='dropdown-menu'>"+
+                "<option disabled><strong>Produccion</strong></option>"+
                 "<option   class='dropdown-item'  value='Error del operador'>1. Error del operador</option>" +
                     "<option class='dropdown-item'  value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
                     "<option class='dropdown-item' value='Defecto de tela'>3. Defecto de tela</option>" +
                     "<option class='dropdown-item' value='Fallo en Dpto.corte'>4. Fallo en Dpto.corte</option>" +
                     "<option class='dropdown-item' value='Extraviado'>5. Extraviado</option>"+
-                    "<hr>"+
+                     "<option  disabled>_______________________________________________________</option>"+
+                     "<option disabled><strong>Procesos Secos</strong></option>"+
                     "<option class='dropdown-item' value='Error del operador'>1. Error del operador</option>" +
                     "<option class='dropdown-item' value='Extraviado'>2. Extraviado</option>"+
                 "</div>"
-
-
             );
         }else if(fase == 'Ter'){
             $("#fase").val('Terminacion')
+            $("#motivo").html(
+                "<option disabled><strong>Terminacion</strong></option>"+
+                "<option value='Error del operador'>1. Error del operador</option>" +
+                "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
+                "<option value='Defecto de tela'>3. Defecto de tela</option>" +
+                "<option value='Fallo en Dpto. corte'>4. Fallo en Dpto. corte</option>" +
+                "<option value='Extraviado'>5. Extraviado </option>"
+            );
         }
     
         if (genero == "2") {

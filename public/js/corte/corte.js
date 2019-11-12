@@ -58,7 +58,7 @@ $(document).ready(function() {
         $("#numero_corte").val("");
         $("#sec").val("");
         $("#productos").val("").trigger("change");
-        $("#fecha_corte").val("");
+        $("#fecha_entrega").val("");
         $("#no_marcada").val("");
         $("#corte").val("");
         $("#ancho_marcada").val("");
@@ -81,10 +81,11 @@ $(document).ready(function() {
                     i = (i + 0.01).toFixed(2).split('.').join("");
                     var year = new Date().getFullYear().toString();
                     var referencia = year+'-'+i;
+                   
                                
                     $("#numero_corte").val(referencia);
                     $("#corte").val(referencia);
-                    $("#corte_tallas").val(referencia);
+                    // $("#corte_tallas").val(referencia +" - "+ referencia_producto );
                     $('#btn-generar').attr("disabled", true);
                     $("#fila1").show();
                     $("#fila2").show();
@@ -152,25 +153,208 @@ $(document).ready(function() {
         }
     })
 
+
+    $("#productos").change(function(){
+        let val = $("#productos option:selected").text();
+        $("#corte_tallas").val(val);
+        let genero = val.substring(1,2);
+
+        if (genero == "2") {
+            $("#corte_tallas").val('Mujer: '+val);
+            $("#sub-genero").show();
+          
+             $("#sub-genero").on('change', function(){
+                var subGenero = $("#sub-genero").val();
+             
+                if(subGenero == "Mujer"){
+                  
+                   $("#ta").html("0/0");
+                   $("#tb").html("1/2");
+                   $("#tc").html("3/4");
+                   $("#td").html("5/6");
+                   $("#te").html("7/8");
+                   $("#tf").html("9/10");
+                   $("#tg").html("11/12");
+                   $("#th").html("13/14");
+                   $("#ti").html("15/16");
+                   $("#tj").html("17/18");
+                   $("#tk").html("19/20");
+                   $("#tl").html("21/22");
+                   $("#i").attr('disabled', false);
+                   $("#j").attr('disabled', false);
+                   $("#k").attr('disabled', false);
+                   $("#l").attr('disabled', false);
+                   $("#tallas").html(
+                       "<th>Dama TA</th>"+
+                       "<th>0/0</th>"+
+                       "<th>1/2</th>"+
+                       "<th>3/4</th>"+
+                       "<th>5/6</th>"+
+                       "<th>7/8</th>"+
+                       "<th>9/10</th>"+
+                       "<th>11/12</th>"+
+                       "<th>13/14</th>"+
+                       "<th>15/16</th>"+
+                       "<th>17/18</th>"+
+                       "<th>19/20</th>"+
+                       "<th>21/22</th>"
+               );
+               }else if (subGenero == "Mujer Plus"){
+                //    $("#genero").val('Mujer plus: '+val);
+                   $("#sub-genero").show();
+                   $("#ta").html("12W");
+                   $("#tb").html("14W");
+                   $("#tc").html("16W");
+                   $("#td").html("18W");
+                   $("#te").html("20W");
+                   $("#tf").html("22W");
+                   $("#tg").html("24W");
+                   $("#th").html("26W");
+                   $("#i").attr('disabled', true);
+                   $("#j").attr('disabled', true);
+                   $("#k").attr('disabled', true);
+                   $("#l").attr('disabled', true);
+                   $("#tallas").html(
+                       "<th>Dama Plus</th>"+
+                       "<th>12W</th>"+
+                       "<th>14W</th>"+
+                       "<th>16W</th>"+
+                       "<th>18W</th>"+
+                       "<th>20W</th>"+
+                       "<th>22W</th>"+
+                       "<th>24W</th>"+
+                       "<th>26W</th>"
+                   );
+               }
+          
+            
+        });
+    }
+        
+        if (genero == "3") {
+            $("#corte_tallas").val('Niño: '+val);
+            $("#sub-genero").hide();
+            $("#ta").html("2");
+            $("#tb").html("4");
+            $("#tc").html("6");
+            $("#td").html("8");
+            $("#te").html("10");
+            $("#tf").html("12");
+            $("#tg").html("14");
+            $("#th").html("16");
+            $("#i").attr('disabled', true);
+            $("#j").attr('disabled', true);
+            $("#k").attr('disabled', true);
+            $("#l").attr('disabled', true);
+            $("#tallas").html(
+                            "<th>Niño</th>"+
+                            "<th>2</th>"+
+                            "<th>4</th>"+
+                            "<th>6</th>"+
+                            "<th>8</th>"+
+                            "<th>10</th>"+
+                            "<th>12</th>"+
+                            "<th>14</th>"+
+                            "<th>16</th>"
+            );
+        } else if (genero == "4") {
+            $("#corte_tallas").val('Niña: '+val);
+            $("#sub-genero").hide();
+            $("#ta").html("2");
+            $("#tb").html("4");
+            $("#tc").html("6");
+            $("#td").html("8");
+            $("#te").html("10");
+            $("#tf").html("12");
+            $("#tg").html("14");
+            $("#th").html("16");
+            $("#i").attr('disabled', true);
+            $("#j").attr('disabled', true);
+            $("#k").attr('disabled', true);
+            $("#l").attr('disabled', true);
+            $("#tallas").html(
+                "<th>Niña</th>"+
+                "<th>2</th>"+
+                "<th>4</th>"+
+                "<th>6</th>"+
+                "<th>8</th>"+
+                "<th>10</th>"+
+                "<th>12</th>"+
+                "<th>14</th>"+
+                "<th>16</th>"
+            );
+        } else if (genero == "1") {
+            $("#corte_tallas").val('Hombre: '+val);
+            $("#sub-genero").hide();
+            $("#ta").html("28");
+            $("#tb").html("29");
+            $("#tc").html("30");
+            $("#td").html("32");
+            $("#te").html("34");
+            $("#tf").html("36");
+            $("#tg").html("38");
+            $("#th").html("40");
+            $("#ti").html("42");
+            $("#tj").html("44");
+            $("#i").attr('disabled', false);
+            $("#j").attr('disabled', false);
+            $("#k").attr('disabled', true);
+            $("#l").attr('disabled', true);
+            $("#tallas").html(
+                "<th>Caballero Skinny</th>"+
+                "<th>28</th>"+
+                "<th>29</th>"+
+                "<th>30</th>"+
+                "<th>32</th>"+
+                "<th>34</th>"+
+                "<th>36</th>"+
+                "<th>38</th>"+
+                "<th>40</th>"+
+                "<th>42</th>"+
+                "<th>44</th>"
+            );
+        } else if (val == "") {
+            $("#motivo").html("<option value=''> </option>");
+        }
+    });
+
+
+    $("#fecha_entrega").click(function(){
+        let fecha = new Date();
+        let dia = fecha.getDate();
+        let year = fecha.getFullYear();
+        let month = fecha.getMonth();
+
+        if(dia < 15){
+            month = month + 2;
+           
+            $("#fecha_entrega").attr('min', year +"-"+ month+"-14")
+            $("#fecha_entrega").attr('max', year +"-"+ month+"-14")
+            $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la primera quincena del mes: "+month);
+        }else if(dia > 15){
+            month = month + 2;
+            $("#fecha_entrega").attr('min', year +"-"+ month+"-28")
+            $("#fecha_entrega").attr('max', year +"-"+ month+"-28")
+            $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);
+        }
+    });
+
     //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-
-        var date = new Date();
-        var dd = String(date.getDate()).padStart(2, '0');
-        var mm = String(date.getMonth()+ 1).padStart(2, '0');
-        var yyyy = date.getFullYear();
         
         var corte = {
             sec: $("#sec").val(),
             numero_corte: $("#numero_corte").val(),
             producto_id: $("#productos").val(),
-            fecha_corte: dd+ '/' +mm+ '/' + yyyy, 
+            fecha_entrega: $("#fecha_entrega").val(), 
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
             largo_marcada: $("#largo_marcada").val(),
             aprovechamiento: $("#aprovechamiento").val()
         };
+
+        // console.log(JSON.stringify(corte));
 
         // funcion que se ejecuta con el callback de la funcion para guardar
         //esta almacena las cantidades por tallas
@@ -280,12 +464,12 @@ $(document).ready(function() {
             ajax: "api/cortes",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "name", name: 'users.name' },
                 { data: "numero_corte", name: 'corte.numero_corte' },
                 { data: "referencia_producto", name: 'producto.referencia_producto' },
                 { data: "fecha_corte", name: 'corte.fecha_corte' },
+                { data: "fecha_entrega", name: 'corte.fecha_entrega' },
                 { data: "fase", name: 'corte.fase' },
                 { data: "total", name: 'corte.total' },
                 { data: "aprovechamiento", name: 'corte.aprovechamiento' },
@@ -442,7 +626,7 @@ $(document).ready(function() {
             $("#fila1").hide();
             $("#fila2").hide();
             $("#fila3").hide();
-            $("#btn-guardar").attr("disabled", true);
+            // $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
         }

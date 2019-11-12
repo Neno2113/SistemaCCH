@@ -18,7 +18,7 @@ class CorteController extends Controller
         $validar = $request->validate([
             'numero_corte' => 'required',
             'producto_id' => 'required',
-            'fecha_corte' => 'required',
+            'fecha_entrega' => 'required',
             'aprovechamiento' => 'required'
         ]);
 
@@ -37,6 +37,7 @@ class CorteController extends Controller
             $ancho_marcada = $request->input('ancho_marcada');
             $largo_marcada = $request->input('largo_marcada');
             $aprovechamiento = $request->input('aprovechamiento');
+            $fecha_entrega = $request->input('fecha_entrega');
             
             $sec = $request->input('sec');
             $fase = 'Produccion';
@@ -55,6 +56,7 @@ class CorteController extends Controller
             $corte->aprovechamiento = trim($aprovechamiento, '%');
             $corte->fase = $fase;
             $corte->sec = $sec + 0.01;
+            $corte->fecha_entrega = $fecha_entrega;
 
             $corte->save();
 
@@ -72,10 +74,9 @@ class CorteController extends Controller
     {
         $cortes = DB::table('corte')->join('users', 'corte.user_id', '=', 'users.id')
             ->join('producto', 'corte.producto_id', '=', 'producto.id')
-            // ->join('tallas', 'corte.tallas_id', '=', 'tallas.id')
             ->select(['corte.id', 'users.name', 'users.surname', 'corte.numero_corte', 'producto.referencia_producto'
             , 'producto.referencia_producto_2', 'corte.fecha_corte', 'corte.no_marcada', 'corte.ancho_marcada', 'corte.largo_marcada',
-            'corte.aprovechamiento', 'corte.fase', 'corte.total']);
+            'corte.aprovechamiento', 'corte.fase', 'corte.total', 'corte.fecha_entrega']);
 
         return DataTables::of($cortes)
             ->addColumn('Expandir', function ($corte) {
@@ -87,13 +88,11 @@ class CorteController extends Controller
             ->editColumn('fecha_corte', function ($corte) {
                 return date("d-m-20y", strtotime($corte->fecha_corte));
             })
-            ->addColumn('Editar', function ($corte) {
-                return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+            ->addColumn('Opciones', function ($corte) {
+                return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $corte->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
             })
-            ->addColumn('Eliminar', function ($corte) {
-                return '<button onclick="eliminar(' . $corte->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
-            })
-            ->rawColumns(['Editar', 'Eliminar'])
+            ->rawColumns(['Opciones'])
             ->make(true);
     }
 

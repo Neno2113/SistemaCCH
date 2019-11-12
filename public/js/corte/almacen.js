@@ -360,7 +360,7 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#almacenes").DataTable({
             serverSide: true,
-            // responsive: true,
+            responsive: true,
             dom: "Bfrtip",
             buttons: [
                 "pageLength",

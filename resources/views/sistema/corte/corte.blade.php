@@ -34,17 +34,22 @@
                                 readonly>
                         </div>
                         <div class="col-md-4 mt-5">
-                            <button class="btn btn-primary btn-lg" id="btn-generar" name="btn-generar">Generar</button>
+                            <button class="btn btn-success" id="btn-generar" name="btn-generar">Generar</button>
                         </div>
                     </div>
                     <br>
                     <hr>
                     <br>
                     <div class="row" id="fila1">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="">Referencia producto(*):</label>
                             <select name="tags[]" id="productos" class="form-control select2">
                             </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Fecha estimada de  entrega(*):</label>
+                            <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control"
+                            data-toggle="tooltip" data-placement="bottom">
                         </div>
                     </div>
                     <br>
@@ -69,12 +74,12 @@
                                 data-inputmask='"mask": "99.99%"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide" data-toggle="modal"
+                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide" data-toggle="modal"
                                 data-target=".bd-rollo-modal-lg">Agregar rollos <i
                                     class="fa fa-dolly-flatbed"></i></button>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2"
+                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
                                 data-toggle="modal" data-target=".bd-talla-modal-xl">Definir Corte <i
                                     class="fa fa-cut"></i></button>
                         </div>
@@ -92,40 +97,40 @@
 {{-- </div> --}}
 
 <div class="container" id="listadoUsers">
-    <table id="cortes" class="table table-striped table-bordered datatables">
+    <table id="cortes" class="table table-striped table-bordered datatables cell-border" >
         <thead>
             <tr>
                 <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Usuario</th>
+                <th>Opciones</th>
+                <th>User</th>
                 <th>No.Corte</th>
                 <th>Producto</th>
                 <th>Fecha</th>
+                <th>Est.</th>
                 <th>Fase</th>
                 <th>Total</th>
-                <th>Aprovechamiento</th>
-                <th>No.Marcada</th>
-                <th>L.Marcada</th>
-                <th>A.Marcada</th>
+                <th>Aprovecha.</th>
+                <th>No.Marc.</th>
+                <th>L.Marc.</th>
+                <th>A.Marc.</th>
             </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
             <tr>
                 <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Usuario</th>
+                <th>Opciones</th>
+                <th>User</th>
                 <th>No.Corte</th>
                 <th>Producto</th>
                 <th>Fecha</th>
+                <th>Est.</th>
                 <th>Fase</th>
                 <th>Total</th>
-                <th>Aprovechamiento</th>
-                <th>No.Marcada</th>
-                <th>L.Marcada</th>
-                <th>A.Marcada</th>
+                <th>Aprovecha.</th>
+                <th>No.Marc.</th>
+                <th>L.Marc.</th>
+                <th>A.Marc.</th>
             </tr>
         </tfoot>
     </table>
@@ -202,6 +207,13 @@
                     <div class="col-md-6 mb-2">
                         <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center">
                     </div>
+                    <div class="col-md-4">
+                        <select name="sub-genero" id="sub-genero" class="form-control">
+                            <option value=""></option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Mujer Plus">Mujer plus</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="row">
                     <table class="table  table-bordered table-responsive">
@@ -222,116 +234,60 @@
                                 <th>L</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <th>Niño</th>
-                            <th>2</th>
-                            <th>4</th>
-                            <th>6</th>
-                            <th>8</th>
-                            <th>10</th>
-                            <th>12</th>
-                            <th>14</th>
-                            <th>16</th>
+                        <tr id="tallas">
+                          
                         </tr>
-                        <tr>
-                            <th>Niña</th>
-                            <th>2</th>
-                            <th>4</th>
-                            <th>6</th>
-                            <th>8</th>
-                            <th>10</th>
-                            <th>12</th>
-                            <th>14</th>
-                            <th>16</th>
-                        </tr>
-                        <tr>
-                            <th>Dama TA</th>
-                            <th>0/0</th>
-                            <th>1/2</th>
-                            <th>3/4</th>
-                            <th>5/6</th>
-                            <th>7/8</th>
-                            <th>9/10</th>
-                            <th>11/12</th>
-                            <th>13/14</th>
-                            <th>15/16</th>
-                            <th>17/18</th>
-                            <th>19/20</th>
-                            <th>21/22</th>
-                        </tr>
-                        <tr>
-                            <th>Dama plus</th>
-                            <th>12W</th>
-                            <th>14W</th>
-                            <th>16W</th>
-                            <th>18W</th>
-                            <th>20W</th>
-                            <th>22W</th>
-                            <th>24W</th>
-                            <th>26W</th>
-                        </tr>
-                        <tr>
-                            <th>Caballero Skinny</th>
-                            <th>28</th>
-                            <th>29</th>
-                            <th>30</th>
-                            <th>32</th>
-                            <th>34</th>
-                            <th>36</th>
-                            <th>38</th>
-                            <th>40</th>
-                            <th>42</th>
-                            <th>44</th>
-                        </tr>
+                      
                     </table>
                 </div>
+                <br><br>
                 <div class="row">
                     <div class="col-lg-1 col-xs-">
-                        <label for="" class="ml-4">A</label>
+                        <label for="" class="ml-4" id="ta">A</label>
                         <input type="text" name="" id="a" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">B</label>
+                        <label for="" class="ml-4" id="tb">B</label>
                         <input type="text" name="" id="b" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">C</label>
+                        <label for="" class="ml-4" id="tc">C</label>
                         <input type="text" name="" id="c" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">D</label>
+                        <label for="" class="ml-4" id="td">D</label>
                         <input type="text" name="" id="d" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">E</label>
+                        <label for="" class="ml-4" id="te">E</label>
                         <input type="text" name="" id="e" class="form-control">
                     </div>
                     <div class="col-md-1">
-                        <label for="" class="ml-4">F</label>
+                        <label for="" class="ml-4" id="tf">F</label>
                         <input type="text" name="" id="f" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">G</label>
+                        <label for="" class="ml-4" id="tg">G</label>
                         <input type="text" name="" id="g" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">H</label>
+                        <label for="" class="ml-4" id="th" >H</label>
                         <input type="text" name="" id="h" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">I</label>
+                        <label for="" class="ml-4" id="ti">I</label>
                         <input type="text" name="" id="i" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">J</label>
+                        <label for="" class="ml-4" id="tj">J</label>
                         <input type="text" name="" id="j" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">K</label>
+                        <label for="" class="ml-4" id="tk">K</label>
                         <input type="text" name="" id="k" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4">L</label>
+                        <label for="" class="ml-4" id="tl">L</label>
                         <input type="text" name="" id="l" class="form-control">
                     </div>
                 </div>

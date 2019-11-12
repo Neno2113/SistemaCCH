@@ -58,7 +58,7 @@ $(document).ready(function() {
                  
                     if(tipo_consulta == 'Totales'){
                         $("#transacciones").html(
-                            "<tr id='totales'>"+
+                            "<tr id='cortes'>"+
                             "<th>CP(Corte)</th>"+
                             "<th>1</th>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
@@ -129,16 +129,61 @@ $(document).ready(function() {
                             "<th class='text-primary font-weight-normal'>"+datos.x_seg+"</th>"+
                             "</tr>"
                         )
+
+                        //corte
+                        let a_corte = parseInt($("#a_corte").text());
+                        let b_corte = parseInt($("#b_corte").text());
+                        let c_corte = parseInt($("#c_corte").text());
+                        let d_corte = parseInt($("#d_corte").text());
+                        let e_corte = parseInt($("#e_corte").text());
+                        let f_corte = parseInt($("#f_corte").text());
+                        let g_corte = parseInt($("#g_corte").text());
+                        let h_corte = parseInt($("#h_corte").text());
+                        let i_corte = parseInt($("#i_corte").text());
+                        let j_corte = parseInt($("#j_corte").text());
+                        let k_corte = parseInt($("#k_corte").text());
+                        let l_corte = parseInt($("#l_corte").text());
+
+                        //perdida
+                        let a_perd = parseInt($("#a_perd").text());
+                        let b_perd = parseInt($("#b_perd").text());
+                        let c_perd = parseInt($("#c_perd").text());
+                        let d_perd = parseInt($("#d_perd").text());
+                        let e_perd = parseInt($("#e_perd").text());
+                        let f_perd = parseInt($("#f_perd").text());
+                        let g_perd = parseInt($("#g_perd").text());
+                        let h_perd = parseInt($("#h_perd").text());
+                        let i_perd = parseInt($("#i_perd").text());
+                        let j_perd = parseInt($("#j_perd").text());
+                        let k_perd = parseInt($("#k_perd").text());
+                        let l_perd = parseInt($("#l_perd").text());
+                        
+                        $("#ref").html(ref);
+                        $("#a").html(a_corte - a_perd);
+                        $("#b").html(b_corte - b_perd);
+                        $("#c").html(c_corte - c_perd);
+                        $("#d").html(d_corte - d_perd);
+                        $("#e").html(e_corte - e_perd);
+                        $("#f").html(f_corte - f_perd);
+                        $("#g").html(g_corte - g_perd);
+                        $("#h").html(h_corte - h_perd);
+                        $("#i").html(i_corte - i_perd);
+                        $("#j").html(j_corte - j_perd);
+                        $("#k").html(k_corte - k_perd);
+                        $("#l").html(l_corte - l_perd);
+
+                        $("#totales").show();
                     }else if(tipo_consulta == 'Detallada'){
                         var longitud = datos.tallas.length;
                         var longitudPerdidas = datos.tallasPerdidas.length;
                         var longitudSegundas = datos.tallaSegundas.length;
                         var longitudAlmacen = datos.tallasAlmacen.length;
 
-                        $("#totales").hide();
+                        $("#cortes").hide();
                         $("#perdidas").hide();
                         $("#segundas").hide();
                         $("#almacen").hide();
+                        $("#totales").hide();
 
                         for (let i = 0; i < longitud; i++) {
                             var fila =  "<tr>"+

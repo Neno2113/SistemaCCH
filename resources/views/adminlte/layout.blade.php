@@ -19,12 +19,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('adminlte/css/adminlte.min.css')}}">
   <!-- Bootstrap -->
  
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
-  {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" /> --}}
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css" />
-  <link rel="stylesheet" type="text/css"href="https://cdn.datatables.net/rowgroup/1.1.0/css/rowGroup.bootstrap4.min.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.20/b-1.6.0/b-html5-1.6.0/b-print-1.6.0/datatables.min.css"/>
+  {{-- Datatables --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+  {{-- <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}"> --}}
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/Buttons/css/buttons.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-rowgroup/css/rowGroup.bootstrap4.min.css')}}">
+ 
+  {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.20/b-1.6.0/b-html5-1.6.0/b-print-1.6.0/datatables.min.css"/> --}}
 
   <!-- Icheck -->
   <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">

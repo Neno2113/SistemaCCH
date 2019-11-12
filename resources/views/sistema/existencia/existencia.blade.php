@@ -28,7 +28,7 @@
 
 
 <div class="row">
-    <div class="col-md-10 pt-3 pl-3 pb-3">
+    <div class="col-12 pt-3 pl-3 pb-3">
         <table class="table  table-bordered table-responsive mt-3">
             <thead>
                 <tr>
@@ -55,8 +55,8 @@
 
             </tbody>
             <tfoot>
-                <tr>
-                    <th>Total</th>
+                <tr id="totales">
+                    <th>Existencia</th>
                     <th></th>
                     <th id="ref"></th>
                     <th id="a"></th>
@@ -78,9 +78,9 @@
 
     </div>
 
-    <div class="col-md-2 " style="margin-top: 26.8%">
+    {{-- <div class="col-md-2 " style="margin-top: 26.8%">
         <button id="btn-guardar" name="btn-guardar" class="btn btn-secondary"><i class="fas fa-sync"></i></button>
-    </div>
+    </div> --}}
 
 
 

@@ -216,6 +216,15 @@
             </li>
 
           </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orden Pedido</p>
+              </a>
+            </li>
+
+          </ul>
     </nav>
     <!-- /.sidebar-menu -->
   </div>

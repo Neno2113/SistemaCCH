@@ -88,6 +88,10 @@ Route::get('/producto-terminado', function () {
 Route::get('/existencia', function () {
     return view('sistema.existencia.existencia');
 });
+
+Route::get('/orden_pedido', function () {
+    return view('sistema.ordenPedido.ordenPedido');
+});
 // Fin vistas
 
 //Rutas de usuarios
