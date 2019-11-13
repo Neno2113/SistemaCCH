@@ -207,7 +207,7 @@ $(document).ready(function() {
           
             
         });
-    }
+        }
         
         if (genero == "3") {
             $("#genero").val('Niño: '+val);

@@ -223,3 +223,9 @@ Route::post('/almacen/imagen', 'AlmacenController@upload');
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
 Route::post('existencia/consulta', 'ExistenciaController@show');
 Route::post('existencia', 'ExistenciaController@store');
+
+//Orden de pedido
+Route::post('ordenPedido/consulta', 'ordenPedidoController@show');
+Route::get('selectproducto', 'ordenPedidoController@selectProduct');
+Route::get('selectCliente', 'ordenPedidoController@selectCliente');
+Route::get('selectSucursal', 'ordenPedidoController@selectSucursal');
