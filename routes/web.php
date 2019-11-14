@@ -229,3 +229,5 @@ Route::post('ordenPedido/consulta', 'ordenPedidoController@show');
 Route::get('selectproducto', 'ordenPedidoController@selectProduct');
 Route::get('selectCliente', 'ordenPedidoController@selectCliente');
 Route::get('selectSucursal', 'ordenPedidoController@selectSucursal');
+Route::post('orden', 'ordenPedidoController@store');
+Route::post('orden/detalle', 'ordenPedidoController@storeDetalle');

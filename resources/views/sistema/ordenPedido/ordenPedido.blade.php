@@ -38,7 +38,7 @@
                     <div class="row mt-3">
                         <div class="col-md-4 mt-2">
                             <label for="">Notas(*):</label>
-                            <textarea name="notas" id="notas0" cols="30" rows="1" class="form-control"></textarea>
+                            <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="">Fecha de entrega</label>
@@ -88,15 +88,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mr-3" id="detallada">
+                        <div class="col-md-6" id="detallada">
                             <label for="">Disponible:</label>
                             <select name="sub-genero" id="sub-genero" class="form-control">
                                 <option value="Mujer"></option>
                                 <option value="Mujer">Mujer</option>
                                 <option value="Mujer Plus">Mujer plus</option>
                             </select>
-                            <table class="table table-bordered table-responsive">
-                                <thead>
+                            <table class="table table-bordered ">
+                                <thead class="thead-light">
                                     <tr>
 
                                         <th id="ta">A</th>
@@ -114,8 +114,11 @@
                                     </tr>
                                 </thead>
                                 <tbody id="disponibles">
-                                  
+
                                 </tbody>
+                                {{-- <tfoot id="corteProceso">
+                                    
+                                </tfoot> --}}
 
                             </table>
                         </div>
@@ -125,10 +128,36 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <button class="btn btn-success rounded-pill" name="btn-consultar"
                                 id="btn-consultar">Consultar</button>
                         </div>
+                        <div class="col-md-2 ">
+                            <label for="">Precio(*):</label>
+                            <input type="text" name="precio" id="precio" class="form-control text-center"
+                            data-inputmask='"mask": "9.999"' data-mask>
+                        </div>
+                        <div class="col-md-4 mr-3" id="corte_en_proceso">
+                            <label for="">En proceso</label>
+                            <table class="table table-bordered ">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>No. Corte</th>
+                                        <th>Fase</th>
+                                        <th>F. Entrega</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="corteProceso">
+
+                                </tbody>
+                                {{-- <tfoot id="corteProceso">
+                                    
+                                </tfoot> --}}
+
+                            </table>
+                        </div>
+
                     </div>
                     <br>
                     <hr>
@@ -185,19 +214,21 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-4">
-                            <button class="btn btn-info rounded-lg" name="btn-agregar"  id="btn-agregar">Agregar</button>
+                            <button class="btn btn-info rounded-lg" name="btn-agregar" id="btn-agregar">Agregar</button>
                         </div>
                     </div>
                     <br>
                     <hr>
 
                     <div class="row">
-                        <div class="col-12 pt-3 pl-3 pb-3">
-                            <table class="table  table-bordered table-responsive mt-3">
+                        <div class="col-md-12 pt-3 pl-3 pb-3">
+                            <table class="table  table-bordered  mt-3 ">
                                 <thead class="thead-light">
                                     <tr>
+
                                         <th>Referencias listadas</th>
                                         <th>Precio</th>
+                                        <th>Cantidad</th>
                                         <th>AP</th>
                                         <th>BP</th>
                                         <th>CP</th>
@@ -216,8 +247,10 @@
 
                                 </tbody>
                                 <tfoot class="light">
+
                                     <th>Referencias listadas</th>
                                     <th>Precio</th>
+                                    <th>Cantidad</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
