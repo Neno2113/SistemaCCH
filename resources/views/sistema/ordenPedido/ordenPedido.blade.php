@@ -22,7 +22,14 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <div class="row">
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-md-2 ">
+                            <input type="text" name="no_orden_pedido" id="no_orden_pedido"
+                                class="form-control text-center" readonly>
+                            <input type="hidden" name="sec" id="sec" value="">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
                         <div class="col-md-6">
                             <label for="">Cliente(*):</label>
                             <select name="tags[]" id="clienteSearch" class="form-control select2">
@@ -66,12 +73,12 @@
                     <hr>
                     <br>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 ">
                             <label for="">Referencia Producto</label>
                             <select name="tags[]" id="productoSearch" class="form-control select2" style="width:100%">
                             </select>
                         </div>
-                        <div class="col-md-2 mt-2">
+                        <div class="col-md-2 mt-2 border-right">
                             <label for="">¿Detallado?</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
@@ -128,14 +135,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 mt-3 border-left">
                             <button class="btn btn-success rounded-pill" name="btn-consultar"
                                 id="btn-consultar">Consultar</button>
                         </div>
-                        <div class="col-md-2 ">
-                            <label for="">Precio(*):</label>
-                            <input type="text" name="precio" id="precio" class="form-control text-center"
-                            data-inputmask='"mask": "9.999"' data-mask>
+                        <div class="col-md-2 " >
+
                         </div>
                         <div class="col-md-4 mr-3" id="corte_en_proceso">
                             <label for="">En proceso</label>
@@ -151,11 +156,24 @@
                                 <tbody id="corteProceso">
 
                                 </tbody>
-                                {{-- <tfoot id="corteProceso">
-                                    
-                                </tfoot> --}}
+                               
 
                             </table>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mt-3" id="precio_div">
+                            <label for="">Precio(*):</label>
+                            <input type="text" name="precio" id="precio" class="form-control text-center"
+                                data-inputmask='"mask": "9.999"' data-mask>
+                        </div>
+                        <div class="col-md-2 mt-3" id="total_div">
+                            <label for="">Total Ref.:</label>
+                            <input type="text" name="total" id="total" class="form-control text-center" readonly>
+                        </div>
+                        <div class="col-md-4 mr-3">
+
                         </div>
 
                     </div>

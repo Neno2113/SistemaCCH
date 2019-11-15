@@ -53,3 +53,5 @@ Route::get('perdidas', 'PerdidaController@perdidas');
 Route::get('almacenes', 'AlmacenController@almacenes');
 
 Route::get('producto-terminado', 'ProductController@productoTerminado');
+
+Route::get('ordenes', 'OrdenPedidoController@ordenes');

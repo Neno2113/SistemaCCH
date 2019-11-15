@@ -14,6 +14,7 @@ use App\ClientBranch;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class ordenPedidoController extends Controller
 {
@@ -96,24 +97,40 @@ class ordenPedidoController extends Controller
         //producto
         $producto = Product::find($producto_id);
 
+
+        //calcular total real
+        $a = $tallasAlmacen->sum('a') - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a');
+        $b = $tallasAlmacen->sum('b') - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b');
+        $c = $tallasAlmacen->sum('c') - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c');
+        $d = $tallasAlmacen->sum('d') - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d');
+        $e = $tallasAlmacen->sum('e') - $tallasPerdidas->sum('e') - $tallasSegundas->sum('e');
+        $f = $tallasAlmacen->sum('f') - $tallasPerdidas->sum('f') - $tallasSegundas->sum('f');
+        $g = $tallasAlmacen->sum('g') - $tallasPerdidas->sum('g') - $tallasSegundas->sum('g');
+        $h = $tallasAlmacen->sum('h') - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h');
+        $i = $tallasAlmacen->sum('i') - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i');
+        $j = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j');
+        $k = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k');
+        $l = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l');
+        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
         //respuesta 
         $data = [
             'code' => 200,
             'status' => 'success',
-            'a' => $tallasAlmacen->sum('a') - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a'),
-            'b' => $tallasAlmacen->sum('b') - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b'),
-            'c' => $tallasAlmacen->sum('c') - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c'),
-            'd' => $tallasAlmacen->sum('d') - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d'),
-            'e' => $tallasAlmacen->sum('e') - $tallasPerdidas->sum('e') - $tallasSegundas->sum('e'),
-            'f' => $tallasAlmacen->sum('f') - $tallasPerdidas->sum('f') - $tallasSegundas->sum('f'),
-            'g' => $tallasAlmacen->sum('g') - $tallasPerdidas->sum('g') - $tallasSegundas->sum('g'),
-            'h' => $tallasAlmacen->sum('h') - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h'),
-            'i' => $tallasAlmacen->sum('i') - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i'),
-            'j' => $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j'),
-            'k' => $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k'),
-            'l' => $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l'),
+            'a' => $a,
+            'b' => $b,
+            'c' => $c,
+            'd' => $d,
+            'e' => $e,
+            'f' => $f,
+            'g' => $g,
+            'h' => $h,
+            'i' => $i,
+            'j' => $j,
+            'k' => $k,
+            'l' => $l,
             'producto' => $producto,
-            'total_corte' => $corte->sum('total'),
+            'total_corte' => $total_real,
             'corte_proceso' => $corte_proceso,
             'fecha_entrega' => $fecha_entrega
         ];
@@ -148,19 +165,22 @@ class ordenPedidoController extends Controller
             $detallada = $request->input('detallada');
             $no_orden_pedido = $request->input('no_orden_pedido');
             $precio = $request->input('precio');
+            $sec = $request->input('sec');
             
 
             $orden = new ordenPedido();
 
             $orden->cliente_id = $client_id;
-            $orden->sucursal_d = $sucursal_id;
+            $orden->sucursal_id = $sucursal_id;
             $orden->notas = $notas;
             $orden->fecha_entrega = $fecha_entrega;
             $orden->generado_internamente = $generado_internamente;
             $orden->detallada = $detallada;
             $orden->no_orden_pedido = $no_orden_pedido;
             $orden->precio = $precio;
+            $orden->sec = $sec + 0.01;
             $orden->fecha = date('Y/m/d H:i:s');
+            $orden->user_id = \auth()->user()->id;
 
             $orden->save();
             
@@ -285,5 +305,85 @@ class ordenPedidoController extends Controller
                 ->get();
         }
         return response()->json($data);
+    }
+
+    public function getDigits()
+    {
+        $orden = ordenPedido::orderBy('sec', 'desc')->first();
+
+        if (\is_object($orden)) {
+            $sec = $orden->sec;
+        }
+
+        if (empty($sec)) {
+            $sec = 0.00;
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sec' => $sec
+            ];
+        } else {
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sec' => $sec
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
+
+    public function showOrden($id)
+    {
+        $orden = ordenPedidoDetalle::where('orden_pedido_id', $id)->get();
+
+        if (is_object($orden)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'orden' => $orden
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'error'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
+    public function ordenes()
+    {
+        $ordenes = DB::table('orden_pedido')->join('cliente', 'orden_pedido.cliente_id', '=', 'cliente.id')
+            ->join('cliente_sucursales', 'orden_pedido.sucursal_id', '=', 'cliente_sucursales.id')
+            ->join('users', 'orden_pedido.user_id', 'users.id')
+            ->select(['orden_pedido.id', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal', 'orden_pedido.fecha', 'orden_pedido.fecha_entrega'
+            , 'orden_pedido.notas', 'orden_pedido.generado_internamente', 'orden_pedido.precio', 'orden_pedido.detallada', 'users.name']);
+
+        return DataTables::of($ordenes)
+            ->addColumn('Expandir', function ($orden) {
+                return "";
+            })
+            ->editColumn('generado_internamente', function ($orden) {
+                return ($orden->generado_internamente == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('detallada', function ($orden) {
+                return ($orden->detallada == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('fecha_entrega', function ($orden) {
+                return date("d-m-20y", strtotime($orden->fecha_entrega));
+            })
+            ->editColumn('fecha', function ($orden) {
+                return date("h:i:s a d-m-20y", strtotime($orden->fecha));
+            })
+            ->addColumn('Opciones', function ($corte) {
+                return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $corte->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
+            })
+            ->rawColumns(['Opciones'])
+            ->make(true);
     }
 }

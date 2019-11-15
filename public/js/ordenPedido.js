@@ -5,8 +5,18 @@ $(document).ready(function() {
     function init() {
             // $("input[name='r1']:checked").val("");
         limpiar();
-        mostrarDetalle();           
-       
+        mostrarDetalle();   
+        $("#cantidad").val("");
+        $("#precio").val("");
+        $("#total").val("");
+        $("#btn-edit").hide();
+        ordenPedidoCod();
+        $("#btn-consultar").hide();
+        $("#precio_div").hide();
+        $("#total_div").hide();
+        $("#btn-agregar").hide();
+        // $("input[name='r']:checked").val(0);
+        // $("#btn-agregar").attr('disabled', true);
     }
 
     var data;
@@ -52,6 +62,8 @@ $(document).ready(function() {
             $("#redistribucion").show();
             $("#detalles").hide();
             $("#corte_en_proceso").hide();
+           
+           
         }
             
     }
@@ -69,8 +81,57 @@ $(document).ready(function() {
         $("#j").val("");
         $("#k").val("");
         $("#l").val("");
-        
     }
+
+    function ordenPedidoCod() {
+        $.ajax({
+            url: "ordenPedido/lastdigit",
+            type: "GET",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var i = Number(datos.sec);
+                    $("#sec").val(i);
+                    i = (i + 0.01).toFixed(2).split('.').join("");
+                               
+                    $("#no_orden_pedido").val("OP-"+ i);
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error !!"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    }
+
+    function validarNan(val){
+        if(isNaN(val)){
+         return  0;
+        }else{
+         return  val
+        }
+    }
+
+    $("#cantidad").keyup(function(){
+        $("#btn-consultar").show();
+        $("#precio_div").show();
+        $("#total_div").show();
+    });
+
+    $("input[name='r2']").change(function(){
+        let val =  $("input[name='r2']:checked").val()
+
+        if(val == 1){
+            $("#btn-consultar").show();
+        }
+    });
+
 
 
     $("#productoSearch").select2({
@@ -104,7 +165,7 @@ $(document).ready(function() {
             processResults: function(data){
                 return {
                     results: $.map(data, function(item){
-                        console.log(data);
+                     
                         return {
                             text: item.nombre_cliente+" - "+ item.contacto_cliente_principal ,
                             id: item.id
@@ -127,7 +188,7 @@ $(document).ready(function() {
             processResults: function(data){
                 return {
                     results: $.map(data, function(item){
-                        console.log(data);
+                    
                         return {
                             text: item.nombre_sucursal,
                             id: item.id
@@ -168,6 +229,10 @@ $(document).ready(function() {
                     let fecha_entrega = datos.fecha_entrega;
                     var ref = $("#productoSearch option:selected").text(); 
                     $("#precio").val(datos.producto.precio_lista);
+                    $("#total").val(datos.total_corte);
+                    $("#precio_div").show();
+                    $("#total_div").show();
+                    $("#btn-agregar").show();
                     var genero = ref.substring(1,2);
                     if(genero == 1){
                         $("#sub-genero").hide();
@@ -448,9 +513,11 @@ $(document).ready(function() {
                 success: function(datos) {
                     if (datos.status == "success") {
                         data = datos;
-                       
+                      
                         let cantidad_wrx = $("#cantidad").val();
                         let total_corte = datos.total_corte;
+                        $("#precio").val(datos.producto.precio_lista);
+                        $("#total").val(datos.total_corte);
                        
 
                         if(cantidad_wrx > total_corte){
@@ -484,18 +551,18 @@ $(document).ready(function() {
    $("#btn-agregar").click(function(t){ 
         t.preventDefault();
 
-        let a = parseInt($("#a").val());
-        let b = parseInt($("#b").val());
-        let c = parseInt($("#c").val());
-        let d = parseInt($("#d").val());
-        let e = parseInt($("#e").val());
-        let f = parseInt($("#f").val());
-        let g = parseInt($("#g").val());
-        let h = parseInt($("#h").val());
-        let i = parseInt($("#i").val());
-        let j = parseInt($("#j").val());
-        let k = parseInt($("#k").val());
-        let l = parseInt($("#l").val());
+        let a = validarNan(parseInt($("#a").val()));
+        let b = validarNan(parseInt($("#b").val()));
+        let c = validarNan(parseInt($("#c").val()));
+        let d = validarNan(parseInt($("#d").val()));
+        let e = validarNan(parseInt($("#e").val()));
+        let f = validarNan(parseInt($("#f").val()));
+        let g = validarNan(parseInt($("#g").val()));
+        let h = validarNan(parseInt($("#h").val()));
+        let i = validarNan(parseInt($("#i").val()));
+        let j = validarNan(parseInt($("#j").val()));
+        let k = validarNan(parseInt($("#k").val()));
+        let l = validarNan(parseInt($("#l").val()));
         let referencia = $("#productoSearch option:selected").text();
         let producto = referencia.substring(0,9)
         let genero = producto.substring(1,2);
@@ -503,12 +570,12 @@ $(document).ready(function() {
         let val = $("input[name='r2']:checked").val();
         let cantidad_wr = $("#cantidad").val();
         let precio = $("#precio").val();
-        
 
+      
         if(genero == 1){
 
             if(val == 1){
-                cantidad = Number(a + b + c + d + e + f + g + h + i + j);
+                cantidad =Number(a + b + c + d + e + f + g + h + i + j);
                 var fila  = '<tr id="fila'+cont+'">'+
                 "<th id='a_corte' class='font-weight-normal'>"+producto+"</th>"+
                 "<th id='a_corte' class='font-weight-normal'>"+precio+"</th>"+
@@ -686,29 +753,32 @@ $(document).ready(function() {
 
         console.log(JSON.stringify(ordenDetalle));
 
-        // $.ajax({
-        //     url: "orden/detalle",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(ordenDetalle),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             console.log(datos);
+    
+        $.ajax({
+            url: "orden/detalle",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(ordenDetalle),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                  
+                    init();
+                    $("#cantidad").val("");
                    
 
-        //         } else {
-        //             bootbox.alert(
-        //                 "Ocurrio un error durante la creacion de la composicion"
-        //             );
-        //         }
-        //     },
-        //     error: function(datos) {
-        //         console.log(datos.responseJSON.message);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.message);
 
-        //         bootbox.alert("Error: " + datos.responseJSON.message);
-        //     }
-        // });
+                bootbox.alert("Error: " + datos.responseJSON.message);
+            }
+        });
         
    });
 
@@ -723,98 +793,93 @@ $(document).ready(function() {
         notas: $("#notas").val(),
         fecha_entrega: $("#fecha_entrega").val(),
         generado_internamente: $("input[name='r1']:checked").val(),
+        detallada: $("input[name='r2']:checked").val(),
         precio: $("#precio").val(),
         sec: $("#sec").val(),
+        no_orden_pedido: $("#no_orden_pedido").val()
         
     };
 
-    console.log(JSON.stringify(orden));
 
-    // $.ajax({
-    //     url: "perdida",
-    //     type: "POST",
-    //     dataType: "json",
-    //     data: JSON.stringify(perdida),
-    //     contentType: "application/json",
-    //     success: function(datos) {
-    //         if (datos.status == "success") {
-            
-    //             bootbox.alert(
-    //                 "Se registro correctamente la perdida: "+ datos.perdida.no_perdida
-    //             );
-    //             // limpiar();
+    $.ajax({
+        url: "orden",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(orden),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+
+                $("#clienteSearch").val("").trigger("change");
+                $("#sucursalSearch").val("").trigger("change");
+                $("#notas").val("");
+                $("#fecha_entrega").val("");
+                $("#cantidad").val("");
+                $("#precio").val("");
+                ordenPedidoCod();
+                $("#orden_pedido").empty();
+                console.log(datos);
+                bootbox.alert(
+                    "Se creo una orden de pedido nueva codigo: <strong>"+ datos.orden.no_orden_pedido + "</strong>"
+                );
                
+            
 
-    //             var talla = {
-    //                 perdida_id: datos.perdida.id,
-    //                 a: $("#a").val(),
-    //                 b: $("#b").val(),
-    //                 c: $("#c").val(),
-    //                 d: $("#d").val(),
-    //                 e: $("#e").val(),
-    //                 f: $("#f").val(),
-    //                 g: $("#g").val(),
-    //                 h: $("#h").val(),   
-    //                 i: $("#i").val(),
-    //                 j: $("#j").val(),
-    //                 k: $("#k").val(),
-    //                 l: $("#l").val(),
-    //                 talla_x: $("#talla_x").val()
-    //             };
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion de la composicion"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.message);
 
-    //             $.ajax({
-    //                 url: "perdida_tallas",
-    //                 type: "POST",
-    //                 dataType: "json",
-    //                 data: JSON.stringify(talla),
-    //                 contentType: "application/json",
-    //                 success: function(datos) {
-    //                     if (datos.status == "success") {
-                            
-    //                         tabla.ajax.reload();
-    //                         mostrarForm(false);
-    //                         limpiar();
-        
-    //                     } else {
-    //                         bootbox.alert(
-    //                             "Ocurrio un error durante la creacion de la composicion"
-    //                         );
-    //                     }
-    //                 },
-    //                 error: function(datos) {
-    //                     console.log(datos.responseJSON.message);
-        
-    //                     bootbox.alert("Error: " + datos.responseJSON.message);
-    //                 }
-    //             });
-
-
-
-    //         } else {
-    //             bootbox.alert(
-    //                 "Ocurrio un error durante la creacion de la composicion"
-    //             );
-    //         }
-    //     },
-    //     error: function(datos) {
-    //         console.log(datos.responseJSON.message);
-
-    //         bootbox.alert("Error: " + datos.responseJSON.message);
-    //     }
-    // });
+            bootbox.alert("Error: " + datos.responseJSON.message);
+        }
+    });
 });
 
-
-
-   
-  
-
-  
-  
-
- 
-
-
+  //funcion para listar en el Datatable
+  function listar() {
+    tabla = $("#ordenes").DataTable({
+        serverSide: true,
+        responsive: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'pageLength',
+            'copyHtml5',
+             {
+                extend: 'excelHtml5',
+                autoFilter: true,
+                sheetName: 'Exported data'
+            },
+            'csvHtml5',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL'
+            }
+            ],
+        ajax: "api/ordenes",
+        columns: [
+            { data: "Expandir", orderable: false, searchable: false },
+            { data: "Opciones", orderable: false, searchable: false },
+            { data: "name", name: 'users.name' },
+            { data: "nombre_cliente", name: 'cliente.nombre_cliente' },
+            { data: "nombre_sucursal", name: 'cliente_sucursales.nombre_sucursal' },
+            { data: "fecha", name: 'orden_pedido.fecha' },
+            { data: "fecha_entrega", name: 'orden_pedido.fecha_entrega' },
+            { data: "precio", name: 'orden_pedido.precio' },
+            { data: "detallada", name: 'orden_pedido.detallada' },
+            { data: "generado_internamente", name: 'orden_pedido.generado_internamente' },
+            { data: "notas", name: 'orden_pedido.notas' },
+        ],
+        order: [[2, 'asc']],
+        rowGroup: {
+            dataSrc: 'fase' 
+        }
+    });
+}
 
 
     init();
