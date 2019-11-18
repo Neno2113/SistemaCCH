@@ -24,8 +24,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
             <i class="far fa-address-card"></i>
             <p>
               Usuarios
@@ -200,6 +200,24 @@
           </ul>
         </li>
         <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+                <i class="fas fa-boxes"></i>
+              <p>
+                Ordenes de pedido
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Orden Pedido</p>
+                </a>
+              </li>
+  
+            </ul>
+          </li>
+        <li class="nav-item has-treeview ">
           <a href="#" class="nav-link ">
             <i class="fas fa-random"></i>
             <p>
@@ -216,15 +234,8 @@
             </li>
 
           </ul>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Orden Pedido</p>
-              </a>
-            </li>
 
-          </ul>
+        </li>
     </nav>
     <!-- /.sidebar-menu -->
   </div>

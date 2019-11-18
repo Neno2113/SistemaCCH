@@ -23,4 +23,14 @@ class ordenPedido extends Model
     {
         return $this->belongsTo('App\ClientBranch', 'sucursal_id');
     }
+
+    public function producto()
+    {
+        return $this->belongsTo('App\Product', 'producto_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

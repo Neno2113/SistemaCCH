@@ -233,3 +233,5 @@ Route::post('orden', 'ordenPedidoController@store');
 Route::post('orden/detalle', 'ordenPedidoController@storeDetalle');
 Route::get('ordenPedido/lastdigit', 'ordenPedidoController@getDigits');
 Route::get('/orden/detalle/{id}', 'ordenPedidoController@showOrden');
+Route::get('/imprimir_orden/conduce/{id}', 'ordenPedidoController@imprimir');
+Route::get('/verificar/{id}', 'ordenPedidoController@verificar');

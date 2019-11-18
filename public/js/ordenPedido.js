@@ -15,6 +15,8 @@ $(document).ready(function() {
         $("#precio_div").hide();
         $("#total_div").hide();
         $("#btn-agregar").hide();
+        listar();
+        $("#listar-ordenes").hide();
         // $("input[name='r']:checked").val(0);
         // $("#btn-agregar").attr('disabled', true);
     }
@@ -497,7 +499,7 @@ $(document).ready(function() {
 
         }else if(val == 0){
             mostrarDetalle(false);
-
+            
             var ordenPedido = {
                 producto_id: $("#productoSearch").val(),
                 referencia_producto: $("#productoSearch option:selected").text(),
@@ -512,6 +514,7 @@ $(document).ready(function() {
                 contentType: "application/json",
                 success: function(datos) {
                     if (datos.status == "success") {
+                        $("#btn-agregar").show();
                         data = datos;
                       
                         let cantidad_wrx = $("#cantidad").val();
@@ -735,7 +738,6 @@ $(document).ready(function() {
        
 
         var ordenDetalle = {
-            producto_id: $("#productoSearch").val(),
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),
@@ -748,10 +750,9 @@ $(document).ready(function() {
             j: $("#j").val(),
             k: $("#k").val(),
             l: $("#l").val(),
+            producto_id: $("#productoSearch").val(),
             cantidad: $("#cantidad").val()
         };
-
-        console.log(JSON.stringify(ordenDetalle));
 
     
         $.ajax({
@@ -762,8 +763,8 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                  
-                    init();
+                    limpiar();
+                   
                     $("#cantidad").val("");
                    
 
@@ -797,7 +798,6 @@ $(document).ready(function() {
         precio: $("#precio").val(),
         sec: $("#sec").val(),
         no_orden_pedido: $("#no_orden_pedido").val()
-        
     };
 
 
@@ -876,10 +876,17 @@ $(document).ready(function() {
         ],
         order: [[2, 'asc']],
         rowGroup: {
-            dataSrc: 'fase' 
+            dataSrc: 'name' 
         }
     });
-}
+ }
+
+ $("#btn-ver").click(function(e){
+    e.preventDefault();
+
+    $("#creacion-orden").hide();
+    $("#listar-ordenes").show();
+ })
 
 
     init();

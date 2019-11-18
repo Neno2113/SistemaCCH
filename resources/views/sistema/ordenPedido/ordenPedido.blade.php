@@ -8,7 +8,7 @@
 
 <br><br>
 
-<div class="row">
+<div class="row" id="creacion-orden">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center ">
@@ -22,13 +22,19 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-info" id="btn-ver">Pedidos</button>
+                        </div>
+                    </div>
                     <div class="row d-flex justify-content-end">
-                        <div class="col-md-2 ">
+                        <div class="col-md-2 justify-content-end">
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
-                                class="form-control text-center" readonly>
+                                class="form-control text-center " readonly>
                             <input type="hidden" name="sec" id="sec" value="">
                         </div>
                     </div>
+
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <label for="">Cliente(*):</label>
@@ -139,7 +145,7 @@
                             <button class="btn btn-success rounded-pill" name="btn-consultar"
                                 id="btn-consultar">Consultar</button>
                         </div>
-                        <div class="col-md-2 " >
+                        <div class="col-md-2 ">
 
                         </div>
                         <div class="col-md-4 mr-3" id="corte_en_proceso">
@@ -156,7 +162,7 @@
                                 <tbody id="corteProceso">
 
                                 </tbody>
-                               
+
 
                             </table>
                         </div>
@@ -303,6 +309,45 @@
         </div>
     </div>
 </div>
+
+
+<table id="ordenes" class="table table-striped table-bordered datatables" id="listar-ordenes">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Actions</th>
+            <th>Usuario</th>
+            <th>Cliente</th>
+            <th>Sucursal</th>
+            <th>Fecha</th>
+            <th>F. Entrega</th>
+            <th>Precio</th>
+            <th>Detallado</th>
+            <th>Gen. Interno</th>
+            <th>Notas </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th>Actions</th>
+            <th>Usuario</th>
+            <th>Cliente</th>
+            <th>Sucursal</th>
+            <th>Fecha</th>
+            <th>F. Entrega</th>
+            <th>Precio</th>
+            <th>Detallado</th>
+            <th>Gen. Interno</th>
+            <th>Notas </th>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+
 
 
 
