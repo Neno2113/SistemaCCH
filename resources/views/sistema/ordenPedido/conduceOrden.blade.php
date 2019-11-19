@@ -37,6 +37,7 @@
 			padding: 10px 0;
 			margin-bottom: 20px;
 			border-bottom: 1px solid #AAAAAA;
+			margin-right: 8%;
 		}
 
 		#logo {
@@ -78,7 +79,7 @@
 		#invoice {
 			float: right;
 			text-align: right;
-			margin-right: 40%;
+			margin-right: 43%;
 		}
 
 		#invoice h1 {
@@ -95,7 +96,7 @@
 		}
 
 		table {
-			width: 100%;
+			width: 90%;
 			border-collapse: collapse;
 			border-spacing: 0;
 			margin-bottom: 20px;
@@ -141,6 +142,7 @@
 		table .unit {
 			background: #DDDDDD;
 		}
+
 		table .unit_talla {
 			background: #DDDDDD;
 			text-align: center;
@@ -204,14 +206,31 @@
 
 		footer {
 			color: #777777;
-			width: 100%;
-			height: 30px;
+			width: 90%;
+			height: 35px;
 			position: absolute;
 			bottom: 0;
 			border-top: 1px solid #AAAAAA;
 			padding: 8px 0;
 			text-align: center;
 		}
+		.firmas {
+      margin-top: 130px;
+    }
+
+    .firma_enviado {
+
+      float: left;
+      border-top: 1px solid black;
+      width: 15%;
+    }
+
+    .firma_recibido {
+      float: right;
+      border-top: 1px solid black;
+      margin-right: 46%;
+      width: 15%;
+    }
 	</style>
 </head>
 
@@ -231,10 +250,12 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="client">
-				<div class="to">INVOICE TO:</div>
+				<div class="to">CONDUCE PARA:</div>
 				<h2 class="name">{{$orden->cliente->nombre_cliente}}</h2>
 				<div class="address">{{$orden->cliente->direccion_principal}}</div>
 				<div class="email"><a href="mailto:john@example.com">{{$orden->cliente->email_principal}}</a></div>
+				<div class="to">SUCURSAL:</div>
+				<h2 class="name">{{$orden->sucursal->nombre_sucursal}}</h2>
 			</div>
 			<div id="invoice">
 				<h1>{{$orden->no_orden_pedido}}</h1>
@@ -256,7 +277,7 @@
 				<tr>
 					<td class="no">
 						@foreach ($productosOrdenes as $producto)
-							<p>{{$producto->referencia_producto}}</p>
+						<p>{{$producto->referencia_producto}}</p>
 						@endforeach
 					</td>
 					<td class="desc">
@@ -264,46 +285,46 @@
 						{{$talla->a}}
 						@endforeach
 					</td>
-					<td class="unit">{{$orden->precio}}</td>
-					<td class="qty">30</td>
-					<td class="total">$1,200.00</td>
+					<td class="unit">
+						@foreach ($orden_detalle as $precio)
+						<p>{{$precio->precio}}</p>
+						@endforeach
+					</td>
+					<td class="qty">
+						@foreach ($totales_detalles as $total_detalle)
+						<p>{{$total_detalle}}</p>
+
+						@endforeach
+					</td>
+					<td class="total">
+						@foreach ($detalles_totales as $totales)
+						<p>${{$totales}}</p>
+						@endforeach
+					</td>
 				</tr>
-				{{-- <tr>
-            <td class="no">02</td>
-            <td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">80</td>
-            <td class="total">$3,200.00</td>
-          </tr>
-          <tr>
-            <td class="no">03</td>
-            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">20</td>
-            <td class="total">$800.00</td>
-          </tr> --}}
 			</tbody>
 			<tfoot>
 				<tr>
 					<td colspan="2"></td>
 					<td colspan="2">SUBTOTAL</td>
-					<td>$5,200.00</td>
+					<td>${{number_format($subtotal)}}</td>
 				</tr>
 				<tr>
 					<td colspan="2"></td>
-					<td colspan="2">TAX 25%</td>
-					<td>$1,300.00</td>
+					<td colspan="2">IMPUESTO 18%</td>
+					<td>${{number_format($tax)}}</td>
 				</tr>
 				<tr>
 					<td colspan="2"></td>
-					<td colspan="2">GRAND TOTAL</td>
-					<td>$6,500.00</td>
+					<td colspan="2">TOTAL FINAL</td>
+					<td>${{number_format($total)}}</td>
 				</tr>
 			</tfoot>
 		</table>
 		<table border="0" cellspacing="0" cellpadding="0">
 			<thead>
 				<tr>
+
 					<th class="desc">A</th>
 					<th class="desc">B</th>
 					<th class="desc">C</th>
@@ -337,14 +358,18 @@
 				@endforeach
 			</tbody>
 		</table>
-		<div id="thanks">Thank you!</div>
+		<div id="thanks">Gracias!</div>
 		<div id="notices">
 			<div>NOTICE:</div>
 			<div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
 		</div>
+		<div class="firmas">
+			<div class="firma_enviado">Enviado por:</div>
+			<div class="firma_recibido">Recibido por:</div>
+		</div>
 	</main>
 	<footer>
-		Invoice was created on a computer and is valid without the signature and seal.
+		Conduce generado desde SistemaCCH.
 	</footer>
 </body>
 

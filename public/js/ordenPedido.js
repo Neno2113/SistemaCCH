@@ -225,7 +225,6 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    console.log(datos);
                     data = datos;
                     let corte_proceso = datos.corte_proceso
                     let fecha_entrega = datos.fecha_entrega;
@@ -470,14 +469,11 @@ $(document).ready(function() {
                     }
 
                     if(corte_proceso != "" && fecha_entrega != ""){
-                        $("#corteProceso").html(
-                            "<tr id='cortes'>"+
-                            "<th id='b_corte' class='font-weight-normal'>"+corte_proceso.numero_corte+"</th>"+                        
-                            "<th id='d_corte' class='font-weight-normal'>"+corte_proceso.fase+"</th>"+
-                            "<th id='f_corte' class='font-weight-normal'>"+fecha_entrega+"</th>"+
-                            "<th id='f_corte' class='font-weight-normal'></th>"+
-                            "</tr>"
-                        )
+                        $("#no_corte").html(corte_proceso.numero_corte);
+                        $("#fase").html(corte_proceso.fase);
+                        $("#f_entrega").html(fecha_entrega);
+                        $("#fecha_proceso").val(corte_proceso.fecha_entrega);
+                        
                     }else if(corte_proceso == null && fecha_entrega == ""){
                         $("#corte_en_proceso").hide();
                     }
@@ -750,6 +746,7 @@ $(document).ready(function() {
             j: $("#j").val(),
             k: $("#k").val(),
             l: $("#l").val(),
+            precio: $("#precio").val(),
             producto_id: $("#productoSearch").val(),
             cantidad: $("#cantidad").val()
         };
@@ -795,7 +792,6 @@ $(document).ready(function() {
         fecha_entrega: $("#fecha_entrega").val(),
         generado_internamente: $("input[name='r1']:checked").val(),
         detallada: $("input[name='r2']:checked").val(),
-        precio: $("#precio").val(),
         sec: $("#sec").val(),
         no_orden_pedido: $("#no_orden_pedido").val()
     };
@@ -837,7 +833,72 @@ $(document).ready(function() {
             bootbox.alert("Error: " + datos.responseJSON.message);
         }
     });
-});
+    });
+
+   $("#btn-agregarProceso").click(function(e){
+       e.preventDefault();
+
+       var ordenProceso = {
+            cliente_id: $("#clienteSearch").val(),
+            sucursal_id: $("#sucursalSearch").val(),
+            notas: $("#notas").val(),
+            fecha_entrega: $("#fecha_proceso").val(),
+            generado_internamente: $("input[name='r1']:checked").val(),
+            detallada: $("input[name='r2']:checked").val(),
+            precio: $("#precio").val(),
+            sec: $("#sec").val(),
+            no_orden_pedido: $("#no_orden_pedido").val()
+        };
+
+        $.ajax({
+            url: "orden",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(ordenProceso),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let referencia = $("#productoSearch option:selected").text();
+                    let producto = referencia.substring(0,9)
+                    let cantidad_wr = $("#cantidad").val();
+                    let precio = $("#precio").val();
+
+                    ordenPedidoCod();
+                    var fila  = '<tr id="fila'+cont+'">'+
+                    "<th id='a_corte' class='font-weight-normal'>"+producto+"</th>"+
+                    "<th id='a_corte' class='font-weight-normal'>"+precio+"</th>"+
+                    "<th id='a_corte' class='font-weight-normal'>"+cantidad_wr+"</th>"+
+                    "<th id='a_corte' class='font-weight-normal'></th>"+
+                    "<th id='b_corte' class='font-weight-normal'></th>"+
+                    "<th id='c_corte' class='font-weight-normal'></th>"+
+                    "<th id='d_corte' class='font-weight-normal'></th>"+
+                    "<th id='e_corte' class='font-weight-normal'></th>"+
+                    "<th id='f_corte' class='font-weight-normal'></th>"+
+                    "<th id='g_corte' class='font-weight-normal'></th>"+
+                    "<th id='h_corte' class='font-weight-normal'></th>"+
+                    "<th id='i_corte' class='font-weight-normal'></th>"+
+                    "<th id='j_corte' class='font-weight-normal'></th>"+
+                  
+                    "</tr>"
+                    cont++;
+                    $("#orden_pedido").append(fila);
+                
+    
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.message);
+    
+                bootbox.alert("Error: " + datos.responseJSON.message);
+            }
+        });
+        
+   });
+
 
   //funcion para listar en el Datatable
   function listar() {
@@ -864,12 +925,12 @@ $(document).ready(function() {
         columns: [
             { data: "Expandir", orderable: false, searchable: false },
             { data: "Opciones", orderable: false, searchable: false },
+            { data: "no_orden_pedido", name: 'orden_pedido.no_orden_pedido' },
             { data: "name", name: 'users.name' },
             { data: "nombre_cliente", name: 'cliente.nombre_cliente' },
             { data: "nombre_sucursal", name: 'cliente_sucursales.nombre_sucursal' },
             { data: "fecha", name: 'orden_pedido.fecha' },
             { data: "fecha_entrega", name: 'orden_pedido.fecha_entrega' },
-            { data: "precio", name: 'orden_pedido.precio' },
             { data: "detallada", name: 'orden_pedido.detallada' },
             { data: "generado_internamente", name: 'orden_pedido.generado_internamente' },
             { data: "notas", name: 'orden_pedido.notas' },

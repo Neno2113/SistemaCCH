@@ -56,6 +56,7 @@
                         <div class="col-md-4 mt-2">
                             <label for="">Fecha de entrega</label>
                             <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control">
+                            <input type="hidden" name="" id="fecha_proceso" value="">
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="autorizacion_credito_req">¿Generado internamente?(*):</label>
@@ -156,11 +157,16 @@
                                         <th>No. Corte</th>
                                         <th>Fase</th>
                                         <th>F. Entrega</th>
-                                        <th></th>
+                                        <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody id="corteProceso">
-
+                                    <tr>
+                                      <td id="no_corte"></td>
+                                      <td id="fase"></td>
+                                      <td id="f_entrega"></td>  
+                                      <th><button id='btn-agregarProceso' class='btn btn-success'>Agregar</button></th>
+                                    </tr>
                                 </tbody>
 
 
@@ -311,17 +317,17 @@
 </div>
 
 
-<table id="ordenes" class="table table-striped table-bordered datatables" id="listar-ordenes">
+<table id="ordenes" class="table table-striped table-bordered datatables">
     <thead>
         <tr>
             <th></th>
             <th>Actions</th>
+            <th>#</th>
             <th>Usuario</th>
             <th>Cliente</th>
             <th>Sucursal</th>
             <th>Fecha</th>
             <th>F. Entrega</th>
-            <th>Precio</th>
             <th>Detallado</th>
             <th>Gen. Interno</th>
             <th>Notas </th>
@@ -332,12 +338,12 @@
         <tr>
             <th></th>
             <th>Actions</th>
+            <th>#</th>
             <th>Usuario</th>
             <th>Cliente</th>
             <th>Sucursal</th>
             <th>Fecha</th>
             <th>F. Entrega</th>
-            <th>Precio</th>
             <th>Detallado</th>
             <th>Gen. Interno</th>
             <th>Notas </th>
@@ -375,6 +381,12 @@
 
         });
     }
+
+    // $("#btn-agregarProceso").click(function(e){
+    //     e.preventDefault();
+
+    //     alert('Evento ejecutado!!');
+    // });
 
 
     function eliminar(id_almacen){
