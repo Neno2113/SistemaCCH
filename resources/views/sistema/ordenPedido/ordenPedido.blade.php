@@ -6,7 +6,10 @@
 
 @section('content')
 
-<br><br>
+<div class="row mt-3 ml-3">
+    <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
+    <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
+</div>
 
 <div class="row" id="creacion-orden">
     <div class="col-12">
@@ -22,11 +25,6 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button class="btn btn-info" id="btn-ver">Pedidos</button>
-                        </div>
-                    </div>
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-2 justify-content-end">
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
@@ -142,14 +140,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 mt-3 border-left">
+                        <div class="col-md-3 mt-3">
                             <button class="btn btn-success rounded-pill" name="btn-consultar"
                                 id="btn-consultar">Consultar</button>
                         </div>
                         <div class="col-md-2 ">
 
                         </div>
-                        <div class="col-md-4 mr-3" id="corte_en_proceso">
+                        <div class="col-md-4 mr-3 border-left" id="corte_en_proceso">
                             <label for="">En proceso</label>
                             <table class="table table-bordered ">
                                 <thead class="thead-light">
@@ -158,14 +156,18 @@
                                         <th>Fase</th>
                                         <th>F. Entrega</th>
                                         <th>Accion</th>
+                                        <th>Cantidad</th>
                                     </tr>
                                 </thead>
                                 <tbody id="corteProceso">
                                     <tr>
-                                      <td id="no_corte"></td>
-                                      <td id="fase"></td>
-                                      <td id="f_entrega"></td>  
-                                      <th><button id='btn-agregarProceso' class='btn btn-success'>Agregar</button></th>
+                                        <td id="no_corte"></td>
+                                        <td id="fase"></td>
+                                        <td id="f_entrega"></td>
+                                        <th><button id='btn-agregarProceso' class='btn btn-success'>Agregar</button>
+                                        </th>
+                                        <th><input type="text" name="cantidad_proceso" id="cantidad_proceso" class="form-control"></th>
+                                        <input type="hidden" name="corte_proceso" id="corte_proceso" value="">
                                     </tr>
                                 </tbody>
 
@@ -174,8 +176,8 @@
                         </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-md-3 mt-3" id="precio_div">
+                    <div class="row border-right">
+                        <div class="col-md-3 mt-3 " id="precio_div">
                             <label for="">Precio(*):</label>
                             <input type="text" name="precio" id="precio" class="form-control text-center"
                                 data-inputmask='"mask": "9.999"' data-mask>
@@ -317,39 +319,44 @@
 </div>
 
 
-<table id="ordenes" class="table table-striped table-bordered datatables">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Actions</th>
-            <th>#</th>
-            <th>Usuario</th>
-            <th>Cliente</th>
-            <th>Sucursal</th>
-            <th>Fecha</th>
-            <th>F. Entrega</th>
-            <th>Detallado</th>
-            <th>Gen. Interno</th>
-            <th>Notas </th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-    <tfoot>
-        <tr>
-            <th></th>
-            <th>Actions</th>
-            <th>#</th>
-            <th>Usuario</th>
-            <th>Cliente</th>
-            <th>Sucursal</th>
-            <th>Fecha</th>
-            <th>F. Entrega</th>
-            <th>Detallado</th>
-            <th>Gen. Interno</th>
-            <th>Notas </th>
-        </tr>
-    </tfoot>
-</table>
+<div class="container" id="listadoUsers">
+    <table id="ordenes" class="table table-striped table-bordered datatables">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Actions</th>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Cliente</th>
+                <th>Sucursal</th>
+                <th>Fecha</th>
+                <th>F. Entrega</th>
+                <th>Detallado</th>
+                <th>Gen. Interno</th>
+                <th>Notas </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Actions</th>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Cliente</th>
+                <th>Sucursal</th>
+                <th>Fecha</th>
+                <th>F. Entrega</th>
+                <th>Detallado</th>
+                <th>Gen. Interno</th>
+                <th>Notas </th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+
+
 
 
 
@@ -362,39 +369,17 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/ordenPedido.js')}}"></script>
+<script  type="text/javascript" src="{{asset('js/ordenPedido.js')}}"></script>
 
-<script>
-    function mostrar(id_almacen) {
-        $.get("almacen/" + id_almacen, function(data, status) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
-            $("#referencia_producto").show();
-            $("#numero_corte").show();
-            $("#corteEdit").show();
-            $("#corteAdd").hide();
-          
-
-        });
-    }
-
-    // $("#btn-agregarProceso").click(function(e){
-    //     e.preventDefault();
-
-    //     alert('Evento ejecutado!!');
-    // });
-
-
-    function eliminar(id_almacen){
-        bootbox.confirm("¿Estas seguro de eliminar este producto de almacen?", function(result){
+<script type="text/javascript">
+    
+    function eliminar(id_orden){
+        bootbox.confirm("¿Estas seguro de eliminar esta orden de producto?", function(result){
             if(result){
-                $.post("almacen/delete/" + id_almacen, function(){
-                    bootbox.alert("Producto de almacen eliminado correctamente!!");
-                    $("#almacenes").DataTable().ajax.reload();
+                $.post("orden_pedido/delete/" + id_orden, function(){
+                    bootbox.alert("Orden de pedido eliminada correctamente!!");
+                    $("#ordenes").DataTable().ajax.reload();
+                    ordenPedidoCod();
                 })
             }
         })

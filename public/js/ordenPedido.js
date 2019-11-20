@@ -5,7 +5,8 @@ $(document).ready(function() {
     function init() {
             // $("input[name='r1']:checked").val("");
         limpiar();
-        mostrarDetalle();   
+        mostrarDetalle();
+        // mostrarForm(false);   
         $("#cantidad").val("");
         $("#precio").val("");
         $("#total").val("");
@@ -16,7 +17,8 @@ $(document).ready(function() {
         $("#total_div").hide();
         $("#btn-agregar").hide();
         listar();
-        $("#listar-ordenes").hide();
+        $("#registroForm").hide();
+        $("#btnCancelar").hide();
         // $("input[name='r']:checked").val(0);
         // $("#btn-agregar").attr('disabled', true);
     }
@@ -805,7 +807,6 @@ $(document).ready(function() {
         contentType: "application/json",
         success: function(datos) {
             if (datos.status == "success") {
-
                 $("#clienteSearch").val("").trigger("change");
                 $("#sucursalSearch").val("").trigger("change");
                 $("#notas").val("");
@@ -814,7 +815,9 @@ $(document).ready(function() {
                 $("#precio").val("");
                 ordenPedidoCod();
                 $("#orden_pedido").empty();
-                console.log(datos);
+                $("#registroForm").hide();
+                $("#ordenes").DataTable().ajax.reload();
+                $("#listadoUsers").show();
                 bootbox.alert(
                     "Se creo una orden de pedido nueva codigo: <strong>"+ datos.orden.no_orden_pedido + "</strong>"
                 );
@@ -851,7 +854,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: "orden",
+            url: "orden/proceso",
             type: "POST",
             dataType: "json",
             data: JSON.stringify(ordenProceso),
@@ -860,7 +863,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let referencia = $("#productoSearch option:selected").text();
                     let producto = referencia.substring(0,9)
-                    let cantidad_wr = $("#cantidad").val();
+                    let cantidad_wr = $("#cantidad_proceso").val();
                     let precio = $("#precio").val();
 
                     ordenPedidoCod();
@@ -882,6 +885,39 @@ $(document).ready(function() {
                     "</tr>"
                     cont++;
                     $("#orden_pedido").append(fila);
+
+                    var ordenDetalleProceso = {
+                        precio: precio,
+                        producto_id: $("#productoSearch").val(),
+                        cantidad: cantidad_wr
+                    };
+            
+                
+                    $.ajax({
+                        url: "orden-proceso/detalle",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(ordenDetalleProceso),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                limpiar();
+                               
+                                $("#cantidad_proceso").val("");
+                               
+            
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function(datos) {
+                            console.log(datos.responseJSON.message);
+            
+                            bootbox.alert("Error: " + datos.responseJSON.message);
+                        }
+                    });
                 
     
                 } else {
@@ -935,19 +971,28 @@ $(document).ready(function() {
             { data: "generado_internamente", name: 'orden_pedido.generado_internamente' },
             { data: "notas", name: 'orden_pedido.notas' },
         ],
-        order: [[2, 'asc']],
+        order: [[2, 'desc']],
         rowGroup: {
             dataSrc: 'name' 
         }
     });
  }
 
- $("#btn-ver").click(function(e){
-    e.preventDefault();
+$("#btnAgregar").click(function(e) {
+    $("#btnCancelar").show();
+    $("#btnAgregar").hide();
+    $("#registroForm").show();
+    $("#listadoUsers").hide();
+    $("#")
+  
+});
+$("#btnCancelar").click(function(e) {
+    $("#btnCancelar").hide();
+    $("#btnAgregar").show();
+    $("#registroForm").hide();
+    $("#listadoUsers").show();
 
-    $("#creacion-orden").hide();
-    $("#listar-ordenes").show();
- })
+});
 
 
     init();

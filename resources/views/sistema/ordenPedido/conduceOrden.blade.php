@@ -82,6 +82,12 @@
 			margin-right: 43%;
 		}
 
+		#invoice_proceso {
+			float: right;
+			text-align: right;
+			margin-right: 46%;
+		}
+
 		#invoice h1 {
 			color: #0087C3;
 			font-size: 2.2em;
@@ -90,7 +96,20 @@
 			margin: 0 0 10px 0;
 		}
 
+		#invoice_proceso h1 {
+			color: #0087C3;
+			font-size: 2.2em;
+			line-height: 1em;
+			font-weight: normal;
+			margin: 0 0 10px 0;
+		}
+
 		#invoice .date {
+			font-size: 1.1em;
+			color: #777777;
+		}
+
+		#invoice_proceso .date {
 			font-size: 1.1em;
 			color: #777777;
 		}
@@ -135,7 +154,7 @@
 		}
 
 		table .desc {
-			text-align: left;
+			text-align: center;
 			font-size: 15px;
 		}
 
@@ -214,23 +233,29 @@
 			padding: 8px 0;
 			text-align: center;
 		}
+
 		.firmas {
-      margin-top: 130px;
-    }
+			margin-top: 130px;
+		}
 
-    .firma_enviado {
+		.firma_enviado {
 
-      float: left;
-      border-top: 1px solid black;
-      width: 15%;
-    }
+			float: left;
+			border-top: 1px solid black;
+			width: 15%;
+		}
 
-    .firma_recibido {
-      float: right;
-      border-top: 1px solid black;
-      margin-right: 46%;
-      width: 15%;
-    }
+		.firma_recibido {
+			float: right;
+			border-top: 1px solid black;
+			margin-right: 46%;
+			width: 15%;
+		}
+
+
+		.pagina1 {
+			page-break-after: always;
+		}
 	</style>
 </head>
 
@@ -267,7 +292,7 @@
 			<thead>
 				<tr>
 					<th class="no">REFERENCIA</th>
-					<th class="desc">Tallas</th>
+					<th class="desc">FECHA ENTREGA</th>
 					<th class="unit">PRECIO UNIDAD</th>
 					<th class="qty">CANTIDAD</th>
 					<th class="total">TOTAL</th>
@@ -281,9 +306,7 @@
 						@endforeach
 					</td>
 					<td class="desc">
-						@foreach ($orden_detalle as $talla)
-						{{$talla->a}}
-						@endforeach
+						{{$orden->fecha_entrega}}
 					</td>
 					<td class="unit">
 						@foreach ($orden_detalle as $precio)
@@ -324,7 +347,7 @@
 		<table border="0" cellspacing="0" cellpadding="0">
 			<thead>
 				<tr>
-
+					<th class="desc">Referencia</th>
 					<th class="desc">A</th>
 					<th class="desc">B</th>
 					<th class="desc">C</th>
@@ -342,6 +365,7 @@
 			<tbody>
 				@foreach ($orden_detalle as $talla)
 				<tr>
+					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
 					<td class="unit_talla">{{$talla->a}}</td>
 					<td class="unit_talla">{{$talla->b}}</td>
 					<td class="unit_talla">{{$talla->c}}</td>
@@ -368,9 +392,147 @@
 			<div class="firma_recibido">Recibido por:</div>
 		</div>
 	</main>
-	<footer>
+	<footer class="pagina1">
 		Conduce generado desde SistemaCCH.
 	</footer>
+
+	@if ($corte_proceso == 'Si')
+	<header class="clearfix">
+		<div id="logo">
+			<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
+		</div>
+		<div id="company">
+			<h2 class="name">Confecciones Carmen Herrera</h2>
+			<div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
+			<div>(809) 699-8400</div>
+			<div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
+		</div>
+		</div>
+	</header>
+	<main>
+		<div id="details" class="clearfix">
+			<div id="client">
+				<div class="to">CONDUCE PARA:</div>
+				<h2 class="name">{{$orden->cliente->nombre_cliente}}</h2>
+				<div class="address">{{$orden->cliente->direccion_principal}}</div>
+				<div class="email"><a href="mailto:john@example.com">{{$orden->cliente->email_principal}}</a></div>
+				<div class="to">SUCURSAL:</div>
+				<h2 class="name">{{$orden->sucursal->nombre_sucursal}}</h2>
+			</div>
+			<div id="invoice_proceso">
+				<h1>{{$ordenProceso->no_orden_pedido}}</h1>
+				<div class="date_proceso">Fecha pedido:{{$ordenProceso->fecha}}</div>
+				<div class="date_proceso">Fecha Entrega:{{$ordenProceso->fecha_entrega}}</div>
+			</div>
+		</div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th class="no">REFERENCIA</th>
+					<th class="desc">FECHA ENTREGA</th>
+					<th class="unit">PRECIO UNIDAD</th>
+					<th class="qty">CANTIDAD</th>
+					<th class="total">TOTAL</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="no">
+						@foreach ($productosOrdenes as $producto)
+						<p>{{$producto->referencia_producto}}</p>
+						@endforeach
+					</td>
+					<td class="desc">
+						{{$ordenProceso->fecha_entrega}}
+					</td>
+					<td class="unit">
+						@foreach ($orden_detalle as $precio)
+						<p>{{$precio->precio}}</p>
+						@endforeach
+					</td>
+					<td class="qty">
+						@foreach ($totales_detalles as $total_detalle)
+						<p>{{$total_detalle}}</p>
+
+						@endforeach
+					</td>
+					<td class="total">
+						@foreach ($detalles_totales as $totales)
+						<p>${{$totales}}</p>
+						@endforeach
+					</td>
+				</tr>
+			</tbody>
+			{{-- <tfoot>
+				<tr>
+					<td colspan="2"></td>
+					<td colspan="2">SUBTOTAL</td>
+					<td>${{number_format($subtotal)}}</td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+					<td colspan="2">IMPUESTO 18%</td>
+					<td>${{number_format($tax)}}</td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+					<td colspan="2">TOTAL FINAL</td>
+					<td>${{number_format($total)}}</td>
+				</tr>
+			</tfoot> --}}
+		</table>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th class="desc">Referencia</th>
+					<th class="desc">A</th>
+					<th class="desc">B</th>
+					<th class="desc">C</th>
+					<th class="desc">D</th>
+					<th class="desc">E</th>
+					<th class="desc">F</th>
+					<th class="desc">G</th>
+					<th class="desc">H</th>
+					<th class="desc">I</th>
+					<th class="desc">J</th>
+					<th class="desc">K</th>
+					<th class="desc">L</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($orden_detalle as $talla)
+				<tr>
+					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
+					<td class="unit_talla">{{$talla->a}}</td>
+					<td class="unit_talla">{{$talla->b}}</td>
+					<td class="unit_talla">{{$talla->c}}</td>
+					<td class="unit_talla">{{$talla->d}}</td>
+					<td class="unit_talla">{{$talla->e}}</td>
+					<td class="unit_talla">{{$talla->f}}</td>
+					<td class="unit_talla">{{$talla->g}}</td>
+					<td class="unit_talla">{{$talla->h}}</td>
+					<td class="unit_talla">{{$talla->i}}</td>
+					<td class="unit_talla">{{$talla->j}}</td>
+					<td class="unit_talla">{{$talla->k}}</td>
+					<td class="unit_talla">{{$talla->l}}</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+		<div id="thanks">Gracias!</div>
+		<div id="notices">
+			<div>NOTICE:</div>
+			<div class="notice">{{$ordenProceso->notas}}</div>
+		</div>
+		<div class="firmas">
+			<div class="firma_enviado">Enviado por:</div>
+			<div class="firma_recibido">Recibido por:</div>
+		</div>
+	</main>
+	<footer class="pagina1">
+		Conduce generado desde SistemaCCH.
+	</footer>
+	@endif
 </body>
 
 </html>

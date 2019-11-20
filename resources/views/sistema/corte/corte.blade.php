@@ -24,8 +24,17 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <div class="row">
-                        {{-- <h5 class="mb-3">Generar numero de corte</h5> --}}
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-md-2 justify-content-end">
+                            <input type="text" name="numero_corte_gen" id="numero_corte_gen"
+                                class="form-control text-center " readonly>
+                            <input type="hidden" name="sec" id="sec" value="">
+                            <input type="hidden" name="id" id="id" value="">
+                        </div>
+                    </div>
+
+                    {{-- <div class="row">
+                       
                         <div class="col-md-6 mt-3">
                             <label for="">Numero corte(*):</label>
                             <input type="hidden" name="id" id="id" value="">
@@ -36,7 +45,7 @@
                         <div class="col-md-4 mt-5">
                             <button class="btn btn-success" id="btn-generar" name="btn-generar">Generar</button>
                         </div>
-                    </div>
+                    </div> --}}
                     <br>
                     <hr>
                     <br>
@@ -47,9 +56,9 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Fecha estimada de  entrega(*):</label>
+                            <label for="">Fecha estimada de entrega(*):</label>
                             <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control"
-                            data-toggle="tooltip" data-placement="bottom">
+                                data-toggle="tooltip" data-placement="bottom">
                         </div>
                     </div>
                     <br>
@@ -74,8 +83,8 @@
                                 data-inputmask='"mask": "99.99%"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide" data-toggle="modal"
-                                data-target=".bd-rollo-modal-lg">Agregar rollos <i
+                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide"
+                                data-toggle="modal" data-target=".bd-rollo-modal-lg">Agregar rollos <i
                                     class="fa fa-dolly-flatbed"></i></button>
                         </div>
                         <div class="col-md-4 mt-3">
@@ -97,7 +106,7 @@
 {{-- </div> --}}
 
 <div class="container" id="listadoUsers">
-    <table id="cortes" class="table table-striped table-bordered datatables cell-border" >
+    <table id="cortes" class="table table-striped table-bordered datatables cell-border">
         <thead>
             <tr>
                 <th></th>
@@ -235,9 +244,9 @@
                             </tr>
                         </thead>
                         <tr id="tallas">
-                          
+
                         </tr>
-                      
+
                     </table>
                 </div>
                 <br><br>
@@ -271,7 +280,7 @@
                         <input type="text" name="" id="g" class="form-control">
                     </div>
                     <div class="col-lg-1">
-                        <label for="" class="ml-4" id="th" >H</label>
+                        <label for="" class="ml-4" id="th">H</label>
                         <input type="text" name="" id="h" class="form-control">
                     </div>
                     <div class="col-lg-1">

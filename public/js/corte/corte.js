@@ -47,10 +47,12 @@ $(document).ready(function() {
 
     //Funcion que se ejecuta al inicio 
     function init() {
+        ordenPedidoCod();
         listar();
         listarRollos();
         mostrarForm(false);
         $("#btn-edit").hide();
+        
     }
 
     //funcion para limpiar el formulario(los inputs)
@@ -66,10 +68,7 @@ $(document).ready(function() {
         $("#aprovechamiento").val("");
     }
 
-    //funcion para generar codigo de corte
-    $("#btn-generar").on('click', function(e){
-        e.preventDefault();
-
+    function ordenPedidoCod() {
         $.ajax({
             url: "corte/lastdigit",
             type: "GET",
@@ -81,20 +80,11 @@ $(document).ready(function() {
                     i = (i + 0.01).toFixed(2).split('.').join("");
                     var year = new Date().getFullYear().toString();
                     var referencia = year+'-'+i;
-                   
+                    console.log(referencia);
                                
-                    $("#numero_corte").val(referencia);
-                    $("#corte").val(referencia);
-                    // $("#corte_tallas").val(referencia +" - "+ referencia_producto );
-                    $('#btn-generar').attr("disabled", true);
-                    $("#fila1").show();
-                    $("#fila2").show();
-                    $("#fila3").show();
-                    $("#edit-hide").show();
-                    $("#edit-hide2").show();
-                    bootbox.alert(
-                        "Numero de corte generado exitosamente!!"
-                    );
+                    $("#numero_corte_gen").val(referencia);
+                    $("#corte").val(referencia);         
+                    
 
                 } else {
                     bootbox.alert(
@@ -108,7 +98,51 @@ $(document).ready(function() {
                 );
             }
         });
-    });
+    }
+
+    // //funcion para generar codigo de corte
+    // $("#btn-generar").on('click', function(e){
+    //     e.preventDefault();
+
+    //     $.ajax({
+    //         url: "corte/lastdigit",
+    //         type: "GET",
+    //         dataType: "json",
+    //         success: function(datos) {
+    //             if (datos.status == "success") {
+    //                 var i = Number(datos.sec);
+    //                 $("#sec").val(i);
+    //                 i = (i + 0.01).toFixed(2).split('.').join("");
+    //                 var year = new Date().getFullYear().toString();
+    //                 var referencia = year+'-'+i;
+                   
+                               
+    //                 $("#numero_corte").val(referencia);
+    //                 $("#corte").val(referencia);
+    //                 // $("#corte_tallas").val(referencia +" - "+ referencia_producto );
+    //                 $('#btn-generar').attr("disabled", true);
+    //                 $("#fila1").show();
+    //                 $("#fila2").show();
+    //                 $("#fila3").show();
+    //                 $("#edit-hide").show();
+    //                 $("#edit-hide2").show();
+    //                 bootbox.alert(
+    //                     "Numero de corte generado exitosamente!!"
+    //                 );
+
+    //             } else {
+    //                 bootbox.alert(
+    //                     "Ocurrio un error !!"
+    //                 );
+    //             }
+    //         },
+    //         error: function() {
+    //             bootbox.alert(
+    //                 "Ocurrio un error!!"
+    //             );
+    //         }
+    //     });
+    // });
 
     //Select2 productos
 
@@ -345,7 +379,7 @@ $(document).ready(function() {
         
         var corte = {
             sec: $("#sec").val(),
-            numero_corte: $("#numero_corte").val(),
+            numero_corte: $("#numero_corte_gen").val(),
             producto_id: $("#productos").val(),
             fecha_entrega: $("#fecha_entrega").val(), 
             no_marcada: $("#no_marcada").val(),
@@ -623,9 +657,9 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
-            $("#fila1").hide();
-            $("#fila2").hide();
-            $("#fila3").hide();
+            // $("#fila1").hide();
+            // $("#fila2").hide();
+            // $("#fila3").hide();
             // $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
