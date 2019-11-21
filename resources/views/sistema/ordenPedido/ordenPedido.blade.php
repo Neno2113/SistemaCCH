@@ -30,6 +30,8 @@
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control text-center " readonly>
                             <input type="hidden" name="sec" id="sec" value="">
+                            <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
+                            <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
                         </div>
                     </div>
 
@@ -110,7 +112,6 @@
                             <table class="table table-bordered ">
                                 <thead class="thead-light">
                                     <tr>
-
                                         <th id="ta">A</th>
                                         <th id="tb">B</th>
                                         <th id="tc">C</th>
@@ -155,8 +156,8 @@
                                         <th>No. Corte</th>
                                         <th>Fase</th>
                                         <th>F. Entrega</th>
-                                        <th>Accion</th>
                                         <th>Cantidad</th>
+                                        <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody id="corteProceso">
@@ -164,9 +165,9 @@
                                         <td id="no_corte"></td>
                                         <td id="fase"></td>
                                         <td id="f_entrega"></td>
+                                        <th><input type="text" name="cantidad_proceso" id="cantidad_proceso" class="form-control"></th>
                                         <th><button id='btn-agregarProceso' class='btn btn-success'>Agregar</button>
                                         </th>
-                                        <th><input type="text" name="cantidad_proceso" id="cantidad_proceso" class="form-control"></th>
                                         <input type="hidden" name="corte_proceso" id="corte_proceso" value="">
                                     </tr>
                                 </tbody>

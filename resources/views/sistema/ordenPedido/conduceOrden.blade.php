@@ -432,7 +432,6 @@
 					<th class="desc">FECHA ENTREGA</th>
 					<th class="unit">PRECIO UNIDAD</th>
 					<th class="qty">CANTIDAD</th>
-					<th class="total">TOTAL</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -446,21 +445,17 @@
 						{{$ordenProceso->fecha_entrega}}
 					</td>
 					<td class="unit">
-						@foreach ($orden_detalle as $precio)
+						@foreach ($ordenProcesoDetalle as $precio)
 						<p>{{$precio->precio}}</p>
 						@endforeach
 					</td>
 					<td class="qty">
-						@foreach ($totales_detalles as $total_detalle)
-						<p>{{$total_detalle}}</p>
+						@foreach ($ordenProcesoDetalle as $total_detalle)
+						<p>{{$total_detalle->total}}</p>
 
 						@endforeach
 					</td>
-					<td class="total">
-						@foreach ($detalles_totales as $totales)
-						<p>${{$totales}}</p>
-						@endforeach
-					</td>
+				
 				</tr>
 			</tbody>
 			{{-- <tfoot>
@@ -500,7 +495,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($orden_detalle as $talla)
+				@foreach ($ordenProcesoDetalle as $talla)
 				<tr>
 					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
 					<td class="unit_talla">{{$talla->a}}</td>

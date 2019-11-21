@@ -107,8 +107,6 @@ class ordenPedidoController extends Controller
 
         $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();
 
-
-
         //producto
         $producto = Product::find($producto_id);
 
@@ -126,7 +124,23 @@ class ordenPedidoController extends Controller
         $j = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j') - $tallasOrdenes->sum('j');
         $k = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k');
         $l = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l');
-        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+        
+        //Validacion de numeros negativos
+        $a = ($a < 0 ? 0 : $a);
+        $b = ($b < 0 ? 0 : $b);
+        $c = ($c < 0 ? 0 : $c);
+        $d = ($d < 0 ? 0 : $d);
+        $e = ($e < 0 ? 0 : $e);
+        $f = ($f < 0 ? 0 : $f);
+        $g = ($g < 0 ? 0 : $g);
+        $h = ($h < 0 ? 0 : $h);
+        $i = ($i < 0 ? 0 : $i);
+        $j = ($j < 0 ? 0 : $j);  
+        $k = ($k < 0 ? 0 : $k);
+        $l = ($l < 0 ? 0 : $l);
+
+        $cantidad_ordenadas = $tallasOrdenes->sum('cantidad');
+        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l - $cantidad_ordenadas; 
 
         //respuesta 
         $data = [
@@ -179,7 +193,7 @@ class ordenPedidoController extends Controller
             $generado_internamente = $request->input('generado_internamente');
             $detallada = $request->input('detallada');
             $no_orden_pedido = $request->input('no_orden_pedido');
-          
+
             $sec = $request->input('sec');
 
             $orden = new ordenPedido();
@@ -193,11 +207,11 @@ class ordenPedidoController extends Controller
             $orden->no_orden_pedido = $no_orden_pedido;
             $orden->corte_en_proceso = 'No';
             $orden->orden_proceso_impresa = 'No';
-           
+
             $orden->sec = $sec + 0.01;
             $orden->fecha = date('Y/m/d h:i:s');
             $orden->user_id = \auth()->user()->id;
-           
+
 
             $orden->save();
 
@@ -237,9 +251,9 @@ class ordenPedidoController extends Controller
             $generado_internamente = $request->input('generado_internamente');
             $detallada = $request->input('detallada');
             $no_orden_pedido = $request->input('no_orden_pedido');
-          
+
             $sec = $request->input('sec');
-        
+
 
             $orden = new ordenPedido();
 
@@ -252,11 +266,11 @@ class ordenPedidoController extends Controller
             $orden->no_orden_pedido = $no_orden_pedido;
             $orden->corte_en_proceso = 'Si';
             $orden->orden_proceso_impresa = 'No';
-           
+
             $orden->sec = $sec + 0.01;
             $orden->fecha = date('Y/m/d h:i:s');
             $orden->user_id = \auth()->user()->id;
-           
+
 
             $orden->save();
 
@@ -269,7 +283,6 @@ class ordenPedidoController extends Controller
         }
 
         return response()->json($data, $data['code']);
-       
     }
 
     public function storeDetalle(Request $request)
@@ -329,7 +342,7 @@ class ordenPedidoController extends Controller
 
     public function storeDetalleProceso(Request $request)
     {
-       
+
         $producto_id = $request->input('producto_id');
         $cantidad = $request->input('cantidad');
         $precio = $request->input('precio');
@@ -454,13 +467,14 @@ class ordenPedidoController extends Controller
     public function ordenes()
     {
         $ordenes = DB::table('orden_pedido')->join('users', 'orden_pedido.user_id', 'users.id')
-        ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
-        ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
-        ->select([ 'orden_pedido.id',
-            'orden_pedido.no_orden_pedido','orden_pedido.fecha','orden_pedido.fecha_entrega',
-            'orden_pedido.notas', 'orden_pedido.generado_internamente', 'orden_pedido.detallada',
-            'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal', 'orden_pedido.corte_en_proceso'
-        ])->where('corte_en_proceso', 'LIKE', 'No');
+            ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
+            ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
+            ->select([
+                'orden_pedido.id',
+                'orden_pedido.no_orden_pedido', 'orden_pedido.fecha', 'orden_pedido.fecha_entrega',
+                'orden_pedido.notas', 'orden_pedido.generado_internamente', 'orden_pedido.detallada',
+                'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal', 'orden_pedido.corte_en_proceso'
+            ])->where('corte_en_proceso', 'LIKE', 'No');
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function () {
@@ -479,7 +493,7 @@ class ordenPedidoController extends Controller
                 return date("h:i:s A d-m-20y", strtotime($orden->fecha));
             })
             ->addColumn('Opciones', function ($orden) {
-                return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>'.
+                return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
                     '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
             })
             ->rawColumns(['Opciones'])
@@ -490,9 +504,9 @@ class ordenPedidoController extends Controller
     {
         //orden normal
         $orden = ordenPedido::find($id)->load('cliente')
-                            ->load('user')
-                            ->load('sucursal')
-                            ->load('producto');  
+            ->load('user')
+            ->load('sucursal')
+            ->load('producto');
 
         $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get()->load('producto');
 
@@ -507,7 +521,7 @@ class ordenPedidoController extends Controller
         }
 
         $productosOrdenes = Product::whereIn('id', $productos)->get();
-          
+
         $orden->fecha = date("h:i:s A d-m-20y", strtotime($orden->fecha));
         $orden->fecha_entrega = date("d-m-20y", strtotime($orden->fecha_entrega));
 
@@ -524,7 +538,7 @@ class ordenPedidoController extends Controller
         $k = $orden_detalle->sum('k');
         $l = $orden_detalle->sum('l');
         $cantidad = $orden_detalle->sum('cantidad');
-        $total_detalle = $a + $b +$c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $cantidad;
+        $total_detalle = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $cantidad;
 
         $detalles_totales = array();
         $totales_detalles = array();
@@ -541,7 +555,7 @@ class ordenPedidoController extends Controller
         $total_sin_detalle = implode($precio_total);
         $total_sin_detalle = str_replace('.', '', $total_sin_detalle);
 
-        $subtotal = array_sum(str_replace(',', '' ,$detalles_totales));
+        $subtotal = array_sum(str_replace(',', '', $detalles_totales));
         $tax = 0.18 * $subtotal;
         $total = $subtotal + $tax;
         $cantidad = $orden_detalle->sum('cantidad');
@@ -551,28 +565,36 @@ class ordenPedidoController extends Controller
 
         //orden con corte que esta en proceso
         $ordenProceso = ordenPedido::where('corte_en_proceso', 'Si')
-        ->where('orden_proceso_impresa', 'No')->get()->first();
-        if(!empty($ordenProceso)){
+            ->where('orden_proceso_impresa', 'No')->get()->first();
+        if (!empty($ordenProceso)) {
             $corte_proceso = $ordenProceso->corte_en_proceso;
-            // $ordenProceso->orden_proceso_impresa = 'Si';
-            // $ordenProceso->save();
-        }else{
+            $orden_proceso_id = $ordenProceso->id;
+
+            $ordenProcesoDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_proceso_id)->get()->load('producto');
+
+            $ordenProceso->orden_proceso_impresa = 'Si';
+            $ordenProceso->save();
+        } else {
             $corte_proceso = 'No';
         }
-       
 
-        $pdf = \PDF::loadView('sistema.ordenPedido.conduceOrden', \compact('orden', 'orden_detalle', 
-        'productosOrdenes', 'total_detalle','detalles_totales', 'totales_detalles', 'subtotal', 'tax',
-        'total', 'cantidad', 'total_simple', 'ordenProceso', 'corte_proceso'))->setPaper('a4');
+        if (empty($ordenProcesoDetalle)) {
+            $ordenProcesoDetalle = "No";
+        }
+
+        $pdf = \PDF::loadView('sistema.ordenPedido.conduceOrden', \compact('orden', 'orden_detalle', 'productosOrdenes',
+            'total_detalle', 'detalles_totales', 'totales_detalles', 'subtotal', 'tax', 'total','cantidad',
+            'total_simple', 'ordenProceso','corte_proceso','ordenProcesoDetalle'
+        ))->setPaper('a4');
         return $pdf->download('conduceOrden.pdf');
     }
 
     public function verificar($id)
     {
         $orden = ordenPedido::find($id)->load('cliente')
-                            ->load('user')
-                            ->load('sucursal');
-                             
+            ->load('user')
+            ->load('sucursal');
+
 
         $productos_id = ordenPedidoDetalle::where('orden_pedido_id', $id)->select('producto_id')->get();
 
@@ -601,14 +623,14 @@ class ordenPedidoController extends Controller
         $k = $orden_detalle->sum('k');
         $l = $orden_detalle->sum('l');
         $cantidad = $orden_detalle->sum('cantidad');
-        $total_detalle = $a + $b +$c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $cantidad;
-        
+        $total_detalle = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $cantidad;
+
         $detalles_totales = array();
         $totales_detalles = array();
         $precio_total = array();
 
         $longitudDetalles = count($orden_detalle);
-        
+
 
         for ($i = 0; $i < $longitudDetalles; $i++) {
             array_push($detalles_totales, number_format(str_replace('.', '', $orden_detalle[$i]['precio']) * $orden_detalle[$i]['total']));
@@ -619,12 +641,14 @@ class ordenPedidoController extends Controller
         $total = implode($precio_total);
         $total = str_replace('.', '', $total);
 
-       //orden con corte que esta en proceso
-       $ordenProceso = ordenPedido::where('corte_en_proceso', 'Si')
-       ->where('orden_proceso_impresa', 'No')->get();
-    //    $orden_proceso_id = $ordenProceso->id;
+        //orden con corte que esta en proceso
+        $ordenProceso = ordenPedido::where('corte_en_proceso', 'Si')
+            ->where('orden_proceso_impresa', 'No')->get()->first();
+        $orden_proceso_id = $ordenProceso->id;
 
-    //    $ordenProcesoDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_proceso_id)->get();
+        $ordenProcesoDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_proceso_id)->get()->load('producto');
+
+
 
         $data = [
             'code' => 200,
@@ -635,13 +659,13 @@ class ordenPedidoController extends Controller
             'total_detalle' => $total_detalle,
             'precios_totales' => $detalles_totales,
             'totales_detalle' => $totales_detalles,
-            'subtotal' => array_sum(str_replace(',', '' ,$detalles_totales)),
+            'subtotal' => array_sum(str_replace(',', '', $detalles_totales)),
             'cantidad' => getType($cantidad),
             // 'total' =>  $total * $cantidad,
             'ordenProceso' => $ordenProceso,
             // 'corte_proceso' => $ordenProceso->corte_en_proceso,
             // 'orden_proceso_id' => $ordenProceso->id,
-            // 'ordenProcesoDetalle' => $ordenProcesoDetalle
+            'ordenProcesoDetalle' => $ordenProcesoDetalle
         ];
 
         return \response()->json($data, $data['code']);
