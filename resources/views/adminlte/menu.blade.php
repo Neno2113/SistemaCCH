@@ -214,7 +214,12 @@
                   <p>Orden Pedido</p>
                 </a>
               </li>
-  
+              <li class="nav-item">
+                <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Aprobacion</p>
+                </a>
+              </li>
             </ul>
           </li>
         <li class="nav-item has-treeview ">

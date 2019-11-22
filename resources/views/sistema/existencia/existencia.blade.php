@@ -73,6 +73,24 @@
                     <th id="l"></th>
                     <th></th>
                 </tr>
+                <tr id="disp_venta">
+                    <th>Disp. venta</th>
+                    <th></th>
+                    <th id="ref_venta"></th>
+                    <th id="a_venta"></th>
+                    <th id="b_venta"></th>
+                    <th id="c_venta"></th>
+                    <th id="d_venta"></th>
+                    <th id="e_venta"></th>
+                    <th id="f_venta"></th>
+                    <th id="g_venta"></th>
+                    <th id="h_venta"></th>
+                    <th id="i_venta"></th>
+                    <th id="j_venta"></th>
+                    <th id="k_venta"></th>
+                    <th id="l_venta"></th>
+                    <th></th>
+                </tr>
             </tfoot>
         </table>
 

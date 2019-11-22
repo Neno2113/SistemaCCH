@@ -127,8 +127,38 @@ $(document).ready(function() {
                             "<th class='text-primary font-weight-normal'>"+datos.k_seg+"</th>"+
                             "<th class='text-primary font-weight-normal'>"+datos.l_seg+"</th>"+
                             "<th class='text-primary font-weight-normal'>"+datos.x_seg+"</th>"+
+                            "</tr>"+
+                            "<tr id='orden_pedido'>"+
+                            "<th>OP(Orden Pedido)</th>"+
+                            "<th>5</th>"+
+                            "<th class='font-weight-normal'>"+ref+"</th>"+
+                            "<th id='a_op'  class='text-primary font-weight-normal'>"+datos.a_op+"</th>"+
+                            "<th id='b_op' class='text-primary font-weight-normal'>"+datos.b_op+"</th>"+
+                            "<th id='c_op' class='text-primary font-weight-normal'>"+datos.c_op+"</th>"+
+                            "<th id='d_op' class='text-primary font-weight-normal'>"+datos.d_op+"</th>"+
+                            "<th id='e_op' class='text-primary font-weight-normal'>"+datos.e_op+"</th>"+
+                            "<th id='f_op' class='text-primary font-weight-normal'>"+datos.f_op+"</th>"+
+                            "<th id='g_op' class='text-primary font-weight-normal'>"+datos.g_op+"</th>"+
+                            "<th id='h_op' class='text-primary font-weight-normal'>"+datos.h_op+"</th>"+
+                            "<th id='i_op' class='text-primary font-weight-normal'>"+datos.i_op+"</th>"+
+                            "<th id='j_op' class='text-primary font-weight-normal'>"+datos.j_op+"</th>"+
+                            "<th id='k_op' class='text-primary font-weight-normal'>"+datos.k_op+"</th>"+
+                            "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_op+"</th>"+
                             "</tr>"
                         )
+                        //almacen
+                        let a_alm = parseInt($("#a_alm").text());
+                        let b_alm = parseInt($("#b_alm").text());
+                        let c_alm = parseInt($("#c_alm").text());
+                        let d_alm = parseInt($("#d_alm").text());
+                        let e_alm = parseInt($("#e_alm").text());
+                        let f_alm = parseInt($("#f_alm").text());
+                        let g_alm = parseInt($("#g_alm").text());
+                        let h_alm = parseInt($("#h_alm").text());
+                        let i_alm = parseInt($("#i_alm").text());
+                        let j_alm = parseInt($("#j_alm").text());
+                        let k_alm = parseInt($("#k_alm").text());
+                        let l_alm = parseInt($("#l_alm").text());
 
                         //corte
                         let a_corte = parseInt($("#a_corte").text());
@@ -157,7 +187,21 @@ $(document).ready(function() {
                         let j_perd = parseInt($("#j_perd").text());
                         let k_perd = parseInt($("#k_perd").text());
                         let l_perd = parseInt($("#l_perd").text());
-                        
+
+                        //existencia
+                        let a_op = parseInt($("#a_op").text());
+                        let b_op = parseInt($("#b_op").text());
+                        let c_op = parseInt($("#c_op").text());
+                        let d_op = parseInt($("#d_op").text());
+                        let e_op = parseInt($("#e_op").text());
+                        let f_op = parseInt($("#f_op").text());
+                        let g_op = parseInt($("#g_op").text());
+                        let h_op = parseInt($("#h_op").text());
+                        let i_op = parseInt($("#i_op").text());
+                        let j_op = parseInt($("#j_op").text());
+                        let k_op = parseInt($("#k_op").text());
+                        let l_op = parseInt($("#l_op").text());
+
                         $("#ref").html(ref);
                         $("#a").html(a_corte - a_perd);
                         $("#b").html(b_corte - b_perd);
@@ -171,6 +215,20 @@ $(document).ready(function() {
                         $("#j").html(j_corte - j_perd);
                         $("#k").html(k_corte - k_perd);
                         $("#l").html(l_corte - l_perd);
+
+                        $("#ref_venta").html(ref);
+                        $("#a_venta").html(a_alm - a_perd - a_op);
+                        $("#b_venta").html(b_alm - b_perd - b_op);
+                        $("#c_venta").html(c_alm - c_perd - c_op);
+                        $("#d_venta").html(d_alm - d_perd - d_op);
+                        $("#e_venta").html(e_alm - e_perd - e_op);
+                        $("#f_venta").html(f_alm - f_perd - f_op);
+                        $("#g_venta").html(g_alm - g_perd - g_op);
+                        $("#h_venta").html(h_alm - h_perd - h_op);
+                        $("#i_venta").html(i_alm - i_perd - i_op);
+                        $("#j_venta").html(j_alm - j_perd - j_op);
+                        $("#k_venta").html(k_alm - k_perd - k_op);
+                        $("#l_venta").html(l_alm - l_perd - l_op);
 
                         $("#totales").show();
                     }else if(tipo_consulta == 'Detallada'){

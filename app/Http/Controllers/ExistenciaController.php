@@ -10,6 +10,7 @@ use App\Perdida;
 use App\TallasPerdidas;
 use App\Almacen;
 use App\Existencia;
+use App\ordenPedidoDetalle;
 
 class ExistenciaController extends Controller
 {
@@ -78,6 +79,8 @@ class ExistenciaController extends Controller
 
         $tallasAlmacen = Almacen::whereIn('id', $almacenes)->get();
 
+        $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();
+
         //respuesta 
         $data = [
             'code' => 200,
@@ -136,7 +139,21 @@ class ExistenciaController extends Controller
             'j_alm' => $tallasAlmacen->sum('j'),
             'k_alm' => $tallasAlmacen->sum('k'),
             'l_alm' => $tallasAlmacen->sum('l'),
-            'x_alm' => $tallasAlmacen->sum('talla_x')
+            'x_alm' => $tallasAlmacen->sum('talla_x'),
+            'tallasOrdenes' => $tallasOrdenes,
+            'a_op' => $tallasOrdenes->sum('a'),
+            'b_op' => $tallasOrdenes->sum('b'),
+            'c_op' => $tallasOrdenes->sum('c'),
+            'd_op' => $tallasOrdenes->sum('d'),
+            'e_op' => $tallasOrdenes->sum('e'),
+            'f_op' => $tallasOrdenes->sum('f'),
+            'g_op' => $tallasOrdenes->sum('g'),
+            'h_op' => $tallasOrdenes->sum('h'),
+            'i_op' => $tallasOrdenes->sum('i'),
+            'j_op' => $tallasOrdenes->sum('j'),
+            'k_op' => $tallasOrdenes->sum('k'),
+            'l_op' => $tallasOrdenes->sum('l'),
+
 
         ];
 

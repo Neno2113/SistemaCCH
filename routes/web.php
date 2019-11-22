@@ -92,6 +92,10 @@ Route::get('/existencia', function () {
 Route::get('/orden_pedido', function () {
     return view('sistema.ordenPedido.ordenPedido');
 });
+
+Route::get('/orden_aprobacion', function () {
+    return view('sistema.ordenPedido.ordenAprobacion');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -239,3 +243,5 @@ Route::get('/imprimir_orden/conduce/{id}', 'ordenPedidoController@imprimir');
 Route::get('/verificar/{id}', 'ordenPedidoController@verificar');
 Route::get('/orden_pedido/{id}', 'ordenPedidoController@mostrar');
 Route::post('/orden_pedido/delete/{id}', 'ordenPedidoController@destroy');
+Route::post('/orden-aprobacion/{id}', 'ordenPedidoController@aprobar');
+Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');

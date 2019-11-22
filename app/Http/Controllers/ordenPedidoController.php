@@ -124,7 +124,7 @@ class ordenPedidoController extends Controller
         $j = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j') - $tallasOrdenes->sum('j');
         $k = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k');
         $l = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l');
-        
+
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);
         $b = ($b < 0 ? 0 : $b);
@@ -135,14 +135,35 @@ class ordenPedidoController extends Controller
         $g = ($g < 0 ? 0 : $g);
         $h = ($h < 0 ? 0 : $h);
         $i = ($i < 0 ? 0 : $i);
-        $j = ($j < 0 ? 0 : $j);  
+        $j = ($j < 0 ? 0 : $j);
         $k = ($k < 0 ? 0 : $k);
         $l = ($l < 0 ? 0 : $l);
 
         $cantidad_ordenadas = $tallasOrdenes->sum('cantidad');
-        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l - $cantidad_ordenadas; 
+        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l - $cantidad_ordenadas;
 
         //respuesta 
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'a' => $a,
+            'b' => $b,
+            'c' => $c,
+            'd' => $d,
+            'e' => $e,
+            'f' => $f,
+            'g' => $g,
+            'h' => $h,
+            'i' => $i,
+            'j' => $j,
+            'k' => $k,
+            'l' => $l,
+            'producto' => $producto,
+            'total_corte' => $total_real,
+            'corte_proceso' => $corte_proceso,
+            'fecha_entrega' => $fecha_entrega
+        ];
+
         $data = [
             'code' => 200,
             'status' => 'success',
@@ -207,10 +228,12 @@ class ordenPedidoController extends Controller
             $orden->no_orden_pedido = $no_orden_pedido;
             $orden->corte_en_proceso = 'No';
             $orden->orden_proceso_impresa = 'No';
+            $orden->status_orden_pedido = 'Stanby';
 
             $orden->sec = $sec + 0.01;
             $orden->fecha = date('Y/m/d h:i:s');
             $orden->user_id = \auth()->user()->id;
+            $orden->user_aprobacion = \auth()->user()->id;
 
 
             $orden->save();
@@ -480,6 +503,11 @@ class ordenPedidoController extends Controller
             ->addColumn('Expandir', function () {
                 return "";
             })
+            ->addColumn('total', function ($orden) {
+                $ordenDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden->id)->get();
+                
+                return $ordenDetalle->sum('total');
+            })
             ->editColumn('generado_internamente', function ($orden) {
                 return ($orden->generado_internamente == 1 ? 'Si' : 'No');
             })
@@ -507,6 +535,10 @@ class ordenPedidoController extends Controller
             ->load('user')
             ->load('sucursal')
             ->load('producto');
+
+        //actualizar campo de impresion para pasar a la aprobacion
+        $orden->orden_proceso_impresa = 'Si';
+        $orden->save();
 
         $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get()->load('producto');
 
@@ -582,9 +614,21 @@ class ordenPedidoController extends Controller
             $ordenProcesoDetalle = "No";
         }
 
-        $pdf = \PDF::loadView('sistema.ordenPedido.conduceOrden', \compact('orden', 'orden_detalle', 'productosOrdenes',
-            'total_detalle', 'detalles_totales', 'totales_detalles', 'subtotal', 'tax', 'total','cantidad',
-            'total_simple', 'ordenProceso','corte_proceso','ordenProcesoDetalle'
+        $pdf = \PDF::loadView('sistema.ordenPedido.conduceOrden', \compact(
+            'orden',
+            'orden_detalle',
+            'productosOrdenes',
+            'total_detalle',
+            'detalles_totales',
+            'totales_detalles',
+            'subtotal',
+            'tax',
+            'total',
+            'cantidad',
+            'total_simple',
+            'ordenProceso',
+            'corte_proceso',
+            'ordenProcesoDetalle'
         ))->setPaper('a4');
         return $pdf->download('conduceOrden.pdf');
     }
@@ -693,5 +737,97 @@ class ordenPedidoController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
+    }
+
+
+    public function ordenesAprobacion()
+    {
+        $ordenes = DB::table('orden_pedido')->join('users', 'orden_pedido.user_aprobacion', 'users.id')
+            ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
+            ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
+            ->select([
+                'orden_pedido.id', 'orden_pedido.fecha_aprobacion',
+                'orden_pedido.no_orden_pedido', 'orden_pedido.fecha', 'orden_pedido.fecha_entrega',
+                'orden_pedido.notas', 'orden_pedido.generado_internamente', 'orden_pedido.detallada',
+                'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal', 'orden_pedido.corte_en_proceso',
+                'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
+                ])->where('orden_proceso_impresa', 'LIKE', 'Si');
+
+        return DataTables::of($ordenes)
+            ->addColumn('Expandir', function () {
+                return "";
+            })
+            ->addColumn('total', function ($orden) {
+                $ordenDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden->id)->get();
+                
+                return $ordenDetalle->sum('total');
+            })
+            ->editColumn('generado_internamente', function ($orden) {
+                return ($orden->generado_internamente == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('detallada', function ($orden) {
+                return ($orden->detallada == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('fecha_entrega', function ($orden) {
+                return date("d-m-20y", strtotime($orden->fecha_entrega));
+            })
+            ->editColumn('fecha', function ($orden) {
+                return date("h:i:s A d-m-20y", strtotime($orden->fecha));
+            })
+            ->editColumn('fecha_aprobacion', function ($orden) {
+                return date("h:i:s d-m", strtotime($orden->fecha_aprobacion));
+            })
+            ->editColumn('status_orden_pedido', function ($orden) {
+                if($orden->status_orden_pedido == 'Vigente'){
+                    return '<span class="badge badge-pill badge-success">Vigente</span>';
+                }else if($orden->status_orden_pedido == 'Cancelado'){
+                    return '<span class="badge badge-pill badge-danger">Cancelada</span>';
+                }else if($orden->status_orden_pedido == 'Stanby'){
+                    return '<span class="badge badge-pill badge-secondary">Stanby</span>';
+                }else if($orden->status_orden_pedido == 'Despachado'){
+                    return '<span class="badge badge-pill badge-info">Stanby</span>';
+                }
+            })
+            ->addColumn('Opciones', function ($orden) {
+                return  ($orden->status_orden_pedido == 'Vigente') ? 
+                '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash"></i></button>':
+                '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-check"></i></button>';
+            })
+            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->make(true);
+    }
+
+    public function aprobar($id){
+
+        $orden = ordenPedido::find($id);
+
+        $orden->status_orden_pedido = 'Vigente';
+        $orden->fecha_aprobacion =  date('Y/m/d h:i:s');
+        $orden->user_aprobacion = \auth()->user()->id;
+        $orden->save();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'orden' => $orden
+        ];
+
+        return \response()->json($data, $data['code']);
+    }
+
+    public function cancelar($id){
+
+        $orden = ordenPedido::find($id);
+
+        $orden->status_orden_pedido = 'Cancelado';
+        $orden->save();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'orden' => $orden
+        ];
+
+        return \response()->json($data, $data['code']);
     }
 }

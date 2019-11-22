@@ -139,8 +139,12 @@ $(document).ready(function() {
     $("input[name='r2']").change(function() {
         let val = $("input[name='r2']:checked").val();
 
+
         if (val == 1) {
             $("#btn-consultar").show();
+            $("#btn-consultar").attr('disabled', false);
+        }else if(val == 0){ 
+            $("#btn-consultar").attr('disabled', false);
         }
     });
 
@@ -228,6 +232,9 @@ $(document).ready(function() {
                 success: function(datos) {
                     if (datos.status == "success") {
                         data = datos;
+
+                        
+
                         let corte_proceso = datos.corte_proceso;
                         let fecha_entrega = datos.fecha_entrega;
                         var ref = $("#productoSearch option:selected").text();
@@ -282,6 +289,30 @@ $(document).ready(function() {
                                 "<th id='j_corte' class='font-weight-normal'>"+validarNan(datos.j)+"</th>"+
                                 "</tr>"
                             );
+                            let data_consulta = {
+                                a: data.a,
+                                b: data.b,
+                                c: data.c,
+                                d: data.d,
+                                e: data.e,
+                                f: data.f,
+                                g: data.g,
+                                h: data.h,
+                                i: data.i,
+                                j: data.j
+                            }
+    
+                            let consulta = Object.values(data_consulta);
+                            var result = true;
+                            
+                            for (let i = 0; i < consulta.length; i++) {
+                                if(consulta[i] <= 0){
+                                    bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                    result = false;
+                                    break;
+                                }
+                                
+                            }
                         } else if (genero == 3) {
                             $("#sub-genero").hide();
                             $("#ta").html("2");
@@ -324,6 +355,28 @@ $(document).ready(function() {
                                     "</th>" +
                                     "</tr>"
                             );
+                            let data_consulta = {
+                                a: data.a,
+                                b: data.b,
+                                c: data.c,
+                                d: data.d,
+                                e: data.e,
+                                f: data.f,
+                                g: data.g,
+                                h: data.h
+                            }
+    
+                            let consulta = Object.values(data_consulta);
+                            var result = true;
+                            
+                            for (let i = 0; i < consulta.length; i++) {
+                                if(consulta[i] <= 0){
+                                    bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                    result = false;
+                                    break;
+                                }
+                                
+                            }
                         } else if (genero == 4) {
                             $("#sub-genero").hide();
                             $("#ta").html("2");
@@ -366,6 +419,29 @@ $(document).ready(function() {
                                     "</th>" +
                                     "</tr>"
                             );
+
+                            let data_consulta = {
+                                a: data.a,
+                                b: data.b,
+                                c: data.c,
+                                d: data.d,
+                                e: data.e,
+                                f: data.f,
+                                g: data.g,
+                                h: data.h
+                            }
+    
+                            let consulta = Object.values(data_consulta);
+                            var result = true;
+                            
+                            for (let i = 0; i < consulta.length; i++) {
+                                if(consulta[i] <= 0){
+                                    bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                    result = false;
+                                    break;
+                                }
+                                
+                            }
                         }
                         if (genero == 2) {
                             $("#genero").val("Mujer: " + val);
@@ -434,6 +510,32 @@ $(document).ready(function() {
                                             "<th id='l_corte' class='font-weight-normal'>"+validarNan(datos.l)+"</th>"+
                                             "</tr>"
                                     );
+                                    let data_consulta = {
+                                        a: data.a,
+                                        b: data.b,
+                                        c: data.c,
+                                        d: data.d,
+                                        e: data.e,
+                                        f: data.f,
+                                        g: data.g,
+                                        h: data.h,
+                                        i: data.i,
+                                        j: data.j,
+                                        k: data.k,
+                                        l: data.l
+                                    }
+            
+                                    let consulta = Object.values(data_consulta);
+                                    var result = true;
+                                    
+                                    for (let i = 0; i < consulta.length; i++) {
+                                        if(consulta[i] <= 0){
+                                            bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                            result = false;
+                                            break;
+                                        }
+                                        
+                                    }
                                 } else if (subGenero == "Mujer Plus") {
                                     //    $("#genero").val('Mujer plus: '+val);
                                     $("#sub-genero").show();
@@ -840,38 +942,33 @@ $(document).ready(function() {
             producto_id: $("#productoSearch").val(),
             cantidad: $("#cantidad").val()
         };
+         
+        $.ajax({
+            url: "orden/detalle",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(ordenDetalle),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    limpiar();
 
-        for (let i = 0; i < Object.keys(ordenDetalle).length; i++) {
-           
-            
-        }
+                    $("#cantidad").val("");
+                    $("#btn-agregar").attr('disabled', true);
+                    $("#btn-consultar").attr('disabled', false);
+                    $("#btn-agregarProceso").attr('disabled', false);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.message);
 
-        // $.ajax({
-        //     url: "orden/detalle",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(ordenDetalle),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             limpiar();
-
-        //             $("#cantidad").val("");
-        //             $("#btn-agregar").attr('disabled', true);
-        //             $("#btn-consultar").attr('disabled', false);
-        //             $("#btn-agregarProceso").attr('disabled', false);
-        //         } else {
-        //             bootbox.alert(
-        //                 "Ocurrio un error durante la creacion de la composicion"
-        //             );
-        //         }
-        //     },
-        //     error: function(datos) {
-        //         console.log(datos.responseJSON.message);
-
-        //         bootbox.alert("Error: " + datos.responseJSON.message);
-        //     }
-        // });
+                bootbox.alert("Error: " + datos.responseJSON.message);
+            }
+        });
     });
 
     $("#btn-guardar").click(function(e) {
@@ -1092,23 +1189,15 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
+                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
                 { data: "name", name: "users.name" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                {
-                    data: "nombre_sucursal",
-                    name: "cliente_sucursales.nombre_sucursal"
-                },
+                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
+                { data: "total", name: "orden_pedido.total" },
                 { data: "detallada", name: "orden_pedido.detallada" },
-                {
-                    data: "generado_internamente",
-                    name: "orden_pedido.generado_internamente"
-                },
+                { data: "generado_internamente", name: "orden_pedido.generado_internamente"},
                 { data: "notas", name: "orden_pedido.notas" }
             ],
             order: [[2, "desc"]],

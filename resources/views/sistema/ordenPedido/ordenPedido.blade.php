@@ -1,6 +1,6 @@
 @extends('adminlte.layout')
 
-@section('seccion', 'Existencias')
+@section('seccion', 'Ordenes de pedido')
 
 @section('title', 'Orden de Pedido')
 
@@ -297,17 +297,7 @@
                             </table>
 
                         </div>
-
-                        {{-- <div class="col-md-2 " style="margin-top: 26.8%">
-                                <button id="btn-guardar" name="btn-guardar" class="btn btn-secondary"><i class="fas fa-sync"></i></button>
-                            </div> --}}
-
-
-
-
                     </div>
-
-
             </div>
             <div class="card-footer text-muted d-flex justify-content-end">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
@@ -327,11 +317,12 @@
                 <th></th>
                 <th>Actions</th>
                 <th>#</th>
-                <th>Usuario</th>
+                <th>User</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
                 <th>Fecha</th>
                 <th>F. Entrega</th>
+                <th>Total</th>
                 <th>Detallado</th>
                 <th>Gen. Interno</th>
                 <th>Notas </th>
@@ -343,11 +334,12 @@
                 <th></th>
                 <th>Actions</th>
                 <th>#</th>
-                <th>Usuario</th>
+                <th>User</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
-                <th>Fecha</th>
+                <th>F. Gen</th>
                 <th>F. Entrega</th>
+                <th>Total</th>
                 <th>Detallado</th>
                 <th>Gen. Interno</th>
                 <th>Notas </th>
@@ -359,18 +351,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 @include('adminlte/scripts')
-<script  type="text/javascript" src="{{asset('js/ordenPedido.js')}}"></script>
+<script  type="text/javascript" src="{{asset('js/orden_pedido/ordenPedido.js')}}"></script>
 
 <script type="text/javascript">
     
