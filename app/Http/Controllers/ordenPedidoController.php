@@ -94,16 +94,7 @@ class ordenPedidoController extends Controller
 
         $tallasAlmacen = Almacen::whereIn('id', $almacenes)->get();
 
-        //orden Pedido
-        // $orden = ordenPedido::where('producto_id', $producto_id)->select('id')->get();
-
-        // $ordenes = array();
-
-        // $longitudOrdenes = count($orden);
-
-        // for ($i = 0; $i < $longitudOrdenes; $i++) {
-        //     array_push($ordenes, $orden[$i]['id']);
-        // }
+       
 
         $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();
 

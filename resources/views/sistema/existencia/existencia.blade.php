@@ -29,7 +29,7 @@
 
 <div class="row">
     <div class="col-12 pt-3 pl-3 pb-3">
-        <table class="table  table-bordered table-responsive mt-3">
+        <table class="table  table-bordered mt-3">
             <thead>
                 <tr>
                     <th>Codigo Transaccion</th>

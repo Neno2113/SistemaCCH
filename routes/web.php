@@ -96,6 +96,10 @@ Route::get('/orden_pedido', function () {
 Route::get('/orden_aprobacion', function () {
     return view('sistema.ordenPedido.ordenAprobacion');
 });
+
+Route::get('/orden_empaque', function () {
+    return view('sistema.ordenEmpaque.ordenEmpaque');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -245,3 +249,8 @@ Route::get('/orden_pedido/{id}', 'ordenPedidoController@mostrar');
 Route::post('/orden_pedido/delete/{id}', 'ordenPedidoController@destroy');
 Route::post('/orden-aprobacion/{id}', 'ordenPedidoController@aprobar');
 Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');
+
+
+//orden empaque
+Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');
+Route::get('/orden_redistribuir/{id}', 'ordenEmpaqueController@redistibucion');

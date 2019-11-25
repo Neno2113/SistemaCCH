@@ -167,12 +167,6 @@
                 <p>Corte</p>
               </a>
             </li>
-            {{-- <li class="nav-item">
-              <a href="/sistemaCCH/public/corte-consulta" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Consulta</p>
-              </a>
-            </li> --}}
             <li class="nav-item">
               <a href="/sistemaCCH/public/lavanderia" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -200,28 +194,45 @@
           </ul>
         </li>
         <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link ">
-                <i class="fas fa-boxes"></i>
-              <p>
-                Ordenes de pedido
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Orden Pedido</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Aprobacion</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <a href="#" class="nav-link ">
+            <i class="fas fa-boxes"></i>
+            <p>
+              Ordenes de pedido
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orden Pedido</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Aprobacion</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link ">
+            <i class="fas fa-box"></i>
+            <p>
+              Ordenes Empaque
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orden Empaque</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link ">
             <i class="fas fa-random"></i>

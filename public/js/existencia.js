@@ -85,7 +85,7 @@ $(document).ready(function() {
                             "<th id='d_alm' class='text-success font-weight-normal'>"+datos.d_alm+"</th>"+
                             "<th id='e_alm' class='text-success font-weight-normal'>"+datos.e_alm+"</th>"+
                             "<th id='f_alm' class='text-success font-weight-normal'>"+datos.f_alm+"</th>"+
-                            "<th id='j_alm' class='text-success font-weight-normal'>"+datos.g_alm+"</th>"+
+                            "<th id='g_alm' class='text-success font-weight-normal'>"+datos.g_alm+"</th>"+
                             "<th id='h_alm' class='text-success font-weight-normal'>"+datos.h_alm+"</th>"+
                             "<th id='i_alm' class='text-success font-weight-normal'>"+datos.i_alm+"</th>"+
                             "<th id='j_alm' class='text-success font-weight-normal'>"+datos.j_alm+"</th>"+
@@ -113,20 +113,20 @@ $(document).ready(function() {
                             "<tr id='segundas'>"+
                             "<th>Se(Segunda)</th>"+
                             "<th>4</th>"+
-                            "<th class='font-weight-normal'>"+ref+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.a_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.b_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.c_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.d_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.e_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.f_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.g_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.h_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.i_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.j_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.k_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.l_seg+"</th>"+
-                            "<th class='text-primary font-weight-normal'>"+datos.x_seg+"</th>"+
+                            "<th id=''  class='font-weight-normal'>"+ref+"</th>"+
+                            "<th id='a_seg' class='text-primary font-weight-normal'>"+datos.a_seg+"</th>"+
+                            "<th id='b_seg' class='text-primary font-weight-normal'>"+datos.b_seg+"</th>"+
+                            "<th id='c_seg' class='text-primary font-weight-normal'>"+datos.c_seg+"</th>"+
+                            "<th id='d_seg' class='text-primary font-weight-normal'>"+datos.d_seg+"</th>"+
+                            "<th id='e_seg' class='text-primary font-weight-normal'>"+datos.e_seg+"</th>"+
+                            "<th id='f_seg' class='text-primary font-weight-normal'>"+datos.f_seg+"</th>"+
+                            "<th id='g_seg' class='text-primary font-weight-normal'>"+datos.g_seg+"</th>"+
+                            "<th id='h_seg' class='text-primary font-weight-normal'>"+datos.h_seg+"</th>"+
+                            "<th id='i_seg' class='text-primary font-weight-normal'>"+datos.i_seg+"</th>"+
+                            "<th id='j_seg' class='text-primary font-weight-normal'>"+datos.j_seg+"</th>"+
+                            "<th id='k_seg' class='text-primary font-weight-normal'>"+datos.k_seg+"</th>"+
+                            "<th id='l_seg' class='text-primary font-weight-normal'>"+datos.l_seg+"</th>"+
+                            "<th id='x_seg' class='text-primary font-weight-normal'>"+datos.x_seg+"</th>"+
                             "</tr>"+
                             "<tr id='orden_pedido'>"+
                             "<th>OP(Orden Pedido)</th>"+
@@ -187,6 +187,20 @@ $(document).ready(function() {
                         let j_perd = parseInt($("#j_perd").text());
                         let k_perd = parseInt($("#k_perd").text());
                         let l_perd = parseInt($("#l_perd").text());
+                        
+                        //segundas
+                        let a_seg = parseInt($("#a_seg").text());
+                        let b_seg = parseInt($("#b_seg").text());
+                        let c_seg = parseInt($("#c_seg").text());
+                        let d_seg = parseInt($("#d_seg").text());
+                        let e_seg = parseInt($("#e_seg").text());
+                        let f_seg = parseInt($("#f_seg").text());
+                        let g_seg = parseInt($("#g_seg").text());
+                        let h_seg = parseInt($("#h_seg").text());
+                        let i_seg = parseInt($("#i_seg").text());
+                        let j_seg = parseInt($("#j_seg").text());
+                        let k_seg = parseInt($("#k_seg").text());
+                        let l_seg = parseInt($("#l_seg").text());
 
                         //existencia
                         let a_op = parseInt($("#a_op").text());
@@ -217,31 +231,35 @@ $(document).ready(function() {
                         $("#l").html(l_corte - l_perd);
 
                         $("#ref_venta").html(ref);
-                        $("#a_venta").html(a_alm - a_perd - a_op);
-                        $("#b_venta").html(b_alm - b_perd - b_op);
-                        $("#c_venta").html(c_alm - c_perd - c_op);
-                        $("#d_venta").html(d_alm - d_perd - d_op);
-                        $("#e_venta").html(e_alm - e_perd - e_op);
-                        $("#f_venta").html(f_alm - f_perd - f_op);
-                        $("#g_venta").html(g_alm - g_perd - g_op);
-                        $("#h_venta").html(h_alm - h_perd - h_op);
-                        $("#i_venta").html(i_alm - i_perd - i_op);
-                        $("#j_venta").html(j_alm - j_perd - j_op);
-                        $("#k_venta").html(k_alm - k_perd - k_op);
-                        $("#l_venta").html(l_alm - l_perd - l_op);
+                        (a_alm - a_perd - a_op < 0) ? $("#a_venta").html(0) : $("#a_venta").html(a_alm - a_perd - a_op);  
+                        (b_alm - b_perd - b_op < 0) ? $("#b_venta").html(0) : $("#b_venta").html(b_alm - b_perd - b_op);
+                        (c_alm - c_perd - c_op < 0) ? $("#c_venta").html(0) : $("#c_venta").html(c_alm - c_perd - c_op);  
+                        (d_alm - d_perd - d_op < 0) ? $("#d_venta").html(0) : $("#d_venta").html(d_alm - d_perd - d_op); 
+                        (e_alm - e_perd - e_op < 0) ? $("#e_venta").html(0) : $("#e_venta").html(e_alm - e_perd - e_op);
+                        (f_alm - f_perd - f_op < 0) ? $("#f_venta").html(0) : $("#f_venta").html(f_alm - f_perd - f_op);  
+                        (g_alm - g_perd - g_op < 0) ? $("#g_venta").html(0) : $("#g_venta").html(g_alm - g_perd - g_op);  
+                        (h_alm - h_perd - h_op < 0) ? $("#h_venta").html(0) : $("#h_venta").html(h_alm - h_perd - h_op);  
+                        (i_alm - i_perd - i_op < 0) ? $("#i_venta").html(0) : $("#i_venta").html(i_alm - i_perd - i_op);                   
+                        (j_alm - j_perd - j_op < 0) ? $("#j_venta").html(0) : $("#j_venta").html(j_alm - j_perd - j_op); 
+                        (k_alm - k_perd - k_op < 0) ? $("#k_venta").html(0) : $("#k_venta").html(k_alm - k_perd - k_op);
+                        (l_alm - l_perd - l_op < 0) ? $("#l_venta").html(0) : $("#l_venta").html(l_alm - l_perd - l_op); 
+                        
 
                         $("#totales").show();
+                        $("#disp_venta").show();
                     }else if(tipo_consulta == 'Detallada'){
                         var longitud = datos.tallas.length;
                         var longitudPerdidas = datos.tallasPerdidas.length;
                         var longitudSegundas = datos.tallaSegundas.length;
                         var longitudAlmacen = datos.tallasAlmacen.length;
+                        var longitudPedidos = datos.tallasOrdenes.length;
 
                         $("#cortes").hide();
                         $("#perdidas").hide();
                         $("#segundas").hide();
                         $("#almacen").hide();
                         $("#totales").hide();
+                        $("#disp_venta").hide();
 
                         for (let i = 0; i < longitud; i++) {
                             var fila =  "<tr>"+
@@ -337,6 +355,32 @@ $(document).ready(function() {
                             "<th class='text-primary font-weight-normal'>"+datos.tallaSegundas[i].k+"</th>"+
                             "<th class='text-primary font-weight-normal'>"+datos.tallaSegundas[i].l+"</th>"+
                             "<th class='text-primary font-weight-normal'>"+datos.tallaSegundas[i].talla_x+"</th>"+
+                            "</tr>";
+
+                            fila = fila.replaceAll('null', '');
+                         
+                            $("#transacciones").append(fila);
+                           
+                        }
+
+                        for (let i = 0; i < longitudPedidos; i++) {
+                       
+                            var fila =  "<tr >"+
+                            "<th>OP(Orden Pedido)</th>"+
+                            "<th>"+ datos.tallasOrdenes[i].orden_pedido_id +"</th>"+
+                            "<th class='font-weight-normal'>"+ref+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].a+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].b +"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].c+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].d+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].e+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].f+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].g+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].h+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].i+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].j+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].k+"</th>"+
+                            "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].l+"</th>"+
                             "</tr>";
 
                             fila = fila.replaceAll('null', '');
