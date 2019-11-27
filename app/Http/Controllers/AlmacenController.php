@@ -84,6 +84,7 @@ class AlmacenController extends Controller
             $almacen->k = $k;
             $almacen->l = $l;
             $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+            $almacen->usado_curva = 0;
 
             $almacen->save();
 

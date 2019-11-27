@@ -10,7 +10,7 @@ class Almacen extends Model
 
     protected $fillable = [
         'id', 'corte_id', 'producto_id', 'user_id',  'codigo_almacen', 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j', 
-        'k', 'l'           
+        'k', 'l', 'usado_surva'           
     ];
 
 

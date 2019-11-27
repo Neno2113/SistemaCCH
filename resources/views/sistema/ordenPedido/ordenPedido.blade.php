@@ -62,13 +62,13 @@
                             <label for="autorizacion_credito_req">¿Generado internamente?(*):</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
+                                    <input type="radio" id="radioPrimary1" name="r1" value="1">
                                     <label for="radioPrimary1">
                                         Si
                                     </label>
                                 </div>
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary2" name="r1" value="0">
+                                    <input type="radio" id="radioPrimary2" name="r1" value="0" checked>
                                     <label for="radioPrimary2">
                                         No
                                     </label>
@@ -102,53 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6" id="detallada">
-                            <label for="">Disponible:</label>
-                            <select name="sub-genero" id="sub-genero" class="form-control">
-                                <option value="Mujer"></option>
-                                <option value="Mujer">Mujer</option>
-                                <option value="Mujer Plus">Mujer plus</option>
-                            </select>
-                            <table class="table table-bordered ">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th id="ta">A</th>
-                                        <th id="tb">B</th>
-                                        <th id="tc">C</th>
-                                        <th id="td">D</th>
-                                        <th id="te">E</th>
-                                        <th id="tf">F</th>
-                                        <th id="tg">G</th>
-                                        <th id="th">H</th>
-                                        <th id="ti">I</th>
-                                        <th id="tj">J</th>
-                                        <th id="tk">K</th>
-                                        <th id="tl">L</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="disponibles">
-
-                                </tbody>
-                                {{-- <tfoot id="corteProceso">
-                                    
-                                </tfoot> --}}
-
-                            </table>
-                        </div>
-                        <div class="col-md-4" id="redistribucion">
-                            <label for="">Cantidad:</label>
-                            <input type="text" name="cantidad" id="cantidad" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 mt-3">
-                            <button class="btn btn-success rounded-pill" name="btn-consultar"
-                                id="btn-consultar">Consultar</button>
-                        </div>
-                        <div class="col-md-2 ">
-
-                        </div>
-                        <div class="col-md-4 mr-3 border-left" id="corte_en_proceso">
+                        <div class="col-md-6" id="corte_en_proceso">
                             <label for="">En proceso</label>
                             <table class="table table-bordered ">
                                 <thead class="thead-light">
@@ -165,7 +119,8 @@
                                         <td id="no_corte"></td>
                                         <td id="fase"></td>
                                         <td id="f_entrega"></td>
-                                        <th><input type="text" name="cantidad_proceso" id="cantidad_proceso" class="form-control"></th>
+                                        <th><input type="text" name="cantidad_proceso" id="cantidad_proceso"
+                                                class="form-control"></th>
                                         <th><button id='btn-agregarProceso' class='btn btn-success'>Agregar</button>
                                         </th>
                                         <input type="hidden" name="corte_proceso" id="corte_proceso" value="">
@@ -174,6 +129,22 @@
 
 
                             </table>
+                        </div>
+
+
+                        <div class="col-md-4" id="redistribucion">
+                            <label for="">Cantidad:</label>
+                            <input type="text" name="cantidad" id="cantidad" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mt-3">
+                            <button class="btn btn-success rounded-pill" name="btn-consultar"
+                                id="btn-consultar">Consultar</button>
+                        </div>
+                        <div class="col-md-2 ">
+
                         </div>
 
                     </div>
@@ -195,53 +166,87 @@
                     <br>
                     <hr>
                     <br>
+                    <div class="row" id="detallada">
+                        <label for="">Disponible:</label>
+                        <select name="sub-genero" id="sub-genero" class="form-control">
+                            <option value="Mujer"></option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Mujer Plus">Mujer plus</option>
+                        </select>
+                        <table class="table table-bordered  mb-3">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th id="ta">A</th>
+                                    <th id="tb">B</th>
+                                    <th id="tc">C</th>
+                                    <th id="td">D</th>
+                                    <th id="te">E</th>
+                                    <th id="tf">F</th>
+                                    <th id="tg">G</th>
+                                    <th id="th">H</th>
+                                    <th id="ti">I</th>
+                                    <th id="tj">J</th>
+                                    <th id="tk">K</th>
+                                    <th id="tl">L</th>
+                                </tr>
+                            </thead>
+                            <tbody id="disponibles">
+
+                            </tbody>
+                            {{-- <tfoot id="corteProceso">
+                                
+                            </tfoot> --}}
+
+                        </table>
+                    </div>
+
                     <div class="row mt-3" id="detalles">
                         <div class="col-lg-1 ">
-                            <label for="" class="ml-4" id="da">A</label>
+                            {{-- <label for="" class="ml-4" id="da">A</label> --}}
                             <input type="text" name="" id="a" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="db">B</label>
+                            {{-- <label for="" class="ml-4" id="db">B</label> --}}
                             <input type="text" name="" id="b" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="dc">C</label>
+                            {{-- <label for="" class="ml-4" id="dc">C</label> --}}
                             <input type="text" name="" id="c" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="dd">D</label>
+                            {{-- <label for="" class="ml-4" id="dd">D</label> --}}
                             <input type="text" name="" id="d" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="de">E</label>
+                            {{-- <label for="" class="ml-4" id="de">E</label> --}}
                             <input type="text" name="" id="e" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="df">F</label>
+                            {{-- <label for="" class="ml-4" id="df">F</label> --}}
                             <input type="text" name="" id="f" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="dg">G</label>
+                            {{-- <label for="" class="ml-4" id="dg">G</label> --}}
                             <input type="text" name="" id="g" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="dh">H</label>
+                            {{-- <label for="" class="ml-4" id="dh">H</label> --}}
                             <input type="text" name="" id="h" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="di">I</label>
+                            {{-- <label for="" class="ml-4" id="di">I</label> --}}
                             <input type="text" name="" id="i" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="dj">J</label>
+                            {{-- <label for="" class="ml-4" id="dj">J</label> --}}
                             <input type="text" name="" id="j" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="dk">K</label>
+                            {{-- <label for="" class="ml-4" id="dk">K</label> --}}
                             <input type="text" name="" id="k" class="form-control text-center">
                         </div>
                         <div class="col-lg-1">
-                            <label for="" class="ml-4" id="dl">L</label>
+                            {{-- <label for="" class="ml-4" id="dl">L</label> --}}
                             <input type="text" name="" id="l" class="form-control text-center">
                         </div>
                     </div>
@@ -352,10 +357,9 @@
 
 
 @include('adminlte/scripts')
-<script  type="text/javascript" src="{{asset('js/orden_pedido/ordenPedido.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/orden_pedido/ordenPedido.js')}}"></script>
 
 <script type="text/javascript">
-    
     function eliminar(id_orden){
         bootbox.confirm("¿Estas seguro de eliminar esta orden de producto?", function(result){
             if(result){

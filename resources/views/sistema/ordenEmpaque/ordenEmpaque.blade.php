@@ -174,12 +174,12 @@
         });
     }
 
-    function redistibuir(id_orden){
+    function redistribuir(id_orden){
         bootbox.confirm("¿Estas seguro de redistribuir las tallas?", function(result){
             if(result){
-                $.post("orden_redistribuir" + id_orden, function(){
+                $.get("orden_redistribuir/" + id_orden, function(){
                     bootbox.alert("Redistibucion completa");
-                    $("#lavanderias").DataTable().ajax.reload();
+                    $("#ordenes_aprobacion").DataTable().ajax.reload();
                 })
             }
         })

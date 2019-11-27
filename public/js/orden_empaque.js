@@ -40,7 +40,6 @@ $(document).ready(function() {
                     i = (i + 0.01).toFixed(2).split('.').join("");
                     var year = new Date().getFullYear().toString();
                     var referencia = year+'-'+i;
-                    console.log(referencia);
                                
                     $("#numero_corte_gen").val(referencia);
                     $("#corte").val(referencia);         
