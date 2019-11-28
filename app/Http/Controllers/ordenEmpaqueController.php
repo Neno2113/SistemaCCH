@@ -10,6 +10,8 @@ use App\ordenPedidoDetalle;
 use App\ordenEmpaque;
 use App\Perdida;
 use App\Almacen;
+use App\Client;
+use App\ClientBranch;
 use App\TallasPerdidas;
 use App\Product;
 use App\Curva;
@@ -57,7 +59,9 @@ class ordenEmpaqueController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
                 return ($orden->detallada == '1') ?
-                    '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' : '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
+                    '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>'. 
+                    '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>': 
+                    '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
@@ -172,17 +176,7 @@ class ordenEmpaqueController extends Controller
         }
 
         array_filter($cantidades);
-        $cantidad = intval(implode($cantidades));
-
-        // try {
-        //     array_filter($cantidades);
-        //     $cantidad = $cantidades['1'];
-        // } catch (\ErrorException $th) {
-        //     // array_filter($cantidades);
-        //     // $cantidad = $cantidades;
-        // }
-
-        
+        $cantidad = intval(implode($cantidades));    
 
 
         //producto
@@ -341,8 +335,24 @@ class ordenEmpaqueController extends Controller
         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
         $cant_total = round($cant_total);
 
+        $referencia_producto = $producto->referencia_producto;
+        $referencia_producto = substr($referencia_producto, 2, 1);
+
         if($cant_total > $cantidad){
-            
+            if($referencia_producto == 1){
+                $a_red = $a_red - 1;
+                $b_red = $b_red - 0.1;
+                $c_red = $c_red - 0.1;
+                $d_red = $d_red - 0.1;
+                $e_red = $e_red - 0.1;
+                $f_red = $f_red - 0.1;
+                $g_red = $g_red - 0.1;
+                $h_red = $h_red - 0.1;
+                $i_red = $i_red - 0.1;
+                $j_red = $j_red - 0.1;
+                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                $cant_total = round($cant_total);
+            }
         }
 
 
@@ -476,9 +486,83 @@ class ordenEmpaqueController extends Controller
             'l_red' => $l_red,
             'total_red' => $cant_total,
             'detalle' => $orden_pedido_detalle,
-            'cant-detalle' => $cantidad
+            'cant-detalle' => $cantidad,
+            'genero' => $referencia_producto
         ];
 
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function show($id){
+
+        $orden_empaque = ordenEmpaque::find($id)->load('orden_pedido');
+        $orden_id = $orden_empaque->orden_pedido->id;
+
+        $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_id)->get()->load('producto');
+
+        $cliente_id = $orden_empaque->orden_pedido->cliente_id;
+        $cliente = Client::find($cliente_id);
+
+        $sucursal_id = $orden_empaque->orden_pedido->sucursal_id;
+        $sucursal = ClientBranch::find($sucursal_id);
+
+        $productos = array();
+
+        $longitudProducto = count($orden_detalle);
+
+        for ($i = 0; $i < $longitudProducto; $i++) {
+            array_push($productos, $orden_detalle[$i]['producto_id']);
+        }
+
+        $producto = Product::whereIn('id', $productos)->select('referencia_producto')->get();
+
+        for ($i = 0; $i < $longitudProducto; $i++) {
+            $producto_ref = $producto[$i]['referencia_producto'];
+        }
+
+
+        if (is_object($orden_empaque)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'orden_empaque' => $orden_empaque,
+                'orden_detalle' => $orden_detalle,
+                'cliente' => $cliente,
+                'sucursal' => $sucursal,
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function empaque($id){
+
+        $orden_empaque = ordenEmpaque::find($id);
+
+        if(\is_object($orden_empaque)){
+            $orden_empaque->empacado = 1;
+            $orden_empaque->fecha_empacado = date('Y/m/d h:i:s');
+            $orden_empaque->save();
+
+            $data = [
+                'code' => 200,
+                'status'=> 'success',
+                'orden_empaque' => $orden_empaque
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status'=> 'error',
+                'message' => 'No se encontro la orden'
+            ];
+        }
 
         return response()->json($data, $data['code']);
     }

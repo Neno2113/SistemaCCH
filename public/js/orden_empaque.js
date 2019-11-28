@@ -296,6 +296,36 @@ $(document).ready(function() {
        
     });
 
+    $("#empacado").click(function(e){
+        e.preventDefault();
+
+
+        var id = $("#id").val();
+
+        $.ajax({
+            url: "empacado/"+id,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Marco que esta orden de empaque ha sido empacada!!");
+                    
+                    $("#empacado").hide();
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    })
+
 
 
     function mostrarForm(flag) {

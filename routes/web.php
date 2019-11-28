@@ -254,3 +254,5 @@ Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');
 Route::get('/orden_redistribuir/{id}', 'ordenEmpaqueController@redistibucion');
+Route::get('/orden_empaque/{id}', 'ordenEmpaqueController@show');
+Route::get('/empacado/{id}', 'ordenEmpaqueController@empaque');

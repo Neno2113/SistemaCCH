@@ -79,7 +79,7 @@
 		#invoice {
 			float: right;
 			text-align: right;
-			margin-right: 50%;
+			margin-right: 35%;
 		}
 
 		#invoice_proceso {
@@ -220,7 +220,7 @@
 		}
 
 		#notices .notice {
-			font-size: 1.2em;
+			font-size: 1.4em;
 		}
 
 		footer {
@@ -264,16 +264,24 @@
 		<div id="logo">
 			<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
 		</div>
-		<div id="company">
-			<h2 class="name">Confecciones Carmen Herrera</h2>
-			<div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
-			<div>(809) 699-8400</div>
-			<div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
+
+		<div id="invoice company">
+			<h1>ORDEN PEDIDO: {{$orden->no_orden_pedido}}</h1>
+			<div class="date">Fecha pedido: {{$orden->fecha}}</div>
+			<div class="date">Fecha Entrega: {{$orden->fecha_entrega}}</div>
 		</div>
 		</div>
 	</header>
 	<main>
 		<div id="details" class="clearfix">
+			<div id="client">
+				<div class="to">CONDUCE PARA:</div>
+				<h2 class="name">{{$orden->cliente->nombre_cliente}}</h2>
+				<div class="address">{{$orden->cliente->direccion_principal}}</div>
+				<div class="email"><a href="mailto:john@example.com">{{$orden->cliente->email_principal}}</a></div>
+				<div class="to">SUCURSAL:</div>
+				<h2 class="name">{{$orden->sucursal->nombre_sucursal}}</h2>
+			</div>
 			<div id="invoice">
 				<h1>ORDEN DE EMPAQUE: {{$orden_empaque->no_orden_empaque}}</h1>
 				<div class="date">FECHA IMPRESO: {{$orden_empaque->fecha}}</div>
@@ -281,6 +289,7 @@
 		</div>
 		<table border="0" cellspacing="0" cellpadding="0">
 			<thead>
+				@foreach ($orden_detalle as $talla)
 				<tr>
 					<th class="desc">Referencia</th>
 					<th class="desc">A</th>
@@ -291,11 +300,21 @@
 					<th class="desc">F</th>
 					<th class="desc">G</th>
 					<th class="desc">H</th>
+					@if ($talla->i != 0)
 					<th class="desc">I</th>
+					@endif
+					@if ($talla->j != 0)
 					<th class="desc">J</th>
+					@endif
+					@if ($talla->k != 0)
 					<th class="desc">K</th>
+					@endif
+					@if ($talla->l != 0)
 					<th class="desc">L</th>
+					@endif
+					<th class="total">TOTAL</th>
 				</tr>
+				@endforeach
 			</thead>
 			<tbody>
 				@foreach ($orden_detalle as $talla)
@@ -309,18 +328,33 @@
 					<td class="unit_talla">{{$talla->f}}</td>
 					<td class="unit_talla">{{$talla->g}}</td>
 					<td class="unit_talla">{{$talla->h}}</td>
+					@if ($talla->i != 0)
 					<td class="unit_talla">{{$talla->i}}</td>
+					@endif
+					@if ($talla->j != 0)
 					<td class="unit_talla">{{$talla->j}}</td>
+					@endif
+					@if ($talla->k != 0)
 					<td class="unit_talla">{{$talla->k}}</td>
+					@endif
+					@if ($talla->l != 0)
 					<td class="unit_talla">{{$talla->l}}</td>
+					@endif
+					<td class="total">
+						<p>{{$talla->cantidad}}</p>
+					</td>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
-		<div id="thanks">Gracias!</div>
+		<div id="thanks"></div>
 		<div id="notices">
-			<div>NOTICE:</div>
-			<div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+			<div>UBICACION:</div>
+			<div class="notice">
+				@foreach ($orden_detalle as $talla)
+					<p>{{$talla->producto->referencia_producto}}</p>{{$talla->producto->ubicacion}}
+				@endforeach
+			</div>
 		</div>
 		<div class="firmas">
 			<div class="firma_enviado">Enviado por:</div>
