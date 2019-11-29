@@ -437,8 +437,8 @@
 			<tbody>
 				<tr>
 					<td class="no">
-						@foreach ($productosOrdenes as $producto)
-						<p>{{$producto->referencia_producto}}</p>
+						@foreach ($ordenProcesoDetalle as $producto)
+						<p>{{$producto->producto->referencia_producto}}</p>
 						@endforeach
 					</td>
 					<td class="desc">
@@ -458,23 +458,6 @@
 				
 				</tr>
 			</tbody>
-			{{-- <tfoot>
-				<tr>
-					<td colspan="2"></td>
-					<td colspan="2">SUBTOTAL</td>
-					<td>${{number_format($subtotal)}}</td>
-				</tr>
-				<tr>
-					<td colspan="2"></td>
-					<td colspan="2">IMPUESTO 18%</td>
-					<td>${{number_format($tax)}}</td>
-				</tr>
-				<tr>
-					<td colspan="2"></td>
-					<td colspan="2">TOTAL FINAL</td>
-					<td>${{number_format($total)}}</td>
-				</tr>
-			</tfoot> --}}
 		</table>
 		<table border="0" cellspacing="0" cellpadding="0">
 			<thead>

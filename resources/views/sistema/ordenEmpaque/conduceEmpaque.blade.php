@@ -119,6 +119,7 @@
 			border-collapse: collapse;
 			border-spacing: 0;
 			margin-bottom: 20px;
+			
 		}
 
 		table th,
@@ -288,8 +289,23 @@
 			</div>
 		</div>
 		<table border="0" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th class="no">REFERENCIA</th>
+						<th class="desc">FECHA ENTREGA</th>
+						<th class="unit">PRECIO UNIDAD</th>
+						<th class="qty">CANTIDAD</th>
+						<th class="total">TOTAL</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			
+			</table>
+		<table border="0" cellspacing="0" cellpadding="0">
 			<thead>
-				@foreach ($orden_detalle as $talla)
+				
 				<tr>
 					<th class="desc">Referencia</th>
 					<th class="desc">A</th>
@@ -300,21 +316,11 @@
 					<th class="desc">F</th>
 					<th class="desc">G</th>
 					<th class="desc">H</th>
-					@if ($talla->i != 0)
 					<th class="desc">I</th>
-					@endif
-					@if ($talla->j != 0)
 					<th class="desc">J</th>
-					@endif
-					@if ($talla->k != 0)
 					<th class="desc">K</th>
-					@endif
-					@if ($talla->l != 0)
 					<th class="desc">L</th>
-					@endif
-					<th class="total">TOTAL</th>
 				</tr>
-				@endforeach
 			</thead>
 			<tbody>
 				@foreach ($orden_detalle as $talla)
@@ -328,21 +334,26 @@
 					<td class="unit_talla">{{$talla->f}}</td>
 					<td class="unit_talla">{{$talla->g}}</td>
 					<td class="unit_talla">{{$talla->h}}</td>
-					@if ($talla->i != 0)
+					@if ($talla->i == null || $talla->i < 0)
+					<td class="unit_talla">0</td>
+					@else
 					<td class="unit_talla">{{$talla->i}}</td>
 					@endif
-					@if ($talla->j != 0)
+					@if ($talla->j == null || $talla->j < 0 )
+					<td class="unit_talla">0</td>
+					@else
 					<td class="unit_talla">{{$talla->j}}</td>
 					@endif
-					@if ($talla->k != 0)
+					@if ($talla->k == null || $talla->k < 0)
+					<td class="unit_talla">0</td>
+					@else
 					<td class="unit_talla">{{$talla->k}}</td>
 					@endif
-					@if ($talla->l != 0)
+					@if ($talla->l == null || $talla->l < 0)
+					<td class="unit_talla">0</td>
+					@else
 					<td class="unit_talla">{{$talla->l}}</td>
 					@endif
-					<td class="total">
-						<p>{{$talla->cantidad}}</p>
-					</td>
 				</tr>
 				@endforeach
 			</tbody>
@@ -352,7 +363,7 @@
 			<div>UBICACION:</div>
 			<div class="notice">
 				@foreach ($orden_detalle as $talla)
-					<p>{{$talla->producto->referencia_producto}}</p>{{$talla->producto->ubicacion}}
+				<h3>{{$talla->producto->ubicacion}}</h3><p>{{$talla->producto->referencia_producto}}</p>
 				@endforeach
 			</div>
 		</div>

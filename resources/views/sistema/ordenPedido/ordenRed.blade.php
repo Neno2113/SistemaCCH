@@ -1,15 +1,15 @@
 @extends('adminlte.layout')
 
-@section('seccion', 'Ordenes de empaque')
+@section('seccion', 'Ordenes de pedido')
 
-@section('title', 'Orden de empaque')
+@section('title', 'Redistribucion ')
 
 @section('content')
 
-<div class="row mt-3 ml-3">
+{{-- <div class="row mt-3 ml-3">
     <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
     <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
-</div>
+</div> --}}
 
 <div class="row">
     <div class="col-12">
@@ -89,7 +89,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <button id="empacado" class="btn btn-primary"><i class="fas fa-box fa-lg"></i></button>
-                            <span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span>
+                            <span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i>
+                            </span>
                         </div>
                     </div>
 
@@ -107,20 +108,19 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="ordenes_aprobacion" class="table table-striped table-bordered datatables">
+<div class="container mt-5" id="listadoUsers">
+    <table id="ordenes_red" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>
                 <th>Actions</th>
                 <th>#</th>
-                <th>User Aprob</th>
+                <th>Ref.</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
-                <th>F. aprob.</th>
                 <th>Total</th>
+                <th>Precio</th>
                 <th>Status</th>
-                <th>F. Entr.</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -129,13 +129,24 @@
                 <th></th>
                 <th>Actions</th>
                 <th>#</th>
-                <th>User Aprob</th>
+                <th>Ref.</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
-                <th>F. aprob.</th>
                 <th>Total</th>
+                <th>Precio</th>
                 <th>Status</th>
-                <th>F. Entr.</th>
+                {{-- <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+                <th>F</th>
+                <th>G</th>
+                <th>H</th>
+                <th>I</th>
+                <th>J</th>
+                <th>K</th>
+                <th>L</th> --}}
             </tr>
         </tfoot>
     </table>
@@ -145,12 +156,10 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/orden_empaque.js')}}"></script>
+<script src="{{asset('js/orden_pedido/ordenPedido.js')}}"></script>
 
 <script>
-    
-
-     String.prototype.replaceAll = function (find, replace) {
+    String.prototype.replaceAll = function (find, replace) {
         var str = this;
         return str.replace(new RegExp(find, 'g'), replace);
     };
@@ -166,11 +175,11 @@
             $("#btn-guardar").hide();
             
             $("#id").val(data.orden_empaque.id);
-            $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);
+            $("#no_orden_pedido").val(data.orden_empaque.orden_pedido.no_orden_pedido);
             $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);
             $("#cliente").val(data.cliente.nombre_cliente);
             $("#sucursal").val(data.sucursal.nombre_sucursal);
-            $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
+            $("#fecha_entrega").val(data.orden_empaque.orden_pedido.fecha_entrega);
             let longitud = data.orden_detalle.length
             let empacado = data.orden_empaque.empacado;
             if(empacado == 1){
@@ -182,6 +191,7 @@
                 $("#empacado_listo").hide();
               
             }
+            
             for (let i = 0; i < longitud; i++){
                 var fila = "<tr>" +
                     "<th class='font-weight-normal'>"+data.orden_detalle[i].producto.referencia_producto+"</th>" +

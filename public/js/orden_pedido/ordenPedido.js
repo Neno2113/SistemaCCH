@@ -25,6 +25,7 @@ $(document).ready(function() {
         $("#btnCancelar").hide();
         $("#btn-agregarProceso").attr('disabled', true);
         $("#total").val("");
+        listarRedistribucion();
     }
 
     var data;
@@ -1203,6 +1204,58 @@ $(document).ready(function() {
             order: [[2, "desc"]],
             rowGroup: {
                 dataSrc: "name"
+            }
+        });
+    }
+
+      //funcion para listar en el Datatable
+      function listarRedistribucion() {
+        tabla = $("#ordenes_red").DataTable({
+            serverSide: true,
+            responsive: true,
+            dom: "Bfrtip",
+            buttons: [
+                "pageLength",
+                "copyHtml5",
+                {
+                    extend: "excelHtml5",
+                    autoFilter: true,
+                    sheetName: "Exported data"
+                },
+                "csvHtml5",
+                {
+                    extend: "pdfHtml5",
+                    orientation: "landscape",
+                    pageSize: "LEGAL"
+                }
+            ],
+            ajax: "api/ordenes_redistribucion",
+            columns: [
+                { data: "Expandir", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
+                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
+                { data: "referencia_producto", name: "producto.referencia_producto" },
+                { data: "client", name: "orden_pedido_detalle.nombre_cliente" },
+                { data: "sucursal", name: "orden_pedido_detalle.nombre_sucursal" },
+                { data: "total", name: "orden_pedido_detalle.total" },
+                { data: "precio", name: "orden_pedido_detalle.precio" },
+                { data: "status_orden_pedido", name: "orden_pedido_detalle.status_orden_pedido" },
+                // { data: "a", name: "orden_pedido_detalle.a" },
+                // { data: "b", name: "orden_pedido_detalle.b"},
+                // { data: "c", name: "orden_pedido_detalle.c" },
+                // { data: "d", name: "orden_pedido_detalle.d" },
+                // { data: "e", name: "orden_pedido_detalle.e" },
+                // { data: "f", name: "orden_pedido_detalle.f" },
+                // { data: "g", name: "orden_pedido_detalle.g"},
+                // { data: "h", name: "orden_pedido_detalle.h" },
+                // { data: "i", name: "orden_pedido_detalle.i" },
+                // { data: "j", name: "orden_pedido_detalle.j" },
+                // { data: "k", name: "orden_pedido_detalle.k" },
+                // { data: "l", name: "orden_pedido_detalle.l" },
+            ],
+            order: [[2, "desc"]],
+            rowGroup: {
+                dataSrc: "no_orden_pedido"
             }
         });
     }

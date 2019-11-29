@@ -1,25 +1,26 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
-   
+    var tabla;
 
-    var tabla
-
-    //Funcion que se ejecuta al inicio 
+    //Funcion que se ejecuta al inicio
     function init() {
         ordenPedidoCod();
         listar();
-     
+        $("#empacado_listo").hide();
+
+
         mostrarForm(false);
         $("#btn-edit").hide();
-        
     }
 
     //funcion para limpiar el formulario(los inputs)
     function limpiar() {
         $("#numero_corte").val("");
         $("#sec").val("");
-        $("#productos").val("").trigger("change");
+        $("#productos")
+            .val("")
+            .trigger("change");
         $("#fecha_entrega").val("");
         $("#no_marcada").val("");
         $("#corte").val("");
@@ -37,41 +38,34 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     var i = Number(datos.sec);
                     $("#sec").val(i);
-                    i = (i + 0.01).toFixed(2).split('.').join("");
+                    i = (i + 0.01)
+                        .toFixed(2)
+                        .split(".")
+                        .join("");
                     var year = new Date().getFullYear().toString();
-                    var referencia = year+'-'+i;
-                               
-                    $("#numero_corte_gen").val(referencia);
-                    $("#corte").val(referencia);         
-                    
+                    var referencia = year + "-" + i;
 
+                    $("#numero_corte_gen").val(referencia);
+                    $("#corte").val(referencia);
                 } else {
-                    bootbox.alert(
-                        "Ocurrio un error !!"
-                    );
+                    bootbox.alert("Ocurrio un error !!");
                 }
             },
             error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
+                bootbox.alert("Ocurrio un error!!");
             }
         });
     }
 
-
- 
-
-
     //funcion que envia los datos del form al backend usando AJAX
-    $("#btn-guardar").click(function(e){
+    $("#btn-guardar").click(function(e) {
         e.preventDefault();
-        
+
         var corte = {
             sec: $("#sec").val(),
             numero_corte: $("#numero_corte_gen").val(),
             producto_id: $("#productos").val(),
-            fecha_entrega: $("#fecha_entrega").val(), 
+            fecha_entrega: $("#fecha_entrega").val(),
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
             largo_marcada: $("#largo_marcada").val(),
@@ -94,7 +88,7 @@ $(document).ready(function() {
                     limpiar();
                     // tabla.ajax.reload();
                     mostrarForm(false);
-                    $('#btn-generar').attr("disabled", false);
+                    $("#btn-generar").attr("disabled", false);
 
                     var talla = {
                         corte_id: datos.corte.id,
@@ -105,7 +99,7 @@ $(document).ready(function() {
                         e: $("#e").val(),
                         f: $("#f").val(),
                         g: $("#g").val(),
-                        h: $("#h").val(),   
+                        h: $("#h").val(),
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
@@ -121,22 +115,27 @@ $(document).ready(function() {
                         success: function(datos) {
                             if (datos.status == "success") {
                                 // tabla.ajax.reload();
-                                bootbox.alert("Se asignaron un total de: <strong>"+datos.talla.total+"</strong> entre todas las tallas digitadas");
+                                bootbox.alert(
+                                    "Se asignaron un total de: <strong>" +
+                                        datos.talla.total +
+                                        "</strong> entre todas las tallas digitadas"
+                                );
                                 $("#a").val(""),
-                                $("#b").val(""),
-                                $("#c").val(""),
-                                $("#d").val(""),
-                                $("#e").val(""),
-                                $("#f").val(""),
-                                $("#g").val(""),
-                                $("#h").val(""),   
-                                $("#i").val(""),
-                                $("#j").val(""),
-                                $("#k").val(""),
-                                $("#l").val("");    
-                                // tabla.ajax.reload();  
-                                $("#cortes").DataTable().ajax.reload();      
-                                
+                                    $("#b").val(""),
+                                    $("#c").val(""),
+                                    $("#d").val(""),
+                                    $("#e").val(""),
+                                    $("#f").val(""),
+                                    $("#g").val(""),
+                                    $("#h").val(""),
+                                    $("#i").val(""),
+                                    $("#j").val(""),
+                                    $("#k").val(""),
+                                    $("#l").val("");
+                                // tabla.ajax.reload();
+                                $("#cortes")
+                                    .DataTable()
+                                    .ajax.reload();
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -149,7 +148,6 @@ $(document).ready(function() {
                             );
                         }
                     });
-
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -189,14 +187,26 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
+                {
+                    data: "no_orden_pedido",
+                    name: "orden_pedido.no_orden_pedido"
+                },
                 { data: "name", name: "users.name" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
-                { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion" },
+                {
+                    data: "nombre_sucursal",
+                    name: "cliente_sucursales.nombre_sucursal"
+                },
+                {
+                    data: "fecha_aprobacion",
+                    name: "orden_pedido.fecha_aprobacion"
+                },
                 { data: "total", name: "orden_pedido.total" },
-                { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
-                { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
+                {
+                    data: "status_orden_pedido",
+                    name: "orden_pedido.status_orden_pedido"
+                },
+                { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
             ],
             order: [[2, "desc"]],
             rowGroup: {
@@ -204,8 +214,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    
 
     //funcion para editar
     $("#btn-edit").click(function(e) {
@@ -230,7 +238,9 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     bootbox.alert("Se actualizado correctamente el usuario");
                     limpiar();
-                    $("#cortes").DataTable().ajax.reload();
+                    $("#cortes")
+                        .DataTable()
+                        .ajax.reload();
                     $("#id").val("");
                     $("#listadoUsers").show();
                     $("#registroForm").hide();
@@ -238,7 +248,6 @@ $(document).ready(function() {
                     $("#btn-edit").hide();
                     $("#btn-guardar").show();
                     $("#btnAgregar").show();
-
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"
@@ -246,22 +255,18 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
+                bootbox.alert("Ocurrio un error!!");
             }
         });
-       
     });
 
     $("#btn-buscar").click(function(e) {
         e.preventDefault();
 
-       
-        var id = $("#cortesSearch").val()
-        
+        var id = $("#cortesSearch").val();
+
         $.ajax({
-            url: "talla/search/"+ id,
+            url: "talla/search/" + id,
             type: "GET",
             dataType: "json",
             contentType: "application/json",
@@ -288,45 +293,51 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
+                bootbox.alert("Ocurrio un error!!");
             }
         });
-       
     });
 
-    $("#empacado").click(function(e){
+    $("#empacado").click(function(e) {
         e.preventDefault();
 
-
-        var id = $("#id").val();
-
-        $.ajax({
-            url: "empacado/"+id,
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Marco que esta orden de empaque ha sido empacada!!");
-                    
-                    $("#empacado").hide();
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
+        bootbox.alert({
+            size: "small",
+            title: "Introduzca la cantidad de bultos",
+            message: "<input type='text' id='cant_bulto'>",
+            callback: function() {
+                var orden_empaque = {
+                    id: $("#id").val(),
+                    cant_bulto: $("#cant_bulto").val()
                 }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
+
+                $.ajax({
+                    url: "empacado",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(orden_empaque),
+                    contentType: "application/json",
+                    success: function(datos) {
+                        if (datos.status == "success") {
+                            $("#empacado_listo").show();
+                            bootbox.alert(
+                                "Marco que esta orden de empaque ha sido empacada!!"
+                            );
+
+                            $("#empacado").hide();
+                        } else {
+                            bootbox.alert(
+                                "Ocurrio un error durante la actualizacion de la composicion"
+                            );
+                        }
+                    },
+                    error: function() {
+                        bootbox.alert("Ocurrio un error!!");
+                    }
+                });
             }
         });
-    })
-
-
+    });
 
     function mostrarForm(flag) {
         limpiar();
@@ -339,11 +350,8 @@ $(document).ready(function() {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
-            $("#btnAgregar").show();
-            // $("#fila1").hide();
-            // $("#fila2").hide();
-            // $("#fila3").hide();
-            // $("#btn-guardar").attr("disabled", true);
+            $("#btnAgregar").hide();
+         
             $("#btn-edit").hide();
             $("#btn-guardar").show();
         }
@@ -357,7 +365,6 @@ $(document).ready(function() {
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });
-  
 
     init();
 });
