@@ -340,6 +340,7 @@ class ordenPedidoController extends Controller
         $orden_detalle->cantidad = $cantidad;
         $orden_detalle->cant_red = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $cantidad;
         $orden_detalle->precio = $precio;
+        $orden_detalle->orden_redistribuida = 0;
 
         $orden_detalle->save();
 
@@ -829,7 +830,7 @@ class ordenPedidoController extends Controller
                     'orden_pedido_detalle.id', 'orden_pedido_detalle.a' , 'orden_pedido_detalle.b' ,
                     'orden_pedido_detalle.c' , 'orden_pedido_detalle.d' , 'orden_pedido_detalle.e' ,
                     'orden_pedido_detalle.f' , 'orden_pedido_detalle.g' , 'orden_pedido_detalle.h' ,
-                    'orden_pedido_detalle.i' , 'orden_pedido_detalle.j' , 'orden_pedido_detalle.k' ,
+                    'orden_pedido_detalle.i' , 'orden_pedido_detalle.j' , 'orden_pedido_detalle.orden_redistribuida' ,
                     'orden_pedido_detalle.l' , 'orden_pedido_detalle.total' , 'orden_pedido_detalle.total' ,
                     'producto.referencia_producto', 'orden_pedido.no_orden_pedido' , 'orden_pedido.detallada',
                     'orden_pedido_detalle.precio',  'orden_pedido_detalle.orden_pedido_id', 'orden_pedido.status_orden_pedido'
@@ -848,12 +849,13 @@ class ordenPedidoController extends Controller
 
                 $redistribucion_tallas = $cliente->redistribucion_tallas;
 
-                if ($orden->detallada == '0' && $redistribucion_tallas == '1') {
+                if ($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0) {
                     return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
-                }else if($orden->detallada == '0' && $redistribucion_tallas == '0'){
+                }else if($redistribucion_tallas == '0'  && $orden->orden_redistribuida == 0){
                     return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
-                }else if($orden->detallada == '1' && $redistribucion_tallas == '1'){
-                    return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
+                }else if($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0){
+                    return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>'.
+                    '<span class="badge badge-success ml-2">Redistribuido</span>';
                 }else {
                     return '<span class="badge badge-success">Redistribuido</span>';
                 }

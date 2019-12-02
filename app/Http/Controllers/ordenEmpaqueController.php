@@ -59,16 +59,13 @@ class ordenEmpaqueController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
 
-                if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1') {
-                }else if($orden->detallada == '0' && $orden->redistribucion_tallas == '0'){
-                   
-                }else if($orden->detallada == '1' && $orden->redistribucion_tallas == '1'){
-                    return  
-                    '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
-                    '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
-                }else {
+                if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1') { } else if ($orden->detallada == '0' && $orden->redistribucion_tallas == '0') { } else if ($orden->detallada == '1' && $orden->redistribucion_tallas == '1') {
+                    return
+                        '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
+                        '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
+                } else {
                     return '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
-                    '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
+                        '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
                 }
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
@@ -111,9 +108,25 @@ class ordenEmpaqueController extends Controller
 
         $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get()->load('producto');
 
-        $pdf = \PDF::loadView('sistema.ordenEmpaque.conduceEmpaque', \compact('orden', 'orden_detalle', 'orden_empaque'));
+        $productos_id = array();
+
+        $longitudProducto = count($orden_detalle);
+
+        for ($i = 0; $i < $longitudProducto; $i++) {
+            array_push($productos_id, $orden_detalle[$i]->producto['id']);
+            
+        }
+
+        $productos = Product::whereIn('id', $productos_id)
+        ->orderBy('ubicacion', 'asc')
+        ->get(); 
+    
+
+        $pdf = \PDF::loadView('sistema.ordenEmpaque.conduceEmpaque', \compact('orden', 'orden_detalle', 'orden_empaque', 'productos'));
         return $pdf->download('conduce.pdf');
     }
+
+
     public function verificar($id)
     {
         //verificar numero antiguo de la secuencia;
@@ -149,22 +162,29 @@ class ordenEmpaqueController extends Controller
 
         $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get()->load('producto');
 
-        $ubicacion = array();
+        $productos_id = array();
 
         $longitudProducto = count($orden_detalle);
 
         for ($i = 0; $i < $longitudProducto; $i++) {
-            array_push($ubicacion, $orden_detalle[$i]->producto['ubicacion']);
+            array_push($productos_id, $orden_detalle[$i]->producto['id']);
+            
         }
 
-
+        $productos = Product::whereIn('id', $productos_id)
+        ->orderBy('ubicacion', 'asc')
+        ->get(); 
+    
+    
         $data = [
             'code' => 200,
-            'orden' => $orden,
-            'orden_detalle' => $orden_detalle,
-            'orden_empaque' => $orden_empaque,
-            'orden_pedido' => $orden_pedido,
-            'ubicacion' => array_values($ubicacion)
+            // 'orden' => $orden,
+            // 'orden_detalle' => $orden_detalle,
+            // 'orden_empaque' => $orden_empaque,
+            // 'orden_pedido' => $orden_pedido,
+            // 'id_productos' => $productos_id,
+            'productos' => $productos,
+            // 'tramo' => $tramo
         ];
 
         return response()->json($data, $data['code']);
@@ -177,6 +197,8 @@ class ordenEmpaqueController extends Controller
 
         $ordenDetalle = ordenPedidoDetalle::find($id);
         $orden_id = $ordenDetalle->orden_pedido_id;
+        $ordenDetalle->orden_redistribuida = 1;
+        $ordenDetalle->save();
 
         $orden = ordenPedido::find($orden_id);
         $orden->detallada = 1;
@@ -230,7 +252,7 @@ class ordenEmpaqueController extends Controller
 
         //cantidad
         $cantidad = $ordenDetalle->cant_red;
-        
+
 
         //producto
         $producto = Product::find($producto_id);
@@ -391,25 +413,51 @@ class ordenEmpaqueController extends Controller
         $referencia_producto = $producto->referencia_producto;
         $referencia_producto = substr($referencia_producto, 2, 1);
 
+        // $arreglo = [ $a_red, $b_red, $c_red, $d_red, $e_red, $f_red, $g_red,
+        // $h_red, $i_red, $j_red, $k_red, $l_red ];
+
+        // $longitud = count($arreglo);
+
+        // for ($i=0; $i < $longitud ; $i++) { 
+        //     $myarray = array_map('round', $arreglo);
+        // }
+
+        // print_r($arreglo);
+        // print_r(array_sum($arreglo));
+        // print_r($myarray);
+       
+        // die();
+
         if ($cant_total > $cantidad) {
-            if ($referencia_producto == 1) {
-                $a_red = $a_red - 1;
-                $b_red = $b_red - 0.1;
-                $c_red = $c_red - 0.1;
-                $d_red = $d_red - 0.1;
-                $e_red = $e_red - 0.1;
-                $f_red = $f_red - 0.1;
-                $g_red = $g_red - 0.1;
-                $h_red = $h_red - 0.1;
-                $i_red = $i_red - 0.1;
-                $j_red = $j_red - 0.1;
-                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                $cant_total = round($cant_total);
-            }
+            $a_red = $a_red - 1;
+            $b_red = $b_red - 0.1;
+            $c_red = $c_red - 0.1;
+            $d_red = $d_red - 0.3;
+            $e_red = $e_red - 0.1;
+            $f_red = $f_red - 0.1;
+            $g_red = $g_red - 0.1;
+            $h_red = $h_red - 0.1;
+            $i_red = $i_red - 0.1;
+            $j_red = $j_red - 0.1;
+            $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+            $cant_total = round($cant_total);
+        } else {
+            $a_red = $a_red + 0.5;
+            $b_red = $b_red + 0.1;
+            $c_red = $c_red + 0.1;
+            $d_red = $d_red + 0.1;
+            $e_red = $e_red + 0.1;
+            $f_red = $f_red + 0.1;
+            $g_red = $g_red + 0.1;
+            $h_red = $h_red + 0.1;
+            $i_red = $i_red + 0.1;
+            $j_red = $j_red + 0.1;
+            $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+            $cant_total = round($cant_total);
         }
 
 
-        $orden_pedido_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)
+        $orden_pedido_detalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_id)
             ->where('cant_red', $cantidad)->get()->first();
 
         if (\is_object($orden_pedido_detalle)) {
@@ -428,9 +476,6 @@ class ordenEmpaqueController extends Controller
             $orden_pedido_detalle->save();
         }
 
-
-        $orden_empaque = new ordenEmpaque();
-
         //verificar numero antiguo de la secuencia;
         $numero_antiguo = DB::table('orden_empaque')->latest('updated_at')->first();
 
@@ -440,13 +485,13 @@ class ordenEmpaqueController extends Controller
             $sec = $numero_antiguo->sec;
         }
 
-        $orden_pedido = ordenEmpaque::where('orden_pedido_id', $id)->get()->first();
+        $orden_pedido = ordenEmpaque::where('orden_pedido_id', $orden_id)->get()->first();
 
         if (empty($orden_pedido) || $orden_pedido == "[]") {
             //Crear nuevo objeto de orden de empaque
             $orden_empaque = new ordenEmpaque();
 
-            $orden_empaque->orden_pedido_id = $id;
+            $orden_empaque->orden_pedido_id = $orden_id;
             $next_sec = $sec + 0.01;
             $orden_empaque->no_orden_empaque = "OE - " . str_replace('.', '', $next_sec);
             $orden_empaque->fecha = date('Y/m/d h:i:s');
@@ -470,7 +515,7 @@ class ordenEmpaqueController extends Controller
             'code' => 200,
             'status' => 'success',
             'orden' => $orden,
-            'cantidad' => $ordenDetalle->sum('cantidad'),
+            'cantidad' => $ordenDetalle,
             'curva' => 'Curva',
             'a_curva' => $a_curva,
             'b_curva' => $b_curva,
@@ -537,8 +582,8 @@ class ordenEmpaqueController extends Controller
             'k_red' => $k_red,
             'l_red' => $l_red,
             'total_red' => $cant_total,
-            'detalle' => $orden_pedido_detalle,
             'cant-detalle' => $cantidad,
+            'detalle' => $orden_pedido_detalle,
             'genero' => $referencia_producto
         ];
 
@@ -607,8 +652,8 @@ class ordenEmpaqueController extends Controller
         if (\is_object($orden_empaque)) {
             $orden_empaque->empacado = 1;
             $orden_empaque->fecha_empacado = date('Y/m/d h:i:s');
-            $orden_empaque->cant_bultos = 
-            $orden_empaque->save();
+            $orden_empaque->cant_bultos =
+                $orden_empaque->save();
 
             $data = [
                 'code' => 200,

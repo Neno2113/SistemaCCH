@@ -135,18 +135,6 @@
                 <th>Total</th>
                 <th>Precio</th>
                 <th>Status</th>
-                {{-- <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>E</th>
-                <th>F</th>
-                <th>G</th>
-                <th>H</th>
-                <th>I</th>
-                <th>J</th>
-                <th>K</th>
-                <th>L</th> --}}
             </tr>
         </tfoot>
     </table>

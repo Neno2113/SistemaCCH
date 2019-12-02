@@ -187,25 +187,13 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
+                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
                 { data: "name", name: "users.name" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                {
-                    data: "nombre_sucursal",
-                    name: "cliente_sucursales.nombre_sucursal"
-                },
-                {
-                    data: "fecha_aprobacion",
-                    name: "orden_pedido.fecha_aprobacion"
-                },
-                { data: "total", name: "orden_pedido.total" },
-                {
-                    data: "status_orden_pedido",
-                    name: "orden_pedido.status_orden_pedido"
-                },
+                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
+                { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion"},
+                { data: "total", name: "orden_pedido.total", searchable: false },
+                { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido"},
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
             ],
             order: [[2, "desc"]],

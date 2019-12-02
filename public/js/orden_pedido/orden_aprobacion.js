@@ -275,7 +275,7 @@ $(document).ready(function() {
             ],
             ajax: "api/ordenes_aprobacion",
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
+                // { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
                 { data: "name", name: "users.name" },
@@ -284,11 +284,10 @@ $(document).ready(function() {
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
                 { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion" },
-                { data: "total", name: "orden_pedido.total" },
+                { data: "total", name: "orden_pedido.total", searchable: false  },
                 { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
-                { data: "notas", name: "orden_pedido.notas" }
             ],
-            order: [[2, "desc"]],
+            order: [[2, "asc"]],
             rowGroup: {
                 dataSrc: "name"
             }

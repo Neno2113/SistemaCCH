@@ -360,17 +360,17 @@
 		</table>
 		<div id="thanks"></div>
 		<div id="notices">
-			<div>UBICACION:</div>
+			<div>TRAMO:</div>
 			<div class="notice">
-				@foreach ($orden_detalle as $talla)
-				<h3>{{$talla->producto->ubicacion}}</h3><p>{{$talla->producto->referencia_producto}}</p>
+				@foreach ($productos as $talla)
+				<p>{{$talla->ubicacion}} {{$talla->referencia_producto}}</p>
 				@endforeach
 			</div>
 		</div>
-		<div class="firmas">
+		{{-- <div class="firmas">
 			<div class="firma_enviado">Enviado por:</div>
 			<div class="firma_recibido">Recibido por:</div>
-		</div>
+		</div> --}}
 	</main>
 	<footer class="pagina1">
 		Conduce generado desde SistemaCCH.
