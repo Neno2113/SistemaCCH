@@ -2,7 +2,7 @@
 
 @section('seccion', 'Ordenes de empaque')
 
-@section('title', 'Orden de empaque')
+@section('title', 'Orden de facturacion')
 
 @section('content')
 
@@ -21,45 +21,46 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4><strong>Orden de empaque</strong></h4>
+                <h4><strong>Orden de facturacion</strong></h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario Orden:</strong></h5>
+                    <h5><strong> Formulario Orden facturacion:</strong></h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="">No. Orden pedido:</label>
+                            {{-- <label for="">No. Orden pedido:</label>
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="id" id="id" value="">
-                            <input type="hidden" name="producto_id" id="producto_id" value="">
+                            <input type="hidden" name="id" id="id" value=""> --}}
                         </div>
                         <div class="col-md-8">
 
                         </div>
                         <div class="col-md-2 ">
-                            <label for="">No. Orden empaque:</label>
-                            <input type="text" name="no_orden_empaque" id="no_orden_empaque"
+                            <label for="">No. Orden Facturacion:</label>
+                            <input type="text" name="no_orden_facturacion" id="no_orden_facturacion"
                                 class="form-control text-center font-weight-bold" readonly>
+                            <input type="hidden" name="sec" id="sec " value="">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-4">
+                            <label for="">Orden Empaque:</label>
+                            <select name="tags[]" id="empaqueSearch" class="form-control select2">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
                             <label for="">Cliente:</label>
-                            <input type="text" name="cliente" id="cliente"
-                                class="form-control text-center font-weight-bold" readonly>
+                            <select name="tags[]" id="clienteSearch" class="form-control select2">
+                            </select>
                         </div>
                         <div class="col-md-4">
                             <label for="">Sucursal:</label>
-                            <input type="text" name="sucursal" id="sucursal"
-                                class="form-control text-center font-weight-bold" readonly>
+                            <select name="tags[]" id="sucursalSearch" class="form-control select2">
+                            </select>
                         </div>
-                        <div class="col-md-4">
-                            <label for="">Fecha entrega:</label>
-                            <input type="text" name="fecha_entrega" id="fecha_entrega"
-                                class="form-control text-center font-weight-bold" readonly>
-                        </div>
+
                     </div>
                     <div class="row mt-5">
                         <label for="">Orden de empaque</label>
@@ -79,9 +80,7 @@
                                     <th id="tj">J</th>
                                     <th id="tk">K</th>
                                     <th id="tl">L</th>
-                                    <th>Total</th>
-                                    <th>Cant Bultos</th>
-                                    <th>Accion</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody id="disponibles">
@@ -89,12 +88,13 @@
                             </tbody>
                         </table>
                     </div>
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-md-4">
                             <button id="empacado" class="btn btn-primary"><i class="fas fa-box fa-lg"></i></button>
-                            <span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span>
+                            <span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i>
+                            </span>
                         </div>
-                    </div> --}}
+                    </div>
 
 
 
@@ -110,7 +110,7 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
+{{-- <div class="container" id="listadoUsers">
     <table id="ordenes_aprobacion" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
@@ -143,17 +143,15 @@
         </tfoot>
     </table>
 
-</div>
+</div> --}}
 
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/orden_empaque/orden_empaque.js')}}"></script>
+<script src="{{asset('js/orden_empaque/orden_facturacion.js')}}"></script>
 
 <script>
-    
-
-     String.prototype.replaceAll = function (find, replace) {
+    String.prototype.replaceAll = function (find, replace) {
         var str = this;
         return str.replace(new RegExp(find, 'g'), replace);
     };
@@ -177,17 +175,17 @@
             let longitud = data.orden_detalle.length
             let empacado = data.orden_empaque.empacado;
             if(empacado == 1){
-                // $("#empacado").hide();
-                // $("#empacado_listo").show();
+                $("#empacado").hide();
+                $("#empacado_listo").show();
                 
             }else{
-                // $("#empacado").show();
-                // $("#empacado_listo").hide();
+                $("#empacado").show();
+                $("#empacado_listo").hide();
               
             }
             for (let i = 0; i < longitud; i++){
                 var fila = "<tr>" +
-                    "<th class='font-weight-normal' id='producto'>"+data.orden_detalle[i].producto.referencia_producto+"</th>" +
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].producto.referencia_producto+"</th>" +
                     "<th class='font-weight-normal'>"+data.orden_detalle[i].a+"</th>" +
                     "<th class='font-weight-normal'>"+data.orden_detalle[i].b+"</th>" +
                     "<th class='font-weight-normal'>"+data.orden_detalle[i].c+"</th>"+
@@ -200,52 +198,14 @@
                     "<th class='font-weight-normal'>"+data.orden_detalle[i].j+"</th>"+
                     "<th class='font-weight-normal'>"+data.orden_detalle[i].k+"</th>"+
                     "<th class='font-weight-normal'>"+data.orden_detalle[i].l+"</th>"+
-                    "<th class='font-weight-normal' id='total'>"+data.orden_detalle[i].total+"</th>"+
-                    "<td><input  type='text' id='cantidad' class='form-control-sm text-center'></td>"+
-                    "<td class='font-weight-normal'><a id='empacado' onclick='empaque()' class='btn btn-primary'><i class='fas fa-box '></i></a> </td>"+
                     "</tr>"
                     fila = fila.replaceAll('null', '');
                     $("#disponibles").append(fila);
-            } 
-
+            }
+           
+                    
+                          
         });
-    }
-
-    
-    function empaque(){
-        var empaque = {
-            id: $("#id").val(),
-            cantidad: $("#cantidad").val(),
-            producto: $("#producto").text(),
-            total: $("#total").text()       
-        };
-
-        console.log(JSON.stringify(empaque));
-
-        $.ajax({
-            url: "empacado",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(empaque),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    console.log(datos);
-                    $("#cantidad").attr('disabled', true);
-                    $("#empacado").hide();
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                        );
-                        }
-                    },
-                error: function() {
-                    bootbox.alert(
-                        "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                        );
-                    }
-        });
-     
     }
 
     function redistribuir(id_orden){

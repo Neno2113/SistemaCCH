@@ -104,6 +104,10 @@ Route::get('/orden_redistribucion', function () {
 Route::get('/orden_empaque', function () {
     return view('sistema.ordenEmpaque.ordenEmpaque');
 });
+
+Route::get('/orden_facturacion', function () {
+    return view('sistema.ordenEmpaque.ordenFacturacion');
+});
 // Fin vistas
 
 //Rutas de usuarios
@@ -261,3 +265,7 @@ Route::get('/orden_redistribuir/{id}', 'ordenEmpaqueController@redistibucion');
 Route::get('/orden_empaque/{id}', 'ordenEmpaqueController@show');
 Route::post('/empacado', 'ordenEmpaqueController@empaque');
 Route::get('/verificar_empaque/{id}', 'ordenEmpaqueController@verificar');
+
+//orden facturacion
+Route::get('ordenfacturacion/lastdigit', 'ordenFacturacionController@getDigits');
+Route::get('selectEmpaque', 'ordenFacturacionController@selectEmpaque');

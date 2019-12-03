@@ -212,12 +212,6 @@
                 <p>Aprobacion y redistibucion</p>
               </a>
             </li>
-            {{-- <li class="nav-item">
-              <a href="/sistemaCCH/public/orden_redistribucion" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Redistibucion</p>
-              </a>
-            </li> --}}
           </ul>
         </li>
         <li class="nav-item has-treeview ">
@@ -233,6 +227,12 @@
               <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Orden Empaque</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/orden_facturacion" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orden Facturacion</p>
               </a>
             </li>
           </ul>

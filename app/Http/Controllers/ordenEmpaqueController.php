@@ -15,6 +15,7 @@ use App\ClientBranch;
 use App\TallasPerdidas;
 use App\Product;
 use App\Curva;
+use App\ordenEmpaqueDetalle;
 
 class ordenEmpaqueController extends Controller
 {
@@ -59,11 +60,13 @@ class ordenEmpaqueController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
 
-                if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1') { } else if ($orden->detallada == '0' && $orden->redistribucion_tallas == '0') { } else if ($orden->detallada == '1' && $orden->redistribucion_tallas == '1') {
+                if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1') { } 
+                else if ($orden->detallada == '0' && $orden->redistribucion_tallas == '0') { } else if ($orden->detallada == '1' && $orden->redistribucion_tallas == '1') {
                     return
                         '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
-                        '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
-                } else {
+                        '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>'.
+                        '<button onclick="ordenFacturacion(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-receipt"></i></button>';
+                    } else {
                     return '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
                         '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
                 }
@@ -605,6 +608,7 @@ class ordenEmpaqueController extends Controller
         $sucursal = ClientBranch::find($sucursal_id);
 
         $orden_empaque = ordenEmpaque::where('orden_pedido_id', $orden_id)->get()->first();
+        $empaque_id = $orden_empaque->id;
 
         $productos = array();
 
@@ -645,20 +649,35 @@ class ordenEmpaqueController extends Controller
     public function empaque(Request $request)
     {
         $id = $request->input('id');
-        $cant_bulto = $request->input('cant_bulto');
+        $cant_bulto = $request->input('cantidad');
+        $producto = $request->input('producto');
+        $total = $request->input('total');
 
         $orden_empaque = ordenEmpaque::find($id);
+        $orden_id = $orden_empaque->orden_pedido_id;
+        $empaque_id = $orden_empaque->id;
+        $orden = ordenPedido::find($orden_id);
+        $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $orden->id)->get();
+        $orden_total = $orden_detalle->sum('total');
+
 
         if (\is_object($orden_empaque)) {
-            $orden_empaque->empacado = 1;
-            $orden_empaque->fecha_empacado = date('Y/m/d h:i:s');
-            $orden_empaque->cant_bultos =
-                $orden_empaque->save();
+           $orden_empaque_detalle = new ordenEmpaqueDetalle();
+           $orden_empaque_detalle->orden_empaque_id = $empaque_id;
+           $orden_empaque_detalle->user_id = \auth()->user()->id;
+           $orden_empaque_detalle->cant_bultos = $cant_bulto;
+           $orden_empaque_detalle->total = $total;
+           $orden_empaque_detalle->fecha_hora = date('Y/m/d h:i:s');
+           $orden_empaque_detalle->referencia_producto = $producto;  
+           $orden_empaque_detalle->save();
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'orden_empaque' => $orden_empaque
+                'orden_empaque' => $orden_empaque,
+                'orden' => $orden,
+                'orden_empaque_detalle' => $orden_empaque_detalle,
+                'orden_detalle' => $orden_detalle->sum('total')
             ];
         } else {
             $data = [

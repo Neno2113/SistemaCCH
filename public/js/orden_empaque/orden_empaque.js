@@ -248,84 +248,11 @@ $(document).ready(function() {
         });
     });
 
-    $("#btn-buscar").click(function(e) {
-        e.preventDefault();
 
-        var id = $("#cortesSearch").val();
-
-        $.ajax({
-            url: "talla/search/" + id,
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Se consulto correctamente!!");
-                    $("#a").val(datos.talla.a);
-                    $("#b").val(datos.talla.b);
-                    $("#c").val(datos.talla.c);
-                    $("#d").val(datos.talla.d);
-                    $("#e").val(datos.talla.e);
-                    $("#f").val(datos.talla.f);
-                    $("#g").val(datos.talla.g);
-                    $("#h").val(datos.talla.h);
-                    $("#i").val(datos.talla.i);
-                    $("#j").val(datos.talla.j);
-                    $("#k").val(datos.talla.k);
-                    $("#l").val(datos.talla.l);
-                    $("#total").val(datos.talla.total);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert("Ocurrio un error!!");
-            }
-        });
-    });
-
-    $("#empacado").click(function(e) {
-        e.preventDefault();
-
-        bootbox.alert({
-            size: "small",
-            title: "Introduzca la cantidad de bultos",
-            message: "<input type='text' id='cant_bulto'>",
-            callback: function() {
-                var orden_empaque = {
-                    id: $("#id").val(),
-                    cant_bulto: $("#cant_bulto").val()
-                }
-
-                $.ajax({
-                    url: "empacado",
-                    type: "POST",
-                    dataType: "json",
-                    data: JSON.stringify(orden_empaque),
-                    contentType: "application/json",
-                    success: function(datos) {
-                        if (datos.status == "success") {
-                            $("#empacado_listo").show();
-                            bootbox.alert(
-                                "Marco que esta orden de empaque ha sido empacada!!"
-                            );
-
-                            $("#empacado").hide();
-                        } else {
-                            bootbox.alert(
-                                "Ocurrio un error durante la actualizacion de la composicion"
-                            );
-                        }
-                    },
-                    error: function() {
-                        bootbox.alert("Ocurrio un error!!");
-                    }
-                });
-            }
-        });
-    });
+    // function test(e){
+    //     e.preventDefault();
+    //     alert('Test');
+    // }
 
     function mostrarForm(flag) {
         limpiar();
