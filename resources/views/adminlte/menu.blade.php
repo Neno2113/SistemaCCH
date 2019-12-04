@@ -224,9 +224,15 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
+              <a href="/sistemaCCH/public/orden_empaque_listar" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Imprimir Orden</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Orden Empaque</p>
+                <p>Reportar Empaque</p>
               </a>
             </li>
             <li class="nav-item">

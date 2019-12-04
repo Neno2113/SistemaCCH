@@ -681,7 +681,7 @@ $(document).ready(function() {
         let cantidad_wr = $("#cantidad").val();
         let precio = $("#precio").val();
 
-        
+        var cont;
 
         if (genero == 1) {
             if (val == 1) {

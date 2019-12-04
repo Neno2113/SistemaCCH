@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
+    {{-- <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button> --}}
     <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
 </div>
 
@@ -39,9 +39,9 @@
 
                         </div>
                         <div class="col-md-2 ">
-                            <label for="">No. Orden empaque:</label>
+                            {{-- <label for="">No. Orden empaque:</label>
                             <input type="text" name="no_orden_empaque" id="no_orden_empaque"
-                                class="form-control text-center font-weight-bold" readonly>
+                                class="form-control text-center font-weight-bold" readonly> --}}
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -80,33 +80,11 @@
                                     <th id="tk">K</th>
                                     <th id="tl">L</th>
                                     <th>Total</th>
-                                    <th>Cant Bultos</th>
-                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody id="disponibles">
 
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th id="">Referencia</th>
-                                    <th id="ta">A</th>
-                                    <th id="tb">B</th>
-                                    <th id="tc">C</th>
-                                    <th id="td">D</th>
-                                    <th id="te">E</th>
-                                    <th id="tf">F</th>
-                                    <th id="tg">G</th>
-                                    <th id="th">H</th>
-                                    <th id="ti">I</th>
-                                    <th id="tj">J</th>
-                                    <th id="tk">K</th>
-                                    <th id="tl">L</th>
-                                    <th>Total</th>
-                                    <th>Cant Bultos</th>
-                                    <th>Accion</th>
-                                </tr>
-                            </tfoot>
                         </table>
 
                     </div>
@@ -132,7 +110,7 @@
 {{-- </div> --}}
 
 <div class="container" id="listadoUsers">
-    <table id="ordenes_aprobacion" class="table table-striped table-bordered datatables">
+    <table id="ordenes_empaque" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>
@@ -187,138 +165,46 @@
             $("#btn-edit").show();
             $("#btn-guardar").hide();
             
-            $("#id").val(data.orden_empaque.id);
             $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);   
-            $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);   
             $("#cliente").val(data.cliente.nombre_cliente);
             $("#sucursal").val(data.sucursal.nombre_sucursal);
             $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
-            $("#orden_detalle").DataTable().destroy();
-            listarOrdenDetalle(data.orden_pedido.id);
             let longitud = data.orden_detalle.length
             var cont = 0;
 
+            for (let i = 0; i < longitud; i++){
+                var fila = "<tr>" +
+                    "<th class='font-weight-normal' id='producto'>"+data.orden_detalle[i].producto.referencia_producto+"</th>" +
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].a+"</th>" +
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].b+"</th>" +
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].c+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].d+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].e+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].f+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].g+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].h+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].i+"</th>" +
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].j+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].k+"</th>"+
+                    "<th class='font-weight-normal'>"+data.orden_detalle[i].l+"</th>"+
+                    "<th class='font-weight-normal' id='total'>"+data.orden_detalle[i].total+"</th>"+
+                    "</tr>"
+                    fila = fila.replaceAll('null', '');
+                    $("#disponibles").append(fila);
+            } 
+
         });
     }
 
-    //funcion para listar en el Datatable
-    function listarOrdenDetalle(id) {
-       var tabla_orden = $("#orden_detalle").DataTable({
-            serverSide: true,
-            bFilter: false, 
-            lengthChange: false,
-            bPaginate: false,
-            bInfo: false,
-            retrieve: true,
-            ajax: "api/orden_detalle/"+id,
-            columns: [
-                { data: "referencia_producto",name: "producto.referencia_producto"},
-                { data: "a",name: "orden_pedido_detalle.a"},
-                { data: "b", name: "orden_pedido_detalle.b" },
-                { data: "c", name: "orden_pedido_detalle.c" },
-                { data: "d", name: "orden_pedido_detalle.d"},
-                { data: "e", name: "orden_pedido_detalle.e"},
-                { data: "f", name: "orden_pedido_detalle.f"},
-                { data: "g", name: "orden_pedido_detalle.g"},
-                { data: "h", name: "orden_pedido_detalle.h"},
-                { data: "i", name: "orden_pedido_detalle.i"},
-                { data: "j", name: "orden_pedido_detalle.j"},
-                { data: "k", name: "orden_pedido_detalle.k"},
-                { data: "l", name: "orden_pedido_detalle.l"},
-                { data: "total", name: "orden_pedido_detalle.total"},
-                { data: "cantidad"},
-                { data: "Opciones", orderable: false, searchable: false },
-              
-            ],
-        });
-    }
+   
 
-    // function callClickers(){
-    //     mostrar(id_orden)
-    // }
+  
 
     
-    function empaque(){
-        var empaque = {
-            id: $("#id").val(),
-            cantidad: $("#cantidad").val(),
-            producto: $("#producto").text(),
-            total: $("#total").text()       
-        };
+    
 
-        console.log(JSON.stringify(empaque));
-
-        $.ajax({
-            url: "empacado",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(empaque),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    console.log(datos);
-                    $("#cantidad").attr('disabled', true);
-                    $("#empacado").hide();
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                        );
-                        }
-                    },
-                error: function() {
-                    bootbox.alert(
-                        "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                        );
-                    }
-        });
-     
-    }
-
-    function test(id){
-
-        var empaque = {
-            cantidad: $("#cantidad").val(),
-            id: $("#id").val()
-        };
-
-        // console.log(JSON.stringify(empaque));
-
-        $.ajax({
-            url: "empaque_detalle/"+id,
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(empaque),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Referencia perteneciente a la referencia "+);
-                    $("#orden_detalle")
-                        .DataTable()
-                        .ajax.reload();
-                   
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert("Ocurrio un error!!");
-            }
-        });        
-        
-    }
-
-    function redistribuir(id_orden){
-        bootbox.confirm("¿Estas seguro de redistribuir las tallas?", function(result){
-            if(result){
-                $.get("orden_redistribuir/" + id_orden, function(){
-                    bootbox.alert("Redistibucion completa");
-                    $("#ordenes_aprobacion").DataTable().ajax.reload();
-                })
-            }
-        })
-    }
+  
+    
 
     
 

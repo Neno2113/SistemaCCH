@@ -7,9 +7,8 @@ $(document).ready(function() {
     function init() {
         ordenPedidoCod();
         listar();
+        listarOrdenes();
         $("#empacado_listo").hide();
-
-
         mostrarForm(false);
         $("#btn-edit").hide();
     }
@@ -203,6 +202,81 @@ $(document).ready(function() {
         });
     }
 
+     //funcion para listar en el Datatable
+     function listarOrdenes() {
+        tabla = $("#ordenes_empaque").DataTable({
+            serverSide: true,
+            responsive: true,
+            dom: "Bfrtip",
+            buttons: [
+                "pageLength",
+                "copyHtml5",
+                {
+                    extend: "excelHtml5",
+                    autoFilter: true,
+                    sheetName: "Exported data"
+                },
+                "csvHtml5",
+                {
+                    extend: "pdfHtml5",
+                    orientation: "landscape",
+                    pageSize: "LEGAL"
+                }
+            ],
+            ajax: "api/ordenes_empaque",
+            columns: [
+                { data: "Expandir", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
+                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
+                { data: "name", name: "users.name" },
+                { data: "nombre_cliente", name: "cliente.nombre_cliente" },
+                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
+                { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion"},
+                { data: "total", name: "orden_pedido.total", searchable: false },
+                { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido"},
+                { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
+            ],
+            order: [[2, "desc"]],
+            rowGroup: {
+                dataSrc: "name"
+            }
+        });
+    }
+
+
+    
+
+    //funcion para listar en el Datatable
+    function listarOrdenDetalle(id) {
+        tabla = $("#orden_detalle").DataTable({
+            serverSide: true,
+            responsive: true,
+            dom: "Bfrtip",
+            ajax: "api/orden_detalle/"+id,
+            columns: [
+                { data: "a",name: "orden_pedido_detalle.a"},
+                { data: "b", name: "orden_pedido_detalle.b" },
+                { data: "c", name: "orden_pedido_detalle.c" },
+                { data: "d", name: "orden_pedido_detalle.d"},
+                { data: "e", name: "orden_pedido_detalle.e"},
+                { data: "f", name: "orden_pedido_detalle.f"},
+                { data: "g", name: "orden_pedido_detalle.g"},
+                { data: "h", name: "orden_pedido_detalle.h"},
+                { data: "i", name: "orden_pedido_detalle.i"},
+                { data: "j", name: "orden_pedido_detalle.j"},
+                { data: "k", name: "orden_pedido_detalle.k"},
+                { data: "l", name: "orden_pedido_detalle.l"},
+                { data: "total", name: "orden_pedido_detalle.total"},
+              
+            ],
+        });
+    }
+    
+
+   function test(){
+      return console.log("test")
+   }
+
     //funcion para editar
     $("#btn-edit").click(function(e) {
         e.preventDefault();
@@ -265,7 +339,7 @@ $(document).ready(function() {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
-            $("#btnAgregar").hide();
+            $("#btnAgregar").show();
          
             $("#btn-edit").hide();
             $("#btn-guardar").show();
@@ -277,7 +351,6 @@ $(document).ready(function() {
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
-        $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });
 

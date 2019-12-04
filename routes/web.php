@@ -101,6 +101,10 @@ Route::get('/orden_redistribucion', function () {
     return view('sistema.ordenPedido.ordenRed');
 });
 
+Route::get('/orden_empaque_listar', function () {
+    return view('sistema.ordenEmpaque.ordenEmpaqueCreate');
+});
+
 Route::get('/orden_empaque', function () {
     return view('sistema.ordenEmpaque.ordenEmpaque');
 });
@@ -263,7 +267,7 @@ Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');
 Route::get('/orden_redistribuir/{id}', 'ordenEmpaqueController@redistibucion');
 Route::get('/orden_empaque/{id}', 'ordenEmpaqueController@show');
-Route::post('/empacado', 'ordenEmpaqueController@empaque');
+Route::post('/empaque_detalle/{id}', 'ordenEmpaqueController@empaque');
 Route::get('/verificar_empaque/{id}', 'ordenEmpaqueController@verificar');
 
 //orden facturacion
