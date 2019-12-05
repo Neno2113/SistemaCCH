@@ -511,7 +511,7 @@ $(document).ready(function() {
                 { data: "largo_marcada", name: 'corte.largo_marcada' },
                 { data: "ancho_marcada", name: 'corte.ancho_marcada' },
             ],
-            order: [[2, 'asc']],
+            order: [[7, 'asc']],
             rowGroup: {
                 dataSrc: 'fase' 
             }

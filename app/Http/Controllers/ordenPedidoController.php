@@ -341,6 +341,7 @@ class ordenPedidoController extends Controller
         $orden_detalle->cant_red = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $cantidad;
         $orden_detalle->precio = $precio;
         $orden_detalle->orden_redistribuida = 0;
+        $orden_detalle->orden_empacada = 0;
 
         $orden_detalle->save();
 

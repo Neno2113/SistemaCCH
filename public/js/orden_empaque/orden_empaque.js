@@ -339,7 +339,7 @@ $(document).ready(function() {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
-            $("#btnAgregar").show();
+            $("#btnAgregar").hide();
          
             $("#btn-edit").hide();
             $("#btn-guardar").show();

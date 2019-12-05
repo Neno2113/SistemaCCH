@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2019 a las 16:54:50
+-- Tiempo de generación: 05-12-2019 a las 22:53:32
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -315,9 +315,6 @@ CREATE TABLE `orden_empaque` (
   `l` int(11) DEFAULT NULL,
   `cantidad` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL,
-  `empacado` tinyint(1) DEFAULT NULL,
-  `fecha_empacado` datetime DEFAULT NULL,
-  `cant_bultos` int(11) DEFAULT NULL,
   `sec` decimal(3,2) NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
@@ -327,8 +324,52 @@ CREATE TABLE `orden_empaque` (
 -- Volcado de datos para la tabla `orden_empaque`
 --
 
-INSERT INTO `orden_empaque` (`id`, `orden_pedido_id`, `no_orden_empaque`, `fecha`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `cantidad`, `total`, `empacado`, `fecha_empacado`, `cant_bultos`, `sec`, `updated_at`, `created_at`) VALUES
-(2, 1, 'OE - 001', '2019-11-29 04:35:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0.01', '2019-11-29 16:35:25', '2019-11-29 16:35:25');
+INSERT INTO `orden_empaque` (`id`, `orden_pedido_id`, `no_orden_empaque`, `fecha`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `cantidad`, `total`, `sec`, `updated_at`, `created_at`) VALUES
+(2, 1, 'OE - 001', '2019-11-29 04:35:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0.01', '2019-11-29 16:35:25', '2019-11-29 16:35:25'),
+(9, 2, 'OE - 002', '2019-12-05 09:13:33', 4, 4, 4, 6, 5, 6, 5, 6, 4, 6, 0, 0, NULL, NULL, '0.02', '2019-12-05 09:13:33', '2019-12-05 09:13:33');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden_empaque_detalle`
+--
+
+CREATE TABLE `orden_empaque_detalle` (
+  `id` int(11) NOT NULL,
+  `orden_empaque_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `a` int(11) DEFAULT NULL,
+  `b` int(11) DEFAULT NULL,
+  `c` int(11) DEFAULT NULL,
+  `d` int(11) DEFAULT NULL,
+  `e` int(11) DEFAULT NULL,
+  `f` int(11) DEFAULT NULL,
+  `g` int(11) DEFAULT NULL,
+  `h` int(11) DEFAULT NULL,
+  `i` int(11) DEFAULT NULL,
+  `j` int(11) DEFAULT NULL,
+  `k` int(11) DEFAULT NULL,
+  `l` int(11) DEFAULT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(4,3) DEFAULT NULL,
+  `total` int(11) NOT NULL,
+  `fecha_empacado` datetime NOT NULL,
+  `empacado` tinyint(1) NOT NULL,
+  `cant_bulto` int(11) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_empaque_detalle`
+--
+
+INSERT INTO `orden_empaque_detalle` (`id`, `orden_empaque_id`, `producto_id`, `user_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `cantidad`, `precio`, `total`, `fecha_empacado`, `empacado`, `cant_bulto`, `updated_at`, `created_at`) VALUES
+(15, 9, 10, 1, 4, 4, 4, 6, 5, 6, 5, 6, 4, 6, 0, 0, 50, NULL, 50, '2019-12-05 03:38:05', 1, 2, '2019-12-05 15:38:05', '2019-12-05 15:38:05'),
+(16, 2, 10, 1, 10, 10, 9, 12, 12, 13, 12, 13, 9, 13, 0, 0, 113, NULL, 113, '2019-12-05 03:43:31', 1, 4, '2019-12-05 15:43:31', '2019-12-05 15:43:31'),
+(17, 2, 11, 1, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 0, 0, 50, NULL, 50, '2019-12-05 03:43:37', 1, 2, '2019-12-05 15:43:37', '2019-12-05 15:43:37'),
+(18, 9, 11, 1, 5, 6, 6, 6, 6, 6, 6, 6, 4, 4, 0, 0, 55, NULL, 55, '2019-12-05 04:31:12', 1, 3, '2019-12-05 16:31:12', '2019-12-05 16:31:12');
 
 -- --------------------------------------------------------
 
@@ -364,7 +405,8 @@ CREATE TABLE `orden_pedido` (
 --
 
 INSERT INTO `orden_pedido` (`id`, `user_id`, `user_aprobacion`, `cliente_id`, `sucursal_id`, `no_orden_pedido`, `fecha`, `fecha_entrega`, `notas`, `generado_internamente`, `estado_aprobacion`, `fecha_aprobacion`, `status_orden_pedido`, `precio`, `detallada`, `corte_en_proceso`, `orden_proceso_impresa`, `sec`, `updated_at`, `created_at`) VALUES
-(1, 1, 1, 4, 4, 'OP-001', '2019-11-29 04:34:20', '2019-11-28', 'test', 0, NULL, '2019-12-02 10:58:33', 'Vigente', NULL, 1, 'No', 'Si', '0.01', '2019-12-02 10:58:33', '2019-11-29 16:34:20');
+(1, 1, 1, 4, 4, 'OP-001', '2019-11-29 04:34:20', '2019-11-28', 'test', 0, NULL, '2019-12-04 10:39:42', 'Vigente', NULL, 1, 'No', 'Si', '0.01', '2019-12-04 10:39:42', '2019-11-29 16:34:20'),
+(2, 1, 1, 4, 4, 'OP-002', '2019-12-05 09:04:46', '2019-12-26', 'test', 1, NULL, '2019-12-05 09:05:28', 'Vigente', NULL, 1, 'No', 'Si', '0.02', '2019-12-05 09:05:28', '2019-12-05 09:04:46');
 
 -- --------------------------------------------------------
 
@@ -392,6 +434,8 @@ CREATE TABLE `orden_pedido_detalle` (
   `precio` decimal(4,3) DEFAULT NULL,
   `cantidad` int(11) DEFAULT NULL,
   `cant_red` int(11) DEFAULT NULL,
+  `orden_redistribuida` tinyint(1) DEFAULT NULL,
+  `orden_empacada` tinyint(1) DEFAULT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -400,9 +444,11 @@ CREATE TABLE `orden_pedido_detalle` (
 -- Volcado de datos para la tabla `orden_pedido_detalle`
 --
 
-INSERT INTO `orden_pedido_detalle` (`id`, `orden_pedido_id`, `producto_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `precio`, `cantidad`, `cant_red`, `updated_at`, `created_at`) VALUES
-(1, 1, 10, 9, 10, 9, 12, 12, 13, 12, 13, 9, 13, 0, 0, 113, '2.500', NULL, 113, '2019-12-02 10:14:12', '2019-11-29 16:34:02'),
-(2, 1, 11, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 0, 0, 50, '2.500', 50, 50, '2019-12-02 10:14:21', '2019-11-29 16:34:18');
+INSERT INTO `orden_pedido_detalle` (`id`, `orden_pedido_id`, `producto_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `precio`, `cantidad`, `cant_red`, `orden_redistribuida`, `orden_empacada`, `updated_at`, `created_at`) VALUES
+(1, 1, 10, 10, 10, 9, 12, 12, 13, 12, 13, 9, 13, 0, 0, 113, '2.500', NULL, 113, 1, 1, '2019-12-05 15:43:31', '2019-11-29 16:34:02'),
+(2, 1, 11, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 0, 0, 50, '2.500', 50, 50, 1, 1, '2019-12-05 15:43:37', '2019-11-29 16:34:18'),
+(3, 2, 10, 4, 4, 4, 6, 5, 6, 5, 6, 4, 6, 0, 0, 50, '2.500', NULL, 50, 1, 1, '2019-12-05 15:38:05', '2019-12-05 09:04:06'),
+(4, 2, 11, 5, 6, 6, 6, 6, 6, 6, 6, 4, 4, 0, 0, 55, '2.500', NULL, 55, 1, 1, '2019-12-05 16:31:12', '2019-12-05 09:04:34');
 
 -- --------------------------------------------------------
 
@@ -1884,6 +1930,13 @@ ALTER TABLE `orden_empaque`
   ADD KEY `orden_pedido_id` (`orden_pedido_id`);
 
 --
+-- Indices de la tabla `orden_empaque_detalle`
+--
+ALTER TABLE `orden_empaque_detalle`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `producto_id` (`producto_id`);
+
+--
 -- Indices de la tabla `orden_pedido`
 --
 ALTER TABLE `orden_pedido`
@@ -2025,19 +2078,25 @@ ALTER TABLE `lavanderia`
 -- AUTO_INCREMENT de la tabla `orden_empaque`
 --
 ALTER TABLE `orden_empaque`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `orden_empaque_detalle`
+--
+ALTER TABLE `orden_empaque_detalle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido`
 --
 ALTER TABLE `orden_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido_detalle`
 --
 ALTER TABLE `orden_pedido_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `perdidas`
@@ -2144,6 +2203,12 @@ ALTER TABLE `lavanderia`
 --
 ALTER TABLE `orden_empaque`
   ADD CONSTRAINT `orden_empaque_ibfk_1` FOREIGN KEY (`orden_pedido_id`) REFERENCES `orden_pedido` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `orden_empaque_detalle`
+--
+ALTER TABLE `orden_empaque_detalle`
+  ADD CONSTRAINT `orden_empaque_detalle_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `orden_pedido`

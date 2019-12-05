@@ -273,3 +273,4 @@ Route::get('/verificar_empaque/{id}', 'ordenEmpaqueController@verificar');
 //orden facturacion
 Route::get('ordenfacturacion/lastdigit', 'ordenFacturacionController@getDigits');
 Route::get('selectEmpaque', 'ordenFacturacionController@selectEmpaque');
+Route::post('empaque/search', 'ordenFacturacionController@empaqueSearch');

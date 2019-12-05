@@ -177,6 +177,8 @@
         return str.replace(new RegExp(find, 'g'), replace);
     };
 
+    var orden_detalle;
+
     function mostrar(id_orden) {
         $("#disponibles").empty("");
         $.get("orden_empaque/" + id_orden, function(data, status) {
@@ -195,9 +197,7 @@
             $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
             $("#orden_detalle").DataTable().destroy();
             listarOrdenDetalle(data.orden_pedido.id);
-            let longitud = data.orden_detalle.length
-            var cont = 0;
-
+            orden_detalle = data.orden_detalle;
         });
     }
 
@@ -233,55 +233,12 @@
         });
     }
 
-    // function callClickers(){
-    //     mostrar(id_orden)
-    // }
-
-    
-    function empaque(){
-        var empaque = {
-            id: $("#id").val(),
-            cantidad: $("#cantidad").val(),
-            producto: $("#producto").text(),
-            total: $("#total").text()       
-        };
-
-        console.log(JSON.stringify(empaque));
-
-        $.ajax({
-            url: "empacado",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(empaque),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    console.log(datos);
-                    $("#cantidad").attr('disabled', true);
-                    $("#empacado").hide();
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                        );
-                        }
-                    },
-                error: function() {
-                    bootbox.alert(
-                        "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                        );
-                    }
-        });
-     
-    }
-
     function test(id){
 
         var empaque = {
-            cantidad: $("#cantidad").val(),
-            id: $("#id").val()
-        };
-
-        // console.log(JSON.stringify(empaque));
+            id: $("#id").val(),
+            cantidad: $("#cantidad"+id).val()
+        }
 
         $.ajax({
             url: "empaque_detalle/"+id,
@@ -291,11 +248,9 @@
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Referencia perteneciente a la referencia "+);
-                    $("#orden_detalle")
-                        .DataTable()
-                        .ajax.reload();
-                   
+                    bootbox.alert("Referencia perteneciente a la orden empaque <strong>"+ datos.orden_empaque.no_orden_empaque+"</strong> ha sido empacada");
+                    $("#orden_detalle").DataTable().ajax.reload();
+                    $(".cantidad").val("");
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"

@@ -29,10 +29,6 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
-                            {{-- <label for="">No. Orden pedido:</label>
-                            <input type="text" name="no_orden_pedido" id="no_orden_pedido"
-                                class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="id" id="id" value=""> --}}
                         </div>
                         <div class="col-md-8">
 
@@ -41,31 +37,42 @@
                             <label for="">No. Orden Facturacion:</label>
                             <input type="text" name="no_orden_facturacion" id="no_orden_facturacion"
                                 class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="sec" id="sec " value="">
+                            <input type="hidden" name="sec" id="sec" value="">
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <label for="">Orden Empaque:</label>
-                            <select name="tags[]" id="empaqueSearch" class="form-control select2">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Orden Empaque(*):</label>
+                            <input type="hidden" name="id" id="id">
+                            <select name="tags[]" id="ordenEmpaqueSearch" class="form-control select2"
+                                style="width:100%">
                             </select>
+                        </div>
+                        <div class="col-md-1 pt-2">
+                            <button class="btn btn-secondary mt-4 btn-block rounded-pill" id="btn-buscar"><i
+                                    class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-4">
+                            <label for="">Orden Pedido:</label>
+                            <input type="text" name="orden_pedido" id="orden_pedido" class="form-control" readonly>
                         </div>
                         <div class="col-md-4">
                             <label for="">Cliente:</label>
-                            <select name="tags[]" id="clienteSearch" class="form-control select2">
-                            </select>
+                            <input type="text" name="cliente" id="cliente" class="form-control" readonly>
                         </div>
                         <div class="col-md-4">
                             <label for="">Sucursal:</label>
-                            <select name="tags[]" id="sucursalSearch" class="form-control select2">
-                            </select>
+                            <input type="text" name="sucursal" id="sucursal" class="form-control" readonly>
                         </div>
 
                     </div>
-                    <div class="row mt-5">
-                        <label for="">Orden de empaque</label>
-                        <table class="table table-bordered  mb-3">
-                            <thead class="thead-light">
+                    <div class="container">
+                        <label for="" class="mt-5">Referencias empacadas</label>
+                        <table id="empaque_detalle" class="table table-striped table-bordered datatables mt-5 mb-3"
+                            style="width:100%;">
+                            <thead >
                                 <tr>
                                     <th id="">Referencia</th>
                                     <th id="ta">A</th>
@@ -80,27 +87,41 @@
                                     <th id="tj">J</th>
                                     <th id="tk">K</th>
                                     <th id="tl">L</th>
-                                    <th></th>
+                                    <th>Total</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody id="disponibles">
 
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th id="">Referencia</th>
+                                    <th id="ta">A</th>
+                                    <th id="tb">B</th>
+                                    <th id="tc">C</th>
+                                    <th id="td">D</th>
+                                    <th id="te">E</th>
+                                    <th id="tf">F</th>
+                                    <th id="tg">G</th>
+                                    <th id="th">H</th>
+                                    <th id="ti">I</th>
+                                    <th id="tj">J</th>
+                                    <th id="tk">K</th>
+                                    <th id="tl">L</th>
+                                    <th>Total</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </tfoot>
                         </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <button id="empacado" class="btn btn-primary"><i class="fas fa-box fa-lg"></i></button>
-                            <span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i>
-                            </span>
-                        </div>
+
                     </div>
 
 
 
             </div>
             <div class="card-footer   d-flex justify-content-end">
-                {{-- <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3"> --}}
+                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
 
