@@ -1,6 +1,6 @@
 @extends('adminlte.layout')
 
-@section('seccion', 'Ordenes de empaque')
+@section('seccion', 'Ordenes de facturacion')
 
 @section('title', 'Orden de facturacion')
 
@@ -28,19 +28,6 @@
                     <h5><strong> Formulario Orden facturacion:</strong></h5>
                     <hr>
                     <div class="row">
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-8">
-
-                        </div>
-                        <div class="col-md-2 ">
-                            <label for="">No. Orden Facturacion:</label>
-                            <input type="text" name="no_orden_facturacion" id="no_orden_facturacion"
-                                class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="sec" id="sec" value="">
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
                             <label for="">Orden Empaque(*):</label>
                             <input type="hidden" name="id" id="id">
@@ -53,6 +40,23 @@
                                     class="fas fa-search"></i></button>
                         </div>
                     </div>
+                    <div class="row mt-5">
+                        <div class="col-md-2">
+                            <label for="">No. Orden Facturacion:</label>
+                            <input type="text" name="no_orden_facturacion" id="no_orden_facturacion"
+                                class="form-control text-center font-weight-bold" readonly>
+                            <input type="hidden" name="sec" id="sec" value="">
+                            <input type="hidden" name="id" id="id" value="">
+                        </div>
+                        <div class="col-md-1 pt-2">
+                            <button class="btn btn-secondary mt-4 btn-block rounded-pill" id="btn-generar"><i
+                                    class="fas fa-file-invoice"></i></button>
+                        </div>
+                        <div class="col-md-9">
+
+                        </div>
+                    </div>
+                    <hr>
                     <div class="row mt-5">
                         <div class="col-md-4">
                             <label for="">Orden Pedido:</label>
@@ -69,10 +73,11 @@
 
                     </div>
                     <div class="container">
+
                         <label for="" class="mt-5">Referencias empacadas</label>
                         <table id="empaque_detalle" class="table table-striped table-bordered datatables mt-5 mb-3"
                             style="width:100%;">
-                            <thead >
+                            <thead>
                                 <tr>
                                     <th id="">Referencia</th>
                                     <th id="ta">A</th>
@@ -121,7 +126,7 @@
 
             </div>
             <div class="card-footer   d-flex justify-content-end">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
+                {{-- <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3"> --}}
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
 
@@ -131,45 +136,61 @@
 </div>
 {{-- </div> --}}
 
-{{-- <div class="container" id="listadoUsers">
-    <table id="ordenes_aprobacion" class="table table-striped table-bordered datatables">
+<div class="container" id="listadoUsers">
+    <table id="facturacion_detalle" class="table  table-striped table-bordered datatables mt-2">
         <thead>
             <tr>
                 <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User Aprob</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. aprob.</th>
+                <th id="">Referencia</th>
+                <th id="">#. orden F.</th>
+                <th id="">F. aprobado</th>
+                <th id="ta">A</th>
+                <th id="tb">B</th>
+                <th id="tc">C</th>
+                <th id="td">D</th>
+                <th id="te">E</th>
+                <th id="tf">F</th>
+                <th id="tg">G</th>
+                <th id="th">H</th>
+                <th id="ti">I</th>
+                <th id="tj">J</th>
+                <th id="tk">K</th>
+                <th id="tl">L</th>
                 <th>Total</th>
-                <th>Status</th>
-                <th>F. Entr.</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody id="disponibles">
+
+        </tbody>
         <tfoot>
             <tr>
                 <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User Aprob</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. aprob.</th>
+                <th id="">Referencia</th>
+                <th id="">#. orden F.</th>
+                <th id="">F. aprobado</th>
+                <th id="ta">A</th>
+                <th id="tb">B</th>
+                <th id="tc">C</th>
+                <th id="td">D</th>
+                <th id="te">E</th>
+                <th id="tf">F</th>
+                <th id="tg">G</th>
+                <th id="th">H</th>
+                <th id="ti">I</th>
+                <th id="tj">J</th>
+                <th id="tk">K</th>
+                <th id="tl">L</th>
                 <th>Total</th>
-                <th>Status</th>
-                <th>F. Entr.</th>
             </tr>
         </tfoot>
     </table>
 
-</div> --}}
+</div>
 
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/orden_empaque/orden_facturacion.js')}}"></script>
+<script src="{{asset('js/orden_facturacion/orden_facturacion.js')}}"></script>
 
 <script>
     String.prototype.replaceAll = function (find, replace) {
@@ -195,50 +216,40 @@
             $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
             let longitud = data.orden_detalle.length
             let empacado = data.orden_empaque.empacado;
-            if(empacado == 1){
-                $("#empacado").hide();
-                $("#empacado_listo").show();
-                
-            }else{
-                $("#empacado").show();
-                $("#empacado_listo").hide();
-              
-            }
-            for (let i = 0; i < longitud; i++){
-                var fila = "<tr>" +
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].producto.referencia_producto+"</th>" +
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].a+"</th>" +
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].b+"</th>" +
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].c+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].d+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].e+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].f+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].g+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].h+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].i+"</th>" +
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].j+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].k+"</th>"+
-                    "<th class='font-weight-normal'>"+data.orden_detalle[i].l+"</th>"+
-                    "</tr>"
-                    fila = fila.replaceAll('null', '');
-                    $("#disponibles").append(fila);
-            }
-           
-                    
-                          
+         
+                     
         });
     }
 
-    function redistribuir(id_orden){
-        bootbox.confirm("¿Estas seguro de redistribuir las tallas?", function(result){
-            if(result){
-                $.get("orden_redistribuir/" + id_orden, function(){
-                    bootbox.alert("Redistibucion completa");
-                    $("#ordenes_aprobacion").DataTable().ajax.reload();
-                })
+    function agregar(id){
+
+        var empaque = {
+            id: $("#id").val()
+        }
+
+        $.ajax({
+            url: "factura_detalle/"+id,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(empaque),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    console.log(datos);
+                    bootbox.alert("Referencia agregada a la orden de facturacion exitosamente");
+                    $("#empaque_detalle").DataTable().ajax.reload();
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert("Ocurrio un error!!");
             }
-        })
+        });        
     }
+
 
 </script>
 

@@ -735,6 +735,7 @@ class ordenEmpaqueController extends Controller
             $orden_empaque_detalle->total = $total;
             $orden_empaque_detalle->fecha_empacado = date('Y/m/d h:i:s');
             $orden_empaque_detalle->empacado = 1;
+            $orden_empaque_detalle->facturado = 0;
             $orden_empaque_detalle->save();
 
             $orden_empaque = ordenEmpaque::find($empaque_id);

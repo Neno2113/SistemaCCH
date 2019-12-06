@@ -6,10 +6,10 @@ $(document).ready(function() {
 
     //Funcion que se ejecuta al inicio
     function init() {
-        ordenfacturacionCod();
+        // ordenfacturacionCod();
         listar();
         $("#empacado_listo").hide();
-
+        $("#spiner").hide();
         mostrarForm(false);
         $("#btn-edit").hide();
     }
@@ -19,6 +19,7 @@ $(document).ready(function() {
         $("#orden_pedido").val("");
         $("#cliente").val("");
         $("#sucursal").val("");
+        $("#no_orden_facturacion").val("");
         $("#empaque_detalle")
             .DataTable()
             .destroy();
@@ -27,7 +28,9 @@ $(document).ready(function() {
             .trigger("change");
     }
 
-    function ordenfacturacionCod() {
+    $("#btn-generar").click(function(e){
+        e.preventDefault()
+        
         $.ajax({
             url: "ordenfacturacion/lastdigit",
             type: "GET",
@@ -42,8 +45,39 @@ $(document).ready(function() {
                         .join("");
 
                     var referencia = "OF-" + i;
-
                     $("#no_orden_facturacion").val(referencia);
+
+                    var ordenFacturacion = {
+                        sec: $("#sec").val(),
+                        no_orden_facturacion: $("#no_orden_facturacion").val(),
+                        empaque_id: $("#ordenEmpaqueSearch").val()
+                    };
+
+                    $.ajax({
+                        url: "orden_facturacion",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(ordenFacturacion),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                bootbox.alert("Orden de facturacion <strong>"+ referencia + "</strong> creada exitosamente!!");
+                                $("#id").val(datos.orden_facturacion.id);
+                              
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function() {
+                            bootbox.alert(
+                                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                            );
+                        }
+                    });
+
+
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -52,7 +86,10 @@ $(document).ready(function() {
                 bootbox.alert("Ocurrio un error!!");
             }
         });
-    }
+
+    })
+
+    
 
     $("#ordenEmpaqueSearch").select2({
         placeholder: "Numero de orden de empaque",
@@ -114,7 +151,7 @@ $(document).ready(function() {
 
     //funcion para listar en el Datatable
     function listar() {
-        tabla = $("#ordenes_aprobacion").DataTable({
+        tabla = $("#facturacion_detalle").DataTable({
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",
@@ -133,38 +170,29 @@ $(document).ready(function() {
                     pageSize: "LEGAL"
                 }
             ],
-            ajax: "api/ordenes_aprobacion_empaque",
+            ajax: "api/facturacion_detail",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Opciones", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
-                { data: "name", name: "users.name" },
-                { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                {
-                    data: "nombre_sucursal",
-                    name: "cliente_sucursales.nombre_sucursal"
-                },
-                {
-                    data: "fecha_aprobacion",
-                    name: "orden_pedido.fecha_aprobacion"
-                },
-                {
-                    data: "total",
-                    name: "orden_pedido.total",
-                    searchable: false
-                },
-                {
-                    data: "status_orden_pedido",
-                    name: "orden_pedido.status_orden_pedido"
-                },
-                { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
+                { data: "referencia_producto",name: "producto.referencia_producto"},
+                { data: "no_orden_facturacion",name: "orden_facturacion.no_orden_facturacion"},
+                { data: "fecha",name: "orden_facturacion.fecha"},
+                { data: "a", name: "orden_facturacion_detalle.a" },
+                { data: "b", name: "orden_facturacion_detalle.b" },
+                { data: "c", name: "orden_facturacion_detalle.c" },
+                { data: "d", name: "orden_facturacion_detalle.d" },
+                { data: "e", name: "orden_facturacion_detalle.e" },
+                { data: "f", name: "orden_facturacion_detalle.f" },
+                { data: "g", name: "orden_facturacion_detalle.g" },
+                { data: "h", name: "orden_facturacion_detalle.h" },
+                { data: "i", name: "orden_facturacion_detalle.i" },
+                { data: "j", name: "orden_facturacion_detalle.j" },
+                { data: "k", name: "orden_facturacion_detalle.k" },
+                { data: "l", name: "orden_facturacion_detalle.l" },
+                { data: "total", name: "orden_facturacion_detalle.total" },
             ],
             order: [[2, "desc"]],
             rowGroup: {
-                dataSrc: "name"
+                dataSrc: "no_orden_facturacion"
             }
         });
     }
@@ -229,9 +257,8 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    $("#empaque_detalle")
-                        .DataTable()
-                        .destroy();
+                    $("#empaque_detalle").DataTable().destroy();
+                
                     listarEmpaqueDetalle(datos.orden_empaque.id);
                     $("#cliente").val(
                         datos.orden_pedido.cliente.nombre_cliente
@@ -265,10 +292,7 @@ $(document).ready(function() {
             retrieve: true,
             ajax: "api/empaque_detalle/" + id,
             columns: [
-                {
-                    data: "referencia_producto",
-                    name: "producto.referencia_producto"
-                },
+                { data: "referencia_producto",name: "producto.referencia_producto"},
                 { data: "a", name: "orden_empaque_detalle.a" },
                 { data: "b", name: "orden_empaque_detalle.b" },
                 { data: "c", name: "orden_empaque_detalle.c" },

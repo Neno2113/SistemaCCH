@@ -110,7 +110,11 @@ Route::get('/orden_empaque', function () {
 });
 
 Route::get('/orden_facturacion', function () {
-    return view('sistema.ordenEmpaque.ordenFacturacion');
+    return view('sistema.ordenFacturacion.ordenFacturacion');
+});
+
+Route::get('/facturacion', function () {
+    return view('sistema.ordenFacturacion.facturacion');
 });
 // Fin vistas
 
@@ -274,3 +278,8 @@ Route::get('/verificar_empaque/{id}', 'ordenEmpaqueController@verificar');
 Route::get('ordenfacturacion/lastdigit', 'ordenFacturacionController@getDigits');
 Route::get('selectEmpaque', 'ordenFacturacionController@selectEmpaque');
 Route::post('empaque/search', 'ordenFacturacionController@empaqueSearch');
+Route::post('orden_facturacion', 'ordenFacturacionController@store');
+Route::post('/factura_detalle/{id}', 'ordenFacturacionController@storeDetalle');
+
+//Factura
+Route::get('/orden_facturacion/{id}', 'FacturaCOntroller@show');
