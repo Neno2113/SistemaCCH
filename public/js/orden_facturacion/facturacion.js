@@ -8,6 +8,7 @@ $(document).ready(function() {
     function init() {
         // ordenfacturacionCod();
         listar();
+        facturaCod();
         $("#empacado_listo").hide();
         $("#spiner").hide();
         mostrarForm(false);
@@ -16,78 +17,42 @@ $(document).ready(function() {
 
     //funcion para limpiar el formulario(los inputs)
     function limpiar() {
-        $("#orden_pedido").val("");
-        $("#cliente").val("");
-        $("#sucursal").val("");
-        $("#no_orden_facturacion").val("");
-        $("#empaque_detalle")
-            .DataTable()
-            .destroy();
-        $("#ordenEmpaqueSearch")
-            .val("")
-            .trigger("change");
+        $("#tipo_factura").val("");
+        $("#numeracion").val("");
+        $("#itbis").val("");
+        $("#descuento").val("");
+        $("#fecha").val("");
+        $("input[name='r1']:checked").val(0);
+           
     }
 
-    // $("#btn-generar").click(function(e){
-    //     e.preventDefault()
-        
-    //     $.ajax({
-    //         url: "ordenfacturacion/lastdigit",
-    //         type: "GET",
-    //         dataType: "json",
-    //         success: function(datos) {
-    //             if (datos.status == "success") {
-    //                 var i = Number(datos.sec);
-    //                 $("#sec").val(i);
-    //                 i = (i + 0.01)
-    //                     .toFixed(2)
-    //                     .split(".")
-    //                     .join("");
+    function facturaCod() {
+        $.ajax({
+            url: "factura/lastdigit",
+            type: "GET",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var i = Number(datos.sec);
+                    $("#sec").val(i);
+                    i = (i + 0.01).toFixed(2).split('.').join("");
+                    var referencia = i;
+                
+                    $("#no_factura").val(referencia);
 
-    //                 var referencia = "OF-" + i;
-    //                 $("#no_orden_facturacion").val(referencia);
-
-    //                 var ordenFacturacion = {
-    //                     sec: $("#sec").val(),
-    //                     no_orden_facturacion: $("#no_orden_facturacion").val(),
-    //                     empaque_id: $("#ordenEmpaqueSearch").val()
-    //                 };
-
-    //                 $.ajax({
-    //                     url: "orden_facturacion",
-    //                     type: "POST",
-    //                     dataType: "json",
-    //                     data: JSON.stringify(ordenFacturacion),
-    //                     contentType: "application/json",
-    //                     success: function(datos) {
-    //                         if (datos.status == "success") {
-    //                             bootbox.alert("Orden de facturacion <strong>"+ referencia + "</strong> creada exitosamente!!");
-    //                             $("#id").val(datos.orden_facturacion.id);
-                              
-    //                         } else {
-    //                             bootbox.alert(
-    //                                 "Ocurrio un error durante la creacion de la composicion"
-    //                             );
-    //                         }
-    //                     },
-    //                     error: function() {
-    //                         bootbox.alert(
-    //                             "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-    //                         );
-    //                     }
-    //                 });
-
-
-    //             } else {
-    //                 bootbox.alert("Ocurrio un error !!");
-    //             }
-    //         },
-    //         error: function() {
-    //             bootbox.alert("Ocurrio un error!!");
-    //         }
-    //     });
-
-    // })
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error !!"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    }
 
     
 
@@ -115,23 +80,28 @@ $(document).ready(function() {
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
 
-        var ordenFacturacion = {
+        var factura = {
+            id: $("#id").val(),
             sec: $("#sec").val(),
-            no_orden_facturacion: $("#no_orden_facturacion").val(),
-            empaque_id: $("#ordenEmpaqueSearch").val()
+            tipo_factura: $("#tipo_factura").val(),
+            numeracion: $("#numeracion").val(),
+            itbis: $("#itbis").val(),
+            descuento: $("#descuento").val(),
+            fecha: $("#fecha").val(),
+            comprobante_fiscal: $("input[name='r1']:checked").val(),
         };
 
-        // console.log(JSON.stringify(ordenFacturacion));
+        console.log(JSON.stringify(factura));
 
         $.ajax({
-            url: "orden_facturacion",
+            url: "factura",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(ordenFacturacion),
+            data: JSON.stringify(factura),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Corte creado !!");
+                    bootbox.alert("Factura generada");
                     limpiar();
                     mostrarForm(false);
                   
@@ -150,7 +120,7 @@ $(document).ready(function() {
     });
 
     //funcion para listar en el Datatable
-    function listar() {
+    function listar(){
         tabla = $("#orden_facturacion").DataTable({
             serverSide: true,
             responsive: true,
@@ -189,48 +159,49 @@ $(document).ready(function() {
         });
     }
 
-  
 
-    // $("#btn-buscar").click(function(e) {
-    //     e.preventDefault();
-
-    //     var empaque = {
-    //         id: $("#ordenEmpaqueSearch").val()
-    //     };
-
-    //     $.ajax({
-    //         url: "empaque/search",
-    //         type: "POST",
-    //         dataType: "json",
-    //         data: JSON.stringify(empaque),
-    //         contentType: "application/json",
-    //         success: function(datos) {
-    //             if (datos.status == "success") {
-    //                 $("#empaque_detalle").DataTable().destroy();
+      //funcion para listar en el Datatable
+      function listarFactura() {
+        tabla = $("#facturas").DataTable({
+            serverSide: true,
+            responsive: true,
+            dom: "Bfrtip",
+            buttons: [
+                "pageLength",
+                "copyHtml5",
+                {
+                    extend: "excelHtml5",
+                    autoFilter: true,
+                    sheetName: "Exported data"
+                },
+                "csvHtml5",
+                {
+                    extend: "pdfHtml5",
+                    orientation: "landscape",
+                    pageSize: "LEGAL"
+                }
+            ],
+            ajax: "api/facturas",
+            columns: [
+             
+                { data: "Opciones", orderable: false, searchable: false },
+                { data: "name", name: "users.name"},
+                { data: "no_factura", name: "factura.no_factura"},
+                { data: "fecha", name: "factura.fecha"},
+                { data: "descuento", name: "factura.descuento"},
+                { data: "itbis", name: "factura.itbis"},
+                { data: "no_orden_facturacion", name: "orden_facturacion.no_orden_facturacion"},
+                { data: "tipo_factura", name: "factura.tipo_factura"},
                 
-    //                 listarEmpaqueDetalle(datos.orden_empaque.id);
-    //                 $("#cliente").val(
-    //                     datos.orden_pedido.cliente.nombre_cliente
-    //                 );
-    //                 $("#sucursal").val(
-    //                     datos.orden_pedido.sucursal.nombre_sucursal
-    //                 );
-    //                 $("#orden_pedido").val(datos.orden_pedido.no_orden_pedido);
-    //             } else {
-    //                 bootbox.alert(
-    //                     "Ocurrio un error durante la creacion de la composicion"
-    //                 );
-    //             }
-    //         },
-    //         error: function() {
-    //             bootbox.alert(
-    //                 "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-    //             );
-    //         }
-    //     });
-    // });
+            ],
+            order: [[2, "desc"]],
+            rowGroup: {
+                dataSrc: "name"
+            }
+        });
+    }
 
- 
+   
 
     function mostrarForm(flag) {
         limpiar();
@@ -239,12 +210,16 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#btn-guardar").hide();
+          
+            
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
-            $("#btnAgregar").show();
-
+            $("#btnAgregar").hide();
+            $("#AprobarPedido").hide();
+            $("#btnImprimir").show();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
         }
@@ -257,6 +232,15 @@ $(document).ready(function() {
     $("#btnCancelar").click(function(e) {
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
+    });
+    $("#btnImprimir").click(function(e){
+        $("#listadoUsers").hide();
+        $("#AprobarPedido").show();
+        $("#btnImprimir").hide();
+        $("#btnCancelar").show();
+        $("#facturas").DataTable().destroy();
+        listarFactura();
+
     });
 
     init();

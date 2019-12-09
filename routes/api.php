@@ -73,3 +73,5 @@ Route::get('facturacion_detail', 'OrdenFacturacionController@facturacionDetail')
 Route::get('orden_facturacion', 'FacturaController@orden_facturacion');
 
 Route::get('factura_detalle/{id}', 'FacturaController@facturaDetalle');
+
+Route::get('facturas', 'FacturaController@facturas');

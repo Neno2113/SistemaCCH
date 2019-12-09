@@ -9,9 +9,10 @@
 <div class="row mt-3 ml-3">
     <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
     <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
+    <button class="btn btn-secondary" id="btnImprimir">Print <i class="fas fa-print"></i> </button>
 </div>
 
-<div class="row">
+<div class="row mt-3">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center ">
@@ -25,7 +26,7 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario Orden facturacion:</strong></h5>
+                    <h5><strong> Formulario facturacion:</strong></h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
@@ -41,7 +42,24 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <label for="">Cliente</label>
+                            <input type="text" name="cliente" id="cliente" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Sucursal</label>
+                            <input type="text" name="sucursal" id="sucursal" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Fecha entrega</label>
+                            <input type="text" name="fecha_entrega" id="fecha_entrega" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
                             <label for="">Tipo Factura(*):</label>
                             <select name="tipo_factura" id="tipo_factura" class="form-control">
                                 <option value="IN">Factura</option>
@@ -56,9 +74,23 @@
                                 <option value="CN">Nota de Credito</option>
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
+                            <label for="">Numero Factura</label>
+                            <input type="text" name="numeracion" id="numeracion" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">ITBIS</label>
+                            <input type="text" name="itbis" id="itbis" class="form-control text-center"
+                                data-inputmask='"mask": "99%"' data-mask>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Descuento</label>
+                            <input type="text" name="descuento" id="descuento" class="form-control text-center"
+                                data-inputmask='"mask": "99%"' data-mask>
+                        </div>
+                        <div class="col-md-4 mt-3">
                             <label for="">Fecha(*):</label>
-                            <input type="date" name="fecha" id="fecha" class="form-control">
+                            <input type="date" name="fecha" id="fecha" class="form-control text-center">
                         </div>
                     </div>
                     <hr>
@@ -81,16 +113,17 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                          
+
                         </div>
                         <div class="col-md-4">
-                           
+
                         </div>
 
                     </div>
+                    {{-- <label for="">Detalle</label> --}}
                     <div class="container">
-                        <label for="" class="mt-5">Detalle de factura</label>
-                        <table id="facturacion_detalle" class="table table-striped table-bordered datatables mt-5 mb-3"
+                        <h5 class="mt-3"><strong>Detalle de factura</strong></h5>
+                        <table id="facturacion_detalle" class="table table-striped table-bordered datatables mb-5 mb-3"
                             style="width:100%;">
                             <thead>
                                 <tr>
@@ -108,7 +141,7 @@
                                     <th id="tk">K</th>
                                     <th id="tl">L</th>
                                     <th>Total</th>
-                                
+
                                 </tr>
                             </thead>
                             <tbody id="disponibles">
@@ -130,7 +163,7 @@
                                     <th id="tk">K</th>
                                     <th id="tl">L</th>
                                     <th>Total</th>
-                                   
+
                                 </tr>
                             </tfoot>
                         </table>
@@ -141,7 +174,9 @@
 
             </div>
             <div class="card-footer   d-flex justify-content-end">
-                {{-- <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3"> --}}
+                <button type="submit" value="Generar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4 mr-3 ml-3">
+                    <i class="far fa-save fa-lg"></i>
+                </button>
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
 
@@ -186,6 +221,36 @@
 
 </div>
 
+<div class="container collapse mt-4" id="AprobarPedido">
+    <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Actions</th>
+                <th>Usuario</th>
+                <th># Factura</th>
+                <th>Fecha</th>
+                <th>Descuento</th>
+                <th>ITBIS</th>
+                <th># Orden F.</th>
+                <th>Tipo Fact.</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th>Actions</th>
+                <th>Usuario</th>
+                <th># Factura</th>
+                <th>Fecha</th>
+                <th>Descuento</th>
+                <th>ITBIS</th>
+                <th># Orden F.</th>
+                <th>Tipo Fact.</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
 
 
 @include('adminlte/scripts')
@@ -198,20 +263,19 @@
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
+            // $("#btn-edit").show();
+            $("#btn-guardar").show();
+            $("#btnImprimir").hide();
             
         
             $("#id").val(data.orden_facturacion.id);
-            // $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);
-            // $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);
-            // $("#cliente").val(data.cliente.nombre_cliente);
-            // $("#sucursal").val(data.sucursal.nombre_sucursal);
-            // $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
+            $("#cliente").val(data.orden_pedido.cliente.nombre_cliente);
+            $("#sucursal").val(data.orden_pedido.sucursal.nombre_sucursal);
+            $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
+           
             $("#facturacion_detalle").DataTable().destroy();
             listarOrdenDetalle(data.orden_facturacion.id);
-            let longitud = data.orden_detalle.length
-            let empacado = data.orden_empaque.empacado;
+           
          
                      
         });
