@@ -7,13 +7,16 @@ use App\OrdenFacturacion;
 use App\ordenFacturacionDetalle;
 use App\Factura;
 use App\ordenEmpaque;
+use App\Product;
+use App\SKU;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class FacturaController extends Controller
 {
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validar = $request->validate([
             'id' => 'required',
             'tipo_factura' => 'required',
@@ -44,7 +47,7 @@ class FacturaController extends Controller
             $factura = new Factura();
 
             $factura->orden_facturacion_id = $orden_facturacion_id;
-            $factura->no_factura = $tipo_factura.''.$numeracion;
+            $factura->no_factura = $tipo_factura . '-' . $numeracion;
             $factura->user_id = \auth()->user()->id;
             $factura->tipo_factura = $tipo_factura;
             $factura->sec = $sec + 0.01;
@@ -72,9 +75,9 @@ class FacturaController extends Controller
             ->join('users', 'orden_facturacion.user_id', 'users.id')
             ->join('orden_empaque', 'orden_facturacion.orden_empaque_id', 'orden_empaque.id')
             ->select([
-               'orden_facturacion.id', 'orden_facturacion.no_orden_facturacion', 'orden_facturacion.fecha',
-               'users.name', 'users.surname', 'orden_empaque.no_orden_empaque', 'orden_empaque.fecha as fecha_empaque',
-               'orden_empaque.orden_pedido_id'
+                'orden_facturacion.id', 'orden_facturacion.no_orden_facturacion', 'orden_facturacion.fecha',
+                'users.name', 'users.surname', 'orden_empaque.no_orden_empaque', 'orden_empaque.fecha as fecha_empaque',
+                'orden_empaque.orden_pedido_id'
             ]);
 
         return DataTables::of($ordenes)
@@ -88,13 +91,13 @@ class FacturaController extends Controller
                 return date("h:i:s A d-m-20y", strtotime($orden->fecha_empaque));
             })
             ->editColumn('name', function ($orden) {
-                return $orden->name." ".$orden->surname;
+                return $orden->name . " " . $orden->surname;
             })
             ->editColumn('no_orden_empaque', function ($orden) {
                 return str_replace(" ", "", $orden->no_orden_empaque);
             })
             ->addColumn('Opciones', function ($orden) {
-                return '<button onclick="mostrar(' . $orden->id . ')" id="agregar'.$orden->id.'"  class="btn btn-info btn-sm ml-1"> <i class="fas fa-eye fa-lg"></i></button>';
+                return '<button onclick="mostrar(' . $orden->id . ')" id="agregar' . $orden->id . '"  class="btn btn-info btn-sm ml-1"> <i class="fas fa-eye fa-lg"></i></button>';
             })
             ->addColumn('no_orden_pedido', function ($orden) {
                 $orden_pedido = ordenPedido::find($orden->orden_pedido_id);
@@ -110,11 +113,12 @@ class FacturaController extends Controller
             ->make(true);
     }
 
-    public function show($id){
+    public function show($id)
+    {
 
         $orden_facturacion = OrdenFacturacion::find($id);
 
-        if(\is_object($orden_facturacion)){
+        if (\is_object($orden_facturacion)) {
             $orden_empaque = ordenEmpaque::find($orden_facturacion->orden_empaque_id);
             $pedido_id = $orden_empaque->orden_pedido_id;
 
@@ -126,7 +130,7 @@ class FacturaController extends Controller
                 'orden_facturacion' => $orden_facturacion,
                 'orden_pedido' => $orden_pedido
             ];
-        }else {
+        } else {
             $data = [
                 'code' => 400,
                 'status' => 'error',
@@ -150,12 +154,12 @@ class FacturaController extends Controller
             ])->where('orden_facturacion_id', 'LIKE', $id);
 
         return DataTables::of($ordenes)
-        
+
             ->make(true);
     }
 
 
-    
+
     public function getDigits()
     {
         $orden = Factura::orderBy('sec', 'desc')->first();
@@ -189,83 +193,184 @@ class FacturaController extends Controller
             ->join('orden_facturacion', 'factura.orden_facturacion_id', 'orden_facturacion.id')
             ->join('users', 'factura.user_id', 'users.id')
             ->select([
-              'factura.id','factura.no_factura', 'factura.tipo_factura', 'factura.fecha', 'factura.comprobante_fiscal',
-              'factura.descuento', 'factura.itbis','orden_facturacion.no_orden_facturacion', 'users.name', 'users.surname'
+                'factura.id', 'factura.no_factura', 'factura.tipo_factura', 'factura.fecha', 'factura.comprobante_fiscal',
+                'factura.descuento', 'factura.itbis', 'orden_facturacion.no_orden_facturacion', 'users.name', 'users.surname'
             ]);
 
         return DataTables::of($facturas)
-        ->editColumn('comprobante_fiscal', function ($factura) {
-            return ($factura->comprobante_fiscal == 1 ? 'Si' : 'No');
-        })
-        ->editColumn('name', function ($factura) {
-            return $factura->name.' '.$factura->surname; 
-        })
-        ->editColumn('tipo_factura', function ($factura) {
-            if($factura->tipo_factura == 'IN' ){
-                return "Factura";
-            }else if($factura->tipo_factura == 'B01'){
-                return "Credito Fiscal";
-            }else if($factura->tipo_factura == 'B02'){
-                return "Consumidor Final";
-            }else if($factura->tipo_factura == 'B03'){
-                return "Nota de Debito(gubernamental)";
-            }else if($factura->tipo_factura == 'DN'){
-                return "Nota de debito(Normal)";
-            }else if($factura->tipo_factura == 'B04'){
-                return "Nota Credito con NCF(gubernamental)";
-            }else if($factura->tipo_factura == 'B14'){
-                return "Comprobante regimen especiales";
-            }else if($factura->tipo_factura == 'B15'){
-                return "Comprobante gubernamental";
-            }else if($factura->tipo_factura == 'B16'){
-                return "Comprobante para exportaciones";
-            }else if($factura->tipo_factura == 'CN'){
-                return "Nota de credito(normal)";
-            }
-        })
-        ->editColumn('descuento', function ($factura) {
-            return $factura->descuento.'%';
-        })
-        ->editColumn('itbis', function ($factura) {
-            return $factura->itbis.'%';
-        })
-        ->editColumn('fecha', function ($factura) {
-            return date("d-m-20y", strtotime($factura->fecha));
-        })
-        ->addColumn('Opciones', function ($orden) {
-            return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
-                '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura Resumida"> <i class="fas fa-file-invoice-dollar fa-lg"></i></a>'.
-                '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura detallada"> <i class="fas fa-file-invoice fa-lg"></i></a>';
+            ->editColumn('comprobante_fiscal', function ($factura) {
+                return ($factura->comprobante_fiscal == 1 ? 'Si' : 'No');
             })
-        ->rawColumns(['Opciones'])
-        ->make(true);
+            ->editColumn('name', function ($factura) {
+                return $factura->name . ' ' . $factura->surname;
+            })
+            ->editColumn('tipo_factura', function ($factura) {
+                if ($factura->tipo_factura == 'IN') {
+                    return "Factura";
+                } else if ($factura->tipo_factura == 'B01') {
+                    return "Credito Fiscal";
+                } else if ($factura->tipo_factura == 'B02') {
+                    return "Consumidor Final";
+                } else if ($factura->tipo_factura == 'B03') {
+                    return "Nota de Debito(gubernamental)";
+                } else if ($factura->tipo_factura == 'DN') {
+                    return "Nota de debito(Normal)";
+                } else if ($factura->tipo_factura == 'B04') {
+                    return "Nota Credito con NCF(gubernamental)";
+                } else if ($factura->tipo_factura == 'B14') {
+                    return "Comprobante regimen especiales";
+                } else if ($factura->tipo_factura == 'B15') {
+                    return "Comprobante gubernamental";
+                } else if ($factura->tipo_factura == 'B16') {
+                    return "Comprobante para exportaciones";
+                } else if ($factura->tipo_factura == 'CN') {
+                    return "Nota de credito(normal)";
+                }
+            })
+            ->editColumn('descuento', function ($factura) {
+                return $factura->descuento . '%';
+            })
+            ->editColumn('itbis', function ($factura) {
+                return $factura->itbis . '%';
+            })
+            ->editColumn('fecha', function ($factura) {
+                return date("d-m-20y", strtotime($factura->fecha));
+            })
+            ->addColumn('Opciones', function ($orden) {
+                return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
+                    '<a href="factura/resumida/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura Resumida"> <i class="fas fa-file-invoice-dollar fa-lg"></i></a>' .
+                    '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura detallada"> <i class="fas fa-file-invoice fa-lg"></i></a>';
+            })
+            ->rawColumns(['Opciones'])
+            ->make(true);
     }
 
-    public function imprimir($id){
-        $factura = Factura::find($id)->load('user')
-                                    ->load('orden_facturacion');
-      
-        if(\is_object($factura)){
+    public function imprimir($id)
+    {
+        $factura = Factura::find($id)->load('orden_facturacion');
+
+        if (\is_object($factura)) {
+
+            $factura->fecha_impresion = date('Y/m/d h:i:s');
+            $factura->save();
 
             $id_orden_facturacion = $factura->orden_facturacion->id;
+            $id_orden_empaque = $factura->orden_facturacion->orden_empaque_id;
             $orden_facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)
-            ->get();
+                ->get();
+            $productos_id = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)->select('producto_id')
+                ->get();
+
+            $productos = array();
+
+            $longitudProductos = count($productos_id);
+
+            for ($i = 0; $i < $longitudProductos; $i++) {
+                array_push($productos, $productos_id[$i]['producto_id']);
+            }
+
+            $productosFactura = Product::whereIn('id', $productos)->get();
+            $sku = SKU::whereIn('producto_id', $productos)->get();
+
+
+            $orden_empaque = ordenEmpaque::find($id_orden_empaque);
+            $orden_pedido_id = $orden_empaque->orden_pedido_id;
+            $orden_pedido = ordenPedido::find($orden_pedido_id)->load('cliente')
+                ->load('sucursal');
+
+            $orden_pedido->fecha = date("h:i:s A d-m-20y", strtotime($orden_pedido->fecha));
+
+            $detalles_totales = array();
+            $totales_detalles = array();
+            $precio_total = array();
+
+            $longitudDetalles = count($orden_facturacion_detalle);
+
+
+            for ($i = 0; $i < $longitudDetalles; $i++) {
+                array_push($detalles_totales, number_format(str_replace('.', '', $orden_facturacion_detalle[$i]['precio']) * $orden_facturacion_detalle[$i]['total']));
+                array_push($totales_detalles, $orden_facturacion_detalle[$i]['total']);
+                array_push($precio_total, $orden_facturacion_detalle[$i]['precio']);
+            }
+
+            $total = implode($precio_total);
+            $total = str_replace('.', '', $total);
+
+            $subtotal = array_sum(str_replace(',', '', $detalles_totales));
+            $itbis = $factura->itbis / 100;
+            $impuesto = $itbis * $subtotal;
+
+            $pdf = \PDF::loadView('sistema.ordenFacturacion.facturaResumida', \compact('factura', 'orden_pedido', 'orden_facturacion_detalle', 'productosFactura', 'sku',
+            'detalles_totales','subtotal', 'impuesto'));
+            return $pdf->download('facturaResumida.pdf');
+        }
+    }
+
+    public function verificar($id)
+    {
+        $factura = Factura::find($id)->load('orden_facturacion');
+
+        if (\is_object($factura)) {
+
+            $id_orden_facturacion = $factura->orden_facturacion->id;
+            $id_orden_empaque = $factura->orden_facturacion->orden_empaque_id;
+            $orden_facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)
+                ->get();
+            $productos_id = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)->select('producto_id')
+                ->get();
+
+            $productos = array();
+
+            $longitudProductos = count($productos_id);
+
+            for ($i = 0; $i < $longitudProductos; $i++) {
+                array_push($productos, $productos_id[$i]['producto_id']);
+            }
+
+            $productosFactura = Product::whereIn('id', $productos)->get();
+            $sku = SKU::whereIn('producto_id', $productos)->get();
+
+
+            $orden_empaque = ordenEmpaque::find($id_orden_empaque);
+            $orden_pedido_id = $orden_empaque->orden_pedido_id;
+            $orden_pedido = ordenPedido::find($orden_pedido_id)->load('cliente')
+                ->load('sucursal');
+
+            $orden_pedido->fecha = date("h:i:s A d-m-20y", strtotime($orden_pedido->fecha));
+
+            $detalles_totales = array();
+            $totales_detalles = array();
+            $precio_total = array();
+
+            $longitudDetalles = count($orden_facturacion_detalle);
+
+
+            for ($i = 0; $i < $longitudDetalles; $i++) {
+                array_push($detalles_totales, number_format(str_replace('.', '', $orden_facturacion_detalle[$i]['precio']) * $orden_facturacion_detalle[$i]['total']));
+                array_push($totales_detalles, $orden_facturacion_detalle[$i]['total']);
+                array_push($precio_total, $orden_facturacion_detalle[$i]['precio']);
+            }
+
+            $total = implode($precio_total);
+            $total = str_replace('.', '', $total);
+
+            $subtotal = array_sum(str_replace(',', '', $detalles_totales));
+
+            $itbis = $factura->itbis /100;
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'factura' => $factura,
-                'facturacion_detalle' => $orden_facturacion_detalle
-            ];
-        }else{
-            $data = [
-                'code' => 400,
-                'status' => 'error',
-                'message' => 'Ocurrio un error'
+                'orden_pedido' => $orden_pedido,
+                'facturacion_detalle' => $orden_facturacion_detalle,
+                'productos' => $productosFactura,
+                'sku' => $sku,
+                'totales' => $detalles_totales,
+                'subtotal' => $subtotal,
+                'itbis' => $itbis
             ];
         }
-     
-
         return response()->json($data, $data['code']);
     }
 }

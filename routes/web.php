@@ -285,4 +285,5 @@ Route::post('/factura_detalle/{id}', 'ordenFacturacionController@storeDetalle');
 Route::get('/orden_facturacion/{id}', 'FacturaController@show');
 Route::get('factura/lastdigit', 'FacturaController@getDigits');
 Route::post('factura', 'FacturaController@store');
-Route::get('factura/{id}', 'FacturaController@imprimir');
+Route::get('factura/resumida/{id}', 'FacturaController@imprimir');
+Route::get('factura/{id}', 'FacturaController@verificar');
