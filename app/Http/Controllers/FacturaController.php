@@ -42,6 +42,7 @@ class FacturaController extends Controller
             $descuento = $request->input('descuento');
             $fecha = $request->input('fecha');
             $comprobante_fiscal = $request->input('comprobante_fiscal');
+            $numero_comprobante = $request->input('numero_comprobante');
             $sec = $request->input('sec');
 
             $factura = new Factura();
@@ -52,8 +53,9 @@ class FacturaController extends Controller
             $factura->tipo_factura = $tipo_factura;
             $factura->sec = $sec + 0.01;
             $factura->comprobante_fiscal = $comprobante_fiscal;
-            $factura->descuento = trim($descuento, '%');
-            $factura->itbis = trim($itbis, '%');;
+            $factura->numero_comprobante = 'B01' . $numero_comprobante;
+            $factura->descuento = trim($descuento, '_%');
+            $factura->itbis = trim($itbis, '_%');;
             $factura->fecha = $fecha;
 
             $factura->save();
@@ -77,7 +79,7 @@ class FacturaController extends Controller
             ->select([
                 'orden_facturacion.id', 'orden_facturacion.no_orden_facturacion', 'orden_facturacion.fecha',
                 'users.name', 'users.surname', 'orden_empaque.no_orden_empaque', 'orden_empaque.fecha as fecha_empaque',
-                'orden_empaque.orden_pedido_id'
+                'orden_empaque.orden_pedido_id', 'orden_facturacion.por_transporte'
             ]);
 
         return DataTables::of($ordenes)
@@ -92,6 +94,9 @@ class FacturaController extends Controller
             })
             ->editColumn('name', function ($orden) {
                 return $orden->name . " " . $orden->surname;
+            })
+            ->editColumn('por_transporte', function ($orden) {
+                return ($orden->por_transporte == 1) ? 'Si' : 'No';
             })
             ->editColumn('no_orden_empaque', function ($orden) {
                 return str_replace(" ", "", $orden->no_orden_empaque);
@@ -300,8 +305,49 @@ class FacturaController extends Controller
             $itbis = $factura->itbis / 100;
             $impuesto = $itbis * $subtotal;
 
-            $pdf = \PDF::loadView('sistema.ordenFacturacion.facturaResumida', \compact('factura', 'orden_pedido', 'orden_facturacion_detalle', 'productosFactura', 'sku',
-            'detalles_totales','subtotal', 'impuesto'));
+            $porc_desc = $factura->descuento / 100;
+            $descuento = $porc_desc * $subtotal;
+
+            $total_final = $subtotal + $impuesto - $descuento;
+
+            $factura->total = $total_final;
+            $factura->save();
+
+            $ordenes_pedido_id = array();
+
+            $longitudOrdenes = count($orden_facturacion_detalle);
+
+            for ($i = 0; $i < $longitudOrdenes; $i++) {
+                array_push($ordenes_pedido_id, $orden_facturacion_detalle[$i]['orden_pedido_id']);
+            }
+
+            //actualizar orden pedido status
+            $orden_pedidos_id = $factura->orden_pedido_id;
+
+            $ordenes_pedido = ordenPedido::whereIn('id', $ordenes_pedido_id)->get();
+
+            $longitudOrden = count($ordenes_pedido);
+
+            for ($i = 0; $i < $longitudOrden; $i++) {
+                $ordenes_pedido[$i]->status_orden_pedido = 'Despachado';
+                $ordenes_pedido[$i]->save();
+            }
+
+            $bultos = $orden_facturacion_detalle->sum('cant_bultos');
+
+            $pdf = \PDF::loadView('sistema.ordenFacturacion.facturaResumida', \compact(
+                'factura',
+                'orden_pedido',
+                'orden_facturacion_detalle',
+                'productosFactura',
+                'sku',
+                'detalles_totales',
+                'subtotal',
+                'impuesto',
+                'descuento',
+                'total_final',
+                'bultos'
+            ));
             return $pdf->download('facturaResumida.pdf');
         }
     }
@@ -356,7 +402,33 @@ class FacturaController extends Controller
 
             $subtotal = array_sum(str_replace(',', '', $detalles_totales));
 
-            $itbis = $factura->itbis /100;
+            $itbis = $factura->itbis / 100;
+            $impuesto = $itbis * $subtotal;
+
+
+            $porc_desc = $factura->descuento / 100;
+            $descuento = $porc_desc * $subtotal;
+            $total_final = $subtotal + $impuesto - $descuento;
+
+            $ordenes_pedido_id = array();
+
+            $longitudOrdenes = count($orden_facturacion_detalle);
+
+            for ($i = 0; $i < $longitudOrdenes; $i++) {
+                array_push($ordenes_pedido_id, $orden_facturacion_detalle[$i]['orden_pedido_id']);
+            }
+
+            //actualizar orden pedido status
+            $orden_pedidos_id = $factura->orden_pedido_id;
+
+            $ordenes_pedido = ordenPedido::whereIn('id', $ordenes_pedido_id)->get();
+
+            $longitudOrden = count($ordenes_pedido);
+
+            for ($i = 0; $i < $longitudOrden; $i++) {
+                $ordenes_pedido[$i]->status_orden_pedido = 'Despachado';
+                $ordenes_pedido[$i]->save();
+            }
 
             $data = [
                 'code' => 200,
@@ -368,7 +440,11 @@ class FacturaController extends Controller
                 'sku' => $sku,
                 'totales' => $detalles_totales,
                 'subtotal' => $subtotal,
-                'itbis' => $itbis
+                'itbis' => $impuesto,
+                'total' => number_format($total_final),
+                'descuento' => $descuento,
+                'orden_pedidos' => $ordenes_pedido,
+                'bultos' => $orden_facturacion_detalle->sum('cant_bultos')
             ];
         }
         return response()->json($data, $data['code']);

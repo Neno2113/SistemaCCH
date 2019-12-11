@@ -118,7 +118,8 @@ $(document).ready(function() {
         var ordenFacturacion = {
             sec: $("#sec").val(),
             no_orden_facturacion: $("#no_orden_facturacion").val(),
-            empaque_id: $("#ordenEmpaqueSearch").val()
+            empaque_id: $("#ordenEmpaqueSearch").val(),
+            por_transporte: $("input[name='r1']:checked").val(),
         };
 
         // console.log(JSON.stringify(ordenFacturacion));

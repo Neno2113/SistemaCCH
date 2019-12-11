@@ -32,6 +32,7 @@ class OrdenFacturacionController extends Controller
         } else {
             $no_orden_facturacion = $request->input('no_orden_facturacion');
             $orden_empaque_id = $request->input('empaque_id');
+            $por_transporte = $request->input('por_transporte');
             $sec = $request->input('sec');
 
             $orden_facturacion = new OrdenFacturacion();
@@ -40,6 +41,7 @@ class OrdenFacturacionController extends Controller
             $orden_facturacion->orden_empaque_id = $orden_empaque_id;
             $orden_facturacion->user_id = \auth()->user()->id;
             $orden_facturacion->fecha = date('Y/m/d h:i:s');
+            $orden_facturacion->por_transporte = $por_transporte;
             $orden_facturacion->sec = $sec + 0.01;
 
             $orden_facturacion->save();
@@ -65,6 +67,12 @@ class OrdenFacturacionController extends Controller
             $empaque_detalle->facturado = 1;
             $empaque_detalle->save();
 
+            $orden_empaque_id = $empaque_detalle->orden_empaque_id;
+            $orden_empaque = ordenEmpaque::find($orden_empaque_id)->load('orden_pedido');
+            $orden_pedido_id = $orden_empaque->orden_pedido->id;
+            $orden_pedido = ordenPedido::find($orden_pedido_id);
+            $orden_pedido->status_orden_pedido = 'Facturado';
+            $orden_pedido->save();
 
             $a = $empaque_detalle->a;
             $b = $empaque_detalle->b;
@@ -82,6 +90,7 @@ class OrdenFacturacionController extends Controller
             $precio = $empaque_detalle->precio;
             $bultos = $empaque_detalle->cant_bulto;
             $producto_id = $empaque_detalle->producto_id;
+            $orden_pedido_id = $orden_pedido->id;
 
             $factura_detalle = new ordenFacturacionDetalle();
             $factura_detalle->a = $a;
@@ -103,6 +112,7 @@ class OrdenFacturacionController extends Controller
             $factura_detalle->user_id = \auth()->user()->id;
             $factura_detalle->orden_facturacion_id = $orden_facturacion_id;
             $factura_detalle->fecha = date('Y/m/d h:i:s');
+            $factura_detalle->orden_pedido_id = $orden_pedido_id;
 
             $factura_detalle->save();
 

@@ -776,13 +776,19 @@ class ordenPedidoController extends Controller
                 }else if($orden->status_orden_pedido == 'Stanby'){
                     return '<span class="badge badge-pill badge-secondary">Stanby</span>';
                 }else if($orden->status_orden_pedido == 'Despachado'){
-                    return '<span class="badge badge-pill badge-info">Stanby</span>';
+                    return '<span class="badge badge-pill badge-info">Despachado</span>';
                 }
             })
             ->addColumn('Opciones', function ($orden) {
-                return  ($orden->status_orden_pedido == 'Vigente') ? 
-                '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash"></i></button>':
-                '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-check"></i></button>';
+                if($orden->status_orden_pedido == 'Vigente'){
+                    return  '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash"></i></button>';
+                }else if($orden->status_orden_pedido == 'Cancelado'){
+                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-check"></i></button>';
+                }else {
+                    return '<span class="badge badge-pill badge-info">Facturado</span>';
+                }
+               
+                
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
@@ -882,14 +888,14 @@ class ordenPedidoController extends Controller
                 return $sucursal->nombre_sucursal;
             })
             ->editColumn('status_orden_pedido', function ($orden) {
-                if ($orden->status_orden_pedido == 'Vigente') {
+                if($orden->status_orden_pedido == 'Vigente'){
                     return '<span class="badge badge-pill badge-success">Vigente</span>';
-                } else if ($orden->status_orden_pedido == 'Cancelado') {
+                }else if($orden->status_orden_pedido == 'Cancelado'){
                     return '<span class="badge badge-pill badge-danger">Cancelada</span>';
-                } else if ($orden->status_orden_pedido == 'Stanby') {
+                }else if($orden->status_orden_pedido == 'Stanby'){
                     return '<span class="badge badge-pill badge-secondary">Stanby</span>';
-                } else if ($orden->status_orden_pedido == 'Despachado') {
-                    return '<span class="badge badge-pill badge-info">Stanby</span>';
+                }else if($orden->status_orden_pedido == 'Despachado'){
+                    return '<span class="badge badge-pill badge-info">Despachado</span>';
                 }
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])

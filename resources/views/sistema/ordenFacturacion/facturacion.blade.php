@@ -95,7 +95,7 @@
                     </div>
                     <hr>
                     <div class="row mt-5">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <label for="autorizacion_credito_req">¿Comprobante fiscal?(*):</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
@@ -113,6 +113,11 @@
                             </div>
                         </div>
                         <div class="col-md-4">
+                            <div id="comprobante">
+                                <label for="">Numero Comprobante</label>
+                                <input type="text" name="numero_comprobante" id="numero_comprobante"
+                                    class="form-control">
+                            </div>
 
                         </div>
                         <div class="col-md-4">
@@ -169,9 +174,6 @@
                         </table>
 
                     </div>
-
-
-
             </div>
             <div class="card-footer   d-flex justify-content-end">
                 <button type="submit" value="Generar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4 mr-3 ml-3">
@@ -195,6 +197,7 @@
                 <th>Usuario Gen.</th>
                 <th>No. Orden F.</th>
                 <th>Fecha Creado.</th>
+                <th>Env. Transporte</th>
                 <th>No. Orden E.</th>
                 <th>Fecha empacado</th>
                 {{-- <th>No Orden P.</th>
@@ -211,6 +214,7 @@
                 <th>Usuario Gen.</th>
                 <th>No. Orden F.</th>
                 <th>Fecha Creado.</th>
+                <th>Env. Transporte</th>
                 <th>No. Orden E.</th>
                 <th>Fecha empacado</th>
                 {{-- <th>No Orden P.</th>

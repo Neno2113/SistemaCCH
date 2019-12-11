@@ -52,8 +52,25 @@
                             <button class="btn btn-secondary mt-4 btn-block rounded-pill" id="btn-generar"><i
                                     class="fas fa-file-invoice"></i></button>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-6">
 
+                        </div>
+                        <div class="col-md-3">
+                            <label for="autorizacion_credito_req">¿Iran por transporte?</label>
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary1" name="r1" value="1">
+                                    <label for="radioPrimary1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary2" name="r1" value="0" checked>
+                                    <label for="radioPrimary2">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <hr>

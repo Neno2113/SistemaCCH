@@ -23,6 +23,7 @@ $(document).ready(function() {
         $("#descuento").val("");
         $("#fecha").val("");
         $("input[name='r1']:checked").val(0);
+        $("#comprobante").hide();
            
     }
 
@@ -54,8 +55,6 @@ $(document).ready(function() {
         });
     }
 
-    
-
     $("#ordenEmpaqueSearch").select2({
         placeholder: "Numero de orden de empaque",
         ajax: {
@@ -76,6 +75,18 @@ $(document).ready(function() {
         }
     });
 
+    
+    $("input[name='r1']").change(function() {
+        let val = $("input[name='r1']:checked").val();
+        // console.log(val);
+
+        if (val == 1) {
+            $("#comprobante").show();
+        }else if(val == 0){ 
+            $("#comprobante").hide();
+        }
+    })
+
     //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
@@ -89,6 +100,7 @@ $(document).ready(function() {
             descuento: $("#descuento").val(),
             fecha: $("#fecha").val(),
             comprobante_fiscal: $("input[name='r1']:checked").val(),
+            numero_comprobante: $("#numero_comprobante").val()
         };
 
         console.log(JSON.stringify(factura));
@@ -147,6 +159,7 @@ $(document).ready(function() {
                 { data: "name", name: "users.name"},
                 { data: "no_orden_facturacion", name: "orden_facturacion.no_orden_facturacion"},
                 { data: "fecha", name: "orden_facturacion.fecha"},
+                { data: "por_transporte", name: "orden_facturacion.por_transporte"},
                 { data: "no_orden_empaque", name: "orden_empaque.no_orden_empaque"},
                 { data: "fecha_empaque", name: "orden_empaque.fecha_empaque"},
                 // { data: "no_orden_pedido", name: "orden_empaque.no_orden_pedido", orderable: false, searchable: false},
