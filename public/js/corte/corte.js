@@ -80,7 +80,7 @@ $(document).ready(function() {
                     i = (i + 0.01).toFixed(2).split('.').join("");
                     var year = new Date().getFullYear().toString();
                     var referencia = year+'-'+i;
-                    console.log(referencia);
+                    // console.log(referencia);
                                
                     $("#numero_corte_gen").val(referencia);
                     $("#corte").val(referencia);         
@@ -361,6 +361,12 @@ $(document).ready(function() {
 
         if(dia < 15){
             month = month + 2;
+            if(month > 12){
+                year = year;
+                month = month - 1;
+                console.log(year+'/'+month+'/'+dia);
+            
+            }
            
             $("#fecha_entrega").attr('min', year +"-"+ month+"-14")
             $("#fecha_entrega").attr('max', year +"-"+ month+"-14")

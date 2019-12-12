@@ -87,6 +87,18 @@ $(document).ready(function() {
         }
     })
 
+    $("#fecha").click(function(){
+        let fecha = new Date();
+        let dia = fecha.getDate();
+        let year = fecha.getFullYear();
+        let month = fecha.getMonth();
+        
+        month = month + 1;
+     
+        $("#fecha").attr('min', year +"-"+ month+"-"+ dia);
+    });
+
+
     //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
@@ -103,7 +115,7 @@ $(document).ready(function() {
             numero_comprobante: $("#numero_comprobante").val()
         };
 
-        console.log(JSON.stringify(factura));
+        // console.log(JSON.stringify(factura));
 
         $.ajax({
             url: "factura",
@@ -135,6 +147,7 @@ $(document).ready(function() {
     function listar(){
         tabla = $("#orden_facturacion").DataTable({
             serverSide: true,
+            processing: true,
             responsive: true,
             dom: "Bfrtip",
             buttons: [

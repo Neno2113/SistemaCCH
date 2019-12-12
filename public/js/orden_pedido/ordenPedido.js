@@ -10,12 +10,10 @@ $(document).ready(function() {
         $("#precio").val("");
         $("#total").val("");
         $("#btn-edit").hide();
-        $("#clienteSearch").val("").trigger("change");
-        $("#sucursalSearch").val("").trigger("change");
-        $("#productoSearch").val("").trigger("change");
-        $("#corte_en_proceso").hide();
+        $("#no_orden_pedido").val("");
+        // $("#corte_en_proceso").hide();
         $("#detallada").hide();
-        ordenPedidoCod();
+        // ordenPedidoCod();
         $("#btn-consultar").hide();
         $("#precio_div").hide();
         $("#total_div").hide();
@@ -23,7 +21,7 @@ $(document).ready(function() {
         listar();
         $("#registroForm").hide();
         $("#btnCancelar").hide();
-        $("#btn-agregarProceso").attr('disabled', true);
+        // $("#btn-agregarProceso").attr("disabled", true);
         $("#total").val("");
         listarRedistribucion();
     }
@@ -69,11 +67,12 @@ $(document).ready(function() {
             $("#detallada").hide();
             $("#redistribucion").show();
             $("#detalles").hide();
-            $("#corte_en_proceso").hide();
+            // $("#corte_en_proceso").hide();
         }
     }
 
     function limpiar() {
+        // $("#no_orden_pedido").val("");
         $("#a").val("");
         $("#b").val("");
         $("#c").val("");
@@ -86,9 +85,24 @@ $(document).ready(function() {
         $("#j").val("");
         $("#k").val("");
         $("#l").val("");
+        $("#orden_pedido_id").val("");
+        $("#orden_pedido_id_proceso").val("");
+        $("#sec").val("");
+        $("#sec_proceso").val();
+        $("#clienteSearch").val("").trigger("change");
+        $("#sucursalSearch").val("").trigger("change");
+        $("#productoSearch").val("").trigger("change");
+        $("#notas").val("");
+        $("#fecha_entrega").val("");
+        $("#cantidad").val("");
+        $("#precio").val("");
+        $("#corte_proceso").val("");
+        $("#orden_pedido").empty();
     }
 
-    function ordenPedidoCod() {
+    $("#btn-generar").click(function(e) {
+        e.preventDefault();
+
         $("#sec").val("");
         $("#no_orden_pedido").val("");
         $.ajax({
@@ -97,12 +111,70 @@ $(document).ready(function() {
             dataType: "json",
             success: function(datos) {
                 if (datos.status == "success") {
-                  
                     var i = Number(datos.sec);
                     $("#sec").val(i);
-                    i = (i + 0.01).toFixed(2).split(".").join("");
+                    i = (i + 0.01)
+                        .toFixed(2)
+                        .split(".")
+                        .join("");
 
                     $("#no_orden_pedido").val("OP-" + i);
+
+                    let sucursal = $("#sucursalSearch").val();
+
+                    if (sucursal) {
+                        sucursal = $("#sucursalSearch").val();
+                    } else {
+                        sucursal = 7;
+                    }
+
+                    var orden = {
+                        cliente_id: $("#clienteSearch").val(),
+                        sucursal_id: sucursal,
+                        notas: $("#notas").val(),
+                        fecha_entrega: $("#fecha_entrega").val(),
+                        generado_internamente: $("input[name='r1']:checked").val(),
+                        detallada: $("input[name='r2']:checked").val(),
+                        sec: $("#sec").val(),
+                        no_orden_pedido: $("#no_orden_pedido").val()
+                    };
+
+                    $.ajax({
+                        url: "orden",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(orden),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                console.log(datos);
+                                $("#sec_proceso").val(Number(datos.orden.sec));
+                                i_2 = datos.orden.sec;
+                                i_2 = (i_2 + 0.01).toFixed(2).split(".").join("");
+                                $("#no_orden_pedido_proceso").val("OP-" + i_2);
+                               
+                                // $("#registroForm").hide();
+                                $("#ordenes").DataTable().ajax.reload();
+                                // $("#listadoUsers").show();
+                                $("#orden_pedido_id").val(datos.orden.id);
+                                bootbox.alert("Orden <strong>OP-" +i+"</strong> generada correctamente.");
+                                $("#btn-generar").attr('disabled', true);
+                             
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function(datos) {
+                            console.log(datos.responseJSON.message);
+
+                            bootbox.alert(
+                                "Error: " + datos.responseJSON.message
+                            );
+                        }
+                    });
+                  
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -111,12 +183,11 @@ $(document).ready(function() {
                 bootbox.alert("Ocurrio un error!!");
             }
         });
-    }
+    });
 
     function validarNan(val) {
         if (isNaN(val) || val < 0) {
             return 0;
-        
         } else {
             return val;
         }
@@ -140,12 +211,11 @@ $(document).ready(function() {
     $("input[name='r2']").change(function() {
         let val = $("input[name='r2']:checked").val();
 
-
         if (val == 1) {
             $("#btn-consultar").show();
-            $("#btn-consultar").attr('disabled', false);
-        }else if(val == 0){ 
-            $("#btn-consultar").attr('disabled', false);
+            $("#btn-consultar").attr("disabled", false);
+        } else if (val == 0) {
+            $("#btn-consultar").attr("disabled", false);
         }
     });
 
@@ -234,8 +304,6 @@ $(document).ready(function() {
                     if (datos.status == "success") {
                         data = datos;
 
-                        
-
                         let corte_proceso = datos.corte_proceso;
                         let fecha_entrega = datos.fecha_entrega;
                         var ref = $("#productoSearch option:selected").text();
@@ -244,8 +312,8 @@ $(document).ready(function() {
                         $("#precio_div").show();
                         $("#total_div").show();
                         $("#btn-agregar").show();
-                        $("#btn-consultar").attr('disabled', true);
-                        $("#btn-agregar").attr('disabled', false);
+                        $("#btn-consultar").attr("disabled", true);
+                        $("#btn-agregar").attr("disabled", false);
                         var genero = ref.substring(1, 2);
                         if (genero == 1) {
                             $("#sub-genero").hide();
@@ -278,17 +346,37 @@ $(document).ready(function() {
 
                             $("#disponibles").html(
                                 "<tr id='cortes'>" +
-                                "<th id='a_corte' class='font-weight-normal'>"+validarNan(datos.a)+"</th>" +
-                                "<th id='b_corte' class='font-weight-normal'>"+validarNan(datos.b)+"</th>" +
-                                "<th id='c_corte' class='font-weight-normal'>"+validarNan(datos.c)+"</th>"+
-                                "<th id='d_corte' class='font-weight-normal'>"+validarNan(datos.d)+"</th>"+
-                                "<th id='e_corte' class='font-weight-normal'>"+validarNan(datos.e)+"</th>"+
-                                "<th id='f_corte' class='font-weight-normal'>"+validarNan(datos.f)+"</th>"+
-                                "<th id='g_corte' class='font-weight-normal'>"+validarNan(datos.g)+"</th>"+
-                                "<th id='h_corte' class='font-weight-normal'>"+validarNan(datos.h)+"</th>"+
-                                "<th id='i_corte' class='font-weight-normal'>"+validarNan(datos.i)+"</th>" +
-                                "<th id='j_corte' class='font-weight-normal'>"+validarNan(datos.j)+"</th>"+
-                                "</tr>"
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.a) +
+                                    "</th>" +
+                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.b) +
+                                    "</th>" +
+                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.c) +
+                                    "</th>" +
+                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.d) +
+                                    "</th>" +
+                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.e) +
+                                    "</th>" +
+                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.f) +
+                                    "</th>" +
+                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.g) +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.h) +
+                                    "</th>" +
+                                    "<th id='i_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.i) +
+                                    "</th>" +
+                                    "<th id='j_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.j) +
+                                    "</th>" +
+                                    "</tr>"
                             );
                             let data_consulta = {
                                 a: data.a,
@@ -301,18 +389,19 @@ $(document).ready(function() {
                                 h: data.h,
                                 i: data.i,
                                 j: data.j
-                            }
-    
+                            };
+
                             let consulta = Object.values(data_consulta);
                             var result = true;
-                            
+
                             for (let i = 0; i < consulta.length; i++) {
-                                if(consulta[i] <= 0){
-                                    bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                if (consulta[i] <= 0) {
+                                    bootbox.alert(
+                                        "Alerta existe una de las tallas la cual su existencia es igual a 0"
+                                    );
                                     result = false;
                                     break;
                                 }
-                                
                             }
                         } else if (genero == 3) {
                             $("#sub-genero").hide();
@@ -338,14 +427,30 @@ $(document).ready(function() {
                             $("#l").attr("disabled", true);
                             $("#disponibles").html(
                                 "<tr id='cortes'>" +
-                                    "<th id='a_corte' class='font-weight-normal'>"+validarNan(datos.a)+"</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>"+validarNan(datos.b)+"</th>"+
-                                    "<th id='c_corte' class='font-weight-normal'>"+validarNan(datos.c)+"</th>"+
-                                    "<th id='d_corte' class='font-weight-normal'>"+validarNan(datos.d)+"</th>"+
-                                    "<th id='e_corte' class='font-weight-normal'>"+validarNan(datos.e)+"</th>"+
-                                    "<th id='f_corte' class='font-weight-normal'>"+validarNan(datos.f)+"</th>"+
-                                    "<th id='g_corte' class='font-weight-normal'>"+validarNan(datos.g)+"</th>"+
-                                    "<th id='h_corte' class='font-weight-normal'>"+validarNan(datos.h)+"</th>"+
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.a) +
+                                    "</th>" +
+                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.b) +
+                                    "</th>" +
+                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.c) +
+                                    "</th>" +
+                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.d) +
+                                    "</th>" +
+                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.e) +
+                                    "</th>" +
+                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.f) +
+                                    "</th>" +
+                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.g) +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.h) +
+                                    "</th>" +
                                     "<th id='i_corte' class='font-weight-normal'>" +
                                     "</th>" +
                                     "<th id='j_corte' class='font-weight-normal'>" +
@@ -365,18 +470,19 @@ $(document).ready(function() {
                                 f: data.f,
                                 g: data.g,
                                 h: data.h
-                            }
-    
+                            };
+
                             let consulta = Object.values(data_consulta);
                             var result = true;
-                            
+
                             for (let i = 0; i < consulta.length; i++) {
-                                if(consulta[i] <= 0){
-                                    bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                if (consulta[i] <= 0) {
+                                    bootbox.alert(
+                                        "Alerta existe una de las tallas la cual su existencia es igual a 0"
+                                    );
                                     result = false;
                                     break;
                                 }
-                                
                             }
                         } else if (genero == 4) {
                             $("#sub-genero").hide();
@@ -402,14 +508,30 @@ $(document).ready(function() {
                             $("#l").attr("disabled", true);
                             $("#disponibles").html(
                                 "<tr id='cortes'>" +
-                                    "<th id='a_corte' class='font-weight-normal'>"+validarNan(datos.a)+"</th>"+
-                                    "<th id='b_corte' class='font-weight-normal'>"+validarNan(datos.b)+"</th>"+
-                                    "<th id='c_corte' class='font-weight-normal'>"+validarNan(datos.c)+"</th>"+
-                                    "<th id='d_corte' class='font-weight-normal'>"+validarNan(datos.d)+"</th>"+
-                                    "<th id='e_corte' class='font-weight-normal'>"+validarNan(datos.e)+"</th>"+
-                                    "<th id='f_corte' class='font-weight-normal'>"+validarNan(datos.f)+"</th>"+
-                                    "<th id='g_corte' class='font-weight-normal'>"+validarNan(datos.g)+"</th>"+
-                                    "<th id='h_corte' class='font-weight-normal'>"+validarNan(datos.h)+"</th>"+
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.a) +
+                                    "</th>" +
+                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.b) +
+                                    "</th>" +
+                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.c) +
+                                    "</th>" +
+                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.d) +
+                                    "</th>" +
+                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.e) +
+                                    "</th>" +
+                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.f) +
+                                    "</th>" +
+                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.g) +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    validarNan(datos.h) +
+                                    "</th>" +
                                     "<th id='i_corte' class='font-weight-normal'>" +
                                     "</th>" +
                                     "<th id='j_corte' class='font-weight-normal'>" +
@@ -430,18 +552,19 @@ $(document).ready(function() {
                                 f: data.f,
                                 g: data.g,
                                 h: data.h
-                            }
-    
+                            };
+
                             let consulta = Object.values(data_consulta);
                             var result = true;
-                            
+
                             for (let i = 0; i < consulta.length; i++) {
-                                if(consulta[i] <= 0){
-                                    bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                if (consulta[i] <= 0) {
+                                    bootbox.alert(
+                                        "Alerta existe una de las tallas la cual su existencia es igual a 0"
+                                    );
                                     result = false;
                                     break;
                                 }
-                                
                             }
                         }
                         if (genero == 2) {
@@ -497,18 +620,42 @@ $(document).ready(function() {
                                     );
                                     $("#disponibles").html(
                                         "<tr id='cortes'>" +
-                                            "<th id='a_corte' class='font-weight-normal'>"+validarNan(datos.a)+"</th>"+
-                                            "<th id='b_corte' class='font-weight-normal'>"+validarNan(datos.b)+"</th>"+
-                                            "<th id='c_corte' class='font-weight-normal'>"+validarNan(datos.c)+"</th>"+
-                                            "<th id='d_corte' class='font-weight-normal'>"+validarNan(datos.d)+"</th>" +
-                                            "<th id='e_corte' class='font-weight-normal'>"+validarNan(datos.e)+"</th>"+
-                                            "<th id='f_corte' class='font-weight-normal'>"+validarNan(datos.f)+"</th>"+
-                                            "<th id='g_corte' class='font-weight-normal'>"+validarNan(datos.g)+"</th>"+
-                                            "<th id='h_corte' class='font-weight-normal'>"+validarNan(datos.h)+"</th>"+
-                                            "<th id='i_corte' class='font-weight-normal'>"+validarNan(datos.i)+"</th>"+
-                                            "<th id='j_corte' class='font-weight-normal'>"+validarNan(datos.j)+"</th>"+
-                                            "<th id='k_corte' class='font-weight-normal'>"+validarNan(datos.k)+"</th>"+
-                                            "<th id='l_corte' class='font-weight-normal'>"+validarNan(datos.l)+"</th>"+
+                                            "<th id='a_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.a) +
+                                            "</th>" +
+                                            "<th id='b_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.b) +
+                                            "</th>" +
+                                            "<th id='c_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.c) +
+                                            "</th>" +
+                                            "<th id='d_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.d) +
+                                            "</th>" +
+                                            "<th id='e_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.e) +
+                                            "</th>" +
+                                            "<th id='f_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.f) +
+                                            "</th>" +
+                                            "<th id='g_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.g) +
+                                            "</th>" +
+                                            "<th id='h_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.h) +
+                                            "</th>" +
+                                            "<th id='i_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.i) +
+                                            "</th>" +
+                                            "<th id='j_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.j) +
+                                            "</th>" +
+                                            "<th id='k_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.k) +
+                                            "</th>" +
+                                            "<th id='l_corte' class='font-weight-normal'>" +
+                                            validarNan(datos.l) +
+                                            "</th>" +
                                             "</tr>"
                                     );
                                     let data_consulta = {
@@ -524,18 +671,19 @@ $(document).ready(function() {
                                         j: data.j,
                                         k: data.k,
                                         l: data.l
-                                    }
-            
+                                    };
+
                                     let consulta = Object.values(data_consulta);
                                     var result = true;
-                                    
+
                                     for (let i = 0; i < consulta.length; i++) {
-                                        if(consulta[i] <= 0){
-                                            bootbox.alert("Alerta existe una de las tallas la cual su existencia es igual a 0");
+                                        if (consulta[i] <= 0) {
+                                            bootbox.alert(
+                                                "Alerta existe una de las tallas la cual su existencia es igual a 0"
+                                            );
                                             result = false;
                                             break;
                                         }
-                                        
                                     }
                                 } else if (subGenero == "Mujer Plus") {
                                     //    $("#genero").val('Mujer plus: '+val);
@@ -687,20 +835,48 @@ $(document).ready(function() {
             if (val == 1) {
                 cantidad = Number(a + b + c + d + e + f + g + h + i + j);
                 var fila =
-                    '<tr id="fila'+cont +'">'+
-                    "<th id='a_corte' class='font-weight-normal'>"+producto+"</th>"+
-                    "<th id='a_corte' class='font-weight-normal'>"+precio+"</th>"+
-                    "<th id='a_corte' class='font-weight-normal'>"+cantidad+"</th>"+
-                    "<th id='a_corte' class='font-weight-normal'>"+a+"</th>"+
-                    "<th id='b_corte' class='font-weight-normal'>"+b+"</th>"+
-                    "<th id='c_corte' class='font-weight-normal'>"+c+"</th>"+
-                    "<th id='d_corte' class='font-weight-normal'>"+d+"</th>"+
-                    "<th id='e_corte' class='font-weight-normal'>"+e+"</th>"+
-                    "<th id='f_corte' class='font-weight-normal'>"+f+"</th>"+
-                    "<th id='g_corte' class='font-weight-normal'>"+g+"</th>"+
-                    "<th id='h_corte' class='font-weight-normal'>"+h+"</th>"+
-                    "<th id='i_corte' class='font-weight-normal'>"+i+"</th>"+
-                    "<th id='j_corte' class='font-weight-normal'>"+j+"</th>"+
+                    '<tr id="fila' +
+                    cont +
+                    '">' +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    producto +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    precio +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    cantidad +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    a +
+                    "</th>" +
+                    "<th id='b_corte' class='font-weight-normal'>" +
+                    b +
+                    "</th>" +
+                    "<th id='c_corte' class='font-weight-normal'>" +
+                    c +
+                    "</th>" +
+                    "<th id='d_corte' class='font-weight-normal'>" +
+                    d +
+                    "</th>" +
+                    "<th id='e_corte' class='font-weight-normal'>" +
+                    e +
+                    "</th>" +
+                    "<th id='f_corte' class='font-weight-normal'>" +
+                    f +
+                    "</th>" +
+                    "<th id='g_corte' class='font-weight-normal'>" +
+                    g +
+                    "</th>" +
+                    "<th id='h_corte' class='font-weight-normal'>" +
+                    h +
+                    "</th>" +
+                    "<th id='i_corte' class='font-weight-normal'>" +
+                    i +
+                    "</th>" +
+                    "<th id='j_corte' class='font-weight-normal'>" +
+                    j +
+                    "</th>" +
                     "</tr>";
                 cont++;
                 $("#orden_pedido").append(fila);
@@ -737,18 +913,42 @@ $(document).ready(function() {
             if (val == 1) {
                 cantidad = Number(a + b + c + d + e + f + g + h);
                 var fila =
-                    '<tr id="fila'+cont+'">'+
-                    "<th id='a_corte' class='font-weight-normal'>"+producto+"</th>"+
-                    "<th id='a_corte' class='font-weight-normal'>"+precio+"</th>"+
-                    "<th id='a_corte' class='font-weight-normal'>"+cantidad+"</th>"+
-                    "<th id='a_corte' class='font-weight-normal'>"+a+"</th>"+
-                    "<th id='b_corte' class='font-weight-normal'>"+b+"</th>"+
-                    "<th id='c_corte' class='font-weight-normal'>"+c+"</th>"+
-                    "<th id='d_corte' class='font-weight-normal'>"+d+"</th>"+
-                    "<th id='e_corte' class='font-weight-normal'>"+e+"</th>"+
-                    "<th id='f_corte' class='font-weight-normal'>"+f+"</th>"+
-                    "<th id='g_corte' class='font-weight-normal'>"+g+"</th>"+
-                    "<th id='h_corte' class='font-weight-normal'>"+h+"</th>"+
+                    '<tr id="fila' +
+                    cont +
+                    '">' +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    producto +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    precio +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    cantidad +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    a +
+                    "</th>" +
+                    "<th id='b_corte' class='font-weight-normal'>" +
+                    b +
+                    "</th>" +
+                    "<th id='c_corte' class='font-weight-normal'>" +
+                    c +
+                    "</th>" +
+                    "<th id='d_corte' class='font-weight-normal'>" +
+                    d +
+                    "</th>" +
+                    "<th id='e_corte' class='font-weight-normal'>" +
+                    e +
+                    "</th>" +
+                    "<th id='f_corte' class='font-weight-normal'>" +
+                    f +
+                    "</th>" +
+                    "<th id='g_corte' class='font-weight-normal'>" +
+                    g +
+                    "</th>" +
+                    "<th id='h_corte' class='font-weight-normal'>" +
+                    h +
+                    "</th>" +
                     "</tr>";
                 cont++;
                 $("#orden_pedido").append(fila);
@@ -782,19 +982,43 @@ $(document).ready(function() {
             if (val == 1) {
                 cantidad = Number(a + b + c + d + e + f + g + h);
                 var fila =
-                '<tr id="fila'+cont+'">'+
-                "<th id='a_corte' class='font-weight-normal'>"+producto+"</th>"+
-                "<th id='a_corte' class='font-weight-normal'>"+precio+"</th>"+
-                "<th id='a_corte' class='font-weight-normal'>"+cantidad+"</th>"+
-                "<th id='a_corte' class='font-weight-normal'>"+a+"</th>"+
-                "<th id='b_corte' class='font-weight-normal'>"+b+"</th>"+
-                "<th id='c_corte' class='font-weight-normal'>"+c+"</th>"+
-                "<th id='d_corte' class='font-weight-normal'>"+d+"</th>"+
-                "<th id='e_corte' class='font-weight-normal'>"+e+"</th>"+
-                "<th id='f_corte' class='font-weight-normal'>"+f+"</th>"+
-                "<th id='g_corte' class='font-weight-normal'>"+g+"</th>"+
-                "<th id='h_corte' class='font-weight-normal'>"+h+"</th>"+
-                "</tr>";
+                    '<tr id="fila' +
+                    cont +
+                    '">' +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    producto +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    precio +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    cantidad +
+                    "</th>" +
+                    "<th id='a_corte' class='font-weight-normal'>" +
+                    a +
+                    "</th>" +
+                    "<th id='b_corte' class='font-weight-normal'>" +
+                    b +
+                    "</th>" +
+                    "<th id='c_corte' class='font-weight-normal'>" +
+                    c +
+                    "</th>" +
+                    "<th id='d_corte' class='font-weight-normal'>" +
+                    d +
+                    "</th>" +
+                    "<th id='e_corte' class='font-weight-normal'>" +
+                    e +
+                    "</th>" +
+                    "<th id='f_corte' class='font-weight-normal'>" +
+                    f +
+                    "</th>" +
+                    "<th id='g_corte' class='font-weight-normal'>" +
+                    g +
+                    "</th>" +
+                    "<th id='h_corte' class='font-weight-normal'>" +
+                    h +
+                    "</th>" +
+                    "</tr>";
                 cont++;
                 $("#orden_pedido").append(fila);
             } else if (val == 0) {
@@ -927,6 +1151,7 @@ $(document).ready(function() {
         }
 
         var ordenDetalle = {
+            orden_id: $("#orden_pedido_id").val(),
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),
@@ -943,7 +1168,7 @@ $(document).ready(function() {
             producto_id: $("#productoSearch").val(),
             cantidad: $("#cantidad").val()
         };
-         
+
         $.ajax({
             url: "orden/detalle",
             type: "POST",
@@ -952,12 +1177,12 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    limpiar();
+                    // limpiar();
 
                     $("#cantidad").val("");
-                    $("#btn-agregar").attr('disabled', true);
-                    $("#btn-consultar").attr('disabled', false);
-                    $("#btn-agregarProceso").attr('disabled', false);
+                    $("#btn-agregar").attr("disabled", true);
+                    $("#btn-consultar").attr("disabled", false);
+                    $("#btn-agregarProceso").attr("disabled", false);
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -974,152 +1199,107 @@ $(document).ready(function() {
 
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
+        limpiar();
+        $("#registroForm").hide();
+        $("#listadoUsers").show();
+    });
 
-        let sucursal = $("#sucursalSearch").val();
+    $("#btn-agregarProceso").click(function(e) {
+        e.preventDefault();
 
-        if(sucursal){
-            sucursal = $("#sucursalSearch").val();
-        }else{
-            sucursal = 7;
-        }
+        $("#corte_proceso").val("Si");
 
-        var orden = {
+        var ordenProceso = {
             cliente_id: $("#clienteSearch").val(),
-            sucursal_id: sucursal,
+            sucursal_id: $("#sucursalSearch").val(),
             notas: $("#notas").val(),
-            fecha_entrega: $("#fecha_entrega").val(),
+            fecha_entrega: $("#fecha_proceso").val(),
             generado_internamente: $("input[name='r1']:checked").val(),
             detallada: $("input[name='r2']:checked").val(),
-            sec: $("#sec").val(),
-            no_orden_pedido: $("#no_orden_pedido").val()
+            precio: $("#precio").val(),
+            sec: $("#sec_proceso").val(),
+            no_orden_pedido: $("#no_orden_pedido_proceso").val()
         };
+        // console.log(JSON.stringify(ordenProceso));
 
         $.ajax({
-            url: "orden",
+            url: "orden/proceso",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(orden),
+            data: JSON.stringify(ordenProceso),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    $("#orden_pedido_id_proceso").val(datos.orden.id);
+                    let referencia = $("#productoSearch option:selected").text();
+                    let producto = referencia.substring(0, 9);
+                    let cantidad_wr = $("#cantidad_proceso").val();
+                    let precio = $("#precio").val();
 
-                    let corte_proceso = $("#corte_proceso").val();
-                    ordenPedidoCod();
-        
-                    if (corte_proceso == "Si") {
-                        var i = Number(datos.orden.sec);
-                        $("#sec_proceso").val(i);
-                        i = (i + 0.01).toFixed(2).split(".").join("");
-                        $no_orden_proceso = "OP-"+ i;
-                        $("#no_orden_pedido_proceso").val($no_orden_proceso);
-                        
-                        var ordenProceso = {
-                            cliente_id: $("#clienteSearch").val(),
-                            sucursal_id: $("#sucursalSearch").val(),
-                            notas: $("#notas").val(),
-                            fecha_entrega: $("#fecha_proceso").val(),
-                            generado_internamente: $("input[name='r1']:checked").val(),
-                            detallada: $("input[name='r2']:checked").val(),
-                            precio: $("#precio").val(),
-                            sec: $("#sec_proceso").val(),
-                            no_orden_pedido: $("#no_orden_pedido_proceso").val()
-                        };
+                    var fila =
+                        '<tr id="fila' +
+                        cont +
+                        '">' +
+                        "<th id='a_corte' class='font-weight-normal'>" +
+                        producto +
+                        "</th>" +
+                        "<th id='a_corte' class='font-weight-normal'>" +
+                        precio +
+                        "</th>" +
+                        "<th id='a_corte' class='font-weight-normal'>" +
+                        cantidad_wr +
+                        "</th>" +
+                        "<th id='a_corte' class='font-weight-normal'></th>" +
+                        "<th id='b_corte' class='font-weight-normal'></th>" +
+                        "<th id='c_corte' class='font-weight-normal'></th>" +
+                        "<th id='d_corte' class='font-weight-normal'></th>" +
+                        "<th id='e_corte' class='font-weight-normal'></th>" +
+                        "<th id='f_corte' class='font-weight-normal'></th>" +
+                        "<th id='g_corte' class='font-weight-normal'></th>" +
+                        "<th id='h_corte' class='font-weight-normal'></th>" +
+                        "<th id='i_corte' class='font-weight-normal'></th>" +
+                        "<th id='j_corte' class='font-weight-normal'></th>" +
+                        "</tr>";
+                    cont++;
+                    $("#orden_pedido").append(fila);
+                    $("#btn-agregarProceso").attr("disabled", true);
+                
+                   
 
-                        $.ajax({
-                            url: "orden/proceso",
-                            type: "POST",
-                            dataType: "json",
-                            data: JSON.stringify(ordenProceso),
-                            contentType: "application/json",
-                            success: function(datos) {
-                                if (datos.status == "success") {
-                                    ordenPedidoCod();
-                                    let referencia = $("#productoSearch option:selected").text();
-                                    let producto = referencia.substring(0, 9);
-                                    let cantidad_wr = $("#cantidad_proceso").val();
-                                    let precio = $("#precio").val();
+                    var ordenDetalleProceso = {
+                        orden_id: $("#orden_pedido_id_proceso").val(),
+                        precio: precio,
+                        producto_id: $("#productoSearch").val(),
+                        cantidad: cantidad_wr
+                    };
 
-                                    var ordenDetalleProceso = {
-                                        precio: precio,
-                                        producto_id: $("#productoSearch").val(),
-                                        cantidad: cantidad_wr
-                                    };
+                    $.ajax({
+                        url: "orden-proceso/detalle",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(ordenDetalleProceso),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                    
+                                $("#corte_proceso").val("");
+                                $("#btn-agregarProceso").attr("disabled",false);
 
-                                    $.ajax({
-                                        url: "orden-proceso/detalle",
-                                        type: "POST",
-                                        dataType: "json",
-                                        data: JSON.stringify(ordenDetalleProceso),
-                                        contentType: "application/json",
-                                        success: function(datos) {
-                                            if (datos.status == "success") {
-                                                $("#clienteSearch").val("").trigger("change");
-                                                $("#sucursalSearch").val("").trigger("change");
-                                                $("#productoSearch").val("").trigger("change");
-                                                $("#notas").val("");
-                                                $("#fecha_entrega").val("");
-                                                $("#cantidad").val("");
-                                                $("#precio").val("");
-                                                $("#corte_proceso").val("");
-                                                $("#orden_pedido").empty();
-                                                $("#registroForm").hide();
-                                                $("#ordenes").DataTable().ajax.reload();
-                                                $("#listadoUsers").show();
-                                                $("#btn-agregarProceso").attr('disabled', false);
-
-                                                $("#cantidad_proceso").val("");
-                                            } else {
-                                                bootbox.alert(
-                                                    "Ocurrio un error durante la creacion de la composicion"
-                                                );
-                                            }
-                                        },
-                                        error: function(datos) {
-                                            console.log(
-                                                datos.responseJSON.message
-                                            );
-
-                                            bootbox.alert(
-                                                "Error: " +
-                                                    datos.responseJSON.message
-                                            );
-                                        }
-                                    });
-                                } else {
-                                    bootbox.alert(
-                                        "Ocurrio un error durante la creacion de la composicion"
-                                    );
-                                }
-                            },
-                            error: function(datos) {
-                                console.log(datos.responseJSON.message);
-
+                                $("#cantidad_proceso").val("");
+                            } else {
                                 bootbox.alert(
-                                    "Error: " + datos.responseJSON.message
+                                    "Ocurrio un error durante la creacion de la composicion"
                                 );
                             }
-                        });
-                    }else{
-                        $("#clienteSearch").val("").trigger("change");
-                        $("#sucursalSearch").val("").trigger("change");
-                        $("#productoSearch").val("").trigger("change");
-                        $("#notas").val("");
-                        $("#fecha_entrega").val("");
-                        $("#cantidad").val("");
-                        $("#precio").val("");
-                        $("#corte_proceso").val("");
-                        $("#orden_pedido").empty();
-                        $("#registroForm").hide();
-                        $("#ordenes").DataTable().ajax.reload();
-                        $("#listadoUsers").show();
-                    }
+                        },
+                        error: function(datos) {
+                            console.log(datos.responseJSON.message);
 
-                   
-                    bootbox.alert(
-                        "Se creo una orden de pedido nueva codigo: <strong>" +
-                            datos.orden.no_orden_pedido +
-                            "</strong>"
-                    );
+                            bootbox.alert(
+                                "Error: " + datos.responseJSON.message
+                            );
+                        }
+                    });
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -1134,41 +1314,11 @@ $(document).ready(function() {
         });
     });
 
-    $("#btn-agregarProceso").click(function(e) {
-        e.preventDefault();
-
-        $("#corte_proceso").val("Si");
-
-        let referencia = $("#productoSearch option:selected").text();
-        let producto = referencia.substring(0, 9);
-        let cantidad_wr = $("#cantidad_proceso").val();
-        let precio = $("#precio").val();
-
-        var fila =
-            '<tr id="fila' +cont +'">' +
-            "<th id='a_corte' class='font-weight-normal'>" +producto +"</th>" +
-            "<th id='a_corte' class='font-weight-normal'>" +precio +"</th>" +
-            "<th id='a_corte' class='font-weight-normal'>" +cantidad_wr +"</th>" +
-            "<th id='a_corte' class='font-weight-normal'></th>" +
-            "<th id='b_corte' class='font-weight-normal'></th>" +
-            "<th id='c_corte' class='font-weight-normal'></th>" +
-            "<th id='d_corte' class='font-weight-normal'></th>" +
-            "<th id='e_corte' class='font-weight-normal'></th>" +
-            "<th id='f_corte' class='font-weight-normal'></th>" +
-            "<th id='g_corte' class='font-weight-normal'></th>" +
-            "<th id='h_corte' class='font-weight-normal'></th>" +
-            "<th id='i_corte' class='font-weight-normal'></th>" +
-            "<th id='j_corte' class='font-weight-normal'></th>" +
-            "</tr>";
-        cont++;
-        $("#orden_pedido").append(fila);
-        $("#btn-agregarProceso").attr('disabled', true);
-    });
-
     //funcion para listar en el Datatable
     function listar() {
         tabla = $("#ordenes").DataTable({
             serverSide: true,
+            processing: true,
             responsive: true,
             dom: "Bfrtip",
             buttons: [
@@ -1190,15 +1340,28 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
+                {
+                    data: "no_orden_pedido",
+                    name: "orden_pedido.no_orden_pedido"
+                },
                 { data: "name", name: "users.name" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
+                {
+                    data: "nombre_sucursal",
+                    name: "cliente_sucursales.nombre_sucursal"
+                },
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
-                { data: "total", name: "orden_pedido.total", searchable: false },
+                {
+                    data: "total",
+                    name: "orden_pedido.total",
+                    searchable: false
+                },
                 { data: "detallada", name: "orden_pedido.detallada" },
-                { data: "generado_internamente", name: "orden_pedido.generado_internamente"},
+                {
+                    data: "generado_internamente",
+                    name: "orden_pedido.generado_internamente"
+                },
                 { data: "notas", name: "orden_pedido.notas" }
             ],
             order: [[2, "desc"]],
@@ -1208,8 +1371,8 @@ $(document).ready(function() {
         });
     }
 
-      //funcion para listar en el Datatable
-      function listarRedistribucion() {
+    //funcion para listar en el Datatable
+    function listarRedistribucion() {
         tabla = $("#ordenes_red").DataTable({
             serverSide: true,
             responsive: true,
@@ -1232,13 +1395,35 @@ $(document).ready(function() {
             ajax: "api/ordenes_redistribucion",
             columns: [
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
-                { data: "referencia_producto", name: "producto.referencia_producto" },
-                { data: "client", name: "orden_pedido_detalle.nombre_cliente", searchable: false  },
-                { data: "sucursal", name: "orden_pedido_detalle.nombre_sucursal", searchable: false },
-                { data: "total", name: "orden_pedido_detalle.total", searchable: false,  },
+                {
+                    data: "no_orden_pedido",
+                    name: "orden_pedido.no_orden_pedido"
+                },
+                {
+                    data: "referencia_producto",
+                    name: "producto.referencia_producto"
+                },
+                {
+                    data: "client",
+                    name: "orden_pedido_detalle.nombre_cliente",
+                    searchable: false
+                },
+                {
+                    data: "sucursal",
+                    name: "orden_pedido_detalle.nombre_sucursal",
+                    searchable: false
+                },
+                {
+                    data: "total",
+                    name: "orden_pedido_detalle.total",
+                    searchable: false
+                },
                 { data: "precio", name: "orden_pedido_detalle.precio" },
-                { data: "status_orden_pedido", name: "orden_pedido_detalle.status_orden_pedido", searchable: false },
+                {
+                    data: "status_orden_pedido",
+                    name: "orden_pedido_detalle.status_orden_pedido",
+                    searchable: false
+                }
             ],
             order: [[1, "desc"]],
             rowGroup: {
@@ -1254,7 +1439,6 @@ $(document).ready(function() {
         $("#listadoUsers").hide();
         $("#corte_en_proceso").hide();
         $("#detallada").hide();
-
     });
     $("#btnCancelar").click(function(e) {
         $("#btnCancelar").hide();

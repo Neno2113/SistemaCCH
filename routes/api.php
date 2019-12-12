@@ -58,6 +58,8 @@ Route::get('ordenes', 'OrdenPedidoController@ordenes');
 
 Route::get('ordenes_aprobacion', 'OrdenPedidoController@ordenesAprobacion');
 
+Route::get('ordenes_proceso', 'OrdenPedidoController@ordenesProceso');
+
 Route::get('ordenes_aprobacion_empaque', 'OrdenEmpaqueController@ordenesAprobacion');
 
 Route::get('ordenes_empaque', 'OrdenEmpaqueController@ordenesAprobacionImpresion');

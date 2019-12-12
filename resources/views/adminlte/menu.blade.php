@@ -207,6 +207,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Ordenes proceso</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Aprobacion y redistibucion</p>

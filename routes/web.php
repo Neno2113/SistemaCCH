@@ -93,6 +93,10 @@ Route::get('/orden_pedido', function () {
     return view('sistema.ordenPedido.ordenPedido');
 });
 
+Route::get('/ordenes_proceso', function () {
+    return view('sistema.ordenPedido.ordenProceso');
+});
+
 Route::get('/orden_aprobacion', function () {
     return view('sistema.ordenPedido.ordenAprobacion');
 });

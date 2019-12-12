@@ -200,7 +200,7 @@
         table .unit_talla {
             background: #DDDDDD;
             text-align: center;
-            font-size: 8px;
+            font-size: 11px;
         }
 
         table .qty {}
@@ -364,7 +364,9 @@
             </div>
             <div id="client-orden">
                 <div class="to">ORDEN PEDIDO:</div>
-                <h2 class="name">{{$orden_pedido->no_orden_pedido}}</h2>
+                @foreach ($ordenes_pedido as $orden)
+                <h2 class="name">{{$orden->no_orden_pedido}}</h2> 
+                @endforeach
                 <div class="date">Fecha: {{$orden_pedido->fecha}} </div>
                 <div class="to">TERMINOS DE PAGO:</div>
                 <div class="address">{{$orden_pedido->cliente->condiciones_credito}}</div>
@@ -540,8 +542,7 @@
                         <th class="no">REFERENCIA</th>
                         <th class="unit">SKU</th>
                         <th class="desc">DESCRIPCION</th>
-                        <th class="unit">PRECIO</th>
-                        <th class="total">TOTAL</th>
+                     
                     </tr>
                 </thead>
                 <tbody>
@@ -566,23 +567,14 @@
                             <li>{{$producto->descripcion}}</li>
                             @endforeach
                         </td>
-                        <td class="unit">
-                            @foreach ($orden_facturacion_detalle as $precio)
-                            <li>{{$precio->precio}}</li>
-                            @endforeach
-                        </td>
-                        <td class="total">
-                            @foreach ($detalles_totales as $total)
-                            <li>{{$total}}</li>
-                            @endforeach
-                        </td>
+                    
                     </tr>
                 </tbody>
             </table>
             <table border="0" cellspacing="0" cellpadding="0">
                 <thead>
-                    <tr>
-                        <th class="desc">Referencia</th>
+                    <tr style="font-size:5px;">
+                        <th class="desc">Ref</th>
                         <th class="desc">A</th>
                         <th class="desc">B</th>
                         <th class="desc">C</th>

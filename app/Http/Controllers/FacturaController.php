@@ -328,6 +328,7 @@ class FacturaController extends Controller
 
             $longitudOrden = count($ordenes_pedido);
 
+            //actualizar status de la orden pedido
             for ($i = 0; $i < $longitudOrden; $i++) {
                 $ordenes_pedido[$i]->status_orden_pedido = 'Despachado';
                 $ordenes_pedido[$i]->save();
@@ -346,7 +347,8 @@ class FacturaController extends Controller
                 'impuesto',
                 'descuento',
                 'total_final',
-                'bultos'
+                'bultos',
+                'ordenes_pedido'
             ));
             return $pdf->download('facturaResumida.pdf');
         }
