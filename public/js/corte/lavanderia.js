@@ -256,6 +256,7 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#lavanderias").DataTable({
             serverSide: true,
+            autoWidth: false,
             responsive: true,
             dom: 'Bfrtip',
             buttons: [
@@ -383,9 +384,12 @@ $(document).ready(function() {
     });
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);
-       
-
     });
+
+    window.onresize = function() {
+        tabla.columns.adjust().responsive.recalc();
+    } 
+  
   
 
     init();

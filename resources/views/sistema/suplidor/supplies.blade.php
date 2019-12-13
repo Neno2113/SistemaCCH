@@ -126,48 +126,54 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="suppliers" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>RNC</th>
-                <th>Contacto</th>
-                <th>Tel 1</th>
-                <th>Tel 2</th>
-                <th>Celular</th>
-                <th>Email</th>
-                <th>Tipo</th>
-                <th>Terminos de pago</th>
-                <th>Direccion</th>
-                <th>Nota</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>RNC</th>
-                <th>Contacto</th>
-                <th>Tel 1</th>
-                <th>Tel 2</th>
-                <th>Celular</th>
-                <th>Email</th>
-                <th>Tipo</th>
-                <th>Terminos de pago</th>
-                <th>Direccion</th>
-                <th>Nota</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de suplidores</h4>
+    </div>
+    <div class="card-body">
+        <table id="suppliers" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>RNC</th>
+                    <th>Contacto</th>
+                    <th>Tel 1</th>
+                    <th>Tel 2</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Tipo</th>
+                    <th>Terminos de pago</th>
+                    <th>Direccion</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>RNC</th>
+                    <th>Contacto</th>
+                    <th>Tel 1</th>
+                    <th>Tel 2</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Tipo</th>
+                    <th>Terminos de pago</th>
+                    <th>Direccion</th>
+                    <th>Nota</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 
 

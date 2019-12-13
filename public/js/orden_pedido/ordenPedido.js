@@ -24,6 +24,7 @@ $(document).ready(function() {
         // $("#btn-agregarProceso").attr("disabled", true);
         $("#total").val("");
         listarRedistribucion();
+        listarOrdenesProceso();
     }
 
     var data;
@@ -67,7 +68,7 @@ $(document).ready(function() {
             $("#detallada").hide();
             $("#redistribucion").show();
             $("#detalles").hide();
-            // $("#corte_en_proceso").hide();
+            $("#corte_en_proceso").hide();
         }
     }
 
@@ -1318,6 +1319,7 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#ordenes").DataTable({
             serverSide: true,
+            autoWidth: false,
             processing: true,
             responsive: true,
             dom: "Bfrtip",
@@ -1373,7 +1375,7 @@ $(document).ready(function() {
 
     //funcion para listar en el Datatable
     function listarRedistribucion() {
-        tabla = $("#ordenes_red").DataTable({
+        tabla_red = $("#ordenes_red").DataTable({
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",
@@ -1432,6 +1434,47 @@ $(document).ready(function() {
         });
     }
 
+      //funcion para listar en el Datatable
+      function listarOrdenesProceso() {
+        tabla_proceso = $("#ordenes_proceso").DataTable({
+            serverSide: true,
+            processing: true,
+            responsive: true,
+            dom: "Bfrtip",
+            buttons: [
+                "pageLength",
+                "copyHtml5",
+                {
+                    extend: "excelHtml5",
+                    autoFilter: true,
+                    sheetName: "Exported data"
+                },
+                "csvHtml5",
+                {
+                    extend: "pdfHtml5",
+                    orientation: "landscape",
+                    pageSize: "LEGAL"
+                }
+            ],
+            ajax: "api/ordenes_proceso",
+            columns: [
+                { data: "Expandir", orderable: false, searchable: false },
+                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
+                { data: "nombre_cliente", name: "cliente.nombre_cliente" },
+                { data: "nombre_sucursal",name: "cliente_sucursales.nombre_sucursal"},
+                { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
+                { data: "total", name: "orden_pedido.total", searchable: false},
+                { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
+                { data: "generado_internamente", name: "orden_pedido.generado_internamente"},
+                { data: "notas", name: "orden_pedido.notas" }
+            ],
+            order: [[2, "desc"]],
+            rowGroup: {
+                dataSrc: "fecha_entrega"
+            }
+        });
+    }
+
     $("#btnAgregar").click(function(e) {
         $("#btnCancelar").show();
         $("#btnAgregar").hide();
@@ -1446,6 +1489,11 @@ $(document).ready(function() {
         $("#registroForm").hide();
         $("#listadoUsers").show();
     });
+
+    window.onresize = function() {
+        tabla.columns.adjust().responsive.recalc();
+    } 
+  
 
     init();
 });

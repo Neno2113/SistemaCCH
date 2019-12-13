@@ -482,8 +482,10 @@ $(document).ready(function() {
 
     //funcion para listar en el Datatable
     function listar() {
+        // tabla.responsive.recalc();
         tabla = $("#cortes").DataTable({
             serverSide: true,
+            autoWidth: false,
             responsive: true,
             dom: 'Bfrtip',
             buttons: [
@@ -680,6 +682,10 @@ $(document).ready(function() {
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });
+
+    window.onresize = function() {
+        tabla.columns.adjust().responsive.recalc();
+    } 
   
 
     init();

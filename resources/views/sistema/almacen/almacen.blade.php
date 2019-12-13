@@ -10,7 +10,8 @@
     <div class="col-md-6">
         <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
         <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
-        <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i> ir a producto terminado </a>
+        <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i>
+            ir a producto terminado </a>
     </div>
 
 </div>
@@ -185,33 +186,39 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="almacenes" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>Usuario</th>
-                <th>Num. Corte</th>
-                <th>Ref.</th>
-                <th>Total Corte</th>
-                <th>Total Alm.</th>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de cortes en almacen</h4>
+    </div>
+    <div class="card-body">
+        <table id="almacenes" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>Usuario</th>
+                    <th>Num. Corte</th>
+                    <th>Ref.</th>
+                    <th>Total Corte</th>
+                    <th>Total Alm.</th>
 
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>Usuario</th>
-                <th>Num. Corte</th>
-                <th>Ref.</th>
-                <th>Total Corte</th>
-                <th>Total Alm.</th>
-            </tr>
-        </tfoot>
-    </table>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>Usuario</th>
+                    <th>Num. Corte</th>
+                    <th>Ref.</th>
+                    <th>Total Corte</th>
+                    <th>Total Alm.</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 
 </div>
 

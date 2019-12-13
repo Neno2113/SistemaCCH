@@ -85,7 +85,11 @@
 		#invoice_proceso {
 			float: right;
 			text-align: right;
-			margin-right: 46%;
+			margin-right: 48%;
+		}
+
+		#invoice_proceso li {
+			list-style-type: none;
 		}
 
 		#invoice h1 {
@@ -95,6 +99,18 @@
 			font-weight: normal;
 			margin: 0 0 10px 0;
 		}
+		#invoice-fiscal {
+            float: right;
+            text-align: right;
+            margin-right: 48%;
+        }
+
+        #invoice-fiscal h1 {
+            color: #0087C3;
+            font-size: 1.6em;
+            line-height: 1em;
+            font-weight: bold;
+        }
 
 		#invoice_proceso h1 {
 			color: #0087C3;
@@ -396,7 +412,7 @@
 		Conduce generado desde SistemaCCH.
 	</footer>
 
-	@if ($corte_proceso == 'Si')
+	@if ($corte_proceso == false)
 	<header class="clearfix">
 		<div id="logo">
 			<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
@@ -420,11 +436,17 @@
 				<h2 class="name">{{$orden->sucursal->nombre_sucursal}}</h2>
 			</div>
 			<div id="invoice_proceso">
-				<h1>{{$ordenProceso->no_orden_pedido}}</h1>
-				<div class="date_proceso">Fecha pedido:{{$ordenProceso->fecha}}</div>
-				<div class="date_proceso">Fecha Entrega:{{$ordenProceso->fecha_entrega}}</div>
+				@foreach ($ordenProceso as $orden)
+				<li>{{$orden->no_orden_pedido}}</li>
+				<div class="date_proceso">Fecha Entrega:{{$orden->fecha_entrega}}</div>
+				@endforeach
 			</div>
 		</div>
+		<div id="invoice-fiscal">
+            <h1>PRODUCTOS PENDIENTES DE ENTREGA</h1>
+		</div>
+		<br><br><br>
+		<br>
 		<table border="0" cellspacing="0" cellpadding="0">
 			<thead>
 				<tr>
@@ -437,29 +459,30 @@
 			<tbody>
 				<tr>
 					<td class="no">
-						@foreach ($ordenProcesoDetalle as $producto)
+						@foreach ($ordenesProcesoDetalle as $producto)
 						<p>{{$producto->producto->referencia_producto}}</p>
 						@endforeach
 					</td>
 					<td class="desc">
-						{{$ordenProceso->fecha_entrega}}
+						@foreach ($ordenProceso as $fecha)
+						<p>{{$fecha->fecha_entrega}}</p>
+						@endforeach
 					</td>
 					<td class="unit">
-						@foreach ($ordenProcesoDetalle as $precio)
+						@foreach ($ordenesProcesoDetalle as $precio)
 						<p>{{$precio->precio}}</p>
 						@endforeach
 					</td>
 					<td class="qty">
-						@foreach ($ordenProcesoDetalle as $total_detalle)
+						@foreach ($ordenesProcesoDetalle as $total_detalle)
 						<p>{{$total_detalle->total}}</p>
-
 						@endforeach
 					</td>
 				
 				</tr>
 			</tbody>
 		</table>
-		<table border="0" cellspacing="0" cellpadding="0">
+		{{-- <table border="0" cellspacing="0" cellpadding="0">
 			<thead>
 				<tr>
 					<th class="desc">Referencia</th>
@@ -478,7 +501,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($ordenProcesoDetalle as $talla)
+				@foreach ($ordenesProcesoDetalle as $talla)
 				<tr>
 					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
 					<td class="unit_talla">{{$talla->a}}</td>
@@ -496,11 +519,11 @@
 				</tr>
 				@endforeach
 			</tbody>
-		</table>
+		</table> --}}
 		<div id="thanks">Gracias!</div>
 		<div id="notices">
 			<div>NOTICE:</div>
-			<div class="notice">{{$ordenProceso->notas}}</div>
+			<div class="notice"></div>
 		</div>
 		<div class="firmas">
 			<div class="firma_enviado">Enviado por:</div>

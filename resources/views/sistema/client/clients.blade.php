@@ -217,54 +217,60 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="clients" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Cliente</th>
-                <th>RNC</th>
-                <th>Contacto</th>
-                <th>Tel 1</th>
-                <th>Tel 2</th>
-                <th>Tel 3</th>
-                <th>Celular </th>
-                <th>Email</th>
-                <th>Condiciones de Credito</th>
-                <th>Direccion </th>
-                <th>Notas</th>
-                <th>Autorizacion de Credito requerida</th>
-                <th>Acepta redistribucion de tallas</th>
-                <th>Acepta factura desglosada por tallas</th>
-                <th>Acepta segundas</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Cliente</th>
-                <th>RNC</th>
-                <th>Contacto</th>
-                <th>Tel 1</th>
-                <th>Tel 2</th>
-                <th>Tel 3</th>
-                <th>Celular </th>
-                <th>Email</th>
-                <th>Condiciones de Credito</th>
-                <th>Direccion</th>
-                <th>Notas</th>
-                <th>Autorizacion de Credito requerida</th>
-                <th>Acepta redistribucion de tallas</th>
-                <th>Acepta factura desglosada por tallas</th>
-                <th>Acepta segundas</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de clientes</h4>
+    </div>
+    <div class="card-body">
+        <table id="clients" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Cliente</th>
+                    <th>RNC</th>
+                    <th>Contacto</th>
+                    <th>Tel 1</th>
+                    <th>Tel 2</th>
+                    <th>Tel 3</th>
+                    <th>Celular </th>
+                    <th>Email</th>
+                    <th>Condiciones de Credito</th>
+                    <th>Direccion </th>
+                    <th>Notas</th>
+                    <th>Autorizacion de Credito requerida</th>
+                    <th>Acepta redistribucion de tallas</th>
+                    <th>Acepta factura desglosada por tallas</th>
+                    <th>Acepta segundas</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Cliente</th>
+                    <th>RNC</th>
+                    <th>Contacto</th>
+                    <th>Tel 1</th>
+                    <th>Tel 2</th>
+                    <th>Tel 3</th>
+                    <th>Celular </th>
+                    <th>Email</th>
+                    <th>Condiciones de Credito</th>
+                    <th>Direccion</th>
+                    <th>Notas</th>
+                    <th>Autorizacion de Credito requerida</th>
+                    <th>Acepta redistribucion de tallas</th>
+                    <th>Acepta factura desglosada por tallas</th>
+                    <th>Acepta segundas</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 {{-- Modal Sucursales --}}
 <!-- Modal -->

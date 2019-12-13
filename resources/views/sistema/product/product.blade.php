@@ -144,34 +144,40 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="products" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Usuario </th>
-                <th>Referencia producto</th>
-                <th>Precio lista</th>
-                <th>Precio venta publico</th>
-                <th>Descripcion</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Usuario</th>
-                <th>Referencia producto</th>
-                <th>Precio lista</th>
-                <th>Precio venta publico</th>
-                <th>Descripcion</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de productos</h4>
+    </div>
+    <div class="card-body">
+        <table id="products" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Usuario </th>
+                    <th>Referencia producto</th>
+                    <th>Precio lista</th>
+                    <th>Precio venta publico</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Usuario</th>
+                    <th>Referencia producto</th>
+                    <th>Precio lista</th>
+                    <th>Precio venta publico</th>
+                    <th>Descripcion</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 </div>
 <!-- Modal -->

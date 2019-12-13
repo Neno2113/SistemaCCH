@@ -141,42 +141,48 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="lavanderias" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>Num. Envio</th>
-                <th>Num. Corte</th>
-                <th>Ref.</th>
-                <th>Fecha Env.</th>
-                <th>Enviado</th>
-                <th>T. Enviado</th>
-                <th>T. Cortado</th>
-                <th>Lav.</th>
-                <th>Estandar </th>
-                <th>Receta</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>Num. Envio</th>
-                <th>Num. Corte</th>
-                <th>Ref.</th>
-                <th>Fecha Env.</th>
-                <th>Enviado</th>
-                <th>T. Enviado</th>
-                <th>T. Cortado</th>
-                <th>Lav.</th>
-                <th>Estandar </th>
-                <th>Receta</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Cortes en lavanderia:</h4>
+    </div>
+    <div class="card-body">
+        <table id="lavanderias" class="table table-striped table-bordered datatables" style="width: 100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>Num. Envio</th>
+                    <th>Num. Corte</th>
+                    <th>Ref.</th>
+                    <th>Fecha Env.</th>
+                    <th>Enviado</th>
+                    <th>T. Enviado</th>
+                    <th>T. Cortado</th>
+                    <th>Lav.</th>
+                    <th>Estandar </th>
+                    <th>Receta</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>Num. Envio</th>
+                    <th>Num. Corte</th>
+                    <th>Ref.</th>
+                    <th>Fecha Env.</th>
+                    <th>Enviado</th>
+                    <th>T. Enviado</th>
+                    <th>T. Cortado</th>
+                    <th>Lav.</th>
+                    <th>Estandar </th>
+                    <th>Receta</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 
 </div>
 

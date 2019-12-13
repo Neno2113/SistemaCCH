@@ -174,6 +174,7 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#products").DataTable({
             serverSide: true,
+            autoWidth: false,
             responsive: true,
             ajax: "api/products",
             dom: 'Bfrtip',
@@ -771,6 +772,10 @@ $(document).ready(function() {
             }
         });
     });
+
+    window.onresize = function() {
+        tabla.columns.adjust().responsive.recalc();
+    } 
   
     init();
 });

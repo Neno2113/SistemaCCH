@@ -108,55 +108,61 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="cloths" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Referencia</th>
-                <th>Suplidor</th>
-                <th>Precio USD/Yarda</th>
-                <th>Tela</th>
-                <th>Peso</th>
-                <th>Ancho cortable</th>
-                <th>Elasticidad en trama</th>
-                <th>Elasticidad en urdimbre</th>
-                <th>Encogimiento en trama</th>
-                <th>Encogimiento en urdimbre</th>
-                <th>Composicion</th>
-                <th>Composicion 2</th>
-                <th>Composicion 3</th>
-                <th>Composicion 4</th>
-                <th>Composicion 5</th>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de telas</h4>
+    </div>
+    <div class="card-body">
+        <table id="cloths" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Referencia</th>
+                    <th>Suplidor</th>
+                    <th>Precio USD/Yarda</th>
+                    <th>Tela</th>
+                    <th>Peso</th>
+                    <th>Ancho cortable</th>
+                    <th>Elasticidad en trama</th>
+                    <th>Elasticidad en urdimbre</th>
+                    <th>Encogimiento en trama</th>
+                    <th>Encogimiento en urdimbre</th>
+                    <th>Composicion</th>
+                    <th>Composicion 2</th>
+                    <th>Composicion 3</th>
+                    <th>Composicion 4</th>
+                    <th>Composicion 5</th>
 
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Referencia</th>
-                <th>Suplidor</th>
-                <th>Precio USD/Yarda</th>
-                <th>Tela</th>
-                <th>Peso</th>
-                <th>Ancho cortable</th>
-                <th>Elasticidad en trama</th>
-                <th>Elasticidad en urdimbre</th>
-                <th>Encogimiento en trama</th>
-                <th>Encogimiento en urdimbre</th>
-                <th>Composicion</th>
-                <th>Composicion 2</th>
-                <th>Composicion 3</th>
-                <th>Composicion 4</th>
-                <th>Composicion 5</th>
-            </tr>
-        </tfoot>
-    </table>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Referencia</th>
+                    <th>Suplidor</th>
+                    <th>Precio USD/Yarda</th>
+                    <th>Tela</th>
+                    <th>Peso</th>
+                    <th>Ancho cortable</th>
+                    <th>Elasticidad en trama</th>
+                    <th>Elasticidad en urdimbre</th>
+                    <th>Encogimiento en trama</th>
+                    <th>Encogimiento en urdimbre</th>
+                    <th>Composicion</th>
+                    <th>Composicion 2</th>
+                    <th>Composicion 3</th>
+                    <th>Composicion 4</th>
+                    <th>Composicion 5</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 
 </div>
 

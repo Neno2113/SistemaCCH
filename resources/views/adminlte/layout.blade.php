@@ -21,8 +21,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   {{-- Datatables --}}
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
-  {{-- <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-  --}}
+  {{-- <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}"> --}}
+ 
   <link rel="stylesheet" href="{{asset('adminlte/plugins/Buttons/css/buttons.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-rowgroup/css/rowGroup.bootstrap4.min.css')}}">

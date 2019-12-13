@@ -36,8 +36,8 @@
                         </div>
                         <div class="col-md-6">
                             <p for="">Descripcion:</p>
-                            <textarea name="descripcion" id="descripcion" cols="30" rows="1" class="form-control mt-2 font-weight-bold"
-                                readonly></textarea>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="1"
+                                class="form-control mt-2 font-weight-bold" readonly></textarea>
                         </div>
                     </div>
 
@@ -46,30 +46,36 @@
                     <div class="row mt-2 ">
                         <div class="col-md-4">
                             <p for="">Ubicacion:</p>
-                            <input type="text" name="ubicacion" id="ubicacion" class="form-control text-center font-weight-bold" readonly>
+                            <input type="text" name="ubicacion" id="ubicacion"
+                                class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
                             <p for="">Tono:</p>
-                           <input type="text" name="tono" id="tono" class="form-control text-center font-weight-bold" readonly>
+                            <input type="text" name="tono" id="tono" class="form-control text-center font-weight-bold"
+                                readonly>
                         </div>
                         <div class="col-md-4">
                             <p for="">Intensidad proceso seco:</p>
-                           <input type="text" name="intensidad_proceso_seco" id="intensidad_proceso_seco" class="form-control text-center font-weight-bold" readonly>
+                            <input type="text" name="intensidad_proceso_seco" id="intensidad_proceso_seco"
+                                class="form-control text-center font-weight-bold" readonly>
                         </div>
                     </div>
                     <br>
                     <div class="row mt-2">
                         <div class="col-md-4">
-                            <p for="">Atributo No.1:</p> 
-                           <input type="text" name="atributo_no_1" id="atributo_no_1" class="form-control text-center font-weight-bold" readonly>
+                            <p for="">Atributo No.1:</p>
+                            <input type="text" name="atributo_no_1" id="atributo_no_1"
+                                class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
                             <p for="">Atributo No.2:</p>
-                           <input type="text" name="atributo_no_2" id="atributo_no_2" class="form-control text-center font-weight-bold" readonly>
+                            <input type="text" name="atributo_no_2" id="atributo_no_2"
+                                class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
                             <p for="">Atributo No.3:</p>
-                            <input type="text" name="atributo_no_3" id="atributo_no_3" class="form-control text-center font-weight-bold" readonly>
+                            <input type="text" name="atributo_no_3" id="atributo_no_3"
+                                class="form-control text-center font-weight-bold" readonly>
                         </div>
                     </div>
                     <br>
@@ -77,7 +83,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p for="">Precio lista:</p>
-                            <input type="text" name="precio_lista" id="precio_lista" class="form-control text-center font-weight-bold" readonly>
+                            <input type="text" name="precio_lista" id="precio_lista"
+                                class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-6">
                             <p for="">Precio venta:</p>
@@ -91,31 +98,27 @@
                 <h4 class="text-center">Imagenes</h4>
                 <div class="row justify-content-center galeria" id="">
                     <div class="col-sm-2 ">
-                        <a href='' id="imagen_frente" data-toggle="lightbox"
-                            data-title="Foto Frontal" data-gallery="producto-gallery" data-max-width="600">
-                            <img src="" id="imagen_frente_img" class="img-fluid mb-2 prod_img"
-                                alt="Foto frontal " />
+                        <a href='' id="imagen_frente" data-toggle="lightbox" data-title="Foto Frontal"
+                            data-gallery="producto-gallery" data-max-width="600">
+                            <img src="" id="imagen_frente_img" class="img-fluid mb-2 prod_img" alt="Foto frontal " />
                         </a>
                     </div>
                     <div class="col-sm-2 ">
-                        <a href="" id="imagen_trasera" data-toggle="lightbox"
-                            data-title="Foto Trasera" data-gallery="producto-gallery"  data-max-width="600">
-                            <img src="" id="imagen_trasera_img" class="img-fluid mb-2 prod_img"
-                                alt="Foto trasera" />
+                        <a href="" id="imagen_trasera" data-toggle="lightbox" data-title="Foto Trasera"
+                            data-gallery="producto-gallery" data-max-width="600">
+                            <img src="" id="imagen_trasera_img" class="img-fluid mb-2 prod_img" alt="Foto trasera" />
                         </a>
                     </div>
                     <div class="col-sm-2 ">
-                        <a href="" id="imagen_perfil" data-toggle="lightbox"
-                            data-title="Foto Perfil" data-gallery="producto-gallery">
-                            <img src="" id="imagen_perfil_img" class="img-fluid mb-2 prod_img"
-                                alt="Foto perfil" />
+                        <a href="" id="imagen_perfil" data-toggle="lightbox" data-title="Foto Perfil"
+                            data-gallery="producto-gallery">
+                            <img src="" id="imagen_perfil_img" class="img-fluid mb-2 prod_img" alt="Foto perfil" />
                         </a>
                     </div>
                     <div class="col-sm-2 ">
-                        <a href="" id="imagen_bolsillo" data-toggle="lightbox"
-                            data-title="Foto Bolsillo" data-gallery="producto-gallery">
-                            <img src="" id="imagen_bolsillo_img" class="img-fluid mb-2 prod_img"
-                                alt="Foto bolsillo" />
+                        <a href="" id="imagen_bolsillo" data-toggle="lightbox" data-title="Foto Bolsillo"
+                            data-gallery="producto-gallery">
+                            <img src="" id="imagen_bolsillo_img" class="img-fluid mb-2 prod_img" alt="Foto bolsillo" />
                         </a>
                     </div>
                 </div>
@@ -129,32 +132,38 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="producto-terminado" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Ver</th>
-                <th>Referencia producto</th>
-                <th>Tono</th>
-                <th>Precio lista</th>
-                <th>Precio venta publico</th>
-                <th>Descripcion</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Ver</th>
-                <th>Referencia producto</th>
-                <th>Tono</th>
-                <th>Precio lista</th>
-                <th>Precio venta publico</th>
-                <th>Descripcion</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de cortes</h4>
+    </div>
+    <div class="card-body">
+        <table id="producto-terminado" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ver</th>
+                    <th>Referencia producto</th>
+                    <th>Tono</th>
+                    <th>Precio lista</th>
+                    <th>Precio venta publico</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Ver</th>
+                    <th>Referencia producto</th>
+                    <th>Tono</th>
+                    <th>Precio lista</th>
+                    <th>Precio venta publico</th>
+                    <th>Descripcion</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 </div>
 

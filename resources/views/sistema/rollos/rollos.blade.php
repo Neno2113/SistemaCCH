@@ -80,42 +80,48 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="rollos" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Suplidor</th>
-                <th>Tela</th>
-                <th>Codigo</th>
-                <th>Tono</th>
-                <th>Fecha compra</th>
-                <th>Factura compra</th>
-                <th>Corte asignado</th>
-                <th>Longitud en yardas</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Suplidor</th>
-                <th>Tela</th>
-                <th>Codigo</th>
-                <th>Tono</th>
-                <th>Fecha compra</th>
-                <th>Factura compra</th>
-                <th>Corte asignado</th>
-                <th>Longitud en yardas</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de rollos</h4>
+    </div>
+    <div class="card-body">
+        <table id="rollos" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>ID</th>
+                    <th>Suplidor</th>
+                    <th>Tela</th>
+                    <th>Codigo</th>
+                    <th>Tono</th>
+                    <th>Fecha compra</th>
+                    <th>Factura compra</th>
+                    <th>Corte asignado</th>
+                    <th>Longitud en yardas</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>ID</th>
+                    <th>Suplidor</th>
+                    <th>Tela</th>
+                    <th>Codigo</th>
+                    <th>Tono</th>
+                    <th>Fecha compra</th>
+                    <th>Factura compra</th>
+                    <th>Corte asignado</th>
+                    <th>Longitud en yardas</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 
 </div>
 

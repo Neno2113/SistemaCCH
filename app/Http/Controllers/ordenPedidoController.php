@@ -265,7 +265,7 @@ class ordenPedidoController extends Controller
             $generado_internamente = $request->input('generado_internamente');
             $detallada = $request->input('detallada');
             $no_orden_pedido = $request->input('no_orden_pedido');
-            
+
 
             $sec = $request->input('sec');
 
@@ -281,7 +281,7 @@ class ordenPedidoController extends Controller
             $orden->no_orden_pedido = $no_orden_pedido;
             $orden->corte_en_proceso = 'Si';
             $orden->orden_proceso_impresa = 'No';
-            $orden->status_orden_pedido = 'Stanby';
+            $orden->status_orden_pedido = 'Corte Proceso';
 
             $orden->sec = $sec + 0.01;
             $orden->fecha = date('Y/m/d h:i:s');
@@ -596,24 +596,50 @@ class ordenPedidoController extends Controller
         $total_simple = $cantidad * $total_sin_detalle;
         //fin orden normal
 
-        //orden con corte que esta en proceso
+        // //orden con corte que esta en proceso
+        // $ordenProceso = ordenPedido::where('corte_en_proceso', 'Si')
+        //     ->where('orden_proceso_impresa', 'No')->get()->first();
+        // if (!empty($ordenProceso)) {
+        //     $corte_proceso = $ordenProceso->corte_en_proceso;
+        //     $orden_proceso_id = $ordenProceso->id;
+
+        //     $ordenProcesoDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_proceso_id)->get()->load('producto');
+
+        //     $ordenProceso->orden_proceso_impresa = 'Si';
+        //     $ordenProceso->save();
+        // } else {
+        //     $corte_proceso = 'No';
+        // }
+
+        // if (empty($ordenProcesoDetalle)) {
+        //     $ordenProcesoDetalle = "No";
+        // }
+
+        // orden con corte que esta en proceso
         $ordenProceso = ordenPedido::where('corte_en_proceso', 'Si')
-            ->where('orden_proceso_impresa', 'No')->get()->first();
-        if (!empty($ordenProceso)) {
-            $corte_proceso = $ordenProceso->corte_en_proceso;
-            $orden_proceso_id = $ordenProceso->id;
+            ->where('orden_proceso_impresa', 'No')
+            ->orderBy('fecha_entrega', 'asc')
+            ->get();
 
-            $ordenProcesoDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_proceso_id)->get()->load('producto');
+        //Validar si existe algunas orden en proceso para imprimir
+        $corte_proceso = (!$ordenProceso->count());
 
-            $ordenProceso->orden_proceso_impresa = 'Si';
-            $ordenProceso->save();
-        } else {
-            $corte_proceso = 'No';
+        $longitudOrden = count($ordenProceso);
+
+        for ($i = 0; $i < $longitudOrden; $i++) {
+            $ordenProceso[$i]->orden_proceso_impresa = 'Si';
+            $ordenProceso[$i]->save();
         }
 
-        if (empty($ordenProcesoDetalle)) {
-            $ordenProcesoDetalle = "No";
+        $ordenesProcesoId = array();
+
+        $longitudOrdenesProceso = count($ordenProceso);
+
+        for ($i = 0; $i < $longitudOrdenesProceso; $i++) {
+            array_push($ordenesProcesoId, $ordenProceso[$i]['id']);
         }
+
+        $ordenesProcesoDetalle = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenesProcesoId)->get()->load('producto');
 
         $pdf = \PDF::loadView('sistema.ordenPedido.conduceOrden', \compact(
             'orden',
@@ -629,7 +655,7 @@ class ordenPedidoController extends Controller
             'total_simple',
             'ordenProceso',
             'corte_proceso',
-            'ordenProcesoDetalle'
+            'ordenesProcesoDetalle'
         ))->setPaper('a4');
         return $pdf->download('conduceOrden.pdf');
     }
@@ -688,12 +714,13 @@ class ordenPedidoController extends Controller
         }
 
 
-
         // orden con corte que esta en proceso
         $ordenProceso = ordenPedido::where('corte_en_proceso', 'Si')
             ->where('orden_proceso_impresa', 'No')
-            ->orderBy('fecha_entrega', 'asc')
+            ->orderBy('fecha_entrega')
             ->get();
+
+        $corte_proceso = (!$ordenProceso->count());
 
         $longitudOrden = count($ordenProceso);
 
@@ -710,7 +737,7 @@ class ordenPedidoController extends Controller
             array_push($ordenesProcesoId, $ordenProceso[$i]['id']);
         }
 
-        $ordenesProcesoDetalle = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenesProcesoId)->get();
+        $ordenesProcesoDetalle = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenesProcesoId)->get()->load('producto');
 
         // $ordenProcesoDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_proceso_id)->get()->load('producto');
 
@@ -726,7 +753,8 @@ class ordenPedidoController extends Controller
             'subtotal' => array_sum(str_replace(',', '', $detalles_totales)),
             'cantidad' => getType($cantidad),
             'ordenProceso' => $ordenProceso,
-            'ordenesProcesoDetalle' => $ordenesProcesoDetalle
+            'ordenesProcesoDetalle' => $ordenesProcesoDetalle,
+            'corte_proceso' => $corte_proceso
             // 'ordenProcesoDetalle' => $ordenProcesoDetalle
         ];
 
@@ -933,59 +961,35 @@ class ordenPedidoController extends Controller
 
     public function ordenesProceso()
     {
-        $ordenes = DB::table('orden_pedido_detalle')->join('producto', 'orden_pedido_detalle.producto_id', 'producto.id')
-            ->join('orden_pedido', 'orden_pedido_detalle.orden_pedido_id', 'orden_pedido.id')
+        $ordenes = DB::table('orden_pedido')
+            ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
+            ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
             ->select([
-                'orden_pedido_detalle.id', 'orden_pedido_detalle.orden_redistribuida',
-                'orden_pedido_detalle.total', 'orden_pedido_detalle.total',
-                'producto.referencia_producto', 'orden_pedido.no_orden_pedido', 'orden_pedido.detallada',
-                'orden_pedido_detalle.precio',  'orden_pedido_detalle.orden_pedido_id', 'orden_pedido.status_orden_pedido'
-            ])->where('corte_en_proceso', 'Si');
+                'orden_pedido.id', 'cliente.nombre_cliente',
+                'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega',
+                'orden_pedido.notas', 'orden_pedido.generado_internamente',
+                'cliente_sucursales.nombre_sucursal', 'orden_pedido.corte_en_proceso',
+                'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
+            ])->where('corte_en_proceso', 'LIKE', 'Si');
+
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function () {
                 return "";
             })
-            // ->addColumn('Opciones', function ($orden) {
-            //     $id = $orden->orden_pedido_id;
+            ->addColumn('total', function ($orden) {
+                $ordenDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden->id)->get();
 
-            //     $orden_pedido = ordenPedido::find($id);
-
-            //     $client_id = $orden_pedido->cliente_id;
-            //     $cliente = Client::find($client_id);
-
-            //     $redistribucion_tallas = $cliente->redistribucion_tallas;
-
-            //     if ($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0) {
-            //         return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
-            //     } else if ($redistribucion_tallas == '0'  && $orden->orden_redistribuida == 0) {
-            //         return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
-            //     } else if ($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0) {
-            //         return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>' .
-            //             '<span class="badge badge-success ml-2">Redistribuido</span>';
-            //     } else {
-            //         return '<span class="badge badge-success">Redistribuido</span>';
-            //     }
+                return $ordenDetalle->sum('total');
+            })
+            ->editColumn('generado_internamente', function ($orden) {
+                return ($orden->generado_internamente == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('fecha_entrega', function ($orden) {
+                return date("d-m-20y", strtotime($orden->fecha_entrega));
+            })
+            // ->editColumn('fecha', function ($orden) {
+            //     return date("d-m-20y", strtotime($orden->fecha_entrega));
             // })
-            ->addColumn('client', function ($orden) {
-                $id = $orden->orden_pedido_id;
-
-                $orden_pedido = ordenPedido::find($id);
-
-                $client_id = $orden_pedido->cliente_id;
-                $cliente = Client::find($client_id);
-
-                return $cliente->nombre_cliente;
-            })
-            ->addColumn('sucursal', function ($orden) {
-                $id = $orden->orden_pedido_id;
-
-                $orden_pedido = ordenPedido::find($id);
-
-                $sucursal_id = $orden_pedido->sucursal_id;
-                $sucursal = ClientBranch::find($sucursal_id);
-
-                return $sucursal->nombre_sucursal;
-            })
             ->editColumn('status_orden_pedido', function ($orden) {
                 if ($orden->status_orden_pedido == 'Vigente') {
                     return '<span class="badge badge-pill badge-success">Vigente</span>';
@@ -995,7 +999,12 @@ class ordenPedidoController extends Controller
                     return '<span class="badge badge-pill badge-secondary">Stanby</span>';
                 } else if ($orden->status_orden_pedido == 'Despachado') {
                     return '<span class="badge badge-pill badge-info">Despachado</span>';
+                } else if ($orden->status_orden_pedido == 'Corte Proceso'){
+                    return '<span class="badge badge-pill badge-warning">Corte Proceso</span>';
                 }
+            })
+            ->addColumn('Opciones', function ($orden) {
+            
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);

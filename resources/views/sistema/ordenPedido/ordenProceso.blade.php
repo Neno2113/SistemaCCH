@@ -70,14 +70,15 @@
                         <div class="col-md-2">
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control text-center " readonly>
-                            <input type="hidden" name="orden_pedido_id" id="orden_pedido_id" >
-                            <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso" >
+                            <input type="hidden" name="orden_pedido_id" id="orden_pedido_id">
+                            <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
                             <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
                         </div>
                         <div class="col-md-1">
-                            <button class="btn btn-secondary btn-block rounded-pill" id="btn-generar"><i class="fas fa-truck-loading"></i></button>
+                            <button class="btn btn-secondary btn-block rounded-pill" id="btn-generar"><i
+                                    class="fas fa-truck-loading"></i></button>
                         </div>
                     </div>
                     <br>
@@ -320,38 +321,32 @@
 
 
 <div class="container" id="listadoUsers">
-    <table id="ordenes" class="table table-striped table-bordered datatables">
+    <table id="ordenes_proceso" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>
-                <th>Actions</th>
                 <th>#</th>
-                <th>User</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
-                <th>Fecha</th>
                 <th>F. Entrega</th>
                 <th>Total</th>
-                <th>Detallado</th>
+                <th>Status</th>
                 <th>Gen. Interno</th>
-                <th>Notas </th>
+                <th>Notas</th>
             </tr>
         </thead>
         <tbody></tbody>
         <tfoot>
             <tr>
                 <th></th>
-                <th>Actions</th>
                 <th>#</th>
-                <th>User</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
-                <th>F. Gen</th>
                 <th>F. Entrega</th>
                 <th>Total</th>
-                <th>Detallado</th>
+                <th>Status</th>
                 <th>Gen. Interno</th>
-                <th>Notas </th>
+                <th>Notas</th>
             </tr>
         </tfoot>
     </table>

@@ -48,7 +48,7 @@
                             </select>
                             <input type="text" name="referencia_producto" id="referencia_producto" class="form-control mt-2">
                         </div> --}}
-                      
+
                     </div>
                     <div class="row">
                         <div class="col-3 mt-4 pt-2 mr-3">
@@ -121,38 +121,44 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="perdidas" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Acciones</th>
-                <th>Num. Perdida</th>
-                <th>Tipo perdida </th>
-                <th>Fecha</th>
-                <th>Corte</th>
-                <th>Ref. Producto</th>
-                <th>Fase</th>
-                <th>Motivo</th>
-                <th>Perdida sin talla</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Acciones</th>
-                <th>Num. Perdida</th>
-                <th>Tipo perdida </th>
-                <th>Fecha</th>
-                <th>Corte</th>
-                <th>Ref. Producto</th>
-                <th>Fase</th>
-                <th>Motivo</th>
-                <th>Perdida sin talla</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de perdidas</h4>
+    </div>
+    <div class="card-body">
+        <table id="perdidas" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Acciones</th>
+                    <th>Num. Perdida</th>
+                    <th>Tipo perdida </th>
+                    <th>Fecha</th>
+                    <th>Corte</th>
+                    <th>Ref. Producto</th>
+                    <th>Fase</th>
+                    <th>Motivo</th>
+                    <th>Perdida sin talla</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Acciones</th>
+                    <th>Num. Perdida</th>
+                    <th>Tipo perdida </th>
+                    <th>Fecha</th>
+                    <th>Corte</th>
+                    <th>Ref. Producto</th>
+                    <th>Fase</th>
+                    <th>Motivo</th>
+                    <th>Perdida sin talla</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 </div>
 
@@ -169,17 +175,17 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                        <label for="">Referencia producto: </label>
-                        <div class="col-md-6 mb-2">
-                            <input type="text" name="genero" id="genero" class="form-control" readonly>
-                        </div>
-                        <div class="col-md-4">
-                            <select name="sub-genero" id="sub-genero" class="form-control">
-                                <option value=""></option>
-                                <option value="Mujer">Mujer</option>
-                                <option value="Mujer Plus">Mujer plus</option>
-                            </select>
-                        </div>
+                    <label for="">Referencia producto: </label>
+                    <div class="col-md-6 mb-2">
+                        <input type="text" name="genero" id="genero" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="sub-genero" id="sub-genero" class="form-control">
+                            <option value=""></option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Mujer Plus">Mujer plus</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="row">
                     <table class="table table-bordered table-responsive">

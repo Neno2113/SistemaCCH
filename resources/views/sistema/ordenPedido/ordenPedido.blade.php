@@ -319,43 +319,49 @@
 </div>
 
 
-<div class="container" id="listadoUsers">
-    <table id="ordenes" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>Fecha</th>
-                <th>F. Entrega</th>
-                <th>Total</th>
-                <th>Detallado</th>
-                <th>Gen. Interno</th>
-                <th>Notas </th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. Gen</th>
-                <th>F. Entrega</th>
-                <th>Total</th>
-                <th>Detallado</th>
-                <th>Gen. Interno</th>
-                <th>Notas </th>
-            </tr>
-        </tfoot>
-    </table>
-
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de ordenes</h4>
+    </div>
+    <div class="card-body">
+        <table id="ordenes" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>User</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>Fecha</th>
+                    <th>F. Entrega</th>
+                    <th>Total</th>
+                    <th>Detallado</th>
+                    <th>Gen. Interno</th>
+                    <th>Notas </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>User</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>F. Gen</th>
+                    <th>F. Entrega</th>
+                    <th>Total</th>
+                    <th>Detallado</th>
+                    <th>Gen. Interno</th>
+                    <th>Notas </th>
+                </tr>
+            </tfoot>
+        </table>
+    
+    </div>
+   
 </div>
 
 

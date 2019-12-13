@@ -115,44 +115,50 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="users" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Telefono</th>
-                <th>Celular</th>
-                <th>Direccion</th>
-                <th>Edad</th>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de usuarios</h4>
+    </div>
+    <div class="card-body">
+        <table id="users" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Telefono</th>
+                    <th>Celular</th>
+                    <th>Direccion</th>
+                    <th>Edad</th>
 
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Telefono</th>
-                <th>Celular</th>
-                <th>Direccion</th>
-                <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Telefono</th>
+                    <th>Celular</th>
+                    <th>Direccion</th>
+                    <th>Edad</th>
 
-            </tr>
-        </tfoot>
-    </table>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 
 

@@ -7,40 +7,47 @@
 @section('content')
 <div class="container">
     <div class="row mt-2">
-        <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg" id="btn-agregar">Agregar sucursales
+        <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg"
+            id="btn-agregar">Agregar sucursales
             <i class="fas fa-building"></i></button>
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="branches" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Nombre cliente</th>
-                <th>Codigo sucursal</th>
-                <th>Nombre  sucursal</th>
-                <th>Telefono sucursal</th>
-                <th>Direccion</th>
-            
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                <th>Nombre cliente</th>
-                <th>Codigo sucursal</th>
-                <th>Nombre  sucursal</th>
-                <th>Telefono sucursal</th>
-                <th>Direccion</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de sucursales</h4>
+    </div>
+    <div class="card-body">
+        <table id="branches" class="table  table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Nombre cliente</th>
+                    <th>Codigo sucursal</th>
+                    <th>Nombre sucursal</th>
+                    <th>Telefono sucursal</th>
+                    <th>Direccion</th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Nombre cliente</th>
+                    <th>Codigo sucursal</th>
+                    <th>Nombre sucursal</th>
+                    <th>Telefono sucursal</th>
+                    <th>Direccion</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 
 
@@ -98,7 +105,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" id="btn-guardar-branch" class="btn btn-primary">Guardar</button>
                 <button type="submit" id="btn-edit-branch" class="btn btn-warning">Actualizar</button>
             </div>

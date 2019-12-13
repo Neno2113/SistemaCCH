@@ -105,44 +105,52 @@
 </div>
 {{-- </div> --}}
 
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de cortes</h4>
+    </div>
+    <div class="card-body">
+        <table id="cortes" class="table table-hover table-bordered datatables" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Opciones</th>
+                    <th>User</th>
+                    <th>No.Corte</th>
+                    <th>Producto</th>
+                    <th>Fecha</th>
+                    <th>Est.</th>
+                    <th>Fase</th>
+                    <th>Total</th>
+                    <th>Aprovecha.</th>
+                    <th>No.Marc.</th>
+                    <th>L.Marc.</th>
+                    <th>A.Marc.</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Opciones</th>
+                    <th>User</th>
+                    <th>No.Corte</th>
+                    <th>Producto</th>
+                    <th>Fecha</th>
+                    <th>Est.</th>
+                    <th>Fase</th>
+                    <th>Total</th>
+                    <th>Aprovecha.</th>
+                    <th>No.Marc.</th>
+                    <th>L.Marc.</th>
+                    <th>A.Marc.</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
 <div class="container" id="listadoUsers">
-    <table id="cortes" class="table table-striped table-bordered datatables cell-border">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Opciones</th>
-                <th>User</th>
-                <th>No.Corte</th>
-                <th>Producto</th>
-                <th>Fecha</th>
-                <th>Est.</th>
-                <th>Fase</th>
-                <th>Total</th>
-                <th>Aprovecha.</th>
-                <th>No.Marc.</th>
-                <th>L.Marc.</th>
-                <th>A.Marc.</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Opciones</th>
-                <th>User</th>
-                <th>No.Corte</th>
-                <th>Producto</th>
-                <th>Fecha</th>
-                <th>Est.</th>
-                <th>Fase</th>
-                <th>Total</th>
-                <th>Aprovecha.</th>
-                <th>No.Marc.</th>
-                <th>L.Marc.</th>
-                <th>A.Marc.</th>
-            </tr>
-        </tfoot>
-    </table>
+
 
 </div>
 

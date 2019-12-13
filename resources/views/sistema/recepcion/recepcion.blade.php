@@ -99,8 +99,11 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="recepciones" class="table table-striped table-bordered datatables">
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de cortes recibidos de lavanderia</h4>
+    </div>
+    <table id="recepciones" class="table table-hover table-bordered datatables" style="width:100%">
         <thead>
             <tr>
                 <th></th>
