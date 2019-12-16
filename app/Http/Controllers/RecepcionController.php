@@ -222,7 +222,6 @@ class RecepcionController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
-                // ->where('fase', 'LIKE', 'Lavanderia')
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }

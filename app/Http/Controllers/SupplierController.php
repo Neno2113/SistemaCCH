@@ -178,13 +178,14 @@ class SupplierController extends Controller
             ->addColumn('Expandir', function ($cloth) {
                 return "";
             })
-            ->addColumn('Editar', function ($supplier) {
-                return '<button id="btnEdit" onclick="mostrar(' . $supplier->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+            ->addColumn('Ver', function ($supplier) {
+                return '<button onclick="ver(' . $supplier->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
             })
-            ->addColumn('Eliminar', function ($supplier) {
-                return '<button onclick="eliminar(' . $supplier->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
+            ->addColumn('Opciones', function ($supplier) {
+                return '<button onclick="eliminar(' . $supplier->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>'.
+                '<button id="btnEdit" onclick="mostrar(' . $supplier->id . ')" class="btn btn-warning btn-sm ml-1" > <i class="fas fa-edit"></i></button>';
             })
-            ->rawColumns(['Editar', 'Eliminar'])
+            ->rawColumns(['Ver', 'Opciones'])
             ->make(true);
     }
 }

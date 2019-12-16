@@ -143,25 +143,18 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
-                { data: "id" },
+                { data: "Ver", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre" },
+                { data: "tipo_suplidor" },
                 { data: "rnc" },
                 { data: "contacto_suplidor" },
-                { data: "telefono_1" },
-                { data: "telefono_2" },
-                { data: "celular" },
                 { data: "email" },
-                { data: "tipo_suplidor" },
                 { data: "terminos_de_pago" },
-                { data: "direccion" },
-                { data: "nota" },
-               
             ],
-            order: [[2, 'asc']],
+            order: [[4, 'asc']],
             rowGroup: {
-                dataSrc: 'nombre'
+                dataSrc: 'tipo_suplidor'
             }
         });
     }

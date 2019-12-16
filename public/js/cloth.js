@@ -172,26 +172,26 @@ $(document).ready(function() {
     }
 
     function limpiar() {
-        $("#referencia").val("");
-        $("#precio_usd").val("");
-        $("#tipo_tela").val("");
-        $("#ancho_cortable").val("");
-        $("#peso").val("");
-        $("#elasticidad_trama").val("");
-        $("#encogimiento_trama").val("");
-        $("#elasticidad_urdimbre").val("");
-        $("#encogimiento_urdimbre").val("");
+        $("#referencia").val("").attr('readonly', false);
+        $("#precio_usd").val("").attr('readonly', false);;
+        $("#tipo_tela").val("").attr('readonly', false);;
+        $("#ancho_cortable").val("").attr('readonly', false);;
+        $("#peso").val("").attr('readonly', false);;
+        $("#elasticidad_trama").val("").attr('readonly', false);;
+        $("#encogimiento_trama").val("").attr('readonly', false);;
+        $("#elasticidad_urdimbre").val("").attr('readonly', false);;
+        $("#encogimiento_urdimbre").val("").attr('readonly', false);;
         $("#suplidores").val("").trigger("change");
         $("#compositions").val("").trigger("change");
         $("#compositions_2").val("").trigger("change");
         $("#compositions_3").val("").trigger("change");
         $("#compositions_4").val("").trigger("change");
         $("#compositions_5").val("").trigger("change");
-        $("#porcentaje_mat_1").val("");
-        $("#porcentaje_mat_2").val("");
-        $("#porcentaje_mat_3").val("");
-        $("#porcentaje_mat_4").val("");
-        $("#porcentaje_mat_5").val("");
+        $("#porcentaje_mat_1").val("").attr('readonly', false);;
+        $("#porcentaje_mat_2").val("").attr('readonly', false);;
+        $("#porcentaje_mat_3").val("").attr('readonly', false);;
+        $("#porcentaje_mat_4").val("").attr('readonly', false);;
+        $("#porcentaje_mat_5").val("").attr('readonly', false);;
     }
 
  
@@ -272,18 +272,13 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
+                { data: "Ver", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "referencia", name: 'tela.referencia' },
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "precio_usd", name: "tela.precio_usd" },
                 { data: "tipo_tela", name: "tela.tipo_tela" },
                 { data: "peso", name: "tela.peso" },
-                { data: "ancho_cortable", name: "tela.ancho_cortable" },
-                { data: "elasticidad_trama", name: "tela.elasticidad_trama" },
-                { data: "elasticidad_urdimbre", name: "tela.elasticidad_urdimbre" },
-                { data: "encogimiento_trama", name: "tela.encogimiento_trama" },
-                { data: "encogimiento_urdimbre", name: "tela.encogimiento_urdimbre" },
                 { data: "composicion", name: "tela.composicion" },
                 { data: "composicion_2", name: "tela.composicion_2" },
                 { data: "composicion_3", name: "tela.composicion_3" },
@@ -381,6 +376,7 @@ $(document).ready(function() {
 
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
+        $("#compo").show();
     });
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);

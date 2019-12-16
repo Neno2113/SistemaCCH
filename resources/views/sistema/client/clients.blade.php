@@ -15,8 +15,6 @@
 
 <div class="row">
     <div class="col-12">
-
-
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center">
                 <div class="card-tools">
@@ -40,8 +38,14 @@
                             <input type="text" name="rnc" id="rnc" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="direccion_principal">Direccion principal(*):</label>
-                            <input type="text" name="direccion_principal" id="direccion_principal" class="form-control">
+                            <label for="celular_principal">Celular principal:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="text" id="celular_principal" class="form-control"
+                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                            </div>
                         </div>
 
                     </div>
@@ -79,30 +83,9 @@
                     </div>
 
                     <br>
-                    <hr>
+
                     <br>
 
-                    <div class="row">
-                        <div class="col-md-4 mt-3">
-                            <label for="celular_principal">Celular principal:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="celular_principal" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-3">
-                            <label for="email_principal">Email principal(*):</label>
-                            <input type="email" name="email_principal" id="email_principal" class="form-control">
-                        </div>
-                        <div class="col-md-4 mt-3">
-                            <label for="contacto_cliente">Contacto cliente(*):</label>
-                            <input type="text" name="contacto_cliente_principal" id="contacto_cliente_principal"
-                                class="form-control">
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="condiciones_credito">Condiciones de credito(*):</label>
@@ -113,6 +96,87 @@
                                 <option value="90 dias">90 dias</option>
                                 <option value="120 dias">120 dias</option>
                             </select>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="email_principal">Email principal(*):</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                </div>
+                                <input type="email" name="email_principal" id="email_principal" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="contacto_cliente">Contacto cliente(*):</label>
+                            <input type="text" name="contacto_cliente_principal" id="contacto_cliente_principal"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="">Calle(*):</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                </div>
+                                <input type="text" name="calle" id="calle" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Sector:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                </div>
+                                <input type="text" name="sector" id="sector" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Provincia(*):</label>
+                            <select name="provincia" id="provincia" class="form-control select2">
+                                <option value=""></option>
+                                <option>Santo Domingo</option>
+                                <option>Distrito Nacional</option>
+                                <option>Santiago</option>
+                                <option>San Cristóbal</option>
+                                <option>La Vega</option>
+                                <option>Puerto Plata</option>
+                                <option>San Pedro de Macorís</option>
+                                <option>Duarte</option>
+                                <option>La Altagracia</option>
+                                <option>La Romana</option>
+                                <option>San Juan</option>
+                                <option>Espaillat</option>
+                                <option>Azua</option>
+                                <option>Barahona</option>
+                                <option>Monte Plata</option>
+                                <option>Peravia</option>
+                                <option>Monseñor Nouel</option>
+                                <option>Valverde</option>
+                                <option>Sánchez Ramírez</option>
+                                <option>María Trinidad Sánchez</option>
+                                <option>Montecristi</option>
+                                <option>Samaná</option>
+                                <option>Bahoruco</option>
+                                <option>Hermanas Mirabal</option>
+                                <option>El Seibo</option>
+                                <option>Hato Mayor</option>
+                                <option>Dajabón</option>
+                                <option>Elías Piña</option>
+                                <option>San José de Ocoa</option>
+                                <option>Santiago Rodríguez</option>
+                                <option>Independencia</option>
+                                <option>Pedernales</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="">Sitios cercanos:</label>
+                            <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
+
                         </div>
                     </div>
                     <br>
@@ -158,7 +222,7 @@
                                 class="form-control" readonly>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <label for="autorizacion_credito_req">¿Acepta segundas?(*):</label>
+                            <label for="autorizacion_credito_req">¿Acepta segundas?</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
                                     <input type="radio" id="radioPrimary7" name="r4" value="1" checked>
@@ -231,18 +295,8 @@
                     <th>Cliente</th>
                     <th>RNC</th>
                     <th>Contacto</th>
-                    <th>Tel 1</th>
-                    <th>Tel 2</th>
-                    <th>Tel 3</th>
-                    <th>Celular </th>
                     <th>Email</th>
                     <th>Condiciones de Credito</th>
-                    <th>Direccion </th>
-                    <th>Notas</th>
-                    <th>Autorizacion de Credito requerida</th>
-                    <th>Acepta redistribucion de tallas</th>
-                    <th>Acepta factura desglosada por tallas</th>
-                    <th>Acepta segundas</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -254,18 +308,8 @@
                     <th>Cliente</th>
                     <th>RNC</th>
                     <th>Contacto</th>
-                    <th>Tel 1</th>
-                    <th>Tel 2</th>
-                    <th>Tel 3</th>
-                    <th>Celular </th>
                     <th>Email</th>
                     <th>Condiciones de Credito</th>
-                    <th>Direccion</th>
-                    <th>Notas</th>
-                    <th>Autorizacion de Credito requerida</th>
-                    <th>Acepta redistribucion de tallas</th>
-                    <th>Acepta factura desglosada por tallas</th>
-                    <th>Acepta segundas</th>
                 </tr>
             </tfoot>
         </table>
@@ -380,20 +424,85 @@
 
             // console.log(typeof data.client.autorizacion_credito_req);
             $("#id").val(data.client.id);
-            $("#nombre_cliente").val(data.client.nombre_cliente);
-            $("#direccion_principal").val(data.client.direccion_principal);
-            $("#contacto_cliente_principal").val(data.client.contacto_cliente_principal);
-            $("#telefono_1").val(data.client.telefono_1);
-            $("#telefono_2").val(data.client.telefono_2);
-            $("#telefono_3").val(data.client.telefono_3);
-            $("#celular_principal").val(data.client.celular_principal);
-            $("#email_principal").val(data.client.email_principal);
-            $("#condiciones_credito").val(data.client.condiciones_credito);
+            $("#nombre_cliente").val(data.client.nombre_cliente).attr('readonly', false);
+            $("#rnc").val(data.client.rnc).attr('readonly', false);
+            $("#calle").val(data.client.calle).attr('readonly', false);
+            $("#sector").val(data.client.sector).attr('readonly', false);
+            $("#provincia").val(data.client.provincia).attr('disabled', false);
+            $("#sitios_cercanos").val(data.client.sitios_cercanos).attr('readonly', false);
+            $("#contacto_cliente_principal").val(data.client.contacto_cliente_principal).attr('readonly', false);
+            $("#telefono_1").val(data.client.telefono_1).attr('readonly', false);
+            $("#telefono_2").val(data.client.telefono_2).attr('readonly', false);
+            $("#telefono_3").val(data.client.telefono_3).attr('readonly', false);
+            $("#celular_principal").val(data.client.celular_principal).attr('readonly', false);
+            $("#email_principal").val(data.client.email_principal).attr('readonly', false);
+            $("#condiciones_credito").val(data.client.condiciones_credito).attr('disabled', false);
             $("#autorizacion_credito_req").val(result1);
             $("#notas").val(data.client.notas);
             $("#redistribucion_tallas").val(result2);
             $("#factura_desglosada_tallas").val(result3);
             $("#acepta_segundas").val(result4);
+           
+        });
+    }
+
+    function ver(id_client) {
+        $.post("client/" + id_client, function(data, status) {
+           
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-guardar").hide();
+            $("#autorizacion_credito_req").show();
+            $("#redistribucion_tallas").show();
+            $("#factura_desglosada_tallas").show();
+            $("#acepta_segundas").show();
+
+            let result1, result2, result3, result4; 
+            if(data.client.autorizacion_credito_req == 1){
+                result1 = 'Si';
+            }else{
+                result1 = 'No';
+            }
+
+            if(data.client.redistribucion_tallas == 1){
+                result2 = 'Si';
+            }else{
+                result2 = 'No';
+            }
+
+            if(data.client.factura_desglosada_talla == 1){
+                result3 = 'Si';
+            }else{
+                result3 = 'No';
+            }
+
+            if(data.client.acepta_segundas == 1){
+                result4 = 'Si';
+            }else{
+                result4 = 'No';
+            }
+
+            // console.log(typeof data.client.autorizacion_credito_req);
+            $("#nombre_cliente").val(data.client.nombre_cliente).attr('readonly', true);
+            $("#rnc").val(data.client.rnc).attr('readonly', true);
+            $("#calle").val(data.client.calle).attr('readonly', true);
+            $("#sector").val(data.client.sector).attr('readonly', true);
+            $("#provincia").val(data.client.provincia).attr('disabled', true);
+            $("#sitios_cercanos").val(data.client.sitios_cercanos).attr('readonly', true);
+            $("#contacto_cliente_principal").val(data.client.contacto_cliente_principal).attr('readonly', true);
+            $("#telefono_1").val(data.client.telefono_1).attr('readonly', true);
+            $("#telefono_2").val(data.client.telefono_2).attr('readonly', true);
+            $("#telefono_3").val(data.client.telefono_3).attr('readonly', true);
+            $("#celular_principal").val(data.client.celular_principal).attr('readonly', true);
+            $("#email_principal").val(data.client.email_principal).attr('readonly', true);
+            $("#condiciones_credito").val(data.client.condiciones_credito).attr('disabled', true);
+            $("#autorizacion_credito_req").val(result1).attr('readonly', true);
+            $("#notas").val(data.client.notas).attr('readonly', true);
+            $("#redistribucion_tallas").val(result2).attr('readonly', true);
+            $("#factura_desglosada_tallas").val(result3).attr('readonly', true);
+            $("#acepta_segundas").val(result4).attr('readonly', true);
            
         });
     }

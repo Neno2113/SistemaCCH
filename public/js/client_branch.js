@@ -65,9 +65,9 @@ $(document).ready(function() {
     }
 
     function limpiar() {
-        $("#nombre_sucursal").val("");
-        $("#telefono_sucursal").val("");
-        $("#direccion").val("");
+        $("#nombre_sucursal").val("").attr('readonly', false);
+        $("#telefono_sucursal").val("").attr('readonly', false);
+        $("#direccion").val("").attr('readonly', false);;
         $("#clientes").val("").trigger("change");
        
     }
@@ -132,10 +132,10 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
+                { data: "Ver", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre_cliente", name: 'cliente.nombre_cliente' },
-                { data: "codigo_sucursal", name: 'cliente_sucursales.codigo_sucursal' },
+                // { data: "codigo_sucursal", name: 'cliente_sucursales.codigo_sucursal' },
                 { data: "nombre_sucursal", name: 'cliente_sucursales.nombre_sucursal' },
                 { data: "telefono_sucursal", name: 'cliente_sucursales.telefono_sucursal' },
                 { data: "direccion", name: 'cliente_sucursales.direccion' }

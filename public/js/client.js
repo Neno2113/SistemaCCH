@@ -60,6 +60,7 @@ $(document).ready(function() {
     var tabla;
 
     function init() {
+        $("#provincia").select2();
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
@@ -87,21 +88,26 @@ $(document).ready(function() {
    
     }
 
+    
+
     function limpiar() {
-        $("#nombre_cliente").val("");
-        $("#direccion_principal").val("");
-        $("#contacto_cliente_principal").val("");
-        $("#telefono_1").val("");
-        $("#telefono_2").val("");
-        $("#telefono_3").val("");
-        $("#celular_principal").val("");
-        $("#email_principal").val("");
-        $("#condiciones_credito").val("");
-        $("#autorizacion_credito_req").val("");
-        $("#notas").val("");
-        $("#redistribucion_tallas").val("");
-        $("#factura_desglosada_talla").val("");
-        $("#rnc").val("");
+        $("#nombre_cliente").val("").attr('readonly', false);
+        $("#calle").val("").attr('readonly', false);
+        $("#sector").val("").attr('readonly', false);
+        $("#provincia").val("").attr('disabled', false);
+        $("#sitios_cercanos").val("").attr('readonly', false);
+        $("#contacto_cliente_principal").val("").attr('readonly', false);;
+        $("#telefono_1").val("").attr('readonly', false);;
+        $("#telefono_2").val("").attr('readonly', false);;
+        $("#telefono_3").val("").attr('readonly', false);;
+        $("#celular_principal").val("").attr('readonly', false);;
+        $("#email_principal").val("").attr('readonly', false);;
+        $("#condiciones_credito").val("").attr('disabled', false);;
+        $("#autorizacion_credito_req").val("").attr('readonly', false);;
+        $("#notas").val("").attr('readonly', false);;
+        $("#redistribucion_tallas").val("").attr('readonly', false);;
+        $("#factura_desglosada_talla").val("").attr('readonly', false);;
+        $("#rnc").val("").attr('readonly', false);;
     }
 
     $("#btn-guardar").click(function(e) {
@@ -110,7 +116,10 @@ $(document).ready(function() {
         
         var client = {
             nombre_cliente: $("#nombre_cliente").val(),
-            direccion_principal: $("#direccion_principal").val(),
+            calle: $("#calle").val(),
+            sector: $("#sector").val(),
+            provincia: $("#provincia").val(),
+            sitios_cercanos: $("#sitios_cercanos").val(),
             contacto_cliente_principal: $("#contacto_cliente_principal").val(),
             rnc: $("#rnc").val(),
             telefono_1: $("#telefono_1").val(),
@@ -176,28 +185,19 @@ $(document).ready(function() {
             ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
+                { data: "Ver", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre_cliente" },
                 { data: "rnc" },
                 { data: "contacto_cliente_principal" },
-                { data: "telefono_1" },
-                { data: "telefono_2" },
-                { data: "telefono_3" },
-                { data: "celular_principal" },
                 { data: "email_principal" },
                 { data: "condiciones_credito" },
-                { data: "direccion_principal" },
-                { data: "notas" },
-                { data: "autorizacion_credito_req" },
-                { data: "redistribucion_tallas" },
-                { data: "factura_desglosada_talla" },
-                { data: "acepta_segundas" },
+    
             ],
             order: [[2, 'asc']],
-            rowGroup: {
-                dataSrc: 'nombre_cliente'
-            }
+            // rowGroup: {
+            //     dataSrc: 'nombre_cliente'
+            // }
         });
     }
     $("#btn-edit").click(function(e) {
@@ -206,7 +206,10 @@ $(document).ready(function() {
         var client = {
             id: $("#id").val(),
             nombre_cliente: $("#nombre_cliente").val(),
-            direccion_principal: $("#direccion_principal").val(),
+            calle: $("#calle").val(),
+            sector: $("#sector").val(),
+            provincia: $("#provincia").val(),
+            sitios_cercanos: $("#sitios_cercanos").val(),
             contacto_cliente_principal: $("#contacto_cliente_principal").val(),
             rnc: $("#rnc").val(),
             telefono_1: $("#telefono_1").val(),

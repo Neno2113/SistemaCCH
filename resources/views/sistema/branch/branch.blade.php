@@ -22,12 +22,12 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>Nombre cliente</th>
-                    <th>Codigo sucursal</th>
-                    <th>Nombre sucursal</th>
-                    <th>Telefono sucursal</th>
+                    <th>Ver</th>
+                    <th>Actions</th>
+                    <th>Cliente</th>
+                    {{-- <th>Codigo sucursal</th> --}}
+                    <th>Sucursal</th>
+                    <th>Telefono suc.</th>
                     <th>Direccion</th>
 
                 </tr>
@@ -36,12 +36,12 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>Nombre cliente</th>
-                    <th>Codigo sucursal</th>
-                    <th>Nombre sucursal</th>
-                    <th>Telefono sucursal</th>
+                    <th>Ver</th>
+                    <th>Actions</th>
+                    <th>Cliente</th>
+                    {{-- <th>Codigo sucursal</th> --}}
+                    <th>Sucursal</th>
+                    <th>Telefono suc.</th>
                     <th>Direccion</th>
                 </tr>
             </tfoot>

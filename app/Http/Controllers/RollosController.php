@@ -74,13 +74,12 @@ class RollosController extends Controller
             ->addColumn('Expandir', function ($rollo) {
                 return "";
             })
-            ->addColumn('Editar', function ($rollo) {
-                return '<button id="btnEdit" onclick="mostrar(' . $rollo->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+            ->addColumn('Opciones', function ($rollo) {
+                return '<button id="btnEdit" onclick="mostrar(' . $rollo->id . ')" class="btn btn-warning btn-sm mr-1" > <i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $rollo->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
             })
-            ->addColumn('Eliminar', function ($rollo) {
-                return '<button onclick="eliminar(' . $rollo->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
-            })
-            ->rawColumns(['Editar', 'Eliminar'])
+        
+            ->rawColumns(['Opciones'])
             ->make(true);
     }
 

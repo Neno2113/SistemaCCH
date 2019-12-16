@@ -170,14 +170,15 @@ class ClientBranchController extends Controller
             ->addColumn('Expandir', function ($branch) {
                 return "";
             })
-            ->addColumn('Editar', function ($branch) {
-                return '<button id="btnEdit" onclick="mostrar(' . $branch->id . ')" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i></button>';
+            ->addColumn('Ver', function ($branch) {
+                return '<button onclick="ver(' . $branch->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
             })
-            ->addColumn('Eliminar', function ($branch) {
-                return '<button onclick="eliminar(' . $branch->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
+            ->addColumn('Opciones', function ($branch) {
+                return '<button onclick="eliminar(' . $branch->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>'.
+                '<button id="btnEdit" onclick="mostrar(' . $branch->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>';
             })
 
-            ->rawColumns(['Editar', 'Eliminar'])
+            ->rawColumns(['Ver', 'Opciones'])
             ->make(true);
     }
 }

@@ -25,6 +25,11 @@ $(document).ready(function() {
         $("#total").val("");
         listarRedistribucion();
         listarOrdenesProceso();
+        listarOrden();
+        $("#cliente").hide();
+        $("#sucursal").hide();
+        $("#generado_internamente").hide();
+        $("#listarOrden").hide();
     }
 
     var data;
@@ -1178,7 +1183,18 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    // limpiar();
+                    $("#a").val("");
+                    $("#b").val("");
+                    $("#c").val("");
+                    $("#d").val("");
+                    $("#e").val("");
+                    $("#f").val("");
+                    $("#g").val("");
+                    $("#h").val("");
+                    $("#i").val("");
+                    $("#j").val("");
+                    $("#k").val("");
+                    $("#l").val("");
 
                     $("#cantidad").val("");
                     $("#btn-agregar").attr("disabled", true);
@@ -1341,32 +1357,18 @@ $(document).ready(function() {
             ajax: "api/ordenes",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
+                { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
+                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
                 { data: "name", name: "users.name" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                {
-                    data: "nombre_sucursal",
-                    name: "cliente_sucursales.nombre_sucursal"
-                },
+                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
-                {
-                    data: "total",
-                    name: "orden_pedido.total",
-                    searchable: false
-                },
+                { data: "total", name: "orden_pedido.total", searchable: false, orderable: false },
                 { data: "detallada", name: "orden_pedido.detallada" },
-                {
-                    data: "generado_internamente",
-                    name: "orden_pedido.generado_internamente"
-                },
-                { data: "notas", name: "orden_pedido.notas" }
             ],
-            order: [[2, "desc"]],
+            order: [[4, "desc"]],
             rowGroup: {
                 dataSrc: "name"
             }
@@ -1397,35 +1399,13 @@ $(document).ready(function() {
             ajax: "api/ordenes_redistribucion",
             columns: [
                 { data: "Opciones", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
-                {
-                    data: "referencia_producto",
-                    name: "producto.referencia_producto"
-                },
-                {
-                    data: "client",
-                    name: "orden_pedido_detalle.nombre_cliente",
-                    searchable: false
-                },
-                {
-                    data: "sucursal",
-                    name: "orden_pedido_detalle.nombre_sucursal",
-                    searchable: false
-                },
-                {
-                    data: "total",
-                    name: "orden_pedido_detalle.total",
-                    searchable: false
-                },
+                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
+                { data: "referencia_producto", name: "producto.referencia_producto"},
+                { data: "client", name: "orden_pedido_detalle.nombre_cliente", searchable: false},
+                { data: "sucursal", name: "orden_pedido_detalle.nombre_sucursal", searchable: false},
+                { data: "total", name: "orden_pedido_detalle.total", searchable: false },
                 { data: "precio", name: "orden_pedido_detalle.precio" },
-                {
-                    data: "status_orden_pedido",
-                    name: "orden_pedido_detalle.status_orden_pedido",
-                    searchable: false
-                }
+                { data: "status_orden_pedido", name: "orden_pedido_detalle.status_orden_pedido", searchable: false}
             ],
             order: [[1, "desc"]],
             rowGroup: {
@@ -1433,6 +1413,10 @@ $(document).ready(function() {
             }
         });
     }
+    
+     //funcion para listar en el Datatable
+    
+
 
       //funcion para listar en el Datatable
       function listarOrdenesProceso() {
@@ -1468,7 +1452,7 @@ $(document).ready(function() {
                 { data: "generado_internamente", name: "orden_pedido.generado_internamente"},
                 { data: "notas", name: "orden_pedido.notas" }
             ],
-            order: [[2, "desc"]],
+            order: [[4, "desc"]],
             rowGroup: {
                 dataSrc: "fecha_entrega"
             }
@@ -1482,6 +1466,24 @@ $(document).ready(function() {
         $("#listadoUsers").hide();
         $("#corte_en_proceso").hide();
         $("#detallada").hide();
+        $("#cliente").hide();
+        $("#clienteBuscar").show();
+        $("#sucursal").hide();
+        $("#sucursalBuscar").show();
+        $("#btn-generar").attr('disabled', false);
+        $("#btn-generar").attr('disabled', false);
+        $("#generado_internamente").hide();
+        $("#tallas").show();
+        $("#producto").show();
+        $("#genInt").show();
+        $("#agregadas").show();
+        $("#listarOrden").hide();
+        $("#orden").DataTable().destroy();
+        $("#notas").val("").attr('readonly', false).removeClass("font-weight-bold");
+        $("#fecha_entrega").val("").attr('disabled', false);
+        $("#no_orden_pedido").val("").removeClass("font-weight-bold");
+        $("#generado_internamente").val(result);
+        $("#btn-guardar").show();
     });
     $("#btnCancelar").click(function(e) {
         $("#btnCancelar").hide();

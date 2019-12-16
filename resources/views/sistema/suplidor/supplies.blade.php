@@ -135,40 +135,28 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
+                    <th>Ver</th>
+                    <th>Opciones</th>
                     <th>Nombre</th>
+                    <th>Tipo</th>
                     <th>RNC</th>
                     <th>Contacto</th>
-                    <th>Tel 1</th>
-                    <th>Tel 2</th>
-                    <th>Celular</th>
                     <th>Email</th>
-                    <th>Tipo</th>
                     <th>Terminos de pago</th>
-                    <th>Direccion</th>
-                    <th>Nota</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
+                    <th>Ver</th>
+                    <th>Opciones</th>
                     <th>Nombre</th>
+                    <th>Tipo</th>
                     <th>RNC</th>
                     <th>Contacto</th>
-                    <th>Tel 1</th>
-                    <th>Tel 2</th>
-                    <th>Celular</th>
                     <th>Email</th>
-                    <th>Tipo</th>
                     <th>Terminos de pago</th>
-                    <th>Direccion</th>
-                    <th>Nota</th>
                 </tr>
             </tfoot>
         </table>
@@ -195,6 +183,7 @@
                 
                 $("#id").val(data.supplier.id);
                 $("#nombre").val(data.supplier.nombre);
+                $("#rnc").val(data.supplier.rnc);
                 $("#direccion").val(data.supplier.direccion);
                 $("#contacto_suplidor").val(data.supplier.contacto_suplidor);
                 $("#telefono_1").val(data.supplier.telefono_1);
@@ -204,6 +193,32 @@
                 $("#tipo_suplidor").val(data.supplier.tipo_suplidor);
                 $("#terminos_de_pago").val(data.supplier.terminos_de_pago);
                 $("#nota").val(data.supplier.nota);
+               
+            });
+        }
+
+        function ver(id_supplier) {
+            $.post("supplier/" + id_supplier, function(data, status) {
+           
+                $("#listadoUsers").hide();
+                $("#registroForm").show();
+                $("#btnCancelar").show();
+                $("#btnAgregar").hide();
+                // $("#btn-edit").show();
+                $("#btn-guardar").hide();
+                
+                $("#id").val(data.supplier.id);
+                $("#nombre").val(data.supplier.nombre).attr('readonly', true);
+                $("#rnc").val(data.supplier.rnc).attr('readonly', true);
+                $("#direccion").val(data.supplier.direccion).attr('readonly', true);
+                $("#contacto_suplidor").val(data.supplier.contacto_suplidor).attr('readonly', true);
+                $("#telefono_1").val(data.supplier.telefono_1).attr('readonly', true);
+                $("#telefono_2").val(data.supplier.telefono_2).attr('readonly', true);
+                $("#celular").val(data.supplier.celular).attr('readonly', true);
+                $("#email").val(data.supplier.email).attr('readonly', true);
+                $("#tipo_suplidor").val(data.supplier.tipo_suplidor).attr('disabled', true);
+                $("#terminos_de_pago").val(data.supplier.terminos_de_pago).attr('disabled', true);
+                $("#nota").val(data.supplier.nota).attr('readonly', true);
                
             });
         }

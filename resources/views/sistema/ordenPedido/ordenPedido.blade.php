@@ -26,15 +26,25 @@
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row mt-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="clienteBuscar">
                             <label for="">Cliente(*):</label>
                             <select name="tags[]" id="clienteSearch" class="form-control select2">
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="cliente">
+                            <label for="">Cliente(*):</label>
+                            <input type="text" name="client" id="client"
+                                class="form-control font-weight-bold text-center mt-2" readonly>
+                        </div>
+                        <div class="col-md-6" id="sucursalBuscar">
                             <label for="">Sucursal(*):</label>
                             <select name="tags[]" id="sucursalSearch" class="form-control select2">
                             </select>
+                        </div>
+                        <div class="col-md-6" id="sucursal">
+                            <label for="">Sucursal(*):</label>
+                            <input type="text" name="sucur" id="sucur"
+                                class="form-control font-weight-bold text-center mt-2" readonly>
                         </div>
                     </div>
                     <br>
@@ -48,9 +58,9 @@
                             <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control">
                             <input type="hidden" name="" id="fecha_proceso" value="">
                         </div>
-                        <div class="col-md-4 mt-4">
+                        <div class="col-md-4 mt-2">
                             <label for="autorizacion_credito_req">¿Generado internamente?(*):</label>
-                            <div class="form-group clearfix">
+                            <div class="form-group clearfix" id="genInt">
                                 <div class="icheck-primary d-inline">
                                     <input type="radio" id="radioPrimary1" name="r1" value="1">
                                     <label for="radioPrimary1">
@@ -64,31 +74,39 @@
                                     </label>
                                 </div>
                             </div>
+                            <input type="text" name="generado_internamente" id="generado_internamente"
+                                class="form-control  text-center font-weight-bold" readonly>
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-2">
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control text-center " readonly>
-                            <input type="hidden" name="orden_pedido_id" id="orden_pedido_id" >
-                            <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso" >
+                            <input type="hidden" name="orden_pedido_id" id="orden_pedido_id">
+                            <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
                             <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
                         </div>
                         <div class="col-md-1">
-                            <button class="btn btn-secondary btn-block rounded-pill" id="btn-generar"><i class="fas fa-truck-loading"></i></button>
+                            <button class="btn btn-secondary btn-block rounded-pill" id="btn-generar"><i
+                                    class="fas fa-truck-loading"></i></button>
                         </div>
                     </div>
                     <br>
                     <hr>
                     <br>
-                    <div class="row">
-                        <div class="col-md-3 ">
+                    <div class="row" id="producto">
+                        <div class="col-md-3 " id="productoBuscar">
                             <label for="">Referencia Producto</label>
                             <select name="tags[]" id="productoSearch" class="form-control select2" style="width:100%">
                             </select>
                         </div>
+                        {{-- <div class="col-md-3 " id="producto">
+                            <label for="">Referencia Producto</label>
+                            <input type="text" name="referencia_producto" id="referencia_producto"
+                                class="form-control font-weight-bold text-center" readonly>
+                        </div> --}}
                         <div class="col-md-2 mt-2 border-right">
                             <label for="">¿Detallado?</label>
                             <div class="form-group clearfix">
@@ -142,7 +160,46 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="container collapse mt-4" id="listarOrden">
+                        <table id="orden" class="table table-striped table-bordered datatables" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Referencia</th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                    <th>G</th>
+                                    <th>H</th>
+                                    <th>I</th>
+                                    <th>J</th>
+                                    <th>K</th>
+                                    <th>L</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Referencia</th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                    <th>G</th>
+                                    <th>H</th>
+                                    <th>I</th>
+                                    <th>J</th>
+                                    <th>K</th>
+                                    <th>L</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="row" >
                         <div class="col-md-3 mt-3">
                             <button class="btn btn-success rounded-pill" name="btn-consultar"
                                 id="btn-consultar">Consultar</button>
@@ -152,7 +209,7 @@
                         </div>
 
                     </div>
-                    <div class="row border-right">
+                    <div class="row border-right" id="tallas">
                         <div class="col-md-3 mt-3 " id="precio_div">
                             <label for="">Precio(*):</label>
                             <input type="text" name="precio" id="precio" class="form-control text-center"
@@ -262,7 +319,7 @@
                     <br>
                     <hr>
 
-                    <div class="row">
+                    <div class="row" id="agregadas">
                         <div class="col-md-12 pt-3 pl-3 pb-3">
                             <table class="table  table-bordered  mt-3 ">
                                 <thead class="thead-light">
@@ -307,6 +364,7 @@
 
                         </div>
                     </div>
+       
             </div>
             <div class="card-footer text-muted d-flex justify-content-end">
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
@@ -328,6 +386,7 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th>Ver</th>
                     <th>Actions</th>
                     <th>#</th>
                     <th>User</th>
@@ -337,14 +396,13 @@
                     <th>F. Entrega</th>
                     <th>Total</th>
                     <th>Detallado</th>
-                    <th>Gen. Interno</th>
-                    <th>Notas </th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th></th>
+                    <th>Ver</th>
                     <th>Actions</th>
                     <th>#</th>
                     <th>User</th>
@@ -354,15 +412,14 @@
                     <th>F. Entrega</th>
                     <th>Total</th>
                     <th>Detallado</th>
-                    <th>Gen. Interno</th>
-                    <th>Notas </th>
                 </tr>
             </tfoot>
         </table>
-    
+
     </div>
-   
+
 </div>
+
 
 
 
@@ -380,6 +437,78 @@
                 })
             }
         })
+    }
+
+    function ver(id_orden) {
+        $.post("mostrar/" + id_orden, function(data, status) {
+           
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-guardar").hide();
+            $("#autorizacion_credito_req").show();
+            $("#redistribucion_tallas").show();
+            $("#factura_desglosada_tallas").show();
+            $("#acepta_segundas").show();
+            $("#cliente").show();
+            $("#clienteBuscar").hide();
+            $("#sucursal").show();
+            $("#sucursalBuscar").hide();
+            $("#btn-generar").attr('disabled', true);
+            $("#generado_internamente").show();
+            $("#tallas").hide();
+            $("#producto").hide();
+            $("#genInt").hide();
+            $("#agregadas").hide();
+            $("#listarOrden").show();
+
+            let result;
+            if(data.orden.generado_internamente == 1){
+                result = 'Si';
+            }else{
+                result = 'No';
+            }
+            $("#orden").DataTable().destroy();
+            listarOrden(data.orden.id);
+            $("#notas").val(data.orden.notas).attr('readonly', true).addClass("font-weight-bold");
+            $("#client").val(data.orden.cliente.nombre_cliente);
+            $("#sucur").val(data.orden.sucursal.nombre_sucursal);
+            $("#fecha_entrega").val(data.orden.fecha_entrega).attr('disabled', true);
+            $("#no_orden_pedido").val(data.orden.no_orden_pedido).addClass("font-weight-bold");
+            $("#generado_internamente").val(result);
+           
+           
+        });
+    }
+
+    function listarOrden(id) {
+       var tabla_orden = $("#orden").DataTable({
+            serverSide: true,
+            bFilter: false, 
+            lengthChange: false,
+            bPaginate: false,
+            bInfo: false,
+            retrieve: true,
+            responsive: true,
+            ajax: "api/listarorden/"+id,
+            columns: [
+                { data: "referencia_producto", name: "producto.referencia_producto"},
+                { data: "a", name: "orden_pedido_detalle.a" },
+                { data: "b", name: "orden_pedido_detalle.b" },
+                { data: "c", name: "orden_pedido_detalle.c" },
+                { data: "d", name: "orden_pedido_detalle.d" },
+                { data: "e", name: "orden_pedido_detalle.e" },
+                { data: "f", name: "orden_pedido_detalle.f" },
+                { data: "g", name: "orden_pedido_detalle.g" },
+                { data: "h", name: "orden_pedido_detalle.h" },
+                { data: "i", name: "orden_pedido_detalle.i" },
+                { data: "j", name: "orden_pedido_detalle.j" },
+                { data: "k", name: "orden_pedido_detalle.k" },
+                { data: "l", name: "orden_pedido_detalle.l" },
+            ],
+            order: [[1, "desc"]],
+        });
     }
 
 </script>

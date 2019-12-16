@@ -525,7 +525,10 @@ class ordenPedidoController extends Controller
                 return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
                     '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
             })
-            ->rawColumns(['Opciones'])
+            ->addColumn('Ver', function ($orden) {
+                return '<button onclick="ver(' . $orden->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
+            })
+            ->rawColumns(['Opciones', 'Ver'])
             ->make(true);
     }
 
@@ -894,7 +897,8 @@ class ordenPedidoController extends Controller
                 'orden_pedido_detalle.id', 'orden_pedido_detalle.a', 'orden_pedido_detalle.b',
                 'orden_pedido_detalle.c', 'orden_pedido_detalle.d', 'orden_pedido_detalle.e',
                 'orden_pedido_detalle.f', 'orden_pedido_detalle.g', 'orden_pedido_detalle.h',
-                'orden_pedido_detalle.i', 'orden_pedido_detalle.j', 'orden_pedido_detalle.orden_redistribuida',
+                'orden_pedido_detalle.i', 'orden_pedido_detalle.j', 'orden_pedido_detalle.k',
+                'orden_pedido_detalle.orden_redistribuida', 'orden_pedido_detalle.l',
                 'orden_pedido_detalle.l', 'orden_pedido_detalle.total', 'orden_pedido_detalle.total',
                 'producto.referencia_producto', 'orden_pedido.no_orden_pedido', 'orden_pedido.detallada',
                 'orden_pedido_detalle.precio',  'orden_pedido_detalle.orden_pedido_id', 'orden_pedido.status_orden_pedido'
@@ -1008,5 +1012,43 @@ class ordenPedidoController extends Controller
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
+    }
+
+    public function listarOrden($id)
+    {
+        $ordenes = DB::table('orden_pedido_detalle')->join('producto', 'orden_pedido_detalle.producto_id', 'producto.id')
+            ->select([
+                'orden_pedido_detalle.id', 'orden_pedido_detalle.a', 'orden_pedido_detalle.b',
+                'orden_pedido_detalle.c', 'orden_pedido_detalle.d', 'orden_pedido_detalle.e',
+                'orden_pedido_detalle.f', 'orden_pedido_detalle.g', 'orden_pedido_detalle.h',
+                'orden_pedido_detalle.i', 'orden_pedido_detalle.j', 'orden_pedido_detalle.k',
+                'producto.referencia_producto', 'orden_pedido_detalle.l',
+                'orden_pedido_detalle.l', 'orden_pedido_detalle.total'
+            ])->where('orden_pedido_id', $id);
+        return DataTables::of($ordenes)
+            ->make(true);
+    }
+
+    public function mostrar($id){
+        
+        $orden = ordenPedido::find($id)->load('user')
+        ->load('cliente')
+        ->load('sucursal');
+
+        if(is_object($orden)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'orden' => $orden
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
     }
 }

@@ -151,9 +151,7 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
-                { data: "id", name: "rollos.id" },
+                { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "referencia", name: "tela.ferencia", searchable: false },
                 { data: "codigo_rollo", name: "rollos.codigo_rollo" },
@@ -165,7 +163,7 @@ $(document).ready(function() {
             ],
             order: [[2, 'asc']],
             rowGroup: {
-                dataSrc: 'referencia'
+                dataSrc: 'nombre'
             }
         });
     }

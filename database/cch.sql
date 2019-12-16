@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-12-2019 a las 22:56:48
+-- Tiempo de generación: 16-12-2019 a las 22:55:19
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -72,7 +72,10 @@ INSERT INTO `almacen` (`id`, `corte_id`, `producto_id`, `user_id`, `codigo_almac
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
   `nombre_cliente` varchar(100) DEFAULT NULL,
-  `direccion_principal` varchar(255) DEFAULT NULL,
+  `calle` varchar(255) DEFAULT NULL,
+  `sector` varchar(255) DEFAULT NULL,
+  `provincia` varchar(255) DEFAULT NULL,
+  `sitios_cercanos` varchar(255) DEFAULT NULL,
   `rnc` int(11) DEFAULT NULL,
   `contacto_cliente_principal` varchar(45) DEFAULT NULL,
   `telefono_1` varchar(45) DEFAULT NULL,
@@ -94,11 +97,11 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`id`, `nombre_cliente`, `direccion_principal`, `rnc`, `contacto_cliente_principal`, `telefono_1`, `telefono_2`, `telefono_3`, `celular_principal`, `email_principal`, `condiciones_credito`, `autorizacion_credito_req`, `notas`, `redistribucion_tallas`, `factura_desglosada_talla`, `acepta_segundas`, `updated_at`, `created_at`) VALUES
-(3, 'La Sirena', 'c/ principal', 528656544, 'Fulano', '(809) 882-1113', '(809) 525-2516', '(984) 095-5656', '(809) 599-9898', 'anel@anel.com', '30 dias', 1, 'Notas de prueba', 1, 1, 1, '2019-10-17 18:03:33', '2019-10-04 15:29:18'),
-(4, 'Plaza Lama', 'c/ Av 27 de febrero con Churchill', 362655452, 'Gabriel Dominguez', '(809) 288-2113', '(829) 943-6531', '(849) 520-6969', '(829) 943-6531', 'plazalama@lama.com', '60 dias', 1, 'test', 1, 1, 1, '2019-10-17 18:03:44', '2019-10-10 15:03:46'),
-(5, 'Antonys', 'c/ principal Santo Domingo, Dn', 2656565, 'Teresa', '(809) 288-2113', '(829) 528-4255', '(849) 566-2222', '(809) 633-2555', 'anel@anel.com', '90 dias', 1, 'Antonys cliente de prueba', 0, 1, 1, '2019-10-17 18:03:54', '2019-10-15 14:00:19'),
-(6, 'Ole', 'c\\ principal, Santo Domingo, Republicad Dominicana', 25826565, 'Leandro', '(809) 528-2113', '(809) 528-6362', '(809) 955-5556', '(829) 943-6531', 'ole@ole.com', '30 dias', 1, 'Nota de prueba', 1, 1, 0, '2019-10-17 17:40:51', '2019-10-17 17:40:51');
+INSERT INTO `cliente` (`id`, `nombre_cliente`, `calle`, `sector`, `provincia`, `sitios_cercanos`, `rnc`, `contacto_cliente_principal`, `telefono_1`, `telefono_2`, `telefono_3`, `celular_principal`, `email_principal`, `condiciones_credito`, `autorizacion_credito_req`, `notas`, `redistribucion_tallas`, `factura_desglosada_talla`, `acepta_segundas`, `updated_at`, `created_at`) VALUES
+(3, 'La Sirena', 'c/ principal', NULL, NULL, NULL, 528656544, 'Fulano', '(809) 882-1113', '(809) 525-2516', '(984) 095-5656', '(809) 599-9898', 'anel@anel.com', '30 dias', 1, 'Notas de prueba', 1, 1, 1, '2019-10-17 18:03:33', '2019-10-04 15:29:18'),
+(4, 'Plaza Lama', 'c/ Av 27 de febrero con Churchill', NULL, NULL, NULL, 362655452, 'Gabriel Dominguez', '(809) 288-2113', '(829) 943-6531', '(849) 520-6969', '(829) 943-6531', 'plazalama@lama.com', '60 dias', 1, 'test', 1, 1, 1, '2019-10-17 18:03:44', '2019-10-10 15:03:46'),
+(5, 'Antonys', 'c/ principal Santo Domingo, Dn', NULL, NULL, NULL, 2656565, 'Teresa', '(809) 288-2113', '(829) 528-4255', '(849) 566-2222', '(809) 633-2555', 'anel@anel.com', '90 dias', 1, 'Antonys cliente de prueba', 0, 1, 1, '2019-10-17 18:03:54', '2019-10-15 14:00:19'),
+(6, 'Ole', 'c\\ principal, Santo Domingo, Republicad Dominicana', NULL, NULL, NULL, 25826565, 'Leandro', '(809) 528-2113', '(809) 528-6362', '(809) 955-5556', '(829) 943-6531', 'ole@ole.com', '30 dias', 1, 'Nota de prueba', 1, 1, 0, '2019-10-17 17:40:51', '2019-10-17 17:40:51');
 
 -- --------------------------------------------------------
 
@@ -326,7 +329,9 @@ CREATE TABLE `orden_empaque` (
 
 INSERT INTO `orden_empaque` (`id`, `orden_pedido_id`, `no_orden_empaque`, `fecha`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `cantidad`, `total`, `sec`, `updated_at`, `created_at`) VALUES
 (2, 1, 'OE - 001', '2019-11-29 04:35:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0.01', '2019-11-29 16:35:25', '2019-11-29 16:35:25'),
-(9, 2, 'OE - 002', '2019-12-05 09:13:33', 4, 4, 4, 6, 5, 6, 5, 6, 4, 6, 0, 0, NULL, NULL, '0.02', '2019-12-05 09:13:33', '2019-12-05 09:13:33');
+(9, 2, 'OE - 002', '2019-12-05 09:13:33', 4, 4, 4, 6, 5, 6, 5, 6, 4, 6, 0, 0, NULL, NULL, '0.02', '2019-12-05 09:13:33', '2019-12-05 09:13:33'),
+(10, 3, 'OE - 003', '2019-12-12 10:28:19', 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, NULL, NULL, '0.03', '2019-12-12 10:28:19', '2019-12-12 10:28:19'),
+(11, 36, 'OE - 004', '2019-12-16 05:49:54', 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0, NULL, NULL, '0.04', '2019-12-16 17:49:54', '2019-12-16 17:49:54');
 
 -- --------------------------------------------------------
 
@@ -370,7 +375,9 @@ INSERT INTO `orden_empaque_detalle` (`id`, `orden_empaque_id`, `producto_id`, `u
 (15, 9, 10, 1, 4, 4, 4, 6, 5, 6, 5, 6, 4, 6, 0, 0, 50, '2.500', 50, '2019-12-05 03:38:05', 1, 2, 1, '2019-12-11 15:08:28', '2019-12-05 15:38:05'),
 (16, 2, 10, 1, 10, 10, 9, 12, 12, 13, 12, 13, 9, 13, 0, 0, 113, '2.500', 113, '2019-12-05 03:43:31', 1, 4, 1, '2019-12-11 15:08:14', '2019-12-05 15:43:31'),
 (17, 2, 11, 1, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 0, 0, 50, '2.500', 50, '2019-12-05 03:43:37', 1, 2, 1, '2019-12-11 15:08:17', '2019-12-05 15:43:37'),
-(18, 9, 11, 1, 5, 6, 6, 6, 6, 6, 6, 6, 4, 4, 0, 0, 55, '2.500', 55, '2019-12-05 04:31:12', 1, 3, 1, '2019-12-11 15:08:31', '2019-12-05 16:31:12');
+(18, 9, 11, 1, 5, 6, 6, 6, 6, 6, 6, 6, 4, 4, 0, 0, 55, '2.500', 55, '2019-12-05 04:31:12', 1, 3, 1, '2019-12-11 15:08:31', '2019-12-05 16:31:12'),
+(19, 10, 10, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 20, '2.500', 20, '2019-12-12 10:29:08', 1, 2, 1, '2019-12-12 10:29:37', '2019-12-12 10:29:08'),
+(20, 11, 11, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0, 15, '2.500', 15, '2019-12-16 05:50:44', 1, 2, 1, '2019-12-16 17:51:20', '2019-12-16 17:50:44');
 
 -- --------------------------------------------------------
 
@@ -407,7 +414,18 @@ CREATE TABLE `orden_pedido` (
 
 INSERT INTO `orden_pedido` (`id`, `user_id`, `user_aprobacion`, `cliente_id`, `sucursal_id`, `no_orden_pedido`, `fecha`, `fecha_entrega`, `notas`, `generado_internamente`, `estado_aprobacion`, `fecha_aprobacion`, `status_orden_pedido`, `precio`, `detallada`, `corte_en_proceso`, `orden_proceso_impresa`, `sec`, `updated_at`, `created_at`) VALUES
 (1, 1, 1, 4, 4, 'OP-001', '2019-11-29 04:34:20', '2019-11-28', 'test', 0, NULL, '2019-12-04 10:39:42', 'Despachado', NULL, 1, 'No', 'Si', '0.01', '2019-12-11 15:14:37', '2019-11-29 16:34:20'),
-(2, 1, 1, 4, 4, 'OP-002', '2019-12-05 09:04:46', '2019-12-26', 'test', 1, NULL, '2019-12-11 02:28:55', 'Despachado', NULL, 1, 'No', 'Si', '0.02', '2019-12-11 15:38:29', '2019-12-05 09:04:46');
+(2, 1, 1, 4, 4, 'OP-002', '2019-12-05 09:04:46', '2019-12-26', 'test', 1, NULL, '2019-12-11 02:28:55', 'Despachado', NULL, 1, 'No', 'Si', '0.02', '2019-12-11 15:38:29', '2019-12-05 09:04:46'),
+(3, 1, 1, 3, 1, 'OP-003', '2019-12-12 10:13:34', '2019-12-20', 'notas de test', 0, NULL, '2019-12-12 10:24:47', 'Despachado', NULL, 1, 'No', 'Si', '0.03', '2019-12-12 10:30:53', '2019-12-12 10:13:34'),
+(27, 1, 1, 3, 1, 'OP-004', '2019-12-12 03:56:48', '2019-12-19', 'test', 0, NULL, NULL, 'Stanby', NULL, 0, 'No', 'Si', '0.04', '2019-12-13 09:19:35', '2019-12-12 15:56:48'),
+(28, 1, NULL, 3, 1, 'OP-005', '2019-12-12 03:57:07', '2019-12-28', 'test', 0, NULL, NULL, 'Corte Proceso', NULL, 1, 'Si', 'Si', '0.05', '2019-12-13 11:09:18', '2019-12-12 15:57:07'),
+(30, 1, 1, 4, 4, 'OP-006', '2019-12-12 04:27:49', '2019-12-19', 'test', 1, NULL, NULL, 'Stanby', NULL, 1, 'No', 'Si', '0.06', '2019-12-13 09:19:08', '2019-12-12 16:27:49'),
+(31, 1, NULL, 4, 4, 'OP-007', '2019-12-12 04:28:05', '2019-12-14', 'test', 1, NULL, NULL, 'Corte Proceso', NULL, 1, 'Si', 'Si', '0.07', '2019-12-13 11:09:18', '2019-12-12 16:28:05'),
+(32, 1, NULL, 4, 4, 'OP-007', '2019-12-12 04:28:32', '2019-12-28', 'test', 1, NULL, NULL, 'Corte Proceso', NULL, 1, 'Si', 'Si', '0.07', '2019-12-13 11:09:18', '2019-12-12 16:28:32'),
+(33, 1, 1, 3, 1, 'OP-008', '2019-12-16 03:40:25', '2019-12-26', 'test', 1, NULL, NULL, 'Stanby', NULL, 0, 'No', 'Si', '0.08', '2019-12-16 15:58:44', '2019-12-16 15:40:25'),
+(34, 1, NULL, 3, 1, 'OP-009', '2019-12-16 03:42:27', '2019-12-14', 'test', 1, NULL, NULL, 'Corte Proceso', NULL, 1, 'Si', 'Si', '0.09', '2019-12-16 15:56:46', '2019-12-16 15:42:27'),
+(35, 1, 1, 4, 4, 'OP-010', '2019-12-16 05:43:27', '2019-12-18', 'test', 0, NULL, NULL, 'Stanby', NULL, 0, 'No', 'No', '0.10', '2019-12-16 17:43:27', '2019-12-16 17:43:27'),
+(36, 1, 1, 4, 4, 'OP-011', '2019-12-16 05:47:41', '2019-12-25', 'test', 0, NULL, '2019-12-16 05:49:41', 'Despachado', NULL, 1, 'No', 'Si', '0.11', '2019-12-16 17:52:37', '2019-12-16 17:47:42'),
+(37, 1, NULL, 4, 4, 'OP-012', '2019-12-16 05:48:12', '2019-12-14', 'test', 0, NULL, NULL, 'Corte Proceso', NULL, 1, 'Si', 'Si', '0.12', '2019-12-16 17:48:26', '2019-12-16 17:48:12');
 
 -- --------------------------------------------------------
 
@@ -449,7 +467,38 @@ INSERT INTO `orden_pedido_detalle` (`id`, `orden_pedido_id`, `producto_id`, `a`,
 (1, 1, 10, 10, 10, 9, 12, 12, 13, 12, 13, 9, 13, 0, 0, 113, '2.500', NULL, 113, 1, 1, '2019-12-05 15:43:31', '2019-11-29 16:34:02'),
 (2, 1, 11, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 0, 0, 50, '2.500', 50, 50, 1, 1, '2019-12-05 15:43:37', '2019-11-29 16:34:18'),
 (3, 2, 10, 4, 4, 4, 6, 5, 6, 5, 6, 4, 6, 0, 0, 50, '2.500', NULL, 50, 1, 1, '2019-12-05 15:38:05', '2019-12-05 09:04:06'),
-(4, 2, 11, 5, 6, 6, 6, 6, 6, 6, 6, 4, 4, 0, 0, 55, '2.500', NULL, 55, 1, 1, '2019-12-05 16:31:12', '2019-12-05 09:04:34');
+(4, 2, 11, 5, 6, 6, 6, 6, 6, 6, 6, 4, 4, 0, 0, 55, '2.500', NULL, 55, 1, 1, '2019-12-05 16:31:12', '2019-12-05 09:04:34'),
+(5, 3, 10, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 20, '2.500', 20, 20, 1, 1, '2019-12-12 10:29:08', '2019-12-12 10:10:47'),
+(6, 5, 10, NULL, NULL, NULL, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 30, '2.500', 20, 30, 0, 0, '2019-12-12 14:10:54', '2019-12-12 14:10:54'),
+(7, 8, 10, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 15, '2.500', 10, 15, 0, 0, '2019-12-12 14:26:44', '2019-12-12 14:26:44'),
+(8, 10, 10, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2.500', NULL, 2, 0, 0, '2019-12-12 14:30:54', '2019-12-12 14:30:54'),
+(9, 13, 10, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, '2.500', 5, 10, 0, 0, '2019-12-12 14:39:04', '2019-12-12 14:39:04'),
+(10, 14, 10, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2.500', NULL, 1, 0, 0, '2019-12-12 14:44:49', '2019-12-12 14:44:49'),
+(11, 15, 10, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2.500', NULL, 2, 0, 0, '2019-12-12 14:53:06', '2019-12-12 14:53:06'),
+(12, 16, 11, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', NULL, 5, 0, 0, '2019-12-12 14:59:50', '2019-12-12 14:59:50'),
+(13, 17, 10, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', NULL, 5, 0, 0, '2019-12-12 15:09:40', '2019-12-12 15:09:40'),
+(14, 19, 10, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2.500', NULL, 2, 0, 0, '2019-12-12 15:12:01', '2019-12-12 15:12:01'),
+(15, 20, 11, NULL, NULL, NULL, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL, NULL, 12, '2.500', NULL, 12, 0, 0, '2019-12-12 15:13:06', '2019-12-12 15:13:06'),
+(16, 21, 10, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', NULL, 5, 0, 0, '2019-12-12 15:29:35', '2019-12-12 15:29:35'),
+(17, 23, 10, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', NULL, 5, 0, 0, '2019-12-12 15:31:55', '2019-12-12 15:31:55'),
+(18, 10, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20, '2.500', 20, 20, NULL, NULL, '2019-12-12 15:33:24', '2019-12-12 15:33:24'),
+(19, 25, 11, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', NULL, 5, 0, 0, '2019-12-12 15:45:38', '2019-12-12 15:45:38'),
+(20, 11, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, '2.500', 10, 10, 0, 0, '2019-12-12 15:45:49', '2019-12-12 15:45:49'),
+(21, 27, 10, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2.500', NULL, 1, 0, 0, '2019-12-12 15:57:02', '2019-12-12 15:57:02'),
+(22, 28, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', 5, 5, 0, 0, '2019-12-12 15:57:07', '2019-12-12 15:57:07'),
+(23, 27, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', 5, 5, 0, 0, '2019-12-12 16:12:49', '2019-12-12 16:12:49'),
+(24, 27, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, '2.500', 10, 10, 0, 0, '2019-12-12 16:13:16', '2019-12-12 16:13:16'),
+(25, 27, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, '2.500', 10, 10, 0, 0, '2019-12-12 16:14:30', '2019-12-12 16:14:30'),
+(26, 27, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', 5, 5, 0, 0, '2019-12-12 16:14:46', '2019-12-12 16:14:46'),
+(27, 31, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, '2.500', 10, 10, 0, 0, '2019-12-12 16:28:05', '2019-12-12 16:28:05'),
+(28, 32, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', 5, 5, 0, 0, '2019-12-12 16:28:32', '2019-12-12 16:28:32'),
+(29, 33, 10, 6, 3, 5, 5, 10, 10, 10, 10, 5, 10, NULL, NULL, 74, '2.500', NULL, 74, 0, 0, '2019-12-16 15:41:12', '2019-12-16 15:41:12'),
+(30, 33, 11, 6, 3, 5, 5, 10, 10, 10, 10, 5, 10, NULL, NULL, 74, '2.500', NULL, 74, 0, 0, '2019-12-16 15:42:13', '2019-12-16 15:42:13'),
+(31, 34, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2.500', 5, 5, 0, 0, '2019-12-16 15:42:27', '2019-12-16 15:42:27'),
+(32, 35, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20, '2.200', 20, 20, 0, 0, '2019-12-16 17:43:52', '2019-12-16 17:43:52'),
+(33, 35, 11, 5, 5, 5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20, '2.500', NULL, 20, 0, 0, '2019-12-16 17:44:20', '2019-12-16 17:44:20'),
+(34, 36, 11, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0, 15, '2.500', NULL, 15, 1, 1, '2019-12-16 17:50:44', '2019-12-16 17:48:03'),
+(35, 37, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20, '2.500', 20, 20, 0, 0, '2019-12-16 17:48:12', '2019-12-16 17:48:12');
 
 -- --------------------------------------------------------
 
@@ -2079,25 +2128,25 @@ ALTER TABLE `lavanderia`
 -- AUTO_INCREMENT de la tabla `orden_empaque`
 --
 ALTER TABLE `orden_empaque`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_empaque_detalle`
 --
 ALTER TABLE `orden_empaque_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido`
 --
 ALTER TABLE `orden_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido_detalle`
 --
 ALTER TABLE `orden_pedido_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `perdidas`

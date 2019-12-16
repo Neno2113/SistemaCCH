@@ -30,7 +30,7 @@
                             <label for="">Corte(*):</label>
                             <input type="hidden" name="" id="id">
                             <div id="corteAdd">
-                                <select name="cortesSearch" id="cortesSearch" class="form-control select2">
+                                <select name="tags[]" id="cortesSearch" class="form-control select2">
                                 </select>
                             </div>
 
@@ -103,7 +103,7 @@
     <div class="card-header text-center">
         <h4>Listado de cortes recibidos de lavanderia</h4>
     </div>
-    <table id="recepciones" class="table table-hover table-bordered datatables" style="width:100%">
+    <table id="recepciones" class="table table-hover table-bordered datatables mt-3" style="width:100%">
         <thead>
             <tr>
                 <th></th>

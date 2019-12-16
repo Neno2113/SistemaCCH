@@ -38,6 +38,9 @@
                         </div>
                         <div class="col-6 mt-4 pt-2">
                             <button id="btn-generar" class="btn btn-success ">Generar</button>
+                            <input type="text" name="tota_enviado" id="total_enviado"
+                                class="form-control text-center" readonly>
+
                         </div>
                     </div>
                     <br><br>
@@ -62,7 +65,7 @@
                     </div> --}}
                     <div id="formularioLavanderia">
                         <div class="row mt-3">
-                            <div class="col-6" id="cortes">
+                            <div class="col-md-6" id="cortes">
                                 <label for="">Corte(*):</label>
                                 <div id="corteADD">
                                     <select name="tags[]" id="cortesSearch" class="form-control select2">
@@ -77,7 +80,7 @@
                                     class="form-control text-center mt-3">
                             </div>
 
-                            <div class="col-6" id="suplidor">
+                            <div class="col-md-6" id="suplidor">
                                 <label for="">Lavanderia (*):</label>
                                 <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
                                 </select>
@@ -97,11 +100,11 @@
                                 <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-md-4">
                                 <label for="">Cantidad(*):</label>
                                 <input type="text" name="cantidad" id="cantidad" class="form-control">
                             </div>
-                            <div class="col-4 pl-5">
+                            <div class="col-md-4 pl-5">
                                 <label for="">¿Estandar incluido?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -150,34 +153,33 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th>Ver</th>
                     <th>Actions</th>
                     <th>Num. Envio</th>
                     <th>Num. Corte</th>
                     <th>Ref.</th>
                     <th>Fecha Env.</th>
                     <th>Enviado</th>
-                    <th>T. Enviado</th>
                     <th>T. Cortado</th>
                     <th>Lav.</th>
                     <th>Estandar </th>
-                    <th>Receta</th>
+
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th></th>
+                    <th>Ver</th>
                     <th>Actions</th>
                     <th>Num. Envio</th>
                     <th>Num. Corte</th>
                     <th>Ref.</th>
                     <th>Fecha Env.</th>
                     <th>Enviado</th>
-                    <th>T. Enviado</th>
                     <th>T. Cortado</th>
                     <th>Lav.</th>
                     <th>Estandar </th>
-                    <th>Receta</th>
                 </tr>
             </tfoot>
         </table>
@@ -206,16 +208,12 @@
             $("#corteEdit").show();
             $("#corteADD").hide();
             $("#productoEdit").show();
-             $("#productoADD").hide();
+            $("#productoADD").hide();
             $("#estandar_incluido").show();
             $("#suplidor_lavanderia").show();
-            // $("#productoEdit").show();
-            // $("#lavanderia").show();
-            // // $("#suplidor").hide();
-            // $("#productoADD").hide();
-            // $("#corteADD").hide();
-           
-
+            $("#formularioLavanderia").show();
+            $("#total_enviado").hide();
+        
             let result;
             if(data.lavanderia.estandar_incluido == 1){
                 result = 'Si'
@@ -224,14 +222,54 @@
             }
 
             $("#id").val(data.lavanderia.id);
-            $("#numero_envio").val(data.lavanderia.numero_envio);
-            $("#fecha_envio").val(data.lavanderia.fecha_envio);
-            $("#cantidad").val(data.lavanderia.cantidad);
+            $("#numero_envio").val(data.lavanderia.numero_envio).attr('readonly', false);
+            $("#fecha_envio").val(data.lavanderia.fecha_envio).attr('disabled', false);
+            $("#cantidad").val(data.lavanderia.cantidad).attr('readonly', false);
             $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte);
             $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto);
-            $("#receta_lavado").val(data.lavanderia.receta_lavado);
+            $("#receta_lavado").val(data.lavanderia.receta_lavado).attr('readonly', false);
             $("#estandar_incluido").val(result);
             $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre);
+            // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
+            
+        });
+    }
+
+    function ver(id_lavanderia) {
+        $.post("lavanderia/" + id_lavanderia, function(data, status) {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-guardar").hide();
+            $("#numero_corte").show();
+            $("#btn-generar").hide();
+            $("#referencia_producto").show();
+            $("#corteEdit").show();
+            $("#corteADD").hide();
+            $("#productoEdit").show();
+            $("#productoADD").hide();
+            $("#estandar_incluido").show();
+            $("#suplidor_lavanderia").show();
+            $("#formularioLavanderia").show();
+            $("#total_enviado").show();
+        
+            let result;
+            if(data.lavanderia.estandar_incluido == 1){
+                result = 'Si'
+            }else{
+                result = 'No'
+            }
+
+            $("#total_enviado").val('Total enviado: '+data.lavanderia.total_enviado);
+            $("#numero_envio").val(data.lavanderia.numero_envio).attr('readonly', true);
+            $("#fecha_envio").val(data.lavanderia.fecha_envio).attr('disabled', true);
+            $("#cantidad").val(data.lavanderia.cantidad).attr('readonly', true);
+            $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte).attr('readonly', true);
+            $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto).attr('readonly', true);
+            $("#receta_lavado").val(data.lavanderia.receta_lavado).attr('readonly', true);
+            $("#estandar_incluido").val(result).attr('readonly', true);
+            $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre).attr('readonly', true);
             // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
             
         });

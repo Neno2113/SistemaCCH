@@ -41,6 +41,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+        $("#total_enviado").hide();
     }
 
 
@@ -277,20 +278,19 @@ $(document).ready(function() {
             ajax: "api/lavanderias",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
+                { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "numero_envio", name: "lavanderia.numero_envio" },
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
                 { data: "fecha_envio", name: "lavanderia.fecha_envio" },
                 { data: "cantidad_parcial", name: "lavanderia.cantidad_parcial" },
-                { data: "total_enviado", name: "lavanderia.total_enviado" },
                 { data: "total", name: "corte.total" },
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
-                { data: "receta_lavado", name: "lavanderia.receta_lavado" },
               
             ],
-            order: [[2, 'asc']],
+            order: [[4, 'desc']],
             rowGroup: {
                 dataSrc: 'numero_corte'
             }
@@ -379,6 +379,8 @@ $(document).ready(function() {
 
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
+        $("#btn-generar").show();
+        $("#total_enviado").hide();
 
       
     });

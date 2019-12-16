@@ -250,7 +250,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <table class="table table-bordered table-responsive">
+                    <table class="table table-bordered table-responsive" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>Tipo producto</th>

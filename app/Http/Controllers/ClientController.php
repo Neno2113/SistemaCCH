@@ -13,12 +13,14 @@ class ClientController extends Controller
 
         $validar = $request->validate([
             'nombre_cliente' => 'required',
-            'rnc' => 'required',
-            'direccion_principal' => 'required',
-            'contacto_cliente_principal' => 'required',
+            'rnc' => 'required|numeric',
+            'contacto_cliente_principal' => 'required|alpha',
             'telefono_1' => 'required',
             'email_principal' => 'required|email',
-            'condiciones_credito' => 'required'
+            'condiciones_credito' => 'required',
+            'calle' => 'required',
+            'sector' => 'required',
+            'provincia' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -31,7 +33,10 @@ class ClientController extends Controller
         } else {
 
             $nombre_cliente = $request->input('nombre_cliente', true);
-            $direccion_principal = $request->input('direccion_principal', true);
+            $calle = $request->input('calle', true);
+            $sector = $request->input('sector');
+            $provincia = $request->input('provincia');
+            $sitios_cercanos = $request->input('sitios_cercanos');
             $contacto_cliente_principal = $request->input('contacto_cliente_principal', true);
             $rnc = $request->input('rnc');
             $telefono_1 = $request->input('telefono_1', true);
@@ -49,7 +54,9 @@ class ClientController extends Controller
 
             $cliente = new Client();
             $cliente->nombre_cliente = $nombre_cliente;
-            $cliente->direccion_principal = $direccion_principal;
+            $cliente->calle = $calle;
+            $cliente->sector = $sector;
+            $cliente->provincia = $provincia;
             $cliente->rnc = $rnc;
             $cliente->contacto_cliente_principal = $contacto_cliente_principal;
             $cliente->telefono_1 = $telefono_1;
@@ -195,8 +202,8 @@ class ClientController extends Controller
             ->addColumn('Expandir', function ($client) {
                 return "";
             })
-            ->addColumn('Editar', function ($client) {
-                return '<button id="btnEdit" onclick="mostrar(' . $client->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+            ->addColumn('Ver', function ($client) {
+                return '<button onclick="ver(' . $client->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
             })
             ->editColumn('autorizacion_credito_req', function ($client) {
                 return ($client->autorizacion_credito_req == 1 ? 'Si' : 'No');
@@ -210,10 +217,11 @@ class ClientController extends Controller
             ->editColumn('acepta_segundas', function ($client) {
                 return ($client->acepta_segundas == 1 ? 'Si' : 'No');
             })
-            ->addColumn('Eliminar', function ($client) {
-                return '<button onclick="eliminar(' . $client->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
+            ->addColumn('Opciones', function ($client) {
+                return '<button onclick="eliminar(' . $client->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>'.
+                '<button id="btnEdit" onclick="mostrar(' . $client->id . ')" class="btn btn-warning btn-sm ml-1" > <i class="fas fa-edit"></i></button>';
             })
-            ->rawColumns(['Editar', 'Eliminar'])
+            ->rawColumns(['Ver', 'Opciones'])
             ->make(true);
     }
 }

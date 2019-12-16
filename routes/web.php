@@ -269,6 +269,7 @@ Route::get('/orden_pedido/{id}', 'ordenPedidoController@mostrar');
 Route::post('/orden_pedido/delete/{id}', 'ordenPedidoController@destroy');
 Route::post('/orden-aprobacion/{id}', 'ordenPedidoController@aprobar');
 Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');
+Route::post('mostrar/{id}', 'ordenPedidoController@mostrar');
 
 
 //orden empaque

@@ -195,13 +195,17 @@ class LavanderiaController extends Controller
             ->editColumn('fecha_envio', function ($lavanderia) {
                 return date("d-m-20y", strtotime($lavanderia->fecha_envio));
             })
+            ->addColumn('Ver', function ($lavanderia) {
+                return '<button id="btnEdit" onclick="ver(' . $lavanderia->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
+               
+            })
             ->addColumn('Opciones', function ($lavanderia) {
                 return
-                    '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .
-                    '<button onclick="eliminar(' . $lavanderia->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>' .
-                    '<a href="imprimir/conduce/' . $lavanderia->id . '" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
+                    '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm ml-1" > <i class="fas fa-edit"></i></button>' .
+                    '<button onclick="eliminar(' . $lavanderia->id . ')" class="btn btn-danger btn-sm mr-1 ml-1"> <i class="fas fa-eraser"></i></button>' .
+                    '<a href="imprimir/conduce/' . $lavanderia->id . '" class="btn btn-secondary btn-sm  mr-1"> <i class="fas fa-print"></i></a>';
             })
-            ->rawColumns(['Opciones'])
+            ->rawColumns(['Opciones', 'Ver'])
             ->make(true);
     }
 

@@ -89,9 +89,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
+                    <th>Actions</th>
                     <th>Suplidor</th>
                     <th>Tela</th>
                     <th>Codigo</th>
@@ -106,9 +104,7 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
+                    <th>Actions</th>
                     <th>Suplidor</th>
                     <th>Tela</th>
                     <th>Codigo</th>

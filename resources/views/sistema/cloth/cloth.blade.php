@@ -35,7 +35,7 @@
 
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 pt-2" id="compo">
                             <button type="button" class="btn btn-secondary btn-block mt-4" data-toggle="modal"
                                 data-target=".bd-composition-modal-lg">Agregar composiciones <i
                                     class="fas fa-fill-drip"></i></button>
@@ -124,11 +124,6 @@
                     <th>Precio USD/Yarda</th>
                     <th>Tela</th>
                     <th>Peso</th>
-                    <th>Ancho cortable</th>
-                    <th>Elasticidad en trama</th>
-                    <th>Elasticidad en urdimbre</th>
-                    <th>Encogimiento en trama</th>
-                    <th>Encogimiento en urdimbre</th>
                     <th>Composicion</th>
                     <th>Composicion 2</th>
                     <th>Composicion 3</th>
@@ -148,11 +143,6 @@
                     <th>Precio USD/Yarda</th>
                     <th>Tela</th>
                     <th>Peso</th>
-                    <th>Ancho cortable</th>
-                    <th>Elasticidad en trama</th>
-                    <th>Elasticidad en urdimbre</th>
-                    <th>Encogimiento en trama</th>
-                    <th>Encogimiento en urdimbre</th>
                     <th>Composicion</th>
                     <th>Composicion 2</th>
                     <th>Composicion 3</th>
@@ -299,22 +289,41 @@
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
+            $("#compo").show();
 
             $("#id").val(data.tela.id);
-            $("#referencia").val(data.tela.referencia);
-            $("#precio_usd").val(data.tela.precio_usd);
-            // $("#porcentaje_mat_1").val(data.tela.composicion);
-            // $("#porcentaje_mat_2").val(data.tela.compsicion_2);
-            // $("#porcentaje_mat_3").val(data.tela.compsicion_3);
-            // $("#porcentaje_mat_4").val(data.tela.compsicion_4);
-            // $("#porcentaje_mat_5").val(data.tela.compsicion_5);
-            $("#tipo_tela").val(data.tela.tipo_tela);
-            $("#ancho_cortable").val(data.tela.ancho_cortable);
-            $("#peso").val(data.tela.peso);
-            $("#elasticidad_trama").val(data.tela.elasticidad_trama);
-            $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre);
-            $("#encogimiento_trama").val(data.tela.encogimiento_trama);
-            $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre);
+            $("#referencia").val(data.tela.referencia).attr('readonly', false);
+            $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
+            $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
+            $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', false);
+            $("#peso").val(data.tela.peso).attr('readonly', false);
+            $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', false);
+            $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', false);
+            $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
+            $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
+           
+        });
+    }
+
+    function ver(id_cloth) {
+        $.post("cloth/" + id_cloth, function(data, status) {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            // $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#compo").hide();
+
+            $("#referencia").val(data.tela.referencia).attr('readonly', true);
+            $("#precio_usd").val(data.tela.precio_usd).attr('readonly', true);
+            $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', true);
+            $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', true);
+            $("#peso").val(data.tela.peso).attr('readonly', true);
+            $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', true);
+            $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', true);
+            $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', true);
+            $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', true);
            
         });
     }
