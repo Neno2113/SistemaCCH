@@ -386,7 +386,7 @@ $(document).ready(function() {
         var corte = {
             sec: $("#sec").val(),
             numero_corte: $("#numero_corte_gen").val(),
-            producto_id: $("#productos").val(),
+            producto: $("#productos").val(),
             fecha_entrega: $("#fecha_entrega").val(), 
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
@@ -472,10 +472,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     });
@@ -568,7 +574,7 @@ $(document).ready(function() {
 
         var corte = {
             id: $("#id").val(),
-            producto_id: $("#productos").val(),
+            producto: $("#productos").val(),
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
             largo_marcada: $("#largo_marcada").val(),

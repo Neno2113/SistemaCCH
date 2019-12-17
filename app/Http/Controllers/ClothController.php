@@ -14,9 +14,9 @@ class ClothController extends Controller
     public function store(Request $request)
     {
         $validar = $request->validate([
-            'id_suplidor' => 'required',
+            'suplidor' => 'required',
             'referencia' => 'required',
-            'tipo_tela' => 'required|alpha',
+            'tipo_tela' => 'required',
             'composiciones' => 'required',
             'porcentaje_mat_1' => 'required'
 
@@ -31,7 +31,7 @@ class ClothController extends Controller
             ];
         } else {
             $id_user = \auth()->user()->id;
-            $id_suplidor = $request->input('id_suplidor', true);
+            $id_suplidor = $request->input('suplidor', true);
             $id_composiciones = $request->input('id_composiciones', true);
             $referencia = $request->input('referencia', true);
             $precio_usd = $request->input('precio_usd', true);
@@ -149,7 +149,7 @@ class ClothController extends Controller
         } else {
             $id = $request->input('id', true);
             $id_user = \auth()->user()->id;
-            $id_suplidor = $request->input('id_suplidor', true);
+            $id_suplidor = $request->input('suplidor', true);
             $id_composiciones = $request->input('id_composiciones', true);
             $referencia = $request->input('referencia', true);
             $precio_usd = $request->input('precio_usd', true);

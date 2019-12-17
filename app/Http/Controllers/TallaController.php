@@ -44,18 +44,18 @@ class TallaController extends Controller
             $corte->save();
 
             $talla->corte_id = $corte_id;
-            $talla->a = $a;
-            $talla->b = $b;
-            $talla->c = $c;
-            $talla->d = $d;
-            $talla->e = $e;
-            $talla->f = $f;
-            $talla->g = $g;
-            $talla->h = $h;
-            $talla->i = $i;
-            $talla->j = $j;
-            $talla->k = $k;
-            $talla->l = $l;
+            $talla->a = trim($a, "_");
+            $talla->b = trim($b, "_");
+            $talla->c = trim($c, "_");
+            $talla->d = trim($d, "_");
+            $talla->e = trim($e, "_");
+            $talla->f = trim($f, "_");
+            $talla->g = trim($g, "_");
+            $talla->h = trim($h, "_");
+            $talla->i = trim($i, "_");
+            $talla->j = trim($j, "_");
+            $talla->k = trim($k, "_");
+            $talla->l = trim($l, "_");
             $talla->total = $total;
 
             $talla->save();

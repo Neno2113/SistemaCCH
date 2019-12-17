@@ -192,13 +192,18 @@ class OrdenFacturacionController extends Controller
                 'orden_facturacion_detalle.e', 'orden_facturacion_detalle.f', 'orden_facturacion_detalle.f',
                 'orden_facturacion_detalle.g', 'orden_facturacion_detalle.h', 'orden_facturacion_detalle.i',
                 'orden_facturacion_detalle.j', 'orden_facturacion_detalle.k', 'orden_facturacion_detalle.l',
-                'orden_facturacion_detalle.total', 'producto.referencia_producto',
-                'orden_facturacion_detalle.fecha'
+                'orden_facturacion_detalle.total', 'producto.referencia_producto', 'orden_facturacion.id as facturacion_id',
+                'orden_facturacion_detalle.fecha', 'orden_facturacion.orden_empaque_id as empaque_id'
             ]);
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function ($orden) {
                 return "";
+            })
+            ->addColumn('orden_empaque', function ($orden) {
+                $ordenEmpaque = ordenEmpaque::find($orden->empaque_id);
+
+                return str_replace(" ", "", $ordenEmpaque->no_orden_empaque);
             })
             ->editColumn('fecha', function ($orden) {
                 return date("h:i:s A d-m-20y", strtotime($orden->fecha));

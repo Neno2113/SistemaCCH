@@ -23,6 +23,8 @@ class LavanderiaController extends Controller
         $validar = $request->validate([
             'sec' => 'required',
             'numero_envio' => 'required',
+            'suplidor' => 'required',
+            'corte' => 'required',
             'cantidad' => 'required',
             'receta_lavado' => 'required'
         ]);
@@ -38,10 +40,10 @@ class LavanderiaController extends Controller
 
             $sec = $request->input('sec');
             $numero_envio = $request->input('numero_envio');
-            $corte_id = $request->input('corte_id');
+            $corte_id = $request->input('corte');
             $fecha_envio = $request->input('fecha_envio');
             $cantidad = $request->input('cantidad');
-            $suplidor_id = $request->input('suplidor_id');
+            $suplidor_id = $request->input('suplidor');
             $receta_lavado = $request->input('receta_lavado');
             $estandar_incluido = $request->input('estandar_incluido');
 
@@ -251,9 +253,9 @@ class LavanderiaController extends Controller
             $cantidad = $request->input('cantidad');
             $receta_lavado = $request->input('receta_lavado');
             $estandar_incluido = $request->input('estandar_incluido');
-            $corte_id = $request->input('corte_id');
+            $corte_id = $request->input('corte');
             $producto_id = $request->input('producto_id');
-            $suplidor_id = $request->input('suplidor_id');
+            $suplidor_id = $request->input('suplidor');
 
             $lavanderia = Lavanderia::find($id);
             $corte = Corte::find($corte_id);

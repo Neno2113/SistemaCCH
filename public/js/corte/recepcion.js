@@ -194,8 +194,8 @@ $(document).ready(function() {
         e.preventDefault();
        
         var recepcion = {
-            corte_id: $("#cortesSearch").val(),
-            id_lavanderia: $("#lavanderias").val(),
+            corte: $("#cortesSearch").val(),
+            numero_envio: $("#lavanderias").val(),
             fecha_recepcion: $("#fecha_recepcion").val(),
             cantidad_recibida: $("#cantidad_recibida").val(),
             estandar_recibido: $("input[name='r1']:checked").val(),
@@ -220,11 +220,15 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.message);
-               
-                bootbox.alert(
-                    "Error: "+ datos.responseJSON.message
-                );
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     });
@@ -277,8 +281,8 @@ $(document).ready(function() {
 
         var recepcion = {
             id: $("#id").val(),
-            corte_id: $("#cortesSearchEdit").val(),
-            id_lavanderia: $("#lavanderiasEdit").val(),
+            corte: $("#cortesSearchEdit").val(),
+            numero_envio: $("#lavanderiasEdit").val(),
             fecha_recepcion: $("#fecha_recepcion").val(),
             cantidad_recibida: $("#cantidad_recibida").val(),
             estandar_recibido: $("input[name='r1']:checked").val(),

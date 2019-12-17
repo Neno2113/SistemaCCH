@@ -135,8 +135,8 @@ $(document).ready(function() {
                     }
 
                     var orden = {
-                        cliente_id: $("#clienteSearch").val(),
-                        sucursal_id: sucursal,
+                        cliente: $("#clienteSearch").val(),
+                        sucursal: sucursal,
                         notas: $("#notas").val(),
                         fecha_entrega: $("#fecha_entrega").val(),
                         generado_internamente: $("input[name='r1']:checked").val(),
@@ -173,11 +173,15 @@ $(document).ready(function() {
                             }
                         },
                         error: function(datos) {
-                            console.log(datos.responseJSON.message);
-
-                            bootbox.alert(
-                                "Error: " + datos.responseJSON.message
-                            );
+                            console.log(datos.responseJSON.errors); 
+                            let errores = datos.responseJSON.errors;
+            
+                            Object.entries(errores).forEach(([key, val]) => {
+                                bootbox.alert({
+                                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                                    size: 'small'
+                                });
+                            }); 
                         }
                     });
                   
@@ -1368,10 +1372,10 @@ $(document).ready(function() {
                 { data: "total", name: "orden_pedido.total", searchable: false, orderable: false },
                 { data: "detallada", name: "orden_pedido.detallada" },
             ],
-            order: [[4, "desc"]],
-            rowGroup: {
-                dataSrc: "name"
-            }
+            order: [[3, "desc"]],
+            // rowGroup: {
+            //     dataSrc: "name"
+            // }
         });
     }
 

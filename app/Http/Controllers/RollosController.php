@@ -13,11 +13,12 @@ class RollosController extends Controller
     public function store(Request $request)
     {
         $validar = $request->validate([
-            'id_suplidor' => 'required',
-            'id_tela' => 'required',
+            'suplidor' => 'required',
+            'tela' => 'required',
             'codigo_rollo' => 'required',
             'num_tono' => 'required',
-            'no_factura_compra' => 'required'
+            'no_factura_compra' => 'required',
+            'longitud_yarda' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -29,8 +30,8 @@ class RollosController extends Controller
             ];
         } else {
             $id_user = \auth()->user()->id;
-            $id_suplidor = $request->input('id_suplidor', true);
-            $id_tela = $request->input('id_tela', true);
+            $id_suplidor = $request->input('suplidor', true);
+            $id_tela = $request->input('tela', true);
             $codigo_rollo = $request->input('codigo_rollo', true);
             $num_tono = $request->input('num_tono', true);
             $fecha_compra = $request->input('fecha_compra', true);
@@ -108,8 +109,8 @@ class RollosController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'id_suplidor' => 'required',
-            'id_tela' => 'required',
+            'suplidor' => 'required',
+            'tela' => 'required',
             'codigo_rollo' => 'required',
             'num_tono' => 'required',
             'no_factura_compra' => 'required'
@@ -125,8 +126,8 @@ class RollosController extends Controller
         } else {
             $id = $request->input('id', true);
             $id_user = \auth()->user()->id;
-            $id_suplidor = $request->input('id_suplidor', true);
-            $id_tela = $request->input('id_tela', true);
+            $id_suplidor = $request->input('suplidor', true);
+            $id_tela = $request->input('tela', true);
             $codigo_rollo = $request->input('codigo_rollo', true);
             $num_tono = $request->input('num_tono', true);
             $fecha_compra = $request->input('fecha_compra', true);

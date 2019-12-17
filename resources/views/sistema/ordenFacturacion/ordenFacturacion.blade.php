@@ -160,19 +160,8 @@
                 <th></th>
                 <th id="">Referencia</th>
                 <th id="">#. orden F.</th>
+                <th id="">#. orden E.</th>
                 <th id="">F. aprobado</th>
-                <th id="ta">A</th>
-                <th id="tb">B</th>
-                <th id="tc">C</th>
-                <th id="td">D</th>
-                <th id="te">E</th>
-                <th id="tf">F</th>
-                <th id="tg">G</th>
-                <th id="th">H</th>
-                <th id="ti">I</th>
-                <th id="tj">J</th>
-                <th id="tk">K</th>
-                <th id="tl">L</th>
                 <th>Total</th>
             </tr>
         </thead>
@@ -184,19 +173,8 @@
                 <th></th>
                 <th id="">Referencia</th>
                 <th id="">#. orden F.</th>
+                <th id="">#. orden E.</th>
                 <th id="">F. aprobado</th>
-                <th id="ta">A</th>
-                <th id="tb">B</th>
-                <th id="tc">C</th>
-                <th id="td">D</th>
-                <th id="te">E</th>
-                <th id="tf">F</th>
-                <th id="tg">G</th>
-                <th id="th">H</th>
-                <th id="ti">I</th>
-                <th id="tj">J</th>
-                <th id="tk">K</th>
-                <th id="tl">L</th>
                 <th>Total</th>
             </tr>
         </tfoot>

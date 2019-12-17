@@ -293,7 +293,8 @@
 			<div id="client">
 				<div class="to">CONDUCE PARA:</div>
 				<h2 class="name">{{$orden->cliente->nombre_cliente}}</h2>
-				<div class="address">{{$orden->cliente->direccion_principal}}</div>
+				<div class="address">{{$orden->cliente->calle}}, {{$orden->cliente->sector}}</div>
+				<div class="address">{{$orden->cliente->provincia}}, {{$orden->cliente->sitios_cercanos}}</div>
 				<div class="email"><a href="mailto:john@example.com">{{$orden->cliente->email_principal}}</a></div>
 				<div class="to">SUCURSAL:</div>
 				<h2 class="name">{{$orden->sucursal->nombre_sucursal}}</h2>
@@ -430,7 +431,8 @@
 			<div id="client">
 				<div class="to">CONDUCE PARA:</div>
 				<h2 class="name">{{$orden->cliente->nombre_cliente}}</h2>
-				<div class="address">{{$orden->cliente->direccion_principal}}</div>
+				<div class="address">{{$orden->cliente->calle}} {{$orden->cliente->sector}}</div>
+				<div class="address">{{$orden->cliente->provincia}} {{$orden->cliente->sitios_cercanos}}</div>
 				<div class="email"><a href="mailto:john@example.com">{{$orden->cliente->email_principal}}</a></div>
 				<div class="to">SUCURSAL:</div>
 				<h2 class="name">{{$orden->sucursal->nombre_sucursal}}</h2>

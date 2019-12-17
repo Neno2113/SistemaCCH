@@ -57,6 +57,7 @@ class ClientController extends Controller
             $cliente->calle = $calle;
             $cliente->sector = $sector;
             $cliente->provincia = $provincia;
+            $cliente->sitios_cercanos = $sitios_cercanos;
             $cliente->rnc = $rnc;
             $cliente->contacto_cliente_principal = $contacto_cliente_principal;
             $cliente->telefono_1 = $telefono_1;
@@ -109,11 +110,13 @@ class ClientController extends Controller
         $validar = $request->validate([
             'id' => 'required',
             'nombre_cliente' => 'required',
-            'direccion_principal' => 'required',
             'contacto_cliente_principal' => 'required',
             'telefono_1' => 'required',
             'email_principal' => 'required|email',
-            'condiciones_credito' => 'required'
+            'condiciones_credito' => 'required',
+            'calle' => 'required',
+            'sector' => 'required',
+            'provincia' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -126,7 +129,10 @@ class ClientController extends Controller
         } else {
             $id = $request->input('id', true);
             $nombre_cliente = $request->input('nombre_cliente', true);
-            $direccion_principal = $request->input('direccion_principal', true);
+            $calle = $request->input('calle', true);
+            $sector = $request->input('sector');
+            $provincia = $request->input('provincia');
+            $sitios_cercanos = $request->input('sitios_cercanos');
             $rnc = $request->input('rnc');
             $contacto_cliente_principal = $request->input('contacto_cliente_principal', true);
             $telefono_1 = $request->input('telefono_1', true);
@@ -144,7 +150,10 @@ class ClientController extends Controller
             $client = Client::find($id);
 
             $client->nombre_cliente = $nombre_cliente;
-            $client->direccion_principal = $direccion_principal;
+            $client->calle = $calle;
+            $client->sector = $sector;
+            $client->provincia = $provincia;
+            $client->sitios_cercanos = $sitios_cercanos;
             $client->contacto_cliente_principal = $contacto_cliente_principal;
             $client->rnc = $rnc;
             $client->telefono_1 = $telefono_1;

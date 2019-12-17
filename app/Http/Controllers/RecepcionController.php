@@ -17,10 +17,10 @@ class RecepcionController extends Controller
     {
 
         $validar = $request->validate([
-            'corte_id' => 'required',
-            'id_lavanderia' => 'required',
+            'corte' => 'required',
+            'numero_envio' => 'required',
             'fecha_recepcion' => 'required',
-            'cantidad_recibida' => 'required'
+            'cantidad_recibida' => 'required|numeric'
         ]);
 
         if (empty($validar)) {
@@ -32,8 +32,8 @@ class RecepcionController extends Controller
             ];
         } else {
 
-            $corte_id = $request->input('corte_id');
-            $id_lavanderia = $request->input('id_lavanderia');
+            $corte_id = $request->input('corte');
+            $id_lavanderia = $request->input('numero_envio');
             $fecha_recepcion = $request->input('fecha_recepcion');
             $cantidad_recibida = $request->input('cantidad_recibida');
             $estandar_recibido = $request->input('estandar_recibido');
@@ -276,8 +276,8 @@ class RecepcionController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'corte_id' => 'required',
-            'id_lavanderia' => 'required',
+            'corte' => 'required',
+            'numero_envio' => 'required',
             'fecha_recepcion' => 'required',
             'cantidad_recibida' => 'required'
         ]);
@@ -291,8 +291,8 @@ class RecepcionController extends Controller
             ];
         } else {
             $id = $request->input('id');
-            $corte_id = $request->input('corte_id');
-            $id_lavanderia = $request->input('id_lavanderia');
+            $corte_id = $request->input('corte');
+            $id_lavanderia = $request->input('numero_envio');
             $fecha_recepcion = $request->input('fecha_recepcion');
             $cantidad_recibida = $request->input('cantidad_recibida');
             $estandar_recibido = $request->input('estandar_recibido');

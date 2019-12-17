@@ -101,10 +101,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*) correctamente"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     });

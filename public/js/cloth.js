@@ -200,7 +200,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var cloth = {
-            id_suplidor: $("#suplidores").val(),
+            suplidor: $("#suplidores").val(),
             id_composiciones: $("#compositions").val(),
             referencia: $("#referencia").val(),
             precio_usd: $("#precio_usd").val(),
@@ -241,10 +241,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     });

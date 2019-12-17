@@ -182,7 +182,8 @@ class ordenPedidoController extends Controller
     {
 
         $validar = $request->validate([
-            'cliente_id' => 'required',
+            'cliente' => 'required',
+            'sucursal' => 'required',
             'notas' => 'required',
             'generado_internamente' => 'required',
             'fecha_entrega' => 'required',
@@ -197,8 +198,8 @@ class ordenPedidoController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $client_id = $request->input('cliente_id');
-            $sucursal_id = $request->input('sucursal_id');
+            $client_id = $request->input('cliente');
+            $sucursal_id = $request->input('sucursal');
             $notas = $request->input('notas');
             $fecha_entrega = $request->input('fecha_entrega');
             $generado_internamente = $request->input('generado_internamente');

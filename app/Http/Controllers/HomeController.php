@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('adminlte.layout');
+        return view('/home');
     }
 }

@@ -17,7 +17,7 @@ class CorteController extends Controller
     {
         $validar = $request->validate([
             'numero_corte' => 'required',
-            'producto_id' => 'required',
+            'producto' => 'required',
             'fecha_entrega' => 'required',
             'aprovechamiento' => 'required'
         ]);
@@ -31,7 +31,7 @@ class CorteController extends Controller
             ];
         } else {
             $numero_corte = $request->input('numero_corte');
-            $producto_id = $request->input('producto_id');
+            $producto_id = $request->input('producto');
             // $fecha_corte = $request->input('fecha_corte');
             $no_marcada = $request->input('no_marcada');
             $ancho_marcada = $request->input('ancho_marcada');
@@ -138,7 +138,7 @@ class CorteController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'producto_id' => 'required',
+            'producto' => 'required',
             'aprovechamiento' => 'required'
         ]);
 
@@ -151,7 +151,7 @@ class CorteController extends Controller
             ];
         } else {
             $id = $request->input('id', true);
-            $producto_id = $request->input('producto_id');
+            $producto_id = $request->input('producto');
             $no_marcada = $request->input('no_marcada');
             $ancho_marcada = $request->input('ancho_marcada');
             $largo_marcada = $request->input('largo_marcada');

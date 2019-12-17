@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $("[data-mask]").inputmask();
+
     $("#formulario").validate({
         rules: {
             cortesSearch: {
@@ -316,6 +318,7 @@ $(document).ready(function() {
         $("#a").val("");
         $("#b").val("");
         $("#c").val("");
+        $("#d").val("");
         $("#e").val("");
         $("#f").val("");
         $("#g").val("");
@@ -414,7 +417,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         var perdida = {
-            corte_id: $("#cortesSearch").val(),
+            corte: $("#cortesSearch").val(),
             fecha: $("#fecha").val(),
             tipo_perdida: $("#tipo_perdida").val(),
             fase: $("#fase").val(),
@@ -438,7 +441,6 @@ $(document).ready(function() {
                     );
                     // limpiar();
                    
-
                     var talla = {
                         perdida_id: datos.perdida.id,
                         a: $("#a").val(),
@@ -491,9 +493,15 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.message);
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
 
-                bootbox.alert("Error: " + datos.responseJSON.message);
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });  
             }
         });
     });
@@ -531,7 +539,7 @@ $(document).ready(function() {
                 { data: "motivo", name: "perdidas.motivo" },
                 {data: "perdida_X",name: "perdidas.perdida_X"}
             ],
-            order: [[2, 'asc']],
+            order: [[5, 'desc']],
             rowGroup: {
                 dataSrc: 'numero_corte'
             }
@@ -543,7 +551,7 @@ $(document).ready(function() {
 
         var perdida = {
             id: $("#id").val(),
-            corte_id: $("#cortesSearch").val(),
+            corte: $("#cortesSearch").val(),
             fecha: $("#fecha").val(),
             tipo_perdida: $("#tipo_perdida").val(),
             fase: $("#fase").val(),

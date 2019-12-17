@@ -287,10 +287,10 @@ $(document).ready(function() {
                 { data: "total", name: "orden_pedido.total", searchable: false  },
                 { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
             ],
-            order: [[2, "asc"]],
-            rowGroup: {
-                dataSrc: "name"
-            }
+            order: [[1, "desc"]],
+            // rowGroup: {
+            //     dataSrc: "name"
+            // }
         });
     }
 

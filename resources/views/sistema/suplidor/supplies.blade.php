@@ -117,8 +117,8 @@
                     </div>
             </div>
             <div class="card-footer  d-flex justify-content-end ">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
-                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+                <button type="submit" id="btn-guardar" class="btn btn-lg btn-info mt-4"><i class="far fa-save fa-lg"></i></button>
+                <button type="submit" id="btn-edit" class="btn btn-lg btn-warning mt-4"><i class="far fa-edit fa-lg"></i></button>
             </div>
             </form>
         </div>

@@ -59,7 +59,7 @@ class ordenEmpaqueController extends Controller
                 }
             })
             ->addColumn('Opciones', function ($orden) {
-                return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
+                return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>';
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
@@ -118,6 +118,10 @@ class ordenEmpaqueController extends Controller
             ->make(true);
     }
 
+    private function toFixed($number, $decimals) {
+        return number_format($number, $decimals, '.', "");
+    }
+
     public function imprimir($id)
     {
         // verificar numero antiguo de la secuencia;
@@ -137,10 +141,10 @@ class ordenEmpaqueController extends Controller
             $orden_empaque = new ordenEmpaque();
 
             $orden_empaque->orden_pedido_id = $id;
-            $next_sec = $sec + 0.01;
+            $next_sec = number_format($sec + 0.01, 2);
             $orden_empaque->no_orden_empaque = "OE-" . str_replace('.', '', $next_sec);
             $orden_empaque->fecha = date('Y/m/d h:i:s');
-            $orden_empaque->sec = $sec + 0.01;
+            $orden_empaque->sec = number_format($sec + 0.01, 2);
             $orden_empaque->save();
         } else {
             $orden_empaque = $orden_pedido;

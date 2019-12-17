@@ -17,7 +17,7 @@ class PerdidaController extends Controller
     {
         $validar = $request->validate([
             'no_perdida' => 'required',
-            'corte_id' => 'required',
+            'corte' => 'required',
             'fecha' => 'required',
             'tipo_perdida' => 'required',
             'fase' => 'required',
@@ -32,7 +32,7 @@ class PerdidaController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $corte_id = $request->input('corte_id');
+            $corte_id = $request->input('corte');
             $fecha = $request->input('fecha');
             $tipo_perdida = $request->input('tipo_perdida');
             $fase = $request->input('fase');
@@ -103,19 +103,19 @@ class PerdidaController extends Controller
             $tallas = new TallasPerdidas();
 
             $tallas->perdida_id = $perdida_id;
-            $tallas->a = $a;
-            $tallas->b = $b;
-            $tallas->c = $c;
-            $tallas->d = $d;
-            $tallas->e = $e;
-            $tallas->f = $f;
-            $tallas->g = $g;
-            $tallas->h = $h;
-            $tallas->i = $i;
-            $tallas->j = $j;
-            $tallas->k = $k;
-            $tallas->l = $l;
-            $tallas->talla_x = $x;
+            $tallas->a = trim($a, "_");
+            $tallas->b = trim($b, "_");
+            $tallas->c = trim($c, "_");
+            $tallas->d = trim($d, "_");
+            $tallas->e = trim($e, "_");
+            $tallas->f = trim($f, "_");
+            $tallas->g = trim($g, "_");
+            $tallas->h = trim($h, "_");
+            $tallas->i = trim($i, "_");
+            $tallas->j = trim($j, "_");
+            $tallas->k = trim($k, "_");
+            $tallas->l = trim($l, "_");
+            $tallas->talla_x = trim($x, "_");
             $tallas->total = $total;
 
             $tallas->save();
@@ -203,7 +203,7 @@ class PerdidaController extends Controller
             ];
         } else {
             $id = $request->input('id');
-            $corte_id = $request->input('corte_id');
+            $corte_id = $request->input('corte');
             $fecha = $request->input('fecha');
             $tipo_perdida = $request->input('tipo_perdida');
             $fase = $request->input('fase');

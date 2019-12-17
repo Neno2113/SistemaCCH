@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $("[data-mask]").inputmask();
+    
     $("#formulario").validate({
         rules: {
             codigo_composicion: {
@@ -309,7 +311,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almacen = {
-            corte_id: $("#cortesSearch").val(),
+            corte: $("#cortesSearch").val(),
             ubicacion: $("#ubicacion").val(),
             tono: $("#tono").val(),
             intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
@@ -349,10 +351,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     });

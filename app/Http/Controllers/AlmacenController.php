@@ -16,10 +16,12 @@ class AlmacenController extends Controller
     {
 
         $validar = $request->validate([
-            'corte_id' => 'required',
+            'corte' => 'required',
             'ubicacion' => 'required',
             'tono' => 'required',
-            'intensidad_proceso_seco' => 'required'
+            'intensidad_proceso_seco' => 'required',
+            'atributo_no_1' => 'required',
+    
         ]);
 
         if (empty($validar)) {
@@ -30,7 +32,7 @@ class AlmacenController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $corte_id = $request->input('corte_id');
+            $corte_id = $request->input('corte');
             $ubicacion = $request->input('ubicacion');
             $tono = $request->input('tono');
             $intensidad_proceso_seco = $request->input('intensidad_proceso_seco');
@@ -71,18 +73,18 @@ class AlmacenController extends Controller
             $almacen->producto_id = $producto_id;
             $almacen->corte_id = $corte_id;
             $almacen->user_id = \auth()->user()->id;
-            $almacen->a = $a;
-            $almacen->b = $b;
-            $almacen->c = $c;
-            $almacen->d = $d;
-            $almacen->e = $e;
-            $almacen->f = $f;
-            $almacen->g = $g;
-            $almacen->h = $h;
-            $almacen->i = $i;
-            $almacen->j = $j;
-            $almacen->k = $k;
-            $almacen->l = $l;
+            $almacen->a = trim($a, "_");
+            $almacen->b = trim($b, "_");
+            $almacen->c = trim($c, "_");
+            $almacen->d = trim($d, "_");
+            $almacen->e = trim($e, "_");
+            $almacen->f = trim($f, "_");
+            $almacen->g = trim($g, "_");
+            $almacen->h = trim($h, "_");
+            $almacen->i = trim($i, "_");
+            $almacen->j = trim($j, "_");
+            $almacen->k = trim($k, "_");
+            $almacen->l = trim($l, "_");
             $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
             $almacen->usado_curva = 0;
 
@@ -148,7 +150,7 @@ class AlmacenController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'corte_id' => 'required',
+            'corte' => 'required',
             'ubicacion' => 'required',
             'tono' => 'required',
             'intensidad_proceso_seco' => 'required'
@@ -164,7 +166,7 @@ class AlmacenController extends Controller
         } else {
             $id = $request->input('id', true);
          
-            $corte_id = $request->input('corte_id');
+            $corte_id = $request->input('corte');
             $ubicacion = $request->input('ubicacion');
             $tono = $request->input('tono');
             $intensidad_proceso_seco = $request->input('intensidad_proceso_seco');

@@ -176,8 +176,8 @@
                 </form>
             </div>
             <div class="card-footer   d-flex justify-content-end">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
-                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+                <button type="submit" id="btn-guardar" class="btn btn-lg btn-info mt-4 mr-3 ml-3"><i class="far fa-save fa-lg"></i></button>
+                <button type="submit" id="btn-edit" class="btn btn-lg btn-warning mt-4"><i class="far fa-edit fa-lg"></i></button>
             </div>
 
 
@@ -279,51 +279,63 @@
                 <div class="row mt-2">
                     <div class="col-lg-1 col-xs-">
                         <label for="" class="ml-4" id="ta">A</label>
-                        <input type="text" name="" id="a" class="form-control text-center">
+                        <input type="text" name="" id="a" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tb">B</label>
-                        <input type="text" name="" id="b" class="form-control text-center">
+                        <input type="text" name="" id="b" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tc">C</label>
-                        <input type="text" name="" id="c" class="form-control text-center">
+                        <input type="text" name="" id="c" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="td">D</label>
-                        <input type="text" name="" id="d" class="form-control text-center">
+                        <input type="text" name="" id="d" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="te">E</label>
-                        <input type="text" name="" id="e" class="form-control text-center">
+                        <input type="text" name="" id="e" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-md-1">
                         <label for="" class="ml-4" id="tf">F</label>
-                        <input type="text" name="" id="f" class="form-control text-center">
+                        <input type="text" name="" id="f" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tg">G</label>
-                        <input type="text" name="" id="g" class="form-control text-center">
+                        <input type="text" name="" id="g" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="th">H</label>
-                        <input type="text" name="" id="h" class="form-control text-center">
+                        <input type="text" name="" id="h" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="ti">I</label>
-                        <input type="text" name="" id="i" class="form-control text-center">
+                        <input type="text" name="" id="i" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tj">J</label>
-                        <input type="text" name="" id="j" class="form-control text-center">
+                        <input type="text" name="" id="j" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tk">K</label>
-                        <input type="text" name="" id="k" class="form-control text-center">
+                        <input type="text" name="" id="k" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tl">L</label>
-                        <input type="text" name="" id="l" class="form-control text-center">
+                        <input type="text" name="" id="l" class="form-control text-center"
+                        data-inputmask='"mask": "999"' data-mask>
                     </div>
                 </div>
                 <hr>

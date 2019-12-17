@@ -50,9 +50,11 @@ $(document).ready(function() {
                     var ordenFacturacion = {
                         sec: $("#sec").val(),
                         no_orden_facturacion: $("#no_orden_facturacion").val(),
-                        empaque_id: $("#ordenEmpaqueSearch").val()
+                        empaque_id: $("#ordenEmpaqueSearch").val(),
+                        por_transporte: $("input[name='r1']:checked").val()
                     };
 
+                    console.log(JSON.stringify(ordenFacturacion));
                     $.ajax({
                         url: "orden_facturacion",
                         type: "POST",
@@ -122,7 +124,7 @@ $(document).ready(function() {
             por_transporte: $("input[name='r1']:checked").val(),
         };
 
-        // console.log(JSON.stringify(ordenFacturacion));
+        console.log(JSON.stringify(ordenFacturacion));
 
         $.ajax({
             url: "orden_facturacion",
@@ -176,19 +178,20 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "referencia_producto",name: "producto.referencia_producto"},
                 { data: "no_orden_facturacion",name: "orden_facturacion.no_orden_facturacion"},
+                { data: "orden_empaque",name: "orden_facturacion.orden_empaque"},
                 { data: "fecha",name: "orden_facturacion.fecha"},
-                { data: "a", name: "orden_facturacion_detalle.a" },
-                { data: "b", name: "orden_facturacion_detalle.b" },
-                { data: "c", name: "orden_facturacion_detalle.c" },
-                { data: "d", name: "orden_facturacion_detalle.d" },
-                { data: "e", name: "orden_facturacion_detalle.e" },
-                { data: "f", name: "orden_facturacion_detalle.f" },
-                { data: "g", name: "orden_facturacion_detalle.g" },
-                { data: "h", name: "orden_facturacion_detalle.h" },
-                { data: "i", name: "orden_facturacion_detalle.i" },
-                { data: "j", name: "orden_facturacion_detalle.j" },
-                { data: "k", name: "orden_facturacion_detalle.k" },
-                { data: "l", name: "orden_facturacion_detalle.l" },
+                // { data: "a", name: "orden_facturacion_detalle.a" },
+                // { data: "b", name: "orden_facturacion_detalle.b" },
+                // { data: "c", name: "orden_facturacion_detalle.c" },
+                // { data: "d", name: "orden_facturacion_detalle.d" },
+                // { data: "e", name: "orden_facturacion_detalle.e" },
+                // { data: "f", name: "orden_facturacion_detalle.f" },
+                // { data: "g", name: "orden_facturacion_detalle.g" },
+                // { data: "h", name: "orden_facturacion_detalle.h" },
+                // { data: "i", name: "orden_facturacion_detalle.i" },
+                // { data: "j", name: "orden_facturacion_detalle.j" },
+                // { data: "k", name: "orden_facturacion_detalle.k" },
+                // { data: "l", name: "orden_facturacion_detalle.l" },
                 { data: "total", name: "orden_facturacion_detalle.total" },
             ],
             order: [[2, "desc"]],

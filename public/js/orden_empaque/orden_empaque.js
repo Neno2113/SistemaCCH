@@ -196,9 +196,9 @@ $(document).ready(function() {
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
             ],
             order: [[2, "desc"]],
-            rowGroup: {
-                dataSrc: "name"
-            }
+            // rowGroup: {
+            //     dataSrc: "name"
+            // }
         });
     }
 
@@ -237,9 +237,9 @@ $(document).ready(function() {
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
             ],
             order: [[2, "desc"]],
-            rowGroup: {
-                dataSrc: "name"
-            }
+            // rowGroup: {
+            //     dataSrc: "name"
+            // }
         });
     }
 

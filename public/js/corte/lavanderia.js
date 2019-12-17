@@ -219,8 +219,8 @@ $(document).ready(function() {
         var lavanderia = {
             sec: $("#sec").val(),
             numero_envio: $("#numero_envio").val(),
-            suplidor_id: $("#suplidores").val(),
-            corte_id: $("#cortesSearch").val(),
+            suplidor: $("#suplidores").val(),
+            corte: $("#cortesSearch").val(),
             fecha_envio: $("#fecha_envio").val(),
             cantidad: $("#cantidad").val(),
             receta_lavado: $("#receta_lavado").val(),
@@ -246,10 +246,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     });
@@ -302,8 +308,8 @@ $(document).ready(function() {
 
         var lavanderia = {
             producto_id: $("#productosEdit").val(),
-            suplidor_id: $("#suplidores").val(),
-            corte_id: $("#cortesSearchEdit").val(),
+            suplidor: $("#suplidores").val(),
+            corte: $("#cortesSearchEdit").val(),
             numero_envio: $("#numero_envio").val(),
             fecha_envio: $("#fecha_envio").val(),
             cantidad: $("#cantidad").val(),

@@ -178,10 +178,10 @@ $(document).ready(function() {
                 // { data: "no_orden_pedido", name: "orden_empaque.no_orden_pedido", orderable: false, searchable: false},
                 // { data: "fecha_entrega", name: "orden_facturacion.fecha_entrega", orderable: false, searchable: false},
             ],
-            order: [[2, "desc"]],
-            rowGroup: {
-                dataSrc: "name"
-            }
+            order: [[3, "desc"]],
+            // rowGroup: {
+            //     dataSrc: "name"
+            // }
         });
     }
 
@@ -220,10 +220,10 @@ $(document).ready(function() {
                 { data: "tipo_factura", name: "factura.tipo_factura"},
                 
             ],
-            order: [[2, "desc"]],
-            rowGroup: {
-                dataSrc: "name"
-            }
+            order: [[6, "desc"]],
+            // rowGroup: {
+            //     dataSrc: "name"
+            // }
         });
     }
 

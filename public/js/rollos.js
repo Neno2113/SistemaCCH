@@ -93,8 +93,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         var rollo = {
-            id_suplidor: $("#suplidores").val(),
-            id_tela: $("#cloths").val(),
+            suplidor: $("#suplidores").val(),
+            tela: $("#cloths").val(),
             codigo_rollo: $("#codigo_rollo").val(),
             num_tono: $("#num_tono").val(),
             fecha_compra: $("#fecha_compra").val(),
@@ -120,10 +120,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     });

@@ -14,8 +14,8 @@ class UserController extends Controller
     {
 
         $validar = $request->validate([
-            'name' => 'required|alpha|',
-            'surname' => 'required|alpha',
+            'nombre' => 'required|alpha|',
+            'apellido' => 'required|alpha',
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
@@ -28,8 +28,8 @@ class UserController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $name = $request->input('name', true);
-            $surname = $request->input('surname', true);
+            $nombre = $request->input('nombre', true);
+            $apellido = $request->input('apellido', true);
             $edad = $request->input('edad', true);
             $email = $request->input('email', true);
             $role = $request->input('role', true);
@@ -41,14 +41,14 @@ class UserController extends Controller
             $pwd = Hash::make($password);
 
             $user = new User();
-            $user->name = $name;
+            $user->nombre = $nombre;
             $user->email = $email;
             $user->password = $pwd;
             $user->role = $role;
             $user->direccion = $direccion;
             $user->telefono = $telefono;
             $user->celular = $celular;
-            $user->surname = $surname;
+            $user->apellido = $apellido;
             $user->edad = $edad;
 
             $user->save();
@@ -87,8 +87,8 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'name' => 'required|alpha|',
-            'surname' => 'required|alpha',
+            'nombre' => 'required|alpha|',
+            'apellido' => 'required|alpha',
             'email' => 'required|email',
             'password' => 'required'
         ]);
@@ -102,8 +102,8 @@ class UserController extends Controller
             ];
         } else {
             $id = $request->input('id', true);
-            $name = $request->input('name', true);
-            $surname = $request->input('surname', true);
+            $nombre = $request->input('nombre', true);
+            $apellido = $request->input('apellido', true);
             $edad = $request->input('edad', true);
             $email = $request->input('email', true);
             $role = $request->input('role', true);
@@ -116,14 +116,14 @@ class UserController extends Controller
 
             $user = User::find($id);
 
-            $user->name = $name;
+            $user->nombre = $nombre;
             $user->email = $email;
             $user->password = $pwd;
             $user->role = $role;
             $user->direccion = $direccion;
             $user->telefono = $telefono;
             $user->celular = $celular;
-            $user->surname = $surname;
+            $user->apellido = $apellido;
             $user->edad = $edad;
 
             $user->save();

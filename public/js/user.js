@@ -23,11 +23,11 @@ $(document).ready(function() {
         },
         messages: {
             name: {
-                required: "Introduzca el nombre",
+                required: "Introduzca el name",
                 minlength: "Debe contener al menos 3 letras"
             },
             surname: {
-                required: "Introduzca el apellido",
+                required: "Introduzca el surname",
                 minlength: "Debe contener al menos 4 letras"
             },
             edad: "La edad es obligatoria",
@@ -68,8 +68,8 @@ $(document).ready(function() {
         e.preventDefault();
         
         var user = {
-            name: $("#name").val(),
-            surname: $("#surname").val(),
+            nombre: $("#name").val(),
+            apellido: $("#surname").val(),
             email: $("#email").val(),
             edad: $("#edad").val(),
             telefono: $("#telefono").val(),
@@ -97,10 +97,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });            
             }
         });
     });
@@ -116,7 +122,7 @@ $(document).ready(function() {
                  {
                     extend: 'excelHtml5',
                     autoFilter: true,
-                    sheetName: 'Exported data'
+                    sheetnombre: 'Exported data'
                 },
                 'csvHtml5',
                 {
@@ -150,8 +156,8 @@ $(document).ready(function() {
         e.preventDefault();
         var user = {
             id: $("#id").val(),
-            name: $("#name").val(),
-            surname: $("#surname").val(),
+            nombre: $("#name").val(),
+            apellido: $("#surname").val(),
             email: $("#email").val(),
             edad: $("#edad").val(),
             telefono: $("#telefono").val(),
