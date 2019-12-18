@@ -365,7 +365,7 @@
             <div id="client-orden">
                 <div class="to">ORDEN PEDIDO:</div>
                 @foreach ($ordenes_pedido as $orden)
-                <h2 class="name">{{$orden->no_orden_pedido}}</h2> 
+                <h2 class="name">{{$orden->no_orden_pedido}}</h2>
                 @endforeach
                 <div class="date">Fecha: {{$orden_pedido->fecha}} </div>
                 <div class="to">TERMINOS DE PAGO:</div>
@@ -423,7 +423,11 @@
                     </td>
                     <td class="unit">
                         @foreach ($sku as $barra)
+                        @if ($barra->talla = "General")
                         <li>{{$barra->sku}}</li>
+                        @endif
+                        @break
+
                         @endforeach
                     </td>
                     <td class="desc-des">
@@ -542,7 +546,7 @@
                         <th class="no">REFERENCIA</th>
                         <th class="unit">SKU</th>
                         <th class="desc">DESCRIPCION</th>
-                     
+
                     </tr>
                 </thead>
                 <tbody>
@@ -559,7 +563,12 @@
                         </td>
                         <td class="unit">
                             @foreach ($sku as $barra)
+                            @if ($barra->talla = "General")
                             <li>{{$barra->sku}}</li>
+                            @endif
+
+                            @break
+
                             @endforeach
                         </td>
                         <td class="desc-des">
@@ -567,7 +576,7 @@
                             <li>{{$producto->descripcion}}</li>
                             @endforeach
                         </td>
-                    
+
                     </tr>
                 </tbody>
             </table>

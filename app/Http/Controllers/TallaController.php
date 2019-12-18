@@ -35,6 +35,20 @@ class TallaController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
+
+            $a = intval(trim($a, "_"));
+            $b = intval(trim($b, "_"));
+            $c = intval(trim($c, "_"));
+            $d = intval(trim($d, "_"));
+            $e = intval(trim($e, "_"));
+            $f = intval(trim($f, "_"));
+            $g = intval(trim($g, "_"));
+            $h = intval(trim($h, "_"));
+            $i = intval(trim($i, "_"));
+            $j = intval(trim($j, "_"));
+            $k = intval(trim($k, "_"));
+            $l = intval(trim($l, "_"));
+          
             $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l; 
                     
             $talla = new Talla();
@@ -44,18 +58,18 @@ class TallaController extends Controller
             $corte->save();
 
             $talla->corte_id = $corte_id;
-            $talla->a = trim($a, "_");
-            $talla->b = trim($b, "_");
-            $talla->c = trim($c, "_");
-            $talla->d = trim($d, "_");
-            $talla->e = trim($e, "_");
-            $talla->f = trim($f, "_");
-            $talla->g = trim($g, "_");
-            $talla->h = trim($h, "_");
-            $talla->i = trim($i, "_");
-            $talla->j = trim($j, "_");
-            $talla->k = trim($k, "_");
-            $talla->l = trim($l, "_");
+            $talla->a = $a;
+            $talla->b = $b;
+            $talla->c = $c;
+            $talla->d = $d;
+            $talla->e = $e;
+            $talla->f = $f;
+            $talla->g = $g;
+            $talla->h = $h;
+            $talla->i = $i;
+            $talla->j = $j;
+            $talla->k = $k;
+            $talla->l = $l;
             $talla->total = $total;
 
             $talla->save();

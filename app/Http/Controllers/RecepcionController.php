@@ -58,7 +58,7 @@ class RecepcionController extends Controller
 
                 $porcentaje = ($total_recibido/$total_cortado) * 100;
 
-                if($porcentaje > 90.00){
+                if($porcentaje > 60.00){
                     $corte->fase = 'Terminacion';
                     $corte->save();
                 }
@@ -222,6 +222,7 @@ class RecepcionController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
+                
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }

@@ -98,12 +98,15 @@ $(document).ready(function() {
             ajax: "api/skus",
             columns: [
                 // { data: "Expandir", orderable: false, searchable: false },
-                { data: "id" },
                 { data: "sku" },
                 { data: "referencia_producto" },
                 { data: "talla" },
               
-            ]
+            ],
+            order: [[1, 'desc']],
+            rowGroup: {
+                dataSrc: 'referencia_producto'
+            }
         });
     }
 

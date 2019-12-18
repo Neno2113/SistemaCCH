@@ -52,6 +52,7 @@ class FacturaController extends Controller
             $factura->user_id = \auth()->user()->id;
             $factura->tipo_factura = $tipo_factura;
             $factura->sec = $sec + 0.01;
+            $factura->impreso = 0;
             $factura->comprobante_fiscal = $comprobante_fiscal;
             $factura->numero_comprobante = 'B01' . $numero_comprobante;
             $factura->descuento = trim($descuento, '_%');
@@ -80,7 +81,7 @@ class FacturaController extends Controller
                 'orden_facturacion.id', 'orden_facturacion.no_orden_facturacion', 'orden_facturacion.fecha',
                 'users.name', 'users.surname', 'orden_empaque.no_orden_empaque', 'orden_empaque.fecha as fecha_empaque',
                 'orden_empaque.orden_pedido_id', 'orden_facturacion.por_transporte'
-            ]);
+            ])->where('impreso', 'LIKE', '1');
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function ($orden) {
@@ -199,8 +200,9 @@ class FacturaController extends Controller
             ->join('users', 'factura.user_id', 'users.id')
             ->select([
                 'factura.id', 'factura.no_factura', 'factura.tipo_factura', 'factura.fecha', 'factura.comprobante_fiscal',
-                'factura.descuento', 'factura.itbis', 'orden_facturacion.no_orden_facturacion', 'users.name', 'users.surname'
-            ]);
+                'factura.descuento', 'factura.itbis', 'orden_facturacion.no_orden_facturacion', 'users.name', 'users.surname',
+                'factura.impreso'
+            ])->where('impreso', 'LIKE', 0);
 
         return DataTables::of($facturas)
             ->editColumn('comprobante_fiscal', function ($factura) {
@@ -257,9 +259,14 @@ class FacturaController extends Controller
         if (\is_object($factura)) {
 
             $factura->fecha_impresion = date('Y/m/d h:i:s');
+            $factura->impreso = 1;
             $factura->save();
 
             $id_orden_facturacion = $factura->orden_facturacion->id;
+            $orden_facturacion = OrdenFacturacion::find($id_orden_facturacion);
+            $orden_facturacion->impreso = 1;
+            $orden_facturacion->save();
+
             $id_orden_empaque = $factura->orden_facturacion->orden_empaque_id;
             $orden_facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)
                 ->get();

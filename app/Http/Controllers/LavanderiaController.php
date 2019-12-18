@@ -69,7 +69,7 @@ class LavanderiaController extends Controller
             $porcentaje = ($total_enviado/$cant_total) * 100;
 
 
-            if($porcentaje > 90.00){
+            if($porcentaje > 50.00){
                 $corte->fase = 'Lavanderia';
                 $corte->save();
             }

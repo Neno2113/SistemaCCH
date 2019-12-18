@@ -99,9 +99,9 @@ $(document).ready(function() {
 
     function limpiar() {
         $("#numero_envio").val("");
-        $("#fecha_envio").val("");
-        $("#receta_lavado").val("");
-        $("#cantidad").val("");
+        $("#fecha_envio").val("").attr('disabled', false);
+        $("#receta_lavado").val("").attr('disabled', false);
+        $("#cantidad").val("").attr('readonly', false);
         $("#estandar_incluido").val("");
         $("#productos").val("").trigger("change");
         $("#cortesSearch").val("").trigger("change");
@@ -296,7 +296,7 @@ $(document).ready(function() {
                 { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
               
             ],
-            order: [[4, 'desc']],
+            order: [[3, 'desc']],
             rowGroup: {
                 dataSrc: 'numero_corte'
             }
@@ -307,6 +307,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         var lavanderia = {
+            id: $("#id").val(),
             producto_id: $("#productosEdit").val(),
             suplidor: $("#suplidores").val(),
             corte: $("#cortesSearchEdit").val(),
@@ -325,7 +326,7 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
+                    bootbox.alert("Se actualizado correctamente el corte");
                     limpiar();
                     tabla.ajax.reload();
                     $("#id").val("");

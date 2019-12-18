@@ -509,18 +509,18 @@ class ordenEmpaqueController extends Controller
             ->where('cant_red', $cantidad)->get()->first();
 
         if (\is_object($orden_pedido_detalle)) {
-            $orden_pedido_detalle->a = $a_red;
-            $orden_pedido_detalle->b = $b_red;
-            $orden_pedido_detalle->c = $c_red;
-            $orden_pedido_detalle->d = $d_red;
-            $orden_pedido_detalle->e = $e_red;
-            $orden_pedido_detalle->f = $f_red;
-            $orden_pedido_detalle->g = $g_red;
-            $orden_pedido_detalle->h = $h_red;
-            $orden_pedido_detalle->i = $i_red;
-            $orden_pedido_detalle->j = $j_red;
-            $orden_pedido_detalle->k = $k_red;
-            $orden_pedido_detalle->l = $l_red;
+            $orden_pedido_detalle->a = ($a_red < 0 ? 0 : $a_red);
+            $orden_pedido_detalle->b = ($b_red < 0 ? 0 : $b_red);
+            $orden_pedido_detalle->c = ($c_red < 0 ? 0 : $c_red);
+            $orden_pedido_detalle->d = ($d_red < 0 ? 0 : $d_red);
+            $orden_pedido_detalle->e = ($e_red < 0 ? 0 : $e_red);
+            $orden_pedido_detalle->f = ($f_red < 0 ? 0 : $f_red);
+            $orden_pedido_detalle->g = ($g_red < 0 ? 0 : $g_red);
+            $orden_pedido_detalle->h = ($h_red < 0 ? 0 : $h_red);
+            $orden_pedido_detalle->i = ($i_red < 0 ? 0 : $i_red);
+            $orden_pedido_detalle->j = ($j_red < 0 ? 0 : $j_red);
+            $orden_pedido_detalle->k = ($k_red < 0 ? 0 : $k_red);
+            $orden_pedido_detalle->l = ($l_red < 0 ? 0 : $l_red);
             $orden_pedido_detalle->save();
         }
 
@@ -544,18 +544,18 @@ class ordenEmpaqueController extends Controller
             $orden_empaque->no_orden_empaque = "OE - " . str_replace('.', '', $next_sec);
             $orden_empaque->fecha = date('Y/m/d h:i:s');
             $orden_empaque->sec = $sec + 0.01;
-            $orden_empaque->a = $a_red;
-            $orden_empaque->b = $b_red;
-            $orden_empaque->c = $c_red;
-            $orden_empaque->d = $d_red;
-            $orden_empaque->e = $e_red;
-            $orden_empaque->f = $f_red;
-            $orden_empaque->g = $g_red;
-            $orden_empaque->h = $h_red;
-            $orden_empaque->i = $i_red;
-            $orden_empaque->j = $j_red;
-            $orden_empaque->k = $k_red;
-            $orden_empaque->l = $l_red;
+            $orden_empaque->a = ($a_red < 0 ? 0 : $a_red);
+            $orden_empaque->b = ($b_red < 0 ? 0 : $b_red);
+            $orden_empaque->c = ($c_red < 0 ? 0 : $c_red);
+            $orden_empaque->d = ($d_red < 0 ? 0 : $d_red);
+            $orden_empaque->e = ($e_red < 0 ? 0 : $e_red);
+            $orden_empaque->f = ($f_red < 0 ? 0 : $f_red);
+            $orden_empaque->g = ($g_red < 0 ? 0 : $g_red);
+            $orden_empaque->h = ($h_red < 0 ? 0 : $h_red);
+            $orden_empaque->i = ($i_red < 0 ? 0 : $i_red);
+            $orden_empaque->j = ($j_red < 0 ? 0 : $j_red);
+            $orden_empaque->k = ($k_red < 0 ? 0 : $k_red);
+            $orden_empaque->l = ($l_red < 0 ? 0 : $l_red);
             $orden_empaque->save();
         }
 

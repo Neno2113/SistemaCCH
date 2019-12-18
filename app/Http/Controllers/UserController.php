@@ -116,14 +116,14 @@ class UserController extends Controller
 
             $user = User::find($id);
 
-            $user->nombre = $nombre;
+            $user->name = $nombre;
             $user->email = $email;
             $user->password = $pwd;
             $user->role = $role;
             $user->direccion = $direccion;
             $user->telefono = $telefono;
             $user->celular = $celular;
-            $user->apellido = $apellido;
+            $user->surname = $apellido;
             $user->edad = $edad;
 
             $user->save();
@@ -169,14 +169,16 @@ class UserController extends Controller
             ->addColumn('Expandir', function ($user) {
                 return "";
             })
+            ->addColumn('Ver', function ($user) {
+                return '<button id="btnEdit" onclick="ver(' . $user->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
+               
+            })
             ->addColumn('Editar', function ($user) {
-                return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm"> <i class="fas fa-user-edit "></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm mr-1"> <i class="fas fa-user-edit "></i></button>'.
+                '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-user-times"></i></button>';
             })
-            ->addColumn('Eliminar', function ($user) {
-                return '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-user-times"></i></button>';
-            })
-
-            ->rawColumns(['Editar', 'Eliminar'])
+           
+            ->rawColumns(['Editar', 'Ver'])
             ->make(true);
     }
 }

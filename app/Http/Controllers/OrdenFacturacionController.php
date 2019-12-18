@@ -41,6 +41,7 @@ class OrdenFacturacionController extends Controller
             $orden_facturacion->orden_empaque_id = $orden_empaque_id;
             $orden_facturacion->user_id = \auth()->user()->id;
             $orden_facturacion->fecha = date('Y/m/d h:i:s');
+            $orden_facturacion->impreso = 0;
             $orden_facturacion->por_transporte = $por_transporte;
             $orden_facturacion->sec = $sec + 0.01;
 

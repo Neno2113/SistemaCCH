@@ -51,6 +51,19 @@ class AlmacenController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
+            
+            $a = intval(trim($a, "_"));
+            $b = intval(trim($b, "_"));
+            $c = intval(trim($c, "_"));
+            $d = intval(trim($d, "_"));
+            $e = intval(trim($e, "_"));
+            $f = intval(trim($f, "_"));
+            $g = intval(trim($g, "_"));
+            $h = intval(trim($h, "_"));
+            $i = intval(trim($i, "_"));
+            $j = intval(trim($j, "_"));
+            $k = intval(trim($k, "_"));
+            $l = intval(trim($l, "_"));
 
             $almacen = new Almacen();
             $corte = Corte::find($corte_id);
@@ -73,18 +86,18 @@ class AlmacenController extends Controller
             $almacen->producto_id = $producto_id;
             $almacen->corte_id = $corte_id;
             $almacen->user_id = \auth()->user()->id;
-            $almacen->a = trim($a, "_");
-            $almacen->b = trim($b, "_");
-            $almacen->c = trim($c, "_");
-            $almacen->d = trim($d, "_");
-            $almacen->e = trim($e, "_");
-            $almacen->f = trim($f, "_");
-            $almacen->g = trim($g, "_");
-            $almacen->h = trim($h, "_");
-            $almacen->i = trim($i, "_");
-            $almacen->j = trim($j, "_");
-            $almacen->k = trim($k, "_");
-            $almacen->l = trim($l, "_");
+            $almacen->a = $a;
+            $almacen->b = $b;
+            $almacen->c = $c;
+            $almacen->d = $d;
+            $almacen->e = $e;
+            $almacen->f = $f;
+            $almacen->g = $g;
+            $almacen->h = $h;
+            $almacen->i = $i;
+            $almacen->j = $j;
+            $almacen->k = $k;
+            $almacen->l = $l;
             $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
             $almacen->usado_curva = 0;
 

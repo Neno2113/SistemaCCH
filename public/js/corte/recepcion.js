@@ -209,7 +209,7 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Hi!! here goes almost everything important from the form of Lavanderia");
+                    bootbox.alert("Corte recibido de lavanderia recibido!!");
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -269,7 +269,7 @@ $(document).ready(function() {
                 { data: "estandar_recibido", name: "recepcion.estandar_recibido" },
               
             ],
-            order: [[2, 'asc']],
+            order: [[6, 'desc']],
             rowGroup: {
                 dataSrc: 'numero_corte'
             }

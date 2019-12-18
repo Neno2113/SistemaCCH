@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-2">
                             <label for="">Restante por recibir:</label>
-                            <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control">
+                            <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control" readonly>
                         </div>
                         <div class="col-4 pl-5">
                             <label for="">¿Estandar recibido?</label>

@@ -85,7 +85,7 @@
                             <label for="name">Email(*):</label>
                             <input type="Email" name="email" id="email" class="form-control">
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4 mt-3" id="ver-contra">
                             <label for="password">Contraseña(*):</label>
                             <input type="password" name="password" id="password" class="form-control">
                         </div>
@@ -128,36 +128,30 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
+                    <th>Ver</th>
+                    <th>Actions</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Rol</th>
+                    <th>Edad</th>
                     <th>Telefono</th>
                     <th>Celular</th>
-                    <th>Direccion</th>
-                    <th>Edad</th>
-
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>ID</th>
+                    <th>Ver</th>
+                    <th>Actions</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Rol</th>
+                    <th>Edad</th>
                     <th>Telefono</th>
                     <th>Celular</th>
-                    <th>Direccion</th>
-                    <th>Edad</th>
-
                 </tr>
             </tfoot>
         </table>
@@ -180,19 +174,44 @@
             $("#btn-edit").show();
             $("#btnAgregar").hide();
             $("#btn-guardar").hide();
+            $("#ver-contra").show();
 
             // console.log(data);
             $("#id").val(data.user.id);
-            $("#name").val(data.user.name);
-            $("#surname").val(data.user.surname);
-            $("#edad").val(data.user.edad);
-            $("#telefono").val(data.user.telefono);
-            $("#celular").val(data.user.celular);
-            $("#direccion").val(data.user.direccion);
-            $("#email").val(data.user.email);
-            $("#role").val(data.user.role);
+            $("#name").val(data.user.name).attr('readonly', false);
+            $("#surname").val(data.user.surname).attr('readonly', false);
+            $("#edad").val(data.user.edad).attr('readonly', false);
+            $("#telefono").val(data.user.telefono).attr('readonly', false);
+            $("#celular").val(data.user.celular).attr('readonly', false);
+            $("#direccion").val(data.user.direccion).attr('readonly', false);
+            $("#email").val(data.user.email).attr('readonly', false);
+            $("#role").val(data.user.role).attr('disabled', false);
         });
     }
+
+
+    function ver(id_user) {
+        $.post("user/" + id_user, function(data, status) {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-guardar").hide();
+
+            
+            $("#name").val(data.user.name).attr('readonly', true);
+            $("#ver-contra").hide();
+            $("#surname").val(data.user.surname).attr('readonly', true);
+            $("#edad").val(data.user.edad).attr('readonly', true);
+            $("#telefono").val(data.user.telefono).attr('readonly', true);
+            $("#celular").val(data.user.celular).attr('readonly', true);
+            $("#direccion").val(data.user.direccion).attr('readonly', true);
+            $("#email").val(data.user.email).attr('readonly', true);
+            $("#role").val(data.user.role).attr('disabled', true);
+        });
+    }
+
+    
 
   
 

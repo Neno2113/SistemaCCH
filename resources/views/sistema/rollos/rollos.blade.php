@@ -94,10 +94,10 @@
                     <th>Tela</th>
                     <th>Codigo</th>
                     <th>Tono</th>
-                    <th>Fecha compra</th>
-                    <th>Factura compra</th>
-                    <th>Corte asignado</th>
-                    <th>Longitud en yardas</th>
+                    <th>F. compra</th>
+                    <th>F. compra</th>
+                    <th>Corte asig.</th>
+                    <th>Yardas</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -109,10 +109,10 @@
                     <th>Tela</th>
                     <th>Codigo</th>
                     <th>Tono</th>
-                    <th>Fecha compra</th>
-                    <th>Factura compra</th>
-                    <th>Corte asignado</th>
-                    <th>Longitud en yardas</th>
+                    <th>F. compra</th>
+                    <th>F. compra</th>
+                    <th>Corte asig.</th>
+                    <th>Yardas</th>
                 </tr>
             </tfoot>
         </table>

@@ -52,15 +52,16 @@ $(document).ready(function() {
     }
 
     function limpiar() {
-        $("#name").val("");
-        $("#surname").val("");
-        $("#edad").val("");
-        $("#telefono").val("");
-        $("#celular").val("");
-        $("#direccion").val("");
-        $("#email").val("");
-        $("#role").val("");
-        $("#password").val("");
+        $("#name").val("").attr('readonly', false);
+        $("#surname").val("").attr('readonly', false);
+        $("#edad").val("").attr('readonly', false);
+        $("#telefono").val("").attr('readonly', false);
+        $("#celular").val("").attr('readonly', false);
+        $("#direccion").val("").attr('readonly', false);
+        $("#email").val("").attr('readonly', false);
+        $("#role").val("").attr('disabled', false);
+        $("#password").val("").attr('readonly', false);
+        $("#ver-contra").show();
     }
 
     $("#btn-guardar").click(function(e) {
@@ -133,17 +134,15 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
+                { data: "Ver", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
-                { data: "Eliminar", orderable: false, searchable: false },
-                { data: "id" },
                 { data: "name" },
                 { data: "surname" },
                 { data: "email" },
                 { data: "role" },
+                { data: "edad" },
                 { data: "telefono" },
                 { data: "celular" },
-                { data: "direccion" },
-                { data: "edad" },  
             ],
             order: [[2, 'asc']],
             rowGroup: {

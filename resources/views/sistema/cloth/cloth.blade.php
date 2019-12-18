@@ -256,7 +256,7 @@
                                 data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
-                    <div class="row d-flex justify-content-end mt-5 mr-1">
+                    {{-- <div class="row d-flex justify-content-end mt-5 mr-1">
                         <div class="col-md-2 ml-5">
                             <label for="Total">Total</label>
                         </div>
@@ -264,7 +264,7 @@
                             <input type="text" name="porcentaje_mat_total" id="porcentaje_mat_total"
                                 class="form-control">
                         </div>
-                    </div>
+                    </div> --}}
 
             </div>
             <div class="modal-footer">

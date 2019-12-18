@@ -57,7 +57,6 @@
     <table id="skus" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>SKU</th>
                 <th>Producto</th>
                 <th>Talla</th>
@@ -67,7 +66,6 @@
         <tbody></tbody>
         <tfoot>
             <tr>
-                <th>ID</th>
                 <th>SKU</th>
                 <th>Producto</th>
                 <th>Talla</th>

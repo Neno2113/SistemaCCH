@@ -66,7 +66,8 @@
                     <div class="row mt-2">
                         <div class="col-md-4">
                             <label for="">Ubicacion</label>
-                            <input type="text" name="ubicacion" id="ubicacion" class="form-control">
+                            <input type="text" name="ubicacion" id="ubicacion" class="form-control text-center"
+                            data-inputmask='"mask": "a-9"' data-mask>
                         </div>
                         <div class="col-md-4">
                             <label for="">Tono</label>
@@ -249,6 +250,8 @@
                         </select>
                     </div>
                 </div>
+
+
                 <div class="row">
                     <table class="table table-bordered table-responsive" style="width: 100%">
                         <thead>

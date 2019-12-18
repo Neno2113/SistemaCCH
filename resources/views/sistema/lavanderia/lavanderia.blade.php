@@ -37,7 +37,7 @@
                             <input type="hidden" name="" id="id" value="">
                         </div>
                         <div class="col-6 mt-4 pt-2">
-                            <button id="btn-generar" class="btn btn-success ">Generar</button>
+                            <button id="btn-generar" class="btn btn-secondary "><i class="fas fa-file-alt fa-lg"></i></button>
                             <input type="text" name="tota_enviado" id="total_enviado"
                                 class="form-control text-center" readonly>
 

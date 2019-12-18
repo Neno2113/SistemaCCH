@@ -167,10 +167,10 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <label for="">Corte: </label>
+                    {{-- <label for="">Corte: </label>
                     <div class="col-md-6">
                         <input type="text" name="corte" id="corte" class="form-control text-center">
-                    </div>
+                    </div> --}}
                 </div>
                 <br>
                 <hr>
@@ -379,8 +379,10 @@
 
     function asignar(id_rollo) {     
         var rollo = {
-            numero_corte: $("#numero_corte").val(),
+            numero_corte: $("#numero_corte_gen").val(),
         };
+        console.log(JSON.stringify(rollo));
+
         $.ajax({
             url: "asignar/"+ id_rollo,
             type: "POST",

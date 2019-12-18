@@ -83,7 +83,9 @@ $(document).ready(function() {
                     // console.log(referencia);
                                
                     $("#numero_corte_gen").val(referencia);
-                    $("#corte").val(referencia);         
+                    $("#corte").val(referencia);
+                    $("#numero_corte").val(referencia);
+                    $("#corte_tallas").val(referencia);          
                     
 
                 } else {
@@ -408,7 +410,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     bootbox.alert("Corte creado !!");
                     limpiar();
-                    // tabla.ajax.reload();
+                   
                     mostrarForm(false);
                     $('#btn-generar').attr("disabled", false);
 
@@ -525,7 +527,7 @@ $(document).ready(function() {
                 { data: "largo_marcada", name: 'corte.largo_marcada' },
                 { data: "ancho_marcada", name: 'corte.ancho_marcada' },
             ],
-            order: [[7, 'asc']],
+            order: [[7, 'desc']],
             rowGroup: {
                 dataSrc: 'fase' 
             }
