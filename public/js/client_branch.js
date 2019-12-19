@@ -121,6 +121,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/branches",
             dom: 'Bfrtip',
+            iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',

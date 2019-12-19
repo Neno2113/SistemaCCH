@@ -176,6 +176,7 @@ $(document).ready(function() {
             serverSide: true,
             autoWidth: false,
             responsive: true,
+            iDisplayLength: 5,
             ajax: "api/products",
             dom: 'Bfrtip',
             buttons: [
@@ -286,9 +287,11 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
 
@@ -564,6 +567,7 @@ $(document).ready(function() {
             };
         }else{
             var asignacion = {
+                id: $("#id_producto").val(), 
                 talla: $("#btn-asignar8").val(),
                 referencia: $("#referencia").val()
             };

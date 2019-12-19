@@ -80,6 +80,7 @@ $(document).ready(function() {
             serverSide: true,
             // responsive: true,
             dom: 'Bfrtip',
+            // iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -99,7 +100,7 @@ $(document).ready(function() {
             columns: [
                 // { data: "Expandir", orderable: false, searchable: false },
                 { data: "sku" },
-                { data: "referencia_producto" },
+                { data: "referencia_producto", searchable: false },
                 { data: "talla" },
               
             ],

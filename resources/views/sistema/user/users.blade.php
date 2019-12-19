@@ -7,8 +7,8 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-user-plus"></i></button>
-    <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button>
+    <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-user-plus"></i> Agregar</button>
+    {{-- <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button> --}}
 </div>
 
 <div class="row ">
@@ -109,9 +109,11 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer  text-muted d-flex justify-content-end">
-                <button type="submit" id="btn-guardar" class="btn btn-lg btn-info mt-4"><i class="far fa-save fa-lg"></i></button>
-                <button type="submit" id="btn-edit" class="btn btn-lg btn-warning mt-4"><i class="far fa-edit fa-lg"></i></button>
+            <div class="card-footer  text-muted ">
+                <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-1 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
+ 
             </div>
             </form>
         </div>
@@ -121,10 +123,11 @@
 
 <div class="card" id="listadoUsers">
     <div class="card-header text-center">
-        <h4>Listado de usuarios</h4>
+        <h4 > Listado de usuarios</h4>
     </div>
     <div class="card-body">
-        <table id="users" class="table table-hover table-bordered datatables" style="width:100%">
+      
+        <table id="users" class="table table-bordered table-hover datatables" style="width: 100%" >
             <thead>
                 <tr>
                     <th></th>
@@ -135,7 +138,6 @@
                     <th>Email</th>
                     <th>Rol</th>
                     <th>Edad</th>
-                    <th>Telefono</th>
                     <th>Celular</th>
                 </tr>
             </thead>
@@ -150,7 +152,6 @@
                     <th>Email</th>
                     <th>Rol</th>
                     <th>Edad</th>
-                    <th>Telefono</th>
                     <th>Celular</th>
                 </tr>
             </tfoot>

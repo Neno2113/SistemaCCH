@@ -370,6 +370,7 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",
+            iDisplayLength: 5,
             buttons: [
                 "pageLength",
                 "copyHtml5",

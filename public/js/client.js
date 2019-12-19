@@ -174,6 +174,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/clients",
             dom: 'Bfrtip',
+            iDisplayLength: 5,
             buttons: [
             'pageLength',
             'copyHtml5',
@@ -289,9 +290,11 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
 

@@ -41,14 +41,14 @@ class UserController extends Controller
             $pwd = Hash::make($password);
 
             $user = new User();
-            $user->nombre = $nombre;
+            $user->name = $nombre;
             $user->email = $email;
             $user->password = $pwd;
             $user->role = $role;
             $user->direccion = $direccion;
             $user->telefono = $telefono;
             $user->celular = $celular;
-            $user->apellido = $apellido;
+            $user->surname = $apellido;
             $user->edad = $edad;
 
             $user->save();

@@ -7,9 +7,8 @@
 @section('content')
 <div class="container">
     <div class="row mt-2">
-        <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg"
-            id="btn-agregar">Agregar sucursales
-            <i class="fas fa-building"></i></button>
+        <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg" id="btn-agregar">
+            <i class="fas fa-building fa-lg"></i> Agregar sucursales</button>
     </div>
 </div>
 

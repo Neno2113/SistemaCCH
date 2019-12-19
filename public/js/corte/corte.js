@@ -491,10 +491,11 @@ $(document).ready(function() {
     //funcion para listar en el Datatable
     function listar() {
         // tabla.responsive.recalc();
-        tabla = $("#cortes").DataTable({
+        tabla = $("#cortes_listados").DataTable({
             serverSide: true,
             autoWidth: false,
             responsive: true,
+            iDisplayLength: 5,
             dom: 'Bfrtip',
             buttons: [
                 'pageLength',
@@ -683,10 +684,12 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         $("#btn-generar").show();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });

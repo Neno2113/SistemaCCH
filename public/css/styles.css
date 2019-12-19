@@ -10,6 +10,12 @@
     border: 1px solid #31343940;
 }
 
+table.dataTable tr.dtrg-group.dtrg-level-0 td{
+    background-color: #31343940;
+}
+
+
+
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before{
     top: 30%;
     left: 30%;

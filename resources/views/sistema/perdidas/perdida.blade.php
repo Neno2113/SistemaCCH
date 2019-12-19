@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-6 mt-3 ">
         <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-        <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
+        
     </div>
 </div>
 <div class="row ">
@@ -31,7 +31,7 @@
                     <hr>
                     <br>
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-md-5">
                             <label for="">Tipo de perdida(*)</label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
@@ -112,9 +112,10 @@
                     </div>
 
             </div>
-            <div class="card-footer text-muted d-flex justify-content-end ">
-                <button type="submit" id="btn-guardar" class="btn btn-lg btn-info mt-4"><i class="far fa-save fa-lg"></i></button>
-                <button type="submit"  id="btn-edit" class="btn btn-lg btn-warning mt-4"><i class="far fa-edit fa-lg"></i></button>
+            <div class="card-footer text-muted ">
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit"  id="btn-edit" class="btn btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
         </div>

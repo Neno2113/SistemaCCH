@@ -261,6 +261,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/cloths",
             dom: 'Bfrtip',
+            iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -282,7 +283,6 @@ $(document).ready(function() {
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "referencia", name: 'tela.referencia' },
                 { data: "nombre", name: "suplidor.nombre" },
-                { data: "precio_usd", name: "tela.precio_usd" },
                 { data: "tipo_tela", name: "tela.tipo_tela" },
                 { data: "peso", name: "tela.peso" },
                 { data: "composicion", name: "tela.composicion" },
@@ -381,10 +381,12 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
         $("#compo").show();
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
   

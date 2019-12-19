@@ -31,6 +31,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/producto-terminado",
             dom: 'Bfrtip',
+            iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',

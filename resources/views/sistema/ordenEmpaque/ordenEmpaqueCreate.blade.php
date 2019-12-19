@@ -110,7 +110,7 @@
 {{-- </div> --}}
 
 <div class="container" id="listadoUsers">
-    <table id="ordenes_empaque" class="table table-striped table-bordered datatables">
+    <table id="orden_empaques" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>

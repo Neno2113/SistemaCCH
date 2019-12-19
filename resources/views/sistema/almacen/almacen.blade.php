@@ -9,7 +9,7 @@
 <div class="row mt-3 ml-3">
     <div class="col-md-6">
         <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
-        <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
+      
         <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i>
             ir a producto terminado </a>
     </div>
@@ -176,9 +176,10 @@
                     </div>
                 </form>
             </div>
-            <div class="card-footer   d-flex justify-content-end">
-                <button type="submit" id="btn-guardar" class="btn btn-lg btn-info mt-4 mr-3 ml-3"><i class="far fa-save fa-lg"></i></button>
-                <button type="submit" id="btn-edit" class="btn btn-lg btn-warning mt-4"><i class="far fa-edit fa-lg"></i></button>
+            <div class="card-footer">
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
             </div>
 
 

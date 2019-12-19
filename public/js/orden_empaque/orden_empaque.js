@@ -204,10 +204,11 @@ $(document).ready(function() {
 
      //funcion para listar en el Datatable
      function listarOrdenes() {
-        tabla = $("#ordenes_empaque").DataTable({
+        tabla = $("#orden_empaques").DataTable({
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",
+            iDisplayLength: 5,
             buttons: [
                 "pageLength",
                 "copyHtml5",

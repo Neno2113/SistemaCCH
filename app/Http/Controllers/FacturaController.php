@@ -202,7 +202,7 @@ class FacturaController extends Controller
                 'factura.id', 'factura.no_factura', 'factura.tipo_factura', 'factura.fecha', 'factura.comprobante_fiscal',
                 'factura.descuento', 'factura.itbis', 'orden_facturacion.no_orden_facturacion', 'users.name', 'users.surname',
                 'factura.impreso'
-            ])->where('impreso', 'LIKE', 0);
+            ])->where('factura.impreso', 'LIKE', 0);
 
         return DataTables::of($facturas)
             ->editColumn('comprobante_fiscal', function ($factura) {

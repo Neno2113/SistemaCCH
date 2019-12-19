@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-6 mt-3 ">
         <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-        <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
+        
     </div>
 </div>
 <div class="row ">
@@ -18,8 +18,10 @@
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center ">
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
                 </div>
                 <h4>Formulario de recepcion de lavanderia:</h4>
             </div>
@@ -68,7 +70,8 @@
                         </div>
                         <div class="col-2">
                             <label for="">Restante por recibir:</label>
-                            <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control" readonly>
+                            <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control"
+                                readonly>
                         </div>
                         <div class="col-4 pl-5">
                             <label for="">¿Estandar recibido?</label>
@@ -90,9 +93,10 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer text-muted d-flex justify-content-end ">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4">
-                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+            <div class="card-footer text-muted">
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
         </div>
@@ -103,39 +107,42 @@
     <div class="card-header text-center">
         <h4>Listado de cortes recibidos de lavanderia</h4>
     </div>
-    <table id="recepciones" class="table table-hover table-bordered datatables mt-3" style="width:100%">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Acciones</th>
-                <th>Num. Recepcion</th>
-                <th>F. Recepcion </th>
-                <th>C. Recibida</th>
-                <th>Corte</th>
-                <th>Num. Envio</th>
-                <th>F. Envio</th>
-                <th>Cant. Recibida</th>
-                <th>Total</th>
-                <th>Estandar Recibido</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Acciones</th>
-                <th>Num. Recepcion</th>
-                <th>F. Recepcion </th>
-                <th>C. Recibida</th>
-                <th>Corte</th>
-                <th>Num. Envio</th>
-                <th>F. Envio</th>
-                <th>Cant. Recibida</th>
-                <th>Total</th>
-                <th>Estandar Recibido</th>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="card-body">
+        <table id="recepciones" class="table table-hover table-bordered datatables " style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>Fecha </th>
+                    <th>Cant. Rec.</th>
+                    <th>Corte</th>
+                    <th># Envio</th>
+                    <th>F. Envio</th>
+                    <th>Cant. Recibida</th>
+                    <th>Total</th>
+                    <th>Estandar Rec.</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th># </th>
+                    <th>Fecha </th>
+                    <th>Cant. Rec.</th>
+                    <th>Corte</th>
+                    <th># Envio</th>
+                    <th>F. Envio</th>
+                    <th>Cant. Recibida</th>
+                    <th>Total</th>
+                    <th>Estandar Rec.</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
 </div>
 </div>
 

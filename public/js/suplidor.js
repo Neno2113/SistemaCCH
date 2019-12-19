@@ -132,6 +132,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/suppliers",
             dom: 'Bfrtip',
+            iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -145,7 +146,8 @@ $(document).ready(function() {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
                     pageSize: 'LEGAL'
-                }
+                },
+               
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
@@ -235,9 +237,11 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
 

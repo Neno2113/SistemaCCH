@@ -118,7 +118,9 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/users",
             dom: 'Bfrtip',
+            iDisplayLength: 5,  
             buttons: [
+                'pageLength',
                 'copyHtml5',
                  {
                     extend: 'excelHtml5',
@@ -141,10 +143,9 @@ $(document).ready(function() {
                 { data: "email" },
                 { data: "role" },
                 { data: "edad" },
-                { data: "telefono" },
                 { data: "celular" },
             ],
-            order: [[2, 'asc']],
+            order: [[6, 'asc']],
             rowGroup: {
                 dataSrc: 'role'
             }
@@ -221,9 +222,11 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
 

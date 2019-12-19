@@ -7,14 +7,12 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-4">
-    <button class="btn btn-primary  mb-2" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-    <button class="btn btn-danger  mb-2" id="btnCancelar"><i class="fas fa-window-close"></i></button>
+   
+    <button class="btn btn-primary  mb-2" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
 </div>
 
 <div class="row">
     <div class="col-12">
-
-
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center">
                 <div class="card-tools">
@@ -116,9 +114,13 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer  d-flex justify-content-end ">
-                <button type="submit" id="btn-guardar" class="btn btn-lg btn-info mt-4"><i class="far fa-save fa-lg"></i></button>
-                <button type="submit" id="btn-edit" class="btn btn-lg btn-warning mt-4"><i class="far fa-edit fa-lg"></i></button>
+            <div class="card-footer ">
+                <button class="btn btn-danger  mt-2" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+                    Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i
+                        class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
         </div>
@@ -131,6 +133,7 @@
         <h4>Listado de suplidores</h4>
     </div>
     <div class="card-body">
+       
         <table id="suppliers" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>

@@ -5,12 +5,12 @@
 <!-- Bootstrap 4 -->
 <script src="{{asset('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- DataTables-->
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+{{-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script> --}}
 <script src="{{asset('/adminlte/plugins/JSZip-2.5.0/jszip.min.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/pdfmake/pdfmake.min.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/pdfmake/vfs_fonts.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-{{-- <script src="{{asset('/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script> --}}
+<script src="{{asset('/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/Buttons/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/Buttons/js/buttons.bootstrap4.min.js')}}"></script>
 <script src="{{asset('/adminlte/plugins/Buttons/js/buttons.html5.min.js')}}"></script>

@@ -140,6 +140,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/rollos",
             dom: 'Bfrtip',
+            iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',

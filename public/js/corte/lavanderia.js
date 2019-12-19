@@ -289,7 +289,7 @@ $(document).ready(function() {
                 { data: "numero_envio", name: "lavanderia.numero_envio" },
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
-                { data: "fecha_envio", name: "lavanderia.fecha_envio" },
+              
                 { data: "cantidad_parcial", name: "lavanderia.cantidad_parcial" },
                 { data: "total", name: "corte.total" },
                 { data: "nombre", name: "suplidor.nombre" },
@@ -385,6 +385,7 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
         $("#btn-generar").show();
         $("#total_enviado").hide();
@@ -392,6 +393,7 @@ $(document).ready(function() {
       
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
 

@@ -8,7 +8,7 @@
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-3">
     <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-    <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
+    
 </div>
 
 <div class="row">
@@ -98,9 +98,10 @@
                         </div>
                     </div>
             </div>
-            <div class="card-footer  text-muted d-flex justify-content-end ">
-                <button type="submit" id="btn-guardar" class="btn btn-lg btn-info mt-4"><i class="far fa-save fa-lg"></i></button>
-                <button type="submit" id="btn-edit" class="btn btn-lg btn-warning mt-4"><i class="far fa-edit fa-lg"></i></button>
+            <div class="card-footer  text-muted ">
+                <button class="btn btn-danger mt-2" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-left"><i class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
         </div>
@@ -117,18 +118,17 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>Referencia</th>
+                    <th>Ver</th>
+                    <th>Actions</th>
+                    <th>Ref.</th>
                     <th>Suplidor</th>
-                    <th>Precio USD/Yarda</th>
                     <th>Tela</th>
                     <th>Peso</th>
-                    <th>Composicion</th>
-                    <th>Composicion 2</th>
-                    <th>Composicion 3</th>
-                    <th>Composicion 4</th>
-                    <th>Composicion 5</th>
+                    <th>Compo.</th>
+                    <th>Compo. 2</th>
+                    <th>Compo. 3</th>
+                    <th>Compo. 4</th>
+                    <th>Compo. 5</th>
 
                 </tr>
             </thead>
@@ -136,18 +136,17 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>Referencia</th>
+                    <th>Ver</th>
+                    <th>Actions</th>
+                    <th>Ref.</th>
                     <th>Suplidor</th>
-                    <th>Precio USD/Yarda</th>
                     <th>Tela</th>
                     <th>Peso</th>
-                    <th>Composicion</th>
-                    <th>Composicion 2</th>
-                    <th>Composicion 3</th>
-                    <th>Composicion 4</th>
-                    <th>Composicion 5</th>
+                    <th>Compo.</th>
+                    <th>Compo. 2</th>
+                    <th>Compo. 3</th>
+                    <th>Compo. 4</th>
+                    <th>Compo. 5</th>
                 </tr>
             </tfoot>
         </table>

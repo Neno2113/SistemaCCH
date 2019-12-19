@@ -44,7 +44,7 @@ class SKUController extends Controller
 
     public function skus()
     {
-        $skus = SKU::query();
+        $skus = SKU::query()->where('referencia_producto', '<>', '');
         return DataTables::eloquent($skus)
 
             ->addColumn('Expandir', function ($sku) {
