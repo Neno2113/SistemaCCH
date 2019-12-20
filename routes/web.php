@@ -246,6 +246,7 @@ Route::put('/almacen/edit', 'AlmacenController@update');
 Route::post('/almacen/delete/{id}', 'AlmacenController@destroy');
 Route::post('/almacen/producto', 'AlmacenController@corteProducto');
 Route::post('/almacen/imagen', 'AlmacenController@upload');
+Route::post('/show/corte/producto', 'AlmacenController@verificar_ref');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');

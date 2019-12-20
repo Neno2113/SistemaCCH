@@ -55,7 +55,8 @@ $(document).ready(function() {
                 { data: "precio_lista", name: "producto.precio_lista" },
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico" },
                 { data: "descripcion", name: "producto.descripcion" }              
-            ]
+            ],
+            order: [[2, "desc"]],
         });
     }
 

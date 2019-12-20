@@ -6,11 +6,7 @@
 
 @section('content')
 {{-- <div class="container"> --}}
-<div class="row">
-    <div class="col-md-6 mt-3 ">
-        <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-window-close"></i></button>
-    </div>
-</div>
+
 <div class="row mt-4">
     <div class="col-12 ">
         <div class="card  mb-3" id="registroForm">
@@ -125,8 +121,9 @@
 
 
             </div>
-            <div class="card-footer  text-muted d-flex justify-content-end ">
-
+            <div class="card-footer  text-muted d-flex justify-content-start ">
+                <button class="btn btn-danger mt-2 " id="btnCancelar"><i
+                    class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
             </div>
         </div>
     </div>

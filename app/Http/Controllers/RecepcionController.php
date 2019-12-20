@@ -251,8 +251,8 @@ class RecepcionController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Lavanderia::select("id", "numero_envio", "enviado", "recibido", "total_enviado")
-                // ->where('enviado', 'LIKE', '1')
-                // ->where('recibido', 'LIKE', '0')
+                ->where('enviado', 'LIKE', '1')
+                ->where('recibido', 'LIKE', '0')
                 ->where('numero_envio', 'LIKE', "%$search%")
                 ->get();
         }

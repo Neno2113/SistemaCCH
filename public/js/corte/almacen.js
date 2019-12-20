@@ -31,6 +31,10 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         $("#sub-genero").hide();
+        $("#loading").hide();
+        $("#loading2").hide();
+        $("#loading3").hide();
+      
     }
 
     function limpiar() {
@@ -117,7 +121,205 @@ $(document).ready(function() {
         }
     });
 
-    $("#tono").change(function() {
+    
+
+    $("#btn-guardar").click(function(e) {
+        e.preventDefault();
+
+        var almacen = {
+            corte: $("#cortesSearch").val(),
+            ubicacion: $("#ubicacion").val(),
+            tono: $("#tono").val(),
+            intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
+            atributo_no_1: $("#atributo_no_1").val(),
+            atributo_no_2: $("#atributo_no_2").val(),
+            atributo_no_3: $("#atributo_no_3").val(),
+            a: $("#a").val(),
+            b: $("#b").val(),
+            c: $("#c").val(),
+            d: $("#d").val(),
+            e: $("#e").val(),
+            f: $("#f").val(),
+            g: $("#g").val(),
+            h: $("#h").val(),
+            i: $("#i").val(),
+            j: $("#j").val(),
+            k: $("#k").val(),
+            l: $("#l").val()
+        };
+
+        $.ajax({
+            url: "almacen",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(almacen),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Se registro correctamenete el corte en almacen");
+                    console.log(datos);
+                    limpiar();
+                    tabla.ajax.reload();
+                    mostrarForm(false);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+    });
+
+    function listar() {
+        tabla = $("#almacenes").DataTable({
+            serverSide: true,
+            responsive: true,
+            dom: "Bfrtip",
+            iDisplayLength: 5,
+            buttons: [
+                "pageLength",
+                "copyHtml5",
+                {
+                    extend: "excelHtml5",
+                    autoFilter: true,
+                    sheetName: "Exported data"
+                },
+                "csvHtml5",
+                {
+                    extend: "pdfHtml5",
+                    orientation: "landscape",
+                    pageSize: "LEGAL"
+                }
+            ],
+            ajax: "api/almacenes",
+            columns: [
+                { data: "Expandir", orderable: false, searchable: false },
+                { data: "Opciones", orderable: false, searchable: false },
+                { data: "name", name: "users.name" },
+                { data: "numero_corte", name: "corte.numero_corte" },
+                { data: "referencia_producto", name: "producto.referencia_producto"},
+                { data: "totalCorte", name: "corte.total" },
+                { data: "total", name: "almacen.total" }
+            ],
+            order: [[2, "asc"]],
+            rowGroup: {
+                dataSrc: "name"
+            }
+        });
+    }
+
+    $("#btn-edit").click(function(e) {
+        e.preventDefault();
+
+        var almacen = {
+            id: $("#id").val(),
+            producto_id: $("#productos").val(),
+            corte: $("#cortesSearchEdit").val(),
+            ubicacion: $("#ubicacion").val(),
+            tono: $("#tono").val(),
+            intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
+            atributo_no_1: $("#atributo_no_1").val(),
+            atributo_no_2: $("#atributo_no_2").val(),
+            atributo_no_3: $("#atributo_no_3").val(),
+            a: $("#a").val(),
+            b: $("#b").val(),
+            c: $("#c").val(),
+            d: $("#d").val(),
+            e: $("#e").val(),
+            f: $("#f").val(),
+            g: $("#g").val(),
+            h: $("#h").val(),
+            i: $("#i").val(),
+            j: $("#j").val(),
+            k: $("#k").val(),
+            l: $("#l").val()
+        };
+
+        $.ajax({
+            url: "almacen/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(almacen),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert(
+                        "Se actualizado correctamente el corte en almacen"
+                    );
+                    limpiar();
+                    tabla.ajax.reload();
+                    $("#id").val("");
+                    $("#referencia_producto").hide();
+                    $("#numero_corte").hide();
+                    mostrarForm(false);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert("Ocurrio un error!!");
+            }
+        });
+    });
+
+    function mostrarForm(flag) {
+        limpiar();
+        if (flag) {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#corteAdd").show();
+            $("#imagen_frente").show();
+            $("#imagen_trasera").show();
+            $("#imagen_perfil").show();
+            $("#imagen_bolsillo").show();
+            $("#btn-upload").show();
+        } else {
+            $("#listadoUsers").show();
+            $("#registroForm").hide();
+            $("#btnCancelar").hide();
+            $("#btnAgregar").show();
+            $("#btn-edit").hide();
+            $("#btn-guardar").show();
+            $("#referencia_producto").hide();
+            $("#numero_corte").hide();
+            $("#corteEdit").hide();
+            $("#formUpload").hide();
+            $("#form_producto").hide();
+            $("#form_producto_2").hide();
+            $("#form_talla").hide();
+            $("#btn-guardar").attr('disabled', true);
+           
+        }
+    }
+
+
+    $("#btn-buscar").click(function(){
+        $("#loading").show(); 
+        $("#loading2").show(); 
+        $("#loading3").show(); 
+       
+        setInterval(function(){
+        $("#loading").hide();
+        $("#loading2").hide();
+        $("#loading3").hide(); 
+            
+        }, 1500);
+
         var corte = {
             id: $("#cortesSearch").val(),
             idEdit: $("#cortesSearchEdit").val()
@@ -125,23 +327,25 @@ $(document).ready(function() {
 
         let corte_id = $("#cortesSearch").val() 
         let corte_id_edit = $("#cortesSearchEdit").val();
-        console.log(corte_id_edit);
-        console.log(corte_id)
-
+     
         $("#corte_id").val(corte_id);
         $("#corte_id_edit").val(corte_id_edit);
-        // console.log(JSON.stringify(corte));
+
         $.ajax({
-            url: "almacen/producto",
+            url: "show/corte/producto",
             type: "POST",
             dataType: "json",
             data: JSON.stringify(corte),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    let ubicacion  = datos.producto.ubicacion;
                     let val = datos.referencia;
                     let genero = val.substring(1, 2);
 
+                    $("#genero").val("Referencia producto: "+val);
+
+                    listarCorteDetalle(datos.id);
                     if (genero == "2") {
                         $("#genero").val("Mujer: " + val);
                         $("#sub-genero").show();
@@ -294,57 +498,44 @@ $(document).ready(function() {
                         );
                     } else if (val == "") {
                         $("#motivo").html("<option value=''> </option>");
+                    
                     }
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert("Ocurrio un error");
-            }
-        });
-    });
-
-    $("#btn-guardar").click(function(e) {
-        e.preventDefault();
-
-        var almacen = {
-            corte: $("#cortesSearch").val(),
-            ubicacion: $("#ubicacion").val(),
-            tono: $("#tono").val(),
-            intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
-            atributo_no_1: $("#atributo_no_1").val(),
-            atributo_no_2: $("#atributo_no_2").val(),
-            atributo_no_3: $("#atributo_no_3").val(),
-            a: $("#a").val(),
-            b: $("#b").val(),
-            c: $("#c").val(),
-            d: $("#d").val(),
-            e: $("#e").val(),
-            f: $("#f").val(),
-            g: $("#g").val(),
-            h: $("#h").val(),
-            i: $("#i").val(),
-            j: $("#j").val(),
-            k: $("#k").val(),
-            l: $("#l").val()
-        };
-
-        $.ajax({
-            url: "almacen",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(almacen),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Se registro correctamenete el corte en almacen");
-                    console.log(datos);
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
+                    
+                    if(ubicacion != null){
+                        bootbox.confirm({
+                            message: "¿Desea modificar la ubicacion o datos de la referencia?",
+                            buttons: {
+                                confirm: {
+                                    label: 'Si',
+                                    className: 'btn-primary'
+                                },
+                                cancel: {
+                                    label: 'No',
+                                    className: 'btn-warning'
+                                }
+                            },
+                            callback: function (result) {
+                                if(result){
+                                    $("#formUpload").show();
+                                    $("#form_producto").show();
+                                    $("#form_producto_2").show();
+                                    $("#form_talla").show();
+                                }else{
+                                    $("#formUpload").show();
+                                    $("#form_producto").hide();
+                                    $("#form_producto_2").hide();
+                                    $("#form_talla").show();
+                                }
+                            }
+                        });
+                    }else{
+                        $("#formUpload").show();
+                        $("#form_producto").show();
+                        $("#form_producto_2").show();
+                        $("#form_talla").show();
+                    }
+                    
+                 
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -363,134 +554,53 @@ $(document).ready(function() {
                 });
             }
         });
-    });
+        
+    })
 
-    function listar() {
-        tabla = $("#almacenes").DataTable({
+    //funcion para listar en el Datatable
+    function listarCorteDetalle(id) {
+        tabla_orden = $("#corte_detalle").DataTable({
             serverSide: true,
-            responsive: true,
-            dom: "Bfrtip",
-            iDisplayLength: 5,
-            buttons: [
-                "pageLength",
-                "copyHtml5",
-                {
-                    extend: "excelHtml5",
-                    autoFilter: true,
-                    sheetName: "Exported data"
-                },
-                "csvHtml5",
-                {
-                    extend: "pdfHtml5",
-                    orientation: "landscape",
-                    pageSize: "LEGAL"
-                }
-            ],
-            ajax: "api/almacenes",
+            bFilter: false,
+            lengthChange: false,
+            bPaginate: false,
+            bInfo: false,
+            retrieve: true,
+            ajax: "api/detalle_corte/" + id,
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
-                { data: "Opciones", orderable: false, searchable: false },
-                { data: "name", name: "users.name" },
-                { data: "numero_corte", name: "corte.numero_corte" },
-                {
-                    data: "referencia_producto",
-                    name: "producto.referencia_producto"
-                },
-                { data: "totalCorte", name: "corte.total" },
-                { data: "total", name: "almacen.total" }
-            ],
-            order: [[2, "asc"]],
-            rowGroup: {
-                dataSrc: "name"
-            }
+                { data: "a", name: "tallas.a" },
+                { data: "b", name: "tallas.b" },
+                { data: "c", name: "tallas.c" },
+                { data: "d", name: "tallas.d" },
+                { data: "e", name: "tallas.e" },
+                { data: "f", name: "tallas.f" },
+                { data: "g", name: "tallas.g" },
+                { data: "h", name: "tallas.h" },
+                { data: "i", name: "tallas.i" },
+                { data: "j", name: "tallas.j" },
+                { data: "k", name: "tallas.k" },
+                { data: "l", name: "tallas.l" },
+            ]
         });
+
+        $("#corte_detalle")
+            .DataTable()
+            .ajax.reload();
     }
 
-    $("#btn-edit").click(function(e) {
-        e.preventDefault();
 
-        var almacen = {
-            id: $("#id").val(),
-            producto_id: $("#productos").val(),
-            corte_id: $("#cortesSearchEdit").val(),
-            ubicacion: $("#ubicacion").val(),
-            tono: $("#tono").val(),
-            intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
-            atributo_no_1: $("#atributo_no_1").val(),
-            atributo_no_2: $("#atributo_no_2").val(),
-            atributo_no_3: $("#atributo_no_3").val(),
-            a: $("#a").val(),
-            b: $("#b").val(),
-            c: $("#c").val(),
-            d: $("#d").val(),
-            e: $("#e").val(),
-            f: $("#f").val(),
-            g: $("#g").val(),
-            h: $("#h").val(),
-            i: $("#i").val(),
-            j: $("#j").val(),
-            k: $("#k").val(),
-            l: $("#l").val()
-        };
+    
 
-        $.ajax({
-            url: "almacen/edit",
-            type: "PUT",
-            dataType: "json",
-            data: JSON.stringify(almacen),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert(
-                        "Se actualizado correctamente el corte en almacen"
-                    );
-                    limpiar();
-                    tabla.ajax.reload();
-                    $("#id").val("");
-                    $("#referencia_producto").hide();
-                    $("#numero_corte").hide();
-                    mostrarForm(false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert("Ocurrio un error!!");
-            }
-        });
+    $("#btn-upload").click(function(){
+        $("#btn-guardar").attr('disabled', false);
     });
-
-    function mostrarForm(flag) {
-        limpiar();
-        if (flag) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#corteAdd").show();
-        } else {
-            $("#listadoUsers").show();
-            $("#registroForm").hide();
-            $("#btnCancelar").hide();
-            $("#btnAgregar").show();
-            $("#btn-edit").hide();
-            $("#btn-guardar").show();
-            $("#referencia_producto").hide();
-            $("#numero_corte").hide();
-            $("#corteEdit").hide();
-            // $("#frente").hide();
-            // $("#trasera").hide();
-            // $("#perfil").hide();
-            // $("#bolsillo").hide();
-        }
-    }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
 
@@ -519,8 +629,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert("Ocurrio un error");
+            error: function(datos) {
+                console.log(datos.responseJSON.message); 
+                let errores = datos.responseJSON.message;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                })
             }
         });
         

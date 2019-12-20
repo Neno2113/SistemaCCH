@@ -100,7 +100,7 @@ $(document).ready(function() {
     function limpiar() {
         $("#numero_envio").val("");
         $("#fecha_envio").val("").attr('disabled', false);
-        $("#receta_lavado").val("").attr('disabled', false);
+        $("#receta_lavado").val("").attr('readonly', false);
         $("#cantidad").val("").attr('readonly', false);
         $("#estandar_incluido").val("");
         $("#productos").val("").trigger("change");
@@ -386,6 +386,7 @@ $(document).ready(function() {
 
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
+
         mostrarForm(true);
         $("#btn-generar").show();
         $("#total_enviado").hide();

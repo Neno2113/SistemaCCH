@@ -17,11 +17,6 @@ class AlmacenController extends Controller
 
         $validar = $request->validate([
             'corte' => 'required',
-            'ubicacion' => 'required',
-            'tono' => 'required',
-            'intensidad_proceso_seco' => 'required',
-            'atributo_no_1' => 'required',
-    
         ]);
 
         if (empty($validar)) {
@@ -51,7 +46,9 @@ class AlmacenController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
-            
+
+
+            //validaciones
             $a = intval(trim($a, "_"));
             $b = intval(trim($b, "_"));
             $c = intval(trim($c, "_"));
@@ -68,17 +65,21 @@ class AlmacenController extends Controller
             $almacen = new Almacen();
             $corte = Corte::find($corte_id);
             $producto_id = $corte['producto_id'];
-            $producto = Product::find($producto_id);
 
-            $producto->ubicacion = $ubicacion;
-            $producto->tono = $tono;
-            $producto->intensidad_proceso_seco = $intensidad_proceso_seco;
-            $producto->atributo_no_1 = $atributo_no_1;
-            $producto->atributo_no_2 = $atributo_no_2;
-            $producto->atributo_no_3 = $atributo_no_3;
-            $producto->producto_terminado = 1;
+            if (!empty($ubicacion)) {
+                $producto = Product::find($producto_id);
 
-            $producto->save();
+                $producto->ubicacion = $ubicacion;
+                $producto->tono = $tono;
+                $producto->intensidad_proceso_seco = $intensidad_proceso_seco;
+                $producto->atributo_no_1 = $atributo_no_1;
+                $producto->atributo_no_2 = $atributo_no_2;
+                $producto->atributo_no_3 = $atributo_no_3;
+                $producto->producto_terminado = 1;
+
+                $producto->save();
+            }
+
 
             $corte->fase = 'Almacen';
             $corte->save();
@@ -118,7 +119,8 @@ class AlmacenController extends Controller
         $almacen = DB::table('almacen')->join('corte', 'almacen.corte_id', '=', 'corte.id')
             ->join('producto', 'almacen.producto_id', '=', 'producto.id')
             ->join('users', 'almacen.user_id', '=', 'users.id')
-            ->select(['almacen.id', 'almacen.total', 'corte.numero_corte', 'corte.total as totalCorte',
+            ->select([
+                'almacen.id', 'almacen.total', 'corte.numero_corte', 'corte.total as totalCorte',
                 'corte.fase', 'producto.referencia_producto', 'users.name', 'users.surname'
             ]);
 
@@ -126,18 +128,32 @@ class AlmacenController extends Controller
             ->addColumn('Expandir', function ($almacen) {
                 return "";
             })
-            ->editColumn('name', function ($almacen){
+            ->editColumn('name', function ($almacen) {
                 return "$almacen->name $almacen->surname";
             })
             ->addColumn('Opciones', function ($almacen) {
                 return
                     '<button id="btnEdit" onclick="mostrar(' . $almacen->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .
                     '<button onclick="eliminar(' . $almacen->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
-                    
             })
             ->rawColumns(['Opciones'])
             ->make(true);
     }
+
+    public function corte_detalle($id)
+    {
+        $corte = DB::table('tallas')->join('corte', 'tallas.corte_id', '=', 'corte.id')
+            ->select([
+                'tallas.id', 'tallas.total', 'tallas.a', 'tallas.b', 'tallas.c',
+                'tallas.d', 'tallas.e', 'tallas.f', 'tallas.g', 'tallas.h', 'tallas.i',
+                'tallas.j', 'tallas.k', 'tallas.l'
+            ])->where('corte_id', 'LIKE', $id);
+
+        return DataTables::of($corte)
+            ->make(true);
+    }
+
+
 
     public function show($id)
     {
@@ -178,7 +194,7 @@ class AlmacenController extends Controller
             ];
         } else {
             $id = $request->input('id', true);
-         
+
             $corte_id = $request->input('corte');
             $ubicacion = $request->input('ubicacion');
             $tono = $request->input('tono');
@@ -199,20 +215,41 @@ class AlmacenController extends Controller
             $k = $request->input('k');
             $l = $request->input('l');
 
+            //validaciones
+            $a = intval(trim($a, "_"));
+            $b = intval(trim($b, "_"));
+            $c = intval(trim($c, "_"));
+            $d = intval(trim($d, "_"));
+            $e = intval(trim($e, "_"));
+            $f = intval(trim($f, "_"));
+            $g = intval(trim($g, "_"));
+            $h = intval(trim($h, "_"));
+            $i = intval(trim($i, "_"));
+            $j = intval(trim($j, "_"));
+            $k = intval(trim($k, "_"));
+            $l = intval(trim($l, "_"));
+
             $almacen = Almacen::find($id);
             $corte = Corte::find($corte_id);
             $producto_id = $corte['producto_id'];
 
-            $producto = Product::find($producto_id);
+            if (!empty($ubicacion)) {
+                $producto = Product::find($producto_id);
 
-            $producto->ubicacion = $ubicacion;
-            $producto->tono = $tono;
-            $producto->intensidad_proceso_seco = $intensidad_proceso_seco;
-            $producto->atributo_no_1 = $atributo_no_1;
-            $producto->atributo_no_2 = $atributo_no_2;
-            $producto->atributo_no_3 = $atributo_no_3;
+                $producto->ubicacion = $ubicacion;
+                $producto->tono = $tono;
+                $producto->intensidad_proceso_seco = $intensidad_proceso_seco;
+                $producto->atributo_no_1 = $atributo_no_1;
+                $producto->atributo_no_2 = $atributo_no_2;
+                $producto->atributo_no_3 = $atributo_no_3;
+                $producto->producto_terminado = 1;
 
-            $producto->save();
+                $producto->save();
+            }
+
+
+            $corte->fase = 'Almacen';
+            $corte->save();
 
             $almacen->producto_id = $producto_id;
             $almacen->corte_id = $corte_id;
@@ -230,9 +267,9 @@ class AlmacenController extends Controller
             $almacen->k = $k;
             $almacen->l = $l;
             $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+            $almacen->usado_curva = 0;
 
             $almacen->save();
-
             $data = [
                 'code' => 200,
                 'status' => 'success',
@@ -248,10 +285,10 @@ class AlmacenController extends Controller
         $almacen = Almacen::find($id);
         $corte_id = $almacen['corte_id'];
         $corte = Corte::find($corte_id);
-          
+
         if (!empty($almacen)) {
             $corte->fase = 'Terminacion';
-            $corte->save(); 
+            $corte->save();
             $almacen->delete();
 
             $data = [
@@ -272,7 +309,7 @@ class AlmacenController extends Controller
     public function corteProducto(Request $request)
     {
         $id = $request->input('id');
-        if(empty($id)){
+        if (empty($id)) {
             $id = $request->input('idEdit');
         }
         $corte = Corte::find($id);
@@ -297,21 +334,6 @@ class AlmacenController extends Controller
         return \response()->json($data, $data['code']);
     }
 
-
-    public function selectProducto(Request $request)
-    {
-        $data = [];
-
-        if ($request->has('q')) {
-            $search = $request->q;
-            $data = Product::select("id", "referencia_producto", "referencia_producto_2")
-                // ->where('enviado_lavanderia', 'LIKE', '0')
-                ->where('referencia_producto', 'LIKE', "%$search%")
-                ->get();
-        }
-        return response()->json($data);
-    }
-
     public function selectCorte(Request $request)
     {
         $data = [];
@@ -320,81 +342,113 @@ class AlmacenController extends Controller
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
                 ->where('fase', 'LIKE', 'Terminacion')
+                ->orwhere('fase', 'LIKE', 'Almacen')
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }
         return response()->json($data);
     }
 
-    public function upload(Request $request){
-              
+    public function upload(Request $request)
+    {
+
         //validar la imagen 
-        $validate = \Validator::make($request->all(),[
+        $validate = \Validator::make($request->all(), [
             'imagen_frente' => 'required|image|mimes:jpg,jpeg,png',
             'imagen_trasera' => 'required|image|mimes:jpg,jpeg,png',
             'imagen_perfil' => 'required|image|mimes:jpg,jpeg,png',
             'imagen_bolsillo' => 'required|image|mimes:jpg,jpeg,png'
         ]);
         // Guardar la imagen
-            if($validate->fails()){
-              $data = [
+        if ($validate->fails()) {
+            $data = [
                 'code' => 400,
                 'status' => 'error',
                 'message' => $validate->errors()
-              ]; 
-            }else{
-                $imagen_frente = $request->file('imagen_frente');
-                $imagen_trasero = $request->file('imagen_trasera');
-                $imagen_perfil = $request->file('imagen_perfil');
-                $imagen_bolsillo = $request->file('imagen_bolsillo');
-                $corte_id = $request->input('corte_id');
-                $corte_id_edit = $request->input('corte_id_edit');
-                
-                $image_name_1 = time().$imagen_frente->getClientOriginalName();
-                $image_name_2 = time().$imagen_trasero->getClientOriginalName();
-                $image_name_3 = time().$imagen_perfil->getClientOriginalName();
-                $image_name_4 = time().$imagen_bolsillo->getClientOriginalName();
+            ];
+        } else {
+            $imagen_frente = $request->file('imagen_frente');
+            $imagen_trasero = $request->file('imagen_trasera');
+            $imagen_perfil = $request->file('imagen_perfil');
+            $imagen_bolsillo = $request->file('imagen_bolsillo');
+            $corte_id = $request->input('corte_id');
+            $corte_id_edit = $request->input('corte_id_edit');
+            $image_name_1 = time() . $imagen_frente->getClientOriginalName();
+            $image_name_2 = time() . $imagen_trasero->getClientOriginalName();
+            $image_name_3 = time() . $imagen_perfil->getClientOriginalName();
+            $image_name_4 = time() . $imagen_bolsillo->getClientOriginalName();
 
-                if(empty($corte_id) && !empty($corte_id_edit) ){
-                    $corte_id = $corte_id_edit;
+            if (empty($corte_id) && !empty($corte_id_edit)) {
+                $corte_id = $corte_id_edit;
 
-                    $corte = Corte::find($corte_id);
-                    $producto_id = $corte['producto_id'];
-                    $producto = Product::find($producto_id);
-                    $producto->imagen_frente = $image_name_1;
-                    $producto->imagen_trasero = $image_name_2;
-                    $producto->imagen_perfil = $image_name_3;
-                    $producto->imagen_bolsillo = $image_name_4;
-                    $producto->save();
-                    
-                }else{
-                    $corte = Corte::find($corte_id);
-                    $producto_id = $corte['producto_id'];
-                    $producto = Product::find($producto_id);
-                    $producto->imagen_frente = $image_name_1;
-                    $producto->imagen_trasero = $image_name_2;
-                    $producto->imagen_perfil = $image_name_3;
-                    $producto->imagen_bolsillo = $image_name_4;
-                    $producto->save();
-                }
-
-                \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
-                \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
-                \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
-                \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
-
-                $data = [
-                    'code' => 200,
-                    'status' => 'success',
-                    'frente' => $image_name_1,
-                    'trasero' => $image_name_2,
-                    'perfil' => $image_name_3,
-                    'bolsillo' => $image_name_4
-                ];
+                $corte = Corte::find($corte_id);
+                $producto_id = $corte->producto_id;
+                $producto = Product::find($producto_id);
+                $producto->imagen_frente = $image_name_1;
+                $producto->imagen_trasero = $image_name_2;
+                $producto->imagen_perfil = $image_name_3;
+                $producto->imagen_bolsillo = $image_name_4;
+                $producto->save();
+            } else {
+                $corte = Corte::find($corte_id);
+                $producto_id = $corte->producto_id;
+                $producto = Product::find($producto_id);
+                $producto->imagen_frente = $image_name_1;
+                $producto->imagen_trasero = $image_name_2;
+                $producto->imagen_perfil = $image_name_3;
+                $producto->imagen_bolsillo = $image_name_4;
+                $producto->save();
             }
+
+            \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
+            \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
+            \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
+            \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'frente' => $image_name_1,
+                'trasero' => $image_name_2,
+                'perfil' => $image_name_3,
+                'bolsillo' => $image_name_4
+            ];
+        }
 
         return response()->json($data, $data['code']);
     }
 
-    
+    public function verificar_ref(Request $request)
+    {
+        $id = $request->input('id');
+        if(empty($id)){
+            $id = $request->input('idEdit');
+        }
+
+        $corte = Corte::find($id);
+
+        $producto_id = $corte->producto_id;
+
+        $producto = Product::find($producto_id);
+
+        if (!empty($producto)) {
+
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'producto' => $producto,
+                'id' => $id,
+                'referencia' => $producto->referencia_producto
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'El producto no fue encontrado'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
 }

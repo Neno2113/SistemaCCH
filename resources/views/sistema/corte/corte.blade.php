@@ -372,7 +372,7 @@
             if(result){
                 $.post("corte/delete/" + id_corte, function(data){
                     bootbox.alert("Corte <strong>"+ data.corte.numero_corte+ "</strong> eliminado correctamente");
-                    $("#cortes").DataTable().ajax.reload();
+                    $("#cortes_listados").DataTable().ajax.reload();
                 })
             }
         })

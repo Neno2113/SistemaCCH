@@ -47,18 +47,18 @@ $(document).ready(function() {
 
     //Funcion que se ejecuta al inicio 
     function init() {
-        ordenPedidoCod();
         listar();
         listarRollos();
         mostrarForm(false);
         $("#btn-edit").hide();
+        ordenPedidoCod();
         
     }
 
     //funcion para limpiar el formulario(los inputs)
     function limpiar() {
         $("#numero_corte").val("");
-        $("#sec").val("");
+        // $("#sec").val("");
         $("#productos").val("").trigger("change");
         $("#fecha_entrega").val("");
         $("#no_marcada").val("");
@@ -69,12 +69,19 @@ $(document).ready(function() {
     }
 
     function ordenPedidoCod() {
+        $("#sec").val("");
+        $("#numero_corte_gen").val("");
+        $("#corte").val("");
+        $("#numero_corte").val("");
+        $("#corte_tallas").val(""); 
+        
         $.ajax({
             url: "corte/lastdigit",
             type: "GET",
             dataType: "json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    
                     var i = Number(datos.sec);
                     $("#sec").val(i);
                     i = (i + 0.01).toFixed(2).split('.').join("");
@@ -396,7 +403,7 @@ $(document).ready(function() {
             aprovechamiento: $("#aprovechamiento").val()
         };
 
-        // console.log(JSON.stringify(corte));
+        console.log(JSON.stringify(corte));
 
         // funcion que se ejecuta con el callback de la funcion para guardar
         //esta almacena las cantidades por tallas
@@ -439,6 +446,7 @@ $(document).ready(function() {
                         success: function(datos) {
                             if (datos.status == "success") {
                                 // tabla.ajax.reload();
+                                ordenPedidoCod();
                                 bootbox.alert("Se asignaron un total de: <strong>"+datos.talla.total+"</strong> entre todas las tallas digitadas");
                                 $("#a").val(""),
                                 $("#b").val(""),
@@ -453,7 +461,7 @@ $(document).ready(function() {
                                 $("#k").val(""),
                                 $("#l").val("");    
                                 // tabla.ajax.reload();  
-                                $("#cortes").DataTable().ajax.reload();      
+                                $("#cortes_listados").DataTable().ajax.reload();      
                                 
                             } else {
                                 bootbox.alert(

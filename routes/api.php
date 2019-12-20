@@ -80,3 +80,5 @@ Route::get('facturas', 'FacturaController@facturas');
 
 Route::get('listarorden/{id}', 'ordenPedidoController@listarOrden');
 
+Route::get('detalle_corte/{id}', 'AlmacenController@corte_detalle');
+

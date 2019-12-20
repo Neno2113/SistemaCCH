@@ -89,8 +89,13 @@ class CorteController extends Controller
                 return date("d-m-20y", strtotime($corte->fecha_corte));
             })
             ->addColumn('Opciones', function ($corte) {
-                return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
+                if($corte->fase != "Produccion"){
+                    return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
+                }else{
+                    return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
                 '<button onclick="eliminar(' . $corte->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
+                }
+                
             })
             ->rawColumns(['Opciones'])
             ->make(true);
