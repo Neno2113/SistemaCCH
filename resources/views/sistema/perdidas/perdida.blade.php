@@ -38,7 +38,7 @@
                             <input type="hidden" name="sec_segunda" id="sec_segunda" value="">
                             <select name="tipo_perdida" id="tipo_perdida" class="form-control">
                                 <option value=""></option>
-                                <option value="Normal">Normal</option>
+                                <option value="Normal">Total</option>
                                 <option value="Segundas">Segundas</option>
                             </select>
                         </div>
@@ -106,7 +106,7 @@
                     <div class="row">
                         <div class="col-4">
                             <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2"
-                                data-toggle="modal" data-target=".bd-talla-modal-xl">Reportar perdidas
+                                data-toggle="modal" data-target=".bd-talla-modal-xl">Identificar Tallas
                                 <i class="fas fa-sort-alpha-down"></i></button>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                     <th>Ref. Producto</th>
                     <th>Fase</th>
                     <th>Motivo</th>
-                    <th>Perdida sin talla</th>
+                    <th>Perdida</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -154,7 +154,7 @@
                     <th>Ref. Producto</th>
                     <th>Fase</th>
                     <th>Motivo</th>
-                    <th>Perdida sin talla</th>
+                    <th>Perdida</th>
                 </tr>
             </tfoot>
         </table>

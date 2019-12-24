@@ -98,24 +98,41 @@ class PerdidaController extends Controller
             $k = $request->input('k');
             $l = $request->input('l');
             $x = $request->input('talla_x');
-            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l+$x; 
+
+
+            $a = intval(trim($a, "_"));
+            $b = intval(trim($b, "_"));
+            $c = intval(trim($c, "_"));
+            $d = intval(trim($d, "_"));
+            $e = intval(trim($e, "_"));
+            $f = intval(trim($f, "_"));
+            $g = intval(trim($g, "_"));
+            $h = intval(trim($h, "_"));
+            $i = intval(trim($i, "_"));
+            $j = intval(trim($j, "_"));
+            $k = intval(trim($k, "_"));
+            $l = intval(trim($l, "_"));
+            $x = intval(trim($x, "_"));
+            
+            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l+$x;
         
             $tallas = new TallasPerdidas();
 
             $tallas->perdida_id = $perdida_id;
-            $tallas->a = trim($a, "_");
-            $tallas->b = trim($b, "_");
-            $tallas->c = trim($c, "_");
-            $tallas->d = trim($d, "_");
-            $tallas->e = trim($e, "_");
-            $tallas->f = trim($f, "_");
-            $tallas->g = trim($g, "_");
-            $tallas->h = trim($h, "_");
-            $tallas->i = trim($i, "_");
-            $tallas->j = trim($j, "_");
-            $tallas->k = trim($k, "_");
-            $tallas->l = trim($l, "_");
-            $tallas->talla_x = trim($x, "_");
+            $tallas->a = $a;
+            $tallas->b = $b;
+            $tallas->c = $c;
+            $tallas->d = $d;
+            $tallas->e = $e;
+            $tallas->f = $f;
+            $tallas->g = $g;
+            $tallas->h = $h;
+            $tallas->i = $i;
+            $tallas->j = $j;
+            $tallas->k = $k;
+            $tallas->l = $l;
+            $tallas->talla_x = $x;
+         
             $tallas->total = $total;
 
             $tallas->save();

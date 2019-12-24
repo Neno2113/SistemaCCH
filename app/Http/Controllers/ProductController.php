@@ -42,7 +42,7 @@ class ProductController extends Controller
             $product = Product::find($id);
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
-            $product->precio_lista = $precio_lista;
+            $product->precio_lista = trim($precio_lista, "_");
             $product->precio_lista_2 = $precio_lista_2;
             $product->precio_venta_publico = $precio_venta_publico;
             $product->precio_venta_publico_2 = $precio_venta_publico_2;

@@ -1,6 +1,72 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
+    $("#formulario").validate({
+        rules: {
+            precio_lista: {
+                required: true,
+                minlength: 3
+            },
+            precio_publico: {
+                required: true,
+                minlength: 4
+            },
+            descripcion:{
+                required: true,
+                minlength: 5
+            },
+            telefono_1: {
+                required: true,
+                minlength: 10
+            },
+            email_principal: {
+                required: true,
+                email: true
+            },
+            condiciones_credito: {
+                required: true,
+                minlengh: 1
+            },
+            rnc: {
+                required: true,
+                digits: true,
+                minlengh: 9
+            }
+        },
+        messages: {
+            precio_lista: {
+                required: "Este campo es obligatorio",
+                minlength: "Este campo debe contener al menos 3 numeros"
+            },
+            direccion_principal: {
+                required: "Este campo es obligatorio",
+                minlength: "Debe contener al menos 4 letras"
+            },
+            descripcion:{
+                required: "Este campo es obligatorio",
+                minlength: "Debe contener al menos 5 letras"
+            },
+            telefono_1: {
+                required: "Este campo es obligatorio",
+                minlength: "Debe contener al menos 10 caracteres"
+            },
+            email_principal: {
+                required: "El email es obligatorio",
+                email: "Debe itroducir un email valido"
+            },
+            condiciones_credito: {
+                required: "Este campo es obligatorio",
+                minlength: "Debe contener al menos 1 caracter"
+            },
+            rnc:{
+                required: "Este campo es obligatorio",
+                minlengh: "Debe contener al menos 9 numeros",
+                digits: "Este campo solo puedo contener numeros"
+               
+            }
+        }
+    })
+
     function init() {
         listar();
         mostrarForm(false);

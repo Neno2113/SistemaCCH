@@ -1052,4 +1052,16 @@ class ordenPedidoController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function home_orden(){
+        $orden = ordenPedido::where('status_orden_pedido', 'LIKE', 'Stanby')->count();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success', 
+            'orden' => $orden
+        ];
+
+        return response()->json($data, $data['code']);
+    }
 }

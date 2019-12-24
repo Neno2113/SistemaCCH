@@ -35,7 +35,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="rnc">RNC(*):</label>
-                            <input type="text" name="rnc" id="rnc" class="form-control">
+                            <input type="text" name="rnc" id="rnc" class="form-control"
+                            data-inputmask='"mask": "99999999999"' data-mask>
                         </div>
                         <div class="col-md-4">
                             <label for="contacto_suplidor">Contacto suplidor(*):</label>

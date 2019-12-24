@@ -34,6 +34,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Icheck -->
   <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 
+  {{-- Tempus --}}
+  {{-- <link rel="stylesheet" href="{{asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}"> --}}
+
+  {{-- overleyScrollbars --}}
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+
   <!--Ekko Lightbox  -->
   <link rel="stylesheet" href="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.css')}}">
 

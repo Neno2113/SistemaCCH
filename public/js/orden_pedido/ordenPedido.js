@@ -30,6 +30,8 @@ $(document).ready(function() {
         $("#sucursal").hide();
         $("#generado_internamente").hide();
         $("#listarOrden").hide();
+        $("#orden_detalle").hide();
+        $("#orden_create").show();
     }
 
     var data;
@@ -153,7 +155,8 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                                console.log(datos);
+                                $("#orden_create").hide();
+                                $("#orden_detalle").show();
                                 $("#sec_proceso").val(Number(datos.orden.sec));
                                 i_2 = datos.orden.sec;
                                 i_2 = (i_2 + 0.01).toFixed(2).split(".").join("");

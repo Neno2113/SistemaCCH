@@ -182,6 +182,7 @@ Route::get('producto/terminado/{filname}', 'ProductController@getImage');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
+Route::get('/sku_disp', 'SKUController@sku_disponibles');
 
 //Corte
 Route::get('corte/lastdigit', 'CorteController@getDigits');
@@ -192,6 +193,7 @@ Route::post('/corte/{id}', 'CorteController@show');
 Route::put('/corte/edit', 'CorteController@update');
 Route::post('/corte/delete/{id}', 'CorteController@destroy');
 Route::get('cortes', 'CorteController@selectCorte');
+Route::get('cortes_home', 'CorteController@corte_home');
 
 //Talla
 Route::post('/talla', 'TallaController@store');
@@ -271,6 +273,7 @@ Route::post('/orden_pedido/delete/{id}', 'ordenPedidoController@destroy');
 Route::post('/orden-aprobacion/{id}', 'ordenPedidoController@aprobar');
 Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');
 Route::post('mostrar/{id}', 'ordenPedidoController@mostrar');
+Route::get('orden_all', 'ordenPedidoController@home_orden');
 
 
 //orden empaque
@@ -293,3 +296,9 @@ Route::get('factura/lastdigit', 'FacturaController@getDigits');
 Route::post('factura', 'FacturaController@store');
 Route::get('factura/resumida/{id}', 'FacturaController@imprimir');
 Route::get('factura/{id}', 'FacturaController@verificar');
+
+//Home
+Route::get('/venta12meses', 'DashboardController@ventas12meses');
+
+
+

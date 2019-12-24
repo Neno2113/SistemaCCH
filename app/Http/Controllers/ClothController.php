@@ -63,10 +63,10 @@ class ClothController extends Controller
             $cloth->tipo_tela = $tipo_tela;
             $cloth->ancho_cortable = $ancho_cortable;
             $cloth->peso = $peso;
-            $cloth->elasticidad_trama = $elasticidad_trama;
-            $cloth->elasticidad_urdimbre = $elasticidad_urdimbre;
-            $cloth->encogimiento_trama = $encogimiento_trama;
-            $cloth->encogimiento_urdimbre = $encogimiento_urdimbre;
+            $cloth->elasticidad_trama = trim($elasticidad_trama, "_%");
+            $cloth->elasticidad_urdimbre = trim($elasticidad_urdimbre, "_%");
+            $cloth->encogimiento_trama = trim($encogimiento_trama, "_%");
+            $cloth->encogimiento_urdimbre = trim($encogimiento_urdimbre, "_%");
 
             if (!empty($composicion)) {
                 $cloth->composicion = "$composicion-$porcentaje_mat_1";

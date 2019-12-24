@@ -13,9 +13,9 @@ class SupplierController extends Controller
 
         $validar = $request->validate([
             'nombre' => 'required',
-            'rnc' => 'required|numeric',
+            'rnc' => 'required',
             'direccion' => 'required',
-            'contacto_suplidor' => 'required|alpha',
+            'contacto_suplidor' => 'required',
             'telefono_1' => 'required',
             'email' => 'required|email',
             'terminos_de_pago' => 'required',
@@ -44,7 +44,7 @@ class SupplierController extends Controller
 
             $suplidor = new Supplier();
             $suplidor->nombre = $nombre;
-            $suplidor->rnc = $rnc;
+            $suplidor->rnc = trim($rnc, "_");
             $suplidor->direccion = $direccion;
             $suplidor->contacto_suplidor = $contacto_suplidor;
             $suplidor->telefono_1 = $telefono_1;

@@ -35,7 +35,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="rnc">RNC(*):</label>
-                            <input type="text" name="rnc" id="rnc" class="form-control">
+                            <input type="text" name="rnc" id="rnc" class="form-control text-center"
+                            data-inputmask='"mask": "99999999999"' data-mask>
                         </div>
                         <div class="col-md-4">
                             <label for="celular_principal">Celular principal:</label>
@@ -43,7 +44,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
-                                <input type="text" id="celular_principal" class="form-control"
+                                <input type="text" id="celular_principal" class="form-control "
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
                             </div>
                         </div>
@@ -174,7 +175,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4">
-                            <label for="">Sitios cercanos:</label>
+                            <label for="">Referencias cercanas:</label>
                             <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
 
                         </div>
@@ -225,13 +226,13 @@
                             <label for="autorizacion_credito_req">¿Acepta segundas?</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary7" name="r4" value="1" checked>
+                                    <input type="radio" id="radioPrimary7" name="r4" value="1" >
                                     <label for="radioPrimary7">
                                         Si
                                     </label>
                                 </div>
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary8" name="r4" value="0">
+                                    <input type="radio" id="radioPrimary8" name="r4" value="0" checked>
                                     <label for="radioPrimary8">
                                         No
                                     </label>
@@ -244,16 +245,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-2">
-                            <label for="autorizacion_credito_req">¿Acepta factura desglosada por tallas?(*):</label>
+                            <label for="autorizacion_credito_req">Exige factura desglosada por tallas?(*):</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary5" name="r3" value="1" checked>
+                                    <input type="radio" id="radioPrimary5" name="r3" value="1" >
                                     <label for="radioPrimary5">
                                         Si
                                     </label>
                                 </div>
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary6" name="r3" value="0">
+                                    <input type="radio" id="radioPrimary6" name="r3" value="0" checked>
                                     <label for="radioPrimary6">
                                         No
                                     </label>

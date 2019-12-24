@@ -23,6 +23,10 @@ $(document).ready(function() {
                 required: true,
                 minlength: 4
             },
+            rnc: {
+                required: true,
+                minlength: 9
+            },
             terminos_de_pago: {
                 required: true
             }
@@ -47,6 +51,10 @@ $(document).ready(function() {
             email: {
                 required: "El email es obligatorio",
                 minlength: "El email debe tener al menos 4 caracteres"
+            },
+            rnc: {
+                required: "Este campo es obligatorio",
+                minlength: "Este campo debe contener al menos 9 numeros"
             },
             terminos_de_pago: {
                 required: "El termino de pago de suplidor es obligatorio"

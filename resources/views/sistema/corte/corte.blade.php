@@ -26,6 +26,7 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-2 justify-content-end">
+                            <label for="">Numero de corte:</label>
                             <input type="text" name="numero_corte_gen" id="numero_corte_gen"
                                 class="form-control text-center " readonly>
                             <input type="hidden" name="sec" id="sec" value="">
@@ -65,15 +66,18 @@
                     <div class="row mt-2" id="fila2">
                         <div class="col-md-4 mt-2">
                             <label for="">Marcada No.</label>
-                            <input type="text" name="no_marcada" id="no_marcada" class="form-control">
+                            <input type="text" name="no_marcada" id="no_marcada" class="form-control"
+                            >
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="">Ancho marcada</label>
-                            <input type="text" name="ancho_marcada" id="ancho_marcada" class="form-control">
+                            <input type="text" name="ancho_marcada" id="ancho_marcada" class="form-control"
+                            placeholder="Pulgadas">
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="">Largo marcada</label>
-                            <input type="text" name="largo_marcada" id="largo_marcada" class="form-control">
+                            <input type="text" name="largo_marcada" id="largo_marcada" class="form-control"
+                            placeholder="Yardas">
                         </div>
                     </div>
                     <div class="row mt-2" id="fila3">
@@ -89,7 +93,7 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
-                                data-toggle="modal" data-target=".bd-talla-modal-xl">Definir Corte <i
+                                data-toggle="modal" data-target=".bd-talla-modal-xl">Distribucion de tallas<i
                                     class="fa fa-cut"></i></button>
                         </div>
                     </div>
@@ -180,20 +184,20 @@
                         <table id="rollos" style="width: 100%;" class="table table-striped table-bordered datatables">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Referencia tela</th>
                                     <th>Rollo</th>
+                                    <th>Referencia tela</th>
                                     <th>Yardas</th>
+                                    <th>Tono</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Referencia tela</th>
                                     <th>Rollo</th>
+                                    <th>Referencia tela</th>
                                     <th>Yardas</th>
+                                    <th>Tono</th>
                                     <th>Accion</th>
                                 </tr>
                             </tfoot>

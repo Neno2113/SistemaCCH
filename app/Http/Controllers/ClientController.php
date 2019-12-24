@@ -13,7 +13,7 @@ class ClientController extends Controller
 
         $validar = $request->validate([
             'nombre_cliente' => 'required',
-            'rnc' => 'required|numeric',
+            'rnc' => 'required',
             'contacto_cliente_principal' => 'required|alpha',
             'telefono_1' => 'required',
             'email_principal' => 'required|email',
@@ -58,7 +58,7 @@ class ClientController extends Controller
             $cliente->sector = $sector;
             $cliente->provincia = $provincia;
             $cliente->sitios_cercanos = $sitios_cercanos;
-            $cliente->rnc = $rnc;
+            $cliente->rnc = trim($rnc, "_");
             $cliente->contacto_cliente_principal = $contacto_cliente_principal;
             $cliente->telefono_1 = $telefono_1;
             $cliente->telefono_2 = $telefono_2;

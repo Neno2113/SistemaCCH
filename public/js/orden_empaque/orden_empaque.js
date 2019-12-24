@@ -163,7 +163,7 @@ $(document).ready(function() {
 
     //funcion para listar en el Datatable
     function listar() {
-        tabla = $("#ordenes_aprobacion").DataTable({
+        tabla = $("#listar_OE").DataTable({
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",
@@ -204,7 +204,7 @@ $(document).ready(function() {
 
      //funcion para listar en el Datatable
      function listarOrdenes() {
-        tabla = $("#orden_empaques").DataTable({
+        tabla = $("#print_OE").DataTable({
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",

@@ -287,7 +287,7 @@ $(document).ready(function() {
             $("#imagen_trasera").show();
             $("#imagen_perfil").show();
             $("#imagen_bolsillo").show();
-            $("#btn-upload").show();
+            $("#btn-upload").showloca();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();

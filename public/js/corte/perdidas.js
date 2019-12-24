@@ -47,7 +47,6 @@ $(document).ready(function() {
     }
 
   
-
     $("#fase").change(function() {
         var val = $(this).val();
         if (val == "Produccion") {
@@ -90,9 +89,12 @@ $(document).ready(function() {
 
     $("#cortesSearch").change(function() {
         let val = $("#cortesSearch option:selected").text();
+        // console.log(val);
 
-        let genero = val.substring(22,23); 
-        let fase = val.substring(11, 14)
+        let genero = val.substring(23,24); 
+        let fase = val.substring(9, 12)
+        // console.log("Genero:"+genero);
+        // console.log("Fase:"+fase);
         
         if(fase == 'Alm'){
             $("#fase").val('Almacen')
@@ -301,9 +303,9 @@ $(document).ready(function() {
 
 
 
-    $("#a").on("keyup", function() {
-        $("#btn-guardar").attr("disabled", false);
-    });
+    // $("#a").on("keyup", function() {
+    //     $("#btn-guardar").attr("disabled", false);
+    // });
 
     function limpiar() {
         $("#fase").val("");
@@ -340,7 +342,7 @@ $(document).ready(function() {
                 return {
                     results: $.map(data, function(item) {
                         return {
-                            text: item.numero_corte + " - " + item.fase + " - "+ item.referencia_producto,
+                            text: item.numero_corte + "-" + item.fase + " - "+ item.referencia_producto,
                             id: item.id
                         };
                     })
@@ -655,7 +657,7 @@ $(document).ready(function() {
             $("#corte").hide();
             $("#corteEdit").hide();
             $("#lavanderiaEdit").hide();
-            $("#btn-guardar").attr("disabled", true);
+            // $("#btn-guardar").attr("disabled", true);
             $("#referencia_producto").hide();
             $("#btn-generar").show();
             $("#btn-edit").hide();

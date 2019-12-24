@@ -181,4 +181,6 @@ class UserController extends Controller
             ->rawColumns(['Editar', 'Ver'])
             ->make(true);
     }
+
+    
 }

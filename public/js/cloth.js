@@ -3,9 +3,6 @@ $(document).ready(function() {
 
     $("#formulario").validate({
         rules: {
-            id_suplidor: {
-                required: true
-            },
             referencia: {
                 required: true,
                 minlength: 3
@@ -22,11 +19,8 @@ $(document).ready(function() {
           
         },
         messages: {
-            id_suplidor: {
-                required: "**Este campo es obligatorio**"
-            },
             referencia: {
-                required: "**Este campo es obligatorio**",
+                required: "Este campo es obligatorio",
                 minlength: "Este campo debe tener al menos 3 caracteres"
             },
             tipo_tela: {

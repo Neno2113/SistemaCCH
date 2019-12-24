@@ -100,13 +100,13 @@
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="precio_lista">Precio lista(*):</label>
-                            <input type="text" name="precio_lista" id="precio_lista" class="form-control"
-                                data-inputmask='"mask": "9.999"' data-mask>
+                            <input type="text" name="precio_lista" id="precio_lista" class="form-control text-center"
+                                data-inputmask='"mask": "9999"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_venta_publico">Precio publico(*):</label>
                             <input type="text" name="precio_venta_publico" id="precio_venta_publico"
-                                class="form-control" data-inputmask='"mask": "9.999"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "9.999"' data-mask>
                         </div>
 
                     </div>

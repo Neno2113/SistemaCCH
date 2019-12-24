@@ -63,10 +63,10 @@
                     </div>
                     <div class="container">
                         <label for="" class="mt-5">Orden de empaque</label>
-                        <table id="orden_detalle" class="table table-striped table-bordered datatables mt-5 mb-3" style="width:100%;">
+                        <table id="orden_detalle" class="table table-striped table-bordered datatables mt-5 mb-3 mr-5" style="width:100%; margin-left:-26px;">
                             <thead class="">
                                 <tr>
-                                    <th id="">Referencia</th>
+                                    <th id="">Ref</th>
                                     <th id="ta">A</th>
                                     <th id="tb">B</th>
                                     <th id="tc">C</th>
@@ -89,7 +89,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th id="">Referencia</th>
+                                    <th id="">Ref</th>
                                     <th id="ta">A</th>
                                     <th id="tb">B</th>
                                     <th id="tc">C</th>
@@ -132,7 +132,7 @@
 {{-- </div> --}}
 
 <div class="container" id="listadoUsers">
-    <table id="ordenes_aprobacion" class="table table-striped table-bordered datatables">
+    <table id="listar_OE" class="table table-striped table-bordered datatables">
         <thead>
             <tr>
                 <th></th>
@@ -269,7 +269,7 @@
             if(result){
                 $.get("orden_redistribuir/" + id_orden, function(){
                     bootbox.alert("Redistibucion completa");
-                    $("#ordenes_aprobacion").DataTable().ajax.reload();
+                    $("#listar_OE").DataTable().ajax.reload();
                 })
             }
         })

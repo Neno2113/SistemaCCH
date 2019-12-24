@@ -45,29 +45,27 @@
                         </div>
                         <div class="col-md-3">
                             <label for="">Fecha compra(*):</label>
-                            <input type="date" name="" id="fecha_compra" class="form-control">
+                            <input type="date" name="fecha_compra" id="fecha_compra" class="form-control">
                         </div>
 
                         <div class="col-md-3">
                             <label for="">Factura(*):</label>
-                            <input type="text" name="" id="no_factura_compra" placeholder="Numero" class="form-control">
+                            <input type="text" name="no_factura_compra" id="no_factura_compra" placeholder="Numero" class="form-control">
                         </div>
 
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4 mt-2">
-                            <label for="">Codigo(*):</label>
-                            <input type="text" name="" id="codigo_rollo" class="form-control">
+                            <label for="">Numero de rollo(*):</label>
+                            <input type="text" name="codigo_rollo" id="codigo_rollo" class="form-control">
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="">Tono(*):</label>
-                            <input type="text" name="" id="num_tono" class="form-control">
+                            <input type="text" name="num_tono" id="num_tono" class="form-control">
                         </div>
-
-
                         <div class="col-md-4 mt-2">
                             <label for="">Longitud en yarda(*):</label>
-                            <input type="text" name="" id="longitud_yarda" class="form-control">
+                            <input type="text" name="longitud_yarda" id="longitud_yarda" class="form-control">
                         </div>
                     </div>
             </div>

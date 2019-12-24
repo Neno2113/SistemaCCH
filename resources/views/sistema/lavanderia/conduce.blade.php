@@ -226,7 +226,7 @@
       <tbody>
        
         <tr>
-          <td class="sku">{{$lavanderia->cantidad}}</td>
+          <td class="sku">{{$lavanderia->total_enviado}}</td>
           <td class="sku">{{$lavanderia->sku->sku}}</td>
           <td class="sku">{{$lavanderia->producto->referencia_producto}}  
           {{$lavanderia->producto->referencia_producto_2}}</td>
@@ -237,7 +237,7 @@
             @else
                 No
           @endif</td>
-          <td class="sku">{{$lavanderia->cantidad}}</td>
+          <td class="sku">{{$lavanderia->total_enviado}}</td>
         </tr>
       
         {{-- <tr>
@@ -271,7 +271,7 @@
           </tr> --}}
         <tr style="">
           <td colspan="4" class="grand total">TOTAL</td>
-          <td class="grand sku">{{$lavanderia->cantidad}}</td>
+          <td class="grand sku">{{$lavanderia->total_enviado}}</td>
         </tr>
       </tbody>
     </table>

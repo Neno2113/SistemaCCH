@@ -107,7 +107,7 @@ class CorteController extends Controller
     {
         $cond = null;
         $rollos = DB::table('rollos')->join('tela', 'rollos.id_tela', '=', 'tela.id')
-            ->select(['rollos.id', 'tela.referencia', 'rollos.codigo_rollo', 'rollos.longitud_yarda'])
+            ->select(['rollos.id', 'tela.referencia', 'rollos.codigo_rollo', 'rollos.longitud_yarda', 'rollos.num_tono'])
             ->where('corte_utilizado', $cond);
 
         return DataTables::of($rollos)
@@ -293,6 +293,20 @@ class CorteController extends Controller
                 'message' => 'Ocurrio un error!!'
             ];
         }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function corte_home(){
+        $corte = Corte::where('fase', 'LIKE', 'Produccion')
+        ->orwhere('fase', 'LIKE', 'Lavanderia')
+        ->orwhere('fase', 'LIKE', 'Terminacion')->count();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'corte' => $corte
+        ];
 
         return response()->json($data, $data['code']);
     }

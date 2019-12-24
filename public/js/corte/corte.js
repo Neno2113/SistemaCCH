@@ -18,8 +18,6 @@ $(document).ready(function() {
                 minlength: 1,
                 number: true
             },
-          
-          
         },
         messages: {
             no_marcada: {
@@ -550,6 +548,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/rollos_corte",
             dom: 'Bfrtip',
+            iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -566,10 +565,10 @@ $(document).ready(function() {
                 }
                 ],
             columns: [
-                { data: "id", name: "rollos.id" },
-                { data: "referencia", name: "tela.referencia" },
                 { data: "codigo_rollo", name: "rollos.codigo_rollo" },
+                { data: "referencia", name: "tela.referencia" },
                 { data: "longitud_yarda", name: "rollos.longitud_yarda" },
+                { data: "num_tono", name: "rollos.num_tono" },
                 { data: "Editar", orderable: false, searchable: false },
             ],
             order: [[2, 'desc']],

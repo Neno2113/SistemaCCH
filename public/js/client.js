@@ -26,6 +26,11 @@ $(document).ready(function() {
             condiciones_credito: {
                 required: true,
                 minlengh: 1
+            },
+            rnc: {
+                required: true,
+                digits: true,
+                minlengh: 9
             }
         },
         messages: {
@@ -52,6 +57,12 @@ $(document).ready(function() {
             condiciones_credito: {
                 required: "Este campo es obligatorio",
                 minlength: "Debe contener al menos 1 caracter"
+            },
+            rnc:{
+                required: "Este campo es obligatorio",
+                minlengh: "Debe contener al menos 9 numeros",
+                digits: "Este campo solo puedo contener numeros"
+               
             }
         }
     })

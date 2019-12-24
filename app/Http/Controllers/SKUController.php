@@ -53,4 +53,17 @@ class SKUController extends Controller
             
             ->make(true);
     }
+
+
+    public function sku_disponibles(){
+        $skus = SKU::whereNull('referencia_producto')->count();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'sku' => $skus
+        ];
+
+        return response()->json($data, $data['code']);
+    }
 }

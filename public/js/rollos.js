@@ -1,23 +1,33 @@
 $(document).ready(function() {
+    $("[data-mask]").inputmask();
+
     $("#formulario").validate({
         rules: {
-            codigo_composicion: {
-                required: true,
-                minlength: 1
+            codigo_rollo: {
+                required: true
+                
             },
-            nombre_composicion: {
+            num_tono: {
                 required: true,
-                minlength: 1
+                minlength: 3
+            },
+            longitud_yarda: {
+                required: true,
+                digits: true
             }
         },
         messages: {
-            codigo_composicion: {
-                required: "Introduzca el codigo de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            codigo_rollo: {
+                required: "Este campo es obligatorio"
+                
             },
-            nombre_composicion: {
-                required: "Introduzca el nombre de composicion",
-                minlength: "Debe contener al menos 1 letra"
+            num_tono: {
+                required: "Este campo es obligatorio",
+                minlength: "Debe contener al menos 3 caracteres"
+            },
+            longitud_yarda: {
+                required: "Este campo es obligatorio",
+                digits: "Este campo debe ser numerico"
             }
         }
     });
@@ -242,9 +252,11 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(true);
     });
 
