@@ -42,10 +42,10 @@ class ProductController extends Controller
             $product = Product::find($id);
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
-            $product->precio_lista = trim($precio_lista, "_");
-            $product->precio_lista_2 = $precio_lista_2;
-            $product->precio_venta_publico = $precio_venta_publico;
-            $product->precio_venta_publico_2 = $precio_venta_publico_2;
+            $product->precio_lista = trim($precio_lista, "_,");
+            $product->precio_lista_2 = trim($precio_lista_2, "_,");
+            $product->precio_venta_publico = trim($precio_venta_publico, "_,");
+            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "_,");
            
             $product->save();
 
@@ -172,10 +172,10 @@ class ProductController extends Controller
             $product->referencia_producto = $referencia;
             $product->descripcion_2 = $descripcion_2;
             $product->descripcion = $descripcion;
-            $product->precio_lista = $precio_lista;
-            $product->precio_lista_2 = $precio_lista_2;
-            $product->precio_venta_publico = $precio_venta_publico;
-            $product->precio_venta_publico_2 = $precio_venta_publico_2;
+            $product->precio_lista = trim($precio_lista, "_,");
+            $product->precio_lista_2 = trim($precio_lista_2, "_,");
+            $product->precio_venta_publico = trim($precio_venta_publico, "_,");
+            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "_,");
             // $product->sec = $sec;
             // $product->id_user = \auth()->user()->id;
 

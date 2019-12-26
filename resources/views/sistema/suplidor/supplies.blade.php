@@ -6,8 +6,8 @@
 
 @section('content')
 {{-- <div class="container"> --}}
-<div class="row mt-3 ml-4">
-   
+<div class="row mt-3 ml-2">
+
     <button class="btn btn-primary  mb-2" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
 </div>
 
@@ -36,7 +36,7 @@
                         <div class="col-md-4">
                             <label for="rnc">RNC(*):</label>
                             <input type="text" name="rnc" id="rnc" class="form-control"
-                            data-inputmask='"mask": "99999999999"' data-mask>
+                                data-inputmask='"mask": "99999999999"' data-mask>
                         </div>
                         <div class="col-md-4">
                             <label for="contacto_suplidor">Contacto suplidor(*):</label>
@@ -103,14 +103,84 @@
 
                         </div>
                     </div>
-                    <div class="row mt-1">
-                        <div class="col-md-6 mt-3">
-                            <label for="direccion">Direccion(*):</label>
-                            <textarea name="direccion" id="direccion" cols="30" rows="1"
-                                class="form-control"></textarea>
+                    <br>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4 mt-1">
+                            <label for="calle">Calle(*):</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                </div>
+                                <input name="calle" id="calle" class="form-control">
+                            </div>
                         </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="nota">Nota:</label>
+                        <div class="col-md-4 mt-1">
+                            <label for="sector">Sector(*):</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                </div>
+                                <input name="sector" id="sector" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-1">
+                            <label for="provincia">Provincia(*):</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                </div>
+                                <select name="provincia" id="provincia" class="form-control select2">
+                                    <option value=""></option>
+                                    <option>Santo Domingo</option>
+                                    <option>Distrito Nacional</option>
+                                    <option>Santiago</option>
+                                    <option>San Cristóbal</option>
+                                    <option>La Vega</option>
+                                    <option>Puerto Plata</option>
+                                    <option>San Pedro de Macorís</option>
+                                    <option>Duarte</option>
+                                    <option>La Altagracia</option>
+                                    <option>La Romana</option>
+                                    <option>San Juan</option>
+                                    <option>Espaillat</option>
+                                    <option>Azua</option>
+                                    <option>Barahona</option>
+                                    <option>Monte Plata</option>
+                                    <option>Peravia</option>
+                                    <option>Monseñor Nouel</option>
+                                    <option>Valverde</option>
+                                    <option>Sánchez Ramírez</option>
+                                    <option>María Trinidad Sánchez</option>
+                                    <option>Montecristi</option>
+                                    <option>Samaná</option>
+                                    <option>Bahoruco</option>
+                                    <option>Hermanas Mirabal</option>
+                                    <option>El Seibo</option>
+                                    <option>Hato Mayor</option>
+                                    <option>Dajabón</option>
+                                    <option>Elías Piña</option>
+                                    <option>San José de Ocoa</option>
+                                    <option>Santiago Rodríguez</option>
+                                    <option>Independencia</option>
+                                    <option>Pedernales</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="">Referencias cercanas:</label>
+                            <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
+
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="row mt-2">
+                        <div class="col-md-12 mt-3">
+                            <label for="nota" class="d-flex justify-content-center">Nota:</label>
                             <textarea name="nota" id="nota" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
@@ -134,7 +204,7 @@
         <h4>Listado de suplidores</h4>
     </div>
     <div class="card-body">
-       
+
         <table id="suppliers" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
@@ -186,17 +256,21 @@
     
                 
                 $("#id").val(data.supplier.id);
-                $("#nombre").val(data.supplier.nombre);
-                $("#rnc").val(data.supplier.rnc);
-                $("#direccion").val(data.supplier.direccion);
-                $("#contacto_suplidor").val(data.supplier.contacto_suplidor);
-                $("#telefono_1").val(data.supplier.telefono_1);
-                $("#telefono_2").val(data.supplier.telefono_2);
-                $("#celular").val(data.supplier.celular);
-                $("#email").val(data.supplier.email);
-                $("#tipo_suplidor").val(data.supplier.tipo_suplidor);
-                $("#terminos_de_pago").val(data.supplier.terminos_de_pago);
-                $("#nota").val(data.supplier.nota);
+                $("#nombre").val(data.supplier.nombre).attr("readonly", false);
+                $("#rnc").val(data.supplier.rnc).attr("readonly", false);
+                $("#calle").val(data.supplier.calle).attr("readonly", false);
+                $("#sector").val(data.supplier.sector).attr("readonly", false);
+                $("#provincia").val(data.supplier.provincia).trigger("change").attr("disabled", false);
+                // $("#provincia").val(data.supplier.provincia).selectpicker('refresh');
+                $("#sitios_cercanos").val(data.supplier.sitios_cercanos).attr("readonly", false);
+                $("#contacto_suplidor").val(data.supplier.contacto_suplidor).attr("readonly", false);
+                $("#telefono_1").val(data.supplier.telefono_1).attr("readonly", false);
+                $("#telefono_2").val(data.supplier.telefono_2).attr("readonly", false);
+                $("#celular").val(data.supplier.celular).attr("readonly", false);
+                $("#email").val(data.supplier.email).attr("readonly", false);
+                $("#tipo_suplidor").val(data.supplier.tipo_suplidor).attr("disabled", false);
+                $("#terminos_de_pago").val(data.supplier.terminos_de_pago).attr("disabled", false);
+                $("#nota").val(data.supplier.nota).attr("readonly", false);
                
             });
         }
@@ -214,7 +288,10 @@
                 $("#id").val(data.supplier.id);
                 $("#nombre").val(data.supplier.nombre).attr('readonly', true);
                 $("#rnc").val(data.supplier.rnc).attr('readonly', true);
-                $("#direccion").val(data.supplier.direccion).attr('readonly', true);
+                $("#calle").val(data.supplier.calle).attr('readonly', true);
+                $("#sector").val(data.supplier.sector).attr('readonly', true);
+                $("#provincia").val(data.supplier.provincia).attr('disabled', true);
+                $("#sitios_cercanos").val(data.supplier.sitios_cercanos).attr('readonly', true);
                 $("#contacto_suplidor").val(data.supplier.contacto_suplidor).attr('readonly', true);
                 $("#telefono_1").val(data.supplier.telefono_1).attr('readonly', true);
                 $("#telefono_2").val(data.supplier.telefono_2).attr('readonly', true);

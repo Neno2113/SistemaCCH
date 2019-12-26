@@ -7,8 +7,8 @@
 @section('content')
 
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
-    <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
+    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+
 </div>
 
 <div class="row" id="creacion-orden">
@@ -377,9 +377,13 @@
                     </div>
 
             </div>
-            <div class="card-footer text-muted d-flex justify-content-end">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
-                <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4">
+            <div class="card-footer text-muted">
+                <button class="btn btn-danger" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+                    Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-4 float-right"><i
+                    class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-4 float-right"><i
+                    class="far fa-edit fa-lg"></i> Editar</button>
             </div>
 
             </form>

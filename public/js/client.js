@@ -105,7 +105,7 @@ $(document).ready(function() {
         $("#nombre_cliente").val("").attr('readonly', false);
         $("#calle").val("").attr('readonly', false);
         $("#sector").val("").attr('readonly', false);
-        $("#provincia").val("").attr('disabled', false);
+        $("#provincia").val("").trigger("change").attr('disabled', false);
         $("#sitios_cercanos").val("").attr('readonly', false);
         $("#contacto_cliente_principal").val("").attr('readonly', false);;
         $("#telefono_1").val("").attr('readonly', false);;

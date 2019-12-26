@@ -91,20 +91,77 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mt-2">
-                            <label for="direccion">Direccion(*):</label>
+                    <br>
+                    <hr>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label for="calle">Calle(*):</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
-                                <input type="text" id="direccion" class="form-control">
+                                <input type="text" id="calle" name="calle" class="form-control">
                             </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label for="sector">Sector(*):</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                </div>
+                                <input type="text" id="sector" name="sector" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="provincia">Provincia(*):</label>
+                            <select name="provincia" id="provincia" class="form-control select2" style="width:100%">
+                                <option value=""></option>
+                                <option>Santo Domingo</option>
+                                <option>Distrito Nacional</option>
+                                <option>Santiago</option>
+                                <option>San Cristóbal</option>
+                                <option>La Vega</option>
+                                <option>Puerto Plata</option>
+                                <option>San Pedro de Macorís</option>
+                                <option>Duarte</option>
+                                <option>La Altagracia</option>
+                                <option>La Romana</option>
+                                <option>San Juan</option>
+                                <option>Espaillat</option>
+                                <option>Azua</option>
+                                <option>Barahona</option>
+                                <option>Monte Plata</option>
+                                <option>Peravia</option>
+                                <option>Monseñor Nouel</option>
+                                <option>Valverde</option>
+                                <option>Sánchez Ramírez</option>
+                                <option>María Trinidad Sánchez</option>
+                                <option>Montecristi</option>
+                                <option>Samaná</option>
+                                <option>Bahoruco</option>
+                                <option>Hermanas Mirabal</option>
+                                <option>El Seibo</option>
+                                <option>Hato Mayor</option>
+                                <option>Dajabón</option>
+                                <option>Elías Piña</option>
+                                <option>San José de Ocoa</option>
+                                <option>Santiago Rodríguez</option>
+                                <option>Independencia</option>
+                                <option>Pedernales</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="">Referencias cercanas:</label>
+                            <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
+
                         </div>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="submit" id="btn-guardar-branch" class="btn btn-primary">Guardar</button>
                 <button type="submit" id="btn-edit-branch" class="btn btn-warning">Actualizar</button>
             </div>
@@ -130,9 +187,13 @@
 
          
             $("#id").val(data.branch.id);
-            $("#nombre_sucursal").val(data.branch.nombre_sucursal);
-            $("#telefono_sucursal").val(data.branch.telefono_sucursal);
-            $("#direccion").val(data.branch.direccion);
+            $("#clientes").val(data.branch.cliente.nombre_cliente).trigger("change");
+            $("#nombre_sucursal").val(data.branch.nombre_sucursal).attr("readonly", false);
+            $("#telefono_sucursal").val(data.branch.telefono_sucursal).attr("readonly", false);
+            $("#calle").val(data.branch.calle).attr("readonly", false);
+            $("#sector").val(data.branch.sector).attr("readonly", false);
+            $("#provincia").val(data.branch.provincia).trigger("change").attr("disabled", false);
+            $("#sitios_cercanos").val(data.branch.sitios_cercanos).attr("disabled", false);
            
            
         });

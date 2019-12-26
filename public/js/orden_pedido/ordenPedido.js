@@ -1494,6 +1494,7 @@ $(document).ready(function() {
         $("#btn-guardar").show();
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         $("#btnCancelar").hide();
         $("#btnAgregar").show();
         $("#registroForm").hide();

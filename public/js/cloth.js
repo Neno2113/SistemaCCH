@@ -42,6 +42,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+       
 
         $("#composiciones").select2({
             placeholder: "Busca una composicion",
@@ -167,25 +168,26 @@ $(document).ready(function() {
 
     function limpiar() {
         $("#referencia").val("").attr('readonly', false);
-        $("#precio_usd").val("").attr('readonly', false);;
+        $("#precio_usd").val("").attr('readonly', false);
         $("#tipo_tela").val("").attr('readonly', false);;
         $("#ancho_cortable").val("").attr('readonly', false);;
         $("#peso").val("").attr('readonly', false);;
-        $("#elasticidad_trama").val("").attr('readonly', false);;
-        $("#encogimiento_trama").val("").attr('readonly', false);;
-        $("#elasticidad_urdimbre").val("").attr('readonly', false);;
-        $("#encogimiento_urdimbre").val("").attr('readonly', false);;
+        $("#elasticidad_trama").val("").attr('readonly', false);
+        $("#encogimiento_trama").val("").attr('readonly', false);
+        $("#elasticidad_urdimbre").val("").attr('readonly', false);
+        $("#encogimiento_urdimbre").val("").attr('readonly', false);
         $("#suplidores").val("").trigger("change");
         $("#compositions").val("").trigger("change");
         $("#compositions_2").val("").trigger("change");
         $("#compositions_3").val("").trigger("change");
         $("#compositions_4").val("").trigger("change");
         $("#compositions_5").val("").trigger("change");
-        $("#porcentaje_mat_1").val("").attr('readonly', false);;
-        $("#porcentaje_mat_2").val("").attr('readonly', false);;
-        $("#porcentaje_mat_3").val("").attr('readonly', false);;
-        $("#porcentaje_mat_4").val("").attr('readonly', false);;
-        $("#porcentaje_mat_5").val("").attr('readonly', false);;
+        $("#porcentaje_mat_1").val("").attr('readonly', false);
+        $("#porcentaje_mat_2").val("").attr('readonly', false);
+        $("#porcentaje_mat_3").val("").attr('readonly', false);
+        $("#porcentaje_mat_4").val("").attr('readonly', false);
+        $("#porcentaje_mat_5").val("").attr('readonly', false);
+        $("#porcentaje_mat_total").val("");
     }
 
  
@@ -293,6 +295,7 @@ $(document).ready(function() {
         });
     }
 
+
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
@@ -356,6 +359,81 @@ $(document).ready(function() {
         });
        
     });
+
+
+
+    $("#porcentaje_mat_1").keyup(function(){
+        let porcentaje = $("#porcentaje_mat_1").val();
+        $("#porcentaje_mat_total").val(porcentaje);
+        
+        if(total == 100){
+            $("#btn-guardar").attr("disabled", false);
+        }else{
+            $("#btn-guardar").attr("disabled", true);
+        }
+    })
+
+    $("#porcentaje_mat_2").keyup(function(){
+        let porcentaje = parseFloat($("#porcentaje_mat_1").val());
+        let porcentaje_2 = parseFloat($("#porcentaje_mat_2").val());
+        let total = porcentaje + porcentaje_2;
+        $("#porcentaje_mat_total").val(total+"%");
+
+        if(total == 100){
+            $("#btn-guardar").attr("disabled", false);
+        }else{
+            $("#btn-guardar").attr("disabled", true);
+        }
+    })
+
+    $("#porcentaje_mat_3").keyup(function(){
+        let porcentaje = parseFloat($("#porcentaje_mat_1").val());
+        let porcentaje_2 = parseFloat($("#porcentaje_mat_2").val());
+        let porcentaje_3 = parseFloat($("#porcentaje_mat_3").val());
+        let total = porcentaje + porcentaje_2 + porcentaje_3;
+        $("#porcentaje_mat_total").val(total+ "%");
+
+        
+        if(total == 100){
+            $("#btn-guardar").attr("disabled", false);
+        }else{
+            $("#btn-guardar").attr("disabled", true);
+        }
+    })
+
+    $("#porcentaje_mat_4").keyup(function(){
+        let porcentaje = parseFloat($("#porcentaje_mat_1").val());
+        let porcentaje_2 = parseFloat($("#porcentaje_mat_2").val());
+        let porcentaje_3 = parseFloat($("#porcentaje_mat_3").val());
+        let porcentaje_4 = parseFloat($("#porcentaje_mat_4").val());
+        let total = porcentaje + porcentaje_2 + porcentaje_3 + porcentaje_4;
+        $("#porcentaje_mat_total").val(total +"%");
+
+        
+        if(total == 100){
+            $("#btn-guardar").attr("disabled", false);
+        }else{
+            $("#btn-guardar").attr("disabled", true);
+        }
+    })
+
+    $("#porcentaje_mat_5").keyup(function(){
+        let porcentaje = parseFloat($("#porcentaje_mat_1").val());
+        let porcentaje_2 = parseFloat($("#porcentaje_mat_2").val());
+        let porcentaje_3 = parseFloat($("#porcentaje_mat_3").val());
+        let porcentaje_4 = parseFloat($("#porcentaje_mat_4").val());
+        let porcentaje_5 = parseFloat($("#porcentaje_mat_5").val());
+        let total = porcentaje + porcentaje_2 + porcentaje_3 + porcentaje_4 + porcentaje_5;
+        $("#porcentaje_mat_total").val(total+"%");
+
+        
+        if(total == 100){
+            $("#btn-guardar").attr("disabled", false);
+        }else{
+            $("#btn-guardar").attr("disabled", true);
+        }
+    })
+   
   
     function mostrarForm(flag) {
         limpiar();
@@ -371,6 +449,7 @@ $(document).ready(function() {
             $("#btnAgregar").show();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
+            $("#btn-guardar").attr("disabled", true);
         }
     }
 

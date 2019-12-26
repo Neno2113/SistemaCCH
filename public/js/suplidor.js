@@ -66,22 +66,27 @@ $(document).ready(function() {
     var tabla;
 
     function init() {
+        $("#provincia").select2();
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
     }
 
     function limpiar() {
-        $("#nombre").val("");
-        $("#direccion").val("");
-        $("#contacto_suplidor").val("");
-        $("#telefono_1").val("");
-        $("#telefono_2").val("");
-        $("#celular").val("");
-        $("#email").val("");
-        $("#terminos_de_pago").val("");
-        $("#nota").val("");
-        $("#rnc").val("");
+        $("#nombre").val("").attr("readonly", false);
+        $("#calle").val("").attr("readonly", false);
+        $("#sector").val("").attr("readonly", false);
+        $("#provincia").val("").trigger("change").attr("disabled", false);
+        $("#sitios_cercanos").val("").attr("readonly", false);
+        $("#contacto_suplidor").val("").attr("readonly", false);
+        $("#telefono_1").val("").attr("readonly", false);
+        $("#telefono_2").val("").attr("readonly", false);
+        $("#celular").val("").attr("readonly", false);
+        $("#email").val("").attr("readonly", false);
+        $("#terminos_de_pago").val("").attr("disabled", false);
+        $("#tipo_suplidor").val("").attr("disabled", false);
+        $("#nota").val("").attr("readonly", false);
+        $("#rnc").val("").attr("readonly", false);
     }
 
     $("#btn-guardar").click(function(e) {
@@ -91,7 +96,10 @@ $(document).ready(function() {
         var suplidor = {
             nombre: $("#nombre").val(),
             rnc: $("#rnc").val(),
-            direccion: $("#direccion").val(),
+            calle: $("#calle").val(),
+            sector: $("#sector").val(),
+            provincia: $("#provincia").val(),
+            sitios_cercanos: $("#sitios_cercanos").val(),
             contacto_suplidor: $("#contacto_suplidor").val(),
             telefono_1: $("#telefono_1").val(),
             telefono_2: $("#telefono_2").val(),
@@ -182,7 +190,10 @@ $(document).ready(function() {
             id: $("#id").val(),
             nombre: $("#nombre").val(),
             rnc: $("#rnc").val(),
-            direccion: $("#direccion").val(),
+            calle: $("#calle").val(),
+            sector: $("#sector").val(),
+            provincia: $("#provincia").val(),
+            sitios_cercanos: $("#sitios_cercanos").val(),
             contacto_suplidor: $("#contacto_suplidor").val(),
             telefono_1: $("#telefono_1").val(),
             telefono_2: $("#telefono_2").val(),

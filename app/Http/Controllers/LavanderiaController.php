@@ -65,9 +65,13 @@ class LavanderiaController extends Controller
 
             $lavenderia_envio = Lavanderia::where('corte_id', 'LIKE', "$corte_id")->get()->last();
             $total_enviado = $lavenderia_envio['total_enviado'];
+            // if($total_enviado)
 
             $porcentaje = ($total_enviado/$cant_total) * 100;
-
+            // echo $porcentaje . "<br>";
+            // echo $cantidad - $cant_total . "<br>";
+            // echo $cant_total;
+            // die();
 
             if($porcentaje > 50.00){
                 $corte->fase = 'Lavanderia';
@@ -82,7 +86,7 @@ class LavanderiaController extends Controller
             $lavanderia->suplidor_id = $suplidor_id;
             $lavanderia->fecha_envio = $fecha_envio;
             $lavanderia->cantidad_parcial = $cantidad;
-            $lavanderia->cantidad = $cant_total - $cantidad;
+            $lavanderia->cantidad = $cantidad;
             $lavanderia->total_enviado = $total_enviado + $cantidad;
             $lavanderia->receta_lavado = $receta_lavado;
             $lavanderia->estandar_incluido = $estandar_incluido;
@@ -260,12 +264,16 @@ class LavanderiaController extends Controller
             $lavanderia = Lavanderia::find($id);
             $corte = Corte::find($corte_id);
             $producto_id = $corte['producto_id'];
+            $total_enviado = $lavanderia->total_enviado;
+            // $total_enviado = $total_enviado -  ;
 
             $lavanderia->suplidor_id = $suplidor_id;
             $lavanderia->corte_id = $corte_id;
             $lavanderia->producto_id = $producto_id;
             $lavanderia->fecha_envio = $fecha_envio;
             $lavanderia->cantidad = $cantidad;
+            $lavanderia->cantidad_parcial = $cantidad;
+            $lavanderia->total_enviado = $total_enviado;
             $lavanderia->receta_lavado = $receta_lavado;
             $lavanderia->estandar_incluido = $estandar_incluido;
 

@@ -18,7 +18,8 @@ class ClientBranchController extends Controller
             'client_id' => 'required',
             'nombre_sucursal' => 'required',
             'telefono_sucursal' => 'required',
-            'direccion' => 'required'
+            'calle' => 'required',
+            'provincia' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -33,7 +34,11 @@ class ClientBranchController extends Controller
             $nombre_sucursal = $request->input('nombre_sucursal', true);
             $cliente_id = $request->input('client_id', true);
             $telefono_sucursal = $request->input('telefono_sucursal', true);
-            $direccion = $request->input('direccion', true);
+            $calle = $request->input('calle', true);
+            $sector = $request->input('sector', true);
+            $provincia = $request->input('provincia', true);
+            $sitios_cercanos = $request->input('sitios_cercanos', true);
+
             $codigo_sucursal = "$cliente_id-$random";
 
             $client_branch = new ClientBranch();
@@ -42,7 +47,12 @@ class ClientBranchController extends Controller
             $client_branch->codigo_sucursal = $codigo_sucursal;
             $client_branch->nombre_sucursal = $nombre_sucursal;
             $client_branch->telefono_sucursal = $telefono_sucursal;
-            $client_branch->direccion = $direccion;
+            $client_branch->calle = $calle;
+            $client_branch->sector = $sector;
+            $client_branch->provincia = $provincia;
+            $client_branch->sitios_cercanos = $sitios_cercanos;
+
+
 
             $client_branch->save();
 
@@ -72,7 +82,7 @@ class ClientBranchController extends Controller
 
     public function show($id)
     {
-        $client_branch = ClientBranch::find($id);
+        $client_branch = ClientBranch::find($id)->load('cliente');
 
         if (is_object($client_branch)) {
             $data = [
@@ -163,7 +173,7 @@ class ClientBranchController extends Controller
         $branches = DB::table('cliente_sucursales')->join('cliente', 'cliente_sucursales.cliente_id', '=', 'cliente.id')
             ->select([
                 'cliente_sucursales.id', 'cliente.nombre_cliente', 'cliente_sucursales.codigo_sucursal', 'cliente_sucursales.nombre_sucursal',
-                'cliente_sucursales.telefono_sucursal', 'cliente_sucursales.direccion'
+                'cliente_sucursales.telefono_sucursal', 'cliente_sucursales.provincia'
             ]);
 
         return DataTables::of($branches)

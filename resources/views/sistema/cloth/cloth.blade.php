@@ -7,8 +7,8 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
-    
+    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+
 </div>
 
 <div class="row">
@@ -62,8 +62,8 @@
                     </div>
 
                     <br>
+                    <hr>
                     <br>
-
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="email_principal">Peso(Onzas/Yardas^2):</label>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="celular_principal">Ancho cortable(Pulgadas):</label>
-                            <input type="text" id="ancho_cortable" class="form-control" data-inputmask='"mask": "99.99"'
+                            <input type="text" id="ancho_cortable" class="form-control" data-inputmask='"mask": "99"'
                                 data-mask placeholder="Pulgadas">
                         </div>
                         <div class="col-md-4 mt-3">
@@ -84,24 +84,27 @@
                         <div class="col-md-4 mt-4">
                             <label for="elasticidad_urdimbre">Elasticidad en urdimbre:</label>
                             <input type="text" id="elasticidad_urdimbre" class="form-control"
-                                data-inputmask='"mask": "99.99%"' data-mask  placeholder="Porcentaje">
+                                data-inputmask='"mask": "99.99%"' data-mask placeholder="Porcentaje">
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="encogimiento_trama">Encogimiento en trama:</label>
                             <input type="text" id="encogimiento_trama" class="form-control"
-                                data-inputmask='"mask": "99.99%"' data-mask  placeholder="Porcentaje">
+                                data-inputmask='"mask": "99.99%"' data-mask placeholder="Porcentaje">
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="encogimiento_urdimbre">Encogimiento en urdimbre:</label>
                             <input type="text" id="encogimiento_urdimbre" class="form-control"
-                                data-inputmask='"mask": "99.99%"' data-mask  placeholder="Porcentaje">
+                                data-inputmask='"mask": "99.99%"' data-mask placeholder="Porcentaje">
                         </div>
                     </div>
             </div>
             <div class="card-footer  text-muted ">
-                <button class="btn btn-danger mt-2" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-left"><i class="far fa-edit fa-lg"></i> Editar</button>
+                <button class="btn btn-danger mt-2" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+                    Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-left"><i
+                        class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
         </div>
@@ -183,8 +186,8 @@
                             <label for="Porcentaje Mat.No.1">Porcentaje Mat.No.1(*)</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1" class="form-control"
-                                data-inputmask='"mask": "99.99"' data-mask>
+                            <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1"
+                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -200,8 +203,8 @@
                             <label for="Porcentaje Mat.No.2">Porcentaje Mat.No.2</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2" class="form-control"
-                                data-inputmask='"mask": "99.99"' data-mask>
+                            <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2"
+                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -217,8 +220,8 @@
                             <label for="Porcentaje Mat.No.3">Porcentaje Mat.No.3</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3" class="form-control"
-                                data-inputmask='"mask": "99.99"' data-mask>
+                            <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3"
+                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -234,8 +237,8 @@
                             <label for="Porcentaje Mat.No.4">Porcentaje Mat.No.4</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4" class="form-control"
-                                data-inputmask='"mask": "99.99"' data-mask>
+                            <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4"
+                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -251,23 +254,33 @@
                             <label for="Porcentaje Mat.No.5">Porcentaje Mat.No.5</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5" class="form-control"
-                                data-inputmask='"mask": "99.99"' data-mask>
+                            <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5"
+                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
                         </div>
                     </div>
-                    {{-- <div class="row d-flex justify-content-end mt-5 mr-1">
-                        <div class="col-md-2 ml-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Atencion!</strong> Las composiciones digitadas deben equivaler al 100% de
+                                lo contrario no podra guardar en el sistema.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ml-5 mt-3">
                             <label for="Total">Total</label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mt-3">
                             <input type="text" name="porcentaje_mat_total" id="porcentaje_mat_total"
-                                class="form-control">
+                                class="form-control text-center" readonly>
                         </div>
-                    </div> --}}
+                    </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
             </form>
         </div>

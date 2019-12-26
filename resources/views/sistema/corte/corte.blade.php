@@ -6,9 +6,9 @@
 
 @section('content')
 {{-- <div class="container "> --}}
-<div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-th-list"></i></button>
-    
+<div class="row mt-3 ml-2">
+    <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+
 </div>
 <div class="row">
     <div class="col-12">
@@ -24,13 +24,18 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <div class="row d-flex justify-content-end">
-                        <div class="col-md-2 justify-content-end">
+                    <div class="row">
+                        <div class="col-md-2">
                             <label for="">Numero de corte:</label>
-                            <input type="text" name="numero_corte_gen" id="numero_corte_gen"
-                                class="form-control text-center " readonly>
+                            {{-- <input type="text" name="numero_corte" id="numero_corte"
+                                class="form-control text-center " readonly> --}}
+                            <input type="number" min="1900" max="2099" step="1" value="2019" />
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="id" id="id" value="">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Secuencia(*):</label>
+                            <input type="number" min="001" max="999" step="1" value="001" name="form-control" id="">
                         </div>
                     </div>
 
@@ -66,18 +71,17 @@
                     <div class="row mt-2" id="fila2">
                         <div class="col-md-4 mt-2">
                             <label for="">Marcada No.</label>
-                            <input type="text" name="no_marcada" id="no_marcada" class="form-control"
-                            >
+                            <input type="text" name="no_marcada" id="no_marcada" class="form-control">
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="">Ancho marcada</label>
                             <input type="text" name="ancho_marcada" id="ancho_marcada" class="form-control"
-                            placeholder="Pulgadas">
+                                placeholder="Pulgadas">
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="">Largo marcada</label>
                             <input type="text" name="largo_marcada" id="largo_marcada" class="form-control"
-                            placeholder="Yardas">
+                                placeholder="Yardas">
                         </div>
                     </div>
                     <div class="row mt-2" id="fila3">
@@ -99,9 +103,12 @@
                     </div>
             </div>
             <div class="card-footer text-muted ">
-                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                        class="far fa-edit fa-lg"></i> Editar</button>
             </div>
 
             </form>
@@ -266,63 +273,51 @@
                 <div class="row">
                     <div class="col-lg-1 col-xs-">
                         <label for="" class="ml-4" id="ta">A</label>
-                        <input type="text" name="" id="a" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="a" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tb">B</label>
-                        <input type="text" name="" id="b" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="b" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tc">C</label>
-                        <input type="text" name="" id="c" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="c" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="td">D</label>
-                        <input type="text" name="" id="d" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="d" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="te">E</label>
-                        <input type="text" name="" id="e" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="e" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-md-1">
                         <label for="" class="ml-4" id="tf">F</label>
-                        <input type="text" name="" id="f" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="f" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tg">G</label>
-                        <input type="text" name="" id="g" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="g" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="th">H</label>
-                        <input type="text" name="" id="h" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="h" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="ti">I</label>
-                        <input type="text" name="" id="i" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="i" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tj">J</label>
-                        <input type="text" name="" id="j" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="j" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tk">K</label>
-                        <input type="text" name="" id="k" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="k" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1">
                         <label for="" class="ml-4" id="tl">L</label>
-                        <input type="text" name="" id="l" class="form-control"
-                        data-inputmask='"mask": "999"' data-mask>
+                        <input type="text" name="" id="l" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                 </div>
                 <hr>

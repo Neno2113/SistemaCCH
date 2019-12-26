@@ -36,6 +36,7 @@ $(document).ready(function() {
     var tabla;
 
     function init() {
+        $("#provincia").select2();
         listar();
         // mostrarForm(false);
         $("#btn-edit-branch").hide();
@@ -67,7 +68,10 @@ $(document).ready(function() {
     function limpiar() {
         $("#nombre_sucursal").val("").attr('readonly', false);
         $("#telefono_sucursal").val("").attr('readonly', false);
-        $("#direccion").val("").attr('readonly', false);;
+        $("#calle").val("").attr('readonly', false);
+        $("#sector").val("").attr('readonly', false);
+        $("#provincia").val("").trigger("change").attr('disabled', false);
+        $("#sitios_cercanos").val("").attr('readonly', false);
         $("#clientes").val("").trigger("change");
        
     }
@@ -79,8 +83,10 @@ $(document).ready(function() {
             client_id : $("#clientes").val(),
             nombre_sucursal: $("#nombre_sucursal").val(),
             telefono_sucursal: $("#telefono_sucursal").val(),
-            direccion: $("#direccion").val(),
-           
+            calle: $("#calle").val(),
+            sector: $("#sector").val(),
+            provincia: $("#provincia").val(),
+            sitios_cercanos: $("#sitios_cercanos").val(),
         };
 
         $.ajax({
@@ -145,7 +151,7 @@ $(document).ready(function() {
                 // { data: "codigo_sucursal", name: 'cliente_sucursales.codigo_sucursal' },
                 { data: "nombre_sucursal", name: 'cliente_sucursales.nombre_sucursal' },
                 { data: "telefono_sucursal", name: 'cliente_sucursales.telefono_sucursal' },
-                { data: "direccion", name: 'cliente_sucursales.direccion' }
+                { data: "provincia", name: 'cliente_sucursales.provincia' }
             ],
             order: [[2, 'asc']],
             rowGroup: {
@@ -162,7 +168,10 @@ $(document).ready(function() {
             client_id : $("#clientes").val(),
             nombre_sucursal: $("#nombre_sucursal").val(),
             telefono_sucursal: $("#telefono_sucursal").val(),
-            direccion: $("#direccion").val(),
+            calle: $("#calle").val(),
+            sector: $("#sector").val(),
+            provincia: $("#provincia").val(),
+            sitios_cercanos: $("#sitios_cercanos").val(),
         
         };
         

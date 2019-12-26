@@ -8,8 +8,8 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row">
-    <div class="col-md-6 mt-3 ">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
+    <div class="col-md-6 mt-3 ml-4">
+        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
         
     </div>
 </div>

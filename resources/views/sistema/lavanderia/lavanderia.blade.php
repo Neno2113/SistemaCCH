@@ -6,8 +6,8 @@
 
 @section('content')
 {{-- <div class="container"> --}}
-<div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
+<div class="row mt-3 ml-2">
+    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
 
     {{-- <button class="btn btn-secondary mb-3 ml-2" id="edit-hide2" data-toggle="modal"
         data-target=".bd-talla-modal-xl"> <i class="fas fa-print"></i></button> --}}
@@ -225,7 +225,7 @@
             $("#id").val(data.lavanderia.id);
             $("#numero_envio").val(data.lavanderia.numero_envio).attr('readonly', false);
             $("#fecha_envio").val(data.lavanderia.fecha_envio).attr('disabled', false);
-            $("#cantidad").val(data.lavanderia.cantidad).attr('readonly', false);
+            $("#cantidad").val(data.lavanderia.total_enviado).attr('readonly', false);
             $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte);
             $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto);
             $("#receta_lavado").val(data.lavanderia.receta_lavado).attr('readonly', false);

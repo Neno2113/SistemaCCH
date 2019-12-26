@@ -7,8 +7,8 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row">
-    <div class="col-md-6 mt-3 ">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-th-list"></i></button>
+    <div class="col-md-6 mt-3 ml-2 ">
+        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
       
     </div>
 </div>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-md-3 mt-5">
                             <button type="button" class="btn btn-info  btn-block" data-toggle="modal"
-                                data-target=".bd-sku-modal-xl" id="btn-sku">Asignar SKU</button>
+                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Asignar SKU</button>
                         </div>
                     </div>
                     <hr>
@@ -101,12 +101,12 @@
                         <div class="col-md-4 mt-3">
                             <label for="precio_lista">Precio lista(*):</label>
                             <input type="text" name="precio_lista" id="precio_lista" class="form-control text-center"
-                                data-inputmask='"mask": "9999"' data-mask>
+                                data-inputmask='"mask": "9,999"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_venta_publico">Precio publico(*):</label>
                             <input type="text" name="precio_venta_publico" id="precio_venta_publico"
-                                class="form-control text-center" data-inputmask='"mask": "9.999"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "9,999"' data-mask>
                         </div>
 
                     </div>
@@ -204,10 +204,10 @@
                             <button class="btn btn-primary mb-4" id="btn-asignar" value="General">Asignar SKU </button>
                         </div>
                     </div>
-                    <table class="table  table-bordered table-responsive mt-3">
+                    <table class="table  table-bordered mt-3">
                         <thead>
                             <tr>
-                                <th>Tipo producto</th>
+                                <th>Tallas</th>
                                 <th>A</th>
                                 <th>B</th>
                                 <th>C</th>
@@ -222,70 +222,12 @@
                                 <th>L</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <th>Niño</th>
-                            <th>2</th>
-                            <th>4</th>
-                            <th>6</th>
-                            <th>8</th>
-                            <th>10</th>
-                            <th>12</th>
-                            <th>14</th>
-                            <th>16</th>
-                        </tr>
-                        <tr>
-                            <th>Niña</th>
-                            <th>2</th>
-                            <th>4</th>
-                            <th>6</th>
-                            <th>8</th>
-                            <th>10</th>
-                            <th>12</th>
-                            <th>14</th>
-                            <th>16</th>
-                        </tr>
-                        <tr>
-                            <th>Dama TA</th>
-                            <th>0/0</th>
-                            <th>1/2</th>
-                            <th>3/4</th>
-                            <th>5/6</th>
-                            <th>7/8</th>
-                            <th>9/10</th>
-                            <th>11/12</th>
-                            <th>13/14</th>
-                            <th>15/16</th>
-                            <th>17/18</th>
-                            <th>19/20</th>
-                            <th>21/22</th>
-                        </tr>
-                        <tr>
-                            <th>Dama plus</th>
-                            <th>12W</th>
-                            <th>14W</th>
-                            <th>16W</th>
-                            <th>18W</th>
-                            <th>20W</th>
-                            <th>22W</th>
-                            <th>24W</th>
-                            <th>26W</th>
-                        </tr>
-                        <tr>
-                            <th>Caballero Skinny</th>
-                            <th>28</th>
-                            <th>29</th>
-                            <th>30</th>
-                            <th>32</th>
-                            <th>34</th>
-                            <th>36</th>
-                            <th>38</th>
-                            <th>40</th>
-                            <th>42</th>
-                            <th>44</th>
-                        </tr>
+                        <tbody id="tallas">
+
+                        </tbody>
                     </table>
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-12 mt-3">
                             <h5 class="text-center">Asignar SKU por tallas</h5>
                             <hr>
                             <hr>
@@ -335,7 +277,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
             </form>
         </div>

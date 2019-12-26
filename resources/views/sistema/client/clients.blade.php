@@ -274,7 +274,7 @@
             <div class="card-footer  text-muted ">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
                 <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-2"><i class="far fa-edit fa-lg"></i> Editar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
             </div>
         </div>
 
@@ -430,7 +430,7 @@
             $("#rnc").val(data.client.rnc).attr('readonly', false);
             $("#calle").val(data.client.calle).attr('readonly', false);
             $("#sector").val(data.client.sector).attr('readonly', false);
-            $("#provincia").val(data.client.provincia).attr('disabled', false);
+            $("#provincia").val(data.client.provincia).trigger("change").attr('disabled', false);
             $("#sitios_cercanos").val(data.client.sitios_cercanos).attr('readonly', false);
             $("#contacto_cliente_principal").val(data.client.contacto_cliente_principal).attr('readonly', false);
             $("#telefono_1").val(data.client.telefono_1).attr('readonly', false);
@@ -491,7 +491,7 @@
             $("#rnc").val(data.client.rnc).attr('readonly', true);
             $("#calle").val(data.client.calle).attr('readonly', true);
             $("#sector").val(data.client.sector).attr('readonly', true);
-            $("#provincia").val(data.client.provincia).attr('disabled', true);
+            $("#provincia").val(data.client.provincia).trigger("change").attr('disabled', true);
             $("#sitios_cercanos").val(data.client.sitios_cercanos).attr('readonly', true);
             $("#contacto_cliente_principal").val(data.client.contacto_cliente_principal).attr('readonly', true);
             $("#telefono_1").val(data.client.telefono_1).attr('readonly', true);

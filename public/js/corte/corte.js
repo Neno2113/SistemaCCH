@@ -49,7 +49,20 @@ $(document).ready(function() {
         listarRollos();
         mostrarForm(false);
         $("#btn-edit").hide();
-        ordenPedidoCod();
+        // ordenPedidoCod();
+
+        $('#datepicker').datepicker({
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'yy',
+            onClose: function(dateText, inst) { 
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(year, 1));
+            }
+        });
+        $(".date-picker-year").focus(function () {
+            $(".ui-datepicker-month").hide();
+        });
         
     }
 
@@ -66,46 +79,46 @@ $(document).ready(function() {
         $("#aprovechamiento").val("");
     }
 
-    function ordenPedidoCod() {
-        $("#sec").val("");
-        $("#numero_corte_gen").val("");
-        $("#corte").val("");
-        $("#numero_corte").val("");
-        $("#corte_tallas").val(""); 
+    // function ordenPedidoCod() {
+    //     $("#sec").val("");
+    //     $("#numero_corte_gen").val("");
+    //     $("#corte").val("");
+    //     $("#numero_corte").val("");
+    //     $("#corte_tallas").val(""); 
         
-        $.ajax({
-            url: "corte/lastdigit",
-            type: "GET",
-            dataType: "json",
-            success: function(datos) {
-                if (datos.status == "success") {
+    //     $.ajax({
+    //         url: "corte/lastdigit",
+    //         type: "GET",
+    //         dataType: "json",
+    //         success: function(datos) {
+    //             if (datos.status == "success") {
                     
-                    var i = Number(datos.sec);
-                    $("#sec").val(i);
-                    i = (i + 0.01).toFixed(2).split('.').join("");
-                    var year = new Date().getFullYear().toString();
-                    var referencia = year+'-'+i;
-                    // console.log(referencia);
+    //                 var i = Number(datos.sec);
+    //                 $("#sec").val(i);
+    //                 i = (i + 0.01).toFixed(2).split('.').join("");
+    //                 var year = new Date().getFullYear().toString();
+    //                 var referencia = year+'-'+i;
+    //                 // console.log(referencia);
                                
-                    $("#numero_corte_gen").val(referencia);
-                    $("#corte").val(referencia);
-                    $("#numero_corte").val(referencia);
-                    $("#corte_tallas").val(referencia);          
+    //                 $("#numero_corte_gen").val(referencia);
+    //                 $("#corte").val(referencia);
+    //                 $("#numero_corte").val(referencia);
+    //                 $("#corte_tallas").val(referencia);          
                     
 
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error !!"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
-            }
-        });
-    }
+    //             } else {
+    //                 bootbox.alert(
+    //                     "Ocurrio un error !!"
+    //                 );
+    //             }
+    //         },
+    //         error: function() {
+    //             bootbox.alert(
+    //                 "Ocurrio un error!!"
+    //             );
+    //         }
+    //     });
+    // }
 
     // //funcion para generar codigo de corte
     // $("#btn-generar").on('click', function(e){
@@ -444,7 +457,7 @@ $(document).ready(function() {
                         success: function(datos) {
                             if (datos.status == "success") {
                                 // tabla.ajax.reload();
-                                ordenPedidoCod();
+                                // ordenPedidoCod();
                                 bootbox.alert("Se asignaron un total de: <strong>"+datos.talla.total+"</strong> entre todas las tallas digitadas");
                                 $("#a").val(""),
                                 $("#b").val(""),

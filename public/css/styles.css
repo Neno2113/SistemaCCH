@@ -76,7 +76,8 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 form input[type= "date"],
 input[type = "text"],
 input[type = "email"],
-input[type = "password"]
+input[type = "password"],
+input[type = "number"]
 select.form-control,
 textarea.form-control
 {
@@ -120,5 +121,15 @@ textarea.form-control
  table th.fit {
      white-space: nowrap;
      width: 1%;
+ }
+
+ .ui-datepicker-calendar {
+    display: none;
+ }
+ .ui-datepicker-month {
+    display: none;
+ }
+ .ui-datepicker-next,.ui-datepicker-prev {
+   display:none;
  }
  

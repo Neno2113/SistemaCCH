@@ -38,9 +38,6 @@
 {{-- <script src="{{asset('/adminlte/plugins/Buttons/js/buttons.bootstrap.min.js')}}"></script> --}}
 
 
-
-
-
 <!-- Jquery validation-->
 <script src="{{asset('jquery-validation/dist/jquery.validate.min.js')}}"></script>
 

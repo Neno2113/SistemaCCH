@@ -179,12 +179,13 @@ $(document).ready(function() {
                     $("#id").val("");
                     limpiar();
                     tabla.ajax.reload();
-                    $("#listadoUsers").show();
-                    $("#registroForm").hide();
-                    $("#btnCancelar").hide();
-                    $("#btn-edit").hide();
-                    $("#btn-guardar").show();
-                    $("#btnAgregar").show();
+                    mostrarForm(false);
+                    // $("#listadoUsers").show();
+                    // $("#registroForm").hide();
+                    // $("#btnCancelar").hide();
+                    // $("#btn-edit").hide();
+                    // $("#btn-guardar").show();
+                    // $("#btnAgregar").show();
 
                 } else {
                     bootbox.alert(

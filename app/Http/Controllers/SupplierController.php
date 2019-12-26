@@ -14,7 +14,8 @@ class SupplierController extends Controller
         $validar = $request->validate([
             'nombre' => 'required',
             'rnc' => 'required',
-            'direccion' => 'required',
+            'calle' => 'required',
+            'provincia' => 'required',
             'contacto_suplidor' => 'required',
             'telefono_1' => 'required',
             'email' => 'required|email',
@@ -31,7 +32,10 @@ class SupplierController extends Controller
             ];
         } else {
             $nombre = $request->input('nombre', true);
-            $direccion = $request->input('direccion', true);
+            $calle = $request->input('calle', true);
+            $sector = $request->input('sector', true);
+            $provincia = $request->input('provincia', true);
+            $sitios_cercanos = $request->input('sitios_cercanos', true);
             $contacto_suplidor = $request->input('contacto_suplidor', true);
             $telefono_1 = $request->input('telefono_1', true);
             $rnc = $request->input('rnc');
@@ -45,7 +49,10 @@ class SupplierController extends Controller
             $suplidor = new Supplier();
             $suplidor->nombre = $nombre;
             $suplidor->rnc = trim($rnc, "_");
-            $suplidor->direccion = $direccion;
+            $suplidor->calle = $calle;
+            $suplidor->sector = $sector;
+            $suplidor->provincia = $provincia;
+            $suplidor->sitios_cercanos = $sitios_cercanos;
             $suplidor->contacto_suplidor = $contacto_suplidor;
             $suplidor->telefono_1 = $telefono_1;
             $suplidor->telefono_2 = $telefono_2;
@@ -93,8 +100,9 @@ class SupplierController extends Controller
     {
         $validar = $request->validate([
             'nombre' => 'required',
-            'rnc' => 'required|numeric',
-            'direccion' => 'required',
+            'rnc' => 'required',
+            'calle' => 'required',
+            'provincia' => 'required',
             'contacto_suplidor' => 'required',
             'telefono_1' => 'required',
             'email' => 'required|email',
@@ -112,7 +120,10 @@ class SupplierController extends Controller
             $id = $request->input('id', true);
             $nombre = $request->input('nombre', true);
             $rnc = $request->input('rnc');
-            $direccion = $request->input('direccion', true);
+            $calle = $request->input('calle', true);
+            $sector = $request->input('sector', true);
+            $provincia = $request->input('provincia', true);
+            $sitios_cercanos = $request->input('sitios_cercanos', true);
             $contacto_suplidor = $request->input('contacto_suplidor', true);
             $telefono_1 = $request->input('telefono_1', true);
             $telefono_2 = $request->input('telefono_2', true);
@@ -125,8 +136,11 @@ class SupplierController extends Controller
             $supplier = Supplier::find($id);
 
             $supplier->nombre = $nombre;
-            $supplier->direccion = $direccion;
-            $supplier->rnc = $rnc;
+            $supplier->calle = $calle;
+            $supplier->sector = $sector;
+            $supplier->provincia = $provincia;
+            $supplier->sitios_cercanos = $sitios_cercanos;
+            $supplier->rnc = trim($rnc, "_");
             $supplier->contacto_suplidor = $contacto_suplidor;
             $supplier->telefono_1 = $telefono_1;
             $supplier->telefono_2 = $telefono_2;

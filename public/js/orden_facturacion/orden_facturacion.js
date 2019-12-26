@@ -338,10 +338,12 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         $("#btn-generar").show();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });
