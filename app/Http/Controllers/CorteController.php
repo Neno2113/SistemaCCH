@@ -310,4 +310,21 @@ class CorteController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function verificarCorte(Request $request){
+
+        $validar = $request->validate([
+            'numero_corte' => 'unique:corte',
+           
+        ]);
+        if(!empty($validar)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'corte' => 'Test'
+            ];
+        
+        }
+        return response()->json($data, $data['code']);   
+    }
 }

@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-6 mt-3 ml-2">
         <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-        
+
     </div>
 </div>
 <div class="row ">
@@ -36,7 +36,7 @@
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="sec_segunda" id="sec_segunda" value="">
-                            <select name="tipo_perdida" id="tipo_perdida" class="form-control">
+                            <select name="tipo_perdida" id="tipo_perdida" class="form-control text-center">
                                 <option value=""></option>
                                 <option value="Normal">Total</option>
                                 <option value="Segundas">Segundas</option>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-3">
                             <div class="mt-4 pt-2">
-                                <button class="btn btn-primary " id="btn-generar">Generar</button>
+                                <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-trash-restore"></i> Generar</button>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                     <hr>
                     <br>
 
-                    <div class="row">
+                    <div class="row" id="fila1">
                         <div class="col-6">
                             <label for="">Corte(*):</label>
                             <div id="corteAdd">
@@ -81,7 +81,7 @@
                             <input type="date" name="fecha" id="fecha" class="form-control">
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id="fila2">
                         <div class="col-6 mt-1">
                             <label for="">Fase(*):</label>
                             <select name="fase" id="fase" class="form-control">
@@ -102,20 +102,23 @@
                     </div>
                     <br>
                     <hr>
-                    <br>
-                    <div class="row">
+                    <div class="row" id="fila3">
                         <div class="col-4">
-                            <button type="button" class="btn btn-info btn-block mt-4" id="edit-hide2"
-                                data-toggle="modal" data-target=".bd-talla-modal-xl">Identificar Tallas
-                                <i class="fas fa-sort-alpha-down"></i></button>
+                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
+                                data-toggle="modal" data-target=".bd-talla-modal-xl"><i
+                                    class="fas fa-sort-alpha-down"></i> Identificar Tallas
+                            </button>
                         </div>
                     </div>
 
             </div>
             <div class="card-footer text-muted ">
-                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit"  id="btn-edit" class="btn btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                        class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
         </div>
@@ -127,34 +130,32 @@
         <h4>Listado de perdidas</h4>
     </div>
     <div class="card-body">
-        <table id="perdidas" class="table table-hover table-bordered datatables" style="width:100%">
+        <table id="perdida_listada" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
                     <th></th>
-                    <th>Acciones</th>
-                    <th>Num. Perdida</th>
-                    <th>Tipo perdida </th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Corte</th>
-                    <th>Ref. Producto</th>
+                    <th>Producto</th>
                     <th>Fase</th>
                     <th>Motivo</th>
-                    <th>Perdida</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Acciones</th>
-                    <th>Num. Perdida</th>
-                    <th>Tipo perdida </th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Corte</th>
-                    <th>Ref. Producto</th>
+                    <th>Producto</th>
                     <th>Fase</th>
                     <th>Motivo</th>
-                    <th>Perdida</th>
                 </tr>
             </tfoot>
         </table>
@@ -179,13 +180,6 @@
                     <label for="">Referencia producto: </label>
                     <div class="col-md-6 mb-2">
                         <input type="text" name="genero" id="genero" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <select name="sub-genero" id="sub-genero" class="form-control">
-                            <option value=""></option>
-                            <option value="Mujer">Mujer</option>
-                            <option value="Mujer Plus">Mujer plus</option>
-                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -216,65 +210,65 @@
                 <br>
                 <br>
                 <div class="row mt-2">
-                    <div class="col-lg-1 col-xs-">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="ta">A</label>
                         <input type="text" name="" id="a" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tb">B</label>
                         <input type="text" name="" id="b" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tc">C</label>
                         <input type="text" name="" id="c" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="td">D</label>
                         <input type="text" name="" id="d" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="te">E</label>
                         <input type="text" name="" id="e" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tf">F</label>
                         <input type="text" name="" id="f" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tg">G</label>
                         <input type="text" name="" id="g" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="th">H</label>
                         <input type="text" name="" id="h" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="ti">I</label>
                         <input type="text" name="" id="i" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tj">J</label>
                         <input type="text" name="" id="j" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tk">K</label>
                         <input type="text" name="" id="k" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tl">L</label>
                         <input type="text" name="" id="l" class="form-control text-center"
-                        data-inputmask='"mask": "999"' data-mask>
+                            data-inputmask='"mask": "999"' data-mask>
                     </div>
                 </div>
                 <hr>
@@ -353,7 +347,7 @@
                 $.post("perdida/delete/" + id_perdida, function(){
                     // bootbox.alert(e);
                     bootbox.alert("Recepcion eliminada correctamente!!");
-                    $("#perdidas").DataTable().ajax.reload();
+                    $("#perdida_listada").DataTable().ajax.reload();
                 })
             }
         })

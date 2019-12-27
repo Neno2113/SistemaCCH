@@ -50,25 +50,15 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         // ordenPedidoCod();
-
-        $('#datepicker').datepicker({
-            changeYear: true,
-            showButtonPanel: true,
-            dateFormat: 'yy',
-            onClose: function(dateText, inst) { 
-                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                $(this).datepicker('setDate', new Date(year, 1));
-            }
-        });
-        $(".date-picker-year").focus(function () {
-            $(".ui-datepicker-month").hide();
-        });
+        $("#fila1").hide();
+        $("#fila2").hide();
+        $("#fila3").hide();
         
     }
 
     //funcion para limpiar el formulario(los inputs)
     function limpiar() {
-        $("#numero_corte").val("");
+        $("#numero_corte_gen").val("");
         // $("#sec").val("");
         $("#productos").val("").trigger("change");
         $("#fecha_entrega").val("");
@@ -212,77 +202,70 @@ $(document).ready(function() {
         let val = $("#productos option:selected").text();
         $("#corte_tallas").val(val);
         let genero = val.substring(1,2);
+        let genero_plus = val.substr(3,1);
 
         if (genero == "2") {
-            $("#corte_tallas").val('Mujer: '+val);
-            $("#sub-genero").show();
-          
-             $("#sub-genero").on('change', function(){
-                var subGenero = $("#sub-genero").val();
-             
-                if(subGenero == "Mujer"){
-                  
-                   $("#ta").html("0/0");
-                   $("#tb").html("1/2");
-                   $("#tc").html("3/4");
-                   $("#td").html("5/6");
-                   $("#te").html("7/8");
-                   $("#tf").html("9/10");
-                   $("#tg").html("11/12");
-                   $("#th").html("13/14");
-                   $("#ti").html("15/16");
-                   $("#tj").html("17/18");
-                   $("#tk").html("19/20");
-                   $("#tl").html("21/22");
-                   $("#i").attr('disabled', false);
-                   $("#j").attr('disabled', false);
-                   $("#k").attr('disabled', false);
-                   $("#l").attr('disabled', false);
-                   $("#tallas").html(
-                       "<th>Dama TA</th>"+
-                       "<th>0/0</th>"+
-                       "<th>1/2</th>"+
-                       "<th>3/4</th>"+
-                       "<th>5/6</th>"+
-                       "<th>7/8</th>"+
-                       "<th>9/10</th>"+
-                       "<th>11/12</th>"+
-                       "<th>13/14</th>"+
-                       "<th>15/16</th>"+
-                       "<th>17/18</th>"+
-                       "<th>19/20</th>"+
-                       "<th>21/22</th>"
-               );
-               }else if (subGenero == "Mujer Plus"){
-                //    $("#genero").val('Mujer plus: '+val);
-                   $("#sub-genero").show();
-                   $("#ta").html("12W");
-                   $("#tb").html("14W");
-                   $("#tc").html("16W");
-                   $("#td").html("18W");
-                   $("#te").html("20W");
-                   $("#tf").html("22W");
-                   $("#tg").html("24W");
-                   $("#th").html("26W");
-                   $("#i").attr('disabled', true);
-                   $("#j").attr('disabled', true);
-                   $("#k").attr('disabled', true);
-                   $("#l").attr('disabled', true);
-                   $("#tallas").html(
-                       "<th>Dama Plus</th>"+
-                       "<th>12W</th>"+
-                       "<th>14W</th>"+
-                       "<th>16W</th>"+
-                       "<th>18W</th>"+
-                       "<th>20W</th>"+
-                       "<th>22W</th>"+
-                       "<th>24W</th>"+
-                       "<th>26W</th>"
-                   );
-               }
-          
-            
-        });
+            if(genero_plus == "7"){
+                $("#corte_tallas").val('Mujer Plus: '+val);
+                $("#ta").html("12W");
+                $("#tb").html("14W");
+                $("#tc").html("16W");
+                $("#td").html("18W");
+                $("#te").html("20W");
+                $("#tf").html("22W");
+                $("#tg").html("24W");
+                $("#th").html("26W");
+                $("#i").attr('disabled', true);
+                $("#j").attr('disabled', true);
+                $("#k").attr('disabled', true);
+                $("#l").attr('disabled', true);
+                $("#tallas").html(
+                    "<th>Dama Plus</th>"+
+                    "<th>12W</th>"+
+                    "<th>14W</th>"+
+                    "<th>16W</th>"+
+                    "<th>18W</th>"+
+                    "<th>20W</th>"+
+                    "<th>22W</th>"+
+                    "<th>24W</th>"+
+                    "<th>26W</th>"
+                );
+                
+            }else{
+                $("#corte_tallas").val('Mujer: '+val);
+                $("#ta").html("0/0");
+                $("#tb").html("1/2");
+                $("#tc").html("3/4");
+                $("#td").html("5/6");
+                $("#te").html("7/8");
+                $("#tf").html("9/10");
+                $("#tg").html("11/12");
+                $("#th").html("13/14");
+                $("#ti").html("15/16");
+                $("#tj").html("17/18");
+                $("#tk").html("19/20");
+                $("#tl").html("21/22");
+                $("#i").attr('disabled', false);
+                $("#j").attr('disabled', false);
+                $("#k").attr('disabled', false);
+                $("#l").attr('disabled', false);
+                $("#tallas").html(
+                    "<th>Dama TA</th>"+
+                    "<th>0/0</th>"+
+                    "<th>1/2</th>"+
+                    "<th>3/4</th>"+
+                    "<th>5/6</th>"+
+                    "<th>7/8</th>"+
+                    "<th>9/10</th>"+
+                    "<th>11/12</th>"+
+                    "<th>13/14</th>"+
+                    "<th>15/16</th>"+
+                    "<th>17/18</th>"+
+                    "<th>19/20</th>"+
+                    "<th>21/22</th>"
+            );
+            }
+        
     }
         
         if (genero == "3") {
@@ -301,15 +284,15 @@ $(document).ready(function() {
             $("#k").attr('disabled', true);
             $("#l").attr('disabled', true);
             $("#tallas").html(
-                            "<th>Niño</th>"+
-                            "<th>2</th>"+
-                            "<th>4</th>"+
-                            "<th>6</th>"+
-                            "<th>8</th>"+
-                            "<th>10</th>"+
-                            "<th>12</th>"+
-                            "<th>14</th>"+
-                            "<th>16</th>"
+                "<th>Niño</th>"+
+                "<th>2</th>"+
+                "<th>4</th>"+
+                "<th>6</th>"+
+                "<th>8</th>"+
+                "<th>10</th>"+
+                "<th>12</th>"+
+                "<th>14</th>"+
+                "<th>16</th>"
             );
         } else if (genero == "4") {
             $("#corte_tallas").val('Niña: '+val);
@@ -680,6 +663,56 @@ $(document).ready(function() {
        
     });
 
+    $("#btn-generar").click(function(e){
+        e.preventDefault();
+        let year = $("#year").val();
+        let sec_manual = $("#sec_manual").val();
+        let referencia = year + "-"+ sec_manual;
+
+        let corte = {
+            numero_corte: referencia
+        }
+        // console.log(JSON.stringify(corte));
+
+        $.ajax({
+            url: "verificacion/corte",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(corte),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                  
+                    $("#numero_corte_gen").val(referencia);
+                    $("#corte").val(referencia);
+                    $("#numero_corte").val(referencia);
+                    $("#corte_tallas").val(referencia); 
+                    
+                    $("#fila1").show();
+                    $("#fila2").show();
+                    $("#fila3").show();
+                    bootbox.alert("Corte generado correctamente");
+                    $("#btn-generar").attr('disabled', true);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+    });
+
 
 
     function mostrarForm(flag) {
@@ -689,14 +722,15 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#edit-hide").attr("disabled", false);
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
-            // $("#fila1").hide();
-            // $("#fila2").hide();
-            // $("#fila3").hide();
+            $("#fila1").hide();
+            $("#fila2").hide();
+            $("#fila3").hide();
             // $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();

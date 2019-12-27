@@ -47,8 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('adminlte/plugins/select2/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
-  <!-- jQuery Ui-->
-  <script src="{{asset('adminlte/plugins/jquery-ui/jquery-ui.min.css')}}"></script>
+  {{-- <!-- jQuery Ui-->
+  <script src="{{asset('adminlte/plugins/jquery-ui/jquery-ui.min.css')}}"></script> --}}
 
   <link rel="stylesheet" href="{{asset('css/styles.css')}}">
   <!-- Google Font: Source Sans Pro -->

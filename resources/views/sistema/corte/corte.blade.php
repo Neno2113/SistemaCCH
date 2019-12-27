@@ -26,16 +26,23 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="">Numero de corte:</label>
+                            <label for="">Año(*):</label>
                             {{-- <input type="text" name="numero_corte" id="numero_corte"
                                 class="form-control text-center " readonly> --}}
-                            <input type="number" min="1900" max="2099" step="1" value="2019" />
+                            <input type="number" min="1900" max="2099" step="1" value="2019" id="year" class="form-control">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="id" id="id" value="">
                         </div>
                         <div class="col-md-2">
                             <label for="">Secuencia(*):</label>
-                            <input type="number" min="001" max="999" step="1" value="001" name="form-control" id="">
+                            <input type="number" min="001" max="999" step="1" value="001" id="sec_manual" class="form-control">
+                        </div>
+                        <div class="col-md-2 mt-4 pt-2">
+                            <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-cut"></i> Generar</button>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="d-flex justify-content-center">Numero de corte:</label>
+                            <input type="text" name="numero_corte_gen" id="numero_corte_gen" class="form-control text-center font-weight-bold" readonly>
                         </div>
                     </div>
 
@@ -56,7 +63,7 @@
                     <hr>
                     <br>
                     <div class="row" id="fila1">
-                        <div class="col-md-6">
+                        <div class="col-md-6 ">
                             <label for="">Referencia producto(*):</label>
                             <select name="tags[]" id="productos" class="form-control select2">
                             </select>
@@ -97,7 +104,7 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
-                                data-toggle="modal" data-target=".bd-talla-modal-xl">Distribucion de tallas<i
+                                data-toggle="modal" data-target=".bd-talla-modal-xl">Distribucion de tallas <i
                                     class="fa fa-cut"></i></button>
                         </div>
                     </div>
@@ -236,16 +243,16 @@
                     <div class="col-md-6 mb-2">
                         <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center">
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <select name="sub-genero" id="sub-genero" class="form-control">
                             <option value=""></option>
                             <option value="Mujer">Mujer</option>
                             <option value="Mujer Plus">Mujer plus</option>
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row">
-                    <table class="table  table-bordered table-responsive">
+                    <table class="table  table-bordered  table-responsive">
                         <thead>
                             <tr>
                                 <th>Tipo producto</th>
@@ -271,51 +278,51 @@
                 </div>
                 <br><br>
                 <div class="row">
-                    <div class="col-lg-1 col-xs-">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="ta">A</label>
                         <input type="text" name="" id="a" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tb">B</label>
                         <input type="text" name="" id="b" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2 ">
                         <label for="" class="ml-4" id="tc">C</label>
                         <input type="text" name="" id="c" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="td">D</label>
                         <input type="text" name="" id="d" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="te">E</label>
                         <input type="text" name="" id="e" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tf">F</label>
                         <input type="text" name="" id="f" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tg">G</label>
                         <input type="text" name="" id="g" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="th">H</label>
                         <input type="text" name="" id="h" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="ti">I</label>
                         <input type="text" name="" id="i" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tj">J</label>
                         <input type="text" name="" id="j" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tk">K</label>
                         <input type="text" name="" id="k" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tl">L</label>
                         <input type="text" name="" id="l" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
@@ -394,6 +401,7 @@
                     bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> asignado correctamente al corte: <strong>"
                         +datos.rollo.corte_utilizado+"</strong>");
                     $("#btn-guardar").attr("disabled", false);
+                    $("#edit-hide").attr("disabled", true);
                     $("#rollos").DataTable().ajax.reload();
                 } else {
                     bootbox.alert(

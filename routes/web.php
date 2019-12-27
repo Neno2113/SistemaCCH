@@ -194,6 +194,7 @@ Route::put('/corte/edit', 'CorteController@update');
 Route::post('/corte/delete/{id}', 'CorteController@destroy');
 Route::get('cortes', 'CorteController@selectCorte');
 Route::get('cortes_home', 'CorteController@corte_home');
+Route::post('verificacion/corte', 'CorteController@verificarCorte');
 
 //Talla
 Route::post('/talla', 'TallaController@store');
@@ -237,6 +238,8 @@ Route::get('/perdida/{id}', 'PerdidaController@show');
 Route::put('/perdida/edit', 'PerdidaController@update');
 Route::put('/talla_perdidas/edit', 'PerdidaController@updateTallas');
 Route::post('/perdida/delete/{id}', 'PerdidaController@destroy');
+Route::post('/perdida/verificar', 'PerdidaController@verificarFecha');
+Route::get('/imprimir/perdida/{id}', 'PerdidaController@imprimir');
 
 
 //Almacen
@@ -299,6 +302,7 @@ Route::get('factura/{id}', 'FacturaController@verificar');
 
 //Home
 Route::get('/venta12meses', 'DashboardController@ventas12meses');
+Route::get('/dispVentas', 'DashboardController@totalVenta');
 
 
 

@@ -23,6 +23,11 @@ class Perdida extends Model
         return $this->belongsTo('App\Product', 'producto_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
     // public function talla()
     // {
     //     return $this->belongsTo('App\Talla', 'talla_id');

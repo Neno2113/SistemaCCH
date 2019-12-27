@@ -7,6 +7,7 @@ use App\Corte;
 use App\Perdida;
 use App\Product;
 use App\TallasPerdidas;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -52,6 +53,7 @@ class PerdidaController extends Controller
             $perdida->fecha = $fecha;
             $perdida->tipo_perdida = $tipo_perdida;
             $perdida->fase = $fase;
+            $perdida->user_id = \auth()->user()->id;
             $perdida->motivo = $motivo;
             $perdida->no_perdida = $no_perdida;
             $perdida->sec = $sec + 0.01;
@@ -152,7 +154,7 @@ class PerdidaController extends Controller
         $perdidas = DB::table('perdidas')->join('corte', 'perdidas.corte_id', '=', 'corte.id')
             ->join('producto', 'perdidas.producto_id', '=', 'producto.id')
             ->select(['perdidas.id', 'perdidas.no_perdida', 'perdidas.tipo_perdida', 'perdidas.fecha', 'perdidas.fase'
-            , 'perdidas.motivo', 'perdidas.perdida_X', 'producto.referencia_producto', 'corte.numero_corte']);
+            , 'perdidas.motivo', 'producto.referencia_producto', 'corte.numero_corte']);
 
         return DataTables::of($perdidas)
             ->addColumn('Expandir', function ($product) {
@@ -161,17 +163,12 @@ class PerdidaController extends Controller
             ->editColumn('fecha', function ($perdida) {
                 return date("d-m-20y", strtotime($perdida->fecha));
             })
-            ->editColumn('perdida_X', function ($perdida) {
-                return ($perdida->perdida_X == null ? 0 : 0);
-            })
             ->addColumn('Opciones', function ($perdida) {
                 return '<button id="btnEdit" onclick="mostrar(' . $perdida->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
-                '<button onclick="eliminar(' . $perdida->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
+                '<button onclick="eliminar(' . $perdida->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>'.
+                '<a href="imprimir/perdida/' . $perdida->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Perdida"><i class="fas fa-file-alt"></i></a>';
             })
-            // ->addColumn('Eliminar', function ($product) {
-            //     return '<button onclick="eliminar(' . $product->id . ')" class="btn btn-danger btn-sm"> <i class="fas fa-eraser"></i></button>';
-            // })
-            ->rawColumns(['Opciones', 'Eliminar'])
+            ->rawColumns(['Opciones'])
             ->make(true);
     }
 
@@ -375,6 +372,39 @@ class PerdidaController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
+    }
+
+    public function verificarFecha(Request $request){
+        $corte_id = $request->input('corte_id');
+
+        $corte = Corte::find($corte_id);
+        
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'corte' => date("d-m-20y", strtotime($corte->fecha_corte))
+        ];
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function imprimir($id){
+
+        $perdida = Perdida::find($id)
+        ->load('producto')
+        ->load('corte')
+        ->load('user');
+
+        $genero = substr($perdida->producto->referencia_producto, 1,1);
+        $genero_plus = substr($perdida->producto->referencia_producto, 3,1);
+        // echo $genero;
+        // die();
+
+        $detalle = TallasPerdidas::where('perdida_id', $id)->get();
+
+        $pdf = \PDF::loadView('sistema.perdidas.documentoPerdida', \compact('perdida', 'detalle', 'genero', 'genero_plus'))->setPaper('a4');
+        return $pdf->download('docPerdida.pdf');
+
     }
 
     
