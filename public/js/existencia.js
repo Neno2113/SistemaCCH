@@ -388,11 +388,6 @@ $(document).ready(function() {
                             $("#transacciones").append(fila);
                            
                         }
-
-                        
-                       
-                      
-                       
                     }
 
                     $("#btn-consultar").attr('disabled', true);

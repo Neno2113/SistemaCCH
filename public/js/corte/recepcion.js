@@ -257,7 +257,6 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "id", name: "recepcion.id" },
                 { data: "fecha_recepcion", name: "recepcion.fecha_recepcion" },
                 { data: "recibido_parcial", name: "recepcion.recibido_parcial" },
                 { data: "numero_corte", name: "corte.numero_corte" },

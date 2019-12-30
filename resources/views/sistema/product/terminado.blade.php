@@ -191,9 +191,9 @@
             $("#atributo_no_1").val(data.product.atributo_no_1);
             $("#atributo_no_2").val(data.product.atributo_no_2);
             $("#atributo_no_3").val(data.product.atributo_no_3);
-            $("#precio_lista").val(data.product.precio_lista);
+            $("#precio_lista").val(data.product.precio_lista+" RD$");
             $("#precio_lista_2").val(data.product.precio_lista_2);
-            $("#precio_venta_publico").val(data.product.precio_venta_publico);
+            $("#precio_venta_publico").val(data.product.precio_venta_publico+" RD$");
             $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
             $("#imagen_frente").attr("href", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_frente)
             $("#imagen_frente_img").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_frente)

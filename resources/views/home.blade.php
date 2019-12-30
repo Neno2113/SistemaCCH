@@ -53,14 +53,14 @@
         <!-- small box -->
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3 id="sku_disp"></h3>
+                <h3 id="disp_venta"></h3>
 
-                <p>Sku disponibles</p>
+                <p>Disponibles venta</p>
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/sistemaCCH/public/existencia" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
         <!-- Main row -->

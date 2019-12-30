@@ -97,9 +97,15 @@ $(document).ready(function() {
         $("#orden_pedido_id_proceso").val("");
         $("#sec").val("");
         $("#sec_proceso").val();
-        $("#clienteSearch").val("").trigger("change");
-        $("#sucursalSearch").val("").trigger("change");
-        $("#productoSearch").val("").trigger("change");
+        $("#clienteSearch")
+            .val("")
+            .trigger("change");
+        $("#sucursalSearch")
+            .val("")
+            .trigger("change");
+        $("#productoSearch")
+            .val("")
+            .trigger("change");
         $("#notas").val("");
         $("#fecha_entrega").val("");
         $("#cantidad").val("");
@@ -133,7 +139,7 @@ $(document).ready(function() {
                     if (sucursal) {
                         sucursal = $("#sucursalSearch").val();
                     } else {
-                        sucursal = 7;
+                        sucursal = 2;
                     }
 
                     var orden = {
@@ -141,7 +147,9 @@ $(document).ready(function() {
                         sucursal: sucursal,
                         notas: $("#notas").val(),
                         fecha_entrega: $("#fecha_entrega").val(),
-                        generado_internamente: $("input[name='r1']:checked").val(),
+                        generado_internamente: $(
+                            "input[name='r1']:checked"
+                        ).val(),
                         detallada: $("input[name='r2']:checked").val(),
                         sec: $("#sec").val(),
                         no_orden_pedido: $("#no_orden_pedido").val()
@@ -159,16 +167,24 @@ $(document).ready(function() {
                                 $("#orden_detalle").show();
                                 $("#sec_proceso").val(Number(datos.orden.sec));
                                 i_2 = datos.orden.sec;
-                                i_2 = (i_2 + 0.01).toFixed(2).split(".").join("");
+                                i_2 = (i_2 + 0.01)
+                                    .toFixed(2)
+                                    .split(".")
+                                    .join("");
                                 $("#no_orden_pedido_proceso").val("OP-" + i_2);
-                               
+
                                 // $("#registroForm").hide();
-                                $("#ordenes").DataTable().ajax.reload();
+                                $("#ordenes")
+                                    .DataTable()
+                                    .ajax.reload();
                                 // $("#listadoUsers").show();
                                 $("#orden_pedido_id").val(datos.orden.id);
-                                bootbox.alert("Orden <strong>OP-" +i+"</strong> generada correctamente.");
-                                $("#btn-generar").attr('disabled', true);
-                             
+                                bootbox.alert(
+                                    "Orden <strong>OP-" +
+                                        i +
+                                        "</strong> generada correctamente."
+                                );
+                                $("#btn-generar").attr("disabled", true);
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -176,18 +192,20 @@ $(document).ready(function() {
                             }
                         },
                         error: function(datos) {
-                            console.log(datos.responseJSON.errors); 
+                            console.log(datos.responseJSON.errors);
                             let errores = datos.responseJSON.errors;
-            
+
                             Object.entries(errores).forEach(([key, val]) => {
                                 bootbox.alert({
-                                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                                    size: 'small'
+                                    message:
+                                        "<h4 class='invalid-feedback d-block'>" +
+                                        val +
+                                        "</h4>",
+                                    size: "small"
                                 });
-                            }); 
+                            });
                         }
                     });
-                  
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -319,8 +337,11 @@ $(document).ready(function() {
 
                         let corte_proceso = datos.corte_proceso;
                         let fecha_entrega = datos.fecha_entrega;
+                        let precio = datos.producto.precio_venta_publico;
+                        precio = precio.replace(".00", "")
+                        console.log(precio);
                         var ref = $("#productoSearch option:selected").text();
-                        $("#precio").val(datos.producto.precio_lista);
+                        $("#precio").val(precio);
                         $("#total").val(datos.total_corte);
                         $("#precio_div").show();
                         $("#total_div").show();
@@ -328,6 +349,7 @@ $(document).ready(function() {
                         $("#btn-consultar").attr("disabled", true);
                         $("#btn-agregar").attr("disabled", false);
                         var genero = ref.substring(1, 2);
+                        var mujer_plus = ref.substring(3, 4);
                         if (genero == 1) {
                             $("#sub-genero").hide();
                             $("#ta").html("28");
@@ -356,6 +378,21 @@ $(document).ready(function() {
                             $("#l").attr("disabled", true);
                             $("#kp").hide();
                             $("#lp").hide();
+
+                            $("#a").attr("placeholder", "28");
+                            $("#b").attr("placeholder", "29");
+                            $("#c").attr("placeholder", "30");
+                            $("#d").attr("placeholder", "32");
+                            $("#e").attr("placeholder", "34");
+                            $("#f").attr("placeholder", "36");
+                            $("#g").attr("placeholder", "38");
+                            $("#h").attr("placeholder", "40");
+                            $("#i").attr("placeholder", "42");
+                            $("#j").attr("placeholder", "44");
+                            $("#k").attr("placeholder", "");
+                            $("#l").attr("placeholder", "");
+
+                         
 
                             $("#disponibles").html(
                                 "<tr id='cortes'>" +
@@ -438,6 +475,21 @@ $(document).ready(function() {
                             $("#j").attr("disabled", true);
                             $("#k").attr("disabled", true);
                             $("#l").attr("disabled", true);
+
+                            $("#a").attr("placeholder", "2");
+                            $("#b").attr("placeholder", "4");
+                            $("#c").attr("placeholder", "6");
+                            $("#d").attr("placeholder", "8");
+                            $("#e").attr("placeholder", "10");
+                            $("#f").attr("placeholder", "12");
+                            $("#g").attr("placeholder", "14");
+                            $("#h").attr("placeholder", "16");
+                            $("#i").attr("placeholder", "");
+                            $("#j").attr("placeholder", "");
+                            $("#k").attr("placeholder", "");
+                            $("#l").attr("placeholder", "");
+
+
                             $("#disponibles").html(
                                 "<tr id='cortes'>" +
                                     "<th id='a_corte' class='font-weight-normal'>" +
@@ -519,6 +571,21 @@ $(document).ready(function() {
                             $("#j").attr("disabled", true);
                             $("#k").attr("disabled", true);
                             $("#l").attr("disabled", true);
+
+                            $("#a").attr("placeholder", "2");
+                            $("#b").attr("placeholder", "4");
+                            $("#c").attr("placeholder", "6");
+                            $("#d").attr("placeholder", "8");
+                            $("#e").attr("placeholder", "10");
+                            $("#f").attr("placeholder", "12");
+                            $("#g").attr("placeholder", "14");
+                            $("#h").attr("placeholder", "16");
+                            $("#i").attr("placeholder", "");
+                            $("#j").attr("placeholder", "");
+                            $("#k").attr("placeholder", "");
+                            $("#l").attr("placeholder", "");
+
+
                             $("#disponibles").html(
                                 "<tr id='cortes'>" +
                                     "<th id='a_corte' class='font-weight-normal'>" +
@@ -581,163 +648,154 @@ $(document).ready(function() {
                             }
                         }
                         if (genero == 2) {
-                            $("#genero").val("Mujer: " + val);
-                            $("#sub-genero").show();
+                            if (mujer_plus == 7) {
+                                $("#sub-genero").show();
+                                $("#ta").html("12W");
+                                $("#tb").html("14W");
+                                $("#tc").html("16W");
+                                $("#td").html("18W");
+                                $("#te").html("20W");
+                                $("#tf").html("22W");
+                                $("#tg").html("24W");
+                                $("#th").html("26W");
+                                $("#da").html("12W");
+                                $("#db").html("14W");
+                                $("#dc").html("16W");
+                                $("#dd").html("18W");
+                                $("#de").html("20W");
+                                $("#df").html("22W");
+                                $("#dg").html("24W");
+                                $("#dh").html("26W");
+                                $("#i").attr("disabled", true);
+                                $("#j").attr("disabled", true);
+                                $("#k").attr("disabled", true);
+                                $("#l").attr("disabled", true);
+                               
+                                $("#a").attr("placeholder", "12W");
+                                $("#b").attr("placeholder", "14W");
+                                $("#c").attr("placeholder", "16W");
+                                $("#d").attr("placeholder", "18W");
+                                $("#e").attr("placeholder", "20W");
+                                $("#f").attr("placeholder", "22W");
+                                $("#g").attr("placeholder", "24W");
+                                $("#h").attr("placeholder", "26W");
+                                $("#i").attr("placeholder", "");
+                                $("#j").attr("placeholder", "");
+                                $("#k").attr("placeholder", "");
+                                $("#l").attr("placeholder", "");
 
-                            $("#sub-genero").on("change", function() {
-                                var subGenero = $("#sub-genero").val();
+                               
+                            } else {
+                                $("#ta").html("0/0");
+                                $("#tb").html("1/2");
+                                $("#tc").html("3/4");
+                                $("#td").html("5/6");
+                                $("#te").html("7/8");
+                                $("#tf").html("9/10");
+                                $("#tg").html("11/12");
+                                $("#th").html("13/14");
+                                $("#ti").html("15/16");
+                                $("#tj").html("17/18");
+                                $("#tk").html("19/20");
+                                $("#tl").html("21/22");
+                                $("#da").html("0/0");
+                                $("#db").html("1/2");
+                                $("#dc").html("3/4");
+                                $("#dd").html("5/6");
+                                $("#de").html("7/8");
+                                $("#df").html("9/10");
+                                $("#dg").html("11/12");
+                                $("#dh").html("13/14");
+                                $("#di").html("15/16");
+                                $("#dj").html("17/18");
+                                $("#dk").html("19/20");
+                                $("#dl").html("21/22");
+                                $("#i").attr("disabled", false);
+                                $("#j").attr("disabled", false);
+                                $("#k").attr("disabled", false);
+                                $("#l").attr("disabled", false);
 
-                                if (subGenero == "Mujer") {
-                                    $("#ta").html("0/0");
-                                    $("#tb").html("1/2");
-                                    $("#tc").html("3/4");
-                                    $("#td").html("5/6");
-                                    $("#te").html("7/8");
-                                    $("#tf").html("9/10");
-                                    $("#tg").html("11/12");
-                                    $("#th").html("13/14");
-                                    $("#ti").html("15/16");
-                                    $("#tj").html("17/18");
-                                    $("#tk").html("19/20");
-                                    $("#tl").html("21/22");
-                                    $("#da").html("0/0");
-                                    $("#db").html("1/2");
-                                    $("#dc").html("3/4");
-                                    $("#dd").html("5/6");
-                                    $("#de").html("7/8");
-                                    $("#df").html("9/10");
-                                    $("#dg").html("11/12");
-                                    $("#dh").html("13/14");
-                                    $("#di").html("15/16");
-                                    $("#dj").html("17/18");
-                                    $("#dk").html("19/20");
-                                    $("#dl").html("21/22");
-                                    $("#i").attr("disabled", false);
-                                    $("#j").attr("disabled", false);
-                                    $("#k").attr("disabled", false);
-                                    $("#l").attr("disabled", false);
-                                    $("#tallas").html(
-                                        "<th>Dama TA</th>" +
-                                            "<th>0/0</th>" +
-                                            "<th>1/2</th>" +
-                                            "<th>3/4</th>" +
-                                            "<th>5/6</th>" +
-                                            "<th>7/8</th>" +
-                                            "<th>9/10</th>" +
-                                            "<th>11/12</th>" +
-                                            "<th>13/14</th>" +
-                                            "<th>15/16</th>" +
-                                            "<th>17/18</th>" +
-                                            "<th>19/20</th>" +
-                                            "<th>21/22</th>"
-                                    );
-                                    $("#disponibles").html(
-                                        "<tr id='cortes'>" +
-                                            "<th id='a_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.a) +
-                                            "</th>" +
-                                            "<th id='b_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.b) +
-                                            "</th>" +
-                                            "<th id='c_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.c) +
-                                            "</th>" +
-                                            "<th id='d_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.d) +
-                                            "</th>" +
-                                            "<th id='e_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.e) +
-                                            "</th>" +
-                                            "<th id='f_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.f) +
-                                            "</th>" +
-                                            "<th id='g_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.g) +
-                                            "</th>" +
-                                            "<th id='h_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.h) +
-                                            "</th>" +
-                                            "<th id='i_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.i) +
-                                            "</th>" +
-                                            "<th id='j_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.j) +
-                                            "</th>" +
-                                            "<th id='k_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.k) +
-                                            "</th>" +
-                                            "<th id='l_corte' class='font-weight-normal'>" +
-                                            validarNan(datos.l) +
-                                            "</th>" +
-                                            "</tr>"
-                                    );
-                                    let data_consulta = {
-                                        a: data.a,
-                                        b: data.b,
-                                        c: data.c,
-                                        d: data.d,
-                                        e: data.e,
-                                        f: data.f,
-                                        g: data.g,
-                                        h: data.h,
-                                        i: data.i,
-                                        j: data.j,
-                                        k: data.k,
-                                        l: data.l
-                                    };
+                                $("#a").attr("placeholder", "0/0");
+                                $("#b").attr("placeholder", "1/2");
+                                $("#c").attr("placeholder", "3/4");
+                                $("#d").attr("placeholder", "5/6");
+                                $("#e").attr("placeholder", "7/8");
+                                $("#f").attr("placeholder", "9/10");
+                                $("#g").attr("placeholder", "11/12");
+                                $("#h").attr("placeholder", "13/14");
+                                $("#i").attr("placeholder", "15/16");
+                                $("#j").attr("placeholder", "17/18");
+                                $("#k").attr("placeholder", "19/20");
+                                $("#l").attr("placeholder", "21/22");
 
-                                    let consulta = Object.values(data_consulta);
-                                    var result = true;
+                                $("#disponibles").html(
+                                    "<tr id='cortes'>" +
+                                        "<th id='a_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.a) +
+                                        "</th>" +
+                                        "<th id='b_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.b) +
+                                        "</th>" +
+                                        "<th id='c_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.c) +
+                                        "</th>" +
+                                        "<th id='d_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.d) +
+                                        "</th>" +
+                                        "<th id='e_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.e) +
+                                        "</th>" +
+                                        "<th id='f_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.f) +
+                                        "</th>" +
+                                        "<th id='g_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.g) +
+                                        "</th>" +
+                                        "<th id='h_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.h) +
+                                        "</th>" +
+                                        "<th id='i_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.i) +
+                                        "</th>" +
+                                        "<th id='j_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.j) +
+                                        "</th>" +
+                                        "<th id='k_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.k) +
+                                        "</th>" +
+                                        "<th id='l_corte' class='font-weight-normal'>" +
+                                        validarNan(datos.l) +
+                                        "</th>" +
+                                        "</tr>"
+                                );
+                                let data_consulta = {
+                                    a: data.a,
+                                    b: data.b,
+                                    c: data.c,
+                                    d: data.d,
+                                    e: data.e,
+                                    f: data.f,
+                                    g: data.g,
+                                    h: data.h,
+                                    i: data.i,
+                                    j: data.j,
+                                    k: data.k,
+                                    l: data.l
+                                };
 
-                                    for (let i = 0; i < consulta.length; i++) {
-                                        if (consulta[i] <= 0) {
-                                            bootbox.alert(
-                                                "Alerta existe una de las tallas la cual su existencia es igual a 0"
-                                            );
-                                            result = false;
-                                            break;
-                                        }
+                                let consulta = Object.values(data_consulta);
+                                var result = true;
+
+                                for (let i = 0; i < consulta.length; i++) {
+                                    if (consulta[i] <= 0) {
+                                        bootbox.alert(
+                                            "Alerta existe una de las tallas la cual su existencia es igual a 0"
+                                        );
+                                        result = false;
+                                        break;
                                     }
-                                } else if (subGenero == "Mujer Plus") {
-                                    //    $("#genero").val('Mujer plus: '+val);
-                                    $("#sub-genero").show();
-                                    $("#ta").html("12W");
-                                    $("#tb").html("14W");
-                                    $("#tc").html("16W");
-                                    $("#td").html("18W");
-                                    $("#te").html("20W");
-                                    $("#tf").html("22W");
-                                    $("#tg").html("24W");
-                                    $("#th").html("26W");
-                                    $("#da").html("12W");
-                                    $("#db").html("14W");
-                                    $("#dc").html("16W");
-                                    $("#dd").html("18W");
-                                    $("#de").html("20W");
-                                    $("#df").html("22W");
-                                    $("#dg").html("24W");
-                                    $("#dh").html("26W");
-                                    $("#i").attr("disabled", true);
-                                    $("#j").attr("disabled", true);
-                                    $("#k").attr("disabled", true);
-                                    $("#l").attr("disabled", true);
-                                    $("#tallas").html(
-                                        "<th>Dama Plus</th>" +
-                                            "<th>12W</th>" +
-                                            "<th>14W</th>" +
-                                            "<th>16W</th>" +
-                                            "<th>18W</th>" +
-                                            "<th>20W</th>" +
-                                            "<th>22W</th>" +
-                                            "<th>24W</th>" +
-                                            "<th>26W</th>" +
-                                            $("#ti").html("I") +
-                                            $("#tj").html("J") +
-                                            $("#tk").html("K") +
-                                            $("#tl").html("L")
-                                    );
                                 }
-                            });
+                            }
                         }
 
                         if (corte_proceso != "" && fecha_entrega != "") {
@@ -786,7 +844,9 @@ $(document).ready(function() {
 
                         let cantidad_wrx = $("#cantidad").val();
                         let total_corte = datos.total_corte;
-                        $("#precio").val(datos.producto.precio_lista);
+                        let precio = datos.producto.precio_venta_publico;
+                        precio = precio.replace(".00", "")
+                        $("#precio").val(precio);
                         $("#total").val(datos.total_corte);
 
                         if (cantidad_wrx > total_corte) {
@@ -1255,7 +1315,9 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#orden_pedido_id_proceso").val(datos.orden.id);
-                    let referencia = $("#productoSearch option:selected").text();
+                    let referencia = $(
+                        "#productoSearch option:selected"
+                    ).text();
                     let producto = referencia.substring(0, 9);
                     let cantidad_wr = $("#cantidad_proceso").val();
                     let precio = $("#precio").val();
@@ -1287,8 +1349,6 @@ $(document).ready(function() {
                     cont++;
                     $("#orden_pedido").append(fila);
                     $("#btn-agregarProceso").attr("disabled", true);
-                
-                   
 
                     var ordenDetalleProceso = {
                         orden_id: $("#orden_pedido_id_proceso").val(),
@@ -1305,9 +1365,11 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                    
                                 $("#corte_proceso").val("");
-                                $("#btn-agregarProceso").attr("disabled",false);
+                                $("#btn-agregarProceso").attr(
+                                    "disabled",
+                                    false
+                                );
 
                                 $("#cantidad_proceso").val("");
                             } else {
@@ -1366,16 +1428,27 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
+                {
+                    data: "no_orden_pedido",
+                    name: "orden_pedido.no_orden_pedido"
+                },
                 { data: "name", name: "users.name" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
+                {
+                    data: "nombre_sucursal",
+                    name: "cliente_sucursales.nombre_sucursal"
+                },
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
-                { data: "total", name: "orden_pedido.total", searchable: false, orderable: false },
-                { data: "detallada", name: "orden_pedido.detallada" },
+                {
+                    data: "total",
+                    name: "orden_pedido.total",
+                    searchable: false,
+                    orderable: false
+                },
+                { data: "detallada", name: "orden_pedido.detallada" }
             ],
-            order: [[3, "desc"]],
+            order: [[3, "desc"]]
             // rowGroup: {
             //     dataSrc: "name"
             // }
@@ -1407,13 +1480,35 @@ $(document).ready(function() {
             ajax: "api/ordenes_redistribucion",
             columns: [
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
-                { data: "referencia_producto", name: "producto.referencia_producto"},
-                { data: "client", name: "orden_pedido_detalle.nombre_cliente", searchable: false},
-                { data: "sucursal", name: "orden_pedido_detalle.nombre_sucursal", searchable: false},
-                { data: "total", name: "orden_pedido_detalle.total", searchable: false },
+                {
+                    data: "no_orden_pedido",
+                    name: "orden_pedido.no_orden_pedido"
+                },
+                {
+                    data: "referencia_producto",
+                    name: "producto.referencia_producto"
+                },
+                {
+                    data: "client",
+                    name: "orden_pedido_detalle.nombre_cliente",
+                    searchable: false
+                },
+                {
+                    data: "sucursal",
+                    name: "orden_pedido_detalle.nombre_sucursal",
+                    searchable: false
+                },
+                {
+                    data: "total",
+                    name: "orden_pedido_detalle.total",
+                    searchable: false
+                },
                 { data: "precio", name: "orden_pedido_detalle.precio" },
-                { data: "status_orden_pedido", name: "orden_pedido_detalle.status_orden_pedido", searchable: false}
+                {
+                    data: "status_orden_pedido",
+                    name: "orden_pedido_detalle.status_orden_pedido",
+                    searchable: false
+                }
             ],
             order: [[1, "desc"]],
             rowGroup: {
@@ -1421,13 +1516,11 @@ $(document).ready(function() {
             }
         });
     }
-    
-     //funcion para listar en el Datatable
-    
 
+    //funcion para listar en el Datatable
 
-      //funcion para listar en el Datatable
-      function listarOrdenesProceso() {
+    //funcion para listar en el Datatable
+    function listarOrdenesProceso() {
         tabla_proceso = $("#ordenes_proceso").DataTable({
             serverSide: true,
             processing: true,
@@ -1451,13 +1544,29 @@ $(document).ready(function() {
             ajax: "api/ordenes_proceso",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
+                {
+                    data: "no_orden_pedido",
+                    name: "orden_pedido.no_orden_pedido"
+                },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                { data: "nombre_sucursal",name: "cliente_sucursales.nombre_sucursal"},
+                {
+                    data: "nombre_sucursal",
+                    name: "cliente_sucursales.nombre_sucursal"
+                },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
-                { data: "total", name: "orden_pedido.total", searchable: false},
-                { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
-                { data: "generado_internamente", name: "orden_pedido.generado_internamente"},
+                {
+                    data: "total",
+                    name: "orden_pedido.total",
+                    searchable: false
+                },
+                {
+                    data: "status_orden_pedido",
+                    name: "orden_pedido.status_orden_pedido"
+                },
+                {
+                    data: "generado_internamente",
+                    name: "orden_pedido.generado_internamente"
+                },
                 { data: "notas", name: "orden_pedido.notas" }
             ],
             order: [[4, "desc"]],
@@ -1478,19 +1587,28 @@ $(document).ready(function() {
         $("#clienteBuscar").show();
         $("#sucursal").hide();
         $("#sucursalBuscar").show();
-        $("#btn-generar").attr('disabled', false);
-        $("#btn-generar").attr('disabled', false);
+        $("#btn-generar").attr("disabled", false);
+        $("#btn-generar").attr("disabled", false);
         $("#generado_internamente").hide();
         $("#tallas").show();
         $("#producto").show();
         $("#genInt").show();
         $("#agregadas").show();
         $("#listarOrden").hide();
-        $("#orden").DataTable().destroy();
-        $("#notas").val("").attr('readonly', false).removeClass("font-weight-bold");
-        $("#fecha_entrega").val("").attr('disabled', false);
-        $("#no_orden_pedido").val("").removeClass("font-weight-bold");
-        $("#generado_internamente").val(result);
+        $("#orden")
+            .DataTable()
+            .destroy();
+        $("#notas")
+            .val("")
+            .attr("readonly", false)
+            .removeClass("font-weight-bold");
+        $("#fecha_entrega")
+            .val("")
+            .attr("disabled", false);
+        $("#no_orden_pedido")
+            .val("")
+            .removeClass("font-weight-bold");
+        // $("#generado_internamente").val(result);
         $("#btn-guardar").show();
     });
     $("#btnCancelar").click(function(e) {
@@ -1503,8 +1621,7 @@ $(document).ready(function() {
 
     window.onresize = function() {
         tabla.columns.adjust().responsive.recalc();
-    } 
-  
+    };
 
     init();
 });

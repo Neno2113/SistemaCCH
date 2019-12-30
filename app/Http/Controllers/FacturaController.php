@@ -81,7 +81,7 @@ class FacturaController extends Controller
                 'orden_facturacion.id', 'orden_facturacion.no_orden_facturacion', 'orden_facturacion.fecha',
                 'users.name', 'users.surname', 'orden_empaque.no_orden_empaque', 'orden_empaque.fecha as fecha_empaque',
                 'orden_empaque.orden_pedido_id', 'orden_facturacion.por_transporte'
-            ])->where('impreso', 'LIKE', '1');
+            ])->where('impreso', 'LIKE', '0');
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function ($orden) {
@@ -245,8 +245,8 @@ class FacturaController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
                 return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
-                    '<a href="factura/resumida/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura Resumida"> <i class="fas fa-file-invoice-dollar fa-lg"></i></a>' .
-                    '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura detallada"> <i class="fas fa-file-invoice fa-lg"></i></a>';
+                    '<a href="factura/resumida/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura Resumida"> <i class="fas fa-file-invoice-dollar fa-lg"></i></a>';
+                    // '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura detallada"> <i class="fas fa-file-invoice fa-lg"></i></a>';
             })
             ->rawColumns(['Opciones'])
             ->make(true);

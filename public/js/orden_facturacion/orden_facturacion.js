@@ -271,6 +271,9 @@ $(document).ready(function() {
                         datos.orden_pedido.sucursal.nombre_sucursal
                     );
                     $("#orden_pedido").val(datos.orden_pedido.no_orden_pedido);
+                    $("#fila1").show();
+                    $("#fila2").show();
+    
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -326,14 +329,17 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#fila1").hide();
+            $("#fila2").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
-
             $("#btn-edit").hide();
             $("#btn-guardar").show();
+            // $("#fila1").hide();
+            // $("#fila2").hide();
         }
     }
 

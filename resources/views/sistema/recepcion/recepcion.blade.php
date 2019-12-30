@@ -113,7 +113,6 @@
                 <tr>
                     <th></th>
                     <th>Actions</th>
-                    <th>#</th>
                     <th>Fecha </th>
                     <th>Cant. Rec.</th>
                     <th>Corte</th>
@@ -129,7 +128,6 @@
                 <tr>
                     <th></th>
                     <th>Actions</th>
-                    <th># </th>
                     <th>Fecha </th>
                     <th>Cant. Rec.</th>
                     <th>Corte</th>

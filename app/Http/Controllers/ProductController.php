@@ -37,15 +37,15 @@ class ProductController extends Controller
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
-            
 
+            
             $product = Product::find($id);
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
-            $product->precio_lista = trim($precio_lista, "_,");
-            $product->precio_lista_2 = trim($precio_lista_2, "_,");
-            $product->precio_venta_publico = trim($precio_venta_publico, "_,");
-            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "_,");
+            $product->precio_lista = trim($precio_lista, "_RD$");
+            $product->precio_lista_2 = $precio_lista_2;
+            $product->precio_venta_publico = trim($precio_venta_publico, "_RD$");
+            $product->precio_venta_publico_2 = $precio_venta_publico_2;
            
             $product->save();
 
@@ -111,6 +111,12 @@ class ProductController extends Controller
             ->editColumn('name', function ($product) {
                 return "$product->name $product->surname";
             })
+            ->editColumn('precio_lista', function($product){
+                return $product->precio_lista . " RD$";
+            })
+            ->editColumn('precio_venta_publico', function($product){
+                return $product->precio_venta_publico . " RD$";
+            })
             ->addColumn('Editar', function ($product) {
                 return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
             })
@@ -172,10 +178,10 @@ class ProductController extends Controller
             $product->referencia_producto = $referencia;
             $product->descripcion_2 = $descripcion_2;
             $product->descripcion = $descripcion;
-            $product->precio_lista = trim($precio_lista, "_,");
-            $product->precio_lista_2 = trim($precio_lista_2, "_,");
-            $product->precio_venta_publico = trim($precio_venta_publico, "_,");
-            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "_,");
+            $product->precio_lista = trim($precio_lista, "_RD$");
+            $product->precio_lista_2 = trim($precio_lista_2, "_RD$");
+            $product->precio_venta_publico = trim($precio_venta_publico, "_RD$");
+            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "_RD$");
             // $product->sec = $sec;
             // $product->id_user = \auth()->user()->id;
 
@@ -287,6 +293,13 @@ class ProductController extends Controller
             ->addColumn('Expandir', function ($product) {
                 return "";
             })
+            ->editColumn('precio_lista', function($product){
+                return $product->precio_lista . " RD$";
+            })
+            ->editColumn('precio_venta_publico', function($product){
+                return $product->precio_lista . " RD$";
+            })
+            
             
             ->addColumn('Opciones', function ($product) {
                 return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-eye fa-lg"></i></button>';

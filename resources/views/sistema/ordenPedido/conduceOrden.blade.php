@@ -192,8 +192,10 @@
 		}
 
 		table td.unit,
-		table td.qty,
-		table td.total {
+        table td.desc,
+        table td.qty,
+        table td.no,
+        table td.total  {
 			font-size: 1.2em;
 		}
 
@@ -327,7 +329,7 @@
 					</td>
 					<td class="unit">
 						@foreach ($orden_detalle as $precio)
-						<p>{{$precio->precio}}</p>
+						<p>{{$precio->precio}} RD$</p>
 						@endforeach
 					</td>
 					<td class="qty">
@@ -338,7 +340,7 @@
 					</td>
 					<td class="total">
 						@foreach ($detalles_totales as $totales)
-						<p>${{$totales}}</p>
+						<p>${{$totales}} RD$</p>
 						@endforeach
 					</td>
 				</tr>
@@ -347,17 +349,17 @@
 				<tr>
 					<td colspan="2"></td>
 					<td colspan="2">SUBTOTAL</td>
-					<td>${{number_format($subtotal)}}</td>
+					<td>{{number_format($subtotal)}} RD$</td>
 				</tr>
 				<tr>
 					<td colspan="2"></td>
 					<td colspan="2">IMPUESTO 18%</td>
-					<td>${{number_format($tax)}}</td>
+					<td>{{number_format($tax)}} RD$</td>
 				</tr>
 				<tr>
 					<td colspan="2"></td>
 					<td colspan="2">TOTAL FINAL</td>
-					<td>${{number_format($total)}}</td>
+					<td>{{number_format($total)}} RD$</td>
 				</tr>
 			</tfoot>
 		</table>

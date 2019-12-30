@@ -222,7 +222,7 @@
                             <div class="col-md-3 mt-3 " id="precio_div">
                                 <label for="">Precio(*):</label>
                                 <input type="text" name="precio" id="precio" class="form-control text-center"
-                                    data-inputmask='"mask": "9.999"' data-mask>
+                                    data-inputmask='"mask": "9999"' data-mask>
                             </div>
                             <div class="col-md-2 mt-3" id="total_div">
                                 <label for="">Total Ref.:</label>
@@ -238,11 +238,6 @@
                         <br>
                         <div class="row" id="detallada">
                             <label for="">Disponible:</label>
-                            <select name="sub-genero" id="sub-genero" class="form-control">
-                                <option value="Mujer"></option>
-                                <option value="Mujer">Mujer</option>
-                                <option value="Mujer Plus">Mujer plus</option>
-                            </select>
                             <table class="table table-bordered  mb-3">
                                 <thead class="thead-light">
                                     <tr>
@@ -263,10 +258,7 @@
                                 <tbody id="disponibles">
 
                                 </tbody>
-                                {{-- <tfoot id="corteProceso">
-                                
-                            </tfoot> --}}
-
+                    
                             </table>
                         </div>
 
@@ -448,7 +440,6 @@
                 $.post("orden_pedido/delete/" + id_orden, function(){
                     bootbox.alert("Orden de pedido eliminada correctamente!!");
                     $("#ordenes").DataTable().ajax.reload();
-                    ordenPedidoCod();
                 })
             }
         })

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
-    
+
     $("#formulario").validate({
         rules: {
             codigo_composicion: {
@@ -34,12 +34,15 @@ $(document).ready(function() {
         $("#loading").hide();
         $("#loading2").hide();
         $("#loading3").hide();
-      
     }
 
     function limpiar() {
-        $("#cortesSearchEdit").val("").trigger("change");
-        $("#cortesSearch").val("").trigger("change");
+        $("#cortesSearchEdit")
+            .val("")
+            .trigger("change");
+        $("#cortesSearch")
+            .val("")
+            .trigger("change");
         $("#ubicacion").val("");
         $("#tono").val("");
         $("#intensidad_proceso_seco").val("");
@@ -121,8 +124,6 @@ $(document).ready(function() {
         }
     });
 
-    
-
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
 
@@ -156,7 +157,9 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro correctamenete el corte en almacen");
+                    bootbox.alert(
+                        "Se registro correctamenete el corte en almacen"
+                    );
                     console.log(datos);
                     limpiar();
                     tabla.ajax.reload();
@@ -168,13 +171,16 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
                     bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
                     });
                 });
             }
@@ -208,7 +214,10 @@ $(document).ready(function() {
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "name", name: "users.name" },
                 { data: "numero_corte", name: "corte.numero_corte" },
-                { data: "referencia_producto", name: "producto.referencia_producto"},
+                {
+                    data: "referencia_producto",
+                    name: "producto.referencia_producto"
+                },
                 { data: "totalCorte", name: "corte.total" },
                 { data: "total", name: "almacen.total" }
             ],
@@ -302,22 +311,19 @@ $(document).ready(function() {
             $("#form_producto").hide();
             $("#form_producto_2").hide();
             $("#form_talla").hide();
-            $("#btn-guardar").attr('disabled', true);
-           
+            $("#btn-guardar").attr("disabled", true);
         }
     }
 
+    $("#btn-buscar").click(function() {
+        $("#loading").show();
+        $("#loading2").show();
+        $("#loading3").show();
 
-    $("#btn-buscar").click(function(){
-        $("#loading").show(); 
-        $("#loading2").show(); 
-        $("#loading3").show(); 
-       
-        setInterval(function(){
-        $("#loading").hide();
-        $("#loading2").hide();
-        $("#loading3").hide(); 
-            
+        setInterval(function() {
+            $("#loading").hide();
+            $("#loading2").hide();
+            $("#loading3").hide();
         }, 1500);
 
         var corte = {
@@ -325,9 +331,9 @@ $(document).ready(function() {
             idEdit: $("#cortesSearchEdit").val()
         };
 
-        let corte_id = $("#cortesSearch").val() 
+        let corte_id = $("#cortesSearch").val();
         let corte_id_edit = $("#cortesSearchEdit").val();
-     
+
         $("#corte_id").val(corte_id);
         $("#corte_id_edit").val(corte_id_edit);
 
@@ -339,80 +345,75 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    let ubicacion  = datos.producto.ubicacion;
+                    let ubicacion = datos.producto.ubicacion;
                     let val = datos.referencia;
                     let genero = val.substring(1, 2);
+                    let mujer_plus = val.substring(3, 4);
 
-                    $("#genero").val("Referencia producto: "+val);
+                    $("#genero").val("Referencia producto: " + val);
 
                     listarCorteDetalle(datos.id);
                     if (genero == "2") {
-                        $("#genero").val("Mujer: " + val);
-                        $("#sub-genero").show();
+                        var subGenero = $("#sub-genero").val();
 
-                        $("#sub-genero").on("change", function() {
-                            var subGenero = $("#sub-genero").val();
-
-                            if (subGenero == "Mujer") {
-                                $("#ta").html("0/0");
-                                $("#tb").html("1/2");
-                                $("#tc").html("3/4");
-                                $("#td").html("5/6");
-                                $("#te").html("7/8");
-                                $("#tf").html("9/10");
-                                $("#tg").html("11/12");
-                                $("#th").html("13/14");
-                                $("#ti").html("15/16");
-                                $("#tj").html("17/18");
-                                $("#tk").html("19/20");
-                                $("#tl").html("21/22");
-                                $("#i").attr("disabled", false);
-                                $("#j").attr("disabled", false);
-                                $("#k").attr("disabled", false);
-                                $("#l").attr("disabled", false);
-                                $("#tallas").html(
-                                    "<th>Dama TA</th>" +
-                                        "<th>0/0</th>" +
-                                        "<th>1/2</th>" +
-                                        "<th>3/4</th>" +
-                                        "<th>5/6</th>" +
-                                        "<th>7/8</th>" +
-                                        "<th>9/10</th>" +
-                                        "<th>11/12</th>" +
-                                        "<th>13/14</th>" +
-                                        "<th>15/16</th>" +
-                                        "<th>17/18</th>" +
-                                        "<th>19/20</th>" +
-                                        "<th>21/22</th>"
-                                );
-                            } else if (subGenero == "Mujer Plus") {
-                                //    $("#genero").val('Mujer plus: '+val);
-                                $("#sub-genero").show();
-                                $("#ta").html("12W");
-                                $("#tb").html("14W");
-                                $("#tc").html("16W");
-                                $("#td").html("18W");
-                                $("#te").html("20W");
-                                $("#tf").html("22W");
-                                $("#tg").html("24W");
-                                $("#th").html("26W");
-                                $("#i").attr("disabled", true);
-                                $("#j").attr("disabled", true);
-                                $("#k").attr("disabled", true);
-                                $("#l").attr("disabled", true);
-                                $("#tallas").html(
-                                    "<th>Dama Plus</th>" +
-                                        "<th>12W</th>" +
-                                        "<th>14W</th>" +
-                                        "<th>16W</th>" +
-                                        "<th>18W</th>" +
-                                        "<th>20W</th>" +
-                                        "<th>22W</th>" +
-                                        "<th>24W</th>" +
-                                        "<th>26W</th>"
-                                );
-                            }
-                        });
+                        if (mujer_plus == 7) {
+                            $("#ta").html("12W");
+                            $("#tb").html("14W");
+                            $("#tc").html("16W");
+                            $("#td").html("18W");
+                            $("#te").html("20W");
+                            $("#tf").html("22W");
+                            $("#tg").html("24W");
+                            $("#th").html("26W");
+                            $("#i").attr("disabled", true);
+                            $("#j").attr("disabled", true);
+                            $("#k").attr("disabled", true);
+                            $("#l").attr("disabled", true);
+                            $("#tallas").html(
+                                "<th>Dama Plus</th>" +
+                                    "<th>12W</th>" +
+                                    "<th>14W</th>" +
+                                    "<th>16W</th>" +
+                                    "<th>18W</th>" +
+                                    "<th>20W</th>" +
+                                    "<th>22W</th>" +
+                                    "<th>24W</th>" +
+                                    "<th>26W</th>"
+                            );
+                           
+                        } else {
+                            $("#ta").html("0/0");
+                            $("#tb").html("1/2");
+                            $("#tc").html("3/4");
+                            $("#td").html("5/6");
+                            $("#te").html("7/8");
+                            $("#tf").html("9/10");
+                            $("#tg").html("11/12");
+                            $("#th").html("13/14");
+                            $("#ti").html("15/16");
+                            $("#tj").html("17/18");
+                            $("#tk").html("19/20");
+                            $("#tl").html("21/22");
+                            $("#i").attr("disabled", false);
+                            $("#j").attr("disabled", false);
+                            $("#k").attr("disabled", false);
+                            $("#l").attr("disabled", false);
+                            $("#tallas").html(
+                                "<th>Dama TA</th>" +
+                                    "<th>0/0</th>" +
+                                    "<th>1/2</th>" +
+                                    "<th>3/4</th>" +
+                                    "<th>5/6</th>" +
+                                    "<th>7/8</th>" +
+                                    "<th>9/10</th>" +
+                                    "<th>11/12</th>" +
+                                    "<th>13/14</th>" +
+                                    "<th>15/16</th>" +
+                                    "<th>17/18</th>" +
+                                    "<th>19/20</th>" +
+                                    "<th>21/22</th>"
+                            );
+                        }
                     }
                     if (genero == "3") {
                         $("#genero").val("Niño: " + val);
@@ -498,29 +499,29 @@ $(document).ready(function() {
                         );
                     } else if (val == "") {
                         $("#motivo").html("<option value=''> </option>");
-                    
                     }
-                    
-                    if(ubicacion != null){
+
+                    if (ubicacion != null) {
                         bootbox.confirm({
-                            message: "¿Desea modificar la ubicacion o datos de la referencia?",
+                            message:
+                                "¿Desea modificar la ubicacion o datos de la referencia?",
                             buttons: {
                                 confirm: {
-                                    label: 'Si',
-                                    className: 'btn-primary'
+                                    label: "Si",
+                                    className: "btn-primary"
                                 },
                                 cancel: {
-                                    label: 'No',
-                                    className: 'btn-warning'
+                                    label: "No",
+                                    className: "btn-warning"
                                 }
                             },
-                            callback: function (result) {
-                                if(result){
+                            callback: function(result) {
+                                if (result) {
                                     $("#formUpload").show();
                                     $("#form_producto").show();
                                     $("#form_producto_2").show();
                                     $("#form_talla").show();
-                                }else{
+                                } else {
                                     $("#formUpload").show();
                                     $("#form_producto").hide();
                                     $("#form_producto_2").hide();
@@ -528,14 +529,12 @@ $(document).ready(function() {
                                 }
                             }
                         });
-                    }else{
+                    } else {
                         $("#formUpload").show();
                         $("#form_producto").show();
                         $("#form_producto_2").show();
                         $("#form_talla").show();
                     }
-                    
-                 
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -543,19 +542,21 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
                     bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
                     });
                 });
             }
         });
-        
-    })
+    });
 
     //funcion para listar en el Datatable
     function listarCorteDetalle(id) {
@@ -579,7 +580,7 @@ $(document).ready(function() {
                 { data: "i", name: "tallas.i" },
                 { data: "j", name: "tallas.j" },
                 { data: "k", name: "tallas.k" },
-                { data: "l", name: "tallas.l" },
+                { data: "l", name: "tallas.l" }
             ]
         });
 
@@ -588,11 +589,8 @@ $(document).ready(function() {
             .ajax.reload();
     }
 
-
-    
-
-    $("#btn-upload").click(function(){
-        $("#btn-guardar").attr('disabled', false);
+    $("#btn-upload").click(function() {
+        $("#btn-guardar").attr("disabled", false);
     });
 
     $("#btnAgregar").click(function(e) {
@@ -604,7 +602,7 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-    $("#formUpload").submit(function(e){
+    $("#formUpload").submit(function(e) {
         e.preventDefault();
         var formData = new FormData($(this)[0]);
 
@@ -612,7 +610,7 @@ $(document).ready(function() {
             url: "almacen/imagen",
             type: "POST",
             data: formData,
-            dataType:'JSON',
+            dataType: "JSON",
             processData: false,
             cache: false,
             contentType: false,
@@ -630,18 +628,20 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.message); 
+                console.log(datos.responseJSON.message);
                 let errores = datos.responseJSON.message;
 
                 Object.entries(errores).forEach(([key, val]) => {
                     bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
                     });
-                })
+                });
             }
         });
-        
     });
 
     init();

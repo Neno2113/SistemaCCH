@@ -415,11 +415,11 @@ class ordenEmpaqueController extends Controller
             $i_perc + $j_perc + $k_perc + $l_perc;
 
         //segundo calculo
-        $a_seg = ($a_perc - $a) / $a;
-        $b_seg = ($b_perc - $b) / $b;
-        $c_seg = ($c_perc - $c) / $c;
-        $d_seg = ($d_perc - $d) / $d;
-        $e_seg = ($e_perc - $e) / $e;
+        $a_seg = ($a_alm == 0) ? 0.1 : ($a_perc - $a) / $a;
+        $b_seg = ($b_alm == 0) ? 0.1 : ($b_perc - $b) / $b;
+        $c_seg = ($c_alm == 0) ? 0.1 : ($c_perc - $c) / $c;
+        $d_seg = ($d_alm == 0) ? 0.1 : ($d_perc - $d) / $d;
+        $e_seg = ($e_alm == 0) ? 0.1 : ($e_perc - $e) / $e;
         $f_seg = ($f_perc - $f) / $f;
         $g_seg = ($g_perc - $g) / $g;
         $h_seg = ($h_perc - $h) / $h;

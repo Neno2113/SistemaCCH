@@ -101,12 +101,12 @@
                         <div class="col-md-4 mt-3">
                             <label for="precio_lista">Precio lista(*):</label>
                             <input type="text" name="precio_lista" id="precio_lista" class="form-control text-center"
-                                data-inputmask='"mask": "9,999"' data-mask>
+                                data-inputmask='"mask": "9999RD$"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_venta_publico">Precio publico(*):</label>
                             <input type="text" name="precio_venta_publico" id="precio_venta_publico"
-                                class="form-control text-center" data-inputmask='"mask": "9,999"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "9999RD$"' data-mask>
                         </div>
 
                     </div>
@@ -114,12 +114,12 @@
                         <div class="col-md-4 mt-3">
                             <label for="precio_lista">Precio lista Ref 2(*):</label>
                             <input type="text" name="precio_lista_2" id="precio_lista_2" class="form-control"
-                                data-inputmask='"mask": "9.999"' data-mask>
+                                data-inputmask='"mask": "9999"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_venta_publico">Precio publico Ref 2(*):</label>
                             <input type="text" name="precio_venta_publico_2" id="precio_venta_publico_2"
-                                class="form-control" data-inputmask='"mask": "9.999"' data-mask>
+                                class="form-control" data-inputmask='"mask": "9999"' data-mask>
                         </div>
                     </div>
                     <div class="row">

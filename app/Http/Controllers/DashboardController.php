@@ -44,22 +44,40 @@ class DashboardController extends Controller
             'almacen' => $almacen->sum('total'),
             'perdida' => $perdida->sum('total'),
             'facturado' => $facturado->sum('total'),
-            'orden' => $orden->sum('total')
+            'orden' => $orden->sum('total'),
+            'dispVenta' => ($dispVenta < 0) ? 0 : $dispVenta,
+            'existencia' => $existencia
         ];
    
         return response()->json($data, $data['code']);
     }
 
 
-    // public function ventas12meses()
-    // {
-    //     $ventas = Factura::selectRaw()
-    //     $data = [
-    //         'code' => 200,
-    //         'status' => 'success',
-    //         'ventas' => $ventas
-    //     ];
+    public function ventas12meses()
+    {
+        $ventas = DB::table('factura')
+            ->select(DB::raw("DATE_FORMAT(fecha, '%M') as fecha, SUM(total) as total"))
+            ->groupBy('fecha')
+            ->orderBy('fecha', 'desc')
+            ->get();
 
-    //     return response()->json($data, $data['code']);
-    // }
+        echo  print_r($ventas);   
+        die(); 
+        $fechasv = '';
+        $totalesv = '';
+        // while($regfechav = $ventas){
+        //     $fechasv = $fechasv. '"'. $regfechav['fecha'] . '",';
+        // }
+
+        // $fechasv = substr($fechasv, 0, -1);
+
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'ventas' => $fechasv
+        ];
+
+        return response()->json($data, $data['code']);
+    }
 }

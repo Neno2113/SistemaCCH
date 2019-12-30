@@ -27,7 +27,7 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <h5><strong> Formulario Orden facturacion:</strong></h5>
                     <hr>
-                    <div class="row">
+                    <div class="row" id="">
                         <div class="col-md-6">
                             <label for="">Orden Empaque(*):</label>
                             <input type="hidden" name="id" id="id">
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row mt-5">
+                    <div class="row mt-5" id="fila1">
                         <div class="col-md-4">
                             <label for="">Orden Pedido:</label>
                             <input type="text" name="orden_pedido" id="orden_pedido" class="form-control" readonly>
@@ -89,7 +89,7 @@
                         </div>
 
                     </div>
-                    <div class="container">
+                    <div class="container" id="fila2">
 
                         <label for="" class="mt-5">Referencias empacadas</label>
                         <table id="empaque_detalle" class="table table-striped table-bordered datatables mt-5 mb-3"

@@ -236,6 +236,7 @@ class RecepcionController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
+                ->where('fase', 'LIKE', 'Lavanderia')
                 ->where('fase', 'LIKE', 'Terminacion')
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
@@ -252,7 +253,7 @@ class RecepcionController extends Controller
             $search = $request->q;
             $data = Lavanderia::select("id", "numero_envio", "enviado", "recibido", "total_enviado")
                 ->where('enviado', 'LIKE', '1')
-                ->where('recibido', 'LIKE', '0')
+                // ->where('recibido', 'LIKE', '0')
                 ->where('numero_envio', 'LIKE', "%$search%")
                 ->get();
         }

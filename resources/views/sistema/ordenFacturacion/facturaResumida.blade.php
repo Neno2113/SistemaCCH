@@ -442,7 +442,7 @@
                     </td>
                     <td class="total">
                         @foreach ($detalles_totales as $total)
-                        <li>{{$total}}</li>
+                        <li>{{$total}} RD$</li>
                         @endforeach
                     </td>
                 </tr>
@@ -451,22 +451,22 @@
                 <tr>
                     <td colspan="2"></td>
                     <td colspan="2">SUBTOTAL</td>
-                    <td>{{number_format($subtotal)}}</td>
+                    <td>{{number_format($subtotal)}} RD$</td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td colspan="2">DESCUENTO {{$factura->descuento}}%</td>
-                    <td>{{number_format($descuento)}}</td>
+                    <td>{{number_format($descuento)}} RD$</td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td colspan="2">IMPUESTO {{$factura->itbis}}%</td>
-                    <td>{{number_format($impuesto)}}</td>
+                    <td>{{number_format($impuesto)}} RD$</td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td colspan="2">TOTAL FINAL</td>
-                    <td>{{number_format($total_final)}}</td>
+                    <td>{{number_format($total_final)}} RD$</td>
                 </tr>
             </tfoot>
         </table>
