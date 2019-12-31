@@ -205,7 +205,8 @@
       <h3 class="enviado">Enviado a:</h3>
       <div><span>Codigo</span>{{$lavanderia->suplidor->rnc}}</div>
       <div><span>Lavanderia</span>{{$lavanderia->suplidor->nombre}}</div>
-      <div><span>Direccion</span>{{$lavanderia->suplidor->direccion}}</div>
+      <div><span>Direccion</span>{{$lavanderia->suplidor->calle}}, {{$lavanderia->suplidor->sector}}</div>
+      <div><span></span>{{$lavanderia->suplidor->provincia}} {{$lavanderia->suplidor->sitios_cercanos}}</div>
       <div><span>Email</span> <a href="mailto:{{$lavanderia->suplidor->email}}">{{$lavanderia->suplidor->email}}</a></div>
       <div><span>Fecha</span>{{$lavanderia->fecha_envio}}</div>
       <div><span>Enviado</span> Chofer</div>

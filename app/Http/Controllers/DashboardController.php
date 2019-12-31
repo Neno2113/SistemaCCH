@@ -12,6 +12,7 @@ use App\Corte;
 use App\ordenFacturacionDetalle;
 use App\Perdida;
 use App\ordenPedidoDetalle;
+use App\Product;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -46,7 +47,7 @@ class DashboardController extends Controller
             'facturado' => $facturado->sum('total'),
             'orden' => $orden->sum('total'),
             'dispVenta' => ($dispVenta < 0) ? 0 : $dispVenta,
-            'existencia' => $existencia
+            'existencia' => ($existencia < 0) ? 0 : $existencia
         ];
    
         return response()->json($data, $data['code']);
@@ -77,6 +78,47 @@ class DashboardController extends Controller
             'status' => 'success',
             'ventas' => $fechasv
         ];
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function latestOrders(){
+        $ordenes = ordenPedido::orderBy('id', 'DESC')->take(5)->get();
+
+        if(!empty($ordenes)){
+            $data = [ 
+                'code' => 200,
+                'status' => 'success',
+                'ordenes' => $ordenes
+            ];
+        }else{
+            $data = [ 
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function latestProduct(){
+        $productos = Product::orderBy('id', 'DESC')->take(5)->get();
+
+        if(!empty($productos)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'productos' => $productos
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'ocurrio un error'
+            ];
+        }
 
         return response()->json($data, $data['code']);
     }

@@ -10,6 +10,8 @@ $(document).ready(function() {
         disp_venta();
         cortes();
         venta12meses();
+        latest_orders();
+        latest_products();
     }
 
     //funcion para limpiar el formulario(los inputs)
@@ -97,7 +99,7 @@ $(document).ready(function() {
         tabla.columns.adjust().responsive.recalc();
     };
 
-    // Make the dashboard widgets sortable Using jquery UI
+    // // Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({
         placeholder: "sort-highlight",
         connectWith: ".connectedSortable",
@@ -109,7 +111,7 @@ $(document).ready(function() {
         ".connectedSortable .card-header, .connectedSortable .nav-tabs-custom"
     ).css("cursor", "move");
 
-    // jQuery UI sortable for the todo list
+    // // jQuery UI sortable for the todo list
     $(".todo-list").sortable({
         placeholder: "sort-highlight",
         handle: ".handle",
@@ -189,6 +191,59 @@ $(document).ready(function() {
                     options: salesChartOptions
                 });
             
+                } else {
+                    bootbox.alert("Ocurrio un error !!");
+                }
+            },
+            error: function() {
+                console.log("error");
+            }
+        });
+    }
+
+
+    function latest_orders(){
+
+        $.ajax({
+            url: "latest_orders",
+            type: "get",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    console.log(datos);
+                } else {
+                    bootbox.alert("Ocurrio un error !!");
+                }
+            },
+            error: function() {
+                console.log("error");
+            }
+        });
+    }
+
+    function latest_products(){
+
+        $.ajax({
+            url: "latest_products",
+            type: "get",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let productos = datos.productos;
+                    for (let i = 0; i < datos.productos.length; i++) {
+                        var producto = "<li class='item'>" +
+                        "<div class='product-info'>"+
+                          "<a href='javascript:void(0)' class='product-title'>"+productos[i].referencia_producto+
+                            "<span class='badge badge-warning float-right'>$"+productos[i].precio_venta_publico +"</span></a>"+
+                          "<span class='product-description'>"
+                            +productos[i].descripcion +
+                          "</span>"+
+                        "</div>"+
+                      "</li>"  
+                        
+                    }
+
+                  $("#productos").append(producto);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }

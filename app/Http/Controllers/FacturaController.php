@@ -300,7 +300,7 @@ class FacturaController extends Controller
 
 
             for ($i = 0; $i < $longitudDetalles; $i++) {
-                array_push($detalles_totales, number_format(str_replace('.', '', $orden_facturacion_detalle[$i]['precio']) * $orden_facturacion_detalle[$i]['total']));
+                array_push($detalles_totales, number_format(str_replace('.00', '', $orden_facturacion_detalle[$i]['precio']) * $orden_facturacion_detalle[$i]['total']));
                 array_push($totales_detalles, $orden_facturacion_detalle[$i]['total']);
                 array_push($precio_total, $orden_facturacion_detalle[$i]['precio']);
             }

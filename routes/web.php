@@ -303,6 +303,8 @@ Route::get('factura/{id}', 'FacturaController@verificar');
 //Home
 Route::get('/venta12meses', 'DashboardController@ventas12meses');
 Route::get('/dispVentas', 'DashboardController@totalVenta');
+Route::get('/latest_orders', 'DashboardController@latestOrders');
+Route::get('/latest_products', 'DashboardController@latestProduct');
 
 
 
