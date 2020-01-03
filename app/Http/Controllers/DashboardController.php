@@ -84,7 +84,7 @@ class DashboardController extends Controller
 
 
     public function latestOrders(){
-        $ordenes = ordenPedido::orderBy('id', 'DESC')->take(5)->get();
+        $ordenes = ordenPedido::orderBy('id', 'DESC')->take(5)->get()->load('cliente');
 
         if(!empty($ordenes)){
             $data = [ 
@@ -111,6 +111,26 @@ class DashboardController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'productos' => $productos
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function latestCortes(){
+        $cortes = Corte::orderBy('id', 'DESC')->take(5)->get()->load('producto');
+
+        if(!empty($cortes)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'cortes' => $cortes
             ];
         }else{
             $data = [

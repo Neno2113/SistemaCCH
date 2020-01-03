@@ -61,9 +61,7 @@ class ordenPedidoController extends Controller
             array_push($perdidas, $perdida[$i]['id']);
         }
 
-
         $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get()->load('perdida');
-
 
         //SEGUNDA
         $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
@@ -175,9 +173,9 @@ class ordenPedidoController extends Controller
             'fecha_entrega' => $fecha_entrega
         ];
 
-
         return \response()->json($data, $data['code']);
     }
+
     public function store(Request $request)
     {
 

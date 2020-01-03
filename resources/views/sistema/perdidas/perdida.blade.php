@@ -310,6 +310,8 @@
             $("#btn-generar").hide();
             $("#productoEdit").show();
             $("#referencia_producto").show();
+            $("#fila1").show();
+            $("#fila2").show();
             console.log(data);
 
             $("#id").val(data.perdida.id);

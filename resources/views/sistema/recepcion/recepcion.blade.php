@@ -27,8 +27,15 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <div class="row">
-                        <div class="col-6">
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-md-2 ">
+                            <label for="" class="d-flex justify-content-center">Numero de recepcion:</label>
+                            <input type="text" name="numero_recepcion" id="numero_recepcion" class="form-control text-center font-weight-bold" readonly>
+                            <input type="hidden" name="sec" id="sec" value="">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-6 mt-2">
                             <label for="">Corte(*):</label>
                             <input type="hidden" name="" id="id">
                             <div id="corteAdd">
@@ -43,17 +50,18 @@
 
                             <input type="text" name="corte" id="corte" class="form-control mt-2" readonly>
                         </div>
-                        <div class="col-6">
-                            <label for="">Num. Envio</label>
-                            <div id="lavanderiaAdd">
+                        <div class="col-md-6 mt-2">
+                            <label for="">Numero factura o conduce</label>
+                            <input type="text" name="num_factura" id="num_factura" class="form-control" placeholder="Numero de Factura o Conduce">
+                            {{-- <div id="lavanderiaAdd">
                                 <select name="tags[]" id="lavanderias" class="form-control select2">
                                 </select>
-                            </div>
-                            <div id="lavanderiaEdit">
+                            </div> --}}
+                            {{-- <div id="lavanderiaEdit">
                                 <select name="tags[]" id="lavanderiasEdit" class="form-control select2">
                                 </select>
-                            </div>
-                            <input type="text" name="lavanderia" id="lavanderia" class="form-control mt-2" readonly>
+                            </div> --}}
+                            {{-- <input type="text" name="lavanderia" id="lavanderia" class="form-control mt-2" readonly> --}}
                         </div>
                     </div>
                     <hr>
@@ -113,13 +121,12 @@
                 <tr>
                     <th></th>
                     <th>Actions</th>
-                    <th>Fecha </th>
-                    <th>Cant. Rec.</th>
-                    <th>Corte</th>
-                    <th># Envio</th>
-                    <th>F. Envio</th>
+                    <th># Recep</th>
+                    <th># Corte</th>
+                    <th>Fecha Recep</th>
                     <th>Cant. Recibida</th>
-                    <th>Total</th>
+                    <th>Total Recibida</th>
+                    <th>Pendiente</th>
                     <th>Estandar Rec.</th>
                 </tr>
             </thead>
@@ -128,13 +135,12 @@
                 <tr>
                     <th></th>
                     <th>Actions</th>
-                    <th>Fecha </th>
-                    <th>Cant. Rec.</th>
-                    <th>Corte</th>
-                    <th># Envio</th>
-                    <th>F. Envio</th>
+                    <th># Recep</th>
+                    <th># Corte</th>
+                    <th>Fecha Recep</th>
                     <th>Cant. Recibida</th>
-                    <th>Total</th>
+                    <th>Total Recibida</th>
+                    <th>Pendiente</th>
                     <th>Estandar Rec.</th>
                 </tr>
             </tfoot>

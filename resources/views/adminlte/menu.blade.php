@@ -98,7 +98,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview">
+        {{-- <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="fas fa-toolbox"></i>
             <p>
@@ -107,26 +107,10 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/sistemaCCH/public/composition" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Composiciones</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/sistemaCCH/public/cloth" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Telas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/sistemaCCH/public/rollos" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Rollos</p>
-              </a>
-            </li>
+           
+         
           </ul>
-        </li>
+        </li> --}}
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link ">
             <i class="fas fa-barcode"></i>
@@ -176,6 +160,24 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/composition" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Composiciones</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/cloth" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Telas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/rollos" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Rollos</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="/sistemaCCH/public/corte" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>

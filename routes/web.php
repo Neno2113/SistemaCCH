@@ -23,27 +23,27 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Vistas
 Route::get('/user', function () {
     return view('sistema.user.users');
-});
+})->middleware('auth');
 
 Route::get('/client', function () {
     return view('sistema.client.clients');
-});
+})->middleware('auth');
 
 Route::get('/branch', function () {
     return view('sistema.branch.branch');
-});
+})->middleware('auth');
 
 Route::get('/supplier', function () {
     return view('sistema.suplidor.supplies');
-});
+})->middleware('auth');
 
 Route::get('/composition', function () {
     return view('sistema.composicion.compositions');
-});
+})->middleware('auth');
 
 Route::get('/cloth', function () {
     return view('sistema.cloth.cloth');
-});
+})->middleware('auth');
 
 Route::get('/rollos', function () {
     return view('sistema.rollos.rollos');
@@ -51,75 +51,75 @@ Route::get('/rollos', function () {
 
 Route::get('/product', function () {
     return view('sistema.product.product');
-});
+})->middleware('auth');
 
 Route::get('/corte', function () {
     return view('sistema.corte.corte');
-});
+})->middleware('auth');;
 
 Route::get('/sku', function () {
     return view('sistema.sku.sku');
-});
+})->middleware('auth');
 
 Route::get('/corte-consulta', function () {
     return view('sistema.corte.consulta');
-});
+})->middleware('auth');
 
 Route::get('/lavanderia', function () {
     return view('sistema.lavanderia.lavanderia');
-});
+})->middleware('auth');
 
 Route::get('/recepcion', function () {
     return view('sistema.recepcion.recepcion');
-});
+})->middleware('auth');
 
 Route::get('/perdida', function () {
     return view('sistema.perdidas.perdida');
-});
+})->middleware('auth');
 
 Route::get('/almacen', function () {
     return view('sistema.almacen.almacen');
-});
+})->middleware('auth');
 
 Route::get('/producto-terminado', function () {
     return view('sistema.product.terminado');
-});
+})->middleware('auth');
 
 Route::get('/existencia', function () {
     return view('sistema.existencia.existencia');
-});
+})->middleware('auth');
 
 Route::get('/orden_pedido', function () {
     return view('sistema.ordenPedido.ordenPedido');
-});
+})->middleware('auth');
 
 Route::get('/ordenes_proceso', function () {
     return view('sistema.ordenPedido.ordenProceso');
-});
+})->middleware('auth');
 
 Route::get('/orden_aprobacion', function () {
     return view('sistema.ordenPedido.ordenAprobacion');
-});
+})->middleware('auth');
 
 Route::get('/orden_redistribucion', function () {
     return view('sistema.ordenPedido.ordenRed');
-});
+})->middleware('auth');
 
 Route::get('/orden_empaque_listar', function () {
     return view('sistema.ordenEmpaque.ordenEmpaqueCreate');
-});
+})->middleware('auth');
 
 Route::get('/orden_empaque', function () {
     return view('sistema.ordenEmpaque.ordenEmpaque');
-});
+})->middleware('auth');
 
 Route::get('/orden_facturacion', function () {
     return view('sistema.ordenFacturacion.ordenFacturacion');
-});
+})->middleware('auth');
 
 Route::get('/facturacion', function () {
     return view('sistema.ordenFacturacion.facturacion');
-});
+})->middleware('auth');
 // Fin vistas
 
 //Rutas de usuarios
@@ -217,6 +217,7 @@ Route::post('/cantidades', 'LavanderiaController@cantidad');
 
 
 //Recepcion o Terminacion
+Route::get('recepcion/lastdigit', 'RecepcionController@getDigits');
 Route::get('cortes_rec', 'RecepcionController@selectCorte');
 Route::get('corte_rec_edit', 'RecepcionController@selectCorteEdit');
 Route::get('lavanderia_rec', 'RecepcionController@selectLavanderia');
@@ -252,6 +253,8 @@ Route::post('/almacen/delete/{id}', 'AlmacenController@destroy');
 Route::post('/almacen/producto', 'AlmacenController@corteProducto');
 Route::post('/almacen/imagen', 'AlmacenController@upload');
 Route::post('/show/corte/producto', 'AlmacenController@verificar_ref');
+Route::post('/total_recepcion', 'AlmacenController@cantidad');
+Route::post('/validar/total', 'AlmacenController@validar');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
@@ -305,6 +308,7 @@ Route::get('/venta12meses', 'DashboardController@ventas12meses');
 Route::get('/dispVentas', 'DashboardController@totalVenta');
 Route::get('/latest_orders', 'DashboardController@latestOrders');
 Route::get('/latest_products', 'DashboardController@latestProduct');
+Route::get('/latest_cortes', 'DashboardController@latestCortes');
 
 
 

@@ -104,7 +104,7 @@
     <!-- /.card -->
     <!-- TABLE: LATEST ORDERS -->
     <div class="card">
-      <div class="card-header border-transparent">
+      <div class="card-header border-transparent text-black bg-gradient-info">
         <h3 class="card-title">Ultimas Ordenes generadas</h3>
 
         <div class="card-tools">
@@ -128,15 +128,15 @@
                 <th>Fecha Entrega</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody id="latest_orders">
+              {{-- <tr id="">
                 <td><a href="pages/examples/invoice.html">OP-001</a></td>
                 <td>Lordish</td>
                 <td><span class="badge badge-secondary">StanBy</span></td>
                 <td>
                   <div class="sparkbar" data-color="#00a65a" data-height="20">31-12-2019</div>
                 </td>
-              </tr>
+              </tr> --}}
 
             </tbody>
           </table>
@@ -150,63 +150,83 @@
       <!-- /.card-footer -->
     </div>
 
+     <!-- TABLE: LATEST CORTES -->
+     <div class="card ">
+      <div class="card-header border-transparent text-black bg-gradient-primary">
+        <h3 class="card-title">Cortes en proceso</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0 ">
+        <div class="table-responsive">
+          <table class="table m-0">
+            <thead>
+              <tr class="">
+                <th>Corte ID</th>
+                <th>Fase</th>
+                <th>Producto</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="latest_cortes">
+            
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer clearfix">
+        <a href="/sistemaCCH/public/cortes" class="btn btn-sm btn-secondary float-right">Ver todos los cortes</a>
+      </div>
+      <!-- /.card-footer -->
+    </div>
+
 
     <!-- /.card -->
   </section>
   <!-- /.Left col -->
   <!-- right col (We are only adding the ID to make the widgets sortable)-->
   <section class="col-md-5 connectedSortable">
-    <!-- solid sales graph -->
-    <div class="card bg-gradient-info">
-      <div class="card-header border-0">
+    
+     <!-- Custom tabs (Charts with tabs)-->
+     <div class="card">
+      <div class="card-header">
         <h3 class="card-title">
-          <i class="fas fa-th mr-1"></i>
-          Sales Graph
+          <i class="fas fa-chart-pie mr-1"></i>
+          Sales
         </h3>
-
         <div class="card-tools">
-          <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-            <i class="fas fa-minus"></i>
-          </button>
-          <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-            <i class="fas fa-times"></i>
-          </button>
+          <ul class="nav nav-pills ml-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+            </li>
+          </ul>
         </div>
-      </div>
+      </div><!-- /.card-header -->
       <div class="card-body">
-        <canvas class="chart" id="line-chart"
-          style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer bg-transparent">
-        <div class="row">
-          <div class="col-4 text-center">
-            <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
-              data-fgColor="#39CCCC">
-
-            <div class="text-white">Mail-Orders</div>
+        <div class="tab-content p-0">
+          <!-- Morris chart - Sales -->
+          <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+            <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
           </div>
-          <!-- ./col -->
-          <div class="col-4 text-center">
-            <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
-              data-fgColor="#39CCCC">
-
-            <div class="text-white">Online</div>
+          <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+            <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
           </div>
-          <!-- ./col -->
-          <div class="col-4 text-center">
-            <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
-              data-fgColor="#39CCCC">
-
-            <div class="text-white">In-Store</div>
-          </div>
-          <!-- ./col -->
         </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.card-footer -->
+      </div><!-- /.card-body -->
     </div>
-    <!-- /.card -->
     <!-- PRODUCT LIST -->
     <div class="card">
       <div class="card-header">

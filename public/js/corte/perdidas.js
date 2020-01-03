@@ -74,7 +74,8 @@ $(document).ready(function() {
                     "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
                     "<option value='Defecto de tela'>3. Defecto de tela</option>" +
                     "<option value='Fallo en Dpto. corte'>4. Fallo en Dpto. corte</option>" +
-                    "<option value='Extraviado'>5. Extraviado </option>"
+                    "<option value='Extraviado'>5. Extraviado </option>"+
+                    "<option value='Extraviado'>6. Error de lavanderia </option>"
             );
         } else if (val == "Almacen") {
             $("#motivo").html(
@@ -336,7 +337,7 @@ $(document).ready(function() {
                 return {
                     results: $.map(data, function(item) {
                         return {
-                            text: item.numero_corte + "-" + item.fase + " - "+ item.referencia_producto,
+                            text: item.numero_corte + " - " + item.fase + " - "+ item.referencia_producto,
                             id: item.id
                         };
                     })

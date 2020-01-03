@@ -250,38 +250,40 @@
                 <div class="row">
                     <label for="">Referencia producto: </label>
                     <div class="col-md-6 mb-2">
-                        <input type="text" name="genero" id="genero" class="form-control" readonly>
+                        <input type="text" name="genero" id="genero" class="form-control font-weight-bold" readonly>
                     </div>
-                    <div class="col-md-4">
-                        <select name="sub-genero" id="sub-genero" class="form-control text-center">
-                            <option value=""></option>
-                            <option value="Mujer">Mujer</option>
-                            <option value="Mujer Plus">Mujer plus</option>
-                        </select>
-                    </div>
-                </div>
-
-                
+                </div>                
                 <div class="col-md-12">
                     <table id="corte_detalle" class="table table-bordered " style="width:100%">
                         <thead >
                             <tr>
-                                <th>A</th>
-                                <th>B</th>
-                                <th>C</th>
-                                <th>D</th>
-                                <th>E</th>
-                                <th>F</th>
-                                <th>G</th>
-                                <th>H</th>
-                                <th>I</th>
-                                <th>J</th>
-                                <th>K</th>
-                                <th>L</th>
+                                <th id="sa">A</th>
+                                <th id="sb">B</th>
+                                <th id="sc">C</th>
+                                <th id="sd">D</th>
+                                <th id="se">E</th>
+                                <th id="sf">F</th>
+                                <th id="sg">G</th>
+                                <th id="sh">H</th>
+                                <th id="si">I</th>
+                                <th id="sj">J</th>
+                                <th id="sk">K</th>
+                                <th id="sl">L</th>
                             </tr>
                         </thead>
-                        <tr id="tallas">
-
+                        <tr>
+                            <td id="ra"></td>
+                            <td id="rb"></td>
+                            <td id="rc"></td>
+                            <td id="rd"></td>
+                            <td id="re"></td>
+                            <td id="rf"></td>
+                            <td id="rg"></td>
+                            <td id="rh"></td>
+                            <td id="ri"></td>
+                            <td id="rj"></td>
+                            <td id="rk"></td>
+                            <td id="rl"></td>
                         </tr>
                  
                     </table>
@@ -341,12 +343,12 @@
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tk">K</label>
-                        <input type="text" name="" id="k" class="form-control text-center"
+                        <input type="text" name="k" id="k" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tl">L</label>
-                        <input type="text" name="" id="l" class="form-control text-center"
+                        <input type="text" name="l" id="l" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                 </div>
@@ -354,7 +356,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

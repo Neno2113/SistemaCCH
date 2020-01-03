@@ -25,6 +25,6 @@ class Corte extends Model
 
     public function producto()
     {
-        return $this->belongsTo('App\Product', 'producto_d');
+        return $this->belongsTo('App\Product', 'producto_id');
     }
 }

@@ -12,6 +12,7 @@ $(document).ready(function() {
         venta12meses();
         latest_orders();
         latest_products();
+        latest_cortes();
     }
 
     //funcion para limpiar el formulario(los inputs)
@@ -210,7 +211,22 @@ $(document).ready(function() {
             dataType: "json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    console.log(datos);
+                    let ordenes = datos.ordenes;
+                    for (let i = 0; i < datos.ordenes.length; i++) {
+                        var orden = "<tr>" +
+                        "<td>"+
+                        "<a href='pages/examples/invoice.html'>"+ordenes[i].no_orden_pedido +"</a></td>" +
+                        "<td>"+ordenes[i].cliente.nombre_cliente+"</td>" +
+                        "<td>"+ordenes[i].status_orden_pedido+"</td>"+
+                        "<td>" +
+                          "<div class='sparkbar' data-color='#00a65a' data-height='20'>"+ordenes[i].fecha_entrega+"</div>"+
+                        "</td>"+
+                      "</tr>";  
+                        
+                    }
+
+                  $("#latest_orders").append(orden);
+                    
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -253,6 +269,40 @@ $(document).ready(function() {
             }
         });
     }
+
+    function latest_cortes(){
+
+        $.ajax({
+            url: "latest_cortes",
+            type: "get",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let cortes = datos.cortes;
+                    for (let i = 0; i < datos.cortes.length; i++) {
+                        var corte = "<tr>" +
+                        "<td>"+
+                        "<a href='pages/examples/invoice.html'>"+cortes[i].numero_corte +"</a></td>" +
+                        "<td>"+cortes[i].fase+"</td>" +
+                        "<td>"+cortes[i].producto.referencia_producto+"</td>"+
+                        "<td>" +
+                          "<div class='sparkbar' data-color='#00a65a'>"+cortes[i].total+"</div>"+
+                        "</td>"+
+                      "</tr>"  
+                        
+                    }
+
+                  $("#latest_cortes").append(corte);
+                } else {
+                    bootbox.alert("Ocurrio un error !!");
+                }
+            },
+            error: function() {
+                console.log("error");
+            }
+        });
+    }
+
 
  
     init();

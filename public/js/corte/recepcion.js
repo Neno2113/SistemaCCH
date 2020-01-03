@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var pendiente_guardar;
 
     
     $("#formulario").validate({
@@ -41,6 +42,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+        recepcionCod();
     }
 
     $("#cantidad_recibida").on('keyup', function(){
@@ -51,6 +53,8 @@ $(document).ready(function() {
     function limpiar() {
         $("#fecha_recepcion").val("");
         $("#cantidad_recibida").val("");
+        $("#cantidad_restante").val("");
+        $("#num_factura").val("");
         $("#cortesSearch").val("").trigger("change");
         $("#lavanderias").val("").trigger("change");
     }
@@ -95,50 +99,43 @@ $(document).ready(function() {
         }
     })
 
-    $("#lavanderias").select2({
-        placeholder: "Buscar un numero de envio Ej:EL-xxx",
-        ajax: {
-            url: 'lavanderia_rec',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.numero_envio+' - Cantidad enviada: '+ item.total_enviado,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
+    function recepcionCod() {
+            $("#sec").val("");
+            $("#numero_recepcion").val("");
+         
+            $.ajax({
+                url: "recepcion/lastdigit",
+                type: "GET",
+                dataType: "json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        
+                        var i = Number(datos.sec);
+                        $("#sec").val(i);
+                        i = (i + 0.01).toFixed(2).split('.').join("");
+                        var referencia = "RE"+'-'+i;
+                                   
+                        $("#numero_recepcion").val(referencia);
+                               
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error !!"
+                        );
+                    }
+                },
+                error: function() {
+                    bootbox.alert(
+                        "Ocurrio un error!!"
+                    );
+                }
+            });
         }
-    })
-
-    $("#lavanderiasEdit").select2({
-        placeholder: "Buscar un numero de envio Ej:EL-xxx",
-        ajax: {
-            url: 'lavanderia_rec_edit',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.numero_envio+' - Cantidad: '+ item.cantidad,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
+  
 
     $("#fecha_recepcion").on('change', function(){
         var recepcion = {
             corte_id: $("#cortesSearch").val(),
-            lavanderia_id: $("#lavanderias").val(),
+            // lavanderia_id: $("#lavanderias").val(),
             cantidad: $("#cantidad_recibida").val()
         };
 
@@ -156,9 +153,11 @@ $(document).ready(function() {
                     let cantidad_perdida = datos.perdidas;
                     let parcial = datos.envio_parcial;
                     let total_recibido = datos.total_recibido;
+                    let pendiente = total_enviado - total_recibido - cantidad_perdida;
+                    pendiente_guardar = pendiente; 
 
-                    $("#cantidad_recibida").val(parcial);
-                    bootbox.alert("La cantidad a recibir de este envio es: "+parcial);
+                    // $("#cantidad_recibida").val(parcial);
+                    bootbox.alert("La cantidad pendiente a recibir de este corte es: <strong>"+ pendiente+"</strong>");
 
                     // let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
                     // if(cantidad < 0){
@@ -166,9 +165,9 @@ $(document).ready(function() {
                     // }
 
                     if(total_recibido == null || total_recibido == 0){
-                        $("#cantidad_restante").val(cantidad_corte - cantidad_perdida); 
+                        $("#cantidad_restante").val(total_enviado - cantidad_perdida); 
                     }else{
-                        $("#cantidad_restante").val(cantidad_corte - total_recibido - cantidad_perdida); 
+                        $("#cantidad_restante").val(total_enviado - total_recibido - cantidad_perdida); 
                         // bootbox.alert("Se han recibido: "+total_recibido+" de: "+ total_enviado);
                     }   
 
@@ -195,42 +194,55 @@ $(document).ready(function() {
        
         var recepcion = {
             corte: $("#cortesSearch").val(),
-            numero_envio: $("#lavanderias").val(),
+            numero_recepcion: $("#numero_recepcion").val(),
+            numero_factura: $("#num_factura").val(),
             fecha_recepcion: $("#fecha_recepcion").val(),
             cantidad_recibida: $("#cantidad_recibida").val(),
             estandar_recibido: $("input[name='r1']:checked").val(),
+            sec: $("#sec").val()
         };
 
-        $.ajax({
-            url: "recepcion",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(recepcion),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Corte recibido de lavanderia recibido!!");
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function(datos) {
-                console.log(datos.responseJSON.errors); 
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
+        var cant_recibida = $("#cantidad_recibida").val();
+        
+        if(cant_recibida > pendiente_guardar){
+            bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+            "<i class='fas fa-exclamation-triangle'></i> La cantidad digitada no puede ser mayor a la cantidad pendiente por recibir de lavanderia"+
+           "</div>")
+        }else{
+            $.ajax({
+                url: "recepcion",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(recepcion),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        bootbox.alert("Corte recibido de lavanderia recibido!!");
+                        limpiar();
+                        tabla.ajax.reload();
+                        mostrarForm(false);
+                        recepcionCod();
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la creacion de la composicion"
+                        );
+                    }
+                },
+                error: function(datos) {
+                    console.log(datos.responseJSON.errors); 
+                    let errores = datos.responseJSON.errors;
+    
+                    Object.entries(errores).forEach(([key, val]) => {
+                        bootbox.alert({
+                            message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                            size: 'small'
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
+        }
+
+      
     });
 
     function listar() {
@@ -257,18 +269,16 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
+                { data: "numero_recepcion", name: "recepcion.numero_recepcion" },
+                { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "fecha_recepcion", name: "recepcion.fecha_recepcion" },
                 { data: "recibido_parcial", name: "recepcion.recibido_parcial" },
-                { data: "numero_corte", name: "corte.numero_corte" },
-                { data: "numero_envio", name: "lavanderia.numero_envio" },
-                { data: "fecha_envio", name: "lavanderia.fecha_envio" },
-                // { data: "cantidad", name: "lavanderia.cantidad" },
                 { data: "total_recibido", name: "recepcion.total_recibido" },
-                { data: "total", name: "corte.total" },
+                { data: "pendiente", name: "recepcion.pendiente" },
                 { data: "estandar_recibido", name: "recepcion.estandar_recibido" },
               
             ],
-            order: [[6, 'desc']],
+            order: [[3, 'desc']],
             rowGroup: {
                 dataSrc: 'numero_corte'
             }

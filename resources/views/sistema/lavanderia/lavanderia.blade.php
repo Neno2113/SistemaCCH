@@ -30,9 +30,9 @@
                     <h5><strong> Formulario de envio a lavanderia:</strong></h5>
                     <hr>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-2">
                             <label for="">Numero de envio:</label>
-                            <input type="text" name="" id="numero_envio" class="form-control text-center" readonly>
+                            <input type="text" name="" id="numero_envio" class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="" id="sec" value="">
                             <input type="hidden" name="" id="id" value="">
                         </div>
@@ -100,9 +100,13 @@
                                 <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="">Cantidad(*):</label>
                                 <input type="text" name="cantidad" id="cantidad" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="">Restante por enviar:</label>
+                                <input type="text" name="restante_enviar" id="restante_enviar" class="form-control text-center" readonly>
                             </div>
                             <div class="col-md-4 pl-5">
                                 <label for="">¿Estandar incluido?</label>
@@ -156,11 +160,11 @@
                     <th></th>
                     <th>Ver</th>
                     <th>Actions</th>
-                    <th>Num. Envio</th>
-                    <th>Num. Corte</th>
+                    <th># Envio</th>
+                    <th># Corte</th>
                     <th>Ref.</th>
-              
                     <th>Enviado</th>
+                    <th>T. Enviado</th>
                     <th>T. Cortado</th>
                     <th>Lav.</th>
                     <th>Estandar </th>
@@ -173,11 +177,11 @@
                     <th></th>
                     <th>Ver</th>
                     <th>Actions</th>
-                    <th>Num. Envio</th>
-                    <th>Num. Corte</th>
+                    <th># Envio</th>
+                    <th># Corte</th>
                     <th>Ref.</th>
-                   
                     <th>Enviado</th>
+                    <th>T. Enviado</th>
                     <th>T. Cortado</th>
                     <th>Lav.</th>
                     <th>Estandar </th>

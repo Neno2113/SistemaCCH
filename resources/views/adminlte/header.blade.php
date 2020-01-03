@@ -39,9 +39,9 @@
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <a href="/sistemaCCH/public/user" class="btn btn-default btn-flat">Usuarios</a>
                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a>
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cierrar sesion</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>

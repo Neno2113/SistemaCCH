@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var cantidad_guardar;
+
 
     $("#formulario").validate({
         rules: {
@@ -68,6 +70,7 @@ $(document).ready(function() {
                     let cantidad_corte = datos.total_cortado;
                     let cantidad_perdida = datos.perdidas;
                     let parcial = datos.parcial;
+                    cantidad_guardar = cantidad_corte - cantidad_corte;
 
                     let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
                     if(cantidad < 0){
@@ -79,7 +82,8 @@ $(document).ready(function() {
                         cantidad = cantidad_corte - cantidad_perdida;
                     }
 
-                    $("#cantidad").val(cantidad);
+                    $("#cantidad").val();
+                    $("#restante_enviar").val(cantidad);
                   
                     bootbox.alert("La cantidad recomendada para enviar es: "+cantidad);
                    
@@ -226,38 +230,48 @@ $(document).ready(function() {
             receta_lavado: $("#receta_lavado").val(),
             estandar_incluido: $("input[name='r1']:checked").val(),
         };
-
-        $.ajax({
-            url: "lavanderia",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(lavanderia),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Registro");
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
-                    $('#btn-generar').attr("disabled", false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function(datos) {
-                console.log(datos.responseJSON.errors); 
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
+        
+        let cantidad_enviar = $("#cantidad").val();
+        if(cantidad_enviar > cantidad_guardar){
+            bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+            "<i class='fas fa-exclamation-triangle'></i> La cantidad digitada no puede ser mayor a la cantidad restante por enviar del corte"+
+           "</div>")
+        }else{
+            $.ajax({
+                url: "lavanderia",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(lavanderia),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        bootbox.alert("Registro");
+                        limpiar();
+                        tabla.ajax.reload();
+                        mostrarForm(false);
+                        $('#btn-generar').attr("disabled", false);
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la creacion de la composicion"
+                        );
+                    }
+                },
+                error: function(datos) {
+                    console.log(datos.responseJSON.errors); 
+                    let errores = datos.responseJSON.errors;
+    
+                    Object.entries(errores).forEach(([key, val]) => {
+                        bootbox.alert({
+                            message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                            size: 'small'
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
+        }
+
+
+        
     });
 
     function listar() {
@@ -289,8 +303,8 @@ $(document).ready(function() {
                 { data: "numero_envio", name: "lavanderia.numero_envio" },
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
-              
                 { data: "cantidad_parcial", name: "lavanderia.cantidad_parcial" },
+                { data: "total_enviado", name: "lavanderia.total_enviado" },
                 { data: "total", name: "corte.total" },
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
