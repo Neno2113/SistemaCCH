@@ -280,6 +280,8 @@ Route::post('/orden-aprobacion/{id}', 'ordenPedidoController@aprobar');
 Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');
 Route::post('mostrar/{id}', 'ordenPedidoController@mostrar');
 Route::get('orden_all', 'ordenPedidoController@home_orden');
+Route::post('validar/orden_pedido', 'ordenPedidoController@validar');
+Route::post('cliente/segundas', 'ordenPedidoController@clienteSegunda');
 
 
 //orden empaque

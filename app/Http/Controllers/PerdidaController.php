@@ -7,6 +7,7 @@ use App\Corte;
 use App\Perdida;
 use App\Product;
 use App\TallasPerdidas;
+use App\Talla;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -329,9 +330,6 @@ class PerdidaController extends Controller
     }
 
 
-    
-    
-
 
     public function selectCorte(Request $request)
     {
@@ -377,12 +375,105 @@ class PerdidaController extends Controller
     public function verificarFecha(Request $request){
         $corte_id = $request->input('corte_id');
 
-        $corte = Corte::find($corte_id);
+        $fecha_corte = Corte::find($corte_id);
+
+        $producto_id = $fecha_corte->producto_id;
+
+        $producto = Product::find($producto_id);
+
+        //buscar cortes con la misma referencia producto
+        $corte = Corte::where('id', $corte_id)
+        ->where('fase', 'LIKE', 'Terminacion')
+        ->select('id', 'total')->get();
+    
+        $cortes = array();
+
+        $longitud = count($corte);
+
+        for ($i = 0; $i < $longitud; $i++) {
+            array_push($cortes, $corte[$i]['id']);
+        }
+        //buscar cantidades de tallas con el array de id de cortes
+        $tallas = Talla::whereIn('corte_id', $cortes)->get()->load('corte');
+
+        //perdidas
+        $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+            ->where('producto_id', $producto_id)->select('id')->get();
+
+        $perdidas = array();
+
+        $longitudPerdida = count($perdida);
+
+        for ($i = 0; $i < $longitudPerdida; $i++) {
+            array_push($perdidas, $perdida[$i]['id']);
+        }
+
+        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get()->load('perdida');
+
+        //SEGUNDA
+        $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
+            ->where('producto_id', $producto_id)->select('id')->get();
+
+        $segundas = array();
+
+        $longitudSegunda = count($segunda);
+
+        for ($i = 0; $i < $longitudSegunda; $i++) {
+            array_push($segundas, $segunda[$i]['id']);
+        }
+
+        $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get()->load('perdida');
+
+        //producto
+        $producto = Product::find($producto_id);
+
+        //calcular total real
+        $a = $tallas->sum('a') - $tallasPerdidas->sum('a');
+        $b = $tallas->sum('b') - $tallasPerdidas->sum('b');
+        $c = $tallas->sum('c') - $tallasPerdidas->sum('c');
+        $d = $tallas->sum('d') - $tallasPerdidas->sum('d');
+        $e = $tallas->sum('e') - $tallasPerdidas->sum('e');
+        $f = $tallas->sum('f') - $tallasPerdidas->sum('f');
+        $g = $tallas->sum('g') - $tallasPerdidas->sum('g');
+        $h = $tallas->sum('h') - $tallasPerdidas->sum('h');
+        $i = $tallas->sum('i') - $tallasPerdidas->sum('i');
+        $j = $tallas->sum('j') - $tallasPerdidas->sum('j');
+        $k = $tallas->sum('k') - $tallasPerdidas->sum('k');
+        $l = $tallas->sum('l') - $tallasPerdidas->sum('l'); 
+
+        //Validacion de numeros negativos
+        $a = ($a < 0 ? 0 : $a);
+        $b = ($b < 0 ? 0 : $b);
+        $c = ($c < 0 ? 0 : $c);
+        $d = ($d < 0 ? 0 : $d);
+        $e = ($e < 0 ? 0 : $e);
+        $f = ($f < 0 ? 0 : $f);
+        $g = ($g < 0 ? 0 : $g);
+        $h = ($h < 0 ? 0 : $h);
+        $i = ($i < 0 ? 0 : $i);
+        $j = ($j < 0 ? 0 : $j);
+        $k = ($k < 0 ? 0 : $k);
+        $l = ($l < 0 ? 0 : $l);
+
+        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
         
         $data = [
             'code' => 200,
             'status' => 'success',
-            'corte' => date("d-m-20y", strtotime($corte->fecha_corte))
+            'corte' => date("d-m-20y", strtotime($fecha_corte->fecha_corte)),
+            'a' => $a,
+            'b' => $b,
+            'c' => $c,
+            'd' => $d,
+            'e' => $e,
+            'f' => $f,
+            'g' => $g,
+            'h' => $h,
+            'i' => $i,
+            'j' => $j,
+            'k' => $k,
+            'l' => $l,
+            'total' => $total_real
         ];
 
         return response()->json($data, $data['code']);

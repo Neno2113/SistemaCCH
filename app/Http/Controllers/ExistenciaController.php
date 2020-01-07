@@ -79,7 +79,10 @@ class ExistenciaController extends Controller
 
         $tallasAlmacen = Almacen::whereIn('id', $almacenes)->get();
 
-        $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();
+        //Ordenes
+        $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)
+        ->where('orden_empacada' , 'LIKE', '0')
+        ->get();
 
         //respuesta 
         $data = [

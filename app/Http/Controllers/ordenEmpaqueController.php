@@ -521,6 +521,7 @@ class ordenEmpaqueController extends Controller
             $orden_pedido_detalle->j = ($j_red < 0 ? 0 : $j_red);
             $orden_pedido_detalle->k = ($k_red < 0 ? 0 : $k_red);
             $orden_pedido_detalle->l = ($l_red < 0 ? 0 : $l_red);
+            $orden_pedido_detalle->total = $cant_total;
             $orden_pedido_detalle->save();
         }
 

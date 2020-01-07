@@ -1,5 +1,18 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
+    var total_recibido;
+    var a_total;
+    var b_total;
+    var c_total;
+    var d_total;
+    var e_total;
+    var f_total;
+    var g_total;
+    var h_total;
+    var i_total;
+    var j_total;
+    var k_total;
+    var l_total;
 
     $("#formulario").validate({
         rules: {
@@ -92,8 +105,8 @@ $(document).ready(function() {
         let val = $("#cortesSearch option:selected").text();
         // console.log(val);
 
-        let genero = val.substring(23, 24); 
-        let genero_plus = val.substr(25, 1);
+        let genero = val.substring(24, 25); 
+        let genero_plus = val.substr(26, 1);
         let fase = val.substring(9, 12);
         // console.log("Genero:"+genero);
         // console.log("Fase:"+fase);
@@ -149,6 +162,14 @@ $(document).ready(function() {
 
                 if(genero_plus == "7"){
                    $("#genero").val('Mujer plus: '+val);
+                   $("#sa").html("12W");
+                   $("#sb").html("14W");
+                   $("#sc").html("16W");
+                   $("#sd").html("18W");
+                   $("#se").html("20W");
+                   $("#sf").html("22W");
+                   $("#sg").html("24W");
+                   $("#sh").html("26W");
                    $("#ta").html("12W");
                    $("#tb").html("14W");
                    $("#tc").html("16W");
@@ -157,6 +178,7 @@ $(document).ready(function() {
                    $("#tf").html("22W");
                    $("#tg").html("24W");
                    $("#th").html("26W");
+                 
                    $("#i").attr('disabled', true);
                    $("#j").attr('disabled', true);
                    $("#k").attr('disabled', true);
@@ -174,6 +196,18 @@ $(document).ready(function() {
                    );
                }else{
                 $("#genero").val('Mujer: '+val)
+                $("#sa").html("0/0");
+                $("#sb").html("1/2");
+                $("#sc").html("3/4");
+                $("#sd").html("5/6");
+                $("#se").html("7/8");
+                $("#sf").html("9/10");
+                $("#sg").html("11/12");
+                $("#sh").html("13/14");
+                $("#si").html("15/16");
+                $("#sj").html("17/18");
+                $("#sk").html("19/20");
+                $("#sl").html("21/22");
                 $("#ta").html("0/0");
                 $("#tb").html("1/2");
                 $("#tc").html("3/4");
@@ -211,6 +245,14 @@ $(document).ready(function() {
         if (genero == "3") {
             $("#genero").val('Niño: '+val);
             $("#sub-genero").hide();
+            $("#sa").html("2");
+            $("#sb").html("4");
+            $("#sc").html("6");
+            $("#sd").html("8");
+            $("#se").html("10");
+            $("#sf").html("12");
+            $("#sg").html("14");
+            $("#sh").html("16");
             $("#ta").html("2");
             $("#tb").html("4");
             $("#tc").html("6");
@@ -237,6 +279,14 @@ $(document).ready(function() {
         } else if (genero == "4") {
             $("#genero").val('Niña: '+val);
             $("#sub-genero").hide();
+            $("#sa").html("2");
+            $("#sb").html("4");
+            $("#sc").html("6");
+            $("#sd").html("8");
+            $("#se").html("10");
+            $("#sf").html("12");
+            $("#sg").html("14");
+            $("#sh").html("16");
             $("#ta").html("2");
             $("#tb").html("4");
             $("#tc").html("6");
@@ -263,6 +313,16 @@ $(document).ready(function() {
         } else if (genero == "1") {
             $("#genero").val('Hombre: '+val);
             $("#sub-genero").hide();
+            $("#sa").html("28");
+            $("#sb").html("29");
+            $("#sc").html("30");
+            $("#sd").html("32");
+            $("#se").html("34");
+            $("#sf").html("36");
+            $("#sg").html("38");
+            $("#sh").html("40");
+            $("#si").html("42");
+            $("#sj").html("44");
             $("#ta").html("28");
             $("#tb").html("29");
             $("#tc").html("30");
@@ -384,8 +444,50 @@ $(document).ready(function() {
                     let dia = fecha.substr(0, 2);
                     let month = fecha.substr(3, 2);
                     let year = fecha.substr(6, 4);
-                  
+
                     $("#fecha").attr('min', year +"-"+ month+"-"+dia);
+
+                    a_total = datos.a;
+                    b_total = datos.b;
+                    c_total = datos.c;
+                    d_total = datos.d;
+                    e_total = datos.e;
+                    f_total = datos.f;
+                    g_total = datos.g;
+                    h_total = datos.h;
+                    i_total = datos.i;
+                    j_total = datos.j;
+                    k_total = datos.k;
+                    l_total = datos.l;
+
+                    //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+                    (datos.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false); 
+                    (datos.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
+                    (datos.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
+                    (datos.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
+                    (datos.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
+                    (datos.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
+                    (datos.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
+                    (datos.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
+                    (datos.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
+                    (datos.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
+                    (datos.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
+                    (datos.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
+
+                    $("#ra").html(datos.a);
+                    $("#rb").html(datos.b);
+                    $("#rc").html(datos.c);
+                    $("#rd").html(datos.d);
+                    $("#re").html(datos.e);
+                    $("#rf").html(datos.f);
+                    $("#rg").html(datos.g);
+                    $("#rh").html(datos.h);
+                    $("#ri").html(datos.i);
+                    $("#rj").html(datos.j);
+                    $("#rk").html(datos.k);
+                    $("#rl").html(datos.l);
+                  
+               
             
                 } else {
                     bootbox.alert(

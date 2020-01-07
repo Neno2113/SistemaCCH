@@ -57,7 +57,8 @@
                         </div>
                         <div class="col-3">
                             <div class="mt-4 pt-2">
-                                <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-trash-restore"></i> Generar</button>
+                                <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-trash-restore"></i>
+                                    Generar</button>
                             </div>
                         </div>
                     </div>
@@ -91,6 +92,7 @@
                                 <option value="Lavanderia">Lavanderia</option>
                                 <option value="Terminacion">Terminacion</option>
                                 <option value="Almacen">Terminado o almacen</option>
+                                <option value="Muestra desarrollo">Muestra desarrollo</option>
                             </select>
                         </div>
                         <div class="col-6 mt-1">
@@ -179,30 +181,40 @@
                 <div class="row">
                     <label for="">Referencia producto: </label>
                     <div class="col-md-6 mb-2">
-                        <input type="text" name="genero" id="genero" class="form-control" readonly>
+                        <input type="text" name="genero" id="genero" class="form-control font-weight-bold" readonly>
                     </div>
                 </div>
                 <div class="row">
-                    <table class="table table-bordered table-responsive">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Tipo producto</th>
-                                <th>A</th>
-                                <th>B</th>
-                                <th>C</th>
-                                <th>D</th>
-                                <th>E</th>
-                                <th>F</th>
-                                <th>G</th>
-                                <th>H</th>
-                                <th>I</th>
-                                <th>J</th>
-                                <th>K</th>
-                                <th>L</th>
+                                <th id="sa">A</th>
+                                <th id="sb">B</th>
+                                <th id="sc">C</th>
+                                <th id="sd">D</th>
+                                <th id="se">E</th>
+                                <th id="sf">F</th>
+                                <th id="sg">G</th>
+                                <th id="sh">H</th>
+                                <th id="si">I</th>
+                                <th id="sj">J</th>
+                                <th id="sk">K</th>
+                                <th id="sl">L</th>
                             </tr>
                         </thead>
-                        <tr id="tallas">
-
+                        <tr>
+                            <td id="ra"></td>
+                            <td id="rb"></td>
+                            <td id="rc"></td>
+                            <td id="rd"></td>
+                            <td id="re"></td>
+                            <td id="rf"></td>
+                            <td id="rg"></td>
+                            <td id="rh"></td>
+                            <td id="ri"></td>
+                            <td id="rj"></td>
+                            <td id="rk"></td>
+                            <td id="rl"></td>
                         </tr>
 
                     </table>
@@ -282,7 +294,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

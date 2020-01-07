@@ -88,6 +88,7 @@
                                 <input type="hidden" name="orden_pedido_id" id="orden_pedido_id">
                                 <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso">
                                 <input type="hidden" name="sec" id="sec" value="">
+                                <input type="hidden" name="cliente_segundas" id="cliente_segundas" value="">
                                 <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
                                 <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
                             </div>
@@ -151,7 +152,7 @@
                                             <td id="f_entrega"></td>
                                             <th><input type="text" name="cantidad_proceso" id="cantidad_proceso"
                                                     class="form-control"></th>
-                                            <th><button id='btn-agregarProceso' class='btn btn-success'>Agregar</button>
+                                            <th><button id='btn-agregarProceso' class='btn btn-success'> Agregar</button>
                                             </th>
                                             <input type="hidden" name="corte_proceso" id="corte_proceso" value="">
                                         </tr>
@@ -210,8 +211,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3 mt-3">
-                                <button class="btn btn-success rounded-pill" name="btn-consultar"
-                                    id="btn-consultar">Consultar</button>
+                                <button class="btn btn-success rounded-pill" name="btn-consultar" id="btn-consultar"><i
+                                        class="fas fa-search"></i> Consultar</button>
                             </div>
                             <div class="col-md-2 ">
 
@@ -222,7 +223,7 @@
                             <div class="col-md-3 mt-3 " id="precio_div">
                                 <label for="">Precio(*):</label>
                                 <input type="text" name="precio" id="precio" class="form-control text-center"
-                                    data-inputmask='"mask": "9999"' data-mask>
+                                    data-inputmask='"mask": "9,999RD$"' data-mask>
                             </div>
                             <div class="col-md-2 mt-3" id="total_div">
                                 <label for="">Total Ref.:</label>
@@ -258,64 +259,76 @@
                                 <tbody id="disponibles">
 
                                 </tbody>
-                    
+
                             </table>
                         </div>
 
                         <div class="row mt-3" id="detalles">
                             <div class="col-lg-1 ">
                                 {{-- <label for="" class="ml-4" id="da">A</label> --}}
-                                <input type="text" name="" id="a" class="form-control text-center">
+                                <input type="text" name="" id="a" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="db">B</label> --}}
-                                <input type="text" name="" id="b" class="form-control text-center">
+                                <input type="text" name="" id="b" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="dc">C</label> --}}
-                                <input type="text" name="" id="c" class="form-control text-center">
+                                <input type="text" name="" id="c" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="dd">D</label> --}}
-                                <input type="text" name="" id="d" class="form-control text-center">
+                                <input type="text" name="" id="d" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="de">E</label> --}}
-                                <input type="text" name="" id="e" class="form-control text-center">
+                                <input type="text" name="" id="e" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="df">F</label> --}}
-                                <input type="text" name="" id="f" class="form-control text-center">
+                                <input type="text" name="" id="f" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="dg">G</label> --}}
-                                <input type="text" name="" id="g" class="form-control text-center">
+                                <input type="text" name="" id="g" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="dh">H</label> --}}
-                                <input type="text" name="" id="h" class="form-control text-center">
+                                <input type="text" name="" id="h" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="di">I</label> --}}
-                                <input type="text" name="" id="i" class="form-control text-center">
+                                <input type="text" name="" id="i" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="dj">J</label> --}}
-                                <input type="text" name="" id="j" class="form-control text-center">
+                                <input type="text" name="" id="j" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="dk">K</label> --}}
-                                <input type="text" name="" id="k" class="form-control text-center">
+                                <input type="text" name="" id="k" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                             <div class="col-lg-1">
                                 {{-- <label for="" class="ml-4" id="dl">L</label> --}}
-                                <input type="text" name="" id="l" class="form-control text-center">
+                                <input type="text" name="" id="l" class="form-control text-center"
+                                data-inputmask='"mask": "999"' data-mask>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <button class="btn btn-info rounded-lg" name="btn-agregar"
-                                    id="btn-agregar">Agregar</button>
+                                <button class="btn btn-info rounded-lg" name="btn-agregar" id="btn-agregar"><i
+                                        class="fas fa-plus-circle"></i> Agregar</button>
                             </div>
                         </div>
                         <br>
@@ -373,9 +386,9 @@
                 <button class="btn btn-danger" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
                     Cancelar</button>
                 <button type="submit" id="btn-guardar" class="btn btn-info mt-4 float-right"><i
-                    class="far fa-save fa-lg"></i> Guardar</button>
+                        class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-4 float-right"><i
-                    class="far fa-edit fa-lg"></i> Editar</button>
+                        class="far fa-edit fa-lg"></i> Editar</button>
             </div>
 
             </form>

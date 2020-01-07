@@ -378,18 +378,18 @@ $(document).ready(function() {
                     l_total = datos.l;
 
                     //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-                    (datos.a == 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false); 
-                    (datos.b == 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
-                    (datos.c == 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
-                    (datos.d == 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
-                    (datos.e == 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
-                    (datos.f == 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
-                    (datos.g == 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
-                    (datos.h == 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
-                    (datos.i == 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
-                    (datos.j == 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
-                    (datos.k == 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
-                    (datos.l == 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
+                    (datos.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false); 
+                    (datos.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
+                    (datos.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
+                    (datos.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
+                    (datos.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
+                    (datos.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
+                    (datos.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
+                    (datos.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
+                    (datos.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
+                    (datos.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
+                    (datos.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
+                    (datos.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
                     
                     var corte = {
                         corte_id: $("#cortesSearch").val(),
@@ -751,7 +751,7 @@ $(document).ready(function() {
             l: $("#l").val()
         };
 
-         $.ajax({
+        $.ajax({
                 url: "validar/total",
                 type: "POST",
                 dataType: "json",
@@ -962,7 +962,7 @@ $(document).ready(function() {
                 error: function() {
                    console.log("ocurrio un error")
                 }
-            });
+        });
     
 
            

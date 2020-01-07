@@ -231,18 +231,18 @@ $(document).ready(function() {
                         $("#l").html(l_corte - l_perd);
 
                         $("#ref_venta").html(ref);
-                        (a_alm - a_perd - a_op < 0) ? $("#a_venta").html(0) : $("#a_venta").html(a_alm - a_perd - a_op);  
-                        (b_alm - b_perd - b_op < 0) ? $("#b_venta").html(0) : $("#b_venta").html(b_alm - b_perd - b_op);
-                        (c_alm - c_perd - c_op < 0) ? $("#c_venta").html(0) : $("#c_venta").html(c_alm - c_perd - c_op);  
-                        (d_alm - d_perd - d_op < 0) ? $("#d_venta").html(0) : $("#d_venta").html(d_alm - d_perd - d_op); 
-                        (e_alm - e_perd - e_op < 0) ? $("#e_venta").html(0) : $("#e_venta").html(e_alm - e_perd - e_op);
-                        (f_alm - f_perd - f_op < 0) ? $("#f_venta").html(0) : $("#f_venta").html(f_alm - f_perd - f_op);  
-                        (g_alm - g_perd - g_op < 0) ? $("#g_venta").html(0) : $("#g_venta").html(g_alm - g_perd - g_op);  
-                        (h_alm - h_perd - h_op < 0) ? $("#h_venta").html(0) : $("#h_venta").html(h_alm - h_perd - h_op);  
-                        (i_alm - i_perd - i_op < 0) ? $("#i_venta").html(0) : $("#i_venta").html(i_alm - i_perd - i_op);                   
-                        (j_alm - j_perd - j_op < 0) ? $("#j_venta").html(0) : $("#j_venta").html(j_alm - j_perd - j_op); 
-                        (k_alm - k_perd - k_op < 0) ? $("#k_venta").html(0) : $("#k_venta").html(k_alm - k_perd - k_op);
-                        (l_alm - l_perd - l_op < 0) ? $("#l_venta").html(0) : $("#l_venta").html(l_alm - l_perd - l_op); 
+                        (a_alm - a_perd - a_op < 0) ? $("#a_venta").html(0) : $("#a_venta").html(a_alm - a_perd - a_op - a_seg);  
+                        (b_alm - b_perd - b_op < 0) ? $("#b_venta").html(0) : $("#b_venta").html(b_alm - b_perd - b_op - b_seg);
+                        (c_alm - c_perd - c_op < 0) ? $("#c_venta").html(0) : $("#c_venta").html(c_alm - c_perd - c_op - c_seg);  
+                        (d_alm - d_perd - d_op < 0) ? $("#d_venta").html(0) : $("#d_venta").html(d_alm - d_perd - d_op - d_seg); 
+                        (e_alm - e_perd - e_op < 0) ? $("#e_venta").html(0) : $("#e_venta").html(e_alm - e_perd - e_op - e_seg);
+                        (f_alm - f_perd - f_op < 0) ? $("#f_venta").html(0) : $("#f_venta").html(f_alm - f_perd - f_op - f_seg);  
+                        (g_alm - g_perd - g_op < 0) ? $("#g_venta").html(0) : $("#g_venta").html(g_alm - g_perd - g_op - g_seg);  
+                        (h_alm - h_perd - h_op < 0) ? $("#h_venta").html(0) : $("#h_venta").html(h_alm - h_perd - h_op - h_seg);  
+                        (i_alm - i_perd - i_op < 0) ? $("#i_venta").html(0) : $("#i_venta").html(i_alm - i_perd - i_op - i_seg);                   
+                        (j_alm - j_perd - j_op < 0) ? $("#j_venta").html(0) : $("#j_venta").html(j_alm - j_perd - j_op - j_seg); 
+                        (k_alm - k_perd - k_op < 0) ? $("#k_venta").html(0) : $("#k_venta").html(k_alm - k_perd - k_op - k_seg);
+                        (l_alm - l_perd - l_op < 0) ? $("#l_venta").html(0) : $("#l_venta").html(l_alm - l_perd - l_op - l_seg); 
                         
 
                         $("#totales").show();
