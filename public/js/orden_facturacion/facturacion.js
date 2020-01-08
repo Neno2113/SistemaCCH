@@ -8,11 +8,13 @@ $(document).ready(function() {
     function init() {
         // ordenfacturacionCod();
         listar();
+        listarFactura();
         facturaCod();
         $("#empacado_listo").hide();
         $("#spiner").hide();
         mostrarForm(false);
         $("#btn-edit").hide();
+        $("#itbis").val(18);
     }
 
     //funcion para limpiar el formulario(los inputs)
@@ -112,7 +114,9 @@ $(document).ready(function() {
             descuento: $("#descuento").val(),
             fecha: $("#fecha").val(),
             comprobante_fiscal: $("input[name='r1']:checked").val(),
-            numero_comprobante: $("#numero_comprobante").val()
+            numero_comprobante: $("#numero_comprobante").val(),
+            nota: $("#nota").val()
+            
         };
 
         // console.log(JSON.stringify(factura));
@@ -128,6 +132,8 @@ $(document).ready(function() {
                     bootbox.alert("Factura generada");
                     limpiar();
                     mostrarForm(false);
+                    $("#orden_facturacion").DataTable().ajax.reload();
+                    $("#facturas").DataTable().ajax.reload();
                   
                 } else {
                     bootbox.alert(
@@ -237,7 +243,7 @@ $(document).ready(function() {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-guardar").hide();
-          
+            $("#btn-opciones").hide();
             
         } else {
             $("#listadoUsers").show();
@@ -248,6 +254,7 @@ $(document).ready(function() {
             $("#btnImprimir").show();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
+            $("#btn-opciones").show();
         }
     }
 

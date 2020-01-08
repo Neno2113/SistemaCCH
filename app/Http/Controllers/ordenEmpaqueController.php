@@ -105,7 +105,20 @@ class ordenEmpaqueController extends Controller
                 }
             })
             ->addColumn('Opciones', function ($orden) {
-                if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1') { } else if ($orden->detallada == '0' && $orden->redistribucion_tallas == '0') { } else if ($orden->detallada == '1' && $orden->redistribucion_tallas == '1') {
+                if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1')
+                { 
+                    return
+                    '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
+                    '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
+
+                } else if ($orden->detallada == '0' && $orden->redistribucion_tallas == '0') { 
+                    
+                    return
+                    '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
+                    '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
+                
+                } else if ($orden->detallada == '1' && $orden->redistribucion_tallas == '1'){
+                    
                     return
                         '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
                         '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';

@@ -17,9 +17,9 @@ class OrdenFacturacionController extends Controller
     public function store(Request $request)
     {
         $validar = $request->validate([
-            'no_orden_facturacion' => 'required',
+            // 'no_orden_facturacion' => 'required',
             'empaque_id' => 'required',
-            'sec' => 'required',
+            // 'sec' => 'required',
         ]);
 
         if (empty($validar)) {
@@ -30,20 +30,20 @@ class OrdenFacturacionController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $no_orden_facturacion = $request->input('no_orden_facturacion');
+            // $no_orden_facturacion = $request->input('no_orden_facturacion');
             $orden_empaque_id = $request->input('empaque_id');
             $por_transporte = $request->input('por_transporte');
-            $sec = $request->input('sec');
+            // $sec = $request->input('sec');
 
             $orden_facturacion = new OrdenFacturacion();
 
-            $orden_facturacion->no_orden_facturacion = $no_orden_facturacion;
+            // $orden_facturacion->no_orden_facturacion = $no_orden_facturacion;
             $orden_facturacion->orden_empaque_id = $orden_empaque_id;
             $orden_facturacion->user_id = \auth()->user()->id;
             $orden_facturacion->fecha = date('Y/m/d h:i:s');
             $orden_facturacion->impreso = 0;
             $orden_facturacion->por_transporte = $por_transporte;
-            $orden_facturacion->sec = $sec + 0.01;
+            // $orden_facturacion->sec = $sec + 0.01;
 
             $orden_facturacion->save();
 
@@ -57,11 +57,13 @@ class OrdenFacturacionController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function storeDetalle($id, Request $request){
+    public function storeDetalle(Request $request){
 
-        $empaque_detalle = ordenEmpaqueDetalle::find($id);
+        $empaque_id = $request->input('orden_empaque_id');
+
+        $empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)->first();
       
-        $orden_facturacion_id = $request->input('id');
+        $orden_facturacion_id = $request->input('orden_facturacion_id');
 
         if(\is_object($empaque_detalle)){
             //actualizar detalle para modificar datatable en el frontend

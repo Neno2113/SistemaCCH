@@ -223,7 +223,6 @@
         var empaque = {
             id: $("#id").val()
         }
-
         $.ajax({
             url: "factura_detalle/"+id,
             type: "POST",
@@ -235,6 +234,34 @@
                     console.log(datos);
                     bootbox.alert("Referencia agregada a la orden de facturacion exitosamente");
                     $("#empaque_detalle").DataTable().ajax.reload();
+                    
+                    var ordenFacturacion = {
+                        empaque_id: $("#ordenEmpaqueSearch").val(),
+                        por_transporte: $("input[name='r1']:checked").val(),
+                    };
+
+                    $.ajax({
+                        url: "orden_facturacion",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(ordenFacturacion),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                
+                            
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function() {
+                            bootbox.alert(
+                                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                            );
+                        }
+                    });
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"

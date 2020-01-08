@@ -89,6 +89,7 @@
                                 <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso">
                                 <input type="hidden" name="sec" id="sec" value="">
                                 <input type="hidden" name="cliente_segundas" id="cliente_segundas" value="">
+                                <input type="hidden" name="venta_segunda" id="venta_segunda" value="">
                                 <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
                                 <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
                             </div>

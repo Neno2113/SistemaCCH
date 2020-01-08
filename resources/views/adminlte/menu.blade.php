@@ -191,6 +191,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="/sistemaCCH/public/lavanderia" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Devolucion Lavanderia</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/sistemaCCH/public/recepcion" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Recepcion</p>
@@ -266,21 +272,27 @@
           <a href="#" class="nav-link ">
             <i class="fas fa-file-invoice"></i>
             <p>
-              Ordenes Facturacion
+              Facturacion
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="/sistemaCCH/public/orden_facturacion" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Orden Facturacion</p>
               </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <a href="/sistemaCCH/public/facturacion" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Facturar</p>
+                <p>Generar factura</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/nota_credito" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Nota de credito</p>
               </a>
             </li>
           </ul>

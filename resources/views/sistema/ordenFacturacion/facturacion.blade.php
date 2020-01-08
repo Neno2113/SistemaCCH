@@ -1,15 +1,30 @@
 @extends('adminlte.layout')
 
-@section('seccion', 'Ordenes de facturacion')
+@section('seccion', 'Facturacion')
 
-@section('title', 'Facturar')
+@section('title', 'Generar factura')
 
 @section('content')
 
-<div class="row mt-3 ml-3">
+{{-- <div class="row mt-3 ml-3">
     <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
     <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
     <button class="btn btn-secondary" id="btnImprimir">Print <i class="fas fa-print"></i> </button>
+</div> --}}
+<div class="row mt-3" id="btn-opciones">
+    <div class="col-md-6 d-flex justify-content-center border-right border-bottom">
+        <button class="btn btn-info rounded-pill  mt-3 mb-4" type="button" data-toggle="collapse"
+            data-target="#listadoUsers" aria-expanded="false" data-toggle="button" aria-pressed="false"
+            aria-controls="listadoUsers"><i class="fas fa-file-invoice-dollar"></i> Generar factura
+            
+        </button>
+    </div>
+    <div class="col-md-6 border-bottom d-flex justify-content-center">
+        <button class="btn btn-secondary rounded-pill mt-3 mb-4 border-right" type="button" data-toggle="collapse"
+            data-target="#FacturaImprimir" aria-expanded="false" aria-controls="FacturaImprimir">
+            <i class="fas fa-print"></i> Imprimir facturas
+        </button>
+    </div>
 </div>
 
 <div class="row mt-3">
@@ -88,9 +103,17 @@
                             <input type="text" name="descuento" id="descuento" class="form-control text-center"
                                 data-inputmask='"mask": "99%"' data-mask>
                         </div>
+                      
+                    </div>
+                    <div class="row mt-2">
                         <div class="col-md-4 mt-3">
                             <label for="">Fecha(*):</label>
                             <input type="date" name="fecha" id="fecha" class="form-control text-center">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 mt-3">
+                            <label for="">Nota:</label>
+                            <textarea name="nota" id="nota" cols="30" rows="1" class="form-control"></textarea>
                         </div>
                     </div>
                     <hr>
@@ -176,8 +199,8 @@
                     </div>
             </div>
             <div class="card-footer   d-flex justify-content-end">
-                <button type="submit" value="Generar" id="btn-guardar" class="btn btn-lg btn-secondary mt-4 mr-3 ml-3">
-                    <i class="far fa-save fa-lg"></i>
+                <button type="submit" id="btn-guardar" class="btn btn-secondary">
+                    <i class="far fa-save fa-lg"></i> Guardar
                 </button>
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
@@ -225,7 +248,7 @@
 
 </div>
 
-<div class="container collapse mt-4" id="AprobarPedido">
+<div class="container collapse mt-4" id="FacturaImprimir">
     <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
         <thead>
             <tr>
@@ -270,6 +293,7 @@
             // $("#btn-edit").show();
             $("#btn-guardar").show();
             $("#btnImprimir").hide();
+            $("#btn-opciones").hide();
             
         
             $("#id").val(data.orden_facturacion.id);

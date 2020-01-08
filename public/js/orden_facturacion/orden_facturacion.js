@@ -123,9 +123,6 @@ $(document).ready(function() {
             empaque_id: $("#ordenEmpaqueSearch").val(),
             por_transporte: $("input[name='r1']:checked").val(),
         };
-
-        console.log(JSON.stringify(ordenFacturacion));
-
         $.ajax({
             url: "orden_facturacion",
             type: "POST",

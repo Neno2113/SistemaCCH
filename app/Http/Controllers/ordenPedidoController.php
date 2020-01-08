@@ -23,6 +23,16 @@ class ordenPedidoController extends Controller
         //Recoger datos por la request 
         $producto_id = $request->input('producto_id');
         $referencia_producto = $request->input('referencia_producto');
+        $segunda_input = $request->input('segunda');
+        // $segunda = intval($segunda);
+        // echo $segunda;
+        // if(!empty($segunda)){
+        //     echo true;
+        // }else{
+        //     echo "Falso";
+        // }
+        // die();
+
 
         //buscar cortes con la misma referencia producto
         $corte = Corte::where('producto_id', $producto_id)->select('id', 'total')->get();
@@ -130,52 +140,55 @@ class ordenPedidoController extends Controller
         $cantidad_ordenadas = $tallasOrdenes->sum('cantidad');
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l - $cantidad_ordenadas;
 
-        //respuesta 
-        $data = [
-            'code' => 200,
-            'status' => 'success',
-            'a' => $a,
-            'b' => $b,
-            'c' => $c,
-            'd' => $d,
-            'e' => $e,
-            'f' => $f,
-            'g' => $g,
-            'h' => $h,
-            'i' => $i,
-            'j' => $j,
-            'k' => $k,
-            'l' => $l,
-            'producto' => $producto,
-            'total_corte' => $total_real,
-            'corte_proceso' => $corte_proceso,
-            'fecha_entrega' => $fecha_entrega
-        ];
-
-        $data = [
-            'code' => 200,
-            'status' => 'success',
-            'a' => $a,
-            'b' => $b,
-            'c' => $c,
-            'd' => $d,
-            'e' => $e,
-            'f' => $f,
-            'g' => $g,
-            'h' => $h,
-            'i' => $i,
-            'j' => $j,
-            'k' => $k,
-            'l' => $l,
-            'producto' => $producto,
-            'total_corte' => $total_real,
-            'corte_proceso' => $corte_proceso,
-            'fecha_entrega' => $fecha_entrega
-        ];
+        if (empty($segunda_input)) {
+            //respuesta 
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l,
+                'producto' => $producto,
+                'total_corte' => $total_real,
+                'corte_proceso' => $corte_proceso,
+                'fecha_entrega' => $fecha_entrega
+            ];
+        } else {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'a' => $tallasSegundas->sum('a'),
+                'b' => $tallasSegundas->sum('b'),
+                'c' => $tallasSegundas->sum('c'),
+                'd' => $tallasSegundas->sum('d'),
+                'e' => $tallasSegundas->sum('e'),
+                'f' => $tallasSegundas->sum('f'),
+                'g' => $tallasSegundas->sum('g'),
+                'h' => $tallasSegundas->sum('h'),
+                'i' => $tallasSegundas->sum('i'),
+                'j' => $tallasSegundas->sum('j'),
+                'k' => $tallasSegundas->sum('k'),
+                'l' => $tallasSegundas->sum('l'),
+                'producto' => $producto,
+                'total_corte' => $total_real,
+                'corte_proceso' => $corte_proceso,
+                'fecha_entrega' => $fecha_entrega,
+                'segunda' => 1
+            ];
+        }
 
         return \response()->json($data, $data['code']);
     }
-    
+
 
     public function store(Request $request)
     {
@@ -319,6 +332,12 @@ class ordenPedidoController extends Controller
         $producto_id = $request->input('producto_id');
         $cantidad = $request->input('cantidad');
         $precio = $request->input('precio');
+        $segunda_form = $request->input('segunda');
+        // echo $segunda_input;
+        // if(!empty($segunda_input)){
+        //     echo "True";
+        // }
+        // die();
 
         //validaciones
         $a = intval(trim($a, "_"));
@@ -338,10 +357,45 @@ class ordenPedidoController extends Controller
         $select = DB::select("SHOW TABLE STATUS LIKE 'orden_pedido'");
         $nextId = $select[0]->Auto_increment;
 
+        if (!empty($segunda_form)) {
+            //SEGUNDA
+            $segunda_object = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
+                ->where('producto_id', $producto_id)->select('id')->get();
 
-        if(preg_match('/_/', $precio)){
+            $segundas = array();
+
+            $longitudSegunda = count($segunda_object);
+
+            for ($m = 0; $m < $longitudSegunda; $m++) {
+                array_push($segundas, $segunda_object[$m]['id']);
+            }
+
+            $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get()->load('perdida');
+
+            $longitudOrden = count($tallasSegundas);
+
+            for ($n = 0; $n < $longitudOrden; $n++) {
+                $tallasSegundas[$n]->a = $tallasSegundas[$n]->a - $a;
+                $tallasSegundas[$n]->b = $tallasSegundas[$n]->b - $b;
+                $tallasSegundas[$n]->c = $tallasSegundas[$n]->c - $c;
+                $tallasSegundas[$n]->d = $tallasSegundas[$n]->d - $d;
+                $tallasSegundas[$n]->e = $tallasSegundas[$n]->e - $e;
+                $tallasSegundas[$n]->f = $tallasSegundas[$n]->f - $f;
+                $tallasSegundas[$n]->g = $tallasSegundas[$n]->g - $g;
+                $tallasSegundas[$n]->h = $tallasSegundas[$n]->h - $h;
+                $tallasSegundas[$n]->i = $tallasSegundas[$n]->i - $i;
+                $tallasSegundas[$n]->j = $tallasSegundas[$n]->j - $j;
+                $tallasSegundas[$n]->k = $tallasSegundas[$n]->k - $k;
+                $tallasSegundas[$n]->l = $tallasSegundas[$n]->l - $l;
+                // $tallasSegundas[$n]->total = $tallasSegundas[$i]->l - $l;
+                $tallasSegundas[$n]->save();
+            }
+        }
+
+
+        if (preg_match('/_/', $precio)) {
             $precio = trim($precio, "_,RD$");
-        }else{
+        } else {
             $precio = trim($precio, "RD$");
             $precio = str_replace(',', '', $precio);
         }
@@ -397,9 +451,9 @@ class ordenPedidoController extends Controller
 
         $orden_detalle = new ordenPedidoDetalle();
 
-        if(preg_match('/_/', $precio)){
+        if (preg_match('/_/', $precio)) {
             $precio = trim($precio, "_,RD$");
-        }else{
+        } else {
             $precio = trim($precio, "RD$");
             $precio = str_replace(',', '', $precio);
         }
@@ -1033,12 +1087,11 @@ class ordenPedidoController extends Controller
                     return '<span class="badge badge-pill badge-secondary">Stanby</span>';
                 } else if ($orden->status_orden_pedido == 'Despachado') {
                     return '<span class="badge badge-pill badge-info">Despachado</span>';
-                } else if ($orden->status_orden_pedido == 'Corte Proceso'){
+                } else if ($orden->status_orden_pedido == 'Corte Proceso') {
                     return '<span class="badge badge-pill badge-warning">Corte Proceso</span>';
                 }
             })
             ->addColumn('Opciones', function ($orden) {
-            
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
@@ -1059,19 +1112,20 @@ class ordenPedidoController extends Controller
             ->make(true);
     }
 
-    public function mostrar($id){
-        
-        $orden = ordenPedido::find($id)->load('user')
-        ->load('cliente')
-        ->load('sucursal');
+    public function mostrar($id)
+    {
 
-        if(is_object($orden)){
+        $orden = ordenPedido::find($id)->load('user')
+            ->load('cliente')
+            ->load('sucursal');
+
+        if (is_object($orden)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'orden' => $orden
             ];
-        }else{
+        } else {
             $data = [
                 'code' => 400,
                 'status' => 'error',
@@ -1082,19 +1136,21 @@ class ordenPedidoController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function home_orden(){
+    public function home_orden()
+    {
         $orden = ordenPedido::where('status_orden_pedido', 'LIKE', 'Stanby')->count();
 
         $data = [
             'code' => 200,
-            'status' => 'success', 
+            'status' => 'success',
             'orden' => $orden
         ];
 
         return response()->json($data, $data['code']);
     }
 
-    public function validar(Request $request){
+    public function validar(Request $request)
+    {
         $a = $request->input('a');
         $b = $request->input('b');
         $c = $request->input('c');
@@ -1144,22 +1200,23 @@ class ordenPedidoController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function clienteSegunda(Request $request){
+    public function clienteSegunda(Request $request)
+    {
 
         $cliente_id = $request->input('cliente_id');
 
         $cliente = Client::find($cliente_id);
-        
-        if(is_object($cliente)){
+
+        if (is_object($cliente)) {
             $data = [
                 'code' => 200,
-                'status' => 'success', 
+                'status' => 'success',
                 'cliente_segundas' => $cliente->acepta_segundas
             ];
-        }else{
+        } else {
             $data = [
                 'code' => 400,
-                'status' => 'error', 
+                'status' => 'error',
                 'messages' => 'Ocurrio un error'
             ];
         }

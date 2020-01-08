@@ -120,6 +120,10 @@ Route::get('/orden_facturacion', function () {
 Route::get('/facturacion', function () {
     return view('sistema.ordenFacturacion.facturacion');
 })->middleware('auth');
+
+Route::get('/nota_credito', function () {
+    return view('sistema.ordenFacturacion.notacredito');
+})->middleware('auth');
 // Fin vistas
 
 //Rutas de usuarios
@@ -296,7 +300,7 @@ Route::get('ordenfacturacion/lastdigit', 'ordenFacturacionController@getDigits')
 Route::get('selectEmpaque', 'ordenFacturacionController@selectEmpaque');
 Route::post('empaque/search', 'ordenFacturacionController@empaqueSearch');
 Route::post('orden_facturacion', 'ordenFacturacionController@store');
-Route::post('/factura_detalle/{id}', 'ordenFacturacionController@storeDetalle');
+Route::post('factura_detalle', 'ordenFacturacionController@storeDetalle');
 
 //Factura
 Route::get('/orden_facturacion/{id}', 'FacturaController@show');

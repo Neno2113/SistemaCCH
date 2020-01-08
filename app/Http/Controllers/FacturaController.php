@@ -43,6 +43,7 @@ class FacturaController extends Controller
             $fecha = $request->input('fecha');
             $comprobante_fiscal = $request->input('comprobante_fiscal');
             $numero_comprobante = $request->input('numero_comprobante');
+            $nota = $request->input('nota');
             $sec = $request->input('sec');
 
             $factura = new Factura();
@@ -58,6 +59,7 @@ class FacturaController extends Controller
             $factura->descuento = trim($descuento, '_%');
             $factura->itbis = trim($itbis, '_%');;
             $factura->fecha = $fecha;
+            $factura->nota = $nota;
 
             $factura->save();
 

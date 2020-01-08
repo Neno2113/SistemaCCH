@@ -42,6 +42,8 @@
                             <label for="">No. Orden empaque:</label>
                             <input type="text" name="no_orden_empaque" id="no_orden_empaque"
                                 class="form-control text-center font-weight-bold" readonly>
+                            <input type="hidden" name="orden_empaque_id" id="orden_empaque_id" value="">
+                            <input type="hidden" name="orden_facturacion_id" id="orden_facturacion_id" value="">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -61,9 +63,29 @@
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3 mt-2">
+                            <label for="autorizacion_credito_req">¿Iran por transporte?</label>
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary1" name="r1" value="1">
+                                    <label for="radioPrimary1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary2" name="r1" value="0" checked>
+                                    <label for="radioPrimary2">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="container">
                         <label for="" class="mt-5">Orden de empaque</label>
-                        <table id="orden_detalle" class="table table-striped table-bordered datatables mt-5 mb-3 mr-5" style="width:100%; margin-left:-26px;">
+                        <table id="orden_detalle" class="table table-striped table-bordered datatables mt-5 mb-3 mr-5"
+                            style="width:100%; margin-left:-26px;">
                             <thead class="">
                                 <tr>
                                     <th id="">Ref</th>
@@ -192,6 +214,7 @@
             $("#id").val(data.orden_empaque.id);
             $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);   
             $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);   
+            $("#orden_empaque_id").val(data.orden_empaque.id);   
             $("#cliente").val(data.cliente.nombre_cliente);
             $("#sucursal").val(data.sucursal.nombre_sucursal);
             $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
@@ -234,12 +257,10 @@
     }
 
     function test(id){
-
         var empaque = {
             id: $("#id").val(),
             cantidad: $("#cantidad"+id).val()
         }
-
         $.ajax({
             url: "empaque_detalle/"+id,
             type: "POST",
@@ -249,8 +270,64 @@
             success: function(datos) {
                 if (datos.status == "success") {
                     bootbox.alert("Referencia perteneciente a la orden empaque <strong>"+ datos.orden_empaque.no_orden_empaque+"</strong> ha sido empacada");
-                    $("#orden_detalle").DataTable().ajax.reload();
                     $(".cantidad").val("");
+
+                    var ordenFacturacion = {
+                        empaque_id: $("#orden_empaque_id").val(),
+                        por_transporte: $("input[name='r1']:checked").val(),
+                    };
+
+                    $.ajax({
+                        url: "orden_facturacion",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(ordenFacturacion),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                $("#orden_facturacion_id").val(datos.orden_facturacion.id);
+
+                                var detalle = {
+                                    orden_empaque_id: $("#orden_empaque_id").val(),
+                                    orden_facturacion_id: $("#orden_facturacion_id").val()
+                                }
+
+                                $.ajax({
+                                    url: "factura_detalle",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: JSON.stringify(detalle),
+                                    contentType: "application/json",
+                                    success: function(datos) {
+                                        if (datos.status == "success") {
+                                           
+                                            $("#orden_detalle").DataTable().ajax.reload();
+                                            
+                                         
+                                        } else {
+                                            bootbox.alert(
+                                                "Ocurrio un error durante la actualizacion de la composicion"
+                                            );
+                                        }
+                                    },
+                                    error: function() {
+                                        bootbox.alert("Ocurrio un error!!");
+                                    }
+                                }); 
+                                                    
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function() {
+                            bootbox.alert(
+                                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                            );
+                        }
+                    });
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"

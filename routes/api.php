@@ -82,3 +82,6 @@ Route::get('listarorden/{id}', 'ordenPedidoController@listarOrden');
 
 Route::get('detalle_corte/{id}', 'AlmacenController@corte_detalle');
 
+Route::get('nota_credito/facturas', 'NotaCreditoController@facturacionDetail');
+
+

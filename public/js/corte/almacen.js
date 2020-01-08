@@ -752,26 +752,26 @@ $(document).ready(function() {
         };
 
         $.ajax({
-                url: "validar/total",
-                type: "POST",
-                dataType: "json",
-                data: JSON.stringify(validar),
-                contentType: "application/json",
-                success: function(datos) {
-                    if (datos.status == "success") {
-                        let total = datos.total;
-                        var a = datos.a;
-                        var b = datos.b;
-                        var c = datos.c;
-                        var d = datos.d;
-                        var e = datos.e;
-                        var f = datos.f;
-                        var g = datos.g;
-                        var h = datos.h;
-                        var i = datos.i;
-                        var j = datos.j;
-                        var k = datos.k;
-                        var l = datos.l;
+            url: "validar/total",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(validar),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let total = datos.total;
+                    var a = datos.a;
+                    var b = datos.b;
+                    var c = datos.c;
+                    var d = datos.d;
+                    var e = datos.e;
+                    var f = datos.f;
+                    var g = datos.g;
+                    var h = datos.h;
+                    var i = datos.i;
+                    var j = datos.j;
+                    var k = datos.k;
+                    var l = datos.l;
                         console.log(c);
                         if(genero_global == 2){
 
