@@ -60,6 +60,7 @@ class FacturaController extends Controller
             $factura->itbis = trim($itbis, '_%');;
             $factura->fecha = $fecha;
             $factura->nota = $nota;
+            $factura->nc_uso = 0;
 
             $factura->save();
 

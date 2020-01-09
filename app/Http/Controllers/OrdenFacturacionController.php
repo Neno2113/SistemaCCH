@@ -116,6 +116,7 @@ class OrdenFacturacionController extends Controller
             $factura_detalle->orden_facturacion_id = $orden_facturacion_id;
             $factura_detalle->fecha = date('Y/m/d h:i:s');
             $factura_detalle->orden_pedido_id = $orden_pedido_id;
+            $factura_detalle->nota_credito = 0;
 
             $factura_detalle->save();
 

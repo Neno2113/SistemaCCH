@@ -316,5 +316,10 @@ Route::get('/latest_orders', 'DashboardController@latestOrders');
 Route::get('/latest_products', 'DashboardController@latestProduct');
 Route::get('/latest_cortes', 'DashboardController@latestCortes');
 
+//Nota credito
+Route::get('nota_credito/{id}', 'NotaCreditoController@show');
+Route::get('nc/lastdigit', 'NotaCreditoController@getDigits');
+Route::post('nota-credito', 'NotaCreditoController@store');
+
 
 

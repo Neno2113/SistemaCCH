@@ -10,7 +10,7 @@ class NotaCredito extends Model
 
     protected $fillable = [
         'id', 'factura_id', 'no_nota_credito', 'fecha', 'hora_impresion', 'precio_lista_factura', 'a','b','c',
-        'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'tipo_nota_credito'
+        'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'tipo_nota_credito', 'sec'
     ];
 
     public function factura()
