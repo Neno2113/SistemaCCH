@@ -32,7 +32,7 @@
                             <input type="text" name="no_factura" id="no_factura"
                                 class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="factura_id" id="factura_id" value="">
-                            <input type="hidden" name="producto_id" id="producto_id" value="">
+                            <input type="hidden" name="orden_facturacion_id" id="orden_facturacion_id" value="">
                         </div>
                         <div class="col-md-8">
 
@@ -42,7 +42,7 @@
                             <input type="text" name="no_nota_credito" id="no_nota_credito"
                                 class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="sec" id="sec" value="">
-                            <input type="hidden" name="orden_facturacion_id" id="orden_facturacion_id" value="">
+                            <input type="hidden" name="nc_id" id="nc_id" value="">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -76,12 +76,18 @@
                         <div class="col-md-4 mt-2">
                             <label for="">Tipo Nota de credito</label>
                             <select name="tipo_nota_credito" id="tipo_nota_credito" class="form-control">
-                                <option value="">....</option>
+                                <option value="CN">NOTA DE CREDITO</option>
+                                <option value="CB">NOTA DE CREDITO NCF</option>
                             </select>
+                        </div>
+                        <div class="col-md-4 mt-2" id="comprobante">
+                            <label for="">NCF</label>
+                            <input type="text" name="ncf" id="ncf" class="form-control font-weight-bold">
+                         
                         </div>
 
                     </div>
-                    <div class="container">
+                    <div class="container" id="detalle-factura">
                         <label for="" class="mt-5">Detalle Factura</label>
                         <table id="invoice_detail" class="table table-striped table-bordered datatables mt-5 mb-3 mr-5"
                             style="width:100%; margin-left:-26px;">
@@ -110,66 +116,66 @@
                             </tbody>
 
                         </table>
-                        <div class="row mt-2">
+                        <div class="row mt-2" id="">
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sa">A</label>
-                                <input type="text" name="" id="a" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="a" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sb">B</label>
-                                <input type="text" name="" id="b" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="b" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sc">C</label>
-                                <input type="text" name="" id="c" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="c" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sd">D</label>
-                                <input type="text" name="" id="d" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="d" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="se">E</label>
-                                <input type="text" name="" id="e" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="e" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sf">F</label>
-                                <input type="text" name="" id="f" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="f" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sg">G</label>
-                                <input type="text" name="" id="g" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="g" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sh">H</label>
-                                <input type="text" name="" id="h" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="h" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="si">I</label>
-                                <input type="text" name="" id="i" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="i" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sj">J</label>
-                                <input type="text" name="" id="j" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="" id="j" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sk">K</label>
-                                <input type="text" name="k" id="k" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="k" id="k" class="form-control text-center"
+                                    readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sl">L</label>
-                                <input type="text" name="l" id="l" class="form-control text-center"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                <input type="hidden" name="l" id="l" class="form-control text-center"
+                                    readonly>
                             </div>
                         </div>
 
@@ -251,8 +257,11 @@
             $("#btn-generar").hide();
             $("#edit-hide").hide();
             $("#edit-hide2").hide();
+            $("#detalle-factura").hide();
+            $("#comprobante").hide();
 
             $("#factura_id").val(data.factura.id);
+            $("#orden_facturacion_id").val(data.factura.id);
             $("#no_factura").val(data.factura.no_factura);
             $("#cliente").val(data.cliente.nombre_cliente);
             $("#sucursal").val(data.sucursal.nombre_sucursal);
@@ -278,6 +287,19 @@
             (data.detalle.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
             (data.detalle.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
 
+            $("#a").val(data.detalle.a);
+            $("#b").val(data.detalle.b);
+            $("#c").val(data.detalle.c);
+            $("#d").val(data.detalle.d);
+            $("#e").val(data.detalle.e);
+            $("#f").val(data.detalle.f);
+            $("#g").val(data.detalle.g);
+            $("#h").val(data.detalle.h);
+            $("#i").val(data.detalle.i);
+            $("#j").val(data.detalle.j);
+            $("#k").val(data.detalle.k);
+            $("#l").val(data.detalle.l);
+
             if (genero == "2"){
 
                 if (mujer_plus == 7) {
@@ -297,18 +319,7 @@
                     $("#sf").html("22W");
                     $("#sg").html("24W");
                     $("#sh").html("26W");
-                    // $("#ra").html(datos.a);
-                    // $("#rb").html(datos.b);
-                    // $("#rc").html(datos.c);
-                    // $("#rd").html(datos.d);
-                    // $("#re").html(datos.e);
-                    // $("#rf").html(datos.f);
-                    // $("#rg").html(datos.g);
-                    // $("#rh").html(datos.h);
-                    // $("#ri").html(datos.i);
-                    // $("#rj").html(datos.j);
-                    // $("#rk").html(datos.k);
-                    // $("#rl").html(datos.l);
+            
                     $("#i").attr("disabled", true);
                     $("#j").attr("disabled", true);
                     $("#k").attr("disabled", true);
@@ -350,18 +361,7 @@
                     $("#sj").html("17/18");
                     $("#sk").html("19/20");
                     $("#sl").html("21/22");
-                    // $("#ra").html(datos.a);
-                    // $("#rb").html(datos.b);
-                    // $("#rc").html(datos.c);
-                    // $("#rd").html(datos.d);
-                    // $("#re").html(datos.e);
-                    // $("#rf").html(datos.f);
-                    // $("#rg").html(datos.g);
-                    // $("#rh").html(datos.h);
-                    // $("#ri").html(datos.i);
-                    // $("#rj").html(datos.j);
-                    // $("#rk").html(datos.k);
-                    // $("#rl").html(datos.l);
+           
                     // $("#i").attr("disabled", false);
                     // $("#j").attr("disabled", false);
                     // $("#k").attr("disabled", false);
@@ -565,15 +565,58 @@
         });
     }
 
-    function eliminar(id_corte){
-        bootbox.confirm("¿Estas seguro de eliminar este corte?", function(result){
+    function eliminar(id_factura){
+        bootbox.confirm("¿Estas seguro de eliminar la nota de credito?", function(result){
             if(result){
-                $.post("corte/delete/" + id_corte, function(data){
-                    bootbox.alert("Corte <strong>"+ data.corte.numero_corte+ "</strong> eliminado correctamente");
-                    $("#cortes_listados").DataTable().ajax.reload();
+                $.post("nota-credito/delete/" + id_factura, function(data){
+                    bootbox.alert("Nota de credito <strong>"+ data.nota_credito.no_nota_credito+ "</strong> eliminada correctamente");
+                    $("#facturas_listadas").DataTable().ajax.reload();
+                
                 })
             }
         })
+    }
+
+    function agregar(factura_detella_id){
+
+        var nota_credito_detalle = {
+            nc_id: $("#nc_id").val()
+        };
+
+   
+                
+        $.ajax({
+            url: "nota-credito/detalle/"+factura_detella_id,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(nota_credito_detalle),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    $("#invoice_detail").DataTable().ajax.reload();
+                    // bootbox.alert("Nota de credito <strong>"+datos.nota_credito.no_nota_credito+"</strong> creada correctamente.");
+                    // mostrarForm(false);
+                  
+                    
+            
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
     }
 
    

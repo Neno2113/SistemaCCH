@@ -55,6 +55,7 @@ class RecepcionController extends Controller
                 $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
                 ->get()->last();
                 $total_enviado = $cantidad_enviada['total_enviado'];
+                $total_devuelto = $cantidad_enviada['total_devuelto'];
 
                 $corte = Corte::find($corte_id);
                 
@@ -152,6 +153,9 @@ class RecepcionController extends Controller
             $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
                                             ->get()->last();
             $total_enviado = $cantidad_enviada['total_enviado'];
+            $total_devuelto = $cantidad_enviada['total_devuelto'];
+            // $cantidad_enviada->devuelto = 0;
+            // $cantidad_enviada->save();
 
             $recepcion = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
             $total_recibido = $recepcion['total_recibido'];
@@ -163,7 +167,8 @@ class RecepcionController extends Controller
                 'total_cortado' => $cantidad_total,
                 'perdidas' => $cant_perdida,
                 'total_enviado' => $total_enviado,
-                'total_recibido' => $total_recibido
+                'total_recibido' => $total_recibido,
+                'total_devuelto' => $total_devuelto
 
             ];
 

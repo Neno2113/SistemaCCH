@@ -1,44 +1,6 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
-    $("#formulario").validate({
-        rules: {
-            no_marcada: {
-                required: true,
-                minlength: 1,
-                number: true
-            },
-            ancho_marcada: {
-                required: true,
-                minlength: 1,
-                number: true
-            },
-            largo_marcada: {
-                required: true,
-                minlength: 1,
-                number: true
-            },
-        },
-        messages: {
-            no_marcada: {
-                required: "El numero de marcada es obligatorio",
-                minlength: "Debe contener al menos 1 numero",
-                number: "Este campo solo admite numeros"
-            },
-            ancho_marcada: {
-                required: "El ancho de la marcada es obligatorio",
-                minlength: "Debe contener al menos 1 numero",
-                number: "Este campo solo admite numeros"
-            },
-            largo_marcada: {
-                required: "El largo de la marcada es obligatorio",
-                minlength: "Debe contener al menos 1 numero",
-                number: "Este campo solo admite numeros"
-            },
-           
-
-        }
-    })
    
 
     var tabla
@@ -49,7 +11,7 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         ncCod();
-      
+        
         
     }
 
@@ -58,6 +20,8 @@ $(document).ready(function() {
         $("#factura_id").val("");
         $("#tipo_nota_credito").val("");
         $("#a").val("");
+        $("#nc_id").val("");
+        $("#ncf").val("");
         $("#b").val("");
         $("#c").val("");
         $("#d").val("");
@@ -103,64 +67,117 @@ $(document).ready(function() {
         });
     }
 
+    $("#tipo_nota_credito").on('change', function(){
+
+    
+        var nc_ncf = $("#tipo_nota_credito").val();
+        
+        if(nc_ncf == "CB"){
+            $("#comprobante").show();
+
+            $("#ncf").focusout(function(){
+                var nota_credito = {
+                    sec: $("#sec").val(),
+                    no_nota_credito: $("#no_nota_credito").val(),
+                    factura_id: $("#factura_id").val(),
+                    tipo_nota_credito: $("#tipo_nota_credito").val(), 
+                    precio_lista_factura: $("#precio_lista_factura").val(),
+                    ncf: $("#ncf").val()
+                };
+                
+                $.ajax({
+                    url: "nota-credito",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(nota_credito),
+                    contentType: "application/json",
+                    success: function(datos) {
+                        if (datos.status == "success") {
+                            $("#nc_id").val(datos.nota_credito.id);
+                          
+                        
+                            $("#tipo_nota_credito").attr('disabled', true);
+                            $("#detalle-factura").show();
+                        
+                        } else {
+                            bootbox.alert(
+                                "Ocurrio un error durante la creacion de la composicion"
+                            );
+                        }
+                    },
+                    error: function(datos) {
+                        console.log(datos.responseJSON.errors); 
+                        let errores = datos.responseJSON.errors;
+        
+                        Object.entries(errores).forEach(([key, val]) => {
+                            bootbox.alert({
+                                message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                                size: 'small'
+                            });
+                        });
+                    }
+                });
+            });
+
+         
+        }else{
+            var nota_credito = {
+                sec: $("#sec").val(),
+                no_nota_credito: $("#no_nota_credito").val(),
+                factura_id: $("#factura_id").val(),
+                tipo_nota_credito: $("#tipo_nota_credito").val(), 
+                precio_lista_factura: $("#precio_lista_factura").val()
+            };
+
+            $.ajax({
+                url: "nota-credito",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(nota_credito),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        $("#nc_id").val(datos.nota_credito.id);
+                      
+                    
+                        $("#tipo_nota_credito").attr('disabled', true);
+                        $("#detalle-factura").show();
+                    
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la creacion de la composicion"
+                        );
+                    }
+                },
+                error: function(datos) {
+                    console.log(datos.responseJSON.errors); 
+                    let errores = datos.responseJSON.errors;
+    
+                    Object.entries(errores).forEach(([key, val]) => {
+                        bootbox.alert({
+                            message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                            size: 'small'
+                        });
+                    });
+                }
+            });
+        }
+                
+       
+        
+        
+    });
+
 
 
     //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-        
-        var nota_credito = {
-            sec: $("#sec").val(),
-            no_nota_credito: $("#no_nota_credito").val(),
-            factura_id: $("#factura_id").val(),
-            tipo_nota_credito: $("#tipo_nota_credito").val(), 
-            precio_lista_factura: $("#precio_lista_factura").val(),
-            a: $("#a").val(),
-            b: $("#b").val(),
-            c: $("#c").val(),
-            d: $("#d").val(),
-            e: $("#e").val(),
-            f: $("#f").val(),
-            g: $("#g").val(),
-            h: $("#h").val(),
-            i: $("#i").val(),
-            j: $("#j").val(),
-            k: $("#k").val(),
-            l: $("#l").val(),
-        };
+        ncCod();
+        $("#facturas_listadas").DataTable().ajax.reload();
+        mostrarForm(false);
 
-        $.ajax({
-            url: "nota-credito",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(nota_credito),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Nota de credito <strong>"+datos.nota_credito.no_nota_credito+"</strong> creada correctamente.");
-                    ncCod();
-                    mostrarForm(false);
-                    $("#facturas_listadas").DataTable().ajax.reload();
-                   
-            
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function(datos) {
-                console.log(datos.responseJSON.errors); 
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
-                    });
-                });
-            }
-        });
+       
     });
 
     //funcion para listar en el Datatable
@@ -203,8 +220,6 @@ $(document).ready(function() {
             }
         });
     }
-
-  
 
     //funcion para editar
     $("#btn-edit").click(function(e) {
@@ -253,97 +268,6 @@ $(document).ready(function() {
        
     });
 
-    $("#btn-buscar").click(function(e) {
-        e.preventDefault();
-
-       
-        var id = $("#cortesSearch").val()
-        
-        $.ajax({
-            url: "talla/search/"+ id,
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Se consulto correctamente!!");
-                    $("#a").val(datos.talla.a);
-                    $("#b").val(datos.talla.b);
-                    $("#c").val(datos.talla.c);
-                    $("#d").val(datos.talla.d);
-                    $("#e").val(datos.talla.e);
-                    $("#f").val(datos.talla.f);
-                    $("#g").val(datos.talla.g);
-                    $("#h").val(datos.talla.h);
-                    $("#i").val(datos.talla.i);
-                    $("#j").val(datos.talla.j);
-                    $("#k").val(datos.talla.k);
-                    $("#l").val(datos.talla.l);
-                    $("#total").val(datos.talla.total);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
-            }
-        });
-       
-    });
-
-    $("#btn-generar").click(function(e){
-        e.preventDefault();
-        let year = $("#year").val();
-        let sec_manual = $("#sec_manual").val();
-        let referencia = year + "-"+ sec_manual;
-
-        let corte = {
-            numero_corte: referencia
-        }
-        // console.log(JSON.stringify(corte));
-
-        $.ajax({
-            url: "verificacion/corte",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(corte),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                  
-                    $("#numero_corte_gen").val(referencia);
-                    $("#corte").val(referencia);
-                    $("#numero_corte").val(referencia);
-                    $("#corte_tallas").val(referencia); 
-                    
-                    $("#fila1").show();
-                    $("#fila2").show();
-                    $("#fila3").show();
-                    bootbox.alert("Corte generado correctamente");
-                    $("#btn-generar").attr('disabled', true);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function(datos) {
-                console.log(datos.responseJSON.errors); 
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
-                    });
-                });
-            }
-        });
-    });
 
 
 
@@ -355,17 +279,19 @@ $(document).ready(function() {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#edit-hide").attr("disabled", false);
+            $("#detalle-factura").hide();
+            $("#comprobante").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
-            $("#fila1").hide();
-            $("#fila2").hide();
-            $("#fila3").hide();
             // $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
+            $("#tipo_nota_credito").attr('disabled', false);
+            $("#detalle-factura").show();
+            $("#comprobante").show();
         }
     }
 
@@ -380,10 +306,6 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-    window.onresize = function() {
-        tabla.columns.adjust().responsive.recalc();
-    } 
   
-
     init();
 });

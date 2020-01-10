@@ -69,6 +69,10 @@ Route::get('/lavanderia', function () {
     return view('sistema.lavanderia.lavanderia');
 })->middleware('auth');
 
+Route::get('/devolucion-lavanderia', function () {
+    return view('sistema.lavanderia.envioLavanderia');
+})->middleware('auth');
+
 Route::get('/recepcion', function () {
     return view('sistema.recepcion.recepcion');
 })->middleware('auth');
@@ -320,6 +324,8 @@ Route::get('/latest_cortes', 'DashboardController@latestCortes');
 Route::get('nota_credito/{id}', 'NotaCreditoController@show');
 Route::get('nc/lastdigit', 'NotaCreditoController@getDigits');
 Route::post('nota-credito', 'NotaCreditoController@store');
+Route::post('nota-credito/detalle/{id}', 'NotaCreditoController@storeDetalle');
+Route::post('nota-credito/delete/{id}', 'NotaCreditoController@destroy');
 
 
 

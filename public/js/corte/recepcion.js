@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var pendiente_guardar;
+    var total_devuelto_gloabl;
 
     
     $("#formulario").validate({
@@ -153,6 +154,8 @@ $(document).ready(function() {
                     let cantidad_perdida = datos.perdidas;
                     let parcial = datos.envio_parcial;
                     let total_recibido = datos.total_recibido;
+                    let total_devuelto = datos.total_devuelto;
+                    total_devuelto_gloabl = datos.total_devuelto;
                     let pendiente = total_enviado - total_recibido - cantidad_perdida;
                     pendiente_guardar = pendiente; 
 
@@ -198,6 +201,7 @@ $(document).ready(function() {
             numero_factura: $("#num_factura").val(),
             fecha_recepcion: $("#fecha_recepcion").val(),
             cantidad_recibida: $("#cantidad_recibida").val(),
+            total_devuelto: total_devuelto_gloabl,
             estandar_recibido: $("input[name='r1']:checked").val(),
             sec: $("#sec").val()
         };
@@ -278,7 +282,7 @@ $(document).ready(function() {
                 { data: "estandar_recibido", name: "recepcion.estandar_recibido" },
               
             ],
-            order: [[3, 'desc']],
+            order: [[2, 'desc']],
             rowGroup: {
                 dataSrc: 'numero_corte'
             }

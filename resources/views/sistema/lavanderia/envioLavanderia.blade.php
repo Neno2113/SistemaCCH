@@ -154,7 +154,7 @@
         <h4>Cortes en lavanderia:</h4>
     </div>
     <div class="card-body">
-        <table id="lavanderias" class="table table-striped table-bordered datatables text-sm" style="width: 100%">
+        <table id="lavanderias" class="table table-striped table-bordered datatables" style="width: 100%">
             <thead>
                 <tr>
                     <th></th>
@@ -163,13 +163,11 @@
                     <th># Envio</th>
                     <th># Corte</th>
                     <th>Ref.</th>
-                    <th>Envio</th>
-                    <th>T. Envio</th>
+                    <th>Enviado</th>
+                    <th>T. Enviado</th>
                     <th>T. Cortado</th>
-                    <th>T. Dev.</th>
                     <th>Lav.</th>
-                    <th>Status</th>
-                    {{-- <th>Estandar</th> --}}
+                    <th>Estandar </th>
 
                 </tr>
             </thead>
@@ -182,13 +180,11 @@
                     <th># Envio</th>
                     <th># Corte</th>
                     <th>Ref.</th>
-                    <th>Envio</th>
-                    <th>T. Envio</th>
+                    <th>Enviado</th>
+                    <th>T. Enviado</th>
                     <th>T. Cortado</th>
-                    <th>T. Dev.</th>
                     <th>Lav.</th>
-                    <th>Status</th>
-                    {{-- <th>Estandar</th> --}}
+                    <th>Estandar </th>
                 </tr>
             </tfoot>
         </table>
@@ -200,7 +196,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/corte/lavanderia.js')}}"></script>
+<script src="{{asset('js/corte/envio-lavanderia.js')}}"></script>
 
 <script>
     function mostrar(id_lavanderia) {

@@ -68,15 +68,15 @@
                     <br>
                     <br>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <label for="">Fecha(*):</label>
                             <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control">
                         </div>
-                        <div class="col-2">
+                        <div class="col-md-2">
                             <label for="">Cantidad Rec.(*):</label>
                             <input type="text" name="cantidad_recibida" id="cantidad_recibida" class="form-control">
                         </div>
-                        <div class="col-2">
+                        <div class="col-md-2">
                             <label for="">Restante por recibir:</label>
                             <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control"
                                 readonly>

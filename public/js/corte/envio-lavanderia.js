@@ -248,48 +248,7 @@ $(document).ready(function() {
                 },
                 callback: function(result) {
                     if (result) {
-                        var lavanderia = {
-                            sec: $("#sec").val(),
-                            numero_envio: $("#numero_envio").val(),
-                            suplidor: $("#suplidores").val(),
-                            corte: $("#cortesSearch").val(),
-                            fecha_envio: $("#fecha_envio").val(),
-                            devuelto: $("#cantidad").val(),
-                            receta_lavado: $("#receta_lavado").val(),
-                            estandar_incluido: $("input[name='r1']:checked").val()
-                        };
-                        console.log(JSON.stringify(lavanderia));
-                        $.ajax({
-                            url: "lavanderia",
-                            type: "POST",
-                            dataType: "json",
-                            data: JSON.stringify(lavanderia),
-                            contentType: "application/json",
-                            success: function(datos) {
-                                if (datos.status == "success") {
-                                    bootbox.alert("Registro");
-                                    limpiar();
-                                    tabla.ajax.reload();
-                                    mostrarForm(false);
-                                    $('#btn-generar').attr("disabled", false);
-                                } else {
-                                    bootbox.alert(
-                                        "Ocurrio un error durante la creacion de la composicion"
-                                    );
-                                }
-                            },
-                            error: function(datos) {
-                                console.log(datos.responseJSON.errors); 
-                                let errores = datos.responseJSON.errors;
-                
-                                Object.entries(errores).forEach(([key, val]) => {
-                                    bootbox.alert({
-                                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                                        size: 'small'
-                                    });
-                                });
-                            }
-                        });
+                     
                     } else {
                         bootbox.alert("<div class='alert alert-danger' role='alert'>"+
                         "<i class='fas fa-exclamation-triangle'></i> La cantidad digitada no puede ser mayor a la cantidad restante por enviar del corte"+
@@ -297,7 +256,7 @@ $(document).ready(function() {
                     }
                 }
             });
-        
+            
         }else{
             $.ajax({
                 url: "lavanderia",
@@ -368,10 +327,8 @@ $(document).ready(function() {
                 { data: "cantidad_parcial", name: "lavanderia.cantidad_parcial" },
                 { data: "total_enviado", name: "lavanderia.total_enviado" },
                 { data: "total", name: "corte.total" },
-                { data: "total_devuelto", name: "lavanderia.total_devuelto" },
                 { data: "nombre", name: "suplidor.nombre" },
-                { data: "devuelto", name: "lavanderia.devuelto" },
-                // { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
+                { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
               
             ],
             order: [[3, 'desc']],

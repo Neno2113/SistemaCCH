@@ -190,12 +190,12 @@
                 <p>Lavanderia</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="/sistemaCCH/public/lavanderia" class="nav-link">
+            {{-- <li class="nav-item">
+              <a href="/sistemaCCH/public/devolucion-lavanderia" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Devolucion Lavanderia</p>
               </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <a href="/sistemaCCH/public/recepcion" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
