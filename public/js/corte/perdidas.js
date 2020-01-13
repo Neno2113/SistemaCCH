@@ -730,7 +730,7 @@ $(document).ready(function() {
                         l: $("#l").val()
                     };
 
-                    console.log(JSON.stringify(talla));
+                 
 
                     $.ajax({
                         url: "talla_perdidas/edit",

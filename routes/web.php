@@ -203,6 +203,7 @@ Route::post('/corte/delete/{id}', 'CorteController@destroy');
 Route::get('cortes', 'CorteController@selectCorte');
 Route::get('cortes_home', 'CorteController@corte_home');
 Route::post('verificacion/corte', 'CorteController@verificarCorte');
+Route::get('testSelectProduct', 'CorteController@testSelect2');
 
 //Talla
 Route::post('/talla', 'TallaController@store');
@@ -312,6 +313,8 @@ Route::get('factura/lastdigit', 'FacturaController@getDigits');
 Route::post('factura', 'FacturaController@store');
 Route::get('factura/resumida/{id}', 'FacturaController@imprimir');
 Route::get('factura/{id}', 'FacturaController@verificar');
+Route::get('factura-vista', 'FacturaController@verificar');
+
 
 //Home
 Route::get('/venta12meses', 'DashboardController@ventas12meses');

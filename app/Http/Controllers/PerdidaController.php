@@ -277,6 +277,24 @@ class PerdidaController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
+            $x = $request->input('talla_x');
+
+            //Validar numeros
+            $a = intval(trim($a, "_"));
+            $b = intval(trim($b, "_"));
+            $c = intval(trim($c, "_"));
+            $d = intval(trim($d, "_"));
+            $e = intval(trim($e, "_"));
+            $f = intval(trim($f, "_"));
+            $g = intval(trim($g, "_"));
+            $h = intval(trim($h, "_"));
+            $i = intval(trim($i, "_"));
+            $j = intval(trim($j, "_"));
+            $k = intval(trim($k, "_"));
+            $l = intval(trim($l, "_"));
+            $x = intval(trim($x, "_"));
+            
+
             $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l; 
         
             $tallas = TallasPerdidas::where('perdida_id', $perdida_id)->get()->first();
@@ -293,6 +311,7 @@ class PerdidaController extends Controller
             $tallas->j = $j;
             $tallas->k = $k;
             $tallas->l = $l;
+            $tallas->talla_x = $x;
             $tallas->total = $total;
 
             $tallas->save();

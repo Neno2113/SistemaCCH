@@ -324,7 +324,8 @@
             $("#referencia_producto").show();
             $("#fila1").show();
             $("#fila2").show();
-            console.log(data);
+            $("#fila3").show();
+          
 
             $("#id").val(data.perdida.id);
             $("#no_perdida").val(data.perdida.no_perdida);

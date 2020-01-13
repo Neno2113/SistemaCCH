@@ -205,7 +205,7 @@ class FacturaController extends Controller
                 'factura.id', 'factura.no_factura', 'factura.tipo_factura', 'factura.fecha', 'factura.comprobante_fiscal',
                 'factura.descuento', 'factura.itbis', 'orden_facturacion.no_orden_facturacion', 'users.name', 'users.surname',
                 'factura.impreso'
-            ])->where('factura.impreso', 'LIKE', 0);
+            ])->where('factura.impreso', 'LIKE', 1);
 
         return DataTables::of($facturas)
             ->editColumn('comprobante_fiscal', function ($factura) {
@@ -361,6 +361,20 @@ class FacturaController extends Controller
                 'ordenes_pedido'
             ));
             return $pdf->download('facturaResumida.pdf');
+            return view('sistema.ordenFacturacion.facturaResumida',\compact(
+                'factura',
+                'orden_pedido',
+                'orden_facturacion_detalle',
+                'productosFactura',
+                'sku',
+                'detalles_totales',
+                'subtotal',
+                'impuesto',
+                'descuento',
+                'total_final',
+                'bultos',
+                'ordenes_pedido'
+            ));         
         }
     }
 

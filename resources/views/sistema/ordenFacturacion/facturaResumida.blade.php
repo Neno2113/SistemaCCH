@@ -34,7 +34,7 @@
         }
 
         header {
-            padding: 10px 0;
+            padding: 0px 0;
             margin-bottom: 20px;
             border-bottom: 1px solid #AAAAAA;
             margin-right: 8%;
@@ -42,17 +42,18 @@
 
         #logo {
             float: left;
-            margin-top: 8px;
+            margin-top: 5px;
         }
 
         #logo img {
-            height: 60px;
+            height: 52px;
         }
 
         #company {
             float: right;
             text-align: right;
-            margin-right: 40%;
+            margin-right: 42%;
+            font-size: 8px;
         }
 
 
@@ -61,9 +62,9 @@
         }
 
         #client {
-            padding-left: 6px;
+            /* padding-left: 6px;
             border-left: 6px solid #0087C3;
-            float: left;
+            float: left; */
         }
 
         #client .to {
@@ -74,9 +75,9 @@
             padding-left: 6px;
             /* border-left: 6px solid #0087C3;
             border-bottom: 6px solid #0087C3; */
-            padding: 5px;
+            /* padding: 5px;
             float: left;
-            margin-left: 20%;
+            margin-left: 20%; */
         }
 
         #client-orden .to {
@@ -93,7 +94,8 @@
         #invoice {
             float: right;
             text-align: right;
-            margin-right: 50%;
+            margin-right: 30%;
+            width: 30%;
         }
 
         #invoice-fiscal {
@@ -116,7 +118,7 @@
         }
 
         #invoice h1 {
-            color: #0087C3;
+            color: #000;
             font-size: 2.2em;
             line-height: 1em;
             font-weight: normal;
@@ -124,7 +126,7 @@
         }
 
         #invoice_proceso h1 {
-            color: #0087C3;
+            color: #000;
             font-size: 2.2em;
             line-height: 1em;
             font-weight: normal;
@@ -133,122 +135,146 @@
 
         #invoice .date {
             font-size: 1.1em;
-            color: #777777;
+            color: #000;
         }
 
         #invoice_proceso .date {
             font-size: 1.1em;
-            color: #777777;
+            color: #000;
         }
 
-        table {
+        .tabla-principal {
             width: 90%;
             border-collapse: collapse;
             border-spacing: 0;
             margin-bottom: 20px;
             table-layout: auto;
+            border: solid 2px black;
         }
 
-        table th,
-        table td {
-            padding: 20px;
-            background: #EEEEEE;
+        .tabla-principal th,
+        .tabla-principal td {
+            /* padding: 20px; */
+            background: #fff;
             text-align: center;
             border-bottom: 1px solid #FFFFFF;
+            /* border: solid 2px black; */
         }
 
-        table th {
+        .tabla-principal th {
             white-space: nowrap;
             font-weight: normal;
+            background-color: #131980;
+            /* border: solid 2px black; */
         }
 
-        table td {
+        .tabla-principal td {
             text-align: right;
+            /* border: solid 2px black; */
         }
 
-        table td h3 {
-            color: #2A8EAC;
+        .tabla-principal td h3 {
+            color: #fff;
             font-size: 1.2em;
             font-weight: normal;
             margin: 0 0 0.2em 0;
+            /* border: solid 2px black; */
         }
 
-        table .no {
-            color: #FFFFFF;
+        .tabla-principal .no {
+            color: #fff;
             font-size: 13px;
-            background: #2A8EAC;
+            /* background: #160c70; */
             text-align: center;
+            border: solid 2px black;
 
         }
 
-        table .desc {
+        .tabla-principal .desc {
             text-align: center;
             font-size: 13px;
+            color: #fff;
+            border: solid 2px black;
 
         }
 
-        table .unit {
-            background: #DDDDDD;
+        .tabla-principal .unit {
+            /* background-color: #160c70; */
             font-size: 13px;
+            color: #fff;
+            border: solid 2px black;
+            /* font-weight: bold; */
         }
 
-        table .unit-fiscal {
-            background: #DDDDDD;
+        .tabla-principal .unit-fiscal {
+            background: #fff;
             font-size: 13px;
+            border: solid 2px black;
         }
 
-        table .unit_talla {
-            background: #DDDDDD;
+        .tabla-principal .unit_talla {
+            background: #fff;
             text-align: center;
             font-size: 11px;
+            font-weight: bold;
+            /* border: solid 2px black; */
         }
 
-        table .qty {}
+        .tabla-principal .qty {}
 
-        table .total {
-            background: #2A8EAC;
-            color: #FFFFFF;
+        .tabla-principal .total {
+            /* background: #fff; */
+            color: #fff;
             font-size: 13px;
+            border: solid 2px black;
         }
 
-        table td.unit,
-        table td.desc,
-        table td.qty,
-        table td.no,
-        table td.total {
+        .tabla-principal tbody tr {
+            padding-bottom: 30px;
+        }
+
+        .tabla-principal td.unit,
+        .tabla-principal td.desc,
+        .tabla-principal td.qty,
+        .tabla-principal td.no,
+        .tabla-principal td.total {
             font-size: 1.2em;
             /* text-decoration: none; */
+            color: #000;
+            border: solid 2px black;
         }
 
-        table td.unit-fiscal,
-        table td.desc-fiscal {
+        .tabla-principal td.unit-fiscal,
+        .tabla-principal td.desc-fiscal {
             font-size: 1.2em;
             text-align: center;
         }
 
-        table td.unit li,
-        table td.desc li,
-        table td.qty li,
-        table td.no li,
-        table td.total li {
+        .tabla-principal td.unit li,
+        .tabla-principal td.desc li,
+        .tabla-principal td.qty li,
+        .tabla-principal td.no li,
+        .tabla-principal td.total li {
             list-style-type: none;
             text-align: center;
-            padding: 0;
+            padding-bottom: 350px;
         }
 
-        table td.desc-des li {
-            font-size: 1.0em;
+        .tabla-principal td.desc-des li {
+            /* font-size: 1.0em; */
             text-align: center;
             list-style-type: none;
-            padding: 0;
+            margin-bottom: 350px;
+            color: #000;
+            /* padding: 0; */
             /* padding-right: 20px; */
         }
 
-        table tbody tr:last-child td {
-            border: none;
+        .tabla-principal tbody tr:last-child td {
+            /* border: none; */
         }
 
-        table tfoot td {
+        .tabla-principal tfoot td {
             padding: 10px 20px;
             background: #FFFFFF;
             border-bottom: none;
@@ -257,34 +283,47 @@
             border-top: 1px solid #AAAAAA;
         }
 
-        table tfoot tr:first-child td {
+        .tabla-principal tfoot tr:first-child td {
             border-top: none;
         }
 
-        table tfoot tr:last-child td {
+        .tabla-principal tfoot tr:last-child td {
             color: #0087C3;
             font-size: 1.4em;
             border-top: 1px solid #0087C3;
 
         }
 
-        table tfoot tr td:first-child {
+        /* 
+        .tabla-totales {
+            border: 2px  solid black;
+            text-align: center;
+        }
+        .tabla-totales tbody {
+            border: 2px  solid black;
+        } */
+
+
+        .tabla-principal tfoot tr td:first-child {
             border: none;
         }
 
         #thanks {
             font-size: 2em;
             margin-bottom: 20px;
+            color: #000;
         }
 
         #notices {
             padding-left: 6px;
-            border-left: 6px solid #0087C3;
+            border-left: 6px solid #160c70;
+            color: #000;
         }
 
         #notices .notice {
             font-size: 1.2em;
             width: 90%;
+            color: #000;
         }
 
         footer {
@@ -302,6 +341,7 @@
             margin-top: 50px;
             text-align: center;
             font-weight: bold;
+            color: #000;
         }
 
         .firma_enviado {
@@ -323,10 +363,93 @@
             margin-left: 50%;
             width: 15%;
         }
-
-
         footer {
             page-break-after: always;
+        }
+        . .tabla-principal-totales{
+            border: none;
+        }
+        .tabla-bultos{
+            width:50%; 
+            color:#000; 
+            float:left;
+        }
+        .tabla-bultos thead th{
+            border: 2px solid black;
+            padding: 5px;
+            text-align: start;
+        }
+
+        .tabla-factura{
+            float: right;
+            width: 19%;
+            border: 2px solid black;
+            margin-right: 10%;
+        }
+
+        .tabla-factura th{
+            font-size: 20px;
+            padding-left: 19px;
+            padding-right: 16px; 
+            padding-top: 7px; 
+        }
+        .tabla-factura tbody .num_factura{
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            text-align: center;
+            font-size: 12px;
+            color:#c85b5b; 
+        }
+        .tabla-factura tbody .fecha{
+            text-align: center;
+            font-size: 10px;
+            padding: 6px;
+        }
+        .tabla-factura tbody .page{
+            text-align: center;
+            font-size: 10px;
+            padding: 6px;
+            border-top: 2px solid black;
+
+        }
+
+        .tabla-totales{
+            width:40%; 
+            color:#000; 
+            float:right; 
+            margin-right:10%;
+        }
+        .tabla-totales .total{
+            font-weight:bold; 
+            font-size:13px;
+        }
+        .tabla-cliente{
+            float: left;
+            border-top:2px solid black;
+            border-left:2px solid black;
+            border-right:2px solid black;
+            width: 52%;
+
+        }
+        .tabla-cliente thead th{
+            border-bottom: 2px solid black;
+            font-size: 11px;
+        }
+        .tabla-cliente thead td{
+            border-bottom: 2px solid black;
+            padding-left: 47px;
+        }
+        .tabla-cliente tbody td{
+            border-bottom: 2px solid black;
+            padding-right: 106px;
+        }
+        .tabla-cliente tbody th{
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+            font-size: 11px;
+        }
+        .tabla-cliente tbody .direccion{
+            padding: 12px;
         }
     </style>
 </head>
@@ -341,12 +464,45 @@
             <div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
             <div>(809) 699-8400</div>
             <div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
+            <div>RNC: 130-746974</div>
         </div>
         </div>
     </header>
     <main>
         <div id="details" class="clearfix">
-            <div id="client">
+            <table class="tabla-cliente">
+                <thead class="cod">
+                    <tr >
+                        <th>Cliente codigo</th>
+                        <td>Cod</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{$orden_pedido->cliente->nombre_cliente}}</td>
+                    </tr>
+                    <tr>
+                        <th class="direccion">Direccion</th>
+                        <td class="direccion">{{$orden_pedido->cliente->calle}}, {{$orden_pedido->cliente->sector}}
+                            {{$orden_pedido->cliente->provincia}}, {{$orden_pedido->cliente->sitios_cercanos}}<</td>
+                    </tr>
+                    <tr>
+                        <th>Sucursal</th>
+                        <td>{{$orden_pedido->sucursal->nombre_sucursal}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tel</th>
+                        <td>{{$orden_pedido->cliente->telefono_1}}</td>
+                    </tr>
+                    <tr>
+                        <th>RNC</th>
+                        <td>{{$orden_pedido->cliente->rnc}}</td>
+                    </tr>
+                </tbody>
+              
+            </table>
+            {{-- <div id="client">
                 <div class="to">FACTURA PARA:</div>
                 <h2 class="name">{{$orden_pedido->cliente->nombre_cliente}}</h2>
                 <div class="address">{{$orden_pedido->cliente->direccion_principal}}</div>
@@ -356,13 +512,32 @@
                 </div>
                 <div class="to">SUCURSAL:</div>
                 <h2 class="name">{{$orden_pedido->sucursal->nombre_sucursal}}</h2>
-            </div>
-            <div id="invoice">
-                <h1>{{$factura->no_factura}}</h1>
+            </div> --}}
+            {{-- <div id="invoice"> --}}
+                <table  class="tabla-factura">
+                    <thead>
+                        <tr>    
+                            <th>FACTURA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="num_factura">FB-00098897</td>
+                        </tr>
+                        <tr>
+                            <td class="fecha">Fecha:      13/1/2020</td>
+                        </tr>
+                        <tr>
+                            <td class="page">Pagina 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {{-- <h1>{{$factura->no_factura}}</h1>
                 <div class="date">Fecha: {{$factura->fecha}} </div>
-                {{-- <div class="date">Fecha Entrega: </div> --}}
-            </div>
-            <div id="client-orden">
+                <div class="date">Fecha Entrega: </div> --}}
+            {{-- </div> --}}
+            {{-- <div id="client-orden">
                 <div class="to">ORDEN PEDIDO:</div>
                 @foreach ($ordenes_pedido as $orden)
                 <h2 class="name">{{$orden->no_orden_pedido}}</h2>
@@ -371,9 +546,9 @@
                 <div class="to">TERMINOS DE PAGO:</div>
                 <div class="address">{{$orden_pedido->cliente->condiciones_credito}}</div>
                 <div class="email"><a href="mailto:john@example.com"></a></div>
-                {{-- <div class="to">SUCURSAL:</div>
-                <h2 class="name"></h2> --}}
-            </div>
+                <div class="to">SUCURSAL:</div>
+                <h2 class="name"></h2>
+            </div> --}}
         </div>
         @if ($factura->comprobante_fiscal == 1)
         <div id="invoice-fiscal">
@@ -398,12 +573,12 @@
         </table>
         @endif
 
-        <table border="0" cellspacing="0" cellpadding="0">
+        <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal" >
             <thead>
                 <tr>
                     <th class="desc">CANT</th>
                     <th class="no">REFERENCIA</th>
-                    <th class="unit">SKU</th>
+                    <th class="unit">UPC/SKU</th>
                     <th class="desc">DESCRIPCION</th>
                     <th class="unit">PRECIO</th>
                     <th class="total">TOTAL</th>
@@ -447,38 +622,77 @@
                     </td>
                 </tr>
             </tbody>
-            <tfoot>
+            {{-- <tfoot>
                 <tr>
                     <td colspan="2"></td>
                     <td colspan="2">SUBTOTAL</td>
                     <td>{{number_format($subtotal)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">DESCUENTO {{$factura->descuento}}%</td>
+                <td>{{number_format($descuento)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">IMPUESTO {{$factura->itbis}}%</td>
+                <td>{{number_format($impuesto)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">TOTAL FINAL</td>
+                <td>{{number_format($total_final)}} RD$</td>
+            </tr>
+            </tfoot> --}}
+        </table>
+        <div style="clear: fix;"> 
+            <table border="0" cellspacing="0" cellpadding="0"  class="tabla-bultos">
+                <thead>
+                    <tr>
+                        <th >TOTAL DE ARTICULOS:</th>
+                        <th >FECHA:</th>
+                    </tr>
+                    <tr>
+                        <th >CANTIDAD DE BULTOS:</th>
+                        <th >HORA DE DESPACHO:</th>
+                    </tr>
+                
+                </thead>
+        
+            </table>
+       
+            <table  class="tabla-totales">
+             
+                <tr>
+                    
+                    <td colspan="2">SUBTOTAL:</td>
+                    <td>{{number_format($subtotal)}} RD$</td>
                 </tr>
                 <tr>
-                    <td colspan="2"></td>
-                    <td colspan="2">DESCUENTO {{$factura->descuento}}%</td>
+                    
+                    <td colspan="2">DESCUENTO: {{$factura->descuento}}%</td>
                     <td>{{number_format($descuento)}} RD$</td>
                 </tr>
                 <tr>
-                    <td colspan="2"></td>
-                    <td colspan="2">IMPUESTO {{$factura->itbis}}%</td>
+                    <td colspan="2">IMPUESTO: {{$factura->itbis}}%</td>
                     <td>{{number_format($impuesto)}} RD$</td>
                 </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td colspan="2">TOTAL FINAL</td>
+                <tr  class="total">
+                    <td colspan="2">TOTAL FINAL:</td>
                     <td>{{number_format($total_final)}} RD$</td>
                 </tr>
-            </tfoot>
-        </table>
+            </table>
+        </div>
+      
 
         @if ($factura->descuento <> 0)
-            <div id="thanks">FACTURA CON EL DESCUENTO APLICADO!</div>
+            <div id="thanks">FACTURA CON EL DESCUENTO APLICADO</div>
             <div id="notices">
                 <div>NOTAS:</div>
                 <p class="notice">Cargo por cheque devuelto por falta de fonto o por firma discordante. Les sera cargado
                     a
-                    los clientes un monto de RD$ 500.
-                    descuent por pronto pago que haya sido aprovechado por un cliente sera reevaluado si el cheque con
+                    los clientes un monto de RD$ 500.00
+                    descuento por pronto pago que haya sido aprovechado por un cliente sera reevaluado si el cheque con
                     el
                     que realizo el pago
                     devuelto por las siguientes razones: falta de fondo, firma diferente.

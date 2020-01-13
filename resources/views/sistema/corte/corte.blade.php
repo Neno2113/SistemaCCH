@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="">Secuencia(*):</label>
-                            <input type="number" min="001" max="999" step="1" value="001" id="sec_manual" class="form-control">
+                            <input type="number" min="001" max="999" step="1"  id="sec_manual" class="form-control">
                         </div>
                         <div class="col-md-2 mt-4 pt-2">
                             <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-cut"></i> Generar</button>
@@ -65,7 +65,7 @@
                     <div class="row" id="fila1">
                         <div class="col-md-6 ">
                             <label for="">Referencia producto(*):</label>
-                            <select name="tags[]" id="productos" class="form-control select2">
+                            <select name="tags[]" id="productos" class="form-control selectpicker">
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -364,7 +364,9 @@
 
             // console.log(data);
             $("#id").val(data.corte.id);
-            $("#numero_corte").val(data.corte.numero_corte);
+            $("#numero_corte_gen").val(data.corte.numero_corte);
+            // $("#productos").val(data.corte.producto.referencia_producto);
+            // $("#productos").select2('refresh');
             $("#no_marcada").val(data.corte.no_marcada);
             $("#ancho_marcada").val(data.corte.ancho_marcada);
             $("#largo_marcada").val(data.corte.largo_marcada);

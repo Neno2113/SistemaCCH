@@ -121,7 +121,7 @@ class CorteController extends Controller
 
     public function show($id)
     {
-        $corte = Corte::find($id);
+        $corte = Corte::find($id)->load('producto');
 
         if (is_object($corte)) {
             $data = [
@@ -257,6 +257,19 @@ class CorteController extends Controller
                 ->get();
         }
         return response()->json($data);
+    }
+
+
+    public function testSelect2(){
+        $productos = Product::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'productos' => $productos
+        ];
+
+        return response()->json($data, $data['code']);
     }
 
     public function asignar($id, Request $request)

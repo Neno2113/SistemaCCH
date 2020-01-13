@@ -53,6 +53,11 @@ $(document).ready(function() {
         $("#fila1").hide();
         $("#fila2").hide();
         $("#fila3").hide();
+        productos();
+        
+
+
+
         
     }
 
@@ -156,25 +161,57 @@ $(document).ready(function() {
 
     //Select2 productos
 
-    $("#productos").select2({
-        placeholder: "Busca una referencia de producto...",
-        ajax: {
-            url: 'products',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.referencia_producto,
-                            id: item.id
-                        }
-                    })
-                };
+    // $("#productos").select2({
+    //     placeholder: "Busca una referencia de producto...",
+    //     ajax: {
+    //         url: 'products',
+    //         dataType: 'json',
+    //         delay: 250,
+    //         processResults: function(data){
+    //             return {
+    //                 results: $.map(data, function(item){
+    //                     return {
+    //                         text: item.referencia_producto,
+    //                         id: item.id
+    //                     }
+    //                 })
+    //             };
+    //         },
+    //         cache: true
+    //     }
+    // })
+
+    function productos (){
+
+        $.ajax({
+            url: "testSelectProduct",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.productos.length;
+                    
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.productos[i].id +">"+datos.productos[i].referencia_producto+"</option>"
+                        
+                        $("#productos").append(fila);
+                    }
+                    $("#productos").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
             },
-            cache: true
-        }
-    })
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    }
      //Select2 cortes para consulta
 
     $("#cortesSearch").select2({
@@ -363,19 +400,14 @@ $(document).ready(function() {
         let month = fecha.getMonth();
 
         if(dia < 15){
-            month = month + 2;
-            if(month > 12){
-                year = year;
-                month = month - 1;
-                console.log(year+'/'+month+'/'+dia);
-            
-            }
-           
+            month = month;
+        
+            console.log(year+'/'+month+'/'+dia);
             $("#fecha_entrega").attr('min', year +"-"+ month+"-14")
             $("#fecha_entrega").attr('max', year +"-"+ month+"-14")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la primera quincena del mes: "+month);
         }else if(dia > 15){
-            month = month + 2;
+            month = month + 1;
             $("#fecha_entrega").attr('min', year +"-"+ month+"-28")
             $("#fecha_entrega").attr('max', year +"-"+ month+"-28")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);
