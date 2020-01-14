@@ -70,7 +70,7 @@ $(document).ready(function() {
                     let cantidad_corte = datos.total_cortado;
                     let cantidad_perdida = datos.perdidas;
                     let parcial = datos.parcial;
-                    cantidad_guardar = cantidad_corte - cantidad_corte;
+                    cantidad_guardar = cantidad_corte - cantidad_perdida;
 
                     let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
                     if(cantidad < 0){

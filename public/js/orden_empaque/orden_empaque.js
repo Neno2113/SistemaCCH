@@ -60,93 +60,24 @@ $(document).ready(function() {
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
 
-        var corte = {
-            sec: $("#sec").val(),
-            numero_corte: $("#numero_corte_gen").val(),
-            producto_id: $("#productos").val(),
-            fecha_entrega: $("#fecha_entrega").val(),
-            no_marcada: $("#no_marcada").val(),
-            ancho_marcada: $("#ancho_marcada").val(),
-            largo_marcada: $("#largo_marcada").val(),
-            aprovechamiento: $("#aprovechamiento").val()
+        var ordenFacturacion = {
+            empaque_id: $("#orden_empaque_id").val(),
+            por_transporte: $("input[name='r1']:checked").val(),
         };
 
-        // console.log(JSON.stringify(corte));
-
-        // funcion que se ejecuta con el callback de la funcion para guardar
-        //esta almacena las cantidades por tallas
         $.ajax({
-            url: "corte",
+            url: "orden_facturacion",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(corte),
+            data: JSON.stringify(ordenFacturacion),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Corte creado !!");
-                    limpiar();
-                    // tabla.ajax.reload();
+                    $("#orden_facturacion_id").val(datos.orden_facturacion.id);
+                    $("#listar_OE").DataTable().ajax.reload();
                     mostrarForm(false);
-                    $("#btn-generar").attr("disabled", false);
-
-                    var talla = {
-                        corte_id: datos.corte.id,
-                        a: $("#a").val(),
-                        b: $("#b").val(),
-                        c: $("#c").val(),
-                        d: $("#d").val(),
-                        e: $("#e").val(),
-                        f: $("#f").val(),
-                        g: $("#g").val(),
-                        h: $("#h").val(),
-                        i: $("#i").val(),
-                        j: $("#j").val(),
-                        k: $("#k").val(),
-                        l: $("#l").val()
-                    };
-
-                    $.ajax({
-                        url: "talla",
-                        type: "POST",
-                        dataType: "json",
-                        data: JSON.stringify(talla),
-                        contentType: "application/json",
-                        success: function(datos) {
-                            if (datos.status == "success") {
-                                // tabla.ajax.reload();
-                                bootbox.alert(
-                                    "Se asignaron un total de: <strong>" +
-                                        datos.talla.total +
-                                        "</strong> entre todas las tallas digitadas"
-                                );
-                                $("#a").val(""),
-                                    $("#b").val(""),
-                                    $("#c").val(""),
-                                    $("#d").val(""),
-                                    $("#e").val(""),
-                                    $("#f").val(""),
-                                    $("#g").val(""),
-                                    $("#h").val(""),
-                                    $("#i").val(""),
-                                    $("#j").val(""),
-                                    $("#k").val(""),
-                                    $("#l").val("");
-                                // tabla.ajax.reload();
-                                $("#cortes")
-                                    .DataTable()
-                                    .ajax.reload();
-                            } else {
-                                bootbox.alert(
-                                    "Ocurrio un error durante la creacion de la composicion"
-                                );
-                            }
-                        },
-                        error: function() {
-                            bootbox.alert(
-                                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                            );
-                        }
-                    });
+                  
+                                        
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -159,6 +90,8 @@ $(document).ready(function() {
                 );
             }
         });
+
+        
     });
 
     //funcion para listar en el Datatable

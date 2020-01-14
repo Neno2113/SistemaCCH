@@ -142,8 +142,10 @@
 
 
             </div>
-            <div class="card-footer   d-flex justify-content-end">
-                <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
+            <div class="card-footer">
+                {{-- <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3"> --}}
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                    class="far fa-save fa-lg"></i> Guardar</button>
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
 
@@ -209,7 +211,7 @@
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit").show();
-            $("#btn-guardar").hide();
+            // $("#btn-guardar").hide();
             
             $("#id").val(data.orden_empaque.id);
             $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);   
@@ -272,61 +274,33 @@
                     bootbox.alert("Referencia perteneciente a la orden empaque <strong>"+ datos.orden_empaque.no_orden_empaque+"</strong> ha sido empacada");
                     $(".cantidad").val("");
 
-                    var ordenFacturacion = {
-                        empaque_id: $("#orden_empaque_id").val(),
-                        por_transporte: $("input[name='r1']:checked").val(),
-                    };
+                    var detalle = {
+                        orden_empaque_id: $("#orden_empaque_id").val(),
+                        orden_facturacion_id: $("#orden_facturacion_id").val()
+                    }
 
                     $.ajax({
-                        url: "orden_facturacion",
+                        url: "factura_detalle",
                         type: "POST",
                         dataType: "json",
-                        data: JSON.stringify(ordenFacturacion),
+                        data: JSON.stringify(detalle),
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                                $("#orden_facturacion_id").val(datos.orden_facturacion.id);
-
-                                var detalle = {
-                                    orden_empaque_id: $("#orden_empaque_id").val(),
-                                    orden_facturacion_id: $("#orden_facturacion_id").val()
-                                }
-
-                                $.ajax({
-                                    url: "factura_detalle",
-                                    type: "POST",
-                                    dataType: "json",
-                                    data: JSON.stringify(detalle),
-                                    contentType: "application/json",
-                                    success: function(datos) {
-                                        if (datos.status == "success") {
-                                           
-                                            $("#orden_detalle").DataTable().ajax.reload();
-                                            
-                                         
-                                        } else {
-                                            bootbox.alert(
-                                                "Ocurrio un error durante la actualizacion de la composicion"
-                                            );
-                                        }
-                                    },
-                                    error: function() {
-                                        bootbox.alert("Ocurrio un error!!");
-                                    }
-                                }); 
-                                                    
+                               
+                                $("#orden_detalle").DataTable().ajax.reload();
+                                
+                             
                             } else {
                                 bootbox.alert(
-                                    "Ocurrio un error durante la creacion de la composicion"
+                                    "Ocurrio un error durante la actualizacion de la composicion"
                                 );
                             }
                         },
                         error: function() {
-                            bootbox.alert(
-                                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                            );
+                            bootbox.alert("Ocurrio un error!!");
                         }
-                    });
+                    }); 
 
                 } else {
                     bootbox.alert(

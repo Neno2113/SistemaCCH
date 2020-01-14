@@ -16,7 +16,7 @@
         <button class="btn btn-info rounded-pill  mt-3 mb-4" type="button" data-toggle="collapse"
             data-target="#listadoUsers" aria-expanded="false" data-toggle="button" aria-pressed="false"
             aria-controls="listadoUsers"><i class="fas fa-file-invoice-dollar"></i> Generar factura
-            
+
         </button>
     </div>
     <div class="col-md-6 border-bottom d-flex justify-content-center">
@@ -103,14 +103,20 @@
                             <input type="text" name="descuento" id="descuento" class="form-control text-center"
                                 data-inputmask='"mask": "99%"' data-mask>
                         </div>
-                      
+
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4 mt-3">
                             <label for="">Fecha(*):</label>
                             <input type="date" name="fecha" id="fecha" class="form-control text-center">
                         </div>
-                        <div class="col-md-4"></div>
+                        <div class="col-md-4 mt-3">
+                            <div id="comprobante">
+                                <label for="">Numero Comprobante</label>
+                                <input type="text" name="numero_comprobante" id="numero_comprobante"
+                                    class="form-control">
+                            </div>
+                        </div>
                         <div class="col-md-4 mt-3">
                             <label for="">Nota:</label>
                             <textarea name="nota" id="nota" cols="30" rows="1" class="form-control"></textarea>
@@ -118,7 +124,7 @@
                     </div>
                     <hr>
                     <div class="row mt-5">
-                        <div class="col-md-2">
+                        {{-- <div class="col-md-2">
                             <label for="autorizacion_credito_req">¿Comprobante fiscal?(*):</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
@@ -134,13 +140,9 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-4">
-                            <div id="comprobante">
-                                <label for="">Numero Comprobante</label>
-                                <input type="text" name="numero_comprobante" id="numero_comprobante"
-                                    class="form-control">
-                            </div>
+
 
                         </div>
                         <div class="col-md-4">
@@ -258,8 +260,8 @@
                 <th>Fecha</th>
                 <th>Descuento</th>
                 <th>ITBIS</th>
-                <th># Orden F.</th>
                 <th>Tipo Fact.</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -271,8 +273,8 @@
                 <th>Fecha</th>
                 <th>Descuento</th>
                 <th>ITBIS</th>
-                <th># Orden F.</th>
                 <th>Tipo Fact.</th>
+                <th>Status</th>
             </tr>
         </tfoot>
     </table>

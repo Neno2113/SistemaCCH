@@ -221,8 +221,8 @@ class LavanderiaController extends Controller
                 
             $perdida = Perdida::where('corte_id', 'LIKE', "$lavanderia->id_corte")
             ->where('tipo_perdida', 'LIKE', 'Normal')
-            ->where('fase', 'LIKE', 'Produccion')
-            ->orWhere('fase', 'LIKE', 'Procesos secos')
+            ->whereIn('fase',  ['Produccion', 'Procesos secos'])
+            // ->orWhere('fase', 'LIKE', 'Procesos secos')
             ->select('id')->get();
             $perdida_id = array();
 

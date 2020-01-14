@@ -3,6 +3,7 @@ $(document).ready(function() {
 
     var tabla;
     var tabla_orden;
+    var comprobante;
 
     //Funcion que se ejecuta al inicio
     function init() {
@@ -78,16 +79,18 @@ $(document).ready(function() {
     });
 
     
-    $("input[name='r1']").change(function() {
-        let val = $("input[name='r1']:checked").val();
-        // console.log(val);
+    $("#tipo_factura").on('change', function() {
+        let val = $("#tipo_factura").val();
+        console.log(val);
 
-        if (val == 1) {
+        if (val == "B01") {
+            comprobante = 1;
             $("#comprobante").show();
-        }else if(val == 0){ 
+        }else{ 
+            comprobante = 0;
             $("#comprobante").hide();
         }
-    })
+    });
 
     $("#fecha").click(function(){
         let fecha = new Date();
@@ -113,7 +116,7 @@ $(document).ready(function() {
             itbis: $("#itbis").val(),
             descuento: $("#descuento").val(),
             fecha: $("#fecha").val(),
-            comprobante_fiscal: $("input[name='r1']:checked").val(),
+            comprobante_fiscal: comprobante,
             numero_comprobante: $("#numero_comprobante").val(),
             nota: $("#nota").val()
             
@@ -222,14 +225,14 @@ $(document).ready(function() {
                 { data: "fecha", name: "factura.fecha"},
                 { data: "descuento", name: "factura.descuento"},
                 { data: "itbis", name: "factura.itbis"},
-                { data: "no_orden_facturacion", name: "orden_facturacion.no_orden_facturacion"},
                 { data: "tipo_factura", name: "factura.tipo_factura"},
+                { data: "status", name: "factura.status"},
                 
             ],
-            order: [[6, "desc"]],
-            // rowGroup: {
-            //     dataSrc: "name"
-            // }
+            order: [[3, "desc"]],
+            rowGroup: {
+                dataSrc: "tipo_factura"
+            }
         });
     }
 

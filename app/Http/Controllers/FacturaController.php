@@ -7,6 +7,7 @@ use App\OrdenFacturacion;
 use App\ordenFacturacionDetalle;
 use App\Factura;
 use App\ordenEmpaque;
+use App\ordenEmpaqueDetalle;
 use App\Product;
 use App\SKU;
 use Illuminate\Http\Request;
@@ -47,6 +48,10 @@ class FacturaController extends Controller
             $sec = $request->input('sec');
 
             $factura = new Factura();
+
+            if($numero_comprobante == 1){
+                $tipo_factura = "FB";
+            }
 
             $factura->orden_facturacion_id = $orden_facturacion_id;
             $factura->no_factura = $tipo_factura . '-' . $numeracion;
@@ -205,7 +210,7 @@ class FacturaController extends Controller
                 'factura.id', 'factura.no_factura', 'factura.tipo_factura', 'factura.fecha', 'factura.comprobante_fiscal',
                 'factura.descuento', 'factura.itbis', 'orden_facturacion.no_orden_facturacion', 'users.name', 'users.surname',
                 'factura.impreso'
-            ])->where('factura.impreso', 'LIKE', 1);
+            ]);
 
         return DataTables::of($facturas)
             ->editColumn('comprobante_fiscal', function ($factura) {
@@ -246,12 +251,16 @@ class FacturaController extends Controller
             ->editColumn('fecha', function ($factura) {
                 return date("d-m-20y", strtotime($factura->fecha));
             })
+            ->addColumn('status', function ($factura) {
+                return ($factura->impreso == 1) ? '<span  class="badge badge-success">Impreso <i class="fas fa-check"></i> </span>':
+                '<span  class="badge badge-warning">No Impreso <i class="fas fa-check"></i> </span>';
+            })
             ->addColumn('Opciones', function ($orden) {
                 return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
                     '<a href="factura/resumida/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura Resumida"> <i class="fas fa-file-invoice-dollar fa-lg"></i></a>';
                     // '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura detallada"> <i class="fas fa-file-invoice fa-lg"></i></a>';
             })
-            ->rawColumns(['Opciones'])
+            ->rawColumns(['Opciones', 'status'])
             ->make(true);
     }
 
@@ -285,7 +294,9 @@ class FacturaController extends Controller
             }
 
             $productosFactura = Product::whereIn('id', $productos)->get();
-            $sku = SKU::whereIn('producto_id', $productos)->get();
+            $sku = SKU::whereIn('producto_id', $productos)
+            ->where('talla', 'LIKE', 'General')
+            ->get();
 
 
             $orden_empaque = ordenEmpaque::find($id_orden_empaque);
@@ -313,12 +324,15 @@ class FacturaController extends Controller
 
             $subtotal = array_sum(str_replace(',', '', $detalles_totales));
             $itbis = $factura->itbis / 100;
-            $impuesto = $itbis * $subtotal;
+           
 
             $porc_desc = $factura->descuento / 100;
             $descuento = $porc_desc * $subtotal;
 
-            $total_final = $subtotal + $impuesto - $descuento;
+            $subtotal_real = $subtotal- $descuento;
+            $impuesto = $itbis * $subtotal_real;
+
+            $total_final = $subtotal_real + $impuesto;
 
             $factura->total = $total_final;
             $factura->save();
@@ -345,6 +359,14 @@ class FacturaController extends Controller
             }
 
             $bultos = $orden_facturacion_detalle->sum('cant_bultos');
+            $total_articulos = $orden_facturacion_detalle->sum('total');
+
+            $factura->fecha = date("d/m/20y", strtotime($factura->fecha));
+
+            $orden_empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $orden_empaque->id)
+            ->get()->last();
+
+            $orden_empaque_detalle->fecha_empacado = date("d/m/20y h:i:s", strtotime($orden_empaque_detalle->fecha_empacado));
 
             $pdf = \PDF::loadView('sistema.ordenFacturacion.facturaResumida', \compact(
                 'factura',
@@ -358,7 +380,10 @@ class FacturaController extends Controller
                 'descuento',
                 'total_final',
                 'bultos',
-                'ordenes_pedido'
+                'ordenes_pedido',
+                'subtotal_real',
+                'total_articulos',
+                'orden_empaque_detalle'
             ));
             return $pdf->download('facturaResumida.pdf');
             return view('sistema.ordenFacturacion.facturaResumida',\compact(
@@ -373,7 +398,10 @@ class FacturaController extends Controller
                 'descuento',
                 'total_final',
                 'bultos',
-                'ordenes_pedido'
+                'ordenes_pedido',
+                'subtotal_real',
+                'total_articulos',
+                'orden_empaque_detalle'
             ));         
         }
     }

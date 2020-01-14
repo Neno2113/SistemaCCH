@@ -58,7 +58,7 @@
 
 
         #details {
-            margin-bottom: 50px;
+            margin-bottom: 5px;
         }
 
         #client {
@@ -101,14 +101,15 @@
         #invoice-fiscal {
             float: right;
             text-align: right;
-            margin-right: 45%;
+            margin-right: 47%;
         }
 
         #invoice-fiscal h1 {
-            color: #0087C3;
+            color: #000;
             font-size: 1.6em;
             line-height: 1em;
             font-weight: bold;
+            margin-top: -17px;
         }
 
         #invoice_proceso {
@@ -163,7 +164,7 @@
 
         .tabla-principal th {
             white-space: nowrap;
-            font-weight: normal;
+            font-weight: bold;
             background-color: #131980;
             /* border: solid 2px black; */
         }
@@ -251,20 +252,30 @@
         }
 
         .tabla-principal td.unit li,
-        .tabla-principal td.desc li,
+        .tabla-principal td.desc-des li,
         .tabla-principal td.qty li,
         .tabla-principal td.no li,
         .tabla-principal td.total li {
             list-style-type: none;
             text-align: center;
-            padding-bottom: 350px;
+            /* padding-bottom: 350px; */
+        }
+
+        .tabla-principal li,
+        .tabla-principal li,
+        .tabla-principal li,
+        .tabla-principal li,
+        .tabla-principal li {
+            list-style-type: none;
+            text-align: center;
+            /* padding-bottom: 350px; */
         }
 
         .tabla-principal td.desc-des li {
             /* font-size: 1.0em; */
             text-align: center;
             list-style-type: none;
-            margin-bottom: 350px;
+            /* margin-bottom: 350px; */
             color: #000;
             /* padding: 0; */
             /* padding-right: 20px; */
@@ -272,6 +283,7 @@
 
         .tabla-principal tbody tr:last-child td {
             /* border: none; */
+            padding-bottom: 350px;
         }
 
         .tabla-principal tfoot td {
@@ -338,7 +350,7 @@
         }
 
         .firmas {
-            margin-top: 50px;
+            margin-top: 35px;
             text-align: center;
             font-weight: bold;
             color: #000;
@@ -363,93 +375,210 @@
             margin-left: 50%;
             width: 15%;
         }
+
         footer {
             page-break-after: always;
         }
-        . .tabla-principal-totales{
+
+        . .tabla-principal-totales {
             border: none;
         }
-        .tabla-bultos{
-            width:50%; 
-            color:#000; 
-            float:left;
+
+        .tabla-bultos {
+            width: 50%;
+            color: #000;
+            float: left;
         }
-        .tabla-bultos thead th{
+
+        .tabla-bultos thead th {
             border: 2px solid black;
             padding: 5px;
             text-align: start;
         }
 
-        .tabla-factura{
+        .tabla-factura {
             float: right;
             width: 19%;
             border: 2px solid black;
-            margin-right: 10%;
+            margin-right: 34%;
         }
 
-        .tabla-factura th{
+        .tabla-factura thead .factura {
+            font-weight: bolder;
+            color: #000;
+        }
+
+        .tabla-factura th {
             font-size: 20px;
             padding-left: 19px;
-            padding-right: 16px; 
-            padding-top: 7px; 
+            padding-right: 16px;
+            padding-top: 7px;
         }
-        .tabla-factura tbody .num_factura{
+
+        .tabla-factura tbody .num_factura {
             border-top: 2px solid black;
             border-bottom: 2px solid black;
             text-align: center;
             font-size: 12px;
-            color:#c85b5b; 
+            color: #c85b5b;
         }
-        .tabla-factura tbody .fecha{
+
+        .tabla-factura tbody .fecha {
             text-align: center;
             font-size: 10px;
             padding: 6px;
         }
-        .tabla-factura tbody .page{
+
+        .tabla-factura tbody .page {
             text-align: center;
             font-size: 10px;
-            padding: 6px;
+            padding: 11px;
             border-top: 2px solid black;
 
         }
 
-        .tabla-totales{
-            width:40%; 
-            color:#000; 
-            float:right; 
-            margin-right:10%;
+        .tabla-totales {
+            width: 40%;
+            color: #000;
+            float: right;
+            margin-right: 10%;
         }
-        .tabla-totales .total{
-            font-weight:bold; 
-            font-size:13px;
+
+        .tabla-totales th {
+            font-weight: normal;
+            font-size: 14px;
         }
-        .tabla-cliente{
+
+        .tabla-totales td {
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        .tabla-totales th .total {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .tabla-cliente {
             float: left;
-            border-top:2px solid black;
-            border-left:2px solid black;
-            border-right:2px solid black;
-            width: 52%;
+            border-top: 2px solid black;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            width: 40%;
+
 
         }
-        .tabla-cliente thead th{
+
+        .tabla-cliente thead th {
             border-bottom: 2px solid black;
             font-size: 11px;
+            padding-left: 11px;
         }
-        .tabla-cliente thead td{
+
+        .tabla-cliente thead td {
             border-bottom: 2px solid black;
             padding-left: 47px;
         }
-        .tabla-cliente tbody td{
+
+        .tabla-cliente tbody td {
             border-bottom: 2px solid black;
             padding-right: 106px;
+            padding-left: 11px;
+
         }
-        .tabla-cliente tbody th{
+
+        .tabla-cliente tbody th {
             border-right: 2px solid black;
             border-bottom: 2px solid black;
             font-size: 11px;
+            font-weight: bold;
+            padding-left: 11px;
         }
-        .tabla-cliente tbody .direccion{
+
+        .tabla-cliente tbody .direccion {
             padding: 12px;
+        }
+
+        .tabla-original {
+            float: right;
+            margin-right: 20%;
+            border: 2px solid black;
+            width: 13%;
+            margin-top: 20px;
+            margin-bottom: 100px;
+        }
+
+        .tabla-original th {
+            padding: 0px;
+        }
+
+        .tabla-ncf {
+            width: 90%;
+            /* border-collapse: collapse;
+            border-spacing: 0; */
+            margin-bottom: 20px;
+            table-layout: auto;
+            border: solid 2px black;
+        }
+
+        .tabla-ncf thead th {
+            border-bottom: 2px solid black;
+            /* border-left: 2px solid black */
+            background-color: #131980;
+            color: #fff;
+            text-align: center;
+            /* padding-left: 40px; */
+            /* padding-right: 40px; */
+            /* margin-left: 20px; */
+        }
+
+        .tabla-ncf tbody td {
+            /* padding-left: 28px; */
+            text-align: center;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .tabla-ncf thead .op {
+            /* padding-left: 5px; */
+        }
+
+        .tabla-ncf thead .terminos_pago {
+            /* padding-left: 10px; */
+        }
+
+        .tabla-ncf thead .vencimiento {
+            /* padding-left: 30px; */
+        }
+
+        .tabla-ncf thead .vendedor {
+            /* padding-left: 20px;    */
+        }
+
+        .tabla-ncf thead .nfc_vence {
+            /* padding-left: 50px; */
+        }
+
+        .tabla-ncf tbody .ncf {
+            /* padding-left: 50px; */
+            color: #c85b5b;
+        }
+
+        .tabla-ncf tbody .vencimiento {
+            /* padding-left: 50px; */
+            color: #c85b5b;
+        }
+        .tabla-bultos thead .hora_empaque{
+            font-weight: lighter;
+        }
+        .tabla-bultos thead .total_articulos{
+            font-weight: lighter;
+        }
+        .tabla-bultos thead .bultos{
+            font-weight: lighter;
+        }
+        .tabla-bultos thead .fecha_factura{
+            font-weight: lighter;
         }
     </style>
 </head>
@@ -459,6 +588,9 @@
         <div id="logo">
             <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
         </div>
+        {{-- <div id="logo">
+            <h1>CCH</h1>
+        </div> --}}
         <div id="company">
             <h2 class="name">Confecciones Carmen Herrera</h2>
             <div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
@@ -470,9 +602,9 @@
     </header>
     <main>
         <div id="details" class="clearfix">
-            <table class="tabla-cliente">
+            <table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
                 <thead class="cod">
-                    <tr >
+                    <tr>
                         <th>Cliente codigo</th>
                         <td>Cod</td>
                     </tr>
@@ -486,8 +618,7 @@
                         <th class="direccion">Direccion</th>
                         <td class="direccion">{{$orden_pedido->cliente->calle}}, {{$orden_pedido->cliente->sector}}
                             {{$orden_pedido->cliente->provincia}}, {{$orden_pedido->cliente->sitios_cercanos}}<</td>
-                    </tr>
-                    <tr>
+                                </tr> <tr>
                         <th>Sucursal</th>
                         <td>{{$orden_pedido->sucursal->nombre_sucursal}}</td>
                     </tr>
@@ -500,80 +631,102 @@
                         <td>{{$orden_pedido->cliente->rnc}}</td>
                     </tr>
                 </tbody>
-              
+
             </table>
             {{-- <div id="client">
                 <div class="to">FACTURA PARA:</div>
                 <h2 class="name">{{$orden_pedido->cliente->nombre_cliente}}</h2>
-                <div class="address">{{$orden_pedido->cliente->direccion_principal}}</div>
-                <div class="name">RNC:{{$orden_pedido->cliente->rnc}}</div>
-                <div class="name">{{$orden_pedido->cliente->telefono_1}}</div>
-                <div class="email"><a href="mailto:john@example.com">{{$orden_pedido->cliente->email_principal}}</a>
-                </div>
-                <div class="to">SUCURSAL:</div>
-                <h2 class="name">{{$orden_pedido->sucursal->nombre_sucursal}}</h2>
-            </div> --}}
-            {{-- <div id="invoice"> --}}
-                <table  class="tabla-factura">
-                    <thead>
-                        <tr>    
-                            <th>FACTURA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="num_factura">FB-00098897</td>
-                        </tr>
-                        <tr>
-                            <td class="fecha">Fecha:      13/1/2020</td>
-                        </tr>
-                        <tr>
-                            <td class="page">Pagina 1</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                {{-- <h1>{{$factura->no_factura}}</h1>
-                <div class="date">Fecha: {{$factura->fecha}} </div>
-                <div class="date">Fecha Entrega: </div> --}}
-            {{-- </div> --}}
-            {{-- <div id="client-orden">
-                <div class="to">ORDEN PEDIDO:</div>
-                @foreach ($ordenes_pedido as $orden)
-                <h2 class="name">{{$orden->no_orden_pedido}}</h2>
-                @endforeach
-                <div class="date">Fecha: {{$orden_pedido->fecha}} </div>
-                <div class="to">TERMINOS DE PAGO:</div>
-                <div class="address">{{$orden_pedido->cliente->condiciones_credito}}</div>
-                <div class="email"><a href="mailto:john@example.com"></a></div>
-                <div class="to">SUCURSAL:</div>
-                <h2 class="name"></h2>
-            </div> --}}
-        </div>
-        @if ($factura->comprobante_fiscal == 1)
-        <div id="invoice-fiscal">
-            <h1>FACTURA VALIDA PARA CREDITO FISCAL</h1>
-        </div>
-        <br>
-        <br>
-        <br>
-        <table border="0" cellspacing="0" cellpadding="0">
+            <div class="address">{{$orden_pedido->cliente->direccion_principal}}</div>
+            <div class="name">RNC:{{$orden_pedido->cliente->rnc}}</div>
+            <div class="name">{{$orden_pedido->cliente->telefono_1}}</div>
+            <div class="email"><a href="mailto:john@example.com">{{$orden_pedido->cliente->email_principal}}</a>
+            </div>
+            <div class="to">SUCURSAL:</div>
+            <h2 class="name">{{$orden_pedido->sucursal->nombre_sucursal}}</h2>
+        </div> --}}
+        {{-- <div id="invoice"> --}}
+        <table class="tabla-factura">
             <thead>
                 <tr>
-                    <th class="desc">VENDEDOR</th>
-                    <th class="unit">NCF</th>
+                    <th class="factura">FACTURA</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="desc-fiscal">Carmen Herrera</td>
-                    <td class="unit-fiscal">B01000001731</td>
+                    <td class="num_factura">{{$factura->no_factura}}</td>
+                </tr>
+                <tr>
+                    <td class="fecha">Fecha:{{$factura->fecha}}</td>
+                </tr>
+                <tr>
+                    <td class="page">Pagina 1</td>
                 </tr>
             </tbody>
         </table>
+
+        {{-- <h1>{{$factura->no_factura}}</h1>
+        <div class="date">Fecha: {{$factura->fecha}} </div>
+        <div class="date">Fecha Entrega: </div> --}}
+        {{-- </div> --}}
+        {{-- <div id="client-orden">
+                <div class="to">ORDEN PEDIDO:</div>
+                @foreach ($ordenes_pedido as $orden)
+                <h2 class="name">{{$orden->no_orden_pedido}}</h2>
+        @endforeach
+        <div class="date">Fecha: {{$orden_pedido->fecha}} </div>
+        <div class="to">TERMINOS DE PAGO:</div>
+        <div class="address">{{$orden_pedido->cliente->condiciones_credito}}</div>
+        <div class="email"><a href="mailto:john@example.com"></a></div>
+        <div class="to">SUCURSAL:</div>
+        <h2 class="name"></h2>
+        </div> --}}
+
+        {{-- <table    class="tabla-original">
+                <thead>
+                    <tr>
+                        <th>Original:</th>
+                    </tr>
+                    <tr>
+                        <th>Copia:</th>
+                    </tr>
+                </thead>
+    
+            </table> --}}
+
+        </div>
+
+        <table cellspacing="0" class="tabla-ncf">
+            <thead>
+                <tr>
+                    <th class="op">ORDEN PEDIDO</th>
+                    <th class="terminos_pago">TERMINOS PAGO</th>
+                    <th class="">VENCIMIENTO</th>
+                    <th class="vendedor">VENDEDOR</th>
+                    <th class="nfc_vence">NCF VENCE</th>
+                    <th>NCF</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> @foreach ($ordenes_pedido as $orden)
+                        {{$orden->no_orden_pedido}}
+                        @endforeach</td>
+                    <td>{{$orden_pedido->cliente->condiciones_credito}}</td>
+                    <td class="vencimiento">18/1/20</td>
+                    <td>Carmen Herrera</td>
+                    <td>31/12/2019</td>
+                    <td class="ncf">{{$factura->numero_comprobante}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @if ($factura->comprobante_fiscal == 1)
+        <div id="invoice-fiscal">
+            <h1>FACTURA VALIDA PARA CREDITO FISCAL</h1>
+        </div>
         @endif
 
-        <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal" >
+        <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
             <thead>
                 <tr>
                     <th class="desc">CANT</th>
@@ -598,10 +751,10 @@
                     </td>
                     <td class="unit">
                         @foreach ($sku as $barra)
-                        @if ($barra->talla = "General")
+                        {{-- @if ($barra->talla = "General") --}}
                         <li>{{$barra->sku}}</li>
-                        @endif
-                        @break
+                        {{-- @endif --}}
+                        {{-- @break --}}
 
                         @endforeach
                     </td>
@@ -645,45 +798,45 @@
             </tr>
             </tfoot> --}}
         </table>
-        <div style="clear: fix;"> 
-            <table border="0" cellspacing="0" cellpadding="0"  class="tabla-bultos">
+        <div style="clear: fix;">
+            <table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
                 <thead>
                     <tr>
-                        <th >TOTAL DE ARTICULOS:</th>
-                        <th >FECHA:</th>
+                        <th>TOTAL DE ARTICULOS: <span class="total_articulos">{{$total_articulos}}</span></th>
+                        <th>FECHA: <span class="fecha_factura">{{$factura->fecha}}</span></th>
                     </tr>
                     <tr>
-                        <th >CANTIDAD DE BULTOS:</th>
-                        <th >HORA DE DESPACHO:</th>
+                        <th>CANTIDAD DE BULTOS: <span class="bultos">{{$bultos}}</span></th>
+                        <th>HORA DE EMPACADO: <span class="hora_empaque">{{$orden_empaque_detalle->fecha_empacado}}<span></th>
                     </tr>
-                
+
                 </thead>
-        
+
             </table>
-       
-            <table  class="tabla-totales">
-             
+
+            <table class="tabla-totales">
+
                 <tr>
-                    
-                    <td colspan="2">SUBTOTAL:</td>
-                    <td>{{number_format($subtotal)}} RD$</td>
-                </tr>
-                <tr>
-                    
-                    <td colspan="2">DESCUENTO: {{$factura->descuento}}%</td>
+                    <th>DESCUENTO: {{$factura->descuento}}%</th>
                     <td>{{number_format($descuento)}} RD$</td>
+
                 </tr>
                 <tr>
-                    <td colspan="2">IMPUESTO: {{$factura->itbis}}%</td>
+                    <th>SUBTOTAL:</th>
+                    <td>{{number_format($subtotal_real)}} RD$</td>
+
+                </tr>
+                <tr>
+                    <th>IMPUESTO: {{$factura->itbis}}%</th>
                     <td>{{number_format($impuesto)}} RD$</td>
                 </tr>
-                <tr  class="total">
-                    <td colspan="2">TOTAL FINAL:</td>
-                    <td>{{number_format($total_final)}} RD$</td>
+                <tr class="total">
+                    <th style="font-weight:bold;">TOTAL FINAL:</th>
+                    <td style="font-weight:bold;">{{number_format($total_final)}} RD$</td>
                 </tr>
             </table>
         </div>
-      
+
 
         @if ($factura->descuento <> 0)
             <div id="thanks">FACTURA CON EL DESCUENTO APLICADO</div>
