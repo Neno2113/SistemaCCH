@@ -153,6 +153,24 @@
 			border: solid 2px black;
 		}
 
+		.tabla-tallas {
+			width: 83%;
+			border-collapse: collapse;
+			border-spacing: 0;
+			/* margin-bottom: 20px; */
+			table-layout: auto;
+			border: solid 2px black;
+		}
+
+		.tabla-tallas th,
+		.tabla-tallas td {
+			/* padding: 20px; */
+			background: #fff;
+			text-align: center;
+			border-bottom: 1px solid #FFFFFF;
+			/* border: solid 2px black; */
+		}
+
 		.tabla-principal th,
 		.tabla-principal td {
 			/* padding: 20px; */
@@ -162,11 +180,22 @@
 			/* border: solid 2px black; */
 		}
 
+		.tabla-tallas th {
+			white-space: nowrap;
+			font-weight: bold;
+			background-color: #131980;
+			font-size: 10px;
+			/* border: solid 2px black; */
+		}
+
 		.tabla-principal th {
 			white-space: nowrap;
 			font-weight: bold;
 			background-color: #131980;
+			font-size: 8.5px;
+			padding: 5px;
 			/* border: solid 2px black; */
+			/* padding-right: 37px; */
 		}
 
 		.tabla-principal td {
@@ -216,11 +245,24 @@
 		.tabla-principal .unit_talla {
 			background: #fff;
 			text-align: center;
-			font-size: 11px;
+			font-size: 10px;
 			font-weight: bold;
 			border: solid 2px black;
-			padding-left: 5px;
-			padding-right: 5px;
+			padding-left: 15px;
+			padding-right: 12px;
+			/* width: 21.95px; */
+		}
+
+		.tabla-tallas .talla_head {
+			color: #fff;
+			font-size: 6.5px;
+		}
+
+		.tabla-tallas .talla {
+			border: 2px solid black;
+			text-align: center;
+			font-weight: bold;
+			font-size: 8px;
 		}
 
 		.tabla-principal .qty {}
@@ -235,6 +277,8 @@
 		.tabla-principal tbody tr {
 			padding-bottom: 30px;
 		}
+
+		.tabla-principal tbody td {}
 
 		.tabla-principal td.unit,
 		.tabla-principal td.desc,
@@ -398,6 +442,11 @@
 			text-align: start;
 		}
 
+		.tabla-bultos tbody td {
+			border: 2px solid black;
+			text-align: center;
+		}
+
 		.tabla-factura {
 			float: right;
 			width: 50%;
@@ -412,10 +461,11 @@
 		}
 
 		.tabla-factura th {
-			font-size: 20px;
-			padding-left: 19px;
-			padding-right: 16px;
+			font-size: 15px;
+			/* padding-left: 19px;
+			padding-right: 16px; */
 			padding-top: 7px;
+			text-align: center;
 		}
 
 		.tabla-factura tbody .num_factura {
@@ -679,98 +729,98 @@
 			</tbody>
 		</table>
 
-		<table class="tabla-principal">
-			<thead>
-				<tr>
-					<th style="color:#fff;">Mujer Plus:</th>
-					<th class="unit_talla">12W</th>
-					<th class="unit_talla">14W</th>
-					<th class="unit_talla">16W</th>
-					<th class="unit_talla">18W</th>
-					<th class="unit_talla">20W</th>
-					<th class="unit_talla">22W</th>
-					<th class="unit_talla">24W</th>
-					<th class="unit_talla">26W</th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-				</tr>
+		<table class="tabla-tallas">
 
-				<tr>
-					<th style="color:#fff;">Mujer:</th>
-					<th class="unit_talla">0/0</th>
-					<th class="unit_talla">1/2</th>
-					<th class="unit_talla">3/4</th>
-					<th class="unit_talla">5/6</th>
-					<th class="unit_talla">7/8</th>
-					<th class="unit_talla">9/10</th>
-					<th class="unit_talla">11/12</th>
-					<th class="unit_talla">13/14</th>
-					<th class="unit_talla">15/16</th>
-					<th class="unit_talla">17/18</th>
-					<th class="unit_talla">19/20</th>
-					<th class="unit_talla">21/22</th>
-				</tr>
-
-				<tr>
-					<th style="color:#fff;">Hombre:</th>
-					<th class="unit_talla">28</th>
-					<th class="unit_talla">29</th>
-					<th class="unit_talla">30</th>
-					<th class="unit_talla">31</th>
-					<th class="unit_talla">32</th>
-					<th class="unit_talla">34</th>
-					<th class="unit_talla">36</th>
-					<th class="unit_talla">38</th>
-					<th class="unit_talla">40</th>
-					<th class="unit_talla">42</th>
-					<th class="unit_talla">44</th>
-					<th class="unit_talla"></th>
-				</tr>
-
-				<tr>
-					<th style="color:#fff;">Niño:</th>
-					<th class="unit_talla">2</th>
-					<th class="unit_talla">4</th>
-					<th class="unit_talla">6</th>
-					<th class="unit_talla">8</th>
-					<th class="unit_talla">10</th>
-					<th class="unit_talla">12</th>
-					<th class="unit_talla">14</th>
-					<th class="unit_talla">16</th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-				</tr>
-
-				<tr>
-					<th style="color:#fff;">Niña:</th>
-					<th class="unit_talla">2</th>
-					<th class="unit_talla">4</th>
-					<th class="unit_talla">6</th>
-					<th class="unit_talla">8</th>
-					<th class="unit_talla">10</th>
-					<th class="unit_talla">12</th>
-					<th class="unit_talla">14</th>
-					<th class="unit_talla">16</th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-					<th class="unit_talla"></th>
-				</tr>
-
-			</thead>
 		</table>
 
 
 
 		<table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
+			<thead class="tabla-tallas">
+				<tr>
+					<th class="talla_head">MUJER PLUS:</th>
+					<td class="talla">12W</td>
+					<td class="talla">14W</td>
+					<td class="talla">16W</td>
+					<td class="talla">18W</td>
+					<td class="talla">20W</td>
+					<td class="talla">22W</td>
+					<td class="talla">24W</td>
+					<td class="talla">26W</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">MUJER:</th>
+					<td class="talla" style="width: 41.883px;">0/0</td>
+					<td class="talla" style="width: 39.233px;">1/2</td>
+					<td class="talla" style="width: 39.233px;">3/4</td>
+					<td class="talla" style="width: 39.233px;">5/6</td>
+					<td class="talla" style="width: 39.233px;">7/8</td>
+					<td class="talla" style="width: 39.233px;">9/10</td>
+					<td class="talla" style="width: 41.517px;">11/12</td>
+					<td class="talla" style="width: 43.217px;">13/14</td>
+					<td class="talla" style="width: 41.833px;">15/16</td>
+					<td class="talla" style="width: 42.567px;">17/18</td>
+					<td class="talla" style="width: 42.35px;">19/20</td>
+					<td class="talla" style="width: 42.15px;">21/22</td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">HOMBRE:</th>
+					<td class="talla">28</td>
+					<td class="talla">29</td>
+					<td class="talla">30</td>
+					<td class="talla">31</td>
+					<td class="talla">32</td>
+					<td class="talla">34</td>
+					<td class="talla">36</td>
+					<td class="talla">38</td>
+					<td class="talla">40</td>
+					<td class="talla">42</td>
+					<td class="talla">44</td>
+					<td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">NIÑO:</th>
+					<td class="talla">2</td>
+					<td class="talla">4</td>
+					<td class="talla">6</td>
+					<td class="talla">8</td>
+					<td class="talla">10</td>
+					<td class="talla">12</td>
+					<td class="talla">14</td>
+					<td class="talla">16</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">NIÑA:</th>
+					<td class="talla">2</td>
+					<td class="talla">4</td>
+					<td class="talla">6</td>
+					<td class="talla">8</td>
+					<td class="talla">10</td>
+					<td class="talla">12</td>
+					<td class="talla">14</td>
+					<td class="talla">16</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+				</tr>
+
+			</thead>
 			<thead>
 				<tr>
 					<th style="color:#fff;">REFERENCIA</th>
-					<th style="color:#fff;">GENERO</th>
 					<th></th>
 					<th></th>
 					<th></th>
@@ -790,29 +840,6 @@
 				@foreach ($orden_detalle as $talla)
 				<tr>
 					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
-					<td class="unit_talla">
-						@php
-						$genero = substr($talla->producto->referencia_producto, 1,1);
-						$genero_plus = substr($talla->producto->referencia_producto, 3,1);
-						@endphp
-
-						@if ($genero == '1')
-						Hombre
-						@elseif($genero == '3')
-						Niño
-						@elseif($genero == '4')
-						Niña
-						@endif
-
-						@if($genero == '2')
-						@elseif($genero_plus == '7')
-						Mujer Plus
-						@else
-						Mujer
-						@endif
-						
-
-					</td>
 					<td class="unit_talla">{{$talla->a}}</td>
 					<td class="unit_talla">{{$talla->b}}</td>
 					<td class="unit_talla">{{$talla->c}}</td>
@@ -837,32 +864,36 @@
 									@else
 									<td class="unit_talla">{{$talla->l}}</td>
 									@endif
-				
+
 									<td class="unit_talla">{{$talla->total}}</td>
-								</tr>
-			
+				</tr>
+
 				@endforeach
 			</tbody>
 		</table>
 
-		{{-- <div style="clear: fix;">
-            <table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
-                <thead>
-                    <tr>
-                        <th>TOTAL DE ARTICULOS: <span class="total_articulos">{{$total_articulos}}</span></th>
-		<th>FECHA: <span class="fecha_factura">{{$factura->fecha}}</span></th>
-		</tr>
-		<tr>
-			<th>CANTIDAD DE BULTOS: <span class="bultos">{{$bultos}}</span></th>
-			<th>HORA DE EMPACADO: <span class="hora_empaque">{{$orden_empaque_detalle->fecha_empacado}}<span></th>
-		</tr>
+		<div style="clear: fix;">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
+				<thead>
+					<tr>
+						<th>UBICACION:</th>
+						<th>REFERENCIA:</th>
+					</tr>
 
-		</thead>
+				</thead>
+				<tbody>
+					@foreach ($productos as $talla )
+					<tr>
+						<td>{{$talla->ubicacion}}</td>
+						<td>{{$talla->referencia_producto}}</td>
+					</tr>
+					@endforeach
+				</tbody>
 
-		</table>
+			</table>
 
 
-		</div> --}}
+		</div>
 
 
 

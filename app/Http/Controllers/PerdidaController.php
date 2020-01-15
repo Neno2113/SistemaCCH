@@ -514,6 +514,7 @@ class PerdidaController extends Controller
 
         $pdf = \PDF::loadView('sistema.perdidas.documentoPerdida', \compact('perdida', 'detalle', 'genero', 'genero_plus'))->setPaper('a4');
         return $pdf->download('docPerdida.pdf');
+        return View('sistema.perdidas.documentoPerdida', \compact('perdida', 'detalle', 'genero', 'genero_plus'));
 
     }
 

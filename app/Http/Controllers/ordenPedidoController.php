@@ -726,6 +726,9 @@ class ordenPedidoController extends Controller
             array_push($ordenesProcesoId, $ordenProceso[$i]['id']);
         }
 
+        $orden->fecha = date("d/m/20y", strtotime($orden->fecha));
+        $orden->fecha_entrega = date("d/m/20y", strtotime($orden->fecha_entrega));
+
         $ordenesProcesoDetalle = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenesProcesoId)->get()->load('producto');
 
         $pdf = \PDF::loadView('sistema.ordenPedido.conduceOrden', \compact(
@@ -745,6 +748,22 @@ class ordenPedidoController extends Controller
             'ordenesProcesoDetalle'
         ))->setPaper('a4');
         return $pdf->download('conduceOrden.pdf');
+        return View('sistema.ordenPedido.conduceOrden', \compact(
+            'orden',
+            'orden_detalle',
+            'productosOrdenes',
+            'total_detalle',
+            'detalles_totales',
+            'totales_detalles',
+            'subtotal',
+            'tax',
+            'total',
+            'cantidad',
+            'total_simple',
+            'ordenProceso',
+            'corte_proceso',
+            'ordenesProcesoDetalle'
+        ));
     }
 
     public function verificar($id)

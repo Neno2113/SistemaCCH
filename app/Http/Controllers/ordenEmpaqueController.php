@@ -76,7 +76,7 @@ class ordenEmpaqueController extends Controller
                 'orden_pedido.detallada', 'cliente.redistribucion_tallas',
                 'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal',
                 'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
-            ])->where('status_orden_pedido', 'LIKE', 'Vigente');
+            ])->where('status_orden_pedido', 'LIKE', 'Vigente');;
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function () {
@@ -183,9 +183,13 @@ class ordenEmpaqueController extends Controller
             ->orderBy('ubicacion', 'asc')
             ->get();
 
+        $orden->fecha = date("d/m/20y", strtotime($orden->fecha));
+        $orden->fecha_entrega = date("d/m/20y", strtotime($orden->fecha_entrega));
+
 
         $pdf = \PDF::loadView('sistema.ordenEmpaque.conduceEmpaque', \compact('orden', 'orden_detalle', 'orden_empaque', 'productos'));
-        return $pdf->download('conduce.pdf');
+        return $pdf->download('ordenEmpaque.pdf');
+        return  View('sistema.ordenEmpaque.conduceEmpaque', \compact('orden', 'orden_detalle', 'orden_empaque', 'productos'));
     }
 
 
