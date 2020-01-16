@@ -89,26 +89,106 @@
                     </div>
                     <div class="container" id="detalle-factura">
                         <label for="" class="mt-5">Detalle Factura</label>
-                        <table id="invoice_detail" class="table table-striped table-bordered datatables mt-5 mb-3 mr-5"
-                            style="width:100%; margin-left:-26px;">
+                        <table id="invoice_detail" class="table table-bordered datatables mt-5 mb-3 mr-5 tabla-nc"
+                            style="width:106%; margin-left: -31px;">
+                            {{-- <thead class="text-sm encabezados">
+                                <tr>
+                                    <th class="genero">MUJER PLUS:</th>
+                                    <td class="">12W</td>
+                                    <td class="">14W</td>
+                                    <td class="">16W</td>
+                                    <td class="">18W</td>
+                                    <td class="">20W</td>
+                                    <td class="">22W</td>
+                                    <td class="">24W</td>
+                                    <td class="">26W</td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                </tr>
+                
+                                <tr>
+                                    <th class="genero">MUJER:</th>
+                                    <td class="talla" style="width: 41.883px;">0/0</td>
+                                    <td class="talla" style="width: 39.233px;">1/2</td>
+                                    <td class="talla" style="width: 39.233px;">3/4</td>
+                                    <td class="talla" style="width: 39.233px;">5/6</td>
+                                    <td class="talla" style="width: 39.233px;">7/8</td>
+                                    <td class="talla" style="width: 39.233px;">9/10</td>
+                                    <td class="talla" style="width: 41.517px;">11/12</td>
+                                    <td class="talla" style="width: 43.217px;">13/14</td>
+                                    <td class="talla" style="width: 41.833px;">15/16</td>
+                                    <td class="talla" style="width: 42.567px;">17/18</td>
+                                    <td class="talla" style="width: 42.35px;">19/20</td>
+                                    <td class="talla" style="width: 42.15px;">21/22</td>
+                                </tr>
+                
+                                <tr>
+                                    <th class="genero">HOMBRE:</th>
+                                    <td class="talla">28</td>
+                                    <td class="talla">29</td>
+                                    <td class="talla">30</td>
+                                    <td class="talla">31</td>
+                                    <td class="talla">32</td>
+                                    <td class="talla">34</td>
+                                    <td class="talla">36</td>
+                                    <td class="talla">38</td>
+                                    <td class="talla">40</td>
+                                    <td class="talla">42</td>
+                                    <td class="talla">44</td>
+                                    <td class="talla"></td>
+                                </tr>
+                
+                                <tr>
+                                    <th class="genero">NIÑO:</th>
+                                    <td class="talla">2</td>
+                                    <td class="talla">4</td>
+                                    <td class="talla">6</td>
+                                    <td class="talla">8</td>
+                                    <td class="talla">10</td>
+                                    <td class="talla">12</td>
+                                    <td class="talla">14</td>
+                                    <td class="talla">16</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                </tr>
+                
+                                <tr>
+                                    <th class="genero">NIÑA:</th>
+                                    <td class="talla">2</td>
+                                    <td class="talla">4</td>
+                                    <td class="talla">6</td>
+                                    <td class="talla">8</td>
+                                    <td class="talla">10</td>
+                                    <td class="talla">12</td>
+                                    <td class="talla">14</td>
+                                    <td class="talla">16</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                </tr>
+                
+                            </thead> --}}
                             <thead class="">
-                                <tr class="text-sm">
-                                    <th>¿Devolver?</th>
-                                    <th id="">Ref</th>
-                                    <th id="ta">A</th>
-                                    <th id="tb">B</th>
-                                    <th id="tc">C</th>
-                                    <th id="td">D</th>
-                                    <th id="te">E</th>
-                                    <th id="tf">F</th>
-                                    <th id="tg">G</th>
-                                    <th id="th">H</th>
-                                    <th id="ti">I</th>
-                                    <th id="tj">J</th>
-                                    <th id="tk">K</th>
-                                    <th id="tl">L</th>
-                                    <th>Total</th>
-
+                                <tr class="">
+                                    <th>Ref</th>
+                                    <th id="ta"></th>
+                                    <th id="tb"></th>
+                                    <th id="tc"></th>
+                                    <th id="td"></th>
+                                    <th id="te"></th>
+                                    <th id="tf"></th>
+                                    <th id="tg"></th>
+                                    <th id="th"></th>
+                                    <th id="ti"></th>
+                                    <th id="tj"></th>
+                                    <th id="tk"></th>
+                                    <th id="tl"></th>
+                                    <th>Guardar</th>
                                 </tr>
                             </thead>
                             <tbody id="disponibles" class="text-sm">
@@ -116,68 +196,68 @@
                             </tbody>
 
                         </table>
-                        <div class="row mt-2" id="">
+                        {{-- <div class="row mt-2" id="">
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sa">A</label>
-                                <input type="hidden" name="" id="a" class="form-control text-center"
+                                <input type="number" name="" id="a" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sb">B</label>
-                                <input type="hidden" name="" id="b" class="form-control text-center"
+                                <input type="number" name="" id="b" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sc">C</label>
-                                <input type="hidden" name="" id="c" class="form-control text-center"
+                                <input type="number" name="" id="c" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sd">D</label>
-                                <input type="hidden" name="" id="d" class="form-control text-center"
+                                <input type="number" name="" id="d" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="se">E</label>
-                                <input type="hidden" name="" id="e" class="form-control text-center"
+                                <input type="number" name="" id="e" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sf">F</label>
-                                <input type="hidden" name="" id="f" class="form-control text-center"
+                                <input type="number" name="" id="f" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sg">G</label>
-                                <input type="hidden" name="" id="g" class="form-control text-center"
+                                <input type="number" name="" id="g" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sh">H</label>
-                                <input type="hidden" name="" id="h" class="form-control text-center"
+                                <input type="number" name="" id="h" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="si">I</label>
-                                <input type="hidden" name="" id="i" class="form-control text-center"
+                                <input type="number" name="" id="i" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sj">J</label>
-                                <input type="hidden" name="" id="j" class="form-control text-center"
+                                <input type="number" name="" id="j" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sk">K</label>
-                                <input type="hidden" name="k" id="k" class="form-control text-center"
+                                <input type="number" name="k" id="k" class="form-control text-center"
                                     readonly>
                             </div>
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sl">L</label>
-                                <input type="hidden" name="l" id="l" class="form-control text-center"
+                                <input type="number" name="l" id="l" class="form-control text-center"
                                     readonly>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -209,10 +289,10 @@
                     <th></th>
                     <th>Opciones</th>
                     <th># Factura</th>
-                    <th>Ref</th>
+                    <th>User</th>
                     <th>Fecha fact.</th>
                     <th>Fecha imp.</th>
-                    <th>Total</th>
+                    {{-- <th>Total</th> --}}
                     <th>Transporte</th>
                 </tr>
             </thead>
@@ -222,10 +302,10 @@
                     <th></th>
                     <th>Opciones</th>
                     <th># Factura</th>
-                    <th>Ref</th>
+                    <th>User</th>
                     <th>Fecha fact.</th>
                     <th>Fecha imp.</th>
-                    <th>Total</th>
+                    {{-- <th>Total</th> --}}
                     <th>Transporte</th>
                 </tr>
             </tfoot>
@@ -244,6 +324,7 @@
 <script src="{{asset('js/nota_credito.js')}}"></script>
 
 <script>
+    var longitud_global;
     function mostrar(id_factura) {
         $("#disponibles").empty("");
         $.get("nota_credito/" + id_factura, function(data, status) {
@@ -267,303 +348,82 @@
             $("#sucursal").val(data.sucursal.nombre_sucursal);
             $("#fecha_factura").val(data.factura.fecha);
             $("#fecha_impresion").val(data.factura.fecha_impresion);
-            $("#precio_lista_factura").val(data.detalle.precio + " RD$")
-            $("#invoice_detail").DataTable().destroy();
-            listarFacturaDetalle(data.factura.orden_facturacion.id);
-            let genero = data.producto.referencia_producto.substring(1, 2);
-            let mujer_plus = data.producto.referencia_producto.substring(3, 4);
+            $("#precio_lista_factura").val(data.precio + " RD$")
+         
+            var longitud = data.detalle.length;
+            longitud_global = data.detalle.length;
+            for (let i = 0; i < longitud; i++) {
+                 
+                var fila =  "<tr >"+
+                "<td class='cuerpo'> "+data.detalle[i].producto.referencia_producto+"</td>"+
+                "<td ><input type='number' class='form-control' name='a' id='a"+data.detalle[i].id+"' value="+data.detalle[i].a+"></td>"+
+                "<td ><input type='number' class='form-control' name='b' id='b"+data.detalle[i].id+"' value="+data.detalle[i].b+"></td>"+
+                "<td ><input type='number' class='form-control' name='c' id='c"+data.detalle[i].id+"' value="+data.detalle[i].c+"></td>"+
+                "<td ><input type='number' class='form-control' name='d' id='d"+data.detalle[i].id+"' value="+data.detalle[i].d+"></td>"+
+                "<td ><input type='number' class='form-control' name='e' id='e"+data.detalle[i].id+"' value="+data.detalle[i].e+"></td>"+
+                "<td ><input type='number' class='form-control' name='f' id='f"+data.detalle[i].id+"' value="+data.detalle[i].f+"></td>"+
+                "<td ><input type='number' class='form-control' name='g' id='g"+data.detalle[i].id+"' value="+data.detalle[i].g+"></td>"+
+                "<td ><input type='number' class='form-control' name='h' id='h"+data.detalle[i].id+"' value="+data.detalle[i].h+"></td>"+
+                "<td ><input type='number' class='form-control' name='i' id='i"+data.detalle[i].id+"' value="+data.detalle[i].i+"></td>"+
+                "<td ><input type='number' class='form-control' name='j' id='j"+data.detalle[i].id+"' value="+data.detalle[i].j+"></td>"+
+                "<td ><input type='number' class='form-control' name='k' id='k"+data.detalle[i].id+"' value="+data.detalle[i].k+"></td>"+
+                "<td ><input type='number' class='form-control' name='l' id='l"+data.detalle[i].id+"' value="+data.detalle[i].l+"></td>"+
+                "<td ><button type='button' id='btn-detalle"+data.detalle[i].id+"' class='btn btn-info btn-sm' onclick='agregar("+data.detalle[i].id+")'><i class='far fa-save'></i></button></td>"+
+                "</tr>";
 
-            //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-            (data.detalle.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false); 
-            (data.detalle.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
-            (data.detalle.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
-            (data.detalle.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
-            (data.detalle.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
-            (data.detalle.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
-            (data.detalle.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
-            (data.detalle.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
-            (data.detalle.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
-            (data.detalle.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
-            (data.detalle.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
-            (data.detalle.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
-
-            $("#a").val(data.detalle.a);
-            $("#b").val(data.detalle.b);
-            $("#c").val(data.detalle.c);
-            $("#d").val(data.detalle.d);
-            $("#e").val(data.detalle.e);
-            $("#f").val(data.detalle.f);
-            $("#g").val(data.detalle.g);
-            $("#h").val(data.detalle.h);
-            $("#i").val(data.detalle.i);
-            $("#j").val(data.detalle.j);
-            $("#k").val(data.detalle.k);
-            $("#l").val(data.detalle.l);
-
-            if (genero == "2"){
-
-                if (mujer_plus == 7) {
-                    $("#ta").html("12W");
-                    $("#tb").html("14W");
-                    $("#tc").html("16W");
-                    $("#td").html("18W");
-                    $("#te").html("20W");
-                    $("#tf").html("22W");
-                    $("#tg").html("24W");
-                    $("#th").html("26W");
-                    $("#sa").html("12W");
-                    $("#sb").html("14W");
-                    $("#sc").html("16W");
-                    $("#sd").html("18W");
-                    $("#se").html("20W");
-                    $("#sf").html("22W");
-                    $("#sg").html("24W");
-                    $("#sh").html("26W");
-            
-                    $("#i").attr("disabled", true);
-                    $("#j").attr("disabled", true);
-                    $("#k").attr("disabled", true);
-                    $("#l").attr("disabled", true);
-                    $("#tallas").html(
-                    "<th>Dama Plus</th>" +
-                    "<th>12W</th>" +
-                    "<th>14W</th>" +
-                    "<th>16W</th>" +
-                    "<th>18W</th>" +
-                    "<th>20W</th>" +
-                    "<th>22W</th>" +
-                    "<th>24W</th>" +
-                    "<th>26W</th>"
-                    );
-                           
-                } else {
-                    $("#ta").html("0/0");
-                    $("#tb").html("1/2");
-                    $("#tc").html("3/4");
-                    $("#td").html("5/6");
-                    $("#te").html("7/8");
-                    $("#tf").html("9/10");
-                    $("#tg").html("11/12");
-                    $("#th").html("13/14");
-                    $("#ti").html("15/16");
-                    $("#tj").html("17/18");
-                    $("#tk").html("19/20");
-                    $("#tl").html("21/22");
-                    $("#sa").html("0/0");
-                    $("#sb").html("1/2");
-                    $("#sc").html("3/4");
-                    $("#sd").html("5/6");
-                    $("#se").html("7/8");
-                    $("#sf").html("9/10");
-                    $("#sg").html("11/12");
-                    $("#sh").html("13/14");
-                    $("#si").html("15/16");
-                    $("#sj").html("17/18");
-                    $("#sk").html("19/20");
-                    $("#sl").html("21/22");
-           
-                    // $("#i").attr("disabled", false);
-                    // $("#j").attr("disabled", false);
-                    // $("#k").attr("disabled", false);
-                    // $("#l").attr("disabled", false);
-                    $("#tallas").html(
-                        "<th>Dama TA</th>" +
-                            "<th>0/0</th>" +
-                            "<th>1/2</th>" +
-                            "<th>3/4</th>" +
-                            "<th>5/6</th>" +
-                            "<th>7/8</th>" +
-                            "<th>9/10</th>" +
-                            "<th>11/12</th>" +
-                            "<th>13/14</th>" +
-                            "<th>15/16</th>" +
-                            "<th>17/18</th>" +
-                            "<th>19/20</th>" +
-                            "<th>21/22</th>"
-                        );
-                    }
+                $("#disponibles").append(fila);  
+                //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+                (data.detalle[i].a <= 0 ) ? $("#a"+data.detalle[i].id).attr('disabled', true) : $("#a"+data.detalle[i].id).attr('disabled', false); 
+                (data.detalle[i].b <= 0 ) ? $("#b"+data.detalle[i].id).attr('disabled', true) : $("#b"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].c <= 0 ) ? $("#c"+data.detalle[i].id).attr('disabled', true) : $("#c"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].d <= 0 ) ? $("#d"+data.detalle[i].id).attr('disabled', true) : $("#d"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].e <= 0 ) ? $("#e"+data.detalle[i].id).attr('disabled', true) : $("#e"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].f <= 0 ) ? $("#f"+data.detalle[i].id).attr('disabled', true) : $("#f"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].g <= 0 ) ? $("#g"+data.detalle[i].id).attr('disabled', true) : $("#g"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].h <= 0 ) ? $("#h"+data.detalle[i].id).attr('disabled', true) : $("#h"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].i <= 0 ) ? $("#i"+data.detalle[i].id).attr('disabled', true) : $("#i"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].j <= 0 ) ? $("#j"+data.detalle[i].id).attr('disabled', true) : $("#j"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].k <= 0 ) ? $("#k"+data.detalle[i].id).attr('disabled', true) : $("#k"+data.detalle[i].id).attr('disabled', false);
+                (data.detalle[i].l <= 0 ) ? $("#l"+data.detalle[i].id).attr('disabled', true) : $("#l"+data.detalle[i].id).attr('disabled', false);           
             }
-            if (genero == "3") {
-                $("#genero").val("Niño: " + val);
-                $("#sub-genero").hide();
-                $("#ta").html("2");
-                $("#tb").html("4");
-                $("#tc").html("6");
-                $("#td").html("8");
-                $("#te").html("10");
-                $("#tf").html("12");
-                $("#tg").html("14");
-                $("#th").html("16");
-                $("#sa").html("2");
-                $("#sb").html("4");
-                $("#sc").html("6");
-                $("#sd").html("8");
-                $("#se").html("10");
-                $("#sf").html("12");
-                $("#sg").html("14");
-                $("#sh").html("16");
-                // $("#ra").html(datos.a);
-                // $("#rb").html(datos.b);
-                // $("#rc").html(datos.c);
-                // $("#rd").html(datos.d);
-                // $("#re").html(datos.e);
-                // $("#rf").html(datos.f);
-                // $("#rg").html(datos.g);
-                // $("#rh").html(datos.h);
-                // $("#ri").html(datos.i);
-                // $("#rj").html(datos.j);
-                // $("#rk").html(datos.k);
-                // $("#rl").html(datos.l);
-                $("#i").attr("disabled", true);
-                $("#j").attr("disabled", true);
-                $("#k").attr("disabled", true);
-                $("#l").attr("disabled", true);
-                $("#tallas").html(
-                    "<th>Niño</th>" +
-                        "<th>2</th>" +
-                        "<th>4</th>" +
-                        "<th>6</th>" +
-                        "<th>8</th>" +
-                        "<th>10</th>" +
-                        "<th>12</th>" +
-                        "<th>14</th>" +
-                        "<th>16</th>"
-                );
-            } else if (genero == "4") {
-                $("#genero").val("Niña: " + val);
-                $("#sub-genero").hide();
-                $("#ta").html("2");
-                $("#tb").html("4");
-                $("#tc").html("6");
-                $("#td").html("8");
-                $("#te").html("10");
-                $("#tf").html("12");
-                $("#tg").html("14");
-                $("#th").html("16");
-                $("#sa").html("2");
-                $("#sb").html("4");
-                $("#sc").html("6");
-                $("#sd").html("8");
-                $("#se").html("10");
-                $("#sf").html("12");
-                $("#sg").html("14");
-                $("#sh").html("16");
-                // $("#ra").html(datos.a);
-                // $("#rb").html(datos.b);
-                // $("#rc").html(datos.c);
-                // $("#rd").html(datos.d);
-                // $("#re").html(datos.e);
-                // $("#rf").html(datos.f);
-                // $("#rg").html(datos.g);
-                // $("#rh").html(datos.h);
-                // $("#ri").html(datos.i);
-                // $("#rj").html(datos.j);
-                // $("#rk").html(datos.k);
-                // $("#rl").html(datos.l);
-                $("#i").attr("disabled", true);
-                $("#j").attr("disabled", true);
-                $("#k").attr("disabled", true);
-                $("#l").attr("disabled", true);
-                $("#tallas").html(
-                    "<th>Niña</th>" +
-                        "<th>2</th>" +
-                        "<th>4</th>" +
-                        "<th>6</th>" +
-                        "<th>8</th>" +
-                        "<th>10</th>" +
-                        "<th>12</th>" +
-                        "<th>14</th>" +
-                        "<th>16</th>"
-                );
-            } else if (genero == "1") {
-                $("#genero").val("Hombre: " + val);
-                $("#sub-genero").hide();
-                $("#ta").html("28");
-                $("#tb").html("29");
-                $("#tc").html("30");
-                $("#td").html("32");
-                $("#te").html("34");
-                $("#tf").html("36");
-                $("#tg").html("38");
-                $("#th").html("40");
-                $("#ti").html("42");
-                $("#tj").html("44");
-                $("#sa").html("28");
-                $("#sb").html("29");
-                $("#sc").html("30");
-                $("#sd").html("32");
-                $("#se").html("34");
-                $("#sf").html("36");
-                $("#sg").html("38");
-                $("#sh").html("40");
-                $("#si").html("42");
-                $("#sj").html("44");
-                // $("#ra").html(datos.a);
-                // $("#rb").html(datos.b);
-                // $("#rc").html(datos.c);
-                // $("#rd").html(datos.d);
-                // $("#re").html(datos.e);
-                // $("#rf").html(datos.f);
-                // $("#rg").html(datos.g);
-                // $("#rh").html(datos.h);
-                // $("#ri").html(datos.i);
-                // $("#rj").html(datos.j);
-                // $("#rk").html(datos.k);
-                // $("#rl").html(datos.l);
-                $("#i").attr("disabled", false);
-                $("#j").attr("disabled", false);
-                $("#k").attr("disabled", true);
-                $("#l").attr("disabled", true);
-                $("#tallas").html(
-                    "<th>Caballero Skinny</th>" +
-                        "<th>28</th>" +
-                        "<th>29</th>" +
-                        "<th>30</th>" +
-                        "<th>32</th>" +
-                        "<th>34</th>" +
-                        "<th>36</th>" +
-                        "<th>38</th>" +
-                        "<th>40</th>" +
-                        "<th>42</th>" +
-                        "<th>44</th>"
-                );
-            } 
+
           
         });
     }
 
-     //funcion para listar en el Datatable
-     function listarFacturaDetalle(id) {
-       var tabla_orden = $("#invoice_detail").DataTable({
-            serverSide: true,
-            bFilter: false, 
-            lengthChange: false,
-            bPaginate: false,
-            bInfo: false,
-            retrieve: true,
-            ajax: "api/fact_detalle/"+id,
-            columns: [
-                { data: "Opciones", orderable: false, searchable: false },
-                { data: "referencia_producto",name: "producto.referencia_producto"},
-                { data: "a", name: "orden_facturacion_detalle.a"},
-                { data: "b", name: "orden_facturacion_detalle.b" },
-                { data: "c", name: "orden_facturacion_detalle.c" },
-                { data: "d", name: "orden_facturacion_detalle.d"},
-                { data: "e", name: "orden_facturacion_detalle.e"},
-                { data: "f", name: "orden_facturacion_detalle.f"},
-                { data: "g", name: "orden_facturacion_detalle.g"},
-                { data: "h", name: "orden_facturacion_detalle.h"},
-                { data: "i", name: "orden_facturacion_detalle.i"},
-                { data: "j", name: "orden_facturacion_detalle.j"},
-                { data: "k", name: "orden_facturacion_detalle.k"},
-                { data: "l", name: "orden_facturacion_detalle.l"},
-                { data: "total", name: "orden_facturacion_detalle.total"}
-                // { data: "cantidad"},
-                // { data: "Opciones", orderable: false, searchable: false },
+    //  //funcion para listar en el Datatable
+    //  function listarFacturaDetalle(id) {
+    //    var tabla_orden = $("#invoice_detail").DataTable({
+    //         serverSide: true,
+    //         bFilter: false, 
+    //         lengthChange: false,
+    //         bPaginate: false,
+    //         bInfo: false,
+    //         retrieve: true,
+    //         ajax: "api/fact_detalle/"+id,
+    //         columns: [
+    //             { data: "Opciones", orderable: false, searchable: false },
+    //             { data: "referencia_producto",name: "producto.referencia_producto"},
+    //             { data: "a", name: "orden_facturacion_detalle.a"},
+    //             { data: "b", name: "orden_facturacion_detalle.b" },
+    //             { data: "c", name: "orden_facturacion_detalle.c" },
+    //             { data: "d", name: "orden_facturacion_detalle.d"},
+    //             { data: "e", name: "orden_facturacion_detalle.e"},
+    //             { data: "f", name: "orden_facturacion_detalle.f"},
+    //             { data: "g", name: "orden_facturacion_detalle.g"},
+    //             { data: "h", name: "orden_facturacion_detalle.h"},
+    //             { data: "i", name: "orden_facturacion_detalle.i"},
+    //             { data: "j", name: "orden_facturacion_detalle.j"},
+    //             { data: "k", name: "orden_facturacion_detalle.k"},
+    //             { data: "l", name: "orden_facturacion_detalle.l"},
+    //             { data: "total", name: "orden_facturacion_detalle.total"}
+    //             // { data: "cantidad"},
+    //             // { data: "Opciones", orderable: false, searchable: false },
               
-            ],
-        });
-    }
+    //         ],
+    //     });
+    // }
+   
 
     function eliminar(id_factura){
         bootbox.confirm("¿Estas seguro de eliminar la nota de credito?", function(result){
@@ -580,11 +440,22 @@
     function agregar(factura_detella_id){
 
         var nota_credito_detalle = {
-            nc_id: $("#nc_id").val()
-        };
-
-   
-                
+            nc_id: $("#nc_id").val(),
+            a: $('#a'+factura_detella_id).val(),
+            b: $("#b"+factura_detella_id).val(),
+            c: $("#c"+factura_detella_id).val(),
+            d: $("#d"+factura_detella_id).val(),
+            e: $("#e"+factura_detella_id).val(),
+            f: $("#f"+factura_detella_id).val(),
+            g: $("#g"+factura_detella_id).val(),
+            h: $("#h"+factura_detella_id).val(),   
+            i: $("#i"+factura_detella_id).val(),
+            j: $("#j"+factura_detella_id).val(),
+            k: $("#k"+factura_detella_id).val(),
+            l: $("#l"+factura_detella_id).val()                 
+        }
+        // console.log(JSON.stringify(nota_credito_detalle));
+      
         $.ajax({
             url: "nota-credito/detalle/"+factura_detella_id,
             type: "POST",
@@ -593,7 +464,8 @@
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    $("#invoice_detail").DataTable().ajax.reload();
+                    $("#btn-detalle"+ factura_detella_id).attr('disabled', true);
+                    // $("#invoice_detail").DataTable().ajax.reload();
                     // bootbox.alert("Nota de credito <strong>"+datos.nota_credito.no_nota_credito+"</strong> creada correctamente.");
                     // mostrarForm(false);
                   

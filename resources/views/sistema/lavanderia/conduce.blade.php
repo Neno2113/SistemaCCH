@@ -268,6 +268,8 @@
         text-align: center;
         padding-top: 16px;
         padding-bottom: 15px;
+        padding-left: 16px;
+        padding-right: 16px;
       }
 
       .tabla-principal td.desc-des li {
@@ -701,7 +703,7 @@
       <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
         <thead>
           <tr>
-            {{-- <th class="desc">CANT</th> --}}
+            <th class="desc">CORTE</th>
             <th class="no">REFERENCIA</th>
             <th class="unit">UPC/SKU</th>
             <th class="desc">ESTANDAR</th>
@@ -711,6 +713,9 @@
         </thead>
         <tbody>
           <tr>
+            <td class="no">
+              <li>{{$lavanderia->corte->numero_corte}}</li>
+            </td>
             <td class="no">
               <li>{{$lavanderia->producto->referencia_producto}}</li>
             </td>

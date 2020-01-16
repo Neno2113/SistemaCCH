@@ -13,6 +13,7 @@ use App\Client;
 use App\ClientBranch;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
+use App\NotaCreditoDetalle;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -109,19 +110,23 @@ class ordenPedidoController extends Controller
         $producto = Product::find($producto_id);
 
 
+        //Notas De credito
+        $tallasCredito = NotaCreditoDetalle::where('producto_id', $producto_id)->get();
+
+
         //calcular total real
-        $a = $tallasAlmacen->sum('a') - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a') - $tallasOrdenes->sum('a');
-        $b = $tallasAlmacen->sum('b') - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b') - $tallasOrdenes->sum('b');
-        $c = $tallasAlmacen->sum('c') - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c') - $tallasOrdenes->sum('c');
-        $d = $tallasAlmacen->sum('d') - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d') - $tallasOrdenes->sum('d');
-        $e = $tallasAlmacen->sum('e') - $tallasPerdidas->sum('e') - $tallasSegundas->sum('e') - $tallasOrdenes->sum('e');
-        $f = $tallasAlmacen->sum('f') - $tallasPerdidas->sum('f') - $tallasSegundas->sum('f') - $tallasOrdenes->sum('f');
-        $g = $tallasAlmacen->sum('g') - $tallasPerdidas->sum('g') - $tallasSegundas->sum('g') - $tallasOrdenes->sum('g');
-        $h = $tallasAlmacen->sum('h') - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h') - $tallasOrdenes->sum('h');
-        $i = $tallasAlmacen->sum('i') - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i') - $tallasOrdenes->sum('i');
-        $j = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j') - $tallasOrdenes->sum('j');
-        $k = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k');
-        $l = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l');
+        $a = $tallasAlmacen->sum('a') - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a') - $tallasOrdenes->sum('a') + $tallasCredito->sum('a');
+        $b = $tallasAlmacen->sum('b') - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b') - $tallasOrdenes->sum('b') + $tallasCredito->sum('b');
+        $c = $tallasAlmacen->sum('c') - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c') - $tallasOrdenes->sum('c') + $tallasCredito->sum('c');
+        $d = $tallasAlmacen->sum('d') - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d') - $tallasOrdenes->sum('d') + $tallasCredito->sum('d');
+        $e = $tallasAlmacen->sum('e') - $tallasPerdidas->sum('e') - $tallasSegundas->sum('e') - $tallasOrdenes->sum('e') + $tallasCredito->sum('e');
+        $f = $tallasAlmacen->sum('f') - $tallasPerdidas->sum('f') - $tallasSegundas->sum('f') - $tallasOrdenes->sum('f') + $tallasCredito->sum('f');
+        $g = $tallasAlmacen->sum('g') - $tallasPerdidas->sum('g') - $tallasSegundas->sum('g') - $tallasOrdenes->sum('g') + $tallasCredito->sum('g');
+        $h = $tallasAlmacen->sum('h') - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h') - $tallasOrdenes->sum('h') + $tallasCredito->sum('h');
+        $i = $tallasAlmacen->sum('i') - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i') - $tallasOrdenes->sum('i') + $tallasCredito->sum('i');
+        $j = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j') - $tallasOrdenes->sum('j') + $tallasCredito->sum('j');
+        $k = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k') + $tallasCredito->sum('k');
+        $l = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l') + $tallasCredito->sum('l');
 
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);

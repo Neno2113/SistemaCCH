@@ -236,7 +236,7 @@ Route::get('/recepcion/{id}', 'RecepcionController@show');
 Route::put('/recepcion/edit', 'RecepcionController@update');
 Route::post('/recepcion/delete/{id}', 'RecepcionController@destroy');
 Route::post('/cantidades_recibidas', 'RecepcionController@cantidad');
-
+Route::get('/imprimir/conduceRecepcion/{id}', 'RecepcionController@imprimir')->name('print');
 
 //Perdida
 Route::get('cortes_perd', 'PerdidaController@selectCorte');
@@ -329,6 +329,6 @@ Route::get('nc/lastdigit', 'NotaCreditoController@getDigits');
 Route::post('nota-credito', 'NotaCreditoController@store');
 Route::post('nota-credito/detalle/{id}', 'NotaCreditoController@storeDetalle');
 Route::post('nota-credito/delete/{id}', 'NotaCreditoController@destroy');
-
+Route::get('imprimir_notaCredito/{id}', 'NotaCreditoController@imprimir');
 
 

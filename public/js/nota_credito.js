@@ -175,10 +175,13 @@ $(document).ready(function() {
         e.preventDefault();
         ncCod();
         $("#facturas_listadas").DataTable().ajax.reload();
+        bootbox.alert("Nota de credito guardada correctamente");
         mostrarForm(false);
 
        
     });
+
+  
 
     //funcion para listar en el Datatable
     function listar() {
@@ -208,15 +211,16 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "no_factura", name: 'factura.no_factura' },
-                { data: "referencia_producto", name: 'producto.referencia_producto', orderable: false, searchable: false },
+                { data: "name", name: 'users.name' },
+                // { data: "referencia_producto", name: 'producto.referencia_producto', orderable: false, searchable: false },
                 { data: "fecha", name: 'factura.fecha' },
                 { data: "fecha_impresion", name: 'factura.fecha_impresion' },
-                { data: "total", name: 'orden_facturacion_detalle.total' },
+                // { data: "total", name: 'orden_facturacion_detalle.total' },
                 { data: "por_transporte", name: 'orden_facturacion.por_transporte' },
             ],
-            order: [[2, 'desc']],
+            order: [[4, 'desc']],
             rowGroup: {
-                dataSrc: 'no_factura' 
+                dataSrc: 'name' 
             }
         });
     }

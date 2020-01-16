@@ -202,8 +202,8 @@ class RecepcionController extends Controller
             ->addColumn('Opciones', function ($recepcion) {
                 return
                     // '<button id="btnEdit" onclick="mostrar(' . $recepcion->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .
-                    '<button onclick="eliminar(' . $recepcion->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
-                // '<a href="imprimir/conduce/'.$lavanderia->id .'" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
+                    '<button onclick="eliminar(' . $recepcion->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>'.
+                    '<a href="imprimir/conduceRecepcion/'.$recepcion->id .'" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
             })
             ->rawColumns(['Opciones'])
             ->make(true);
@@ -417,5 +417,19 @@ class RecepcionController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
+    }
+
+    public function imprimir($id)
+    {
+        $recepcion = Recepcion::find($id)->load('corte');
+        $recepcion->fecha_recepcion = date("d/m/20y", strtotime($recepcion->fecha_recepcion));
+        
+        $corte_id = $recepcion->corte_id;
+
+        $lavanderia = Lavanderia::where('corte_id', $corte_id)->get()->last();
+      
+        $pdf = \PDF::loadView('sistema.recepcion.conduceRecepcion', \compact('recepcion', 'lavanderia'));
+        return $pdf->download('conduceRecepcion.pdf');
+        return View('sistema.lavanderia.conduceRecepcion', \compact('recepcion','lavanderia'));
     }
 }

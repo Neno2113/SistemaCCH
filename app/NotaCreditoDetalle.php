@@ -18,4 +18,9 @@ class NotaCreditoDetalle extends Model
     {
         return $this->belongsTo('App\NotaCredito', 'nota_credito_id' );
     }
+
+    public function producto()
+    {
+        return $this->belongsTo('App\Product', 'producto_id');
+    }
 }
