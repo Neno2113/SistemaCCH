@@ -56,6 +56,12 @@
                 <p>Usuarios</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="/sistemaCCH/public/employee" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Empleados</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item has-treeview ">

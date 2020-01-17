@@ -8,6 +8,7 @@ use App\ordenEmpaque;
 use App\ordenPedido;
 use App\ordenEmpaqueDetalle;
 use App\ordenFacturacionDetalle;
+
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 

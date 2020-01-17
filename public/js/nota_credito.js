@@ -80,6 +80,7 @@ $(document).ready(function() {
                     sec: $("#sec").val(),
                     no_nota_credito: $("#no_nota_credito").val(),
                     factura_id: $("#factura_id").val(),
+                    cliente: $("#cliente_id").val(),
                     tipo_nota_credito: $("#tipo_nota_credito").val(), 
                     precio_lista_factura: $("#precio_lista_factura").val(),
                     ncf: $("#ncf").val()
@@ -125,6 +126,7 @@ $(document).ready(function() {
                 sec: $("#sec").val(),
                 no_nota_credito: $("#no_nota_credito").val(),
                 factura_id: $("#factura_id").val(),
+                cliente: $("#cliente_id").val(),
                 tipo_nota_credito: $("#tipo_nota_credito").val(), 
                 precio_lista_factura: $("#precio_lista_factura").val()
             };

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Factura Resumida</title>
+    <title>Nota de Credito</title>
     <style>
         @font-face {
             font-family: SourceSansPro;
@@ -101,7 +101,7 @@
         #invoice-fiscal {
             float: right;
             text-align: right;
-            margin-right: 47%;
+            margin-right: 43%;
         }
 
         #invoice-fiscal h1 {
@@ -350,10 +350,12 @@
         }
 
         .firmas {
-            margin-top: 35px;
+            /* margin-top: 100px; */
             text-align: center;
             font-weight: bold;
             color: #000;
+            padding-top: 200px
+            /* margin-bottom: 100px; */
         }
 
         .firma_enviado {
@@ -398,7 +400,7 @@
 
         .tabla-factura {
             float: right;
-            width: 19%;
+            width: 50%;
             border: 2px solid black;
             margin-right: 34%;
         }
@@ -409,7 +411,7 @@
         }
 
         .tabla-factura th {
-            font-size: 20px;
+            font-size: 14px;
             padding-left: 19px;
             padding-right: 16px;
             padding-top: 7px;
@@ -432,7 +434,7 @@
         .tabla-factura tbody .page {
             text-align: center;
             font-size: 10px;
-            padding: 11px;
+            padding: 8px;
             border-top: 2px solid black;
 
         }
@@ -535,9 +537,46 @@
         .tabla-ncf tbody td {
             /* padding-left: 28px; */
             text-align: center;
-            font-size: 12px;
+            font-size: 16px;
+            color: #000;
+            padding-bottom: 20px;
+        }
+        .tabla-motivo {
+            width: 40%;
+            /* border-collapse: collapse;
+            border-spacing: 0; */
+            margin-bottom: 20px;
+            table-layout: auto;
+            border: solid 2px black;
+        }
+
+        .tabla-motivo thead th {
+            border-bottom: 2px solid black;
+            /* border-left: 2px solid black */
+            background-color: #131980;
+            color: #fff;
+            text-align: center;
+            /* padding-left: 40px; */
+            /* padding-right: 40px; */
+            /* margin-left: 20px; */
+        }
+
+        .tabla-motivo tbody td {
+            /* padding-left: 28px; */
+            /* text-align: center; */
+            font-size: 15px;
             color: #000;
         }
+
+        .tabla-motivo .box {
+            padding: 6px;
+            border: 2px solid black;
+            width: 6px;
+            float: left;
+
+            
+        }
+
 
         .tabla-ncf thead .op {
             /* padding-left: 5px; */
@@ -605,7 +644,7 @@
             <table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
                 <thead class="cod">
                     <tr>
-                        <th>Cliente codigo</th>
+                        <th>Acreditado a </th>
                         <td>Cod</td>
                     </tr>
                 </thead>
@@ -648,7 +687,7 @@
         <table class="tabla-factura">
             <thead>
                 <tr>
-                    <th class="factura">FACTURA</th>
+                    <th class="factura">NOTA DE CREDITO</th>
                 </tr>
             </thead>
             <tbody>
@@ -656,7 +695,7 @@
                     <td class="num_factura">{{$factura->no_factura}}</td>
                 </tr>
                 <tr>
-                    <td class="fecha">Fecha:{{$factura->fecha}}</td>
+                    <td class="fecha">Fecha:{{$nota_credito->fecha}}</td>
                 </tr>
                 <tr>
                     <td class="page">Pagina 1</td>
@@ -700,9 +739,9 @@
                 <tr>
                     <th class="op">ORDEN PEDIDO</th>
                     <th class="terminos_pago">TERMINOS PAGO</th>
-                    <th class="">VENCIMIENTO</th>
+                    {{-- <th class="">VENCIMIENTO</th> --}}
                     <th class="vendedor">VENDEDOR</th>
-                    <th class="nfc_vence">NCF VENCE</th>
+                    {{-- <th class="nfc_vence">NCF VENCE</th> --}}
                     <th>NCF</th>
                 </tr>
             </thead>
@@ -712,19 +751,34 @@
                         {{$orden->no_orden_pedido}}
                         @endforeach</td>
                     <td>{{$orden_pedido->cliente->condiciones_credito}}</td>
-                    <td class="vencimiento">18/1/20</td>
+                    {{-- <td class="vencimiento">18/1/20</td> --}}
                     <td>Carmen Herrera</td>
-                    <td>31/12/2019</td>
-                    <td class="ncf">{{$factura->numero_comprobante}}</td>
+                    {{-- <td></td> --}}
+                    <td class="vencimiento">{{$nota_credito->ncf}}</td>
                 </tr>
             </tbody>
         </table>
 
-        @if ($factura->comprobante_fiscal == 1)
+        @if (!empty($nota_credito->ncf))
         <div id="invoice-fiscal">
-            <h1>FACTURA VALIDA PARA CREDITO FISCAL</h1>
+            <h1>NOTA CREDITO VALIDA PARA CREDITO FISCAL</h1>
         </div>
         @endif
+
+        {{-- <table cellspacing="0" class="tabla-motivo">
+            <thead>
+                <tr>
+                    <th class="op">MOTIVO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="box"></div> Cambio M.
+                    </td>
+                </tr>
+            </tbody>
+        </table> --}}
 
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
             <thead>
@@ -740,8 +794,8 @@
             <tbody>
                 <tr>
                     <td class="desc">
-                        @foreach ($orden_facturacion_detalle as $cantidad)
-                        <li>{{$cantidad->total}}</li>
+                        @foreach ($nota_detalle as $nota)
+                        <li>{{$nota->total}}</li>
                         @endforeach
                     </td>
                     <td class="no">
@@ -803,13 +857,8 @@
                 <thead>
                     <tr>
                         <th>TOTAL DE ARTICULOS: <span class="total_articulos">{{$total_articulos}}</span></th>
-                        <th>FECHA: <span class="fecha_factura">{{$factura->fecha}}</span></th>
+                        <th>FECHA: <span class="fecha_factura">{{$nota_credito->fecha}}</span></th>
                     </tr>
-                    <tr>
-                        <th>CANTIDAD DE BULTOS: <span class="bultos">{{$bultos}}</span></th>
-                        <th>HORA DE EMPACADO: <span class="hora_empaque">{{$orden_empaque_detalle->fecha_empacado}}<span></th>
-                    </tr>
-
                 </thead>
 
             </table>
@@ -817,7 +866,7 @@
             <table class="tabla-totales">
 
                 <tr>
-                    <th>DESCUENTO: {{$factura->descuento}}%</th>
+                    <th>DESCUENTO: {{$nota_credito->factura->descuento}}%</th>
                     <td>{{number_format($descuento)}} RD$</td>
 
                 </tr>
@@ -826,10 +875,13 @@
                     <td>{{number_format($subtotal_real)}} RD$</td>
 
                 </tr>
+                @if (!empty($nota_credito->ncf))
                 <tr>
-                    <th>IMPUESTO: {{$factura->itbis}}%</th>
+                    <th>IMPUESTO: {{$nota_credito->factura->itbis}}%</th>
                     <td>{{number_format($impuesto)}} RD$</td>
                 </tr>
+                @endif
+               
                 <tr class="total">
                     <th style="font-weight:bold;">TOTAL FINAL:</th>
                     <td style="font-weight:bold;">{{number_format($total_final)}} RD$</td>
@@ -838,7 +890,7 @@
         </div>
 
 
-        @if ($factura->descuento <> 0)
+        {{-- @if ($factura->descuento <> 0)
             <div id="thanks">FACTURA CON EL DESCUENTO APLICADO</div>
             <div id="notices">
                 <div>NOTAS:</div>
@@ -862,7 +914,7 @@
                     operaciones.
                 </p>
             </div>
-            @endif
+            @endif --}}
 
 
             <div class="firmas">

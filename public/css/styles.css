@@ -147,7 +147,8 @@ textarea.form-control
 
 }
  .tabla-nc tbody td{
-     
+    padding-left: 2px;
+    padding-right: 16px;
 }
 
  .tabla-nc tbody .cuerpo{

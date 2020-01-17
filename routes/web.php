@@ -25,6 +25,10 @@ Route::get('/user', function () {
     return view('sistema.user.users');
 })->middleware('auth');
 
+Route::get('/employee', function () {
+    return view('sistema.empleado.empleado');
+})->middleware('auth');
+
 Route::get('/client', function () {
     return view('sistema.client.clients');
 })->middleware('auth');

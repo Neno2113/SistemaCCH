@@ -50,6 +50,7 @@
                             <label for="">Cliente:</label>
                             <input type="text" name="cliente" id="cliente"
                                 class="form-control text-center font-weight-bold" readonly>
+                            <input type="hidden" name="cliente_id" id="cliente_id">
                         </div>
                         <div class="col-md-4">
                             <label for="">Sucursal:</label>
@@ -345,6 +346,7 @@
             $("#orden_facturacion_id").val(data.factura.id);
             $("#no_factura").val(data.factura.no_factura);
             $("#cliente").val(data.cliente.nombre_cliente);
+            $("#cliente_id").val(data.cliente.id);
             $("#sucursal").val(data.sucursal.nombre_sucursal);
             $("#fecha_factura").val(data.factura.fecha);
             $("#fecha_impresion").val(data.factura.fecha_impresion);
