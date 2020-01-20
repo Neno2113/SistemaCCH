@@ -154,4 +154,17 @@ textarea.form-control
  .tabla-nc tbody .cuerpo{
 
  }
+
+ .tabla-dependientes{
+
+ }
+
+ 
+ .tabla-dependientes thead{
+    border-left: 2px solid #0B447D;
+    border-right: 2px solid #0B447D;
+    background: #0B447D;
+    color: #fff;
+}
+
  

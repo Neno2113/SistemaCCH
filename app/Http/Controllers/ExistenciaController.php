@@ -11,6 +11,11 @@ use App\TallasPerdidas;
 use App\Almacen;
 use App\Existencia;
 use App\ordenPedidoDetalle;
+use App\NotaCredito;
+use App\NotaCreditoDetalle;
+use App\Factura;
+use App\OrdenFacturacion;
+use App\ordenFacturacionDetalle;
 
 class ExistenciaController extends Controller
 {
@@ -84,6 +89,12 @@ class ExistenciaController extends Controller
         ->where('orden_empacada' , 'LIKE', '0')
         ->get();
 
+        //Ordenes
+        $tallasNC = NotaCreditoDetalle::where('producto_id', $producto_id)
+        ->get();
+
+        
+
         //respuesta 
         $data = [
             'code' => 200,
@@ -156,6 +167,19 @@ class ExistenciaController extends Controller
             'j_op' => $tallasOrdenes->sum('j'),
             'k_op' => $tallasOrdenes->sum('k'),
             'l_op' => $tallasOrdenes->sum('l'),
+            'tallasNC' => $tallasNC,
+            'a_nc' => $tallasNC->sum('a'),
+            'b_nc' => $tallasNC->sum('b'),
+            'c_nc' => $tallasNC->sum('c'),
+            'd_nc' => $tallasNC->sum('d'),
+            'e_nc' => $tallasNC->sum('e'),
+            'f_nc' => $tallasNC->sum('f'),
+            'g_nc' => $tallasNC->sum('g'),
+            'h_nc' => $tallasNC->sum('h'),
+            'i_nc' => $tallasNC->sum('i'),
+            'j_nc' => $tallasNC->sum('j'),
+            'k_nc' => $tallasNC->sum('k'),
+            'l_nc' => $tallasNC->sum('l'),
 
 
         ];

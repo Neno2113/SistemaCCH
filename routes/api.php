@@ -86,4 +86,6 @@ Route::get('nota_credito/facturas', 'NotaCreditoController@facturas');
 
 Route::get('fact_detalle/{id}', 'NotaCreditoController@facturacionDetail');
 
+Route::get('empleados', 'EmpleadoController@empleados');
+
 

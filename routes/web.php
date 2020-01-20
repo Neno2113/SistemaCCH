@@ -271,7 +271,7 @@ Route::post('/validar/total', 'AlmacenController@validar');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
-Route::post('existencia/consulta', 'ExistenciaController@show');
+Route::get('existencia/consulta', 'ExistenciaController@show');
 Route::post('existencia', 'ExistenciaController@store');
 
 //Orden de pedido
@@ -334,5 +334,14 @@ Route::post('nota-credito', 'NotaCreditoController@store');
 Route::post('nota-credito/detalle/{id}', 'NotaCreditoController@storeDetalle');
 Route::post('nota-credito/delete/{id}', 'NotaCreditoController@destroy');
 Route::get('imprimir_notaCredito/{id}', 'NotaCreditoController@imprimir');
+
+
+
+//Empleado
+Route::post('empleado', 'EmpleadoController@store');
+Route::post('empleado/detalle', 'EmpleadoController@storeDetalle');
+Route::get('empleado/{id}', 'EmpleadoController@show');
+Route::put('empleado/edit', 'EmpleadoController@update');
+Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 
 
