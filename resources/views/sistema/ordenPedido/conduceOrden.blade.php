@@ -713,7 +713,7 @@
 				<tr>
 					<td>{{$orden->no_orden_pedido}}</td>
 					<td>{{$orden->cliente->condiciones_credito}}</td>
-					<td>Carmen Herrera</td>
+					<td>{{$orden->vendedor->nombre}} {{$orden->vendedor->apellido}}</td>
 					<td class="vencimiento">{{$orden->fecha_entrega}}</td>
 				</tr>
 			</tbody>

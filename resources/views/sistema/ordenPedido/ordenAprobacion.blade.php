@@ -33,7 +33,7 @@
 
                 <th>Actions</th>
                 <th>#</th>
-                <th>Usuario</th>
+                <th>Vendedor</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
                 <th>Fecha</th>
@@ -49,7 +49,7 @@
 
                 <th>Actions</th>
                 <th>#</th>
-                <th>Usuario</th>
+                <th>Vendedor</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
                 <th>Fecha</th>

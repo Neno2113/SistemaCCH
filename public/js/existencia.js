@@ -3,6 +3,7 @@ $(document).ready(function() {
 
     function init() {
         // $("#btn-consultar").attr('disabled', true);
+        $("#codigo").hide();
        
     }
 
@@ -43,6 +44,10 @@ $(document).ready(function() {
             referencia_producto: $("#productoSearch option:selected").text(),
             
         };
+
+        val = $("#productoSearch option:selected").text();
+        let genero = val.substring(1, 2);
+        let mujer_plus = val.substring(3, 4);
    
         $.ajax({
             url: "existencia/consulta",
@@ -52,49 +57,129 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    console.log(datos);
+           
                     var tipo_consulta = $("#tipo_consulta").val();
                     var ref = $("#productoSearch option:selected").text(); 
+
+                      // listarCorteDetalle(datos.id);
+                      if (genero == "2") {
+
+                        if (mujer_plus == 7) {
+                            $("#ta").html("12W");
+                            $("#tb").html("14W");
+                            $("#tc").html("16W");
+                            $("#td").html("18W");
+                            $("#te").html("20W");
+                            $("#tf").html("22W");
+                            $("#tg").html("24W");
+                            $("#th").html("26W");
+                            $("#ti").html("I");
+                            $("#tj").html("J");
+                            $("#tk").html("K");
+                            $("#tl").html("L");
+                        } else {
+                            $("#ta").html("0/0");
+                            $("#tb").html("1/2");
+                            $("#tc").html("3/4");
+                            $("#td").html("5/6");
+                            $("#te").html("7/8");
+                            $("#tf").html("9/10");
+                            $("#tg").html("11/12");
+                            $("#th").html("13/14");
+                            $("#ti").html("15/16");
+                            $("#tj").html("17/18");
+                            $("#tk").html("19/20");
+                            $("#tl").html("21/22");
+                        }
+                    }
+                    if (genero == "3") {
+                        $("#genero").val("Niño: " + val);
+                       
+                        $("#ta").html("2");
+                        $("#tb").html("4");
+                        $("#tc").html("6");
+                        $("#td").html("8");
+                        $("#te").html("10");
+                        $("#tf").html("12");
+                        $("#tg").html("14");
+                        $("#th").html("16");
+                        $("#ti").html("I");
+                        $("#tj").html("J");
+                        $("#tk").html("K");
+                        $("#tl").html("L");
+                     
+                    } else if (genero == "4") {
+                        $("#genero").val("Niña: " + val);
+                     
+                        $("#ta").html("2");
+                        $("#tb").html("4");
+                        $("#tc").html("6");
+                        $("#td").html("8");
+                        $("#te").html("10");
+                        $("#tf").html("12");
+                        $("#tg").html("14");
+                        $("#th").html("16");
+                        $("#ti").html("I");
+                        $("#tj").html("J");
+                        $("#tk").html("K");
+                        $("#tl").html("L");
+                    } else if (genero == "1") {
+                        $("#genero").val("Hombre: " + val);
+                     
+                        $("#ta").html("28");
+                        $("#tb").html("29");
+                        $("#tc").html("30");
+                        $("#td").html("32");
+                        $("#te").html("34");
+                        $("#tf").html("36");
+                        $("#tg").html("38");
+                        $("#th").html("40");
+                        $("#ti").html("42");
+                        $("#tj").html("44");
+                        $("#tk").html("K");
+                        $("#tl").html("L");
+                    }
+
+
+
                  
                     if(tipo_consulta == 'Totales'){
+                        $("#codigo").hide();
                         $("#transacciones").html(
                             "<tr id='cortes'>"+
                             "<th>CP(Corte)</th>"+
-                            "<th>1</th>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
-                            "<th id='a_corte' class='font-weight-normal'>"+datos.a+"</th>"+
-                            "<th id='b_corte' class='font-weight-normal'>"+datos.b+"</th>"+
-                            "<th id='c_corte' class='font-weight-normal'>"+datos.c+"</th>"+
-                            "<th id='d_corte' class='font-weight-normal'>"+datos.d+"</th>"+
-                            "<th id='e_corte' class='font-weight-normal'>"+datos.e+"</th>"+
-                            "<th id='f_corte' class='font-weight-normal'>"+datos.f+"</th>"+
-                            "<th id='g_corte' class='font-weight-normal'>"+datos.g+"</th>"+
-                            "<th id='h_corte' class='font-weight-normal'>"+datos.h+"</th>"+
-                            "<th id='i_corte' class='font-weight-normal'>"+datos.i+"</th>"+
-                            "<th id='j_corte' class='font-weight-normal'>"+datos.j+"</th>"+
-                            "<th id='k_corte' class='font-weight-normal'>"+datos.k+"</th>"+
-                            "<th id='l_corte' class='font-weight-normal'>"+datos.l+"</th>"+
+                            "<th id='a_corte' class='font-weight-normal'>"+datos.a_corte+"</th>"+
+                            "<th id='b_corte' class='font-weight-normal'>"+datos.b_corte+"</th>"+
+                            "<th id='c_corte' class='font-weight-normal'>"+datos.c_corte+"</th>"+
+                            "<th id='d_corte' class='font-weight-normal'>"+datos.d_corte+"</th>"+
+                            "<th id='e_corte' class='font-weight-normal'>"+datos.e_corte+"</th>"+
+                            "<th id='f_corte' class='font-weight-normal'>"+datos.f_corte+"</th>"+
+                            "<th id='g_corte' class='font-weight-normal'>"+datos.g_corte+"</th>"+
+                            "<th id='h_corte' class='font-weight-normal'>"+datos.h_corte+"</th>"+
+                            "<th id='i_corte' class='font-weight-normal'>"+datos.i_corte+"</th>"+
+                            "<th id='j_corte' class='font-weight-normal'>"+datos.j_corte+"</th>"+
+                            "<th id='k_corte' class='font-weight-normal'>"+datos.k_corte+"</th>"+
+                            "<th id='l_corte' class='font-weight-normal'>"+datos.l_corte+"</th>"+
                             "</tr>"+
                             "<tr id='almacen'>"+
                             "<th>EA(Almacen)</th>"+
-                            "<th>2</th>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
-                            "<th id='a_alm' class='text-success font-weight-normal'>"+datos.a_alm+"</th>"+
-                            "<th id='b_alm' class='text-success font-weight-normal'>"+datos.b_alm+"</th>"+
-                            "<th id='c_alm' class='text-success font-weight-normal'>"+datos.c_alm+"</th>"+
-                            "<th id='d_alm' class='text-success font-weight-normal'>"+datos.d_alm+"</th>"+
-                            "<th id='e_alm' class='text-success font-weight-normal'>"+datos.e_alm+"</th>"+
-                            "<th id='f_alm' class='text-success font-weight-normal'>"+datos.f_alm+"</th>"+
-                            "<th id='g_alm' class='text-success font-weight-normal'>"+datos.g_alm+"</th>"+
-                            "<th id='h_alm' class='text-success font-weight-normal'>"+datos.h_alm+"</th>"+
-                            "<th id='i_alm' class='text-success font-weight-normal'>"+datos.i_alm+"</th>"+
-                            "<th id='j_alm' class='text-success font-weight-normal'>"+datos.j_alm+"</th>"+
-                            "<th id='k_alm' class='text-success font-weight-normal'>"+datos.k_alm+"</th>"+
-                            "<th id='l_alm' class='text-success font-weight-normal'>"+datos.l_alm+"</th>"+
+                            "<th id='a_alm' class='text-success '>"+datos.a_alm+"</th>"+
+                            "<th id='b_alm' class='text-success '>"+datos.b_alm+"</th>"+
+                            "<th id='c_alm' class='text-success '>"+datos.c_alm+"</th>"+
+                            "<th id='d_alm' class='text-success '>"+datos.d_alm+"</th>"+
+                            "<th id='e_alm' class='text-success '>"+datos.e_alm+"</th>"+
+                            "<th id='f_alm' class='text-success '>"+datos.f_alm+"</th>"+
+                            "<th id='g_alm' class='text-success '>"+datos.g_alm+"</th>"+
+                            "<th id='h_alm' class='text-success '>"+datos.h_alm+"</th>"+
+                            "<th id='i_alm' class='text-success '>"+datos.i_alm+"</th>"+
+                            "<th id='j_alm' class='text-success '>"+datos.j_alm+"</th>"+
+                            "<th id='k_alm' class='text-success '>"+datos.k_alm+"</th>"+
+                            "<th id='l_alm' class='text-success '>"+datos.l_alm+"</th>"+
                             "</tr>"+
                             "<tr id='perdidas'>"+
                             "<th>PE(Perdida)</th>"+
-                            "<th>3</th>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
                             "<th id='a_perd' class='text-red font-weight-normal'>"+datos.a_perd+"</th>"+
                             "<th id='b_perd' class='text-red font-weight-normal'>"+datos.b_perd+"</th>"+
@@ -112,27 +197,25 @@ $(document).ready(function() {
                             "</tr>"+
                             "<tr id='segundas'>"+
                             "<th>Se(Segunda)</th>"+
-                            "<th>4</th>"+
                             "<th id=''  class='font-weight-normal'>"+ref+"</th>"+
-                            "<th id='a_seg' class='text-primary font-weight-normal'>"+datos.a_seg+"</th>"+
-                            "<th id='b_seg' class='text-primary font-weight-normal'>"+datos.b_seg+"</th>"+
-                            "<th id='c_seg' class='text-primary font-weight-normal'>"+datos.c_seg+"</th>"+
-                            "<th id='d_seg' class='text-primary font-weight-normal'>"+datos.d_seg+"</th>"+
-                            "<th id='e_seg' class='text-primary font-weight-normal'>"+datos.e_seg+"</th>"+
-                            "<th id='f_seg' class='text-primary font-weight-normal'>"+datos.f_seg+"</th>"+
-                            "<th id='g_seg' class='text-primary font-weight-normal'>"+datos.g_seg+"</th>"+
-                            "<th id='h_seg' class='text-primary font-weight-normal'>"+datos.h_seg+"</th>"+
-                            "<th id='i_seg' class='text-primary font-weight-normal'>"+datos.i_seg+"</th>"+
-                            "<th id='j_seg' class='text-primary font-weight-normal'>"+datos.j_seg+"</th>"+
-                            "<th id='k_seg' class='text-primary font-weight-normal'>"+datos.k_seg+"</th>"+
-                            "<th id='l_seg' class='text-primary font-weight-normal'>"+datos.l_seg+"</th>"+
-                            "<th id='x_seg' class='text-primary font-weight-normal'>"+datos.x_seg+"</th>"+
+                            "<th id='a_seg' class='text-red font-weight-normal'>"+datos.a_seg+"</th>"+
+                            "<th id='b_seg' class='text-red font-weight-normal'>"+datos.b_seg+"</th>"+
+                            "<th id='c_seg' class='text-red font-weight-normal'>"+datos.c_seg+"</th>"+
+                            "<th id='d_seg' class='text-red font-weight-normal'>"+datos.d_seg+"</th>"+
+                            "<th id='e_seg' class='text-red font-weight-normal'>"+datos.e_seg+"</th>"+
+                            "<th id='f_seg' class='text-red font-weight-normal'>"+datos.f_seg+"</th>"+
+                            "<th id='g_seg' class='text-red font-weight-normal'>"+datos.g_seg+"</th>"+
+                            "<th id='h_seg' class='text-red font-weight-normal'>"+datos.h_seg+"</th>"+
+                            "<th id='i_seg' class='text-red font-weight-normal'>"+datos.i_seg+"</th>"+
+                            "<th id='j_seg' class='text-red font-weight-normal'>"+datos.j_seg+"</th>"+
+                            "<th id='k_seg' class='text-red font-weight-normal'>"+datos.k_seg+"</th>"+
+                            "<th id='l_seg' class='text-red font-weight-normal'>"+datos.l_seg+"</th>"+
+                            "<th id='x_seg' class='text-red font-weight-normal'>"+datos.x_seg+"</th>"+
                             "</tr>"+
                             "<tr id='orden_pedido'>"+
                             "<th>OP(Orden Pedido)</th>"+
-                            "<th>5</th>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
-                            "<th id='a_op'  class='text-primary font-weight-normal'>"+datos.a_op+"</th>"+
+                            "<th id='a_op' class='text-primary font-weight-normal'>"+datos.a_op+"</th>"+
                             "<th id='b_op' class='text-primary font-weight-normal'>"+datos.b_op+"</th>"+
                             "<th id='c_op' class='text-primary font-weight-normal'>"+datos.c_op+"</th>"+
                             "<th id='d_op' class='text-primary font-weight-normal'>"+datos.d_op+"</th>"+
@@ -144,110 +227,59 @@ $(document).ready(function() {
                             "<th id='j_op' class='text-primary font-weight-normal'>"+datos.j_op+"</th>"+
                             "<th id='k_op' class='text-primary font-weight-normal'>"+datos.k_op+"</th>"+
                             "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_op+"</th>"+
+                            "</tr>"+
+                            "<tr id='facturado'>"+
+                            "<th>FB(Facturacion)</th>"+
+                            "<th class='font-weight-normal'>"+ref+"</th>"+
+                            "<th id='a_op'  class='text-primary font-weight-normal'>"+datos.a_fb+"</th>"+
+                            "<th id='b_op' class='text-primary font-weight-normal'>"+datos.b_fb+"</th>"+
+                            "<th id='c_op' class='text-primary font-weight-normal'>"+datos.c_fb+"</th>"+
+                            "<th id='d_op' class='text-primary font-weight-normal'>"+datos.d_fb+"</th>"+
+                            "<th id='e_op' class='text-primary font-weight-normal'>"+datos.e_fb+"</th>"+
+                            "<th id='f_op' class='text-primary font-weight-normal'>"+datos.f_fb+"</th>"+
+                            "<th id='g_op' class='text-primary font-weight-normal'>"+datos.g_fb+"</th>"+
+                            "<th id='h_op' class='text-primary font-weight-normal'>"+datos.h_fb+"</th>"+
+                            "<th id='i_op' class='text-primary font-weight-normal'>"+datos.i_fb+"</th>"+
+                            "<th id='j_op' class='text-primary font-weight-normal'>"+datos.j_fb+"</th>"+
+                            "<th id='k_op' class='text-primary font-weight-normal'>"+datos.k_fb+"</th>"+
+                            "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_fb+"</th>"+
                             "</tr>"
                         )
-                        //almacen
-                        let a_alm = parseInt($("#a_alm").text());
-                        let b_alm = parseInt($("#b_alm").text());
-                        let c_alm = parseInt($("#c_alm").text());
-                        let d_alm = parseInt($("#d_alm").text());
-                        let e_alm = parseInt($("#e_alm").text());
-                        let f_alm = parseInt($("#f_alm").text());
-                        let g_alm = parseInt($("#g_alm").text());
-                        let h_alm = parseInt($("#h_alm").text());
-                        let i_alm = parseInt($("#i_alm").text());
-                        let j_alm = parseInt($("#j_alm").text());
-                        let k_alm = parseInt($("#k_alm").text());
-                        let l_alm = parseInt($("#l_alm").text());
+                       
 
-                        //corte
-                        let a_corte = parseInt($("#a_corte").text());
-                        let b_corte = parseInt($("#b_corte").text());
-                        let c_corte = parseInt($("#c_corte").text());
-                        let d_corte = parseInt($("#d_corte").text());
-                        let e_corte = parseInt($("#e_corte").text());
-                        let f_corte = parseInt($("#f_corte").text());
-                        let g_corte = parseInt($("#g_corte").text());
-                        let h_corte = parseInt($("#h_corte").text());
-                        let i_corte = parseInt($("#i_corte").text());
-                        let j_corte = parseInt($("#j_corte").text());
-                        let k_corte = parseInt($("#k_corte").text());
-                        let l_corte = parseInt($("#l_corte").text());
+                        // $("#ref").html(ref);
+                        $("#a").html(datos.a);
+                        $("#b").html(datos.b);
+                        $("#c").html(datos.c);
+                        $("#d").html(datos.d);
+                        $("#e").html(datos.e);
+                        $("#f").html(datos.f);
+                        $("#g").html(datos.g);
+                        $("#h").html(datos.h);
+                        $("#i").html(datos.i);
+                        $("#j").html(datos.j);
+                        $("#k").html(datos.k);
+                        $("#l").html(datos.l);
 
-                        //perdida
-                        let a_perd = parseInt($("#a_perd").text());
-                        let b_perd = parseInt($("#b_perd").text());
-                        let c_perd = parseInt($("#c_perd").text());
-                        let d_perd = parseInt($("#d_perd").text());
-                        let e_perd = parseInt($("#e_perd").text());
-                        let f_perd = parseInt($("#f_perd").text());
-                        let g_perd = parseInt($("#g_perd").text());
-                        let h_perd = parseInt($("#h_perd").text());
-                        let i_perd = parseInt($("#i_perd").text());
-                        let j_perd = parseInt($("#j_perd").text());
-                        let k_perd = parseInt($("#k_perd").text());
-                        let l_perd = parseInt($("#l_perd").text());
-                        
-                        //segundas
-                        let a_seg = parseInt($("#a_seg").text());
-                        let b_seg = parseInt($("#b_seg").text());
-                        let c_seg = parseInt($("#c_seg").text());
-                        let d_seg = parseInt($("#d_seg").text());
-                        let e_seg = parseInt($("#e_seg").text());
-                        let f_seg = parseInt($("#f_seg").text());
-                        let g_seg = parseInt($("#g_seg").text());
-                        let h_seg = parseInt($("#h_seg").text());
-                        let i_seg = parseInt($("#i_seg").text());
-                        let j_seg = parseInt($("#j_seg").text());
-                        let k_seg = parseInt($("#k_seg").text());
-                        let l_seg = parseInt($("#l_seg").text());
-
-                        //existencia
-                        let a_op = parseInt($("#a_op").text());
-                        let b_op = parseInt($("#b_op").text());
-                        let c_op = parseInt($("#c_op").text());
-                        let d_op = parseInt($("#d_op").text());
-                        let e_op = parseInt($("#e_op").text());
-                        let f_op = parseInt($("#f_op").text());
-                        let g_op = parseInt($("#g_op").text());
-                        let h_op = parseInt($("#h_op").text());
-                        let i_op = parseInt($("#i_op").text());
-                        let j_op = parseInt($("#j_op").text());
-                        let k_op = parseInt($("#k_op").text());
-                        let l_op = parseInt($("#l_op").text());
-
-                        $("#ref").html(ref);
-                        $("#a").html(a_corte - a_perd);
-                        $("#b").html(b_corte - b_perd);
-                        $("#c").html(c_corte - c_perd);
-                        $("#d").html(d_corte - d_perd);
-                        $("#e").html(e_corte - e_perd);
-                        $("#f").html(f_corte - f_perd);
-                        $("#g").html(g_corte - g_perd);
-                        $("#h").html(h_corte - h_perd);
-                        $("#i").html(i_corte - i_perd);
-                        $("#j").html(j_corte - j_perd);
-                        $("#k").html(k_corte - k_perd);
-                        $("#l").html(l_corte - l_perd);
-
-                        $("#ref_venta").html(ref);
-                        (a_alm - a_perd - a_op < 0) ? $("#a_venta").html(0) : $("#a_venta").html(a_alm - a_perd - a_op - a_seg);  
-                        (b_alm - b_perd - b_op < 0) ? $("#b_venta").html(0) : $("#b_venta").html(b_alm - b_perd - b_op - b_seg);
-                        (c_alm - c_perd - c_op < 0) ? $("#c_venta").html(0) : $("#c_venta").html(c_alm - c_perd - c_op - c_seg);  
-                        (d_alm - d_perd - d_op < 0) ? $("#d_venta").html(0) : $("#d_venta").html(d_alm - d_perd - d_op - d_seg); 
-                        (e_alm - e_perd - e_op < 0) ? $("#e_venta").html(0) : $("#e_venta").html(e_alm - e_perd - e_op - e_seg);
-                        (f_alm - f_perd - f_op < 0) ? $("#f_venta").html(0) : $("#f_venta").html(f_alm - f_perd - f_op - f_seg);  
-                        (g_alm - g_perd - g_op < 0) ? $("#g_venta").html(0) : $("#g_venta").html(g_alm - g_perd - g_op - g_seg);  
-                        (h_alm - h_perd - h_op < 0) ? $("#h_venta").html(0) : $("#h_venta").html(h_alm - h_perd - h_op - h_seg);  
-                        (i_alm - i_perd - i_op < 0) ? $("#i_venta").html(0) : $("#i_venta").html(i_alm - i_perd - i_op - i_seg);                   
-                        (j_alm - j_perd - j_op < 0) ? $("#j_venta").html(0) : $("#j_venta").html(j_alm - j_perd - j_op - j_seg); 
-                        (k_alm - k_perd - k_op < 0) ? $("#k_venta").html(0) : $("#k_venta").html(k_alm - k_perd - k_op - k_seg);
-                        (l_alm - l_perd - l_op < 0) ? $("#l_venta").html(0) : $("#l_venta").html(l_alm - l_perd - l_op - l_seg); 
+                        // $("#ref_venta").html(ref);
+                        $("#a_venta").html(datos.a_disp);  
+                        $("#b_venta").html(datos.b_disp);
+                        $("#c_venta").html(datos.c_disp);  
+                        $("#d_venta").html(datos.d_disp); 
+                        $("#e_venta").html(datos.e_disp);
+                        $("#f_venta").html(datos.f_disp);  
+                        $("#g_venta").html(datos.g_disp);  
+                        $("#h_venta").html(datos.h_disp);  
+                        $("#i_venta").html(datos.i_disp);                   
+                        $("#j_venta").html(datos.j_disp); 
+                        $("#k_venta").html(datos.k_disp);
+                        $("#l_venta").html(datos.l_disp); 
                         
 
                         $("#totales").show();
                         $("#disp_venta").show();
                     }else if(tipo_consulta == 'Detallada'){
+                        $("#codigo").show();
                         var longitud = datos.tallas.length;
                         var longitudPerdidas = datos.tallasPerdidas.length;
                         var longitudSegundas = datos.tallaSegundas.length;
@@ -260,11 +292,13 @@ $(document).ready(function() {
                         $("#almacen").hide();
                         $("#totales").hide();
                         $("#disp_venta").hide();
+                        $("#facturado").hide();
+                        $("#orden_pedido").hide();
 
                         for (let i = 0; i < longitud; i++) {
                             var fila =  "<tr>"+
-                            "<th> CP(Corte)</th>"+
-                            "<th>"+datos.tallas[i].corte.numero_corte +"</th>"+
+                            "<th>CP(Corte) </th>"+
+                            "<td>"+datos.tallas[i].corte.numero_corte +"</td>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
                             "<th class='font-weight-normal'>"+datos.tallas[i].a+"</th>"+
                             "<th class='font-weight-normal'>"+datos.tallas[i].b+"</th>"+
@@ -286,7 +320,7 @@ $(document).ready(function() {
                        
                             var fila =  "<tr >"+
                             "<th> EA(Almacen) </th>"+
-                            "<th>"+datos.tallasAlmacen[i].id +"</th>"+
+                            "<td></td>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
                             "<th class='text-success font-weight-normal'>"+datos.tallasAlmacen[i].a+"</th>"+
                             "<th class='text-success font-weight-normal'>"+datos.tallasAlmacen[i].b +"</th>"+
@@ -313,7 +347,7 @@ $(document).ready(function() {
                        
                             var fila =  "<tr >"+
                             "<th>PE(Perdida)</th>"+
-                            "<th>"+datos.tallasPerdidas[i].perdida.no_perdida+"</th>"+
+                            "<td>"+datos.tallasPerdidas[i].perdida.no_perdida +"</td>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
                             "<th class='text-red font-weight-normal'>"+datos.tallasPerdidas[i].a+"</th>"+
                             "<th class='text-red font-weight-normal'>"+datos.tallasPerdidas[i].b +"</th>"+
@@ -340,7 +374,7 @@ $(document).ready(function() {
                        
                             var fila =  "<tr >"+
                             "<th>SE(Segunda)</th>"+
-                            "<th>"+ datos.tallaSegundas[i].perdida.no_perdida +"</th>"+
+                            "<td>"+datos.tallaSegundas[i].perdida.no_perdida +"</td>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
                             "<th class='text-primary font-weight-normal'>"+datos.tallaSegundas[i].a+"</th>"+
                             "<th class='text-primary font-weight-normal'>"+datos.tallaSegundas[i].b +"</th>"+
@@ -367,7 +401,7 @@ $(document).ready(function() {
                        
                             var fila =  "<tr >"+
                             "<th>OP(Orden Pedido)</th>"+
-                            "<th>"+ datos.tallasOrdenes[i].orden_pedido_id +"</th>"+
+                            "<td>"+datos.tallasOrdenes[i].ordenPedido.no_orden_pedido+"</td>"+
                             "<th class='font-weight-normal'>"+ref+"</th>"+
                             "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].a+"</th>"+
                             "<th class='text-info font-weight-normal'>"+datos.tallasOrdenes[i].b +"</th>"+

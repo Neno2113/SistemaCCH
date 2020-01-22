@@ -14,6 +14,7 @@ use App\ClientBranch;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
 use App\NotaCreditoDetalle;
+use App\Empleado;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -200,8 +201,7 @@ class ordenPedidoController extends Controller
 
         $validar = $request->validate([
             'cliente' => 'required',
-            'sucursal' => 'required',
-            'notas' => 'required',
+     
             'generado_internamente' => 'required',
             'fecha_entrega' => 'required',
             'detallada' => 'required'
@@ -222,6 +222,7 @@ class ordenPedidoController extends Controller
             $generado_internamente = $request->input('generado_internamente');
             $detallada = $request->input('detallada');
             $no_orden_pedido = $request->input('no_orden_pedido');
+            $vendedor_id = $request->input('vendedor_id');
 
             $sec = $request->input('sec');
 
@@ -229,6 +230,7 @@ class ordenPedidoController extends Controller
 
             $orden->cliente_id = $client_id;
             $orden->sucursal_id = $sucursal_id;
+            $orden->vendedor_id = $vendedor_id;
             $orden->notas = $notas;
             $orden->fecha_entrega = $fecha_entrega;
             $orden->generado_internamente = $generado_internamente;
@@ -626,6 +628,7 @@ class ordenPedidoController extends Controller
         //orden normal
         $orden = ordenPedido::find($id)->load('cliente')
             ->load('user')
+            ->load('vendedor')
             ->load('sucursal')
             ->load('producto');
 
@@ -901,13 +904,14 @@ class ordenPedidoController extends Controller
     {
         $ordenes = DB::table('orden_pedido')->join('users', 'orden_pedido.user_aprobacion', 'users.id')
             ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
+            ->join('empleado', 'orden_pedido.vendedor_id', 'empleado.id')
             ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
             ->select([
                 'orden_pedido.id', 'orden_pedido.fecha_aprobacion',
                 'orden_pedido.no_orden_pedido', 'orden_pedido.fecha', 'orden_pedido.fecha_entrega',
                 'orden_pedido.notas', 'orden_pedido.generado_internamente', 'orden_pedido.detallada',
-                'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal', 'orden_pedido.corte_en_proceso',
-                'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
+                'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal', 'orden_pedido.corte_en_proceso',
+                'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa', 'empleado.nombre', 'empleado.apellido'
             ])->where('orden_proceso_impresa', 'LIKE', 'Si');
 
         return DataTables::of($ordenes)
@@ -1246,4 +1250,17 @@ class ordenPedidoController extends Controller
         }
         return response()->json($data, $data['code']);
     }
+
+    public function vendedores(){
+        $vendedor = Empleado::where('departamento', 'LIKE', 'VENTA')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'vendedores' => $vendedor
+        ];
+
+        return response()->json($data, $data['code']);
+    }
+
 }

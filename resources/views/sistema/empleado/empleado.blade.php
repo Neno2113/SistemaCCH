@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_2">Telefono 2:</label>
+                            <label for="telefono_2">Celular:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>

@@ -23,7 +23,7 @@ class FacturaController extends Controller
             'tipo_factura' => 'required',
             'numeracion' => 'required',
             'itbis' => 'required',
-            'descuento' => 'required',
+          
             'fecha' => 'required',
             'comprobante_fiscal' => 'required'
         ]);
@@ -52,6 +52,8 @@ class FacturaController extends Controller
             if($numero_comprobante == 1){
                 $tipo_factura = "FB";
             }
+
+            
 
             $factura->orden_facturacion_id = $orden_facturacion_id;
             $factura->no_factura = $tipo_factura . '-' . $numeracion;
@@ -302,7 +304,7 @@ class FacturaController extends Controller
             $orden_empaque = ordenEmpaque::find($id_orden_empaque);
             $orden_pedido_id = $orden_empaque->orden_pedido_id;
             $orden_pedido = ordenPedido::find($orden_pedido_id)->load('cliente')
-                ->load('sucursal');
+                ->load('sucursal')->load('vendedor');
 
             $orden_pedido->fecha = date("h:i:s A d-m-20y", strtotime($orden_pedido->fecha));
 

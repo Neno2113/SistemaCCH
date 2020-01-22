@@ -166,6 +166,7 @@ class ordenEmpaqueController extends Controller
         //orden normal
         $orden = ordenPedido::find($id)->load('cliente')
             ->load('user')
+            ->load('vendedor')
             ->load('sucursal')
             ->load('producto');
 

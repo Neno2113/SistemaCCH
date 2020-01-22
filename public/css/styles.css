@@ -167,4 +167,31 @@ textarea.form-control
     color: #fff;
 }
 
+
+.tabla-existencia thead{
+    border-left: 2px solid #0B447D;
+    border-right: 2px solid #0B447D;
+    background: #0B447D;
+    color: #fff;
+}
+.tabla-existencia td, .tabla-existencia th{
+    border: 1px solid #dee2e6;
+}
+
+.tabla-existencia tbody tr{
+    text-align: center;
+}
+
+.tabla-existencia tfoot tr{
+
+}
+
+.tabla-existencia tfoot .totales{
+    text-align: center;
+}
+
+.tabla-existencia tfoot .disp_venta{
+    text-align: center;
+}
+
  

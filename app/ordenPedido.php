@@ -33,4 +33,9 @@ class ordenPedido extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function vendedor()
+    {
+        return $this->belongsTo('App\Empleado', 'vendedor_id');
+    }
 }

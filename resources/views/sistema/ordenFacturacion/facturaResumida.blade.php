@@ -713,7 +713,7 @@
                         @endforeach</td>
                     <td>{{$orden_pedido->cliente->condiciones_credito}}</td>
                     <td class="vencimiento">18/1/20</td>
-                    <td>Carmen Herrera</td>
+                    <td>{{$orden_pedido->vendedor->nombre}} {{$orden_pedido->vendedor->apellido}}</td>
                     <td>31/12/2019</td>
                     <td class="ncf">{{$factura->numero_comprobante}}</td>
                 </tr>

@@ -9,8 +9,8 @@
 <div class="row mt-3 ml-4">
     <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-user-plus fa-lg"></i> Agregar</button>
   
-    <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg">
-        <i class="fas fa-building fa-lg"></i> Agregar sucursales</button>
+    {{-- <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <i class="fas fa-building fa-lg"></i> Agregar sucursales</button> --}}
 </div>
 
 <div class="row">
@@ -357,15 +357,70 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mt-2">
-                            <label for="direccion">Direccion(*):</label>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label for="calle">Calle(*):</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
-                                <input type="text" id="direccion" class="form-control">
+                                <input type="text" id="calle" name="calle" class="form-control">
                             </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label for="sector">Sector(*):</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                </div>
+                                <input type="text" id="sector" name="sector" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="provincia">Provincia(*):</label>
+                            <select name="provincia" id="provincia" class="form-control select2" style="width:100%">
+                                <option value=""></option>
+                                <option>Santo Domingo</option>
+                                <option>Distrito Nacional</option>
+                                <option>Santiago</option>
+                                <option>San Cristóbal</option>
+                                <option>La Vega</option>
+                                <option>Puerto Plata</option>
+                                <option>San Pedro de Macorís</option>
+                                <option>Duarte</option>
+                                <option>La Altagracia</option>
+                                <option>La Romana</option>
+                                <option>San Juan</option>
+                                <option>Espaillat</option>
+                                <option>Azua</option>
+                                <option>Barahona</option>
+                                <option>Monte Plata</option>
+                                <option>Peravia</option>
+                                <option>Monseñor Nouel</option>
+                                <option>Valverde</option>
+                                <option>Sánchez Ramírez</option>
+                                <option>María Trinidad Sánchez</option>
+                                <option>Montecristi</option>
+                                <option>Samaná</option>
+                                <option>Bahoruco</option>
+                                <option>Hermanas Mirabal</option>
+                                <option>El Seibo</option>
+                                <option>Hato Mayor</option>
+                                <option>Dajabón</option>
+                                <option>Elías Piña</option>
+                                <option>San José de Ocoa</option>
+                                <option>Santiago Rodríguez</option>
+                                <option>Independencia</option>
+                                <option>Pedernales</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="">Referencias cercanas:</label>
+                            <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
+
                         </div>
                     </div>
             </div>

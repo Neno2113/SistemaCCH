@@ -108,13 +108,18 @@ $(document).ready(function() {
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
 
+        let discount = $("#descuento").val();
+        if(discount == ""){
+            discount = 0;
+        }
+
         var factura = {
             id: $("#id").val(),
             sec: $("#sec").val(),
             tipo_factura: $("#tipo_factura").val(),
             numeracion: $("#numeracion").val(),
             itbis: $("#itbis").val(),
-            descuento: $("#descuento").val(),
+            descuento: discount,
             fecha: $("#fecha").val(),
             comprobante_fiscal: comprobante,
             numero_comprobante: $("#numero_comprobante").val(),

@@ -3,65 +3,62 @@ $(document).ready(function() {
 
     $("#formulario").validate({
         rules: {
-            nombre_cliente: {
+            nombre: {
                 required: true,
                 minlength: 3
             },
-            direccion_principal: {
+            apellido: {
                 required: true,
                 minlength: 4
             },
-            contacto_cliente_principal:{
+            cedula:{
                 required: true,
-                minlength: 4
+                minlength: 11,
+                digits: true
             },
             telefono_1: {
                 required: true,
                 minlength: 10
             },
-            email_principal: {
+            email: {
                 required: true,
                 email: true
             },
-            condiciones_credito: {
-                required: true,
-                minlengh: 1
+            calle: {
+                required: true
             },
-            rnc: {
-                required: true,
-                digits: true,
-                minlengh: 9
+            provincia: {
+                required: true
             }
         },
         messages: {
-            nombre_cliente: {
+            nombre: {
                 required: "Este campo es obligatorio",
                 minlength: "Debe contener al menos 3 letras"
             },
-            direccion_principal: {
+            apellido: {
                 required: "Este campo es obligatorio",
                 minlength: "Debe contener al menos 4 letras"
             },
-            contacto_cliente_principal:{
+            cedula:{
                 required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 4 letras"
+                minlength: "Debe contener al menos 11 digitos",
+                digits: "Este campo solo puedo contener numeros"
             },
             telefono_1: {
                 required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 10 caracteres"
+                minlength: "Debe contener al menos 10 digitos"
             },
-            email_principal: {
+            email: {
                 required: "El email es obligatorio",
                 email: "Debe itroducir un email valido"
             },
-            condiciones_credito: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 1 caracter"
+            calle: {
+                required: "Este campo es obligatorio"
             },
-            rnc:{
+            provincia:{
                 required: "Este campo es obligatorio",
-                minlengh: "Debe contener al menos 9 numeros",
-                digits: "Este campo solo puedo contener numeros"
+              
                
             }
         }

@@ -96,10 +96,6 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-    window.onresize = function() {
-        tabla.columns.adjust().responsive.recalc();
-    };
-
     // // Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({
         placeholder: "sort-highlight",
@@ -125,7 +121,6 @@ $(document).ready(function() {
 
     /* Chart.js Charts */
     // Sales chart
- 
 
     function venta12meses() {
         $.ajax({
@@ -134,64 +129,51 @@ $(document).ready(function() {
             dataType: "json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    // console.log(datos.ventas);
-                    for (let i = 0; i < datos.ventas.length; i++) {
-                        console.log(datos.ventas[i]);
-                    }
-                    var salesChartCanvas = document
-                    .getElementById("revenue-chart-canvas")
-                    .getContext("2d");
-                $('#revenue-chart').get(0).getContext('2d');
 
-                var salesChartData = {
-                    type: 'bar',
-                    labels: ["December", "January"],
-                    datasets: [
-                        {
-                            label: "Digital Goods",
-                            backgroundColor: "rgba(60,141,188,0.9)",
-                            borderColor: "rgba(60,141,188,0.8)",
-                            pointRadius: false,
-                            pointColor: "#3b8bba",
-                            pointStrokeColor: "rgba(60,141,188,1)",
-                            pointHighlightFill: "#fff",
-                            pointHighlightStroke: "rgba(60,141,188,1)",
-                            data: [500, 100]
+
+                    var ctx = document.getElementById("ventas12meses");
+                    var myChart = new Chart(ctx, {
+                        type: "bar",
+                        data: {
+                            labels: [
+                               datos.mes
+                            ],
+                            datasets: [
+                                {
+                                    label: "Venta ultimos 12 meses",
+                                    data: [datos.amount],
+                                    backgroundColor: [
+                                        "rgba(255, 99, 132, 0.2)",
+                                        "rgba(54, 162, 235, 0.2)",
+                                        "rgba(255, 206, 86, 0.2)",
+                                        "rgba(75, 192, 192, 0.2)",
+                                        "rgba(153, 102, 255, 0.2)",
+                                        "rgba(255, 159, 64, 0.2)"
+                                    ],
+                                    borderColor: [
+                                        "rgba(255, 99, 132, 1)",
+                                        "rgba(54, 162, 235, 1)",
+                                        "rgba(255, 206, 86, 1)",
+                                        "rgba(75, 192, 192, 1)",
+                                        "rgba(153, 102, 255, 1)",
+                                        "rgba(255, 159, 64, 1)"
+                                    ],
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [
+                                    {
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                ]
+                            }
                         }
-                    ]
-                };
-            
-                var salesChartOptions = {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        xAxes: [
-                            {
-                                gridLines: {
-                                    display: false
-                                }
-                            }
-                        ],
-                        yAxes: [
-                            {
-                                gridLines: {
-                                    display: false
-                                }
-                            }
-                        ]
-                    }
-                };
-            
-                // This will get the first returned node in the jQuery collection.
-                var salesChart = new Chart(salesChartCanvas, {
-                    type: "line",
-                    data: salesChartData,
-                    options: salesChartOptions
-                });
-            
+                    });
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -202,9 +184,7 @@ $(document).ready(function() {
         });
     }
 
-
-    function latest_orders(){
-
+    function latest_orders() {
         $.ajax({
             url: "latest_orders",
             type: "get",
@@ -213,20 +193,27 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let ordenes = datos.ordenes;
                     for (let i = 0; i < datos.ordenes.length; i++) {
-                        var orden = "<tr>" +
-                        "<td>"+
-                        "<a href='pages/examples/invoice.html'>"+ordenes[i].no_orden_pedido +"</a></td>" +
-                        "<td>"+ordenes[i].cliente.nombre_cliente+"</td>" +
-                        "<td>"+ordenes[i].status_orden_pedido+"</td>"+
-                        "<td>" +
-                          "<div class='sparkbar' data-color='#00a65a' data-height='20'>"+ordenes[i].fecha_entrega+"</div>"+
-                        "</td>"+
-                      "</tr>";  
-                        
+                        var orden =
+                            "<tr>" +
+                            "<td>" +
+                            "<a href='pages/examples/invoice.html'>" +
+                            ordenes[i].no_orden_pedido +
+                            "</a></td>" +
+                            "<td>" +
+                            ordenes[i].cliente.nombre_cliente +
+                            "</td>" +
+                            "<td>" +
+                            ordenes[i].status_orden_pedido +
+                            "</td>" +
+                            "<td>" +
+                            "<div class='sparkbar' data-color='#00a65a' data-height='20'>" +
+                            ordenes[i].fecha_entrega +
+                            "</div>" +
+                            "</td>" +
+                            "</tr>";
                     }
 
-                  $("#latest_orders").append(orden);
-                    
+                    $("#latest_orders").append(orden);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -237,8 +224,7 @@ $(document).ready(function() {
         });
     }
 
-    function latest_products(){
-
+    function latest_products() {
         $.ajax({
             url: "latest_products",
             type: "get",
@@ -247,19 +233,22 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let productos = datos.productos;
                     for (let i = 0; i < datos.productos.length; i++) {
-                        var producto = "<li class='item'>" +
-                        "<div class='product-info'>"+
-                          "<a href='javascript:void(0)' class='product-title'>"+productos[i].referencia_producto+
-                            "<span class='badge badge-warning float-right'>$"+productos[i].precio_venta_publico +"</span></a>"+
-                          "<span class='product-description'>"
-                            +productos[i].descripcion +
-                          "</span>"+
-                        "</div>"+
-                      "</li>"  
-                        
+                        var producto =
+                            "<li class='item'>" +
+                            "<div class='product-info'>" +
+                            "<a href='javascript:void(0)' class='product-title'>" +
+                            productos[i].referencia_producto +
+                            "<span class='badge badge-warning float-right'>$" +
+                            productos[i].precio_venta_publico +
+                            "</span></a>" +
+                            "<span class='product-description'>" +
+                            productos[i].descripcion +
+                            "</span>" +
+                            "</div>" +
+                            "</li>";
                     }
 
-                  $("#productos").append(producto);
+                    $("#productos").append(producto);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -270,8 +259,7 @@ $(document).ready(function() {
         });
     }
 
-    function latest_cortes(){
-
+    function latest_cortes() {
         $.ajax({
             url: "latest_cortes",
             type: "get",
@@ -280,19 +268,27 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let cortes = datos.cortes;
                     for (let i = 0; i < datos.cortes.length; i++) {
-                        var corte = "<tr>" +
-                        "<td>"+
-                        "<a href='pages/examples/invoice.html'>"+cortes[i].numero_corte +"</a></td>" +
-                        "<td>"+cortes[i].fase+"</td>" +
-                        "<td>"+cortes[i].producto.referencia_producto+"</td>"+
-                        "<td>" +
-                          "<div class='sparkbar' data-color='#00a65a'>"+cortes[i].total+"</div>"+
-                        "</td>"+
-                      "</tr>"  
-                        
+                        var corte =
+                            "<tr>" +
+                            "<td>" +
+                            "<a href='pages/examples/invoice.html'>" +
+                            cortes[i].numero_corte +
+                            "</a></td>" +
+                            "<td>" +
+                            cortes[i].fase +
+                            "</td>" +
+                            "<td>" +
+                            cortes[i].producto.referencia_producto +
+                            "</td>" +
+                            "<td>" +
+                            "<div class='sparkbar' data-color='#00a65a'>" +
+                            cortes[i].total +
+                            "</div>" +
+                            "</td>" +
+                            "</tr>";
                     }
 
-                  $("#latest_cortes").append(corte);
+                    $("#latest_cortes").append(corte);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -303,7 +299,5 @@ $(document).ready(function() {
         });
     }
 
-
- 
     init();
 });

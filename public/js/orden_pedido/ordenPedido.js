@@ -46,6 +46,7 @@ $(document).ready(function() {
         $("#listarOrden").hide();
         $("#orden_detalle").hide();
         $("#orden_create").show();
+        vendedores();
     }
 
     var data;
@@ -130,6 +131,40 @@ $(document).ready(function() {
         $("#venta_segunda").val("");
     }
 
+    function vendedores (){
+
+        $.ajax({
+            url: "vendedores",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.vendedores.length;
+                    
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.vendedores[i].id +">"+datos.vendedores[i].nombre+" "+datos.vendedores[i].apellido+"</option>"
+                        
+                        $("#vendedores").append(fila);
+                    }
+                    $("#vendedores").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    }
+
+
+
     $("#btn-generar").click(function(e) {
         e.preventDefault();
 
@@ -168,7 +203,8 @@ $(document).ready(function() {
                         ).val(),
                         detallada: $("input[name='r2']:checked").val(),
                         sec: $("#sec").val(),
-                        no_orden_pedido: $("#no_orden_pedido").val()
+                        no_orden_pedido: $("#no_orden_pedido").val(),
+                        vendedor_id: $("#vendedores").val()
                     };
 
                     $.ajax({

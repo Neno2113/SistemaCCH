@@ -20,33 +20,31 @@
         </select>
     </div>
     <div class="col-md-3 mt-4 pt-2">
-        <button class="btn btn-success" id="btn-consultar">Consultar</button>
+        <button class="btn btn-success" id="btn-consultar"><i class="fas fa-search"></i> Consultar</button>
     </div>
 </div>
 
 
-
-
 <div class="row">
     <div class="col-12 pt-3 pl-3 pb-3">
-        <table class="table  table-bordered mt-3">
+        <table class="table  table-bordered mt-3 tabla-existencia">
             <thead>
                 <tr>
-                    <th>Codigo Transaccion</th>
-                    <th>No. transaccion</th>
+                    <th>Cod. Trans.</th>
+                    <th id="codigo">Cod</th>
                     <th>Ref. Producto</th>
-                    <th>A</th>
-                    <th>B</th>
-                    <th>C</th>
-                    <th>D</th>
-                    <th>E</th>
-                    <th>F</th>
-                    <th>G</th>
-                    <th>H</th>
-                    <th>I</th>
-                    <th>J</th>
-                    <th>K</th>
-                    <th>L</th>
+                    <th id="ta">A</th>
+                    <th id="tb">B</th>
+                    <th id="tc">C</th>
+                    <th id="td">D</th>
+                    <th id="te">E</th>
+                    <th id="tf">F</th>
+                    <th id="tg">G</th>
+                    <th id="th">H</th>
+                    <th id="ti">I</th>
+                    <th id="tj">J</th>
+                    <th id="tk">K</th>
+                    <th id="tl">L</th>
                     <th>X</th>
 
                 </tr>
@@ -55,9 +53,8 @@
 
             </tbody>
             <tfoot>
-                <tr id="totales">
+                <tr id="totales" class="totales">
                     <th>Existencia</th>
-                    <th></th>
                     <th id="ref"></th>
                     <th id="a"></th>
                     <th id="b"></th>
@@ -73,9 +70,8 @@
                     <th id="l"></th>
                     <th></th>
                 </tr>
-                <tr id="disp_venta">
+                <tr id="disp_venta" class="disp_venta">
                     <th>Disp. venta</th>
-                    <th></th>
                     <th id="ref_venta"></th>
                     <th id="a_venta"></th>
                     <th id="b_venta"></th>
@@ -99,22 +95,7 @@
     {{-- <div class="col-md-2 " style="margin-top: 26.8%">
         <button id="btn-guardar" name="btn-guardar" class="btn btn-secondary"><i class="fas fa-sync"></i></button>
     </div> --}}
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 @include('adminlte/scripts')

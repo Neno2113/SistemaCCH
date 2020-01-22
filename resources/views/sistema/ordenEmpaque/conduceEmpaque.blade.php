@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Factura Resumida</title>
+	<title>ORDEN EMPAQUE</title>
 	<style>
 		@font-face {
 			font-family: SourceSansPro;
@@ -724,7 +724,7 @@
 					<td> {{$orden->no_orden_pedido}}</td>
 					<td>{{$orden->fecha}}</td>
 					<td class="vencimiento">{{$orden->fecha_entrega}}</td>
-					<td>Carmen Herrera</td>
+					<td>{{$orden->vendedor->nombre}} {{$orden->vendedor->apellido}}</td>
 				</tr>
 			</tbody>
 		</table>

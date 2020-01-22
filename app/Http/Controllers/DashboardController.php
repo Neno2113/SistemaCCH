@@ -32,18 +32,48 @@ class DashboardController extends Controller
 
     public function totalVenta(Request $request){
         $almacen = Almacen::all();
-        $perdida = TallasPerdidas::all();
+
+         //perdidas
+         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+         ->get();
+ 
+         $perdidas = array();
+ 
+         $longitudPerdida = count($perdida);
+ 
+         for ($i = 0; $i < $longitudPerdida; $i++) {
+             array_push($perdidas, $perdida[$i]['id']);
+         }
+ 
+         $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+ 
+ 
+         //SEGUNDA
+         $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
+         ->get();
+ 
+         $segundas = array();
+ 
+         $longitudSegunda = count($segunda);
+ 
+         for ($i = 0; $i < $longitudSegunda; $i++) {
+             array_push($segundas, $segunda[$i]['id']);
+         }
+ 
+         $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
+
         $facturado = ordenFacturacionDetalle::all();
         $orden = ordenPedidoDetalle::all();
 
-        $existencia = $almacen->sum('total') - $perdida->sum('total') - $facturado->sum('total');
-        $dispVenta = $existencia - $orden->sum('total');
+        $existencia = $almacen->sum('total') - $tallasPerdidas->sum('total') - $facturado->sum('total') + $tallasSegundas->sum('total');
+        $dispVenta = $existencia - $orden->sum('total') - $tallasSegundas->sum('total');
 
         $data = [
             'code' => '200',
             'status' => 'success',
             'almacen' => $almacen->sum('total'),
-            'perdida' => $perdida->sum('total'),
+            'perdida' => $tallasPerdidas->sum('total'),
+            'segunda' => $tallasSegundas->sum('total'),
             'facturado' => $facturado->sum('total'),
             'orden' => $orden->sum('total'),
             'dispVenta' => ($dispVenta < 0) ? 0 : $dispVenta,
@@ -56,27 +86,35 @@ class DashboardController extends Controller
 
     public function ventas12meses()
     {
-        $ventas = DB::table('factura')
-            ->select(DB::raw("DATE_FORMAT(fecha, '%M') as fecha, SUM(total) as total"))
-            ->groupBy('fecha')
-            ->orderBy('fecha', 'desc')
-            ->get();
+        // $ventas = DB::table('factura')
+        // ->select(DB::raw("DATE_FORMAT(fecha, '%M') as fecha, SUM(total) as total "))
+        // ->groupBy('fecha')
+        // ->orderBy('fecha', 'desc')
+        // ->limit(12)
+        // ->get();
 
-        echo  print_r($ventas);   
-        die(); 
-        $fechasv = '';
-        $totalesv = '';
-        // while($regfechav = $ventas){
-        //     $fechasv = $fechasv. '"'. $regfechav['fecha'] . '",';
-        // }
+        $sqlquery = "SELECT DATE_FORMAT(fecha, '%M') as mes, SUM(total) as total FROM factura GROUP BY mes ORDER BY fecha DESC limit 0,12";
+        $result = DB::select($sqlquery);
+ 
 
-        // $fechasv = substr($fechasv, 0, -1);
+        $months = array();
+        $montos = array();
 
+        $longitudventas = count($result);
+
+        for ($i = 0; $i < $longitudventas; $i++) {
+            array_push($months, $result[$i]->mes);
+            array_push($montos,  $result[$i]->total);
+          
+        }   
 
         $data = [
             'code' => 200,
             'status' => 'success',
-            'ventas' => $fechasv
+            // 'ventas' => $ventas,
+            'mes' => $months,
+            'amount' => $montos,
+            'test' => $result
         ];
 
         return response()->json($data, $data['code']);

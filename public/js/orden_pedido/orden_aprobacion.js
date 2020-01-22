@@ -279,7 +279,7 @@ $(document).ready(function() {
                 // { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
-                { data: "name", name: "users.name" },
+                { data: "nombre", name: "empleado.nombre" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
                 { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
                 { data: "fecha", name: "orden_pedido.fecha" },

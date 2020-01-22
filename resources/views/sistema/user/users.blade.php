@@ -212,9 +212,6 @@
         });
     }
 
-    
-
-  
 
     function eliminar(id_user){
         bootbox.confirm("¿Estas seguro de eliminar este usuario?", function(result){

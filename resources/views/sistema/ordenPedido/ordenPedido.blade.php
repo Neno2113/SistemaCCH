@@ -26,8 +26,6 @@
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div id="orden_create">
-
-
                         <div class="row mt-3">
                             <div class="col-md-6" id="clienteBuscar">
                                 <label for="">Cliente(*):</label>
@@ -53,11 +51,13 @@
                         <br>
                         <div class="row mt-3">
                             <div class="col-md-4 mt-2">
-                                <label for="">Notas(*):</label>
-                                <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
+                                <label for="">Vendedor:</label>
+                                <select name="tags[]" id="vendedores" class="form-control select2">
+
+                                </select>
                             </div>
                             <div class="col-md-4 mt-2">
-                                <label for="">Fecha de entrega</label>
+                                <label for="">Fecha de entrega:</label>
                                 <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control">
                                 <input type="hidden" name="" id="fecha_proceso" value="">
                             </div>
@@ -80,9 +80,16 @@
                                 <input type="text" name="generado_internamente" id="generado_internamente"
                                     class="form-control  text-center font-weight-bold" readonly>
                             </div>
+                         
                         </div>
                         <div class="row mt-5">
+                            <div class="col-md-4">
+                                <label for="">Notas:</label>
+                                <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
+                            </div>
+                         
                             <div class="col-md-2">
+                                <label for="">Orden de pedido:</label>
                                 <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                     class="form-control text-center " readonly>
                                 <input type="hidden" name="orden_pedido_id" id="orden_pedido_id">
@@ -93,10 +100,11 @@
                                 <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
                                 <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-1 mt-4 pt-2">
                                 <button class="btn btn-secondary btn-block rounded-pill" id="btn-generar"><i
                                         class="fas fa-truck-loading"></i></button>
                             </div>
+                          
                         </div>
                         <br>
                         <hr>

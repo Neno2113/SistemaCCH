@@ -271,7 +271,7 @@ Route::post('/validar/total', 'AlmacenController@validar');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
-Route::get('existencia/consulta', 'ExistenciaController@show');
+Route::post('existencia/consulta', 'ExistenciaController@show');
 Route::post('existencia', 'ExistenciaController@store');
 
 //Orden de pedido
@@ -295,7 +295,7 @@ Route::post('mostrar/{id}', 'ordenPedidoController@mostrar');
 Route::get('orden_all', 'ordenPedidoController@home_orden');
 Route::post('validar/orden_pedido', 'ordenPedidoController@validar');
 Route::post('cliente/segundas', 'ordenPedidoController@clienteSegunda');
-
+Route::get('vendedores', 'ordenPedidoController@vendedores');
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');
