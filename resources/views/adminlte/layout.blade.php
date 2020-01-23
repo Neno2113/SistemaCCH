@@ -53,6 +53,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('css/styles.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- PACE -->
+  {{-- <script src="{{asset('adminlte/plugins/pace/pace.min.js')}}"></script>
+  <link rel="stylesheet" href="{{asset('adminlte/plugins/pace/center-circle.css')}}"> --}}
+
 </head>
 
 <body class="hold-transition sidebar-mini">

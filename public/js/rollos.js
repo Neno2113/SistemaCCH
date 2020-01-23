@@ -9,11 +9,12 @@ $(document).ready(function() {
             },
             num_tono: {
                 required: true,
-                minlength: 3
+                minlength: 1
             },
             longitud_yarda: {
-                required: true,
-                digits: true
+                required: true
+              
+            
             }
         },
         messages: {
@@ -23,11 +24,11 @@ $(document).ready(function() {
             },
             num_tono: {
                 required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 3 caracteres"
+                minlength: "Debe contener al menos 1 caracter"
             },
             longitud_yarda: {
                 required: "Este campo es obligatorio",
-                digits: "Este campo debe ser numerico"
+                
             }
         }
     });
@@ -190,8 +191,8 @@ $(document).ready(function() {
 
         var rollo = {
             id: $("#id").val(),
-            id_suplidor: $("#suplidores").val(),
-            id_tela: $("#cloths").val(),
+            suplidor: $("#suplidores").val(),
+            tela: $("#cloths").val(),
             codigo_rollo: $("#codigo_rollo").val(),
             num_tono: $("#num_tono").val(),
             fecha_compra: $("#fecha_compra").val(),

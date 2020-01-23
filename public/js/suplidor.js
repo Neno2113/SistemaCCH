@@ -67,6 +67,7 @@ $(document).ready(function() {
 
     function init() {
         $("#provincia").select2();
+        $("#pais").select2();
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
@@ -99,6 +100,7 @@ $(document).ready(function() {
             calle: $("#calle").val(),
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
+            pais: $("#pais").val(),
             sitios_cercanos: $("#sitios_cercanos").val(),
             contacto_suplidor: $("#contacto_suplidor").val(),
             telefono_1: $("#telefono_1").val(),
@@ -173,7 +175,7 @@ $(document).ready(function() {
                 { data: "tipo_suplidor" },
                 { data: "rnc" },
                 { data: "contacto_suplidor" },
-                { data: "email" },
+                // { data: "email" },
                 { data: "terminos_de_pago" },
             ],
             order: [[4, 'asc']],
@@ -193,6 +195,7 @@ $(document).ready(function() {
             calle: $("#calle").val(),
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
+            pais: $("#pais").val(),
             sitios_cercanos: $("#sitios_cercanos").val(),
             contacto_suplidor: $("#contacto_suplidor").val(),
             telefono_1: $("#telefono_1").val(),
@@ -229,10 +232,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
        

@@ -772,9 +772,8 @@ $(document).ready(function() {
                     var j = datos.j;
                     var k = datos.k;
                     var l = datos.l;
-                        console.log(c);
+                        
                         if(genero_global == 2){
-
 
                             if(genero_plus_global == 7){
                                 if(a > a_total){

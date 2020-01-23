@@ -35,6 +35,7 @@ class SupplierController extends Controller
             $calle = $request->input('calle', true);
             $sector = $request->input('sector', true);
             $provincia = $request->input('provincia', true);
+            $pais = $request->input('pais', true);
             $sitios_cercanos = $request->input('sitios_cercanos', true);
             $contacto_suplidor = $request->input('contacto_suplidor', true);
             $telefono_1 = $request->input('telefono_1', true);
@@ -52,6 +53,7 @@ class SupplierController extends Controller
             $suplidor->calle = $calle;
             $suplidor->sector = $sector;
             $suplidor->provincia = $provincia;
+            $suplidor->pais = $pais;
             $suplidor->sitios_cercanos = $sitios_cercanos;
             $suplidor->contacto_suplidor = $contacto_suplidor;
             $suplidor->telefono_1 = $telefono_1;
@@ -123,6 +125,7 @@ class SupplierController extends Controller
             $calle = $request->input('calle', true);
             $sector = $request->input('sector', true);
             $provincia = $request->input('provincia', true);
+            $pais = $request->input('pais', true);
             $sitios_cercanos = $request->input('sitios_cercanos', true);
             $contacto_suplidor = $request->input('contacto_suplidor', true);
             $telefono_1 = $request->input('telefono_1', true);
@@ -139,6 +142,7 @@ class SupplierController extends Controller
             $supplier->calle = $calle;
             $supplier->sector = $sector;
             $supplier->provincia = $provincia;
+            $supplier->pais = $pais;
             $supplier->sitios_cercanos = $sitios_cercanos;
             $supplier->rnc = trim($rnc, "_");
             $supplier->contacto_suplidor = $contacto_suplidor;

@@ -14,7 +14,7 @@ $(document).ready(function() {
             cedula:{
                 required: true,
                 minlength: 11,
-                digits: true
+                
             },
             telefono_1: {
                 required: true,
@@ -42,8 +42,8 @@ $(document).ready(function() {
             },
             cedula:{
                 required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 11 digitos",
-                digits: "Este campo solo puedo contener numeros"
+                minlength: "Debe contener al menos 11 digitos"
+                
             },
             telefono_1: {
                 required: "Este campo es obligatorio",
@@ -95,10 +95,10 @@ $(document).ready(function() {
         $("#email").val("").attr('readonly', false);
         $("#tipo_contrato").val("").trigger("change").attr('disabled', false);
         $("#departamento").val("").trigger("change").attr('disabled', false);
-        $("#forma_pago").val("").attr('readonly', false);
+        $("#forma_pago").val("").attr('disabled', false);
         $("#sueldo").val("").attr('readonly', false);
         $("#valor_hora").val("").attr('readonly', false);
-        $("#banco_tarjeta_cobro").val("").attr('readonly', false);
+        $("#banco_tarjeta_cobro").val("").attr('disabled', false);
         $("#no_cuenta").val("").attr('readonly', false);
         $("#nss").val("").attr('readonly', false);
         $("#nombre_esposa").val("").attr('readonly', false);

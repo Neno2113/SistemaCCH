@@ -6,7 +6,7 @@ $(document).ready(function() {
             no_marcada: {
                 required: true,
                 minlength: 1,
-                number: true
+             
             },
             ancho_marcada: {
                 required: true,
@@ -22,8 +22,7 @@ $(document).ready(function() {
         messages: {
             no_marcada: {
                 required: "El numero de marcada es obligatorio",
-                minlength: "Debe contener al menos 1 numero",
-                number: "Este campo solo admite numeros"
+                minlength: "Debe contener al menos 1 numero"
             },
             ancho_marcada: {
                 required: "El ancho de la marcada es obligatorio",
@@ -398,16 +397,17 @@ $(document).ready(function() {
         let dia = fecha.getDate();
         let year = fecha.getFullYear();
         let month = fecha.getMonth();
+        console.log(year+'/'+month+'/'+dia);
 
         if(dia < 15){
-            month = month;
+            month = month + 1;
         
-            console.log(year+'/'+month+'/'+dia);
+            
             $("#fecha_entrega").attr('min', year +"-"+ month+"-14")
             $("#fecha_entrega").attr('max', year +"-"+ month+"-14")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la primera quincena del mes: "+month);
         }else if(dia > 15){
-            month = month + 1;
+            month = month + 2;
             $("#fecha_entrega").attr('min', year +"-"+ month+"-28")
             $("#fecha_entrega").attr('max', year +"-"+ month+"-28")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);

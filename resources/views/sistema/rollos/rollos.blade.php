@@ -84,7 +84,7 @@
         <h4>Listado de rollos</h4>
     </div>
     <div class="card-body">
-        <table id="rollos" class="table table-hover table-bordered datatables" style="width:100%">
+        <table id="rollos" class="table table-hover table-bordered datatables text-sm" style="width:100%">
             <thead>
                 <tr>
                     <th></th>

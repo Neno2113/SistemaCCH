@@ -433,6 +433,26 @@ $(document).ready(function() {
             $("#btn-guardar").attr("disabled", true);
         }
     })
+
+
+    $("#btn-close").click(function(){
+        let porcentaje = parseFloat($("#porcentaje_mat_1").val());
+        let porcentaje_2 = parseFloat($("#porcentaje_mat_2").val());
+        let porcentaje_3 = parseFloat($("#porcentaje_mat_3").val());
+        let porcentaje_4 = parseFloat($("#porcentaje_mat_4").val());
+        let porcentaje_5 = parseFloat($("#porcentaje_mat_5").val());
+        let total = porcentaje + porcentaje_2 + porcentaje_3 + porcentaje_4 + porcentaje_5;
+        if(total == 100){
+            $("#btn-guardar").attr("disabled", false);
+        }else{
+            bootbox.alert({
+                message:
+                    "<h4 class='invalid-feedback d-block'>"+ 
+                    "El total a guardar debe ser igual a 100%."+"</h4>",
+                size: "small"
+            });
+        }
+    });
    
   
     function mostrarForm(flag) {

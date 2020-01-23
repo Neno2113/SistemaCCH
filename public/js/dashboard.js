@@ -129,7 +129,13 @@ $(document).ready(function() {
             dataType: "json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    let fechas = '';
+                    for (let i = 0; i < datos.mes; i++) {
+                        fechas = fechas+'"'+datos.result[i].mes+ '",';
+                        
+                    }
 
+                    console.log(fechas);
 
                     var ctx = document.getElementById("ventas12meses");
                     var myChart = new Chart(ctx, {

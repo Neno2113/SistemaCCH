@@ -354,6 +354,7 @@
             text-align: center;
             font-weight: bold;
             color: #000;
+            /* padding-top: 200px */
         }
 
         .firma_enviado {
@@ -814,13 +815,15 @@
 
             </table>
 
-            <table class="tabla-totales">
-
+            <table class="tabla-totales">   
+                @if ($factura->descuento <> 0)
                 <tr>
                     <th>DESCUENTO: {{$factura->descuento}}%</th>
                     <td>{{number_format($descuento)}} RD$</td>
 
                 </tr>
+                @endif
+             
                 <tr>
                     <th>SUBTOTAL:</th>
                     <td>{{number_format($subtotal_real)}} RD$</td>
@@ -864,12 +867,20 @@
             </div>
             @endif
 
-
+            @if ( $factura->descuento == 0)
+            <div class="firmas" style="padding-top: 200px ">
+                <div class="firma_enviado">Preparado por:</div>
+                <div class="firma_despachado">Despachado por:</div>
+                <div class="firma_recibido">Recibido por:</div>
+            </div>
+            @else
             <div class="firmas">
                 <div class="firma_enviado">Preparado por:</div>
                 <div class="firma_despachado">Despachado por:</div>
                 <div class="firma_recibido">Recibido por:</div>
             </div>
+            @endif
+         
     </main>
     <footer class="pagina1">
         Factura generada desde SistemaCCH.

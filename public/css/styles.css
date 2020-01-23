@@ -178,6 +178,21 @@ textarea.form-control
     border: 1px solid #dee2e6;
 }
 
+.tabla-perdidas thead{
+    border-left: 2px solid #0B447D;
+    border-right: 2px solid #0B447D;
+    background: #0B447D;
+    color: #fff;
+    text-align: center;
+}
+.tabla-perdidas td, .tabla-perdidas th{
+    border: 1px solid #dee2e6;
+}
+
+.tabla-perdidas tbody tr{
+    text-align: center;
+}
+
 .tabla-existencia tbody tr{
     text-align: center;
 }

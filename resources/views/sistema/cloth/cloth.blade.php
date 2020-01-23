@@ -117,7 +117,7 @@
         <h4>Listado de telas</h4>
     </div>
     <div class="card-body">
-        <table id="cloths" class="table table-hover table-bordered datatables" style="width:100%">
+        <table id="cloths" class="table table-hover table-bordered datatables text-sm" style="width:100%">
             <thead>
                 <tr>
                     <th></th>
@@ -175,7 +175,7 @@
                 <form action="" id="compositionForm" class="form-group">
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="Material No.1">Material No.1(*)</label>
+                            <label for="Material No.1">Material No.1</label>
                         </div>
                         <div class="col-md-4">
                             <select name="tags[]" id="composiciones" class="form-control select2">
@@ -280,7 +280,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
             </div>
             </form>
         </div>

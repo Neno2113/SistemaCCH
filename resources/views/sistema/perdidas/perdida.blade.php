@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered tabla-perdidas">
                         <thead>
                             <tr>
                                 <th id="sa">A</th>
@@ -294,7 +294,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

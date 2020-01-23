@@ -114,7 +114,7 @@ class DashboardController extends Controller
             // 'ventas' => $ventas,
             'mes' => $months,
             'amount' => $montos,
-            'test' => $result
+            'result' => $result
         ];
 
         return response()->json($data, $data['code']);

@@ -402,7 +402,7 @@ class PerdidaController extends Controller
 
         //buscar cortes con la misma referencia producto
         $corte = Corte::where('id', $corte_id)
-        ->where('fase', 'LIKE', 'Terminacion')
+        // ->where('fase', 'LIKE', 'Terminacion')
         ->select('id', 'total')->get();
     
         $cortes = array();
@@ -492,7 +492,8 @@ class PerdidaController extends Controller
             'j' => $j,
             'k' => $k,
             'l' => $l,
-            'total' => $total_real
+            'total' => $total_real,
+            'ref' => $producto->referencia_producto
         ];
 
         return response()->json($data, $data['code']);
