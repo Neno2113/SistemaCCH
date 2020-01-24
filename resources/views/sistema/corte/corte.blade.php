@@ -95,7 +95,7 @@
                         <div class="col-md-4 mt-2">
                             <label for="">Aprovechamiento(*):</label>
                             <input type="text" name="aprovechamiento" id="aprovechamiento" class="form-control"
-                                data-inputmask='"mask": "99.99%"' data-mask>
+                                data-inputmask='"mask": "99[.99]%"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide"
@@ -220,7 +220,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
@@ -252,22 +252,22 @@
                     </div> --}}
                 </div>
                 <div class="row">
-                    <table class="table  table-bordered  table-responsive">
+                    <table class="table  table-bordered tabla-perdidas">
                         <thead>
                             <tr>
                                 <th>Tipo producto</th>
-                                <th>A</th>
-                                <th>B</th>
-                                <th>C</th>
-                                <th>D</th>
-                                <th>E</th>
-                                <th>F</th>
-                                <th>G</th>
-                                <th>H</th>
-                                <th>I</th>
-                                <th>J</th>
-                                <th>K</th>
-                                <th>L</th>
+                                <th id="ta">A</th>
+                                <th id="tb">B</th>
+                                <th id="tc">C</th>
+                                <th id="td">D</th>
+                                <th id="te">E</th>
+                                <th id="tf">F</th>
+                                <th id="tg">G</th>
+                                <th id="th">H</th>
+                                <th id="ti">I</th>
+                                <th id="tj">J</th>
+                                <th id="tk">K</th>
+                                <th id="tl">L</th>
                             </tr>
                         </thead>
                         <tr id="tallas">
@@ -279,51 +279,51 @@
                 <br><br>
                 <div class="row">
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="ta">A</label>
+                        <label for="" class="ml-4" id="sa">A</label>
                         <input type="text" name="" id="a" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="tb">B</label>
+                        <label for="" class="ml-4" id="sb">B</label>
                         <input type="text" name="" id="b" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2 ">
-                        <label for="" class="ml-4" id="tc">C</label>
+                        <label for="" class="ml-4" id="sc">C</label>
                         <input type="text" name="" id="c" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="td">D</label>
+                        <label for="" class="ml-4" id="sd">D</label>
                         <input type="text" name="" id="d" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="te">E</label>
+                        <label for="" class="ml-4" id="se">E</label>
                         <input type="text" name="" id="e" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="tf">F</label>
+                        <label for="" class="ml-4" id="sf">F</label>
                         <input type="text" name="" id="f" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="tg">G</label>
+                        <label for="" class="ml-4" id="sg">G</label>
                         <input type="text" name="" id="g" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="th">H</label>
+                        <label for="" class="ml-4" id="sh">H</label>
                         <input type="text" name="" id="h" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="ti">I</label>
+                        <label for="" class="ml-4" id="si">I</label>
                         <input type="text" name="" id="i" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="tj">J</label>
+                        <label for="" class="ml-4" id="sj">J</label>
                         <input type="text" name="" id="j" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="tk">K</label>
+                        <label for="" class="ml-4" id="sk">K</label>
                         <input type="text" name="" id="k" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="tl">L</label>
+                        <label for="" class="ml-4" id="sl">L</label>
                         <input type="text" name="" id="l" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                 </div>
@@ -390,7 +390,7 @@
         var rollo = {
             numero_corte: $("#numero_corte_gen").val(),
         };
-        console.log(JSON.stringify(rollo));
+        // console.log(JSON.stringify(rollo));
 
         $.ajax({
             url: "asignar/"+ id_rollo,
@@ -403,7 +403,7 @@
                     bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> asignado correctamente al corte: <strong>"
                         +datos.rollo.corte_utilizado+"</strong>");
                     $("#btn-guardar").attr("disabled", false);
-                    $("#edit-hide").attr("disabled", true);
+                    $("#edit-hide").css("background-color", "green");
                     $("#rollos").DataTable().ajax.reload();
                 } else {
                     bootbox.alert(

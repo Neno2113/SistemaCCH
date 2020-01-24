@@ -257,6 +257,7 @@ class ClothController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Supplier::select("id", "nombre", "contacto_suplidor")
+                ->where('tipo_suplidor', 'LIKE', "Material")
                 ->where('nombre', 'LIKE', "%$search%")
                 ->get();
         }
@@ -288,6 +289,9 @@ class ClothController extends Controller
         return DataTables::of($cloths)
             ->addColumn('Expandir', function ($cloth) {
                 return "";
+            })
+            ->editColumn('nombre', function($cloth){
+                return substr($cloth->nombre, 0, 20);
             })
             ->addColumn('Ver', function ($cloth) {
                 return '<button onclick="ver(' . $cloth->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';

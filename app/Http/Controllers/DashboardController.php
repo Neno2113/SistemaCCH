@@ -86,13 +86,7 @@ class DashboardController extends Controller
 
     public function ventas12meses()
     {
-        // $ventas = DB::table('factura')
-        // ->select(DB::raw("DATE_FORMAT(fecha, '%M') as fecha, SUM(total) as total "))
-        // ->groupBy('fecha')
-        // ->orderBy('fecha', 'desc')
-        // ->limit(12)
-        // ->get();
-
+      
         $sqlquery = "SELECT DATE_FORMAT(fecha, '%M') as mes, SUM(total) as total FROM factura GROUP BY mes ORDER BY fecha DESC limit 0,12";
         $result = DB::select($sqlquery);
  
@@ -104,7 +98,7 @@ class DashboardController extends Controller
 
         for ($i = 0; $i < $longitudventas; $i++) {
             array_push($months, $result[$i]->mes);
-            array_push($montos,  $result[$i]->total);
+            array_push($montos,  number_format($result[$i]->total));
           
         }   
 
@@ -119,6 +113,24 @@ class DashboardController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function ventas10dias()
+    {
+      
+        $sqlquery = "SELECT CONCAT(DAY(fecha), '-', MONTH(fecha)) as fecha, SUM(total) as total FROM factura GROUP BY fecha ORDER BY fecha DESC limit 0,10";
+        $result = DB::select($sqlquery);
+ 
+
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'result' => $result
+        ];
+
+        return response()->json($data, $data['code']);
+    }
+
 
 
     public function latestOrders(){

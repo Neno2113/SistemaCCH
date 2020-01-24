@@ -8,7 +8,6 @@
 
 <div class="row mt-3 ml-3">
     <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
-    <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
 </div>
 
 <div class="row">
@@ -132,18 +131,11 @@
                         </table>
 
                     </div>
-                    {{-- <div class="row">
-                        <div class="col-md-4">
-                            <button id="empacado" class="btn btn-primary"><i class="fas fa-box fa-lg"></i></button>
-                            <span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span>
-                        </div>
-                    </div> --}}
-
-
-
+            
             </div>
             <div class="card-footer">
-                {{-- <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3"> --}}
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                    class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
                 <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
                     class="far fa-save fa-lg"></i> Guardar</button>
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}

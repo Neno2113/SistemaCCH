@@ -495,7 +495,7 @@ class ordenEmpaqueController extends Controller
         // die();
 
         if ($cant_total > $cantidad) {
-            $a_red = $a_red - 1;
+            $a_red = $a_red - 0.1;
             $b_red = $b_red - 0.1;
             $c_red = $c_red - 0.1;
             $d_red = $d_red - 0.3;

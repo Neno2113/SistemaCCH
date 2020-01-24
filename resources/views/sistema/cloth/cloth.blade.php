@@ -182,15 +182,13 @@
 
                             </select>
                         </div>
-                        <div class="col-md-2 ml-5">
-                            <label for="Porcentaje Mat.No.1">Porcentaje Mat.No.1(*)</label>
-                        </div>
+                      
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1"
-                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-2">
                             <label for="Material No.2">Material No.2</label>
                         </div>
@@ -199,15 +197,13 @@
 
                             </select>
                         </div>
-                        <div class="col-md-2 ml-5">
-                            <label for="Porcentaje Mat.No.2">Porcentaje Mat.No.2</label>
-                        </div>
+                       
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2"
-                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-2">
                             <label for="Material No.3">Material No.3</label>
                         </div>
@@ -216,15 +212,13 @@
 
                             </select>
                         </div>
-                        <div class="col-md-2 ml-5">
-                            <label for="Porcentaje Mat.No.3">Porcentaje Mat.No.3</label>
-                        </div>
+                       
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3"
-                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-2">
                             <label for="Material No.4">Material No.4</label>
                         </div>
@@ -233,15 +227,13 @@
 
                             </select>
                         </div>
-                        <div class="col-md-2 ml-5">
-                            <label for="Porcentaje Mat.No.4">Porcentaje Mat.No.4</label>
-                        </div>
+                      
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4"
-                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-2">
                             <label for="Material No.5">Material No.5</label>
                         </div>
@@ -250,16 +242,24 @@
 
                             </select>
                         </div>
-                        <div class="col-md-2 ml-5">
-                            <label for="Porcentaje Mat.No.5">Porcentaje Mat.No.5</label>
-                        </div>
+                     
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5"
-                                class="form-control text-center" data-inputmask='"mask": "99.99"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-6">
+
+                        </div>
+
+                        <div class="col-md-3 mt-3 float-right">
+                            <input type="text" name="porcentaje_mat_total" id="porcentaje_mat_total"
+                                class="form-control text-center " readonly placeholder="Total">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12 mt-2">
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <strong>Atencion!</strong> Las composiciones digitadas deben equivaler al 100% de
                                 lo contrario no podra guardar en el sistema.
@@ -267,14 +267,6 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        </div>
-
-                        <div class="col-md-2 ml-5 mt-3">
-                            <label for="Total">Total</label>
-                        </div>
-                        <div class="col-md-3 mt-3">
-                            <input type="text" name="porcentaje_mat_total" id="porcentaje_mat_total"
-                                class="form-control text-center" readonly>
                         </div>
                     </div>
 

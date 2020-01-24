@@ -251,21 +251,19 @@ $(document).ready(function() {
                 $("#tf").html("22W");
                 $("#tg").html("24W");
                 $("#th").html("26W");
+                $("#sa").html("12W");
+                $("#sb").html("14W");
+                $("#sc").html("16W");
+                $("#sd").html("18W");
+                $("#se").html("20W");
+                $("#sf").html("22W");
+                $("#sg").html("24W");
+                $("#sh").html("26W");
                 $("#i").attr('disabled', true);
                 $("#j").attr('disabled', true);
                 $("#k").attr('disabled', true);
                 $("#l").attr('disabled', true);
-                $("#tallas").html(
-                    "<th>Dama Plus</th>"+
-                    "<th>12W</th>"+
-                    "<th>14W</th>"+
-                    "<th>16W</th>"+
-                    "<th>18W</th>"+
-                    "<th>20W</th>"+
-                    "<th>22W</th>"+
-                    "<th>24W</th>"+
-                    "<th>26W</th>"
-                );
+               
                 
             }else{
                 $("#corte_tallas").val('Mujer: '+val);
@@ -281,25 +279,23 @@ $(document).ready(function() {
                 $("#tj").html("17/18");
                 $("#tk").html("19/20");
                 $("#tl").html("21/22");
+                $("#sa").html("0/0");
+                $("#sb").html("1/2");
+                $("#sc").html("3/4");
+                $("#sd").html("5/6");
+                $("#se").html("7/8");
+                $("#sf").html("9/10");
+                $("#sg").html("11/12");
+                $("#sh").html("13/14");
+                $("#si").html("15/16");
+                $("#sj").html("17/18");
+                $("#sk").html("19/20");
+                $("#sl").html("21/22");
                 $("#i").attr('disabled', false);
                 $("#j").attr('disabled', false);
                 $("#k").attr('disabled', false);
                 $("#l").attr('disabled', false);
-                $("#tallas").html(
-                    "<th>Dama TA</th>"+
-                    "<th>0/0</th>"+
-                    "<th>1/2</th>"+
-                    "<th>3/4</th>"+
-                    "<th>5/6</th>"+
-                    "<th>7/8</th>"+
-                    "<th>9/10</th>"+
-                    "<th>11/12</th>"+
-                    "<th>13/14</th>"+
-                    "<th>15/16</th>"+
-                    "<th>17/18</th>"+
-                    "<th>19/20</th>"+
-                    "<th>21/22</th>"
-            );
+                
             }
         
     }
@@ -315,21 +311,19 @@ $(document).ready(function() {
             $("#tf").html("12");
             $("#tg").html("14");
             $("#th").html("16");
+            $("#sa").html("2");
+            $("#sb").html("4");
+            $("#sc").html("6");
+            $("#sd").html("8");
+            $("#se").html("10");
+            $("#sf").html("12");
+            $("#sg").html("14");
+            $("#sh").html("16");
             $("#i").attr('disabled', true);
             $("#j").attr('disabled', true);
             $("#k").attr('disabled', true);
             $("#l").attr('disabled', true);
-            $("#tallas").html(
-                "<th>Niño</th>"+
-                "<th>2</th>"+
-                "<th>4</th>"+
-                "<th>6</th>"+
-                "<th>8</th>"+
-                "<th>10</th>"+
-                "<th>12</th>"+
-                "<th>14</th>"+
-                "<th>16</th>"
-            );
+          
         } else if (genero == "4") {
             $("#corte_tallas").val('Niña: '+val);
             $("#sub-genero").hide();
@@ -341,21 +335,19 @@ $(document).ready(function() {
             $("#tf").html("12");
             $("#tg").html("14");
             $("#th").html("16");
+            $("#sa").html("2");
+            $("#sb").html("4");
+            $("#sc").html("6");
+            $("#sd").html("8");
+            $("#se").html("10");
+            $("#sf").html("12");
+            $("#sg").html("14");
+            $("#sh").html("16");
             $("#i").attr('disabled', true);
             $("#j").attr('disabled', true);
             $("#k").attr('disabled', true);
             $("#l").attr('disabled', true);
-            $("#tallas").html(
-                "<th>Niña</th>"+
-                "<th>2</th>"+
-                "<th>4</th>"+
-                "<th>6</th>"+
-                "<th>8</th>"+
-                "<th>10</th>"+
-                "<th>12</th>"+
-                "<th>14</th>"+
-                "<th>16</th>"
-            );
+        
         } else if (genero == "1") {
             $("#corte_tallas").val('Hombre: '+val);
             $("#sub-genero").hide();
@@ -369,25 +361,21 @@ $(document).ready(function() {
             $("#th").html("40");
             $("#ti").html("42");
             $("#tj").html("44");
+            $("#sa").html("28");
+            $("#sb").html("29");
+            $("#sc").html("30");
+            $("#sd").html("32");
+            $("#se").html("34");
+            $("#sf").html("36");
+            $("#sg").html("38");
+            $("#sh").html("40");
+            $("#si").html("42");
+            $("#sj").html("44");
             $("#i").attr('disabled', false);
             $("#j").attr('disabled', false);
             $("#k").attr('disabled', true);
             $("#l").attr('disabled', true);
-            $("#tallas").html(
-                "<th>Caballero Skinny</th>"+
-                "<th>28</th>"+
-                "<th>29</th>"+
-                "<th>30</th>"+
-                "<th>32</th>"+
-                "<th>34</th>"+
-                "<th>36</th>"+
-                "<th>38</th>"+
-                "<th>40</th>"+
-                "<th>42</th>"+
-                "<th>44</th>"
-            );
-        } else if (val == "") {
-            $("#motivo").html("<option value=''> </option>");
+          
         }
     });
 
@@ -397,19 +385,25 @@ $(document).ready(function() {
         let dia = fecha.getDate();
         let year = fecha.getFullYear();
         let month = fecha.getMonth();
-        console.log(year+'/'+month+'/'+dia);
+      
 
         if(dia < 15){
-            month = month + 1;
+            month = month + 2;
+            var i = Number(month) / 100;
+            i = (i).toFixed(2).split(".").join("");
+            i = i.substr(1, 4);
         
-            
-            $("#fecha_entrega").attr('min', year +"-"+ month+"-14")
-            $("#fecha_entrega").attr('max', year +"-"+ month+"-14")
+            $("#fecha_entrega").attr('min', year +"-"+ i+"-14")
+            $("#fecha_entrega").attr('max', year +"-"+ i+"-14")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la primera quincena del mes: "+month);
         }else if(dia > 15){
             month = month + 2;
-            $("#fecha_entrega").attr('min', year +"-"+ month+"-28")
-            $("#fecha_entrega").attr('max', year +"-"+ month+"-28")
+            var i = Number(month) / 100;
+            i = (i).toFixed(2).split(".").join("");
+            i = i.substr(1, 4);
+         
+            $("#fecha_entrega").attr('min', 2020 +"-"+i+"-28")
+            $("#fecha_entrega").attr('max', 2020 +"-"+1+"-28")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);
         }
     });
@@ -699,7 +693,11 @@ $(document).ready(function() {
         e.preventDefault();
         let year = $("#year").val();
         let sec_manual = $("#sec_manual").val();
-        let referencia = year + "-"+ sec_manual;
+        var i = Number(sec_manual) / 100;
+
+        i = (i).toFixed(2).split('.').join("");
+
+        let referencia = year + "-"+ i;
 
         let corte = {
             numero_corte: referencia

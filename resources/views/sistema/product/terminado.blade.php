@@ -131,7 +131,7 @@
 
 <div class="card" id="listadoUsers">
     <div class="card-header text-center">
-        <h4>Listado de cortes</h4>
+        <h4>Listado de producto terminado</h4>
     </div>
     <div class="card-body">
         <table id="producto-terminado" class="table table-hover table-bordered datatables" style="width:100%">

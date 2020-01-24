@@ -191,6 +191,7 @@ Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');
 Route::post('sku', 'ProductController@asignarSKU');
 Route::get('producto/terminado/{filname}', 'ProductController@getImage');
+Route::post('producto/validarSku', 'ProductController@validarSku');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
@@ -322,6 +323,7 @@ Route::get('factura-vista', 'FacturaController@verificar');
 
 //Home
 Route::get('/venta12meses', 'DashboardController@ventas12meses');
+Route::get('/venta10dias', 'DashboardController@ventas10dias');
 Route::get('/dispVentas', 'DashboardController@totalVenta');
 Route::get('/latest_orders', 'DashboardController@latestOrders');
 Route::get('/latest_products', 'DashboardController@latestProduct');

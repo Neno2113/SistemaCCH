@@ -99,18 +99,18 @@ class ExistenciaController extends Controller
 
 
         //Existencia
-        $a = $tallas->sum('a') - $tallasPerdidas->sum('a') - $tallasfacturacion->sum('a') + $tallasNC->sum('a') + $tallasSegundas->sum('a');  
-        $b = $tallas->sum('b') - $tallasPerdidas->sum('b') - $tallasfacturacion->sum('b') + $tallasNC->sum('b') + $tallasSegundas->sum('a');
-        $c = $tallas->sum('c') - $tallasPerdidas->sum('c') - $tallasfacturacion->sum('c') + $tallasNC->sum('c') + $tallasSegundas->sum('a');
-        $d = $tallas->sum('d') - $tallasPerdidas->sum('d') - $tallasfacturacion->sum('d') + $tallasNC->sum('d') + $tallasSegundas->sum('a');
-        $e = $tallas->sum('e') - $tallasPerdidas->sum('e') - $tallasfacturacion->sum('e') + $tallasNC->sum('e') + $tallasSegundas->sum('a');
-        $f = $tallas->sum('f') - $tallasPerdidas->sum('f') - $tallasfacturacion->sum('f') + $tallasNC->sum('f') + $tallasSegundas->sum('a');
-        $g = $tallas->sum('g') - $tallasPerdidas->sum('g') - $tallasfacturacion->sum('g') + $tallasNC->sum('g') + $tallasSegundas->sum('a');
-        $h = $tallas->sum('h') - $tallasPerdidas->sum('h') - $tallasfacturacion->sum('h') + $tallasNC->sum('h') + $tallasSegundas->sum('a');
-        $i = $tallas->sum('i') - $tallasPerdidas->sum('i') - $tallasfacturacion->sum('i') + $tallasNC->sum('i') + $tallasSegundas->sum('a');
-        $j = $tallas->sum('j') - $tallasPerdidas->sum('j') - $tallasfacturacion->sum('j') + $tallasNC->sum('j') + $tallasSegundas->sum('a');
-        $k = $tallas->sum('k') - $tallasPerdidas->sum('k') - $tallasfacturacion->sum('k') + $tallasNC->sum('k') + $tallasSegundas->sum('a');
-        $l = $tallas->sum('l') - $tallasPerdidas->sum('l') - $tallasfacturacion->sum('l') + $tallasNC->sum('l') + $tallasSegundas->sum('a');
+        $a = $tallasAlmacen->sum('a') - $tallasPerdidas->sum('a') - $tallasfacturacion->sum('a') + $tallasNC->sum('a') + $tallasSegundas->sum('a');  
+        $b = $tallasAlmacen->sum('b') - $tallasPerdidas->sum('b') - $tallasfacturacion->sum('b') + $tallasNC->sum('b') + $tallasSegundas->sum('a');
+        $c = $tallasAlmacen->sum('c') - $tallasPerdidas->sum('c') - $tallasfacturacion->sum('c') + $tallasNC->sum('c') + $tallasSegundas->sum('a');
+        $d = $tallasAlmacen->sum('d') - $tallasPerdidas->sum('d') - $tallasfacturacion->sum('d') + $tallasNC->sum('d') + $tallasSegundas->sum('a');
+        $e = $tallasAlmacen->sum('e') - $tallasPerdidas->sum('e') - $tallasfacturacion->sum('e') + $tallasNC->sum('e') + $tallasSegundas->sum('a');
+        $f = $tallasAlmacen->sum('f') - $tallasPerdidas->sum('f') - $tallasfacturacion->sum('f') + $tallasNC->sum('f') + $tallasSegundas->sum('a');
+        $g = $tallasAlmacen->sum('g') - $tallasPerdidas->sum('g') - $tallasfacturacion->sum('g') + $tallasNC->sum('g') + $tallasSegundas->sum('a');
+        $h = $tallasAlmacen->sum('h') - $tallasPerdidas->sum('h') - $tallasfacturacion->sum('h') + $tallasNC->sum('h') + $tallasSegundas->sum('a');
+        $i = $tallasAlmacen->sum('i') - $tallasPerdidas->sum('i') - $tallasfacturacion->sum('i') + $tallasNC->sum('i') + $tallasSegundas->sum('a');
+        $j = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasfacturacion->sum('j') + $tallasNC->sum('j') + $tallasSegundas->sum('a');
+        $k = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasfacturacion->sum('k') + $tallasNC->sum('k') + $tallasSegundas->sum('a');
+        $l = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasfacturacion->sum('l') + $tallasNC->sum('l') + $tallasSegundas->sum('a');
 
         //disponible para la venta
         $a_disp = $a - $tallasOrdenes->sum('a') - $tallasSegundas->sum('a');
@@ -223,6 +223,18 @@ class ExistenciaController extends Controller
             'k_op' => $tallasOrdenes->sum('k'),
             'l_op' => $tallasOrdenes->sum('l'),
             'tallasNC' => $tallasNC,
+            'a_nc' => $tallasNC->sum('a'),
+            'b_nc' => $tallasNC->sum('b'),
+            'c_nc' => $tallasNC->sum('c'),
+            'd_nc' => $tallasNC->sum('d'),
+            'e_nc' => $tallasNC->sum('e'),
+            'f_nc' => $tallasNC->sum('f'),
+            'g_nc' => $tallasNC->sum('g'),
+            'h_nc' => $tallasNC->sum('h'),
+            'i_nc' => $tallasNC->sum('i'),
+            'j_nc' => $tallasNC->sum('j'),
+            'k_nc' => $tallasNC->sum('k'),
+            'l_nc' => $tallasNC->sum('l'),
             'tallasFactura' => $tallasfacturacion,
             'a_fb' => $tallasfacturacion->sum('a'),
             'b_fb' => $tallasfacturacion->sum('b'),

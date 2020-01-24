@@ -77,9 +77,13 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-2 mt-3">
+                            <label for="">Secuencia(*):</label>
+                            <input type="number" min="1" max="999" step="1"  id="sec_manual" class="form-control">
+                        </div>
                         <div class="col-md-3 mt-3">
                             <label for="">Referencia:</label>
-                            <input type="text" name="referencia" id="referencia" class="form-control">
+                            <input type="text" name="referencia" id="referencia" class="form-control" readonly>
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-3" id="mostrarRef2">
@@ -91,7 +95,7 @@
                             <button class="btn btn-primary" id="btnGenerar">Generar</button>
                         </div>
                         <div class="col-md-3 mt-5">
-                            <button type="button" class="btn btn-info  btn-block" data-toggle="modal"
+                            <button type="button" class="btn btn-secondary  btn-block" data-toggle="modal"
                                 data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Asignar SKU</button>
                         </div>
                     </div>
@@ -199,27 +203,23 @@
                         <div class="col-md-6  mb-3">
                             <input type="text" name="referencia" id="referencia_talla" class="form-control text-center">
                         </div>
-                        <h5 class="ml-2 mt-2">SKU generico producto(*):</h5>
-                        <div class="col-md-2 mr-2">
-                            <button class="btn btn-primary mb-4" id="btn-asignar" value="General">Asignar SKU </button>
-                        </div>
                     </div>
-                    <table class="table  table-bordered mt-3">
+                    <table class="table  table-bordered mt-3 tabla-perdidas">
                         <thead>
                             <tr>
                                 <th>Tallas</th>
-                                <th>A</th>
-                                <th>B</th>
-                                <th>C</th>
-                                <th>D</th>
-                                <th>E</th>
-                                <th>F</th>
-                                <th>G</th>
-                                <th>H</th>
-                                <th>I</th>
-                                <th>J</th>
-                                <th>K</th>
-                                <th>L</th>
+                                <th id="ta">A</th>
+                                <th id="tb">B</th>
+                                <th id="tc">C</th>
+                                <th id="td">D</th>
+                                <th id="te">E</th>
+                                <th id="tf">F</th>
+                                <th id="tg">G</th>
+                                <th id="th">H</th>
+                                <th id="ti">I</th>
+                                <th id="tj">J</th>
+                                <th id="tk">K</th>
+                                <th id="tl">L</th>
                             </tr>
                         </thead>
                         <tbody id="tallas">
@@ -230,7 +230,10 @@
                         <div class="col-md-12 mt-3">
                             <h5 class="text-center">Asignar SKU por tallas</h5>
                             <hr>
-                            <hr>
+                            <div class="col-md-2 mr-2">
+                                <button class="btn btn-primary mb-4" id="btn-asignar" value="General">SKU generel </button>
+                            </div>
+                           
                         </div>
 
                     </div>

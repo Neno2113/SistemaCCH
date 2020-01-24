@@ -51,7 +51,7 @@
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
                                 <input type="text" id="telefono_1" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
@@ -61,7 +61,7 @@
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
                                 <input type="text" id="telefono_2" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
@@ -71,7 +71,7 @@
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
                                 <input type="text" id="celular" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
-                                <input name="calle" id="calle" class="form-control">
+                                <input name="calle" id="calle" class="form-control" placeholder="Street">
                             </div>
                         </div>
                         <div class="col-md-4 mt-1">
@@ -121,7 +121,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
-                                <input name="sector" id="sector" class="form-control">
+                                <input name="sector" id="sector" class="form-control" placeholder="City">
                             </div>
                         </div>
                         <div class="col-md-4 mt-1">
@@ -130,8 +130,9 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
-                                <select name="provincia" id="provincia" class="form-control select2">
-                                    <option value=""></option>
+                                <select name="provincia" id="provincia" class="form-control select2" aria-placeholder="State">
+                                    <option value="">Elige una provincia</option>
+                                    <option >No pertenece al pais</option>
                                     <option>Santo Domingo</option>
                                     <option>Distrito Nacional</option>
                                     <option>Santiago</option>
@@ -173,8 +174,8 @@
                       
                         <div class="col-md-4">
                             <label for="">Pais:</label>
-                            <select name="pais" id="pais" class="form-control select2">
-                                <option value="Elegir" id="AF">Elegir opción</option>
+                            <select name="pais" id="pais" class="form-control select2" placeholder="Country">
+                                <option value="Elegir" id="AF">Elegir pais</option>
                                 <option value="Afganistán" id="AF">Afganistán</option>
                                 <option value="Albania" id="AL">Albania</option>
                                 <option value="Alemania" id="DE">Alemania</option>

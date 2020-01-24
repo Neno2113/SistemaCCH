@@ -56,7 +56,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    $("#disp_venta").html(datos.existencia);
+                    $("#disp_venta").html(datos.dispVenta);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -130,24 +130,33 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     let fechas = '';
-                    for (let i = 0; i < datos.mes; i++) {
+                    let totales = '';
+
+                    //Fecha en mes de ventas 
+                    for (let i = 0; i < datos.result.length; i++) {
                         fechas = fechas+'"'+datos.result[i].mes+ '",';
                         
                     }
+                    fechas = fechas.replace(",", "");
 
-                    console.log(fechas);
-
+                    //totales
+                    for (let i = 0; i < datos.result.length; i++) {
+                        totales = totales+''+datos.result[i].total+ ',';
+                        
+                    }
+                    totales = totales.replace(",", "");
+                    
                     var ctx = document.getElementById("ventas12meses");
                     var myChart = new Chart(ctx, {
                         type: "bar",
                         data: {
                             labels: [
-                               datos.mes
+                               fechas
                             ],
                             datasets: [
                                 {
                                     label: "Venta ultimos 12 meses",
-                                    data: [datos.amount],
+                                    data: [totales],
                                     backgroundColor: [
                                         "rgba(255, 99, 132, 0.2)",
                                         "rgba(54, 162, 235, 0.2)",

@@ -112,10 +112,10 @@ class ProductController extends Controller
                 return "$product->name $product->surname";
             })
             ->editColumn('precio_lista', function($product){
-                return $product->precio_lista . " RD$";
+                return number_format($product->precio_lista) . " RD$";
             })
             ->editColumn('precio_venta_publico', function($product){
-                return $product->precio_venta_publico . " RD$";
+                return number_format($product->precio_venta_publico) . " RD$";
             })
             ->addColumn('Editar', function ($product) {
                 return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
@@ -329,4 +329,30 @@ class ProductController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function validarSku(Request $request){
+
+        $referencia = $request->input('referencia');
+
+        // echo $referencia;
+        // die();
+
+        $producto = Product::find($referencia);
+        $ref = $producto->referencia_producto;
+
+        $sku = SKU::where('referencia_producto', $ref)
+        ->orderBy('talla', 'asc')
+        ->get();
+
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'sku' => $sku
+        ];
+
+        return response()->json($data, $data['code']);
+    }
+
+
 }
