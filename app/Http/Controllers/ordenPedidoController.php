@@ -933,10 +933,10 @@ class ordenPedidoController extends Controller
                 return date("d-m-20y", strtotime($orden->fecha_entrega));
             })
             ->editColumn('fecha', function ($orden) {
-                return date("h:i:s A d-m-20y", strtotime($orden->fecha));
+                return date("h:i:s  d-m", strtotime($orden->fecha));
             })
             ->editColumn('fecha_aprobacion', function ($orden) {
-                return date("h:i:s d-m", strtotime($orden->fecha_aprobacion));
+                return date("h:i d-m", strtotime($orden->fecha_aprobacion));
             })
             ->editColumn('status_orden_pedido', function ($orden) {
                 if ($orden->status_orden_pedido == 'Vigente') {
@@ -951,9 +951,10 @@ class ordenPedidoController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
                 if ($orden->status_orden_pedido == 'Vigente') {
-                    return  '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash"></i></button>';
+                    return  '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm mr-1"><i class="fas fa-window-close fa-sm"></i></button>'.
+                    '<button onclick="ver(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"><i class="fas fa-eye fa-sm"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Stanby') {
-                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-check"></i></button>';
+                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm" id="btn-status"> <i class="fas fa-check fa-sm"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Cancelado') {
                     return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-check"></i></button>';
                 } else {
@@ -962,6 +963,31 @@ class ordenPedidoController extends Controller
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
+    }
+
+    public function verRedistribuir($id, Request $request){
+        // $id = $request->input('orden_id');
+
+        $orden = ordenPedido::find($id)->load('user')->load('cliente')->load('sucursal')->load('vendedor');
+
+        $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get();
+
+        if(is_object($orden)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'orden' => $orden,
+                'orden_detalle' => $orden_detalle
+            ];
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'Ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
     }
 
     public function aprobar($id)
@@ -1030,11 +1056,11 @@ class ordenPedidoController extends Controller
                 $redistribucion_tallas = $cliente->redistribucion_tallas;
 
                 if ($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0) {
-                    return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
+                    return  '<a onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></a>';
                 } else if ($redistribucion_tallas == '0'  && $orden->orden_redistribuida == 0) {
-                    return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>';
+                    return  '<a onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></a>';
                 } else if ($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0) {
-                    return  '<button onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></button>' .
+                    return  '<a onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></a>' .
                         '<span class="badge badge-success ml-2">Redistribuido</span>';
                 } else {
                     return '<span class="badge badge-success">Redistribuido</span>';
@@ -1261,6 +1287,43 @@ class ordenPedidoController extends Controller
         ];
 
         return response()->json($data, $data['code']);
+    }
+
+    public function listarOrdenRed($id)
+    {
+        $ordenes = DB::table('orden_pedido_detalle')->join('producto', 'orden_pedido_detalle.producto_id', 'producto.id')
+            ->select([
+                'orden_pedido_detalle.id', 'orden_pedido_detalle.a', 'orden_pedido_detalle.b',
+                'orden_pedido_detalle.c', 'orden_pedido_detalle.d', 'orden_pedido_detalle.e',
+                'orden_pedido_detalle.f', 'orden_pedido_detalle.g', 'orden_pedido_detalle.h',
+                'orden_pedido_detalle.i', 'orden_pedido_detalle.j', 'orden_pedido_detalle.k',
+                'producto.referencia_producto', 'orden_pedido_detalle.l', 'orden_pedido_detalle.orden_pedido_id',
+                'orden_pedido_detalle.l', 'orden_pedido_detalle.total', 'orden_pedido_detalle.orden_redistribuida'
+            ])->where('orden_pedido_id', $id);          
+        return DataTables::of($ordenes)
+        ->addColumn('Opciones', function ($orden) {
+            $id = $orden->orden_pedido_id;
+
+            $orden_pedido = ordenPedido::find($id);
+
+            $client_id = $orden_pedido->cliente_id;
+            $cliente = Client::find($client_id);
+
+            $redistribucion_tallas = $cliente->redistribucion_tallas;
+
+            if ($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0) {
+                return  '<a onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></a>';
+            } else if ($redistribucion_tallas == '0'  && $orden->orden_redistribuida == 0) {
+                return  '<a onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></a>';
+            } else if ($redistribucion_tallas == '1' && $orden->orden_redistribuida == 0) {
+                return  '<a onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></a>' .
+                    '<span class="badge badge-success ml-2">Redistribuido</span>';
+            } else {
+                return '<span class="badge badge-success">Redistribuido</span>';
+            }
+        })
+            ->rawColumns(['Opciones'])
+            ->make(true);
     }
 
 }

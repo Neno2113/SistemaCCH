@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\UserChart;
 use Illuminate\Http\Request;
 use App\ordenPedido;
 use App\Factura;
@@ -89,29 +90,17 @@ class DashboardController extends Controller
       
         $sqlquery = "SELECT DATE_FORMAT(fecha, '%M') as mes, SUM(total) as total FROM factura GROUP BY mes ORDER BY fecha DESC limit 0,12";
         $result = DB::select($sqlquery);
- 
-
-        $months = array();
-        $montos = array();
-
-        $longitudventas = count($result);
-
-        for ($i = 0; $i < $longitudventas; $i++) {
-            array_push($months, $result[$i]->mes);
-            array_push($montos,  number_format($result[$i]->total));
-          
-        }   
-
+        
+      
         $data = [
             'code' => 200,
             'status' => 'success',
-            // 'ventas' => $ventas,
-            'mes' => $months,
-            'amount' => $montos,
             'result' => $result
         ];
 
-        return response()->json($data, $data['code']);
+    
+        // return view('home',compact('fechas')); 
+        return response()->json($data, $data['code']);       
     }
 
     public function ventas10dias()

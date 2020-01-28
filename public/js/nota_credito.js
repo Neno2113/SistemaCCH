@@ -292,7 +292,7 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
-            // $("#btn-guardar").attr("disabled", true);
+            $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
             $("#tipo_nota_credito").attr('disabled', false);

@@ -107,12 +107,17 @@ class CorteController extends Controller
     {
         $cond = null;
         $rollos = DB::table('rollos')->join('tela', 'rollos.id_tela', '=', 'tela.id')
-            ->select(['rollos.id', 'tela.referencia', 'rollos.codigo_rollo', 'rollos.longitud_yarda', 'rollos.num_tono'])
-            ->where('corte_utilizado', $cond);
+            ->select(['rollos.id', 'tela.referencia', 'rollos.codigo_rollo', 'rollos.longitud_yarda', 'rollos.num_tono', 'rollos.corte_utilizado']);
+            // ->where('corte_utilizado', $cond);
 
         return DataTables::of($rollos)
             ->addColumn('Editar', function ($rollo) {
-                return '<button id="btnEdit" onclick="asignar(' . $rollo->id . ')" class="btn btn-warning" > <i class="fas fa-marker"></i></button>';
+                if($rollo->corte_utilizado == NULL || $rollo->corte_utilizado == ""){
+                    return '<button id="btnEdit" onclick="asignar(' . $rollo->id . ')" class="btn btn-warning btn-sm mr-1"  > <i class="fas fa-marker"></i></button>';
+                }else{
+                 return '<button id="btnEdit" onclick="remover(' . $rollo->id . ')" class="btn btn-danger btn-sm ml-1" ><i class="fas fa-eraser"></i></button>';
+                }
+              
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
@@ -122,12 +127,27 @@ class CorteController extends Controller
     public function show($id)
     {
         $corte = Corte::find($id)->load('producto');
+        $tallas = Talla::where('corte_id', $id)->get();
+        $rollos = Rollos::where('corte_utilizado', $corte->numero_corte)->get();
 
         if (is_object($corte)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'corte' => $corte
+                'corte' => $corte,
+                'a' => $tallas->sum('a'),
+                'b' => $tallas->sum('b'),
+                'c' => $tallas->sum('c'),
+                'd' => $tallas->sum('d'),
+                'e' => $tallas->sum('e'),
+                'f' => $tallas->sum('f'),
+                'g' => $tallas->sum('g'),
+                'h' => $tallas->sum('h'),
+                'i' => $tallas->sum('i'),
+                'j' => $tallas->sum('j'),
+                'k' => $tallas->sum('a'),
+                'l' => $tallas->sum('a'),
+                'rollos' => $rollos
             ];
         } else {
             $data = [
@@ -161,7 +181,7 @@ class CorteController extends Controller
             $ancho_marcada = $request->input('ancho_marcada');
             $largo_marcada = $request->input('largo_marcada');
             $aprovechamiento = $request->input('aprovechamiento');
-            
+            $fecha_entrega = $request->input('fecha_entrega');
             $corte = Corte::find($id);
 
             $corte->producto_id = $producto_id;
@@ -169,7 +189,8 @@ class CorteController extends Controller
             $corte->ancho_marcada = $ancho_marcada;
             $corte->largo_marcada = $largo_marcada;
             $corte->aprovechamiento = trim($aprovechamiento, '%');
-           
+            $corte->fecha_entrega = $fecha_entrega;
+
             $corte->save();
 
             $data = [
@@ -298,6 +319,38 @@ class CorteController extends Controller
                     'message' => 'Rollo ya asignado!!'
                 ];
              }
+        } else {
+
+            $data = [
+                'code' => 500,
+                'status' => 'error',
+                'message' => 'Ocurrio un error!!'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function remover($id, Request $request)
+    {
+        $rollo = Rollos::find($id);
+
+        $numero_corte = $request->input('numero_corte');
+
+        if (!empty($rollo)) {
+            $corte_utilizado = $rollo->corte_utilizado;
+        
+                $rollo->corte_utilizado = "";
+
+                $rollo->save();
+
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'rollo' => $rollo,
+                    'corte_utilizado' => $corte_utilizado
+                ];
+            
         } else {
 
             $data = [

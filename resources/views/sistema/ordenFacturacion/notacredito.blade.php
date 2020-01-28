@@ -467,10 +467,8 @@
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#btn-detalle"+ factura_detella_id).attr('disabled', true);
-                    // $("#invoice_detail").DataTable().ajax.reload();
-                    // bootbox.alert("Nota de credito <strong>"+datos.nota_credito.no_nota_credito+"</strong> creada correctamente.");
-                    // mostrarForm(false);
-                  
+                   
+                    $("#btn-guardar").attr("disabled", false);
                     
             
                 } else {

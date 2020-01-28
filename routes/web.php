@@ -174,6 +174,7 @@ Route::get('compositions', 'ClothController@selectComposition');
 Route::post('/cloth/{id}', 'ClothController@show');
 Route::put('/cloth/edit', 'ClothController@update');
 Route::post('/cloth/delete/{id}', 'ClothController@destroy');
+Route::get('suplidor/select', 'ClothController@supplidorSelect');
 
 //Rutas rollos
 Route::get('cloths', 'RollosController@selectCloth');
@@ -201,6 +202,7 @@ Route::get('/sku_disp', 'SKUController@sku_disponibles');
 Route::get('corte/lastdigit', 'CorteController@getDigits');
 Route::get('products', 'CorteController@selectProduct');
 Route::post('/asignar/{id}', 'CorteController@asignar');
+Route::post('/remover/{id}', 'CorteController@remover');
 Route::post('/corte', 'CorteController@store');
 Route::post('/corte/{id}', 'CorteController@show');
 Route::put('/corte/edit', 'CorteController@update');
@@ -212,6 +214,7 @@ Route::get('testSelectProduct', 'CorteController@testSelect2');
 
 //Talla
 Route::post('/talla', 'TallaController@store');
+Route::post('/talla/update', 'TallaController@update');
 Route::get('/talla/search/{id}', 'TallaController@show');
 
 //Lavanderia
@@ -297,6 +300,7 @@ Route::get('orden_all', 'ordenPedidoController@home_orden');
 Route::post('validar/orden_pedido', 'ordenPedidoController@validar');
 Route::post('cliente/segundas', 'ordenPedidoController@clienteSegunda');
 Route::get('vendedores', 'ordenPedidoController@vendedores');
+Route::get('ver/orden/{id}', 'ordenPedidoController@verRedistribuir');
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');

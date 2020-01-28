@@ -164,6 +164,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         // Laraveles\Spanish\SpanishServiceProvider::class,
 
         /*

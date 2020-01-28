@@ -103,7 +103,7 @@
                     Cancelar</button>
                 <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-left"><i
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
                         class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
@@ -293,10 +293,14 @@
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
-            $("#compo").show();
+            $("#compo").hide();
+            // console.log(data.tela.suplidor.nombre);
 
             $("#id").val(data.tela.id);
             $("#referencia").val(data.tela.referencia).attr('readonly', false);
+            $("#suplidores").val(data.suplidor.nombre);
+            $("#suplidores").select2(data.suplidor.nombre).trigger("change");
+            // $("#suplidores").select2(data.suplidor, {id:data.suplidor.id, item:data.suplidor.nombre}).trigger("change");
             $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
             $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
             $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', false);

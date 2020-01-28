@@ -244,6 +244,8 @@ $(document).ready(function() {
                             "<th id='k_op' class='text-primary font-weight-normal'>"+datos.k_fb+"</th>"+
                             "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_fb+"</th>"+
                             "</tr>"
+                            
+
                         )
                        
 

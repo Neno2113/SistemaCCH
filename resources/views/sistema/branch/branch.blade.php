@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
+                    {{-- <th>Ver</th> --}}
                     <th>Actions</th>
                     <th>Cliente</th>
                     {{-- <th>Codigo sucursal</th> --}}
@@ -35,7 +35,7 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
+                    {{-- <th>Ver</th> --}}
                     <th>Actions</th>
                     <th>Cliente</th>
                     {{-- <th>Codigo sucursal</th> --}}

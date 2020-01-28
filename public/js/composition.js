@@ -97,9 +97,7 @@ $(document).ready(function() {
                 ],
             ajax: "api/compositions",
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "id" },
                 { data: "nombre_composicion" },
               
             ]

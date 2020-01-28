@@ -112,13 +112,14 @@ class ClothController extends Controller
 
     public function show($id)
     {
-        $cloth = Cloth::find($id);
+        $cloth = Cloth::find($id)->load('suplidor');
 
         if (is_object($cloth)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'tela' => $cloth
+                'tela' => $cloth,
+                'suplidor' => $cloth->suplidor
             ];
         } else {
             $data = [
@@ -149,7 +150,7 @@ class ClothController extends Controller
         } else {
             $id = $request->input('id', true);
             $id_user = \auth()->user()->id;
-            $id_suplidor = $request->input('suplidor', true);
+            $id_suplidor = $request->input('id_suplidor', true);
             $id_composiciones = $request->input('id_composiciones', true);
             $referencia = $request->input('referencia', true);
             $precio_usd = $request->input('precio_usd', true);
@@ -160,16 +161,16 @@ class ClothController extends Controller
             $elasticidad_urdimbre = $request->input('elasticidad_urdimbre', true);
             $encogimiento_trama = $request->input('encogimiento_trama', true);
             $encogimiento_urdimbre = $request->input('encogimiento_urdimbre', true);
-            $composicion = $request->input('composiciones', true);
-            $composicion_2 = $request->input('composiciones_2', true);
-            $composicion_3 = $request->input('composiciones_3', true);
-            $composicion_4 = $request->input('composiciones_4', true);
-            $composicion_5 = $request->input('composiciones_5', true);
-            $porcentaje_mat_1 = $request->input('porcentaje_mat_1', true);
-            $porcentaje_mat_2 = $request->input('porcentaje_mat_2', true);
-            $porcentaje_mat_3 = $request->input('porcentaje_mat_3', true);
-            $porcentaje_mat_4 = $request->input('porcentaje_mat_4', true);
-            $porcentaje_mat_5 = $request->input('porcentaje_mat_5', true);
+            // $composicion = $request->input('composiciones', true);
+            // $composicion_2 = $request->input('composiciones_2', true);
+            // $composicion_3 = $request->input('composiciones_3', true);
+            // $composicion_4 = $request->input('composiciones_4', true);
+            // $composicion_5 = $request->input('composiciones_5', true);
+            // $porcentaje_mat_1 = $request->input('porcentaje_mat_1', true);
+            // $porcentaje_mat_2 = $request->input('porcentaje_mat_2', true);
+            // $porcentaje_mat_3 = $request->input('porcentaje_mat_3', true);
+            // $porcentaje_mat_4 = $request->input('porcentaje_mat_4', true);
+            // $porcentaje_mat_5 = $request->input('porcentaje_mat_5', true);
 
             $cloth = Cloth::find($id);
 
@@ -181,40 +182,40 @@ class ClothController extends Controller
             $cloth->tipo_tela = $tipo_tela;
             $cloth->ancho_cortable = $ancho_cortable;
             $cloth->peso = $peso;
-            $cloth->elasticidad_trama = $elasticidad_trama;
-            $cloth->elasticidad_urdimbre = $elasticidad_urdimbre;
-            $cloth->encogimiento_trama = $encogimiento_trama;
-            $cloth->encogimiento_urdimbre = $encogimiento_urdimbre;
+            $cloth->elasticidad_trama = trim($elasticidad_trama, "_%");
+            $cloth->elasticidad_urdimbre = trim($elasticidad_urdimbre, "_%");
+            $cloth->encogimiento_trama = trim($encogimiento_trama, "_%");
+            $cloth->encogimiento_urdimbre = trim($encogimiento_urdimbre, "_%");
 
-            if (!empty($composicion)) {
-                $cloth->composicion = "$composicion-$porcentaje_mat_1";
-            } else {
-                $cloth->composicion = "";
-            }
+            // if (!empty($composicion)) {
+            //     $cloth->composicion = "$composicion-$porcentaje_mat_1";
+            // } else {
+            //     $cloth->composicion = "";
+            // }
 
-            if (!empty($composicion_2)) {
-                $cloth->composicion_2 = "$composicion_2-$porcentaje_mat_2";
-            } else {
-                $cloth->composicion_2 = "";
-            }
+            // if (!empty($composicion_2)) {
+            //     $cloth->composicion_2 = "$composicion_2-$porcentaje_mat_2";
+            // } else {
+            //     $cloth->composicion_2 = "";
+            // }
 
-            if (!empty($composicion_3)) {
-                $cloth->composicion_3 = "$composicion_3-$porcentaje_mat_3";
-            } else {
-                $cloth->composicion_3 = "";
-            }
+            // if (!empty($composicion_3)) {
+            //     $cloth->composicion_3 = "$composicion_3-$porcentaje_mat_3";
+            // } else {
+            //     $cloth->composicion_3 = "";
+            // }
 
-            if (!empty($composicion_4)) {
-                $cloth->composicion_4 = "$composicion_4-$porcentaje_mat_4";
-            } else {
-                $cloth->composicion_4 = "";
-            }
+            // if (!empty($composicion_4)) {
+            //     $cloth->composicion_4 = "$composicion_4-$porcentaje_mat_4";
+            // } else {
+            //     $cloth->composicion_4 = "";
+            // }
 
-            if (!empty($composicion_5)) {
-                $cloth->composicion_5 = "$composicion_5-$porcentaje_mat_5";
-            } else {
-                $cloth->composicion_5 = "";
-            }
+            // if (!empty($composicion_5)) {
+            //     $cloth->composicion_5 = "$composicion_5-$porcentaje_mat_5";
+            // } else {
+            //     $cloth->composicion_5 = "";
+            // }
 
             $cloth->save();
 
@@ -302,5 +303,17 @@ class ClothController extends Controller
             })
             ->rawColumns(['Ver', 'Opciones'])
             ->make(true);
+    }
+
+    public function supplidorSelect(){
+        $suplidor = Supplier::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'suplidor' => $suplidor
+        ];
+
+        return response()->json($data, $data['code']);
     }
 }

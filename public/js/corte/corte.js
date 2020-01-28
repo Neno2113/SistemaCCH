@@ -239,6 +239,8 @@ $(document).ready(function() {
         $("#corte_tallas").val(val);
         let genero = val.substring(1,2);
         let genero_plus = val.substr(3,1);
+        console.log(genero);
+        console.log(genero_plus);
 
         if (genero == "2") {
             if(genero_plus == "7"){
@@ -481,6 +483,7 @@ $(document).ready(function() {
                                 $("#k").val(""),
                                 $("#l").val("");    
                                 // tabla.ajax.reload();  
+                                $("#edit-hide").css("background-color", "none");
                                 $("#cortes_listados").DataTable().ajax.reload();      
                                 
                             } else {
@@ -591,9 +594,10 @@ $(document).ready(function() {
                 { data: "referencia", name: "tela.referencia" },
                 { data: "longitud_yarda", name: "rollos.longitud_yarda" },
                 { data: "num_tono", name: "rollos.num_tono" },
+                { data: "corte_utilizado", name: "rollos.corte_utilizado" },
                 { data: "Editar", orderable: false, searchable: false },
             ],
-            order: [[2, 'desc']],
+            order: [[1, 'desc']],
             rowGroup: {
                 dataSrc: 'referencia'
             }
@@ -607,6 +611,7 @@ $(document).ready(function() {
         var corte = {
             id: $("#id").val(),
             producto: $("#productos").val(),
+            fecha_entrega: $("#fecha_entrega").val(), 
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
             largo_marcada: $("#largo_marcada").val(),
@@ -625,12 +630,62 @@ $(document).ready(function() {
                     limpiar();
                     $("#cortes").DataTable().ajax.reload();
                     $("#id").val("");
-                    $("#listadoUsers").show();
-                    $("#registroForm").hide();
-                    $("#btnCancelar").hide();
-                    $("#btn-edit").hide();
-                    $("#btn-guardar").show();
-                    $("#btnAgregar").show();
+
+                    var talla = {
+                        corte_id: datos.corte.id,
+                        a: $("#a").val(),
+                        b: $("#b").val(),
+                        c: $("#c").val(),
+                        d: $("#d").val(),
+                        e: $("#e").val(),
+                        f: $("#f").val(),
+                        g: $("#g").val(),
+                        h: $("#h").val(),   
+                        i: $("#i").val(),
+                        j: $("#j").val(),
+                        k: $("#k").val(),
+                        l: $("#l").val()
+                    };
+
+                    $.ajax({
+                        url: "talla/update",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(talla),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                
+                                bootbox.alert("Se actualizaron un total de: <strong>"+datos.talla.total+"</strong> entre todas las tallas digitadas");
+                                $("#a").val(""),
+                                $("#b").val(""),
+                                $("#c").val(""),
+                                $("#d").val(""),
+                                $("#e").val(""),
+                                $("#f").val(""),
+                                $("#g").val(""),
+                                $("#h").val(""),   
+                                $("#i").val(""),
+                                $("#j").val(""),
+                                $("#k").val(""),
+                                $("#l").val("");    
+                                // tabla.ajax.reload();  
+                                $("#edit-hide").css("background-color", "none");
+                                $("#cortes_listados").DataTable().ajax.reload();      
+                                mostrarForm(false);
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function() {
+                            bootbox.alert(
+                                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                            );
+                        }
+                    });
+                   
 
                 } else {
                     bootbox.alert(
@@ -753,6 +808,8 @@ $(document).ready(function() {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#edit-hide").attr("disabled", false);
+            $("#edit-hide").show();
+            // $("#rollo-edit").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -761,6 +818,7 @@ $(document).ready(function() {
             $("#fila1").hide();
             $("#fila2").hide();
             $("#fila3").hide();
+            // $("#rollo-edit").hide();
             // $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();

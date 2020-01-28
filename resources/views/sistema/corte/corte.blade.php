@@ -65,7 +65,7 @@
                     <div class="row" id="fila1">
                         <div class="col-md-6 ">
                             <label for="">Referencia producto(*):</label>
-                            <select name="tags[]" id="productos" class="form-control selectpicker">
+                            <select name="tags[]" id="productos" class="form-control select2">
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -97,11 +97,16 @@
                             <input type="text" name="aprovechamiento" id="aprovechamiento" class="form-control"
                                 data-inputmask='"mask": "99[.99]%"' data-mask>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4 mt-3" id="rollo-agregar">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide"
                                 data-toggle="modal" data-target=".bd-rollo-modal-lg">Agregar rollos <i
                                     class="fa fa-dolly-flatbed"></i></button>
                         </div>
+                        {{-- <div class="col-md-4 mt-3" id="rollo-edit">
+                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-rollo"
+                                data-toggle="modal" data-target=".bd-rollo-modal-lg">Editar rollos <i
+                                    class="fa fa-dolly-flatbed"></i></button>
+                        </div> --}}
                         <div class="col-md-4 mt-3">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
                                 data-toggle="modal" data-target=".bd-talla-modal-xl">Distribucion de tallas <i
@@ -195,13 +200,14 @@
                 <hr>
                 <div class="row mt-2">
                     <div class="col-md-12">
-                        <table id="rollos" style="width: 100%;" class="table table-striped table-bordered datatables">
+                        <table id="rollos" style="width: 100%;" class="table table-hover table-bordered datatables">
                             <thead>
                                 <tr>
                                     <th>Rollo</th>
                                     <th>Referencia tela</th>
                                     <th>Yardas</th>
                                     <th>Tono</th>
+                                    <th>Corte</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -212,6 +218,7 @@
                                     <th>Referencia tela</th>
                                     <th>Yardas</th>
                                     <th>Tono</th>
+                                    <th>Corte</th>
                                     <th>Accion</th>
                                 </tr>
                             </tfoot>
@@ -359,18 +366,33 @@
             $("#fila2").show();
             $("#fila3").show();
             $("#btn-generar").hide();
-            $("#edit-hide").hide();
-            $("#edit-hide2").hide();
+            // $("#edit-hide").hide();
+            // $("#rollo-agregar").hide();
+            $("#rollo-edit").show();
+            
 
             // console.log(data);
             $("#id").val(data.corte.id);
             $("#numero_corte_gen").val(data.corte.numero_corte);
             // $("#productos").val(data.corte.producto.referencia_producto);
+            $("#fecha_entrega").val(data.corte.fecha_entrega);
             // $("#productos").select2('refresh');
             $("#no_marcada").val(data.corte.no_marcada);
             $("#ancho_marcada").val(data.corte.ancho_marcada);
             $("#largo_marcada").val(data.corte.largo_marcada);
             $("#aprovechamiento").val(data.corte.aprovechamiento);
+            $("#a").val(data.a);
+            $("#b").val(data.b);
+            $("#c").val(data.c);
+            $("#d").val(data.d);
+            $("#e").val(data.e);
+            $("#f").val(data.f);
+            $("#g").val(data.g);
+            $("#h").val(data.h);
+            $("#i").val(data.i);
+            $("#j").val(data.j);
+            $("#k").val(data.k);
+            $("#l").val(data.l);
            
         });
     }
@@ -403,6 +425,40 @@
                     bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> asignado correctamente al corte: <strong>"
                         +datos.rollo.corte_utilizado+"</strong>");
                     $("#btn-guardar").attr("disabled", false);
+                    $("#edit-hide").css("background-color", "green");
+                    $("#rollos").DataTable().ajax.reload();
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante esta operacion!!"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Rollo ya asignado a un numero de corte"
+                );
+            }
+        });
+    }
+
+    function remover(id_rollo) {   
+
+        var rollo = {
+            numero_corte: $("#numero_corte_gen").val(),
+        };
+        // console.log(JSON.stringify(rollo));
+
+        $.ajax({
+            url: "remover/"+ id_rollo,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(rollo),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> removido correctamente al corte: <strong>"
+                        +datos.corte_utilizado+"</strong>");
+                    
                     $("#edit-hide").css("background-color", "green");
                     $("#rollos").DataTable().ajax.reload();
                 } else {

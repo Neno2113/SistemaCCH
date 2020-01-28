@@ -10,6 +10,7 @@ $(document).ready(function() {
         disp_venta();
         cortes();
         venta12meses();
+        venta10dias();
         latest_orders();
         latest_products();
         latest_cortes();
@@ -121,6 +122,11 @@ $(document).ready(function() {
 
     /* Chart.js Charts */
     // Sales chart
+    function convertToArray(obj) {
+        return Object.keys(obj).map(function(key) {
+            return obj[key];
+        });
+    }
 
     function venta12meses() {
         $.ajax({
@@ -129,34 +135,110 @@ $(document).ready(function() {
             dataType: "json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    let fechas = '';
-                    let totales = '';
+                    let fechas = [];
+                    let totales = [];
 
                     //Fecha en mes de ventas 
                     for (let i = 0; i < datos.result.length; i++) {
-                        fechas = fechas+'"'+datos.result[i].mes+ '",';
+                        fechas.push(datos.result[i].mes);
                         
                     }
-                    fechas = fechas.replace(",", "");
+                 
 
                     //totales
                     for (let i = 0; i < datos.result.length; i++) {
-                        totales = totales+''+datos.result[i].total+ ',';
+                        totales.push(datos.result[i].total)
                         
                     }
-                    totales = totales.replace(",", "");
-                    
+                  
+
+                  
                     var ctx = document.getElementById("ventas12meses");
                     var myChart = new Chart(ctx, {
                         type: "bar",
                         data: {
-                            labels: [
-                               fechas
-                            ],
+                            labels: fechas
+                            ,
                             datasets: [
                                 {
                                     label: "Venta ultimos 12 meses",
-                                    data: [totales],
+                                    data: totales,
+                                    backgroundColor: [
+                                        "rgba(255, 99, 132, 0.2)",
+                                        "rgba(54, 162, 235, 0.2)",
+                                        "rgba(255, 206, 86, 0.2)",
+                                        "rgba(75, 192, 192, 0.2)",
+                                        "rgba(153, 102, 255, 0.2)",
+                                        "rgba(255, 159, 64, 0.2)"
+                                    ],
+                                    borderColor: [
+                                        "rgba(255, 99, 132, 1)",
+                                        "rgba(54, 162, 235, 1)",
+                                        "rgba(255, 206, 86, 1)",
+                                        "rgba(75, 192, 192, 1)",
+                                        "rgba(153, 102, 255, 1)",
+                                        "rgba(255, 159, 64, 1)"
+                                    ],
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [
+                                    {
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    });
+                } else {
+                    bootbox.alert("Ocurrio un error !!");
+                }
+            },
+            error: function() {
+                console.log("error");
+            }
+        });
+    }
+
+    
+    function venta10dias() {
+        $.ajax({
+            url: "venta10dias",
+            type: "get",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let fechas = [];
+                    let totales = [];
+
+                    //Fecha en mes de ventas 
+                    for (let i = 0; i < datos.result.length; i++) {
+                        fechas.push(datos.result[i].fecha);
+                        
+                    }
+                 
+                    //totales
+                    for (let i = 0; i < datos.result.length; i++) {
+                        totales.push(datos.result[i].total);
+                        
+                    }
+                  
+                    var ctx = document.getElementById("ventas10dias");
+                    var myChart = new Chart(ctx, {
+                        type: "bar",
+                        data: {
+                            labels: 
+                               fechas
+                            ,
+                            datasets: [
+                                {
+                                    label: "Venta ultimos 10 dias",
+                                    data: totales,
                                     backgroundColor: [
                                         "rgba(255, 99, 132, 0.2)",
                                         "rgba(54, 162, 235, 0.2)",

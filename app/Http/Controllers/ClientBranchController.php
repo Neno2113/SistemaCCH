@@ -108,7 +108,8 @@ class ClientBranchController extends Controller
             'client_id' => 'required',
             'nombre_sucursal' => 'required',
             'telefono_sucursal' => 'required',
-            'direccion' => 'required'
+            'calle' => 'required',
+            'provincia' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -123,16 +124,20 @@ class ClientBranchController extends Controller
             $nombre_sucursal = $request->input('nombre_sucursal', true);
             $cliente_id = $request->input('client_id', true);
             $telefono_sucursal = $request->input('telefono_sucursal', true);
-            $direccion = $request->input('direccion', true);
+            $calle = $request->input('calle', true);
+            $sector = $request->input('sector', true);
+            $provincia = $request->input('provincia', true);
+            $sitios_cercanos = $request->input('sitios_cercanos', true);
 
             $client_branch = ClientBranch::find($id);
 
             $client_branch->cliente_id =  $cliente_id;
             $client_branch->nombre_sucursal = $nombre_sucursal;
             $client_branch->telefono_sucursal = $telefono_sucursal;
-            $client_branch->direccion = $direccion;
-
-            $client_branch->save();
+            $client_branch->calle = $calle;
+            $client_branch->sector = $sector;
+            $client_branch->provincia = $provincia;
+            $client_branch->sitios_cercanos = $sitios_cercanos;
 
             $client_branch->save();
 
@@ -180,9 +185,9 @@ class ClientBranchController extends Controller
             ->addColumn('Expandir', function ($branch) {
                 return "";
             })
-            ->addColumn('Ver', function ($branch) {
-                return '<button onclick="ver(' . $branch->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
-            })
+            // ->addColumn('Ver', function ($branch) {
+            //     return '<button onclick="ver(' . $branch->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
+            // })
             ->addColumn('Opciones', function ($branch) {
                 return '<button onclick="eliminar(' . $branch->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>'.
                 '<button id="btnEdit" onclick="mostrar(' . $branch->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>';

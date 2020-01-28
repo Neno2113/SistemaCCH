@@ -246,94 +246,98 @@
                         <br>
                         <hr>
                         <br>
-                        <div class="row" id="detallada">
+                        <div class="" id="detallada">
                             <label for="">Disponible:</label>
-                            <table class="table table-bordered  mb-3">
-                                <thead class="thead-light">
+                            <table class="table table-bordered tabla-detallada  mb-3 text-sm">
+                                <thead class="">
                                     <tr>
-                                        <th id="ta">A</th>
-                                        <th id="tb">B</th>
-                                        <th id="tc">C</th>
-                                        <th id="td">D</th>
-                                        <th id="te">E</th>
-                                        <th id="tf">F</th>
-                                        <th id="tg">G</th>
-                                        <th id="th">H</th>
-                                        <th id="ti">I</th>
-                                        <th id="tj">J</th>
-                                        <th id="tk">K</th>
-                                        <th id="tl">L</th>
+                                        <th class="talla" id="ta">A</th>
+                                        <th class="talla"  id="tb">B</th>
+                                        <th class="talla"  id="tc">C</th>
+                                        <th class="talla"  id="td">D</th>
+                                        <th class="talla"  id="te">E</th>
+                                        <th class="talla"  id="tf">F</th>
+                                        <th class="talla"  id="tg">G</th>
+                                        <th class="talla"  id="th">H</th>
+                                        <th class="talla"  id="ti">I</th>
+                                        <th class="talla"  id="tj">J</th>
+                                        <th class="talla"  id="tk">K</th>
+                                        <th class="talla"  id="tl">L</th>
                                     </tr>
                                 </thead>
-                                <tbody id="disponibles">
+                                <tbody id="disponibles" class="text-align-center">
 
                                 </tbody>
+                                <tfoot >
+                                   
+                                </tfoot>
 
                             </table>
+                            <div class="row" id="detalles" style="width: 98%; margin-left:-14px;">
+                                <div class="col-lg-1 ">
+                                    {{-- <label for="" class="ml-4" id="da">A</label> --}}
+                                    <input type="text" name="" id="a" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="db">B</label> --}}
+                                    <input type="text" name="" id="b" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="dc">C</label> --}}
+                                    <input type="text" name="" id="c" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="dd">D</label> --}}
+                                    <input type="text" name="" id="d" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="de">E</label> --}}
+                                    <input type="text" name="" id="e" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="df">F</label> --}}
+                                    <input type="text" name="" id="f" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="dg">G</label> --}}
+                                    <input type="text" name="" id="g" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="dh">H</label> --}}
+                                    <input type="text" name="" id="h" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="di">I</label> --}}
+                                    <input type="text" name="" id="i" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="dj">J</label> --}}
+                                    <input type="text" name="" id="j" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="dk">K</label> --}}
+                                    <input type="text" name="" id="k" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                                <div class="col-lg-1">
+                                    {{-- <label for="" class="ml-4" id="dl">L</label> --}}
+                                    <input type="text" name="" id="l" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "999"' data-mask>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row mt-3" id="detalles">
-                            <div class="col-lg-1 ">
-                                {{-- <label for="" class="ml-4" id="da">A</label> --}}
-                                <input type="text" name="" id="a" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="db">B</label> --}}
-                                <input type="text" name="" id="b" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="dc">C</label> --}}
-                                <input type="text" name="" id="c" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="dd">D</label> --}}
-                                <input type="text" name="" id="d" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="de">E</label> --}}
-                                <input type="text" name="" id="e" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="df">F</label> --}}
-                                <input type="text" name="" id="f" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="dg">G</label> --}}
-                                <input type="text" name="" id="g" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="dh">H</label> --}}
-                                <input type="text" name="" id="h" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="di">I</label> --}}
-                                <input type="text" name="" id="i" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="dj">J</label> --}}
-                                <input type="text" name="" id="j" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="dk">K</label> --}}
-                                <input type="text" name="" id="k" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                            <div class="col-lg-1">
-                                {{-- <label for="" class="ml-4" id="dl">L</label> --}}
-                                <input type="text" name="" id="l" class="form-control text-center"
-                                data-inputmask='"mask": "999"' data-mask>
-                            </div>
-                        </div>
+                       
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <button class="btn btn-info rounded-lg" name="btn-agregar" id="btn-agregar"><i

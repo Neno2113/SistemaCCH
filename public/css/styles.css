@@ -75,13 +75,19 @@ box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 
 form input[type= "date"],
 input[type = "text"],
+input[type = "number"],
 input[type = "email"],
 input[type = "password"],
 input[type = "number"]
+select,
 select.form-control,
 textarea.form-control
 {
-    border: 1px solid #31343940;
+    border: 1px solid black;
+}
+
+.select2-container--default .select2-selection--single{
+    border: 1px solid black;
 }
 
 .error {
@@ -197,6 +203,46 @@ textarea.form-control
     text-align: center;
 }
 
+.tabla-detallada {
+    margin-left: -3px;
+}
+
+.tabla-detallada thead{
+    border-left: 2px solid #0B447D;
+    border-right: 2px solid #0B447D;
+    background: #0B447D;
+    color: #fff;
+    text-align: center;
+}
+
+.tabla-detallada thead .talla{
+    padding-left: 34px;
+    padding-right: 29px;
+    font-size: 12px;
+}
+.tabla-detallada td, .tabla-detallada th{
+    border: 1px solid #dee2e6;
+}
+
+.tabla-detallada tbody tr{
+    text-align: center;
+}
+
+.tabla-detallada tbody tr{
+    text-align: center;
+}
+
+.tabla-detallada tfoot tr{
+    text-align: center;
+}
+
+.tabla-detallada tfoot .detalle{
+    text-align: center;
+}
+
+
+
+
 .tabla-existencia tfoot tr{
 
 }
@@ -207,6 +253,49 @@ textarea.form-control
 
 .tabla-existencia tfoot .disp_venta{
     text-align: center;
+}
+
+
+.tabla-tallas {
+    width: 83%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* margin-bottom: 20px; */
+    table-layout: auto;
+    border: solid 1px black;
+}
+
+.tabla-tallas th,
+.tabla-tallas td {
+    /* padding: 20px; */
+    background: #fff;
+    text-align: center;
+    border-bottom: 1px solid black;
+    /* border: solid 2px black; */
+}
+
+
+.tabla-tallas th {
+    white-space: nowrap;
+    font-weight: bold;
+    background-color: #7d7d7d4d;
+    font-size: 10px;
+    /* border: solid 2px black; */
+}
+
+
+.tabla-tallas .talla_head {
+    color: black;
+    font-size: 12.5px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.tabla-tallas .talla {
+    border: 1px solid black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
 }
 
  

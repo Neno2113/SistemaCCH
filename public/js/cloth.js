@@ -44,6 +44,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+        suplidores();
        
 
         $("#composiciones").select2({
@@ -145,27 +146,39 @@ $(document).ready(function() {
                 cache: true
             }
         })
-        
-        $("#suplidores").select2({
-            placeholder: "Busca un suplidor...",
-            ajax: {
-                url: 'suplidores',
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data){
-                    return {
-                        results: $.map(data, function(item){
-                            return {
-                                text: item.nombre+' - '+ item.contacto_suplidor,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        })
+      
     
+    }
+    function suplidores (){
+
+        $.ajax({
+            url: "suplidor/select",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.suplidor.length;
+                    
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.suplidor[i].id +">"+datos.suplidor[i].nombre+"</option>"
+                        
+                        $("#suplidores").append(fila);
+                    }
+                    $("#suplidores").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
     }
 
     function limpiar() {
@@ -355,10 +368,16 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors); 
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
        

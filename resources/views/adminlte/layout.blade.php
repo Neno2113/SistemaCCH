@@ -58,6 +58,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {{-- <script src="{{asset('adminlte/plugins/pace/pace.min.js')}}"></script>
   <link rel="stylesheet" href="{{asset('adminlte/plugins/pace/center-circle.css')}}"> --}}
 
+  {{-- ChartScript --}}
+  {{-- @if($salesChart)
+  {!! $salesChart->script() !!}
+  @endif --}}
+
 </head>
 
 <body class="hold-transition sidebar-mini">

@@ -88,4 +88,6 @@ Route::get('fact_detalle/{id}', 'NotaCreditoController@facturacionDetail');
 
 Route::get('empleados', 'EmpleadoController@empleados');
 
+Route::get('listarDetalle/{id}', 'ordenPedidoController@listarOrdenRed');
+
 

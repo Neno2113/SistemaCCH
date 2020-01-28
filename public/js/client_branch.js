@@ -145,7 +145,7 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Ver", orderable: false, searchable: false },
+                // { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre_cliente", name: 'cliente.nombre_cliente' },
                 // { data: "codigo_sucursal", name: 'cliente_sucursales.codigo_sucursal' },

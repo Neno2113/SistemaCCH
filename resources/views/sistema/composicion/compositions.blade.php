@@ -44,12 +44,12 @@
 </div>
 
 <div class="container" id="listadoUsers">
-    <table id="compositions" class="table table-striped table-bordered datatables" >
+    <table id="compositions" class="table table-hover table-bordered datatables" >
         <thead>
             <tr>
-                <th></th>
+               
                 <th>Opciones</th>
-                <th>ID</th>
+           
                 <th>Nombre composicion</th>
 
             </tr>
@@ -57,9 +57,9 @@
         <tbody></tbody>
         <tfoot>
             <tr>
-                <th></th>
+               
                 <th>Opciones</th>
-                <th>ID</th>
+              
                 <th>Nombre composicion</th>
             </tr>
         </tfoot>

@@ -184,10 +184,9 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "name", name: "users.name"},
-                { data: "no_orden_facturacion", name: "orden_facturacion.no_orden_facturacion"},
+                { data: "no_orden_empaque", name: "orden_empaque.no_orden_empaque"},
                 { data: "fecha", name: "orden_facturacion.fecha"},
                 { data: "por_transporte", name: "orden_facturacion.por_transporte"},
-                { data: "no_orden_empaque", name: "orden_empaque.no_orden_empaque"},
                 { data: "fecha_empaque", name: "orden_empaque.fecha_empaque"},
                 // { data: "no_orden_pedido", name: "orden_empaque.no_orden_pedido", orderable: false, searchable: false},
                 // { data: "fecha_entrega", name: "orden_facturacion.fecha_entrega", orderable: false, searchable: false},
@@ -234,7 +233,7 @@ $(document).ready(function() {
                 { data: "status", name: "factura.status"},
                 
             ],
-            order: [[3, "desc"]],
+            order: [[6, "asc"]],
             rowGroup: {
                 dataSrc: "tipo_factura"
             }
@@ -267,10 +266,12 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        e.preventDefault();
         $("#btn-generar").show();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });
