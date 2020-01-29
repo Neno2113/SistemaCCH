@@ -141,10 +141,10 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     var longitud = datos.vendedores.length;
-                    
+
                     for (let i = 0; i < longitud; i++) {
                         var fila =  "<option value="+datos.vendedores[i].id +">"+datos.vendedores[i].nombre+" "+datos.vendedores[i].apellido+"</option>"
-                        
+
                         $("#vendedores").append(fila);
                     }
                     $("#vendedores").select2();
@@ -3153,30 +3153,19 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
+                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
                 { data: "name", name: "users.name" },
                 { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                {
-                    data: "nombre_sucursal",
-                    name: "cliente_sucursales.nombre_sucursal"
-                },
+                { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
-                {
-                    data: "total",
-                    name: "orden_pedido.total",
-                    searchable: false,
-                    orderable: false
-                },
+                { data: "total", name: "orden_pedido.total", searchable: false, orderable: false},
                 { data: "detallada", name: "orden_pedido.detallada" }
             ],
-            order: [[3, "desc"]]
-            // rowGroup: {
-            //     dataSrc: "name"
-            // }
+            order: [[3, "desc"]],
+            rowGroup: {
+                dataSrc: "nombre_cliente"
+            }
         });
     }
 

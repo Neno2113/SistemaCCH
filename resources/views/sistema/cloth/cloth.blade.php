@@ -298,8 +298,8 @@
 
             $("#id").val(data.tela.id);
             $("#referencia").val(data.tela.referencia).attr('readonly', false);
-            $("#suplidores").val(data.suplidor.nombre);
-            $("#suplidores").select2(data.suplidor.nombre).trigger("change");
+            $("#suplidores").find('option[value='+data.suplidor.id+']').attr('selected', 'selected').trigger("change");
+            // $("#suplidores").select2(data.suplidor.nombre).trigger("change");
             // $("#suplidores").select2(data.suplidor, {id:data.suplidor.id, item:data.suplidor.nombre}).trigger("change");
             $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
             $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);

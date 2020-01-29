@@ -2,7 +2,7 @@
 
 @section('seccion', 'Usuarios')
 
-@section('title', 'Usuario')
+@section('title', 'Permisos')
 
 @section('content')
 {{-- <div class="container"> --}}
@@ -21,84 +21,73 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Registro</h4>
+                <h4>Permisos</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de usuarios:</h5>
-                    <hr>
-                    <div class="row ">
-                        <div class="col-md-4">
-                            <input type="hidden" name="id" id="id" value="">
-                            <label for="name">Nombre(*):</label>
-                            <input type="text" name="name" id="name" class="form-control" pattern="[a-zA-Z]">
-                            @if ($errors->has('name'))
-                                <div class="error">{{ $errors->name('name') }}</div>
-                            @endif
-                        </div>
-                        <div class="col-md-4">
-                            <label for="surname">Apellido(*):</label>
-                            <input type="text" name="surname" id="surname" class="form-control">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="edad">Edad:</label>
-                            <input type="text" name="edad" id="edad" class="form-control text-center"]
-                            data-inputmask='"mask": "99"' data-mask>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 mt-3">
-                            <label for="name">Telefono(*):</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="telefono" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-3">
-                            <label for="celular">Celular:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="celular" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-3">
-                            <label for="direccion">Direccion:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                                </div>
-                                <input type="text" id="direccion" class="form-control">
-                            </div>
-
-                        </div>
-                    </div>
-                    <h4 class="text-center font-weight-bold mt-4">Datos de acceso</h4>
+                    <h5>Formulario de asignacion de permisos de acceso:</h5>
                     <hr>
                     <div class="row">
-                        <div class="col-md-6 mt-3">
-                            <label for="name">Email(*):</label>
-                            <input type="Email" name="email" id="email" class="form-control">
+                        <div class="col-md-5">
+                            <label for="">Accesos:</label>
+                            <select name="tags[]" id="permisos" class="form-control select2">
+                                <option disabled>DASHBOARD</option>
+                                <option value="Dashboard">Dashboard</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>USUARIOS</option>
+                                <option value="Usuarios">Usuario</option>
+                                <option value="Empleados">Empleados</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>CLIENTE</option>
+                                <option value="Cliente">Cliente</option>
+                                <option value="Sucursales">Sucursales</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>SUPLIDORES</option>
+                                <option value="Suplidores">Suplidores</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>SKU</option>
+                                <option value="Sku">SKU</option>
+                                <option disabled>PRODUCTO</option>
+                                <option value="Producto">Producto</option>
+                                <option value="Producto Terminado">Producto Terminado</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>CORTE</option>
+                                <option value="Composicion">Composicion</option>
+                                <option value="Telas">Telas</option>
+                                <option value="Rollow">Rollos</option>
+                                <option value="Corte">Corte</option>
+                                <option value="Lavanderia">Lavanderia</option>
+                                <option value="Recepcion">Recepcion</option>
+                                <option value="Almacen">Almacen</option>
+                                <option value="Perdidas">PerdidasS</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>ORDEN PEDIDO</option>
+                                <option value="Orden Pedido">Orden Pedido</option>
+                                <option value="Aprobacion">Aprobacion y redistribucion</option>
+                                <option value="Ordenes Procesos">Ordenes Proceso</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>ORDENES EMPAQUE</option>
+                                <option value="Imprimir Empaque">Imprimir Empaque</option>
+                                <option value="Reportar Empaque">Reportar Empaque</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>FACTURACION</option>
+                                <option value="Generar Factura">Generar Factura</option>
+                                <option value="Nota Credito">Nota de Credito</option>
+                                <option  disabled>_______________________________________________________</option>
+                                <option disabled>Existencia</option>
+                                <option value="Existencia">Existencia</option>
+                            </select>
                         </div>
-                        <div class="col-md-6 mt-3" id="ver-contra">
-                            <label for="password">Contraseña(*):</label>
-                            <input type="password" name="password" id="password" class="form-control">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <label for="">Usuario</label>
+                            <select name="usuario" id="usuario" class="form-control select2">
+                                <option value=""></option>
+                            </select>
                         </div>
-
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="error" id="error">
 
-                            </ul>
-                        </div>
-                    </div>
             </div>
             <div class="card-footer  text-muted ">
                 <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
@@ -154,7 +143,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/user.js')}}"></script>
+<script src="{{asset('js/permiso.js')}}"></script>
 
 <script>
     function mostrar(id_user) {

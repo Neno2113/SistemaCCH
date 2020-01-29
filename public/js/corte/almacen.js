@@ -159,7 +159,7 @@ $(document).ready(function() {
             k: $("#k").val(),
             l: $("#l").val()
         };
-       
+
 
         $.ajax({
             url: "almacen",
@@ -309,6 +309,7 @@ $(document).ready(function() {
             $("#imagen_perfil").show();
             $("#imagen_bolsillo").show();
             $("#btn-upload").show();
+            $("#btn-buscar").show();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -378,7 +379,7 @@ $(document).ready(function() {
                     l_total = datos.l;
 
                     //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-                    (datos.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false); 
+                    (datos.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false);
                     (datos.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
                     (datos.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
                     (datos.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
@@ -390,10 +391,10 @@ $(document).ready(function() {
                     (datos.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
                     (datos.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
                     (datos.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
-                    
+
                     var corte = {
                         corte_id: $("#cortesSearch").val(),
-                       
+
                     };
 
                     $.ajax({
@@ -405,8 +406,8 @@ $(document).ready(function() {
                         success: function(datos) {
                             if (datos.status == "success") {
                                 total_recibido = datos.total_recibido - datos.perdidas;
-                                
-                                
+
+
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -468,7 +469,7 @@ $(document).ready(function() {
                                     "<th>24W</th>" +
                                     "<th>26W</th>"
                             );
-                           
+
                         } else {
                             $("#ta").html("0/0");
                             $("#tb").html("1/2");
@@ -772,7 +773,7 @@ $(document).ready(function() {
                     var j = datos.j;
                     var k = datos.k;
                     var l = datos.l;
-                        
+
                         if(genero_global == 2){
 
                             if(genero_plus_global == 7){
@@ -862,7 +863,7 @@ $(document).ready(function() {
                                    "</div>")
                                 }
                             }
-    
+
                         }else if(genero_global == 3 && genero_global == 4){
                             if(a > a_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
@@ -937,10 +938,10 @@ $(document).ready(function() {
                                 "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }
-                        }   
+                        }
 
-                       
-                       
+
+
 
                         if(total > total_recibido){
                             bootbox.alert("<div class='alert alert-danger' role='alert'>"+
@@ -950,8 +951,8 @@ $(document).ready(function() {
                         }else{
                             $("#btn-guardar").show();
                         }
-                        
-                        
+
+
                     } else {
                         bootbox.alert(
                             "Ocurrio un error durante la creacion de la composicion"
@@ -962,10 +963,10 @@ $(document).ready(function() {
                    console.log("ocurrio un error")
                 }
         });
-    
 
-           
-        
+
+
+
     });
 
     // //funcion para listar en el Datatable

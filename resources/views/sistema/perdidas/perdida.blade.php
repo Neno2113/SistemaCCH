@@ -325,7 +325,8 @@
             $("#fila1").show();
             $("#fila2").show();
             $("#fila3").show();
-          
+            $("#btn-close").hide();
+
 
             $("#id").val(data.perdida.id);
             $("#no_perdida").val(data.perdida.no_perdida);
@@ -352,7 +353,7 @@
             $("#j").attr('disabled', false);
             $("#k").attr('disabled', false);
             $("#l").attr('disabled', false);
-            
+
         });
     }
 

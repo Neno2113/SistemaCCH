@@ -46,7 +46,7 @@
                                 </select>
                             </div>
 
-                            <input type="text" name="numero_corte" id="numero_corte" class="form-control mt-2" readonly>
+                            <input type="text" name="numero_corte" id="numero_corte" class="form-control font-weight-bold mt-2" readonly>
                         </div>
                         <div class="col-md-1 mt-4 pt-2">
                             <button type="button" id="btn-buscar" class="btn btn-secondary btn-block rounded-pill"><i
@@ -63,7 +63,7 @@
                           <div class="spinner-grow text-success"   role="status" id="loading3">
                             <span class="sr-only">Loading...</span>
                           </div>
-                    
+
                         </div>
                     </div> --}}
                     <br><br>
@@ -177,7 +177,7 @@
                     <div class="row mt-2">
                         <div class="col-md-4">
                             <input type="submit" value="Guardar" id="btn-upload" class="btn btn-primary">
-                                
+
                         </div>
                     </div>
                 </form>
@@ -252,9 +252,9 @@
                     <div class="col-md-6 mb-2">
                         <input type="text" name="genero" id="genero" class="form-control font-weight-bold" readonly>
                     </div>
-                </div>                
+                </div>
                 <div class="col-md-12">
-                    <table id="corte_detalle" class="table table-bordered " style="width:100%">
+                    <table id="corte_detalle" class="table table-bordered tabla-dependientes" style="width:100%">
                         <thead >
                             <tr>
                                 <th id="sa">A</th>
@@ -285,7 +285,7 @@
                             <td id="rk"></td>
                             <td id="rl"></td>
                         </tr>
-                 
+
                     </table>
                 </div>
                 <br>
@@ -293,37 +293,37 @@
                 <div class="row mt-2">
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="ta">A</label>
-                        <input type="text" name="" id="a" class="form-control text-center"
+                        <input type="text" name="a" id="a" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tb">B</label>
-                        <input type="text" name="" id="b" class="form-control text-center"
+                        <input type="text" name="b" id="b" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tc">C</label>
-                        <input type="text" name="" id="c" class="form-control text-center"
+                        <input type="text" name="c" id="c" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="td">D</label>
-                        <input type="text" name="" id="d" class="form-control text-center"
+                        <input type="text" name="d" id="d" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="te">E</label>
-                        <input type="text" name="" id="e" class="form-control text-center"
+                        <input type="text" name="e" id="e" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tf">F</label>
-                        <input type="text" name="" id="f" class="form-control text-center"
+                        <input type="text" name="f" id="f" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tg">G</label>
-                        <input type="text" name="" id="g" class="form-control text-center"
+                        <input type="text" name="g" id="g" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
@@ -333,12 +333,12 @@
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="ti">I</label>
-                        <input type="text" name="" id="i" class="form-control text-center"
+                        <input type="text" name="i" id="i" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="tj">J</label>
-                        <input type="text" name="" id="j" class="form-control text-center"
+                        <input type="text" name="j" id="j" class="form-control text-center"
                             data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
@@ -383,15 +383,33 @@
             $("#form_producto").show();
             $("#form_producto_2").show();
             $("#form_talla").show();
-            $("#imagen_frente").hide();
-            $("#imagen_trasera").hide();
-            $("#imagen_perfil").hide();
-            $("#imagen_bolsillo").hide();
-            $("#btn-upload").hide();
-           
-            
+            // $("#imagen_frente").hide();
+            // $("#imagen_trasera").hide();
+            // $("#imagen_perfil").hide();
+            // $("#imagen_bolsillo").hide();
+            // $("#btn-upload").hide();
+            $("#btn-buscar").hide();
+            $("#btn-close").hide();
+            let genero = data.almacen.producto.referencia_producto.substring(1, 2);
+            let mujer_plus = data.almacen.producto.referencia_producto.substring(3, 4);
+
+            //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+            (data.almacen.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false);
+            (data.almacen.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
+            (data.almacen.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
+            (data.almacen.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
+            (data.almacen.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
+            (data.almacen.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
+            (data.almacen.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
+            (data.almacen.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
+            (data.almacen.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
+            (data.almacen.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
+            (data.almacen.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
+            (data.almacen.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
+
+
+
             $("#id").val(data.almacen.id);
-            $("#referencia_producto").val('Referencia elegida: '+data.almacen.producto.referencia_producto);
             $("#numero_corte").val('Corte elegido: '+data.almacen.corte.numero_corte);
             $("#ubicacion").val(data.almacen.producto.ubicacion);
             $("#tono").val(data.almacen.producto.tono);
@@ -416,6 +434,124 @@
             $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
             $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
             $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+
+
+
+            if (genero == "2") {
+
+            if (mujer_plus == 7) {
+                $("#ta").html("12W");
+                $("#tb").html("14W");
+                $("#tc").html("16W");
+                $("#td").html("18W");
+                $("#te").html("20W");
+                $("#tf").html("22W");
+                $("#tg").html("24W");
+                $("#th").html("26W");
+                $("#sa").html("12W");
+                $("#sb").html("14W");
+                $("#sc").html("16W");
+                $("#sd").html("18W");
+                $("#se").html("20W");
+                $("#sf").html("22W");
+                $("#sg").html("24W");
+                $("#sh").html("26W");
+
+
+
+            } else {
+                $("#ta").html("0/0");
+                $("#tb").html("1/2");
+                $("#tc").html("3/4");
+                $("#td").html("5/6");
+                $("#te").html("7/8");
+                $("#tf").html("9/10");
+                $("#tg").html("11/12");
+                $("#th").html("13/14");
+                $("#ti").html("15/16");
+                $("#tj").html("17/18");
+                $("#tk").html("19/20");
+                $("#tl").html("21/22");
+                $("#sa").html("0/0");
+                $("#sb").html("1/2");
+                $("#sc").html("3/4");
+                $("#sd").html("5/6");
+                $("#se").html("7/8");
+                $("#sf").html("9/10");
+                $("#sg").html("11/12");
+                $("#sh").html("13/14");
+                $("#si").html("15/16");
+                $("#sj").html("17/18");
+                $("#sk").html("19/20");
+                $("#sl").html("21/22");
+
+            }
+            }
+            if (genero == "3") {
+                $("#genero").val("Niño: " + val);
+                $("#sub-genero").hide();
+                $("#ta").html("2");
+                $("#tb").html("4");
+                $("#tc").html("6");
+                $("#td").html("8");
+                $("#te").html("10");
+                $("#tf").html("12");
+                $("#tg").html("14");
+                $("#th").html("16");
+                $("#sa").html("2");
+                $("#sb").html("4");
+                $("#sc").html("6");
+                $("#sd").html("8");
+                $("#se").html("10");
+                $("#sf").html("12");
+                $("#sg").html("14");
+                $("#sh").html("16");
+
+            } else if (genero == "4") {
+                $("#genero").val("Niña: " + val);
+                $("#sub-genero").hide();
+                $("#ta").html("2");
+                $("#tb").html("4");
+                $("#tc").html("6");
+                $("#td").html("8");
+                $("#te").html("10");
+                $("#tf").html("12");
+                $("#tg").html("14");
+                $("#th").html("16");
+                $("#sa").html("2");
+                $("#sb").html("4");
+                $("#sc").html("6");
+                $("#sd").html("8");
+                $("#se").html("10");
+                $("#sf").html("12");
+                $("#sg").html("14");
+                $("#sh").html("16");
+
+            } else if (genero == "1") {
+                $("#genero").val("Hombre: " + val);
+                $("#sub-genero").hide();
+                $("#ta").html("28");
+                $("#tb").html("29");
+                $("#tc").html("30");
+                $("#td").html("32");
+                $("#te").html("34");
+                $("#tf").html("36");
+                $("#tg").html("38");
+                $("#th").html("40");
+                $("#ti").html("42");
+                $("#tj").html("44");
+                $("#sa").html("28");
+                $("#sb").html("29");
+                $("#sc").html("30");
+                $("#sd").html("32");
+                $("#se").html("34");
+                $("#sf").html("36");
+                $("#sg").html("38");
+                $("#sh").html("40");
+                $("#si").html("42");
+                $("#sj").html("44");
+
+            }
         });
     }
 

@@ -29,6 +29,10 @@ Route::get('/employee', function () {
     return view('sistema.empleado.empleado');
 })->middleware('auth');
 
+Route::get('/permiso', function () {
+    return view('sistema.user.permiso');
+})->middleware('auth');
+
 Route::get('/client', function () {
     return view('sistema.client.clients');
 })->middleware('auth');
@@ -341,8 +345,6 @@ Route::post('nota-credito/detalle/{id}', 'NotaCreditoController@storeDetalle');
 Route::post('nota-credito/delete/{id}', 'NotaCreditoController@destroy');
 Route::get('imprimir_notaCredito/{id}', 'NotaCreditoController@imprimir');
 
-
-
 //Empleado
 Route::post('empleado', 'EmpleadoController@store');
 Route::post('empleado/detalle', 'EmpleadoController@storeDetalle');
@@ -350,4 +352,7 @@ Route::get('empleado/{id}', 'EmpleadoController@show');
 Route::put('empleado/edit', 'EmpleadoController@update');
 Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 
+//Permiso
+Route::get('usuarios', 'PermisoController@usuarios');
+Route::post('permiso', 'PermisoController@store');
 

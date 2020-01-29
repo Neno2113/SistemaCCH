@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // 'web' => [
+        //     'driver' => 'session',
+        //     'provider' => 'permiso_usuario',
+        // ],
 
         'api' => [
             'driver' => 'token',
@@ -70,6 +74,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        // 'permiso_usuario' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\PermisoUsuario::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',

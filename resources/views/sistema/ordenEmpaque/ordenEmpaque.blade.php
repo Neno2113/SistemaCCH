@@ -131,7 +131,7 @@
                         </table>
 
                     </div>
-            
+
             </div>
             <div class="card-footer">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
@@ -185,7 +185,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/orden_empaque/orden_empaque.js')}}"></script>
+<script src="{{asset('js/orden_empaque/orden_empaque_reportar.js')}}"></script>
 
 <script>
     String.prototype.replaceAll = function (find, replace) {
@@ -204,11 +204,11 @@
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             // $("#btn-guardar").hide();
-            
+
             $("#id").val(data.orden_empaque.id);
-            $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);   
-            $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);   
-            $("#orden_empaque_id").val(data.orden_empaque.id);   
+            $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);
+            $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);
+            $("#orden_empaque_id").val(data.orden_empaque.id);
             $("#cliente").val(data.cliente.nombre_cliente);
             $("#sucursal").val(data.sucursal.nombre_sucursal);
             $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
@@ -222,7 +222,7 @@
     function listarOrdenDetalle(id) {
        var tabla_orden = $("#orden_detalle").DataTable({
             serverSide: true,
-            bFilter: false, 
+            bFilter: false,
             lengthChange: false,
             bPaginate: false,
             bInfo: false,
@@ -245,7 +245,7 @@
                 { data: "total", name: "orden_pedido_detalle.total"},
                 { data: "cantidad"},
                 { data: "Opciones", orderable: false, searchable: false },
-              
+
             ],
         });
     }
@@ -279,10 +279,10 @@
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                               
+
                                 $("#orden_detalle").DataTable().ajax.reload();
-                                
-                             
+
+
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la actualizacion de la composicion"
@@ -292,7 +292,7 @@
                         error: function() {
                             bootbox.alert("Ocurrio un error!!");
                         }
-                    }); 
+                    });
 
                 } else {
                     bootbox.alert(
@@ -303,8 +303,8 @@
             error: function() {
                 bootbox.alert("Ocurrio un error!!");
             }
-        });        
-        
+        });
+
     }
 
     function redistribuir(id_orden){
@@ -318,7 +318,7 @@
         })
     }
 
-    
+
 
 </script>
 

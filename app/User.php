@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Cloth');
     }
+
+    public function permisos()
+    {
+        return $this->hasMany('App\PermisoUsuario');
+    }
 }
