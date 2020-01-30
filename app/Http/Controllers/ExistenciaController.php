@@ -22,7 +22,7 @@ class ExistenciaController extends Controller
 
     public function show(Request $request)
     {
-        //Recoger datos por la request 
+        //Recoger datos por la request
         $producto_id = $request->input('producto_id');
         $referencia_producto = $request->input('referencia_producto');
 
@@ -78,7 +78,7 @@ class ExistenciaController extends Controller
 
         $longitudAlmacen = count($almacen);
 
-        for ($i=0; $i < $longitudAlmacen ; $i++) { 
+        for ($i=0; $i < $longitudAlmacen ; $i++) {
             array_push($almacenes, $almacen[$i]['id']);
         }
 
@@ -97,20 +97,19 @@ class ExistenciaController extends Controller
         $tallasfacturacion = ordenFacturacionDetalle::where('producto_id', $producto_id)
         ->get();
 
-
         //Existencia
-        $a = $tallasAlmacen->sum('a') - $tallasPerdidas->sum('a') - $tallasfacturacion->sum('a') + $tallasNC->sum('a') + $tallasSegundas->sum('a');  
-        $b = $tallasAlmacen->sum('b') - $tallasPerdidas->sum('b') - $tallasfacturacion->sum('b') + $tallasNC->sum('b') + $tallasSegundas->sum('a');
-        $c = $tallasAlmacen->sum('c') - $tallasPerdidas->sum('c') - $tallasfacturacion->sum('c') + $tallasNC->sum('c') + $tallasSegundas->sum('a');
-        $d = $tallasAlmacen->sum('d') - $tallasPerdidas->sum('d') - $tallasfacturacion->sum('d') + $tallasNC->sum('d') + $tallasSegundas->sum('a');
-        $e = $tallasAlmacen->sum('e') - $tallasPerdidas->sum('e') - $tallasfacturacion->sum('e') + $tallasNC->sum('e') + $tallasSegundas->sum('a');
-        $f = $tallasAlmacen->sum('f') - $tallasPerdidas->sum('f') - $tallasfacturacion->sum('f') + $tallasNC->sum('f') + $tallasSegundas->sum('a');
-        $g = $tallasAlmacen->sum('g') - $tallasPerdidas->sum('g') - $tallasfacturacion->sum('g') + $tallasNC->sum('g') + $tallasSegundas->sum('a');
-        $h = $tallasAlmacen->sum('h') - $tallasPerdidas->sum('h') - $tallasfacturacion->sum('h') + $tallasNC->sum('h') + $tallasSegundas->sum('a');
-        $i = $tallasAlmacen->sum('i') - $tallasPerdidas->sum('i') - $tallasfacturacion->sum('i') + $tallasNC->sum('i') + $tallasSegundas->sum('a');
-        $j = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasfacturacion->sum('j') + $tallasNC->sum('j') + $tallasSegundas->sum('a');
-        $k = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasfacturacion->sum('k') + $tallasNC->sum('k') + $tallasSegundas->sum('a');
-        $l = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasfacturacion->sum('l') + $tallasNC->sum('l') + $tallasSegundas->sum('a');
+        $a = $tallasAlmacen->sum('a') - $tallasfacturacion->sum('a') + $tallasNC->sum('a') + $tallasSegundas->sum('a');
+        $b = $tallasAlmacen->sum('b') - $tallasfacturacion->sum('b') + $tallasNC->sum('b') + $tallasSegundas->sum('a');
+        $c = $tallasAlmacen->sum('c') - $tallasfacturacion->sum('c') + $tallasNC->sum('c') + $tallasSegundas->sum('a');
+        $d = $tallasAlmacen->sum('d') - $tallasfacturacion->sum('d') + $tallasNC->sum('d') + $tallasSegundas->sum('a');
+        $e = $tallasAlmacen->sum('e') - $tallasfacturacion->sum('e') + $tallasNC->sum('e') + $tallasSegundas->sum('a');
+        $f = $tallasAlmacen->sum('f') - $tallasfacturacion->sum('f') + $tallasNC->sum('f') + $tallasSegundas->sum('a');
+        $g = $tallasAlmacen->sum('g') - $tallasfacturacion->sum('g') + $tallasNC->sum('g') + $tallasSegundas->sum('a');
+        $h = $tallasAlmacen->sum('h') - $tallasfacturacion->sum('h') + $tallasNC->sum('h') + $tallasSegundas->sum('a');
+        $i = $tallasAlmacen->sum('i') - $tallasfacturacion->sum('i') + $tallasNC->sum('i') + $tallasSegundas->sum('a');
+        $j = $tallasAlmacen->sum('j') - $tallasfacturacion->sum('j') + $tallasNC->sum('j') + $tallasSegundas->sum('a');
+        $k = $tallasAlmacen->sum('k') - $tallasfacturacion->sum('k') + $tallasNC->sum('k') + $tallasSegundas->sum('a');
+        $l = $tallasAlmacen->sum('l') - $tallasfacturacion->sum('l') + $tallasNC->sum('l') + $tallasSegundas->sum('a');
 
         //disponible para la venta
         $a_disp = $a - $tallasOrdenes->sum('a') - $tallasSegundas->sum('a');
@@ -127,7 +126,7 @@ class ExistenciaController extends Controller
         $l_disp = $l - $tallasOrdenes->sum('l') - $tallasSegundas->sum('l');
 
 
-        //respuesta 
+        //respuesta
         $data = [
             'code' => 200,
             'status' => 'success',

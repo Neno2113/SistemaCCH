@@ -146,7 +146,7 @@ $(document).ready(function() {
         tabla = $("#users").DataTable({
             serverSide: true,
             responsive: true,
-            ajax: "api/users",
+            ajax: "api/permisos",
             dom: 'Bfrtip',
             iDisplayLength: 5,
             buttons: [
@@ -165,19 +165,15 @@ $(document).ready(function() {
                 }
                 ],
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
-                { data: "Ver", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
-                { data: "name" },
-                { data: "surname" },
-                { data: "email" },
-                { data: "role" },
-                { data: "edad" },
-                { data: "celular" },
+                { data: "Opciones", orderable: false, searchable: false },
+                { data: "name", name: 'users.name'},
+                { data: "permiso", name: 'permiso_usuario.permiso'},
+                { data: "role", name: 'users.role'},
+                { data: "email", name: 'users.email'}
             ],
-            order: [[6, 'asc']],
+            order: [[1, 'asc']],
             rowGroup: {
-                dataSrc: 'role'
+                dataSrc: 'name'
             }
         });
     }

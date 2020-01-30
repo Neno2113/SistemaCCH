@@ -90,4 +90,5 @@ Route::get('empleados', 'EmpleadoController@empleados');
 
 Route::get('listarDetalle/{id}', 'ordenPedidoController@listarOrdenRed');
 
+Route::get('permisos', 'PermisoController@permisos');
 

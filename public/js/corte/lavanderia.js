@@ -17,7 +17,7 @@ $(document).ready(function() {
                 required: true,
                 minlength: 10
             }
-          
+
         },
         messages: {
             fecha_envio: {
@@ -35,7 +35,7 @@ $(document).ready(function() {
             }
         }
     })
-   
+
 
     var tabla
 
@@ -78,15 +78,15 @@ $(document).ready(function() {
                     }
 
                     if(cantidad_restante == null || cantidad_restante == 0 && parcial == null || parcial == 0){
-                        
+
                         cantidad = cantidad_corte - cantidad_perdida;
                     }
 
                     $("#cantidad").val();
                     $("#restante_enviar").val(cantidad);
-                  
+
                     bootbox.alert("La cantidad recomendada para enviar es: "+cantidad);
-                   
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -112,7 +112,7 @@ $(document).ready(function() {
         $("#suplidores").val("").trigger("change");
         $("#suplidoresEdit").val("").trigger("change");
         $("#cortesSearchEdit").val("").trigger("change");
-     
+
     }
 
     //funcion para generar codigo de corte
@@ -128,9 +128,9 @@ $(document).ready(function() {
                     var i = Number(datos.sec);
                     $("#sec").val(i);
                     i = (i + 0.01).toFixed(2).split('.').join("");
-                  
+
                     var referencia ='EL-'+i;
-                               
+
                     $("#numero_envio").val(referencia);
                     $('#btn-generar').attr("disabled", true);
                     $("#formularioLavanderia").show();
@@ -165,11 +165,11 @@ $(document).ready(function() {
                             text: item.numero_corte+' - '+item.fase,
                             id: item.id
                         }
-                    })   
-                    
+                    })
+
                 };
 
-                
+
             },
             cache: true,
 
@@ -219,7 +219,7 @@ $(document).ready(function() {
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-        
+
         var lavanderia = {
             sec: $("#sec").val(),
             numero_envio: $("#numero_envio").val(),
@@ -230,9 +230,11 @@ $(document).ready(function() {
             receta_lavado: $("#receta_lavado").val(),
             estandar_incluido: $("input[name='r1']:checked").val(),
         };
-        
+
         let cantidad_enviar = $("#cantidad").val();
-        if(cantidad_enviar > cantidad_guardar){
+        console.log(cantidad_enviar);
+        console.log(cantidad_guardar);
+        if(cantidad_guardar > cantidad_enviar){
             bootbox.confirm({
                 message:
                     "¿Va a realizar una devolucion a lavanderia?",
@@ -279,9 +281,9 @@ $(document).ready(function() {
                                 }
                             },
                             error: function(datos) {
-                                console.log(datos.responseJSON.errors); 
+                                console.log(datos.responseJSON.errors);
                                 let errores = datos.responseJSON.errors;
-                
+
                                 Object.entries(errores).forEach(([key, val]) => {
                                     bootbox.alert({
                                         message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
@@ -297,7 +299,7 @@ $(document).ready(function() {
                     }
                 }
             });
-        
+
         }else{
             $.ajax({
                 url: "lavanderia",
@@ -319,9 +321,9 @@ $(document).ready(function() {
                     }
                 },
                 error: function(datos) {
-                    console.log(datos.responseJSON.errors); 
+                    console.log(datos.responseJSON.errors);
                     let errores = datos.responseJSON.errors;
-    
+
                     Object.entries(errores).forEach(([key, val]) => {
                         bootbox.alert({
                             message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
@@ -333,7 +335,7 @@ $(document).ready(function() {
         }
 
 
-        
+
     });
 
     function listar() {
@@ -372,7 +374,7 @@ $(document).ready(function() {
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "devuelto", name: "lavanderia.devuelto" },
                 // { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
-              
+
             ],
             order: [[3, 'desc']],
             rowGroup: {
@@ -395,7 +397,7 @@ $(document).ready(function() {
             receta_lavado: $("#receta_lavado").val(),
             estandar_incluido: $("input[name='r1']:checked").val(),
         };
-     
+
         $.ajax({
             url: "lavanderia/edit",
             type: "PUT",
@@ -428,9 +430,9 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
-   
+
     function mostrarForm(flag) {
         limpiar();
         if (flag) {
@@ -441,7 +443,7 @@ $(document).ready(function() {
             $("#corteADD").show();
             $("#productoADD").show();
             $('#btn-generar').attr("disabled", false);
-           
+
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -457,8 +459,8 @@ $(document).ready(function() {
             $("#btn-edit").hide();
             $("#btn-guardar").show();
             $("#formularioLavanderia").hide();
-           
-           
+
+
         }
     }
 
@@ -469,7 +471,7 @@ $(document).ready(function() {
         $("#btn-generar").show();
         $("#total_enviado").hide();
 
-      
+
     });
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
@@ -478,9 +480,9 @@ $(document).ready(function() {
 
     window.onresize = function() {
         tabla.columns.adjust().responsive.recalc();
-    } 
-  
-  
+    }
+
+
 
     init();
 });

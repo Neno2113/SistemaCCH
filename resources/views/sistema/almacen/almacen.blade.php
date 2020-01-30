@@ -9,10 +9,9 @@
 <div class="row mt-3 ml-3">
     <div class="col-md-6">
         <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-        <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i>
-            ir a producto terminado </a>
+        {{-- <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i>
+            ir a producto terminado </a> --}}
     </div>
-
 </div>
 
 <div class="row">

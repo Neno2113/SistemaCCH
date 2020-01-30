@@ -31,9 +31,9 @@
                         <div class="col-md-5">
                             <label for="">Accesos:</label>
                             <select name="tags[]" id="permisos" class="form-control select2">
-                                <option disabled>DASHBOARD</option>
+                                {{-- <option disabled>DASHBOARD</option>
                                 <option value="Dashboard">Dashboard</option>
-                                <option  disabled>_______________________________________________________</option>
+                                <option  disabled>_______________________________________________________</option> --}}
                                 <option disabled>USUARIOS</option>
                                 <option value="Usuarios">Usuario</option>
                                 <option value="Empleados">Empleados</option>
@@ -54,12 +54,12 @@
                                 <option disabled>CORTE</option>
                                 <option value="Composicion">Composicion</option>
                                 <option value="Telas">Telas</option>
-                                <option value="Rollow">Rollos</option>
+                                <option value="Rollos">Rollos</option>
                                 <option value="Corte">Corte</option>
                                 <option value="Lavanderia">Lavanderia</option>
                                 <option value="Recepcion">Recepcion</option>
                                 <option value="Almacen">Almacen</option>
-                                <option value="Perdidas">PerdidasS</option>
+                                <option value="Perdidas">Perdidas</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>ORDEN PEDIDO</option>
                                 <option value="Orden Pedido">Orden Pedido</option>
@@ -86,6 +86,28 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2 mt-3">
+                            <button type="button" id="btn-agregar" name="btn-agregar" class="btn btn-secondary"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row mt-4">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Acceso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
 
 
             </div>
@@ -110,29 +132,21 @@
         <table id="users" class="table table-bordered table-hover datatables" style="width: 100%" >
             <thead>
                 <tr>
-                    <th></th>
-                    <th>Ver</th>
-                    <th>Actions</th>
+                    <th>Action</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
+                    <th>Permiso</th>
                     <th>Rol</th>
-                    <th>Edad</th>
-                    <th>Celular</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
-                    <th>Ver</th>
-                    <th>Actions</th>
+                    <th>Action</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
+                    <th>Permiso</th>
                     <th>Rol</th>
-                    <th>Edad</th>
-                    <th>Celular</th>
+                    <th>Email</th>
                 </tr>
             </tfoot>
         </table>
@@ -193,12 +207,12 @@
     }
 
 
-    function eliminar(id_user){
-        bootbox.confirm("¿Estas seguro de eliminar este usuario?", function(result){
+    function eliminar(id_permiso){
+        bootbox.confirm("¿Estas seguro de eliminarle este acceso a este usuario?", function(result){
             if(result){
-                $.post("user/delete/" + id_user, function(){
+                $.post("permiso/delete/" + id_permiso, function(){
                     // bootbox.alert(e);
-                    bootbox.alert("Usuario eliminado correctamente");
+                    bootbox.alert("Acceso eliminado correctamente!!");
                     $("#users").DataTable().ajax.reload();
                 })
             }

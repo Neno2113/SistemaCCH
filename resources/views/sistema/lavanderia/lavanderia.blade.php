@@ -154,7 +154,7 @@
         <h4>Cortes en lavanderia:</h4>
     </div>
     <div class="card-body">
-        <table id="lavanderias" class="table table-striped table-bordered datatables text-sm" style="width: 100%">
+        <table id="lavanderias" class="table table-hover table-bordered datatables text-sm" style="width: 100%">
             <thead>
                 <tr>
                     <th></th>
@@ -165,7 +165,7 @@
                     <th>Ref.</th>
                     <th>Envio</th>
                     <th>T. Envio</th>
-                    <th>T. Cortado</th>
+                    <th>Disp Envio</th>
                     <th>T. Dev.</th>
                     <th>Lav.</th>
                     <th>Status</th>
@@ -184,7 +184,7 @@
                     <th>Ref.</th>
                     <th>Envio</th>
                     <th>T. Envio</th>
-                    <th>T. Cortado</th>
+                    <th>Disp Envio</th>
                     <th>T. Dev.</th>
                     <th>Lav.</th>
                     <th>Status</th>
@@ -222,7 +222,7 @@
             $("#suplidor_lavanderia").show();
             $("#formularioLavanderia").show();
             $("#total_enviado").hide();
-        
+
             let result;
             if(data.lavanderia.estandar_incluido == 1){
                 result = 'Si'
@@ -240,7 +240,7 @@
             $("#estandar_incluido").val(result);
             $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre);
             // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
-            
+
         });
     }
 
@@ -262,7 +262,7 @@
             $("#suplidor_lavanderia").show();
             $("#formularioLavanderia").show();
             $("#total_enviado").show();
-        
+
             let result;
             if(data.lavanderia.estandar_incluido == 1){
                 result = 'Si'
@@ -280,7 +280,7 @@
             $("#estandar_incluido").val(result).attr('readonly', true);
             $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre).attr('readonly', true);
             // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
-            
+
         });
     }
 

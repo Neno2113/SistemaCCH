@@ -72,28 +72,31 @@
   <!-- Left col -->
   <section class="col-md-7 connectedSortable">
     <!-- Custom tabs (Charts with tabs)-->
+    @if (Auth::user()->role == "Administrador")
     <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">
-          <i class="fas fa-chart-pie mr-1"></i>
-          Ventas ultimos 12 meses
-        </h3>
-        <div class="card-tools">
-         
-        </div>
-      </div><!-- /.card-header -->
-      <div class="card-body">
-        <div class="tab-content p-0">
-          <!-- Morris chart - Sales -->
-          <div class="chart tab-pane active" id="revenue-chart">
-            <canvas id="ventas12meses" width="400" height="300"></canvas>
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-chart-pie mr-1"></i>
+            Ventas ultimos 12 meses
+          </h3>
+          <div class="card-tools">
+
           </div>
-          <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-            <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+          <div class="tab-content p-0">
+            <!-- Morris chart - Sales -->
+            <div class="chart tab-pane active" id="revenue-chart">
+              <canvas id="ventas12meses" width="400" height="300"></canvas>
+            </div>
+            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+              <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+            </div>
           </div>
-        </div>
-      </div><!-- /.card-body -->
-    </div>
+        </div><!-- /.card-body -->
+      </div>
+    @endif
+
     <!-- /.card -->
     <!-- TABLE: LATEST ORDERS -->
     <div class="card">
@@ -170,7 +173,7 @@
               </tr>
             </thead>
             <tbody id="latest_cortes">
-            
+
             </tbody>
           </table>
         </div>
@@ -189,32 +192,35 @@
   <!-- /.Left col -->
   <!-- right col (We are only adding the ID to make the widgets sortable)-->
   <section class="col-md-5 connectedSortable">
-    
+
      <!-- Custom tabs (Charts with tabs)-->
+     @if (Auth::user()->role == "Administrador")
      <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">
-          <i class="fas fa-chart-pie mr-1"></i>
-          Ventas ultimos 10 dias
-        </h3>
-        <div class="card-tools">
-          <ul class="nav nav-pills ml-auto">
-        
-          </ul>
-        </div>
-      </div><!-- /.card-header -->
-      <div class="card-body">
-        <div class="tab-content p-0">
-          <!-- Morris chart - Sales -->
-          <div class="chart tab-pane active" id="revenue-chart">
-            <canvas id="ventas10dias" width="400" height="300"></canvas>
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-chart-pie mr-1"></i>
+            Ventas ultimos 10 dias
+          </h3>
+          <div class="card-tools">
+            <ul class="nav nav-pills ml-auto">
+
+            </ul>
           </div>
-          <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-            <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+          <div class="tab-content p-0">
+            <!-- Morris chart - Sales -->
+            <div class="chart tab-pane active" id="revenue-chart">
+              <canvas id="ventas10dias" width="400" height="300"></canvas>
+            </div>
+            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+              <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+            </div>
           </div>
-        </div>
-      </div><!-- /.card-body -->
-    </div>
+        </div><!-- /.card-body -->
+      </div>
+     @endif
+
     <!-- PRODUCT LIST -->
     <div class="card">
       <div class="card-header">
@@ -232,7 +238,7 @@
       <!-- /.card-header -->
       <div class="card-body p-0">
         <ul class="products-list product-list-in-card pl-2 pr-2" id="productos">
-         
+
         </ul>
       </div>
       <!-- /.card-body -->

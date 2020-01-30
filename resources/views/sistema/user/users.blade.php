@@ -81,13 +81,22 @@
                     <h4 class="text-center font-weight-bold mt-4">Datos de acceso</h4>
                     <hr>
                     <div class="row">
-                        <div class="col-md-6 mt-3">
+                        <div class="col-md-4 mt-3">
                             <label for="name">Email(*):</label>
                             <input type="Email" name="email" id="email" class="form-control">
                         </div>
-                        <div class="col-md-6 mt-3" id="ver-contra">
+                        <div class="col-md-4 mt-3" id="ver-contra">
                             <label for="password">Contraseña(*):</label>
                             <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="">Rol:</label>
+                            <select name="role" id="role" class="form-control">
+                                <option>Administrador</option>
+                                <option>Oficina</option>
+                                <option>Soporte</option>
+                                <option>General</option>
+                            </select>
                         </div>
 
                     </div>

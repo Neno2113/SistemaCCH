@@ -106,19 +106,19 @@ class ordenEmpaqueController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
                 if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1')
-                { 
+                {
                     return
                     '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
                     '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
 
-                } else if ($orden->detallada == '0' && $orden->redistribucion_tallas == '0') { 
-                    
+                } else if ($orden->detallada == '0' && $orden->redistribucion_tallas == '0') {
+
                     return
                     '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
                     '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
-                
+
                 } else if ($orden->detallada == '1' && $orden->redistribucion_tallas == '1'){
-                    
+
                     return
                         '<a href="imprimir_empaque/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>' .
                         '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
@@ -438,7 +438,7 @@ class ordenEmpaqueController extends Controller
         $c_seg = ($c_alm == 0) ? 0.1 : ($c_perc - $c) / $c;
         $d_seg = ($d_alm == 0) ? 0.1 : ($d_perc - $d) / $d;
         $e_seg = ($e_alm == 0) ? 0.1 : ($e_perc - $e) / $e;
-        $f_seg = ($f_perc - $f) / $f;
+        $f_seg = ($e_alm == 0) ? 0.1 : ($f_perc - $f) / $f;
         $g_seg = ($g_perc - $g) / $g;
         $h_seg = ($h_perc - $h) / $h;
         $i_seg = ($i_perc - $i) / $i;
@@ -485,7 +485,7 @@ class ordenEmpaqueController extends Controller
 
 
         if ($cant_total > $cantidad) {
-            $cant_dif = 0.1;
+            $cant_dif = 0.2;
 
             while($cant_total > $cantidad){
                 $a_red = $a_red - $cant_dif < 0 ? 0 : $a_red - $cant_dif;
@@ -501,10 +501,10 @@ class ordenEmpaqueController extends Controller
                 $k_red = $k_red - $cant_dif < 0 ? 0 : $k_red - $cant_dif;
                 $l_red = $l_red - $cant_dif < 0 ? 0 : $l_red - $cant_dif;
                 $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                
+
                 $cant_dif+=0.1;
             }
-        
+
         }
 
         if($cant_total < $cantidad){
@@ -524,24 +524,24 @@ class ordenEmpaqueController extends Controller
                 $k_red = $k_red + $cant_dif < 0 ? 0 : $k_red + $cant_dif;
                 $l_red = $l_red + $cant_dif < 0 ? 0 : $l_red + $cant_dif;
                 $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                
-                $cant_dif+=0.2;
+
+                $cant_dif+=0.1;
             }
         }
 
         //validacion
-        $a_red = ($a_red < 0 ? 0 : $a_red);
-        $b_red = ($b_red < 0 ? 0 : $b_red);
-        $c_red = ($c_red < 0 ? 0 : $c_red);
-        $d_red = ($d_red < 0 ? 0 : $d_red);
-        $e_red = ($e_red < 0 ? 0 : $e_red);
-        $f_red = ($f_red < 0 ? 0 : $f_red);
-        $g_red = ($g_red < 0 ? 0 : $g_red);
-        $h_red = ($h_red < 0 ? 0 : $h_red);
-        $i_red = ($i_red < 0 ? 0 : $i_red);
-        $j_red = ($j_red < 0 ? 0 : $j_red);
-        $k_red = ($k_red < 0 ? 0 : $k_red);
-        $l_red = ($l_red < 0 ? 0 : $l_red);
+        $a_red = ($a_red < 1 ? 0 : $a_red);
+        $b_red = ($b_red < 1 ? 0 : $b_red);
+        $c_red = ($c_red < 1 ? 0 : $c_red);
+        $d_red = ($d_red < 1 ? 0 : $d_red);
+        $e_red = ($e_red < 1 ? 0 : $e_red);
+        $f_red = ($f_red < 1 ? 0 : $f_red);
+        $g_red = ($g_red < 1 ? 0 : $g_red);
+        $h_red = ($h_red < 1 ? 0 : $h_red);
+        $i_red = ($i_red < 1 ? 0 : $i_red);
+        $j_red = ($j_red < 1 ? 0 : $j_red);
+        $k_red = ($k_red < 1 ? 0 : $k_red);
+        $l_red = ($l_red < 1 ? 0 : $l_red);
 
         // $a_red = round($a_red);
         // $b_red = round($b_red);
@@ -749,7 +749,7 @@ class ordenEmpaqueController extends Controller
     public function empaque($id, Request $request)
     {
         $orden_detalle = ordenPedidoDetalle::find($id);
-     
+
         $empaque_id = $request->input('id');
         $cant_bultos = $request->input('cantidad');
 
@@ -836,7 +836,7 @@ class ordenEmpaqueController extends Controller
                 :'<input type="text" id="cantidad'.$orden->id.'" name="cantidad" class="cantidad form-control-sm text-center" >';
             })
             ->addColumn('Opciones', function ($orden) {
-                return ($orden->orden_empacada == 1) ? '<span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span>': 
+                return ($orden->orden_empacada == 1) ? '<span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span>':
                 '<a onclick="test(' . $orden->id . ')" id="guardar" class="btn btn-primary btn-sm ml-1"> <i class="far fa-save"></i></a>';
             })
             ->addColumn('records', function ($orden) {
