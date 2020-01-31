@@ -38,7 +38,7 @@ class CorteController extends Controller
             $largo_marcada = $request->input('largo_marcada');
             $aprovechamiento = $request->input('aprovechamiento');
             $fecha_entrega = $request->input('fecha_entrega');
-            
+
             $sec = $request->input('sec');
             $fase = 'Produccion';
 
@@ -95,7 +95,7 @@ class CorteController extends Controller
                     return '<button id="btnEdit" onclick="mostrar(' . $corte->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
                 '<button onclick="eliminar(' . $corte->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
                 }
-                
+
             })
             ->rawColumns(['Opciones'])
             ->make(true);
@@ -117,7 +117,7 @@ class CorteController extends Controller
                 }else{
                  return '<button id="btnEdit" onclick="remover(' . $rollo->id . ')" class="btn btn-danger btn-sm ml-1" ><i class="fas fa-eraser"></i></button>';
                 }
-              
+
             })
             ->rawColumns(['Editar', 'Eliminar'])
             ->make(true);
@@ -301,7 +301,7 @@ class CorteController extends Controller
 
         if (!empty($rollo)) {
             $corte_utilizado = $rollo->corte_utilizado;
-        
+
             if ($corte_utilizado == NULL || $corte_utilizado == '') {
                 $rollo->corte_utilizado = $numero_corte;
 
@@ -339,7 +339,7 @@ class CorteController extends Controller
 
         if (!empty($rollo)) {
             $corte_utilizado = $rollo->corte_utilizado;
-        
+
                 $rollo->corte_utilizado = "";
 
                 $rollo->save();
@@ -350,7 +350,7 @@ class CorteController extends Controller
                     'rollo' => $rollo,
                     'corte_utilizado' => $corte_utilizado
                 ];
-            
+
         } else {
 
             $data = [
@@ -381,7 +381,7 @@ class CorteController extends Controller
 
         $validar = $request->validate([
             'numero_corte' => 'unique:corte',
-           
+
         ]);
         if(!empty($validar)){
             $data = [
@@ -389,8 +389,35 @@ class CorteController extends Controller
                 'status' => 'success',
                 'corte' => 'Test'
             ];
-        
+
         }
-        return response()->json($data, $data['code']);   
+        return response()->json($data, $data['code']);
+    }
+
+    public function verificarReferencia(Request $request){
+
+        $id = $request->input('producto');
+
+        $referencia = Product::find($id);
+
+
+        $corte = Corte::where('producto_id', $id)->first();
+
+        if(!empty($corte)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Existe un corte con esta referencia',
+                'corte' => $corte
+            ];
+
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'erros',
+                'message' => 'No existe un corte con este referencia'
+            ];
+        }
+        return response()->json($data, $data['code']);
     }
 }

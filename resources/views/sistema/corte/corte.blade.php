@@ -47,7 +47,7 @@
                     </div>
 
                     {{-- <div class="row">
-                       
+
                         <div class="col-md-6 mt-3">
                             <label for="">Numero corte(*):</label>
                             <input type="hidden" name="id" id="id" value="">
@@ -63,23 +63,24 @@
                     <hr>
                     <br>
                     <div class="row" id="fila1">
-                        <div class="col-md-6 ">
+                        <div class="col-md-4">
                             <label for="">Referencia producto(*):</label>
                             <select name="tags[]" id="productos" class="form-control select2">
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">Fecha estimada de entrega(*):</label>
                             <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control"
                                 data-toggle="tooltip" data-placement="bottom">
                         </div>
-                    </div>
-                    <br>
-                    <div class="row mt-2" id="fila2">
-                        <div class="col-md-4 mt-2">
+                        <div class="col-md-4">
                             <label for="">Marcada No.</label>
                             <input type="text" name="no_marcada" id="no_marcada" class="form-control">
                         </div>
+                    </div>
+                    <br>
+                    <div class="row mt-2" id="fila2">
+
                         <div class="col-md-4 mt-2">
                             <label for="">Ancho marcada</label>
                             <input type="text" name="ancho_marcada" id="ancho_marcada" class="form-control"
@@ -90,27 +91,31 @@
                             <input type="text" name="largo_marcada" id="largo_marcada" class="form-control"
                                 placeholder="Yardas">
                         </div>
-                    </div>
-                    <div class="row mt-2" id="fila3">
                         <div class="col-md-4 mt-2">
                             <label for="">Aprovechamiento(*):</label>
                             <input type="text" name="aprovechamiento" id="aprovechamiento" class="form-control"
                                 data-inputmask='"mask": "99[.99]%"' data-mask>
                         </div>
+                    </div>
+                    <div class="row mt-2" id="fila3">
                         <div class="col-md-4 mt-3" id="rollo-agregar">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide"
-                                data-toggle="modal" data-target=".bd-rollo-modal-lg">Agregar rollos <i
-                                    class="fa fa-dolly-flatbed"></i></button>
+                                data-toggle="modal" data-target=".bd-rollo-modal-lg">
+                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    Agregar rollos <i
+                                    class="fa fa-dolly-flatbed"></i>
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    <span class="sr-only">Loading...</span>
+                                </button>
                         </div>
-                        {{-- <div class="col-md-4 mt-3" id="rollo-edit">
-                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-rollo"
-                                data-toggle="modal" data-target=".bd-rollo-modal-lg">Editar rollos <i
-                                    class="fa fa-dolly-flatbed"></i></button>
-                        </div> --}}
                         <div class="col-md-4 mt-3">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
                                 data-toggle="modal" data-target=".bd-talla-modal-xl">Distribucion de tallas <i
                                     class="fa fa-cut"></i></button>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <button type="button" class="btn btn-secondary  btn-block mt-4" data-toggle="modal"
+                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Asignar SKU</button>
                         </div>
                     </div>
             </div>
@@ -178,7 +183,7 @@
 
 </div>
 
-<!-- Modal -->
+<!-- Modal Rollos-->
 <div class="modal fade bd-rollo-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -233,36 +238,28 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Tallas-->
 <div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Corte por tallas(*):</h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Corte por tallas:</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <label for="">Corte: </label>
-                    <div class="col-md-6 mb-2">
-                        <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center">
+                    <label for="">Producto: </label>
+                    <div class="col-md-3 mb-2">
+                        <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center font-weight-bold">
                     </div>
-                    {{-- <div class="col-md-4">
-                        <select name="sub-genero" id="sub-genero" class="form-control">
-                            <option value=""></option>
-                            <option value="Mujer">Mujer</option>
-                            <option value="Mujer Plus">Mujer plus</option>
-                        </select>
-                    </div> --}}
                 </div>
                 <div class="row">
-                    <table class="table  table-bordered tabla-perdidas">
+                    <table class="table  table-bordered tabla-perdidas mt-4">
                         <thead>
                             <tr>
-                                <th>Tipo producto</th>
                                 <th id="ta">A</th>
                                 <th id="tb">B</th>
                                 <th id="tc">C</th>
@@ -283,7 +280,7 @@
 
                     </table>
                 </div>
-                <br><br>
+                <br>
                 <div class="row">
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="sa">A</label>
@@ -349,6 +346,138 @@
     </div>
 </div>
 
+<!-- Modal SKU-->
+<div class="modal fade bd-sku-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong> Asignacion de SKU</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="BrachForm">
+                    <div class="row">
+                        <h5>Referencia:</h5>
+                        <div class="col-md-3  mb-3">
+                            <input type="text" name="referencia_talla" id="referencia_talla" class="form-control text-center">
+                        </div>
+                    </div>
+                    <h5 class="text-center">Asignar SKU por tallas</h5>
+                    <hr>
+                    <div class="col-md-2 mr-2">
+                        <button class="btn btn-secondary mb-4" id="btn-asignar" value="General"> <i class="fas fa-barcode"></i> SKU generel </button>
+                    </div>
+                    <table class="table  table-bordered mt-3 tabla-perdidas">
+                        <thead>
+                            <tr>
+                                <th id="ra">A</th>
+                                <th id="rb">B</th>
+                                <th id="rc">C</th>
+                                <th id="rd">D</th>
+                                <th id="re">E</th>
+                                <th id="rf">F</th>
+                                <th id="rg">G</th>
+                                <th id="rh">H</th>
+                                <th id="ri">I</th>
+                                <th id="rj">J</th>
+                                <th id="rk">K</th>
+                                <th id="rl">L</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tallas">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar2" value="A">A</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar3" value="B">B</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar4" value="C">C</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar5" value="D">D</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar6" value="E">E</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar7" value="F">F</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar8" value="G">G</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar9" value="H">H</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar10" value="I">I</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar11" value="J">J</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar12" value="K">K</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-block" id="btn-asignar13" value="L">L</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    {{-- <div class="row">
+
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar2" value="A">A</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar3" value="B">B</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar4" value="C">C</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar5" value="D">D</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar6" value="E">E</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar7" value="F">F</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar8" value="G">G</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar9" value="H">H</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar10" value="I">I</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar11" value="J">J</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar12" value="K">K</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar13" value="L">L</button>
+                        </div>
+                    </div> --}}
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{-- </div> --}}
+
 @include('adminlte/scripts')
 <script src="{{asset('js/corte/corte.js')}}"></script>
 
@@ -369,7 +498,7 @@
             // $("#edit-hide").hide();
             // $("#rollo-agregar").hide();
             $("#rollo-edit").show();
-            
+
 
             // console.log(data);
             $("#id").val(data.corte.id);
@@ -393,7 +522,7 @@
             $("#j").val(data.j);
             $("#k").val(data.k);
             $("#l").val(data.l);
-           
+
         });
     }
 
@@ -408,7 +537,7 @@
         })
     }
 
-    function asignar(id_rollo) {     
+    function asignar(id_rollo) {
         var rollo = {
             numero_corte: $("#numero_corte_gen").val(),
         };
@@ -441,7 +570,7 @@
         });
     }
 
-    function remover(id_rollo) {   
+    function remover(id_rollo) {
 
         var rollo = {
             numero_corte: $("#numero_corte_gen").val(),
@@ -458,7 +587,7 @@
                 if (datos.status == "success") {
                     bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> removido correctamente al corte: <strong>"
                         +datos.corte_utilizado+"</strong>");
-                    
+
                     $("#edit-hide").css("background-color", "green");
                     $("#rollos").DataTable().ajax.reload();
                 } else {

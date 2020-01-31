@@ -16,7 +16,7 @@
 <script src="{{asset('/adminlte/plugins/chart.js/Chart.min.js')}}"></script>
 
 <!-- SparkLine -->
-<script src="{{asset('/adminlte/plugins/sparklines/sparkline.js')}}"></script> 
+<script src="{{asset('/adminlte/plugins/sparklines/sparkline.js')}}"></script>
 
 
 
@@ -55,6 +55,9 @@
 
 <!-- Knob-->
 <script src="{{asset('adminlte/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+
+<!-- SweetAlert-->
+<script src="{{asset('adminlte/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 
 <!-- InputMASK -->
 <script src="{{asset('adminlte/plugins/inputmask/jquery.inputmask.bundle.js')}}"></script>

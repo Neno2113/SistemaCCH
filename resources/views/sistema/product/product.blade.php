@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6 mt-3 ml-2 ">
         <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-      
+
     </div>
 </div>
 <div class="row ">
@@ -94,10 +94,7 @@
                         <div class="col-md-3 mt-5">
                             <button class="btn btn-primary" id="btnGenerar">Generar</button>
                         </div>
-                        <div class="col-md-3 mt-5">
-                            <button type="button" class="btn btn-secondary  btn-block" data-toggle="modal"
-                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Asignar SKU</button>
-                        </div>
+
                     </div>
                     <hr>
                     <br>
@@ -185,108 +182,7 @@
 
 </div>
 </div>
-<!-- Modal -->
-<div class="modal fade bd-sku-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><strong> Asignacion de SKU</strong></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="" id="BrachForm">
-                    <div class="row">
-                        <h4>Referencia:</h4>
-                        <div class="col-md-6  mb-3">
-                            <input type="text" name="referencia" id="referencia_talla" class="form-control text-center">
-                        </div>
-                    </div>
-                    <table class="table  table-bordered mt-3 tabla-perdidas">
-                        <thead>
-                            <tr>
-                                <th>Tallas</th>
-                                <th id="ta">A</th>
-                                <th id="tb">B</th>
-                                <th id="tc">C</th>
-                                <th id="td">D</th>
-                                <th id="te">E</th>
-                                <th id="tf">F</th>
-                                <th id="tg">G</th>
-                                <th id="th">H</th>
-                                <th id="ti">I</th>
-                                <th id="tj">J</th>
-                                <th id="tk">K</th>
-                                <th id="tl">L</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tallas">
 
-                        </tbody>
-                    </table>
-                    <div class="row mt-3">
-                        <div class="col-md-12 mt-3">
-                            <h5 class="text-center">Asignar SKU por tallas</h5>
-                            <hr>
-                            <div class="col-md-2 mr-2">
-                                <button class="btn btn-primary mb-4" id="btn-asignar" value="General">SKU generel </button>
-                            </div>
-                           
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        {{-- <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary mb-2" id="btn-asignar" value="General">General</button>
-                        </div> --}}
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar2" value="A">A</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar3" value="B">B</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar4" value="C">C</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar5" value="D">D</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar6" value="E">E</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar7" value="F">F</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar8" value="G">G</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar9" value="H">H</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar10" value="I">I</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar11" value="J">J</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar12" value="K">K</button>
-                        </div>
-                        <div class="col-lg-1 col-xs-">
-                            <button class="btn btn-primary btn-block" id="btn-asignar13" value="L">L</button>
-                        </div>
-                    </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-{{-- </div> --}}
 
 
 @include('adminlte/scripts')

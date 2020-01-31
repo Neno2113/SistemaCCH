@@ -214,6 +214,7 @@ Route::post('/corte/delete/{id}', 'CorteController@destroy');
 Route::get('cortes', 'CorteController@selectCorte');
 Route::get('cortes_home', 'CorteController@corte_home');
 Route::post('verificacion/corte', 'CorteController@verificarCorte');
+Route::post('verificacion/producto', 'CorteController@verificarReferencia');
 Route::get('testSelectProduct', 'CorteController@testSelect2');
 
 //Talla

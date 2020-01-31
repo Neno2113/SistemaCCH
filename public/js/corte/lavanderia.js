@@ -232,8 +232,7 @@ $(document).ready(function() {
         };
 
         let cantidad_enviar = $("#cantidad").val();
-        console.log(cantidad_enviar);
-        console.log(cantidad_guardar);
+
         if(cantidad_guardar > cantidad_enviar){
             bootbox.confirm({
                 message:

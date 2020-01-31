@@ -8,6 +8,7 @@ use App\Product;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\SKU;
+use stdClass;
 
 class ProductController extends Controller
 {
@@ -38,7 +39,7 @@ class ProductController extends Controller
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
 
-            
+
             $product = Product::find($id);
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
@@ -46,7 +47,7 @@ class ProductController extends Controller
             $product->precio_lista_2 = $precio_lista_2;
             $product->precio_venta_publico = trim($precio_venta_publico, "_RD$");
             $product->precio_venta_publico_2 = $precio_venta_publico_2;
-           
+
             $product->save();
 
             $data = [
@@ -77,15 +78,15 @@ class ProductController extends Controller
             $referencia = $request->input('referencia', true);
             $referencia_2 = $request->input('referencia_2', true);
             $sec = $request->input('sec', true);
-     
+
             $product = new Product();
             $product->referencia_producto = $referencia;
             $product->referencia_producto_2 = $referencia_2;
             $product->id_user = \auth()->user()->id;
             $product->sec = $sec + 0.1;
             $product->enviado_lavanderia = 0;
-           
-         
+
+
             $product->save();
 
             $data = [
@@ -101,8 +102,9 @@ class ProductController extends Controller
     public function products()
     {
         $products = DB::table('producto')->join('users', 'producto.id_user', '=', 'users.id')
-            ->select(['producto.id', 'users.name', 'users.surname', 'producto.referencia_producto', 'producto.descripcion'
-            , 'producto.referencia_producto_2', 'producto.precio_lista', 'producto.precio_venta_publico']);
+            ->select([
+                'producto.id', 'users.name', 'users.surname', 'producto.referencia_producto', 'producto.descripcion', 'producto.referencia_producto_2', 'producto.precio_lista', 'producto.precio_venta_publico'
+            ]);
 
         return DataTables::of($products)
             ->addColumn('Expandir', function ($product) {
@@ -111,10 +113,10 @@ class ProductController extends Controller
             ->editColumn('name', function ($product) {
                 return "$product->name $product->surname";
             })
-            ->editColumn('precio_lista', function($product){
+            ->editColumn('precio_lista', function ($product) {
                 return number_format($product->precio_lista) . " RD$";
             })
-            ->editColumn('precio_venta_publico', function($product){
+            ->editColumn('precio_venta_publico', function ($product) {
                 return number_format($product->precio_venta_publico) . " RD$";
             })
             ->addColumn('Editar', function ($product) {
@@ -224,10 +226,10 @@ class ProductController extends Controller
     {
         $product = Product::orderBy('sec', 'desc')->first();
 
-        if(\is_object($product)){
+        if (\is_object($product)) {
             $sec = $product->sec;
         }
-        
+
         // $sec = $product->sec;
         if (empty($sec)) {
             $sec = 0.0;
@@ -238,7 +240,7 @@ class ProductController extends Controller
                 'sec' => $sec
             ];
         } else {
-           
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
@@ -249,12 +251,13 @@ class ProductController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function asignarSKU(Request $request){
+    public function asignarSKU(Request $request)
+    {
         $val = 0;
         $sku = SKU::where('asignado', $val)->get()->first();
         \json_encode($sku);
-        
-        if(empty($sku)){
+
+        if (empty($sku)) {
             $val = null;
             $sku = SKU::where('asignado', $val)->get()->first();
             \json_encode($sku);
@@ -285,41 +288,42 @@ class ProductController extends Controller
 
     public function productoTerminado()
     {
-        $products = DB::table('producto')->select(['producto.id', 'producto.referencia_producto', 'producto.descripcion', 'producto.tono'
-            , 'producto.precio_lista', 'producto.precio_venta_publico'])
+        $products = DB::table('producto')->select([
+            'producto.id', 'producto.referencia_producto', 'producto.descripcion', 'producto.tono', 'producto.precio_lista', 'producto.precio_venta_publico'
+        ])
             ->where('producto.producto_terminado', 'LIKE', '1');
 
         return DataTables::of($products)
             ->addColumn('Expandir', function ($product) {
                 return "";
             })
-            ->editColumn('precio_lista', function($product){
+            ->editColumn('precio_lista', function ($product) {
                 return $product->precio_lista . " RD$";
             })
-            ->editColumn('precio_venta_publico', function($product){
+            ->editColumn('precio_venta_publico', function ($product) {
                 return $product->precio_lista . " RD$";
             })
-            
-            
+
+
             ->addColumn('Opciones', function ($product) {
                 return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-eye fa-lg"></i></button>';
             })
-         
+
             ->rawColumns(['Opciones'])
             ->make(true);
     }
 
-    public function getImage($filename){
-        
+    public function getImage($filename)
+    {
+
         $isset = \Storage::disk('producto')->exists($filename);
-        if($isset){
-           
+        if ($isset) {
+
             $file = \Storage::disk('producto')->get($filename);
 
             //Devolver imagen
             return new Response($file, 200);
-
-        }else{
+        } else {
             $data = [
                 'code' => 404,
                 'status' => 'error',
@@ -330,29 +334,82 @@ class ProductController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function validarSku(Request $request){
+    public function validarSku(Request $request)
+    {
 
         $referencia = $request->input('referencia');
 
-        // echo $referencia;
-        // die();
 
         $producto = Product::find($referencia);
         $ref = $producto->referencia_producto;
+        $tallas = array();
 
         $sku = SKU::where('referencia_producto', $ref)
-        ->orderBy('talla', 'asc')
-        ->get();
+            ->orderBy('talla', 'asc')
+            ->get();
+
+        $longitud = count($sku);
+
+
+
+        for ($i = 0; $i < $longitud; $i++) {
+            array_push($tallas, $sku[$i]['talla']);
+        }
+
+        $longitudTalla = count($tallas);
+
+        // for ($i = 0; $i < $longitudTalla; $i++) {
+        //     $data = [
+        //         $tallas[$i] => $tallas[$i]
+        //     ];
+        // }
+
+        $a = (empty($tallas[0])) ? 0 : $tallas[0];
+        $b= (empty($tallas[1])) ? 0 : $tallas[1];
+        $c= (empty($tallas[2])) ? 0 : $tallas[2];
+        $d= (empty($tallas[3])) ? 0 : $tallas[3];
+        $e= (empty($tallas[4])) ? 0 : $tallas[4];
+        $f= (empty($tallas[5])) ? 0 : $tallas[5];
+        $g= (empty($tallas[6])) ? 0 : $tallas[6];
+        $h= (empty($tallas[7])) ? 0 : $tallas[7];
+        $n= (empty($tallas[8])) ? 0 : $tallas[8];
+        $j= (empty($tallas[9])) ? 0 : $tallas[9];
+        $k= (empty($tallas[10])) ? 0 : $tallas[10];
+        $l= (empty($tallas[11])) ? 0 : $tallas[11];
+        $general= (empty($tallas[12])) ? 0 : $tallas[12];
+
+        $talla = (object) $tallas;
 
 
         $data = [
             'code' => 200,
             'status' => 'success',
-            'sku' => $sku
+            'tallas' => $tallas,
+            $a => $a,
+            $b => $b,
+            $c => $c,
+            $d => $d,
+            $e => $e,
+            $f => $f,
+            $g => $g,
+            $h => $h,
+            $n => $n,
+            $j => $j,
+            $k => $l,
+            $l => $l,
+            $general => $general,
+            // $tallas[4] => $tallas[4],
+            // $tallas[5] => $tallas[5],
+            // $tallas[6] => $tallas[6],
+            // $tallas[7] => $tallas[7],
+            // $tallas[8] => $tallas[8],
+            // $tallas[9] => $tallas[9],
+            // $tallas[10] => $tallas[10],
+            // $tallas[11] => $tallas[11],
+            // $tallas[12] => $tallas[12]
+
         ];
 
-        return response()->json($data, $data['code']);
+        return response()->json($data, 200);
     }
-
-
 }

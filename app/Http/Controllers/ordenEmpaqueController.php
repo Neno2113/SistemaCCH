@@ -484,50 +484,50 @@ class ordenEmpaqueController extends Controller
         $referencia_producto = substr($referencia_producto, 2, 1);
 
 
-        if ($cant_total > $cantidad) {
-            $cant_dif = 0.2;
+        // if ($cant_total > $cantidad) {
+        //     $cant_dif = 0.2;
 
-            while($cant_total > $cantidad){
-                $a_red = $a_red - $cant_dif < 0 ? 0 : $a_red - $cant_dif;
-                $b_red = $b_red - $cant_dif < 0 ? 0 : $b_red - $cant_dif;
-                $c_red = $c_red - $cant_dif < 0 ? 0 : $c_red - $cant_dif;
-                $d_red = $d_red - $cant_dif < 0 ? 0 : $d_red - $cant_dif;
-                $e_red = $e_red - $cant_dif < 0 ? 0 : $e_red - $cant_dif;
-                $f_red = $f_red - $cant_dif < 0 ? 0 : $f_red - $cant_dif;
-                $g_red = $g_red - $cant_dif < 0 ? 0 : $g_red - $cant_dif;
-                $h_red = $h_red - $cant_dif < 0 ? 0 : $h_red - $cant_dif;
-                $i_red = $i_red - $cant_dif < 0 ? 0 : $i_red - $cant_dif;
-                $j_red = $j_red - $cant_dif < 0 ? 0 : $j_red - $cant_dif;
-                $k_red = $k_red - $cant_dif < 0 ? 0 : $k_red - $cant_dif;
-                $l_red = $l_red - $cant_dif < 0 ? 0 : $l_red - $cant_dif;
-                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //     while($cant_total > $cantidad){
+        //         $a_red = $a_red - $cant_dif < 0 ? 0 : $a_red - $cant_dif;
+        //         $b_red = $b_red - $cant_dif < 0 ? 0 : $b_red - $cant_dif;
+        //         $c_red = $c_red - $cant_dif < 0 ? 0 : $c_red - $cant_dif;
+        //         $d_red = $d_red - $cant_dif < 0 ? 0 : $d_red - $cant_dif;
+        //         $e_red = $e_red - $cant_dif < 0 ? 0 : $e_red - $cant_dif;
+        //         $f_red = $f_red - $cant_dif < 0 ? 0 : $f_red - $cant_dif;
+        //         $g_red = $g_red - $cant_dif < 0 ? 0 : $g_red - $cant_dif;
+        //         $h_red = $h_red - $cant_dif < 0 ? 0 : $h_red - $cant_dif;
+        //         $i_red = $i_red - $cant_dif < 0 ? 0 : $i_red - $cant_dif;
+        //         $j_red = $j_red - $cant_dif < 0 ? 0 : $j_red - $cant_dif;
+        //         $k_red = $k_red - $cant_dif < 0 ? 0 : $k_red - $cant_dif;
+        //         $l_red = $l_red - $cant_dif < 0 ? 0 : $l_red - $cant_dif;
+        //         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
 
-                $cant_dif+=0.1;
-            }
+        //         $cant_dif+=0.1;
+        //     }
 
-        }
+        // }
 
-        if($cant_total < $cantidad){
-            $cant_dif = 0.1;
+        // if($cant_total < $cantidad){
+        //     $cant_dif = 0.1;
 
-            while($cant_total < $cantidad){
-                $a_red = $a_red + $cant_dif < 0 ? 0 : $a_red + $cant_dif;
-                $b_red = $b_red + $cant_dif < 0 ? 0 : $b_red + $cant_dif;
-                $c_red = $c_red + $cant_dif < 0 ? 0 : $c_red + $cant_dif;
-                $d_red = $d_red + $cant_dif < 0 ? 0 : $d_red + $cant_dif;
-                $e_red = $e_red + $cant_dif < 0 ? 0 : $e_red + $cant_dif;
-                $f_red = $f_red + $cant_dif < 0 ? 0 : $f_red + $cant_dif;
-                $g_red = $g_red + $cant_dif < 0 ? 0 : $g_red + $cant_dif;
-                $h_red = $h_red + $cant_dif < 0 ? 0 : $h_red + $cant_dif;
-                $i_red = $i_red + $cant_dif < 0 ? 0 : $i_red + $cant_dif;
-                $j_red = $j_red + $cant_dif < 0 ? 0 : $j_red + $cant_dif;
-                $k_red = $k_red + $cant_dif < 0 ? 0 : $k_red + $cant_dif;
-                $l_red = $l_red + $cant_dif < 0 ? 0 : $l_red + $cant_dif;
-                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //     while($cant_total < $cantidad){
+        //         $a_red = $a_red + $cant_dif < 0 ? 0 : $a_red + $cant_dif;
+        //         $b_red = $b_red + $cant_dif < 0 ? 0 : $b_red + $cant_dif;
+        //         $c_red = $c_red + $cant_dif < 0 ? 0 : $c_red + $cant_dif;
+        //         $d_red = $d_red + $cant_dif < 0 ? 0 : $d_red + $cant_dif;
+        //         $e_red = $e_red + $cant_dif < 0 ? 0 : $e_red + $cant_dif;
+        //         $f_red = $f_red + $cant_dif < 0 ? 0 : $f_red + $cant_dif;
+        //         $g_red = $g_red + $cant_dif < 0 ? 0 : $g_red + $cant_dif;
+        //         $h_red = $h_red + $cant_dif < 0 ? 0 : $h_red + $cant_dif;
+        //         $i_red = $i_red + $cant_dif < 0 ? 0 : $i_red + $cant_dif;
+        //         $j_red = $j_red + $cant_dif < 0 ? 0 : $j_red + $cant_dif;
+        //         $k_red = $k_red + $cant_dif < 0 ? 0 : $k_red + $cant_dif;
+        //         $l_red = $l_red + $cant_dif < 0 ? 0 : $l_red + $cant_dif;
+        //         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
 
-                $cant_dif+=0.1;
-            }
-        }
+        //         $cant_dif+=0.1;
+        //     }
+        // }
 
         //validacion
         $a_red = ($a_red < 1 ? 0 : $a_red);
@@ -684,7 +684,7 @@ class ordenEmpaqueController extends Controller
             'k_red' => $k_red,
             'l_red' => $l_red,
             'total_red' => $cant_total,
-            'diferencia' => $cant_dif,
+            // 'diferencia' => $cant_dif,
             'cant-detalle' => $cantidad,
             'detalle' => $orden_pedido_detalle,
             'genero' => $referencia_producto

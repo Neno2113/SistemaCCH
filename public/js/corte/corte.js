@@ -6,7 +6,7 @@ $(document).ready(function() {
             no_marcada: {
                 required: true,
                 minlength: 1,
-             
+
             },
             ancho_marcada: {
                 required: true,
@@ -34,15 +34,15 @@ $(document).ready(function() {
                 minlength: "Debe contener al menos 1 numero",
                 number: "Este campo solo admite numeros"
             },
-           
+
 
         }
     })
-   
+
 
     var tabla
 
-    //Funcion que se ejecuta al inicio 
+    //Funcion que se ejecuta al inicio
     function init() {
         listar();
         listarRollos();
@@ -53,11 +53,11 @@ $(document).ready(function() {
         $("#fila2").hide();
         $("#fila3").hide();
         productos();
-        
 
 
 
-        
+
+
     }
 
     //funcion para limpiar el formulario(los inputs)
@@ -78,27 +78,27 @@ $(document).ready(function() {
     //     $("#numero_corte_gen").val("");
     //     $("#corte").val("");
     //     $("#numero_corte").val("");
-    //     $("#corte_tallas").val(""); 
-        
+    //     $("#corte_tallas").val("");
+
     //     $.ajax({
     //         url: "corte/lastdigit",
     //         type: "GET",
     //         dataType: "json",
     //         success: function(datos) {
     //             if (datos.status == "success") {
-                    
+
     //                 var i = Number(datos.sec);
     //                 $("#sec").val(i);
     //                 i = (i + 0.01).toFixed(2).split('.').join("");
     //                 var year = new Date().getFullYear().toString();
     //                 var referencia = year+'-'+i;
     //                 // console.log(referencia);
-                               
+
     //                 $("#numero_corte_gen").val(referencia);
     //                 $("#corte").val(referencia);
     //                 $("#numero_corte").val(referencia);
-    //                 $("#corte_tallas").val(referencia);          
-                    
+    //                 $("#corte_tallas").val(referencia);
+
 
     //             } else {
     //                 bootbox.alert(
@@ -129,8 +129,8 @@ $(document).ready(function() {
     //                 i = (i + 0.01).toFixed(2).split('.').join("");
     //                 var year = new Date().getFullYear().toString();
     //                 var referencia = year+'-'+i;
-                   
-                               
+
+
     //                 $("#numero_corte").val(referencia);
     //                 $("#corte").val(referencia);
     //                 // $("#corte_tallas").val(referencia +" - "+ referencia_producto );
@@ -190,10 +190,10 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     var longitud = datos.productos.length;
-                    
+
                     for (let i = 0; i < longitud; i++) {
                         var fila =  "<option value="+datos.productos[i].id +">"+datos.productos[i].referencia_producto+"</option>"
-                        
+
                         $("#productos").append(fila);
                     }
                     $("#productos").select2();
@@ -236,11 +236,10 @@ $(document).ready(function() {
 
     $("#productos").change(function(){
         let val = $("#productos option:selected").text();
-        $("#corte_tallas").val(val);
+        $("#referencia_talla").val(val);
         let genero = val.substring(1,2);
         let genero_plus = val.substr(3,1);
-        console.log(genero);
-        console.log(genero_plus);
+
 
         if (genero == "2") {
             if(genero_plus == "7"){
@@ -261,12 +260,33 @@ $(document).ready(function() {
                 $("#sf").html("22W");
                 $("#sg").html("24W");
                 $("#sh").html("26W");
+                $("#ra").html("12W");
+                $("#rb").html("14W");
+                $("#rc").html("16W");
+                $("#rd").html("18W");
+                $("#re").html("20W");
+                $("#rf").html("22W");
+                $("#rg").html("24W");
+                $("#rh").html("26W");
+                $("#btn-asignar2").html("12W");
+                $("#btn-asignar3").html("14W");
+                $("#btn-asignar4").html("16W");
+                $("#btn-asignar5").html("18W");
+                $("#btn-asignar6").html("20W");
+                $("#btn-asignar7").html("22W");
+                $("#btn-asignar8").html("24W");
+                $("#btn-asignar9").html("26W");
+                $("#btn-asignar10").attr("disabled", true);
+                $("#btn-asignar11").attr("disabled", true);
+                $("#btn-asignar12").attr("disabled", true);
+                $("#btn-asignar13").attr("disabled", true);
+
                 $("#i").attr('disabled', true);
                 $("#j").attr('disabled', true);
                 $("#k").attr('disabled', true);
                 $("#l").attr('disabled', true);
-               
-                
+
+
             }else{
                 $("#corte_tallas").val('Mujer: '+val);
                 $("#ta").html("0/0");
@@ -293,16 +313,44 @@ $(document).ready(function() {
                 $("#sj").html("17/18");
                 $("#sk").html("19/20");
                 $("#sl").html("21/22");
+                //Modal SKU
+                $("#ra").html("0/0");
+                $("#rb").html("1/2");
+                $("#rc").html("3/4");
+                $("#rd").html("5/6");
+                $("#re").html("7/8");
+                $("#rf").html("9/10");
+                $("#rg").html("11/12");
+                $("#rh").html("13/14");
+                $("#ri").html("15/16");
+                $("#rj").html("17/18");
+                $("#rk").html("19/20");
+                $("#rl").html("21/22");
+                $("#btn-asignar2").html("0/0");
+                $("#btn-asignar3").html("1/2");
+                $("#btn-asignar4").html("3/4");
+                $("#btn-asignar5").html("5/6");
+                $("#btn-asignar6").html("7/8");
+                $("#btn-asignar7").html("9/10");
+                $("#btn-asignar8").html("11/12");
+                $("#btn-asignar9").html("13/14");
+                $("#btn-asignar10").html("15/16");
+                $("#btn-asignar11").html("17/18");
+                $("#btn-asignar12").html("19/20");
+                $("#btn-asignar13").html("21/22");
+                $("#btn-asignar2").attr("disabled", false);
+                $("#btn-asignar2").attr("disabled", false);
+                $("#btn-asignar2").attr("disabled", false);
+                $("#btn-asignar2").attr("disabled", false);
                 $("#i").attr('disabled', false);
                 $("#j").attr('disabled', false);
                 $("#k").attr('disabled', false);
                 $("#l").attr('disabled', false);
-                
+
             }
-        
-    }
-        
-        if (genero == "3") {
+
+        }
+        if (genero == "3" || genero == "4") {
             $("#corte_tallas").val('Niño: '+val);
             $("#sub-genero").hide();
             $("#ta").html("2");
@@ -321,36 +369,33 @@ $(document).ready(function() {
             $("#sf").html("12");
             $("#sg").html("14");
             $("#sh").html("16");
+            //Modal SKU
+            $("#ra").html("2");
+            $("#rb").html("4");
+            $("#rc").html("6");
+            $("#rd").html("8");
+            $("#re").html("10");
+            $("#rf").html("12");
+            $("#rg").html("14");
+            $("#rh").html("16");
             $("#i").attr('disabled', true);
             $("#j").attr('disabled', true);
             $("#k").attr('disabled', true);
             $("#l").attr('disabled', true);
-          
-        } else if (genero == "4") {
-            $("#corte_tallas").val('Niña: '+val);
-            $("#sub-genero").hide();
-            $("#ta").html("2");
-            $("#tb").html("4");
-            $("#tc").html("6");
-            $("#td").html("8");
-            $("#te").html("10");
-            $("#tf").html("12");
-            $("#tg").html("14");
-            $("#th").html("16");
-            $("#sa").html("2");
-            $("#sb").html("4");
-            $("#sc").html("6");
-            $("#sd").html("8");
-            $("#se").html("10");
-            $("#sf").html("12");
-            $("#sg").html("14");
-            $("#sh").html("16");
-            $("#i").attr('disabled', true);
-            $("#j").attr('disabled', true);
-            $("#k").attr('disabled', true);
-            $("#l").attr('disabled', true);
-        
-        } else if (genero == "1") {
+            $("#btn-asignar2").html("2");
+            $("#btn-asignar3").html("4");
+            $("#btn-asignar4").html("6");
+            $("#btn-asignar5").html("8");
+            $("#btn-asignar6").html("10");
+            $("#btn-asignar7").html("12");
+            $("#btn-asignar8").html("14");
+            $("#btn-asignar9").html("16");
+            $("#btn-asignar10").attr("disabled", true);
+            $("#btn-asignar11").attr("disabled", true);
+            $("#btn-asignar12").attr("disabled", true);
+            $("#btn-asignar13").attr("disabled", true);
+
+        }  else if (genero == "1") {
             $("#corte_tallas").val('Hombre: '+val);
             $("#sub-genero").hide();
             $("#ta").html("28");
@@ -373,11 +418,34 @@ $(document).ready(function() {
             $("#sh").html("40");
             $("#si").html("42");
             $("#sj").html("44");
+            //Modal SKU
+            $("#ra").html("28");
+            $("#rb").html("29");
+            $("#rc").html("30");
+            $("#rd").html("32");
+            $("#re").html("34");
+            $("#rf").html("36");
+            $("#rg").html("38");
+            $("#rh").html("40");
+            $("#ri").html("42");
+            $("#rj").html("44");
             $("#i").attr('disabled', false);
             $("#j").attr('disabled', false);
             $("#k").attr('disabled', true);
             $("#l").attr('disabled', true);
-          
+            $("#btn-asignar2").html("28");
+            $("#btn-asignar3").html("29");
+            $("#btn-asignar4").html("30");
+            $("#btn-asignar5").html("32");
+            $("#btn-asignar6").html("34");
+            $("#btn-asignar7").html("36");
+            $("#btn-asignar8").html("38");
+            $("#btn-asignar9").html("40");
+            $("#btn-asignar10").html("42");
+            $("#btn-asignar11").html("44");
+            $("#btn-asignar12").attr("disabled", true);
+            $("#btn-asignar13").attr("disabled", true);
+
         }
     });
 
@@ -387,14 +455,14 @@ $(document).ready(function() {
         let dia = fecha.getDate();
         let year = fecha.getFullYear();
         let month = fecha.getMonth();
-      
+
 
         if(dia < 15){
             month = month + 2;
             var i = Number(month) / 100;
             i = (i).toFixed(2).split(".").join("");
             i = i.substr(1, 4);
-        
+
             $("#fecha_entrega").attr('min', year +"-"+ i+"-14")
             $("#fecha_entrega").attr('max', year +"-"+ i+"-14")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la primera quincena del mes: "+month);
@@ -403,22 +471,112 @@ $(document).ready(function() {
             var i = Number(month) / 100;
             i = (i).toFixed(2).split(".").join("");
             i = i.substr(1, 4);
-         
+
             $("#fecha_entrega").attr('min', 2020 +"-"+i+"-28")
             $("#fecha_entrega").attr('max', 2020 +"-"+1+"-28")
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);
         }
+
+        setTimeout(verficarReferencia, 5000);
+
     });
+
+    function verficarReferencia(){
+
+        var referencia = {
+            producto: $("#productos").val()
+        }
+
+        $.ajax({
+            url: "verificacion/producto",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(referencia),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    Swal.fire(
+                        'Alerta',
+                        'Esta referencia ya ha sido producia en otros cortes',
+                        'warning'
+                    )
+                    var referencias = {
+                        referencia: $("#productos").val()
+                    };
+
+                    $.ajax({
+                        url: "producto/validarSku",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(referencias),
+                        contentType: "application/json",
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                                let a = $("#btn-asignar2").val();
+                                let b = $("#btn-asignar3").val();
+                                let c = $("#btn-asignar4").val();
+                                let d = $("#btn-asignar5").val();
+                                let e = $("#btn-asignar6").val();
+                                let f = $("#btn-asignar7").val();
+                                let g = $("#btn-asignar8").val();
+                                let h = $("#btn-asignar9").val();
+                                let i = $("#btn-asignar10").val();
+                                let j = $("#btn-asignar11").val();
+                                let k = $("#btn-asignar12").val();
+                                let l = $("#btn-asignar13").val();
+                                let general = $("#btn-asignar").val();
+
+
+
+                                //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+                                (datos.General == general ) ? $("#btn-asignar").attr('disabled', true) : $("#btn-asignar").attr('disabled', false);
+                                (datos.A == a ) ? $("#btn-asignar2").attr('disabled', true) : $("#btn-asignar2").attr('disabled', false);
+                                (datos.B == b ) ? $("#btn-asignar3").attr('disabled', true) : $("#btn-asignar3").attr('disabled', false);
+                                (datos.C == c ) ? $("#btn-asignar4").attr('disabled', true) : $("#btn-asignar4").attr('disabled', false);
+                                (datos.D == d ) ? $("#btn-asignar5").attr('disabled', true) : $("#btn-asignar5").attr('disabled', false);
+                                (datos.E == e ) ? $("#btn-asignar6").attr('disabled', true) : $("#btn-asignar6").attr('disabled', false);
+                                (datos.F == f ) ? $("#btn-asignar7").attr('disabled', true) : $("#btn-asignar7").attr('disabled', false);
+                                (datos.G == g ) ? $("#btn-asignar8").attr('disabled', true) : $("#btn-asignar8").attr('disabled', false);
+                                (datos.H == h ) ? $("#btn-asignar9").attr('disabled', true) : $("#btn-asignar9").attr('disabled', false);
+                                (datos.I == i ) ? $("#btn-asignar10").attr('disabled', true) : $("#btn-asignar10").attr('disabled', false);
+                                (datos.j == j ) ? $("#btn-asignar11").attr('disabled', true) : $("#btn-asignar11").attr('disabled', false);
+                                (datos.K == k ) ? $("#btn-asignar12").attr('disabled', true) : $("#btn-asignar12").attr('disabled', false);
+                                (datos.L == l ) ? $("#btn-asignar12").attr('disabled', true) : $("#btn-asignar13").attr('disabled', false);
+
+
+
+
+                            } else {
+                                bootbox.alert("Se genero la referencia");
+                            }
+                        },
+                        error: function() {
+                           ;
+                        }
+                    });
+
+
+                } else {
+                    console.log("error");
+                }
+            },
+            error: function(datos) {
+
+            }
+        });
+
+
+    }
 
     //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-        
+
         var corte = {
             sec: $("#sec").val(),
             numero_corte: $("#numero_corte_gen").val(),
             producto: $("#productos").val(),
-            fecha_entrega: $("#fecha_entrega").val(), 
+            fecha_entrega: $("#fecha_entrega").val(),
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
             largo_marcada: $("#largo_marcada").val(),
@@ -439,7 +597,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     bootbox.alert("Corte creado !!");
                     limpiar();
-                   
+
                     mostrarForm(false);
                     $('#btn-generar').attr("disabled", false);
 
@@ -452,7 +610,7 @@ $(document).ready(function() {
                         e: $("#e").val(),
                         f: $("#f").val(),
                         g: $("#g").val(),
-                        h: $("#h").val(),   
+                        h: $("#h").val(),
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
@@ -477,15 +635,15 @@ $(document).ready(function() {
                                 $("#e").val(""),
                                 $("#f").val(""),
                                 $("#g").val(""),
-                                $("#h").val(""),   
+                                $("#h").val(""),
                                 $("#i").val(""),
                                 $("#j").val(""),
                                 $("#k").val(""),
-                                $("#l").val("");    
-                                // tabla.ajax.reload();  
+                                $("#l").val("");
+                                // tabla.ajax.reload();
                                 $("#edit-hide").css("background-color", "none");
-                                $("#cortes_listados").DataTable().ajax.reload();      
-                                
+                                $("#cortes_listados").DataTable().ajax.reload();
+
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -506,7 +664,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -561,7 +719,7 @@ $(document).ready(function() {
             ],
             order: [[7, 'desc']],
             rowGroup: {
-                dataSrc: 'fase' 
+                dataSrc: 'fase'
             }
         });
     }
@@ -611,7 +769,7 @@ $(document).ready(function() {
         var corte = {
             id: $("#id").val(),
             producto: $("#productos").val(),
-            fecha_entrega: $("#fecha_entrega").val(), 
+            fecha_entrega: $("#fecha_entrega").val(),
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
             largo_marcada: $("#largo_marcada").val(),
@@ -640,7 +798,7 @@ $(document).ready(function() {
                         e: $("#e").val(),
                         f: $("#f").val(),
                         g: $("#g").val(),
-                        h: $("#h").val(),   
+                        h: $("#h").val(),
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
@@ -655,7 +813,7 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                                
+
                                 bootbox.alert("Se actualizaron un total de: <strong>"+datos.talla.total+"</strong> entre todas las tallas digitadas");
                                 $("#a").val(""),
                                 $("#b").val(""),
@@ -664,14 +822,14 @@ $(document).ready(function() {
                                 $("#e").val(""),
                                 $("#f").val(""),
                                 $("#g").val(""),
-                                $("#h").val(""),   
+                                $("#h").val(""),
                                 $("#i").val(""),
                                 $("#j").val(""),
                                 $("#k").val(""),
-                                $("#l").val("");    
-                                // tabla.ajax.reload();  
+                                $("#l").val("");
+                                // tabla.ajax.reload();
                                 $("#edit-hide").css("background-color", "none");
-                                $("#cortes_listados").DataTable().ajax.reload();      
+                                $("#cortes_listados").DataTable().ajax.reload();
                                 mostrarForm(false);
                             } else {
                                 bootbox.alert(
@@ -685,7 +843,7 @@ $(document).ready(function() {
                             );
                         }
                     });
-                   
+
 
                 } else {
                     bootbox.alert(
@@ -699,15 +857,15 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
 
     $("#btn-buscar").click(function(e) {
         e.preventDefault();
 
-       
+
         var id = $("#cortesSearch").val()
-        
+
         $.ajax({
             url: "talla/search/"+ id,
             type: "GET",
@@ -741,7 +899,7 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
 
     $("#btn-generar").click(function(e){
@@ -767,12 +925,12 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                  
+
                     $("#numero_corte_gen").val(referencia);
                     $("#corte").val(referencia);
                     $("#numero_corte").val(referencia);
-                    $("#corte_tallas").val(referencia); 
-                    
+                    $("#corte_tallas").val(referencia);
+
                     $("#fila1").show();
                     $("#fila2").show();
                     $("#fila3").show();
@@ -785,7 +943,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -819,7 +977,7 @@ $(document).ready(function() {
             $("#fila2").hide();
             $("#fila3").hide();
             // $("#rollo-edit").hide();
-            // $("#btn-guardar").attr("disabled", true);
+            $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
         }
@@ -836,10 +994,467 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
+    //Botones para asignar SKU, se puede mejorar implementando un bucle que recorra cada boton
+    //(implementar en el futuro)
+
+    $("#btn-asignar").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar").attr("disabled", true);
+                } else {
+                    bootbox.alert("Error");
+                }
+            },
+            error: function() {
+                bootbox.alert("Ocurrio un error!!");
+            }
+        });
+    });
+
+    $("#btn-asignar2").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar2").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar2").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar3").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar3").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar3").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar4").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar4").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar4").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar5").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar5").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar5").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar6").click(function(e) {
+        e.preventDefault();
+
+        let gen = $("#genero").val();
+
+        if (gen == 3 || gen == 4) {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar6").val(),
+                referencia: $("#referencia_2").val()
+            };
+        } else {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar6").val(),
+                referencia: $("#referencia").val()
+            };
+        }
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar6").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar7").click(function(e) {
+        e.preventDefault();
+
+        let gen = $("#genero").val();
+
+        if (gen == 3 || gen == 4) {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar7").val(),
+                referencia: $("#referencia_2").val()
+            };
+        } else {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar7").val(),
+                referencia: $("#referencia").val()
+            };
+        }
+
+        // console.log(JSON.stringify(asignacion));
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar7").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar8").click(function(e) {
+        e.preventDefault();
+
+        let gen = $("#genero").val();
+
+        if (gen == 3 || gen == 4) {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar8").val(),
+                referencia: $("#referencia_2").val()
+            };
+        } else {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar8").val(),
+                referencia: $("#referencia").val()
+            };
+        }
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar8").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar9").click(function(e) {
+        e.preventDefault();
+
+        let gen = $("#genero").val();
+
+        if (gen == 3 || gen == 4) {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar9").val(),
+                referencia: $("#referencia_2").val()
+            };
+        } else {
+            var asignacion = {
+                id: $("#id_producto").val(),
+                talla: $("#btn-asignar9").val(),
+                referencia: $("#referencia").val()
+            };
+        }
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar9").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar10").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar10").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar10").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+    $("#btn-asignar11").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar11").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar11").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar12").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar12").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar12").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
+    $("#btn-asignar13").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#id_producto").val(),
+            talla: $("#btn-asignar13").val(),
+            referencia: $("#referencia").val()
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar13").attr("disabled", true);
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    });
+
     window.onresize = function() {
         tabla.columns.adjust().responsive.recalc();
-    } 
-  
+    }
+
 
     init();
 });
