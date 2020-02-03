@@ -733,10 +733,7 @@ $(document).ready(function() {
         });
     });
 
-    //funcion que validar si el total de tallas es mayor a la cantidad recibida en recepcion
-    $("#btn-close").click(function(e){
-        e.preventDefault();
-
+    function validarTallas(){
         var validar = {
             a: $("#a").val(),
             b: $("#b").val(),
@@ -751,7 +748,7 @@ $(document).ready(function() {
             k: $("#k").val(),
             l: $("#l").val()
         };
-
+        $("#entrada_alm").removeClass("btn-secondary").addClass("btn-success");
         $.ajax({
             url: "validar/total",
             type: "POST",
@@ -963,9 +960,12 @@ $(document).ready(function() {
                    console.log("ocurrio un error")
                 }
         });
+    }
 
-
-
+    //funcion que validar si el total de tallas es mayor a la cantidad recibida en recepcion
+    $("#btn-close").click(function(e){
+        e.preventDefault();
+        validarTallas();
 
     });
 
@@ -1012,6 +1012,12 @@ $(document).ready(function() {
         e.preventDefault();
         mostrarForm(false);
     });
+
+    $('#modalAlmacen').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+        validarTallas();
+
+    })
 
     $("#formUpload").submit(function(e) {
         e.preventDefault();

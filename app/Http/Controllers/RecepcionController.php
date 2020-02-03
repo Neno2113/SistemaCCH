@@ -51,19 +51,19 @@ class RecepcionController extends Controller
             // if ($pc_r > 47.36) {
                 // $lavanderia->recibido = 1;
                 // $lavanderia->save();
-            
+
                 $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
                 ->get()->last();
                 $total_enviado = $cantidad_enviada['total_enviado'];
                 $total_devuelto = $cantidad_enviada['total_devuelto'];
 
                 $corte = Corte::find($corte_id);
-                
+
                 $recepcion_total = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
-                
+
                 $total_recibido = $recepcion_total['total_recibido'];
                 $total_porcentaje = $cantidad_recibida + $total_recibido;
-            
+
                 $porcentaje = ($total_porcentaje/$total_enviado) * 100;
 
                 if($porcentaje > 90.00){
@@ -94,7 +94,7 @@ class RecepcionController extends Controller
                 // $data = [
                 //     'code' => 422,
                 //     'status' => 'error',
-                //     'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida 
+                //     'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida
                 //     equivale a menos del 90% de la cantidad enviada.'
                 // ];
             // }
@@ -135,19 +135,19 @@ class RecepcionController extends Controller
 
             $longitud = count($perdida);
 
-            for ($i=0; $i < $longitud; $i++) { 
+            for ($i=0; $i < $longitud; $i++) {
                 array_push($perdida_id, $perdida[$i]['id']);
-            }   
-           
+            }
+
             $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
             $totales = array();
-           
+
             $lent = count($talla_perdida);
 
-            for ($i=0; $i < $lent; $i++) { 
+            for ($i=0; $i < $lent; $i++) {
                 array_push($totales, $talla_perdida[$i]['total']);
-                
-            }   
+
+            }
             $cant_perdida = array_sum($totales);
 
             $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
@@ -182,7 +182,7 @@ class RecepcionController extends Controller
             // ->join('lavanderia', 'recepcion.id_lavanderia', '=', 'lavanderia.id')
             ->select([
                 'recepcion.id', 'recepcion.fecha_recepcion', 'recepcion.recibido_parcial', 'recepcion.estandar_recibido',
-                'corte.numero_corte','recepcion.numero_recepcion', 'recepcion.pendiente', 
+                'corte.numero_corte','recepcion.numero_recepcion', 'recepcion.pendiente',
                 'recepcion.total_recibido'
             ]);
 
@@ -239,7 +239,6 @@ class RecepcionController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
-                
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }
@@ -350,7 +349,7 @@ class RecepcionController extends Controller
                 $data = [
                     'code' => 422,
                     'status' => 'error',
-                    'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida 
+                    'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida
                     equivale a menos del 90% de la cantidad enviada.'
                 ];
             }
@@ -363,7 +362,7 @@ class RecepcionController extends Controller
     {
         $recepcion = Recepcion::find($id);
 
-        $id_corte = $recepcion['corte_id']; 
+        $id_corte = $recepcion['corte_id'];
         // $id_lavanderia = $recepcion['id_lavanderia'];
 
         $corte = Corte::find($id_corte);
@@ -423,11 +422,11 @@ class RecepcionController extends Controller
     {
         $recepcion = Recepcion::find($id)->load('corte');
         $recepcion->fecha_recepcion = date("d/m/20y", strtotime($recepcion->fecha_recepcion));
-        
+
         $corte_id = $recepcion->corte_id;
 
         $lavanderia = Lavanderia::where('corte_id', $corte_id)->get()->last();
-      
+
         $pdf = \PDF::loadView('sistema.recepcion.conduceRecepcion', \compact('recepcion', 'lavanderia'));
         return $pdf->download('conduceRecepcion.pdf');
         return View('sistema.lavanderia.conduceRecepcion', \compact('recepcion','lavanderia'));

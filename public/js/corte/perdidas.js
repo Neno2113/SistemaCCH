@@ -61,7 +61,7 @@ $(document).ready(function() {
         $("#btn-edit").hide();
     }
 
-  
+
     $("#fase").change(function() {
         var val = $(this).val();
         if (val == "Produccion") {
@@ -103,71 +103,6 @@ $(document).ready(function() {
         }
     });
 
-    $("#cortesSearch").change(function() {
-        let val = $("#cortesSearch option:selected").text();
-        // console.log(val);
-
-        let genero = val.substring(23, 24); 
-        let genero_plus = val.substr(25, 1);
-        let fase = val.substring(9, 12);
-        // console.log("Genero:"+genero);
-        // console.log("Fase:"+fase);
-        // console.log("genero_plus: "+genero_plus);
-        
-        if(fase == 'Alm'){
-            $("#fase").val('Almacen')
-            $("#motivo").html(
-                "<option disabled><strong>Almacen</strong></option>"+
-                "<option value='Extraviado'>1. Extraviado</option>" +
-                "<option value='Termita'>2. Termita</option>" +
-                "<option value='Reaccion luz'>3. Reaccion a la luz</option>"
-            );
-        }else if(fase == 'Lav'){
-            $("#fase").val('Lavanderia')
-            $("#motivo").html(
-                "<option disabled><strong>Lavanderia</strong></option>"+
-                "<option value='Rotos'>1. Rotos</option>" +
-                "<option value='Manchados'>2. Manchados</option>" +
-                "<option value='Extraviado'>3. Extraviado</option>"
-            );
-            
-        }else if(fase == 'Pro'){
-            $("#fase").val('Produccion')
-            $("#motivo").html(
-                "<div class='dropdown-menu'>"+
-                "<option disabled><strong>Produccion</strong></option>"+
-                "<option   class='dropdown-item'  value='Error del operador'>1. Error del operador</option>" +
-                    "<option class='dropdown-item'  value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
-                    "<option class='dropdown-item' value='Defecto de tela'>3. Defecto de tela</option>" +
-                    "<option class='dropdown-item' value='Fallo en Dpto.corte'>4. Fallo en Dpto.corte</option>" +
-                    "<option class='dropdown-item' value='Extraviado'>5. Extraviado</option>"+
-                     "<option  disabled>_______________________________________________________</option>"+
-                     "<option disabled><strong>Procesos Secos</strong></option>"+
-                    "<option class='dropdown-item' value='Error del operador'>1. Error del operador</option>" +
-                    "<option class='dropdown-item' value='Extraviado'>2. Extraviado</option>"+
-                "</div>"
-            );
-        }else if(fase == 'Ter'){
-            $("#fase").val('Terminacion')
-            $("#motivo").html(
-                "<option disabled><strong>Terminacion</strong></option>"+
-                "<option value='Error del operador'>1. Error del operador</option>" +
-                "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
-                "<option value='Defecto de tela'>3. Defecto de tela</option>" +
-                "<option value='Fallo en Dpto. corte'>4. Fallo en Dpto. corte</option>" +
-                "<option value='Extraviado'>5. Extraviado </option>"
-            );
-        }
-    
-      
-    });
-
-
-
-
-    // $("#a").on("keyup", function() {
-    //     $("#btn-guardar").attr("disabled", false);
-    // });
 
     function limpiar() {
         $("#fase").val("");
@@ -251,6 +186,7 @@ $(document).ready(function() {
                     let dia = fecha.substr(0, 2);
                     let month = fecha.substr(3, 2);
                     let year = fecha.substr(6, 4);
+                    let fase =  datos.fase;
 
                     $("#fecha").attr('min', year +"-"+ month+"-"+dia);
 
@@ -266,10 +202,10 @@ $(document).ready(function() {
                     j_total = datos.j;
                     k_total = datos.k;
                     l_total = datos.l;
-                   
+
 
                     //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-                    (datos.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false); 
+                    (datos.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false);
                     (datos.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
                     (datos.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
                     (datos.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
@@ -301,9 +237,85 @@ $(document).ready(function() {
                     genero_global = val.substring(1, 2);
                     genero_plus_global = val.substring(3, 4);
 
+                    switch (fase) {
+                        case "Terminacion":
+                            $("#tipo_perdida").html(
+                                "<option value='Normal'>Total</option>" +
+                                "<option value='Segundas'>Segundas</option>"
+                            );
+                            $("#btn-generar").attr("disabled", false);
+                            $("#fase").val('Terminacion')
+                            $("#motivo").html(
+                                "<option disabled><strong>Terminacion</strong></option>"+
+                                "<option value='Error del operador'>1. Error del operador</option>" +
+                                "<option value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
+                                "<option value='Defecto de tela'>3. Defecto de tela</option>" +
+                                "<option value='Fallo en Dpto. corte'>4. Fallo en Dpto. corte</option>" +
+                                "<option value='Extraviado'>5. Extraviado </option>"
+                            );
+                            break;
+                        case "Almacen":
+                            $("#tipo_perdida").html(
+                                "<option value='Normal'>Total</option>" +
+                                "<option value='Segundas'>Segundas</option>"
+                            );
+                            $("#btn-generar").attr("disabled", false);
+                            $("#fase").val('Almacen')
+                            $("#motivo").html(
+                                "<option disabled><strong>Almacen</strong></option>"+
+                                "<option value='Extraviado'>1. Extraviado</option>" +
+                                "<option value='Termita'>2. Termita</option>" +
+                                "<option value='Reaccion luz'>3. Reaccion a la luz</option>"
+                            );
+                        break;
+
+                        case "Produccion":
+                            $("#tipo_perdida").html(
+                                "<option value='Normal'>Total</option>"
+                            );
+                            $("#btn-generar").attr("disabled", false);
+                            $("#fase").val('Produccion')
+                            $("#motivo").html(
+                                "<div class='dropdown-menu'>"+
+                                "<option disabled><strong>Produccion</strong></option>"+
+                                "<option   class='dropdown-item'  value='Error del operador'>1. Error del operador</option>" +
+                                    "<option class='dropdown-item'  value='Fallo de la maquina'>2. Fallo de la maquina</option>" +
+                                    "<option class='dropdown-item' value='Defecto de tela'>3. Defecto de tela</option>" +
+                                    "<option class='dropdown-item' value='Fallo en Dpto.corte'>4. Fallo en Dpto.corte</option>" +
+                                    "<option class='dropdown-item' value='Extraviado'>5. Extraviado</option>"+
+                                     "<option  disabled>_______________________________________________________</option>"+
+                                     "<option disabled><strong>Procesos Secos</strong></option>"+
+                                    "<option class='dropdown-item' value='Error del operador'>1. Error del operador</option>" +
+                                    "<option class='dropdown-item' value='Extraviado'>2. Extraviado</option>"+
+                                "</div>"
+                            );
+                        break;
+
+                        case "Lavanderia":
+                            $("#tipo_perdida").html(
+                                "<option value='Normal'>Total</option>"
+                            );
+                            $("#btn-generar").attr("disabled", false);
+                            $("#fase").val('Lavanderia')
+                            $("#motivo").html(
+                                "<option disabled><strong>Lavanderia</strong></option>"+
+                                "<option value='Rotos'>1. Rotos</option>" +
+                                "<option value='Manchados'>2. Manchados</option>" +
+                                "<option value='Extraviado'>3. Extraviado</option>"
+                            );
+                        break;
+                        default:
+                            $("#tipo_perdida").html(
+                                "<option value='Normal'>Total</option>" +
+                                "<option value='Segundas'>Segundas</option>"
+                            );
+                            $("#btn-generar").attr("disabled", false);
+                        break;
+                    }
+
                     if (genero == "2") {
                         $("#genero").val('Mujer: '+val);
-            
+
                             if(genero_plus == "7"){
                                $("#genero").val('Mujer plus: '+val);
                                $("#sa").html("12W");
@@ -322,8 +334,8 @@ $(document).ready(function() {
                                $("#tf").html("22W");
                                $("#tg").html("24W");
                                $("#th").html("26W");
-                             
-                         
+
+
                                $("#tallas").html(
                                    "<th>Dama Plus</th>"+
                                    "<th>12W</th>"+
@@ -382,7 +394,7 @@ $(document).ready(function() {
                         );
                            }
                     }
-                    
+
                     if (genero == "3") {
                         $("#genero").val('Niño: '+val);
                         $("#sub-genero").hide();
@@ -492,8 +504,8 @@ $(document).ready(function() {
                             "<th>44</th>"
                         );
                     }
-                    
-                
+
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -507,9 +519,6 @@ $(document).ready(function() {
             }
         });
     })
-
-
-
 
     //funcion para generar codigo de perdida o segunda
     $("#btn-generar").on("click", function(e) {
@@ -529,13 +538,13 @@ $(document).ready(function() {
                             .join("");
 
                         var tipo_perdida = $("#tipo_perdida").val()
-                
+
                         if(tipo_perdida == 'Segundas'){
                             var referencia = "SE-" + i;
                         }else if(tipo_perdida = 'Normal'){
                             var referencia = "PE-" + i;
                         }
-                      
+
 
                         $("#no_perdida").val(referencia);
                         $("#fila1").show();
@@ -553,8 +562,8 @@ $(document).ready(function() {
                     bootbox.alert("Ocurrio un error!!");
                 }
             });
-       
-           
+
+
     });
 
     $("#tipo_perdida").on("change", function(){
@@ -583,12 +592,12 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                
+
                     bootbox.alert(
                         "Se registro correctamente la perdida: "+ datos.perdida.no_perdida
                     );
                     // limpiar();
-                   
+
                     var talla = {
                         perdida_id: datos.perdida.id,
                         a: $("#a").val(),
@@ -598,7 +607,7 @@ $(document).ready(function() {
                         e: $("#e").val(),
                         f: $("#f").val(),
                         g: $("#g").val(),
-                        h: $("#h").val(),   
+                        h: $("#h").val(),
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
@@ -614,11 +623,11 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                                
+
                                 tabla.ajax.reload();
                                 mostrarForm(false);
                                 limpiar();
-            
+
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -627,7 +636,7 @@ $(document).ready(function() {
                         },
                         error: function(datos) {
                             console.log(datos.responseJSON.message);
-            
+
                             bootbox.alert("Error: " + datos.responseJSON.message);
                         }
                     });
@@ -641,7 +650,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -649,7 +658,7 @@ $(document).ready(function() {
                         message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
                         size: 'small'
                     });
-                });  
+                });
             }
         });
     });
@@ -718,7 +727,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     bootbox.alert("Se actualizo correctamente la perdida");
-                  
+
                     var talla = {
                         perdida_id: datos.perdida.id,
                         a: $("#a").val(),
@@ -728,14 +737,14 @@ $(document).ready(function() {
                         e: $("#e").val(),
                         f: $("#f").val(),
                         g: $("#g").val(),
-                        h: $("#h").val(),   
+                        h: $("#h").val(),
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
                         l: $("#l").val()
                     };
 
-                 
+
 
                     $.ajax({
                         url: "talla_perdidas/edit",
@@ -749,8 +758,8 @@ $(document).ready(function() {
                                 limpiar();
                                 tabla.ajax.reload();
                                 mostrarForm(false);
-            
-            
+
+
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -759,7 +768,7 @@ $(document).ready(function() {
                         },
                         error: function(datos) {
                             console.log(datos.responseJSON.message);
-            
+
                             bootbox.alert("Error: " + datos.responseJSON.message);
                         }
                     });
@@ -777,9 +786,8 @@ $(document).ready(function() {
         });
     });
 
-    $("#btn-close").click(function(e){
-        e.preventDefault();
-
+    function validarTallas(){
+        $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
         var validar = {
             a: $("#a").val(),
             b: $("#b").val(),
@@ -816,7 +824,7 @@ $(document).ready(function() {
                     var j = datos.j;
                     var k = datos.k;
                     var l = datos.l;
-                        
+
                         if(genero_global == 2){
 
                             if(genero_plus_global == 7){
@@ -906,7 +914,7 @@ $(document).ready(function() {
                                    "</div>")
                                 }
                             }
-    
+
                         }else if(genero_global == 3 && genero_global == 4){
                             if(a > a_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
@@ -981,10 +989,10 @@ $(document).ready(function() {
                                 "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }
-                        }   
+                        }
 
-                       
-                       
+
+
 
                         if(total > total_recibido){
                             bootbox.alert("<div class='alert alert-danger' role='alert'>"+
@@ -994,8 +1002,8 @@ $(document).ready(function() {
                         }else{
                             $("#btn-guardar").show();
                         }
-                        
-                        
+
+
                     } else {
                         bootbox.alert(
                             "Ocurrio un error durante la creacion de la composicion"
@@ -1006,7 +1014,19 @@ $(document).ready(function() {
                    console.log("ocurrio un error")
                 }
         });
+    }
+
+    $("#btn-close").click(function(e){
+        e.preventDefault();
+        validarTallas();
+
     });
+
+    $('#modalPerdida').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+        validarTallas();
+
+    })
 
     function mostrarForm(flag) {
         limpiar();

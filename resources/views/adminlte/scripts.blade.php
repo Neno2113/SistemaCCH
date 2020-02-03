@@ -59,6 +59,9 @@
 <!-- SweetAlert-->
 <script src="{{asset('adminlte/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 
+<!-- Bootstrap switch-->
+<script src="{{asset('adminlte/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+
 <!-- InputMASK -->
 <script src="{{asset('adminlte/plugins/inputmask/jquery.inputmask.bundle.js')}}"></script>
 <!-- AdminLTE App -->

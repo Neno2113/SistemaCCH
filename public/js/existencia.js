@@ -4,7 +4,7 @@ $(document).ready(function() {
     function init() {
         // $("#btn-consultar").attr('disabled', true);
         $("#codigo").hide();
-       
+
     }
 
     String.prototype.replaceAll = function (find, replace) {
@@ -26,8 +26,8 @@ $(document).ready(function() {
                             text: item.referencia_producto,
                             id: item.id
                         }
-                    })   
-                    
+                    })
+
                 };
             },
             cache: true,
@@ -42,13 +42,13 @@ $(document).ready(function() {
         var existencia = {
             producto_id: $("#productoSearch").val(),
             referencia_producto: $("#productoSearch option:selected").text(),
-            
+
         };
 
         val = $("#productoSearch option:selected").text();
         let genero = val.substring(1, 2);
         let mujer_plus = val.substring(3, 4);
-   
+
         $.ajax({
             url: "existencia/consulta",
             type: "POST",
@@ -57,9 +57,9 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-           
+
                     var tipo_consulta = $("#tipo_consulta").val();
-                    var ref = $("#productoSearch option:selected").text(); 
+                    var ref = $("#productoSearch option:selected").text();
 
                       // listarCorteDetalle(datos.id);
                       if (genero == "2") {
@@ -94,7 +94,7 @@ $(document).ready(function() {
                     }
                     if (genero == "3") {
                         $("#genero").val("Niño: " + val);
-                       
+
                         $("#ta").html("2");
                         $("#tb").html("4");
                         $("#tc").html("6");
@@ -107,10 +107,10 @@ $(document).ready(function() {
                         $("#tj").html("J");
                         $("#tk").html("K");
                         $("#tl").html("L");
-                     
+
                     } else if (genero == "4") {
                         $("#genero").val("Niña: " + val);
-                     
+
                         $("#ta").html("2");
                         $("#tb").html("4");
                         $("#tc").html("6");
@@ -125,7 +125,7 @@ $(document).ready(function() {
                         $("#tl").html("L");
                     } else if (genero == "1") {
                         $("#genero").val("Hombre: " + val);
-                     
+
                         $("#ta").html("28");
                         $("#tb").html("29");
                         $("#tc").html("30");
@@ -142,7 +142,7 @@ $(document).ready(function() {
 
 
 
-                 
+
                     if(tipo_consulta == 'Totales'){
                         $("#codigo").hide();
                         $("#transacciones").html(
@@ -161,6 +161,8 @@ $(document).ready(function() {
                             "<th id='j_corte' class='font-weight-normal'>"+datos.j_corte+"</th>"+
                             "<th id='k_corte' class='font-weight-normal'>"+datos.k_corte+"</th>"+
                             "<th id='l_corte' class='font-weight-normal'>"+datos.l_corte+"</th>"+
+                            "<th id='l_corte' class='font-weight-normal'></th>"+
+                            "<th id='l_corte' class='font-weight-bold'>"+datos.total_corte+"</th>"+
                             "</tr>"+
                             "<tr id='almacen'>"+
                             "<th>EA(Almacen)</th>"+
@@ -177,6 +179,8 @@ $(document).ready(function() {
                             "<th id='j_alm' class='text-success '>"+datos.j_alm+"</th>"+
                             "<th id='k_alm' class='text-success '>"+datos.k_alm+"</th>"+
                             "<th id='l_alm' class='text-success '>"+datos.l_alm+"</th>"+
+                            "<th id='l_alm' class='text-success '></th>"+
+                            "<th id='l_alm' class='text-success '>"+datos.total_alm+"</th>"+
                             "</tr>"+
                             "<tr id='perdidas'>"+
                             "<th>PE(Perdida)</th>"+
@@ -194,6 +198,7 @@ $(document).ready(function() {
                             "<th id='k_perd' class='text-red font-weight-normal'>"+datos.k_perd+"</th>"+
                             "<th id='l_perd' class='text-red font-weight-normal'>"+datos.l_perd+"</th>"+
                             "<th id='x_perd' class='text-red font-weight-normal'>"+datos.x_perd+"</th>"+
+                            "<th id='x_perd' class='text-red font-weight-bold'>"+datos.total_perd+"</th>"+
                             "</tr>"+
                             "<tr id='segundas'>"+
                             "<th>Se(Segunda)</th>"+
@@ -211,6 +216,7 @@ $(document).ready(function() {
                             "<th id='k_seg' class='text-red font-weight-normal'>"+datos.k_seg+"</th>"+
                             "<th id='l_seg' class='text-red font-weight-normal'>"+datos.l_seg+"</th>"+
                             "<th id='x_seg' class='text-red font-weight-normal'>"+datos.x_seg+"</th>"+
+                            "<th id='x_seg' class='text-red font-weight-bold'>"+datos.total_seg+"</th>"+
                             "</tr>"+
                             "<tr id='orden_pedido'>"+
                             "<th>OP(Orden Pedido)</th>"+
@@ -227,6 +233,8 @@ $(document).ready(function() {
                             "<th id='j_op' class='text-primary font-weight-normal'>"+datos.j_op+"</th>"+
                             "<th id='k_op' class='text-primary font-weight-normal'>"+datos.k_op+"</th>"+
                             "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_op+"</th>"+
+                            "<th id='l_op' class='text-primary font-weight-normal'></th>"+
+                            "<th id='l_op' class='text-primary font-weight-bold'>"+datos.total_op+"</th>"+
                             "</tr>"+
                             "<tr id='facturado'>"+
                             "<th>FB(Facturacion)</th>"+
@@ -243,11 +251,13 @@ $(document).ready(function() {
                             "<th id='j_op' class='text-primary font-weight-normal'>"+datos.j_fb+"</th>"+
                             "<th id='k_op' class='text-primary font-weight-normal'>"+datos.k_fb+"</th>"+
                             "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_fb+"</th>"+
+                            "<th id='l_op' class='text-primary font-weight-normal'></th>"+
+                            "<th id='l_op' class='text-primary font-weight-bold'>"+datos.total_fb+"</th>"+
                             "</tr>"
-                            
+
 
                         )
-                       
+
 
                         // $("#ref").html(ref);
                         $("#a").html(datos.a);
@@ -262,21 +272,38 @@ $(document).ready(function() {
                         $("#j").html(datos.j);
                         $("#k").html(datos.k);
                         $("#l").html(datos.l);
+                        $("#total").html(datos.total);
 
                         // $("#ref_venta").html(ref);
-                        $("#a_venta").html(datos.a_disp);  
+                        $("#a_venta").html(datos.a_disp);
                         $("#b_venta").html(datos.b_disp);
-                        $("#c_venta").html(datos.c_disp);  
-                        $("#d_venta").html(datos.d_disp); 
+                        $("#c_venta").html(datos.c_disp);
+                        $("#d_venta").html(datos.d_disp);
                         $("#e_venta").html(datos.e_disp);
-                        $("#f_venta").html(datos.f_disp);  
-                        $("#g_venta").html(datos.g_disp);  
-                        $("#h_venta").html(datos.h_disp);  
-                        $("#i_venta").html(datos.i_disp);                   
-                        $("#j_venta").html(datos.j_disp); 
+                        $("#f_venta").html(datos.f_disp);
+                        $("#g_venta").html(datos.g_disp);
+                        $("#h_venta").html(datos.h_disp);
+                        $("#i_venta").html(datos.i_disp);
+                        $("#j_venta").html(datos.j_disp);
                         $("#k_venta").html(datos.k_disp);
-                        $("#l_venta").html(datos.l_disp); 
-                        
+                        $("#l_venta").html(datos.l_disp);
+                        $("#total_venta").html(datos.total_disp);
+
+                        // $("#ref_venta").html(ref);
+                        $("#a_venta_seg").html(datos.a_seg);
+                        $("#b_venta_seg").html(datos.b_seg);
+                        $("#c_venta_seg").html(datos.c_seg);
+                        $("#d_venta_seg").html(datos.d_seg);
+                        $("#e_venta_seg").html(datos.e_seg);
+                        $("#f_venta_seg").html(datos.f_seg);
+                        $("#g_venta_seg").html(datos.g_seg);
+                        $("#h_venta_seg").html(datos.h_seg);
+                        $("#i_venta_seg").html(datos.i_seg);
+                        $("#j_venta_seg").html(datos.j_seg);
+                        $("#k_venta_seg").html(datos.k_seg);
+                        $("#l_venta_seg").html(datos.l_seg);
+                        $("#total_venta_seg").html();
+
 
                         $("#totales").show();
                         $("#disp_venta").show();
@@ -319,7 +346,7 @@ $(document).ready(function() {
                         }
 
                         for (let i = 0; i < longitudAlmacen; i++) {
-                       
+
                             var fila =  "<tr >"+
                             "<th> EA(Almacen) </th>"+
                             "<td></td>"+
@@ -336,17 +363,17 @@ $(document).ready(function() {
                             "<th class='text-success font-weight-normal'>"+datos.tallasAlmacen[i].j+"</th>"+
                             "<th class='text-success font-weight-normal'>"+datos.tallasAlmacen[i].k+"</th>"+
                             "<th class='text-success font-weight-normal'>"+datos.tallasAlmacen[i].l+"</th>"+
-                           
+
                             "</tr>";
 
                             fila = fila.replaceAll('null', '');
-                         
+
                             $("#transacciones").append(fila);
-                           
+
                         }
-                       
+
                         for (let i = 0; i < longitudPerdidas; i++) {
-                       
+
                             var fila =  "<tr >"+
                             "<th>PE(Perdida)</th>"+
                             "<td>"+datos.tallasPerdidas[i].perdida.no_perdida +"</td>"+
@@ -367,13 +394,13 @@ $(document).ready(function() {
                             "</tr>";
 
                             fila = fila.replaceAll('null', '');
-                         
+
                             $("#transacciones").append(fila);
-                           
+
                         }
 
                         for (let i = 0; i < longitudSegundas; i++) {
-                       
+
                             var fila =  "<tr >"+
                             "<th>SE(Segunda)</th>"+
                             "<td>"+datos.tallaSegundas[i].perdida.no_perdida +"</td>"+
@@ -394,13 +421,13 @@ $(document).ready(function() {
                             "</tr>";
 
                             fila = fila.replaceAll('null', '');
-                         
+
                             $("#transacciones").append(fila);
-                           
+
                         }
 
                         for (let i = 0; i < longitudPedidos; i++) {
-                       
+
                             var fila =  "<tr >"+
                             "<th>OP(Orden Pedido)</th>"+
                             "<td>"+datos.tallasOrdenes[i].ordenPedido.no_orden_pedido+"</td>"+
@@ -420,9 +447,9 @@ $(document).ready(function() {
                             "</tr>";
 
                             fila = fila.replaceAll('null', '');
-                         
+
                             $("#transacciones").append(fila);
-                           
+
                         }
                     }
 
@@ -474,8 +501,8 @@ $(document).ready(function() {
         let k_perd = parseInt($("#k_perd").text());
         let l_perd = parseInt($("#l_perd").text());
 
-    
-        
+
+
         var existencia = {
             a: a_corte - a_perd,
             b: b_corte - b_perd,
@@ -536,9 +563,9 @@ $(document).ready(function() {
         $("#btn-consultar").attr('disabled', false);
     });
 
-  
 
- 
+
+
 
 
 

@@ -976,6 +976,8 @@ $(document).ready(function() {
             $("#fila1").hide();
             $("#fila2").hide();
             $("#fila3").hide();
+            $("#spiner").hide();
+            $("#spiner2").hide();
             // $("#rollo-edit").hide();
             $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
@@ -993,6 +995,34 @@ $(document).ready(function() {
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
     });
+
+    $("#edit-hide").click(function(){
+        $("#spiner").show();
+        $("#spiner2").show();
+    });
+
+    $("#btn-tallas-cerrar").click(function(e){
+        e.preventDefault();
+        $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
+    });
+
+    $('#test').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+        $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
+    })
+
+    $('#modalRollos').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+        $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
+    })
+
+
+    $('#modalSKU').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+        $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+    })
+
+
 
     //Botones para asignar SKU, se puede mejorar implementando un bucle que recorra cada boton
     //(implementar en el futuro)

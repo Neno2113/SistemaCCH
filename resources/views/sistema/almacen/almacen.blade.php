@@ -235,7 +235,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" id="modalAlmacen" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">

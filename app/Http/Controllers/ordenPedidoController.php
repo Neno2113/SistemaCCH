@@ -954,9 +954,9 @@ class ordenPedidoController extends Controller
                     return  '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm mr-1"><i class="fas fa-window-close fa-sm"></i></button>'.
                     '<button onclick="ver(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"><i class="fas fa-eye fa-sm"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Stanby') {
-                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm" id="btn-status"> <i class="fas fa-check fa-sm"></i></button>';
+                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-secondary " id="btn-status"> <i class="far fa-check-square"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Cancelado') {
-                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-check"></i></button>';
+                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-secondary  ml-1" id="btn-status"> <i class="far fa-check-square"></i></button>';
                 } else {
                     return '<span class="badge badge-pill badge-info">Facturado</span>';
                 }

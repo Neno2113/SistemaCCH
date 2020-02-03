@@ -44,7 +44,7 @@ class PerdidaController extends Controller
             // $perdida_x = $request->input('perdida_x');
             // $producto_id = $request->input('producto_id');
 
-        
+
             $perdida = new Perdida();
             $corte = Corte::find($corte_id);
             $producto_id = $corte['producto_id'];
@@ -116,9 +116,9 @@ class PerdidaController extends Controller
             $k = intval(trim($k, "_"));
             $l = intval(trim($l, "_"));
             $x = intval(trim($x, "_"));
-            
+
             $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l+$x;
-        
+
             $tallas = new TallasPerdidas();
 
             $tallas->perdida_id = $perdida_id;
@@ -135,7 +135,7 @@ class PerdidaController extends Controller
             $tallas->k = $k;
             $tallas->l = $l;
             $tallas->talla_x = $x;
-         
+
             $tallas->total = $total;
 
             $tallas->save();
@@ -179,7 +179,7 @@ class PerdidaController extends Controller
             ->load('producto');
             // ->load('talla');
 
-        $talla_perdida = TallasPerdidas::where('perdida_id', $id)->get()->first();  
+        $talla_perdida = TallasPerdidas::where('perdida_id', $id)->get()->first();
 
 
         if (is_object($perdida)) {
@@ -226,7 +226,7 @@ class PerdidaController extends Controller
             $no_perdida = $request->input('no_perdida');
             $sec = $request->input('sec');
             $perdida_x = $request->input('perdida_x');
-        
+
             $perdida = Perdida::find($id);
 
             $perdida->corte_id = $corte_id;
@@ -293,10 +293,10 @@ class PerdidaController extends Controller
             $k = intval(trim($k, "_"));
             $l = intval(trim($l, "_"));
             $x = intval(trim($x, "_"));
-            
 
-            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l; 
-        
+
+            $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l;
+
             $tallas = TallasPerdidas::where('perdida_id', $perdida_id)->get()->first();
 
             $tallas->a = $a;
@@ -403,8 +403,8 @@ class PerdidaController extends Controller
         //buscar cortes con la misma referencia producto
         $corte = Corte::where('id', $corte_id)
         // ->where('fase', 'LIKE', 'Terminacion')
-        ->select('id', 'total')->get();
-    
+        ->select('id', 'total', 'fase')->get();
+
         $cortes = array();
 
         $longitud = count($corte);
@@ -458,7 +458,7 @@ class PerdidaController extends Controller
         $i = $tallas->sum('i') - $tallasPerdidas->sum('i');
         $j = $tallas->sum('j') - $tallasPerdidas->sum('j');
         $k = $tallas->sum('k') - $tallasPerdidas->sum('k');
-        $l = $tallas->sum('l') - $tallasPerdidas->sum('l'); 
+        $l = $tallas->sum('l') - $tallasPerdidas->sum('l');
 
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);
@@ -475,7 +475,7 @@ class PerdidaController extends Controller
         $l = ($l < 0 ? 0 : $l);
 
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
-        
+
         $data = [
             'code' => 200,
             'status' => 'success',
@@ -493,7 +493,8 @@ class PerdidaController extends Controller
             'k' => $k,
             'l' => $l,
             'total' => $total_real,
-            'ref' => $producto->referencia_producto
+            'ref' => $producto->referencia_producto,
+            'fase' => $fecha_corte->fase
         ];
 
         return response()->json($data, $data['code']);
@@ -519,5 +520,5 @@ class PerdidaController extends Controller
 
     }
 
-    
+
 }

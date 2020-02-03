@@ -110,6 +110,7 @@ class ExistenciaController extends Controller
         $j = $tallasAlmacen->sum('j') - $tallasfacturacion->sum('j') + $tallasNC->sum('j') + $tallasSegundas->sum('a');
         $k = $tallasAlmacen->sum('k') - $tallasfacturacion->sum('k') + $tallasNC->sum('k') + $tallasSegundas->sum('a');
         $l = $tallasAlmacen->sum('l') - $tallasfacturacion->sum('l') + $tallasNC->sum('l') + $tallasSegundas->sum('a');
+        $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         //disponible para la venta
         $a_disp = $a - $tallasOrdenes->sum('a') - $tallasSegundas->sum('a');
@@ -124,7 +125,23 @@ class ExistenciaController extends Controller
         $j_disp = $j - $tallasOrdenes->sum('j') - $tallasSegundas->sum('j');
         $k_disp = $k - $tallasOrdenes->sum('k') - $tallasSegundas->sum('k');
         $l_disp = $l - $tallasOrdenes->sum('l') - $tallasSegundas->sum('l');
+        $total_disp = $a_disp + $b_disp + $c_disp + $d_disp + $e_disp + $f_disp + $g_disp + $h_disp
+        + $i_disp + $j_disp + $k_disp + $l_disp;
 
+        $a_op = $tallasOrdenes->sum('a');
+        $b_op = $tallasOrdenes->sum('b');
+        $c_op = $tallasOrdenes->sum('c');
+        $d_op = $tallasOrdenes->sum('d');
+        $e_op = $tallasOrdenes->sum('e');
+        $f_op = $tallasOrdenes->sum('f');
+        $g_op = $tallasOrdenes->sum('g');
+        $h_op = $tallasOrdenes->sum('h');
+        $i_op = $tallasOrdenes->sum('i');
+        $j_op = $tallasOrdenes->sum('j');
+        $k_op = $tallasOrdenes->sum('k');
+        $l_op = $tallasOrdenes->sum('l');
+        $total_op = $a_op + $b_op + $c_op + $d_op + $e_op + $f_op + $g_op + $h_op +
+        $i_op + $j_op + $k_op + $l_op;
 
         //respuesta
         $data = [
@@ -142,6 +159,7 @@ class ExistenciaController extends Controller
             'j' => $j,
             'k' => $k,
             'l' => $l,
+            'total' => $total,
             'a_disp' => $a_disp,
             'b_disp' => $b_disp,
             'c_disp' => $c_disp,
@@ -154,6 +172,7 @@ class ExistenciaController extends Controller
             'j_disp' => $j_disp,
             'k_disp' => $k_disp,
             'l_disp' => $l_disp,
+            'total_disp' => $total_disp,
             'tallas' => $tallas,
             'a_corte' => $tallas->sum('a'),
             'b_corte' => $tallas->sum('b'),
@@ -167,6 +186,7 @@ class ExistenciaController extends Controller
             'j_corte' => $tallas->sum('j'),
             'k_corte' => $tallas->sum('k'),
             'l_corte' => $tallas->sum('l'),
+            'total_corte' => $tallas->sum('total'),
             'tallasPerdidas' => $tallasPerdidas,
             'a_perd' => $tallasPerdidas->sum('a'),
             'b_perd' => $tallasPerdidas->sum('b'),
@@ -181,6 +201,7 @@ class ExistenciaController extends Controller
             'k_perd' => $tallasPerdidas->sum('k'),
             'l_perd' => $tallasPerdidas->sum('l'),
             'x_perd' => $tallasPerdidas->sum('talla_x'),
+            'total_perd' => $tallasPerdidas->sum('total'),
             'tallaSegundas' => $tallasSegundas,
             'a_seg' => $tallasSegundas->sum('a'),
             'b_seg' => $tallasSegundas->sum('b'),
@@ -195,6 +216,7 @@ class ExistenciaController extends Controller
             'k_seg' => $tallasSegundas->sum('k'),
             'l_seg' => $tallasSegundas->sum('l'),
             'x_seg' => $tallasSegundas->sum('talla_x'),
+            'total_seg' => $tallasSegundas->sum('total'),
             'tallasAlmacen' => $tallasAlmacen,
             'a_alm' => $tallasAlmacen->sum('a'),
             'b_alm' => $tallasAlmacen->sum('b'),
@@ -208,6 +230,7 @@ class ExistenciaController extends Controller
             'j_alm' => $tallasAlmacen->sum('j'),
             'k_alm' => $tallasAlmacen->sum('k'),
             'l_alm' => $tallasAlmacen->sum('l'),
+            'total_alm' => $tallasAlmacen->sum('total'),
             'tallasOrdenes' => $tallasOrdenes,
             'a_op' => $tallasOrdenes->sum('a'),
             'b_op' => $tallasOrdenes->sum('b'),
@@ -221,6 +244,7 @@ class ExistenciaController extends Controller
             'j_op' => $tallasOrdenes->sum('j'),
             'k_op' => $tallasOrdenes->sum('k'),
             'l_op' => $tallasOrdenes->sum('l'),
+            'total_op' => $total_op,
             'tallasNC' => $tallasNC,
             'a_nc' => $tallasNC->sum('a'),
             'b_nc' => $tallasNC->sum('b'),
@@ -234,6 +258,7 @@ class ExistenciaController extends Controller
             'j_nc' => $tallasNC->sum('j'),
             'k_nc' => $tallasNC->sum('k'),
             'l_nc' => $tallasNC->sum('l'),
+            'total_nc' => $tallasNC->sum('total'),
             'tallasFactura' => $tallasfacturacion,
             'a_fb' => $tallasfacturacion->sum('a'),
             'b_fb' => $tallasfacturacion->sum('b'),
@@ -247,6 +272,7 @@ class ExistenciaController extends Controller
             'j_fb' => $tallasfacturacion->sum('j'),
             'k_fb' => $tallasfacturacion->sum('k'),
             'l_fb' => $tallasfacturacion->sum('l'),
+            'total_fb' => $tallasfacturacion->sum('total'),
         ];
 
 

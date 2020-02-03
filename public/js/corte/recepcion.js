@@ -2,7 +2,7 @@ $(document).ready(function() {
     var pendiente_guardar;
     var total_devuelto_gloabl;
 
-    
+
     $("#formulario").validate({
             rules: {
                 cortesSearch: {
@@ -12,14 +12,14 @@ $(document).ready(function() {
                 lavanderias: {
                     required: true,
                     minlength: 1
-                    
+
                 },
                 fecha_recepcion: {
                     required: true,
                     minlength: 1
                 },
-              
-              
+
+
             },
             messages: {
                 codigo_composicion: {
@@ -31,10 +31,10 @@ $(document).ready(function() {
                 fecha_recepcion: {
                     required: "La fecha de recepcion es obligatoria"
                 },
-              
+
             }
     })
-      
+
 
 
     var tabla
@@ -50,7 +50,7 @@ $(document).ready(function() {
         $("#btn-guardar").attr("disabled", false);
     })
 
-        
+
     function limpiar() {
         $("#fecha_recepcion").val("");
         $("#cantidad_recibida").val("");
@@ -103,21 +103,21 @@ $(document).ready(function() {
     function recepcionCod() {
             $("#sec").val("");
             $("#numero_recepcion").val("");
-         
+
             $.ajax({
                 url: "recepcion/lastdigit",
                 type: "GET",
                 dataType: "json",
                 success: function(datos) {
                     if (datos.status == "success") {
-                        
+
                         var i = Number(datos.sec);
                         $("#sec").val(i);
                         i = (i + 0.01).toFixed(2).split('.').join("");
                         var referencia = "RE"+'-'+i;
-                                   
+
                         $("#numero_recepcion").val(referencia);
-                               
+
                     } else {
                         bootbox.alert(
                             "Ocurrio un error !!"
@@ -131,7 +131,7 @@ $(document).ready(function() {
                 }
             });
         }
-  
+
 
     $("#fecha_recepcion").on('change', function(){
         var recepcion = {
@@ -148,7 +148,7 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    console.log(datos);
+                    // console.log(datos);
                     let total_enviado = datos.total_enviado;
                     let cantidad_corte = datos.total_cortado;
                     let cantidad_perdida = datos.perdidas;
@@ -157,7 +157,7 @@ $(document).ready(function() {
                     let total_devuelto = datos.total_devuelto;
                     total_devuelto_gloabl = datos.total_devuelto;
                     let pendiente = total_enviado - total_recibido - cantidad_perdida;
-                    pendiente_guardar = pendiente; 
+                    pendiente_guardar = pendiente;
 
                     // $("#cantidad_recibida").val(parcial);
                     bootbox.alert("La cantidad pendiente a recibir de este corte es: <strong>"+ pendiente+"</strong>");
@@ -168,15 +168,15 @@ $(document).ready(function() {
                     // }
 
                     if(total_recibido == null || total_recibido == 0){
-                        $("#cantidad_restante").val(total_enviado - cantidad_perdida); 
+                        $("#cantidad_restante").val(total_enviado - cantidad_perdida);
                     }else{
-                        $("#cantidad_restante").val(total_enviado - total_recibido - cantidad_perdida); 
+                        $("#cantidad_restante").val(total_enviado - total_recibido - cantidad_perdida);
                         // bootbox.alert("Se han recibido: "+total_recibido+" de: "+ total_enviado);
-                    }   
+                    }
 
-                    
-                
-                   
+
+
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -194,7 +194,7 @@ $(document).ready(function() {
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-       
+
         var recepcion = {
             corte: $("#cortesSearch").val(),
             numero_recepcion: $("#numero_recepcion").val(),
@@ -203,50 +203,57 @@ $(document).ready(function() {
             cantidad_recibida: $("#cantidad_recibida").val(),
             total_devuelto: total_devuelto_gloabl,
             estandar_recibido: $("input[name='r1']:checked").val(),
+            recibir_terminacion: $("input[name='r2']:checked").val(),
+            devolver_produccion: $("input[name='r3']:checked").val(),
             sec: $("#sec").val()
         };
 
+        console.log(JSON.stringify(recepcion));
         var cant_recibida = $("#cantidad_recibida").val();
-        
-        if(cant_recibida > pendiente_guardar){
-            bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-            "<i class='fas fa-exclamation-triangle'></i> La cantidad digitada no puede ser mayor a la cantidad pendiente por recibir de lavanderia"+
-           "</div>")
-        }else{
-            $.ajax({
-                url: "recepcion",
-                type: "POST",
-                dataType: "json",
-                data: JSON.stringify(recepcion),
-                contentType: "application/json",
-                success: function(datos) {
-                    if (datos.status == "success") {
-                        bootbox.alert("Corte recibido de lavanderia recibido!!");
-                        limpiar();
-                        tabla.ajax.reload();
-                        mostrarForm(false);
-                        recepcionCod();
-                    } else {
-                        bootbox.alert(
-                            "Ocurrio un error durante la creacion de la composicion"
-                        );
-                    }
-                },
-                error: function(datos) {
-                    console.log(datos.responseJSON.errors); 
-                    let errores = datos.responseJSON.errors;
-    
-                    Object.entries(errores).forEach(([key, val]) => {
-                        bootbox.alert({
-                            message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                            size: 'small'
-                        });
-                    });
-                }
-            });
-        }
 
-      
+        // if(cant_recibida > pendiente_guardar){
+        //     bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+        //     "<i class='fas fa-exclamation-triangle'></i> La cantidad digitada no puede ser mayor a la cantidad pendiente por recibir de lavanderia"+
+        //    "</div>")
+        // }else{
+        //     $.ajax({
+        //         url: "recepcion",
+        //         type: "POST",
+        //         dataType: "json",
+        //         data: JSON.stringify(recepcion),
+        //         contentType: "application/json",
+        //         success: function(datos) {
+        //             if (datos.status == "success") {
+        //                 Swal.fire(
+        //                     'Success',
+        //                     'Corte recibido de lavanderia correctamente.',
+        //                     'success'
+        //                 )
+        //                 limpiar();
+        //                 tabla.ajax.reload();
+        //                 mostrarForm(false);
+        //                 recepcionCod();
+        //             } else {
+        //                 bootbox.alert(
+        //                     "Ocurrio un error durante la creacion de la composicion"
+        //                 );
+        //             }
+        //         },
+        //         error: function(datos) {
+        //             console.log(datos.responseJSON.errors);
+        //             let errores = datos.responseJSON.errors;
+
+        //             Object.entries(errores).forEach(([key, val]) => {
+        //                 bootbox.alert({
+        //                     message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+        //                     size: 'small'
+        //                 });
+        //             });
+        //         }
+        //     });
+        // }
+
+
     });
 
     function listar() {
@@ -280,7 +287,7 @@ $(document).ready(function() {
                 { data: "total_recibido", name: "recepcion.total_recibido" },
                 { data: "pendiente", name: "recepcion.pendiente" },
                 { data: "estandar_recibido", name: "recepcion.estandar_recibido" },
-              
+
             ],
             order: [[2, 'desc']],
             rowGroup: {
@@ -315,7 +322,7 @@ $(document).ready(function() {
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
-                
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"
@@ -328,9 +335,9 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
-   
+
 
     function mostrarForm(flag) {
         limpiar();
@@ -370,7 +377,7 @@ $(document).ready(function() {
         e.preventDefault();
         mostrarForm(false);
     });
-  
+
 
     init();
 });

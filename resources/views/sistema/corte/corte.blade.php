@@ -101,15 +101,15 @@
                         <div class="col-md-4 mt-3" id="rollo-agregar">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide"
                                 data-toggle="modal" data-target=".bd-rollo-modal-lg">
-                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                <span class="spinner-grow spinner-grow-sm" role="status" id="spiner" aria-hidden="true"></span>
                                     Agregar rollos <i
                                     class="fa fa-dolly-flatbed"></i>
-                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    <span class="spinner-grow spinner-grow-sm" role="status" id="spiner2" aria-hidden="true"></span>
                                     <span class="sr-only">Loading...</span>
                                 </button>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
+                            <button type="button" class="btn btn-secondary btn-block mt-4" id="btn-tallas"
                                 data-toggle="modal" data-target=".bd-talla-modal-xl">Distribucion de tallas <i
                                     class="fa fa-cut"></i></button>
                         </div>
@@ -184,12 +184,12 @@
 </div>
 
 <!-- Modal Rollos-->
-<div class="modal fade bd-rollo-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bd-rollo-modal-lg" tabindex="-1" role="dialog" id="modalRollos" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rollos(*):</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Rollos:</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -239,7 +239,7 @@
 </div>
 
 <!-- Modal Tallas-->
-<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" id="test" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -340,14 +340,14 @@
                 </div> --}}
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal SKU-->
-<div class="modal fade bd-sku-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bd-sku-modal-xl" tabindex="-1" id="modalSKU" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -554,7 +554,9 @@
                     bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> asignado correctamente al corte: <strong>"
                         +datos.rollo.corte_utilizado+"</strong>");
                     $("#btn-guardar").attr("disabled", false);
-                    $("#edit-hide").css("background-color", "green");
+                    $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
+                    $("#spiner").hide();
+                    $("#spiner2").hide();
                     $("#rollos").DataTable().ajax.reload();
                 } else {
                     bootbox.alert(

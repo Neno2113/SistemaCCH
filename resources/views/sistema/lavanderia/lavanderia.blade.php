@@ -129,10 +129,66 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <label for="">Receta de lavado(*):</label>
                                 <textarea name="receta_lavado" id="receta_lavado" cols="30" rows="1"
                                     class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 pl-5 mt-3">
+                                <label for="">¿Es un envio nuevo?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="envio_nuevo1" name="r2" value="1" checked>
+                                        <label for="envio_nuevo1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="envio_nuevo2" value="0" name="r2">
+                                        <label for="envio_nuevo2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4 pl-5 mt-3" id="devolucion">
+                                <label for="">¿Envio para reparar en lavanderia?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="reparar1" name="r3" value="1" >
+                                        <label for="reparar1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="reparar2" value="0" name="r3" checked>
+                                        <label for="reparar2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4 pl-5">
+                                <label for="">¿Envio de mercancia reparada a lavanderia?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="reparada1" name="r4" value="1" >
+                                        <label for="reparada1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="reparada2" value="0" name="r4"checked>
+                                        <label for="reparada2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -166,7 +222,7 @@
                     <th>Envio</th>
                     <th>T. Envio</th>
                     <th>Disp Envio</th>
-                    <th>T. Dev.</th>
+                    <th>Pendiente</th>
                     <th>Lav.</th>
                     <th>Status</th>
                     {{-- <th>Estandar</th> --}}
@@ -185,7 +241,7 @@
                     <th>Envio</th>
                     <th>T. Envio</th>
                     <th>Disp Envio</th>
-                    <th>T. Dev.</th>
+                    <th>Pendiente</th>
                     <th>Lav.</th>
                     <th>Status</th>
                     {{-- <th>Estandar</th> --}}

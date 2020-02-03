@@ -46,6 +46,7 @@
                     <th id="tk">K</th>
                     <th id="tl">L</th>
                     <th>X</th>
+                    <th>Total</th>
 
                 </tr>
             </thead>
@@ -69,9 +70,10 @@
                     <th id="k"></th>
                     <th id="l"></th>
                     <th></th>
+                    <th id="total"></th>
                 </tr>
                 <tr id="disp_venta" class="disp_venta">
-                    <th>Disp. venta</th>
+                    <th>Disp. V. Primera</th>
                     <th id="ref_venta"></th>
                     <th id="a_venta"></th>
                     <th id="b_venta"></th>
@@ -86,6 +88,25 @@
                     <th id="k_venta"></th>
                     <th id="l_venta"></th>
                     <th></th>
+                    <th id="total_venta"></th>
+                </tr>
+                <tr id="disp_venta_segunda" class="disp_venta">
+                    <th>Disp. V. Segunda</th>
+                    <th id="ref_venta"></th>
+                    <th id="a_venta_seg"></th>
+                    <th id="b_venta_seg"></th>
+                    <th id="c_venta_seg"></th>
+                    <th id="d_venta_seg"></th>
+                    <th id="e_venta_seg"></th>
+                    <th id="f_venta_seg"></th>
+                    <th id="g_venta_seg"></th>
+                    <th id="h_venta_seg"></th>
+                    <th id="i_venta_seg"></th>
+                    <th id="j_venta_seg"></th>
+                    <th id="k_venta_seg"></th>
+                    <th id="l_venta_seg"></th>
+                    <th></th>
+                    <th id="total_venta_seg"></th>
                 </tr>
             </tfoot>
         </table>
@@ -114,9 +135,9 @@
             $("#numero_corte").show();
             $("#corteEdit").show();
             $("#corteAdd").hide();
-          
-           
-            
+
+
+
             $("#id").val(data.almacen.id);
             $("#referencia_producto").val('Referencia elegida: '+data.almacen.producto.referencia_producto);
             $("#numero_corte").val('Corte elegido: '+data.almacen.corte.numero_corte);

@@ -48,6 +48,9 @@ class LavanderiaController extends Controller
             $receta_lavado = $request->input('receta_lavado');
             $estandar_incluido = $request->input('estandar_incluido');
             $devuelto = $request->input('devuelto');
+            $envio_nuevo = $request->input('envio_nuevo');
+            $reparar_lav = $request->input('reparar_lav');
+            $reparada_prod = $request->input('reparada_prod');
 
             $lavanderia = new Lavanderia();
             $corte = Corte::find($corte_id);
@@ -72,7 +75,6 @@ class LavanderiaController extends Controller
             // if($total_enviado)
 
             $porcentaje = ($total_porcentaje/$cant_total) * 100;
-        
 
             if($porcentaje > 90.00){
                 $corte->fase = 'Lavanderia';
@@ -88,7 +90,8 @@ class LavanderiaController extends Controller
             $lavanderia->cantidad_parcial = ($cantidad == "") ? $lavenderia_envio['cantidad_parcial'] : $cantidad;
             $lavanderia->cantidad = ($cantidad == "") ? $lavenderia_envio['cantidad'] : $cantidad;
             $lavanderia->total_enviado = $total_enviado + $cantidad;
-            $lavanderia->total_devuelto = ($devuelto == "") ? 0 : $devuelto;
+            $lavanderia->total_devuelto = ($reparar_lav == 1) ? $cantidad : 0;
+
             $lavanderia->receta_lavado = $receta_lavado;
             $lavanderia->estandar_incluido = $estandar_incluido;
             $lavanderia->enviado = 1;
@@ -96,13 +99,17 @@ class LavanderiaController extends Controller
             $lavanderia->devuelto = ($cantidad == "") ? 0 : 1;
             $lavanderia->sec = $sec + 0.01;
 
-            if(!empty($devuelto)){
+            if($reparar_lav == 1){
                 $recepcion = Recepcion::where('corte_id', $corte_id)->get()->last();
                 $total_recibido = $recepcion->total_recibido;
+                $recibido_parcial = $recepcion->recibido_parcial;
                 $pendiente = $recepcion->pendiente;
-                $recepcion->total_recibido = $total_recibido - $devuelto;
-                $recepcion->pendiente = $pendiente + $devuelto;
-                $recepcion->save(); 
+                $recepcion->total_recibido = $total_recibido - $cantidad;
+                $recepcion->recibido_parcial = $recibido_parcial - $cantidad;
+                $recepcion->pendiente = $pendiente + $cantidad;
+                $recepcion->save();
+
+                $lavanderia->total_enviado = $total_enviado;
 
             }
 
@@ -135,8 +142,8 @@ class LavanderiaController extends Controller
         }else{
 
             $corte_id = $request->input('corte_id');
-           
-           
+
+
             $talla = Lavanderia::where('corte_id', 'LIKE', "$corte_id")->get()->last();
             $total = $talla['cantidad'];
 
@@ -152,23 +159,23 @@ class LavanderiaController extends Controller
 
             $longitud = count($perdida);
 
-            for ($i=0; $i < $longitud; $i++) { 
+            for ($i=0; $i < $longitud; $i++) {
                 array_push($perdida_id, $perdida[$i]['id']);
-            }   
-           
+            }
+
             $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
             $totales = array();
-           
+
             $lent = count($talla_perdida);
 
-            for ($i=0; $i < $lent; $i++) { 
+            for ($i=0; $i < $lent; $i++) {
                 array_push($totales, $talla_perdida[$i]['total']);
-                
-            }   
+
+            }
             $cant_perdida = array_sum($totales);
 
             $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
-                                            ->Where('producto_id', $producto_id)    
+                                            ->Where('producto_id', $producto_id)
                                             ->get()->last();
             $total_parcial = $cantidad_enviada['cantidad_parcial'];
             $total_enviado = $cantidad_enviada['total_enviado'];
@@ -197,10 +204,10 @@ class LavanderiaController extends Controller
             ->join('producto', 'lavanderia.producto_id', '=', 'producto.id')
             ->join('suplidor', 'suplidor_id', '=', 'suplidor.id')
             ->select([
-                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 
-                'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase', 
+                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado',
+                'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase',
                 'producto.referencia_producto', 'suplidor.nombre', 'lavanderia.enviado', 'lavanderia.total_enviado'
-                , 'corte.total', 'lavanderia.cantidad_parcial', 'corte.id as id_corte', 'lavanderia.devuelto', 'lavanderia.total_devuelto' 
+                , 'corte.total', 'lavanderia.cantidad_parcial', 'corte.id as id_corte', 'lavanderia.devuelto', 'lavanderia.total_devuelto'
             ]);
 
         return DataTables::of($lavanderia)
@@ -214,11 +221,12 @@ class LavanderiaController extends Controller
                 return ($lavanderia->enviado == 1 ? 'Si' : 'No');
             })
             ->editColumn('devuelto', function ($lavanderia) {
-                return ($lavanderia->devuelto == 1 ? '<span class="badge badge-success">Enviado <i class="fas fa-check"></i> </span>' :
-                '<span class="badge badge-danger">Devuelto <i class="fas fa-check"></i> </span>');
+                return ($lavanderia->total_devuelto <> 0 ?  '<span class="badge badge-danger">Devuelto <i class="fas fa-check"></i> </span>':
+                '<span class="badge badge-success">Enviado <i class="fas fa-check"></i> </span>'
+            );
             })
             ->editColumn('total', function ($lavanderia) {
-                
+
             $perdida = Perdida::where('corte_id', 'LIKE', "$lavanderia->id_corte")
             ->where('tipo_perdida', 'LIKE', 'Normal')
             ->whereIn('fase',  ['Produccion', 'Procesos secos'])
@@ -228,29 +236,58 @@ class LavanderiaController extends Controller
 
             $longitud = count($perdida);
 
-            for ($i=0; $i < $longitud; $i++) { 
+            for ($i=0; $i < $longitud; $i++) {
                 array_push($perdida_id, $perdida[$i]['id']);
-            }   
-           
+            }
+
             $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
             $totales = array();
-           
+
             $lent = count($talla_perdida);
 
-            for ($i=0; $i < $lent; $i++) { 
+            for ($i=0; $i < $lent; $i++) {
                 array_push($totales, $talla_perdida[$i]['total']);
-                
-            }   
+
+            }
             $cant_perdida = array_sum($totales);
-                $cantidad_real = $lavanderia->total;
-                return $cantidad_real - $cant_perdida;
+            $cantidad_real = $lavanderia->total;
+            return $cantidad_real - $cant_perdida;
+            })
+            ->editColumn('total_devuelto', function ($lavanderia) {
+
+                $perdida = Perdida::where('corte_id', 'LIKE', "$lavanderia->id_corte")
+                ->where('tipo_perdida', 'LIKE', 'Normal')
+                ->whereIn('fase',  ['Produccion', 'Procesos secos'])
+                // ->orWhere('fase', 'LIKE', 'Procesos secos')
+                ->select('id')->get();
+                $perdida_id = array();
+
+                $longitud = count($perdida);
+
+                for ($i=0; $i < $longitud; $i++) {
+                    array_push($perdida_id, $perdida[$i]['id']);
+                }
+
+                $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
+                $totales = array();
+
+                $lent = count($talla_perdida);
+
+                for ($i=0; $i < $lent; $i++) {
+                    array_push($totales, $talla_perdida[$i]['total']);
+
+                }
+                $cant_perdida = array_sum($totales);
+                $cantidad_real = $lavanderia->total - $cant_perdida;
+                $total_enviado = $lavanderia->total_enviado;
+                return ($cantidad_real - $total_enviado < 0 ) ? 0 : $cantidad_real - $total_enviado;
             })
             ->editColumn('fecha_envio', function ($lavanderia) {
                 return date("d-m-20y", strtotime($lavanderia->fecha_envio));
             })
             ->addColumn('Ver', function ($lavanderia) {
                 return '<button id="btnEdit" onclick="ver(' . $lavanderia->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
-               
+
             })
             ->addColumn('Opciones', function ($lavanderia) {
                 return
@@ -268,8 +305,8 @@ class LavanderiaController extends Controller
             ->join('producto', 'lavanderia.producto_id', '=', 'producto.id')
             ->join('suplidor', 'suplidor_id', '=', 'suplidor.id')
             ->select([
-                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado', 
-                'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase', 
+                'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado',
+                'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase',
                 'producto.referencia_producto', 'suplidor.nombre', 'lavanderia.enviado', 'lavanderia.total_enviado'
                 , 'corte.total', 'lavanderia.cantidad_parcial', 'corte.id as id_corte'
             ]);
@@ -285,7 +322,7 @@ class LavanderiaController extends Controller
                 return ($lavanderia->enviado == 1 ? 'Si' : 'No');
             })
             ->editColumn('total', function ($lavanderia) {
-                
+
             $perdida = Perdida::where('corte_id', 'LIKE', "$lavanderia->id_corte")
             ->where('tipo_perdida', 'LIKE', 'Normal')
             ->where('fase', 'LIKE', 'Produccion')
@@ -295,19 +332,19 @@ class LavanderiaController extends Controller
 
             $longitud = count($perdida);
 
-            for ($i=0; $i < $longitud; $i++) { 
+            for ($i=0; $i < $longitud; $i++) {
                 array_push($perdida_id, $perdida[$i]['id']);
-            }   
-           
+            }
+
             $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
             $totales = array();
-           
+
             $lent = count($talla_perdida);
 
-            for ($i=0; $i < $lent; $i++) { 
+            for ($i=0; $i < $lent; $i++) {
                 array_push($totales, $talla_perdida[$i]['total']);
-                
-            }   
+
+            }
             $cant_perdida = array_sum($totales);
                 $cantidad_real = $lavanderia->total;
                 return $cantidad_real - $cant_perdida;
@@ -317,7 +354,7 @@ class LavanderiaController extends Controller
             })
             ->addColumn('Ver', function ($lavanderia) {
                 return '<button id="btnEdit" onclick="ver(' . $lavanderia->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
-               
+
             })
             ->addColumn('Opciones', function ($lavanderia) {
                 return

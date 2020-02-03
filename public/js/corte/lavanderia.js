@@ -44,6 +44,7 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         $("#total_enviado").hide();
+        $("[name='envio_nuevo']").bootstrapSwitch();
     }
 
 
@@ -75,6 +76,7 @@ $(document).ready(function() {
                     let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
                     if(cantidad < 0){
                         cantidad = 0
+                        $("#devolucion").show();
                     }
 
                     if(cantidad_restante == null || cantidad_restante == 0 && parcial == null || parcial == 0){
@@ -229,111 +231,47 @@ $(document).ready(function() {
             cantidad: $("#cantidad").val(),
             receta_lavado: $("#receta_lavado").val(),
             estandar_incluido: $("input[name='r1']:checked").val(),
+            envio_nuevo: $("input[name='r2']:checked").val(),
+            reparar_lav: $("input[name='r3']:checked").val(),
+            reparara_prod: $("input[name='r3']:checked").val(),
         };
 
-        let cantidad_enviar = $("#cantidad").val();
 
-        if(cantidad_guardar > cantidad_enviar){
-            bootbox.confirm({
-                message:
-                    "¿Va a realizar una devolucion a lavanderia?",
-                buttons: {
-                    confirm: {
-                        label: "Si",
-                        className: "btn-primary"
-                    },
-                    cancel: {
-                        label: "No",
-                        className: "btn-warning"
-                    }
-                },
-                callback: function(result) {
-                    if (result) {
-                        var lavanderia = {
-                            sec: $("#sec").val(),
-                            numero_envio: $("#numero_envio").val(),
-                            suplidor: $("#suplidores").val(),
-                            corte: $("#cortesSearch").val(),
-                            fecha_envio: $("#fecha_envio").val(),
-                            devuelto: $("#cantidad").val(),
-                            receta_lavado: $("#receta_lavado").val(),
-                            estandar_incluido: $("input[name='r1']:checked").val()
-                        };
-                        console.log(JSON.stringify(lavanderia));
-                        $.ajax({
-                            url: "lavanderia",
-                            type: "POST",
-                            dataType: "json",
-                            data: JSON.stringify(lavanderia),
-                            contentType: "application/json",
-                            success: function(datos) {
-                                if (datos.status == "success") {
-                                    bootbox.alert("Registro");
-                                    limpiar();
-                                    tabla.ajax.reload();
-                                    mostrarForm(false);
-                                    $('#btn-generar').attr("disabled", false);
-                                } else {
-                                    bootbox.alert(
-                                        "Ocurrio un error durante la creacion de la composicion"
-                                    );
-                                }
-                            },
-                            error: function(datos) {
-                                console.log(datos.responseJSON.errors);
-                                let errores = datos.responseJSON.errors;
-
-                                Object.entries(errores).forEach(([key, val]) => {
-                                    bootbox.alert({
-                                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                                        size: 'small'
-                                    });
-                                });
-                            }
-                        });
-                    } else {
-                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                        "<i class='fas fa-exclamation-triangle'></i> La cantidad digitada no puede ser mayor a la cantidad restante por enviar del corte"+
-                         "</div>")
-                    }
+        $.ajax({
+            url: "lavanderia",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(lavanderia),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    Swal.fire(
+                        'Success',
+                        'Corte enviado a lavanderia correctamente.',
+                        'success'
+                    )
+                    limpiar();
+                    tabla.ajax.reload();
+                    mostrarForm(false);
+                    $('#btn-generar').attr("disabled", false);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
                 }
-            });
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
 
-        }else{
-            $.ajax({
-                url: "lavanderia",
-                type: "POST",
-                dataType: "json",
-                data: JSON.stringify(lavanderia),
-                contentType: "application/json",
-                success: function(datos) {
-                    if (datos.status == "success") {
-                        bootbox.alert("Registro");
-                        limpiar();
-                        tabla.ajax.reload();
-                        mostrarForm(false);
-                        $('#btn-generar').attr("disabled", false);
-                    } else {
-                        bootbox.alert(
-                            "Ocurrio un error durante la creacion de la composicion"
-                        );
-                    }
-                },
-                error: function(datos) {
-                    console.log(datos.responseJSON.errors);
-                    let errores = datos.responseJSON.errors;
-
-                    Object.entries(errores).forEach(([key, val]) => {
-                        bootbox.alert({
-                            message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                            size: 'small'
-                        });
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
                     });
-                }
-            });
-        }
-
-
+                });
+            }
+        });
 
     });
 
@@ -449,6 +387,7 @@ $(document).ready(function() {
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#corteEdit").hide();
+            // $("#devolucion").hide();
             $("#productoEdit").hide();
             $("#referencia_producto").hide();
             $("#numero_corte").hide();

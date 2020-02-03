@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-6 mt-3 ml-4">
         <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-        
+
     </div>
 </div>
 <div class="row ">
@@ -72,16 +72,19 @@
                             <label for="">Fecha(*):</label>
                             <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <label for="">Cantidad Rec.(*):</label>
                             <input type="text" name="cantidad_recibida" id="cantidad_recibida" class="form-control">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <label for="">Restante por recibir:</label>
                             <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control"
                                 readonly>
                         </div>
-                        <div class="col-4 pl-5">
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4 pl-3 mt-2">
                             <label for="">¿Estandar recibido?</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
@@ -98,6 +101,42 @@
                                 </div>
                             </div>
                             <input type="text" name="" id="estandar_recibido" class="form-control " readonly>
+                        </div>
+                        <div class="col-md-4 pl-3 mt-2">
+                            <label for="">¿Recibiendo para darle terminacion?</label>
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="recibir1" name="r2" value="1" >
+                                    <label for="recibir1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="recibir2" value="0" name="r2" checked>
+                                    <label for="recibir2">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 pl-3 mt-2">
+                            <label for="">Recibiendo para devolverlo a produccion?</label>
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="dev_prod1" name="r3" value="1">
+                                    <label for="dev_prod1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="dev_prod2" value="0" name="r3" checked>
+                                    <label for="dev_prod2">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
             </div>
@@ -177,7 +216,7 @@
                 result = 'Si'
             }else{
                 result = 'No'
-            }       
+            }
 
             $("#id").val(data.recepcion.id);
             $("#corte").val('Corte elegido: '+data.recepcion.corte.numero_corte);

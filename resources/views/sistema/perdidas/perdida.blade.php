@@ -31,6 +31,16 @@
                     <hr>
                     <br>
                     <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Corte(*):</label>
+                            <div id="corteAdd">
+                                <select name="cortesSearch" id="cortesSearch" class="form-control select2">
+                                </select>
+                            </div>
+                            <div id="corteEdit" class="mt-2">
+                                <input type="text" name="numero_corte" id="numero_corte" class="form-control">
+                            </div>
+                        </div>
                         <div class="col-md-5">
                             <label for="">Tipo de perdida(*)</label>
                             <input type="hidden" name="id" id="id" value="">
@@ -38,8 +48,8 @@
                             <input type="hidden" name="sec_segunda" id="sec_segunda" value="">
                             <select name="tipo_perdida" id="tipo_perdida" class="form-control text-center">
                                 <option value=""></option>
-                                <option value="Normal">Total</option>
-                                <option value="Segundas">Segundas</option>
+                                {{-- <option value="Normal">Total</option>
+                                <option value="Segundas">Segundas</option> --}}
                             </select>
                         </div>
                         {{-- <div class="col-6" id="productoAdd">
@@ -67,17 +77,8 @@
                     <br>
 
                     <div class="row" id="fila1">
-                        <div class="col-6">
-                            <label for="">Corte(*):</label>
-                            <div id="corteAdd">
-                                <select name="cortesSearch" id="cortesSearch" class="form-control select2">
-                                </select>
-                            </div>
-                            <div id="corteEdit" class="mt-2">
-                                <input type="text" name="numero_corte" id="numero_corte" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-6">
+
+                        <div class="col-md-6">
                             <label for="">Fecha(*)</label>
                             <input type="date" name="fecha" id="fecha" class="form-control">
                         </div>
@@ -106,7 +107,7 @@
                     <hr>
                     <div class="row" id="fila3">
                         <div class="col-4">
-                            <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide2"
+                            <button type="button" class="btn btn-secondary btn-block mt-4" id="btn-tallas"
                                 data-toggle="modal" data-target=".bd-talla-modal-xl"><i
                                     class="fas fa-sort-alpha-down"></i> Identificar Tallas
                             </button>
@@ -167,7 +168,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" id="modalPerdida" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
