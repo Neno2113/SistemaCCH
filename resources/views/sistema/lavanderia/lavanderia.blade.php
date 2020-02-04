@@ -92,7 +92,7 @@
 
                         </div>
 
-                        <hr>
+
 
                         <div class="row mt-5">
                             <div class="col-4">
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-4 pl-5 mt-3">
+                            <div class="col-md-4 pl-5 mt-3" id="nuevo_envio">
                                 <label for="">¿Es un envio nuevo?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -154,7 +154,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-4 pl-5 mt-3" id="devolucion">
+                            <div class="col-md-4 pl-5 mt-3" id="reparar_lav">
                                 <label for="">¿Envio para reparar en lavanderia?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -172,7 +172,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-4 pl-5">
+                            <div class="col-md-4 pl-5" id="reparada_lav">
                                 <label for="">¿Envio de mercancia reparada a lavanderia?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -182,7 +182,7 @@
                                         </label>
                                     </div>
                                     <div class="icheck-primary d-inline">
-                                        <input type="radio" id="reparada2" value="0" name="r4"checked>
+                                        <input type="radio" id="reparada2" value="0" name="r4" checked>
                                         <label for="reparada2">
                                             No
                                         </label>

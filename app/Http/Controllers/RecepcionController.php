@@ -38,6 +38,8 @@ class RecepcionController extends Controller
             $fecha_recepcion = $request->input('fecha_recepcion');
             $cantidad_recibida = $request->input('cantidad_recibida');
             $estandar_recibido = $request->input('estandar_recibido');
+            $recibir_terminacion = $request->input('recibir_terminacion');
+            $devolver_produccion = $request->input('devolver_produccion');
             $sec = $request->input('sec');
 
             // $lavanderia = Lavanderia::find($id_lavanderia);
@@ -49,54 +51,76 @@ class RecepcionController extends Controller
             // $pc_r = ($cantidad_recibida * 100) / ($cantidad + $cantidad_recibida);
 
             // if ($pc_r > 47.36) {
-                // $lavanderia->recibido = 1;
-                // $lavanderia->save();
+            // $lavanderia->recibido = 1;
+            // $lavanderia->save();
 
-                $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
+            $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
                 ->get()->last();
-                $total_enviado = $cantidad_enviada['total_enviado'];
-                $total_devuelto = $cantidad_enviada['total_devuelto'];
+            $total_enviado = $cantidad_enviada['total_enviado'];
+            $total_devuelto = $cantidad_enviada['total_devuelto'];
 
-                $corte = Corte::find($corte_id);
+            $corte = Corte::find($corte_id);
 
-                $recepcion_total = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
+            $recepcion_total = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
 
-                $total_recibido = $recepcion_total['total_recibido'];
-                $total_porcentaje = $cantidad_recibida + $total_recibido;
+            if ($devolver_produccion == 1 && is_object($recepcion_total)) {
+                $recepcion = Recepcion::where('corte_id', $corte_id)->get()->last();
+                $total_recibido = $recepcion_total->total_recibido;
+                $recibido_parcial = $recepcion_total->recibido_parcial;
+                $pendiente = $recepcion->pendiente;
+                $recepcion_total->total_recibido = $total_recibido - $cantidad_recibida;
+                $recepcion_total->recibido_parcial = $recibido_parcial - $cantidad_recibida;
+                $recepcion_total->pendiente = $pendiente + $cantidad_recibida;
+                $recepcion_total->save();
 
-                $porcentaje = ($total_porcentaje/$total_enviado) * 100;
+            }
 
-                if($porcentaje > 90.00){
-                    $corte->fase = 'Terminacion';
-                    $corte->save();
-                }
+            $total_recibido = $recepcion_total['total_recibido'];
+            $total_devuelto = $recepcion_total['total_devuelto'];
+            $total_porcentaje = $cantidad_recibida + $total_recibido;
 
-                $recepcion = new Recepcion();
-                $recepcion->corte_id = $corte_id;
-                $recepcion->num_factura_rec = $numero_factura;
-                $recepcion->numero_recepcion = $numero_recepcion;
-                $recepcion->fecha_recepcion = $fecha_recepcion;
-                $recepcion->recibido_parcial = $cantidad_recibida;
-                $recepcion->total_recibido = $cantidad_recibida + $total_recibido;
-                $recepcion->pendiente = $total_enviado - $cantidad_recibida - $total_recibido;
-                $recepcion->estandar_recibido = $estandar_recibido;
-                $recepcion->sec = $sec + 0.01;
+            $porcentaje = ($total_porcentaje / $total_enviado) * 100;
 
-                $recepcion->save();
+            if ($porcentaje > 90.00) {
+                $corte->fase = 'Terminacion';
+                $corte->save();
+            }
 
-                $data = [
-                    'code' => 200,
-                    'status' => 'success',
-                    'recepcion' => $recepcion,
-                    'porcentaje' => $porcentaje
-                ];
+            $recepcion = new Recepcion();
+            $recepcion->corte_id = $corte_id;
+            $recepcion->num_factura_rec = $numero_factura;
+            $recepcion->numero_recepcion = $numero_recepcion;
+            $recepcion->fecha_recepcion = $fecha_recepcion;
+            $recepcion->recibido_parcial = $cantidad_recibida;
+            $recepcion->total_recibido = $cantidad_recibida + $total_recibido;
+            $recepcion->pendiente = $total_enviado - $cantidad_recibida - $total_recibido;
+            $recepcion->estandar_recibido = $estandar_recibido;
+            $recepcion->sec = $sec + 0.01;
+
+            if($devolver_produccion == 1){
+                $cantidad_enviada->total_enviado = $total_enviado - $cantidad_recibida;
+                $cantidad_enviada->save();
+
+                $recepcion->total_recibido = 0;
+                $recepcion->devuelto_produccion = 1;
+                $recepcion->total_devuelto = $cantidad_recibida + $total_devuelto;
+            }
+
+            $recepcion->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'recepcion' => $recepcion,
+                'porcentaje' => $porcentaje
+            ];
             // } else {
-                // $data = [
-                //     'code' => 422,
-                //     'status' => 'error',
-                //     'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida
-                //     equivale a menos del 90% de la cantidad enviada.'
-                // ];
+            // $data = [
+            //     'code' => 422,
+            //     'status' => 'error',
+            //     'message' => 'Este corte no puede pasar a Terminacion debido a que la cantidad recibida
+            //     equivale a menos del 90% de la cantidad enviada.'
+            // ];
             // }
         }
 
@@ -116,7 +140,7 @@ class RecepcionController extends Controller
                 'status' => 'error',
                 'message' => 'Error en la validacion de datos'
             ];
-        }else{
+        } else {
 
             $corte_id = $request->input('corte_id');
             $lavanderia_id = $request->input('lavanderia_id');
@@ -128,14 +152,14 @@ class RecepcionController extends Controller
             $cantidad_total = $corte['total'];
 
             $perdida = Perdida::where('corte_id', 'LIKE', "$corte_id")
-            ->where('tipo_perdida', 'LIKE', 'Normal')
-            ->where('fase', 'LIKE', 'Lavanderia')
-            ->select('id')->get();
+                ->where('tipo_perdida', 'LIKE', 'Normal')
+                ->where('fase', 'LIKE', 'Lavanderia')
+                ->select('id')->get();
             $perdida_id = array();
 
             $longitud = count($perdida);
 
-            for ($i=0; $i < $longitud; $i++) {
+            for ($i = 0; $i < $longitud; $i++) {
                 array_push($perdida_id, $perdida[$i]['id']);
             }
 
@@ -144,14 +168,13 @@ class RecepcionController extends Controller
 
             $lent = count($talla_perdida);
 
-            for ($i=0; $i < $lent; $i++) {
+            for ($i = 0; $i < $lent; $i++) {
                 array_push($totales, $talla_perdida[$i]['total']);
-
             }
             $cant_perdida = array_sum($totales);
 
             $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
-                                            ->get()->last();
+                ->get()->last();
             $total_enviado = $cantidad_enviada['total_enviado'];
             $total_devuelto = $cantidad_enviada['total_devuelto'];
             // $cantidad_enviada->devuelto = 0;
@@ -171,7 +194,6 @@ class RecepcionController extends Controller
                 'total_devuelto' => $total_devuelto
 
             ];
-
         }
         return \response()->json($data, $data['code']);
     }
@@ -182,8 +204,8 @@ class RecepcionController extends Controller
             // ->join('lavanderia', 'recepcion.id_lavanderia', '=', 'lavanderia.id')
             ->select([
                 'recepcion.id', 'recepcion.fecha_recepcion', 'recepcion.recibido_parcial', 'recepcion.estandar_recibido',
-                'corte.numero_corte','recepcion.numero_recepcion', 'recepcion.pendiente',
-                'recepcion.total_recibido'
+                'corte.numero_corte', 'recepcion.numero_recepcion', 'recepcion.pendiente',
+                'recepcion.total_recibido', 'recepcion.devuelto_produccion'
             ]);
 
         return DataTables::of($recepciones)
@@ -192,6 +214,10 @@ class RecepcionController extends Controller
             })
             ->editColumn('estandar_recibido', function ($recepcion) {
                 return ($recepcion->estandar_recibido == 1 ? 'Si' : 'No');
+            })
+            ->editColumn('devuelto_produccion', function ($recepcion) {
+                return ($recepcion->devuelto_produccion <> 0) ?  '<span class="badge badge-danger">Devuelto <i class="fas fa-arrow-left"></i> </span>':
+                '<span class="badge badge-success">Recibido <i class="fas fa-check"></i> </span>';
             })
             ->editColumn('fecha_recepcion', function ($recepcion) {
                 return date("d-m-20y", strtotime($recepcion->fecha_recepcion));
@@ -202,10 +228,10 @@ class RecepcionController extends Controller
             ->addColumn('Opciones', function ($recepcion) {
                 return
                     // '<button id="btnEdit" onclick="mostrar(' . $recepcion->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .
-                    '<button onclick="eliminar(' . $recepcion->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>'.
-                    '<a href="imprimir/conduceRecepcion/'.$recepcion->id .'" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
+                    '<button onclick="eliminar(' . $recepcion->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>' .
+                    '<a href="imprimir/conduceRecepcion/' . $recepcion->id . '" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
             })
-            ->rawColumns(['Opciones'])
+            ->rawColumns(['Opciones', 'devuelto_produccion'])
             ->make(true);
     }
 
@@ -429,6 +455,6 @@ class RecepcionController extends Controller
 
         $pdf = \PDF::loadView('sistema.recepcion.conduceRecepcion', \compact('recepcion', 'lavanderia'));
         return $pdf->download('conduceRecepcion.pdf');
-        return View('sistema.lavanderia.conduceRecepcion', \compact('recepcion','lavanderia'));
+        return View('sistema.lavanderia.conduceRecepcion', \compact('recepcion', 'lavanderia'));
     }
 }

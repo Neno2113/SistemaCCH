@@ -109,6 +109,9 @@ $(document).ready(function() {
         $("#receta_lavado").val("").attr('readonly', false);
         $("#cantidad").val("").attr('readonly', false);
         $("#estandar_incluido").val("");
+        $("input[name='r2'][value='1']").prop('checked', true);
+        $("input[name='r3'][value='0']").prop('checked', true);
+        $("input[name='r4'][value='0']").prop('checked', true);
         $("#productos").val("").trigger("change");
         $("#cortesSearch").val("").trigger("change");
         $("#suplidores").val("").trigger("change");
@@ -218,6 +221,49 @@ $(document).ready(function() {
         }
     })
 
+    $("input[name='r2']").change(function() {
+        let val = $("input[name='r2']:checked").val();
+
+        if (val == 1) {
+            $("input[name='r4'][value='0']").prop('checked', true);
+            $("input[name='r3'][value='0']").prop('checked', true);
+
+
+        } else if (val == 0) {
+            $("input[name='r3'][value='1']").prop('checked', true);
+            $("input[name='r4'][value='0']").prop('checked', true);
+
+        }
+    });
+
+    $("input[name='r3']").change(function() {
+        let val = $("input[name='r3']:checked").val();
+
+        if (val == 1) {
+            $("input[name='r2'][value='0']").prop('checked', true);
+            $("input[name='r4'][value='0']").prop('checked', true);
+
+        } else if (val == 0) {
+            $("input[name='r2'][value='0']").prop('checked', true);
+            $("input[name='r4'][value='1']").prop('checked', true);
+
+        }
+    });
+
+    $("input[name='r4']").change(function() {
+        let val = $("input[name='r4']:checked").val();
+
+        if (val == 1) {
+            $("input[name='r2'][value='0']").prop('checked', true);
+            $("input[name='r3'][value='0']").prop('checked', true);
+
+        } else if (val == 0) {
+            $("input[name='r2'][value='1']").prop('checked', true);
+            $("input[name='r3'][value='0']").prop('checked', true);
+
+        }
+    });
+
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
@@ -233,9 +279,20 @@ $(document).ready(function() {
             estandar_incluido: $("input[name='r1']:checked").val(),
             envio_nuevo: $("input[name='r2']:checked").val(),
             reparar_lav: $("input[name='r3']:checked").val(),
-            reparara_prod: $("input[name='r3']:checked").val(),
+            reparara_prod: $("input[name='r4']:checked").val(),
         };
 
+        let cantidad = $("#cantidad").val();
+        let  reparar_lav = $("input[name='r3']:checked").val();
+        // console.log(reparar_lav);
+
+        if(cantidad > cantidad_guardar && reparar_lav == 0){
+            Swal.fire(
+            'Alerta!',
+            'La cantidad digitada no puede ser mayor a la cantidad pendiente por enviar a lavanderia',
+            'warning'
+            )
+        }else{
 
         $.ajax({
             url: "lavanderia",
@@ -272,6 +329,8 @@ $(document).ready(function() {
                 });
             }
         });
+        }
+
 
     });
 
@@ -309,7 +368,7 @@ $(document).ready(function() {
                 { data: "total", name: "corte.total" },
                 { data: "total_devuelto", name: "lavanderia.total_devuelto" },
                 { data: "nombre", name: "suplidor.nombre" },
-                { data: "devuelto", name: "lavanderia.devuelto" },
+                { data: "status", name: "lavanderia.status" },
                 // { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
 
             ],
@@ -387,7 +446,8 @@ $(document).ready(function() {
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#corteEdit").hide();
-            // $("#devolucion").hide();
+            // $("#reparar_lav").hide();
+            // $("#reparada_lav").hide();
             $("#productoEdit").hide();
             $("#referencia_producto").hide();
             $("#numero_corte").hide();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Corte;
 use App\Almacen;
+use App\Lavanderia;
 use App\Recepcion;
 use App\Perdida;
 use App\TallasPerdidas;
@@ -134,7 +135,7 @@ class AlmacenController extends Controller
         }else{
 
             $corte_id = $request->input('corte_id');
-            
+
             $corte = Corte::find($corte_id);
             $cantidad_total = $corte['total'];
 
@@ -146,19 +147,19 @@ class AlmacenController extends Controller
 
             $longitud = count($perdida);
 
-            for ($i=0; $i < $longitud; $i++) { 
+            for ($i=0; $i < $longitud; $i++) {
                 array_push($perdida_id, $perdida[$i]['id']);
-            }   
-           
+            }
+
             $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
             $totales = array();
-           
+
             $lent = count($talla_perdida);
 
-            for ($i=0; $i < $lent; $i++) { 
+            for ($i=0; $i < $lent; $i++) {
                 array_push($totales, $talla_perdida[$i]['total']);
-                
-            }   
+
+            }
             $cant_perdida = array_sum($totales);
 
             $cantidad_recibida = Recepcion::where('corte_id', $corte_id)
@@ -421,7 +422,7 @@ class AlmacenController extends Controller
     public function upload(Request $request)
     {
 
-        //validar la imagen 
+        //validar la imagen
         $validate = \Validator::make($request->all(), [
             'imagen_frente' => 'required|image|mimes:jpg,jpeg,png',
             'imagen_trasera' => 'required|image|mimes:jpg,jpeg,png',
@@ -494,17 +495,19 @@ class AlmacenController extends Controller
             $id = $request->input('idEdit');
         }
 
-        $corte = Corte::find($id);
+        $corte_pendiente = Corte::find($id);
+        $recepcion  = Recepcion::where('corte_id', $id)->get()->last();
+        $lavanderia  = Lavanderia::where('corte_id', $id)->get()->last();
 
-        $producto_id = $corte->producto_id;
+        $producto_id = $corte_pendiente->producto_id;
 
         $producto = Product::find($producto_id);
 
         //buscar cortes con la misma referencia producto
         $corte = Corte::where('id', $id)
-        ->where('fase', 'LIKE', 'Terminacion')
+        // ->where('fase', 'LIKE', 'Terminacion')
         ->select('id', 'total')->get();
-    
+
         $cortes = array();
 
         $longitud = count($corte);
@@ -527,7 +530,7 @@ class AlmacenController extends Controller
             array_push($perdidas, $perdida[$i]['id']);
         }
 
-        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get()->load('perdida');
+        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get()->first();
 
         //SEGUNDA
         $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
@@ -558,7 +561,7 @@ class AlmacenController extends Controller
         $i = $tallas->sum('i') - $tallasPerdidas->sum('i');
         $j = $tallas->sum('j') - $tallasPerdidas->sum('j');
         $k = $tallas->sum('k') - $tallasPerdidas->sum('k');
-        $l = $tallas->sum('l') - $tallasPerdidas->sum('l'); 
+        $l = $tallas->sum('l') - $tallasPerdidas->sum('l');
 
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);
@@ -575,6 +578,8 @@ class AlmacenController extends Controller
         $l = ($l < 0 ? 0 : $l);
 
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+        $pendiente_lavanderia = $corte_pendiente->total;
+        $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
         if (!empty($producto)) {
             $data = [
@@ -595,7 +600,10 @@ class AlmacenController extends Controller
                 'j' => $j,
                 'k' => $k,
                 'l' => $l,
-                'total' => $total_real
+                'total' => $total_real,
+                'pen_lavanderia' => $recepcion->pendiente,
+                'pen_produccion' => $pendiente_lavanderia,
+                'perdida_x' => $tallasPerdidas->talla_x
             ];
         } else {
             $data = [

@@ -364,6 +364,9 @@ $(document).ready(function() {
                     let mujer_plus = val.substring(3, 4);
                     genero_global = genero;
                     genero_plus_global = mujer_plus;
+                    $("#pendiente_produccion").html(datos.pen_produccion);
+                    $("#pendiente_lavanderia").html(datos.pen_lavanderia);
+                    $("#perdida_x").html(datos.perdida_x);
 
                     a_total = datos.a;
                     b_total = datos.b;
@@ -391,6 +394,7 @@ $(document).ready(function() {
                     (datos.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
                     (datos.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
                     (datos.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
+
 
                     var corte = {
                         corte_id: $("#cortesSearch").val(),
@@ -423,7 +427,6 @@ $(document).ready(function() {
 
                     // listarCorteDetalle(datos.id);
                     if (genero == "2") {
-                        var subGenero = $("#sub-genero").val();
 
                         if (mujer_plus == 7) {
                             $("#ta").html("12W");
@@ -442,33 +445,24 @@ $(document).ready(function() {
                             $("#sf").html("22W");
                             $("#sg").html("24W");
                             $("#sh").html("26W");
-                            $("#ra").html(datos.a);
-                            $("#rb").html(datos.b);
-                            $("#rc").html(datos.c);
-                            $("#rd").html(datos.d);
-                            $("#re").html(datos.e);
-                            $("#rf").html(datos.f);
-                            $("#rg").html(datos.g);
-                            $("#rh").html(datos.h);
-                            $("#ri").html(datos.i);
-                            $("#rj").html(datos.j);
-                            $("#rk").html(datos.k);
-                            $("#rl").html(datos.l);
+                            // $("#ra").html(datos.a);
+                            // $("#rb").html(datos.b);
+                            // $("#rc").html(datos.c);
+                            // $("#rd").html(datos.d);
+                            // $("#re").html(datos.e);
+                            // $("#rf").html(datos.f);
+                            // $("#rg").html(datos.g);
+                            // $("#rh").html(datos.h);
+                            // $("#ri").html(datos.i);
+                            // $("#rj").html(datos.j);
+                            // $("#rk").html(datos.k);
+                            // $("#rl").html(datos.l);
+                            // $("#total").html(datos.total);
                             $("#i").attr("disabled", true);
                             $("#j").attr("disabled", true);
                             $("#k").attr("disabled", true);
                             $("#l").attr("disabled", true);
-                            $("#tallas").html(
-                                "<th>Dama Plus</th>" +
-                                    "<th>12W</th>" +
-                                    "<th>14W</th>" +
-                                    "<th>16W</th>" +
-                                    "<th>18W</th>" +
-                                    "<th>20W</th>" +
-                                    "<th>22W</th>" +
-                                    "<th>24W</th>" +
-                                    "<th>26W</th>"
-                            );
+
 
                         } else {
                             $("#ta").html("0/0");
@@ -495,37 +489,24 @@ $(document).ready(function() {
                             $("#sj").html("17/18");
                             $("#sk").html("19/20");
                             $("#sl").html("21/22");
-                            $("#ra").html(datos.a);
-                            $("#rb").html(datos.b);
-                            $("#rc").html(datos.c);
-                            $("#rd").html(datos.d);
-                            $("#re").html(datos.e);
-                            $("#rf").html(datos.f);
-                            $("#rg").html(datos.g);
-                            $("#rh").html(datos.h);
-                            $("#ri").html(datos.i);
-                            $("#rj").html(datos.j);
-                            $("#rk").html(datos.k);
-                            $("#rl").html(datos.l);
+                            // $("#ra").html(datos.a);
+                            // $("#rb").html(datos.b);
+                            // $("#rc").html(datos.c);
+                            // $("#rd").html(datos.d);
+                            // $("#re").html(datos.e);
+                            // $("#rf").html(datos.f);
+                            // $("#rg").html(datos.g);
+                            // $("#rh").html(datos.h);
+                            // $("#ri").html(datos.i);
+                            // $("#rj").html(datos.j);
+                            // $("#rk").html(datos.k);
+                            // $("#rl").html(datos.l);
+                            // $("#total").html(datos.total);
                             // $("#i").attr("disabled", false);
                             // $("#j").attr("disabled", false);
                             // $("#k").attr("disabled", false);
                             // $("#l").attr("disabled", false);
-                            $("#tallas").html(
-                                "<th>Dama TA</th>" +
-                                    "<th>0/0</th>" +
-                                    "<th>1/2</th>" +
-                                    "<th>3/4</th>" +
-                                    "<th>5/6</th>" +
-                                    "<th>7/8</th>" +
-                                    "<th>9/10</th>" +
-                                    "<th>11/12</th>" +
-                                    "<th>13/14</th>" +
-                                    "<th>15/16</th>" +
-                                    "<th>17/18</th>" +
-                                    "<th>19/20</th>" +
-                                    "<th>21/22</th>"
-                            );
+
                         }
                     }
                     if (genero == "3") {
@@ -547,33 +528,24 @@ $(document).ready(function() {
                         $("#sf").html("12");
                         $("#sg").html("14");
                         $("#sh").html("16");
-                        $("#ra").html(datos.a);
-                        $("#rb").html(datos.b);
-                        $("#rc").html(datos.c);
-                        $("#rd").html(datos.d);
-                        $("#re").html(datos.e);
-                        $("#rf").html(datos.f);
-                        $("#rg").html(datos.g);
-                        $("#rh").html(datos.h);
-                        $("#ri").html(datos.i);
-                        $("#rj").html(datos.j);
-                        $("#rk").html(datos.k);
-                        $("#rl").html(datos.l);
+                        // $("#ra").html(datos.a);
+                        // $("#rb").html(datos.b);
+                        // $("#rc").html(datos.c);
+                        // $("#rd").html(datos.d);
+                        // $("#re").html(datos.e);
+                        // $("#rf").html(datos.f);
+                        // $("#rg").html(datos.g);
+                        // $("#rh").html(datos.h);
+                        // $("#ri").html(datos.i);
+                        // $("#rj").html(datos.j);
+                        // $("#rk").html(datos.k);
+                        // $("#rl").html(datos.l);
+                        // $("#total").html(datos.total);
                         $("#i").attr("disabled", true);
                         $("#j").attr("disabled", true);
                         $("#k").attr("disabled", true);
                         $("#l").attr("disabled", true);
-                        $("#tallas").html(
-                            "<th>Niño</th>" +
-                                "<th>2</th>" +
-                                "<th>4</th>" +
-                                "<th>6</th>" +
-                                "<th>8</th>" +
-                                "<th>10</th>" +
-                                "<th>12</th>" +
-                                "<th>14</th>" +
-                                "<th>16</th>"
-                        );
+
                     } else if (genero == "4") {
                         $("#genero").val("Niña: " + val);
                         $("#sub-genero").hide();
@@ -593,33 +565,24 @@ $(document).ready(function() {
                         $("#sf").html("12");
                         $("#sg").html("14");
                         $("#sh").html("16");
-                        $("#ra").html(datos.a);
-                        $("#rb").html(datos.b);
-                        $("#rc").html(datos.c);
-                        $("#rd").html(datos.d);
-                        $("#re").html(datos.e);
-                        $("#rf").html(datos.f);
-                        $("#rg").html(datos.g);
-                        $("#rh").html(datos.h);
-                        $("#ri").html(datos.i);
-                        $("#rj").html(datos.j);
-                        $("#rk").html(datos.k);
-                        $("#rl").html(datos.l);
+                        // $("#ra").html(datos.a);
+                        // $("#rb").html(datos.b);
+                        // $("#rc").html(datos.c);
+                        // $("#rd").html(datos.d);
+                        // $("#re").html(datos.e);
+                        // $("#rf").html(datos.f);
+                        // $("#rg").html(datos.g);
+                        // $("#rh").html(datos.h);
+                        // $("#ri").html(datos.i);
+                        // $("#rj").html(datos.j);
+                        // $("#rk").html(datos.k);
+                        // $("#rl").html(datos.l);
+                        // $("#total").html(datos.total);
                         $("#i").attr("disabled", true);
                         $("#j").attr("disabled", true);
                         $("#k").attr("disabled", true);
                         $("#l").attr("disabled", true);
-                        $("#tallas").html(
-                            "<th>Niña</th>" +
-                                "<th>2</th>" +
-                                "<th>4</th>" +
-                                "<th>6</th>" +
-                                "<th>8</th>" +
-                                "<th>10</th>" +
-                                "<th>12</th>" +
-                                "<th>14</th>" +
-                                "<th>16</th>"
-                        );
+
                     } else if (genero == "1") {
                         $("#genero").val("Hombre: " + val);
                         $("#sub-genero").hide();
@@ -643,35 +606,24 @@ $(document).ready(function() {
                         $("#sh").html("40");
                         $("#si").html("42");
                         $("#sj").html("44");
-                        $("#ra").html(datos.a);
-                        $("#rb").html(datos.b);
-                        $("#rc").html(datos.c);
-                        $("#rd").html(datos.d);
-                        $("#re").html(datos.e);
-                        $("#rf").html(datos.f);
-                        $("#rg").html(datos.g);
-                        $("#rh").html(datos.h);
-                        $("#ri").html(datos.i);
-                        $("#rj").html(datos.j);
-                        $("#rk").html(datos.k);
-                        $("#rl").html(datos.l);
+                        // $("#ra").html(datos.a);
+                        // $("#rb").html(datos.b);
+                        // $("#rc").html(datos.c);
+                        // $("#rd").html(datos.d);
+                        // $("#re").html(datos.e);
+                        // $("#rf").html(datos.f);
+                        // $("#rg").html(datos.g);
+                        // $("#rh").html(datos.h);
+                        // $("#ri").html(datos.i);
+                        // $("#rj").html(datos.j);
+                        // $("#rk").html(datos.k);
+                        // $("#rl").html(datos.l);
+                        $("#total").html(datos.total);
                         $("#i").attr("disabled", false);
                         $("#j").attr("disabled", false);
                         $("#k").attr("disabled", true);
                         $("#l").attr("disabled", true);
-                        $("#tallas").html(
-                            "<th>Caballero Skinny</th>" +
-                                "<th>28</th>" +
-                                "<th>29</th>" +
-                                "<th>30</th>" +
-                                "<th>32</th>" +
-                                "<th>34</th>" +
-                                "<th>36</th>" +
-                                "<th>38</th>" +
-                                "<th>40</th>" +
-                                "<th>42</th>" +
-                                "<th>44</th>"
-                        );
+
                     } else if (val == "") {
                         $("#motivo").html("<option value=''> </option>");
                     }
@@ -1059,6 +1011,12 @@ $(document).ready(function() {
                 });
             }
         });
+    });
+
+    $("#btn-agregar").click(function(e){
+        e.preventDefault();
+
+        alert("Hii");
     });
 
     init();

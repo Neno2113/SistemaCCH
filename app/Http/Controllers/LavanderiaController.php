@@ -50,7 +50,7 @@ class LavanderiaController extends Controller
             $devuelto = $request->input('devuelto');
             $envio_nuevo = $request->input('envio_nuevo');
             $reparar_lav = $request->input('reparar_lav');
-            $reparada_prod = $request->input('reparada_prod');
+            $reparada_prod = $request->input('reparara_prod');
 
             $lavanderia = new Lavanderia();
             $corte = Corte::find($corte_id);
@@ -92,10 +92,11 @@ class LavanderiaController extends Controller
             $lavanderia->total_enviado = $total_enviado + $cantidad;
             $lavanderia->total_devuelto = ($reparar_lav == 1) ? $cantidad : 0;
 
+
             $lavanderia->receta_lavado = $receta_lavado;
             $lavanderia->estandar_incluido = $estandar_incluido;
-            $lavanderia->enviado = 1;
-            $lavanderia->recibido = 0;
+            // $lavanderia->enviado = 1;
+            // $lavanderia->recibido = 0;
             $lavanderia->devuelto = ($cantidad == "") ? 0 : 1;
             $lavanderia->sec = $sec + 0.01;
 
@@ -105,13 +106,22 @@ class LavanderiaController extends Controller
                 $recibido_parcial = $recepcion->recibido_parcial;
                 $pendiente = $recepcion->pendiente;
                 $recepcion->total_recibido = $total_recibido - $cantidad;
-                $recepcion->recibido_parcial = $recibido_parcial - $cantidad;
+                // $recepcion->recibido_parcial = $recibido_parcial - $cantidad;
                 $recepcion->pendiente = $pendiente + $cantidad;
                 $recepcion->save();
 
+                $lavanderia->envio_reparar = 1;
                 $lavanderia->total_enviado = $total_enviado;
 
             }
+
+            if($reparada_prod == 1){
+
+                $lavanderia->envio_reparada_lav = 1;
+                $lavanderia->total_enviado = $total_enviado + $cantidad;
+
+            }
+
 
             $lavanderia->save();
 
@@ -206,8 +216,9 @@ class LavanderiaController extends Controller
             ->select([
                 'lavanderia.id', 'lavanderia.numero_envio', 'lavanderia.fecha_envio', 'lavanderia.receta_lavado',
                 'lavanderia.cantidad', 'lavanderia.estandar_incluido', 'corte.numero_corte', 'corte.fase',
-                'producto.referencia_producto', 'suplidor.nombre', 'lavanderia.enviado', 'lavanderia.total_enviado'
-                , 'corte.total', 'lavanderia.cantidad_parcial', 'corte.id as id_corte', 'lavanderia.devuelto', 'lavanderia.total_devuelto'
+                'producto.referencia_producto', 'suplidor.nombre', 'lavanderia.envio_reparar', 'lavanderia.total_enviado'
+                , 'corte.total', 'lavanderia.cantidad_parcial', 'corte.id as id_corte', 'lavanderia.devuelto', 'lavanderia.total_devuelto',
+                'lavanderia.envio_reparada_lav'
             ]);
 
         return DataTables::of($lavanderia)
@@ -217,13 +228,20 @@ class LavanderiaController extends Controller
             ->editColumn('estandar_incluido', function ($lavanderia) {
                 return ($lavanderia->estandar_incluido == 1 ? 'Si' : 'No');
             })
-            ->editColumn('enviado', function ($lavanderia) {
-                return ($lavanderia->enviado == 1 ? 'Si' : 'No');
-            })
-            ->editColumn('devuelto', function ($lavanderia) {
-                return ($lavanderia->total_devuelto <> 0 ?  '<span class="badge badge-danger">Devuelto <i class="fas fa-check"></i> </span>':
-                '<span class="badge badge-success">Enviado <i class="fas fa-check"></i> </span>'
-            );
+            // ->editColumn('devuelto', function ($lavanderia) {
+            //     return ($lavanderia->total_devuelto <> 0 ?  '<span class="badge badge-danger">Devuelto <i class="fas fa-check"></i> </span>':
+            //     '<span class="badge badge-success">Enviado <i class="fas fa-check"></i> </span>'
+            // );
+            // })
+            ->addColumn('status', function ($lavanderia) {
+                if($lavanderia->envio_reparar == 1){
+                    return '<span class="badge badge-danger">Dev. Lav. <i class="fas fa-check"></i> </span>';
+                }elseif($lavanderia->envio_reparada_lav == 1){
+                    return '<span class="badge badge-info">Dev. RLav. <i class="fas fa-check"></i> </span>';
+                }else{
+                    return '<span class="badge badge-success">Enviado <i class="fas fa-check"></i> </span>';
+                }
+
             })
             ->editColumn('total', function ($lavanderia) {
 
@@ -295,7 +313,7 @@ class LavanderiaController extends Controller
                     '<button onclick="eliminar(' . $lavanderia->id . ')" class="btn btn-danger btn-sm mr-1 ml-1"> <i class="fas fa-eraser"></i></button>' .
                     '<a href="imprimir/conduce/' . $lavanderia->id . '" class="btn btn-secondary btn-sm  mr-1"> <i class="fas fa-print"></i></a>';
             })
-            ->rawColumns(['Opciones', 'Ver', 'devuelto'])
+            ->rawColumns(['Opciones', 'Ver', 'status'])
             ->make(true);
     }
 

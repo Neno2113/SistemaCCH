@@ -34,6 +34,7 @@
                             <input type="hidden" name="sec" id="sec" value="">
                         </div>
                     </div>
+                    <hr>
                     <div class="row mt-5">
                         <div class="col-md-6 mt-2">
                             <label for="">Corte(*):</label>
@@ -64,8 +65,8 @@
                             {{-- <input type="text" name="lavanderia" id="lavanderia" class="form-control mt-2" readonly> --}}
                         </div>
                     </div>
-                    <hr>
                     <br>
+                    {{-- <hr> --}}
                     <br>
                     <div class="row">
                         <div class="col-md-4">
@@ -83,7 +84,7 @@
                         </div>
 
                     </div>
-                    <div class="row mt-3">
+                    <div class="row mt-5">
                         <div class="col-md-4 pl-3 mt-2">
                             <label for="">¿Estandar recibido?</label>
                             <div class="form-group clearfix">
@@ -106,13 +107,13 @@
                             <label for="">¿Recibiendo para darle terminacion?</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="recibir1" name="r2" value="1" >
+                                    <input type="radio" id="recibir1" name="r2" value="1" checked>
                                     <label for="recibir1">
                                         Si
                                     </label>
                                 </div>
                                 <div class="icheck-primary d-inline">
-                                    <input type="radio" id="recibir2" value="0" name="r2" checked>
+                                    <input type="radio" id="recibir2" value="0" name="r2" >
                                     <label for="recibir2">
                                         No
                                     </label>
@@ -167,6 +168,7 @@
                     <th>Total Recibida</th>
                     <th>Pendiente</th>
                     <th>Estandar Rec.</th>
+                    <th>status</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -181,6 +183,7 @@
                     <th>Total Recibida</th>
                     <th>Pendiente</th>
                     <th>Estandar Rec.</th>
+                    <th>status</th>
                 </tr>
             </tfoot>
         </table>

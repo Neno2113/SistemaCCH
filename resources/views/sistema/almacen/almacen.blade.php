@@ -45,7 +45,8 @@
                                 </select>
                             </div>
 
-                            <input type="text" name="numero_corte" id="numero_corte" class="form-control font-weight-bold mt-2" readonly>
+                            <input type="text" name="numero_corte" id="numero_corte"
+                                class="form-control font-weight-bold mt-2" readonly>
                         </div>
                         <div class="col-md-1 mt-4 pt-2">
                             <button type="button" id="btn-buscar" class="btn btn-secondary btn-block rounded-pill"><i
@@ -235,12 +236,12 @@
 
 
 <!-- Modal -->
-<div class="modal fade bd-talla-modal-xl" tabindex="-1" id="modalAlmacen" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" id="modalAlmacen" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reportar tallas(*):</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Reportar tallas:</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -252,9 +253,34 @@
                         <input type="text" name="genero" id="genero" class="form-control font-weight-bold" readonly>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <table id="corte_detalle" class="table table-bordered tabla-dependientes" style="width:100%">
-                        <thead >
+                <div class="row">
+                    {{-- <div class="col-md-3"></div> --}}
+                    <div class="col-md-5 mt-3 ml-1">
+                        <table id="corte_detalle" class="table tabla-existencia" style="width:100%">
+                            <thead class="text-center text-sm">
+                                <tr>
+                                  <th>Pendiente produccion</th>
+                                  <th>Pendiente lavanderia</th>
+                                  <th>Perdida X</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm font-weight-bold">
+                                <tr>
+                                    <td id="pendiente_produccion"></td>
+                                    <td id="pendiente_lavanderia"></td>
+                                    <td id="perdida_x"></td>
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-md-12 mt-3">
+                    <table id="corte_detalle" class="table tabla-existencia" style="width:100%">
+                        <thead class="text-center">
                             <tr>
                                 <th id="sa">A</th>
                                 <th id="sb">B</th>
@@ -268,22 +294,27 @@
                                 <th id="sj">J</th>
                                 <th id="sk">K</th>
                                 <th id="sl">L</th>
+                                <th id="">Total</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <td id="ra"></td>
-                            <td id="rb"></td>
-                            <td id="rc"></td>
-                            <td id="rd"></td>
-                            <td id="re"></td>
-                            <td id="rf"></td>
-                            <td id="rg"></td>
-                            <td id="rh"></td>
-                            <td id="ri"></td>
-                            <td id="rj"></td>
-                            <td id="rk"></td>
-                            <td id="rl"></td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td id="ra"></td>
+                                <td id="rb"></td>
+                                <td id="rc"></td>
+                                <td id="rd"></td>
+                                <td id="re"></td>
+                                <td id="rf"></td>
+                                <td id="rg"></td>
+                                <td id="rh"></td>
+                                <td id="ri"></td>
+                                <td id="rj"></td>
+                                <td id="rk"></td>
+                                <td id="rl"></td>
+                                <td id="total"></td>
+                            </tr>
+                        </tbody>
+
 
                     </table>
                 </div>
@@ -352,10 +383,11 @@
                     </div>
                 </div>
                 <hr>
-
+                <button class="btn btn-primary float-right" name="btn-agregar" id="btn-agregar"><i class="fas fa-plus"></i>
+                    Agregar</button>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal"> Cerrar</button>
             </div>
         </div>
     </div>

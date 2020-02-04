@@ -10,7 +10,7 @@ class Lavanderia extends Model
 
     protected $fillable = [
         'id', 'numero_envio', 'corte_id', 'fecha_envio', 'receta_lavado', 'cantidad',
-        'estandar_incluido'
+        'estandar_incluido', 'envio_reparar', 'envio_raparada_lav'
     ];
 
     public function corte()
