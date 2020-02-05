@@ -269,6 +269,7 @@ Route::get('/imprimir/perdida/{id}', 'PerdidaController@imprimir');
 Route::get('cortes-almacen', 'AlmacenController@selectCorte');
 Route::get('productos-almacen', 'AlmacenController@selectProducto');
 Route::post('/almacen', 'AlmacenController@store');
+Route::post('/almacen/detalle', 'AlmacenController@storeDetalle');
 Route::get('almacen/{id}', 'AlmacenController@show');
 Route::put('/almacen/edit', 'AlmacenController@update');
 Route::post('/almacen/delete/{id}', 'AlmacenController@destroy');

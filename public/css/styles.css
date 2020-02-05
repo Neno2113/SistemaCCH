@@ -93,7 +93,7 @@ textarea.form-control
 .error {
     color: red;
     background-color: #e6f0ff;
-   
+
  }
 
  label .error {
@@ -122,8 +122,8 @@ textarea.form-control
      border-top: 1px solid #dee2e6;
  }
 
- 
- table td.fit, 
+
+ table td.fit,
  table th.fit {
      white-space: nowrap;
      width: 1%;
@@ -165,7 +165,7 @@ textarea.form-control
 
  }
 
- 
+
  .tabla-dependientes thead{
     border-left: 2px solid #0B447D;
     border-right: 2px solid #0B447D;
@@ -179,6 +179,14 @@ textarea.form-control
     border-right: 2px solid #0B447D;
     background: #0B447D;
     color: #fff;
+}
+
+.tabla-existencia thead td{
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    background: #ccc;
+    color: #000;
+    font-weight: bold;
 }
 .tabla-existencia td, .tabla-existencia th{
     border: 1px solid #dee2e6;
@@ -240,11 +248,13 @@ textarea.form-control
     text-align: center;
 }
 
-
-
-
-.tabla-existencia tfoot tr{
-
+.tabla-existencia tfoot{
+    border: 5px solid #9b988b;
+    font-weight: bold;
+    border-radius: 35px 30px;
+}
+.tabla-existencia tfoot td{
+    border: 4px solid #0000004f;
 }
 
 .tabla-existencia tfoot .totales{
@@ -298,4 +308,54 @@ textarea.form-control
     font-size: 14px;
 }
 
- 
+.tabla-almacen-totales {
+
+}
+
+
+.tabla-almacen-totales thead{
+    border-left: 2px solid #787E846F;
+    border-right: 2px solid #787E846F;
+    background: #787E8470;
+    color: #000;
+}
+
+.tabla-almacen-totales thead td{
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    background: #ccc;
+    color: #000;
+    font-weight: bold;
+}
+.tabla-almacen-totales td, .tabla-almacen-totales th{
+    border: 1px solid #dee2e6;
+}
+
+.tabla-almacen-pendientes thead{
+    border-left: 2px solid #0B447D;
+    border-right: 2px solid #0B447D;
+    background: #0B447D;
+    color: #fff;
+}
+
+.tabla-almacen-pendientes thead td{
+    background: #ccc;
+    color: #000;
+    font-weight: bold;
+}
+.tabla-almacen-pendientes td, .tabla-almacen-pendientes th{
+    border: 1px solid #dee2e6;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+
+.div-totales{
+    border-left: 1px solid #00000036;
+    border-right: 1px solid #00000036;
+    border-top: 1px solid #00000036;
+    border-bottom: 1px solid #00000036;
+    padding-top: 20px;
+}
+
+

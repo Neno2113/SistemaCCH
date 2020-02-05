@@ -11,6 +11,7 @@ use App\Recepcion;
 use App\Perdida;
 use App\TallasPerdidas;
 use App\Talla;
+use App\AlmacenDetalle;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -39,33 +40,33 @@ class AlmacenController extends Controller
             $atributo_no_1 = $request->input('atributo_no_1');
             $atributo_no_2 = $request->input('atributo_no_2');
             $atributo_no_3 = $request->input('atributo_no_3');
-            $a = $request->input('a');
-            $b = $request->input('b');
-            $c = $request->input('c');
-            $d = $request->input('d');
-            $e = $request->input('e');
-            $f = $request->input('f');
-            $g = $request->input('g');
-            $h = $request->input('h');
-            $i = $request->input('i');
-            $j = $request->input('j');
-            $k = $request->input('k');
-            $l = $request->input('l');
+            // $a = $request->input('a');
+            // $b = $request->input('b');
+            // $c = $request->input('c');
+            // $d = $request->input('d');
+            // $e = $request->input('e');
+            // $f = $request->input('f');
+            // $g = $request->input('g');
+            // $h = $request->input('h');
+            // $i = $request->input('i');
+            // $j = $request->input('j');
+            // $k = $request->input('k');
+            // $l = $request->input('l');
 
 
             //validaciones
-            $a = intval(trim($a, "_"));
-            $b = intval(trim($b, "_"));
-            $c = intval(trim($c, "_"));
-            $d = intval(trim($d, "_"));
-            $e = intval(trim($e, "_"));
-            $f = intval(trim($f, "_"));
-            $g = intval(trim($g, "_"));
-            $h = intval(trim($h, "_"));
-            $i = intval(trim($i, "_"));
-            $j = intval(trim($j, "_"));
-            $k = intval(trim($k, "_"));
-            $l = intval(trim($l, "_"));
+            // $a = intval(trim($a, "_"));
+            // $b = intval(trim($b, "_"));
+            // $c = intval(trim($c, "_"));
+            // $d = intval(trim($d, "_"));
+            // $e = intval(trim($e, "_"));
+            // $f = intval(trim($f, "_"));
+            // $g = intval(trim($g, "_"));
+            // $h = intval(trim($h, "_"));
+            // $i = intval(trim($i, "_"));
+            // $j = intval(trim($j, "_"));
+            // $k = intval(trim($k, "_"));
+            // $l = intval(trim($l, "_"));
 
             $almacen = new Almacen();
             $corte = Corte::find($corte_id);
@@ -92,19 +93,19 @@ class AlmacenController extends Controller
             $almacen->producto_id = $producto_id;
             $almacen->corte_id = $corte_id;
             $almacen->user_id = \auth()->user()->id;
-            $almacen->a = $a;
-            $almacen->b = $b;
-            $almacen->c = $c;
-            $almacen->d = $d;
-            $almacen->e = $e;
-            $almacen->f = $f;
-            $almacen->g = $g;
-            $almacen->h = $h;
-            $almacen->i = $i;
-            $almacen->j = $j;
-            $almacen->k = $k;
-            $almacen->l = $l;
-            $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+            // $almacen->a = $a;
+            // $almacen->b = $b;
+            // $almacen->c = $c;
+            // $almacen->d = $d;
+            // $almacen->e = $e;
+            // $almacen->f = $f;
+            // $almacen->g = $g;
+            // $almacen->h = $h;
+            // $almacen->i = $i;
+            // $almacen->j = $j;
+            // $almacen->k = $k;
+            // $almacen->l = $l;
+            // $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
             $almacen->usado_curva = 0;
 
             $almacen->save();
@@ -115,6 +116,75 @@ class AlmacenController extends Controller
                 'almacen' => $almacen
             ];
         }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function storeDetalle(Request $request)
+    {
+        $a = $request->input('a');
+        $b = $request->input('b');
+        $c = $request->input('c');
+        $d = $request->input('d');
+        $e = $request->input('e');
+        $f = $request->input('f');
+        $g = $request->input('g');
+        $h = $request->input('h');
+        $i = $request->input('i');
+        $j = $request->input('j');
+        $k = $request->input('k');
+        $l = $request->input('l');
+        $almacen_id = $request->input('almacen_id');
+        $producto_id = $request->input('producto_id');
+
+        //validaciones
+        $a = intval(trim($a, "_"));
+        $b = intval(trim($b, "_"));
+        $c = intval(trim($c, "_"));
+        $d = intval(trim($d, "_"));
+        $e = intval(trim($e, "_"));
+        $f = intval(trim($f, "_"));
+        $g = intval(trim($g, "_"));
+        $h = intval(trim($h, "_"));
+        $i = intval(trim($i, "_"));
+        $j = intval(trim($j, "_"));
+        $k = intval(trim($k, "_"));
+        $l = intval(trim($l, "_"));
+
+        $almacen_detalle = new AlmacenDetalle();
+
+        if (empty($almacen_id)) {
+            //sacar next autogenerated ID
+            $select = DB::select("SHOW TABLE STATUS LIKE 'almacen'");
+            $nextId = $select[0]->Auto_increment;
+            $almacen_detalle->almacen_id = $nextId;
+        } else {
+            $almacen_detalle->almacen_id = $almacen_id;
+        }
+
+        $almacen_detalle->a = $a;
+        $almacen_detalle->b = $b;
+        $almacen_detalle->c = $c;
+        $almacen_detalle->d = $d;
+        $almacen_detalle->e = $e;
+        $almacen_detalle->f = $f;
+        $almacen_detalle->g = $g;
+        $almacen_detalle->h = $h;
+        $almacen_detalle->i = $i;
+        $almacen_detalle->j = $j;
+        $almacen_detalle->k = $k;
+        $almacen_detalle->l = $l;
+        $almacen_detalle->producto_id = $producto_id;
+        $almacen_detalle->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
+        $almacen_detalle->save();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'detalle' => $almacen_detalle
+
+        ];
 
         return response()->json($data, $data['code']);
     }
@@ -132,7 +202,7 @@ class AlmacenController extends Controller
                 'status' => 'error',
                 'message' => 'Error en la validacion de datos'
             ];
-        }else{
+        } else {
 
             $corte_id = $request->input('corte_id');
 
@@ -140,14 +210,14 @@ class AlmacenController extends Controller
             $cantidad_total = $corte['total'];
 
             $perdida = Perdida::where('corte_id', 'LIKE', "$corte_id")
-            ->where('tipo_perdida', 'LIKE', 'Normal')
-            ->whereIn('fase', ['Terminacion', 'Terminacion o almacen'])
-            ->select('id')->get();
+                ->where('tipo_perdida', 'LIKE', 'Normal')
+                ->whereIn('fase', ['Terminacion', 'Terminacion o almacen'])
+                ->select('id')->get();
             $perdida_id = array();
 
             $longitud = count($perdida);
 
-            for ($i=0; $i < $longitud; $i++) {
+            for ($i = 0; $i < $longitud; $i++) {
                 array_push($perdida_id, $perdida[$i]['id']);
             }
 
@@ -156,14 +226,13 @@ class AlmacenController extends Controller
 
             $lent = count($talla_perdida);
 
-            for ($i=0; $i < $lent; $i++) {
+            for ($i = 0; $i < $lent; $i++) {
                 array_push($totales, $talla_perdida[$i]['total']);
-
             }
             $cant_perdida = array_sum($totales);
 
             $cantidad_recibida = Recepcion::where('corte_id', $corte_id)
-                                            ->get()->last();
+                ->get()->last();
             $total_recibido = $cantidad_recibida['total_recibido'];
 
             // $recepcion = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
@@ -177,12 +246,9 @@ class AlmacenController extends Controller
                 'total_recibido' => $total_recibido
 
             ];
-
         }
         return \response()->json($data, $data['code']);
     }
-
-
 
     public function almacenes()
     {
@@ -203,7 +269,7 @@ class AlmacenController extends Controller
             })
             ->addColumn('Opciones', function ($almacen) {
                 return
-                    '<button id="btnEdit" onclick="mostrar(' . $almacen->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .
+                    '<button id="btnEdit" onclick="mostrar(' . $almacen->id . ')" class="btn btn-primary btn-sm" ><i class="fas fa-list-alt"></i></button>' .
                     '<button onclick="eliminar(' . $almacen->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
             })
             ->rawColumns(['Opciones'])
@@ -223,17 +289,85 @@ class AlmacenController extends Controller
             ->make(true);
     }
 
-
-
     public function show($id)
     {
         $almacen = Almacen::find($id)->load('producto')->load('corte');
+        $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
+
+        $tallas = Talla::where('corte_id', $almacen->corte->id)->first();
+
+        $recepcion  = Recepcion::where('corte_id', $almacen->corte->id)->get()->last();
+        $lavanderia  = Lavanderia::where('corte_id', $almacen->corte->id)->get()->last();
+
+        //perdidas
+        $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+            ->where('corte_id', $id)->select('id')->get();
+
+        $perdidas = array();
+
+        $longitudPerdida = count($perdida);
+
+        for ($i = 0; $i < $longitudPerdida; $i++) {
+            array_push($perdidas, $perdida[$i]['id']);
+        }
+
+        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+
+        //calcular total real
+        $a = $tallas->a - $tallasPerdidas->sum('a');
+        $b = $tallas->b - $tallasPerdidas->sum('b');
+        $c = $tallas->c - $tallasPerdidas->sum('c');
+        $d = $tallas->d - $tallasPerdidas->sum('d');
+        $e = $tallas->e - $tallasPerdidas->sum('e');
+        $f = $tallas->f - $tallasPerdidas->sum('f');
+        $g = $tallas->g - $tallasPerdidas->sum('g');
+        $h = $tallas->h - $tallasPerdidas->sum('h');
+        $i = $tallas->i - $tallasPerdidas->sum('i');
+        $j = $tallas->j - $tallasPerdidas->sum('j');
+        $k = $tallas->k - $tallasPerdidas->sum('k');
+        $l = $tallas->l - $tallasPerdidas->sum('l');
+
+        //Validacion de numeros negativos
+        $a = ($a < 0 ? 0 : $a);
+        $b = ($b < 0 ? 0 : $b);
+        $c = ($c < 0 ? 0 : $c);
+        $d = ($d < 0 ? 0 : $d);
+        $e = ($e < 0 ? 0 : $e);
+        $f = ($f < 0 ? 0 : $f);
+        $g = ($g < 0 ? 0 : $g);
+        $h = ($h < 0 ? 0 : $h);
+        $i = ($i < 0 ? 0 : $i);
+        $j = ($j < 0 ? 0 : $j);
+        $k = ($k < 0 ? 0 : $k);
+        $l = ($l < 0 ? 0 : $l);
+        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
+        $pendiente_lavanderia = $almacen->corte->total;
+        $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
         if (is_object($almacen)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'almacen' => $almacen
+                'almacen' => $almacen,
+                'detalle' => $detalle,
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l,
+                'total' => $total_real,
+                'pen_lavanderia' => $recepcion->pendiente,
+                'total_recibido' => $recepcion->total_recibido,
+                'pen_produccion' => $pendiente_lavanderia,
+                'perdida_x' => $tallasPerdidas->sum('talla_x')
             ];
         } else {
             $data = [
@@ -491,7 +625,7 @@ class AlmacenController extends Controller
     public function verificar_ref(Request $request)
     {
         $id = $request->input('id');
-        if(empty($id)){
+        if (empty($id)) {
             $id = $request->input('idEdit');
         }
 
@@ -505,8 +639,8 @@ class AlmacenController extends Controller
 
         //buscar cortes con la misma referencia producto
         $corte = Corte::where('id', $id)
-        // ->where('fase', 'LIKE', 'Terminacion')
-        ->select('id', 'total')->get();
+            // ->where('fase', 'LIKE', 'Terminacion')
+            ->select('id', 'total')->get();
 
         $cortes = array();
 
@@ -516,11 +650,13 @@ class AlmacenController extends Controller
             array_push($cortes, $corte[$i]['id']);
         }
         //buscar cantidades de tallas con el array de id de cortes
-        $tallas = Talla::whereIn('corte_id', $cortes)->get()->load('corte');
+        $tallas = Talla::where('corte_id', $id)->first();
+        // echo $tallas;
+        // die();
 
         //perdidas
         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
-            ->where('producto_id', $producto_id)->select('id')->get();
+            ->where('corte_id', $id)->select('id')->get();
 
         $perdidas = array();
 
@@ -530,7 +666,7 @@ class AlmacenController extends Controller
             array_push($perdidas, $perdida[$i]['id']);
         }
 
-        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get()->first();
+        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
 
         //SEGUNDA
         $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
@@ -550,18 +686,18 @@ class AlmacenController extends Controller
         $producto = Product::find($producto_id);
 
         //calcular total real
-        $a = $tallas->sum('a') - $tallasPerdidas->sum('a');
-        $b = $tallas->sum('b') - $tallasPerdidas->sum('b');
-        $c = $tallas->sum('c') - $tallasPerdidas->sum('c');
-        $d = $tallas->sum('d') - $tallasPerdidas->sum('d');
-        $e = $tallas->sum('e') - $tallasPerdidas->sum('e');
-        $f = $tallas->sum('f') - $tallasPerdidas->sum('f');
-        $g = $tallas->sum('g') - $tallasPerdidas->sum('g');
-        $h = $tallas->sum('h') - $tallasPerdidas->sum('h');
-        $i = $tallas->sum('i') - $tallasPerdidas->sum('i');
-        $j = $tallas->sum('j') - $tallasPerdidas->sum('j');
-        $k = $tallas->sum('k') - $tallasPerdidas->sum('k');
-        $l = $tallas->sum('l') - $tallasPerdidas->sum('l');
+        $a = $tallas->a - $tallasPerdidas->sum('a');
+        $b = $tallas->b - $tallasPerdidas->sum('b');
+        $c = $tallas->c - $tallasPerdidas->sum('c');
+        $d = $tallas->d - $tallasPerdidas->sum('d');
+        $e = $tallas->e - $tallasPerdidas->sum('e');
+        $f = $tallas->f - $tallasPerdidas->sum('f');
+        $g = $tallas->g - $tallasPerdidas->sum('g');
+        $h = $tallas->h - $tallasPerdidas->sum('h');
+        $i = $tallas->i - $tallasPerdidas->sum('i');
+        $j = $tallas->j - $tallasPerdidas->sum('j');
+        $k = $tallas->k - $tallasPerdidas->sum('k');
+        $l = $tallas->l - $tallasPerdidas->sum('l');
 
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);
@@ -603,7 +739,7 @@ class AlmacenController extends Controller
                 'total' => $total_real,
                 'pen_lavanderia' => $recepcion->pendiente,
                 'pen_produccion' => $pendiente_lavanderia,
-                'perdida_x' => $tallasPerdidas->talla_x
+                'perdida_x' => $tallasPerdidas->sum('talla_x')
             ];
         } else {
             $data = [
@@ -616,7 +752,8 @@ class AlmacenController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function validar(Request $request){
+    public function validar(Request $request)
+    {
         $a = $request->input('a');
         $b = $request->input('b');
         $c = $request->input('c');

@@ -251,33 +251,80 @@
                     <label for="">Referencia producto: </label>
                     <div class="col-md-6 mb-2">
                         <input type="text" name="genero" id="genero" class="form-control font-weight-bold" readonly>
+                        <input type="hidden" name="producto_id" id="producto_id">
                     </div>
                 </div>
-                <div class="row">
-                    {{-- <div class="col-md-3"></div> --}}
-                    <div class="col-md-5 mt-3 ml-1">
-                        <table id="corte_detalle" class="table tabla-existencia" style="width:100%">
-                            <thead class="text-center text-sm">
-                                <tr>
-                                  <th>Pendiente produccion</th>
-                                  <th>Pendiente lavanderia</th>
-                                  <th>Perdida X</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm font-weight-bold">
-                                <tr>
-                                    <td id="pendiente_produccion"></td>
-                                    <td id="pendiente_lavanderia"></td>
-                                    <td id="perdida_x"></td>
-                                </tr>
-
-                            </tbody>
-
-
-                        </table>
+                <div class="div-totales">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label for="" class="ml-4">Total corte:</label>
+                            <table class="table text-sm tabla-almacen-totales ml-2" style="width:90">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th id="ba">A</th>
+                                        <th id="bb">B</th>
+                                        <th id="bc">C</th>
+                                        <th id="bd">D</th>
+                                        <th id="be">E</th>
+                                        <th id="bf">F</th>
+                                        <th id="bg">G</th>
+                                        <th id="bh">H</th>
+                                        <th id="bi">I</th>
+                                        <th id="bj">J</th>
+                                        <th id="bk">K</th>
+                                        <th id="bl">L</th>
+                                        <th id="">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center font-weight-bold">
+                                    <tr>
+                                        <td id="ra"></td>
+                                        <td id="rb"></td>
+                                        <td id="rc"></td>
+                                        <td id="rd"></td>
+                                        <td id="re"></td>
+                                        <td id="rf"></td>
+                                        <td id="rg"></td>
+                                        <td id="rh"></td>
+                                        <td id="ri"></td>
+                                        <td id="rj"></td>
+                                        <td id="rk"></td>
+                                        <td id="rl"></td>
+                                        <td id="total"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    <div class="row">
+                        {{-- <div class="col-md-3"></div> --}}
+                        <div class="col-md-7">
+                            <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2" style="width:90">
+                                <thead class="text-center text-sm">
+                                    <tr>
+                                        <th>Pendiente produccion</th>
+                                        <th>Pendiente lavanderia</th>
+                                        <th>Total terminacion</th>
+                                        <th>Perdida X</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm text-center font-weight-bold">
+                                    <tr>
+                                        <td id="pendiente_produccion"></td>
+                                        <td id="pendiente_lavanderia"></td>
+                                        <td id="total_terminacion"></td>
+                                        <td id="perdida_x"></td>
+                                    </tr>
+                                </tbody>
 
+
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
+
+
                 <div class="col-md-12 mt-3">
                     <table id="corte_detalle" class="table tabla-existencia" style="width:100%">
                         <thead class="text-center">
@@ -297,28 +344,20 @@
                                 <th id="">Total</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td id="ra"></td>
-                                <td id="rb"></td>
-                                <td id="rc"></td>
-                                <td id="rd"></td>
-                                <td id="re"></td>
-                                <td id="rf"></td>
-                                <td id="rg"></td>
-                                <td id="rh"></td>
-                                <td id="ri"></td>
-                                <td id="rj"></td>
-                                <td id="rk"></td>
-                                <td id="rl"></td>
-                                <td id="total"></td>
-                            </tr>
+                        <tbody id="disponibles">
+
                         </tbody>
+                        <tfoot class="resultados text-center">
+
+                        </tfoot>
 
 
                     </table>
                 </div>
                 <br>
+                <div class="row">
+
+                </div>
                 <br>
                 <div class="row mt-2">
                     <div class="col-lg-1 col-md-2">
@@ -383,7 +422,8 @@
                     </div>
                 </div>
                 <hr>
-                <button class="btn btn-primary float-right" name="btn-agregar" id="btn-agregar"><i class="fas fa-plus"></i>
+                <button class="btn btn-primary rounded-pill float-right" name="btn-agregar" id="btn-agregar"><i
+                        class="fas fa-plus"></i>
                     Agregar</button>
             </div>
             <div class="modal-footer">
@@ -414,30 +454,24 @@
             $("#form_producto").show();
             $("#form_producto_2").show();
             $("#form_talla").show();
-            // $("#imagen_frente").hide();
-            // $("#imagen_trasera").hide();
-            // $("#imagen_perfil").hide();
-            // $("#imagen_bolsillo").hide();
-            // $("#btn-upload").hide();
             $("#btn-buscar").hide();
             $("#btn-close").hide();
             let genero = data.almacen.producto.referencia_producto.substring(1, 2);
             let mujer_plus = data.almacen.producto.referencia_producto.substring(3, 4);
 
             //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-            (data.almacen.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false);
-            (data.almacen.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
-            (data.almacen.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
-            (data.almacen.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
-            (data.almacen.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
-            (data.almacen.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
-            (data.almacen.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
-            (data.almacen.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
-            (data.almacen.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
-            (data.almacen.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
-            (data.almacen.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
-            (data.almacen.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
-
+            (data.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false);
+            (data.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
+            (data.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
+            (data.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
+            (data.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
+            (data.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
+            (data.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
+            (data.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
+            (data.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
+            (data.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
+            (data.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
+            (data.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
 
 
             $("#id").val(data.almacen.id);
@@ -448,75 +482,114 @@
             $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
             $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
             $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
-            $("#a").val(data.almacen.a);
-            $("#b").val(data.almacen.b);
-            $("#c").val(data.almacen.c);
-            $("#d").val(data.almacen.d);
-            $("#e").val(data.almacen.e);
-            $("#f").val(data.almacen.f);
-            $("#g").val(data.almacen.g);
-            $("#h").val(data.almacen.h);
-            $("#i").val(data.almacen.i);
-            $("#j").val(data.almacen.j);
-            $("#k").val(data.almacen.k);
-            $("#l").val(data.almacen.l);
+            $("#ra").html(data.a);
+            $("#rb").html(data.b);
+            $("#rc").html(data.c);
+            $("#rd").html(data.d);
+            $("#re").html(data.e);
+            $("#rf").html(data.f);
+            $("#rg").html(data.g);
+            $("#rh").html(data.h);
+            $("#ri").html(data.i);
+            $("#rj").html(data.j);
+            $("#rk").html(data.k);
+            $("#rl").html(data.l);
+            $("#total").html(data.total);
             $("#genero").val(data.almacen.producto.referencia_producto);
             $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
             $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
             $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
             $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+            $("#pendiente_produccion").html(data.pen_produccion);
+            $("#pendiente_lavanderia").html(data.pen_lavanderia);
+            $("#total_terminacion").html(data.total_recibido);
+            $("#perdida_x").html(data.perdida_x);
 
-
+            for (let t = 0; t < data.detalle.length; t++) {
+                var fila =  "<tr>"+
+                '<tr id="fila">'+
+                "<td><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].a+"</td>"+
+                "<td><input type='hidden' name='b[]' id='b[]' value="+data.detalle[t].b+">"+data.detalle[t].b+"</td>"+
+                "<td><input type='hidden' name='c[]' id='c[]' value="+data.detalle[t].c+">"+data.detalle[t].c+"</td>"+
+                "<td><input type='hidden' name='d[]' id='d[]' value="+data.detalle[t].d+">"+data.detalle[t].d+"</td>"+
+                "<td><input type='hidden' name='e[]' id='e[]' value="+data.detalle[t].e+">"+data.detalle[t].e+"</td>"+
+                "<td><input type='hidden' name='f[]' id='f[]' value="+data.detalle[t].f+">"+data.detalle[t].f+"</td>"+
+                "<td><input type='hidden' name='g[]' id='g[]' value="+data.detalle[t].g+">"+data.detalle[t].g+"</td>"+
+                "<td><input type='hidden' name='h[]' id='h[]' value="+data.detalle[t].h+">"+data.detalle[t].h+"</td>"+
+                "<td><input type='hidden' name='i[]' id='i[]' value="+data.detalle[t].i+">"+data.detalle[t].i+"</td>"+
+                "<td><input type='hidden' name='j[]' id='j[]' value="+data.detalle[t].j+">"+data.detalle[t].j+"</td>"+
+                "<td><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
+                "<td><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
+                "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
+                "</tr>";
+                $("#disponibles").append(fila);
+            }
 
             if (genero == "2") {
+                if (mujer_plus == 7) {
+                    $("#ta").html("12W");
+                    $("#tb").html("14W");
+                    $("#tc").html("16W");
+                    $("#td").html("18W");
+                    $("#te").html("20W");
+                    $("#tf").html("22W");
+                    $("#tg").html("24W");
+                    $("#th").html("26W");
+                    $("#sa").html("12W");
+                    $("#sb").html("14W");
+                    $("#sc").html("16W");
+                    $("#sd").html("18W");
+                    $("#se").html("20W");
+                    $("#sf").html("22W");
+                    $("#sg").html("24W");
+                    $("#sh").html("26W");
+                    $("#ba").html("12W");
+                    $("#bb").html("14W");
+                    $("#bc").html("16W");
+                    $("#bd").html("18W");
+                    $("#be").html("20W");
+                    $("#bf").html("22W");
+                    $("#bg").html("24W");
+                    $("#bh").html("26W");
+                } else {
+                    $("#ta").html("0/0");
+                    $("#tb").html("1/2");
+                    $("#tc").html("3/4");
+                    $("#td").html("5/6");
+                    $("#te").html("7/8");
+                    $("#tf").html("9/10");
+                    $("#tg").html("11/12");
+                    $("#th").html("13/14");
+                    $("#ti").html("15/16");
+                    $("#tj").html("17/18");
+                    $("#tk").html("19/20");
+                    $("#tl").html("21/22");
+                    $("#sa").html("0/0");
+                    $("#sb").html("1/2");
+                    $("#sc").html("3/4");
+                    $("#sd").html("5/6");
+                    $("#se").html("7/8");
+                    $("#sf").html("9/10");
+                    $("#sg").html("11/12");
+                    $("#sh").html("13/14");
+                    $("#si").html("15/16");
+                    $("#sj").html("17/18");
+                    $("#sk").html("19/20");
+                    $("#sl").html("21/22");
+                    $("#ba").html("0/0");
+                    $("#bb").html("1/2");
+                    $("#bc").html("3/4");
+                    $("#bd").html("5/6");
+                    $("#be").html("7/8");
+                    $("#bf").html("9/10");
+                    $("#bg").html("11/12");
+                    $("#bh").html("13/14");
+                    $("#bi").html("15/16");
+                    $("#bj").html("17/18");
+                    $("#bk").html("19/20");
+                    $("#bl").html("21/22");
 
-            if (mujer_plus == 7) {
-                $("#ta").html("12W");
-                $("#tb").html("14W");
-                $("#tc").html("16W");
-                $("#td").html("18W");
-                $("#te").html("20W");
-                $("#tf").html("22W");
-                $("#tg").html("24W");
-                $("#th").html("26W");
-                $("#sa").html("12W");
-                $("#sb").html("14W");
-                $("#sc").html("16W");
-                $("#sd").html("18W");
-                $("#se").html("20W");
-                $("#sf").html("22W");
-                $("#sg").html("24W");
-                $("#sh").html("26W");
-
-
-
-            } else {
-                $("#ta").html("0/0");
-                $("#tb").html("1/2");
-                $("#tc").html("3/4");
-                $("#td").html("5/6");
-                $("#te").html("7/8");
-                $("#tf").html("9/10");
-                $("#tg").html("11/12");
-                $("#th").html("13/14");
-                $("#ti").html("15/16");
-                $("#tj").html("17/18");
-                $("#tk").html("19/20");
-                $("#tl").html("21/22");
-                $("#sa").html("0/0");
-                $("#sb").html("1/2");
-                $("#sc").html("3/4");
-                $("#sd").html("5/6");
-                $("#se").html("7/8");
-                $("#sf").html("9/10");
-                $("#sg").html("11/12");
-                $("#sh").html("13/14");
-                $("#si").html("15/16");
-                $("#sj").html("17/18");
-                $("#sk").html("19/20");
-                $("#sl").html("21/22");
-
-            }
+                }
             }
             if (genero == "3") {
                 $("#genero").val("Niño: " + val);
@@ -537,7 +610,14 @@
                 $("#sf").html("12");
                 $("#sg").html("14");
                 $("#sh").html("16");
-
+                $("#ba").html("2");
+                $("#bb").html("4");
+                $("#bc").html("6");
+                $("#bd").html("8");
+                $("#be").html("10");
+                $("#bf").html("12");
+                $("#bg").html("14");
+                $("#bh").html("16");
             } else if (genero == "4") {
                 $("#genero").val("Niña: " + val);
                 $("#sub-genero").hide();
@@ -557,7 +637,14 @@
                 $("#sf").html("12");
                 $("#sg").html("14");
                 $("#sh").html("16");
-
+                $("#ba").html("2");
+                $("#bb").html("4");
+                $("#bc").html("6");
+                $("#bd").html("8");
+                $("#be").html("10");
+                $("#bf").html("12");
+                $("#bg").html("14");
+                $("#bh").html("16");
             } else if (genero == "1") {
                 $("#genero").val("Hombre: " + val);
                 $("#sub-genero").hide();
@@ -581,6 +668,14 @@
                 $("#sh").html("40");
                 $("#si").html("42");
                 $("#sj").html("44");
+                $("#ba").html("2");
+                $("#bb").html("4");
+                $("#bc").html("6");
+                $("#bd").html("8");
+                $("#be").html("10");
+                $("#bf").html("12");
+                $("#bg").html("14");
+                $("#bh").html("16")
 
             }
         });

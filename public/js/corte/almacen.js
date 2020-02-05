@@ -51,6 +51,15 @@ $(document).ready(function() {
         $("#loading3").hide();
     }
 
+    function validarNan(val) {
+        if (isNaN(val) || val < 0) {
+            return 0;
+        } else {
+            return val;
+        }
+    }
+
+
     function limpiar() {
         $("#cortesSearchEdit").val("").trigger("change");
         $("#cortesSearch").val("").trigger("change");
@@ -73,6 +82,21 @@ $(document).ready(function() {
         $("#k").val("");
         $("#l").val("");
         $("#genero").val("");
+    }
+
+    function limpiarDetalle(){
+        $("#a").val("");
+        $("#b").val("");
+        $("#c").val("");
+        $("#d").val("");
+        $("#e").val("");
+        $("#f").val("");
+        $("#g").val("");
+        $("#h").val("");
+        $("#i").val("");
+        $("#j").val("");
+        $("#k").val("");
+        $("#l").val("");
     }
 
     $("#cortesSearch").select2({
@@ -146,18 +170,18 @@ $(document).ready(function() {
             atributo_no_1: $("#atributo_no_1").val(),
             atributo_no_2: $("#atributo_no_2").val(),
             atributo_no_3: $("#atributo_no_3").val(),
-            a: $("#a").val(),
-            b: $("#b").val(),
-            c: $("#c").val(),
-            d: $("#d").val(),
-            e: $("#e").val(),
-            f: $("#f").val(),
-            g: $("#g").val(),
-            h: $("#h").val(),
-            i: $("#i").val(),
-            j: $("#j").val(),
-            k: $("#k").val(),
-            l: $("#l").val()
+            // a: $("#a").val(),
+            // b: $("#b").val(),
+            // c: $("#c").val(),
+            // d: $("#d").val(),
+            // e: $("#e").val(),
+            // f: $("#f").val(),
+            // g: $("#g").val(),
+            // h: $("#h").val(),
+            // i: $("#i").val(),
+            // j: $("#j").val(),
+            // k: $("#k").val(),
+            // l: $("#l").val()
         };
 
 
@@ -367,6 +391,7 @@ $(document).ready(function() {
                     $("#pendiente_produccion").html(datos.pen_produccion);
                     $("#pendiente_lavanderia").html(datos.pen_lavanderia);
                     $("#perdida_x").html(datos.perdida_x);
+                    $("#producto_id").val(datos.producto.id);
 
                     a_total = datos.a;
                     b_total = datos.b;
@@ -395,6 +420,20 @@ $(document).ready(function() {
                     (datos.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
                     (datos.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
 
+                    $("#ra").html(datos.a);
+                    $("#rb").html(datos.b);
+                    $("#rc").html(datos.c);
+                    $("#rd").html(datos.d);
+                    $("#re").html(datos.e);
+                    $("#rf").html(datos.f);
+                    $("#rg").html(datos.g);
+                    $("#rh").html(datos.h);
+                    $("#ri").html(datos.i);
+                    $("#rj").html(datos.j);
+                    $("#rk").html(datos.k);
+                    $("#rl").html(datos.l);
+                    $("#total").html(datos.total);
+
 
                     var corte = {
                         corte_id: $("#cortesSearch").val(),
@@ -409,8 +448,8 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                                total_recibido = datos.total_recibido - datos.perdidas;
-
+                                total_recibido = datos.total_recibido;
+                                $("#total_terminacion").html(datos.total_recibido);
 
                             } else {
                                 bootbox.alert(
@@ -445,19 +484,14 @@ $(document).ready(function() {
                             $("#sf").html("22W");
                             $("#sg").html("24W");
                             $("#sh").html("26W");
-                            // $("#ra").html(datos.a);
-                            // $("#rb").html(datos.b);
-                            // $("#rc").html(datos.c);
-                            // $("#rd").html(datos.d);
-                            // $("#re").html(datos.e);
-                            // $("#rf").html(datos.f);
-                            // $("#rg").html(datos.g);
-                            // $("#rh").html(datos.h);
-                            // $("#ri").html(datos.i);
-                            // $("#rj").html(datos.j);
-                            // $("#rk").html(datos.k);
-                            // $("#rl").html(datos.l);
-                            // $("#total").html(datos.total);
+                            $("#ba").html("12W");
+                            $("#bb").html("14W");
+                            $("#bc").html("16W");
+                            $("#bd").html("18W");
+                            $("#be").html("20W");
+                            $("#bf").html("22W");
+                            $("#bg").html("24W");
+                            $("#bh").html("26W");
                             $("#i").attr("disabled", true);
                             $("#j").attr("disabled", true);
                             $("#k").attr("disabled", true);
@@ -489,24 +523,18 @@ $(document).ready(function() {
                             $("#sj").html("17/18");
                             $("#sk").html("19/20");
                             $("#sl").html("21/22");
-                            // $("#ra").html(datos.a);
-                            // $("#rb").html(datos.b);
-                            // $("#rc").html(datos.c);
-                            // $("#rd").html(datos.d);
-                            // $("#re").html(datos.e);
-                            // $("#rf").html(datos.f);
-                            // $("#rg").html(datos.g);
-                            // $("#rh").html(datos.h);
-                            // $("#ri").html(datos.i);
-                            // $("#rj").html(datos.j);
-                            // $("#rk").html(datos.k);
-                            // $("#rl").html(datos.l);
-                            // $("#total").html(datos.total);
-                            // $("#i").attr("disabled", false);
-                            // $("#j").attr("disabled", false);
-                            // $("#k").attr("disabled", false);
-                            // $("#l").attr("disabled", false);
-
+                            $("#ba").html("0/0");
+                            $("#bb").html("1/2");
+                            $("#bc").html("3/4");
+                            $("#bd").html("5/6");
+                            $("#be").html("7/8");
+                            $("#bf").html("9/10");
+                            $("#bg").html("11/12");
+                            $("#bh").html("13/14");
+                            $("#bi").html("15/16");
+                            $("#bj").html("17/18");
+                            $("#bk").html("19/20");
+                            $("#bl").html("21/22");
                         }
                     }
                     if (genero == "3") {
@@ -528,19 +556,15 @@ $(document).ready(function() {
                         $("#sf").html("12");
                         $("#sg").html("14");
                         $("#sh").html("16");
-                        // $("#ra").html(datos.a);
-                        // $("#rb").html(datos.b);
-                        // $("#rc").html(datos.c);
-                        // $("#rd").html(datos.d);
-                        // $("#re").html(datos.e);
-                        // $("#rf").html(datos.f);
-                        // $("#rg").html(datos.g);
-                        // $("#rh").html(datos.h);
-                        // $("#ri").html(datos.i);
-                        // $("#rj").html(datos.j);
-                        // $("#rk").html(datos.k);
-                        // $("#rl").html(datos.l);
-                        // $("#total").html(datos.total);
+                        $("#ba").html("2");
+                        $("#bb").html("4");
+                        $("#bc").html("6");
+                        $("#bd").html("8");
+                        $("#be").html("10");
+                        $("#bf").html("12");
+                        $("#bg").html("14");
+                        $("#bh").html("16");
+
                         $("#i").attr("disabled", true);
                         $("#j").attr("disabled", true);
                         $("#k").attr("disabled", true);
@@ -565,19 +589,14 @@ $(document).ready(function() {
                         $("#sf").html("12");
                         $("#sg").html("14");
                         $("#sh").html("16");
-                        // $("#ra").html(datos.a);
-                        // $("#rb").html(datos.b);
-                        // $("#rc").html(datos.c);
-                        // $("#rd").html(datos.d);
-                        // $("#re").html(datos.e);
-                        // $("#rf").html(datos.f);
-                        // $("#rg").html(datos.g);
-                        // $("#rh").html(datos.h);
-                        // $("#ri").html(datos.i);
-                        // $("#rj").html(datos.j);
-                        // $("#rk").html(datos.k);
-                        // $("#rl").html(datos.l);
-                        // $("#total").html(datos.total);
+                        $("#ba").html("2");
+                        $("#bb").html("4");
+                        $("#bc").html("6");
+                        $("#bd").html("8");
+                        $("#be").html("10");
+                        $("#bf").html("12");
+                        $("#bg").html("14");
+                        $("#bh").html("16");
                         $("#i").attr("disabled", true);
                         $("#j").attr("disabled", true);
                         $("#k").attr("disabled", true);
@@ -606,18 +625,17 @@ $(document).ready(function() {
                         $("#sh").html("40");
                         $("#si").html("42");
                         $("#sj").html("44");
-                        // $("#ra").html(datos.a);
-                        // $("#rb").html(datos.b);
-                        // $("#rc").html(datos.c);
-                        // $("#rd").html(datos.d);
-                        // $("#re").html(datos.e);
-                        // $("#rf").html(datos.f);
-                        // $("#rg").html(datos.g);
-                        // $("#rh").html(datos.h);
-                        // $("#ri").html(datos.i);
-                        // $("#rj").html(datos.j);
-                        // $("#rk").html(datos.k);
-                        // $("#rl").html(datos.l);
+                        $("#ba").html("28");
+                        $("#bb").html("29");
+                        $("#bc").html("30");
+                        $("#bd").html("32");
+                        $("#be").html("34");
+                        $("#bf").html("36");
+                        $("#bg").html("38");
+                        $("#bh").html("40");
+                        $("#bi").html("42");
+                        $("#bj").html("44");
+
                         $("#total").html(datos.total);
                         $("#i").attr("disabled", false);
                         $("#j").attr("disabled", false);
@@ -724,7 +742,6 @@ $(document).ready(function() {
                     var l = datos.l;
 
                         if(genero_global == 2){
-
                             if(genero_plus_global == 7){
                                 if(a > a_total){
                                     bootbox.alert("<div class='alert alert-danger' role='alert'>"+
@@ -759,6 +776,8 @@ $(document).ready(function() {
                                     bootbox.alert("<div class='alert alert-danger' role='alert'>"+
                                     "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 26W a la cantidad total del corte y las perdidas"+
                                    "</div>")
+                                }else{
+                                    agregarDetalle()
                                 }
                             }else{
                                 if(a > a_total){
@@ -810,9 +829,10 @@ $(document).ready(function() {
                                     bootbox.alert("<div class='alert alert-danger' role='alert'>"+
                                     "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 21/22 a la cantidad total del corte y las perdidas"+
                                    "</div>")
+                                }else{
+                                    agregarDetalle()
                                 }
                             }
-
                         }else if(genero_global == 3 && genero_global == 4){
                             if(a > a_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
@@ -847,6 +867,8 @@ $(document).ready(function() {
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
                                 "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 16 a la cantidad total del corte y las perdidas"+
                                "</div>")
+                            }else{
+                                agregarDetalle()
                             }
                         }else if(genero_global == 1){
                             if(a > a_total){
@@ -886,11 +908,10 @@ $(document).ready(function() {
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
                                 "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44 a la cantidad total del corte y las perdidas"+
                                "</div>")
+                            }else{
+                                agregarDetalle()
                             }
                         }
-
-
-
 
                         if(total > total_recibido){
                             bootbox.alert("<div class='alert alert-danger' role='alert'>"+
@@ -917,7 +938,7 @@ $(document).ready(function() {
     //funcion que validar si el total de tallas es mayor a la cantidad recibida en recepcion
     $("#btn-close").click(function(e){
         e.preventDefault();
-        validarTallas();
+
 
     });
 
@@ -967,7 +988,7 @@ $(document).ready(function() {
 
     $('#modalAlmacen').on('hidden.bs.modal', function (e) {
         e.preventDefault();
-        validarTallas();
+
 
     })
 
@@ -1013,11 +1034,158 @@ $(document).ready(function() {
         });
     });
 
-    $("#btn-agregar").click(function(e){
-        e.preventDefault();
+    $("#btn-agregar").click(function(t){
+        t.preventDefault();
+        validarTallas();
 
-        alert("Hii");
+
     });
+
+    function agregarDetalle(){
+        let a = validarNan(parseInt($("#a").val()));
+        let b = validarNan(parseInt($("#b").val()));
+        let c = validarNan(parseInt($("#c").val()));
+        let d = validarNan(parseInt($("#d").val()));
+        let e = validarNan(parseInt($("#e").val()));
+        let f = validarNan(parseInt($("#f").val()));
+        let g = validarNan(parseInt($("#g").val()));
+        let h = validarNan(parseInt($("#h").val()));
+        let i = validarNan(parseInt($("#i").val()));
+        let j = validarNan(parseInt($("#j").val()));
+        let k = validarNan(parseInt($("#k").val()));
+        let l = validarNan(parseInt($("#l").val()));
+
+
+        var tallas = {
+            a: a,
+            b: b,
+            c: c,
+            d: d,
+            e: e,
+            f: f,
+            g: g,
+            h: h,
+            i: i,
+            j: j,
+            k: k,
+            l: l,
+            producto_id: $("#producto_id").val()
+        }
+
+        $.ajax({
+            url: "almacen/detalle",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(tallas),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var cont;
+                    var fila =
+                    '<tr id="fila'+cont +'">'+
+                    "<td><input type='hidden' name='a[]' id='a[]' value="+a+">"+a+"</td>"+
+                    "<td><input type='hidden' name='b[]' id='b[]' value="+b+">"+b+"</td>"+
+                    "<td><input type='hidden' name='c[]' id='c[]' value="+c+">"+c+"</td>"+
+                    "<td><input type='hidden' name='d[]' id='d[]' value="+d+">"+d+"</td>"+
+                    "<td><input type='hidden' name='e[]' id='e[]' value="+e+">"+e+"</td>"+
+                    "<td><input type='hidden' name='f[]' id='f[]' value="+f+">"+f+"</td>"+
+                    "<td><input type='hidden' name='g[]' id='g[]' value="+g+">"+g+"</td>"+
+                    "<td><input type='hidden' name='h[]' id='h[]' value="+h+">"+h+"</td>"+
+                    "<td><input type='hidden' name='i[]' id='i[]' value="+i+">"+i+"</td>"+
+                    "<td><input type='hidden' name='j[]' id='j[]' value="+j+">"+j+"</td>"+
+                    "<td><input type='hidden' name='k[]' id='k[]' value="+k+">"+k+"</td>"+
+                    "<td><input type='hidden' name='l[]' id='l[]' value="+l+">"+l+"</td>"+
+                    "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.detalle.total+">"+datos.detalle.total+"</td>"+
+                    "</tr>";
+                    cont++;
+                $("#disponibles").append(fila);
+                limpiarDetalle();
+                // calcularTotales();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
+                    });
+                });
+            }
+        });
+    }
+
+    function calcularTotales(){
+        var a = document.getElementsByName("a[]");
+        var b = document.getElementsByName("b[]");
+        var c = document.getElementsByName("c[]");
+        var d = document.getElementsByName("d[]");
+        var e = document.getElementsByName("e[]");
+        var f = document.getElementsByName("f[]");
+        var g = document.getElementsByName("g[]");
+        var h = document.getElementsByName("h[]");
+        var i = document.getElementsByName("i[]");
+        var j = document.getElementsByName("j[]");
+        var k = document.getElementsByName("k[]");
+        var l = document.getElementsByName("l[]");
+        // a = parseInt(a);
+        // b = parseInt(b);
+
+        for (let t = 0; t < a.length; t++) {
+            var a_total = a[t];
+            var b_total = b[t];
+            var c_total = c[t];
+            var d_total = d[t];
+            var e_total = e[t];
+            var f_total = f[t];
+            var g_total = g[t];
+            var h_total = h[t];
+            var i_total = i[t];
+            var j_total = j[t];
+            var k_total = k[t];
+            var l_total = l[t];
+        }
+
+        let a_res = a_total + a_res;
+        let b_res = b_res + b_total;
+        let c_res = c_res + c_total;
+        let d_res = d_res + d_total;
+        let e_res = e_res + e_total;
+        let f_res = f_res + f_total;
+        let g_res = g_res + g_total;
+        let h_res = h_res + h_total;
+        let i_res = i_res + i_total;
+        let j_res = j_res + j_total;
+        let k_res = k_res + k_total;
+        let l_res = l_res + l_total;
+
+        console.log(a_res);
+        console.log(b_res);
+        console.log(c_res);
+        console.log(d_res);
+        console.log(e_res);
+        console.log(f_res);
+        console.log(g_res);
+        console.log(h_res);
+        console.log(i_res);
+        console.log(j_res);
+        console.log(k_res);
+        console.log(l_res);
+
+
+    }
+
+
 
     init();
 });

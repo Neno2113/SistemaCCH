@@ -9,8 +9,8 @@ class Almacen extends Model
     protected $table = 'almacen';
 
     protected $fillable = [
-        'id', 'corte_id', 'producto_id', 'user_id',  'codigo_almacen', 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j', 
-        'k', 'l', 'usado_surva'           
+        'id', 'corte_id', 'producto_id', 'user_id',  'codigo_almacen', 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j',
+        'k', 'l', 'usado_surva'
     ];
 
 
@@ -27,5 +27,10 @@ class Almacen extends Model
     public function producto()
     {
         return $this->belongsTo('App\Product', 'producto_id');
+    }
+
+    public function almacen_detalle()
+    {
+        return $this->hasMany('App\AlmacenDetalle');
     }
 }
