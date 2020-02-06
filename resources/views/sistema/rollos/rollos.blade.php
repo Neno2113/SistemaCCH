@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6 mt-3 ml-3">
         <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-        
+
     </div>
 </div>
 <div class="row">
@@ -131,7 +131,7 @@
                 <th>Fecha de compra</th>
                 <th>Longitud en yarda</th>
                 <th>Guardado</th>
-               
+
             </tr>
         </thead>
         <tbody>
@@ -143,7 +143,7 @@
                 <th><input type="date" name="" id="fecha_compra" class="form-control"></th>
                 <th><input type="text" name="" id="longitud_yarda" class="form-control"></th>
                 <th><button  id="" class="btn btn-success btn-guardar">Guardar</button></th>
-                
+
             </tr>
         </tbody>
         <tfoot>
@@ -155,7 +155,7 @@
                 <th>Fecha de compra</th>
                 <th>Longitud en yarda</th>
                 <th>Guardado</th>
-                
+
             </tr>
         </tfoot>
     </table> --}}
@@ -167,44 +167,6 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/rollos.js')}}"></script>
-
-<script>
-    function mostrar(id_rollo) {
-        $.post("rollo/" + id_rollo, function(data, status) {
-            // data = JSON.parse(data);
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
-
-            // console.log(data);
-            // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
-            $("#id").val(data.rollo.id);
-            $("#codigo_rollo").val(data.rollo.codigo_rollo);
-            $("#num_tono").val(data.rollo.num_tono);
-            $("#no_factura_compra").val(data.rollo.no_factura_compra);
-            $("#fecha_compra").val(data.rollo.fecha_compra);
-            $("#longitud_yarda").val(data.rollo.longitud_yarda);
-        });
-    }
-
-
-    function eliminar(id_rollo){
-        bootbox.confirm("¿Estas seguro de eliminar este rollo?", function(result){
-            if(result){
-                $.post("rollo/delete/" + id_rollo, function(){
-                    // bootbox.alert(e);
-                    bootbox.alert("Rollo eliminado correctamente!!");
-                    $("#rollos").DataTable().ajax.reload();
-                })
-            }
-        })
-    }
-
-</script>
-
 
 
 @endsection

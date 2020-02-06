@@ -5,7 +5,7 @@ $(document).ready(function() {
         rules: {
             codigo_rollo: {
                 required: true
-                
+
             },
             num_tono: {
                 required: true,
@@ -13,14 +13,14 @@ $(document).ready(function() {
             },
             longitud_yarda: {
                 required: true
-              
-            
+
+
             }
         },
         messages: {
             codigo_rollo: {
                 required: "Este campo es obligatorio"
-                
+
             },
             num_tono: {
                 required: "Este campo es obligatorio",
@@ -28,7 +28,7 @@ $(document).ready(function() {
             },
             longitud_yarda: {
                 required: "Este campo es obligatorio",
-                
+
             }
         }
     });
@@ -132,7 +132,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -185,7 +185,7 @@ $(document).ready(function() {
             }
         });
     }
-  
+
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
@@ -232,7 +232,7 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
 
     function mostrarForm(flag) {
@@ -263,3 +263,37 @@ $(document).ready(function() {
 
     init();
 });
+
+function mostrar(id_rollo) {
+    $.post("rollo/" + id_rollo, function(data, status) {
+        // data = JSON.parse(data);
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+
+        // console.log(data);
+        // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
+        $("#id").val(data.rollo.id);
+        $("#codigo_rollo").val(data.rollo.codigo_rollo);
+        $("#num_tono").val(data.rollo.num_tono);
+        $("#no_factura_compra").val(data.rollo.no_factura_compra);
+        $("#fecha_compra").val(data.rollo.fecha_compra);
+        $("#longitud_yarda").val(data.rollo.longitud_yarda);
+    });
+}
+
+
+function eliminar(id_rollo){
+    bootbox.confirm("¿Estas seguro de eliminar este rollo?", function(result){
+        if(result){
+            $.post("rollo/delete/" + id_rollo, function(){
+                // bootbox.alert(e);
+                bootbox.alert("Rollo eliminado correctamente!!");
+                $("#rollos").DataTable().ajax.reload();
+            })
+        }
+    })
+}

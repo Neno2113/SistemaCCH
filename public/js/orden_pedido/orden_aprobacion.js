@@ -15,7 +15,7 @@ $(document).ready(function() {
                 required: true,
                 minlength: 10
             }
-          
+
         },
         messages: {
             fecha_envio: {
@@ -33,7 +33,7 @@ $(document).ready(function() {
             }
         }
     })
-   
+
 
     var tabla
 
@@ -93,8 +93,8 @@ $(document).ready(function() {
         });
     }
 
-  
-   
+
+
     function mostrarForm(flag) {
         if (flag) {
             $("#AprobarPedido").hide();
@@ -104,7 +104,7 @@ $(document).ready(function() {
             $("#corteADD").show();
             $("#productoADD").show();
             $('#btn-generar').attr("disabled", false);
-           
+
         } else {
             $("#AprobarPedido").show();
             $("#registroForm").hide();
@@ -120,22 +120,145 @@ $(document).ready(function() {
             $("#btn-edit").hide();
             $("#btn-guardar").show();
             $("#formularioLavanderia").hide();
-           
-           
+
+
         }
     }
 
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
 
-      
-    });
-    $("#btnCancelar").click(function(e) {
-        mostrarForm(false);
-       
 
     });
-  
+    $("#btnCancelar").click(function(e) {
+        e.preventDefault();
+        mostrarForm(false);
+
+    });
 
     init();
 });
+
+
+function aprobar(id_orden) {
+    // e.preventDefault();
+    bootbox.confirm("¿Estas seguro de aprobar esta orden?", function(result){
+        if(result){
+            $.post("orden-aprobacion/" + id_orden, function(data, status){
+                bootbox.alert("Orden <strong>"+ data.orden.no_orden_pedido +"</strong> aprobada." );
+
+                $("#ordenes_aprobacion").DataTable().ajax.reload();
+                $("#ordenes_red").DataTable().ajax.reload();
+            })
+        }
+    })
+}
+
+function redistribuir(id_orden){
+    // e.preventDefault();
+    bootbox.confirm("¿Estas seguro de redistribuir las tallas?", function(result){
+        if(result){
+            $.get("orden_redistribuir/" + id_orden, function(){
+                bootbox.alert("Redistibucion completa");
+                $("#detalle").DataTable().ajax.reload();
+            })
+        }
+    })
+}
+
+function cancelar(id_orden){
+    bootbox.confirm("¿Estas seguro de cancelar esta orden?", function(result){
+        if(result){
+            $.post("orden-cancelacion/" + id_orden, function(data, status){
+                bootbox.alert("Orden <strong>"+ data.orden.no_orden_pedido +"</strong> cancelada." );
+
+                $("#ordenes_aprobacion").DataTable().ajax.reload();
+            })
+        }
+    })
+}
+function ver(id_orden) {
+    $.get("ver/orden/" + id_orden, function(data, status) {
+
+        $("#AprobarPedido").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-guardar").hide();
+        $("#autorizacion_credito_req").show();
+        $("#redistribucion_tallas").show();
+        $("#factura_desglosada_tallas").show();
+        $("#acepta_segundas").show();
+
+
+        $("#no_orden_pedido").val(data.orden.no_orden_pedido).attr('readonly', true);
+        $("#cliente_apro").val(data.orden.cliente.nombre_cliente).attr('readonly', true);
+        $("#sucursal_apro").val(data.orden.sucursal.nombre_sucursal).attr('readonly', true);
+        $("#vendedor").val(data.orden.vendedor.nombre+" "+data.orden.vendedor.apellido).attr('readonly', true);
+        $("#detalle").DataTable().destroy();
+        listarOrdenDetalle(data.orden.id);
+
+
+    });
+}
+
+function ajuste( id_orden){
+    Swal.fire({
+        title: '¿Esta seguro de guardar este ajuste de esta redistribucion?',
+        text: "Solo usar esta opcion en caso de que le redistribucion no sea exacta!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, guardar'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Guardado!',
+            'Ajuste guardado',
+            'success'
+          )
+        }
+      })
+
+    // bootbox.confirm("¿Esta seguro de guardar este ajuste de esta redistribucion?", function(result){
+    //     if(result){
+    //         $.get("orden_redistribuir/" + id_orden, function(){
+    //             bootbox.alert("Redistibucion completa");
+    //             $("#detalle").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
+}
+
+
+//funcion para listar en el Datatable
+function listarOrdenDetalle(id) {
+   var tabla_orden = $("#detalle").DataTable({
+        serverSide: true,
+        bFilter: false,
+        lengthChange: false,
+        bPaginate: false,
+        bInfo: false,
+        retrieve: true,
+        ajax: "api/listarDetalle/"+id,
+        columns: [
+            { data: "referencia_producto",name: "producto.referencia_producto"},
+            { data: "a",name: "orden_pedido_detalle.a"},
+            { data: "b", name: "orden_pedido_detalle.b" },
+            { data: "c", name: "orden_pedido_detalle.c" },
+            { data: "d", name: "orden_pedido_detalle.d"},
+            { data: "e", name: "orden_pedido_detalle.e"},
+            { data: "f", name: "orden_pedido_detalle.f"},
+            { data: "g", name: "orden_pedido_detalle.g"},
+            { data: "h", name: "orden_pedido_detalle.h"},
+            { data: "i", name: "orden_pedido_detalle.i"},
+            { data: "j", name: "orden_pedido_detalle.j"},
+            { data: "k", name: "orden_pedido_detalle.k"},
+            { data: "l", name: "orden_pedido_detalle.l"},
+            { data: "total", name: "orden_pedido_detalle.total"},
+            { data: "Opciones", orderable: false, searchable: false },
+
+        ],
+    });
+}

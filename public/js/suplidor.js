@@ -61,7 +61,7 @@ $(document).ready(function() {
             }
         }
     })
-   
+
 
     var tabla;
 
@@ -91,9 +91,9 @@ $(document).ready(function() {
     }
 
     $("#btn-guardar").click(function(e) {
-        
+
         e.preventDefault();
-        
+
         var suplidor = {
             nombre: $("#nombre").val(),
             rnc: $("#rnc").val(),
@@ -131,7 +131,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -165,7 +165,7 @@ $(document).ready(function() {
                     orientation: 'landscape',
                     pageSize: 'LEGAL'
                 },
-               
+
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
@@ -184,7 +184,7 @@ $(document).ready(function() {
             }
         });
     }
-   
+
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
@@ -233,7 +233,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -244,7 +244,7 @@ $(document).ready(function() {
                 });
             }
         });
-       
+
     });
 
     function mostrarForm(flag) {
@@ -273,11 +273,78 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-   
-   
-
-  
-  
-
     init();
 });
+
+function mostrar(id_supplier) {
+    $.post("supplier/" + id_supplier, function(data, status) {
+
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+
+
+        $("#id").val(data.supplier.id);
+        $("#nombre").val(data.supplier.nombre).attr("readonly", false);
+        $("#rnc").val(data.supplier.rnc).attr("readonly", false);
+        $("#calle").val(data.supplier.calle).attr("readonly", false);
+        $("#sector").val(data.supplier.sector).attr("readonly", false);
+        $("#provincia").val(data.supplier.provincia).trigger("change").attr("disabled", false);
+        $("#pais").val(data.supplier.pais).trigger("change").attr("disabled", false);
+        // $("#provincia").val(data.supplier.provincia).selectpicker('refresh');
+        $("#sitios_cercanos").val(data.supplier.sitios_cercanos).attr("readonly", false);
+        $("#contacto_suplidor").val(data.supplier.contacto_suplidor).attr("readonly", false);
+        $("#telefono_1").val(data.supplier.telefono_1).attr("readonly", false);
+        $("#telefono_2").val(data.supplier.telefono_2).attr("readonly", false);
+        $("#celular").val(data.supplier.celular).attr("readonly", false);
+        $("#email").val(data.supplier.email).attr("readonly", false);
+        $("#tipo_suplidor").val(data.supplier.tipo_suplidor).attr("disabled", false);
+        $("#terminos_de_pago").val(data.supplier.terminos_de_pago).attr("disabled", false);
+        $("#nota").val(data.supplier.nota).attr("readonly", false);
+
+    });
+}
+
+function ver(id_supplier) {
+    $.post("supplier/" + id_supplier, function(data, status) {
+
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        // $("#btn-edit").show();
+        $("#btn-guardar").hide();
+
+        $("#id").val(data.supplier.id);
+        $("#nombre").val(data.supplier.nombre).attr('readonly', true);
+        $("#rnc").val(data.supplier.rnc).attr('readonly', true);
+        $("#calle").val(data.supplier.calle).attr('readonly', true);
+        $("#sector").val(data.supplier.sector).attr('readonly', true);
+        $("#provincia").val(data.supplier.provincia).attr('disabled', true);
+        $("#sitios_cercanos").val(data.supplier.sitios_cercanos).attr('readonly', true);
+        $("#contacto_suplidor").val(data.supplier.contacto_suplidor).attr('readonly', true);
+        $("#telefono_1").val(data.supplier.telefono_1).attr('readonly', true);
+        $("#telefono_2").val(data.supplier.telefono_2).attr('readonly', true);
+        $("#celular").val(data.supplier.celular).attr('readonly', true);
+        $("#email").val(data.supplier.email).attr('readonly', true);
+        $("#tipo_suplidor").val(data.supplier.tipo_suplidor).attr('disabled', true);
+        $("#terminos_de_pago").val(data.supplier.terminos_de_pago).attr('disabled', true);
+        $("#nota").val(data.supplier.nota).attr('readonly', true);
+
+    });
+}
+
+function eliminar(id_supplier){
+    bootbox.confirm("¿Estas seguro de eliminar este suplidor?", function(result){
+        if(result){
+            $.post("supplier/delete/" + id_supplier, function(){
+                // bootbox.alert(e);
+                bootbox.alert("Suplidor eliminado!!");
+                $("#suppliers").DataTable().ajax.reload();
+            })
+        }
+    })
+}

@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\ordenPedido;
 use App\Factura;
 use App\Almacen;
+use App\AlmacenDetalle;
 use App\Talla;
 use App\TallasPerdidas;
+use App\NotaCreditoDetalle;
 use App\Corte;
 use App\ordenFacturacionDetalle;
 use App\Perdida;
@@ -32,7 +34,7 @@ class DashboardController extends Controller
     }
 
     public function totalVenta(Request $request){
-        $almacen = Almacen::all();
+        $almacen = AlmacenDetalle::all();
 
          //perdidas
          $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
@@ -65,6 +67,8 @@ class DashboardController extends Controller
 
         $facturado = ordenFacturacionDetalle::all();
         $orden = ordenPedidoDetalle::all();
+
+        $nota_credito = NotaCreditoDetalle::all();
 
         $existencia = $almacen->sum('total') - $facturado->sum('total') + $tallasSegundas->sum('total');
         $dispVenta = $existencia - $orden->sum('total') - $tallasSegundas->sum('total');

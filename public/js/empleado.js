@@ -14,7 +14,7 @@ $(document).ready(function() {
             cedula:{
                 required: true,
                 minlength: 11,
-                
+
             },
             telefono_1: {
                 required: true,
@@ -43,7 +43,7 @@ $(document).ready(function() {
             cedula:{
                 required: "Este campo es obligatorio",
                 minlength: "Debe contener al menos 11 digitos"
-                
+
             },
             telefono_1: {
                 required: "Este campo es obligatorio",
@@ -58,12 +58,12 @@ $(document).ready(function() {
             },
             provincia:{
                 required: "Este campo es obligatorio",
-              
-               
+
+
             }
         }
     })
-   
+
 
     var tabla;
 
@@ -76,10 +76,10 @@ $(document).ready(function() {
         $("#btn-edit").hide();
         $("#results").hide();
 
-    
+
     }
 
-    
+
 
     function limpiar() {
         $("#nombre").val("").attr('readonly', false);
@@ -112,13 +112,13 @@ $(document).ready(function() {
         $("#nombre_dependiente_6").val("").attr('readonly', false);
         $("#nombre_dependiente_7").val("").attr('readonly', false);
         $("#nombre_dependiente_1").val("").attr('readonly', false);
-        
-      
+
+
     }
 
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
-        
+
         var empleado = {
             nombre: $("#nombre").val(),
             apellido: $("#apellido").val(),
@@ -133,9 +133,9 @@ $(document).ready(function() {
             cargo: $("#cargo").val(),
             email: $("#email").val(),
             tipo_contrato: $("#tipo_contrato").val(),
-          
+
         };
-        
+
         $.ajax({
             url: "empleado",
             type: "POST",
@@ -155,7 +155,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -163,15 +163,15 @@ $(document).ready(function() {
                         message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
                         size: 'small'
                     });
-                }); 
+                });
             }
         });
 
     });
-    
+
     $("#btn-guardar-detalle").click(function(e) {
         e.preventDefault();
-        
+
         var empleado_detalle = {
             id: $("#id").val(),
             forma_pago: $("#forma_pago").val(),
@@ -203,7 +203,7 @@ $(document).ready(function() {
         };
 
         // console.log(JSON.stringify(empleado_detalle));
-        
+
         $.ajax({
             url: "empleado/detalle",
             type: "POST",
@@ -223,7 +223,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -231,7 +231,7 @@ $(document).ready(function() {
                         message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
                         size: 'small'
                     });
-                }); 
+                });
             }
         });
 
@@ -255,11 +255,11 @@ $(document).ready(function() {
                 $("#hijos").append(fila);
             }
 
-              
+
         }
 
-      
-        
+
+
     });
 
 
@@ -295,7 +295,7 @@ $(document).ready(function() {
                 { data: "cargo" },
                 { data: "tipo_contrato" },
                 { data: "email" },
-    
+
             ],
             order: [[4, 'asc']],
             rowGroup: {
@@ -349,7 +349,7 @@ $(document).ready(function() {
             dependiente_6_nss: $("input[name='hijo_5']:checked").val(),
             dependiente_7_nss: $("input[name='hijo_6']:checked").val(),
         };
-        
+
         // console.log(JSON.stringify(empleado));
         $.ajax({
             url: "empleado/edit",
@@ -377,7 +377,7 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
 
     function mostrarForm(flag) {
@@ -396,9 +396,9 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
-          
-          
-           
+
+
+
             $("#fila-detail").show();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
@@ -428,3 +428,219 @@ $(document).ready(function() {
 
     init();
 });
+
+function mostrar(id_empleado) {
+    $.get("empleado/" + id_empleado, function(data, status) {
+
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+        $("#btn-guardar-detalle").hide();
+        $("#fila-dependientes").show();
+        $("#fila-bancaria").show();
+        $("#fila-address").show();
+        $("#fila-detail").show();
+
+
+        $("#id").val(data.empleado.id);
+        $("#nombre").val(data.empleado.nombre).attr('readonly', false);
+        $("#apellido").val(data.empleado.apellido).attr('readonly', false);
+        $("#cedula").val(data.empleado.cedula).attr('readonly', false);
+        $("#calle").val(data.empleado.calle).attr('readonly', false);
+        $("#sector").val(data.empleado.sector).attr('readonly', false);
+        $("#provincia").val(data.empleado.provincia).trigger("change").attr('disabled', false);
+        $("#sitios_cercanos").val(data.empleado.sitios_cercanos).attr('readonly', false);
+        $("#email").val(data.empleado.email).attr('readonly', false);
+        $("#telefono_1").val(data.empleado.telefono_1).attr('readonly', false);
+        $("#telefono_2").val(data.empleado.telefono_2).attr('readonly', false);
+        $("#departamento").val(data.empleado.departamento).trigger("change").attr('disabled', false);
+        $("#cargo").val(data.empleado.cargo).trigger("change").attr('disabled', false);
+        $("#tipo_contrato").val(data.empleado.tipo_contrato).attr('disabled', false);
+        $("#forma_pago").val(data.empleado.forma_pago).attr('disabled', false);
+        $("#sueldo").val(data.empleado.sueldo).attr('readonly', false);
+        $("#valor_hora").val(data.empleado.valor_hora).attr('readonly', false);
+        $("#banco_tarjeta_cobro").val(data.empleado.banco_tarjeta_cobro).trigger("change").attr('disabled', false);
+        $("#no_cuenta").val(data.empleado.no_cuenta).attr('readonly', false);
+        $("#nss").val(data.empleado_detalle.nss).attr('readonly', false);
+        $("#nombre_esposa").val(data.empleado_detalle.nombre_esposa).attr('readonly', false);
+        $("#telefono_esposa").val(data.empleado_detalle.telefono_esposa).attr('readonly', false);
+        $("#cantidad_dependientes").val(data.empleado_detalle.cantidad_dependientes).attr('readonly', false);
+        $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
+        $("#hijos").empty();
+
+        let longitud  = data.empleado_detalle.cantidad_dependientes;
+
+        for (let i = 0; i < longitud; i++) {
+        var fila =  "<tr >"+
+        "<td><input type='text' name='nombre_dependiente_"+[i]+"' id='nombre_dependiente_"+[i]+"' class='form-control'></td>"+
+        "<td class='text-center'><div class='custom-control custom-checkbox'>"+
+        "<input class='custom-control-input' type='checkbox' id='hijo_"+[i]+"' value='1' name='hijo_"+[i]+"'>"+
+        "<label for='hijo_"+[i]+"' class='custom-control-label font-weight-normal'>Marcar si esta asegurado</label></div>"+
+        "</td>"+
+        "</tr>";
+
+        $("#hijos").append(fila);
+        }
+        $("#nombre_dependiente_0").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
+        $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_2).attr('readonly', false);
+        $("#nombre_dependiente_2").val(data.empleado_detalle.nombre_dependiente_3).attr('readonly', false);
+        $("#nombre_dependiente_3").val(data.empleado_detalle.nombre_dependiente_4).attr('readonly', false);
+        $("#nombre_dependiente_4").val(data.empleado_detalle.nombre_dependiente_5).attr('readonly', false);
+        $("#nombre_dependiente_5").val(data.empleado_detalle.nombre_dependiente_6).attr('readonly', false);
+        $("#nombre_dependiente_6").val(data.empleado_detalle.nombre_dependiente_7).attr('readonly', false);
+
+        if(data.empleado_detalle.dependiente_1_nss == 1){
+            $("input[name='hijo_0']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_2_nss == 1){
+            $("input[name='hijo_1']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_3_nss == 1){
+            $("input[name='hijo_2']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_4_nss == 1){
+            $("input[name='hijo_3']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_5_nss == 1){
+            $("input[name='hijo_4']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_6_nss == 1){
+            $("input[name='hijo_5']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_7_nss == 1){
+            $("input[name='hijo_6']").prop('checked', true);
+        }
+
+    });
+}
+
+function show(id_empleado) {
+    $.get("empleado/" + id_empleado, function(data, status) {
+
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").hide();
+        $("#btn-guardar").hide();
+        $("#btn-guardar-detalle").show();
+        $("#fila-dependientes").show();
+        $("#fila-bancaria").show();
+        $("#fila-address").hide();
+        $("#fila-detail").hide();
+
+        $("#id").val(data.empleado.id);
+        $("#nombre").val(data.empleado.nombre).attr('readonly', true);
+        $("#apellido").val(data.empleado.apellido).attr('readonly', true);
+        $("#cedula").val(data.empleado.cedula).attr('readonly', true);
+
+    });
+}
+
+
+function ver(id_empleado) {
+    $.get("empleado/" + id_empleado, function(data, status) {
+
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+        $("#btn-edit").hide();
+        $("#btn-guardar").hide();
+        $("#btn-guardar-detalle").hide();
+        $("#fila-dependientes").show();
+        $("#fila-bancaria").show();
+        $("#fila-address").show();
+        $("#fila-detail").show();
+
+
+        $("#nombre").val(data.empleado.nombre).attr('readonly', true);
+        $("#apellido").val(data.empleado.apellido).attr('readonly', true);
+        $("#cedula").val(data.empleado.cedula).attr('readonly', true);
+        $("#calle").val(data.empleado.calle).attr('readonly', true);
+        $("#sector").val(data.empleado.sector).attr('readonly', true);
+        $("#provincia").val(data.empleado.provincia).trigger("change").attr('disabled', true);
+        $("#sitios_cercanos").val(data.empleado.sitios_cercanos).attr('readonly', true);
+        $("#email").val(data.empleado.email).attr('readonly', true);
+        $("#telefono_1").val(data.empleado.telefono_1).attr('readonly', true);
+        $("#telefono_2").val(data.empleado.telefono_2).attr('readonly', true);
+        $("#departamento").val(data.empleado.departamento).trigger("change").attr('disabled', true);;
+        $("#cargo").val(data.empleado.cargo).trigger("change").attr('disabled', false);
+        $("#tipo_contrato").val(data.empleado.tipo_contrato).attr('disabled', true);
+        $("#forma_pago").val(data.empleado.forma_pago).attr('disabled', true);
+        $("#sueldo").val(data.empleado.sueldo).attr('readonly', true);
+        $("#valor_hora").val(data.empleado.valor_hora).attr('readonly', true);
+        $("#banco_tarjeta_cobro").val(data.empleado.banco_tarjeta_cobro).trigger("change").attr('disabled', true);
+        $("#no_cuenta").val(data.empleado.no_cuenta).attr('readonly', true);
+        $("#nss").val(data.empleado_detalle.nss).attr('readonly', true);
+        $("#nombre_esposa").val(data.empleado_detalle.nombre_esposa).attr('readonly', true);
+        $("#telefono_esposa").val(data.empleado_detalle.telefono_esposa).attr('readonly', true);
+        $("#cantidad_dependientes").val(data.empleado_detalle.cantidad_dependientes).attr('readonly', true);
+        $("#hijos").empty();
+
+        let longitud  = data.empleado_detalle.cantidad_dependientes;
+
+        for (let i = 0; i < longitud; i++) {
+            var fila =  "<tr >"+
+            "<td><input type='text' name='nombre_dependiente_"+[i]+"' id='nombre_dependiente_"+[i]+"' class='form-control'></td>"+
+            "<td class='text-center'><div class='custom-control custom-checkbox'>"+
+            "<input class='custom-control-input' type='checkbox' id='hijo_"+[i]+"' value='1' name='hijo_"+[i]+"'>"+
+            "<label for='hijo_"+[i]+"' class='custom-control-label font-weight-normal'>Marcar si esta asegurado</label></div>"+
+            "</td>"+
+            "</tr>";
+
+            $("#hijos").append(fila);
+        }
+        $("#nombre_dependiente_0").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', true);
+        $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_2).attr('readonly', true);
+        $("#nombre_dependiente_2").val(data.empleado_detalle.nombre_dependiente_3).attr('readonly', true);
+        $("#nombre_dependiente_3").val(data.empleado_detalle.nombre_dependiente_4).attr('readonly', true);
+        $("#nombre_dependiente_4").val(data.empleado_detalle.nombre_dependiente_5).attr('readonly', true);
+        $("#nombre_dependiente_5").val(data.empleado_detalle.nombre_dependiente_6).attr('readonly', true);
+        $("#nombre_dependiente_6").val(data.empleado_detalle.nombre_dependiente_7).attr('readonly', true);
+
+
+        if(data.empleado_detalle.dependiente_1_nss == 1){
+            $("input[name='hijo_0']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_2_nss == 1){
+            $("input[name='hijo_1']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_3_nss == 1){
+            $("input[name='hijo_2']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_4_nss == 1){
+            $("input[name='hijo_3']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_5_nss == 1){
+            $("input[name='hijo_4']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_6_nss == 1){
+            $("input[name='hijo_5']").prop('checked', true);
+        }
+        if(data.empleado_detalle.dependiente_7_nss == 1){
+            $("input[name='hijo_6']").prop('checked', true);
+        }
+
+
+    });
+}
+
+function eliminar(id_client){
+    bootbox.confirm("¿Estas seguro de eliminar este empleado?", function(result){
+        if(result){
+            $.post("empleado/delete/" + id_client, function(){
+                // bootbox.alert(e);
+                bootbox.alert("Empleado eliminado correctamente!!");
+                $("#clients").DataTable().ajax.reload();
+            })
+        }
+    })
+}

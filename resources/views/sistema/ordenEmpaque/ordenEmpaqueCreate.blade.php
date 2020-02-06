@@ -80,9 +80,9 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                   
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">MUJER:</th>
                                     <td class="talla" >0/0</td>
@@ -98,9 +98,9 @@
                                     <td class="talla">19/20</td>
                                     <td class="talla">21/22</td>
                                     <td class="talla"></td>
-                                    
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">HOMBRE:</th>
                                     <td class="talla">28</td>
@@ -116,9 +116,9 @@
                                     <td class="talla">44</td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                    
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">NIÑO:</th>
                                     <td class="talla">2</td>
@@ -134,9 +134,9 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                   
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">NIÑA:</th>
                                     <td class="talla">2</td>
@@ -152,8 +152,8 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                    
-                                </tr>  
+
+                                </tr>
                                 <tr>
                                     <th class="talla_head">Referencia</th>
                                     <th class="talla_head"></th>
@@ -258,66 +258,7 @@
 @include('adminlte/scripts')
 <script src="{{asset('js/orden_empaque/orden_empaque.js')}}"></script>
 
-<script>
-    String.prototype.replaceAll = function (find, replace) {
-        var str = this;
-        return str.replace(new RegExp(find, 'g'), replace);
-    };
 
-    function mostrar(id_orden) {
-        $("#disponibles").empty("");
-        $.get("orden_empaque/" + id_orden, function(data, status) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
-            
-            $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);   
-            $("#cliente").val(data.cliente.nombre_cliente);
-            $("#sucursal").val(data.sucursal.nombre_sucursal);
-            $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
-            let longitud = data.orden_detalle.length
-            var cont = 0;
-
-            for (let i = 0; i < longitud; i++){
-                var fila = "<tr>" +
-                    "<td class='talla-res' id='producto'>"+data.orden_detalle[i].producto.referencia_producto+"</th>" +
-                    "<td class='talla-res'>"+data.orden_detalle[i].a+"</th>" +
-                    "<td class='talla-res'>"+data.orden_detalle[i].b+"</td>" +
-                    "<td class='talla-res'>"+data.orden_detalle[i].c+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].d+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].e+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].f+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].g+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].h+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].i+"</td>" +
-                    "<td class='talla-res'>"+data.orden_detalle[i].j+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].k+"</td>"+
-                    "<td class='talla-res'>"+data.orden_detalle[i].l+"</td>"+
-                    "<td class='talla-res' id='total'>"+data.orden_detalle[i].total+"</td>"+
-                    "</tr>"
-                    fila = fila.replaceAll('null', '');
-                    $("#disponibles").append(fila);
-            } 
-
-        });
-    }
-
-   
-
-  
-
-    
-    
-
-  
-    
-
-    
-
-</script>
 
 
 

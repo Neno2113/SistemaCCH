@@ -249,9 +249,10 @@ textarea.form-control
 }
 
 .tabla-existencia tfoot{
-    border: 5px solid #9b988b;
+    /* border: 5px solid #9b988b; */
     font-weight: bold;
     border-radius: 35px 30px;
+    background: #d9cf3538;
 }
 .tabla-existencia tfoot td{
     border: 4px solid #0000004f;
@@ -267,9 +268,10 @@ textarea.form-control
 
 
 .tabla-tallas {
-    width: 83%;
+    width: 105%;
     border-collapse: collapse;
     border-spacing: 0;
+    margin-left: -34px;
     /* margin-bottom: 20px; */
     table-layout: auto;
     border: solid 1px black;
@@ -300,12 +302,17 @@ textarea.form-control
     border-bottom: 1px solid black;
     border-top: 1px solid black;
 }
+.tabla-tallas tbody .red {
+    width: 126%;
+    border: none;
+}
 
 .tabla-tallas .talla {
     border: 1px solid black;
     text-align: center;
     font-weight: bold;
     font-size: 14px;
+    width: 8%;
 }
 
 .tabla-almacen-totales {

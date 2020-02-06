@@ -534,3 +534,36 @@ $(document).ready(function() {
 
     init();
 });
+
+function mostrar(id_prouct) {
+    $.post("product/" + id_prouct, function(data, status) {
+        // data = JSON.parse(data);
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+
+        $("#id").val(data.product.id);
+        $("#referencia").val(data.product.referencia_producto);
+        $("#descripcion").val(data.product.descripcion);
+        $("#precio_lista").val(data.product.precio_lista);
+        $("#precio_lista_2").val(data.product.precio_lista_2);
+        $("#precio_venta_publico").val(data.product.precio_venta_publico);
+        $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
+    });
+}
+
+
+function eliminar(id_prouct){
+    bootbox.confirm("¿Estas seguro de eliminar esta referencia?", function(result){
+        if(result){
+            $.post("product/delete/" + id_prouct, function(){
+                // bootbox.alert(e);
+                bootbox.alert("Referencia eliminada correctamente!!");
+                $("#products").DataTable().ajax.reload();
+            })
+        }
+    })
+}

@@ -5,7 +5,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
-       
+
     }
 
     function limpiar() {
@@ -54,13 +54,13 @@ $(document).ready(function() {
                 { data: "tono", name: "producto.tono" },
                 { data: "precio_lista", name: "producto.precio_lista" },
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico" },
-                { data: "descripcion", name: "producto.descripcion" }              
+                { data: "descripcion", name: "producto.descripcion" }
             ],
             order: [[2, "desc"]],
         });
     }
 
-   
+
 
     function mostrarForm(flag) {
         limpiar();
@@ -83,15 +83,65 @@ $(document).ready(function() {
         }
     }
 
-   
 
-  
+
+
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);
     });
 
 
-  
-  
+
+
     init();
 });
+
+
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
+
+function mostrar(id_prouct) {
+$.post("product/" + id_prouct, function(data, status) {
+// data = JSON.parse(data);
+$("#listadoUsers").hide();
+$("#registroForm").show();
+$("#btnCancelar").show();
+$("#btn-guardar").hide();
+
+$("#referencia_producto").val(data.product.referencia_producto);
+$("#descripcion").val(data.product.descripcion);
+$("#ubicacion").val(data.product.ubicacion);
+$("#tono").val(data.product.tono);
+$("#intensidad_proceso_seco").val(data.product.intensidad_proceso_seco);
+$("#atributo_no_1").val(data.product.atributo_no_1);
+$("#atributo_no_2").val(data.product.atributo_no_2);
+$("#atributo_no_3").val(data.product.atributo_no_3);
+$("#precio_lista").val(data.product.precio_lista+" RD$");
+$("#precio_lista_2").val(data.product.precio_lista_2);
+$("#precio_venta_publico").val(data.product.precio_venta_publico+" RD$");
+$("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
+$("#imagen_frente").attr("href", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_frente)
+$("#imagen_frente_img").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_frente)
+$("#imagen_trasera").attr("href", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_trasero)
+$("#imagen_trasera_img").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_trasero)
+$("#imagen_perfil").attr("href", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_perfil);
+$("#imagen_perfil_img").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_perfil)
+$("#imagen_bolsillo").attr("href", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_bolsillo);
+$("#imagen_bolsillo_img").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_bolsillo)
+});
+}
+
+
+function eliminar(id_prouct){
+bootbox.confirm("¿Estas seguro de eliminar esta referencia?", function(result){
+if(result){
+    $.post("product/delete/" + id_prouct, function(){
+        // bootbox.alert(e);
+        bootbox.alert("Referencia eliminada correctamente!!");
+        $("#products").DataTable().ajax.reload();
+    })
+}
+})
+}

@@ -18,7 +18,7 @@ $(document).ready(function() {
             porcentaje_mat_1: {
                 required: true
             }
-          
+
         },
         messages: {
             referencia: {
@@ -36,7 +36,7 @@ $(document).ready(function() {
             }
         }
     })
-   
+
 
     var tabla
 
@@ -45,7 +45,7 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         suplidores();
-       
+
 
         $("#composiciones").select2({
             placeholder: "Busca una composicion",
@@ -86,7 +86,7 @@ $(document).ready(function() {
                 cache: true
             }
         })
-    
+
         $("#composiciones_3").select2({
             placeholder: "Busca una composicion",
             ajax: {
@@ -106,7 +106,7 @@ $(document).ready(function() {
                 cache: true
             }
         })
-    
+
         $("#composiciones_4").select2({
             placeholder: "Busca una composicion",
             ajax: {
@@ -126,7 +126,7 @@ $(document).ready(function() {
                 cache: true
             }
         })
-    
+
         $("#composiciones_5").select2({
             placeholder: "Busca una composicion",
             ajax: {
@@ -146,8 +146,8 @@ $(document).ready(function() {
                 cache: true
             }
         })
-      
-    
+
+
     }
     function suplidores (){
 
@@ -159,10 +159,10 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     var longitud = datos.suplidor.length;
-                    
+
                     for (let i = 0; i < longitud; i++) {
                         var fila =  "<option value="+datos.suplidor[i].id +">"+datos.suplidor[i].nombre+"</option>"
-                        
+
                         $("#suplidores").append(fila);
                     }
                     $("#suplidores").select2();
@@ -205,11 +205,11 @@ $(document).ready(function() {
         $("#porcentaje_mat_total").val("");
     }
 
- 
+
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-        
+
         var cloth = {
             suplidor: $("#suplidores").val(),
             id_composiciones: $("#compositions").val(),
@@ -255,7 +255,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -303,7 +303,7 @@ $(document).ready(function() {
                 { data: "composicion_3", name: "tela.composicion_3" },
                 { data: "composicion_4", name: "tela.composicion_4" },
                 { data: "composicion_5", name: "tela.composicion_5" },
-              
+
             ],
             order: [[2, 'asc']],
             rowGroup: {
@@ -369,7 +369,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -380,7 +380,7 @@ $(document).ready(function() {
                 });
             }
         });
-       
+
     });
 
 
@@ -465,21 +465,21 @@ $(document).ready(function() {
         if(total_global <  99.99){
             bootbox.alert({
                 message:
-                    "<h4 class='invalid-feedback d-block'>"+ 
+                    "<h4 class='invalid-feedback d-block'>"+
                     "El total a guardar debe ser igual a 100%."+"</h4>",
                 size: "small"
             });
         }else if(total_global > 100){
             bootbox.alert({
                 message:
-                    "<h4 class='invalid-feedback d-block'>"+ 
+                    "<h4 class='invalid-feedback d-block'>"+
                     "El total a guardar debe ser igual a 100%."+"</h4>",
                 size: "small"
             });
         }
     });
-   
-  
+
+
     function mostrarForm(flag) {
         limpiar();
         if (flag) {
@@ -507,7 +507,71 @@ $(document).ready(function() {
         e.preventDefault();
         mostrarForm(false);
     });
-  
+
 
     init();
 });
+
+function mostrar(id_cloth) {
+    $.post("cloth/" + id_cloth, function(data, status) {
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+        $("#compo").hide();
+        // console.log(data.tela.suplidor.nombre);
+
+        $("#id").val(data.tela.id);
+        $("#referencia").val(data.tela.referencia).attr('readonly', false);
+        $("#suplidores").find('option[value='+data.suplidor.id+']').attr('selected', 'selected').trigger("change");
+        // $("#suplidores").select2(data.suplidor.nombre).trigger("change");
+        // $("#suplidores").select2(data.suplidor, {id:data.suplidor.id, item:data.suplidor.nombre}).trigger("change");
+        $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
+        $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
+        $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', false);
+        $("#peso").val(data.tela.peso).attr('readonly', false);
+        $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', false);
+        $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', false);
+        $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
+        $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
+
+    });
+}
+
+function ver(id_cloth) {
+    $.post("cloth/" + id_cloth, function(data, status) {
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        // $("#btn-edit").show();
+        $("#btn-guardar").hide();
+        $("#compo").hide();
+
+        $("#referencia").val(data.tela.referencia).attr('readonly', true);
+        $("#precio_usd").val(data.tela.precio_usd).attr('readonly', true);
+        $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', true);
+        $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', true);
+        $("#peso").val(data.tela.peso).attr('readonly', true);
+        $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', true);
+        $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', true);
+        $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', true);
+        $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', true);
+
+    });
+}
+
+
+
+function eliminar(id_cloth){
+    bootbox.confirm("¿Estas seguro de eliminar esta tela?", function(result){
+        if(result){
+            $.post("cloth/delete/" + id_cloth, function(){
+                bootbox.alert("Composicion eliminada correctamente");
+                $("#cloths").DataTable().ajax.reload();
+            })
+        }
+    })
+}

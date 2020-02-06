@@ -9,6 +9,7 @@ use App\Talla;
 use App\Perdida;
 use App\TallasPerdidas;
 use App\Almacen;
+use App\AlmacenDetalle;
 use App\Existencia;
 use App\ordenPedidoDetalle;
 use App\NotaCredito;
@@ -72,17 +73,17 @@ class ExistenciaController extends Controller
 
 
         //Almacen
-        $almacen = Almacen::where('producto_id', $producto_id)->select('id')->get();
+        // $almacen = AlmacenDetalle::where('producto_id', $producto_id)->get();
 
-        $almacenes = array();
+        // $almacenes = array();
 
-        $longitudAlmacen = count($almacen);
+        // $longitudAlmacen = count($almacen);
 
-        for ($i=0; $i < $longitudAlmacen ; $i++) {
-            array_push($almacenes, $almacen[$i]['id']);
-        }
+        // for ($i=0; $i < $longitudAlmacen ; $i++) {
+        //     array_push($almacenes, $almacen[$i]['id']);
+        // }
 
-        $tallasAlmacen = Almacen::whereIn('id', $almacenes)->get();
+        $tallasAlmacen = AlmacenDetalle::where('producto_id', $producto_id)->get();
 
         //Ordenes
         $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)

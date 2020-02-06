@@ -76,8 +76,8 @@ $(document).ready(function() {
                     $("#orden_facturacion_id").val(datos.orden_facturacion.id);
                     $("#listar_OE").DataTable().ajax.reload();
                     mostrarForm(false);
-                  
-                                        
+
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -91,7 +91,7 @@ $(document).ready(function() {
             }
         });
 
-        
+
     });
 
     //funcion para listar en el Datatable
@@ -178,7 +178,7 @@ $(document).ready(function() {
     }
 
 
-    
+
 
     //funcion para listar en el Datatable
     function listarOrdenDetalle(id) {
@@ -201,11 +201,11 @@ $(document).ready(function() {
                 { data: "k", name: "orden_pedido_detalle.k"},
                 { data: "l", name: "orden_pedido_detalle.l"},
                 { data: "total", name: "orden_pedido_detalle.total"},
-              
+
             ],
         });
     }
-    
+
 
    function test(){
       return console.log("test")
@@ -274,7 +274,7 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").hide();
-         
+
             $("#btn-edit").hide();
             $("#btn-guardar").show();
         }
@@ -292,3 +292,52 @@ $(document).ready(function() {
 
     init();
 });
+
+
+String.prototype.replaceAll = function (find, replace) {
+    var str = this;
+    return str.replace(new RegExp(find, 'g'), replace);
+};
+
+function mostrar(id_orden) {
+    $("#disponibles").empty("");
+    $.get("orden_empaque/" + id_orden, function(data, status) {
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+
+        $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);
+        $("#cliente").val(data.cliente.nombre_cliente);
+        $("#sucursal").val(data.sucursal.nombre_sucursal);
+        $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
+        let longitud = data.orden_detalle.length
+        var cont = 0;
+
+        for (let i = 0; i < longitud; i++){
+            var fila = "<tr>" +
+                "<td class='talla-res' id='producto'>"+data.orden_detalle[i].producto.referencia_producto+"</th>" +
+                "<td class='talla-res'>"+data.orden_detalle[i].a+"</th>" +
+                "<td class='talla-res'>"+data.orden_detalle[i].b+"</td>" +
+                "<td class='talla-res'>"+data.orden_detalle[i].c+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].d+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].e+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].f+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].g+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].h+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].i+"</td>" +
+                "<td class='talla-res'>"+data.orden_detalle[i].j+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].k+"</td>"+
+                "<td class='talla-res'>"+data.orden_detalle[i].l+"</td>"+
+                "<td class='talla-res' id='total'>"+data.orden_detalle[i].total+"</td>"+
+                "</tr>"
+                fila = fila.replaceAll('null', '');
+                $("#disponibles").append(fila);
+        }
+
+    });
+}
+
+

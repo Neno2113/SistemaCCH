@@ -80,14 +80,14 @@
                                 <input type="text" name="generado_internamente" id="generado_internamente"
                                     class="form-control  text-center font-weight-bold" readonly>
                             </div>
-                         
+
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-4">
                                 <label for="">Notas:</label>
                                 <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
                             </div>
-                         
+
                             <div class="col-md-2">
                                 <label for="">Orden de pedido:</label>
                                 <input type="text" name="no_orden_pedido" id="no_orden_pedido"
@@ -104,7 +104,7 @@
                                 <button class="btn btn-secondary btn-block rounded-pill" id="btn-generar"><i
                                         class="fas fa-truck-loading"></i></button>
                             </div>
-                          
+
                         </div>
                         <br>
                         <hr>
@@ -269,7 +269,7 @@
 
                                 </tbody>
                                 <tfoot >
-                                   
+
                                 </tfoot>
 
                             </table>
@@ -337,7 +337,7 @@
                             </div>
                         </div>
 
-                       
+
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <button class="btn btn-info rounded-lg" name="btn-agregar" id="btn-agregar"><i
@@ -419,7 +419,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
+                    {{-- <th>Ver</th> --}}
                     <th>Actions</th>
                     <th>#</th>
                     <th>User</th>
@@ -435,7 +435,7 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
+                    {{-- <th>Ver</th> --}}
                     <th>Actions</th>
                     <th>#</th>
                     <th>User</th>
@@ -460,88 +460,6 @@
 <script type="text/javascript" src="{{asset('js/orden_pedido/ordenPedido.js')}}"></script>
 
 <script type="text/javascript">
-    function eliminar(id_orden){
-        bootbox.confirm("¿Estas seguro de eliminar esta orden de producto?", function(result){
-            if(result){
-                $.post("orden_pedido/delete/" + id_orden, function(){
-                    bootbox.alert("Orden de pedido eliminada correctamente!!");
-                    $("#ordenes").DataTable().ajax.reload();
-                })
-            }
-        })
-    }
-
-    function ver(id_orden) {
-        $.post("mostrar/" + id_orden, function(data, status) {
-           
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-guardar").hide();
-            $("#autorizacion_credito_req").show();
-            $("#redistribucion_tallas").show();
-            $("#factura_desglosada_tallas").show();
-            $("#acepta_segundas").show();
-            $("#cliente").show();
-            $("#clienteBuscar").hide();
-            $("#sucursal").show();
-            $("#sucursalBuscar").hide();
-            $("#btn-generar").attr('disabled', true);
-            $("#generado_internamente").show();
-            $("#tallas").hide();
-            $("#producto").hide();
-            $("#genInt").hide();
-            $("#agregadas").hide();
-            $("#listarOrden").show();
-
-            let result;
-            if(data.orden.generado_internamente == 1){
-                result = 'Si';
-            }else{
-                result = 'No';
-            }
-            $("#orden").DataTable().destroy();
-            listarOrden(data.orden.id);
-            $("#notas").val(data.orden.notas).attr('readonly', true).addClass("font-weight-bold");
-            $("#client").val(data.orden.cliente.nombre_cliente);
-            $("#sucur").val(data.orden.sucursal.nombre_sucursal);
-            $("#fecha_entrega").val(data.orden.fecha_entrega).attr('disabled', true);
-            $("#no_orden_pedido").val(data.orden.no_orden_pedido).addClass("font-weight-bold");
-            $("#generado_internamente").val(result);
-           
-           
-        });
-    }
-
-    function listarOrden(id) {
-       var tabla_orden = $("#orden").DataTable({
-            serverSide: true,
-            bFilter: false, 
-            lengthChange: false,
-            bPaginate: false,
-            bInfo: false,
-            retrieve: true,
-            responsive: true,
-            ajax: "api/listarorden/"+id,
-            columns: [
-                { data: "referencia_producto", name: "producto.referencia_producto"},
-                { data: "a", name: "orden_pedido_detalle.a" },
-                { data: "b", name: "orden_pedido_detalle.b" },
-                { data: "c", name: "orden_pedido_detalle.c" },
-                { data: "d", name: "orden_pedido_detalle.d" },
-                { data: "e", name: "orden_pedido_detalle.e" },
-                { data: "f", name: "orden_pedido_detalle.f" },
-                { data: "g", name: "orden_pedido_detalle.g" },
-                { data: "h", name: "orden_pedido_detalle.h" },
-                { data: "i", name: "orden_pedido_detalle.i" },
-                { data: "j", name: "orden_pedido_detalle.j" },
-                { data: "k", name: "orden_pedido_detalle.k" },
-                { data: "l", name: "orden_pedido_detalle.l" },
-            ],
-            order: [[1, "desc"]],
-        });
-    }
 
 </script>
 

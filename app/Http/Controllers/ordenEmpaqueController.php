@@ -10,6 +10,7 @@ use App\ordenPedidoDetalle;
 use App\ordenEmpaque;
 use App\Perdida;
 use App\Almacen;
+use App\AlmacenDetalle;
 use App\Client;
 use App\ClientBranch;
 use App\TallasPerdidas;
@@ -304,7 +305,7 @@ class ordenEmpaqueController extends Controller
 
 
         //Almacen
-        $almacen = Almacen::where('producto_id', $producto_id)->select('id')->get();
+        $almacen = AlmacenDetalle::where('producto_id', $producto_id)->select('id')->get();
 
         $almacenes = array();
 
@@ -323,13 +324,13 @@ class ordenEmpaqueController extends Controller
         //producto
         $producto = Product::find($producto_id);
 
-        $tallasAlmacenCurva = Almacen::whereIn('id', $almacenes)->where('usado_curva', 'LIKE', 0)->get()->first();
-        $tallasCurva = Almacen::whereIn('id', $almacenes)->where('usado_curva', 'LIKE', 1)->get();
+        $tallasAlmacenCurva = AlmacenDetalle::where('producto_id', $producto_id)->select('id')->get();
+        $tallasCurva = AlmacenDetalle::where('producto_id', $producto_id)->get();
 
         if (\is_object($tallasAlmacenCurva)) {
 
-            $tallasAlmacenCurva->usado_curva = 1;
-            $tallasAlmacenCurva->save();
+            // $tallasAlmacenCurva->usado_curva = 1;
+            // $tallasAlmacenCurva->save();
 
             // $curva = Curva::where('producto_id', $producto_id)->get();
 
@@ -385,20 +386,20 @@ class ordenEmpaqueController extends Controller
 
         //calcular total con perdidas y segundas y ordenes de pedido
 
-        $tallasAlmacen = Almacen::whereIn('id', $almacenes)->get();
+        $tallasAlmacen = AlmacenDetalle::where('producto_id', $producto_id)->get();
 
-        $a_alm = $tallasAlmacen->sum('a') - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a');
-        $b_alm = $tallasAlmacen->sum('b') - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b');
-        $c_alm = $tallasAlmacen->sum('c') - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c');
-        $d_alm = $tallasAlmacen->sum('d') - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d');
-        $e_alm = $tallasAlmacen->sum('e') - $tallasPerdidas->sum('e') - $tallasSegundas->sum('e');
-        $f_alm = $tallasAlmacen->sum('f') - $tallasPerdidas->sum('f') - $tallasSegundas->sum('f');
-        $g_alm = $tallasAlmacen->sum('g') - $tallasPerdidas->sum('g') - $tallasSegundas->sum('g');
-        $h_alm = $tallasAlmacen->sum('h') - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h');
-        $i_alm = $tallasAlmacen->sum('i') - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i');
-        $j_alm = $tallasAlmacen->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j');
-        $k_alm = $tallasAlmacen->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k');
-        $l_alm = $tallasAlmacen->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l');
+        $a_alm = $tallasAlmacen->sum('a') - $tallasSegundas->sum('a');
+        $b_alm = $tallasAlmacen->sum('b') - $tallasSegundas->sum('b');
+        $c_alm = $tallasAlmacen->sum('c') - $tallasSegundas->sum('c');
+        $d_alm = $tallasAlmacen->sum('d') - $tallasSegundas->sum('d');
+        $e_alm = $tallasAlmacen->sum('e') - $tallasSegundas->sum('e');
+        $f_alm = $tallasAlmacen->sum('f') - $tallasSegundas->sum('f');
+        $g_alm = $tallasAlmacen->sum('g') - $tallasSegundas->sum('g');
+        $h_alm = $tallasAlmacen->sum('h') - $tallasSegundas->sum('h');
+        $i_alm = $tallasAlmacen->sum('i') - $tallasSegundas->sum('i');
+        $j_alm = $tallasAlmacen->sum('j') - $tallasSegundas->sum('j');
+        $k_alm = $tallasAlmacen->sum('k') - $tallasSegundas->sum('k');
+        $l_alm = $tallasAlmacen->sum('l') - $tallasSegundas->sum('l');
 
         $a_alm = ($a_alm < 0 ? 0 : $a_alm);
         $b_alm = ($b_alm < 0 ? 0 : $b_alm);

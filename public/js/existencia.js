@@ -563,12 +563,63 @@ $(document).ready(function() {
         $("#btn-consultar").attr('disabled', false);
     });
 
-
-
-
-
-
-
-
     init();
 });
+
+function mostrar(id_almacen) {
+    $.get("almacen/" + id_almacen, function(data, status) {
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").show();
+        $("#btn-guardar").hide();
+        $("#referencia_producto").show();
+        $("#numero_corte").show();
+        $("#corteEdit").show();
+        $("#corteAdd").hide();
+
+
+
+        $("#id").val(data.almacen.id);
+        $("#referencia_producto").val('Referencia elegida: '+data.almacen.producto.referencia_producto);
+        $("#numero_corte").val('Corte elegido: '+data.almacen.corte.numero_corte);
+        $("#ubicacion").val(data.almacen.producto.ubicacion);
+        $("#tono").val("");
+        $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
+        $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
+        $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
+        $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
+        $("#a").val(data.almacen.a);
+        $("#b").val(data.almacen.b);
+        $("#c").val(data.almacen.c);
+        $("#d").val(data.almacen.d);
+        $("#e").val(data.almacen.e);
+        $("#f").val(data.almacen.f);
+        $("#g").val(data.almacen.g);
+        $("#h").val(data.almacen.h);
+        $("#i").val(data.almacen.i);
+        $("#j").val(data.almacen.j);
+        $("#k").val(data.almacen.k);
+        $("#l").val(data.almacen.l);
+        $("#genero").val(data.almacen.producto.referencia_producto);
+        $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
+        $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
+        $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
+        $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+    });
+}
+
+
+
+
+function eliminar(id_almacen){
+    bootbox.confirm("¿Estas seguro de eliminar este producto de almacen?", function(result){
+        if(result){
+            $.post("almacen/delete/" + id_almacen, function(){
+                bootbox.alert("Producto de almacen eliminado correctamente!!");
+                $("#almacenes").DataTable().ajax.reload();
+            })
+        }
+    })
+}

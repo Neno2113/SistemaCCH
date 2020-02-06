@@ -256,7 +256,7 @@ class AlmacenController extends Controller
             ->join('producto', 'almacen.producto_id', '=', 'producto.id')
             ->join('users', 'almacen.user_id', '=', 'users.id')
             ->select([
-                'almacen.id', 'almacen.total', 'corte.numero_corte', 'corte.total as totalCorte',
+                'almacen.id', 'almacen.total', 'corte.numero_corte', 'corte.id as corte_id', 'corte.total as totalCorte',
                 'corte.fase', 'producto.referencia_producto', 'users.name', 'users.surname'
             ]);
 
@@ -266,6 +266,27 @@ class AlmacenController extends Controller
             })
             ->editColumn('name', function ($almacen) {
                 return "$almacen->name $almacen->surname";
+            })
+            ->editColumn('totalCorte', function ($almacen) {
+                //perdidas
+                $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+                ->where('corte_id', $almacen->corte_id)->select('id')->get();
+
+                $perdidas = array();
+
+                $longitudPerdida = count($perdida);
+
+                for ($i = 0; $i < $longitudPerdida; $i++) {
+                    array_push($perdidas, $perdida[$i]['id']);
+                }
+
+                $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+
+                return $almacen->totalCorte - $tallasPerdidas->sum('total');
+            })
+            ->editColumn('total', function ($almacen) {
+                $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
+                return $detalle->sum('total');
             })
             ->addColumn('Opciones', function ($almacen) {
                 return
@@ -367,7 +388,20 @@ class AlmacenController extends Controller
                 'pen_lavanderia' => $recepcion->pendiente,
                 'total_recibido' => $recepcion->total_recibido,
                 'pen_produccion' => $pendiente_lavanderia,
-                'perdida_x' => $tallasPerdidas->sum('talla_x')
+                'perdida_x' => $tallasPerdidas->sum('talla_x'),
+                'a_alm' => $detalle->sum('a'),
+                'b_alm' => $detalle->sum('b'),
+                'c_alm' => $detalle->sum('c'),
+                'd_alm' => $detalle->sum('d'),
+                'e_alm' => $detalle->sum('e'),
+                'f_alm' => $detalle->sum('f'),
+                'g_alm' => $detalle->sum('g'),
+                'h_alm' => $detalle->sum('h'),
+                'i_alm' => $detalle->sum('i'),
+                'j_alm' => $detalle->sum('j'),
+                'k_alm' => $detalle->sum('k'),
+                'l_alm' => $detalle->sum('l'),
+                'total_alm' => $detalle->sum('total')
             ];
         } else {
             $data = [
@@ -487,10 +521,19 @@ class AlmacenController extends Controller
     public function destroy($id)
     {
         $almacen = Almacen::find($id);
+        $detalle = AlmacenDetalle::where('almacen_id', $id)->get();
         $corte_id = $almacen['corte_id'];
         $corte = Corte::find($corte_id);
 
         if (!empty($almacen)) {
+            $longitud = count($detalle);
+
+            //actualizar status de la orden pedido
+            for ($i = 0; $i < $longitud; $i++) {
+                $detalle[$i]->delete();
+            }
+
+
             $corte->fase = 'Terminacion';
             $corte->save();
             $almacen->delete();
@@ -546,7 +589,6 @@ class AlmacenController extends Controller
             $search = $request->q;
             $data = Corte::select("id", "numero_corte", "fase")
                 ->where('fase', 'LIKE', 'Terminacion')
-                ->orwhere('fase', 'LIKE', 'Almacen')
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }
@@ -766,6 +808,7 @@ class AlmacenController extends Controller
         $j = $request->input('j');
         $k = $request->input('k');
         $l = $request->input('l');
+        $id = $request->input('almacen_id');
 
         //validaciones
         $a = intval(trim($a, "_"));
@@ -782,23 +825,94 @@ class AlmacenController extends Controller
         $l = intval(trim($l, "_"));
         $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
-        $data = [
-            'code' => 200,
-            'status' => 'success',
-            'a' => $a,
-            'b' => $b,
-            'c' => $c,
-            'd' => $d,
-            'e' => $e,
-            'f' => $f,
-            'g' => $g,
-            'h' => $h,
-            'i' => $i,
-            'j' => $j,
-            'k' => $k,
-            'l' => $l,
-            'total' => $total
-        ];
+        if (!empty($id)) {
+            $detalle = AlmacenDetalle::where('almacen_id', $id)->get();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'a' => $a + $detalle->sum('a'),
+                'b' => $b + $detalle->sum('b'),
+                'c' => $c + $detalle->sum('c'),
+                'd' => $d + $detalle->sum('d'),
+                'e' => $e + $detalle->sum('e'),
+                'f' => $f + $detalle->sum('f'),
+                'g' => $g + $detalle->sum('g'),
+                'h' => $h + $detalle->sum('h'),
+                'i' => $i + $detalle->sum('i'),
+                'j' => $j + $detalle->sum('j'),
+                'k' => $k + $detalle->sum('k'),
+                'l' => $l + $detalle->sum('l'),
+                'total' => $total + $detalle->sum('total'),
+                'a_alm' => $detalle->sum('a'),
+                'b_alm' => $detalle->sum('b'),
+                'c_alm' => $detalle->sum('c'),
+                'd_alm' => $detalle->sum('d'),
+                'e_alm' => $detalle->sum('e'),
+                'f_alm' => $detalle->sum('f'),
+                'g_alm' => $detalle->sum('g'),
+                'h_alm' => $detalle->sum('h'),
+                'i_alm' => $detalle->sum('i'),
+                'j_alm' => $detalle->sum('j'),
+                'k_alm' => $detalle->sum('k'),
+                'l_alm' => $detalle->sum('l'),
+                'total_alm' => $detalle->sum('total')
+
+            ];
+        } else {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    function calcularTotales(Request $request)
+    {
+        $id = $request->input('almacen_id');
+
+        if (!empty($id)) {
+            $detalle = AlmacenDetalle::where('almacen_id', $id)->get();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'a' => $detalle->sum('a'),
+                'b' => $detalle->sum('b'),
+                'c' => $detalle->sum('c'),
+                'd' => $detalle->sum('d'),
+                'e' => $detalle->sum('e'),
+                'f' => $detalle->sum('f'),
+                'g' => $detalle->sum('g'),
+                'h' => $detalle->sum('h'),
+                'i' => $detalle->sum('i'),
+                'j' => $detalle->sum('j'),
+                'k' => $detalle->sum('k'),
+                'l' => $detalle->sum('l'),
+                'total' => $detalle->sum('total')
+
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'success',
+                'message' => 'No hay nada que buscar'
+            ];
+        }
 
         return response()->json($data, $data['code']);
     }

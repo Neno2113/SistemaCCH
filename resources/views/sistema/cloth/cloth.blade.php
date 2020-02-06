@@ -182,7 +182,7 @@
 
                             </select>
                         </div>
-                      
+
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1"
                                 class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
@@ -197,7 +197,7 @@
 
                             </select>
                         </div>
-                       
+
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2"
                                 class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
@@ -212,7 +212,7 @@
 
                             </select>
                         </div>
-                       
+
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3"
                                 class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
@@ -227,7 +227,7 @@
 
                             </select>
                         </div>
-                      
+
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4"
                                 class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
@@ -242,7 +242,7 @@
 
                             </select>
                         </div>
-                     
+
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5"
                                 class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
@@ -284,72 +284,7 @@
 @include('adminlte/scripts')
 <script src="{{asset('js/cloth.js')}}"></script>
 
-<script>
-    function mostrar(id_cloth) {
-        $.post("cloth/" + id_cloth, function(data, status) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
-            $("#compo").hide();
-            // console.log(data.tela.suplidor.nombre);
 
-            $("#id").val(data.tela.id);
-            $("#referencia").val(data.tela.referencia).attr('readonly', false);
-            $("#suplidores").find('option[value='+data.suplidor.id+']').attr('selected', 'selected').trigger("change");
-            // $("#suplidores").select2(data.suplidor.nombre).trigger("change");
-            // $("#suplidores").select2(data.suplidor, {id:data.suplidor.id, item:data.suplidor.nombre}).trigger("change");
-            $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
-            $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
-            $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', false);
-            $("#peso").val(data.tela.peso).attr('readonly', false);
-            $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', false);
-            $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', false);
-            $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
-            $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
-           
-        });
-    }
-
-    function ver(id_cloth) {
-        $.post("cloth/" + id_cloth, function(data, status) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            // $("#btn-edit").show();
-            $("#btn-guardar").hide();
-            $("#compo").hide();
-
-            $("#referencia").val(data.tela.referencia).attr('readonly', true);
-            $("#precio_usd").val(data.tela.precio_usd).attr('readonly', true);
-            $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', true);
-            $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', true);
-            $("#peso").val(data.tela.peso).attr('readonly', true);
-            $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', true);
-            $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', true);
-            $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', true);
-            $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', true);
-           
-        });
-    }
-
-   
-
-    function eliminar(id_cloth){
-        bootbox.confirm("¿Estas seguro de eliminar esta tela?", function(result){
-            if(result){
-                $.post("cloth/delete/" + id_cloth, function(){
-                    bootbox.alert("Composicion eliminada correctamente");
-                    $("#cloths").DataTable().ajax.reload();
-                })
-            }
-        })
-    }
-
-</script>
 
 
 

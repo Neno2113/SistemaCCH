@@ -9,6 +9,7 @@ use App\Talla;
 use App\Perdida;
 use App\TallasPerdidas;
 use App\Almacen;
+use App\AlmacenDetalle;
 use App\Client;
 use App\ClientBranch;
 use App\ordenPedido;
@@ -91,17 +92,16 @@ class ordenPedidoController extends Controller
 
 
         //Almacen
-        $almacen = Almacen::where('producto_id', $producto_id)->select('id')->get();
 
-        $almacenes = array();
+        // $almacenes = array();
 
-        $longitudAlmacen = count($almacen);
+        // $longitudAlmacen = count($almacen);
 
-        for ($i = 0; $i < $longitudAlmacen; $i++) {
-            array_push($almacenes, $almacen[$i]['id']);
-        }
+        // for ($i = 0; $i < $longitudAlmacen; $i++) {
+        //     array_push($almacenes, $almacen[$i]['id']);
+        // }
 
-        $tallasAlmacen = Almacen::whereIn('id', $almacenes)->get();
+        $tallasAlmacen = AlmacenDetalle::where('producto_id', $producto_id)->get();
 
 
 
@@ -616,9 +616,9 @@ class ordenPedidoController extends Controller
                 return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
                     '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
             })
-            ->addColumn('Ver', function ($orden) {
-                return '<button onclick="ver(' . $orden->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
-            })
+            // ->addColumn('Ver', function ($orden) {
+            //     return '<button onclick="ver(' . $orden->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
+            // })
             ->rawColumns(['Opciones', 'Ver'])
             ->make(true);
     }
@@ -1301,6 +1301,42 @@ class ordenPedidoController extends Controller
                 'orden_pedido_detalle.l', 'orden_pedido_detalle.total', 'orden_pedido_detalle.orden_redistribuida'
             ])->where('orden_pedido_id', $id);
         return DataTables::of($ordenes)
+        ->editColumn('a', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->a.'>';
+        })
+        ->editColumn('b', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->b.'>';
+        })
+        ->editColumn('c', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->c.'>';
+        })
+        ->editColumn('d', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->d.'>';
+        })
+        ->editColumn('e', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->e.'>';
+        })
+        ->editColumn('f', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->f.'>';
+        })
+        ->editColumn('g', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->g.'>';
+        })
+        ->editColumn('h', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->h.'>';
+        })
+        ->editColumn('i', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->i.'>';
+        })
+        ->editColumn('j', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->j.'>';
+        })
+        ->editColumn('k', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->k.'>';
+        })
+        ->editColumn('l', function ($orden) {
+            return '<input type="number" class="form-control red" value='.$orden->l.'>';
+        })
         ->addColumn('Opciones', function ($orden) {
             $id = $orden->orden_pedido_id;
 
@@ -1319,10 +1355,10 @@ class ordenPedidoController extends Controller
                 return  '<a onclick="redistribuir(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"> <i class="fas fa-random"></i></a>' .
                     '<span class="badge badge-success ml-2">Redistribuido</span>';
             } else {
-                return '<span class="badge badge-success">Redistribuido</span>';
+                return '<a onclick="ajuste(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1" id="btn-status"><i class="far fa-save"></i></a>';
             }
         })
-            ->rawColumns(['Opciones'])
+            ->rawColumns(['Opciones', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j','k','l'])
             ->make(true);
     }
 

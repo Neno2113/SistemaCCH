@@ -1,20 +1,22 @@
+var genero_global;
+var genero_plus_global;
+var total_recibido;
+var a_total;
+var b_total;
+var c_total;
+var d_total;
+var e_total;
+var f_total;
+var g_total;
+var h_total;
+var i_total;
+var j_total;
+var k_total;
+var l_total;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
-    var total_recibido;
-    var a_total;
-    var b_total;
-    var c_total;
-    var d_total;
-    var e_total;
-    var f_total;
-    var g_total;
-    var h_total;
-    var i_total;
-    var j_total;
-    var k_total;
-    var l_total;
-    var genero_global;
-    var genero_plus_global;
+
+
 
     $("#formulario").validate({
         rules: {
@@ -61,6 +63,8 @@ $(document).ready(function() {
 
 
     function limpiar() {
+        $("#id").val("");
+        $("#almacen_id").val("");
         $("#cortesSearchEdit").val("").trigger("change");
         $("#cortesSearch").val("").trigger("change");
         $("#ubicacion").val("");
@@ -82,6 +86,8 @@ $(document).ready(function() {
         $("#k").val("");
         $("#l").val("");
         $("#genero").val("");
+        $("#disponibles").empty();
+        $("#resultados").empty();
     }
 
     function limpiarDetalle(){
@@ -250,16 +256,13 @@ $(document).ready(function() {
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "name", name: "users.name" },
                 { data: "numero_corte", name: "corte.numero_corte" },
-                {
-                    data: "referencia_producto",
-                    name: "producto.referencia_producto"
-                },
+                { data: "referencia_producto", name: "producto.referencia_producto"},
+                { data: "total", name: "almacen.total" },
                 { data: "totalCorte", name: "corte.total" },
-                { data: "total", name: "almacen.total" }
             ],
-            order: [[2, "asc"]],
+            order: [[4, "asc"]],
             rowGroup: {
-                dataSrc: "name"
+                dataSrc: "referencia_producto"
             }
         });
     }
@@ -340,7 +343,7 @@ $(document).ready(function() {
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#btn-edit").hide();
-            $("#btn-guardar").show();
+            // $("#btn-guardar").show();
             $("#referencia_producto").hide();
             $("#numero_corte").hide();
             $("#corteEdit").hide();
@@ -433,7 +436,6 @@ $(document).ready(function() {
                     $("#rk").html(datos.k);
                     $("#rl").html(datos.l);
                     $("#total").html(datos.total);
-
 
                     var corte = {
                         corte_id: $("#cortesSearch").val(),
@@ -704,6 +706,7 @@ $(document).ready(function() {
     });
 
     function validarTallas(){
+
         var validar = {
             a: $("#a").val(),
             b: $("#b").val(),
@@ -716,8 +719,10 @@ $(document).ready(function() {
             i: $("#i").val(),
             j: $("#j").val(),
             k: $("#k").val(),
-            l: $("#l").val()
+            l: $("#l").val(),
+            almacen_id: $("#id").val()
         };
+
         $("#entrada_alm").removeClass("btn-secondary").addClass("btn-success");
         $.ajax({
             url: "validar/total",
@@ -741,6 +746,12 @@ $(document).ready(function() {
                     var k = datos.k;
                     var l = datos.l;
 
+                    if(total > total_recibido){
+                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                        "<i class='fas fa-exclamation-triangle'></i> La cantidad total de tallas no puede ser mayor a la cantidad total en terminacion"+
+                       "</div>")
+
+                    }else{
                         if(genero_global == 2){
                             if(genero_plus_global == 7){
                                 if(a > a_total){
@@ -912,15 +923,11 @@ $(document).ready(function() {
                                 agregarDetalle()
                             }
                         }
+                    }
 
-                        if(total > total_recibido){
-                            bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                            "<i class='fas fa-exclamation-triangle'></i> La cantidad total de tallas no puede ser mayor a la cantidad recibida de lavanderia"+
-                           "</div>")
-                           $("#btn-guardar").hide();
-                        }else{
-                            $("#btn-guardar").show();
-                        }
+                        console.log(total);
+                        console.log(total_recibido);
+
 
 
                     } else {
@@ -1069,7 +1076,8 @@ $(document).ready(function() {
             j: j,
             k: k,
             l: l,
-            producto_id: $("#producto_id").val()
+            producto_id: $("#producto_id").val(),
+            almacen_id: $("#id").val()
         }
 
         $.ajax({
@@ -1100,7 +1108,7 @@ $(document).ready(function() {
                     cont++;
                 $("#disponibles").append(fila);
                 limpiarDetalle();
-                // calcularTotales();
+                calcularTotales();
 
                 } else {
                     bootbox.alert(
@@ -1126,66 +1134,360 @@ $(document).ready(function() {
     }
 
     function calcularTotales(){
-        var a = document.getElementsByName("a[]");
-        var b = document.getElementsByName("b[]");
-        var c = document.getElementsByName("c[]");
-        var d = document.getElementsByName("d[]");
-        var e = document.getElementsByName("e[]");
-        var f = document.getElementsByName("f[]");
-        var g = document.getElementsByName("g[]");
-        var h = document.getElementsByName("h[]");
-        var i = document.getElementsByName("i[]");
-        var j = document.getElementsByName("j[]");
-        var k = document.getElementsByName("k[]");
-        var l = document.getElementsByName("l[]");
-        // a = parseInt(a);
-        // b = parseInt(b);
 
-        for (let t = 0; t < a.length; t++) {
-            var a_total = a[t];
-            var b_total = b[t];
-            var c_total = c[t];
-            var d_total = d[t];
-            var e_total = e[t];
-            var f_total = f[t];
-            var g_total = g[t];
-            var h_total = h[t];
-            var i_total = i[t];
-            var j_total = j[t];
-            var k_total = k[t];
-            var l_total = l[t];
+        var tallas = {
+            almacen_id: $("#id").val()
         }
 
-        let a_res = a_total + a_res;
-        let b_res = b_res + b_total;
-        let c_res = c_res + c_total;
-        let d_res = d_res + d_total;
-        let e_res = e_res + e_total;
-        let f_res = f_res + f_total;
-        let g_res = g_res + g_total;
-        let h_res = h_res + h_total;
-        let i_res = i_res + i_total;
-        let j_res = j_res + j_total;
-        let k_res = k_res + k_total;
-        let l_res = l_res + l_total;
+        $.ajax({
+            url: "almacen/calcular/total",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(tallas),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    $("#resultados").empty();
+                    var resultado =
+                    '<tr id="fila">'+
+                    "<td><input type='hidden' name='a[]' id='a[]' value="+datos.a+">"+datos.a+"</td>"+
+                    "<td><input type='hidden' name='b[]' id='b[]' value="+datos.b+">"+datos.b+"</td>"+
+                    "<td><input type='hidden' name='c[]' id='c[]' value="+datos.c+">"+datos.c+"</td>"+
+                    "<td><input type='hidden' name='d[]' id='d[]' value="+datos.d+">"+datos.d+"</td>"+
+                    "<td><input type='hidden' name='e[]' id='e[]' value="+datos.e+">"+datos.e+"</td>"+
+                    "<td><input type='hidden' name='f[]' id='f[]' value="+datos.f+">"+datos.f+"</td>"+
+                    "<td><input type='hidden' name='g[]' id='g[]' value="+datos.g+">"+datos.g+"</td>"+
+                    "<td><input type='hidden' name='h[]' id='h[]' value="+datos.h+">"+datos.h+"</td>"+
+                    "<td><input type='hidden' name='i[]' id='i[]' value="+datos.i+">"+datos.i+"</td>"+
+                    "<td><input type='hidden' name='j[]' id='j[]' value="+datos.j+">"+datos.j+"</td>"+
+                    "<td><input type='hidden' name='k[]' id='k[]' value="+datos.k+">"+datos.k+"</td>"+
+                    "<td><input type='hidden' name='l[]' id='l[]' value="+datos.l+">"+datos.l+"</td>"+
+                    "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.total+">"+datos.total+"</td>"+
+                    "</tr>";
 
-        console.log(a_res);
-        console.log(b_res);
-        console.log(c_res);
-        console.log(d_res);
-        console.log(e_res);
-        console.log(f_res);
-        console.log(g_res);
-        console.log(h_res);
-        console.log(i_res);
-        console.log(j_res);
-        console.log(k_res);
-        console.log(l_res);
+                $("#resultados").append(resultado);
+                limpiarDetalle();
+                // calcularTotales();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
+                    });
+                });
+            }
+        });
 
 
     }
 
 
 
+
     init();
 });
+
+function mostrar(id_almacen){
+    $.get("almacen/" + id_almacen, function(data, status) {
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit").hide();
+        $("#btn-guardar").hide();
+        $("#referencia_producto").show();
+        $("#numero_corte").show();
+        // $("#corteEdit").show();
+        $("#corteAdd").hide();
+        $("#formUpload").show();
+        $("#form_producto").show();
+        $("#form_producto_2").show();
+        $("#form_talla").show();
+        $("#btn-buscar").hide();
+        let genero = data.almacen.producto.referencia_producto.substring(1, 2);
+        genero_global = data.almacen.producto.referencia_producto.substring(1, 2);
+        let mujer_plus = data.almacen.producto.referencia_producto.substring(3, 4);
+        genero_plus_global = data.almacen.producto.referencia_producto.substring(3, 4);
+
+        //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+        (data.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false);
+        (data.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
+        (data.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
+        (data.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
+        (data.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
+        (data.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
+        (data.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
+        (data.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
+        (data.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
+        (data.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
+        (data.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
+        (data.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
+
+        $("#id").val(data.almacen.id);
+        $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);
+        $("#ubicacion").val(data.almacen.producto.ubicacion);
+        $("#tono").val(data.almacen.producto.tono);
+        $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
+        $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
+        $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
+        $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
+        $("#ra").html(data.a);
+        $("#rb").html(data.b);
+        $("#rc").html(data.c);
+        $("#rd").html(data.d);
+        $("#re").html(data.e);
+        $("#rf").html(data.f);
+        $("#rg").html(data.g);
+        $("#rh").html(data.h);
+        $("#ri").html(data.i);
+        $("#rj").html(data.j);
+        $("#rk").html(data.k);
+        $("#rl").html(data.l);
+        a_total = data.a;
+        b_total = data.b;
+        c_total = data.c;
+        d_total = data.d;
+        e_total = data.e;
+        f_total = data.f;
+        g_total = data.g;
+        h_total = data.h;
+        i_total = data.i;
+        j_total = data.j;
+        k_total = data.k;
+        l_total = data.l;
+        total_recibido = data.total_recibido;
+
+        $("#total").html(data.total);
+        $("#genero").val(data.almacen.producto.referencia_producto);
+        $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
+        $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
+        $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
+        $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+        $("#pendiente_produccion").html(data.pen_produccion);
+        $("#pendiente_lavanderia").html(data.pen_lavanderia);
+        $("#total_terminacion").html(data.total_recibido);
+        $("#perdida_x").html(data.perdida_x);
+        $("#producto_id").val(data.almacen.producto.id);
+
+        $("#disponibles").empty();
+        $("#resultados").empty();
+
+        for (let t = 0; t < data.detalle.length; t++) {
+            var fila =  "<tr>"+
+            '<tr id="fila">'+
+            "<td><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].a+"</td>"+
+            "<td><input type='hidden' name='b[]' id='b[]' value="+data.detalle[t].b+">"+data.detalle[t].b+"</td>"+
+            "<td><input type='hidden' name='c[]' id='c[]' value="+data.detalle[t].c+">"+data.detalle[t].c+"</td>"+
+            "<td><input type='hidden' name='d[]' id='d[]' value="+data.detalle[t].d+">"+data.detalle[t].d+"</td>"+
+            "<td><input type='hidden' name='e[]' id='e[]' value="+data.detalle[t].e+">"+data.detalle[t].e+"</td>"+
+            "<td><input type='hidden' name='f[]' id='f[]' value="+data.detalle[t].f+">"+data.detalle[t].f+"</td>"+
+            "<td><input type='hidden' name='g[]' id='g[]' value="+data.detalle[t].g+">"+data.detalle[t].g+"</td>"+
+            "<td><input type='hidden' name='h[]' id='h[]' value="+data.detalle[t].h+">"+data.detalle[t].h+"</td>"+
+            "<td><input type='hidden' name='i[]' id='i[]' value="+data.detalle[t].i+">"+data.detalle[t].i+"</td>"+
+            "<td><input type='hidden' name='j[]' id='j[]' value="+data.detalle[t].j+">"+data.detalle[t].j+"</td>"+
+            "<td><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
+            "<td><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
+            "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
+            "</tr>";
+            $("#disponibles").append(fila);
+        }
+
+        var resultados =  "<tr>"+
+            '<tr id="fila">'+
+            "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+"</td>"+
+            "<td><input type='hidden' name='b[]' id='b[]' value="+data.b_alm+">"+data.b_alm+"</td>"+
+            "<td><input type='hidden' name='c[]' id='c[]' value="+data.c_alm+">"+data.c_alm+"</td>"+
+            "<td><input type='hidden' name='d[]' id='d[]' value="+data.d_alm+">"+data.d_alm+"</td>"+
+            "<td><input type='hidden' name='e[]' id='e[]' value="+data.e_alm+">"+data.e_alm+"</td>"+
+            "<td><input type='hidden' name='f[]' id='f[]' value="+data.f_alm+">"+data.f_alm+"</td>"+
+            "<td><input type='hidden' name='g[]' id='g[]' value="+data.g_alm+">"+data.g_alm+"</td>"+
+            "<td><input type='hidden' name='h[]' id='h[]' value="+data.h_alm+">"+data.h_alm+"</td>"+
+            "<td><input type='hidden' name='i[]' id='i[]' value="+data.i_alm+">"+data.i_alm+"</td>"+
+            "<td><input type='hidden' name='j[]' id='j[]' value="+data.j_alm+">"+data.j_alm+"</td>"+
+            "<td><input type='hidden' name='k[]' id='k[]' value="+data.k_alm+">"+data.k_alm+"</td>"+
+            "<td><input type='hidden' name='l[]' id='l[]' value="+data.l_alm+">"+data.l_alm+"</td>"+
+            "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.total_alm+">"+data.total_alm+"</td>"+
+            "</tr>";
+            $("#resultados").append(resultados);
+
+
+        if (genero == "2") {
+            if (mujer_plus == 7) {
+                $("#ta").html("12W");
+                $("#tb").html("14W");
+                $("#tc").html("16W");
+                $("#td").html("18W");
+                $("#te").html("20W");
+                $("#tf").html("22W");
+                $("#tg").html("24W");
+                $("#th").html("26W");
+                $("#sa").html("12W");
+                $("#sb").html("14W");
+                $("#sc").html("16W");
+                $("#sd").html("18W");
+                $("#se").html("20W");
+                $("#sf").html("22W");
+                $("#sg").html("24W");
+                $("#sh").html("26W");
+                $("#ba").html("12W");
+                $("#bb").html("14W");
+                $("#bc").html("16W");
+                $("#bd").html("18W");
+                $("#be").html("20W");
+                $("#bf").html("22W");
+                $("#bg").html("24W");
+                $("#bh").html("26W");
+            } else {
+                $("#ta").html("0/0");
+                $("#tb").html("1/2");
+                $("#tc").html("3/4");
+                $("#td").html("5/6");
+                $("#te").html("7/8");
+                $("#tf").html("9/10");
+                $("#tg").html("11/12");
+                $("#th").html("13/14");
+                $("#ti").html("15/16");
+                $("#tj").html("17/18");
+                $("#tk").html("19/20");
+                $("#tl").html("21/22");
+                $("#sa").html("0/0");
+                $("#sb").html("1/2");
+                $("#sc").html("3/4");
+                $("#sd").html("5/6");
+                $("#se").html("7/8");
+                $("#sf").html("9/10");
+                $("#sg").html("11/12");
+                $("#sh").html("13/14");
+                $("#si").html("15/16");
+                $("#sj").html("17/18");
+                $("#sk").html("19/20");
+                $("#sl").html("21/22");
+                $("#ba").html("0/0");
+                $("#bb").html("1/2");
+                $("#bc").html("3/4");
+                $("#bd").html("5/6");
+                $("#be").html("7/8");
+                $("#bf").html("9/10");
+                $("#bg").html("11/12");
+                $("#bh").html("13/14");
+                $("#bi").html("15/16");
+                $("#bj").html("17/18");
+                $("#bk").html("19/20");
+                $("#bl").html("21/22");
+
+            }
+        }
+        if (genero == "3") {
+            $("#genero").val("Niño: " + val);
+            $("#sub-genero").hide();
+            $("#ta").html("2");
+            $("#tb").html("4");
+            $("#tc").html("6");
+            $("#td").html("8");
+            $("#te").html("10");
+            $("#tf").html("12");
+            $("#tg").html("14");
+            $("#th").html("16");
+            $("#sa").html("2");
+            $("#sb").html("4");
+            $("#sc").html("6");
+            $("#sd").html("8");
+            $("#se").html("10");
+            $("#sf").html("12");
+            $("#sg").html("14");
+            $("#sh").html("16");
+            $("#ba").html("2");
+            $("#bb").html("4");
+            $("#bc").html("6");
+            $("#bd").html("8");
+            $("#be").html("10");
+            $("#bf").html("12");
+            $("#bg").html("14");
+            $("#bh").html("16");
+        } else if (genero == "4") {
+            $("#genero").val("Niña: " + val);
+            $("#sub-genero").hide();
+            $("#ta").html("2");
+            $("#tb").html("4");
+            $("#tc").html("6");
+            $("#td").html("8");
+            $("#te").html("10");
+            $("#tf").html("12");
+            $("#tg").html("14");
+            $("#th").html("16");
+            $("#sa").html("2");
+            $("#sb").html("4");
+            $("#sc").html("6");
+            $("#sd").html("8");
+            $("#se").html("10");
+            $("#sf").html("12");
+            $("#sg").html("14");
+            $("#sh").html("16");
+            $("#ba").html("2");
+            $("#bb").html("4");
+            $("#bc").html("6");
+            $("#bd").html("8");
+            $("#be").html("10");
+            $("#bf").html("12");
+            $("#bg").html("14");
+            $("#bh").html("16");
+        } else if (genero == "1") {
+            $("#genero").val("Hombre: " + val);
+            $("#sub-genero").hide();
+            $("#ta").html("28");
+            $("#tb").html("29");
+            $("#tc").html("30");
+            $("#td").html("32");
+            $("#te").html("34");
+            $("#tf").html("36");
+            $("#tg").html("38");
+            $("#th").html("40");
+            $("#ti").html("42");
+            $("#tj").html("44");
+            $("#sa").html("28");
+            $("#sb").html("29");
+            $("#sc").html("30");
+            $("#sd").html("32");
+            $("#se").html("34");
+            $("#sf").html("36");
+            $("#sg").html("38");
+            $("#sh").html("40");
+            $("#si").html("42");
+            $("#sj").html("44");
+            $("#ba").html("2");
+            $("#bb").html("4");
+            $("#bc").html("6");
+            $("#bd").html("8");
+            $("#be").html("10");
+            $("#bf").html("12");
+            $("#bg").html("14");
+            $("#bh").html("16")
+
+        }
+    });
+}
+
+function eliminar(id_almacen){
+    bootbox.confirm("¿Estas seguro de eliminar este producto de almacen?", function(result){
+        if(result){
+            $.post("almacen/delete/" + id_almacen, function(){
+                bootbox.alert("Producto de almacen eliminado correctamente!!");
+                $("#almacenes").DataTable().ajax.reload();
+            })
+        }
+    })
+}
+

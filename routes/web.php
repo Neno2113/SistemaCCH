@@ -278,6 +278,7 @@ Route::post('/almacen/imagen', 'AlmacenController@upload');
 Route::post('/show/corte/producto', 'AlmacenController@verificar_ref');
 Route::post('/total_recepcion', 'AlmacenController@cantidad');
 Route::post('/validar/total', 'AlmacenController@validar');
+Route::post('almacen/calcular/total', 'AlmacenController@calcularTotales');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
