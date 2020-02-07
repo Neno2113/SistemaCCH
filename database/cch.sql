@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-01-2020 a las 15:30:03
+-- Tiempo de generación: 07-02-2020 a las 13:21:09
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -34,23 +34,64 @@ CREATE TABLE `almacen` (
   `producto_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `codigo_almacen` varchar(20) DEFAULT NULL,
-  `a` int(11) NOT NULL,
-  `b` int(11) NOT NULL,
-  `c` int(11) NOT NULL,
-  `d` int(11) NOT NULL,
-  `e` int(11) NOT NULL,
-  `f` int(11) NOT NULL,
-  `g` int(11) NOT NULL,
-  `h` int(11) NOT NULL,
+  `a` int(11) DEFAULT NULL,
+  `b` int(11) DEFAULT NULL,
+  `c` int(11) DEFAULT NULL,
+  `d` int(11) DEFAULT NULL,
+  `e` int(11) DEFAULT NULL,
+  `f` int(11) DEFAULT NULL,
+  `g` int(11) DEFAULT NULL,
+  `h` int(11) DEFAULT NULL,
   `i` int(11) DEFAULT NULL,
   `j` int(11) DEFAULT NULL,
   `k` int(11) DEFAULT NULL,
   `l` int(11) DEFAULT NULL,
-  `total` int(11) NOT NULL,
+  `total` int(11) DEFAULT NULL,
   `usado_curva` tinyint(1) DEFAULT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `almacen`
+--
+
+INSERT INTO `almacen` (`id`, `corte_id`, `producto_id`, `user_id`, `codigo_almacen`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `usado_curva`, `updated_at`, `created_at`) VALUES
+(11, 13, 64, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-02-06 11:56:29', '2020-02-06 11:56:29');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `almacen_detalle`
+--
+
+CREATE TABLE `almacen_detalle` (
+  `id` int(11) NOT NULL,
+  `almacen_id` int(11) DEFAULT NULL,
+  `producto_id` int(11) DEFAULT NULL,
+  `a` int(11) DEFAULT NULL,
+  `b` int(11) DEFAULT NULL,
+  `c` int(11) DEFAULT NULL,
+  `d` int(11) DEFAULT NULL,
+  `e` int(11) DEFAULT NULL,
+  `f` int(11) DEFAULT NULL,
+  `g` int(11) DEFAULT NULL,
+  `h` int(11) DEFAULT NULL,
+  `i` int(11) DEFAULT NULL,
+  `j` int(11) DEFAULT NULL,
+  `k` int(11) DEFAULT NULL,
+  `l` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `almacen_detalle`
+--
+
+INSERT INTO `almacen_detalle` (`id`, `almacen_id`, `producto_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `created_at`, `updated_at`) VALUES
+(92, 11, 64, 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 0, 0, 400, '2020-02-06 11:55:45', '2020-02-06 11:55:45');
 
 -- --------------------------------------------------------
 
@@ -82,6 +123,13 @@ CREATE TABLE `cliente` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nombre_cliente`, `calle`, `sector`, `provincia`, `sitios_cercanos`, `rnc`, `contacto_cliente_principal`, `telefono_1`, `telefono_2`, `telefono_3`, `celular_principal`, `email_principal`, `condiciones_credito`, `autorizacion_credito_req`, `notas`, `redistribucion_tallas`, `factura_desglosada_talla`, `acepta_segundas`, `updated_at`, `created_at`) VALUES
+(3, 'Plaza Lama', 'Ave. 27 de febrero', 'Piantini', 'Distrito Nacional', 'Churchill', '10100026555', 'Jose', '(829) 943-6531', '(809) 288-2113', NULL, '(809) 288-2113', 'plazalama@lama.com', '60 dias', 1, 'Hii', 1, 0, 0, '2020-01-28 16:36:55', '2020-01-23 13:53:39');
+
 -- --------------------------------------------------------
 
 --
@@ -107,7 +155,8 @@ CREATE TABLE `cliente_sucursales` (
 --
 
 INSERT INTO `cliente_sucursales` (`id`, `cliente_id`, `codigo_sucursal`, `nombre_sucursal`, `telefono_sucursal`, `calle`, `sector`, `provincia`, `sitios_cercanos`, `updated_at`, `created_at`) VALUES
-(2, NULL, NULL, 'Principal ', NULL, NULL, NULL, NULL, NULL, '2019-12-30 10:13:31', '2019-12-30 11:43:38');
+(2, NULL, NULL, 'Principal ', NULL, NULL, NULL, NULL, NULL, '2019-12-30 10:13:31', '2019-12-30 11:43:38'),
+(4, 3, '3-52', 'Plaza lama Luperon', '(829) 655-3053', 'av. Luperon', 'Pantoja', 'Santo Domingo', 'Test', '2020-01-28 16:39:55', '2020-01-23 13:54:44');
 
 -- --------------------------------------------------------
 
@@ -158,6 +207,18 @@ CREATE TABLE `corte` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `corte`
+--
+
+INSERT INTO `corte` (`id`, `numero_corte`, `producto_id`, `user_id`, `fecha_corte`, `no_marcada`, `ancho_marcada`, `largo_marcada`, `aprovechamiento`, `fecha_entrega`, `fase`, `total`, `sec`, `updated_at`, `created_at`) VALUES
+(7, '2019-1', 39, 1, '2020-01-23', 'st x26', 20, '30', '80.00', '2020-02-14', 'Terminacion', 490, '0.01', '2020-01-27 15:21:16', '2020-01-23 14:04:51'),
+(8, '2020-9', 41, 1, '2020-01-23', 'st x27', 46, '12.61', '86.23', '2020-03-04', 'Terminacion', 800, '0.01', '2020-01-27 16:20:28', '2020-01-23 15:55:22'),
+(9, '2020-002', 41, 1, '2020-01-29', 'tsx-na3', 20, '30', '90.00', '2020-02-28', 'Terminacion', 620, '0.01', '2020-02-03 16:47:04', '2020-01-29 09:41:50'),
+(10, '2019-003', 64, 1, '2020-01-30', 'ajka66v', 30, '20', '60.00', '2020-02-28', 'Terminacion', 800, '0.01', '2020-02-06 13:58:53', '2020-01-30 14:10:05'),
+(12, '2019-002', 64, 1, '2020-02-03', 'st x26', 30, '25', '80.00', '2020-03-14', 'Lavanderia', 480, '0.01', '2020-02-04 15:11:52', '2020-02-03 09:37:07'),
+(13, '2020-005', 64, 1, '2020-02-04', 'st x27', 20, '30', '90.00', '2020-03-14', 'Almacen', 740, '0.01', '2020-02-06 11:56:29', '2020-02-04 09:07:57');
+
 -- --------------------------------------------------------
 
 --
@@ -193,6 +254,13 @@ CREATE TABLE `empleado` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`id`, `nombre`, `apellido`, `codigo`, `calle`, `sector`, `provincia`, `sitios_cercanos`, `telefono_1`, `telefono_2`, `email`, `cedula`, `departamento`, `casado`, `cargo`, `fecha_contratacion`, `fecha_termino_contrato`, `tipo_contrato`, `forma_pago`, `sueldo`, `valor_hora`, `banco_tarjeta_cobro`, `no_cuenta`, `detallado`, `updated_at`, `created_at`) VALUES
+(5, 'Anel', 'Dominguez', NULL, 'primera', 'madre vieja sur', 'San Cristóbal', 'colmado el vecino', '(809) 288-2113', '(829) 943-6531', 'anel@anel.com', '402-2600929-4', 'VENTA', 1, 'VENDEDOR-219 - VENDEDORA', NULL, NULL, 'Fijo', 'Sueldo Fijo', '13000.00', '110.00', 'Banco Popular', '0000120450', 1, '2020-01-23 13:52:10', '2020-01-23 13:47:56');
+
 -- --------------------------------------------------------
 
 --
@@ -224,6 +292,13 @@ CREATE TABLE `empleado_detalle` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `empleado_detalle`
+--
+
+INSERT INTO `empleado_detalle` (`id`, `empleado_id`, `nss`, `nombre_esposa`, `telefono_esposa`, `esposa_en_nss`, `cantidad_dependientes`, `dependiente_1_nss`, `nombre_dependiente_1`, `dependiente_2_nss`, `nombre_dependiente_2`, `dependiente_3_nss`, `nombre_dependiente_3`, `dependiente_4_nss`, `nombre_dependiente_4`, `dependiente_5_nss`, `nombre_dependiente_5`, `dependiente_6_nss`, `nombre_dependiente_6`, `dependiente_7_nss`, `nombre_dependiente_7`, `updated_at`, `created_at`) VALUES
+(5, 5, '999452142', 'Fulana', '(809) 288-2113', 1, 2, 1, 'Fulano 1', 1, 'Fulano 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-01-23 13:52:10', '2020-01-23 13:52:10');
 
 -- --------------------------------------------------------
 
@@ -279,6 +354,17 @@ CREATE TABLE `factura` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`id`, `orden_facturacion_id`, `user_id`, `no_factura`, `tipo_factura`, `fecha`, `fecha_impresion`, `comprobante_fiscal`, `numero_comprobante`, `precio_factura`, `descuento`, `itbis`, `total`, `nota`, `impreso`, `nc_uso`, `sec`, `updated_at`, `created_at`) VALUES
+(15, 16, 1, 'IN-00001341', 'IN', '2020-01-24', '2020-01-23 02:14:56', 0, 'B01', NULL, 9, 18, '38656.80', 'test', 1, 0, '0.01', '2020-01-23 14:14:56', '2020-01-23 14:14:39'),
+(18, 19, 1, 'B01-00001751', 'B01', '2020-02-05', '2020-01-28 10:58:26', 1, 'B01000032635', NULL, 6, 18, '46586.40', NULL, 1, 1, '0.04', '2020-01-30 18:10:14', '2020-01-28 10:57:44'),
+(19, 20, 1, 'B02-000302252', 'B02', '2020-01-29', '2020-01-28 10:59:53', 0, 'B01', NULL, 10, 18, '65047.50', 'test', 1, 0, '0.05', '2020-01-28 10:59:53', '2020-01-28 10:59:40'),
+(20, 21, 1, 'DN-03020010', 'DN', '2020-01-28', '2020-01-28 11:09:26', 0, 'B01', NULL, 0, 18, '49560.00', NULL, 1, 0, '0.06', '2020-01-28 11:09:26', '2020-01-28 11:09:10'),
+(21, 22, 1, 'B15-00000120', 'B15', '2020-01-30', '2020-01-28 11:13:28', 0, 'B01', NULL, 3, 18, '70106.75', 'test', 1, 0, '0.07', '2020-01-28 11:13:28', '2020-01-28 11:13:22');
+
 -- --------------------------------------------------------
 
 --
@@ -297,15 +383,44 @@ CREATE TABLE `lavanderia` (
   `cantidad` int(20) NOT NULL,
   `cantidad_parcial` int(20) NOT NULL,
   `total_enviado` int(20) NOT NULL,
+  `pendiente` int(20) DEFAULT NULL,
   `total_devuelto` int(11) DEFAULT NULL,
   `estandar_incluido` tinyint(1) NOT NULL,
-  `enviado` tinyint(1) DEFAULT NULL,
-  `recibido` tinyint(1) DEFAULT NULL,
+  `envio_reparar` tinyint(1) DEFAULT NULL,
+  `envio_reparada_lav` tinyint(1) DEFAULT NULL,
   `devuelto` tinyint(1) DEFAULT NULL,
   `sec` decimal(3,2) NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `lavanderia`
+--
+
+INSERT INTO `lavanderia` (`id`, `numero_envio`, `corte_id`, `suplidor_id`, `id_sku`, `producto_id`, `fecha_envio`, `receta_lavado`, `cantidad`, `cantidad_parcial`, `total_enviado`, `pendiente`, `total_devuelto`, `estandar_incluido`, `envio_reparar`, `envio_reparada_lav`, `devuelto`, `sec`, `updated_at`, `created_at`) VALUES
+(25, 'EL-001', 7, 5, 48, 39, '2020-01-23', 'Lavar segun estandar', 200, 200, 200, NULL, 0, 1, 1, 0, 1, '0.01', '2020-01-23 14:05:45', '2020-01-23 14:05:45'),
+(26, 'EL-002', 7, 5, 48, 39, '2020-01-23', 'Lavar segun estandar', 290, 290, 490, NULL, 0, 1, 1, 0, 1, '0.02', '2020-01-23 14:06:43', '2020-01-23 14:06:43'),
+(27, 'EL-003', 8, 7, 58, 41, '2020-01-23', 'Lavar segun estandar', 400, 400, 400, NULL, 0, 1, 1, 0, 1, '0.03', '2020-01-23 16:46:47', '2020-01-23 16:46:47'),
+(28, 'EL-004', 8, 7, 58, 41, '2020-01-23', 'lavar segun estandar', 397, 397, 797, NULL, 0, 1, 1, 0, 1, '0.04', '2020-01-23 17:01:55', '2020-01-23 17:01:55'),
+(29, 'EL-005', 9, 7, 58, 41, '2020-01-29', 'Lavar segun eatndar', 720, 720, 720, NULL, 0, 1, 1, 0, 1, '0.05', '2020-01-29 09:42:55', '2020-01-29 09:42:55'),
+(30, 'EL-006', 10, 7, 66, 64, '2020-01-30', 'Lavar segun estandar', 400, 400, 400, NULL, 0, 1, 1, 0, 1, '0.06', '2020-01-30 14:19:56', '2020-01-30 14:19:56'),
+(31, 'EL-007', 10, 7, 66, 64, '2020-01-30', 'lavar segun estandar', 386, 386, 786, NULL, 0, 1, 1, 0, 1, '0.07', '2020-01-30 14:21:04', '2020-01-30 14:21:04'),
+(48, 'EL-008', 9, 7, 58, 41, '2020-02-04', 'Lavar segun estandar', 100, 100, 720, NULL, 100, 1, 1, 0, 1, '0.08', '2020-02-03 16:18:39', '2020-02-03 16:18:39'),
+(49, 'EL-009', 9, 7, 58, 41, '2020-02-04', 'Devuletaaaaaa', 100, 100, 720, NULL, 100, 1, 1, 0, 1, '0.09', '2020-02-03 16:20:55', '2020-02-03 16:20:55'),
+(50, 'EL-010', 9, 7, 58, 41, '2020-02-03', 'Devolver aaaaaa', 25, 25, 720, NULL, 25, 1, 1, 0, 1, '0.10', '2020-02-03 16:21:44', '2020-02-03 16:21:44'),
+(51, 'EL-011', 9, 7, 58, 41, '2020-02-03', 'Devolver Segun estandar', 300, 300, 720, NULL, 300, 1, 1, 0, 1, '0.11', '2020-02-03 16:22:56', '2020-02-03 16:22:56'),
+(52, 'EL-012', 9, 7, 58, 41, '2020-02-03', 'devolver a lavanderia', 20, 20, 720, NULL, 20, 1, 1, 0, 1, '0.12', '2020-02-03 16:33:06', '2020-02-03 16:33:06'),
+(53, 'EL-013', 9, 7, 58, 41, '2020-02-03', 'Devuelta a lavanderia para lavar de nuevo', 7, 7, 720, NULL, 7, 1, 1, 0, 1, '0.13', '2020-02-03 16:46:00', '2020-02-03 16:46:00'),
+(54, 'EL-014', 12, 7, 66, 64, '2020-02-03', 'Lavar segun estandar', 450, 450, 450, NULL, 0, 1, 1, 0, 1, '0.14', '2020-02-03 16:47:48', '2020-02-03 16:47:48'),
+(57, 'EL-015', 12, 7, 66, 64, '2020-02-03', 'Devuelta para relavar en lavanderia', 100, 100, 450, NULL, 100, 1, 1, 0, 1, '0.15', '2020-02-03 17:09:27', '2020-02-03 17:09:27'),
+(58, 'EL-016', 12, 7, 66, 64, '2020-02-03', 'envio aaaaaaaaaa', 12, 12, 462, NULL, 0, 1, 1, 0, 1, '0.16', '2020-02-03 17:17:47', '2020-02-03 17:17:47'),
+(59, 'EL-017', 12, 7, 66, 64, '2020-02-04', 'devuelta para lavar de nuevo en lavanderia', 100, 100, 462, NULL, 100, 1, 1, 0, 1, '0.17', '2020-02-03 17:20:37', '2020-02-03 17:20:37'),
+(60, 'EL-018', 12, 7, 66, 64, '2020-02-04', 'Lavar segun estandar', 100, 100, 462, NULL, 100, 1, 1, 0, 1, '0.18', '2020-02-04 08:49:08', '2020-02-04 08:49:08'),
+(86, 'EL-019', 13, 7, 66, 64, '2020-02-04', 'Lavar segun estandar', 500, 500, 300, NULL, 0, 1, NULL, NULL, 1, '0.19', '2020-02-04 14:26:23', '2020-02-04 14:25:53'),
+(87, 'EL-020', 13, 7, 66, 64, '2020-02-06', 'Lavar segun estandar', 200, 200, 500, NULL, 0, 1, NULL, 1, 1, '0.20', '2020-02-04 14:27:15', '2020-02-04 14:27:15'),
+(88, 'EL-021', 13, 7, 66, 64, '2020-02-11', 'Relavar en lavanderia', 100, 100, 500, NULL, 100, 1, 1, NULL, 1, '0.21', '2020-02-04 14:28:35', '2020-02-04 14:28:35'),
+(89, 'EL-022', 13, 7, 66, 64, '2020-02-13', 'Lavar segun estandar', 5, 5, 500, NULL, 5, 1, 1, NULL, 1, '0.22', '2020-02-04 14:29:57', '2020-02-04 14:29:57');
 
 -- --------------------------------------------------------
 
@@ -389,6 +504,18 @@ CREATE TABLE `orden_empaque` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `orden_empaque`
+--
+
+INSERT INTO `orden_empaque` (`id`, `orden_pedido_id`, `no_orden_empaque`, `fecha`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `cantidad`, `total`, `sec`, `updated_at`, `created_at`) VALUES
+(22, 127, 'OE - 001', '2020-01-23 02:13:08', 0, 0, 2, 2, 4, 4, 5, 5, 4, 3, 0, 0, NULL, NULL, '0.01', '2020-01-23 14:13:08', '2020-01-23 14:13:08'),
+(27, 132, 'OE - 003', '2020-01-27 08:33:11', 0, 0, 2, 5, 8, 7, 0, 8, 7, 5, 0, 0, NULL, NULL, '0.03', '2020-01-27 08:33:11', '2020-01-27 08:33:11'),
+(28, 133, 'OE - 004', '2020-01-27 09:49:32', 0, 0, 1, 3, 5, 5, 0, 4, 4, 2, 0, 0, NULL, NULL, '0.04', '2020-01-27 09:49:32', '2020-01-27 09:49:32'),
+(29, 134, 'OE - 005', '2020-01-27 09:50:43', 0, 0, 2, 5, 8, 7, 0, 7, 6, 4, 0, 0, NULL, NULL, '0.05', '2020-01-27 09:50:43', '2020-01-27 09:50:43'),
+(30, 135, 'OE - 006', '2020-01-27 10:14:27', 0, 0, 0, 2, 4, 4, 0, 4, 4, 2, 0, 0, NULL, NULL, '0.06', '2020-01-27 10:14:27', '2020-01-27 10:14:27'),
+(35, 189, 'OE - 007', '2020-02-06 04:41:47', 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, NULL, NULL, '0.07', '2020-02-06 16:41:47', '2020-02-06 16:41:47');
+
 -- --------------------------------------------------------
 
 --
@@ -423,6 +550,20 @@ CREATE TABLE `orden_empaque_detalle` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `orden_empaque_detalle`
+--
+
+INSERT INTO `orden_empaque_detalle` (`id`, `orden_empaque_id`, `producto_id`, `user_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `cantidad`, `precio`, `total`, `fecha_empacado`, `empacado`, `cant_bulto`, `facturado`, `updated_at`, `created_at`) VALUES
+(24, 22, 39, 1, 0, 0, 2, 2, 4, 4, 5, 5, 4, 3, 0, 0, 30, '1200.00', 30, '2020-01-23 02:13:55', 1, 2, 1, '2020-01-23 14:13:56', '2020-01-23 14:13:55'),
+(25, 32, 41, 1, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 35, '2020-01-27 04:52:31', 1, 2, 1, '2020-01-27 16:52:32', '2020-01-27 16:52:31'),
+(26, 31, 41, 1, 0, 0, 1, 4, 6, 6, 0, 6, 6, 4, 0, 0, 34, '1750.00', 34, '2020-01-28 10:50:00', 1, 2, 1, '2020-01-28 10:50:01', '2020-01-28 10:50:00'),
+(27, 30, 41, 1, 0, 0, 0, 2, 4, 4, 0, 4, 4, 2, 0, 0, 24, '1750.00', 24, '2020-01-28 10:57:00', 1, 1, 1, '2020-01-28 10:57:00', '2020-01-28 10:57:00'),
+(28, 29, 41, 1, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 35, '2020-01-28 10:59:08', 1, 2, 1, '2020-01-28 10:59:08', '2020-01-28 10:59:08'),
+(29, 28, 41, 1, 0, 0, 1, 3, 5, 5, 0, 4, 4, 2, 0, 0, 24, '1750.00', 24, '2020-01-28 11:08:45', 1, 1, 1, '2020-01-28 11:08:46', '2020-01-28 11:08:45'),
+(30, 27, 41, 1, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 35, '2020-01-28 11:12:46', 1, 2, 1, '2020-01-28 11:12:47', '2020-01-28 11:12:46'),
+(31, 33, 41, 1, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 35, '2020-01-28 04:10:38', 1, 2, 1, '2020-01-28 16:10:38', '2020-01-28 16:10:38');
+
 -- --------------------------------------------------------
 
 --
@@ -441,6 +582,17 @@ CREATE TABLE `orden_facturacion` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_facturacion`
+--
+
+INSERT INTO `orden_facturacion` (`id`, `orden_empaque_id`, `user_id`, `no_orden_facturacion`, `por_transporte`, `fecha`, `sec`, `impreso`, `updated_at`, `created_at`) VALUES
+(16, 22, 1, NULL, 0, '2020-01-23 02:13:58', NULL, 1, '2020-01-23 14:14:56', '2020-01-23 14:13:58'),
+(19, 30, 1, NULL, 0, '2020-01-28 10:57:03', NULL, 1, '2020-01-28 10:58:26', '2020-01-28 10:57:03'),
+(20, 29, 1, NULL, 0, '2020-01-28 10:59:10', NULL, 1, '2020-01-28 10:59:53', '2020-01-28 10:59:10'),
+(21, 28, 1, NULL, 0, '2020-01-28 11:08:48', NULL, 1, '2020-01-28 11:09:26', '2020-01-28 11:08:48'),
+(22, 27, 1, NULL, 0, '2020-01-28 11:12:49', NULL, 1, '2020-01-28 11:13:28', '2020-01-28 11:12:49');
 
 -- --------------------------------------------------------
 
@@ -475,6 +627,19 @@ CREATE TABLE `orden_facturacion_detalle` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `orden_facturacion_detalle`
+--
+
+INSERT INTO `orden_facturacion_detalle` (`id`, `orden_facturacion_id`, `orden_pedido_id`, `producto_id`, `user_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `precio`, `cant_bultos`, `fecha`, `nota_credito`, `updated_at`, `created_at`) VALUES
+(22, 16, 127, 39, 1, 0, 0, 2, 2, 4, 4, 5, 5, 4, 3, 0, 0, 30, '1200.00', 2, '2020-01-23 02:13:56', 0, '2020-01-23 14:13:56', '2020-01-23 14:13:56'),
+(23, 17, 160, 41, 1, 0, 0, 0, 3, 6, 5, 0, 6, 5, 3, 0, 0, 28, '1750.00', 2, '2020-01-27 04:52:32', 1, '2020-01-28 16:30:04', '2020-01-27 16:52:32'),
+(24, 18, 136, 41, 1, 0, 0, 1, 4, 6, 6, 0, 6, 6, 4, 0, 0, 34, '1750.00', 2, '2020-01-28 10:50:01', 0, '2020-01-28 10:50:01', '2020-01-28 10:50:01'),
+(25, 19, 135, 41, 1, 0, 0, 0, 2, 4, 4, 0, 4, 4, 2, 0, 0, 24, '1750.00', 1, '2020-01-28 10:57:00', 0, '2020-01-28 10:57:00', '2020-01-28 10:57:00'),
+(26, 20, 134, 41, 1, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 2, '2020-01-28 10:59:08', 0, '2020-01-28 10:59:08', '2020-01-28 10:59:08'),
+(27, 21, 133, 41, 1, 0, 0, 1, 3, 5, 5, 0, 4, 4, 2, 0, 0, 24, '1750.00', 1, '2020-01-28 11:08:46', 0, '2020-01-28 11:08:46', '2020-01-28 11:08:46'),
+(29, 25, 174, 41, 1, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 2, '2020-01-28 04:10:38', 0, '2020-01-28 16:10:38', '2020-01-28 16:10:38');
+
 -- --------------------------------------------------------
 
 --
@@ -491,7 +656,7 @@ CREATE TABLE `orden_pedido` (
   `no_orden_pedido` varchar(20) NOT NULL,
   `fecha` datetime NOT NULL,
   `fecha_entrega` date NOT NULL,
-  `notas` text NOT NULL,
+  `notas` text DEFAULT NULL,
   `generado_internamente` tinyint(1) NOT NULL,
   `estado_aprobacion` tinyint(1) DEFAULT NULL,
   `fecha_aprobacion` datetime DEFAULT NULL,
@@ -504,6 +669,18 @@ CREATE TABLE `orden_pedido` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_pedido`
+--
+
+INSERT INTO `orden_pedido` (`id`, `user_id`, `user_aprobacion`, `cliente_id`, `sucursal_id`, `vendedor_id`, `no_orden_pedido`, `fecha`, `fecha_entrega`, `notas`, `generado_internamente`, `estado_aprobacion`, `fecha_aprobacion`, `status_orden_pedido`, `precio`, `detallada`, `corte_en_proceso`, `orden_proceso_impresa`, `sec`, `updated_at`, `created_at`) VALUES
+(127, 1, 1, 3, 4, 5, 'OP-001', '2020-01-23 02:11:28', '2020-01-29', 'test', 0, NULL, '2020-01-23 02:12:39', 'Despachado', NULL, 1, 'No', 'Si', '0.01', '2020-01-23 14:14:56', '2020-01-23 14:11:28'),
+(132, 1, 1, 3, 4, 5, 'OP-003', '2020-01-27 08:29:56', '2020-01-27', NULL, 0, NULL, '2020-01-27 08:32:57', 'Despachado', NULL, 1, 'No', 'Si', '0.03', '2020-01-28 11:13:28', '2020-01-27 08:29:57'),
+(133, 1, 1, 3, 4, 5, 'OP-004', '2020-01-27 09:49:00', '2020-01-27', NULL, 0, NULL, '2020-01-27 09:49:25', 'Despachado', NULL, 1, 'No', 'Si', '0.04', '2020-01-28 11:09:26', '2020-01-27 09:49:00'),
+(134, 1, 1, 3, 4, 5, 'OP-005', '2020-01-27 09:50:15', '2020-01-27', NULL, 0, NULL, '2020-01-27 09:50:37', 'Despachado', NULL, 1, 'No', 'Si', '0.05', '2020-01-28 10:59:53', '2020-01-27 09:50:15'),
+(135, 1, 1, 3, 4, 5, 'OP-006', '2020-01-27 10:13:56', '2020-01-27', NULL, 0, NULL, '2020-01-27 10:14:19', 'Despachado', NULL, 1, 'No', 'Si', '0.06', '2020-01-28 10:58:26', '2020-01-27 10:13:56'),
+(189, 1, 1, 3, 4, 5, 'OP-007', '2020-02-06 04:25:48', '2020-02-06', NULL, 0, NULL, '2020-02-06 04:28:42', 'Vigente', NULL, 1, 'No', 'Si', '0.07', '2020-02-06 16:29:02', '2020-02-06 16:25:48');
 
 -- --------------------------------------------------------
 
@@ -537,6 +714,18 @@ CREATE TABLE `orden_pedido_detalle` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `orden_pedido_detalle`
+--
+
+INSERT INTO `orden_pedido_detalle` (`id`, `orden_pedido_id`, `producto_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `precio`, `cantidad`, `cant_red`, `orden_redistribuida`, `orden_empacada`, `updated_at`, `created_at`) VALUES
+(102, 127, 39, 0, 0, 2, 2, 4, 4, 5, 5, 4, 3, 0, 0, 30, '1200.00', 30, 30, 1, 1, '2020-01-27 10:54:53', '2020-01-23 14:12:01'),
+(107, 132, 41, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 35, 35, 1, 1, '2020-01-28 11:12:46', '2020-01-27 08:32:39'),
+(108, 133, 41, 0, 0, 1, 3, 5, 5, 0, 4, 4, 2, 0, 0, 24, '1750.00', 24, 24, 1, 1, '2020-01-28 11:08:45', '2020-01-27 09:49:14'),
+(109, 134, 41, 0, 0, 1, 4, 7, 6, 0, 7, 6, 4, 0, 0, 35, '1750.00', 35, 35, 1, 1, '2020-01-28 10:59:07', '2020-01-27 09:50:26'),
+(110, 135, 41, 0, 0, 0, 2, 4, 4, 0, 4, 4, 2, 0, 0, 24, '1750.00', 24, 24, 1, 1, '2020-01-28 10:57:00', '2020-01-27 10:14:08'),
+(118, 189, 64, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 40, '1750.00', NULL, 40, 1, 0, '2020-02-06 16:29:02', '2020-02-06 16:26:15');
+
 -- --------------------------------------------------------
 
 --
@@ -559,6 +748,92 @@ CREATE TABLE `perdidas` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `perdidas`
+--
+
+INSERT INTO `perdidas` (`id`, `corte_id`, `producto_id`, `user_id`, `talla_id`, `no_perdida`, `tipo_perdida`, `fecha`, `fase`, `motivo`, `perdida_x`, `sec`, `updated_at`, `created_at`) VALUES
+(7, 8, 41, 1, NULL, 'PE-001', 'Normal', '2020-01-23', 'Produccion', 'Error del operador', NULL, '0.01', '2020-01-23 16:26:44', '2020-01-23 16:26:44'),
+(8, 8, 41, 1, NULL, 'PE-002', 'Normal', '2020-01-23', 'Procesos secos', 'Extraviado', NULL, '0.02', '2020-01-23 16:27:16', '2020-01-23 16:27:16'),
+(10, 8, 41, 1, NULL, 'SE-003', 'Segundas', '2020-01-23', 'Terminacion', 'Error del operador', NULL, '0.03', '2020-01-23 17:12:53', '2020-01-23 17:12:53'),
+(12, 10, 64, 1, NULL, 'PE-004', 'Normal', '2020-01-30', 'Produccion', 'Fallo en Dpto.corte', NULL, '0.04', '2020-01-30 14:18:02', '2020-01-30 14:18:02'),
+(13, 10, 64, 1, NULL, 'PE-005', 'Normal', '2020-01-30', 'Procesos secos', 'Error del operador', NULL, '0.05', '2020-01-30 14:18:44', '2020-01-30 14:18:44'),
+(14, 10, 64, 1, NULL, 'SE-006', 'Segundas', '2020-01-30', 'Terminacion', 'Defecto de tela', NULL, '0.06', '2020-01-30 15:22:20', '2020-01-30 15:22:20'),
+(15, 12, 64, 1, NULL, 'PE-007', 'Normal', '2020-02-03', 'Produccion', 'Fallo de la maquina', NULL, '0.07', '2020-02-03 09:51:14', '2020-02-03 09:51:14');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permiso`
+--
+
+CREATE TABLE `permiso` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `permiso`
+--
+
+INSERT INTO `permiso` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'Dashboard', '2020-01-29 08:20:00', '2020-01-29 06:12:24'),
+(2, 'Usuarios', '2020-01-29 08:20:00', '2020-01-29 06:12:24');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permiso_usuario`
+--
+
+CREATE TABLE `permiso_usuario` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `permiso` varchar(100) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `permiso_usuario`
+--
+
+INSERT INTO `permiso_usuario` (`id`, `user_id`, `permiso`, `created_at`, `updated_at`) VALUES
+(3, 1, 'Dashboard', '2020-01-29 17:05:35', '2020-01-29 17:05:35'),
+(4, 1, 'Usuarios', '2020-01-29 17:05:42', '2020-01-29 17:05:42'),
+(5, 1, 'Empleados', '2020-01-29 17:05:48', '2020-01-29 17:05:48'),
+(6, 1, 'Cliente', '2020-01-29 17:05:55', '2020-01-29 17:05:55'),
+(7, 1, 'Sucursales', '2020-01-29 17:06:02', '2020-01-29 17:06:02'),
+(8, 1, 'Suplidores', '2020-01-29 17:06:08', '2020-01-29 17:06:08'),
+(9, 1, 'Sku', '2020-01-29 17:06:13', '2020-01-29 17:06:13'),
+(10, 1, 'Producto', '2020-01-29 17:06:18', '2020-01-29 17:06:18'),
+(11, 1, 'Producto Terminado', '2020-01-29 17:06:22', '2020-01-29 17:06:22'),
+(12, 1, 'Composicion', '2020-01-29 17:06:27', '2020-01-29 17:06:27'),
+(13, 1, 'Telas', '2020-01-29 17:06:31', '2020-01-29 17:06:31'),
+(14, 1, 'Corte', '2020-01-29 17:06:36', '2020-01-29 17:06:36'),
+(15, 1, 'Lavanderia', '2020-01-29 17:06:42', '2020-01-29 17:06:42'),
+(16, 1, 'Recepcion', '2020-01-29 17:06:46', '2020-01-29 17:06:46'),
+(17, 1, 'Almacen', '2020-01-29 17:06:51', '2020-01-29 17:06:51'),
+(18, 1, 'Perdidas', '2020-01-29 17:06:56', '2020-01-29 17:06:56'),
+(19, 1, 'Orden Pedido', '2020-01-29 17:07:02', '2020-01-29 17:07:02'),
+(20, 1, 'Aprobacion', '2020-01-29 17:07:06', '2020-01-29 17:07:06'),
+(21, 1, 'Ordenes Procesos', '2020-01-29 17:07:10', '2020-01-29 17:07:10'),
+(22, 1, 'Imprimir Empaque', '2020-01-29 17:07:15', '2020-01-29 17:07:15'),
+(23, 1, 'Reportar Empaque', '2020-01-29 17:07:19', '2020-01-29 17:07:19'),
+(24, 1, 'Generar Factura', '2020-01-29 17:07:27', '2020-01-29 17:07:27'),
+(25, 1, 'Nota Credito', '2020-01-29 17:07:32', '2020-01-29 17:07:32'),
+(26, 1, 'Existencia', '2020-01-29 17:07:38', '2020-01-29 17:07:38'),
+(48, 6, 'Lavanderia', '2020-01-30 09:43:04', '2020-01-30 09:43:04'),
+(49, 6, 'Almacen', '2020-01-30 09:43:10', '2020-01-30 09:43:10'),
+(50, 6, 'Perdidas', '2020-01-30 09:43:14', '2020-01-30 09:43:14'),
+(51, 6, 'Orden Pedido', '2020-01-30 09:43:32', '2020-01-30 09:43:32'),
+(52, 6, 'Aprobacion', '2020-01-30 09:43:36', '2020-01-30 09:43:36'),
+(55, 6, 'Reportar Empaque', '2020-01-30 09:43:50', '2020-01-30 09:43:50'),
+(59, 6, 'Corte', '2020-01-30 11:17:20', '2020-01-30 11:17:20'),
+(60, 6, 'Recepcion', '2020-01-30 11:39:20', '2020-01-30 11:39:20');
 
 -- --------------------------------------------------------
 
@@ -595,6 +870,17 @@ CREATE TABLE `producto` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id`, `id_user`, `id_sku`, `referencia_producto`, `referencia_producto_2`, `descripcion`, `descripcion_2`, `ubicacion`, `imagen_frente`, `imagen_trasero`, `imagen_perfil`, `imagen_bolsillo`, `tono`, `intensidad_proceso_seco`, `atributo_no_1`, `atributo_no_2`, `atributo_no_3`, `precio_lista`, `precio_lista_2`, `precio_venta_publico`, `precio_venta_publico_2`, `enviado_lavanderia`, `producto_terminado`, `sec`, `updated_at`, `created_at`) VALUES
+(39, 1, NULL, 'M202-2001', NULL, 'Pant. Mujer Moda', NULL, 'a-1', '1579803029jean_frontal.jpg', '1579803029jean_trasera.jpg', '1579803029eclipse-solar-avion-national-04072019in5.jpg', '15798030292589018171f934247c228119079fbc4b.jpg', 'Dark Stone Suave', 'Alto contraste', 'Parcho', 'Bordado', 'Roto', '980.00', NULL, '1200.00', NULL, 1, 1, '0.1', '2020-01-23 14:10:34', '2020-01-23 13:56:48'),
+(41, 1, NULL, 'M206-2003', NULL, 'Pantalon Dama Talle Alto', NULL, 'a-1', '1580308132persona-5-review-style-first-10-1280x720.jpg', '15803081321575388275_145305_1575388338_noticia_normal.jpg', '1580308132hipertextual-estas-son-imagenes-que-se-juegan-premio-mejor-astrofotografo-ano-2019530966.jpg', '15803081322589018171f934247c228119079fbc4b.jpg', 'Crudo o Puro', 'Alto contraste', 'Parcho', 'Parcho', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, '0.3', '2020-01-29 10:28:52', '2020-01-23 15:34:51'),
+(64, 1, NULL, 'M206-2006', NULL, 'Pant. Dama Talle Alto', NULL, 'A-2', '1581011877persona-5-review-style-first-10-1280x720.jpg', '15810118771575388275_145305_1575388338_noticia_normal.jpg', '158101187700351523-03.jpg', '15810118772589018171f934247c228119079fbc4b.jpg', 'Crudo o Puro', 'Intermedio', 'Bordado', 'Parcho', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, '0.1', '2020-02-06 13:57:57', '2020-01-30 13:59:30'),
+(65, 1, NULL, 'M103-2003', NULL, 'Panta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '980.00', NULL, '1750.00', NULL, 0, NULL, '0.1', '2020-01-31 09:40:30', '2020-01-31 09:39:53'),
+(66, 1, NULL, 'M212-2004', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '0.1', '2020-01-31 10:17:08', '2020-01-31 10:17:08');
+
 -- --------------------------------------------------------
 
 --
@@ -613,10 +899,49 @@ CREATE TABLE `recepcion` (
   `total_devuelto` int(11) DEFAULT NULL,
   `pendiente` int(20) NOT NULL,
   `estandar_recibido` tinyint(1) NOT NULL,
+  `devuelto_produccion` tinyint(1) DEFAULT NULL,
   `sec` decimal(3,2) DEFAULT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `recepcion`
+--
+
+INSERT INTO `recepcion` (`id`, `numero_recepcion`, `num_factura_rec`, `corte_id`, `id_lavanderia`, `fecha_recepcion`, `recibido_parcial`, `total_recibido`, `total_devuelto`, `pendiente`, `estandar_recibido`, `devuelto_produccion`, `sec`, `updated_at`, `created_at`) VALUES
+(36, 'RE-001', '00010100', 7, NULL, '2020-01-23', 400, 400, NULL, 90, 1, NULL, '0.01', '2020-01-23 14:07:25', '2020-01-23 14:07:25'),
+(37, 'RE-002', '0002201', 7, NULL, '2020-01-23', 90, 490, NULL, 0, 1, NULL, '0.02', '2020-01-23 14:07:47', '2020-01-23 14:07:47'),
+(38, 'RE-003', '00011214', 8, NULL, '2020-01-23', 200, 200, NULL, 597, 1, NULL, '0.03', '2020-01-23 17:04:30', '2020-01-23 17:04:30'),
+(39, 'RE-004', '00012254', 8, NULL, '2020-01-23', 200, 400, NULL, 397, 1, NULL, '0.04', '2020-01-23 17:04:49', '2020-01-23 17:04:49'),
+(40, 'RE-005', '0001204', 8, NULL, '2020-01-23', 200, 600, NULL, 197, 1, NULL, '0.05', '2020-01-23 17:05:05', '2020-01-23 17:05:05'),
+(41, 'RE-006', '0001245', 8, NULL, '2020-01-23', 197, 797, NULL, 0, 1, NULL, '0.06', '2020-01-23 17:05:47', '2020-01-23 17:05:47'),
+(42, 'RE-007', '000102012', 9, NULL, '2020-01-30', 620, 620, NULL, 100, 1, NULL, '0.07', '2020-02-03 16:18:39', '2020-01-29 09:43:40'),
+(43, 'RE-008', '0000021', 10, NULL, '2020-01-30', 300, 300, NULL, 486, 1, NULL, '0.08', '2020-01-30 14:28:53', '2020-01-30 14:28:53'),
+(44, 'RE-009', '0002015', 10, NULL, '2020-01-30', 300, 600, NULL, 186, 1, NULL, '0.09', '2020-01-30 14:29:49', '2020-01-30 14:29:49'),
+(45, 'RE-010', '0002', 10, NULL, '2020-01-30', 176, 776, NULL, 10, 1, NULL, '0.10', '2020-01-30 14:30:32', '2020-01-30 14:30:32'),
+(46, 'RE-011', '11122222', 10, NULL, '2020-01-30', 1, 777, NULL, 9, 1, NULL, '0.11', '2020-01-30 15:25:41', '2020-01-30 15:25:41'),
+(51, 'RE-012', '0002121', 9, NULL, '2020-02-04', 0, 620, NULL, 100, 1, NULL, '0.12', '2020-02-03 16:20:55', '2020-02-03 16:20:18'),
+(52, 'RE-013', '00001212', 9, NULL, '2020-02-03', 75, 695, NULL, 25, 1, NULL, '0.13', '2020-02-03 16:21:44', '2020-02-03 16:21:18'),
+(53, 'RE-014', '0002112', 9, NULL, '2020-02-03', -275, 420, NULL, 300, 1, NULL, '0.14', '2020-02-03 16:22:56', '2020-02-03 16:22:15'),
+(54, 'RE-015', '0000111', 9, NULL, '2020-02-03', 150, 570, NULL, 150, 1, NULL, '0.15', '2020-02-03 16:26:21', '2020-02-03 16:26:21'),
+(55, 'RE-016', '000022', 9, NULL, '2020-02-03', 100, 670, NULL, 50, 1, NULL, '0.16', '2020-02-03 16:26:40', '2020-02-03 16:26:40'),
+(56, 'RE-017', '0000212', 9, NULL, '2020-02-03', 30, 700, NULL, 20, 1, NULL, '0.17', '2020-02-03 16:33:06', '2020-02-03 16:26:59'),
+(57, 'RE-018', '000000', 9, NULL, '2020-02-03', 13, 713, NULL, 7, 1, NULL, '0.18', '2020-02-03 16:46:00', '2020-02-03 16:33:30'),
+(58, 'RE-019', '00021212', 9, NULL, '2020-02-03', 7, 720, NULL, 0, 1, NULL, '0.19', '2020-02-03 16:47:04', '2020-02-03 16:47:04'),
+(61, 'RE-020', '0000001211', 12, NULL, '2020-02-03', 300, 300, NULL, 150, 1, NULL, '0.20', '2020-02-03 17:09:27', '2020-02-03 17:08:35'),
+(62, 'RE-021', '00002121', 12, NULL, '2020-02-04', 150, 450, NULL, 0, 1, NULL, '0.21', '2020-02-03 17:16:00', '2020-02-03 17:16:00'),
+(63, 'RE-022', '0002112', 12, NULL, '2020-02-03', -88, 362, NULL, 100, 1, NULL, '0.22', '2020-02-03 17:20:37', '2020-02-03 17:19:52'),
+(64, 'RE-023', '0000111', 12, NULL, '2020-02-03', 50, 412, NULL, 50, 1, NULL, '0.23', '2020-02-03 17:21:28', '2020-02-03 17:21:28'),
+(65, 'RE-024', '0000001111', 12, NULL, '2020-02-03', 40, 452, NULL, 10, 1, NULL, '0.24', '2020-02-03 17:30:46', '2020-02-03 17:30:46'),
+(66, 'RE-025', '023330200', 12, NULL, '2020-02-03', 0, 452, NULL, 10, 1, NULL, '0.25', '2020-02-04 08:45:56', '2020-02-03 17:31:29'),
+(67, 'RE-026', '00012212', 12, NULL, '2020-02-04', 5, 457, NULL, 5, 1, NULL, '0.26', '2020-02-04 08:45:56', '2020-02-04 08:45:56'),
+(68, 'RE-027', '00020112', 12, NULL, '2020-02-04', 100, 557, NULL, 5, 1, NULL, '0.27', '2020-02-04 08:51:20', '2020-02-04 08:51:20'),
+(69, 'RE-028', '00202010', 12, NULL, '2020-02-04', 5, -99438, NULL, 100000, 1, NULL, '0.28', '2020-02-04 15:20:12', '2020-02-04 08:52:07'),
+(91, 'RE-029', '0003301', 13, NULL, '2020-02-05', 200, 0, 200, 300, 1, 1, '0.29', '2020-02-04 14:26:23', '2020-02-04 14:26:23'),
+(92, 'RE-030', '0034200', 13, NULL, '2020-02-07', 500, 400, NULL, 100, 1, NULL, '0.30', '2020-02-04 14:28:35', '2020-02-04 14:27:41'),
+(93, 'RE-031', '002141', 13, NULL, '2020-02-12', 100, 495, NULL, 5, 1, NULL, '0.31', '2020-02-04 14:29:57', '2020-02-04 14:29:20'),
+(94, 'RE-032', '00311400', 13, NULL, '2020-02-14', 5, 500, NULL, 0, 1, NULL, '0.32', '2020-02-04 14:30:37', '2020-02-04 14:30:37');
 
 -- --------------------------------------------------------
 
@@ -638,6 +963,34 @@ CREATE TABLE `rollos` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `rollos`
+--
+
+INSERT INTO `rollos` (`id`, `id_user`, `id_suplidor`, `id_tela`, `codigo_rollo`, `num_tono`, `no_factura_compra`, `fecha_compra`, `longitud_yarda`, `corte_utilizado`, `updated_at`, `created_at`) VALUES
+(19, 1, 5, 2, 'B-815', 'T-15', '0102222', '2020-01-23', 30, '2019-1', '2020-01-27 16:23:10', '2020-01-23 14:00:51'),
+(20, 1, 6, 3, '10', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-003', '2020-01-30 14:09:31', '2020-01-23 14:44:14'),
+(21, 1, 6, 3, '11', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 120.3, '2019-003', '2020-01-30 14:09:08', '2020-01-23 14:44:27'),
+(22, 1, 6, 3, '12', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-003', '2020-01-30 14:09:21', '2020-01-23 14:44:40'),
+(23, 1, 6, 3, '16', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 156.39, '2020-005', '2020-02-04 09:07:25', '2020-01-23 14:44:51'),
+(24, 1, 6, 3, '17', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-002', '2020-02-03 09:04:50', '2020-01-23 14:45:21'),
+(25, 1, 6, 3, '18', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '', '2020-02-03 08:48:33', '2020-01-23 14:45:42'),
+(26, 1, 6, 3, '19', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 45.93, '2020-9', '2020-01-23 15:52:36', '2020-01-23 14:48:16'),
+(27, 1, 6, 3, '20', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 56.87, '', '2020-02-03 08:47:32', '2020-01-23 14:48:32'),
+(28, 1, 6, 3, '21', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 78.74, '2020-9', '2020-01-23 15:52:15', '2020-01-23 14:48:46'),
+(29, 1, 6, 3, '13', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-003', '2020-01-30 14:09:29', '2020-01-23 14:49:57'),
+(30, 1, 6, 3, '14', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2020-005', '2020-02-04 09:07:28', '2020-01-23 14:50:27'),
+(31, 1, 6, 3, '15', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-003', '2020-01-30 14:09:19', '2020-01-23 14:52:02'),
+(32, 1, 6, 3, '1', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 166.23, '2019-006', '2020-01-24 10:30:12', '2020-01-23 14:52:29'),
+(33, 1, 6, 3, '2', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 130.14, '2020-002', '2020-01-29 09:40:28', '2020-01-23 14:52:43'),
+(34, 1, 6, 3, '9', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 106.08, '2020-9', '2020-01-23 15:52:43', '2020-01-23 14:53:14'),
+(35, 1, 6, 3, '3', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2020-9', '2020-01-23 15:52:48', '2020-01-23 14:53:27'),
+(36, 1, 6, 3, '4', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.1, '2019-001', '2020-01-24 11:58:45', '2020-01-23 14:55:16'),
+(37, 1, 6, 3, '5', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2020-9', '2020-01-23 15:52:31', '2020-01-23 14:56:01'),
+(38, 1, 6, 3, '6', '44', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-003', '2020-01-30 14:09:24', '2020-01-23 14:56:18'),
+(39, 1, 6, 3, '7', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-002', '2020-02-03 09:36:44', '2020-01-23 14:56:32'),
+(40, 1, 6, 3, '8', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-002', '2020-02-03 09:36:41', '2020-01-23 14:56:47');
 
 -- --------------------------------------------------------
 
@@ -661,52 +1014,52 @@ CREATE TABLE `sku` (
 --
 
 INSERT INTO `sku` (`id`, `producto_id`, `referencia_producto`, `sku`, `talla`, `asignado`, `created_at`, `updated_at`) VALUES
-(48, NULL, NULL, '7432147817877', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(49, NULL, NULL, '7432147817884', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(50, NULL, NULL, '7432147817891', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(51, NULL, NULL, '7432147917904', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(52, NULL, NULL, '7432147917911', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(53, NULL, NULL, '7432147917928', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(54, NULL, NULL, '7432147917935', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(55, NULL, NULL, '7432147917942', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(56, NULL, NULL, '7432147917959', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(57, NULL, NULL, '7432147917966', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(58, NULL, NULL, '7432147917973', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(59, NULL, NULL, '7432147917980', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(60, NULL, NULL, '7432147917997', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(61, NULL, NULL, '7432147018007', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(62, NULL, NULL, '7432147018014', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(63, NULL, NULL, '7432147018021', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(64, NULL, NULL, '7432147018038', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(65, NULL, NULL, '7432147018045', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(66, NULL, NULL, '7432147018052', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(67, NULL, NULL, '7432147018069', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(68, NULL, NULL, '7432147018076', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(69, NULL, NULL, '7432147018083', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(70, NULL, NULL, '7432147018090', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(71, NULL, NULL, '7432147118103', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(72, NULL, NULL, '7432147118110', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(73, NULL, NULL, '7432147118127', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(74, NULL, NULL, '7432147118134', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(75, NULL, NULL, '7432147118141', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(76, NULL, NULL, '7432147118158', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(77, NULL, NULL, '7432147118165', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(78, NULL, NULL, '7432147118172', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(79, NULL, NULL, '7432147118189', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(80, NULL, NULL, '7432147118196', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(81, NULL, NULL, '7432147218209', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(82, NULL, NULL, '7432147218216', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(83, NULL, NULL, '7432147218223', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(84, NULL, NULL, '7432147218230', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(85, NULL, NULL, '7432147218247', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(86, NULL, NULL, '7432147218254', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(87, NULL, NULL, '7432147218261', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(88, NULL, NULL, '7432147218278', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(89, NULL, NULL, '7432147218285', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(90, NULL, NULL, '7432147218292', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(91, NULL, NULL, '7432147318305', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(92, NULL, NULL, '7432147318312', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(93, NULL, NULL, '7432147318329', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
+(48, 39, 'M202-2001', '7432147817877', 'General', 1, '2019-12-24 10:53:40', '2020-01-23 13:56:53'),
+(49, 39, 'M202-2001', '7432147817884', 'A', 1, '2019-12-24 10:53:40', '2020-01-23 13:56:55'),
+(50, 39, 'M202-2001', '7432147817891', 'C', 1, '2019-12-24 10:53:40', '2020-01-23 13:56:58'),
+(51, 39, 'M202-2001', '7432147917904', 'D', 1, '2019-12-24 10:53:40', '2020-01-23 13:57:00'),
+(52, 39, 'M202-2001', '7432147917911', 'E', 1, '2019-12-24 10:53:40', '2020-01-23 13:57:02'),
+(53, 39, 'M202-2001', '7432147917928', 'F', 1, '2019-12-24 10:53:40', '2020-01-23 13:57:04'),
+(54, 39, 'M202-2001', '7432147917935', 'G', 1, '2019-12-24 10:53:40', '2020-01-23 13:57:06'),
+(55, 39, 'M202-2001', '7432147917942', 'H', 1, '2019-12-24 10:53:40', '2020-01-23 13:57:08'),
+(56, 39, 'M202-2001', '7432147917959', 'I', 1, '2019-12-24 10:53:40', '2020-01-23 13:57:12'),
+(57, 39, 'M202-2001', '7432147917966', 'J', 1, '2019-12-24 10:53:40', '2020-01-23 13:57:16'),
+(58, 41, 'M206-2003', '7432147917973', 'General', 1, '2019-12-24 10:53:40', '2020-01-23 15:36:48'),
+(59, 41, 'M206-2003', '7432147917980', 'C', 1, '2019-12-24 10:53:40', '2020-01-23 15:42:58'),
+(60, 41, 'M206-2003', '7432147917997', 'D', 1, '2019-12-24 10:53:40', '2020-01-23 15:43:01'),
+(61, 41, 'M206-2003', '7432147018007', 'E', 1, '2019-12-24 10:53:40', '2020-01-23 15:43:03'),
+(62, 41, 'M206-2003', '7432147018014', 'F', 1, '2019-12-24 10:53:40', '2020-01-23 15:43:05'),
+(63, 41, 'M206-2003', '7432147018021', 'G', 1, '2019-12-24 10:53:40', '2020-01-23 15:43:07'),
+(64, 41, 'M206-2003', '7432147018038', 'H', 1, '2019-12-24 10:53:40', '2020-01-23 15:43:09'),
+(65, 41, 'M206-2003', '7432147018045', 'I', 1, '2019-12-24 10:53:40', '2020-01-23 15:43:11'),
+(66, 64, 'M206-2006', '7432147018052', 'General', 1, '2019-12-24 10:53:40', '2020-01-30 14:03:23'),
+(67, 64, 'M206-2006', '7432147018069', 'C', 1, '2019-12-24 10:53:40', '2020-01-30 14:06:50'),
+(68, 64, 'M206-2006', '7432147018076', 'D', 1, '2019-12-24 10:53:40', '2020-01-30 14:06:53'),
+(69, 64, 'M206-2006', '7432147018083', 'E', 1, '2019-12-24 10:53:40', '2020-01-30 14:06:55'),
+(70, 64, 'M206-2006', '7432147018090', 'F', 1, '2019-12-24 10:53:40', '2020-01-30 14:06:56'),
+(71, 64, 'M206-2006', '7432147118103', 'G', 1, '2019-12-24 10:53:40', '2020-01-30 14:06:58'),
+(72, 64, 'M206-2006', '7432147118110', 'H', 1, '2019-12-24 10:53:40', '2020-01-30 14:07:00'),
+(73, 64, 'M206-2006', '7432147118127', 'I', 1, '2019-12-24 10:53:40', '2020-01-30 14:07:02'),
+(74, 64, 'M206-2006', '7432147118134', 'J', 1, '2019-12-24 10:53:40', '2020-01-30 14:07:04'),
+(75, 65, 'M103-2003', '7432147118141', 'General', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:03'),
+(76, 65, 'M103-2003', '7432147118158', 'B', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:05'),
+(77, 65, 'M103-2003', '7432147118165', 'D', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:07'),
+(78, 65, 'M103-2003', '7432147118172', 'C', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:09'),
+(79, 65, 'M103-2003', '7432147118189', 'E', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:11'),
+(80, 65, 'M103-2003', '7432147118196', 'G', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:13'),
+(81, 65, 'M103-2003', '7432147218209', 'F', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:15'),
+(82, 65, 'M103-2003', '7432147218216', 'H', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:17'),
+(83, 65, 'M103-2003', '7432147218223', 'I', 1, '2019-12-24 10:53:40', '2020-01-31 09:40:18'),
+(84, NULL, NULL, '7432147218230', 'General', 1, '2019-12-24 10:53:40', '2020-01-31 16:49:24'),
+(85, NULL, NULL, '7432147218247', 'A', 1, '2019-12-24 10:53:40', '2020-01-31 16:49:30'),
+(86, NULL, NULL, '7432147218254', 'C', 1, '2019-12-24 10:53:40', '2020-01-31 16:49:33'),
+(87, NULL, NULL, '7432147218261', 'General', 1, '2019-12-24 10:53:40', '2020-01-31 16:50:03'),
+(88, NULL, NULL, '7432147218278', 'C', 1, '2019-12-24 10:53:40', '2020-01-31 16:50:05'),
+(89, NULL, NULL, '7432147218285', 'D', 1, '2019-12-24 10:53:40', '2020-01-31 16:50:08'),
+(90, NULL, NULL, '7432147218292', 'F', 1, '2019-12-24 10:53:40', '2020-01-31 16:50:10'),
+(91, NULL, NULL, '7432147318305', 'G', 1, '2019-12-24 10:53:40', '2020-01-31 16:50:12'),
+(92, NULL, NULL, '7432147318312', 'H', 1, '2019-12-24 10:53:40', '2020-01-31 16:50:15'),
+(93, NULL, NULL, '7432147318329', 'J', 1, '2019-12-24 10:53:40', '2020-01-31 16:50:18'),
 (94, NULL, NULL, '7432147318336', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (95, NULL, NULL, '7432147318343', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (96, NULL, NULL, '7432147318350', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
@@ -1630,6 +1983,7 @@ CREATE TABLE `suplidor` (
   `calle` varchar(255) DEFAULT NULL,
   `sector` varchar(255) DEFAULT NULL,
   `provincia` varchar(100) DEFAULT NULL,
+  `pais` varchar(255) DEFAULT NULL,
   `sitios_cercanos` varchar(255) DEFAULT NULL,
   `contacto_suplidor` varchar(100) DEFAULT NULL,
   `telefono_1` varchar(45) DEFAULT NULL,
@@ -1641,6 +1995,15 @@ CREATE TABLE `suplidor` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `suplidor`
+--
+
+INSERT INTO `suplidor` (`id`, `nombre`, `rnc`, `tipo_suplidor`, `calle`, `sector`, `provincia`, `pais`, `sitios_cercanos`, `contacto_suplidor`, `telefono_1`, `telefono_2`, `celular`, `email`, `terminos_de_pago`, `nota`, `updated_at`, `created_at`) VALUES
+(5, 'Textiles Agua Azul SRL', '130664897', 'Material', 'bohechio #33', 'ensanche quizqueya', 'Santo Domingo', 'República Dominicana', NULL, 'Luis Fernandez', '(809) 682-7284', NULL, '(809) 481-4881', 'lfernandez@taa.com.do', '90 dias', NULL, '2020-01-28 16:43:41', '2020-01-23 13:56:11'),
+(6, 'Artistic Fabric & Garment Industries LTD', '0102012011', 'Material', 'Deh Landhi,', 'Bn Qasim Twon', 'No pertenece al pais', 'Paquistán', 'Karachi', 'Arslan Bati', '(921) 350-2517', NULL, NULL, 'denimculture@artisticgabricmills.com', '120 dias', 'Suplidor Internacional', '2020-01-28 16:43:09', '2020-01-23 14:29:16'),
+(7, 'Industria del Yaque SRL', '102013195', 'Lavanderia', 'ave. circunvalacion #417', 'santiago', 'Santiago', 'República Dominicana', NULL, 'Doris', '(809) 241-5646', NULL, '(829) 904-6602', 'indusriadelyaque@gmail.com', '60 dias', NULL, '2020-01-28 16:43:31', '2020-01-23 16:46:12');
 
 -- --------------------------------------------------------
 
@@ -1667,6 +2030,18 @@ CREATE TABLE `tallas` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tallas`
+--
+
+INSERT INTO `tallas` (`id`, `corte_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `updated_at`, `created_at`) VALUES
+(6, 7, 0, 0, 40, 40, 70, 70, 80, 80, 60, 50, 0, 0, 490, '2020-01-27 15:19:04', '2020-01-23 14:04:51'),
+(7, 8, 0, 0, 40, 80, 120, 120, 120, 120, 120, 80, 0, 0, 800, '2020-01-23 15:55:22', '2020-01-23 15:55:22'),
+(8, 9, 0, 0, 40, 50, 70, 80, 110, 110, 80, 80, 0, 0, 620, '2020-01-29 09:41:50', '2020-01-29 09:41:50'),
+(9, 10, 0, 0, 40, 80, 120, 120, 120, 120, 120, 80, 0, 0, 800, '2020-01-30 14:10:05', '2020-01-30 14:10:05'),
+(11, 12, 0, 0, 40, 50, 30, 80, 80, 80, 40, 80, 0, 0, 480, '2020-02-03 09:37:07', '2020-02-03 09:37:07'),
+(12, 13, 0, 0, 50, 80, 120, 120, 120, 120, 80, 50, 0, 0, 740, '2020-02-04 09:07:57', '2020-02-04 09:07:57');
 
 -- --------------------------------------------------------
 
@@ -1695,6 +2070,18 @@ CREATE TABLE `tallas_perdidas` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tallas_perdidas`
+--
+
+INSERT INTO `tallas_perdidas` (`id`, `perdida_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `talla_x`, `updated_at`, `created_at`) VALUES
+(6, 7, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, '2020-01-23 16:26:44', '2020-01-23 16:26:44'),
+(7, 8, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, '2020-01-23 16:27:17', '2020-01-23 16:27:17'),
+(11, 12, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, '2020-01-30 14:18:03', '2020-01-30 14:18:03'),
+(12, 13, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, '2020-01-30 14:18:44', '2020-01-30 14:18:44'),
+(13, 14, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 16, 0, '2020-01-30 15:22:21', '2020-01-30 15:22:21'),
+(14, 15, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 8, 0, '2020-02-03 09:51:14', '2020-02-03 09:51:14');
+
 -- --------------------------------------------------------
 
 --
@@ -1705,9 +2092,9 @@ CREATE TABLE `tela` (
   `id` int(11) NOT NULL,
   `id_suplidor` int(11) DEFAULT NULL,
   `id_composiciones` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `referencia` varchar(100) DEFAULT NULL,
-  `precio_usd` double DEFAULT NULL,
+  `precio_usd` decimal(15,2) DEFAULT NULL,
   `composicion` varchar(100) DEFAULT NULL,
   `composicion_2` varchar(100) DEFAULT NULL,
   `composicion_3` varchar(100) DEFAULT NULL,
@@ -1724,6 +2111,14 @@ CREATE TABLE `tela` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tela`
+--
+
+INSERT INTO `tela` (`id`, `id_suplidor`, `id_composiciones`, `user_id`, `referencia`, `precio_usd`, `composicion`, `composicion_2`, `composicion_3`, `composicion_4`, `composicion_5`, `tipo_tela`, `ancho_cortable`, `peso`, `elasticidad_trama`, `elasticidad_urdimbre`, `encogimiento_trama`, `encogimiento_urdimbre`, `updated_at`, `created_at`) VALUES
+(2, 5, 1, 1, 'test3', '3.55', 'Algodon-70.00', 'Elastano-15.00', '5-05.00', '3-10.00', '', 'Denim', '50.00', 30, '60.00', '65.55', '52.00', '51.00', '2020-01-28 17:41:13', '2020-01-23 13:59:41'),
+(3, 6, 1, 1, 'A4-13488', '2.70', 'Algodon-82.00', 'Poliester-16.00', '2-02.00', '', '', 'Denim', '44.00', 8.5, '56.00', '0.00', '0.00', '0.00', '2020-01-29 09:07:08', '2020-01-23 14:41:17');
+
 -- --------------------------------------------------------
 
 --
@@ -1732,11 +2127,12 @@ CREATE TABLE `tela` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `permiso_id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `surname` varchar(45) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `role` varchar(20) DEFAULT NULL,
+  `role` varchar(100) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
   `celular` varchar(45) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
@@ -1750,8 +2146,9 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `surname`, `email`, `password`, `role`, `telefono`, `celular`, `direccion`, `edad`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Anel', 'Dominguez', 'anel@anel.com', '$2y$10$J2IB.7dLUDdmMyYTBgzQCONs8hcnJ7H0JESsX7ejnGtm2bmaXEfnC', 'Administrador', '(809) 288-2113', '(829) 943-6531', 'c/ primera #4, Madre vieja, SC', '23', 'MxONuqEfUsVfo1SA6r9AI7VHGT63Wb6VepP6fx1dHkrGzkybLkAVqi0vNANO', '2019-12-24 09:37:56', '2019-12-26 09:18:59');
+INSERT INTO `users` (`id`, `permiso_id`, `name`, `surname`, `email`, `password`, `role`, `telefono`, `celular`, `direccion`, `edad`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Anel', 'Dominguez', 'anel@anel.com', '$2y$10$J2IB.7dLUDdmMyYTBgzQCONs8hcnJ7H0JESsX7ejnGtm2bmaXEfnC', 'Administrador', '(809) 288-2113', '(829) 943-6531', 'c/ primera #4, Madre vieja, SC', '23', 'oAKSIIY6XxdoD5k32DDtF7b886BDfXVRit4WlQfwkdIVFkHu1obTRu48Cl1H', '2019-12-24 09:37:56', '2019-12-26 09:18:59'),
+(6, 0, 'UserOfi', 'Oficina', 'oficina@cch.com', '$2y$10$LlB19o0yaz4ZKu1c7RCLbuvQt6nZVO3nk1Xt1LbvY1HZdySUckCyu', 'Oficina', '(809) 288-2113', '(809) 211-2022', 'c/ sanchez vieja', '20', NULL, '2020-01-29 11:32:33', '2020-01-29 11:32:33');
 
 --
 -- Índices para tablas volcadas
@@ -1765,6 +2162,13 @@ ALTER TABLE `almacen`
   ADD KEY `producto_id` (`producto_id`),
   ADD KEY `corte_id` (`corte_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indices de la tabla `almacen_detalle`
+--
+ALTER TABLE `almacen_detalle`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `producto_id` (`producto_id`);
 
 --
 -- Indices de la tabla `cliente`
@@ -1908,6 +2312,19 @@ ALTER TABLE `perdidas`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indices de la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `permiso_usuario`
+--
+ALTER TABLE `permiso_usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`user_id`);
+
+--
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -1964,14 +2381,15 @@ ALTER TABLE `tallas_perdidas`
 ALTER TABLE `tela`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_composition_tela_idx` (`id_composiciones`),
-  ADD KEY `fk_user_tela_idx` (`id_user`),
+  ADD KEY `fk_user_tela_idx` (`user_id`),
   ADD KEY `fk_suply_tela_idx` (`id_suplidor`);
 
 --
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permiso_id` (`permiso_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1981,43 +2399,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `almacen_detalle`
+--
+ALTER TABLE `almacen_detalle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente_sucursales`
 --
 ALTER TABLE `cliente_sucursales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `composiciones`
 --
 ALTER TABLE `composiciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `corte`
 --
 ALTER TABLE `corte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_detalle`
 --
 ALTER TABLE `empleado_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `existencias`
@@ -2029,85 +2453,97 @@ ALTER TABLE `existencias`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `lavanderia`
 --
 ALTER TABLE `lavanderia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_credito`
 --
 ALTER TABLE `nota_credito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_credito_detalle`
 --
 ALTER TABLE `nota_credito_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_empaque`
 --
 ALTER TABLE `orden_empaque`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_empaque_detalle`
 --
 ALTER TABLE `orden_empaque_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_facturacion`
 --
 ALTER TABLE `orden_facturacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_facturacion_detalle`
 --
 ALTER TABLE `orden_facturacion_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido`
 --
 ALTER TABLE `orden_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido_detalle`
 --
 ALTER TABLE `orden_pedido_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT de la tabla `perdidas`
 --
 ALTER TABLE `perdidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `permiso_usuario`
+--
+ALTER TABLE `permiso_usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcion`
 --
 ALTER TABLE `recepcion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT de la tabla `rollos`
 --
 ALTER TABLE `rollos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `sku`
@@ -2119,31 +2555,31 @@ ALTER TABLE `sku`
 -- AUTO_INCREMENT de la tabla `suplidor`
 --
 ALTER TABLE `suplidor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tallas`
 --
 ALTER TABLE `tallas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tallas_perdidas`
 --
 ALTER TABLE `tallas_perdidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tela`
 --
 ALTER TABLE `tela`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
@@ -2156,6 +2592,12 @@ ALTER TABLE `almacen`
   ADD CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `almacen_ibfk_2` FOREIGN KEY (`corte_id`) REFERENCES `corte` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `almacen_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `almacen_detalle`
+--
+ALTER TABLE `almacen_detalle`
+  ADD CONSTRAINT `almacen_detalle_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `cliente_sucursales`
@@ -2265,6 +2707,12 @@ ALTER TABLE `perdidas`
   ADD CONSTRAINT `perdidas_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `permiso_usuario`
+--
+ALTER TABLE `permiso_usuario`
+  ADD CONSTRAINT `permiso_usuario_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -2308,8 +2756,8 @@ ALTER TABLE `tallas_perdidas`
 --
 ALTER TABLE `tela`
   ADD CONSTRAINT `fk_composition_tela` FOREIGN KEY (`id_composiciones`) REFERENCES `composiciones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_suply_tela` FOREIGN KEY (`id_suplidor`) REFERENCES `suplidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_user_tela` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_suply_tela` FOREIGN KEY (`id_suplidor`) REFERENCES `suplidor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_tela` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

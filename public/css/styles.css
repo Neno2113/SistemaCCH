@@ -268,10 +268,10 @@ textarea.form-control
 
 
 .tabla-tallas {
-    width: 105%;
+
     border-collapse: collapse;
     border-spacing: 0;
-    margin-left: -34px;
+    margin-left: -32px;
     /* margin-bottom: 20px; */
     table-layout: auto;
     border: solid 1px black;
@@ -300,19 +300,22 @@ textarea.form-control
     color: black;
     font-size: 12.5px;
     border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    /* border-top: 1px solid black; */
 }
 .tabla-tallas tbody .red {
     width: 126%;
     border: none;
+    font-weight: bold;
+
 }
 
 .tabla-tallas .talla {
-    border: 1px solid black;
+    border-left: 1px solid black;
     text-align: center;
-    font-weight: bold;
-    font-size: 14px;
+    /* font-weight: bold; */
+    font-size: 12px;
     width: 8%;
+    background: #ddcdad3d;
 }
 
 .tabla-almacen-totales {

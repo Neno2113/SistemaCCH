@@ -13,7 +13,9 @@ use App\Almacen;
 use App\AlmacenDetalle;
 use App\Client;
 use App\ClientBranch;
+use App\Corte;
 use App\TallasPerdidas;
+use App\Talla;
 use App\Product;
 use App\Curva;
 use App\ordenEmpaqueDetalle;
@@ -285,9 +287,7 @@ class ordenEmpaqueController extends Controller
             array_push($perdidas, $perdida[$i]['id']);
         }
 
-
         $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get()->load('perdida');
-
 
         //SEGUNDA
         $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
@@ -303,6 +303,18 @@ class ordenEmpaqueController extends Controller
 
         $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get()->load('perdida');
 
+        //Corte
+        $corte = Corte::where('producto_id', $producto_id)->select('id')->get();
+
+        $cortes = array();
+
+        $longitudCorte = count($corte);
+
+        for ($i = 0; $i < $longitudCorte; $i++) {
+            array_push($cortes, $corte[$i]['id']);
+        }
+
+        $tallasCorte = Talla::whereIn('corte_id', $cortes)->get();
 
         //Almacen
         $almacen = AlmacenDetalle::where('producto_id', $producto_id)->select('id')->get();
@@ -333,38 +345,37 @@ class ordenEmpaqueController extends Controller
             // $tallasAlmacenCurva->save();
 
             // $curva = Curva::where('producto_id', $producto_id)->get();
-
             //curva
-            $a_curva = $tallasCurva->sum('a');
-            $b_curva = $tallasCurva->sum('b');
-            $c_curva = $tallasCurva->sum('c');
-            $d_curva = $tallasCurva->sum('d');
-            $e_curva = $tallasCurva->sum('e');
-            $f_curva = $tallasCurva->sum('f');
-            $g_curva = $tallasCurva->sum('g');
-            $h_curva = $tallasCurva->sum('h');
-            $i_curva = $tallasCurva->sum('i');
-            $j_curva = $tallasCurva->sum('j');
-            $k_curva = $tallasCurva->sum('k');
-            $l_curva = $tallasCurva->sum('l');
+            $a_curva = $tallasCurva->sum('a') + $tallasCorte->sum('a');
+            $b_curva = $tallasCurva->sum('b') + $tallasCorte->sum('b');
+            $c_curva = $tallasCurva->sum('c') + $tallasCorte->sum('c');
+            $d_curva = $tallasCurva->sum('d') + $tallasCorte->sum('d');
+            $e_curva = $tallasCurva->sum('e') + $tallasCorte->sum('e');
+            $f_curva = $tallasCurva->sum('f') + $tallasCorte->sum('f');
+            $g_curva = $tallasCurva->sum('g') + $tallasCorte->sum('g');
+            $h_curva = $tallasCurva->sum('h') + $tallasCorte->sum('h');
+            $i_curva = $tallasCurva->sum('i') + $tallasCorte->sum('i');
+            $j_curva = $tallasCurva->sum('j') + $tallasCorte->sum('j');
+            $k_curva = $tallasCurva->sum('k') + $tallasCorte->sum('k');
+            $l_curva = $tallasCurva->sum('l') + $tallasCorte->sum('l');
             $total_curva = $a_curva + $b_curva + $c_curva + $d_curva + $e_curva + $f_curva + $g_curva + $h_curva + $i_curva +
                 $j_curva + $k_curva + $l_curva;
         } elseif (!is_object($tallasAlmacenCurva || $tallasAlmacenCurva == null)) {
 
             "test";
             //curva
-            $a_curva = $tallasCurva->sum('a');
-            $b_curva = $tallasCurva->sum('b');
-            $c_curva = $tallasCurva->sum('c');
-            $d_curva = $tallasCurva->sum('d');
-            $e_curva = $tallasCurva->sum('e');
-            $f_curva = $tallasCurva->sum('f');
-            $g_curva = $tallasCurva->sum('g');
-            $h_curva = $tallasCurva->sum('h');
-            $i_curva = $tallasCurva->sum('i');
-            $j_curva = $tallasCurva->sum('j');
-            $k_curva = $tallasCurva->sum('k');
-            $l_curva = $tallasCurva->sum('l');
+            $a_curva = $tallasCurva->sum('a') + $tallasCorte->sum('a');
+            $b_curva = $tallasCurva->sum('b') + $tallasCorte->sum('b');
+            $c_curva = $tallasCurva->sum('c') + $tallasCorte->sum('c');
+            $d_curva = $tallasCurva->sum('d') + $tallasCorte->sum('d');
+            $e_curva = $tallasCurva->sum('e') + $tallasCorte->sum('e');
+            $f_curva = $tallasCurva->sum('f') + $tallasCorte->sum('f');
+            $g_curva = $tallasCurva->sum('g') + $tallasCorte->sum('g');
+            $h_curva = $tallasCurva->sum('h') + $tallasCorte->sum('h');
+            $i_curva = $tallasCurva->sum('i') + $tallasCorte->sum('i');
+            $j_curva = $tallasCurva->sum('j') + $tallasCorte->sum('j');
+            $k_curva = $tallasCurva->sum('k') + $tallasCorte->sum('k');
+            $l_curva = $tallasCurva->sum('l') + $tallasCorte->sum('l');
             $total_curva = $a_curva + $b_curva + $c_curva + $d_curva + $e_curva + $f_curva + $g_curva + $h_curva + $i_curva +
                 $j_curva + $k_curva + $l_curva;
         }
@@ -434,7 +445,7 @@ class ordenEmpaqueController extends Controller
             $i_perc + $j_perc + $k_perc + $l_perc;
 
         //segundo calculo
-        $a_seg = ($a_alm == 0) ? 0.1 : ($a_perc - $a) / $a;
+        $a_seg = ($a_alm <= 0) ? 0.1 : ($a_perc - $a) / $a;
         $b_seg = ($b_alm == 0) ? 0.1 : ($b_perc - $b) / $b;
         $c_seg = ($c_alm == 0) ? 0.1 : ($c_perc - $c) / $c;
         $d_seg = ($d_alm == 0) ? 0.1 : ($d_perc - $d) / $d;
@@ -656,8 +667,8 @@ class ordenEmpaqueController extends Controller
             'h_seg' => $h_seg,
             'i_seg' => $i_seg,
             'j_seg' => $j_seg,
-            'k' => $k,
-            'l' => $l,
+            'k_seg' => $k_seg,
+            'l_seg' => $l_seg,
             'tercero' => 'Ter calculo',
             'a_ter' => $a_ter,
             'b_ter' => $b_ter,
@@ -669,8 +680,8 @@ class ordenEmpaqueController extends Controller
             'h_ter' => $h_ter,
             'i_ter' => $i_ter,
             'j_ter' => $j_ter,
-            'k' => $k,
-            'l' => $l,
+            'k_ter' => $k_seg,
+            'l_ter' => $l_seg,
             'redistribuido' => 'Redistribuido',
             'a_red' => $a_red,
             'b_red' => $b_red,

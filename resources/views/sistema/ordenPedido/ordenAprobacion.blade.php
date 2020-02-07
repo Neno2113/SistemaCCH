@@ -72,11 +72,11 @@
 
                     </div>
 
-                    <label for="" class="mt-5">Detalle orden</label>
-                    <table id="detalle" class="table datatables mt-5 mb-3 mr-5 tabla-tallas text-sm">
+                    <label for="" class="mt-5">Detalle orden</label><span class="badge badge-success ml-2" id="badge-red">Redistribuido <i class="fas fa-check"></i></span>
+                    <table id="detalle" class="table datatables mt-5 mb-3 mr-5 tabla-tallas text-sm" style="width:104%;">
                         <thead class="tabla-tallas">
                             <tr>
-                                <th class="talla_head">MUJER PLUS:</th>
+                                <th class="talla_head">PLUS:</th>
                                 <td class="talla">12W</td>
                                 <td class="talla">14W</td>
                                 <td class="talla">16W</td>
@@ -91,16 +91,16 @@
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
+                                <td class="talla"></td>
                             </tr>
-
                             <tr>
                                 <th class="talla_head">MUJER:</th>
-                                <td class="talla">0/0</td>
-                                <td class="talla">1/2</td>
-                                <td class="talla">3/4</td>
-                                <td class="talla">5/6</td>
-                                <td class="talla">7/8</td>
-                                <td class="talla">9/10</td>
+                                <td class="talla">0/0  </td>
+                                <td class="talla">1/2  </td>
+                                <td class="talla">3/4  </td>
+                                <td class="talla">5/6  </td>
+                                <td class="talla">7/8  </td>
+                                <td class="talla">9/10  </td>
                                 <td class="talla">11/12</td>
                                 <td class="talla">13/14</td>
                                 <td class="talla">15/16</td>
@@ -109,8 +109,8 @@
                                 <td class="talla">21/22</td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
+                                <td class="talla"></td>
                             </tr>
-
                             <tr>
                                 <th class="talla_head">HOMBRE:</th>
                                 <td class="talla">28</td>
@@ -127,8 +127,8 @@
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
+                                <td class="talla"></td>
                             </tr>
-
                             <tr>
                                 <th class="talla_head">NIÑO:</th>
                                 <td class="talla">2</td>
@@ -145,8 +145,8 @@
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
+                                <td class="talla"></td>
                             </tr>
-
                             <tr>
                                 <th class="talla_head">NIÑA:</th>
                                 <td class="talla">2</td>
@@ -157,6 +157,7 @@
                                 <td class="talla">12</td>
                                 <td class="talla">14</td>
                                 <td class="talla">16</td>
+                                <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
@@ -179,10 +180,11 @@
                                 <th class="talla_head"></th>
                                 <th class="talla_head"></th>
                                 <th class="talla_head">Total</th>
-                                <th class="talla_head">Accion</th>
+                                <th class="talla_head">Red</th>
+                                <th class="talla_head">Man</th>
                             </tr>
                         </thead>
-                        <tbody id="disponibles">
+                        <tbody id="disponibles" class="text-sm">
 
                         </tbody>
                         <tfoot>
@@ -201,7 +203,8 @@
                                 <th class="talla_head">K</th>
                                 <th class="talla_head">L</th>
                                 <th class="talla_head">Total</th>
-                                <th class="talla_head">Accion</th>
+                                <th class="talla_head">Red</th>
+                                <th class="talla_head">Man</th>
                             </tr>
                         </tfoot>
                     </table>

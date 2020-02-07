@@ -109,6 +109,7 @@ $(document).ready(function() {
             $("#AprobarPedido").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
+            $("#badge-red").hide();
             $("#btnAgregar").show();
             $("#corteEdit").hide();
             $("#productoEdit").hide();
@@ -155,14 +156,31 @@ function aprobar(id_orden) {
 }
 
 function redistribuir(id_orden){
-    // e.preventDefault();
-    bootbox.confirm("¿Estas seguro de redistribuir las tallas?", function(result){
-        if(result){
-            $.get("orden_redistribuir/" + id_orden, function(){
-                bootbox.alert("Redistibucion completa");
-                $("#detalle").DataTable().ajax.reload();
-            })
+    Swal.fire({
+        title: '¿Esta seguro de redistribuir las tallas?',
+        text: "Va a cambiar el pedido en caso de que se haya hecho detallada!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, guardar'
+      }).then((result) => {
+        if (result.value) {
+            accionRedistribuir(id_orden);
         }
+      })
+
+}
+
+function accionRedistribuir(id_orden){
+    $.get("orden_redistribuir/" + id_orden, function(data){
+        // console.log(data);
+        Swal.fire(
+            'Guardado!',
+            'Redistribucion completa',
+            'success'
+            )
+        $("#detalle").DataTable().ajax.reload();
     })
 }
 
@@ -190,13 +208,18 @@ function ver(id_orden) {
         $("#factura_desglosada_tallas").show();
         $("#acepta_segundas").show();
 
-
         $("#no_orden_pedido").val(data.orden.no_orden_pedido).attr('readonly', true);
         $("#cliente_apro").val(data.orden.cliente.nombre_cliente).attr('readonly', true);
         $("#sucursal_apro").val(data.orden.sucursal.nombre_sucursal).attr('readonly', true);
         $("#vendedor").val(data.orden.vendedor.nombre+" "+data.orden.vendedor.apellido).attr('readonly', true);
         $("#detalle").DataTable().destroy();
         listarOrdenDetalle(data.orden.id);
+
+        for (let i = 0; i < data.orden_detalle.length; i++) {
+            const element = array[i];
+
+        }
+
 
 
     });
@@ -206,30 +229,128 @@ function ajuste( id_orden){
     Swal.fire({
         title: '¿Esta seguro de guardar este ajuste de esta redistribucion?',
         text: "Solo usar esta opcion en caso de que le redistribucion no sea exacta!",
-        icon: 'warning',
+        type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, guardar'
       }).then((result) => {
         if (result.value) {
-          Swal.fire(
-            'Guardado!',
-            'Ajuste guardado',
-            'success'
-          )
+            agregarDetalle(id_orden);
+        }
+      })
+}
+
+function reajustar( id_orden){
+    Swal.fire({
+        title: '¿Esta seguro de volver a ajustar esta redistribucion?',
+        text: "Solo usar esta opcion en caso de que le redistribucion no sea exacta!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            cambiarAjuste(id_orden);
         }
       })
 
-    // bootbox.confirm("¿Esta seguro de guardar este ajuste de esta redistribucion?", function(result){
-    //     if(result){
-    //         $.get("orden_redistribuir/" + id_orden, function(){
-    //             bootbox.alert("Redistibucion completa");
-    //             $("#detalle").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+
 }
+
+function agregarDetalle(id){
+
+    var ordenDetalle = {
+        a: $("#a"+id).val(),
+        b: $("#b"+id).val(),
+        c: $("#c"+id).val(),
+        d: $("#d"+id).val(),
+        e: $("#e"+id).val(),
+        f: $("#f"+id).val(),
+        g: $("#g"+id).val(),
+        h: $("#h"+id).val(),
+        i: $("#i"+id).val(),
+        j: $("#j"+id).val(),
+        k: $("#k"+id).val(),
+        l: $("#l"+id).val(),
+    };
+
+    $.ajax({
+        url: "orden/detalle/"+id,
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(ordenDetalle),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                $("#detalle").DataTable().ajax.reload();
+                Swal.fire(
+                'Guardado!',
+                'Ajuste guardado',
+                'success'
+                )
+                $("#a").val("");
+                $("#b").val("");
+                $("#c").val("");
+                $("#d").val("");
+                $("#e").val("");
+                $("#f").val("");
+                $("#g").val("");
+                $("#h").val("");
+                $("#i").val("");
+                $("#j").val("");
+                $("#k").val("");
+                $("#l").val("");
+                $("#total").val("");
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion de la composicion"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.message);
+
+            bootbox.alert(
+                "Error: " + datos.responseJSON.message
+            );
+        }
+    });
+}
+
+function cambiarAjuste(id){
+    $.ajax({
+        url: "orden/detalle/reajuste/"+id,
+        type: "POST",
+        dataType: "json",
+        // data: JSON.stringify(ordenDetalle),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                $("#detalle").DataTable().ajax.reload();
+                Swal.fire(
+                'Guardado!',
+                'Cambios realizados',
+                'success'
+                )
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion de la composicion"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.message);
+
+            bootbox.alert(
+                "Error: " + datos.responseJSON.message
+            );
+        }
+    });
+}
+
+
 
 
 //funcion para listar en el Datatable
@@ -244,20 +365,21 @@ function listarOrdenDetalle(id) {
         ajax: "api/listarDetalle/"+id,
         columns: [
             { data: "referencia_producto",name: "producto.referencia_producto"},
-            { data: "a",name: "orden_pedido_detalle.a"},
-            { data: "b", name: "orden_pedido_detalle.b" },
-            { data: "c", name: "orden_pedido_detalle.c" },
-            { data: "d", name: "orden_pedido_detalle.d"},
-            { data: "e", name: "orden_pedido_detalle.e"},
-            { data: "f", name: "orden_pedido_detalle.f"},
-            { data: "g", name: "orden_pedido_detalle.g"},
-            { data: "h", name: "orden_pedido_detalle.h"},
-            { data: "i", name: "orden_pedido_detalle.i"},
-            { data: "j", name: "orden_pedido_detalle.j"},
-            { data: "k", name: "orden_pedido_detalle.k"},
-            { data: "l", name: "orden_pedido_detalle.l"},
-            { data: "total", name: "orden_pedido_detalle.total"},
+            { data: "a",name: "orden_pedido_detalle.a", orderable: false, searchable: false},
+            { data: "b", name: "orden_pedido_detalle.b", orderable: false, searchable: false},
+            { data: "c", name: "orden_pedido_detalle.c", orderable: false, searchable: false},
+            { data: "d", name: "orden_pedido_detalle.d", orderable: false, searchable: false},
+            { data: "e", name: "orden_pedido_detalle.e", orderable: false, searchable: false},
+            { data: "f", name: "orden_pedido_detalle.f", orderable: false, searchable: false},
+            { data: "g", name: "orden_pedido_detalle.g", orderable: false, searchable: false},
+            { data: "h", name: "orden_pedido_detalle.h", orderable: false, searchable: false},
+            { data: "i", name: "orden_pedido_detalle.i", orderable: false, searchable: false},
+            { data: "j", name: "orden_pedido_detalle.j", orderable: false, searchable: false},
+            { data: "k", name: "orden_pedido_detalle.k", orderable: false, searchable: false},
+            { data: "l", name: "orden_pedido_detalle.l", orderable: false, searchable: false},
+            { data: "total", name: "orden_pedido_detalle.total" },
             { data: "Opciones", orderable: false, searchable: false },
+            { data: "manual", orderable: false, searchable: false },
 
         ],
     });

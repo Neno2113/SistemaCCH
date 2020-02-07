@@ -109,6 +109,11 @@
                             <input type="text" name="precio_venta_publico" id="precio_venta_publico"
                                 class="form-control text-center" data-inputmask='"mask": "9999RD$"' data-mask>
                         </div>
+                        {{-- <div class="col-md-4 mt-4">
+                            <label for=""></label>
+                            <button type="button" class="btn btn-secondary  btn-block " data-toggle="modal"
+                                data-target=".bd-curva-modal-xl" id="btn-sku"><i class="fas fa-chart-area"></i> Asignar curva</button>
+                        </div> --}}
 
                     </div>
                     <div class="row" id="precios_2">
@@ -122,6 +127,7 @@
                             <input type="text" name="precio_venta_publico_2" id="precio_venta_publico_2"
                                 class="form-control" data-inputmask='"mask": "9999"' data-mask>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -181,6 +187,59 @@
     </div>
 
 </div>
+</div>
+
+
+<!-- Modal Curva-->
+<div class="modal fade bd-curva-modal-xl" tabindex="-1" id="modalSKU" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong> Declarar curva referencia</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="BrachForm">
+                    <div class="row">
+                        <h5>Referencia:</h5>
+                        <div class="col-md-3  mb-3">
+                            <input type="text" name="referencia_talla" id="referencia_talla" class="form-control text-center">
+                        </div>
+                    </div>
+                    <h5 class="text-center">Asignar porcentaje por talla</h5>
+                    <hr>
+                    <table class="table  table-bordered mt-3 tabla-perdidas">
+                        <thead>
+                            <tr>
+                                <th id="ta">A</th>
+                                <th id="tb">B</th>
+                                <th id="tc">C</th>
+                                <th id="td">D</th>
+                                <th id="te">E</th>
+                                <th id="tf">F</th>
+                                <th id="tg">G</th>
+                                <th id="th">H</th>
+                                <th id="ti">I</th>
+                                <th id="tj">J</th>
+                                <th id="tk">K</th>
+                                <th id="tl">L</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tallas">
+
+                        </tbody>
+                    </table>
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 

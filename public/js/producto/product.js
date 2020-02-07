@@ -69,7 +69,7 @@ $(document).ready(function() {
     function init() {
         listar();
         mostrarForm(false);
-        $("#btn-edit").hide();
+        // $("#btn-edit").hide();
     }
 
     function limpiar() {
@@ -149,18 +149,7 @@ $(document).ready(function() {
 
                     if (genero == "3") {
                         $("#referencia_talla").val("Niño: " + referencia);
-                        $("#btn-asignar2").html("2");
-                        $("#btn-asignar3").html("4");
-                        $("#btn-asignar4").html("6");
-                        $("#btn-asignar5").html("8");
-                        $("#btn-asignar6").html("10");
-                        $("#btn-asignar7").html("12");
-                        $("#btn-asignar8").html("14");
-                        $("#btn-asignar9").html("16");
-                        $("#btn-asignar10").attr("disabled", true);
-                        $("#btn-asignar11").attr("disabled", true);
-                        $("#btn-asignar12").attr("disabled", true);
-                        $("#btn-asignar13").attr("disabled", true);
+
                         $("#ta").html("2");
                         $("#tb").html("4");
                         $("#tc").html("6");
@@ -169,31 +158,10 @@ $(document).ready(function() {
                         $("#tf").html("12");
                         $("#tg").html("14");
                         $("#th").html("16");
-                        $("#tallas").html(
-                            "<th>Niño</th>" +
-                                "<th>2</th>" +
-                                "<th>4</th>" +
-                                "<th>6</th>" +
-                                "<th>8</th>" +
-                                "<th>10</th>" +
-                                "<th>12</th>" +
-                                "<th>14</th>" +
-                                "<th>16</th>"
-                        );
+
                     } else if (genero == "4") {
                         $("#referencia_talla").val("Niña: " + referencia);
-                        $("#btn-asignar2").html("2");
-                        $("#btn-asignar3").html("4");
-                        $("#btn-asignar4").html("6");
-                        $("#btn-asignar5").html("8");
-                        $("#btn-asignar6").html("10");
-                        $("#btn-asignar7").html("12");
-                        $("#btn-asignar8").html("14");
-                        $("#btn-asignar9").html("16");
-                        $("#btn-asignar10").attr("disabled", true);
-                        $("#btn-asignar11").attr("disabled", true);
-                        $("#btn-asignar12").attr("disabled", true);
-                        $("#btn-asignar13").attr("disabled", true);
+
                         $("#ta").html("2");
                         $("#tb").html("4");
                         $("#tc").html("6");
@@ -202,33 +170,10 @@ $(document).ready(function() {
                         $("#tf").html("12");
                         $("#tg").html("14");
                         $("#th").html("16");
-                        $("#tallas").html(
-                            "<th>Niña</th>" +
-                                "<th>2</th>" +
-                                "<th>4</th>" +
-                                "<th>6</th>" +
-                                "<th>8</th>" +
-                                "<th>10</th>" +
-                                "<th>12</th>" +
-                                "<th>14</th>" +
-                                "<th>16</th>"
-                        );
+
                     } else if (genero == "1") {
                         $("#referencia_talla").val("Hombre: " + referencia);
-                        $("#btn-asignar2").html("28");
-                        $("#btn-asignar3").html("29");
-                        $("#btn-asignar4").html("30");
-                        $("#btn-asignar5").html("32");
-                        $("#btn-asignar6").html("34");
-                        $("#btn-asignar7").html("36");
-                        $("#btn-asignar8").html("38");
-                        $("#btn-asignar9").html("40");
-                        $("#btn-asignar10").html("42");
-                        $("#btn-asignar11").html("44");
-                        $("#btn-asignar12").attr("disabled", true);
-                        $("#btn-asignar13").attr("disabled", true);
-                        $("#k").attr("disabled", true);
-                        $("#l").attr("disabled", true);
+
                         $("#ta").html("28");
                         $("#tb").html("29");
                         $("#tc").html("30");
@@ -239,37 +184,13 @@ $(document).ready(function() {
                         $("#th").html("40");
                         $("#ti").html("42");
                         $("#tj").html("44");
-                        $("#tallas").html(
-                            "<th>Caballero Skinny</th>" +
-                                "<th>28</th>" +
-                                "<th>29</th>" +
-                                "<th>30</th>" +
-                                "<th>32</th>" +
-                                "<th>34</th>" +
-                                "<th>36</th>" +
-                                "<th>38</th>" +
-                                "<th>40</th>" +
-                                "<th>42</th>" +
-                                "<th>44</th>"
-                        );
+
                     } else if (genero == "2") {
                         if (genero_plus == "7") {
                             $("#referencia_talla").val(
                                 "Mujer Plus: " + referencia
                             );
-                            $("#sub-genero").show();
-                            $("#btn-asignar2").html("12W");
-                            $("#btn-asignar3").html("14W");
-                            $("#btn-asignar4").html("16W");
-                            $("#btn-asignar5").html("18W");
-                            $("#btn-asignar6").html("20W");
-                            $("#btn-asignar7").html("22W");
-                            $("#btn-asignar8").html("24W");
-                            $("#btn-asignar9").html("26W");
-                            $("#btn-asignar10").attr("disabled", true);
-                            $("#btn-asignar11").attr("disabled", true);
-                            $("#btn-asignar12").attr("disabled", true);
-                            $("#btn-asignar13").attr("disabled", true);
+
                             $("#ta").html("12W");
                             $("#tb").html("14W");
                             $("#tc").html("16W");
@@ -278,35 +199,10 @@ $(document).ready(function() {
                             $("#tf").html("22W");
                             $("#tg").html("24W");
                             $("#th").html("26W");
-                            $("#tallas").html(
-                                "<th>Dama Plus</th>" +
-                                    "<th>12W</th>" +
-                                    "<th>14W</th>" +
-                                    "<th>16W</th>" +
-                                    "<th>18W</th>" +
-                                    "<th>20W</th>" +
-                                    "<th>22W</th>" +
-                                    "<th>24W</th>" +
-                                    "<th>26W</th>"
-                            );
+
                         } else {
                             $("#referencia_talla").val("Mujer: " + referencia);
-                            $("#btn-asignar2").html("0/0");
-                            $("#btn-asignar3").html("1/2");
-                            $("#btn-asignar4").html("3/4");
-                            $("#btn-asignar5").html("5/6");
-                            $("#btn-asignar6").html("7/8");
-                            $("#btn-asignar7").html("9/10");
-                            $("#btn-asignar8").html("11/12");
-                            $("#btn-asignar9").html("13/14");
-                            $("#btn-asignar10").html("15/16");
-                            $("#btn-asignar11").html("17/18");
-                            $("#btn-asignar12").html("19/20");
-                            $("#btn-asignar13").html("21/22");
-                            $("#btn-asignar2").attr("disabled", false);
-                            $("#btn-asignar2").attr("disabled", false);
-                            $("#btn-asignar2").attr("disabled", false);
-                            $("#btn-asignar2").attr("disabled", false);
+
                             $("#ta").html("0/0");
                             $("#tb").html("1/2");
                             $("#tc").html("3/4");
@@ -319,21 +215,7 @@ $(document).ready(function() {
                             $("#tj").html("17/18");
                             $("#tk").html("19/20");
                             $("#tl").html("21/22");
-                            $("#tallas").html(
-                                "<th>Dama TA</th>" +
-                                    "<th>0/0</th>" +
-                                    "<th>1/2</th>" +
-                                    "<th>3/4</th>" +
-                                    "<th>5/6</th>" +
-                                    "<th>7/8</th>" +
-                                    "<th>9/10</th>" +
-                                    "<th>11/12</th>" +
-                                    "<th>13/14</th>" +
-                                    "<th>15/16</th>" +
-                                    "<th>17/18</th>" +
-                                    "<th>19/20</th>" +
-                                    "<th>21/22</th>"
-                            );
+
                         }
                     }
 

@@ -308,6 +308,8 @@ Route::post('validar/orden_pedido', 'ordenPedidoController@validar');
 Route::post('cliente/segundas', 'ordenPedidoController@clienteSegunda');
 Route::get('vendedores', 'ordenPedidoController@vendedores');
 Route::get('ver/orden/{id}', 'ordenPedidoController@verRedistribuir');
+Route::post('orden/detalle/{id}', 'ordenPedidoController@ajuste');
+Route::post('orden/detalle/reajuste/{id}', 'ordenPedidoController@reajuste');
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');
