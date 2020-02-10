@@ -305,7 +305,7 @@ textarea.form-control
 .tabla-tallas tbody .red {
     width: 126%;
     border: none;
-    font-weight: bold;
+    /* font-weight: bold; */
 
 }
 
@@ -367,5 +367,99 @@ textarea.form-control
     border-bottom: 1px solid #00000036;
     padding-top: 20px;
 }
+
+
+
+.tabla-detalle {
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-left: -32px;
+    /* margin-bottom: 20px; */
+    table-layout: auto;
+    border: solid 1px black;
+}
+
+.tabla-detalle th,
+.tabla-detalle td {
+    /* padding: 20px; */
+    background: #fff;
+    text-align: center;
+    border-bottom: 1px solid black;
+    /* border: solid 2px black; */
+}
+
+
+.tabla-detalle th {
+    white-space: nowrap;
+    font-weight: bold;
+    background-color: #7d7d7d4d;
+    font-size: 10px;
+    /* border: solid 2px black; */
+}
+
+
+.tabla-detalle .talla_head {
+    color: black;
+    font-size: 12.5px;
+    border-bottom: 1px solid black;
+    /* border-top: 1px solid black; */
+}
+.tabla-detalle tbody .red {
+    width: 126%;
+    border: none;
+    /* font-weight: bold; */
+
+}
+
+.tabla-detalle .talla {
+    border-left: 1px solid black;
+    text-align: center;
+    /* font-weight: bold; */
+    /* font-size: 12px; */
+    width: 6%;
+    background: #ddcdad3d;
+}
+
+
+
+/* .ta {
+    width: 100%;
+    text-align: center;
+
+}
+
+.datatables tbody tr td {
+    border: 1px solid #31343940;
+} */
+
+/* input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+}
+
+input[type=number]::-webkit-inner-spin-button:hover {
+    -webkit-appearance: none;
+    opacity: 1;
+} */
+
+
+/* input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button:hover {
+    -webkit-appearance: ;
+    opacity: 1;
+} */
+
 
 

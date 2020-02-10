@@ -84,49 +84,52 @@
                         <div class="col-md-4 mt-2" id="comprobante">
                             <label for="">NCF</label>
                             <input type="text" name="ncf" id="ncf" class="form-control font-weight-bold">
-                         
+
                         </div>
 
                     </div>
-                    <div class="container" id="detalle-factura">
+                    <div id="detalle-factura">
                         <label for="" class="mt-5">Detalle Factura</label>
-                        <table id="invoice_detail" class="table table-bordered datatables mt-5 mb-3 mr-5 tabla-nc"
+                        <table id="invoice_detail" class="table datatables tabla-detalle mt-5 mb-3 mr-5 tabla-nc"
                             style="width:106%; margin-left: -31px;">
-                            {{-- <thead class="text-sm encabezados">
+                            <thead class="tabla-tallas">
                                 <tr>
-                                    <th class="genero">MUJER PLUS:</th>
-                                    <td class="">12W</td>
-                                    <td class="">14W</td>
-                                    <td class="">16W</td>
-                                    <td class="">18W</td>
-                                    <td class="">20W</td>
-                                    <td class="">22W</td>
-                                    <td class="">24W</td>
-                                    <td class="">26W</td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
+                                    <th class="talla_head">PLUS:</th>
+                                    <td class="talla">12W</td>
+                                    <td class="talla">14W</td>
+                                    <td class="talla">16W</td>
+                                    <td class="talla">18W</td>
+                                    <td class="talla">20W</td>
+                                    <td class="talla">22W</td>
+                                    <td class="talla">24W</td>
+                                    <td class="talla">26W</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+
                                 </tr>
-                
                                 <tr>
-                                    <th class="genero">MUJER:</th>
-                                    <td class="talla" style="width: 41.883px;">0/0</td>
-                                    <td class="talla" style="width: 39.233px;">1/2</td>
-                                    <td class="talla" style="width: 39.233px;">3/4</td>
-                                    <td class="talla" style="width: 39.233px;">5/6</td>
-                                    <td class="talla" style="width: 39.233px;">7/8</td>
-                                    <td class="talla" style="width: 39.233px;">9/10</td>
-                                    <td class="talla" style="width: 41.517px;">11/12</td>
-                                    <td class="talla" style="width: 43.217px;">13/14</td>
-                                    <td class="talla" style="width: 41.833px;">15/16</td>
-                                    <td class="talla" style="width: 42.567px;">17/18</td>
-                                    <td class="talla" style="width: 42.35px;">19/20</td>
-                                    <td class="talla" style="width: 42.15px;">21/22</td>
+                                    <th class="talla_head">MUJER:</th>
+                                    <td class="talla">0/0 </td>
+                                    <td class="talla">1/2 </td>
+                                    <td class="talla">3/4 </td>
+                                    <td class="talla">5/6 </td>
+                                    <td class="talla">7/8 </td>
+                                    <td class="talla">9/10 </td>
+                                    <td class="talla">11/12</td>
+                                    <td class="talla">13/14</td>
+                                    <td class="talla">15/16</td>
+                                    <td class="talla">17/18</td>
+                                    <td class="talla">19/20</td>
+                                    <td class="talla">21/22</td>
+                                    <td class="talla"></td>
+
+
                                 </tr>
-                
                                 <tr>
-                                    <th class="genero">HOMBRE:</th>
+                                    <th class="talla_head">HOMBRE:</th>
                                     <td class="talla">28</td>
                                     <td class="talla">29</td>
                                     <td class="talla">30</td>
@@ -139,10 +142,12 @@
                                     <td class="talla">42</td>
                                     <td class="talla">44</td>
                                     <td class="talla"></td>
+                                    <td class="talla"></td>
+
+
                                 </tr>
-                
                                 <tr>
-                                    <th class="genero">NIÑO:</th>
+                                    <th class="talla_head">NIÑO:</th>
                                     <td class="talla">2</td>
                                     <td class="talla">4</td>
                                     <td class="talla">6</td>
@@ -155,10 +160,12 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
+                                    <td class="talla"></td>
+
+
                                 </tr>
-                
                                 <tr>
-                                    <th class="genero">NIÑA:</th>
+                                    <th class="talla_head">NIÑA:</th>
                                     <td class="talla">2</td>
                                     <td class="talla">4</td>
                                     <td class="talla">6</td>
@@ -171,33 +178,37 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
+                                    <td class="talla"></td>
+
+
                                 </tr>
-                
-                            </thead> --}}
-                            <thead class="">
-                                <tr class="">
-                                    <th>Ref</th>
-                                    <th id="ta"></th>
-                                    <th id="tb"></th>
-                                    <th id="tc"></th>
-                                    <th id="td"></th>
-                                    <th id="te"></th>
-                                    <th id="tf"></th>
-                                    <th id="tg"></th>
-                                    <th id="th"></th>
-                                    <th id="ti"></th>
-                                    <th id="tj"></th>
-                                    <th id="tk"></th>
-                                    <th id="tl"></th>
-                                    <th>Guardar</th>
+                                <tr>
+                                    <th class="talla_head">Ref</th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head">Guardar</th>
+
                                 </tr>
                             </thead>
+
                             <tbody id="disponibles" class="text-sm">
 
                             </tbody>
 
                         </table>
-                        {{-- <div class="row mt-2" id="">
+                    </div>
+
+                    {{-- <div class="row mt-2" id="">
                             <div class="col-lg-1 col-md-2">
                                 <label for="" class="ml-4" id="sa">A</label>
                                 <input type="number" name="" id="a" class="form-control text-center"
@@ -260,7 +271,7 @@
                             </div>
                         </div> --}}
 
-                    </div>
+
 
 
             </div>
@@ -290,7 +301,8 @@
                     <th></th>
                     <th>Opciones</th>
                     <th># Factura</th>
-                    <th>User</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
                     <th>Fecha fact.</th>
                     <th>Fecha imp.</th>
                     {{-- <th>Total</th> --}}
@@ -303,7 +315,8 @@
                     <th></th>
                     <th>Opciones</th>
                     <th># Factura</th>
-                    <th>User</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
                     <th>Fecha fact.</th>
                     <th>Fecha imp.</th>
                     {{-- <th>Total</th> --}}
@@ -324,175 +337,6 @@
 @include('adminlte/scripts')
 <script src="{{asset('js/nota_credito.js')}}"></script>
 
-<script>
-    var longitud_global;
-    function mostrar(id_factura) {
-        $("#disponibles").empty("");
-        $.get("nota_credito/" + id_factura, function(data, status) {
-        
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit").hide();
-            $("#btn-guardar").show();
-            $("#btn-generar").hide();
-            $("#edit-hide").hide();
-            $("#edit-hide2").hide();
-            $("#detalle-factura").hide();
-            $("#comprobante").hide();
 
-            $("#factura_id").val(data.factura.id);
-            $("#orden_facturacion_id").val(data.factura.id);
-            $("#no_factura").val(data.factura.no_factura);
-            $("#cliente").val(data.cliente.nombre_cliente);
-            $("#cliente_id").val(data.cliente.id);
-            $("#sucursal").val(data.sucursal.nombre_sucursal);
-            $("#fecha_factura").val(data.factura.fecha);
-            $("#fecha_impresion").val(data.factura.fecha_impresion);
-            $("#precio_lista_factura").val(data.precio + " RD$")
-         
-            var longitud = data.detalle.length;
-            longitud_global = data.detalle.length;
-            for (let i = 0; i < longitud; i++) {
-                 
-                var fila =  "<tr >"+
-                "<td class='cuerpo'> "+data.detalle[i].producto.referencia_producto+"</td>"+
-                "<td ><input type='number' class='form-control' name='a' id='a"+data.detalle[i].id+"' value="+data.detalle[i].a+"></td>"+
-                "<td ><input type='number' class='form-control' name='b' id='b"+data.detalle[i].id+"' value="+data.detalle[i].b+"></td>"+
-                "<td ><input type='number' class='form-control' name='c' id='c"+data.detalle[i].id+"' value="+data.detalle[i].c+"></td>"+
-                "<td ><input type='number' class='form-control' name='d' id='d"+data.detalle[i].id+"' value="+data.detalle[i].d+"></td>"+
-                "<td ><input type='number' class='form-control' name='e' id='e"+data.detalle[i].id+"' value="+data.detalle[i].e+"></td>"+
-                "<td ><input type='number' class='form-control' name='f' id='f"+data.detalle[i].id+"' value="+data.detalle[i].f+"></td>"+
-                "<td ><input type='number' class='form-control' name='g' id='g"+data.detalle[i].id+"' value="+data.detalle[i].g+"></td>"+
-                "<td ><input type='number' class='form-control' name='h' id='h"+data.detalle[i].id+"' value="+data.detalle[i].h+"></td>"+
-                "<td ><input type='number' class='form-control' name='i' id='i"+data.detalle[i].id+"' value="+data.detalle[i].i+"></td>"+
-                "<td ><input type='number' class='form-control' name='j' id='j"+data.detalle[i].id+"' value="+data.detalle[i].j+"></td>"+
-                "<td ><input type='number' class='form-control' name='k' id='k"+data.detalle[i].id+"' value="+data.detalle[i].k+"></td>"+
-                "<td ><input type='number' class='form-control' name='l' id='l"+data.detalle[i].id+"' value="+data.detalle[i].l+"></td>"+
-                "<td ><button type='button' id='btn-detalle"+data.detalle[i].id+"' class='btn btn-info btn-sm' onclick='agregar("+data.detalle[i].id+")'><i class='far fa-save'></i></button></td>"+
-                "</tr>";
-
-                $("#disponibles").append(fila);  
-                //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-                (data.detalle[i].a <= 0 ) ? $("#a"+data.detalle[i].id).attr('disabled', true) : $("#a"+data.detalle[i].id).attr('disabled', false); 
-                (data.detalle[i].b <= 0 ) ? $("#b"+data.detalle[i].id).attr('disabled', true) : $("#b"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].c <= 0 ) ? $("#c"+data.detalle[i].id).attr('disabled', true) : $("#c"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].d <= 0 ) ? $("#d"+data.detalle[i].id).attr('disabled', true) : $("#d"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].e <= 0 ) ? $("#e"+data.detalle[i].id).attr('disabled', true) : $("#e"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].f <= 0 ) ? $("#f"+data.detalle[i].id).attr('disabled', true) : $("#f"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].g <= 0 ) ? $("#g"+data.detalle[i].id).attr('disabled', true) : $("#g"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].h <= 0 ) ? $("#h"+data.detalle[i].id).attr('disabled', true) : $("#h"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].i <= 0 ) ? $("#i"+data.detalle[i].id).attr('disabled', true) : $("#i"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].j <= 0 ) ? $("#j"+data.detalle[i].id).attr('disabled', true) : $("#j"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].k <= 0 ) ? $("#k"+data.detalle[i].id).attr('disabled', true) : $("#k"+data.detalle[i].id).attr('disabled', false);
-                (data.detalle[i].l <= 0 ) ? $("#l"+data.detalle[i].id).attr('disabled', true) : $("#l"+data.detalle[i].id).attr('disabled', false);           
-            }
-
-          
-        });
-    }
-
-    //  //funcion para listar en el Datatable
-    //  function listarFacturaDetalle(id) {
-    //    var tabla_orden = $("#invoice_detail").DataTable({
-    //         serverSide: true,
-    //         bFilter: false, 
-    //         lengthChange: false,
-    //         bPaginate: false,
-    //         bInfo: false,
-    //         retrieve: true,
-    //         ajax: "api/fact_detalle/"+id,
-    //         columns: [
-    //             { data: "Opciones", orderable: false, searchable: false },
-    //             { data: "referencia_producto",name: "producto.referencia_producto"},
-    //             { data: "a", name: "orden_facturacion_detalle.a"},
-    //             { data: "b", name: "orden_facturacion_detalle.b" },
-    //             { data: "c", name: "orden_facturacion_detalle.c" },
-    //             { data: "d", name: "orden_facturacion_detalle.d"},
-    //             { data: "e", name: "orden_facturacion_detalle.e"},
-    //             { data: "f", name: "orden_facturacion_detalle.f"},
-    //             { data: "g", name: "orden_facturacion_detalle.g"},
-    //             { data: "h", name: "orden_facturacion_detalle.h"},
-    //             { data: "i", name: "orden_facturacion_detalle.i"},
-    //             { data: "j", name: "orden_facturacion_detalle.j"},
-    //             { data: "k", name: "orden_facturacion_detalle.k"},
-    //             { data: "l", name: "orden_facturacion_detalle.l"},
-    //             { data: "total", name: "orden_facturacion_detalle.total"}
-    //             // { data: "cantidad"},
-    //             // { data: "Opciones", orderable: false, searchable: false },
-              
-    //         ],
-    //     });
-    // }
-   
-
-    function eliminar(id_factura){
-        bootbox.confirm("¿Estas seguro de eliminar la nota de credito?", function(result){
-            if(result){
-                $.post("nota-credito/delete/" + id_factura, function(data){
-                    bootbox.alert("Nota de credito <strong>"+ data.nota_credito.no_nota_credito+ "</strong> eliminada correctamente");
-                    $("#facturas_listadas").DataTable().ajax.reload();
-                
-                })
-            }
-        })
-    }
-
-    function agregar(factura_detella_id){
-
-        var nota_credito_detalle = {
-            nc_id: $("#nc_id").val(),
-            a: $('#a'+factura_detella_id).val(),
-            b: $("#b"+factura_detella_id).val(),
-            c: $("#c"+factura_detella_id).val(),
-            d: $("#d"+factura_detella_id).val(),
-            e: $("#e"+factura_detella_id).val(),
-            f: $("#f"+factura_detella_id).val(),
-            g: $("#g"+factura_detella_id).val(),
-            h: $("#h"+factura_detella_id).val(),   
-            i: $("#i"+factura_detella_id).val(),
-            j: $("#j"+factura_detella_id).val(),
-            k: $("#k"+factura_detella_id).val(),
-            l: $("#l"+factura_detella_id).val()                 
-        }
-        // console.log(JSON.stringify(nota_credito_detalle));
-      
-        $.ajax({
-            url: "nota-credito/detalle/"+factura_detella_id,
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(nota_credito_detalle),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    $("#btn-detalle"+ factura_detella_id).attr('disabled', true);
-                   
-                    $("#btn-guardar").attr("disabled", false);
-                    
-            
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function(datos) {
-                console.log(datos.responseJSON.errors); 
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
-                    });
-                });
-            }
-        });
-    }
-
-   
-
-</script>
 
 @endsection

@@ -968,7 +968,7 @@ class ordenPedidoController extends Controller
     public function verRedistribuir($id, Request $request){
         $orden = ordenPedido::find($id)->load('user')->load('cliente')->load('sucursal')->load('vendedor');
 
-        $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get();
+        $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get()->load('producto');
 
         $ids = [];
         $longitudOrden = count($orden_detalle);
@@ -981,7 +981,7 @@ class ordenPedidoController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'orden' => $orden,
-                $ids['0'] => $ids['0']
+                'detalle' => $orden_detalle
             ];
         }else{
             $data = [
@@ -1298,7 +1298,7 @@ class ordenPedidoController extends Controller
         $ordenes = DB::table('orden_pedido_detalle')->join('producto', 'orden_pedido_detalle.producto_id', 'producto.id')
             ->select([
                 'orden_pedido_detalle.id', 'orden_pedido_detalle.a', 'orden_pedido_detalle.b', 'orden_pedido_detalle.orden_ajustada',
-                'orden_pedido_detalle.c', 'orden_pedido_detalle.d', 'orden_pedido_detalle.e',
+                'orden_pedido_detalle.c', 'orden_pedido_detalle.d', 'orden_pedido_detalle.e', 'orden_pedido_detalle.cantidad',
                 'orden_pedido_detalle.f', 'orden_pedido_detalle.g', 'orden_pedido_detalle.h',
                 'orden_pedido_detalle.i', 'orden_pedido_detalle.j', 'orden_pedido_detalle.k',
                 'producto.referencia_producto', 'orden_pedido_detalle.l', 'orden_pedido_detalle.orden_pedido_id',
@@ -1307,144 +1307,144 @@ class ordenPedidoController extends Controller
         return DataTables::of($ordenes)
         ->editColumn('a', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="a'.$orden->id.'" min="0" class="form-control red" value='.$orden->a.'>';
+                return '<input type="number" id="a'.$orden->id.'" name="a" class="form-control red" value='.$orden->a.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->a <=0){
-                return '<input type="text" id="a'.$orden->id.'"  class="form-control  red" readonly value='.$orden->a.'>';
+                return '<input type="text" id="a'.$orden->id.'" name="a" class="form-control  red" readonly value='.$orden->a.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1 || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="a'.$orden->id.'" class="form-control  red" readonly value='.$orden->a.'>';
+                return '<input type="text" id="a'.$orden->id.'" name="a" class="form-control  red" readonly value='.$orden->a.'>';
             }else{
-                return '<input type="number"  id="a'.$orden->id.'"  min="0" class="form-control red" value='.$orden->a.'>';
+                return '<input type="number"  id="a'.$orden->id.'" name="a"  class="form-control red" value='.$orden->a.'>';
             }
         })
         ->editColumn('b', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="b'.$orden->id.'" min="0" class="form-control red" value='.$orden->b.'>';
+                return '<input type="number" id="b'.$orden->id.'" name="b" class="form-control red" value='.$orden->b.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->b <=0){
-                return '<input type="text" id="b'.$orden->id.'"  class="form-control  red" readonly value='.$orden->b.'>';
+                return '<input type="text" id="b'.$orden->id.'" name="b"  class="form-control  red" readonly value='.$orden->b.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="b'.$orden->id.'"  class="form-control  red" readonly value='.$orden->b.'>';
+                return '<input type="text" id="b'.$orden->id.'" name="b" class="form-control  red" readonly value='.$orden->b.'>';
             }else{
-                return '<input type="number" id="b'.$orden->id.'"  min="0" class="form-control red" value='.$orden->b.'>';
+                return '<input type="number" id="b'.$orden->id.'" name="b" class="form-control red" value='.$orden->b.'>';
             }
         })
         ->editColumn('c', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="c'.$orden->id.'" min="0"  class="form-control red" value='.$orden->c.'>';
+                return '<input type="number" id="c'.$orden->id.'" name="c" data-inputmask='."mask".":". "9[99]".' data-mask class="form-control red"  value='.$orden->c.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->c <=0){
-                return '<input type="text" id="c'.$orden->id.'"  class="form-control  red" readonly value='.$orden->c.'>';
+                return '<input type="text" id="c'.$orden->id.'" name="c"  class="form-control font-weight-bold red" readonly value='.$orden->c.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="c'.$orden->id.'"  class="form-control  red" readonly value='.$orden->c.'>';
+                return '<input type="text" id="c'.$orden->id.'" name="c"  class="form-control font-weight-bold red" readonly value='.$orden->c.'>';
             }else{
-                return '<input type="number" id="c'.$orden->id.'"  min="0"  class="form-control red" value='.$orden->c.'>';
+                return '<input type="number" id="c'.$orden->id.'" name="c" data-inputmask='."mask".":". "9[99]".' data-mask  class="form-control red" value='.$orden->c.'>';
             }
         })
         ->editColumn('d', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="d'.$orden->id.'" min="0"  class="form-control red" value='.$orden->d.'>';;
+                return '<input type="number" id="d'.$orden->id.'" name="d" class="form-control red" value='.$orden->d.'>';;
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->d <=0){
-                return '<input type="text" id="d'.$orden->id.'" class="form-control  red" readonly value='.$orden->d.'>';
+                return '<input type="text" id="d'.$orden->id.'" name="d" class="form-control font-weight-bold  red" readonly value='.$orden->d.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="d'.$orden->id.'" class="form-control  red" readonly value='.$orden->d.'>';
+                return '<input type="text" id="d'.$orden->id.'" name="d" class="form-control font-weight-bold red" readonly value='.$orden->d.'>';
             }else{
-                return '<input type="number" id="d'.$orden->id.'" min="0"  class="form-control red" value='.$orden->d.'>';
+                return '<input type="number" id="d'.$orden->id.'" name="d" class="form-control red" value='.$orden->d.'>';
             }
         })
         ->editColumn('e', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="e'.$orden->id.'" min="0"  class="form-control red" value='.$orden->e.'>';
+                return '<input type="number" id="e'.$orden->id.'" name="e"  class="form-control red" value='.$orden->e.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->e <=0){
-                return '<input type="text" id="e'.$orden->id.'" class="form-control  red" readonly value='.$orden->e.'>';
+                return '<input type="text" id="e'.$orden->id.'" name="e" class="form-control font-weight-bold red" readonly value='.$orden->e.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="e'.$orden->id.'" class="form-control  red" readonly value='.$orden->e.'>';
+                return '<input type="text" id="e'.$orden->id.'" name="e" class="form-control font-weight-bold red" readonly value='.$orden->e.'>';
             }else{
-                return '<input type="number" id="e'.$orden->id.'" min="0"  class="form-control red" value='.$orden->e.'>';
+                return '<input type="number" id="e'.$orden->id.'" name="e" class="form-control red" value='.$orden->e.'>';
             }
         })
         ->editColumn('f', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="f'.$orden->id.'" min="0" class="form-control red" value='.$orden->f.'>';
+                return '<input type="number" id="f'.$orden->id.'" name="f" class="form-control red" value='.$orden->f.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->f <=0){
-                return '<input type="text" id="f'.$orden->id.'" class="form-control  red" readonly value='.$orden->f.'>';
+                return '<input type="text" id="f'.$orden->id.'" name="f" class="form-control font-weight-bold red" readonly value='.$orden->f.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="f'.$orden->id.'" class="form-control  red" readonly value='.$orden->f.'>';
+                return '<input type="text" id="f'.$orden->id.'" name="f" class="form-control font-weight-bold red" readonly value='.$orden->f.'>';
             }else{
-                return '<input type="number" id="f'.$orden->id.'" min="0" class="form-control red" value='.$orden->f.'>';
+                return '<input type="number" id="f'.$orden->id.'" name="f" class="form-control red" value='.$orden->f.'>';
             }
         })
         ->editColumn('g', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="g'.$orden->id.'" min="0" class="form-control red" value='.$orden->g.'>';
+                return '<input type="number" id="g'.$orden->id.'" name="g" class="form-control red" value='.$orden->g.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->g <=0){
-                return '<input type="text" id="g'.$orden->id.'" class="form-control  red" readonly value='.$orden->g.'>';
+                return '<input type="text" id="g'.$orden->id.'" name="g" class="form-control font-weight-bold red" readonly value='.$orden->g.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="g'.$orden->id.'" class="form-control  red" readonly value='.$orden->g.'>';
+                return '<input type="text" id="g'.$orden->id.'" name="g" class="form-control font-weight-bold red" readonly value='.$orden->g.'>';
             }else{
-                return '<input type="number" id="g'.$orden->id.'" min="0" class="form-control red" value='.$orden->g.'>';
+                return '<input type="number" id="g'.$orden->id.'" name="g" class="form-control red" value='.$orden->g.'>';
             }
         })
         ->editColumn('h', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="h'.$orden->id.'" min="0" class="form-control red" value='.$orden->h.'>';
+                return '<input type="number" id="h'.$orden->id.'" name="h" class="form-control red" value='.$orden->h.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->h <=0){
-                return '<input type="text" id="h'.$orden->id.'" class="form-control  red" readonly value='.$orden->h.'>';
+                return '<input type="text" id="h'.$orden->id.'" name="h" class="form-control font-weight-bold red" readonly value='.$orden->h.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="h'.$orden->id.'" class="form-control  red" readonly value='.$orden->h.'>';
+                return '<input type="text" id="h'.$orden->id.'" name="h" class="form-control font-weight-bold red" readonly value='.$orden->h.'>';
             }else{
-                return '<input type="number" id="h'.$orden->id.'" min="0" class="form-control red" value='.$orden->h.'>';
+                return '<input type="number" id="h'.$orden->id.'" name="h" class="form-control red" value='.$orden->h.'>';
             }
         })
         ->editColumn('i', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="i'.$orden->id.'" min="0" class="form-control red" value='.$orden->i.'>';
+                return '<input type="number" id="i'.$orden->id.'" name="i" class="form-control red" value='.$orden->i.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->i <=0){
-                return '<input type="text" id="i'.$orden->id.'" class="form-control  red" readonly value='.$orden->i.'>';
+                return '<input type="text" id="i'.$orden->id.'" name="i" class="form-control font-weight-bold red" readonly value='.$orden->i.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="i'.$orden->id.'" class="form-control  red" readonly value='.$orden->i.'>';
+                return '<input type="text" id="i'.$orden->id.'" name="i" class="form-control font-weight-bold red" readonly value='.$orden->i.'>';
             }else{
-                return '<input type="number" id="i'.$orden->id.'" min="0" class="form-control red" value='.$orden->i.'>';
+                return '<input type="number" id="i'.$orden->id.'" name="i" class="form-control red" value='.$orden->i.'>';
             }
         })
         ->editColumn('j', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0) {
-                return '<input type="number" id="j'.$orden->id.'" min="0" class="form-control red" value='.$orden->j.'>';
+                return '<input type="number" id="j'.$orden->id.'" name="j" class="form-control red" value='.$orden->j.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->j <=0){
-                return '<input type="text" id="j'.$orden->id.'" class="form-control  red" readonly value='.$orden->j.'>';
+                return '<input type="text" id="j'.$orden->id.'" name="j" class="form-control font-weight-bold red" readonly value='.$orden->j.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="j'.$orden->id.'" class="form-control  red" readonly value='.$orden->j.'>';
+                return '<input type="text" id="j'.$orden->id.'" name="j" class="form-control font-weight-bold red" readonly value='.$orden->j.'>';
             }else{
-                return '<input type="number" id="j'.$orden->id.'" min="0" class="form-control red" value='.$orden->j.'>';
+                return '<input type="number" id="j'.$orden->id.'" name="j" class="form-control red" value='.$orden->j.'>';
             }
         })
         ->editColumn('k', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="k'.$orden->id.'" min="0" class="form-control red" value='.$orden->k.'>';
+                return '<input type="number" id="k'.$orden->id.'" name="k" class="form-control red" value='.$orden->k.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->k <=0){
-                return '<input type="text" id="k'.$orden->id.'" class="form-control  red" readonly value='.$orden->k.'>';
+                return '<input type="text" id="k'.$orden->id.'" name="k" class="form-control font-weight-bold red" readonly value='.$orden->k.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1 ){
-                return '<input type="text" id="k'.$orden->id.'" class="form-control  red" readonly value='.$orden->k.'>';
+                return '<input type="text" id="k'.$orden->id.'" name="k" class="form-control font-weight-bold red" readonly value='.$orden->k.'>';
             }else{
-                return '<input type="number" id="k'.$orden->id.'" min="0" class="form-control red" value='.$orden->k.'>';
+                return '<input type="number" id="k'.$orden->id.'" name="k" class="form-control red" value='.$orden->k.'>';
             }
         })
         ->editColumn('l', function ($orden) {
             if($orden->orden_redistribuida == 0 && $orden->orden_ajustada == 0){
-                return '<input type="number" id="l'.$orden->id.'" min="0" class="form-control red" value='.$orden->l.'>';
+                return '<input type="number" id="l'.$orden->id.'" name="l" class="form-control red" value='.$orden->l.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 0 && $orden->l <=0){
-                return '<input type="text" id="l'.$orden->id.'" class="form-control  red" readonly value='.$orden->l.'>';
+                return '<input type="text" id="l'.$orden->id.'" name="l" class="form-control font-weight-bold red" readonly value='.$orden->l.'>';
             }else if($orden->orden_redistribuida == 1 && $orden->orden_ajustada == 1  || $orden->orden_redistribuida == 0 && $orden->orden_ajustada == 1){
-                return '<input type="text" id="l'.$orden->id.'" class="form-control  red" readonly value='.$orden->l.'>';
+                return '<input type="text" id="l'.$orden->id.'" name="l" class="form-control font-weight-bold red" readonly value='.$orden->l.'>';
             }else{
-                return '<input type="number" id="l'.$orden->id.'" min="0" class="form-control red" value='.$orden->l.'>';
+                return '<input type="number" id="l'.$orden->id.'" name="l" class="form-control red" value='.$orden->l.'>';
             }
         })
         ->editColumn('total', function ($orden) {
-            return '<input type="text" id="total'.$orden->total.'" readonly class="form-control red" value='.$orden->total.'>';
+            return '<input type="text" id="red'.$orden->id.'" readonly class="form-control font-weight-bold  red" value='.$orden->total.'>';
         })
-        ->addColumn('total_orden', function ($orden) {
-            return '<input type="text" id="total_orden"  class="form-control red" readonly>';
+        ->editColumn('cantidad', function ($orden) {
+            return '<input type="text" id="total'.$orden->id.'" readonly  class="form-control font-weight-bold text-success red"  value='.$orden->cantidad.'>';
         })
         // ->editColumn('referencia_producto', function ($orden) {
-        //     return '<input type="text" id="ref"  class="form-control" value='.$orden->referencia_producto.'>';
+        //     return '<input type="number" id="ref"  class="form-control" value='.$orden->referencia_producto.'>';
         // })
         ->addColumn('Opciones', function ($orden) {
             $id = $orden->orden_pedido_id;
@@ -1475,7 +1475,7 @@ class ordenPedidoController extends Controller
             }
         })
             ->rawColumns(['Opciones', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j','k','l',
-            'total', 'referencia_producto', 'manual', 'total_orden'])
+            'total', 'referencia_producto', 'manual', 'cantidad'])
             ->make(true);
     }
 

@@ -8,6 +8,7 @@ use App\ordenFacturacionDetalle;
 use App\Factura;
 use App\ordenEmpaque;
 use App\ordenEmpaqueDetalle;
+use App\NotaCreditoDetalle;
 use App\Product;
 use App\SKU;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class FacturaController extends Controller
             'tipo_factura' => 'required',
             'numeracion' => 'required',
             'itbis' => 'required',
-          
+
             'fecha' => 'required',
             'comprobante_fiscal' => 'required'
         ]);
@@ -53,7 +54,7 @@ class FacturaController extends Controller
                 $tipo_factura = "FB";
             }
 
-            
+
 
             $factura->orden_facturacion_id = $orden_facturacion_id;
             $factura->no_factura = $tipo_factura . '-' . $numeracion;
@@ -287,6 +288,7 @@ class FacturaController extends Controller
             $productos_id = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)->select('producto_id')
                 ->get();
 
+
             $productos = array();
 
             $longitudProductos = count($productos_id);
@@ -326,7 +328,7 @@ class FacturaController extends Controller
 
             $subtotal = array_sum(str_replace(',', '', $detalles_totales));
             $itbis = $factura->itbis / 100;
-           
+
 
             $porc_desc = $factura->descuento / 100;
             $descuento = $porc_desc * $subtotal;
@@ -404,7 +406,7 @@ class FacturaController extends Controller
                 'subtotal_real',
                 'total_articulos',
                 'orden_empaque_detalle'
-            ));         
+            ));
         }
     }
 

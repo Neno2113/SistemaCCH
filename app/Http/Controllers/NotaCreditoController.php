@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\ClientBranch;
 use App\Factura;
 use Illuminate\Http\Request;
 use App\NotaCredito;
@@ -57,7 +59,7 @@ class NotaCreditoController extends Controller
             $factura->save();
 
             $nota_credito = new NotaCredito();
-         
+
             $nota_credito->factura_id = $factura_id;
             $nota_credito->no_nota_credito = $no_nota_credito;
             $nota_credito->ncf = $ncf;
@@ -67,7 +69,7 @@ class NotaCreditoController extends Controller
             $nota_credito->cliente_id = $cliente_id;
             $nota_credito->precio_lista_factura = $precio_lista_factura;
             $nota_credito->tipo_nota_credito = $tipo_nota_credito;
-    
+
 
             $nota_credito->save();
 
@@ -98,7 +100,7 @@ class NotaCreditoController extends Controller
             $nc_id = $request->input('nc_id');
 
             $facturacion_detalle = ordenFacturacionDetalle::find($id);
-           
+
 
             $a_detalle = $facturacion_detalle->a;
             $b_detalle = $facturacion_detalle->b;
@@ -156,39 +158,39 @@ class NotaCreditoController extends Controller
             $l = $l_detalle - $l;
 
             //actualizar detalle de orden de facturacion
-            $a_detalle = $a_detalle - $a;
-            $b_detalle = $b_detalle - $b;
-            $c_detalle = $c_detalle - $c;
-            $d_detalle = $d_detalle - $d;
-            $e_detalle = $e_detalle - $e;
-            $f_detalle = $f_detalle - $f;
-            $g_detalle = $g_detalle - $g;
-            $h_detalle = $h_detalle - $h;
-            $i_detalle = $i_detalle - $i;
-            $j_detalle = $j_detalle - $j;
-            $k_detalle = $k_detalle - $k;
-            $l_detalle = $l_detalle - $l;
+            // $a_detalle = $a_detalle - $a;
+            // $b_detalle = $b_detalle - $b;
+            // $c_detalle = $c_detalle - $c;
+            // $d_detalle = $d_detalle - $d;
+            // $e_detalle = $e_detalle - $e;
+            // $f_detalle = $f_detalle - $f;
+            // $g_detalle = $g_detalle - $g;
+            // $h_detalle = $h_detalle - $h;
+            // $i_detalle = $i_detalle - $i;
+            // $j_detalle = $j_detalle - $j;
+            // $k_detalle = $k_detalle - $k;
+            // $l_detalle = $l_detalle - $l;
 
-            $facturacion_detalle->a = $a_detalle;
-            $facturacion_detalle->b = $b_detalle;
-            $facturacion_detalle->c = $c_detalle;
-            $facturacion_detalle->d = $d_detalle;
-            $facturacion_detalle->e = $e_detalle;
-            $facturacion_detalle->f = $f_detalle;
-            $facturacion_detalle->g = $g_detalle;
-            $facturacion_detalle->h = $h_detalle;
-            $facturacion_detalle->i = $i_detalle;
-            $facturacion_detalle->j = $j_detalle;
-            $facturacion_detalle->k = $k_detalle;
-            $facturacion_detalle->l = $l_detalle;
-            $facturacion_detalle->total = $a_detalle + $b_detalle + $c_detalle + $d_detalle + $e_detalle + $f_detalle + $g_detalle
-            + $h_detalle + $i_detalle + $j_detalle + $k_detalle + $l_detalle;
-            $facturacion_detalle->nota_credito = 1;
-            $facturacion_detalle->save();
+            // $facturacion_detalle->a = $a_detalle;
+            // $facturacion_detalle->b = $b_detalle;
+            // $facturacion_detalle->c = $c_detalle;
+            // $facturacion_detalle->d = $d_detalle;
+            // $facturacion_detalle->e = $e_detalle;
+            // $facturacion_detalle->f = $f_detalle;
+            // $facturacion_detalle->g = $g_detalle;
+            // $facturacion_detalle->h = $h_detalle;
+            // $facturacion_detalle->i = $i_detalle;
+            // $facturacion_detalle->j = $j_detalle;
+            // $facturacion_detalle->k = $k_detalle;
+            // $facturacion_detalle->l = $l_detalle;
+            // $facturacion_detalle->total = $a_detalle + $b_detalle + $c_detalle + $d_detalle + $e_detalle + $f_detalle + $g_detalle
+            // + $h_detalle + $i_detalle + $j_detalle + $k_detalle + $l_detalle;
+            // $facturacion_detalle->nota_credito = 1;
+            // $facturacion_detalle->save();
 
 
             $nota_credito_detalle = new NotaCreditoDetalle();
-            
+
             $nota_credito_detalle->nota_credito_id = $nc_id;
             $nota_credito_detalle->a = $a;
             $nota_credito_detalle->b = $b;
@@ -224,12 +226,27 @@ class NotaCreditoController extends Controller
             ->join('orden_facturacion', 'factura.orden_facturacion_id', 'orden_facturacion.id')
             ->select([
                 'factura.id', 'factura.no_factura', 'factura.fecha', 'factura.fecha_impresion',
-                'orden_facturacion.por_transporte', 'factura.nc_uso', 'users.name', 'users.surname'
+                'orden_facturacion.por_transporte', 'factura.nc_uso', 'users.name', 'users.surname',
+                'orden_facturacion.orden_empaque_id as empaque_id'
             ]);
 
         return DataTables::of($facturas)
-            ->addColumn('Expandir', function ($dactura) {
+            ->addColumn('Expandir', function ($factura) {
                 return "";
+            })
+            ->addColumn('cliente', function ($factura) {
+                $orden_empaque = ordenEmpaque::find($factura->empaque_id);
+                $orden_pedido = ordenPedido::find($orden_empaque->orden_pedido_id);
+                $cliente = Client::find($orden_pedido->cliente_id);
+
+                return $cliente->nombre_cliente;
+            })
+            ->addColumn('sucursal', function ($factura) {
+                $orden_empaque = ordenEmpaque::find($factura->empaque_id);
+                $orden_pedido = ordenPedido::find($orden_empaque->orden_pedido_id);
+                $sucursal = ClientBranch::find($orden_pedido->sucursal_id);
+
+                return $sucursal->nombre_sucursal;
             })
             ->editColumn('fecha', function ($facturas) {
                 return date("d-m-20y", strtotime($facturas->fecha));
@@ -266,11 +283,11 @@ class NotaCreditoController extends Controller
             //     return $orden_facturacion_detalle->total;
             // })
             ->addColumn('Opciones', function ($facturas) {
-                return ($facturas->nc_uso == 0) ? '<button onclick="mostrar(' . $facturas->id . ')" id="agregar"  class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt fa-lg"></i></button>':
+                return ($facturas->nc_uso == 0) ? '<button onclick="mostrar(' . $facturas->id . ')" id="agregar"  class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt "></i></button>':
                 '<button onclick="eliminar(' . $facturas->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>'.
                 '<a href="imprimir_notaCredito/' . $facturas->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
-              
-                
+
+
             })
             ->rawColumns(['Opciones'])
             ->make(true);
@@ -300,7 +317,7 @@ class NotaCreditoController extends Controller
     {
 
         $factura = Factura::find($id)->load('user')->load('orden_facturacion');
-     
+
         $factura->fecha = date('d/m/20y', strtotime($factura->fecha));
         $factura->fecha_impresion = date('d/m/20y h:i', strtotime($factura->fecha_impresion));
         $factura->total = number_format($factura->total);
@@ -312,7 +329,7 @@ class NotaCreditoController extends Controller
         $orden_facturacion_unique = ordenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion_id)->get()->last();
         $orden_pedido_id = $orden_facturacion_unique->orden_pedido_id;
         $orden_facturacion_unique->precio = number_format($orden_facturacion_unique->precio);
-    
+
         //cliente
         $orden_pedido = ordenPedido::find($orden_pedido_id)->load('cliente')->load('sucursal');
 
@@ -375,29 +392,29 @@ class NotaCreditoController extends Controller
 
             $nota_credito = NotaCredito::where('factura_id', $id)->first();
             $nota_credito_id = $nota_credito->id;
-          
 
-            $facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion_id)->get();
-            $longitudDetalle = count($facturacion_detalle);
-            $nota_detalle = NotaCreditoDetalle::where('nota_credito_id', $nota_credito_id)->get();
-            //actualizar status de la orden pedido
-            for ($i = 0; $i < $longitudDetalle; $i++) {
-                $facturacion_detalle[$i]->a = $facturacion_detalle[$i]->a + $nota_detalle[$i]->a;
-                $facturacion_detalle[$i]->b = $facturacion_detalle[$i]->b + $nota_detalle[$i]->b;
-                $facturacion_detalle[$i]->c = $facturacion_detalle[$i]->c + $nota_detalle[$i]->c;
-                $facturacion_detalle[$i]->d = $facturacion_detalle[$i]->d + $nota_detalle[$i]->d;
-                $facturacion_detalle[$i]->e = $facturacion_detalle[$i]->e + $nota_detalle[$i]->e;
-                $facturacion_detalle[$i]->f = $facturacion_detalle[$i]->f + $nota_detalle[$i]->f;
-                $facturacion_detalle[$i]->g = $facturacion_detalle[$i]->g + $nota_detalle[$i]->g;
-                $facturacion_detalle[$i]->h = $facturacion_detalle[$i]->h + $nota_detalle[$i]->h;
-                $facturacion_detalle[$i]->i = $facturacion_detalle[$i]->i + $nota_detalle[$i]->i;
-                $facturacion_detalle[$i]->j = $facturacion_detalle[$i]->j + $nota_detalle[$i]->j;
-                $facturacion_detalle[$i]->k = $facturacion_detalle[$i]->k + $nota_detalle[$i]->k;
-                $facturacion_detalle[$i]->l = $facturacion_detalle[$i]->l + $nota_detalle[$i]->l;
-                $facturacion_detalle[$i]->total = $facturacion_detalle[$i]->total + $nota_detalle[$i]->total;
-                $facturacion_detalle[$i]->nota_credito = 0;
-                $facturacion_detalle[$i]->save();
-            }
+
+            // $facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion_id)->get();
+            // $longitudDetalle = count($facturacion_detalle);
+            // $nota_detalle = NotaCreditoDetalle::where('nota_credito_id', $nota_credito_id)->get();
+            // //actualizar status de la orden pedido
+            // for ($i = 0; $i < $longitudDetalle; $i++) {
+            //     $facturacion_detalle[$i]->a = $facturacion_detalle[$i]->a + $nota_detalle[$i]->a;
+            //     $facturacion_detalle[$i]->b = $facturacion_detalle[$i]->b + $nota_detalle[$i]->b;
+            //     $facturacion_detalle[$i]->c = $facturacion_detalle[$i]->c + $nota_detalle[$i]->c;
+            //     $facturacion_detalle[$i]->d = $facturacion_detalle[$i]->d + $nota_detalle[$i]->d;
+            //     $facturacion_detalle[$i]->e = $facturacion_detalle[$i]->e + $nota_detalle[$i]->e;
+            //     $facturacion_detalle[$i]->f = $facturacion_detalle[$i]->f + $nota_detalle[$i]->f;
+            //     $facturacion_detalle[$i]->g = $facturacion_detalle[$i]->g + $nota_detalle[$i]->g;
+            //     $facturacion_detalle[$i]->h = $facturacion_detalle[$i]->h + $nota_detalle[$i]->h;
+            //     $facturacion_detalle[$i]->i = $facturacion_detalle[$i]->i + $nota_detalle[$i]->i;
+            //     $facturacion_detalle[$i]->j = $facturacion_detalle[$i]->j + $nota_detalle[$i]->j;
+            //     $facturacion_detalle[$i]->k = $facturacion_detalle[$i]->k + $nota_detalle[$i]->k;
+            //     $facturacion_detalle[$i]->l = $facturacion_detalle[$i]->l + $nota_detalle[$i]->l;
+            //     $facturacion_detalle[$i]->total = $facturacion_detalle[$i]->total + $nota_detalle[$i]->total;
+            //     $facturacion_detalle[$i]->nota_credito = 0;
+            //     $facturacion_detalle[$i]->save();
+            // }
             $nota_credito->delete();
             $data = [
                 'code' => 200,
@@ -422,13 +439,9 @@ class NotaCreditoController extends Controller
 
             $nota_credito = NotaCredito::where('factura_id', $id)->get()->first()->load('factura');
             $nota_credito_id = $nota_credito->id;
-         
-            
-            $nota_detalle = NotaCreditoDetalle::where('nota_credito_id', $nota_credito_id)->get()->load('producto');
 
-            // $factura->fecha_impresion = date('Y/m/d h:i:s');
-            // $factura->impreso = 1;
-            // $factura->save();
+
+            $nota_detalle = NotaCreditoDetalle::where('nota_credito_id', $nota_credito_id)->get()->load('producto');
 
             $id_orden_facturacion = $factura->orden_facturacion->id;
             $orden_facturacion = OrdenFacturacion::find($id_orden_facturacion);
@@ -466,7 +479,7 @@ class NotaCreditoController extends Controller
             $totales_detalles = array();
             $precio_total = array();
 
-            $longitudDetalles = count($orden_facturacion_detalle);
+            $longitudDetalles = count($nota_detalle);
 
 
             for ($i = 0; $i < $longitudDetalles; $i++) {
@@ -480,7 +493,7 @@ class NotaCreditoController extends Controller
 
             $subtotal = array_sum(str_replace(',', '', $detalles_totales));
 
-        
+
             $porc_desc = $nota_credito->factura->descuento / 100;
             $descuento = $porc_desc * $subtotal;
 
@@ -490,16 +503,16 @@ class NotaCreditoController extends Controller
 
                 $subtotal_real = $subtotal - $descuento;;
                 $impuesto = $itbis * $subtotal_real;
-    
+
                 $total_final = $subtotal_real + $impuesto;
-    
+
                 $nota_credito->total = $total_final;
                 $nota_credito->hora_impresion = date('Y/m/d h:i:s');
                 $nota_credito->save();
             }else{
-                
+
                 $subtotal_real = $subtotal;
-            
+
                 $total_final = $subtotal_real - $descuento;;
                 $impuesto = 0;
                 $nota_credito->total = $total_final;
@@ -509,7 +522,7 @@ class NotaCreditoController extends Controller
 
 
 
-        
+
 
             $ordenes_pedido_id = array();
 
@@ -581,7 +594,7 @@ class NotaCreditoController extends Controller
                 'orden_empaque_detalle',
                 'nota_credito',
                 'nota_detalle'
-            ));         
+            ));
         }
     }
 

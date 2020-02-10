@@ -391,6 +391,8 @@ $(document).ready(function() {
                     let mujer_plus = val.substring(3, 4);
                     genero_global = genero;
                     genero_plus_global = mujer_plus;
+                    console.log(genero);
+                    console.log(mujer_plus);
                     $("#pendiente_produccion").html(datos.pen_produccion);
                     $("#pendiente_lavanderia").html(datos.pen_lavanderia);
                     $("#perdida_x").html(datos.perdida_x);
@@ -605,7 +607,7 @@ $(document).ready(function() {
                         $("#l").attr("disabled", true);
 
                     } else if (genero == "1") {
-                        $("#genero").val("Hombre: " + val);
+                        // $("#genero").val("Hombre: " + val);
                         $("#sub-genero").hide();
                         $("#ta").html("28");
                         $("#tb").html("29");
@@ -888,34 +890,38 @@ $(document).ready(function() {
                                "</div>")
                             }else if(b > b_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 30 a la cantidad total del corte y las perdidas"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 29 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }else if(c > c_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 32 a la cantidad total del corte y las perdidas"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 30 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }
                             else if(d > d_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 34 a la cantidad total del corte y las perdidas"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 32 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }else if(e > e_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 36 a la cantidad total del corte y las perdidas"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 34 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }else if(f > f_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 38 a la cantidad total del corte y las perdidas"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 36 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }else if(g > g_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 40 a la cantidad total del corte y las perdidas"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 38 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }else if(h > h_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 42 a la cantidad total del corte y las perdidas"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 40 a la cantidad total del corte y las perdidas"+
                                "</div>")
                             }else if(i > i_total){
+                                bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 42 a la cantidad total del corte y las perdidas"+
+                               "</div>")
+                            }else if(j > j_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
                                 "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44 a la cantidad total del corte y las perdidas"+
                                "</div>")
@@ -1418,7 +1424,7 @@ function mostrar(id_almacen){
             $("#bg").html("14");
             $("#bh").html("16");
         } else if (genero == "4") {
-            $("#genero").val("Niña: " + val);
+            // $("#genero").val("Niña: " + val);
             $("#sub-genero").hide();
             $("#ta").html("2");
             $("#tb").html("4");
@@ -1445,7 +1451,7 @@ function mostrar(id_almacen){
             $("#bg").html("14");
             $("#bh").html("16");
         } else if (genero == "1") {
-            $("#genero").val("Hombre: " + val);
+            // $("#genero").val("Hombre: " + val);
             $("#sub-genero").hide();
             $("#ta").html("28");
             $("#tb").html("29");
@@ -1467,14 +1473,16 @@ function mostrar(id_almacen){
             $("#sh").html("40");
             $("#si").html("42");
             $("#sj").html("44");
-            $("#ba").html("2");
-            $("#bb").html("4");
-            $("#bc").html("6");
-            $("#bd").html("8");
-            $("#be").html("10");
-            $("#bf").html("12");
-            $("#bg").html("14");
-            $("#bh").html("16")
+            $("#ba").html("28");
+            $("#bb").html("29");
+            $("#bc").html("30");
+            $("#bd").html("32");
+            $("#be").html("34");
+            $("#bf").html("36");
+            $("#bg").html("38");
+            $("#bh").html("40")
+            $("#bi").html("42")
+            $("#bj").html("44")
 
         }
     });

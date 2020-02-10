@@ -63,7 +63,7 @@
                     </div>
                     <div class="container">
                         <label for="" class="mt-5">Orden de empaque</label>
-                        <table id="orden_detalle" class="table datatables mt-5 mb-3 tabla-tallas"  style="width:100%;">
+                        <table id="orden_detalle" class="table datatables mt-5 mb-3 tabla-tallas"  style="width:106%;">
                             <thead class="tabla-tallas">
                                 <tr>
                                     <th class="talla_head">MUJER PLUS:</th>
@@ -106,7 +106,6 @@
                                     <td class="talla">28</td>
                                     <td class="talla">29</td>
                                     <td class="talla">30</td>
-                                    <td class="talla">31</td>
                                     <td class="talla">32</td>
                                     <td class="talla">34</td>
                                     <td class="talla">36</td>
@@ -114,6 +113,7 @@
                                     <td class="talla">40</td>
                                     <td class="talla">42</td>
                                     <td class="talla">44</td>
+                                    <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
 

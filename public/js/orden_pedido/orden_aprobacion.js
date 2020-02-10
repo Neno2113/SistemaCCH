@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("[data-mask]").inputmask();
 
     $("#formulario").validate({
         rules: {
@@ -38,9 +39,11 @@ $(document).ready(function() {
     var tabla
 
     function init() {
+        // $("[data-mask]").inputmask();
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+        // $('input[name="c"]').inputmask("999");
     }
 
 
@@ -137,8 +140,19 @@ $(document).ready(function() {
 
     });
 
+    $('input[name="c"]').keyup(function(){
+        alert('Hi');
+    });
+
     init();
 });
+
+
+function inicio(){
+    $("[data-mask]").inputmask();
+    $('input[name="c"]').inputmask("999");
+
+}
 
 
 function aprobar(id_orden) {
@@ -213,14 +227,33 @@ function ver(id_orden) {
         $("#sucursal_apro").val(data.orden.sucursal.nombre_sucursal).attr('readonly', true);
         $("#vendedor").val(data.orden.vendedor.nombre+" "+data.orden.vendedor.apellido).attr('readonly', true);
         $("#detalle").DataTable().destroy();
+        // $("#detalle").empty();
         listarOrdenDetalle(data.orden.id);
+        // for (let t = 0; t < data.detalle.length; t++) {
+        //     var fila =
+        //     '<tr id="fila">'+
+        //     "<td>"+data.detalle[t].producto.referencia_producto+"</td>"+
+        //     "<td><input type='text' name='a' id='a' class='form-control red' data-inputmask='"+'mask'+": "+'9[99]'+"' data-mask value="+data.detalle[t].a+"></td>"+
+        //     "<td><input type='text' name='b' id='b' class='form-control red' value="+data.detalle[t].b+"></td>"+
+        //     "<td><input type='text' name='c' id='c' class='form-control red' value="+data.detalle[t].c+"></td>"+
+        //     "<td><input type='text' name='d' id='d' class='form-control red' value="+data.detalle[t].d+"></td>"+
+        //     "<td><input type='text' name='e' id='e' class='form-control red' value="+data.detalle[t].e+"></td>"+
+        //     "<td><input type='text' name='f' id='f' class='form-control red' value="+data.detalle[t].f+"></td>"+
+        //     "<td><input type='text' name='g' id='g' class='form-control red' value="+data.detalle[t].g+"></td>"+
+        //     "<td><input type='text' name='h' id='h' class='form-control red' value="+data.detalle[t].h+"></td>"+
+        //     "<td><input type='text' name='i' id='i' class='form-control red' value="+data.detalle[t].i+"></td>"+
+        //     "<td><input type='text' name='j' id='j' class='form-control red' value="+data.detalle[t].j+"></td>"+
+        //     "<td><input type='text' name='k' id='k' class='form-control red' value="+data.detalle[t].k+"></td>"+
+        //     "<td><input type='text' name='l' id='l' class='form-control red' value="+data.detalle[t].l+"></td>"+
+        //     "<td><input type='text' id='total_talla' class='form-control red'  name='total_talla[]' value="+data.detalle[t].total+"></td>"+
+        //     "<td><input type='text' id='total_talla' class='form-control red' name='total_talla[]' value="+data.detalle[t].total+"></td>"+
+        //     "<td><input type='text' id='total_talla' class='form-control red' name='total_talla[]' value="+data.detalle[t].total+"></td>"+
+        //     "<td><input type='text' id='total_talla' class='form-control red' name='total_talla[]' value="+data.detalle[t].total+"></td>"+
+        //     "</tr>";
+        //     $("#disponibles").append(fila);
+        // }
 
-        for (let i = 0; i < data.orden_detalle.length; i++) {
-            const element = array[i];
-
-        }
-
-
+        // $("[data-mask]").inputmask();
 
     });
 }
@@ -236,7 +269,7 @@ function ajuste( id_orden){
         confirmButtonText: 'Si, guardar'
       }).then((result) => {
         if (result.value) {
-            agregarDetalle(id_orden);
+            validar(id_orden);
         }
       })
 }
@@ -256,6 +289,46 @@ function reajustar( id_orden){
         }
       })
 
+
+}
+
+function validar(id){
+    let a = parseInt($("#a"+id).val());
+    let b = parseInt($("#b"+id).val());
+    let c = parseInt($("#c"+id).val());
+    let d = parseInt($("#d"+id).val());
+    let e = parseInt($("#e"+id).val());
+    let f = parseInt($("#f"+id).val());
+    let g = parseInt($("#g"+id).val());
+    let h = parseInt($("#h"+id).val());
+    let i = parseInt($("#i"+id).val());
+    let j = parseInt($("#j"+id).val());
+    let k = parseInt($("#k"+id).val());
+    let l = parseInt($("#l"+id).val());
+    let total = $("#total"+id).val();
+
+    let sum = a + b + c + d + e + f + g + h + i + j + k + l;
+
+    if(sum > total){
+        $("#red"+id).val(sum).addClass('text-danger');
+        // total.attr('class', '')
+        Swal.fire(
+        'Alerta!',
+        'El total ajustado es mayor a la cantidad del pedido!',
+        'warning'
+        )
+    }else if(sum < total){
+        $("#red"+id).val(sum).val(sum).addClass('text-danger');
+        Swal.fire(
+            'Alerta!',
+            'El total ajustado es menor a la cantidad del pedido!',
+            'warning'
+            )
+    }else{
+        $("#red"+id).val(sum).removeClass('text-danger');
+        $("#red"+id).val(sum).addClass('text-success');
+        agregarDetalle(id);
+    }
 
 }
 
@@ -350,9 +423,6 @@ function cambiarAjuste(id){
     });
 }
 
-
-
-
 //funcion para listar en el Datatable
 function listarOrdenDetalle(id) {
    var tabla_orden = $("#detalle").DataTable({
@@ -365,7 +435,7 @@ function listarOrdenDetalle(id) {
         ajax: "api/listarDetalle/"+id,
         columns: [
             { data: "referencia_producto",name: "producto.referencia_producto"},
-            { data: "a",name: "orden_pedido_detalle.a", orderable: false, searchable: false},
+            { data: "a", name: "orden_pedido_detalle.a", orderable: false, searchable: false},
             { data: "b", name: "orden_pedido_detalle.b", orderable: false, searchable: false},
             { data: "c", name: "orden_pedido_detalle.c", orderable: false, searchable: false},
             { data: "d", name: "orden_pedido_detalle.d", orderable: false, searchable: false},
@@ -377,10 +447,14 @@ function listarOrdenDetalle(id) {
             { data: "j", name: "orden_pedido_detalle.j", orderable: false, searchable: false},
             { data: "k", name: "orden_pedido_detalle.k", orderable: false, searchable: false},
             { data: "l", name: "orden_pedido_detalle.l", orderable: false, searchable: false},
-            { data: "total", name: "orden_pedido_detalle.total" },
+            { data: "total", name: "orden_pedido_detalle.total",  },
+            { data: "cantidad", name: "orden_pedido_detalle.cantidad" },
             { data: "Opciones", orderable: false, searchable: false },
             { data: "manual", orderable: false, searchable: false },
 
         ],
     });
 }
+
+
+inicio();

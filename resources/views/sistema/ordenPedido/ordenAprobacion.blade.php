@@ -73,7 +73,7 @@
                     </div>
 
                     <label for="" class="mt-5">Detalle orden</label><span class="badge badge-success ml-2" id="badge-red">Redistribuido <i class="fas fa-check"></i></span>
-                    <table id="detalle" class="table datatables mt-5 mb-3 mr-5 tabla-tallas text-sm" style="width:104%;">
+                    <table id="detalle" class="table  mt-5 mb-3 mr-5 tabla-tallas text-sm" style="width:106%;">
                         <thead class="tabla-tallas">
                             <tr>
                                 <th class="talla_head">PLUS:</th>
@@ -85,6 +85,7 @@
                                 <td class="talla">22W</td>
                                 <td class="talla">24W</td>
                                 <td class="talla">26W</td>
+                                <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
@@ -110,13 +111,13 @@
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
+                                <td class="talla"></td>
                             </tr>
                             <tr>
                                 <th class="talla_head">HOMBRE:</th>
                                 <td class="talla">28</td>
                                 <td class="talla">29</td>
                                 <td class="talla">30</td>
-                                <td class="talla">31</td>
                                 <td class="talla">32</td>
                                 <td class="talla">34</td>
                                 <td class="talla">36</td>
@@ -124,6 +125,8 @@
                                 <td class="talla">40</td>
                                 <td class="talla">42</td>
                                 <td class="talla">44</td>
+                                <td class="talla"></td>
+                                <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
@@ -139,6 +142,7 @@
                                 <td class="talla">12</td>
                                 <td class="talla">14</td>
                                 <td class="talla">16</td>
+                                <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
@@ -164,6 +168,7 @@
                                 <td class="talla"></td>
                                 <td class="talla"></td>
                                 <td class="talla"></td>
+                                <td class="talla"></td>
                             </tr>
                             <tr>
                                 <th class="talla_head">Ref</th>
@@ -180,6 +185,7 @@
                                 <th class="talla_head"></th>
                                 <th class="talla_head"></th>
                                 <th class="talla_head">Total</th>
+                                <th class="talla_head">Cant</th>
                                 <th class="talla_head">Red</th>
                                 <th class="talla_head">Man</th>
                             </tr>
@@ -203,6 +209,7 @@
                                 <th class="talla_head">K</th>
                                 <th class="talla_head">L</th>
                                 <th class="talla_head">Total</th>
+                                <th class="talla_head">Cant</th>
                                 <th class="talla_head">Red</th>
                                 <th class="talla_head">Man</th>
                             </tr>
@@ -291,10 +298,6 @@
         </tfoot>
     </table>
 </div> --}}
-
-
-
-
 
 
 @include('adminlte/scripts')

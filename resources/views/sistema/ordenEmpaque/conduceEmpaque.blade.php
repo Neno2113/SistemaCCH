@@ -352,7 +352,7 @@
 
 		}
 
-		/* 
+		/*
         .tabla-totales {
             border: 2px  solid black;
             text-align: center;
@@ -750,7 +750,8 @@
 					<td class="talla"></td>
 					<td class="talla"></td>
 					<td class="talla"></td>
-					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
 				</tr>
 
 				<tr>
@@ -766,7 +767,8 @@
 					<td class="talla" style="width: 41.833px;">15/16</td>
 					<td class="talla" style="width: 42.567px;">17/18</td>
 					<td class="talla" style="width: 42.35px;">19/20</td>
-					<td class="talla" style="width: 42.15px;">21/22</td>
+                    <td class="talla" style="width: 42.15px;">21/22</td>
+                    <td class="talla"></td>
 				</tr>
 
 				<tr>
@@ -782,7 +784,8 @@
 					<td class="talla">40</td>
 					<td class="talla">42</td>
 					<td class="talla">44</td>
-					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
 				</tr>
 
 				<tr>
@@ -798,7 +801,8 @@
 					<td class="talla"></td>
 					<td class="talla"></td>
 					<td class="talla"></td>
-					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
 				</tr>
 
 				<tr>
@@ -814,7 +818,8 @@
 					<td class="talla"></td>
 					<td class="talla"></td>
 					<td class="talla"></td>
-					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
 				</tr>
 
 			</thead>
