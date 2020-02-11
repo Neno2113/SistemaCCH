@@ -88,7 +88,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro y creo usuario correctamente");
+                    Swal.fire(
+                        'Success',
+                        'Usuario registrado y creado correctamente.',
+                        'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);

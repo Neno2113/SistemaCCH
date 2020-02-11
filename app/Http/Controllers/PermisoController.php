@@ -61,10 +61,9 @@ class PermisoController extends Controller
 
     public function permisos()
     {
-        $permisos = DB::table('permiso_usuario')
-            ->join('users', 'permiso_usuario.user_id', 'users.id')
+        $permisos = DB::table('users')
             ->select([
-                'permiso_usuario.id', 'users.name', 'users.surname', 'permiso_usuario.permiso',
+                'users.name', 'users.surname', 'users.id',
                 'users.role', 'users.email'
             ]);
 
@@ -73,8 +72,7 @@ class PermisoController extends Controller
             return $permiso->name." ". $permiso->surname;
         })
         ->addColumn('Opciones', function ($permiso) {
-            return
-            '<button onclick="eliminar(' . $permiso->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
+            return '<button onclick="mostrar(' . $permiso->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-user-edit"></i></button>';
         })
             ->rawColumns(['Opciones'])
             ->make(true);
@@ -99,6 +97,26 @@ class PermisoController extends Controller
                 'message' => 'Ocurrio un error durante esta operacion'
             ];
         }
+        return response()->json($data, $data['code']);
+    }
+
+    public function show($id){
+        $permiso_usuario = PermisoUsuario::where('user_id', $id)->get()->load('user');
+
+        if(!empty($permiso_usuario)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'permiso' => $permiso_usuario
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error'
+            ];
+        }
+
         return response()->json($data, $data['code']);
     }
 }

@@ -6,12 +6,92 @@
 
 @section('content')
 
-{{-- <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar"> <i class="fas fa-th-list"></i></button>
-    <button class="btn btn-danger mb-3 " id="btnCancelar"> <i class="fas fa-window-close"></i></button>
-    <button class="btn btn-secondary" id="btnImprimir">Print <i class="fas fa-print"></i> </button>
-</div> --}}
-<div class="row mt-3" id="btn-opciones">
+<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill"
+            href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home"
+            aria-selected="true">Facturar</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill"
+            href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile"
+            aria-selected="false">Imprimir</a>
+    </li>
+</ul>
+<div class="tab-content" id="custom-content-below-tabContent">
+    <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel"
+        aria-labelledby="custom-content-below-home-tab">
+        <div class="container mt-4" id="listadoUsers">
+            <table id="orden_facturacion" class="table  table-striped table-bordered datatables mt-2">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Accion</th>
+                        <th>Usuario Gen.</th>
+                        <th>No. Orden E.</th>
+                        <th>Fecha Creado.</th>
+                        <th>Env. Transporte</th>
+                        <th>Fecha empacado</th>
+                        {{-- <th>No Orden P.</th>
+                        <th>F. entrega</th> --}}
+                    </tr>
+                </thead>
+                <tbody id="disponibles">
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Accion</th>
+                        <th>Usuario Gen.</th>
+                        <th>No. Orden E.</th>
+                        <th>Fecha Creado.</th>
+                        <th>Env. Transporte</th>
+
+                        <th>Fecha empacado</th>
+                        {{-- <th>No Orden P.</th>
+                        <th>F. entrega</th> --}}
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+    <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
+        aria-labelledby="custom-content-below-profile-tab">
+        <div class="container  mt-4" id="FacturaImprimir">
+            <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Actions</th>
+                        <th>Usuario</th>
+                        <th># Factura</th>
+                        <th>Fecha</th>
+                        <th>Descuento</th>
+                        <th>ITBIS</th>
+                        <th>Tipo Fact.</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th>Actions</th>
+                        <th>Usuario</th>
+                        <th># Factura</th>
+                        <th>Fecha</th>
+                        <th>Descuento</th>
+                        <th>ITBIS</th>
+                        <th>Tipo Fact.</th>
+                        <th>Status</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</div>
+{{-- <div class="row mt-3" id="btn-opciones">
     <div class="col-md-6 d-flex justify-content-center border-right border-bottom">
         <button class="btn btn-info rounded-pill  mt-3 mb-4" type="button" data-toggle="collapse"
             data-target="#listadoUsers" aria-expanded="false" data-toggle="button" aria-pressed="false"
@@ -25,7 +105,7 @@
             <i class="fas fa-print"></i> Imprimir facturas
         </button>
     </div>
-</div>
+</div> --}}
 
 <div class="row mt-3">
     <div class="col-12">
@@ -171,27 +251,27 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                   
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">MUJER:</th>
-                                    <td class="talla" >0/0</td>
-                                    <td class="talla" >1/2</td>
-                                    <td class="talla" >3/4</td>
+                                    <td class="talla">0/0</td>
+                                    <td class="talla">1/2</td>
+                                    <td class="talla">3/4</td>
                                     <td class="talla">5/6</td>
                                     <td class="talla">7/8</td>
                                     <td class="talla">9/10</td>
-                                    <td class="talla" >11/12</td>
-                                    <td class="talla" >13/14</td>
-                                    <td class="talla" >15/16</td>
-                                    <td class="talla" >17/18</td>
+                                    <td class="talla">11/12</td>
+                                    <td class="talla">13/14</td>
+                                    <td class="talla">15/16</td>
+                                    <td class="talla">17/18</td>
                                     <td class="talla">19/20</td>
                                     <td class="talla">21/22</td>
                                     <td class="talla"></td>
-                                    
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">HOMBRE:</th>
                                     <td class="talla">28</td>
@@ -207,9 +287,9 @@
                                     <td class="talla">44</td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                    
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">NIÑO:</th>
                                     <td class="talla">2</td>
@@ -225,9 +305,9 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                   
+
                                 </tr>
-                
+
                                 <tr>
                                     <th class="talla_head">NIÑA:</th>
                                     <td class="talla">2</td>
@@ -243,8 +323,8 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
-                                    
-                                </tr> 
+
+                                </tr>
                                 <tr>
                                     <th class="talla_head">Referencia</th>
                                     <th class="talla_head"></th>
@@ -291,7 +371,7 @@
             </div>
             <div class="card-footer ">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
-                    class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
                 <button type="submit" id="btn-guardar" class="btn btn-info float-right">
                     <i class="far fa-save fa-lg"></i> Guardar
                 </button>
@@ -304,71 +384,9 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="orden_facturacion" class="table  table-striped table-bordered datatables mt-2">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Accion</th>
-                <th>Usuario Gen.</th>
-                <th>No. Orden E.</th>
-                <th>Fecha Creado.</th>
-                <th>Env. Transporte</th>
-                <th>Fecha empacado</th>
-                {{-- <th>No Orden P.</th>
-                <th>F. entrega</th> --}}
-            </tr>
-        </thead>
-        <tbody id="disponibles">
 
-        </tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Accion</th>
-                <th>Usuario Gen.</th>
-                <th>No. Orden E.</th>
-                <th>Fecha Creado.</th>
-                <th>Env. Transporte</th>
-               
-                <th>Fecha empacado</th>
-                {{-- <th>No Orden P.</th>
-                <th>F. entrega</th> --}}
-            </tr>
-        </tfoot>
-    </table>
 
-</div>
 
-<div class="container collapse mt-4" id="FacturaImprimir">
-    <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
-        <thead>
-            <tr>
-                <th>Actions</th>
-                <th>Usuario</th>
-                <th># Factura</th>
-                <th>Fecha</th>
-                <th>Descuento</th>
-                <th>ITBIS</th>
-                <th>Tipo Fact.</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th>Actions</th>
-                <th>Usuario</th>
-                <th># Factura</th>
-                <th>Fecha</th>
-                <th>Descuento</th>
-                <th>ITBIS</th>
-                <th>Tipo Fact.</th>
-                <th>Status</th>
-            </tr>
-        </tfoot>
-    </table>
-</div>
 
 
 
@@ -386,18 +404,18 @@
             $("#btn-guardar").show();
             $("#btnImprimir").hide();
             $("#btn-opciones").hide();
-            
-        
+
+
             $("#id").val(data.orden_facturacion.id);
             $("#cliente").val(data.orden_pedido.cliente.nombre_cliente);
             $("#sucursal").val(data.orden_pedido.sucursal.nombre_sucursal);
             $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
-           
+
             $("#facturacion_detalle").DataTable().destroy();
             listarOrdenDetalle(data.orden_facturacion.id);
-           
-         
-                     
+
+
+
         });
     }
 
@@ -405,7 +423,7 @@
       function listarOrdenDetalle(id) {
        var tabla_orden = $("#facturacion_detalle").DataTable({
             serverSide: true,
-            bFilter: false, 
+            bFilter: false,
             lengthChange: false,
             bPaginate: false,
             bInfo: false,
@@ -426,7 +444,7 @@
                 { data: "k", name: "orden_pedido_detalle.k"},
                 { data: "l", name: "orden_pedido_detalle.l"},
                 { data: "total", name: "orden_pedido_detalle.total"},
-              
+
             ],
         });
     }

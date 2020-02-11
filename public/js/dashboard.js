@@ -138,27 +138,21 @@ $(document).ready(function() {
                     let fechas = [];
                     let totales = [];
 
-                    //Fecha en mes de ventas 
+                    //Fecha en mes de ventas
                     for (let i = 0; i < datos.result.length; i++) {
                         fechas.push(datos.result[i].mes);
-                        
                     }
-                 
 
                     //totales
                     for (let i = 0; i < datos.result.length; i++) {
-                        totales.push(datos.result[i].total)
-                        
+                        totales.push(datos.result[i].total);
                     }
-                  
 
-                  
                     var ctx = document.getElementById("ventas12meses");
                     var myChart = new Chart(ctx, {
                         type: "bar",
                         data: {
-                            labels: fechas
-                            ,
+                            labels: fechas,
                             datasets: [
                                 {
                                     label: "Venta ultimos 12 meses",
@@ -205,7 +199,6 @@ $(document).ready(function() {
         });
     }
 
-    
     function venta10dias() {
         $.ajax({
             url: "venta10dias",
@@ -216,25 +209,21 @@ $(document).ready(function() {
                     let fechas = [];
                     let totales = [];
 
-                    //Fecha en mes de ventas 
+                    //Fecha en mes de ventas
                     for (let i = 0; i < datos.result.length; i++) {
                         fechas.push(datos.result[i].fecha);
-                        
                     }
-                 
+
                     //totales
                     for (let i = 0; i < datos.result.length; i++) {
                         totales.push(datos.result[i].total);
-                        
                     }
-                  
+
                     var ctx = document.getElementById("ventas10dias");
                     var myChart = new Chart(ctx, {
                         type: "bar",
                         data: {
-                            labels: 
-                               fechas
-                            ,
+                            labels: fechas,
                             datasets: [
                                 {
                                     label: "Venta ultimos 10 dias",
@@ -308,9 +297,8 @@ $(document).ready(function() {
                             "</div>" +
                             "</td>" +
                             "</tr>";
+                        $("#latest_orders").append(orden);
                     }
-
-                    $("#latest_orders").append(orden);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -343,9 +331,10 @@ $(document).ready(function() {
                             "</span>" +
                             "</div>" +
                             "</li>";
+                            $("#productos").append(producto);
                     }
 
-                    $("#productos").append(producto);
+
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }
@@ -383,9 +372,10 @@ $(document).ready(function() {
                             "</div>" +
                             "</td>" +
                             "</tr>";
+                            $("#latest_cortes").append(corte);
                     }
 
-                    $("#latest_cortes").append(corte);
+
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }

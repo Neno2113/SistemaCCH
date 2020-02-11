@@ -1031,9 +1031,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar").val(),
-            referencia: $("#referencia").val()
+            referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1061,9 +1061,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar2").val(),
-            referencia: $("#referencia").val()
+            referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1093,9 +1093,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar3").val(),
-            referencia: $("#referencia").val()
+           referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1125,9 +1125,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar4").val(),
-            referencia: $("#referencia").val()
+           referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1157,9 +1157,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar5").val(),
-            referencia: $("#referencia").val()
+           referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1194,13 +1194,13 @@ $(document).ready(function() {
             var asignacion = {
                 id: $("#id_producto").val(),
                 talla: $("#btn-asignar6").val(),
-                referencia: $("#referencia_2").val()
+                referencia: $("#productos").val()
             };
         } else {
             var asignacion = {
-                id: $("#id_producto").val(),
+                id: $("#productos").val(),
                 talla: $("#btn-asignar6").val(),
-                referencia: $("#referencia").val()
+               referencia: $("#productos option:selected").text()
             };
         }
 
@@ -1240,9 +1240,9 @@ $(document).ready(function() {
             };
         } else {
             var asignacion = {
-                id: $("#id_producto").val(),
+                id: $("#productos").val(),
                 talla: $("#btn-asignar7").val(),
-                referencia: $("#referencia").val()
+               referencia: $("#productos option:selected").text()
             };
         }
 
@@ -1283,9 +1283,9 @@ $(document).ready(function() {
             };
         } else {
             var asignacion = {
-                id: $("#id_producto").val(),
+                id: $("#productos").val(),
                 talla: $("#btn-asignar8").val(),
-                referencia: $("#referencia").val()
+               referencia: $("#productos option:selected").text()
             };
         }
 
@@ -1325,9 +1325,9 @@ $(document).ready(function() {
             };
         } else {
             var asignacion = {
-                id: $("#id_producto").val(),
+                id: $("#productos").val(),
                 talla: $("#btn-asignar9").val(),
-                referencia: $("#referencia").val()
+               referencia: $("#productos option:selected").text()
             };
         }
 
@@ -1358,9 +1358,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar10").val(),
-            referencia: $("#referencia").val()
+           referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1389,9 +1389,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar11").val(),
-            referencia: $("#referencia").val()
+           referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1421,9 +1421,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar12").val(),
-            referencia: $("#referencia").val()
+           referencia: $("#productos option:selected").text()
         };
 
         $.ajax({
@@ -1453,9 +1453,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         var asignacion = {
-            id: $("#id_producto").val(),
+            id: $("#productos").val(),
             talla: $("#btn-asignar13").val(),
-            referencia: $("#referencia").val()
+           referencia: $("#productos option:selected").text()
         };
 
         $.ajax({

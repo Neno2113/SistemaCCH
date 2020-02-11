@@ -55,7 +55,7 @@ class ClothController extends Controller
 
 
             $cloth = new Cloth();
-            $cloth->id_user = $id_user;
+            $cloth->user_id = $id_user;
             $cloth->id_suplidor = $id_suplidor;
             $cloth->id_composiciones = $id_composiciones;
             $cloth->referencia = $referencia;

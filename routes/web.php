@@ -361,4 +361,5 @@ Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 Route::get('usuarios', 'PermisoController@usuarios');
 Route::post('permiso', 'PermisoController@store');
 Route::post('permiso/delete/{id}', 'PermisoController@destroy');
+Route::get('permiso/{id}', 'PermisoController@show');
 

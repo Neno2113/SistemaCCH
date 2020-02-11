@@ -100,15 +100,32 @@ $(document).ready(function() {
     }
 
     $("#btn-guardar").click(function(e) {
-        // validacion(e);
         e.preventDefault();
+
+        limpiar();
+        tabla.ajax.reload();
+        mostrarForm(false);
+        Swal.fire(
+            'Success',
+            'Permisos agregados correctamente.',
+            'success'
+        )
+
+    });
+
+    $("#btn-agregar").on('click', function(e){
+        e.preventDefault();
+
+        agregar();
+    });
+
+
+    function agregar(){
 
         var permiso = {
             permiso: $("#permisos").val(),
             usuario: $("#usuario").val()
         };
-
-        console.log(JSON.stringify(permiso));
 
         $.ajax({
             url: "permiso",
@@ -118,10 +135,22 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Permiso de acceso agregado");
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
+                    console.log(datos);
+                    Swal.fire(
+                        'Success',
+                        'Permiso agregar correctamente.',
+                        'success'
+                    )
+                    let usuario = $("#usuario option:selected").text();
+
+                    var cont;
+                    var fila =
+                    '<tr id="fila'+cont +'">'+
+                    "<td>"+usuario+"</td>"+
+                    "<td>"+datos.permiso.permiso+"</td>"+
+                    "</tr>";
+                    cont++;
+                    $("#permisos-agregados").append(fila);
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
@@ -140,7 +169,7 @@ $(document).ready(function() {
                 });
             }
         });
-    });
+    }
 
     function listar() {
         tabla = $("#users").DataTable({
@@ -148,7 +177,6 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/permisos",
             dom: 'Bfrtip',
-            iDisplayLength: 5,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -167,13 +195,13 @@ $(document).ready(function() {
             columns: [
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "name", name: 'users.name'},
-                { data: "permiso", name: 'permiso_usuario.permiso'},
+                // { data: "permiso", name: 'permiso_usuario.permiso'},
                 { data: "role", name: 'users.role'},
                 { data: "email", name: 'users.email'}
             ],
-            order: [[1, 'asc']],
+            order: [[2, 'asc']],
             rowGroup: {
-                dataSrc: 'name'
+                dataSrc: 'role'
             }
         });
     }
@@ -242,8 +270,10 @@ $(document).ready(function() {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
-            $("#btnAgregar").show();
+            $("#fila1").show();
+            $("#btn-agregar").show();
             $("#btn-edit").hide();
+            $("#editar-permisos").hide();
             $("#btn-guardar").show();
         }
     }
@@ -251,12 +281,118 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         mostrarForm(true);
+        $("#editar-permisos").hide();
+        $("#permisos-agregados").empty();
     });
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
         mostrarForm(false);
     });
 
+    $("#btn-eliminar").click(function(e){
+        e.preventDefault();
+        alert("Hi");
+    });
+
 
     init();
 });
+
+
+function mostrar(id_user) {
+    $.get("permiso/" + id_user, function(data, status) {
+
+        $("#listadoUsers").hide();
+        $("#registroForm").show();
+        $("#btnCancelar").show();
+        $("#btn-edit").show();
+        $("#btn-agregar").hide();
+        $("#btn-guardar").hide();
+        $("#fila1").hide();
+        $("#ver-contra").show();
+        $("#editar-permisos").show();
+        $("#permisos-agregados").empty();
+
+        for (let i = 0; i < data.permiso.length; i++) {
+            var fila =
+            '<tr id="fila'+data.permiso[i].id+'">'+
+            "<td class=''><input type='hidden' id='usuario"+data.permiso[i].user.id+"' value="+data.permiso[i].user.id+">"+data.permiso[i].user.name+"</td>"+
+            "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.permiso[i].id+"' value="+data.permiso[i].id+">"+data.permiso[i].permiso+"</td>"+
+            "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+data.permiso[i].id+")' class='btn btn-danger'><i class='fas fa-user-minus'></i></button></td>"+
+            "</tr>";
+            $("#permisos-agregados").append(fila);
+        }
+
+
+    });
+}
+
+function delAcceso(id){
+    Swal.fire({
+        title: '¿Esta seguro de quitarle este acceso a este usuario?',
+        text: "Eliminar acceso",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            eliminarAcceso(id);
+        }
+      })
+}
+
+function eliminarAcceso(id){
+
+    $.ajax({
+        url: "permiso/delete/"+id,
+        type: "POST",
+        dataType: "json",
+        // data: JSON.stringify(permiso),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                // console.log(datos);
+                Swal.fire(
+                    'Success',
+                    'Permiso eliminado correctamente.',
+                    'success'
+                )
+                $("#fila"+id).remove();
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.errors);
+            let errores = datos.responseJSON.errors;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                    size: 'small'
+                });
+            });
+        }
+    });
+}
+
+
+// function eliminar(id_permiso){
+//     bootbox.confirm("¿Estas seguro de eliminarle este acceso a este usuario?", function(result){
+//         if(result){
+//             $.post("permiso/delete/" + id_permiso, function(){
+//                 // bootbox.alert(e);
+//                 bootbox.alert("Acceso eliminado correctamente!!");
+//                 $("#users").DataTable().ajax.reload();
+//             })
+//         }
+//     })
+// }
+
+
+

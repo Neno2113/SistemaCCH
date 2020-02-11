@@ -263,7 +263,7 @@ class ordenPedidoController extends Controller
     {
         $validar = $request->validate([
             'cliente_id' => 'required',
-            'notas' => 'required',
+            // 'notas' => 'required',
             'generado_internamente' => 'required',
             'fecha_entrega' => 'required',
             'detallada' => 'required'

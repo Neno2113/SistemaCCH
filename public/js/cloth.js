@@ -298,11 +298,11 @@ $(document).ready(function() {
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "tipo_tela", name: "tela.tipo_tela" },
                 { data: "peso", name: "tela.peso" },
-                { data: "composicion", name: "tela.composicion" },
-                { data: "composicion_2", name: "tela.composicion_2" },
-                { data: "composicion_3", name: "tela.composicion_3" },
-                { data: "composicion_4", name: "tela.composicion_4" },
-                { data: "composicion_5", name: "tela.composicion_5" },
+                // { data: "composicion", name: "tela.composicion" },
+                // { data: "composicion_2", name: "tela.composicion_2" },
+                // { data: "composicion_3", name: "tela.composicion_3" },
+                // { data: "composicion_4", name: "tela.composicion_4" },
+                // { data: "composicion_5", name: "tela.composicion_5" },
 
             ],
             order: [[2, 'asc']],
@@ -391,6 +391,7 @@ $(document).ready(function() {
         let total = porcentaje;
         if(total == 99.99){
             $("#btn-guardar").attr("disabled", false);
+            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -405,6 +406,7 @@ $(document).ready(function() {
         total_global = total;
         if(total == 100){
             $("#btn-guardar").attr("disabled", false);
+            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -420,6 +422,7 @@ $(document).ready(function() {
         total_global = total;
         if(total ==  100){
             $("#btn-guardar").attr("disabled", false);
+            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -436,6 +439,7 @@ $(document).ready(function() {
         total_global = total;
         if(total ==  100){
             $("#btn-guardar").attr("disabled", false);
+            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -453,6 +457,7 @@ $(document).ready(function() {
         total_global = total;
         if(total ==  100){
             $("#btn-guardar").attr("disabled", false);
+            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
