@@ -14,6 +14,12 @@ class AlmacenDetalle extends Model
     ];
 
 
+    public function producto()
+    {
+        return $this->belongsTo('App\Product', 'producto_id');
+    }
+
+
     public function almacen()
     {
         return $this->belongsTo('App\Almacen', 'almacen_id');

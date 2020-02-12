@@ -127,115 +127,73 @@ $(document).ready(function() {
 
         $("#referencia").val(referencia);
 
-        bootbox.alert("Referencia de producto generada exitosamente!!");
-
-        var referencias = {
-            referencia: $("#referencia").val(),
-            referencia_2: $("#referencia_2").val(),
-            sec: $("#sec").val()
-        };
+        let producto = {
+            referencia_producto: referencia
+        }
+        // console.log(JSON.stringify(corte));
 
         $.ajax({
-            url: "product_ref",
+            url: "validar/referencia",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(referencias),
+            data: JSON.stringify(producto),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    $("#id_producto").val(datos.producto.id);
-                    let genero = referencia.substr(1, 1);
-                    let genero_plus = referencia.substr(3, 1);
 
-                    if (genero == "3") {
-                        $("#referencia_talla").val("Niño: " + referencia);
-
-                        $("#ta").html("2");
-                        $("#tb").html("4");
-                        $("#tc").html("6");
-                        $("#td").html("8");
-                        $("#te").html("10");
-                        $("#tf").html("12");
-                        $("#tg").html("14");
-                        $("#th").html("16");
-
-                    } else if (genero == "4") {
-                        $("#referencia_talla").val("Niña: " + referencia);
-
-                        $("#ta").html("2");
-                        $("#tb").html("4");
-                        $("#tc").html("6");
-                        $("#td").html("8");
-                        $("#te").html("10");
-                        $("#tf").html("12");
-                        $("#tg").html("14");
-                        $("#th").html("16");
-
-                    } else if (genero == "1") {
-                        $("#referencia_talla").val("Hombre: " + referencia);
-
-                        $("#ta").html("28");
-                        $("#tb").html("29");
-                        $("#tc").html("30");
-                        $("#td").html("32");
-                        $("#te").html("34");
-                        $("#tf").html("36");
-                        $("#tg").html("38");
-                        $("#th").html("40");
-                        $("#ti").html("42");
-                        $("#tj").html("44");
-
-                    } else if (genero == "2") {
-                        if (genero_plus == "7") {
-                            $("#referencia_talla").val(
-                                "Mujer Plus: " + referencia
-                            );
-
-                            $("#ta").html("12W");
-                            $("#tb").html("14W");
-                            $("#tc").html("16W");
-                            $("#td").html("18W");
-                            $("#te").html("20W");
-                            $("#tf").html("22W");
-                            $("#tg").html("24W");
-                            $("#th").html("26W");
-
-                        } else {
-                            $("#referencia_talla").val("Mujer: " + referencia);
-
-                            $("#ta").html("0/0");
-                            $("#tb").html("1/2");
-                            $("#tc").html("3/4");
-                            $("#td").html("5/6");
-                            $("#te").html("7/8");
-                            $("#tf").html("9/10");
-                            $("#tg").html("11/12");
-                            $("#th").html("13/14");
-                            $("#ti").html("15/16");
-                            $("#tj").html("17/18");
-                            $("#tk").html("19/20");
-                            $("#tl").html("21/22");
-
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        // timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                         }
-                    }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Referencia generada correctamente'
+                    })
 
 
-
+                    $("#btn-guardar").attr('disabled', false);
                 } else {
-                    bootbox.alert("Se genero la referencia");
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
                 }
             },
-            error: function() {
-                bootbox.alert("Ocurrio un error, al crear el producto");
+            error: function(datos) {
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Esta referencia ya fue creada!'
+            })
             }
         });
+
+
+
     });
+
+
+
 
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
+        guardar();
 
+    });
+
+
+    function guardar(){
         var product = {
-            id: $("#id_producto").val(),
+            referencia: $("#referencia").val(),
+            referencia_2: $("#referencia_2").val(),
+            sec: $("#sec").val(),
             descripcion: $("#descripcion").val(),
             descripcion_2: $("#descripcion_2").val(),
             precio_lista_2: $("#precio_lista_2").val(),
@@ -252,23 +210,16 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se genero la referencia!!");
+                    Swal.fire(
+                        'Success',
+                        'Referencia creada correctamente!',
+                        'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
                     $("#referencia_talla").val("");
-                    $("#btn-asignar").attr("disabled", false);
-                    $("#btn-asignar2").attr("disabled", false);
-                    $("#btn-asignar3").attr("disabled", false);
-                    $("#btn-asignar4").attr("disabled", false);
-                    $("#btn-asignar5").attr("disabled", false);
-                    $("#btn-asignar6").attr("disabled", false);
-                    $("#btn-asignar7").attr("disabled", false);
-                    $("#btn-asignar8").attr("disabled", false);
-                    $("#btn-asignar9").attr("disabled", false);
-                    $("#btn-asignar10").attr("disabled", false);
-                    $("#btn-asignar11").attr("disabled", false);
-                    $("#btn-asignar12").attr("disabled", false);
+
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -279,7 +230,7 @@ $(document).ready(function() {
                 );
             }
         });
-    });
+    }
 
     var tabla;
 
@@ -354,7 +305,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
+                    Swal.fire(
+                        'Success',
+                        'Referencia actualizada correctamente!',
+                        'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     $("#id").val("");
@@ -396,6 +351,7 @@ $(document).ready(function() {
             $("#btn-sku").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
+            $("#btn-guardar").attr("disabled", true);
         }
     }
 
@@ -439,13 +395,26 @@ function mostrar(id_prouct) {
 
 
 function eliminar(id_prouct){
-    bootbox.confirm("¿Estas seguro de eliminar esta referencia?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar esta referencia?',
+        text: "Va a eliminar esta referencia!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("product/delete/" + id_prouct, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Referencia eliminada correctamente!!");
-                $("#products").DataTable().ajax.reload();
+                Swal.fire(
+                    'Eliminado!',
+                    'Referencia de producto eliminada correctamente.',
+                    'success'
+                    )
+                $("#almacenes").DataTable().ajax.reload();
             })
         }
-    })
+      })
+
+
 }

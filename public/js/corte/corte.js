@@ -595,7 +595,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Corte creado !!");
+                    Swal.fire(
+                    'Success',
+                    'Corte creado correctamente.',
+                    'success'
+                    )
                     limpiar();
 
                     mostrarForm(false);
@@ -784,7 +788,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
+                    Swal.fire(
+                    'Success',
+                    'Corte actualizado correctamente.',
+                    'success'
+                    )
                     limpiar();
                     $("#cortes").DataTable().ajax.reload();
                     $("#id").val("");
@@ -934,7 +942,22 @@ $(document).ready(function() {
                     $("#fila1").show();
                     $("#fila2").show();
                     $("#fila3").show();
-                    bootbox.alert("Corte generado correctamente");
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        // timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Corte creado correctamente'
+                    })
                     $("#btn-generar").attr('disabled', true);
                 } else {
                     bootbox.alert(
@@ -943,15 +966,11 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors);
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
-                    });
-                });
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Este corte ya fue creado!'
+                })
             }
         });
     });
@@ -1006,21 +1025,21 @@ $(document).ready(function() {
         $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
     });
 
-    $('#test').on('hidden.bs.modal', function (e) {
-        e.preventDefault();
-        $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
-    })
+    // $('#test').on('hidden.bs.modal', function (e) {
+    //     e.preventDefault();
+    //     $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
+    // })
 
-    $('#modalRollos').on('hidden.bs.modal', function (e) {
-        e.preventDefault();
-        $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
-    })
+    // $('#modalRollos').on('hidden.bs.modal', function (e) {
+    //     e.preventDefault();
+    //     $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
+    // })
 
 
-    $('#modalSKU').on('hidden.bs.modal', function (e) {
-        e.preventDefault();
-        $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
-    })
+    // $('#modalSKU').on('hidden.bs.modal', function (e) {
+    //     e.preventDefault();
+    //     $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+    // })
 
 
 
@@ -1047,6 +1066,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Error");
                 }
@@ -1077,6 +1097,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar2").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1109,6 +1130,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar3").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1141,6 +1163,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar4").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1173,6 +1196,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar5").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1215,6 +1239,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar6").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1258,6 +1283,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar7").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1300,6 +1326,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar8").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1342,6 +1369,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar9").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1374,6 +1402,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar10").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1405,6 +1434,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar11").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1437,6 +1467,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar12").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1469,6 +1500,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar13").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1534,14 +1566,34 @@ function mostrar(id_corte) {
 }
 
 function eliminar(id_corte){
-    bootbox.confirm("¿Estas seguro de eliminar este corte?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este corte?',
+        text: "Va a eliminar este corte!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("corte/delete/" + id_corte, function(data){
-                bootbox.alert("Corte <strong>"+ data.corte.numero_corte+ "</strong> eliminado correctamente");
+                Swal.fire(
+                'Eliminado!',
+                'Corte eliminado correctamente.',
+                'success'
+                )
                 $("#cortes_listados").DataTable().ajax.reload();
             })
         }
-    })
+      })
+    // bootbox.confirm("¿Estas seguro de eliminar este corte?", function(result){
+    //     if(result){
+    //         $.post("corte/delete/" + id_corte, function(data){
+    //             bootbox.alert("Corte <strong>"+ data.corte.numero_corte+ "</strong> eliminado correctamente");
+    //             $("#cortes_listados").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }
 
 function asignar(id_rollo) {
@@ -1565,6 +1617,7 @@ function asignar(id_rollo) {
                 $("#spiner").hide();
                 $("#spiner2").hide();
                 $("#rollos").DataTable().ajax.reload();
+                $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
             } else {
                 bootbox.alert(
                     "Ocurrio un error durante esta operacion!!"

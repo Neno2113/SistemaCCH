@@ -179,7 +179,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
+                    Swal.fire(
+                        'Success',
+                        'Usuario actualizado correctamente.',
+                        'success'
+                    )
                     $("#id").val("");
                     limpiar();
                     tabla.ajax.reload();
@@ -287,13 +291,33 @@ function ver(id_user) {
 
 
 function eliminar(id_user){
-    bootbox.confirm("¿Estas seguro de eliminar este usuario?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este usuario?',
+        text: "Va a eliminar este usuario!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("user/delete/" + id_user, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Usuario eliminado correctamente");
+                Swal.fire(
+                'Eliminado!',
+                'Usuario eliminado correctamente.',
+                'success'
+                )
                 $("#users").DataTable().ajax.reload();
             })
         }
-    })
+      })
+    // bootbox.confirm("¿Estas seguro de eliminar este usuario?", function(result){
+    //     if(result){
+    //         $.post("user/delete/" + id_user, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Usuario eliminado correctamente");
+    //             $("#users").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

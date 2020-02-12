@@ -569,12 +569,32 @@ function ver(id_lavanderia) {
 
 
 function eliminar(id_lavanderia){
-    bootbox.confirm("¿Estas seguro de eliminar este conduce de envio?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Estas seguro de eliminar este conduce de envio?',
+        text: "Va a eliminar este envio a lavanderia!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("lavanderia/delete/" + id_lavanderia, function(){
-                bootbox.alert("Conduce a lavanderia eliminada correctamente");
+                Swal.fire(
+                'Eliminado!',
+                'Conduce de envio eliminado correctamente.',
+                'success'
+                )
                 $("#lavanderias").DataTable().ajax.reload();
             })
         }
-    })
+      })
+    // bootbox.confirm("¿Estas seguro de eliminar este conduce de envio?", function(result){
+    //     if(result){
+    //         $.post("lavanderia/delete/" + id_lavanderia, function(){
+    //             bootbox.alert("Conduce a lavanderia eliminada correctamente");
+    //             $("#lavanderias").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

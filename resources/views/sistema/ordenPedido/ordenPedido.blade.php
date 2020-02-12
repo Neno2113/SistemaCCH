@@ -143,19 +143,19 @@
                                 </div>
                             </div>
                             <div class="col-md-6" id="corte_en_proceso">
-                                <label for="">En proceso</label>
+                                <label for="">Referencias en fabricacion</label>
                                 <table class="table table-bordered ">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>No. Corte</th>
                                             <th>Fase</th>
                                             <th>F. Entrega</th>
-                                            <th>Cantidad</th>
-                                            <th>Accion</th>
+                                            <th>Ref</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody id="corteProceso">
-                                        <tr>
+                                        {{-- <tr>
                                             <td id="no_corte"></td>
                                             <td id="fase"></td>
                                             <td id="f_entrega"></td>
@@ -164,7 +164,7 @@
                                             <th><button id='btn-agregarProceso' class='btn btn-success'> Agregar</button>
                                             </th>
                                             <input type="hidden" name="corte_proceso" id="corte_proceso" value="">
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
 
 
@@ -172,10 +172,7 @@
                             </div>
 
 
-                            <div class="col-md-4" id="redistribucion">
-                                <label for="">Cantidad:</label>
-                                <input type="text" name="cantidad" id="cantidad" class="form-control">
-                            </div>
+
 
                         </div>
                         <div class="container collapse mt-4" id="listarOrden">
@@ -218,27 +215,32 @@
                                 </tfoot>
                             </table>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3 mt-3">
-                                <button class="btn btn-success rounded-pill" name="btn-consultar" id="btn-consultar"><i
-                                        class="fas fa-search"></i> Consultar</button>
-                            </div>
-                            <div class="col-md-2 ">
 
-                            </div>
-
-                        </div>
                         <div class="row border-right" id="tallas">
-                            <div class="col-md-3 mt-3 " id="precio_div">
-                                <label for="">Precio(*):</label>
+                            <div class="col-md-2 mt-3 " id="precio_div">
+                                <label for="">Precio:</label>
                                 <input type="text" name="precio" id="precio" class="form-control text-center"
-                                    data-inputmask='"mask": "9,999RD$"' data-mask>
+                                    data-inputmask='"mask": "RD$ 9,999"' data-mask>
                             </div>
                             <div class="col-md-2 mt-3" id="total_div">
                                 <label for="">Total Ref.:</label>
                                 <input type="text" name="total" id="total" class="form-control text-center" readonly>
                             </div>
                             <div class="col-md-4 mr-3">
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2" id="redistribucion">
+                                <label for="">Cantidad:</label>
+                                <input type="text" name="cantidad" id="cantidad" class="form-control">
+                            </div>
+                            <div class="col-md-3 mt-4">
+                                <button class="btn btn-success rounded-pill mt-2" name="btn-consultar" id="btn-consultar"><i
+                                        class="fas fa-search"></i> Consultar</button>
+                            </div>
+                            <div class="col-md-2 ">
 
                             </div>
 
@@ -343,6 +345,7 @@
                                 <button class="btn btn-info rounded-lg" name="btn-agregar" id="btn-agregar"><i
                                         class="fas fa-plus-circle"></i> Agregar</button>
                             </div>
+
                         </div>
                         <br>
                         <hr>

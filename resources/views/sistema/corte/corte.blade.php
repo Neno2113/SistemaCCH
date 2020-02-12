@@ -101,11 +101,11 @@
                         <div class="col-md-4 mt-3" id="rollo-agregar">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide"
                                 data-toggle="modal" data-target=".bd-rollo-modal-lg">
-                                <span class="spinner-grow spinner-grow-sm" role="status" id="spiner" aria-hidden="true"></span>
+                                {{-- <span class="spinner-grow spinner-grow-sm" role="status" id="spiner" aria-hidden="true"></span> --}}
                                     Agregar rollos <i
                                     class="fa fa-dolly-flatbed"></i>
-                                    <span class="spinner-grow spinner-grow-sm" role="status" id="spiner2" aria-hidden="true"></span>
-                                    <span class="sr-only">Loading...</span>
+                                    {{-- <span class="spinner-grow spinner-grow-sm" role="status" id="spiner2" aria-hidden="true"></span>
+                                    <span class="sr-only">Loading...</span> --}}
                                 </button>
                         </div>
                         <div class="col-md-4 mt-3">
@@ -232,7 +232,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
+                <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -340,7 +340,7 @@
                 </div> --}}
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

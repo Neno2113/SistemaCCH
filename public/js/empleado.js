@@ -144,7 +144,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Empleado <strong>"+datos.empleado.nombre +"</strong> registrado correctamente.");
+                    Swal.fire(
+                    'Success',
+                    'Empleado registrado correctamente.',
+                    'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -212,7 +216,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Datos del empleado <strong>"+datos.empleado.nombre +"</strong> actualizadas correctamente.");
+                    Swal.fire(
+                        'Success',
+                        'Datos del empleado guardados correctamente.',
+                        'success'
+                        )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -359,7 +367,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Datos del empleado <strong>"+datos.empleado.nombre +"</strong> editados correctamente.");
+                    Swal.fire(
+                        'Actualizacion',
+                        'Empleado actualizado correctamente.',
+                        'success'
+                        )
                     $("#id").val("");
                     limpiar();
                     tabla.ajax.reload();
@@ -634,13 +646,34 @@ function ver(id_empleado) {
 }
 
 function eliminar(id_client){
-    bootbox.confirm("¿Estas seguro de eliminar este empleado?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este empleado?',
+        text: "Va a eliminar este empleado de manera permanente!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("empleado/delete/" + id_client, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Empleado eliminado correctamente!!");
+                Swal.fire(
+                'Eliminado!',
+                'Usuario eliminado de manera correcta.',
+                'success'
+                )
                 $("#clients").DataTable().ajax.reload();
             })
         }
-    })
+      })
+
+    // bootbox.confirm("¿Estas seguro de eliminar este empleado?", function(result){
+    //     if(result){
+    //         $.post("empleado/delete/" + id_client, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Empleado eliminado correctamente!!");
+
+    //         })
+    //     }
+    // })
 }

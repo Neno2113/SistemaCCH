@@ -136,6 +136,9 @@ class AlmacenController extends Controller
         $l = $request->input('l');
         $almacen_id = $request->input('almacen_id');
         $producto_id = $request->input('producto_id');
+        $codigo_entrada = $request->input('codigo_entrada');
+        $sec = $request->input('sec');
+        $fecha_entrada = $request->input('fecha');
 
         //validaciones
         $a = intval(trim($a, "_"));
@@ -175,6 +178,9 @@ class AlmacenController extends Controller
         $almacen_detalle->k = $k;
         $almacen_detalle->l = $l;
         $almacen_detalle->producto_id = $producto_id;
+        $almacen_detalle->codigo_entrada = $codigo_entrada;
+        $almacen_detalle->sec = $sec + 0.01;
+        $almacen_detalle->fecha_entrada = $fecha_entrada;
         $almacen_detalle->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         $almacen_detalle->save();
@@ -314,6 +320,7 @@ class AlmacenController extends Controller
     {
         $almacen = Almacen::find($id)->load('producto')->load('corte');
         $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
+        $corte_id =  $almacen->corte_id;
 
         $tallas = Talla::where('corte_id', $almacen->corte->id)->first();
 
@@ -322,7 +329,7 @@ class AlmacenController extends Controller
 
         //perdidas
         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
-            ->where('corte_id', $id)->select('id')->get();
+            ->where('corte_id', $corte_id)->select('id')->get();
 
         $perdidas = array();
 
@@ -363,7 +370,7 @@ class AlmacenController extends Controller
         $l = ($l < 0 ? 0 : $l);
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
-        $pendiente_lavanderia = $almacen->corte->total;
+        $pendiente_lavanderia = $almacen->corte->total - $tallasPerdidas->sum('total');
         $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
         if (is_object($almacen)) {
@@ -385,6 +392,7 @@ class AlmacenController extends Controller
                 'k' => $k,
                 'l' => $l,
                 'total' => $total_real,
+                // 'perdida' => $perdida,
                 'pen_lavanderia' => $recepcion->pendiente,
                 'total_recibido' => $recepcion->total_recibido,
                 'pen_produccion' => $pendiente_lavanderia,
@@ -756,7 +764,7 @@ class AlmacenController extends Controller
         $l = ($l < 0 ? 0 : $l);
 
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
-        $pendiente_lavanderia = $corte_pendiente->total;
+        $pendiente_lavanderia = $corte_pendiente->total - $tallasPerdidas->sum('total');
         $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
         if (!empty($producto)) {
@@ -779,8 +787,8 @@ class AlmacenController extends Controller
                 'k' => $k,
                 'l' => $l,
                 'total' => $total_real,
-                'pen_lavanderia' => $recepcion->pendiente,
-                'pen_produccion' => $pendiente_lavanderia,
+                'pen_lavanderia' => ($recepcion->pendiente < 0 ) ? 0 : $recepcion->pendiente,
+                'pen_produccion' => ($pendiente_lavanderia < 0 ) ? 0 : $pendiente_lavanderia,
                 'perdida_x' => $tallasPerdidas->sum('talla_x')
             ];
         } else {
@@ -915,5 +923,48 @@ class AlmacenController extends Controller
         }
 
         return response()->json($data, $data['code']);
+    }
+
+
+    public function getDigits()
+    {
+        $almacenDetalle = AlmacenDetalle::orderBy('sec', 'desc')->first();
+
+        if (\is_object($almacenDetalle)) {
+            $sec = $almacenDetalle->sec;
+        }
+
+        if (empty($sec)) {
+            $sec = 0.00;
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sec' => $sec
+            ];
+        } else {
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sec' => $sec
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
+
+    public function imprimir($id)
+    {
+        $almacen_detalle = AlmacenDetalle::find($id)->load('producto');
+        $almacen_detalle->impreso = 1;
+        $almacen_detalle->fecha_impreso = date('Y/m/d h:i:s');
+        $almacen_detalle->save();
+
+        $producto  = $almacen_detalle->producto;
+        $almacen_id = $almacen_detalle->almacen_id;
+        $almacen_detalle->fecha_impreso =  date("d-m-20y h:i:s", strtotime($almacen_detalle->fecha_impreso));
+        $pdf = \PDF::loadView('sistema.almacen.DocEA', \compact('almacen_detalle', 'producto'));
+        return $pdf->download('conduceRecepcion.pdf');
+        return View('sistema.almacen.DocEA', \compact('almacen_detalle', 'producto'));
     }
 }

@@ -305,7 +305,7 @@ function mostrar(id_user) {
         $("#listadoUsers").hide();
         $("#registroForm").show();
         $("#btnCancelar").show();
-        $("#btn-edit").show();
+        // $("#btn-edit").show();
         $("#btn-agregar").hide();
         $("#btn-guardar").hide();
         $("#fila1").hide();

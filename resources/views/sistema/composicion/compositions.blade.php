@@ -3,7 +3,7 @@
 @section('seccion', 'Utilidades')
 
 @section('title', 'Compisiciones')
-    
+
 
 @section('content')
 <div class="container">
@@ -47,9 +47,9 @@
     <table id="compositions" class="table table-hover table-bordered datatables" >
         <thead>
             <tr>
-               
+
                 <th>Opciones</th>
-           
+
                 <th>Nombre composicion</th>
 
             </tr>
@@ -57,9 +57,9 @@
         <tbody></tbody>
         <tfoot>
             <tr>
-               
+
                 <th>Opciones</th>
-              
+
                 <th>Nombre composicion</th>
             </tr>
         </tfoot>
@@ -88,20 +88,41 @@
             $("#id").val(data.composition.id);
             $("#codigo_composicion").val(data.composition.codigo_composicion);
             $("#nombre_composicion").val(data.composition.nombre_composicion);
-           
+
         });
     }
 
     function eliminar(id_composition){
-        bootbox.confirm("¿Estas seguro de eliminar esta composicion?", function(result){
-            if(result){
-                $.post("composition/delete/" + id_composition, function(){
-                    // bootbox.alert(e);
-                    bootbox.alert("Composicion eliminada correctamente");
-                    $("#compositions").DataTable().ajax.reload();
-                })
-            }
-        })
+        Swal.fire({
+        title: '¿Esta seguro de eliminar esta composicion?',
+        text: "Va a eliminar esta composicion!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("composition/delete/" + id_composition, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Composicion eliminada correctamente.',
+                'success'
+                )
+                $("#compositions").DataTable().ajax.reload();
+            })
+        }
+      })
+
+        // bootbox.confirm("¿Estas seguro de eliminar esta composicion?", function(result){
+        //     if(result){
+        //         $.post("composition/delete/" + id_composition, function(){
+        //             // bootbox.alert(e);
+        //             bootbox.alert("Composicion eliminada correctamente");
+        //             $("#compositions").DataTable().ajax.reload();
+        //         })
+        //     }
+        // })
     }
 
 </script>

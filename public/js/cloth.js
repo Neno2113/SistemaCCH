@@ -244,7 +244,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro la tela correctamente");
+                    Swal.fire(
+                    'Success',
+                    'Tela creada correctamente.',
+                    'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -351,7 +355,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizo la tela correctamente");
+                    Swal.fire(
+                    'Success',
+                    'Tela actualizada correctamente.',
+                    'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     $("#id").val("");
@@ -571,12 +579,32 @@ function ver(id_cloth) {
 
 
 function eliminar(id_cloth){
-    bootbox.confirm("¿Estas seguro de eliminar esta tela?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar esta tela?',
+        text: "Va a eliminar la tela permanentemente!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("cloth/delete/" + id_cloth, function(){
-                bootbox.alert("Composicion eliminada correctamente");
+                Swal.fire(
+                'Eliminado!',
+                'Tela eliminada correctamente.',
+                'success'
+                )
                 $("#cloths").DataTable().ajax.reload();
             })
         }
-    })
+      })
+    // bootbox.confirm("¿Estas seguro de eliminar esta tela?", function(result){
+    //     if(result){
+    //         $.post("cloth/delete/" + id_cloth, function(){
+    //             bootbox.alert("Composicion eliminada correctamente");
+    //             $("#cloths").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

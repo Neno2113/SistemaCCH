@@ -51,6 +51,7 @@ $(document).ready(function() {
         $("#loading").hide();
         $("#loading2").hide();
         $("#loading3").hide();
+        entradaCod();
     }
 
     function validarNan(val) {
@@ -59,6 +60,38 @@ $(document).ready(function() {
         } else {
             return val;
         }
+    }
+
+    function entradaCod() {
+        $("#sec").val("");
+        $("#codigo_entrada").val("");
+
+        $.ajax({
+            url: "almacen/lastdigit",
+            type: "GET",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+
+                    var i = Number(datos.sec);
+                    $("#sec").val(i);
+                    i = (i + 0.01).toFixed(2).split('.').join("");
+                    var referencia = "EA"+'-'+i;
+
+                    $("#codigo_entrada").val(referencia);
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error !!"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
     }
 
 
@@ -88,6 +121,7 @@ $(document).ready(function() {
         $("#genero").val("");
         $("#disponibles").empty();
         $("#resultados").empty();
+        $("#fecha_entrada").val("");
     }
 
     function limpiarDetalle(){
@@ -199,10 +233,12 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert(
-                        "Se registro correctamenete el corte en almacen"
-                    );
-                    console.log(datos);
+                    Swal.fire(
+                        'Success',
+                        'Registro a almacen realizado correctamente.',
+                        'success'
+                    )
+
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -337,12 +373,16 @@ $(document).ready(function() {
             $("#imagen_bolsillo").show();
             $("#btn-upload").show();
             $("#btn-buscar").show();
+            $("#btn-imprimir").attr("disabled", true);
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#btn-edit").hide();
+            $("#entrada_alm").hide();
+            $("#entrada_alm").removeClass("btn-success").addClass("btn-primary");
+            $("#btn-imprimir").hide();
             // $("#btn-guardar").show();
             $("#referencia_producto").hide();
             $("#numero_corte").hide();
@@ -354,6 +394,10 @@ $(document).ready(function() {
             $("#btn-guardar").attr("disabled", true);
         }
     }
+
+    $("#fecha_entrada").change(function(){
+        $("#entrada_alm").show();
+    });
 
     $("#btn-buscar").click(function() {
         $("#loading").show();
@@ -996,6 +1040,7 @@ $(document).ready(function() {
     });
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
+        $("#almacenes").DataTable().ajax.reload();
         mostrarForm(false);
     });
 
@@ -1019,7 +1064,11 @@ $(document).ready(function() {
             contentType: false,
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Imagenes subidas correctamente!!");
+                    Swal.fire(
+                        'Success',
+                        'Imagenes subidas correctamente',
+                        'success'
+                    )
                     $("#imagen_frente").val("");
                     $("#imagen_trasera").val("");
                     $("#imagen_perfil").val("");
@@ -1083,8 +1132,12 @@ $(document).ready(function() {
             k: k,
             l: l,
             producto_id: $("#producto_id").val(),
-            almacen_id: $("#id").val()
+            almacen_id: $("#id").val(),
+            codigo_entrada: $("#codigo_entrada").val(),
+            sec: $("#sec").val(),
+            fecha: $("#fecha_entrada").val()
         }
+
 
         $.ajax({
             url: "almacen/detalle",
@@ -1115,7 +1168,35 @@ $(document).ready(function() {
                 $("#disponibles").append(fila);
                 limpiarDetalle();
                 calcularTotales();
+                entradaCod();
+                $("#btn-imprimir").show();
+                $("#entrada_alm").removeClass("btn-primary").addClass("btn-success");
+                $("#btn-imprimir").attr("href", 'imprimir/DocEA/'+datos.detalle.id);
+                // Swal.fire({
+                //     position: 'top-end',
+                //     type: 'success',
+                //     width: '500px',
+                //     title: 'Entrada a almacen realizada correctamente',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                // })
 
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    type: 'success',
+                    title: 'Entrada guardada'
+                })
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -1223,6 +1304,7 @@ function mostrar(id_almacen){
         $("#form_producto_2").show();
         $("#form_talla").show();
         $("#btn-buscar").hide();
+        // $("#btn-imprimir").hide();
         let genero = data.almacen.producto.referencia_producto.substring(1, 2);
         genero_global = data.almacen.producto.referencia_producto.substring(1, 2);
         let mujer_plus = data.almacen.producto.referencia_producto.substring(3, 4);
@@ -1489,13 +1571,26 @@ function mostrar(id_almacen){
 }
 
 function eliminar(id_almacen){
-    bootbox.confirm("¿Estas seguro de eliminar este producto de almacen?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este corte de almacen?',
+        text: "Va a eliminar las entradas a almacen!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("almacen/delete/" + id_almacen, function(){
-                bootbox.alert("Producto de almacen eliminado correctamente!!");
+                Swal.fire(
+                    'Eliminado!',
+                    'Entrada a almacen eliminado correctamente.',
+                    'success'
+                    )
                 $("#almacenes").DataTable().ajax.reload();
             })
         }
-    })
+      })
+
 }
 

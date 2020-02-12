@@ -31,7 +31,7 @@ $(document).ready(function() {
             }
         }
     })
-   
+
 
     var tabla;
 
@@ -42,7 +42,7 @@ $(document).ready(function() {
         $("#btn-edit-branch").hide();
         // $("#results").hide();
 
-        
+
     $("#clientes").select2({
         placeholder: "Elige un cliente...",
         ajax: {
@@ -62,7 +62,7 @@ $(document).ready(function() {
             cache: true
         }
     })
-   
+
     }
 
     function limpiar() {
@@ -73,12 +73,12 @@ $(document).ready(function() {
         $("#provincia").val("").trigger("change").attr('disabled', false);
         $("#sitios_cercanos").val("").attr('readonly', false);
         $("#clientes").val("").trigger("change");
-       
+
     }
 
     $("#btn-guardar-branch").click(function(e) {
         e.preventDefault();
-        
+
         var client_branch = {
             client_id : $("#clientes").val(),
             nombre_sucursal: $("#nombre_sucursal").val(),
@@ -97,7 +97,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro correctamente la sucursal !!");
+                    Swal.fire(
+                        'Success',
+                        'Sucursal creada correctamente.',
+                        'success'
+                        )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -108,7 +112,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors); 
+                console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
 
                 Object.entries(errores).forEach(([key, val]) => {
@@ -172,9 +176,9 @@ $(document).ready(function() {
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
             sitios_cercanos: $("#sitios_cercanos").val(),
-        
+
         };
-        
+
         // console.log(JSON.stringify(client_branch));
         $.ajax({
             url: "client-branch/edit",
@@ -184,7 +188,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizo correctamente la sucursal!!");
+                    Swal.fire(
+                    'Actualizacion',
+                    'Sucursal actualizada correctamente.',
+                    'success'
+                    )
                     $("#id").val("");
                     limpiar();
                     tabla.ajax.reload();
@@ -204,7 +212,7 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
 
     // setInterval(function(){
@@ -218,7 +226,7 @@ $(document).ready(function() {
         $("#telefono_sucursal").val("");
         $("#direccion").val("");
         $("#clientes").val("");
-        
+
     })
 
     $("#btn-agregar").click(function(e){
@@ -227,9 +235,9 @@ $(document).ready(function() {
         $("#btn-guardar-branch").show();
    })
 
-   
 
-    
+
+
 
 
     init();

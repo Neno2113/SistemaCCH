@@ -563,6 +563,11 @@ $(document).ready(function() {
         $("#btn-consultar").attr('disabled', false);
     });
 
+    $("#productoSearch").change(function(){
+        $("#btn-consultar").attr('disabled', false);
+    });
+
+
     init();
 });
 

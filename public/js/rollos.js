@@ -121,7 +121,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro el rollo correctamente!!");
+                    Swal.fire(
+                    'Success',
+                    'Rollo creado correctamente.',
+                    'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     // mostrarForm(false);
@@ -209,7 +213,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el rollo !!");
+                    Swal.fire(
+                    'Success',
+                    'Rollo actualizado correctamente.',
+                    'success'
+                    )
                     tabla.ajax.reload();
                     limpiar();
                     $("#id").val("");
@@ -287,13 +295,33 @@ function mostrar(id_rollo) {
 
 
 function eliminar(id_rollo){
-    bootbox.confirm("¿Estas seguro de eliminar este rollo?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este rollo?',
+        text: "Va a eliminar este rollo!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("rollo/delete/" + id_rollo, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Rollo eliminado correctamente!!");
+                Swal.fire(
+                'Eliminado!',
+                'Rollo eliminado correctamente.',
+                'success'
+                )
                 $("#rollos").DataTable().ajax.reload();
             })
         }
-    })
+      })
+    // bootbox.confirm("¿Estas seguro de eliminar este rollo?", function(result){
+    //     if(result){
+    //         $.post("rollo/delete/" + id_rollo, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Rollo eliminado correctamente!!");
+    //             $("#rollos").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

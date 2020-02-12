@@ -219,12 +219,12 @@
                             <div class="col-md-4">
                                 <label for="sueldo">Sueldo:</label>
                                 <input type="text" name="sueldo" id="sueldo" class="form-control text-center"
-                                    placeholder="Mensualidad" data-inputmask='"mask": "99,999RD$"' data-mask>
+                                    placeholder="Mensualidad" data-inputmask='"mask": "RD$ 999[99]"' data-mask>
                             </div>
                             <div class="col-md-4">
                                 <label for="valor_hora">Valor de la Hora:</label>
                                 <input type="text" name="valor_hora" id="valor_hora" class="form-control text-center"
-                                    data-inputmask='"mask": "999RD$"' data-mask>
+                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
                         </div>
                         <div class="row">
@@ -252,7 +252,7 @@
                             <div class="col-md-4 mt-3">
                                 <label for="">No. Seguridad Social</label>
                                 <input type="text" name="nss" id="nss" class="form-control text-center"
-                                    data-inputmask='"mask": "999999999"' data-mask>
+                                    data-inputmask='"mask": "999999999[99]"' data-mask>
 
                             </div>
                         </div>

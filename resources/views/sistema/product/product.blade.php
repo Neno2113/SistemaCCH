@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-md-2 mt-3">
                             <label for="">Secuencia(*):</label>
-                            <input type="number" min="1" max="999" step="1"  id="sec_manual" class="form-control">
+                            <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label for="">Referencia:</label>
@@ -101,13 +101,24 @@
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="precio_lista">Precio lista(*):</label>
-                            <input type="text" name="precio_lista" id="precio_lista" class="form-control text-center"
-                                data-inputmask='"mask": "9999RD$"' data-mask>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                </div>
+                                <input type="text" name="precio_lista" id="precio_lista"
+                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_venta_publico">Precio publico(*):</label>
-                            <input type="text" name="precio_venta_publico" id="precio_venta_publico"
-                                class="form-control text-center" data-inputmask='"mask": "9999RD$"' data-mask>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                </div>
+                                <input type="text" name="precio_venta_publico" id="precio_venta_publico"
+                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+
+                            </div>
                         </div>
                         {{-- <div class="col-md-4 mt-4">
                             <label for=""></label>
@@ -120,12 +131,12 @@
                         <div class="col-md-4 mt-3">
                             <label for="precio_lista">Precio lista Ref 2(*):</label>
                             <input type="text" name="precio_lista_2" id="precio_lista_2" class="form-control"
-                                data-inputmask='"mask": "9999"' data-mask>
+                                data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_venta_publico">Precio publico Ref 2(*):</label>
                             <input type="text" name="precio_venta_publico_2" id="precio_venta_publico_2"
-                                class="form-control" data-inputmask='"mask": "9999"' data-mask>
+                                class="form-control" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                         </div>
 
                     </div>
@@ -143,9 +154,12 @@
                     </div>
             </div>
             <div class="card-footer  text-muted">
-                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i>  Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                        class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
         </div>
@@ -196,7 +210,8 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel"><strong> Declarar curva referencia</strong></h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong> Declarar curva referencia</strong>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -206,7 +221,8 @@
                     <div class="row">
                         <h5>Referencia:</h5>
                         <div class="col-md-3  mb-3">
-                            <input type="text" name="referencia_talla" id="referencia_talla" class="form-control text-center">
+                            <input type="text" name="referencia_talla" id="referencia_talla"
+                                class="form-control text-center">
                         </div>
                     </div>
                     <h5 class="text-center">Asignar porcentaje por talla</h5>

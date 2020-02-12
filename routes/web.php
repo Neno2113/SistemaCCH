@@ -197,6 +197,7 @@ Route::post('/product/delete/{id}', 'ProductController@destroy');
 Route::post('sku', 'ProductController@asignarSKU');
 Route::get('producto/terminado/{filname}', 'ProductController@getImage');
 Route::post('producto/validarSku', 'ProductController@validarSku');
+Route::post('validar/referencia', 'ProductController@verificarReferencia');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
@@ -266,6 +267,7 @@ Route::get('/imprimir/perdida/{id}', 'PerdidaController@imprimir');
 
 
 //Almacen
+Route::get('almacen/lastdigit', 'AlmacenController@getDigits');
 Route::get('cortes-almacen', 'AlmacenController@selectCorte');
 Route::get('productos-almacen', 'AlmacenController@selectProducto');
 Route::post('/almacen', 'AlmacenController@store');
@@ -279,6 +281,7 @@ Route::post('/show/corte/producto', 'AlmacenController@verificar_ref');
 Route::post('/total_recepcion', 'AlmacenController@cantidad');
 Route::post('/validar/total', 'AlmacenController@validar');
 Route::post('almacen/calcular/total', 'AlmacenController@calcularTotales');
+Route::get('/imprimir/DocEA/{id}', 'AlmacenController@imprimir')->name('print');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');

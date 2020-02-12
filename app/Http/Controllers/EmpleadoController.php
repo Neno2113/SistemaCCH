@@ -47,7 +47,7 @@ class EmpleadoController extends Controller
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
             $tipo_contrato = $request->input('tipo_contrato');
-        
+
 
             $empleado = new Empleado();
             $empleado->nombre = $nombre;
@@ -63,7 +63,7 @@ class EmpleadoController extends Controller
             $empleado->telefono_2 = $telefono_2;
             $empleado->email = $email;
             $empleado->tipo_contrato = $tipo_contrato;
-         
+
 
             $empleado->save();
 
@@ -124,7 +124,7 @@ class EmpleadoController extends Controller
 
 
             if (preg_match('/_/', $sueldo)) {
-                $sueldo = trim($sueldo, "_,RD$");
+                $sueldo = trim($sueldo, "RD$");
             } else {
                 $sueldo = trim($sueldo, "RD$");
                 $sueldo = str_replace(',', '', $sueldo);
@@ -135,12 +135,12 @@ class EmpleadoController extends Controller
             $empleado->casado = $casado;
             $empleado->forma_pago = $forma_pago;
             $empleado->sueldo = $sueldo;
-            $empleado->valor_hora = trim($valor_hora, "_RD$");
+            $empleado->valor_hora = trim($valor_hora, "RD$");
             $empleado->banco_tarjeta_cobro = $banco_tarjeta_cobro;
             $empleado->no_cuenta = $no_cuenta;
             $empleado->detallado = 1;
             $empleado->save();
-        
+
 
             $empleado_detalle = new EmpleadoDetalle();
             $empleado_detalle->empleado_id = $id;
@@ -163,7 +163,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->dependiente_5_nss = $dependiente_5_nss;
             $empleado_detalle->dependiente_6_nss = $dependiente_6_nss;
             $empleado_detalle->dependiente_7_nss = $dependiente_7_nss;
-         
+
 
             $empleado_detalle->save();
 
@@ -209,7 +209,7 @@ class EmpleadoController extends Controller
             ->make(true);
     }
 
-    
+
     public function show($id)
     {
         $empleado = Empleado::find($id);
@@ -305,12 +305,12 @@ class EmpleadoController extends Controller
             $empleado = Empleado::find($id);
 
             if (preg_match('/_/', $sueldo)) {
-                $sueldo = trim($sueldo, "_,RD$");
+                $sueldo = trim($sueldo, "RD$");
             } else {
                 $sueldo = trim($sueldo, "RD$");
                 $sueldo = str_replace(',', '', $sueldo);
             }
-            
+
             //Actualizar empleado
             $empleado->nombre = $nombre;
             $empleado->apellido = $apellido;
@@ -328,12 +328,12 @@ class EmpleadoController extends Controller
             $empleado->casado = $casado;
             $empleado->forma_pago = $forma_pago;
             $empleado->sueldo = $sueldo;
-            $empleado->valor_hora = trim($valor_hora, "_RD$");
+            $empleado->valor_hora = trim($valor_hora, "RD$");
             $empleado->banco_tarjeta_cobro = $banco_tarjeta_cobro;
             $empleado->no_cuenta = $no_cuenta;
             $empleado->save();
 
-            //Actualizar detalle 
+            //Actualizar detalle
             $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)
             ->get()
             ->first();
@@ -357,7 +357,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->dependiente_5_nss = $dependiente_5_nss;
             $empleado_detalle->dependiente_6_nss = $dependiente_6_nss;
             $empleado_detalle->dependiente_7_nss = $dependiente_7_nss;
-         
+
             $empleado_detalle->save();
 
             $data = [

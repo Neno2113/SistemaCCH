@@ -178,14 +178,14 @@
 <script>
     function mostrar(id_branch) {
         $.post("client-branch/" + id_branch, function(data, status) {
-           
+
             $("#exampleModal").modal('show');
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit-branch").show();
             $("#btn-guardar-branch").hide();
 
-         
+
             $("#id").val(data.branch.id);
             $("#clientes").val(data.branch.cliente.nombre_cliente).trigger("change");
             $("#nombre_sucursal").val(data.branch.nombre_sucursal).attr("readonly", false);
@@ -194,21 +194,41 @@
             $("#sector").val(data.branch.sector).attr("readonly", false);
             $("#provincia").val(data.branch.provincia).trigger("change").attr("disabled", false);
             $("#sitios_cercanos").val(data.branch.sitios_cercanos).attr("disabled", false);
-           
-           
+
+
         });
     }
 
     function eliminar(id_branch){
-        bootbox.confirm("¿Estas seguro de eliminar esta sucursal?", function(result){
-            if(result){
-                $.post("client-branch/delete/" + id_branch, function(){
-                    // bootbox.alert(e);
-                    bootbox.alert("Sucursal eliminada correctamente!!");
-                    $("#branches").DataTable().ajax.reload();
-                })
-            }
-        })
+        Swal.fire({
+        title: '¿Esta seguro de eliminar eliminar esta sucursal?',
+        text: "Va a eliminar esta sucursal!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("client-branch/delete/" + id_branch, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Sucursal eliminada correctamente.',
+                'success'
+                )
+                $("#branches").DataTable().ajax.reload();
+            })
+        }
+      })
+        // bootbox.confirm("¿Estas seguro de eliminar esta sucursal?", function(result){
+        //     if(result){
+        //         $.post("client-branch/delete/" + id_branch, function(){
+        //             // bootbox.alert(e);
+        //             bootbox.alert("Sucursal eliminada correctamente!!");
+        //             $("#branches").DataTable().ajax.reload();
+        //         })
+        //     }
+        // })
     }
 
 </script>

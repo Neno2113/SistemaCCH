@@ -39,16 +39,17 @@ class ordenPedidoController extends Controller
 
         //buscar cortes con la misma referencia producto
         $corte = Corte::where('producto_id', $producto_id)->select('id', 'total')->get();
-        $corte_proceso = Corte::select('id', 'fase', 'fecha_entrega', 'numero_corte')
-            ->where('producto_id', 'LIKE', $producto_id)
-            ->where('fase', 'not like', 'almacen')->get()->first();
+
+        $corte_proceso = Corte::orderBy('id', 'DESC')->take(5)->get()->load('producto');
+            // ->where('producto_id', 'LIKE', $producto_id)
+            // ->where('fase', 'not like', 'almacen')->get()->first();
 
 
-        if (\is_object($corte_proceso)) {
-            $fecha_entrega = date("d-m-20y", strtotime($corte_proceso->fecha_entrega));
-        } else {
-            $fecha_entrega = "";
-        }
+        // if (\is_object($corte_proceso)) {
+        //     $fecha_entrega = date("d-m-20y", strtotime($corte_proceso->fecha_entrega));
+        // } else {
+        //     $fecha_entrega = "";
+        // }
 
         $cortes = array();
 
@@ -166,7 +167,7 @@ class ordenPedidoController extends Controller
                 'producto' => $producto,
                 'total_corte' => $total_real,
                 'corte_proceso' => $corte_proceso,
-                'fecha_entrega' => $fecha_entrega
+                // 'fecha_entrega' => $fecha_entrega
             ];
         } else {
             $data = [
@@ -494,10 +495,9 @@ class ordenPedidoController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Corte::join('producto', 'corte.producto_id', 'producto.id')
-                ->select("producto.id", "producto.referencia_producto", "corte.fase")
-                ->where('corte.fase', 'LIKE', "Almacen")
+                ->select("producto.id", "producto.referencia_producto")
                 ->where('producto.referencia_producto', 'LIKE', "%$search%")
-                ->take(1)
+                ->groupBy('producto.id', 'producto.referencia_producto')
                 ->get();
         }
         return response()->json($data);

@@ -592,10 +592,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-
-                    bootbox.alert(
-                        "Se registro correctamente la perdida: "+ datos.perdida.no_perdida
-                    );
+                    Swal.fire(
+                    'Success',
+                    'Perdida registrada correctamente.',
+                    'success'
+                    )
                     // limpiar();
 
                     var talla = {
@@ -726,7 +727,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizo correctamente la perdida");
+                    Swal.fire(
+                        'Actualizada',
+                        'Perdida actualizada correctamente.',
+                        'success'
+                        )
 
                     var talla = {
                         perdida_id: datos.perdida.id,
@@ -1054,6 +1059,7 @@ $(document).ready(function() {
             $("#corteEdit").hide();
             $("#lavanderiaEdit").hide();
             $("#btn-guardar").attr("disabled", true);
+            $("#btn-tallas").removeClass("btn-success").addClass("btn-secondary");
             $("#referencia_producto").hide();
             $("#btn-generar").show();
             $("#btn-edit").hide();
@@ -1129,13 +1135,34 @@ function mostrar(id_perdida) {
 }
 
 function eliminar(id_perdida){
-    bootbox.confirm("¿Estas seguro de eliminar esta perdida?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Estas seguro de eliminar esta perdida?',
+        text: "Va a eliminar las perdidas registradas de este corte!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("perdida/delete/" + id_perdida, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Recepcion eliminada correctamente!!");
+                Swal.fire(
+                'Eliminado!',
+                'Perdida eliminada correctamente.',
+                'success'
+                )
                 $("#perdida_listada").DataTable().ajax.reload();
             })
         }
-    })
+      })
+
+    // bootbox.confirm("¿Estas seguro de eliminar esta perdida?", function(result){
+    //     if(result){
+    //         $.post("perdida/delete/" + id_perdida, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Recepcion eliminada correctamente!!");
+    //             $("#perdida_listada").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

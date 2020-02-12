@@ -75,6 +75,11 @@ $(document).ready(function() {
                     $("#orden_facturacion_id").val(datos.orden_facturacion.id);
                     $("#listar_OE").DataTable().ajax.reload();
                     mostrarForm(false);
+                    Swal.fire(
+                    'Success!',
+                    'Orden empacada correctamente.',
+                    'success'
+                    )
 
 
                 } else {
@@ -338,13 +343,33 @@ function test(id){
 }
 
 function redistribuir(id_orden){
-    bootbox.confirm("¿Estas seguro de redistribuir las tallas?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de redistribuir las tallas?',
+        text: "Va a sortear la orden en caso de que sea detallada!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.get("orden_redistribuir/" + id_orden, function(){
-                bootbox.alert("Redistibucion completa");
+                Swal.fire(
+                'Success!',
+                'Redistibucion completa.',
+                'success'
+                )
                 $("#listar_OE").DataTable().ajax.reload();
             })
         }
-    })
+      })
+    // bootbox.confirm("¿Estas seguro de redistribuir las tallas?", function(result){
+    //     if(result){
+    //         $.get("orden_redistribuir/" + id_orden, function(){
+    //             bootbox.alert("Redistibucion completa");
+    //             $("#listar_OE").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }
 

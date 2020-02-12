@@ -90,7 +90,7 @@ $(document).ready(function() {
             $("#detallada").hide();
             $("#redistribucion").show();
             $("#detalles").hide();
-            $("#corte_en_proceso").hide();
+            // $("#corte_en_proceso").hide();
         }
     }
 
@@ -110,17 +110,12 @@ $(document).ready(function() {
         $("#l").val("");
         $("#orden_pedido_id").val("");
         $("#orden_pedido_id_proceso").val("");
+        $("input[name='r2'][value='0']").prop('checked', true);
         $("#sec").val("");
         $("#sec_proceso").val();
-        $("#clienteSearch")
-            .val("")
-            .trigger("change");
-        $("#sucursalSearch")
-            .val("")
-            .trigger("change");
-        $("#productoSearch")
-            .val("")
-            .trigger("change");
+        $("#clienteSearch").val("").trigger("change");
+        $("#sucursalSearch").val("").trigger("change");
+        $("#productoSearch").val("").trigger("change");
         $("#notas").val("");
         $("#fecha_entrega").val("");
         $("#cantidad").val("");
@@ -312,7 +307,7 @@ $(document).ready(function() {
                 return {
                     results: $.map(data, function(item) {
                         return {
-                            text: item.referencia_producto + " - " + item.fase,
+                            text: item.referencia_producto,
                             id: item.id
                         };
                     })
@@ -441,7 +436,7 @@ $(document).ready(function() {
                                         let corte_proceso = datos.corte_proceso;
                                         let fecha_entrega = datos.fecha_entrega;
                                         let precio =
-                                            datos.producto.precio_venta_publico;
+                                            datos.producto.precio_lista;
                                         precio = precio.replace(".00", "");
                                         var ref = $(
                                             "#productoSearch option:selected"
@@ -958,24 +953,7 @@ $(document).ready(function() {
                                             }
                                         }
 
-                                        if (
-                                            corte_proceso != "" &&
-                                            fecha_entrega != ""
-                                        ) {
-                                            $("#no_corte").html(
-                                                corte_proceso.numero_corte
-                                            );
-                                            $("#fase").html(corte_proceso.fase);
-                                            $("#f_entrega").html(fecha_entrega);
-                                            $("#fecha_proceso").val(
-                                                corte_proceso.fecha_entrega
-                                            );
-                                        } else if (
-                                            corte_proceso == null &&
-                                            fecha_entrega == ""
-                                        ) {
-                                            $("#corte_en_proceso").hide();
-                                        }
+
                                     } else {
                                         bootbox.alert(
                                             "Ocurrio un error durante la creacion de la composicion"
@@ -1079,8 +1057,7 @@ $(document).ready(function() {
                                     if (datos.status == "success") {
                                         data = datos;
 
-                                        let corte_proceso = datos.corte_proceso;
-                                        let fecha_entrega = datos.fecha_entrega;
+
                                         let precio =
                                             datos.producto.precio_venta_publico;
                                         precio = precio.replace(".00", "");
@@ -1598,24 +1575,7 @@ $(document).ready(function() {
                                             }
                                         }
 
-                                        if (
-                                            corte_proceso != "" &&
-                                            fecha_entrega != ""
-                                        ) {
-                                            $("#no_corte").html(
-                                                corte_proceso.numero_corte
-                                            );
-                                            $("#fase").html(corte_proceso.fase);
-                                            $("#f_entrega").html(fecha_entrega);
-                                            $("#fecha_proceso").val(
-                                                corte_proceso.fecha_entrega
-                                            );
-                                        } else if (
-                                            corte_proceso == null &&
-                                            fecha_entrega == ""
-                                        ) {
-                                            $("#corte_en_proceso").hide();
-                                        }
+
                                     } else {
                                         bootbox.alert(
                                             "Ocurrio un error durante la creacion de la composicion"
@@ -2170,19 +2130,7 @@ $(document).ready(function() {
                                 }
                             }
 
-                            if (corte_proceso != "" && fecha_entrega != "") {
-                                $("#no_corte").html(corte_proceso.numero_corte);
-                                $("#fase").html(corte_proceso.fase);
-                                $("#f_entrega").html(fecha_entrega);
-                                $("#fecha_proceso").val(
-                                    corte_proceso.fecha_entrega
-                                );
-                            } else if (
-                                corte_proceso == null &&
-                                fecha_entrega == ""
-                            ) {
-                                $("#corte_en_proceso").hide();
-                            }
+
                         } else {
                             bootbox.alert(
                                 "Ocurrio un error durante la creacion de la composicion"
@@ -3311,7 +3259,7 @@ $(document).ready(function() {
         $("#btnAgregar").hide();
         $("#registroForm").show();
         $("#listadoUsers").hide();
-        $("#corte_en_proceso").hide();
+        $("#corte_en_proceso").show();
         $("#detallada").hide();
         $("#cliente").hide();
         $("#clienteBuscar").show();

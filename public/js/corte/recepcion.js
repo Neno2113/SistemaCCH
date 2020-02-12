@@ -451,13 +451,34 @@ function mostrar(id_recepcion) {
 }
 
 function eliminar(id_recepcion){
-    bootbox.confirm("¿Estas seguro de eliminar esta recepcion?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Estas seguro de eliminar esta recepcion?',
+        text: "Va a eliminar esta recepcion!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("recepcion/delete/" + id_recepcion, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Recepcion eliminada correctamente!!");
+                Swal.fire(
+                'Eliminado!',
+                'Recepcion eliminada correctamente.',
+                'success'
+                )
                 $("#recepciones").DataTable().ajax.reload();
             })
         }
-    })
+      })
+
+    // bootbox.confirm("¿Estas seguro de eliminar esta recepcion?", function(result){
+    //     if(result){
+    //         $.post("recepcion/delete/" + id_recepcion, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Recepcion eliminada correctamente!!");
+    //             $("#recepciones").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

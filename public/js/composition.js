@@ -10,7 +10,7 @@ $(document).ready(function() {
                 required: true,
                 minlength: 1
             },
-          
+
         },
         messages: {
             codigo_composicion: {
@@ -23,7 +23,7 @@ $(document).ready(function() {
             }
         }
     })
-   
+
 
     var tabla
 
@@ -36,14 +36,14 @@ $(document).ready(function() {
     function limpiar() {
         $("#codigo_composicion").val("");
         $("#nombre_composicion").val("");
-     
+
     }
 
- 
+
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
-        
+
         var composition = {
             codigo_composicion: $("#codigo_composicion").val(),
             nombre_composicion: $("#nombre_composicion").val()
@@ -57,7 +57,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro la composicion");
+                    Swal.fire(
+                    'Success',
+                    'Composicion creada correctamente.',
+                    'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -99,7 +103,7 @@ $(document).ready(function() {
             columns: [
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre_composicion" },
-              
+
             ]
         });
     }
@@ -112,7 +116,7 @@ $(document).ready(function() {
             codigo_composicion: $("#codigo_composicion").val(),
             nombre_composicion: $("#nombre_composicion").val()
         };
-     
+
         $.ajax({
             url: "composition/edit",
             type: "PUT",
@@ -121,7 +125,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
+                    Swal.fire(
+                        'Success',
+                        'Composicion actualizada.',
+                        'success'
+                        )
                     limpiar();
                     tabla.ajax.reload();
                     $("#id").val("");
@@ -145,9 +153,9 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
-   
+
 
     function mostrarForm(flag) {
         limpiar();
@@ -172,7 +180,7 @@ $(document).ready(function() {
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);
     });
-  
+
 
     init();
 });

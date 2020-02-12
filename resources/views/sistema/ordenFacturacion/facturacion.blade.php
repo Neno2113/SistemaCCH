@@ -21,73 +21,90 @@
 <div class="tab-content" id="custom-content-below-tabContent">
     <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel"
         aria-labelledby="custom-content-below-home-tab">
-        <div class="container mt-4" id="listadoUsers">
-            <table id="orden_facturacion" class="table  table-striped table-bordered datatables mt-2">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Accion</th>
-                        <th>Usuario Gen.</th>
-                        <th>No. Orden E.</th>
-                        <th>Fecha Creado.</th>
-                        <th>Env. Transporte</th>
-                        <th>Fecha empacado</th>
-                        {{-- <th>No Orden P.</th>
-                        <th>F. entrega</th> --}}
-                    </tr>
-                </thead>
-                <tbody id="disponibles">
 
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>Accion</th>
-                        <th>Usuario Gen.</th>
-                        <th>No. Orden E.</th>
-                        <th>Fecha Creado.</th>
-                        <th>Env. Transporte</th>
+        <div class="card" id="listadoUsers">
+            <div class="card-header text-center">
+                <h4>Facturas para generar</h4>
+            </div>
+            <div class="card-body">
+                <table id="orden_facturacion" class="table  table-striped table-bordered datatables mt-2">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Accion</th>
+                            <th>Usuario Gen.</th>
+                            <th>No. Orden E.</th>
+                            <th>Fecha Creado.</th>
+                            <th>Env. Transporte</th>
+                            <th>Fecha empacado</th>
+                            {{-- <th>No Orden P.</th>
+                            <th>F. entrega</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody id="disponibles">
 
-                        <th>Fecha empacado</th>
-                        {{-- <th>No Orden P.</th>
-                        <th>F. entrega</th> --}}
-                    </tr>
-                </tfoot>
-            </table>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Accion</th>
+                            <th>Usuario Gen.</th>
+                            <th>No. Orden E.</th>
+                            <th>Fecha Creado.</th>
+                            <th>Env. Transporte</th>
+
+                            <th>Fecha empacado</th>
+                            {{-- <th>No Orden P.</th>
+                            <th>F. entrega</th> --}}
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
 
         </div>
     </div>
     <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
         aria-labelledby="custom-content-below-profile-tab">
-        <div class="container  mt-4" id="FacturaImprimir">
-            <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
-                <thead>
-                    <tr>
-                        <th>Actions</th>
-                        <th>Usuario</th>
-                        <th># Factura</th>
-                        <th>Fecha</th>
-                        <th>Descuento</th>
-                        <th>ITBIS</th>
-                        <th>Tipo Fact.</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-                <tfoot>
-                    <tr>
-                        <th>Actions</th>
-                        <th>Usuario</th>
-                        <th># Factura</th>
-                        <th>Fecha</th>
-                        <th>Descuento</th>
-                        <th>ITBIS</th>
-                        <th>Tipo Fact.</th>
-                        <th>Status</th>
-                    </tr>
-                </tfoot>
-            </table>
+
+
+        <div class="card" id="listadoUsers">
+            <div class="card-header text-center">
+                <h4>Facturas para imprimir</h4>
+            </div>
+            <div class="card-body">
+                <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Actions</th>
+                            <th>Usuario</th>
+                            <th># Factura</th>
+                            <th>Fecha</th>
+                            <th>Descuento</th>
+                            <th>ITBIS</th>
+                            <th>Tipo Fact.</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Actions</th>
+                            <th>Usuario</th>
+                            <th># Factura</th>
+                            <th>Fecha</th>
+                            <th>Descuento</th>
+                            <th>ITBIS</th>
+                            <th>Tipo Fact.</th>
+                            <th>Status</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
         </div>
+
     </div>
 
 </div>

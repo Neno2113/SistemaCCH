@@ -137,7 +137,11 @@
                     <hr>
                     <div class="row" id="form_talla">
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-block mt-4 rounded-pill" id="entrada_alm"
+                            <label for="">Fecha:</label>
+                            <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control">
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <button type="button" class="btn btn-primary btn-block mt-4  rounded-pill" id="entrada_alm"
                                 data-toggle="modal" data-target=".bd-talla-modal-xl">
                                 <i class="fas fa-sort-alpha-down"></i> Entrada por talla</button>
                         </div>
@@ -228,8 +232,6 @@
             </tfoot>
         </table>
     </div>
-
-
 </div>
 
 
@@ -247,11 +249,19 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <label for="">Referencia producto: </label>
+                    <label for="" class="mt-1">Referencia producto: </label>
                     <div class="col-md-6 mb-2">
-                        <input type="text" name="genero" id="genero" class="form-control font-weight-bold" readonly>
+                        <input type="text" name="genero" id="genero" class="form-control text-center font-weight-bold" readonly>
                         <input type="hidden" name="producto_id" id="producto_id">
                         <input type="hidden" name="almacen_id" id="almacen_id">
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                    <label for="" class="mt-1">Entrada almacen: </label>
+                    <div class="col-md-2 mb-2">
+                        <input type="text" class="form-control font-weight-bold text-center" name="codigo_entrada" id="codigo_entrada"  readonly>
+                        <input type="hidden" name="sec" id="sec">
                     </div>
                 </div>
                 <div class="div-totales">
@@ -422,9 +432,12 @@
                     </div>
                 </div>
                 <hr>
-                <button class="btn btn-primary rounded-pill float-right" name="btn-agregar" id="btn-agregar"><i
+                <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
                         class="fas fa-plus"></i>
                     Agregar</button>
+                <a  class="btn btn-secondary rounded-pill float-right text-white" name="btn-imprimir" id="btn-imprimir"><i
+                        class="fas fa-print"></i>
+                    Imprimir</a>
             </div>
             <div class="modal-footer">
                 <button type="button" id="btn-close" class="btn btn-secondary" data-dismiss="modal"> Cerrar</button>

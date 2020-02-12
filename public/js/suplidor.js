@@ -120,7 +120,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro correctamente el suplidor");
+                    Swal.fire(
+                    'Success',
+                    'Suplidor creado correctamente.',
+                    'success'
+                    )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -215,7 +219,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizo el suplidor correctamente");
+                    Swal.fire(
+                        'Success',
+                        'Suplidor actualizado correctamente.',
+                        'success'
+                        )
                     $("#id").val("");
                     limpiar();
                     tabla.ajax.reload();
@@ -338,13 +346,33 @@ function ver(id_supplier) {
 }
 
 function eliminar(id_supplier){
-    bootbox.confirm("¿Estas seguro de eliminar este suplidor?", function(result){
-        if(result){
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este suplidor?',
+        text: "Va a eliminar este suplidor de manera permanente!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
             $.post("supplier/delete/" + id_supplier, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Suplidor eliminado!!");
+                Swal.fire(
+                'Eliminado!',
+                'Entrada a almacen eliminado correctamente.',
+                'success'
+                )
                 $("#suppliers").DataTable().ajax.reload();
             })
         }
-    })
+      })
+    // bootbox.confirm("¿Estas seguro de eliminar este suplidor?", function(result){
+    //     if(result){
+    //         $.post("supplier/delete/" + id_supplier, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Suplidor eliminado!!");
+    //             $("#suppliers").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

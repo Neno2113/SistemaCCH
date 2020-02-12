@@ -19,6 +19,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validar = $request->validate([
+            'referencia' => 'required',
             'precio_lista' => 'required',
             'descripcion' => 'required'
         ]);
@@ -31,7 +32,10 @@ class ProductController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-            $id = $request->input('id');
+
+            $referencia = $request->input('referencia', true);
+            $referencia_2 = $request->input('referencia_2', true);
+            $sec = $request->input('sec', true);
             $descripcion = $request->input('descripcion', true);
             $descripcion_2 = $request->input('descripcion_2', true);
             $precio_lista = $request->input('precio_lista');
@@ -40,13 +44,18 @@ class ProductController extends Controller
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
 
 
-            $product = Product::find($id);
+            $product = new Product();
+            $product->referencia_producto = $referencia;
+            $product->referencia_producto_2 = $referencia_2;
+            $product->id_user = \auth()->user()->id;
+            $product->sec = $sec + 0.1;
+            $product->enviado_lavanderia = 0;
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
-            $product->precio_lista = trim($precio_lista, "_RD$");
-            $product->precio_lista_2 = $precio_lista_2;
-            $product->precio_venta_publico = trim($precio_venta_publico, "_RD$");
-            $product->precio_venta_publico_2 = $precio_venta_publico_2;
+            $product->precio_lista = trim($precio_lista, "RD$");
+            $product->precio_lista_2 = trim($precio_lista_2, "RD$");
+            $product->precio_venta_publico = trim($precio_venta_publico, "RD$");
+            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "RD$");
 
             $product->save();
 
@@ -411,5 +420,22 @@ class ProductController extends Controller
         ];
 
         return response()->json($data, 200);
+    }
+
+    public function verificarReferencia(Request $request){
+
+        $validar = $request->validate([
+            'referencia_producto' => 'unique:producto',
+
+        ]);
+        if(!empty($validar)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'corte' => 'Test'
+            ];
+
+        }
+        return response()->json($data, $data['code']);
     }
 }
