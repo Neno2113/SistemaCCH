@@ -25,6 +25,22 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
+
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                            <label for="">Orden de pedido:</label>
+                            <input type="text" name="no_orden_pedido" id="no_orden_pedido"
+                                class="form-control font-weight-bold text-center" readonly>
+                            <input type="hidden" name="orden_pedido_id" id="orden_pedido_id">
+                            <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso">
+                            <input type="hidden" name="sec" id="sec" value="">
+                            <input type="hidden" name="cliente_segundas" id="cliente_segundas" value="">
+                            <input type="hidden" name="venta_segunda" id="venta_segunda" value="">
+                            <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
+                            <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
+                        </div>
+                    </div>
                     <div id="orden_create">
                         <div class="row mt-3">
                             <div class="col-md-6" id="clienteBuscar">
@@ -87,22 +103,10 @@
                                 <label for="">Notas:</label>
                                 <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
                             </div>
-
-                            <div class="col-md-2">
-                                <label for="">Orden de pedido:</label>
-                                <input type="text" name="no_orden_pedido" id="no_orden_pedido"
-                                    class="form-control text-center " readonly>
-                                <input type="hidden" name="orden_pedido_id" id="orden_pedido_id">
-                                <input type="hidden" name="orden_pedido_id_proceso" id="orden_pedido_id_proceso">
-                                <input type="hidden" name="sec" id="sec" value="">
-                                <input type="hidden" name="cliente_segundas" id="cliente_segundas" value="">
-                                <input type="hidden" name="venta_segunda" id="venta_segunda" value="">
-                                <input type="hidden" name="sec_proceso" id="sec_proceso" value="">
-                                <input type="hidden" name="no_orden_pedido_proceso" id="no_orden_pedido_proceso">
-                            </div>
-                            <div class="col-md-1 mt-4 pt-2">
-                                <button class="btn btn-secondary btn-block rounded-pill" id="btn-generar"><i
-                                        class="fas fa-truck-loading"></i></button>
+                            <div class="col-md-6"></div>
+                            <div class="col-md-2 mt-4 pt-2 float-right">
+                                <button class="btn btn-secondary btn-block rounded-pill mt-3" id="btn-generar"><i
+                                        class="fas fa-truck-loading"></i> Generar</button>
                             </div>
 
                         </div>
@@ -111,7 +115,6 @@
                     </div>
                     <br>
                     <div id="orden_detalle">
-
 
                         <div class="row" id="producto">
                             <div class="col-md-3 " id="productoBuscar">
@@ -124,7 +127,7 @@
                             <label for="">Referencia Producto</label>
                             <input type="text" name="referencia_producto" id="referencia_producto"
                                 class="form-control font-weight-bold text-center" readonly>
-                        </div> --}}
+                             </div> --}}
                             <div class="col-md-2 mt-2 border-right">
                                 <label for="">¿Detallado?</label>
                                 <div class="form-group clearfix">
@@ -143,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6" id="corte_en_proceso">
-                                <label for="">Referencias en fabricacion</label>
+                                {{-- <label for="">Referencias en fabricacion</label>
                                 <table class="table table-bordered ">
                                     <thead class="thead-light">
                                         <tr>
@@ -155,20 +158,11 @@
                                         </tr>
                                     </thead>
                                     <tbody id="corteProceso">
-                                        {{-- <tr>
-                                            <td id="no_corte"></td>
-                                            <td id="fase"></td>
-                                            <td id="f_entrega"></td>
-                                            <th><input type="text" name="cantidad_proceso" id="cantidad_proceso"
-                                                    class="form-control"></th>
-                                            <th><button id='btn-agregarProceso' class='btn btn-success'> Agregar</button>
-                                            </th>
-                                            <input type="hidden" name="corte_proceso" id="corte_proceso" value="">
-                                        </tr> --}}
+
                                     </tbody>
 
 
-                                </table>
+                                </table> --}}
                             </div>
 
 
@@ -216,11 +210,30 @@
                             </table>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-2" id="redistribucion">
+                                <label for="">Cantidad:</label>
+                                <input type="text" name="cantidad" id="cantidad" class="form-control text-center"
+                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
+                            </div>
+                            <div class="col-md-3 mt-4">
+                                <button class="btn btn-success rounded-pill mt-2" name="btn-consultar"
+                                    id="btn-consultar"><i class="fas fa-search"></i> Consultar</button>
+                            </div>
+                            <div class="col-md-2 ">
+
+                            </div>
+                        </div>
                         <div class="row border-right" id="tallas">
                             <div class="col-md-2 mt-3 " id="precio_div">
                                 <label for="">Precio:</label>
-                                <input type="text" name="precio" id="precio" class="form-control text-center"
-                                    data-inputmask='"mask": "RD$ 9,999"' data-mask>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                    </div>
+                                    <input type="text" name="precio" id="precio" class="form-control text-center"
+                                        data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                </div>
                             </div>
                             <div class="col-md-2 mt-3" id="total_div">
                                 <label for="">Total Ref.:</label>
@@ -231,20 +244,7 @@
                             </div>
 
                         </div>
-                        <div class="row">
-                            <div class="col-md-2" id="redistribucion">
-                                <label for="">Cantidad:</label>
-                                <input type="text" name="cantidad" id="cantidad" class="form-control">
-                            </div>
-                            <div class="col-md-3 mt-4">
-                                <button class="btn btn-success rounded-pill mt-2" name="btn-consultar" id="btn-consultar"><i
-                                        class="fas fa-search"></i> Consultar</button>
-                            </div>
-                            <div class="col-md-2 ">
 
-                            </div>
-
-                        </div>
                         <br>
                         <hr>
                         <br>
@@ -254,23 +254,23 @@
                                 <thead class="">
                                     <tr>
                                         <th class="talla" id="ta">A</th>
-                                        <th class="talla"  id="tb">B</th>
-                                        <th class="talla"  id="tc">C</th>
-                                        <th class="talla"  id="td">D</th>
-                                        <th class="talla"  id="te">E</th>
-                                        <th class="talla"  id="tf">F</th>
-                                        <th class="talla"  id="tg">G</th>
-                                        <th class="talla"  id="th">H</th>
-                                        <th class="talla"  id="ti">I</th>
-                                        <th class="talla"  id="tj">J</th>
-                                        <th class="talla"  id="tk">K</th>
-                                        <th class="talla"  id="tl">L</th>
+                                        <th class="talla" id="tb">B</th>
+                                        <th class="talla" id="tc">C</th>
+                                        <th class="talla" id="td">D</th>
+                                        <th class="talla" id="te">E</th>
+                                        <th class="talla" id="tf">F</th>
+                                        <th class="talla" id="tg">G</th>
+                                        <th class="talla" id="th">H</th>
+                                        <th class="talla" id="ti">I</th>
+                                        <th class="talla" id="tj">J</th>
+                                        <th class="talla" id="tk">K</th>
+                                        <th class="talla" id="tl">L</th>
                                     </tr>
                                 </thead>
                                 <tbody id="disponibles" class="text-align-center">
 
                                 </tbody>
-                                <tfoot >
+                                <tfoot>
 
                                 </tfoot>
 
@@ -279,62 +279,62 @@
                                 <div class="col-lg-1 ">
                                     {{-- <label for="" class="ml-4" id="da">A</label> --}}
                                     <input type="text" name="" id="a" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="db">B</label> --}}
                                     <input type="text" name="" id="b" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="dc">C</label> --}}
                                     <input type="text" name="" id="c" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="dd">D</label> --}}
                                     <input type="text" name="" id="d" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="de">E</label> --}}
                                     <input type="text" name="" id="e" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="df">F</label> --}}
                                     <input type="text" name="" id="f" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="dg">G</label> --}}
                                     <input type="text" name="" id="g" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="dh">H</label> --}}
                                     <input type="text" name="" id="h" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="di">I</label> --}}
                                     <input type="text" name="" id="i" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="dj">J</label> --}}
                                     <input type="text" name="" id="j" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="dk">K</label> --}}
                                     <input type="text" name="" id="k" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                                 <div class="col-lg-1">
                                     {{-- <label for="" class="ml-4" id="dl">L</label> --}}
                                     <input type="text" name="" id="l" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "999"' data-mask>
+                                        data-inputmask='"mask": "999"' data-mask>
                                 </div>
                             </div>
                         </div>
@@ -412,6 +412,61 @@
     </div>
 </div>
 
+<!-- Modal Tallas-->
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" id="ModalSustituto"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Sustitutos en base a
+                        atributos</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered tabla-detallada  mb-3 text-sm">
+                    <thead class="">
+                        <tr>
+                            <th class="talla">Referencia</th>
+                            <th class="talla" id="ta">A</th>
+                            <th class="talla" id="tb">B</th>
+                            <th class="talla" id="tc">C</th>
+                            <th class="talla" id="td">D</th>
+                            <th class="talla" id="te">E</th>
+                            <th class="talla" id="tf">F</th>
+                            <th class="talla" id="tg">G</th>
+                            <th class="talla" id="th">H</th>
+                            <th class="talla" id="ti">I</th>
+                            <th class="talla" id="tj">J</th>
+                            <th class="talla" id="tk">K</th>
+                            <th class="talla" id="tl">L</th>
+                            <th class="talla" id="tl">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sustitutos" class="text-align-center">
+
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary"
+                    data-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 
 <div class="card" id="listadoUsers">
     <div class="card-header text-center">
@@ -455,6 +510,8 @@
     </div>
 
 </div>
+
+
 
 
 

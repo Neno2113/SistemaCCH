@@ -45,6 +45,7 @@ class ProductController extends Controller
 
 
             $product = new Product();
+            $product->genero = substr($referencia, 1, 1);
             $product->referencia_producto = $referencia;
             $product->referencia_producto_2 = $referencia_2;
             $product->id_user = \auth()->user()->id;
