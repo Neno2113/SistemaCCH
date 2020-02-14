@@ -314,6 +314,8 @@ Route::get('ver/orden/{id}', 'ordenPedidoController@verRedistribuir');
 Route::post('orden/detalle/{id}', 'ordenPedidoController@ajuste');
 Route::post('orden/detalle/reajuste/{id}', 'ordenPedidoController@reajuste');
 Route::post('producto/sustituto', 'ordenPedidoController@sustituto');
+Route::get('ordenPedido/consulta/{id}', 'ordenPedidoController@consultaSustituto');
+Route::get('productos/select', 'ordenPedidoController@Productos');
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');

@@ -1,18 +1,34 @@
+var total_recibido;
+var a_total;
+var b_total;
+var c_total;
+var d_total;
+var e_total;
+var f_total;
+var g_total;
+var h_total;
+var i_total;
+var j_total;
+var k_total;
+var l_total;
+
 $(document).ready(function() {
     $("[data-mask]").inputmask();
-    var total_recibido;
-    var a_total;
-    var b_total;
-    var c_total;
-    var d_total;
-    var e_total;
-    var f_total;
-    var g_total;
-    var h_total;
-    var i_total;
-    var j_total;
-    var k_total;
-    var l_total;
+    // var total_recibido;
+    // var a_total;
+    // var b_total;
+    // var c_total;
+    // var d_total;
+    // var e_total;
+    // var f_total;
+    // var g_total;
+    // var h_total;
+    // var i_total;
+    // var j_total;
+    // var k_total;
+    // var l_total;
+    // var genero_global;
+    // var mujer_plus_global;
     // var val = false;
 
     function init() {
@@ -47,6 +63,7 @@ $(document).ready(function() {
         $("#orden_detalle").hide();
         $("#orden_create").show();
         vendedores();
+        productos();
     }
 
     var data;
@@ -108,6 +125,7 @@ $(document).ready(function() {
         $("#j").val("");
         $("#k").val("");
         $("#l").val("");
+        $("#total").val("");
         $("#orden_pedido_id").val("");
         $("#orden_pedido_id_proceso").val("");
         $("input[name='r2'][value='0']").prop("checked", true);
@@ -155,6 +173,34 @@ $(document).ready(function() {
                         $("#vendedores").append(fila);
                     }
                     $("#vendedores").select2();
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert("Ocurrio un error!!");
+            }
+        });
+    }
+
+    function productos(){
+
+        $.ajax({
+            url: "productos/select",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.productos.length;
+
+                    for (let i = 0; i < longitud; i++) {
+                        var fila ="<option value=" +datos.productos[i].id +">"+datos.productos[i].referencia_producto+"</option>";
+                        $("#productoSearch").append(fila);
+                    }
+                    $("#productoSearch").select2();
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"
@@ -321,25 +367,9 @@ $(document).ready(function() {
         }
     });
 
-    $("#productoSearch").select2({
-        placeholder: "Referencia producto Ej: P100-XXXX",
-        ajax: {
-            url: "selectproducto",
-            dataType: "json",
-            delay: 250,
-            processResults: function(data) {
-                return {
-                    results: $.map(data, function(item) {
-                        return {
-                            text: item.referencia_producto,
-                            id: item.id
-                        };
-                    })
-                };
-            },
-            cache: true
-        }
-    });
+
+
+
 
     $("#clienteSearch").select2({
         placeholder: "Nombre del cliente",
@@ -426,27 +456,26 @@ $(document).ready(function() {
 
     function corte_proceso(datos) {
         $("#corteProceso").empty();
-        for (let t = 0; t < datos.corte_proceso.length; t++) {
-            var fila =
-                "<tr>" +
-                "<td>" +
-                datos.corte_proceso[t].numero_corte +
-                "</td>" +
-                "<td>" +
-                datos.corte_proceso[t].fase +
-                "</td>" +
-                "<td>" +
-                datos.corte_proceso[t].fecha_entrega +
-                "</td>" +
-                "<td>" +
-                datos.corte_proceso[t].producto.referencia_producto +
-                "</td>" +
-                "<td>" +
-                datos.corte_proceso[t].total +
-                "</td>" +
-                "</tr>";
-            $("#corteProceso").append(fila);
+
+        if(datos == ""){
+
+
+        }else{
+            for (let t = 0; t < datos.corte_proceso.length; t++) {
+                var fila ="<tr>"+
+                    "<td>"+datos.corte_proceso[t].numero_corte+"</td>"+
+                    "<td>"+datos.corte_proceso[t].fase +"</td>"+
+                    "<td>"+datos.corte_proceso[t].fecha_entrega+"</td>"+
+                    "<td>"+datos.corte_proceso[t].producto.referencia_producto+"</td>" +
+                    "<td>"+datos.corte_proceso[t].total+"</td>"+
+                    "<td><button onclick='consultaSustituto()' class='btn btn-primary'><i class='fas fa-cart-plus'></i></button></td>"+
+                    "</tr>";
+                $("#corteProceso").append(fila);
+            }
         }
+
+
+
     }
 
     var cont;
@@ -481,6 +510,8 @@ $(document).ready(function() {
                     $("#btn-agregar").attr("disabled", false);
                     var genero = ref.substring(1, 2);
                     var mujer_plus = ref.substring(3, 4);
+                    // genero_global = ref.substring(1, 2);
+                    // mujer_plus_global = ref.substring(3, 4);
                     let cantidad = $("#cantidad").val();
                     let total_alm = datos.total_corte;
 
@@ -520,7 +551,7 @@ $(document).ready(function() {
                             Swal.fire({
                                 type: 'warning',
                                 title: 'Alerta',
-                                html: 'La cantidad digitada es mayor a la cantidad disponible en almacen'
+                                html: 'La cantidad digitada es mayor a la cantidad disponible en almacen.'
                                 +'<hr><button onclick="ajustarCantidad()" class="btn btn-primary ml-1" disabled>Ajustar cantidad</button>'
                                 +'<button onclick="cortes_similares()" class="btn btn-secondary ml-4 mr-4">Cortes similares</button>'
                                 +'<button onclick="buscarSustituto()" class="btn btn-info mr-1">Buscar sustitutos</button>',
@@ -565,7 +596,7 @@ $(document).ready(function() {
                         // $("#i").attr("disabled", false);
                         // $("#j").attr("disabled", false);
                         // $("#k").attr("disabled", true);
-                        // $("#l").attr("disabled", true);
+                        // $("#l").attr("disabled", true)
                         $("#kp").hide();
                         $("#lp").hide();
 
@@ -780,6 +811,7 @@ $(document).ready(function() {
                             $("#df").html("22W");
                             $("#dg").html("24W");
                             $("#dh").html("26W");
+                            $("#ka").html("Test");
                             // $("#i").attr("disabled", true);
                             // $("#j").attr("disabled", true);
                             // // $("#k").attr("disabled", true);
@@ -939,7 +971,11 @@ $(document).ready(function() {
 
     $("#btn-agregar").click(function(t) {
         t.preventDefault();
+        validarDetalle();
 
+    });
+
+    function validarDetalle(){
         let a = validarNan(parseInt($("#a").val()));
         let b = validarNan(parseInt($("#b").val()));
         let c = validarNan(parseInt($("#c").val()));
@@ -997,6 +1033,7 @@ $(document).ready(function() {
                     var k_val = datos.k;
                     var l_val = datos.l;
                     var val = true;
+
 
                     if (total > total_recibido) {
                         bootbox.alert(
@@ -1622,28 +1659,54 @@ $(document).ready(function() {
                 console.log("ocurrio un error");
             }
         });
-    });
+    }
+
 
     function agregarDetalle() {
-        var ordenDetalle = {
-            orden_id: $("#orden_pedido_id").val(),
-            a: $("#a").val(),
-            b: $("#b").val(),
-            c: $("#c").val(),
-            d: $("#d").val(),
-            e: $("#e").val(),
-            f: $("#f").val(),
-            g: $("#g").val(),
-            h: $("#h").val(),
-            i: $("#i").val(),
-            j: $("#j").val(),
-            k: $("#k").val(),
-            l: $("#l").val(),
-            precio: $("#precio").val(),
-            producto_id: $("#productoSearch").val(),
-            cantidad: $("#cantidad").val(),
-            segunda: $("#venta_segunda").val()
-        };
+
+        let val = $("input[name='r2']:checked").val();
+        if(val == 1){
+            var ordenDetalle = {
+                orden_id: $("#orden_pedido_id").val(),
+                a: $("#a").val(),
+                b: $("#b").val(),
+                c: $("#c").val(),
+                d: $("#d").val(),
+                e: $("#e").val(),
+                f: $("#f").val(),
+                g: $("#g").val(),
+                h: $("#h").val(),
+                i: $("#i").val(),
+                j: $("#j").val(),
+                k: $("#k").val(),
+                l: $("#l").val(),
+                precio: $("#precio").val(),
+                producto_id: $("#productoSearch").val(),
+                segunda: $("#venta_segunda").val()
+            };
+        }else{
+            var ordenDetalle = {
+                orden_id: $("#orden_pedido_id").val(),
+                a: $("#a").val(),
+                b: $("#b").val(),
+                c: $("#c").val(),
+                d: $("#d").val(),
+                e: $("#e").val(),
+                f: $("#f").val(),
+                g: $("#g").val(),
+                h: $("#h").val(),
+                i: $("#i").val(),
+                j: $("#j").val(),
+                k: $("#k").val(),
+                l: $("#l").val(),
+                precio: $("#precio").val(),
+                producto_id: $("#productoSearch").val(),
+                cantidad: $("#cantidad").val(),
+                segunda: $("#venta_segunda").val()
+            };
+        }
+
+
 
         $.ajax({
             url: "orden/detalle",
@@ -2048,6 +2111,16 @@ $(document).ready(function() {
     init();
 });
 
+
+
+function validarNan(val) {
+    if (isNaN(val) || val < 0) {
+        return 0;
+    } else {
+        return val;
+    }
+}
+
 function eliminar(id_orden) {
     Swal.fire({
         title: "¿Estas seguro de eliminar esta orden de pedido?",
@@ -2111,19 +2184,12 @@ function ver(id_orden) {
         } else {
             result = "No";
         }
-        $("#orden")
-            .DataTable()
-            .destroy();
+        $("#orden").DataTable().destroy();
         listarOrden(data.orden.id);
-        $("#notas")
-            .val(data.orden.notas)
-            .attr("readonly", true)
-            .addClass("font-weight-bold");
+        $("#notas").val(data.orden.notas).attr("readonly", true).addClass("font-weight-bold");
         $("#client").val(data.orden.cliente.nombre_cliente);
         $("#sucur").val(data.orden.sucursal.nombre_sucursal);
-        $("#fecha_entrega")
-            .val(data.orden.fecha_entrega)
-            .attr("disabled", true);
+        $("#fecha_entrega").val(data.orden.fecha_entrega).attr("disabled", true);
         // $("#no_orden_pedido")
         //     .val(data.orden.no_orden_pedido)
         //     .addClass("font-weight-bold");
@@ -2164,6 +2230,7 @@ function listarOrden(id) {
 }
 
 function ajustarCantidad(){
+    $("#btn-consultar").attr("disabled", false);
     $("#ta").show();
     $("#tb").show();
     $("#tc").show();
@@ -2180,11 +2247,147 @@ function ajustarCantidad(){
     // $("#redistribucion").hide();
     $("#detalles").show();
     $("#corte_en_proceso").show();
+    $("input[name='r2'][value='1']").prop("checked", true);
     Swal.close()
 
 }
 
 function cortes_similares(){
+    var rowCount = $("#corteProceso tr").length;
+
+    if(rowCount == 0){
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'No existe otro corte con la misma referencia!',
+            footer: 'Pruebe con las demas opciones para continuar el pedido.'
+        })
+    }else{
+        $("#btn-consultar").attr("disabled", false);
+        $("#ta").show();
+        $("#tb").show();
+        $("#tc").show();
+        $("#td").show();
+        $("#te").show();
+        $("#tf").show();
+        $("#tg").show();
+        $("#th").show();
+        $("#ti").show();
+        $("#tj").show();
+        $("#tk").show();
+        $("#tl").show();
+        $("#detallada").show();
+        // $("#redistribucion").hide();
+        $("#detalles").show();
+        $("#corte_en_proceso").show();
+        Swal.close()
+        $("#ModalSimilares").modal('show');
+    }
+
+
+
+}
+
+
+function consultaSustituto(id){
+    $.ajax({
+        url: "ordenPedido/consulta/"+id,
+        type: "GET",
+        dataType: "json",
+        data: JSON.stringify(orden),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                // console.log(datos);
+                let precio = datos.producto.precio_lista;
+                precio = precio.replace(".00", "");
+                $("input[name='r2'][value='1']").prop("checked", true);
+                $("#productoSearch").val(datos.producto.id).select2().trigger('change');;
+                $("#precio").val(precio);
+                $("#total").val(datos.total_real);
+                $("#disponibles").html(
+                    "<tr id='cortes'>" +
+                    "<td id='a_corte'>"+validarNan(datos.a)+"</td>"+
+                    "<td id='b_corte'>"+validarNan(datos.b)+"</td>"+
+                    "<td id='c_corte'>"+validarNan(datos.c)+"</td>"+
+                    "<td id='d_corte'>"+validarNan(datos.d)+"</td>"+
+                    "<td id='e_corte'>"+validarNan(datos.e)+"</td>"+
+                    "<td id='f_corte'>"+validarNan(datos.f)+"</td>"+
+                    "<td id='g_corte'>"+validarNan(datos.g)+"</td>"+
+                    "<td id='h_corte'>"+validarNan(datos.h)+"</td>"+
+                    "<td id='i_corte'>"+validarNan(datos.i)+"</td>"+
+                    "<td id='j_corte'>"+validarNan(datos.j)+"</td>"+
+                    "<td id='j_corte'>"+validarNan(datos.k)+"</td>"+
+                    "<td id='j_corte'>"+validarNan(datos.l)+"</td>"+
+                    "</tr>"
+                );
+                //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+                datos.a <= 0 ? $("#a").attr("disabled", true) : $("#a").attr("disabled", false);
+                datos.b <= 0 ? $("#b").attr("disabled", true) : $("#b").attr("disabled", false);
+                datos.c <= 0 ? $("#c").attr("disabled", true) : $("#c").attr("disabled", false);
+                datos.d <= 0 ? $("#d").attr("disabled", true) : $("#d").attr("disabled", false);
+                datos.e <= 0 ? $("#e").attr("disabled", true) : $("#e").attr("disabled", false);
+                datos.f <= 0 ? $("#f").attr("disabled", true) : $("#f").attr("disabled", false);
+                datos.g <= 0 ? $("#g").attr("disabled", true) : $("#g").attr("disabled", false);
+                datos.h <= 0 ? $("#h").attr("disabled", true) : $("#h").attr("disabled", false);
+                datos.i <= 0 ? $("#i").attr("disabled", true) : $("#i").attr("disabled", false);
+                datos.j <= 0 ? $("#j").attr("disabled", true) : $("#j").attr("disabled", false);
+                datos.k <= 0 ? $("#k").attr("disabled", true) : $("#k").attr("disabled", false);
+                datos.l <= 0 ? $("#l").attr("disabled", true) : $("#l").attr("disabled", false);
+
+                a_total = datos.a;
+                b_total = datos.b;
+                c_total = datos.c;
+                d_total = datos.d;
+                e_total = datos.e;
+                f_total = datos.f;
+                g_total = datos.g;
+                h_total = datos.h;
+                i_total = datos.i;
+                j_total = datos.j;
+                k_total = datos.k;
+                l_total = datos.l;
+
+                $("#ta").show();
+                $("#tb").show();
+                $("#tc").show();
+                $("#td").show();
+                $("#te").show();
+                $("#tf").show();
+                $("#tg").show();
+                $("#th").show();
+                $("#ti").show();
+                $("#tj").show();
+                $("#tk").show();
+                $("#tl").show();
+                $("#detallada").show();
+                // $("#redistribucion").hide();
+                $("#detalles").show();
+                $("#corte_en_proceso").show();
+                $("#ModalSustituto").modal('hide');
+                $("#btn-consultar").attr("disabled", false);
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion de la composicion"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.errors);
+            let errores = datos.responseJSON.errors;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:
+                        "<h4 class='invalid-feedback d-block'>" +
+                        val +
+                        "</h4>",
+                    size: "small"
+                });
+            });
+        }
+    });
 
 }
 
@@ -2213,30 +2416,35 @@ function buscarSustituto(){
                 }else{
                     Swal.close();
                     $("#ModalSustituto").modal('show');
+                    let ref =  $("#productoSearch option:selected").text()
+                    let genero = ref.substring(1, 2);
+                    let mujer_plus = ref.substring(3, 4)
+                    // console.log(genero);
+                    // console.log(mujer_plus);
+
 
                     $("#sustitutos").empty();
                     for (let t = 0; t < datos.almacen.length; t++) {
-                        var fila =  "<tr>"+
+                        var fila = "<tr>"+
                         "<td>"+datos.almacen[t].producto.referencia_producto+"</td>"+
-                        "<td>"+datos.almacen[t].a+"</td>"+
-                        "<td>"+datos.almacen[t].b+"</td>"+
-                        "<td>"+datos.almacen[t].c+"</td>"+
-                        "<td>"+datos.almacen[t].d+"</td>"+
-                        "<td>"+datos.almacen[t].e+"</td>"+
-                        "<td>"+datos.almacen[t].f+"</td>"+
-                        "<td>"+datos.almacen[t].g+"</td>"+
-                        "<td>"+datos.almacen[t].h+"</td>"+
-                        "<td>"+datos.almacen[t].i+"</td>"+
-                        "<td>"+datos.almacen[t].j+"</td>"+
-                        "<td>"+datos.almacen[t].k+"</td>"+
-                        "<td>"+datos.almacen[t].l+"</td>"+
+                        "<td>"+datos.almacen[t].producto.tono+"</td>"+
+                        "<td>"+datos.almacen[t].producto.intensidad_proceso_seco+"</td>"+
+                        "<td>"+datos.almacen[t].producto.atributo_no_1+"</td>"+
+                        "<td>"+datos.almacen[t].producto.atributo_no_2+"</td>"+
+                        "<td>"+datos.almacen[t].producto.atributo_no_3+"</td>"+
+                        "<td>"+datos.almacen[t].producto.precio_lista+"</td>"+
+                        // "<td>"+datos.almacen[t].g+"</td>"+
+                        // "<td>"+datos.almacen[t].h+"</td>"+
+                        // "<td>"+datos.almacen[t].i+"</td>"+
+                        // "<td>"+datos.almacen[t].j+"</td>"+
+                        // "<td>"+datos.almacen[t].k+"</td>"+
+                        // "<td>"+datos.almacen[t].l+"</td>"+
                         "<td>"+datos.almacen[t].total+"</td>"+
+                        "<td><button onclick='consultaSustituto("+datos.almacen[t].id+")' class='btn btn-primary'><i class='fas fa-cart-plus'></i></button></td>"+
                         "</tr>";
                         $("#sustitutos").append(fila);
                     }
                 }
-
-
 
             } else {
                 bootbox.alert(
@@ -2250,4 +2458,7 @@ function buscarSustituto(){
             bootbox.alert("Error: " + datos.responseJSON.message);
         }
     });
+
+
+
 }

@@ -45,8 +45,10 @@
                         <div class="row mt-3">
                             <div class="col-md-6" id="clienteBuscar">
                                 <label for="">Cliente(*):</label>
+
                                 <select name="tags[]" id="clienteSearch" class="form-control select2">
                                 </select>
+
                             </div>
                             <div class="col-md-6" id="cliente">
                                 <label for="">Cliente(*):</label>
@@ -68,14 +70,21 @@
                         <div class="row mt-3">
                             <div class="col-md-4 mt-2">
                                 <label for="">Vendedor:</label>
-                                <select name="tags[]" id="vendedores" class="form-control select2">
 
+                                <select name="tags[]" id="vendedores" class="form-control select2" style="width:90%;">
+                                    <option value=""></option>
                                 </select>
+
                             </div>
                             <div class="col-md-4 mt-2">
                                 <label for="">Fecha de entrega:</label>
-                                <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control">
-                                <input type="hidden" name="" id="fecha_proceso" value="">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control">
+                                    <input type="hidden" name="" id="fecha_proceso" value="">
+                                </div>
                             </div>
                             <div class="col-md-4 mt-2">
                                 <label for="autorizacion_credito_req">¿Generado internamente?(*):</label>
@@ -121,6 +130,7 @@
                                 <label for="">Referencia Producto</label>
                                 <select name="tags[]" id="productoSearch" class="form-control select2"
                                     style="width:100%">
+                                    <option value=""></option>
                                 </select>
                             </div>
                             {{-- <div class="col-md-3 " id="producto">
@@ -164,9 +174,6 @@
 
                                 </table> --}}
                             </div>
-
-
-
 
                         </div>
                         <div class="container collapse mt-4" id="listarOrden">
@@ -342,8 +349,8 @@
 
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <button class="btn btn-info rounded-lg" name="btn-agregar" id="btn-agregar"><i
-                                        class="fas fa-plus-circle"></i> Agregar</button>
+                                <button class="btn btn-primary rounded-lg" name="btn-agregar" id="btn-agregar">
+                                    <i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
 
                         </div>
@@ -412,11 +419,11 @@
     </div>
 </div>
 
-<!-- Modal Tallas-->
+<!-- Modal Sustitutos-->
 <div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" id="ModalSustituto"
     aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-        <div class="modal-content">
+        <div class="modal-content ">
             <div class="modal-header">
                 <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Sustitutos en base a
                         atributos</strong></h5>
@@ -425,26 +432,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-bordered tabla-detallada  mb-3 text-sm">
+                <table class="table table-bordered tabla-detallada text-sm">
                     <thead class="">
                         <tr>
-                            <th class="talla">Referencia</th>
-                            <th class="talla" id="ta">A</th>
-                            <th class="talla" id="tb">B</th>
-                            <th class="talla" id="tc">C</th>
-                            <th class="talla" id="td">D</th>
-                            <th class="talla" id="te">E</th>
-                            <th class="talla" id="tf">F</th>
-                            <th class="talla" id="tg">G</th>
-                            <th class="talla" id="th">H</th>
-                            <th class="talla" id="ti">I</th>
-                            <th class="talla" id="tj">J</th>
-                            <th class="talla" id="tk">K</th>
-                            <th class="talla" id="tl">L</th>
-                            <th class="talla" id="tl">Total</th>
+                            <th class="talla">REFERENCIA</th>
+                            <th class="talla" id="">TONO</th>
+                            <th class="talla" id="">PROCESO SECO</th>
+                            <th class="talla" id="">ATRIBUTO 1</th>
+                            <th class="talla" id="">ATRIBUTO 2</th>
+                            <th class="talla" id="">ATRIBUTO 3</th>
+                            <th class="talla" id="">PRECIO</th>
+                            {{-- <th class="talla" id="kg">G</th>
+                            <th class="talla" id="kh">H</th>
+                            <th class="talla" id="ki">I</th>
+                            <th class="talla" id="kj">J</th>
+                            <th class="talla" id="kk">K</th>
+                            <th class="talla" id="kl">L</th> --}}
+                            <th class="talla">TOTAL</th>
+                            <th class="talla">AÑADIR</th>
                         </tr>
                     </thead>
-                    <tbody id="sustitutos" class="text-align-center">
+                    <tbody id="sustitutos" class="text-align-center font-weight-bold">
 
                     </tbody>
                     <tfoot>
@@ -455,7 +463,49 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary"
-                    data-dismiss="modal">Guardar</button>
+                    data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Sustitutos-->
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" id="ModalSimilares"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Cortes en proceso con referencias
+                        iguales</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered tabla-detallada text-sm">
+                    <thead class="">
+                        <tr>
+                            <th>No. Corte</th>
+                            <th>Fase</th>
+                            <th>F. Entrega</th>
+                            <th>Ref</th>
+                            <th>Total</th>
+                            <th>AÑADIR</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corteProceso" class="text-align-center font-weight-bold">
+
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary"
+                    data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

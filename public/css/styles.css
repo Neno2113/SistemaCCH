@@ -225,9 +225,9 @@ textarea.form-control
 }
 
 .tabla-detallada thead{
-    border-left: 2px solid #0B447D;
-    border-right: 2px solid #0B447D;
-    background: #0B447D;
+    /* border-left: 2px solid #0B447D;
+    border-right: 2px solid #0B447D; */
+    background: #262D35D6;
     color: #fff;
     text-align: center;
 }
@@ -238,10 +238,10 @@ textarea.form-control
     font-size: 12px;
 }
 .tabla-detallada td, .tabla-detallada th{
-    border: 1px solid #dee2e6;
+    border: 1px solid #0606066b;;
 }
 
-.tabla-detallada tbody tr{
+.tabla-detallada tbody td{
     text-align: center;
 }
 

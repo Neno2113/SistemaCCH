@@ -86,6 +86,10 @@ class AlmacenController extends Controller
                 $producto->save();
             }
 
+            $select = DB::select("SHOW TABLE STATUS LIKE 'almacen'");
+            $nextId = $select[0]->Auto_increment;
+            $almacen_detalle = AlmacenDetalle::where('almacen_id', $nextId)->first();
+            $total = $almacen_detalle->total;
 
             $corte->fase = 'Almacen';
             $corte->save();
@@ -105,7 +109,7 @@ class AlmacenController extends Controller
             // $almacen->j = $j;
             // $almacen->k = $k;
             // $almacen->l = $l;
-            // $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+            $almacen->total = $total;
             $almacen->usado_curva = 0;
 
             $almacen->save();
@@ -163,6 +167,12 @@ class AlmacenController extends Controller
             $almacen_detalle->almacen_id = $nextId;
         } else {
             $almacen_detalle->almacen_id = $almacen_id;
+
+            $almacen = Almacen::find($almacen_id);
+            $total_anterior = $almacen->total;
+            $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $total_anterior;
+            $almacen->total = $total;
+            $almacen->save();
         }
 
         $almacen_detalle->a = $a;
@@ -964,7 +974,7 @@ class AlmacenController extends Controller
         $almacen_id = $almacen_detalle->almacen_id;
         $almacen_detalle->fecha_impreso =  date("d-m-20y h:i:s", strtotime($almacen_detalle->fecha_impreso));
         $pdf = \PDF::loadView('sistema.almacen.DocEA', \compact('almacen_detalle', 'producto'));
-        return $pdf->download('conduceRecepcion.pdf');
+        return $pdf->download('EADoc.pdf');
         return View('sistema.almacen.DocEA', \compact('almacen_detalle', 'producto'));
     }
 }
