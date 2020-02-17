@@ -157,16 +157,37 @@ function inicio(){
 
 function aprobar(id_orden) {
     // e.preventDefault();
-    bootbox.confirm("¿Estas seguro de aprobar esta orden?", function(result){
-        if(result){
+    Swal.fire({
+        title: "¿Estas seguro de aprobar este pedido?",
+        text: "Va a aprobar este pedido!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, acepto"
+    }).then(result => {
+        if (result.value) {
             $.post("orden-aprobacion/" + id_orden, function(data, status){
-                bootbox.alert("Orden <strong>"+ data.orden.no_orden_pedido +"</strong> aprobada." );
-
+                Swal.fire(
+                    "Aprobado!",
+                    "Orden <strong>"+ data.orden.no_orden_pedido +"</strong> aprobada",
+                    "success"
+                );
                 $("#ordenes_aprobacion").DataTable().ajax.reload();
                 $("#ordenes_red").DataTable().ajax.reload();
-            })
+            });
         }
-    })
+    });
+    // bootbox.confirm("¿Estas seguro de aprobar esta orden?", function(result){
+    //     if(result){
+    //         $.post("orden-aprobacion/" + id_orden, function(data, status){
+    //             bootbox.alert("Orden <strong>"+ data.orden.no_orden_pedido +"</strong> aprobada." );
+
+    //             $("#ordenes_aprobacion").DataTable().ajax.reload();
+    //             $("#ordenes_red").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }
 
 function redistribuir(id_orden){
@@ -199,15 +220,36 @@ function accionRedistribuir(id_orden){
 }
 
 function cancelar(id_orden){
-    bootbox.confirm("¿Estas seguro de cancelar esta orden?", function(result){
-        if(result){
+    Swal.fire({
+        title: "¿Estas seguro de cancelar esta orden de pedido?",
+        text: "Va a cancelar esta orden de  pedido!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, acepto"
+    }).then(result => {
+        if (result.value) {
             $.post("orden-cancelacion/" + id_orden, function(data, status){
-                bootbox.alert("Orden <strong>"+ data.orden.no_orden_pedido +"</strong> cancelada." );
-
+                Swal.fire(
+                    "Cancelada!",
+                    "Orden <strong>"+ data.orden.no_orden_pedido +"</strong> cancelada.",
+                    "success"
+                );
                 $("#ordenes_aprobacion").DataTable().ajax.reload();
-            })
+                $("#ordenes_red").DataTable().ajax.reload();
+            });
         }
-    })
+    });
+    // bootbox.confirm("¿Estas seguro de cancelar esta orden?", function(result){
+    //     if(result){
+    //         $.post("orden-cancelacion/" + id_orden, function(data, status){
+    //             bootbox.alert("Orden <strong>"+ data.orden.no_orden_pedido +"</strong> cancelada." );
+
+    //             $("#ordenes_aprobacion").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }
 function ver(id_orden) {
     $.get("ver/orden/" + id_orden, function(data, status) {
@@ -448,7 +490,7 @@ function listarOrdenDetalle(id) {
             { data: "k", name: "orden_pedido_detalle.k", orderable: false, searchable: false},
             { data: "l", name: "orden_pedido_detalle.l", orderable: false, searchable: false},
             { data: "total", name: "orden_pedido_detalle.total",  },
-            { data: "cantidad", name: "orden_pedido_detalle.cantidad" },
+            { data: "cant_red", name: "orden_pedido_detalle.cant_red" },
             { data: "Opciones", orderable: false, searchable: false },
             { data: "manual", orderable: false, searchable: false },
 

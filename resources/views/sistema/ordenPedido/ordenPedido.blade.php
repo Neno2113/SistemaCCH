@@ -156,23 +156,13 @@
                                 </div>
                             </div>
                             <div class="col-md-6" id="corte_en_proceso">
-                                {{-- <label for="">Referencias en fabricacion</label>
-                                <table class="table table-bordered ">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>No. Corte</th>
-                                            <th>Fase</th>
-                                            <th>F. Entrega</th>
-                                            <th>Ref</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="corteProceso">
-
-                                    </tbody>
-
-
-                                </table> --}}
+                                <div class="alert alert-warning alert-dismissible fade show" id="alerta_proceso" role="alert">
+                                    <strong><i class="fas fa-exclamation-triangle"></i> Alerta!</strong>
+                                    Se va a generar otra orden de pedido adicional con las referencias que aun no estan disponibles.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             </div>
 
                         </div>

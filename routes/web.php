@@ -316,6 +316,7 @@ Route::post('orden/detalle/reajuste/{id}', 'ordenPedidoController@reajuste');
 Route::post('producto/sustituto', 'ordenPedidoController@sustituto');
 Route::get('ordenPedido/consulta/{id}', 'ordenPedidoController@consultaSustituto');
 Route::get('productos/select', 'ordenPedidoController@Productos');
+Route::get('corte/fecha/{id}', 'ordenPedidoController@fechaEntrega');
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');

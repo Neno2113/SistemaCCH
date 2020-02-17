@@ -62,6 +62,7 @@ $(document).ready(function() {
         $("#listarOrden").hide();
         $("#orden_detalle").hide();
         $("#orden_create").show();
+        $("#alerta_proceso").hide();
         vendedores();
         productos();
     }
@@ -128,6 +129,7 @@ $(document).ready(function() {
         $("#total").val("");
         $("#orden_pedido_id").val("");
         $("#orden_pedido_id_proceso").val("");
+        $("#orden_pedido").empty();
         $("input[name='r2'][value='0']").prop("checked", true);
         $("#sec").val("");
         $("#sec_proceso").val();
@@ -356,20 +358,6 @@ $(document).ready(function() {
         $("#total_div").show();
     });
 
-    $("input[name='r2']").change(function() {
-        let val = $("input[name='r2']:checked").val();
-
-        if (val == 1) {
-            // $("#btn-consultar").show();
-            $("#btn-consultar").attr("disabled", false);
-        } else if (val == 0) {
-            $("#btn-consultar").attr("disabled", false);
-        }
-    });
-
-
-
-
 
     $("#clienteSearch").select2({
         placeholder: "Nombre del cliente",
@@ -468,7 +456,7 @@ $(document).ready(function() {
                     "<td>"+datos.corte_proceso[t].fecha_entrega+"</td>"+
                     "<td>"+datos.corte_proceso[t].producto.referencia_producto+"</td>" +
                     "<td>"+datos.corte_proceso[t].total+"</td>"+
-                    "<td><button onclick='consultaSustituto()' class='btn btn-primary'><i class='fas fa-cart-plus'></i></button></td>"+
+                    "<td><button onclick='agregarProceso("+datos.corte_proceso[t].id+")' class='btn btn-primary'><i class='fas fa-cart-plus'></i></button></td>"+
                     "</tr>";
                 $("#corteProceso").append(fila);
             }
@@ -571,6 +559,23 @@ $(document).ready(function() {
 
 
                     }
+
+                    $("#disponibles").html(
+                        "<tr id='cortes'>" +
+                        "<td id='a_corte'>"+validarNan(datos.a)+"</td>"+
+                        "<td id='b_corte'>"+validarNan(datos.b)+"</td>"+
+                        "<td id='c_corte'>"+validarNan(datos.c)+"</td>"+
+                        "<td id='d_corte'>"+validarNan(datos.d)+"</td>"+
+                        "<td id='e_corte'>"+validarNan(datos.e)+"</td>"+
+                        "<td id='f_corte'>"+validarNan(datos.f)+"</td>"+
+                        "<td id='g_corte'>"+validarNan(datos.g)+"</td>"+
+                        "<td id='h_corte'>"+validarNan(datos.h)+"</td>"+
+                        "<td id='i_corte'>"+validarNan(datos.i)+"</td>"+
+                        "<td id='j_corte'>"+validarNan(datos.j)+"</td>"+
+                        "<td id='j_corte'>"+validarNan(datos.k)+"</td>"+
+                        "<td id='j_corte'>"+validarNan(datos.l)+"</td>"+
+                        "</tr>"
+                    );
                     if (genero == 1) {
                         $("#sub-genero").hide();
                         $("#ta").html("28");
@@ -613,40 +618,7 @@ $(document).ready(function() {
                         $("#k").attr("placeholder", "");
                         $("#l").attr("placeholder", "");
 
-                        $("#disponibles").html(
-                            "<tr id='cortes'>" +
-                                "<th id='a_corte' class='font-weight-normal'>" +
-                                validarNan(datos.a) +
-                                "</th>" +
-                                "<th id='b_corte' class='font-weight-normal'>" +
-                                validarNan(datos.b) +
-                                "</th>" +
-                                "<th id='c_corte' class='font-weight-normal'>" +
-                                validarNan(datos.c) +
-                                "</th>" +
-                                "<th id='d_corte' class='font-weight-normal'>" +
-                                validarNan(datos.d) +
-                                "</th>" +
-                                "<th id='e_corte' class='font-weight-normal'>" +
-                                validarNan(datos.e) +
-                                "</th>" +
-                                "<th id='f_corte' class='font-weight-normal'>" +
-                                validarNan(datos.f) +
-                                "</th>" +
-                                "<th id='g_corte' class='font-weight-normal'>" +
-                                validarNan(datos.g) +
-                                "</th>" +
-                                "<th id='h_corte' class='font-weight-normal'>" +
-                                validarNan(datos.h) +
-                                "</th>" +
-                                "<th id='i_corte' class='font-weight-normal'>" +
-                                validarNan(datos.i) +
-                                "</th>" +
-                                "<th id='j_corte' class='font-weight-normal'>" +
-                                validarNan(datos.j) +
-                                "</th>" +
-                                "</tr>"
-                        );
+
                     } else if (genero == 3) {
                         $("#sub-genero").hide();
                         $("#ta").html("2");
@@ -683,42 +655,7 @@ $(document).ready(function() {
                         $("#k").attr("placeholder", "");
                         $("#l").attr("placeholder", "");
 
-                        $("#disponibles").html(
-                            "<tr id='cortes'>" +
-                                "<th id='a_corte' class='font-weight-normal'>" +
-                                validarNan(datos.a) +
-                                "</th>" +
-                                "<th id='b_corte' class='font-weight-normal'>" +
-                                validarNan(datos.b) +
-                                "</th>" +
-                                "<th id='c_corte' class='font-weight-normal'>" +
-                                validarNan(datos.c) +
-                                "</th>" +
-                                "<th id='d_corte' class='font-weight-normal'>" +
-                                validarNan(datos.d) +
-                                "</th>" +
-                                "<th id='e_corte' class='font-weight-normal'>" +
-                                validarNan(datos.e) +
-                                "</th>" +
-                                "<th id='f_corte' class='font-weight-normal'>" +
-                                validarNan(datos.f) +
-                                "</th>" +
-                                "<th id='g_corte' class='font-weight-normal'>" +
-                                validarNan(datos.g) +
-                                "</th>" +
-                                "<th id='h_corte' class='font-weight-normal'>" +
-                                validarNan(datos.h) +
-                                "</th>" +
-                                "<th id='i_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "<th id='j_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "<th id='k_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "<th id='l_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "</tr>"
-                        );
+
                     } else if (genero == 4) {
                         $("#sub-genero").hide();
                         $("#ta").html("2");
@@ -755,42 +692,7 @@ $(document).ready(function() {
                         $("#k").attr("placeholder", "");
                         $("#l").attr("placeholder", "");
 
-                        $("#disponibles").html(
-                            "<tr id='cortes'>" +
-                                "<th id='a_corte' class='font-weight-normal'>" +
-                                validarNan(datos.a) +
-                                "</th>" +
-                                "<th id='b_corte' class='font-weight-normal'>" +
-                                validarNan(datos.b) +
-                                "</th>" +
-                                "<th id='c_corte' class='font-weight-normal'>" +
-                                validarNan(datos.c) +
-                                "</th>" +
-                                "<th id='d_corte' class='font-weight-normal'>" +
-                                validarNan(datos.d) +
-                                "</th>" +
-                                "<th id='e_corte' class='font-weight-normal'>" +
-                                validarNan(datos.e) +
-                                "</th>" +
-                                "<th id='f_corte' class='font-weight-normal'>" +
-                                validarNan(datos.f) +
-                                "</th>" +
-                                "<th id='g_corte' class='font-weight-normal'>" +
-                                validarNan(datos.g) +
-                                "</th>" +
-                                "<th id='h_corte' class='font-weight-normal'>" +
-                                validarNan(datos.h) +
-                                "</th>" +
-                                "<th id='i_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "<th id='j_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "<th id='k_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "<th id='l_corte' class='font-weight-normal'>" +
-                                "</th>" +
-                                "</tr>"
-                        );
+
                     }
                     if (genero == 2) {
                         if (mujer_plus == 7) {
@@ -830,46 +732,7 @@ $(document).ready(function() {
                             $("#k").attr("placeholder", "");
                             $("#l").attr("placeholder", "");
 
-                            $("#disponibles").html(
-                                "<tr id='cortes'>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.a) +
-                                    "</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.b) +
-                                    "</th>" +
-                                    "<th id='c_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.c) +
-                                    "</th>" +
-                                    "<th id='d_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.d) +
-                                    "</th>" +
-                                    "<th id='e_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.e) +
-                                    "</th>" +
-                                    "<th id='f_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.f) +
-                                    "</th>" +
-                                    "<th id='g_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.g) +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.h) +
-                                    "</th>" +
-                                    "<th id='i_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.i) +
-                                    "</th>" +
-                                    "<th id='j_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.j) +
-                                    "</th>" +
-                                    "<th id='k_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.k) +
-                                    "</th>" +
-                                    "<th id='l_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.l) +
-                                    "</th>" +
-                                    "</tr>"
-                            );
+
                         } else {
                             $("#ta").html("0/0");
                             $("#tb").html("1/2");
@@ -913,46 +776,7 @@ $(document).ready(function() {
                             $("#k").attr("placeholder", "19/20");
                             $("#l").attr("placeholder", "21/22");
 
-                            $("#disponibles").html(
-                                "<tr id='cortes'>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.a) +
-                                    "</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.b) +
-                                    "</th>" +
-                                    "<th id='c_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.c) +
-                                    "</th>" +
-                                    "<th id='d_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.d) +
-                                    "</th>" +
-                                    "<th id='e_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.e) +
-                                    "</th>" +
-                                    "<th id='f_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.f) +
-                                    "</th>" +
-                                    "<th id='g_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.g) +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.h) +
-                                    "</th>" +
-                                    "<th id='i_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.i) +
-                                    "</th>" +
-                                    "<th id='j_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.j) +
-                                    "</th>" +
-                                    "<th id='k_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.k) +
-                                    "</th>" +
-                                    "<th id='l_corte' class='font-weight-normal'>" +
-                                    validarNan(datos.l) +
-                                    "</th>" +
-                                    "</tr>"
-                            );
+
                         }
                     }
                 } else {
@@ -1682,6 +1506,7 @@ $(document).ready(function() {
                 l: $("#l").val(),
                 precio: $("#precio").val(),
                 producto_id: $("#productoSearch").val(),
+                fecha_entrega: $("#fecha_proceso").val(),
                 segunda: $("#venta_segunda").val()
             };
         }else{
@@ -1700,13 +1525,12 @@ $(document).ready(function() {
                 k: $("#k").val(),
                 l: $("#l").val(),
                 precio: $("#precio").val(),
+                fecha_entrega: $("#fecha_proceso").val(),
                 producto_id: $("#productoSearch").val(),
                 cantidad: $("#cantidad").val(),
                 segunda: $("#venta_segunda").val()
             };
         }
-
-
 
         $.ajax({
             url: "orden/detalle",
@@ -1728,12 +1552,37 @@ $(document).ready(function() {
                     $("#j").val("");
                     $("#k").val("");
                     $("#l").val("");
-
+                    $("#fecha_proceso").val("");
+                    $("#productoSearch").val("").select2().trigger('change');
                     $("#cantidad").val("");
+                    $("#precio").val("");
+                    $("#total").val("");
                     $("#btn-agregar").attr("disabled", true);
-                    $("#btn-consultar").attr("disabled", false);
-                    $("#btn-agregarProceso").attr("disabled", false);
+                    $("#btn-consultar").attr("disabled", true);
+                    $("#alerta_proceso").hide();
                     result = false;
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        // timerProgressBar: true,
+                        onOpen: toast => {
+                            toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                            );
+                            toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                            );
+                        }
+                    });
+
+                    Toast.fire({
+                        type: "success",
+                        title: "Referencia agregada a la orden correctamente!"
+                    });
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -1955,35 +1804,13 @@ $(document).ready(function() {
             ajax: "api/ordenes_redistribucion",
             columns: [
                 { data: "Opciones", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
-                {
-                    data: "referencia_producto",
-                    name: "producto.referencia_producto"
-                },
-                {
-                    data: "client",
-                    name: "orden_pedido_detalle.nombre_cliente",
-                    searchable: false
-                },
-                {
-                    data: "sucursal",
-                    name: "orden_pedido_detalle.nombre_sucursal",
-                    searchable: false
-                },
-                {
-                    data: "total",
-                    name: "orden_pedido_detalle.total",
-                    searchable: false
-                },
+                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
+                { data: "referencia_producto", name: "producto.referencia_producto"},
+                { data: "client", name: "orden_pedido_detalle.nombre_cliente", searchable: false},
+                { data: "sucursal", name: "orden_pedido_detalle.nombre_sucursal", searchable: false},
+                { data: "total", name: "orden_pedido_detalle.total", searchable: false },
                 { data: "precio", name: "orden_pedido_detalle.precio" },
-                {
-                    data: "status_orden_pedido",
-                    name: "orden_pedido_detalle.status_orden_pedido",
-                    searchable: false
-                }
+                { data: "status_orden_pedido", name: "orden_pedido_detalle.status_orden_pedido", searchable: false}
             ],
             order: [[1, "desc"]],
             rowGroup: {
@@ -2019,32 +1846,17 @@ $(document).ready(function() {
             ajax: "api/ordenes_proceso",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                {
-                    data: "no_orden_pedido",
-                    name: "orden_pedido.no_orden_pedido"
-                },
-                { data: "nombre_cliente", name: "cliente.nombre_cliente" },
-                {
-                    data: "nombre_sucursal",
-                    name: "cliente_sucursales.nombre_sucursal"
-                },
+                { data: "Opciones", orderable: false, searchable: false },
+                { data: "no_orden_pedido", name: "orden_pedido.no_orden_pedido"},
+                { data: "cliente", name: "orden_pedido.cliente", orderable: false, searchable: false  },
+                { data: "sucursal", name: "orden_pedido.sucursal", orderable: false, searchable: false },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
-                {
-                    data: "total",
-                    name: "orden_pedido.total",
-                    searchable: false
-                },
-                {
-                    data: "status_orden_pedido",
-                    name: "orden_pedido.status_orden_pedido"
-                },
-                {
-                    data: "generado_internamente",
-                    name: "orden_pedido.generado_internamente"
-                },
+                { data: "total", name: "orden_pedido.total", searchable: false},
+                { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido"},
+                { data: "generado_internamente", name: "orden_pedido.generado_internamente"},
                 { data: "notas", name: "orden_pedido.notas" }
             ],
-            order: [[4, "desc"]],
+            order: [[5, "desc"]],
             rowGroup: {
                 dataSrc: "fecha_entrega"
             }
@@ -2070,16 +1882,9 @@ $(document).ready(function() {
         $("#genInt").show();
         $("#agregadas").show();
         $("#listarOrden").hide();
-        $("#orden")
-            .DataTable()
-            .destroy();
-        $("#notas")
-            .val("")
-            .attr("readonly", false)
-            .removeClass("font-weight-bold");
-        $("#fecha_entrega")
-            .val("")
-            .attr("disabled", false);
+        $("#orden").DataTable().destroy();
+        $("#notas").val("").attr("readonly", false).removeClass("font-weight-bold");
+        $("#fecha_entrega").val("").attr("disabled", false);
         // $("#no_orden_pedido")
         //     .val("")
         //     .removeClass("font-weight-bold");
@@ -2100,9 +1905,6 @@ $(document).ready(function() {
         $("#btn-consultar").attr("disabled", false);
     });
 
-    $("#productoSearch").on('change', function(){
-        $("#btn-consultar").attr("disabled", false);
-    });
 
     window.onresize = function() {
         tabla.columns.adjust().responsive.recalc();
@@ -2302,7 +2104,7 @@ function consultaSustituto(id){
                 let precio = datos.producto.precio_lista;
                 precio = precio.replace(".00", "");
                 $("input[name='r2'][value='1']").prop("checked", true);
-                $("#productoSearch").val(datos.producto.id).select2().trigger('change');;
+                $("#productoSearch").val(datos.producto.id).select2().trigger('change');
                 $("#precio").val(precio);
                 $("#total").val(datos.total_real);
                 $("#disponibles").html(
@@ -2460,5 +2262,96 @@ function buscarSustituto(){
     });
 
 
+
+}
+
+function agregarProceso(id){
+
+    $.ajax({
+        url: "corte/fecha/"+id,
+        type: "GET",
+        dataType: "json",
+        data: JSON.stringify(producto),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                $("#disponibles").html(
+                "<tr id='cortes'>" +
+                    "<td id='a_corte' >"+validarNan(datos.a)+"</td>"+
+                    "<td id='b_corte' >"+validarNan(datos.b)+"</td>"+
+                    "<td id='c_corte' >"+validarNan(datos.c)+"</td>"+
+                    "<td id='d_corte' >"+validarNan(datos.d)+"</td>"+
+                    "<td id='e_corte' >"+validarNan(datos.e)+"</td>"+
+                    "<td id='f_corte' >"+validarNan(datos.f)+"</td>"+
+                    "<td id='g_corte' >"+validarNan(datos.g)+"</td>"+
+                    "<td id='h_corte' >"+validarNan(datos.h)+"</td>"+
+                    "<td id='i_corte' >"+validarNan(datos.i)+"</td>"+
+                    "<td id='j_corte' >"+validarNan(datos.j)+"</td>"+
+                    "<td id='k_corte' >"+validarNan(datos.k)+"</td>"+
+                    "<td id='l_corte' >"+validarNan(datos.l)+"</td>"+
+                    "</tr>"
+                );
+                a_total = datos.a;
+                b_total = datos.b;
+                c_total = datos.c;
+                d_total = datos.d;
+                e_total = datos.e;
+                f_total = datos.f;
+                g_total = datos.g;
+                h_total = datos.h;
+                i_total = datos.i;
+                j_total = datos.j;
+                k_total = datos.k;
+                l_total = datos.l;
+
+                //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+                datos.a <= 0 ? $("#a").attr("disabled", true) : $("#a").attr("disabled", false);
+                datos.b <= 0 ? $("#b").attr("disabled", true) : $("#b").attr("disabled", false);
+                datos.c <= 0 ? $("#c").attr("disabled", true) : $("#c").attr("disabled", false);
+                datos.d <= 0 ? $("#d").attr("disabled", true) : $("#d").attr("disabled", false);
+                datos.e <= 0 ? $("#e").attr("disabled", true) : $("#e").attr("disabled", false);
+                datos.f <= 0 ? $("#f").attr("disabled", true) : $("#f").attr("disabled", false);
+                datos.g <= 0 ? $("#g").attr("disabled", true) : $("#g").attr("disabled", false);
+                datos.h <= 0 ? $("#h").attr("disabled", true) : $("#h").attr("disabled", false);
+                datos.i <= 0 ? $("#i").attr("disabled", true) : $("#i").attr("disabled", false);
+                datos.j <= 0 ? $("#j").attr("disabled", true) : $("#j").attr("disabled", false);
+                datos.k <= 0 ? $("#k").attr("disabled", true) : $("#k").attr("disabled", false);
+                datos.l <= 0 ? $("#l").attr("disabled", true) : $("#l").attr("disabled", false);
+                $("#total").val(datos.total);
+
+                $("#fecha_proceso").val(datos.fecha_entrega);
+                $("#btn-consultar").attr("disabled", false);
+                $("#ta").show();
+                $("#tb").show();
+                $("#tc").show();
+                $("#td").show();
+                $("#te").show();
+                $("#tf").show();
+                $("#tg").show();
+                $("#th").show();
+                $("#ti").show();
+                $("#tj").show();
+                $("#tk").show();
+                $("#tl").show();
+                $("#detallada").show();
+                // $("#redistribucion").hide();
+                $("#detalles").show();
+                $("#corte_en_proceso").show();
+                $("input[name='r2'][value='1']").prop("checked", true);
+                $("#ModalSimilares").modal('hide');
+                $("#alerta_proceso").show();
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion de la composicion"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.message);
+
+            bootbox.alert("Error: " + datos.responseJSON.message);
+        }
+    });
 
 }

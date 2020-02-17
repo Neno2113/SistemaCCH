@@ -324,7 +324,7 @@ $(document).ready(function() {
                             "<a href='javascript:void(0)' class='product-title'>" +
                             productos[i].referencia_producto +
                             "<span class='badge badge-warning float-right'>$" +
-                            productos[i].precio_venta_publico +
+                            productos[i].precio_lista +
                             "</span></a>" +
                             "<span class='product-description'>" +
                             productos[i].descripcion +

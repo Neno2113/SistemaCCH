@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Factura Resumida</title>
+	<title>Conduce Orden Pedido</title>
 	<style>
 		@font-face {
 			font-family: SourceSansPro;
@@ -919,16 +919,12 @@
 			</table>
 		</div>
 
-
-
 		<div id="thanks">CONDUCE DE ORDEN DE PEDIDO</div>
 		<div id="notices">
 			<div>NOTAS:</div>
 			<p class="notice">{{$orden->notas}}</p>
 
 		</div>
-
-
 
 		<div class="firmas">
 			<div class="firma_enviado">ENVIADO POR:</div>
@@ -939,8 +935,319 @@
 	<footer class="pagina1">
 		Factura generada desde SistemaCCH.
 	</footer>
+    @if ($corte_proceso == false)
+    @foreach ($ordenProceso as $orden_proceso)
+    <header class="clearfix">
+		<div id="logo">
+			<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
+		</div>
+		{{-- <div id="logo">
+            <h1>CCH</h1>
+        </div> --}}
+		<div id="company">
+			<h2 class="name">Confecciones Carmen Herrera</h2>
+			<div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
+			<div>(809) 699-8400</div>
+			<div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
+			<div>RNC: 130-746974</div>
+		</div>
+		</div>
+	</header>
+	<main>
+		<div id="details" class="clearfix">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
+				<thead class="cod">
+					<tr>
+						<th>Cliente codigo</th>
+						<td>Cod</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Nombre</th>
+						<td>{{$orden->cliente->nombre_cliente}}</td>
+                    </tr>
+
+					<tr>
+						<th class="direccion">Direccion</th>
+						<td class="direccion">{{$orden->cliente->calle}}, {{$orden->cliente->sector}}
+							{{$orden->cliente->provincia}}, {{$orden->cliente->sitios_cercanos}}<</td> </tr> <tr>
+						<th>Sucursal</th>
+						<td>{{$orden->sucursal->nombre_sucursal}}</td>
+					</tr>
+					<tr>
+						<th>Tel</th>
+						<td>{{$orden->cliente->telefono_1}}</td>
+					</tr>
+					<tr>
+						<th>RNC</th>
+						<td>{{$orden->cliente->rnc}}</td>
+					</tr>
+				</tbody>
+
+			</table>
+            {{-- {{$ordenProceso}} --}}
+			<table class="tabla-factura">
+				<thead>
+					<tr>
+						<th class="factura">ORDEN PEDIDO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="num_factura">{{$orden_proceso->no_orden_pedido}}</td>
+					</tr>
+					<tr>
+						<td class="fecha">Fecha:{{date("d/m/20y", strtotime($orden_proceso->fecha))}}</td>
+					</tr>
+					<tr>
+						<td class="page">Pagina 1</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<table cellspacing="0" class="tabla-ncf">
+			<thead>
+				<tr>
+					<th class="op">ORDEN PEDIDO</th>
+					<th class="terminos_pago">TERMINOS PAGO</th>
+					<th class="vendedor">VENDEDOR</th>
+					<th>FECHA ENTREGA</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{$orden_proceso->no_orden_pedido}}</td>
+					<td>{{$orden->cliente->condiciones_credito}}</td>
+					<td>{{$orden->vendedor->nombre}} {{$orden->vendedor->apellido}}</td>
+					<td class="vencimiento">{{date("d/m/20y", strtotime($orden_proceso->fecha_entrega))}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
+			<thead class="tabla-tallas">
+				<tr>
+					<th class="talla_head">MUJER PLUS:</th>
+					<td class="talla">12W</td>
+					<td class="talla">14W</td>
+					<td class="talla">16W</td>
+					<td class="talla">18W</td>
+					<td class="talla">20W</td>
+					<td class="talla">22W</td>
+					<td class="talla">24W</td>
+					<td class="talla">26W</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">MUJER:</th>
+					<td class="talla" style="width: 41.883px;">0/0</td>
+					<td class="talla" style="width: 39.233px;">1/2</td>
+					<td class="talla" style="width: 39.233px;">3/4</td>
+					<td class="talla" style="width: 39.233px;">5/6</td>
+					<td class="talla" style="width: 39.233px;">7/8</td>
+					<td class="talla" style="width: 39.233px;">9/10</td>
+					<td class="talla" style="width: 41.517px;">11/12</td>
+					<td class="talla" style="width: 43.217px;">13/14</td>
+					<td class="talla" style="width: 41.833px;">15/16</td>
+					<td class="talla" style="width: 42.567px;">17/18</td>
+					<td class="talla" style="width: 42.35px;">19/20</td>
+                    <td class="talla" style="width: 42.15px;">21/22</td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">HOMBRE:</th>
+					<td class="talla">28</td>
+					<td class="talla">29</td>
+					<td class="talla">30</td>
+					<td class="talla">31</td>
+					<td class="talla">32</td>
+					<td class="talla">34</td>
+					<td class="talla">36</td>
+					<td class="talla">38</td>
+					<td class="talla">40</td>
+					<td class="talla">42</td>
+					<td class="talla">44</td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">NIÑO:</th>
+					<td class="talla">2</td>
+					<td class="talla">4</td>
+					<td class="talla">6</td>
+					<td class="talla">8</td>
+					<td class="talla">10</td>
+					<td class="talla">12</td>
+					<td class="talla">14</td>
+					<td class="talla">16</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">NIÑA:</th>
+					<td class="talla">2</td>
+					<td class="talla">4</td>
+					<td class="talla">6</td>
+					<td class="talla">8</td>
+					<td class="talla">10</td>
+					<td class="talla">12</td>
+					<td class="talla">14</td>
+					<td class="talla">16</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
+				</tr>
+
+			</thead>
+			<thead>
+				<tr>
+					<th style="color:#fff;">REFERENCIA</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th style="color:#fff">TOTAL</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($ordenesProcesoDetalle as $talla)
+				<tr>
+					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
+					<td class="unit_talla">{{$talla->a}}</td>
+					<td class="unit_talla">{{$talla->b}}</td>
+					<td class="unit_talla">{{$talla->c}}</td>
+					<td class="unit_talla">{{$talla->d}}</td>
+					<td class="unit_talla">{{$talla->e}}</td>
+					<td class="unit_talla">{{$talla->f}}</td>
+					<td class="unit_talla">{{$talla->g}}</td>
+					<td class="unit_talla">{{$talla->h}}</td>
+					<td class="unit_talla">{{$talla->i}}</td>
+					<td class="unit_talla">{{$talla->j}}</td>
+					<td class="unit_talla">{{$talla->k}}</td>
+					<td class="unit_talla">{{$talla->l}}</td>
+					<td class="unit_talla">{{$talla->total}}</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+
+		<table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
+			<thead>
+				<tr>
+					<th class="desc">CANT</th>
+					<th class="no">REFERENCIA</th>
+					{{-- <th class="unit">UPC/SKU</th> --}}
+					<th class="desc">DESCRIPCION</th>
+					{{-- <th class="unit">PRECIO</th>
+					<th class="total">TOTAL</th> --}}
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="desc">
+						@foreach ($ordenesProcesoDetalle as $total_detalle)
+						<li>{{$total_detalle->total}}</li>
+						@endforeach
+					</td>
+					<td class="no">
+						@foreach ($ordenesProcesoDetalle as $producto)
+						<li>{{$producto->producto->referencia_producto}}</li>
+						@endforeach
+					</td>
+					<td class="desc-des">
+						@foreach ($ordenesProcesoDetalle as $producto)
+						<li>{{$producto->producto->descripcion}}</li>
+						@endforeach
+					</td>
+					{{-- <td class="unit">
+						@foreach ($orden_detalle as $precio)
+						<li>{{$precio->precio}}</li>
+						@endforeach
+					</td>
+					<td class="total">
+						@foreach ($detalles_totales as $total)
+						<li>{{$total}} RD$</li>
+						@endforeach
+					</td> --}}
+				</tr>
+			</tbody>
+
+		</table>
+		<div style="clear: fix;">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
+				<thead>
+
+				</thead>
+
+			</table>
+
+			<table class="tabla-totales">
+
+				{{-- <tr>
+                    <th>DESCUENTO: {{$factura->descuento}}%</th>
+				<td>{{number_format($descuento)}} RD$</td>
+
+				</tr> --}}
+				{{-- <tr>
+					<th>SUBTOTAL:</th>
+					<td>{{ number_format($subtotal)}} RD$</td>
+
+				</tr>
+				<tr>
+					<th>IMPUESTO 18%</th>
+					<td>{{number_format($tax)}} RD$</td>
+				</tr>
+				<tr class="total">
+					<th style="font-weight:bold;">TOTAL FINAL:</th>
+					<td style="font-weight:bold;">{{$total}} RD$</td>
+				</tr> --}}
+			</table>
+		</div>
+
+		<div id="thanks">CONDUCE DE ORDEN DE PEDIDO</div>
+		<div id="notices">
+			<div>NOTAS:</div>
+			<p class="notice">{{$orden->notas}}</p>
+
+		</div>
+
+		<div class="firmas">
+			<div class="firma_enviado">ENVIADO POR:</div>
+
+			<div class="firma_recibido">RECIBIDO POR:</div>
+		</div>
+	</main>
+	<footer class="pagina1">
+		Factura generada desde SistemaCCH.
+	</footer>
+    @endforeach
 
 
+
+    @endif
 </body>
 
 </html>

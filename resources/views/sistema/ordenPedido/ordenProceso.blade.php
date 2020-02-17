@@ -199,7 +199,7 @@
 
                             </tbody>
                             {{-- <tfoot id="corteProceso">
-                                
+
                             </tfoot> --}}
 
                         </table>
@@ -325,6 +325,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th>Opt</th>
                 <th>#</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
@@ -339,6 +340,7 @@
         <tfoot>
             <tr>
                 <th></th>
+                <th>Opt</th>
                 <th>#</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
@@ -360,15 +362,28 @@
 
 <script type="text/javascript">
     function eliminar(id_orden){
-        bootbox.confirm("¿Estas seguro de eliminar esta orden de producto?", function(result){
-            if(result){
-                $.post("orden_pedido/delete/" + id_orden, function(){
-                    bootbox.alert("Orden de pedido eliminada correctamente!!");
-                    $("#ordenes").DataTable().ajax.reload();
-                    ordenPedidoCod();
-                })
-            }
-        })
+        Swal.fire({
+        title: "¿Estas seguro de eliminar esta orden de pedido?",
+        text: "Va a eliminar la orden de pedido!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, acepto"
+    }).then(result => {
+        if (result.value) {
+            $.post("orden_pedido/delete/" + id_orden, function() {
+                Swal.fire(
+                    "Eliminado!",
+                    "Orden de pedido eliminada correctamente.",
+                    "success"
+                );
+                $("#ordenes_proceso")
+                    .DataTable()
+                    .ajax.reload();
+            });
+        }
+    });
     }
 
 </script>
