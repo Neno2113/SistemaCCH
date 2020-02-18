@@ -54,7 +54,8 @@ class FacturaController extends Controller
                 $tipo_factura = "FB";
             }
 
-
+            $numeracion = trim($numeracion, "_");
+            $numero_comprobante = trim($numero_comprobante, "_");
 
             $factura->orden_facturacion_id = $orden_facturacion_id;
             $factura->no_factura = $tipo_factura . '-' . $numeracion;
@@ -259,8 +260,8 @@ class FacturaController extends Controller
                 '<span  class="badge badge-warning">No Impreso <i class="fas fa-check"></i> </span>';
             })
             ->addColumn('Opciones', function ($orden) {
-                return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>' .
-                    '<a href="factura/resumida/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura Resumida"> <i class="fas fa-file-invoice-dollar fa-lg"></i></a>';
+                return  '<a href="factura/resumida/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura Resumida"> <i class="fas fa-file-invoice-dollar fa-lg"></i></a>';
+
                     // '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Factura detallada"> <i class="fas fa-file-invoice fa-lg"></i></a>';
             })
             ->rawColumns(['Opciones', 'status'])

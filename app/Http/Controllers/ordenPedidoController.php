@@ -496,7 +496,7 @@ class ordenPedidoController extends Controller
 
         $orden_detalle = new ordenPedidoDetalle();
 
-        if(!empty($fecha_entrega)){
+        if (!empty($fecha_entrega)) {
 
 
 
@@ -507,11 +507,11 @@ class ordenPedidoController extends Controller
             $sec = $request->input('sec');
 
             $orden_proceso = OrdenPedido::where('fecha_entrega', $fecha_entrega)
-            ->where('orden_pedido_father', $orden_id)->get()->first();
+                ->where('orden_pedido_father', $orden_id)->get()->first();
 
-            if(is_object($orden_proceso)){
+            if (is_object($orden_proceso)) {
                 $orden_detalle->orden_pedido_id = $orden_proceso->id;
-            }else{
+            } else {
 
                 $numero_antiguo = DB::table('orden_pedido')->latest('updated_at')->first();
 
@@ -538,7 +538,7 @@ class ordenPedidoController extends Controller
                 $orden->save();
                 $orden_detalle->orden_pedido_id = $nextId;
             }
-        }else{
+        } else {
             $orden_detalle->orden_pedido_id = $orden_id;
         }
 
@@ -786,6 +786,7 @@ class ordenPedidoController extends Controller
         $orden->orden_proceso_impresa = 'Si';
         $orden->save();
 
+
         $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get()->load('producto');
 
         $productos_id = ordenPedidoDetalle::where('orden_pedido_id', $id)->select('producto_id')->get();
@@ -840,6 +841,7 @@ class ordenPedidoController extends Controller
         $precio_simple = str_replace('.', '', $precio_total);
         $total_simple = $cantidad * $total_sin_detalle;
         //fin orden normal
+
 
         //orden con corte que esta en proceso
         $ordenProceso = ordenPedido::where('corte_en_proceso', 'Si')
@@ -1262,9 +1264,7 @@ class ordenPedidoController extends Controller
         $ordenes = DB::table('orden_pedido')
             ->select([
                 'orden_pedido.id', 'orden_pedido.orden_pedido_father',
-                'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega'
-                ,'orden_pedido.notas', 'orden_pedido.generado_internamente'
-                , 'orden_pedido.corte_en_proceso',
+                'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega', 'orden_pedido.notas', 'orden_pedido.generado_internamente', 'orden_pedido.corte_en_proceso',
                 'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
             ])->where('corte_en_proceso', 'LIKE', 'Si');
 
@@ -1312,7 +1312,6 @@ class ordenPedidoController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
                 return '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
-
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
@@ -1880,9 +1879,53 @@ class ordenPedidoController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    // function clearOP(){
-    //     $ordenes = OrdenPedido::all();
+    function clearOP(){
+        $ordenes_id = ordenPedido::all();
+
+        $ordenes = array();
+
+        $longitud = count($ordenes_id);
+
+        for ($i = 0; $i < $longitud; $i++) {
+            array_push($ordenes, $ordenes_id[$i]['id']);
+        }
+
+        $orden_detalle = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)->get();
+
+        $detalles = array();
+
+        $longitudDetalle = count($orden_detalle);
+
+        for ($i = 0; $i < $longitudDetalle; $i++) {
+            array_push($detalles, $orden_detalle[$i]['orden_pedido_id']);
+        }
+
+        //verificar diferencia
+
+        $diferencia = array_diff($ordenes, $detalles);
+
+        if(!empty($diferencia)){
+            $orden = ordenPedido::whereIn('id', $diferencia)->get();
+            $length = count($orden);
+
+            if(!empty($orden)){
+                for ($i = 0; $i < $length; $i++) {
+                    $orden[$i]->delete();
+                }
+
+            }
+        }
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'message' => 'Hecho'
+            // 'ordenes' => $ordenes,
+            // 'detalle' => $detalles,
+            // 'diferencia' => $orden
+        ];
 
 
-    // }
+        return response()->json($data, $data['code']);
+    }
 }

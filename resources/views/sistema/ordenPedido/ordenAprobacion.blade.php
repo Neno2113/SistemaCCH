@@ -246,7 +246,7 @@
                 <th>Sucursal</th>
                 <th>Fecha</th>
                 <th>F. Entr.</th>
-                <th>F. Aprob.</th>
+                {{-- <th>F. Aprob.</th> --}}
                 <th>Total</th>
                 <th>Status</th>
             </tr>
@@ -261,7 +261,7 @@
                 <th>Sucursal</th>
                 <th>Fecha</th>
                 <th>F. Entr.</th>
-                <th>F. Aprob.</th>
+                {{-- <th>F. Aprob.</th> --}}
                 <th>Total</th>
                 <th>Status</th>
             </tr>

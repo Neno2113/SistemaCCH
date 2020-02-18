@@ -325,7 +325,7 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Opt</th>
+                <th>Action</th>
                 <th>#</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>
@@ -340,7 +340,7 @@
         <tfoot>
             <tr>
                 <th></th>
-                <th>Opt</th>
+                <th>Action</th>
                 <th>#</th>
                 <th>Cliente</th>
                 <th>Sucursal</th>

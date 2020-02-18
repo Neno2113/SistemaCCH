@@ -85,14 +85,14 @@ $(document).ready(function() {
                 { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
-                { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion" },
+                // { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion" },
                 { data: "total", name: "orden_pedido.total", searchable: false  },
                 { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
             ],
             order: [[1, "desc"]],
-            // rowGroup: {
-            //     dataSrc: "name"
-            // }
+            rowGroup: {
+                dataSrc: "status_orden_pedido"
+            }
         });
     }
 

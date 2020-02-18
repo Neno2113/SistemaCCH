@@ -21,9 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 // Vistas
+
 Route::get('/user', function () {
     return view('sistema.user.users');
-})->middleware('auth');
+})->middleware('auth', 'admin');
 
 Route::get('/employee', function () {
     return view('sistema.empleado.empleado');
@@ -31,7 +32,7 @@ Route::get('/employee', function () {
 
 Route::get('/permiso', function () {
     return view('sistema.user.permiso');
-})->middleware('auth');
+})->middleware('auth', 'admin');
 
 Route::get('/client', function () {
     return view('sistema.client.clients');
@@ -315,8 +316,9 @@ Route::post('orden/detalle/{id}', 'ordenPedidoController@ajuste');
 Route::post('orden/detalle/reajuste/{id}', 'ordenPedidoController@reajuste');
 Route::post('producto/sustituto', 'ordenPedidoController@sustituto');
 Route::get('ordenPedido/consulta/{id}', 'ordenPedidoController@consultaSustituto');
-Route::get('productos/select', 'ordenPedidoController@Productos');
+Route::get('productos', 'ordenPedidoController@Productos');
 Route::get('corte/fecha/{id}', 'ordenPedidoController@fechaEntrega');
+Route::get('ordenes/empty', 'ordenPedidoController@clearOP');
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');

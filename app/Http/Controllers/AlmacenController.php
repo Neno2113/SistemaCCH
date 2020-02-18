@@ -12,6 +12,8 @@ use App\Perdida;
 use App\TallasPerdidas;
 use App\Talla;
 use App\AlmacenDetalle;
+use App\ordenPedido;
+use App\ordenPedidoDetalle;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -71,6 +73,25 @@ class AlmacenController extends Controller
             $almacen = new Almacen();
             $corte = Corte::find($corte_id);
             $producto_id = $corte['producto_id'];
+
+            $ordenes_proceso = ordenPedido::where('corte_en_proceso', 'LIKE', 'Si')->get()->first();
+            if(!empty($ordenes_proceso)){
+                $proceso_detalle = ordenPedidoDetalle::where('orden_pedido_id', $ordenes_proceso->id)
+                ->where('producto_id', $producto_id)->get()->first();
+            }
+
+            if(!empty($proceso_detalle)){
+                $ordenes_proceso->corte_en_proceso = "No";
+                $orden_father_id = $ordenes_proceso->orden_pedido_father;
+                $orden_father = ordenPedido::find($orden_father_id);
+                $ordenes_proceso->cliente_id = $orden_father->cliente_id;
+                $ordenes_proceso->sucursal_id = $orden_father->sucursal_id;
+                $ordenes_proceso->vendedor_id = $orden_father->vendedor_id;
+                $ordenes_proceso->detallada = $orden_father->detallada;
+                $ordenes_proceso->notas = $orden_father->notas;
+                $ordenes_proceso->generado_internamente = $orden_father->generado_internamente;
+                $ordenes_proceso->save();
+            }
 
             if (!empty($ubicacion)) {
                 $producto = Product::find($producto_id);

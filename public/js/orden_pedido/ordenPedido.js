@@ -35,6 +35,7 @@ $(document).ready(function() {
         // $("input[name='r1']:checked").val("");
         limpiar();
         mostrarDetalle();
+        eliminarEmpty();
         // mostrarForm(false);
         $("#cantidad").val("");
         $("#precio").val("");
@@ -190,7 +191,7 @@ $(document).ready(function() {
     function productos(){
 
         $.ajax({
-            url: "productos/select",
+            url: "productos",
             type: "GET",
             dataType: "json",
             contentType: "application/json",
@@ -210,7 +211,28 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                bootbox.alert("Ocurrio un error!!");
+                console.log("No cargaron los productos");
+            }
+        });
+    }
+
+    function eliminarEmpty(){
+        $.ajax({
+            url: "ordenes/empty",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    $("#ordenes").DataTable().ajax.reload();
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                console.log("Ocurrio un error")
             }
         });
     }
@@ -1812,7 +1834,7 @@ $(document).ready(function() {
                 { data: "precio", name: "orden_pedido_detalle.precio" },
                 { data: "status_orden_pedido", name: "orden_pedido_detalle.status_orden_pedido", searchable: false}
             ],
-            order: [[1, "desc"]],
+            order: [[9, "desc"]],
             rowGroup: {
                 dataSrc: "no_orden_pedido"
             }
@@ -1851,6 +1873,7 @@ $(document).ready(function() {
                 { data: "cliente", name: "orden_pedido.cliente", orderable: false, searchable: false  },
                 { data: "sucursal", name: "orden_pedido.sucursal", orderable: false, searchable: false },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
+                { data: "referencia_producto", name: "orden_pedido.fecha_entrega" },
                 { data: "total", name: "orden_pedido.total", searchable: false},
                 { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido"},
                 { data: "generado_internamente", name: "orden_pedido.generado_internamente"},
@@ -1899,6 +1922,7 @@ $(document).ready(function() {
         $("#btnAgregar").show();
         $("#registroForm").hide();
         $("#listadoUsers").show();
+        eliminarEmpty();
     });
 
     $("#cantidad").on('keyup', function(){

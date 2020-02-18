@@ -1133,7 +1133,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($ordenesProcesoDetalle as $talla)
+                @foreach ($ordenesProcesoDetalle as $talla)
+                @if ($talla->orden_pedido_id == $orden_proceso->id )
 				<tr>
 					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
 					<td class="unit_talla">{{$talla->a}}</td>
@@ -1149,7 +1150,8 @@
 					<td class="unit_talla">{{$talla->k}}</td>
 					<td class="unit_talla">{{$talla->l}}</td>
 					<td class="unit_talla">{{$talla->total}}</td>
-				</tr>
+                </tr>
+                @endif
 				@endforeach
 			</tbody>
 		</table>
@@ -1168,18 +1170,24 @@
 			<tbody>
 				<tr>
 					<td class="desc">
-						@foreach ($ordenesProcesoDetalle as $total_detalle)
-						<li>{{$total_detalle->total}}</li>
+                        @foreach ($ordenesProcesoDetalle as $total_detalle)
+                        @if ($total_detalle->orden_pedido_id == $orden_proceso->id )
+                        <li>{{$total_detalle->total}}</li>
+                        @endif
 						@endforeach
 					</td>
 					<td class="no">
-						@foreach ($ordenesProcesoDetalle as $producto)
-						<li>{{$producto->producto->referencia_producto}}</li>
+                        @foreach ($ordenesProcesoDetalle as $producto)
+                        @if ($producto->orden_pedido_id == $orden_proceso->id )
+                        <li>{{$producto->producto->referencia_producto}}</li>
+                        @endif
 						@endforeach
 					</td>
 					<td class="desc-des">
-						@foreach ($ordenesProcesoDetalle as $producto)
-						<li>{{$producto->producto->descripcion}}</li>
+                        @foreach ($ordenesProcesoDetalle as $producto)
+                        @if ($producto->orden_pedido_id == $orden_proceso->id )
+                        <li>{{$producto->producto->descripcion}}</li>
+                        @endif
 						@endforeach
 					</td>
 					{{-- <td class="unit">

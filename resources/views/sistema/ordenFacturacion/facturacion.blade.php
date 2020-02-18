@@ -188,7 +188,8 @@
                         </div>
                         <div class="col-md-3">
                             <label for="">Numero Factura</label>
-                            <input type="text" name="numeracion" id="numeracion" class="form-control">
+                            <input type="text" name="numeracion" id="numeracion" class="form-control text-center"
+                            data-inputmask='"mask": "999999999999[9999999999]"' data-mask>
                         </div>
                         <div class="col-md-2">
                             <label for="">ITBIS</label>
@@ -211,7 +212,8 @@
                             <div id="comprobante">
                                 <label for="">Numero Comprobante</label>
                                 <input type="text" name="numero_comprobante" id="numero_comprobante"
-                                    class="form-control">
+                                    class="form-control text-center"
+                                    data-inputmask='"mask": "999999999999[9999999999]"' data-mask>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">

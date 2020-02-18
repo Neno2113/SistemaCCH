@@ -100,6 +100,26 @@
                         </div>
 
                     </div>
+                    {{-- <div class="row">
+                        <div class="row mt-3" id="vatar">
+                            <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Avatar</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="avatar" id="avatar">
+                                            <input type="hidden" name="user_id" id="user_id" value="">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="input-group-text" id="btn-upload">Upload</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div> --}}
 
                     <div class="row">
                         <div class="col-md-12">
