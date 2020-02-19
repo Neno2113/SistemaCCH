@@ -30,6 +30,7 @@
             <div class="card">
                 {{-- <div class="card-header">{{ __('Login') }}</div> --}}
                 <p class="login-box-msg">Sign in to start your session</p>
+                <hr>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -94,9 +95,13 @@
                                     </label>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                  Inicias sesion
                                 </button>
 
                                 {{-- @if (Route::has('password.request'))
@@ -105,10 +110,6 @@
                                 </a>
                                 @endif --}}
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-
                         </div>
                     </form>
                 </div>

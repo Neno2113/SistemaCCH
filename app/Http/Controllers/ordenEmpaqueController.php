@@ -849,7 +849,7 @@ class ordenEmpaqueController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
                 return ($orden->orden_empacada == 1) ? '<span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span>':
-                '<a onclick="test(' . $orden->id . ')" id="guardar" class="btn btn-primary btn-sm ml-1"> <i class="far fa-save"></i></a>';
+                '<a onclick="test(' . $orden->id . ')" id="guardar" class="btn btn-primary btn-sm ml-1 text-white"> <i class="far fa-save"></i></a>';
             })
             ->addColumn('records', function ($orden) {
                 return ;

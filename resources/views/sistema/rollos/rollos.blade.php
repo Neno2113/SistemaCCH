@@ -94,7 +94,7 @@
                     <th>Codigo</th>
                     <th>Tono</th>
                     <th>F. compra</th>
-                    <th>F. compra</th>
+                    <th>No. Factura</th>
                     <th>Corte asig.</th>
                     <th>Yardas</th>
                 </tr>
@@ -109,7 +109,7 @@
                     <th>Codigo</th>
                     <th>Tono</th>
                     <th>F. compra</th>
-                    <th>F. compra</th>
+                    <th>No. Factura</th>
                     <th>Corte asig.</th>
                     <th>Yardas</th>
                 </tr>

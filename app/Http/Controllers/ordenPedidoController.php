@@ -143,7 +143,7 @@ class ordenPedidoController extends Controller
                 'k' => $k,
                 'l' => $l,
                 'producto' => $producto,
-                'total_corte' => $total_real,
+                'total_corte' => ($total_real < 0) ? 0 : $total_real,
                 'corte_proceso' => $corte_proceso,
                 // 'fecha_entrega' => $fecha_entrega
             ];
@@ -1847,6 +1847,7 @@ class ordenPedidoController extends Controller
             }
 
             $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get()->load('perdida');
+            $total = $tallas->sum('total') - $tallasPerdidas->sum('total') - $tallasSegundas->sum('total');
 
             $data = [
                 'code' => 200,
@@ -1864,7 +1865,7 @@ class ordenPedidoController extends Controller
                 'j' => $tallas->sum('j') - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j'),
                 'k' => $tallas->sum('k') - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k'),
                 'l' => $tallas->sum('l') - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l'),
-                'total' => $tallas->sum('total') - $tallasPerdidas->sum('total') - $tallasSegundas->sum('total'),
+                'total' => ($total < 0) ? 0 : $total
 
 
             ];

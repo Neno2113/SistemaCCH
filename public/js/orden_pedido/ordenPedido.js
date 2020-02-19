@@ -155,7 +155,7 @@ $(document).ready(function() {
 
     function vendedores() {
         $.ajax({
-            url: "vendedores",
+            url: "vendedores/select",
             type: "GET",
             dataType: "json",
             contentType: "application/json",
@@ -183,15 +183,14 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                bootbox.alert("Ocurrio un error!!");
-            }
+                console.log("Ocurrio un error cargando los vendedores");            }
         });
     }
 
     function productos(){
 
         $.ajax({
-            url: "productos",
+            url: "productos/select",
             type: "GET",
             dataType: "json",
             contentType: "application/json",

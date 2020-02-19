@@ -11,11 +11,11 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                @if (Auth::user()->role == 'Administrador')
-                <img src="{{asset('adminlte/img/images.png')}}" class="user-image img-circle elevation-2"
+                @if (!empty(Auth::user()->avatar))
+                <img src="{{URL('/avatar').'/'.Auth::user()->avatar}}" class="user-image img-circle elevation-2"
                     alt="User Image">
-                @elseif(Auth::user()->role == 'Oficina')
-                <img src="{{asset('adminlte/img/oficeUser.jpg')}}" class="user-image img-circle elevation-2"
+                @else
+                <img src="{{asset('adminlte/img/images.png')}}" class="user-image img-circle elevation-2"
                     alt="User Image">
                 @endif
             <span class="d-none d-md-inline"> {{Auth::user()->name}} {{Auth::user()->surname}}</span>
@@ -23,11 +23,11 @@
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    @if (Auth::user()->role == 'Administrador')
-                    <img src="{{asset('adminlte//img/images.png')}}" class="img-circle elevation-2"
+                    @if (!empty(Auth::user()->avatar))
+                    <img src="{{URL('/avatar').'/'.Auth::user()->avatar}}" class="img-circle elevation-2"
                         alt="User Image">
-                    @elseif(Auth::user()->role == 'Oficina')
-                    <img src="{{asset('adminlte//img/oficeUser.jpg')}}" class="img-circle elevation-2"
+                    @else
+                    <img src="{{asset('adminlte/img/images.png')}}" class="img-circle elevation-2"
                         alt="User Image">
                     @endif
 

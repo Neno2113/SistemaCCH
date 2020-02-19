@@ -149,7 +149,7 @@
      <!-- TABLE: LATEST CORTES -->
      <div class="card ">
       <div class="card-header border-transparent text-black bg-gradient-primary">
-        <h3 class="card-title">Cortes en proceso</h3>
+        <h3 class="card-title">Ultimos cortes creados</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">

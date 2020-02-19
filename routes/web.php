@@ -24,51 +24,51 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user', function () {
     return view('sistema.user.users');
-})->middleware('auth', 'admin');
+})->middleware('auth', 'admin:user');
 
 Route::get('/employee', function () {
     return view('sistema.empleado.empleado');
-})->middleware('auth');
+})->middleware('auth', 'admin:employee');
 
 Route::get('/permiso', function () {
     return view('sistema.user.permiso');
-})->middleware('auth', 'admin');
+})->middleware('auth', 'admin:permiso');
 
 Route::get('/client', function () {
     return view('sistema.client.clients');
-})->middleware('auth');
+})->middleware('auth', 'admin:client');
 
 Route::get('/branch', function () {
     return view('sistema.branch.branch');
-})->middleware('auth');
+})->middleware('auth', 'admin:branch');
 
 Route::get('/supplier', function () {
     return view('sistema.suplidor.supplies');
-})->middleware('auth');
+})->middleware('auth', 'admin:supplier');
 
 Route::get('/composition', function () {
     return view('sistema.composicion.compositions');
-})->middleware('auth');
+})->middleware('auth', 'admin:composition');
 
 Route::get('/cloth', function () {
     return view('sistema.cloth.cloth');
-})->middleware('auth');
+})->middleware('auth', 'admin:cloth');
 
 Route::get('/rollos', function () {
     return view('sistema.rollos.rollos');
-});
+})->middleware('auth', 'admin:rollos');;
 
 Route::get('/product', function () {
     return view('sistema.product.product');
-})->middleware('auth');
+})->middleware('auth', 'admin:product');
 
 Route::get('/corte', function () {
     return view('sistema.corte.corte');
-})->middleware('auth');;
+})->middleware('auth', 'admin:corte');
 
 Route::get('/sku', function () {
     return view('sistema.sku.sku');
-})->middleware('auth');
+})->middleware('auth', 'admin:sku');
 
 Route::get('/corte-consulta', function () {
     return view('sistema.corte.consulta');
@@ -76,7 +76,7 @@ Route::get('/corte-consulta', function () {
 
 Route::get('/lavanderia', function () {
     return view('sistema.lavanderia.lavanderia');
-})->middleware('auth');
+})->middleware('auth', 'admin:lavanderia');
 
 Route::get('/devolucion-lavanderia', function () {
     return view('sistema.lavanderia.envioLavanderia');
@@ -84,59 +84,59 @@ Route::get('/devolucion-lavanderia', function () {
 
 Route::get('/recepcion', function () {
     return view('sistema.recepcion.recepcion');
-})->middleware('auth');
+})->middleware('auth', 'admin:recepcion');
 
 Route::get('/perdida', function () {
     return view('sistema.perdidas.perdida');
-})->middleware('auth');
+})->middleware('auth', 'admin:perdida');
 
 Route::get('/almacen', function () {
     return view('sistema.almacen.almacen');
-})->middleware('auth');
+})->middleware('auth', 'admin:almacen');
 
 Route::get('/producto-terminado', function () {
     return view('sistema.product.terminado');
-})->middleware('auth');
+})->middleware('auth', 'admin:producto-terminado');
 
 Route::get('/existencia', function () {
     return view('sistema.existencia.existencia');
-})->middleware('auth');
+})->middleware('auth', 'admin:existencia');
 
 Route::get('/orden_pedido', function () {
     return view('sistema.ordenPedido.ordenPedido');
-})->middleware('auth');
+})->middleware('auth', 'admin:orden_pedido');
 
 Route::get('/ordenes_proceso', function () {
     return view('sistema.ordenPedido.ordenProceso');
-})->middleware('auth');
+})->middleware('auth', 'admin:ordenes_proceso');
 
 Route::get('/orden_aprobacion', function () {
     return view('sistema.ordenPedido.ordenAprobacion');
-})->middleware('auth');
+})->middleware('auth', 'admin:orden_aprobacion');
 
 Route::get('/orden_redistribucion', function () {
     return view('sistema.ordenPedido.ordenRed');
-})->middleware('auth');
+})->middleware('auth', 'admin:orden_redistribucion');
 
 Route::get('/orden_empaque_listar', function () {
     return view('sistema.ordenEmpaque.ordenEmpaqueCreate');
-})->middleware('auth');
+})->middleware('auth', 'admin:orden_empaque_listar');
 
 Route::get('/orden_empaque', function () {
     return view('sistema.ordenEmpaque.ordenEmpaque');
-})->middleware('auth');
+})->middleware('auth', 'admin:orden_empaque');
 
 Route::get('/orden_facturacion', function () {
     return view('sistema.ordenFacturacion.ordenFacturacion');
-})->middleware('auth');
+})->middleware('auth', 'admin:orden_facturacion');
 
 Route::get('/facturacion', function () {
     return view('sistema.ordenFacturacion.facturacion');
-})->middleware('auth');
+})->middleware('auth', 'admin:facturacion');
 
 Route::get('/nota_credito', function () {
     return view('sistema.ordenFacturacion.notacredito');
-})->middleware('auth');
+})->middleware('auth', 'admin:nota_credito');
 // Fin vistas
 
 //Rutas de usuarios
@@ -144,6 +144,8 @@ Route::post('/user', 'UserController@store');
 Route::put('/user/edit', 'UserController@update');
 Route::post('/user/delete/{id}', 'UserController@destroy');
 Route::post('/user/{id}', 'UserController@show');
+Route::post('/avatar', 'UserController@upload');
+Route::get('/avatar/{filname}', 'UserController@getImage');
 
 //Rutas composition
 Route::post('/composition', 'CompositionController@store');
@@ -310,13 +312,13 @@ Route::post('mostrar/{id}', 'ordenPedidoController@mostrar');
 Route::get('orden_all', 'ordenPedidoController@home_orden');
 Route::post('validar/orden_pedido', 'ordenPedidoController@validar');
 Route::post('cliente/segundas', 'ordenPedidoController@clienteSegunda');
-Route::get('vendedores', 'ordenPedidoController@vendedores');
+Route::get('vendedores/select', 'ordenPedidoController@vendedores');
 Route::get('ver/orden/{id}', 'ordenPedidoController@verRedistribuir');
 Route::post('orden/detalle/{id}', 'ordenPedidoController@ajuste');
 Route::post('orden/detalle/reajuste/{id}', 'ordenPedidoController@reajuste');
 Route::post('producto/sustituto', 'ordenPedidoController@sustituto');
 Route::get('ordenPedido/consulta/{id}', 'ordenPedidoController@consultaSustituto');
-Route::get('productos', 'ordenPedidoController@Productos');
+Route::get('productos/select', 'ordenPedidoController@Productos');
 Route::get('corte/fecha/{id}', 'ordenPedidoController@fechaEntrega');
 Route::get('ordenes/empty', 'ordenPedidoController@clearOP');
 

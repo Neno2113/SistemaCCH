@@ -135,21 +135,31 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    console.log(datos);
-                    Swal.fire(
-                        'Success',
-                        'Permiso agregar correctamente.',
-                        'success'
-                    )
-                    let usuario = $("#usuario option:selected").text();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Permiso agregado correctamente.'
+                    })
+                    let usuario = $("#usuario option:selected").text();
+                    let permiso = $("#permisos option:selected").text();
                     var cont;
                     var fila =
-                    '<tr id="fila'+cont +'">'+
-                    "<td>"+usuario+"</td>"+
-                    "<td>"+datos.permiso.permiso+"</td>"+
+                    '<tr id="fila'+datos.permiso.id+'">'+
+                    "<td class=''><input type='hidden' id='usuario"+datos.permiso.user.id+"' value="+datos.permiso.user.id+">"+datos.permiso.user.name+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.permiso.id+"' value="+datos.permiso.id+">"+datos.permiso.permiso+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+datos.permiso.id+")' class='btn btn-danger'><i class='fas fa-user-lock'></i></i></button></td>"+
                     "</tr>";
-                    cont++;
                     $("#permisos-agregados").append(fila);
                 } else {
                     bootbox.alert(
@@ -158,15 +168,11 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.errors);
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                        size: 'small'
-                    });
-                });
+                Swal.fire(
+                    'Error',
+                    'Este usuario ya tiene este permiso asignado.',
+                    'error'
+                )
             }
         });
     }
@@ -306,19 +312,20 @@ function mostrar(id_user) {
         $("#registroForm").show();
         $("#btnCancelar").show();
         // $("#btn-edit").show();
-        $("#btn-agregar").hide();
-        $("#btn-guardar").hide();
-        $("#fila1").hide();
+        // $("#btn-agregar").hide();
+        // $("#btn-guardar").hide();
+        $("#fila1").show();
         $("#ver-contra").show();
         $("#editar-permisos").show();
         $("#permisos-agregados").empty();
+        $("#usuario").val(id_user).select2().trigger('change');
 
         for (let i = 0; i < data.permiso.length; i++) {
             var fila =
             '<tr id="fila'+data.permiso[i].id+'">'+
             "<td class=''><input type='hidden' id='usuario"+data.permiso[i].user.id+"' value="+data.permiso[i].user.id+">"+data.permiso[i].user.name+"</td>"+
             "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.permiso[i].id+"' value="+data.permiso[i].id+">"+data.permiso[i].permiso+"</td>"+
-            "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+data.permiso[i].id+")' class='btn btn-danger'><i class='fas fa-user-minus'></i></button></td>"+
+            "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+data.permiso[i].id+")' class='btn btn-danger'><i class='fas fa-user-lock'></i></i></button></td>"+
             "</tr>";
             $("#permisos-agregados").append(fila);
         }

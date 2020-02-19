@@ -12,10 +12,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                @if (Auth::user()->role == 'Administrador')
+                @if (!empty(Auth::user()->avatar))
+                <img src="{{URL('/avatar').'/'.Auth::user()->avatar}}" class="img-circle elevation-2" alt="User Image">
+                @else
                 <img src="{{asset('adminlte/img/images.png')}}" class="img-circle elevation-2" alt="User Image">
-                @elseif(Auth::user()->role == 'Oficina')
-                <img src="{{asset('adminlte/img/oficeUser.jpg')}}" class="img-circle elevation-2" alt="User Image">
                 @endif
             </div>
             <div class="info">
@@ -378,15 +378,17 @@
                     </ul>
                 </li>
 
-                @if (Auth::user()->permisos()->where('permiso', 'Usuarios')->first())
+
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="far fa-address-card"></i>
+                        <i class="far fa-list-alt"></i>
+                        {{-- <li class="nav-header">CORTE Y FASES</li> --}}
                         <p>
-                            Usuarios
+                            Menu de acceso
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    @if (Auth::user()->permisos()->where('permiso', 'user')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/user" class="nav-link">
@@ -395,17 +397,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Empleados')->first())
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <p>
-                            Empleados
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'employee')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/employee" class="nav-link">
@@ -414,17 +407,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Cliente')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="far fa-address-book"></i>
-                        <p>
-                            Clientes
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'client')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/client" class="nav-link">
@@ -433,17 +417,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Sucursales')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-building"></i>
-                        <p>
-                            Clientes
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'branch')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/branch" class="nav-link">
@@ -452,17 +427,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Suplidores')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-shipping-fast"></i>
-                        <p>
-                            Suplidores
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'supplier')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/supplier" class="nav-link">
@@ -471,17 +437,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Sku')->first())
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-barcode"></i>
-                        <p>
-                            SKU
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'sku')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/sku" class="nav-link">
@@ -490,17 +447,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Producto')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="far fa-clipboard"></i>
-                        <p>
-                            Productos
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'product')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/product" class="nav-link">
@@ -509,17 +457,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Producto Terminado')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-clipboard-list"></i>
-                        <p>
-                            Productos terminados
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'producto-terminado')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
@@ -528,17 +467,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Composicion')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-fill-drip"></i>
-                        <p>
-                            Composiciones
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'composition')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/composition" class="nav-link">
@@ -547,17 +477,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Telas')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-swatchbook"></i>
-                        <p>
-                            Telas
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'cloth')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/cloth" class="nav-link">
@@ -566,17 +487,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Rollos')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-dolly-flatbed"></i>
-                        <p>
-                            Rollos
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'rollos')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/rollos" class="nav-link">
@@ -585,17 +497,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Corte')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-cut"></i>
-                        <p>
-                            Corte
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'corte')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/corte" class="nav-link">
@@ -604,17 +507,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Lavanderia')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-shipping-fast"></i>
-                        <p>
-                            Envio Lavanderia
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'lavanderia')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/lavanderia" class="nav-link">
@@ -623,17 +517,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Recepcion')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-truck-loading"></i>
-                        <p>
-                            Recepcion Lavanderia
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'recepcion')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/recepcion" class="nav-link">
@@ -642,17 +527,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Almacen')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-warehouse"></i>
-                        <p>
-                            Almacen
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'almacen')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/almacen" class="nav-link">
@@ -661,17 +537,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Perdidas')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-dumpster"></i>
-                        <p>
-                            Reportar Perdidas
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'perdida')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/perdida" class="nav-link">
@@ -680,17 +547,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Orden Pedido')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-shopping-cart"></i>
-                        <p>
-                            Ordenes de pedido
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'orden_pedido')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
@@ -699,17 +557,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Aprobacion')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-clipboard-check"></i>
-                        <p>
-                            Aprobar y Redistribuir
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'orden_aprobacion')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
@@ -718,17 +567,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Ordenes Procesos')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-spinner"></i>
-                        <p>
-                            Ordenes Proceso
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'ordenes_proceso')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
@@ -737,17 +577,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Imprimir Empaque')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-box"></i>
-                        <p>
-                            Imprimir Empaque
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'orden_empaque_listar')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_empaque_listar" class="nav-link">
@@ -756,17 +587,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Reportar Empaque')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-box-open"></i>
-                        <p>
-                            Reportar Empaque
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'orden_empaque')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
@@ -775,17 +597,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Generar Factura')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-file-invoice"></i>
-                        <p>
-                            Facturacion
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'facturacion')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/facturacion" class="nav-link">
@@ -794,17 +607,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Nota Credito')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-people-carry"></i>
-                        <p>
-                            Nota de Credito
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'nota_credito')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/nota_credito" class="nav-link">
@@ -813,17 +617,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Existencia')->first())
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-random"></i>
-                        <p>
-                            Existencias
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
+                    @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'existencia')->first())
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/existencia" class="nav-link">
@@ -832,8 +627,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endif
                 </li>
-                @endif
         </nav>
         @endif
 

@@ -37,6 +37,7 @@ class UserController extends Controller
             $direccion = $request->input('direccion', true);
             $telefono = $request->input('telefono', true);
             $celular = $request->input('celular', true);
+            $avatar = $request->input('avatar');
 
             $pwd = Hash::make($password);
 
@@ -50,6 +51,7 @@ class UserController extends Controller
             $user->celular = $celular;
             $user->surname = $apellido;
             $user->edad = $edad;
+            $user->avatar = $avatar;
 
             $user->save();
 
@@ -111,6 +113,7 @@ class UserController extends Controller
             $direccion = $request->input('direccion', true);
             $telefono = $request->input('telefono', true);
             $celular = $request->input('celular', true);
+            $avatar = $request->input('avatar');
 
             $pwd = Hash::make($password);
 
@@ -125,6 +128,7 @@ class UserController extends Controller
             $user->celular = $celular;
             $user->surname = $apellido;
             $user->edad = $edad;
+            $user->avatar = $avatar;
 
             $user->save();
 
@@ -171,16 +175,81 @@ class UserController extends Controller
             })
             ->addColumn('Ver', function ($user) {
                 return '<button id="btnEdit" onclick="ver(' . $user->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
-               
+
             })
             ->addColumn('Editar', function ($user) {
                 return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm mr-1"> <i class="fas fa-user-edit "></i></button>'.
                 '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-user-times"></i></button>';
             })
-           
+
             ->rawColumns(['Editar', 'Ver'])
             ->make(true);
     }
 
-    
+    public function upload(Request $request)
+    {
+        //validar la imagen
+        $validate = \Validator::make($request->all(), [
+            'avatar' => 'required|image|mimes:jpg,jpeg,png',
+
+        ]);
+        // Guardar la imagen
+        if ($validate->fails()) {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => $validate->errors()
+            ];
+        } else {
+            $avatar = $request->file('avatar');
+            $image_name_1 = time() . $avatar->getClientOriginalName();
+            // echo $id;
+            // die();
+
+
+            if (!empty($avatar)) {
+            \Storage::disk('avatar')->put($image_name_1, \File::get($avatar));
+            } else {
+                $data = [
+                    'code' => 400,
+                    'status' => 'error',
+                    'message' => 'WTF'
+                ];
+            }
+
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'avatar' =>$image_name_1
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function getImage($filename){
+
+        $isset = \Storage::disk('avatar')->exists($filename);
+        if($isset){
+
+            $file = \Storage::disk('avatar')->get($filename);
+
+            //Devolver imagen
+            return new Response($file, 200);
+
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'La imagen no existe'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
 }
+
+
+

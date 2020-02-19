@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use App\PermisoUsuario;
 use App\User;
+use Illuminate\Validation\Rule;
 
 
 
@@ -15,8 +16,9 @@ class PermisoController extends Controller
     public function store(Request $request)
     {
         $validar = $request->validate([
-            'permiso' => 'required',
+
             'usuario' => 'required',
+            'permiso' => 'required'
 
         ]);
 
@@ -28,21 +30,35 @@ class PermisoController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
+
+
             $permiso = $request->input('permiso');
             $user_id = $request->input('usuario');
 
-            $permiso_usuario = new PermisoUsuario();
+            $unico = PermisoUsuario::where('user_id', $user_id)
+            ->where('permiso', $permiso)->get()->first();
 
-            $permiso_usuario->user_id = $user_id;
-            $permiso_usuario->permiso = $permiso;
+            if(empty($unico)){
+                $permiso_usuario = new PermisoUsuario();
 
-            $permiso_usuario->save();
+                $permiso_usuario->user_id = $user_id;
+                $permiso_usuario->permiso = $permiso;
 
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'permiso' => $permiso_usuario
-            ];
+                $permiso_usuario->save();
+
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'permiso' => $permiso_usuario->load('user')
+                ];
+            }else{
+                $data = [
+                    'code' => 400,
+                    'status' => 'error',
+                    'message' => 'Ya existe este permiso'
+                ];
+            }
+
         }
 
         return response()->json($data, $data['code']);
@@ -65,14 +81,14 @@ class PermisoController extends Controller
             ->select([
                 'users.name', 'users.surname', 'users.id',
                 'users.role', 'users.email'
-            ]);
+            ])->where('role', 'NOT LIKE', 'Administrador');
 
         return DataTables::of($permisos)
         ->editColumn('name', function($permiso){
             return $permiso->name." ". $permiso->surname;
         })
         ->addColumn('Opciones', function ($permiso) {
-            return '<button onclick="mostrar(' . $permiso->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-user-edit"></i></button>';
+            return '<button onclick="mostrar(' . $permiso->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-user-cog"></i></button>';
         })
             ->rawColumns(['Opciones'])
             ->make(true);

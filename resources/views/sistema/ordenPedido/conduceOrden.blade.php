@@ -914,7 +914,7 @@
 				</tr>
 				<tr class="total">
 					<th style="font-weight:bold;">TOTAL FINAL:</th>
-					<td style="font-weight:bold;">{{$total}} RD$</td>
+					<td style="font-weight:bold;">{{number_format($subtotal + $tax)}} RD$</td>
 				</tr>
 			</table>
 		</div>

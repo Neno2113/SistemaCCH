@@ -7,7 +7,7 @@
 @section('content')
 {{-- <div class="container"> --}}
 <div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-user-plus"></i> Agregar </button>
+    {{-- <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-user-plus"></i> Agregar </button> --}}
     {{-- <button class="btn btn-danger mb-3 " id="btnCancelar"><i class="fas fa-window-close"></i></button> --}}
 </div>
 
@@ -35,47 +35,47 @@
                                 <option value="Dashboard">Dashboard</option>
                                 <option  disabled>_______________________________________________________</option> --}}
                                 <option disabled>USUARIOS</option>
-                                <option value="Usuarios">Usuario</option>
-                                <option value="Empleados">Empleados</option>
+                                <option value="user">Usuarios</option>
+                                <option value="employee">Empleados</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>CLIENTE</option>
-                                <option value="Cliente">Cliente</option>
-                                <option value="Sucursales">Sucursales</option>
+                                <option value="client">Cliente</option>
+                                <option value="branch">Sucursales</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>SUPLIDORES</option>
-                                <option value="Suplidores">Suplidores</option>
+                                <option value="supplier">Suplidores</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>SKU</option>
-                                <option value="Sku">SKU</option>
+                                <option value="sku">SKU</option>
                                 <option disabled>PRODUCTO</option>
-                                <option value="Producto">Producto</option>
-                                <option value="Producto Terminado">Producto Terminado</option>
+                                <option value="product">Producto</option>
+                                <option value="producto-terminado">Producto Terminado</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>CORTE</option>
-                                <option value="Composicion">Composicion</option>
-                                <option value="Telas">Telas</option>
-                                <option value="Rollos">Rollos</option>
-                                <option value="Corte">Corte</option>
-                                <option value="Lavanderia">Lavanderia</option>
-                                <option value="Recepcion">Recepcion</option>
-                                <option value="Almacen">Almacen</option>
-                                <option value="Perdidas">Perdidas</option>
+                                <option value="composition">Composicion</option>
+                                <option value="cloth">Telas</option>
+                                <option value="rollos">Rollos</option>
+                                <option value="corte">Corte</option>
+                                <option value="lavanderia">Lavanderia</option>
+                                <option value="recepcion">Recepcion</option>
+                                <option value="almacen">Almacen</option>
+                                <option value="perdida">Perdidas</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>ORDEN PEDIDO</option>
-                                <option value="Orden Pedido">Orden Pedido</option>
-                                <option value="Aprobacion">Aprobacion y redistribucion</option>
-                                <option value="Ordenes Procesos">Ordenes Proceso</option>
+                                <option value="orden_pedido">Orden Pedido</option>
+                                <option value="orden_aprobacion">Aprobacion y redistribucion</option>
+                                <option value="ordenes_proceso">Ordenes Proceso</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>ORDENES EMPAQUE</option>
-                                <option value="Imprimir Empaque">Imprimir Empaque</option>
-                                <option value="Reportar Empaque">Reportar Empaque</option>
+                                <option value="orden_empaque_listar">Imprimir Empaque</option>
+                                <option value="orden_empaque">Reportar Empaque</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>FACTURACION</option>
-                                <option value="Generar Factura">Generar Factura</option>
-                                <option value="Nota Credito">Nota de Credito</option>
+                                <option value="facturacion">Generar Factura</option>
+                                <option value="nota_credito">Nota de Credito</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>Existencia</option>
-                                <option value="Existencia">Existencia</option>
+                                <option value="existencia">Existencia</option>
                             </select>
                         </div>
                         <div class="col-md-1"></div>
@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2 mt-3 ml-2">
-                            <button type="button" id="btn-agregar" name="btn-agregar" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Agregar</button>
+                            <button type="button" id="btn-agregar" name="btn-agregar" class="btn btn-primary"><i class="fas fa-key"></i> Agregar</button>
                         </div>
                     </div>
                     <br>
@@ -133,7 +133,7 @@
         <table id="users" class="table table-bordered table-hover datatables" style="width: 100%" >
             <thead>
                 <tr>
-                    <th>Action</th>
+                    <th>Permisos</th>
                     <th>Nombre</th>
                     {{-- <th>Permiso</th> --}}
                     <th>Rol</th>
@@ -143,7 +143,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th>Action</th>
+                    <th>Permisos</th>
                     <th>Nombre</th>
                     {{-- <th>Permiso</th> --}}
                     <th>Rol</th>

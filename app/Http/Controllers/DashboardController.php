@@ -12,6 +12,7 @@ use App\Talla;
 use App\TallasPerdidas;
 use App\NotaCreditoDetalle;
 use App\Corte;
+use App\Empleado;
 use App\ordenFacturacionDetalle;
 use App\Perdida;
 use App\ordenPedidoDetalle;
@@ -124,10 +125,9 @@ class DashboardController extends Controller
         return response()->json($data, $data['code']);
     }
 
-
-
     public function latestOrders(){
-        $ordenes = ordenPedido::orderBy('id', 'DESC')->take(5)->get()->load('cliente');
+        $ordenes = ordenPedido::whereNotNull('cliente_id')
+        ->orderBy('id', 'DESC')->take(5)->get()->load('cliente');
 
         if(!empty($ordenes)){
             $data = [
@@ -185,4 +185,12 @@ class DashboardController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    // public function empleadoDepNotNSS(){
+    //     $empleado = Empleado::where('casado', 1)
+    //     ->where('')
+    //     ->get();
+
+
+    // }
 }

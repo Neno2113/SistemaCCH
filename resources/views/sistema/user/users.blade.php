@@ -33,7 +33,7 @@
                             <label for="name">Nombre(*):</label>
                             <input type="text" name="name" id="name" class="form-control" pattern="[a-zA-Z]">
                             @if ($errors->has('name'))
-                                <div class="error">{{ $errors->name('name') }}</div>
+                            <div class="error">{{ $errors->name('name') }}</div>
                             @endif
                         </div>
                         <div class="col-md-4">
@@ -42,8 +42,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="edad">Edad:</label>
-                            <input type="text" name="edad" id="edad" class="form-control text-center"]
-                            data-inputmask='"mask": "99"' data-mask>
+                            <input type="text" name="edad" id="edad" class="form-control text-center" ]
+                                data-inputmask='"mask": "99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
@@ -100,42 +100,48 @@
                         </div>
 
                     </div>
-                    {{-- <div class="row">
-                        <div class="row mt-3" id="vatar">
-                            <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Avatar</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="avatar" id="avatar">
-                                            <input type="hidden" name="user_id" id="user_id" value="">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <button type="submit" class="input-group-text" id="btn-upload">Upload</button>
-                                        </div>
-                                    </div>
+                </form>
+                {{-- <div class="row"> --}}
+                <div class="row mt-3" id="vatar">
+                    <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Avatar</label>
+                            <img src="" alt="" id="avatar" class="rounded img-fluid img-thumbnail">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="form-control" name="avatar" id="avatar">
+                                    <input type="hidden" name="image_name" id="image_name" value="">
+                                    {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
                                 </div>
-                            </form>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn-primary" id="btn-upload">
+                                        <i class="fas fa-upload"></i> Subir</button>
+                                </div>
+                            </div>
                         </div>
+                    </form>
+                </div>
 
-                    </div> --}}
+                {{-- </div> --}}
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="error" id="error">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="error" id="error">
 
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
+                </div>
             </div>
             <div class="card-footer  text-muted ">
-                <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-1 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
+                <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+                    Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-1 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i
+                        class="far fa-edit fa-lg"></i> Editar</button>
 
             </div>
-            </form>
+
         </div>
     </div>
 
@@ -144,11 +150,11 @@
 
 <div class="card" id="listadoUsers">
     <div class="card-header text-center">
-        <h4 > Listado de usuarios</h4>
+        <h4> Listado de usuarios</h4>
     </div>
     <div class="card-body">
 
-        <table id="users" class="table table-bordered table-hover datatables" style="width: 100%" >
+        <table id="users" class="table table-bordered table-hover datatables" style="width: 100%">
             <thead>
                 <tr>
                     <th></th>

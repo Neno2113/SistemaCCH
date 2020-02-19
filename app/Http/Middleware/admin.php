@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\PermisoUsuario;
 
 class admin
 {
@@ -31,9 +32,13 @@ class admin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $permiso)
     {
-        if ($this->auth->user()->role !== "Administrador") {
+        $id = $this->auth->user()->id;
+        $permiso = PermisoUsuario::where('user_id', $id)
+        ->where('permiso', $permiso)->get()->first();
+
+        if ( $this->auth->user()->role !== "Administrador" && empty($permiso))  {
             return redirect('home');
         }
         return $next($request);

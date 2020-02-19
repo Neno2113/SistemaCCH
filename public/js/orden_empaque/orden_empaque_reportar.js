@@ -204,9 +204,8 @@ $(document).ready(function() {
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").hide();
-
             $("#btn-edit").hide();
-            $("#btn-guardar").show();
+            $("#btn-guardar").show().attr("disabled", true);
         }
     }
 
@@ -314,7 +313,7 @@ function test(id){
                     contentType: "application/json",
                     success: function(datos) {
                         if (datos.status == "success") {
-
+                            $("#btn-guardar").attr("disabled", false);
                             $("#orden_detalle").DataTable().ajax.reload();
 
 

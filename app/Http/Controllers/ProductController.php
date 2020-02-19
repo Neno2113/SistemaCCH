@@ -43,6 +43,11 @@ class ProductController extends Controller
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
 
+            if(empty($precio_lista_2)){
+                $precio_lista_2 = 0;
+                $precio_venta_publico_2 = 0;
+            }
+
 
             $product = new Product();
             $product->genero = substr($referencia, 1, 1);
