@@ -1,5 +1,9 @@
+var min_global;
+var max_global;
 $(document).ready(function() {
+
     $("[data-mask]").inputmask();
+
 
     $("#formulario").validate({
         rules: {
@@ -69,7 +73,30 @@ $(document).ready(function() {
     function init() {
         listar();
         mostrarForm(false);
-        // $("#btn-edit").hide();
+        $('#range_1').ionRangeSlider({
+            min     : 02,
+            max     : 16,
+            from    : 08,
+            to      : 16,
+            type    : 'double',
+            step    : 02,
+            prefix  : 'T',
+            skin    : "round",
+            prettify: false,
+            hasGrid : true,
+            onStart: function (data) {
+                max_global = data.to;
+                min_global = data.from;
+            },
+            onChange: function (data) {
+
+                min_global = data.from;
+            },
+            onFinish: function (data) {
+
+                max_global = data.to;
+            },
+        })
     }
 
     function limpiar() {
@@ -91,11 +118,13 @@ $(document).ready(function() {
         e.preventDefault();
 
         let sec_manual = $("#sec_manual").val();
+        let sec_manual_2 = Number(sec_manual) + 1;
 
         var i = Number(sec_manual) / 100;
-        var e = Number(sec_manual) / 100;
+        var e = Number(sec_manual_2) / 100;
         i = (i).toFixed(2).split(".").join("");
         i = i.substr(1, 4);
+
 
         var marca = $("#marca").val();
         var genero = $("#genero").val();
@@ -110,8 +139,9 @@ $(document).ready(function() {
             $("#precios_2").show();
             $("#descripcion_ref2").show();
 
-            e = (e + 1).toFixed(1).split(".").join("");
+            e = (e).toFixed(2).split(".").join("");
             e = e.substr(1, 4);
+
             $("#referencia_2").val(
                 marca + genero + tipo_producto + categoria + "-" + year + e
             );
@@ -190,6 +220,7 @@ $(document).ready(function() {
 
 
     function guardar(){
+
         var product = {
             referencia: $("#referencia").val(),
             referencia_2: $("#referencia_2").val(),
@@ -199,7 +230,9 @@ $(document).ready(function() {
             precio_lista_2: $("#precio_lista_2").val(),
             precio_lista: $("#precio_lista").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
-            precio_venta_publico_2: $("#precio_venta_publico_2").val()
+            precio_venta_publico_2: $("#precio_venta_publico_2").val(),
+            min: min_global,
+            max: max_global
         };
 
         $.ajax({
@@ -408,13 +441,14 @@ function eliminar(id_prouct){
             $.post("product/delete/" + id_prouct, function(){
                 Swal.fire(
                     'Eliminado!',
-                    'Referencia de producto eliminada correctamente.',
+                    'Referencia  eliminada correctamente.',
                     'success'
                     )
-                $("#almacenes").DataTable().ajax.reload();
+                $("#products").DataTable().ajax.reload();
             })
         }
       })
 
 
 }
+

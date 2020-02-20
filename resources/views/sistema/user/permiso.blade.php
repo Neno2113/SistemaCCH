@@ -35,47 +35,47 @@
                                 <option value="Dashboard">Dashboard</option>
                                 <option  disabled>_______________________________________________________</option> --}}
                                 <option disabled>USUARIOS</option>
-                                <option value="user">Usuarios</option>
-                                <option value="employee">Empleados</option>
+                                <option value="Usuarios">Usuarios</option>
+                                <option value="Empleados">Empleados</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>CLIENTE</option>
-                                <option value="client">Cliente</option>
-                                <option value="branch">Sucursales</option>
+                                <option value="Cliente">Cliente</option>
+                                <option value="Sucursales">Sucursales</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>SUPLIDORES</option>
-                                <option value="supplier">Suplidores</option>
+                                <option value="Suplidores">Suplidores</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>SKU</option>
-                                <option value="sku">SKU</option>
+                                <option value="Sku">SKU</option>
                                 <option disabled>PRODUCTO</option>
-                                <option value="product">Producto</option>
-                                <option value="producto-terminado">Producto Terminado</option>
+                                <option value="Productos">Producto</option>
+                                <option value="Producto terminado">Producto Terminado</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>CORTE</option>
-                                <option value="composition">Composicion</option>
-                                <option value="cloth">Telas</option>
-                                <option value="rollos">Rollos</option>
-                                <option value="corte">Corte</option>
-                                <option value="lavanderia">Lavanderia</option>
-                                <option value="recepcion">Recepcion</option>
-                                <option value="almacen">Almacen</option>
-                                <option value="perdida">Perdidas</option>
+                                <option value="Composicion">Composicion</option>
+                                <option value="Telas">Telas</option>
+                                <option value="Rollos">Rollos</option>
+                                <option value="Corte">Corte</option>
+                                <option value="Lavanderia">Lavanderia</option>
+                                <option value="Recepcion">Recepcion</option>
+                                <option value="Almacen">Almacen</option>
+                                <option value="Perdidas">Perdidas</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>ORDEN PEDIDO</option>
-                                <option value="orden_pedido">Orden Pedido</option>
-                                <option value="orden_aprobacion">Aprobacion y redistribucion</option>
-                                <option value="ordenes_proceso">Ordenes Proceso</option>
+                                <option value="Ordenes pedido">Orden Pedido</option>
+                                <option value="Aprobar y redistribuir">Aprobacion y redistribucion</option>
+                                <option value="Ordenes proceso">Ordenes Proceso</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>ORDENES EMPAQUE</option>
-                                <option value="orden_empaque_listar">Imprimir Empaque</option>
-                                <option value="orden_empaque">Reportar Empaque</option>
+                                <option value="Imprimir ordenes empaque">Imprimir Empaque</option>
+                                <option value="Reportar empaque">Reportar Empaque</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>FACTURACION</option>
-                                <option value="facturacion">Generar Factura</option>
-                                <option value="nota_credito">Nota de Credito</option>
+                                <option value="Facturacion">Generar Factura</option>
+                                <option value="Nota credito">Nota de Credito</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>Existencia</option>
-                                <option value="existencia">Existencia</option>
+                                <option value="Existencias">Existencia</option>
                             </select>
                         </div>
                         <div class="col-md-1"></div>

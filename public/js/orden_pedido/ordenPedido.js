@@ -190,7 +190,7 @@ $(document).ready(function() {
     function productos(){
 
         $.ajax({
-            url: "productos/select",
+            url: "productos/seleccionar",
             type: "GET",
             dataType: "json",
             contentType: "application/json",

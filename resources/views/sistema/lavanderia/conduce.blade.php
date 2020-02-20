@@ -262,7 +262,7 @@
         /* padding-bottom: 350px; */
       }
 
-     
+
       .tabla-principal li {
         list-style-type: none;
         text-align: center;
@@ -307,7 +307,7 @@
 
       }
 
-      /* 
+      /*
           .tabla-totales {
               border: 2px  solid black;
               text-align: center;
@@ -699,7 +699,7 @@
         </table>
       </div>
 
-  
+
       <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
         <thead>
           <tr>
@@ -717,7 +717,12 @@
               <li>{{$lavanderia->corte->numero_corte}}</li>
             </td>
             <td class="no">
-              <li>{{$lavanderia->producto->referencia_producto}}</li>
+            @if (!empty($lavanderia->producto->referencia_producto_2))
+              <li>{{$lavanderia->producto->referencia_producto}} - {{$lavanderia->producto->referencia_producto_2}}</li>
+            @else
+            <li>{{$lavanderia->producto->referencia_producto}}</li>
+            @endif
+
             </td>
             <td class="desc-des">
               <li>{{$lavanderia->sku->sku}}</li>
@@ -738,7 +743,7 @@
         </tbody>
 
       </table>
-      
+
 
 
 
@@ -764,7 +769,7 @@
 
   </body>
 
- 
+
 
 
 

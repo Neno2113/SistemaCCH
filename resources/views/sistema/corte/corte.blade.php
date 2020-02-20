@@ -67,6 +67,7 @@
                             <label for="">Referencia producto(*):</label>
                             <select name="tags[]" id="productos" class="form-control select2">
                             </select>
+                            {{-- <input type="hidden" name="genero" id="genero"> --}}
                         </div>
                         <div class="col-md-4">
                             <label for="">Fecha estimada de entrega(*):</label>
@@ -367,9 +368,15 @@
                     </div>
                     <h5 class="text-center">Asignar SKU por tallas</h5>
                     <hr>
-                    <div class="col-md-2 mr-2">
-                        <button class="btn btn-secondary mb-4" id="btn-asignar" value="General"> <i class="fas fa-barcode"></i> SKU generel </button>
+                    <div class="row">
+                        <div class="col-md-2 mr-1">
+                            <button class="btn btn-secondary mb-4" id="btn-asignar" value="General"> <i class="fas fa-barcode"></i> SKU generel </button>
+                        </div>
+                        {{-- <div class="col-md-2 mr-1">
+                            <button class="btn btn-secondary mb-4" id="btn-asignar-ref2" value="General"> <i class="fas fa-barcode"></i> SKU generel </button>
+                        </div> --}}
                     </div>
+
                     <table class="table  table-bordered mt-3 tabla-perdidas">
                         <thead>
                             <tr>

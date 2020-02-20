@@ -69,6 +69,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Bootstrap-switch -->
     <link rel="stylesheet" href="{{asset('adminlte/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}">
+
+
+    <!-- Ion-slider -->
+    <link rel="stylesheet" href="{{asset('adminlte/plugins/ion-rangeslider/css/ion.rangeSlider.min.css')}}">
     {{-- <!-- jQuery Ui-->
   <script src="{{asset('adminlte/plugins/jquery-ui/jquery-ui.min.css')}}"></script> --}}
 

@@ -62,6 +62,9 @@
 <!-- Bootstrap switch-->
 <script src="{{asset('adminlte/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 
+<!-- Ion slider-->
+<script src="{{asset('/adminlte/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+
 <!-- InputMASK -->
 <script src="{{asset('adminlte/plugins/inputmask/jquery.inputmask.bundle.js')}}"></script>
 <!-- AdminLTE App -->

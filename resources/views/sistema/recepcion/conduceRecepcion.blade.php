@@ -306,7 +306,7 @@
 
         }
 
-        /* 
+        /*
             .tabla-totales {
                 border: 2px  solid black;
                 text-align: center;
@@ -652,7 +652,7 @@
             <table class="tabla-cliente">
                 <thead class="cod">
                     <tr>
-                        <th>RECEPCION LAVANDERIA</th>
+                        <th>RECEPCION</th>
                         <td></td>
                     </tr>
                 </thead>
@@ -705,9 +705,9 @@
                     <th class="desc">CORTE</th>
                     <th class="no">REFERENCIA</th>
                     <th class="desc">ESTANDAR</th>
-                    <th class="total">CANT RECIBIDA</th>
+                    <th class="total">CANT REC.</th>
                     <th class="unit">TOTAL REC.</th>
-                    <th class="unit">CANT PENDIENTE</th>
+                    <th class="unit">CANT PEND.</th>
                 </tr>
             </thead>
             <tbody>
@@ -716,7 +716,12 @@
                         <li>{{$lavanderia->corte->numero_corte}}</li>
                     </td>
                     <td class="desc-des">
+                        @if (!empty($lavanderia->producto->referencia_producto_2))
+                        <li>{{$lavanderia->producto->referencia_producto}} -
+                            {{$lavanderia->producto->referencia_producto_2}}</li>
+                        @else
                         <li>{{$lavanderia->producto->referencia_producto}}</li>
+                        @endif
                     </td>
                     <td class="unit">
                         <li>

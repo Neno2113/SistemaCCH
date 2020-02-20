@@ -130,16 +130,31 @@
                     <div class="row" id="precios_2">
                         <div class="col-md-4 mt-3">
                             <label for="precio_lista">Precio lista Ref 2(*):</label>
-                            <input type="text" name="precio_lista_2" id="precio_lista_2" class="form-control"
-                                data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                </div>
+                                <input type="text" name="precio_lista_2" id="precio_lista_2"
+                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_venta_publico">Precio publico Ref 2(*):</label>
-                            <input type="text" name="precio_venta_publico_2" id="precio_venta_publico_2"
-                                class="form-control" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                </div>
+                                <input type="text" name="precio_venta_publico_2" id="precio_venta_publico_2"
+                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="">Rango segunda referencia:</label>
+                            <input id="range_1" type="text" name="range_1" value="">
                         </div>
 
                     </div>
+
                     <div class="row">
                         <div class="col-md-12 mt-3">
                             <label for="" class="d-flex justify-content-center">Descripcion(*):</label>

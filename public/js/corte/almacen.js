@@ -890,7 +890,7 @@ $(document).ready(function() {
                                     agregarDetalle()
                                 }
                             }
-                        }else if(genero_global == 3 && genero_global == 4){
+                        }else if(genero_global == 3 || genero_global == 4){
                             if(a > a_total){
                                 bootbox.alert("<div class='alert alert-danger' role='alert'>"+
                                 "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 2 a la cantidad total del corte y las perdidas"+

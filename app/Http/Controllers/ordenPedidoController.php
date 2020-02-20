@@ -635,13 +635,11 @@ class ordenPedidoController extends Controller
         return response()->json($data);
     }
 
-    public function Productos(Request $request)
+    public function Productos()
     {
 
-        $productos = Corte::join('producto', 'corte.producto_id', 'producto.id')
-            ->select("producto.id", "producto.referencia_producto", "corte.fecha_entrega")
+        $productos = Product::select("producto.id", "producto.referencia_producto", "producto.referencia_producto_2")
             // ->where('producto.referencia_producto', 'LIKE', "%$search%")
-            ->groupBy('producto.id', 'producto.referencia_producto', 'corte.fecha_entrega')
             ->get();
 
         $data = [
