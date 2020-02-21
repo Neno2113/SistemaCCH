@@ -23,6 +23,19 @@ class ordenPedidoController extends Controller
 {
     public function show(Request $request)
     {
+
+        $a_ref2 = 0;
+        $b_ref2 = 0;
+        $c_ref2 = 0;
+        $d_ref2 = 0;
+        $e_ref2 = 0;
+        $f_ref2 = 0;
+        $g_ref2 = 0;
+        $h_ref2 = 0;
+        $i_ref2 = 0;
+        $j_ref2 = 0;
+        $k_ref2 = 0;
+        $l_ref2 = 0;
         //Recoger datos por la request
         $producto_id = $request->input('producto_id');
         $referencia_producto = $request->input('referencia_producto');
@@ -52,6 +65,9 @@ class ordenPedidoController extends Controller
         //buscar cantidades de tallas con el array de id de cortes
         $tallas = Talla::whereIn('corte_id', $cortes)->get()->load('corte');
 
+        // if(){
+
+        // }
 
         //perdidas
         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
@@ -83,93 +99,253 @@ class ordenPedidoController extends Controller
 
 
         //Almacen
-
         $tallasAlmacen = AlmacenDetalle::where('producto_id', $producto_id)->get();
-
-        $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();
+        // print_r($tallasAlmacen);
+        // die();
 
         //producto
         $producto = Product::find($producto_id);
+        $genero = $producto->genero;
+        // print_r($genero);
+        // die();
 
-        //Notas De credito
-        $tallasCredito = NotaCreditoDetalle::where('producto_id', $producto_id)->get();
+        if ($genero == 3 || $genero == 4) {
+            if (count($tallasAlmacen) == 0) {
+                $producto_f = Product::find($producto_id);
+                $min = $producto_f->min;
+                $max = $producto_f->max;
+                $ref_father = $producto_f->referencia_father;
+                $almacen = AlmacenDetalle::where('producto_id', $ref_father)
+                    ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
+                    ->get();
+                $tallasOrdenes_f = ordenPedidoDetalle::where('producto_id', $ref_father)->get();
+                $tallasCredito_f = NotaCreditoDetalle::where('producto_id', $ref_father)->get();
 
-        //calcular total real
-        $a = $tallasAlmacen->sum('a') - $tallasSegundas->sum('a') - $tallasOrdenes->sum('a') + $tallasCredito->sum('a');
-        $b = $tallasAlmacen->sum('b') - $tallasSegundas->sum('b') - $tallasOrdenes->sum('b') + $tallasCredito->sum('b');
-        $c = $tallasAlmacen->sum('c') - $tallasSegundas->sum('c') - $tallasOrdenes->sum('c') + $tallasCredito->sum('c');
-        $d = $tallasAlmacen->sum('d') - $tallasSegundas->sum('d') - $tallasOrdenes->sum('d') + $tallasCredito->sum('d');
-        $e = $tallasAlmacen->sum('e') - $tallasSegundas->sum('e') - $tallasOrdenes->sum('e') + $tallasCredito->sum('e');
-        $f = $tallasAlmacen->sum('f') - $tallasSegundas->sum('f') - $tallasOrdenes->sum('f') + $tallasCredito->sum('f');
-        $g = $tallasAlmacen->sum('g') - $tallasSegundas->sum('g') - $tallasOrdenes->sum('g') + $tallasCredito->sum('g');
-        $h = $tallasAlmacen->sum('h') - $tallasSegundas->sum('h') - $tallasOrdenes->sum('h') + $tallasCredito->sum('h');
-        $i = $tallasAlmacen->sum('i') - $tallasSegundas->sum('i') - $tallasOrdenes->sum('i') + $tallasCredito->sum('i');
-        $j = $tallasAlmacen->sum('j') - $tallasSegundas->sum('j') - $tallasOrdenes->sum('j') + $tallasCredito->sum('j');
-        $k = $tallasAlmacen->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k') + $tallasCredito->sum('k');
-        $l = $tallasAlmacen->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l') + $tallasCredito->sum('l');
+                $a = $almacen->sum('a');
+                $b = $almacen->sum('b');
+                $c = $almacen->sum('c');
+                $d = $almacen->sum('d');
+                $e = $almacen->sum('e');
+                $f = $almacen->sum('f');
+                $g = $almacen->sum('g');
+                $h = $almacen->sum('h');
+                $i = $almacen->sum('i');
+                $j = $almacen->sum('j');
+                $k = $almacen->sum('k');
+                $l = $almacen->sum('l');
+                $array = array("a" => $a, "b" => $b, "c" => $c, "d" => $d, "e" => $e, "f" => $f, "g" => $g, "h" => $h, "i" => $i, "j" => $j, "k" => $k, "l" => $l);
+                $res = array_keys($array);
+                $result = array_search($min, $res);
+                $result2 = array_search($max, $res);
+                $tallas = array_slice($array, $result, $result2);
+                $a_ref2 = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
+                $b_ref2 = (array_key_exists("b", $tallas) ? $tallas['b'] : 0);
+                $c_ref2 = (array_key_exists("c", $tallas) ? $tallas['c'] : 0);
+                $d_ref2 = (array_key_exists("d", $tallas) ? $tallas['d'] : 0);
+                $e_ref2 = (array_key_exists("e", $tallas) ? $tallas['e'] : 0);
+                $f_ref2 = (array_key_exists("f", $tallas) ? $tallas['f'] : 0);
+                $g_ref2 = (array_key_exists("g", $tallas) ? $tallas['g'] : 0);
+                $h_ref2 = (array_key_exists("h", $tallas) ? $tallas['h'] : 0);
+                $i_ref2 = (array_key_exists("i", $tallas) ? $tallas['i'] : 0);
+                $j_ref2 = (array_key_exists("j", $tallas) ? $tallas['j'] : 0);
+                $k_ref2 = (array_key_exists("k", $tallas) ? $tallas['k'] : 0);
+                $l_ref2 = (array_key_exists("l", $tallas) ? $tallas['l'] : 0);
 
-        //Validacion de numeros negativos
-        $a = ($a < 0 ? 0 : $a);
-        $b = ($b < 0 ? 0 : $b);
-        $c = ($c < 0 ? 0 : $c);
-        $d = ($d < 0 ? 0 : $d);
-        $e = ($e < 0 ? 0 : $e);
-        $f = ($f < 0 ? 0 : $f);
-        $g = ($g < 0 ? 0 : $g);
-        $h = ($h < 0 ? 0 : $h);
-        $i = ($i < 0 ? 0 : $i);
-        $j = ($j < 0 ? 0 : $j);
-        $k = ($k < 0 ? 0 : $k);
-        $l = ($l < 0 ? 0 : $l);
+                //calcular total real
+                $a_ref2 = $a_ref2 - $tallasSegundas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a');
+                $b_ref2 = $b_ref2 - $tallasSegundas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b');
+                $c_ref2 = $c_ref2 - $tallasSegundas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c');
+                $d_ref2 = $d_ref2 - $tallasSegundas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d');
+                $e_ref2 = $e_ref2 - $tallasSegundas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e');
+                $f_ref2 = $f_ref2 - $tallasSegundas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f');
+                $g_ref2 = $g_ref2 - $tallasSegundas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g');
+                $h_ref2 = $h_ref2 - $tallasSegundas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h');
+                $i_ref2 = $i_ref2 - $tallasSegundas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i');
+                $j_ref2 = $j_ref2 - $tallasSegundas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j');
+                $k_ref2 = $k_ref2 - $tallasSegundas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k');
+                $l_ref2 = $l_ref2 - $tallasSegundas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
 
-        $cantidad_ordenadas = $tallasOrdenes->sum('cantidad');
-        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l - $cantidad_ordenadas;
+                $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
+                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 - $cantidad_ordenadas;
+            }else{
 
-        if (empty($segunda_input)) {
-            //respuesta
+                $producto_f = Product::find($producto_id);
+                $min = $producto_f->min;
+                $max = $producto_f->max;
+                $ref_father = $producto_f->id;
+                $almacen = AlmacenDetalle::where('producto_id', $ref_father)
+                    ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
+                    ->get();
+                $tallasOrdenes_f = ordenPedidoDetalle::where('producto_id', $ref_father)->get();
+                $tallasCredito_f = NotaCreditoDetalle::where('producto_id', $ref_father)->get();
+
+                $a = $almacen->sum('a');
+                $b = $almacen->sum('b');
+                $c = $almacen->sum('c');
+                $d = $almacen->sum('d');
+                $e = $almacen->sum('e');
+                $f = $almacen->sum('f');
+                $g = $almacen->sum('g');
+                $h = $almacen->sum('h');
+                $i = $almacen->sum('i');
+                $j = $almacen->sum('j');
+                $k = $almacen->sum('k');
+                $l = $almacen->sum('l');
+                $array = array("a" => $a, "b" => $b, "c" => $c, "d" => $d, "e" => $e, "f" => $f, "g" => $g, "h" => $h, "i" => $i, "j" => $j, "k" => $k, "l" => $l);
+                $res = array_keys($array);
+                $result = array_search($min, $res);
+                $result2 = array_search($max, $res);
+                $tallas = array_slice($array, 0, $result);
+                $a_ref2 = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
+                $b_ref2 = (array_key_exists("b", $tallas) ? $tallas['b'] : 0);
+                $c_ref2 = (array_key_exists("c", $tallas) ? $tallas['c'] : 0);
+                $d_ref2 = (array_key_exists("d", $tallas) ? $tallas['d'] : 0);
+                $e_ref2 = (array_key_exists("e", $tallas) ? $tallas['e'] : 0);
+                $f_ref2 = (array_key_exists("f", $tallas) ? $tallas['f'] : 0);
+                $g_ref2 = (array_key_exists("g", $tallas) ? $tallas['g'] : 0);
+                $h_ref2 = (array_key_exists("h", $tallas) ? $tallas['h'] : 0);
+                $i_ref2 = (array_key_exists("i", $tallas) ? $tallas['i'] : 0);
+                $j_ref2 = (array_key_exists("j", $tallas) ? $tallas['j'] : 0);
+                $k_ref2 = (array_key_exists("k", $tallas) ? $tallas['k'] : 0);
+                $l_ref2 = (array_key_exists("l", $tallas) ? $tallas['l'] : 0);
+
+                //calcular total real
+                $a_ref2 = $a_ref2 - $tallasSegundas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a');
+                $b_ref2 = $b_ref2 - $tallasSegundas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b');
+                $c_ref2 = $c_ref2 - $tallasSegundas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c');
+                $d_ref2 = $d_ref2 - $tallasSegundas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d');
+                $e_ref2 = $e_ref2 - $tallasSegundas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e');
+                $f_ref2 = $f_ref2 - $tallasSegundas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f');
+                $g_ref2 = $g_ref2 - $tallasSegundas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g');
+                $h_ref2 = $h_ref2 - $tallasSegundas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h');
+                $i_ref2 = $i_ref2 - $tallasSegundas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i');
+                $j_ref2 = $j_ref2 - $tallasSegundas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j');
+                $k_ref2 = $k_ref2 - $tallasSegundas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k');
+                $l_ref2 = $l_ref2 - $tallasSegundas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
+                // print_r($tallas);
+                // die();
+                $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
+                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 - $cantidad_ordenadas;
+            }
+
+            $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
+            $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
+            $c_ref2 = ($c_ref2 < 0 ? 0 : $c_ref2);
+            $d_ref2 = ($d_ref2 < 0 ? 0 : $d_ref2);
+            $e_ref2 = ($e_ref2 < 0 ? 0 : $e_ref2);
+            $f_ref2 = ($f_ref2 < 0 ? 0 : $f_ref2);
+            $g_ref2 = ($g_ref2 < 0 ? 0 : $g_ref2);
+            $h_ref2 = ($h_ref2 < 0 ? 0 : $h_ref2);
+            $i_ref2 = ($i_ref2 < 0 ? 0 : $i_ref2);
+            $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
+            $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
+            $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'a' => $a,
-                'b' => $b,
-                'c' => $c,
-                'd' => $d,
-                'e' => $e,
-                'f' => $f,
-                'g' => $g,
-                'h' => $h,
-                'i' => $i,
-                'j' => $j,
-                'k' => $k,
-                'l' => $l,
+                'a' => $a_ref2,
+                'b' => $b_ref2,
+                'c' => $c_ref2,
+                'd' => $d_ref2,
+                'e' => $e_ref2,
+                'f' => $f_ref2,
+                'g' => $g_ref2,
+                'h' => $h_ref2,
+                'i' => $i_ref2,
+                'j' => $j_ref2,
+                'k' => $k_ref2,
+                'l' => $l_ref2,
                 'producto' => $producto,
                 'total_corte' => ($total_real < 0) ? 0 : $total_real,
                 'corte_proceso' => $corte_proceso,
                 // 'fecha_entrega' => $fecha_entrega
             ];
-        } else {
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'a' => $tallasSegundas->sum('a'),
-                'b' => $tallasSegundas->sum('b'),
-                'c' => $tallasSegundas->sum('c'),
-                'd' => $tallasSegundas->sum('d'),
-                'e' => $tallasSegundas->sum('e'),
-                'f' => $tallasSegundas->sum('f'),
-                'g' => $tallasSegundas->sum('g'),
-                'h' => $tallasSegundas->sum('h'),
-                'i' => $tallasSegundas->sum('i'),
-                'j' => $tallasSegundas->sum('j'),
-                'k' => $tallasSegundas->sum('k'),
-                'l' => $tallasSegundas->sum('l'),
-                'producto' => $producto,
-                'total_corte' => $total_real,
-                'corte_proceso' => $corte_proceso,
-                'fecha_entrega' => $fecha_entrega,
-                'segunda' => 1
-            ];
+
+        }else{
+            $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();
+
+            //Notas De credito
+            $tallasCredito = NotaCreditoDetalle::where('producto_id', $producto_id)->get();
+
+            //calcular total real
+            $a = $tallasAlmacen->sum('a') + $a_ref2 - $tallasSegundas->sum('a') - $tallasOrdenes->sum('a') + $tallasCredito->sum('a');
+            $b = $tallasAlmacen->sum('b') + $b_ref2 - $tallasSegundas->sum('b') - $tallasOrdenes->sum('b') + $tallasCredito->sum('b');
+            $c = $tallasAlmacen->sum('c') + $c_ref2 - $tallasSegundas->sum('c') - $tallasOrdenes->sum('c') + $tallasCredito->sum('c');
+            $d = $tallasAlmacen->sum('d') + $d_ref2 - $tallasSegundas->sum('d') - $tallasOrdenes->sum('d') + $tallasCredito->sum('d');
+            $e = $tallasAlmacen->sum('e') + $e_ref2 - $tallasSegundas->sum('e') - $tallasOrdenes->sum('e') + $tallasCredito->sum('e');
+            $f = $tallasAlmacen->sum('f') + $f_ref2 - $tallasSegundas->sum('f') - $tallasOrdenes->sum('f') + $tallasCredito->sum('f');
+            $g = $tallasAlmacen->sum('g') + $g_ref2 - $tallasSegundas->sum('g') - $tallasOrdenes->sum('g') + $tallasCredito->sum('g');
+            $h = $tallasAlmacen->sum('h') + $h_ref2 - $tallasSegundas->sum('h') - $tallasOrdenes->sum('h') + $tallasCredito->sum('h');
+            $i = $tallasAlmacen->sum('i') + $i_ref2 - $tallasSegundas->sum('i') - $tallasOrdenes->sum('i') + $tallasCredito->sum('i');
+            $j = $tallasAlmacen->sum('j') + $j_ref2 - $tallasSegundas->sum('j') - $tallasOrdenes->sum('j') + $tallasCredito->sum('j');
+            $k = $tallasAlmacen->sum('k') + $k_ref2 - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k') + $tallasCredito->sum('k');
+            $l = $tallasAlmacen->sum('l') + $l_ref2 - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l') + $tallasCredito->sum('l');
+
+            //Validacion de numeros negativos
+            $a = ($a < 0 ? 0 : $a);
+            $b = ($b < 0 ? 0 : $b);
+            $c = ($c < 0 ? 0 : $c);
+            $d = ($d < 0 ? 0 : $d);
+            $e = ($e < 0 ? 0 : $e);
+            $f = ($f < 0 ? 0 : $f);
+            $g = ($g < 0 ? 0 : $g);
+            $h = ($h < 0 ? 0 : $h);
+            $i = ($i < 0 ? 0 : $i);
+            $j = ($j < 0 ? 0 : $j);
+            $k = ($k < 0 ? 0 : $k);
+            $l = ($l < 0 ? 0 : $l);
+
+            $cantidad_ordenadas = $tallasOrdenes->sum('cantidad');
+            $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l - $cantidad_ordenadas;
+
+            if (empty($segunda_input)) {
+                //respuesta
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'a' => $a,
+                    'b' => $b,
+                    'c' => $c,
+                    'd' => $d,
+                    'e' => $e,
+                    'f' => $f,
+                    'g' => $g,
+                    'h' => $h,
+                    'i' => $i,
+                    'j' => $j,
+                    'k' => $k,
+                    'l' => $l,
+                    'producto' => $producto,
+                    'total_corte' => ($total_real < 0) ? 0 : $total_real,
+                    'corte_proceso' => $corte_proceso,
+                    // 'fecha_entrega' => $fecha_entrega
+                ];
+            } else {
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'a' => $tallasSegundas->sum('a'),
+                    'b' => $tallasSegundas->sum('b'),
+                    'c' => $tallasSegundas->sum('c'),
+                    'd' => $tallasSegundas->sum('d'),
+                    'e' => $tallasSegundas->sum('e'),
+                    'f' => $tallasSegundas->sum('f'),
+                    'g' => $tallasSegundas->sum('g'),
+                    'h' => $tallasSegundas->sum('h'),
+                    'i' => $tallasSegundas->sum('i'),
+                    'j' => $tallasSegundas->sum('j'),
+                    'k' => $tallasSegundas->sum('k'),
+                    'l' => $tallasSegundas->sum('l'),
+                    'producto' => $producto,
+                    'total_corte' => $total_real,
+                    'corte_proceso' => $corte_proceso,
+                    'fecha_entrega' => $fecha_entrega,
+                    'segunda' => 1
+                ];
+            }
         }
+
+
 
         return \response()->json($data, $data['code']);
     }
@@ -1878,7 +2054,8 @@ class ordenPedidoController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    function clearOP(){
+    function clearOP()
+    {
         $ordenes_id = ordenPedido::all();
 
         $ordenes = array();
@@ -1903,15 +2080,14 @@ class ordenPedidoController extends Controller
 
         $diferencia = array_diff($ordenes, $detalles);
 
-        if(!empty($diferencia)){
+        if (!empty($diferencia)) {
             $orden = ordenPedido::whereIn('id', $diferencia)->get();
             $length = count($orden);
 
-            if(!empty($orden)){
+            if (!empty($orden)) {
                 for ($i = 0; $i < $length; $i++) {
                     $orden[$i]->delete();
                 }
-
             }
         }
 

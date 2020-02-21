@@ -640,7 +640,7 @@ $(document).ready(function() {
                         $("#l").attr("placeholder", "");
 
 
-                    } else if (genero == 3) {
+                    } else if (genero == 3 || genero == 4) {
                         $("#sub-genero").hide();
                         $("#ta").html("2");
                         $("#tb").html("4");
@@ -662,43 +662,6 @@ $(document).ready(function() {
                         // $("#j").attr("disabled", true);
                         // $("#k").attr("disabled", true);
                         // $("#l").attr("disabled", true);
-
-                        $("#a").attr("placeholder", "2");
-                        $("#b").attr("placeholder", "4");
-                        $("#c").attr("placeholder", "6");
-                        $("#d").attr("placeholder", "8");
-                        $("#e").attr("placeholder", "10");
-                        $("#f").attr("placeholder", "12");
-                        $("#g").attr("placeholder", "14");
-                        $("#h").attr("placeholder", "16");
-                        $("#i").attr("placeholder", "");
-                        $("#j").attr("placeholder", "");
-                        $("#k").attr("placeholder", "");
-                        $("#l").attr("placeholder", "");
-
-
-                    } else if (genero == 4) {
-                        $("#sub-genero").hide();
-                        $("#ta").html("2");
-                        $("#tb").html("4");
-                        $("#tc").html("6");
-                        $("#td").html("8");
-                        $("#te").html("10");
-                        $("#tf").html("12");
-                        $("#tg").html("14");
-                        $("#th").html("16");
-                        $("#da").html("2");
-                        $("#db").html("4");
-                        $("#dc").html("6");
-                        $("#dd").html("8");
-                        $("#de").html("10");
-                        $("#df").html("12");
-                        $("#dg").html("14");
-                        $("#dh").html("16");
-                        $("#i").attr("disabled", true);
-                        $("#j").attr("disabled", true);
-                        $("#k").attr("disabled", true);
-                        $("#l").attr("disabled", true);
 
                         $("#a").attr("placeholder", "2");
                         $("#b").attr("placeholder", "4");
@@ -1038,7 +1001,7 @@ $(document).ready(function() {
                                     agregarDetalle();
                                 }
                             }
-                        } else if (genero == 3 && genero == 4) {
+                        } else if (genero == 3 || genero == 4) {
                             if (a_val > a_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +

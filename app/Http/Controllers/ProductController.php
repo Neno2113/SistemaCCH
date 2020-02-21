@@ -39,11 +39,29 @@ class ProductController extends Controller
             $descripcion = $request->input('descripcion', true);
             $descripcion_2 = $request->input('descripcion_2', true);
             $precio_lista = $request->input('precio_lista');
+            $genero = $request->input('genero');
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
             $min = $request->input('min');
             $max = $request->input('max');
+
+
+            $product = new Product();
+            $product->genero = $genero;
+            $product->referencia_producto = $referencia;
+            $product->referencia_producto_2 = $referencia_2;
+            $product->id_user = \auth()->user()->id;
+            $product->sec = $sec + 0.1;
+            $product->enviado_lavanderia = 0;
+            $product->descripcion = $descripcion;
+            $product->descripcion_2 = $descripcion_2;
+            $product->precio_lista = trim($precio_lista, "RD$");
+            $product->precio_lista_2 = trim($precio_lista_2, "RD$");
+            $product->precio_venta_publico = trim($precio_venta_publico, "RD$");
+            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "RD$");
+            $product->min = $min;
+            $product->max = $max;
 
             if (empty($precio_lista_2)) {
                 $precio_lista_2 = 0;
@@ -114,21 +132,7 @@ class ProductController extends Controller
             }
 
 
-            $product = new Product();
-            $product->genero = substr($referencia, 1, 1);
-            $product->referencia_producto = $referencia;
-            $product->referencia_producto_2 = $referencia_2;
-            $product->id_user = \auth()->user()->id;
-            $product->sec = $sec + 0.1;
-            $product->enviado_lavanderia = 0;
-            $product->descripcion = $descripcion;
-            $product->descripcion_2 = $descripcion_2;
-            $product->precio_lista = trim($precio_lista, "RD$");
-            $product->precio_lista_2 = trim($precio_lista_2, "RD$");
-            $product->precio_venta_publico = trim($precio_venta_publico, "RD$");
-            $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "RD$");
-            $product->min = $min;
-            $product->max = $max;
+
 
 
             $product->save();

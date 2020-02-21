@@ -14,6 +14,7 @@ use App\Talla;
 use App\AlmacenDetalle;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -42,33 +43,7 @@ class AlmacenController extends Controller
             $atributo_no_1 = $request->input('atributo_no_1');
             $atributo_no_2 = $request->input('atributo_no_2');
             $atributo_no_3 = $request->input('atributo_no_3');
-            // $a = $request->input('a');
-            // $b = $request->input('b');
-            // $c = $request->input('c');
-            // $d = $request->input('d');
-            // $e = $request->input('e');
-            // $f = $request->input('f');
-            // $g = $request->input('g');
-            // $h = $request->input('h');
-            // $i = $request->input('i');
-            // $j = $request->input('j');
-            // $k = $request->input('k');
-            // $l = $request->input('l');
 
-
-            //validaciones
-            // $a = intval(trim($a, "_"));
-            // $b = intval(trim($b, "_"));
-            // $c = intval(trim($c, "_"));
-            // $d = intval(trim($d, "_"));
-            // $e = intval(trim($e, "_"));
-            // $f = intval(trim($f, "_"));
-            // $g = intval(trim($g, "_"));
-            // $h = intval(trim($h, "_"));
-            // $i = intval(trim($i, "_"));
-            // $j = intval(trim($j, "_"));
-            // $k = intval(trim($k, "_"));
-            // $l = intval(trim($l, "_"));
 
             $almacen = new Almacen();
             $corte = Corte::find($corte_id);
@@ -106,6 +81,54 @@ class AlmacenController extends Controller
 
                 $producto->save();
             }
+
+            //En caso de que exista otra referencia en el registro de tabla de producto
+            //Se va a generar otra referencia para mejor manejo de las ordenes de pedido en base
+            //a productos.
+            $producto = Product::find($producto_id);
+            $ref2 = $producto->referencia_producto_2;
+
+            if(!empty($ref2)){
+                $producto = Product::find($producto_id);
+                $select_product = DB::select("SHOW TABLE STATUS LIKE 'producto'");
+                $nexProductId = $select_product[0]->Auto_increment;
+
+                //actualizar corte
+                // $corte->producto_id_ref_2 = $nexProductId;
+                // $corte->save();
+
+                $producto_ref_2 = new Product();
+                $producto_ref_2->id_user = Auth::user()->id;
+                $producto_ref_2->genero = $producto->genero;
+                $producto_ref_2->referencia_producto = $ref2;
+                $producto_ref_2->referencia_father = $producto->id;
+                $producto_ref_2->descripcion = $producto->descripcion_2;
+                $producto_ref_2->ubicacion = $producto->ubicacion;
+                $producto_ref_2->imagen_frente = $producto->imagen_frente;
+                $producto_ref_2->imagen_trasero = $producto->imagen_trasero;
+                $producto_ref_2->imagen_perfil = $producto->imagen_perfil;
+                $producto_ref_2->imagen_bolsillo = $producto->imagen_bolsillo;
+                $producto_ref_2->tono = $producto->tono;
+                $producto_ref_2->intensidad_proceso_seco = $producto->intensidad_proceso_seco;
+                $producto_ref_2->atributo_no_1 = $producto->atributo_no_1;
+                $producto_ref_2->atributo_no_2 = $producto->atributo_no_2;
+                $producto_ref_2->atributo_no_3 = $producto->atributo_no_3;
+                $producto_ref_2->precio_lista = $producto->precio_lista_2;
+                $producto_ref_2->precio_venta_publico = $producto->precio_venta_publico_2;
+                $producto_ref_2->min = $producto->min;
+                $producto_ref_2->max = $producto->max;
+
+                $producto_ref_2->save();
+
+                //Quitar todo rastro de referencia 2 en el registro de la tabla de producto.
+                $producto->referencia_producto_2 = Null;
+                $producto->descripcion_2 = Null;
+                $producto->precio_lista_2 = Null;
+                $producto->precio_venta_publico_2 = Null;
+                $producto->save();
+
+            }
+
 
             $select = DB::select("SHOW TABLE STATUS LIKE 'almacen'");
             $nextId = $select[0]->Auto_increment;

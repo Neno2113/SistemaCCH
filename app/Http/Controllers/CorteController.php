@@ -177,6 +177,7 @@ class CorteController extends Controller
         } else {
             $id = $request->input('id', true);
             $producto_id = $request->input('producto');
+            $producto_id_ref_2 = $request->input('producto');
             $no_marcada = $request->input('no_marcada');
             $ancho_marcada = $request->input('ancho_marcada');
             $largo_marcada = $request->input('largo_marcada');
@@ -185,6 +186,7 @@ class CorteController extends Controller
             $corte = Corte::find($id);
 
             $corte->producto_id = $producto_id;
+            $corte->producto_id_ref_2 = $producto_id;
             $corte->no_marcada = $no_marcada;
             $corte->ancho_marcada = $ancho_marcada;
             $corte->largo_marcada = $largo_marcada;

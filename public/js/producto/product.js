@@ -225,6 +225,7 @@ $(document).ready(function() {
             referencia: $("#referencia").val(),
             referencia_2: $("#referencia_2").val(),
             sec: $("#sec").val(),
+            genero: $("#genero").val(),
             descripcion: $("#descripcion").val(),
             descripcion_2: $("#descripcion_2").val(),
             precio_lista_2: $("#precio_lista_2").val(),
