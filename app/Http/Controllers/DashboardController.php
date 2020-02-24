@@ -26,7 +26,7 @@ class DashboardController extends Controller
         $orden = ordenPedido::all();
 
         $data = [
-            'code' => 100,
+            'code' => 200,
             'status' => 'success',
             'orden' => $orden
         ];

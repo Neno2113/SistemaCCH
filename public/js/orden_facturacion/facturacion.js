@@ -27,7 +27,7 @@ $(document).ready(function() {
         $("#fecha").val("");
         $("input[name='r1']:checked").val(0);
         $("#comprobante").hide();
-           
+
     }
 
     function facturaCod() {
@@ -41,7 +41,7 @@ $(document).ready(function() {
                     $("#sec").val(i);
                     i = (i + 0.01).toFixed(2).split('.').join("");
                     var referencia = i;
-                
+
                     $("#no_factura").val(referencia);
 
                 } else {
@@ -78,7 +78,7 @@ $(document).ready(function() {
         }
     });
 
-    
+
     $("#tipo_factura").on('change', function() {
         let val = $("#tipo_factura").val();
         console.log(val);
@@ -86,7 +86,7 @@ $(document).ready(function() {
         if (val == "B01") {
             comprobante = 1;
             $("#comprobante").show();
-        }else{ 
+        }else{
             comprobante = 0;
             $("#comprobante").hide();
         }
@@ -97,9 +97,9 @@ $(document).ready(function() {
         let dia = fecha.getDate();
         let year = fecha.getFullYear();
         let month = fecha.getMonth();
-        
+
         month = month + 1;
-     
+
         $("#fecha").attr('min', year +"-"+ month+"-"+ dia);
     });
 
@@ -124,7 +124,7 @@ $(document).ready(function() {
             comprobante_fiscal: comprobante,
             numero_comprobante: $("#numero_comprobante").val(),
             nota: $("#nota").val()
-            
+
         };
 
         // console.log(JSON.stringify(factura));
@@ -142,7 +142,7 @@ $(document).ready(function() {
                     mostrarForm(false);
                     $("#orden_facturacion").DataTable().ajax.reload();
                     $("#facturas").DataTable().ajax.reload();
-                  
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -222,7 +222,7 @@ $(document).ready(function() {
             ],
             ajax: "api/facturas",
             columns: [
-             
+
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "name", name: "users.name"},
                 { data: "no_factura", name: "factura.no_factura"},
@@ -231,7 +231,7 @@ $(document).ready(function() {
                 { data: "itbis", name: "factura.itbis"},
                 { data: "tipo_factura", name: "factura.tipo_factura"},
                 { data: "status", name: "factura.status"},
-                
+
             ],
             order: [[6, "asc"]],
             rowGroup: {
@@ -240,7 +240,7 @@ $(document).ready(function() {
         });
     }
 
-   
+
 
     function mostrarForm(flag) {
         limpiar();
@@ -251,7 +251,7 @@ $(document).ready(function() {
             $("#btnAgregar").hide();
             $("#btn-guardar").hide();
             $("#btn-opciones").hide();
-            
+
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();

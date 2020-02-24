@@ -82,27 +82,118 @@
                         </div>
                     </div>
                     <div class="container">
-                        <label for="" class="mt-5">Orden de empaque</label>
-                        <table id="orden_detalle" class="table table-striped table-bordered datatables mt-5 mb-3 mr-5"
-                            style="width:100%; margin-left:-26px;">
-                            <thead class="">
+                        <label for="" class="mt-5 mr-5">Orden de empaque</label>
+                        <table id="orden_detalle" class="table tabla-tallas datatables mt-5 mb-3 mr-5"
+                            style="width:105%; margin-left:-26px;">
+                            <thead class="tabla-tallas">
                                 <tr>
-                                    <th id="">Ref</th>
-                                    <th id="ta">A</th>
-                                    <th id="tb">B</th>
-                                    <th id="tc">C</th>
-                                    <th id="td">D</th>
-                                    <th id="te">E</th>
-                                    <th id="tf">F</th>
-                                    <th id="tg">G</th>
-                                    <th id="th">H</th>
-                                    <th id="ti">I</th>
-                                    <th id="tj">J</th>
-                                    <th id="tk">K</th>
-                                    <th id="tl">L</th>
-                                    <th>Total</th>
-                                    <th>Cant Bultos</th>
-                                    <th>Accion</th>
+                                    <th class="talla_head">MUJER PLUS:</th>
+                                    <td class="talla">12W</td>
+                                    <td class="talla">14W</td>
+                                    <td class="talla">16W</td>
+                                    <td class="talla">18W</td>
+                                    <td class="talla">20W</td>
+                                    <td class="talla">22W</td>
+                                    <td class="talla">24W</td>
+                                    <td class="talla">26W</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                </tr>
+                                <tr>
+                                    <th class="talla_head">MUJER:</th>
+                                    <td class="talla">0/0</td>
+                                    <td class="talla">1/2</td>
+                                    <td class="talla">3/4</td>
+                                    <td class="talla">5/6</td>
+                                    <td class="talla">7/8</td>
+                                    <td class="talla">9/10</td>
+                                    <td class="talla">11/12</td>
+                                    <td class="talla">13/14</td>
+                                    <td class="talla">15/16</td>
+                                    <td class="talla">17/18</td>
+                                    <td class="talla">19/20</td>
+                                    <td class="talla">21/22</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                </tr>
+                                <tr>
+                                    <th class="talla_head">HOMBRE:</th>
+                                    <td class="talla">28</td>
+                                    <td class="talla">29</td>
+                                    <td class="talla">30</td>
+                                    <td class="talla">32</td>
+                                    <td class="talla">34</td>
+                                    <td class="talla">36</td>
+                                    <td class="talla">38</td>
+                                    <td class="talla">40</td>
+                                    <td class="talla">42</td>
+                                    <td class="talla">44</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                </tr>
+                                <tr>
+                                    <th class="talla_head">NIÑO:</th>
+                                    <td class="talla">2</td>
+                                    <td class="talla">4</td>
+                                    <td class="talla">6</td>
+                                    <td class="talla">8</td>
+                                    <td class="talla">10</td>
+                                    <td class="talla">12</td>
+                                    <td class="talla">14</td>
+                                    <td class="talla">16</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                </tr>
+                                <tr>
+                                    <th class="talla_head">NIÑA:</th>
+                                    <td class="talla">2</td>
+                                    <td class="talla">4</td>
+                                    <td class="talla">6</td>
+                                    <td class="talla">8</td>
+                                    <td class="talla">10</td>
+                                    <td class="talla">12</td>
+                                    <td class="talla">14</td>
+                                    <td class="talla">16</td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
+
+                                </tr>
+                                <tr>
+                                    <th class="talla_head">Referencia</th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head"></th>
+                                    <th class="talla_head">Cant Bultos</th>
+                                    <th class="talla_head">Total</th>
                                 </tr>
                             </thead>
                             <tbody id="disponibles">
@@ -135,9 +226,9 @@
             </div>
             <div class="card-footer">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
-                    class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
                 <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
-                    class="far fa-save fa-lg"></i> Guardar</button>
+                        class="far fa-save fa-lg"></i> Guardar</button>
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
 
@@ -147,38 +238,43 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="listar_OE" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User Aprob</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. aprob.</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>F. Entr.</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User Aprob</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. aprob.</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>F. Entr.</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Reportar empaque</h4>
+    </div>
+    <div class="card-body">
+        <table id="listar_OE" class="table table-striped table-bordered datatables">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>User Aprob</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>F. aprob.</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>F. Entr.</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>User Aprob</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>F. aprob.</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>F. Entr.</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 
 </div>
 

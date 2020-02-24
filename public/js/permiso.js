@@ -181,7 +181,10 @@ $(document).ready(function() {
         tabla = $("#users").DataTable({
             serverSide: true,
             responsive: true,
-            ajax: "api/permisos",
+            ajax:{
+                "url": "api/permisos",
+                "type": "POST"
+            },
             dom: 'Bfrtip',
             buttons: [
                 'pageLength',

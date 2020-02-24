@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-02-2020 a las 13:09:16
+-- Tiempo de generación: 24-02-2020 a las 22:29:48
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -59,7 +59,11 @@ CREATE TABLE `almacen` (
 INSERT INTO `almacen` (`id`, `corte_id`, `producto_id`, `user_id`, `codigo_almacen`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `usado_curva`, `updated_at`, `created_at`) VALUES
 (14, 14, 65, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-02-10 16:57:51', '2020-02-10 16:57:51'),
 (20, 17, 74, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 390, 0, '2020-02-14 14:38:51', '2020-02-12 11:51:14'),
-(21, 13, 64, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 400, 0, '2020-02-14 14:59:07', '2020-02-14 14:59:07');
+(21, 13, 64, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 400, 0, '2020-02-14 14:59:07', '2020-02-14 14:59:07'),
+(22, 10, 64, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 160, 0, '2020-02-18 10:58:36', '2020-02-18 10:58:36'),
+(23, 9, 41, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 160, 0, '2020-02-18 11:01:41', '2020-02-18 11:01:41'),
+(24, 21, 78, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 479, 0, '2020-02-19 15:44:08', '2020-02-19 15:36:54'),
+(26, 22, 85, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 320, 0, '2020-02-21 11:56:11', '2020-02-21 10:26:07');
 
 -- --------------------------------------------------------
 
@@ -71,6 +75,7 @@ CREATE TABLE `almacen_detalle` (
   `id` int(11) NOT NULL,
   `almacen_id` int(11) DEFAULT NULL,
   `producto_id` int(11) DEFAULT NULL,
+  `producto_id_ref_2` int(11) DEFAULT NULL,
   `codigo_entrada` varchar(10) DEFAULT NULL,
   `a` int(11) DEFAULT NULL,
   `b` int(11) DEFAULT NULL,
@@ -97,15 +102,28 @@ CREATE TABLE `almacen_detalle` (
 -- Volcado de datos para la tabla `almacen_detalle`
 --
 
-INSERT INTO `almacen_detalle` (`id`, `almacen_id`, `producto_id`, `codigo_entrada`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `impreso`, `fecha_entrada`, `fecha_impreso`, `sec`, `created_at`, `updated_at`) VALUES
-(98, 14, 65, NULL, 10, 20, 40, 50, 50, 50, 50, 40, 20, 10, 0, 0, 340, NULL, NULL, NULL, NULL, '2020-02-10 16:57:20', '2020-02-10 16:57:20'),
-(101, 14, 65, NULL, 10, 20, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 190, NULL, NULL, NULL, NULL, '2020-02-10 17:11:48', '2020-02-10 17:11:48'),
-(102, 14, 65, NULL, 20, 20, 20, 20, 20, 20, 20, 20, 20, 10, 0, 0, 190, NULL, NULL, NULL, NULL, '2020-02-10 17:18:43', '2020-02-10 17:18:43'),
-(103, 14, 65, NULL, 0, 0, 0, 20, 20, 20, 20, 0, 0, 0, 0, 0, 80, NULL, NULL, NULL, NULL, '2020-02-10 17:22:09', '2020-02-10 17:22:09'),
-(128, 20, 74, 'EA-003', 0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 160, 1, '2020-02-12', '2020-02-12 11:50:43', '0.03', '2020-02-12 11:50:39', '2020-02-12 11:50:43'),
-(129, 20, 74, 'EA-004', 0, 0, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 80, 1, '2020-02-14', '2020-02-14 02:37:46', '0.04', '2020-02-14 14:37:43', '2020-02-14 14:37:46'),
-(130, 20, 74, 'EA-005', 0, 0, 10, 20, 20, 20, 20, 20, 20, 20, 0, 0, 150, 1, '2020-02-14', '2020-02-14 02:39:39', '0.05', '2020-02-14 14:38:51', '2020-02-14 14:39:39'),
-(131, 21, 64, 'EA-006', 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 0, 0, 400, 1, '2020-02-14', '2020-02-14 02:58:21', '0.06', '2020-02-14 14:58:19', '2020-02-14 14:58:21');
+INSERT INTO `almacen_detalle` (`id`, `almacen_id`, `producto_id`, `producto_id_ref_2`, `codigo_entrada`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `impreso`, `fecha_entrada`, `fecha_impreso`, `sec`, `created_at`, `updated_at`) VALUES
+(98, 14, 65, NULL, NULL, 10, 20, 40, 50, 50, 50, 50, 40, 20, 10, 0, 0, 340, NULL, NULL, NULL, NULL, '2020-02-10 16:57:20', '2020-02-10 16:57:20'),
+(101, 14, 65, NULL, NULL, 10, 20, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 190, NULL, NULL, NULL, NULL, '2020-02-10 17:11:48', '2020-02-10 17:11:48'),
+(102, 14, 65, NULL, NULL, 20, 20, 20, 20, 20, 20, 20, 20, 20, 10, 0, 0, 190, NULL, NULL, NULL, NULL, '2020-02-10 17:18:43', '2020-02-10 17:18:43'),
+(103, 14, 65, NULL, NULL, 0, 0, 0, 20, 20, 20, 20, 0, 0, 0, 0, 0, 80, NULL, NULL, NULL, NULL, '2020-02-10 17:22:09', '2020-02-10 17:22:09'),
+(128, 20, 74, NULL, 'EA-003', 0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 160, 1, '2020-02-12', '2020-02-12 11:50:43', '0.03', '2020-02-12 11:50:39', '2020-02-12 11:50:43'),
+(129, 20, 74, NULL, 'EA-004', 0, 0, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 80, 1, '2020-02-14', '2020-02-14 02:37:46', '0.04', '2020-02-14 14:37:43', '2020-02-14 14:37:46'),
+(130, 20, 74, NULL, 'EA-005', 0, 0, 10, 20, 20, 20, 20, 20, 20, 20, 0, 0, 150, 1, '2020-02-14', '2020-02-14 02:39:39', '0.05', '2020-02-14 14:38:51', '2020-02-14 14:39:39'),
+(131, 21, 64, NULL, 'EA-006', 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 0, 0, 400, 1, '2020-02-14', '2020-02-14 02:58:21', '0.06', '2020-02-14 14:58:19', '2020-02-14 14:58:21'),
+(132, 22, 64, NULL, 'EA-007', 0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 160, 1, '2020-02-18', '2020-02-18 10:51:36', '0.07', '2020-02-18 10:51:10', '2020-02-18 10:51:36'),
+(133, 23, 41, NULL, 'EA-008', 0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 160, 1, '2020-02-18', '2020-02-18 11:00:45', '0.08', '2020-02-18 11:00:43', '2020-02-18 11:00:45'),
+(134, 24, 78, NULL, 'EA-009', 0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 160, 1, '2020-02-19', '2020-02-19 03:35:39', '0.09', '2020-02-19 15:35:37', '2020-02-19 15:35:39'),
+(135, 24, 78, NULL, 'EA-010', 0, 0, 10, 10, 10, 10, 10, 10, 10, 1, 0, 0, 71, 1, '2020-02-19', '2020-02-19 03:36:05', '0.10', '2020-02-19 15:36:03', '2020-02-19 15:36:05'),
+(136, 24, 78, NULL, 'EA-011', 0, 0, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 80, 1, '2020-02-19', '2020-02-19 03:38:23', '0.11', '2020-02-19 15:38:10', '2020-02-19 15:38:23'),
+(137, 24, 78, NULL, 'EA-012', 0, 0, 0, 10, 10, 10, 10, 10, 10, 10, 0, 0, 70, 1, '2020-02-19', '2020-02-19 03:38:47', '0.12', '2020-02-19 15:38:43', '2020-02-19 15:38:47'),
+(138, 24, 78, NULL, 'EA-013', 0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 0, 0, 60, NULL, '2020-02-19', NULL, '0.13', '2020-02-19 15:41:13', '2020-02-19 15:41:13'),
+(139, 24, 78, NULL, 'EA-014', 0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 0, 0, 60, 1, '2020-02-19', '2020-02-19 03:41:40', '0.14', '2020-02-19 15:41:22', '2020-02-19 15:41:40'),
+(140, 24, 78, NULL, 'EA-015', 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0, 30, NULL, '2020-02-19', NULL, '0.15', '2020-02-19 15:42:40', '2020-02-19 15:42:40'),
+(141, 24, 78, NULL, 'EA-016', 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 18, NULL, '2020-02-19', NULL, '0.16', '2020-02-19 15:43:28', '2020-02-19 15:43:28'),
+(142, 24, 78, NULL, 'EA-017', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, '2020-02-19', '2020-02-19 03:44:14', '0.17', '2020-02-19 15:44:08', '2020-02-19 15:44:14'),
+(150, 26, 85, NULL, 'EA-025', 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 0, 0, 160, NULL, '2020-02-21', NULL, '0.25', '2020-02-21 10:22:59', '2020-02-21 10:22:59'),
+(151, 26, 85, NULL, 'EA-026', 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 0, 0, 160, 1, '2020-02-21', '2020-02-21 11:56:14', '0.26', '2020-02-21 11:56:11', '2020-02-21 11:56:14');
 
 -- --------------------------------------------------------
 
@@ -142,8 +160,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `nombre_cliente`, `calle`, `sector`, `provincia`, `sitios_cercanos`, `rnc`, `contacto_cliente_principal`, `telefono_1`, `telefono_2`, `telefono_3`, `celular_principal`, `email_principal`, `condiciones_credito`, `autorizacion_credito_req`, `notas`, `redistribucion_tallas`, `factura_desglosada_talla`, `acepta_segundas`, `updated_at`, `created_at`) VALUES
-(3, 'Plaza Lama', 'Ave. 27 de febrero', 'Piantini', 'Distrito Nacional', 'Churchill', '10100026555', 'Jose', '(829) 943-6531', '(809) 288-2113', NULL, '(809) 288-2113', 'plazalama@lama.com', '60 dias', 1, 'Hii', 1, 0, 0, '2020-01-28 16:36:55', '2020-01-23 13:53:39'),
-(4, 'Lordish', 'primera', 'Santo Domingo', 'Santo Domingo', NULL, '10100203220', 'Fulano', '(809) 288-2113', NULL, NULL, '(809) 943-6531', 'lordish@lordish.com', '60 dias', 1, 'test', 1, 0, 1, '2020-02-11 08:35:35', '2020-02-11 08:35:35');
+(3, 'Plaza Lama', 'Ave. 27 de febrero', 'Piantini', 'Distrito Nacional', 'Churchill', '10100026555', 'Jose', '(829) 943-6531', '(809) 288-2113', NULL, '(809) 288-2113', 'plazalama@lama.com', '60 dias', 1, 'Hii', 1, 0, 0, '2020-02-24 09:13:36', '2020-01-23 13:53:39'),
+(4, 'Lordish', 'primera', 'Santo Domingo', 'Santo Domingo', NULL, '10100203220', 'Fulano', '(809) 288-2113', NULL, NULL, '(809) 943-6531', 'lordish@lordish.com', '60 dias', 1, 'test', 1, 0, 1, '2020-02-11 08:35:35', '2020-02-11 08:35:35'),
+(5, 'La Sirena', 'calle sanchez', 'Santo Domingo', 'Santo Domingo', NULL, '10100020202', 'Jose', '(809) 288-2113', '(809) 528-4101', '(809) 525-2410', '(809) 288-2113', 'sirena@sirena.com', '60 dias', 1, NULL, 1, 0, 1, '2020-02-24 08:47:14', '2020-02-19 15:00:50');
 
 -- --------------------------------------------------------
 
@@ -171,7 +190,8 @@ CREATE TABLE `cliente_sucursales` (
 
 INSERT INTO `cliente_sucursales` (`id`, `cliente_id`, `codigo_sucursal`, `nombre_sucursal`, `telefono_sucursal`, `calle`, `sector`, `provincia`, `sitios_cercanos`, `updated_at`, `created_at`) VALUES
 (2, NULL, NULL, 'Principal ', NULL, NULL, NULL, NULL, NULL, '2019-12-30 10:13:31', '2019-12-30 11:43:38'),
-(4, 3, '3-52', 'Plaza lama Luperon', '(829) 655-3053', 'av. Luperon', 'Pantoja', 'Santo Domingo', 'Test', '2020-01-28 16:39:55', '2020-01-23 13:54:44');
+(4, 3, '3-52', 'Plaza lama Luperon', '(829) 655-3053', 'av. Luperon', 'Pantoja', 'Santo Domingo', 'Test', '2020-01-28 16:39:55', '2020-01-23 13:54:44'),
+(5, 5, '5-20', 'La sirena San Cristobal', '(809) 288-2113', 'calle sanchez', 'madre vieja sur', 'San Cristóbal', 'Liceo Puello Renville', '2020-02-19 15:01:23', '2020-02-19 15:01:23');
 
 -- --------------------------------------------------------
 
@@ -208,6 +228,7 @@ CREATE TABLE `corte` (
   `id` int(11) NOT NULL,
   `numero_corte` varchar(20) DEFAULT NULL,
   `producto_id` int(11) NOT NULL,
+  `producto_id_ref_2` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `fecha_corte` date DEFAULT NULL,
   `no_marcada` varchar(45) DEFAULT NULL,
@@ -226,15 +247,17 @@ CREATE TABLE `corte` (
 -- Volcado de datos para la tabla `corte`
 --
 
-INSERT INTO `corte` (`id`, `numero_corte`, `producto_id`, `user_id`, `fecha_corte`, `no_marcada`, `ancho_marcada`, `largo_marcada`, `aprovechamiento`, `fecha_entrega`, `fase`, `total`, `sec`, `updated_at`, `created_at`) VALUES
-(7, '2019-1', 39, 1, '2020-01-23', 'st x26', 20, '30', '80.00', '2020-02-14', 'Terminacion', 490, '0.01', '2020-01-27 15:21:16', '2020-01-23 14:04:51'),
-(8, '2020-9', 41, 1, '2020-01-23', 'st x27', 46, '12.61', '86.23', '2020-03-04', 'Terminacion', 800, '0.01', '2020-01-27 16:20:28', '2020-01-23 15:55:22'),
-(9, '2020-002', 41, 1, '2020-01-29', 'tsx-na3', 20, '30', '90.00', '2020-02-28', 'Terminacion', 620, '0.01', '2020-02-03 16:47:04', '2020-01-29 09:41:50'),
-(10, '2019-003', 64, 1, '2020-01-30', 'ajka66v', 30, '20', '60.00', '2020-02-28', 'Terminacion', 800, '0.01', '2020-02-06 13:58:53', '2020-01-30 14:10:05'),
-(12, '2019-002', 64, 1, '2020-02-03', 'st x26', 30, '25', '80.00', '2020-03-14', 'Lavanderia', 480, '0.01', '2020-02-04 15:11:52', '2020-02-03 09:37:07'),
-(13, '2020-005', 64, 1, '2020-02-04', 'st x27', 20, '30', '90.00', '2020-03-14', 'Almacen', 740, '0.01', '2020-02-14 14:59:07', '2020-02-04 09:07:57'),
-(14, '2020-007', 65, 1, '2020-02-10', 'st x29', 20, '30', '90.00', '2020-03-14', 'Almacen', 800, '0.01', '2020-02-10 16:57:51', '2020-02-10 16:48:06'),
-(17, '2020-003', 74, 1, '2020-02-11', 'st x29', 100, '20', '90.00', '2020-03-14', 'Almacen', 800, '0.01', '2020-02-12 11:51:14', '2020-02-11 16:54:37');
+INSERT INTO `corte` (`id`, `numero_corte`, `producto_id`, `producto_id_ref_2`, `user_id`, `fecha_corte`, `no_marcada`, `ancho_marcada`, `largo_marcada`, `aprovechamiento`, `fecha_entrega`, `fase`, `total`, `sec`, `updated_at`, `created_at`) VALUES
+(7, '2019-1', 39, NULL, 1, '2020-01-23', 'st x26', 20, '30', '80.00', '2020-02-14', 'Terminacion', 490, '0.01', '2020-01-27 15:21:16', '2020-01-23 14:04:51'),
+(8, '2020-9', 41, NULL, 1, '2020-01-23', 'st x27', 46, '12.61', '86.23', '2020-03-04', 'Terminacion', 800, '0.01', '2020-01-27 16:20:28', '2020-01-23 15:55:22'),
+(9, '2020-002', 41, NULL, 1, '2020-01-29', 'tsx-na3', 20, '30', '90.00', '2020-02-28', 'Almacen', 620, '0.01', '2020-02-18 11:01:41', '2020-01-29 09:41:50'),
+(10, '2019-003', 64, NULL, 1, '2020-01-30', 'ajka66v', 30, '20', '60.00', '2020-02-28', 'Almacen', 800, '0.01', '2020-02-18 10:58:36', '2020-01-30 14:10:05'),
+(12, '2019-002', 64, NULL, 1, '2020-02-03', 'st x26', 30, '25', '80.00', '2020-03-14', 'Lavanderia', 480, '0.01', '2020-02-04 15:11:52', '2020-02-03 09:37:07'),
+(13, '2020-005', 64, NULL, 1, '2020-02-04', 'st x27', 20, '30', '90.00', '2020-03-14', 'Almacen', 740, '0.01', '2020-02-14 14:59:07', '2020-02-04 09:07:57'),
+(14, '2020-007', 65, NULL, 1, '2020-02-10', 'st x29', 20, '30', '90.00', '2020-03-14', 'Almacen', 800, '0.01', '2020-02-10 16:57:51', '2020-02-10 16:48:06'),
+(17, '2020-003', 74, NULL, 1, '2020-02-11', 'st x29', 100, '20', '90.00', '2020-03-14', 'Almacen', 800, '0.01', '2020-02-12 11:51:14', '2020-02-11 16:54:37'),
+(21, '2020-008', 78, NULL, 1, '2020-02-19', 'st x26', 20, '30', '60.00', '2020-03-28', 'Almacen', 770, '0.01', '2020-02-19 15:36:54', '2020-02-19 15:28:39'),
+(22, '2020-004', 85, 85, 1, '2020-02-20', 'st x27', 20, '30', '60.00', '2020-03-28', 'Almacen', 720, '0.01', '2020-02-21 10:26:07', '2020-02-20 16:28:54');
 
 -- --------------------------------------------------------
 
@@ -276,7 +299,8 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `nombre`, `apellido`, `codigo`, `calle`, `sector`, `provincia`, `sitios_cercanos`, `telefono_1`, `telefono_2`, `email`, `cedula`, `departamento`, `casado`, `cargo`, `fecha_contratacion`, `fecha_termino_contrato`, `tipo_contrato`, `forma_pago`, `sueldo`, `valor_hora`, `banco_tarjeta_cobro`, `no_cuenta`, `detallado`, `updated_at`, `created_at`) VALUES
-(5, 'Anel', 'Dominguez', NULL, 'primera', 'madre vieja sur', 'San Cristóbal', 'colmado el vecino', '(809) 288-2113', '(829) 943-6531', 'anel@anel.com', '402-2600929-4', 'VENTA', 1, 'VENDEDOR-219 - VENDEDORA', NULL, NULL, 'Fijo', 'Sueldo Fijo', '13000.00', '110.00', 'Banco Popular', '0000120450', 1, '2020-01-23 13:52:10', '2020-01-23 13:47:56');
+(5, 'Anel', 'Dominguez', NULL, 'primera', 'madre vieja sur', 'San Cristóbal', 'colmado el vecino', '(809) 288-2113', '(829) 943-6531', 'anel@anel.com', '402-2600929-4', 'VENTA', 1, 'VENDEDOR-219 - VENDEDORA', NULL, NULL, 'Fijo', 'Sueldo Fijo', '13000.00', '110.00', 'Banco Popular', '0000120450', 1, '2020-01-23 13:52:10', '2020-01-23 13:47:56'),
+(8, 'Gabriel', 'Garcia', NULL, 'calle sanchez', 'madre vieja sur', 'Santo Domingo', NULL, '(809) 288-2113', '(829) 943-6531', 'gabriel@cch.com', '402-2600929-4', 'VENTA', 1, 'VENDEDOR-219 - VENDEDORA', NULL, NULL, 'Fijo', 'Sueldo Fijo', '20000.00', '120.00', 'Banco Popular', '101202020020', 1, '2020-02-19 14:59:28', '2020-02-19 14:57:45');
 
 -- --------------------------------------------------------
 
@@ -315,7 +339,8 @@ CREATE TABLE `empleado_detalle` (
 --
 
 INSERT INTO `empleado_detalle` (`id`, `empleado_id`, `nss`, `nombre_esposa`, `telefono_esposa`, `esposa_en_nss`, `cantidad_dependientes`, `dependiente_1_nss`, `nombre_dependiente_1`, `dependiente_2_nss`, `nombre_dependiente_2`, `dependiente_3_nss`, `nombre_dependiente_3`, `dependiente_4_nss`, `nombre_dependiente_4`, `dependiente_5_nss`, `nombre_dependiente_5`, `dependiente_6_nss`, `nombre_dependiente_6`, `dependiente_7_nss`, `nombre_dependiente_7`, `updated_at`, `created_at`) VALUES
-(5, 5, '999452142', 'Fulana', '(809) 288-2113', 1, 2, 1, 'Fulano 1', 1, 'Fulano 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-01-23 13:52:10', '2020-01-23 13:52:10');
+(5, 5, '999452142', 'Fulana', '(809) 288-2113', 1, 2, 1, 'Fulano 1', 1, 'Fulano 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-01-23 13:52:10', '2020-01-23 13:52:10'),
+(7, 8, '999520410', 'Fulana', '(809) 288-2113', 0, 2, 1, 'Fulano 1', NULL, 'Fulano 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-02-19 14:59:28', '2020-02-19 14:59:28');
 
 -- --------------------------------------------------------
 
@@ -370,6 +395,17 @@ CREATE TABLE `factura` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`id`, `orden_facturacion_id`, `user_id`, `no_factura`, `tipo_factura`, `fecha`, `fecha_impresion`, `comprobante_fiscal`, `numero_comprobante`, `precio_factura`, `descuento`, `itbis`, `total`, `nota`, `impreso`, `nc_uso`, `sec`, `updated_at`, `created_at`) VALUES
+(26, 28, 1, 'B01-0000221250', 'B01', '2020-02-18', '2020-02-18 02:41:39', 1, 'B01000335410', NULL, 5, 18, '65174.94', 'test', 1, 0, '0.01', '2020-02-18 14:41:39', '2020-02-18 09:15:01'),
+(27, 29, 1, 'IN-00000212121', 'IN', '2020-02-18', '2020-02-18 11:08:35', 0, 'B01', NULL, 5, 18, '10985.80', 'Hiiii', 1, 0, '0.02', '2020-02-18 11:08:35', '2020-02-18 11:08:27'),
+(28, 30, 1, 'DN-000230301', 'DN', '2020-02-18', '2020-02-18 03:29:17', 0, 'B01', NULL, 0, 18, '41630.40', NULL, 1, 1, '0.03', '2020-02-18 15:59:51', '2020-02-18 14:48:13'),
+(30, 32, 1, 'IN-0002000', 'IN', '2020-02-19', '2020-02-19 04:52:46', 0, 'B01', NULL, 0, 18, '69384.00', 'hi', 1, 0, '0.05', '2020-02-19 16:52:47', '2020-02-19 16:52:41'),
+(31, 33, 1, 'IN-0000202010', 'IN', '2020-02-24', '2020-02-24 01:50:19', 0, 'B01', NULL, 5, 18, '13182.96', NULL, 1, 0, '0.06', '2020-02-24 13:50:20', '2020-02-24 13:50:13');
 
 -- --------------------------------------------------------
 
@@ -434,7 +470,11 @@ INSERT INTO `lavanderia` (`id`, `numero_envio`, `corte_id`, `suplidor_id`, `id_s
 (99, 'EL-027', 17, 7, 117, 74, '2020-02-11', 'Lavar segun estandar', 400, 400, 400, NULL, 0, 1, NULL, NULL, 1, '0.27', '2020-02-11 17:18:21', '2020-02-11 17:18:21'),
 (100, 'EL-028', 17, 7, 117, 74, '2020-02-12', 'Lavar segun estandar', 390, 390, 690, NULL, 0, 1, NULL, NULL, 1, '0.28', '2020-02-11 17:21:24', '2020-02-11 17:20:48'),
 (101, 'EL-029', 17, 7, 117, 74, '2020-02-13', 'Lavar segun estandar', 100, 100, 790, NULL, 0, 1, NULL, 1, 1, '0.29', '2020-02-11 17:22:51', '2020-02-11 17:22:51'),
-(102, 'EL-030', 17, 7, 117, 74, '2020-02-18', 'Lavar segun estandar', 100, 100, 790, NULL, 100, 1, 1, NULL, 1, '0.30', '2020-02-11 17:25:20', '2020-02-11 17:25:20');
+(102, 'EL-030', 17, 7, 117, 74, '2020-02-18', 'Lavar segun estandar', 100, 100, 790, NULL, 100, 1, 1, NULL, 1, '0.30', '2020-02-11 17:25:20', '2020-02-11 17:25:20'),
+(103, 'EL-031', 21, 7, 138, 78, '2020-02-19', 'Lavar segun estandar', 400, 400, 400, NULL, 0, 1, NULL, NULL, 1, '0.31', '2020-02-19 15:29:34', '2020-02-19 15:29:34'),
+(104, 'EL-032', 21, 7, 138, 78, '2020-02-19', 'Lavar segun estandar', 200, 200, 600, NULL, 0, 1, NULL, NULL, 1, '0.32', '2020-02-19 15:30:04', '2020-02-19 15:30:04'),
+(105, 'EL-033', 22, 7, 151, 85, '2020-02-20', 'lavar segun estandar', 400, 400, 400, NULL, 0, 1, NULL, NULL, 1, '0.33', '2020-02-20 16:35:21', '2020-02-20 16:35:21'),
+(106, 'EL-034', 22, 7, 151, 85, '2020-02-20', 'lavar segun estandar', 320, 320, 720, NULL, 0, 1, NULL, NULL, 1, '0.34', '2020-02-20 16:50:10', '2020-02-20 16:50:10');
 
 -- --------------------------------------------------------
 
@@ -460,6 +500,13 @@ CREATE TABLE `nota_credito` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `nota_credito`
+--
+
+INSERT INTO `nota_credito` (`id`, `factura_id`, `user_id`, `cliente_id`, `no_nota_credito`, `ncf`, `fecha`, `tipo_nota_credito`, `hora_impresion`, `precio_lista_factura`, `itbis`, `descuento`, `total`, `sec`, `created_at`, `updated_at`) VALUES
+(142, 28, 1, 3, 'NC-001', NULL, '2020-02-18 03:59:52', 'CN', '2020-02-18 04:00:14', '980.00', NULL, NULL, '7840.00', '0.01', '2020-02-18 15:59:52', '2020-02-18 16:00:14');
 
 -- --------------------------------------------------------
 
@@ -487,6 +534,13 @@ CREATE TABLE `nota_credito_detalle` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `nota_credito_detalle`
+--
+
+INSERT INTO `nota_credito_detalle` (`id`, `nota_credito_id`, `producto_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `updated_at`, `created_at`) VALUES
+(94, 142, 74, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 8, '2020-02-18 16:00:09', '2020-02-18 16:00:09');
 
 -- --------------------------------------------------------
 
@@ -517,6 +571,17 @@ CREATE TABLE `orden_empaque` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_empaque`
+--
+
+INSERT INTO `orden_empaque` (`id`, `orden_pedido_id`, `no_orden_empaque`, `fecha`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `cantidad`, `total`, `sec`, `updated_at`, `created_at`) VALUES
+(44, 461, 'OE - 001', '2020-02-18 09:06:18', 1, 2, 2, 3, 3, 3, 3, 2, 2, 1, 0, 0, NULL, NULL, '0.01', '2020-02-18 09:06:18', '2020-02-18 09:06:18'),
+(45, 470, 'OE - 002', '2020-02-18 11:02:24', 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, NULL, NULL, '0.02', '2020-02-18 11:02:24', '2020-02-18 11:02:24'),
+(46, 467, 'OE - 003', '2020-02-18 02:46:45', 0, 0, 5, 5, 4, 4, 4, 4, 4, 5, 0, 0, NULL, NULL, '0.03', '2020-02-18 14:46:45', '2020-02-18 14:46:45'),
+(48, 463, 'OE - 005', '2020-02-19 04:40:00', 0, 0, 7, 5, 4, 4, 4, 4, 5, 5, 0, 0, NULL, NULL, '0.05', '2020-02-19 16:40:00', '2020-02-19 16:40:00'),
+(49, 469, 'OE - 006', '2020-02-24 01:24:22', 0, 0, 2, 2, 1, 1, 1, 1, 1, 2, 0, 0, NULL, NULL, '0.06', '2020-02-24 13:24:22', '2020-02-24 13:24:22');
 
 -- --------------------------------------------------------
 
@@ -568,7 +633,17 @@ INSERT INTO `orden_empaque_detalle` (`id`, `orden_empaque_id`, `producto_id`, `u
 (32, 38, 64, 1, 0, 0, 4, 3, 3, 3, 3, 3, 3, 4, 0, 0, 26, '1750.00', 26, '2020-02-10 02:15:51', 1, 5, 1, '2020-02-10 14:15:52', '2020-02-10 14:15:51'),
 (33, 38, 64, 1, 0, 0, 7, 4, 4, 3, 3, 3, 3, 5, 0, 0, 32, '1750.00', 32, '2020-02-10 02:16:01', 1, 3, 1, '2020-02-10 14:16:02', '2020-02-10 14:16:01'),
 (34, 39, 65, 1, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0, 0, 24, '1750.00', 24, '2020-02-10 05:31:19', 1, 2, 1, '2020-02-10 17:31:19', '2020-02-10 17:31:19'),
-(35, 39, 64, 1, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '1750.00', 36, '2020-02-10 05:31:24', 1, 3, 1, '2020-02-10 17:31:24', '2020-02-10 17:31:24');
+(35, 39, 64, 1, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '1750.00', 36, '2020-02-10 05:31:24', 1, 3, 1, '2020-02-10 17:31:24', '2020-02-10 17:31:24'),
+(36, 44, 65, 1, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0, 0, 24, '960.00', 24, '2020-02-18 09:07:54', 1, 1, 1, '2020-02-18 09:07:54', '2020-02-18 09:07:54'),
+(37, 44, 74, 1, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '975.00', 36, '2020-02-18 09:08:02', 1, 2, 1, '2020-02-18 09:08:02', '2020-02-18 09:08:02'),
+(38, 45, 41, 1, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 10, '980.00', 10, '2020-02-18 11:07:56', 1, 1, 1, '2020-02-18 11:07:56', '2020-02-18 11:07:56'),
+(39, 46, 74, 1, 0, 0, 5, 5, 5, 4, 4, 4, 4, 5, 0, 0, 36, '980.00', 36, '2020-02-18 02:47:41', 1, 3, 1, '2020-02-18 14:47:42', '2020-02-18 14:47:41'),
+(40, 47, 41, 1, 0, 0, 5, 6, 4, 4, 4, 4, 4, 5, 0, 0, 36, '980.00', 36, '2020-02-19 04:19:54', 1, 2, 1, '2020-02-19 16:19:55', '2020-02-19 16:19:54'),
+(41, 47, 64, 1, 0, 0, 2, 2, 1, 1, 1, 1, 2, 2, 0, 0, 12, '980.00', 12, '2020-02-19 04:19:59', 1, 1, 1, '2020-02-19 16:19:59', '2020-02-19 16:19:59'),
+(42, 47, 78, 1, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 24, '960.00', 24, '2020-02-19 04:20:02', 1, 2, 1, '2020-02-19 16:20:02', '2020-02-19 16:20:02'),
+(43, 48, 64, 1, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '980.00', 36, '2020-02-19 04:52:10', 1, 2, 1, '2020-02-19 16:52:11', '2020-02-19 16:52:10'),
+(44, 48, 74, 1, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 24, '980.00', 24, '2020-02-19 04:52:14', 1, 1, 1, '2020-02-19 16:52:15', '2020-02-19 16:52:14'),
+(45, 49, 74, 1, 0, 0, 2, 2, 1, 1, 1, 1, 2, 2, 0, 0, 12, '980.00', 12, '2020-02-24 01:42:25', 1, 1, 1, '2020-02-24 13:42:25', '2020-02-24 13:42:25');
 
 -- --------------------------------------------------------
 
@@ -588,6 +663,17 @@ CREATE TABLE `orden_facturacion` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_facturacion`
+--
+
+INSERT INTO `orden_facturacion` (`id`, `orden_empaque_id`, `user_id`, `no_orden_facturacion`, `por_transporte`, `fecha`, `sec`, `impreso`, `updated_at`, `created_at`) VALUES
+(28, 44, 1, NULL, 0, '2020-02-18 09:08:06', NULL, 1, '2020-02-18 09:15:12', '2020-02-18 09:08:06'),
+(29, 45, 1, NULL, 0, '2020-02-18 11:08:00', NULL, 1, '2020-02-18 11:08:35', '2020-02-18 11:08:00'),
+(30, 46, 1, NULL, 1, '2020-02-18 02:47:44', NULL, 1, '2020-02-18 14:48:27', '2020-02-18 14:47:44'),
+(32, 48, 1, NULL, 1, '2020-02-19 04:52:17', NULL, 1, '2020-02-19 16:52:46', '2020-02-19 16:52:17'),
+(33, 49, 1, NULL, 0, '2020-02-24 01:42:30', NULL, 1, '2020-02-24 13:50:20', '2020-02-24 13:42:30');
 
 -- --------------------------------------------------------
 
@@ -622,6 +708,22 @@ CREATE TABLE `orden_facturacion_detalle` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `orden_facturacion_detalle`
+--
+
+INSERT INTO `orden_facturacion_detalle` (`id`, `orden_facturacion_id`, `orden_pedido_id`, `producto_id`, `user_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `precio`, `cant_bultos`, `fecha`, `nota_credito`, `updated_at`, `created_at`) VALUES
+(34, 28, 461, 65, 1, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0, 0, 24, '960.00', 1, '2020-02-18 09:07:55', 0, '2020-02-18 09:07:55', '2020-02-18 09:07:55'),
+(35, 28, 461, 74, 1, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '975.00', 2, '2020-02-18 09:08:02', 0, '2020-02-18 09:08:02', '2020-02-18 09:08:02'),
+(36, 29, 470, 41, 1, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 10, '980.00', 1, '2020-02-18 11:07:57', 0, '2020-02-18 11:07:57', '2020-02-18 11:07:57'),
+(37, 30, 467, 74, 1, 0, 0, 5, 5, 5, 4, 4, 4, 4, 5, 0, 0, 36, '980.00', 3, '2020-02-18 02:47:42', 0, '2020-02-18 14:47:42', '2020-02-18 14:47:42'),
+(38, 31, 479, 41, 1, 0, 0, 5, 6, 4, 4, 4, 4, 4, 5, 0, 0, 36, '980.00', 2, '2020-02-19 04:19:55', 0, '2020-02-19 16:19:55', '2020-02-19 16:19:55'),
+(39, 31, 479, 64, 1, 0, 0, 2, 2, 1, 1, 1, 1, 2, 2, 0, 0, 12, '980.00', 1, '2020-02-19 04:19:59', 0, '2020-02-19 16:19:59', '2020-02-19 16:19:59'),
+(40, 31, 479, 78, 1, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 24, '960.00', 2, '2020-02-19 04:20:02', 0, '2020-02-19 16:20:02', '2020-02-19 16:20:02'),
+(41, 32, 463, 64, 1, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '980.00', 2, '2020-02-19 04:52:11', 0, '2020-02-19 16:52:11', '2020-02-19 16:52:11'),
+(42, 32, 463, 74, 1, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 24, '980.00', 1, '2020-02-19 04:52:15', 0, '2020-02-19 16:52:15', '2020-02-19 16:52:15'),
+(43, 33, 469, 74, 1, 0, 0, 2, 2, 1, 1, 1, 1, 2, 2, 0, 0, 12, '980.00', 1, '2020-02-24 01:42:26', 0, '2020-02-24 13:42:26', '2020-02-24 13:42:26');
+
 -- --------------------------------------------------------
 
 --
@@ -635,16 +737,17 @@ CREATE TABLE `orden_pedido` (
   `cliente_id` int(11) DEFAULT NULL,
   `sucursal_id` int(11) DEFAULT NULL,
   `vendedor_id` int(11) DEFAULT NULL,
+  `orden_pedido_father` int(11) DEFAULT NULL,
   `no_orden_pedido` varchar(20) NOT NULL,
   `fecha` datetime NOT NULL,
   `fecha_entrega` date NOT NULL,
   `notas` text DEFAULT NULL,
-  `generado_internamente` tinyint(1) NOT NULL,
+  `generado_internamente` tinyint(1) DEFAULT NULL,
   `estado_aprobacion` tinyint(1) DEFAULT NULL,
   `fecha_aprobacion` datetime DEFAULT NULL,
   `status_orden_pedido` varchar(30) DEFAULT NULL,
   `precio` decimal(4,3) DEFAULT NULL,
-  `detallada` tinyint(1) NOT NULL,
+  `detallada` tinyint(1) DEFAULT NULL,
   `corte_en_proceso` varchar(5) DEFAULT NULL,
   `orden_proceso_impresa` varchar(5) DEFAULT NULL,
   `sec` decimal(3,2) NOT NULL,
@@ -656,8 +759,16 @@ CREATE TABLE `orden_pedido` (
 -- Volcado de datos para la tabla `orden_pedido`
 --
 
-INSERT INTO `orden_pedido` (`id`, `user_id`, `user_aprobacion`, `cliente_id`, `sucursal_id`, `vendedor_id`, `no_orden_pedido`, `fecha`, `fecha_entrega`, `notas`, `generado_internamente`, `estado_aprobacion`, `fecha_aprobacion`, `status_orden_pedido`, `precio`, `detallada`, `corte_en_proceso`, `orden_proceso_impresa`, `sec`, `updated_at`, `created_at`) VALUES
-(400, 1, 1, 3, 4, 5, 'OP-001', '2020-02-14 04:55:12', '2020-02-14', NULL, 0, NULL, NULL, 'Stanby', NULL, 0, 'No', 'No', '0.01', '2020-02-14 16:55:12', '2020-02-14 16:55:12');
+INSERT INTO `orden_pedido` (`id`, `user_id`, `user_aprobacion`, `cliente_id`, `sucursal_id`, `vendedor_id`, `orden_pedido_father`, `no_orden_pedido`, `fecha`, `fecha_entrega`, `notas`, `generado_internamente`, `estado_aprobacion`, `fecha_aprobacion`, `status_orden_pedido`, `precio`, `detallada`, `corte_en_proceso`, `orden_proceso_impresa`, `sec`, `updated_at`, `created_at`) VALUES
+(461, 1, 1, 3, 2, 5, NULL, 'OP-001', '2020-02-17 05:14:16', '2020-02-10', NULL, 0, NULL, '2020-02-18 09:03:48', 'Despachado', NULL, 1, 'No', 'Si', '0.01', '2020-02-18 09:15:12', '2020-02-17 17:14:16'),
+(463, 1, 1, 3, 2, 5, NULL, 'OP-003', '2020-02-17 05:15:44', '2020-02-17', NULL, 0, NULL, '2020-02-19 04:39:55', 'Despachado', NULL, 1, 'No', 'Si', '0.03', '2020-02-19 16:52:47', '2020-02-17 17:15:44'),
+(465, 1, 1, 3, 4, 5, NULL, 'OP-005', '2020-02-17 05:29:00', '2020-02-17', NULL, 0, NULL, NULL, 'Stanby', NULL, 0, 'No', 'Si', '0.05', '2020-02-17 17:32:48', '2020-02-17 17:29:01'),
+(467, 1, 1, 3, 2, 5, NULL, 'OP-007', '2020-02-17 05:41:01', '2020-02-17', NULL, 0, NULL, '2020-02-18 02:46:38', 'Despachado', NULL, 1, 'No', 'Si', '0.07', '2020-02-18 14:48:28', '2020-02-17 17:41:01'),
+(469, 1, 1, 3, 2, 5, NULL, 'OP-008', '2020-02-17 05:55:40', '2020-02-17', NULL, 0, NULL, '2020-02-24 01:24:07', 'Despachado', NULL, 1, 'No', 'Si', '0.08', '2020-02-24 13:50:20', '2020-02-17 17:55:40'),
+(470, 1, 1, 3, 2, 5, 469, 'OP-009', '2020-02-17 05:56:10', '2020-03-04', NULL, NULL, NULL, '2020-02-18 11:02:17', 'Despachado', NULL, 1, 'No', 'Si', '0.09', '2020-02-18 11:08:35', '2020-02-17 17:56:10'),
+(471, 1, 1, NULL, NULL, NULL, 469, 'OP-010', '2020-02-17 05:56:37', '2020-02-28', NULL, NULL, NULL, NULL, 'Stanby', NULL, NULL, 'Si', 'Si', '0.10', '2020-02-18 08:56:48', '2020-02-17 17:56:37'),
+(509, 1, 1, 3, 4, 5, NULL, 'OP-011', '2020-02-24 09:44:00', '2020-02-24', NULL, 0, NULL, NULL, 'Stanby', NULL, 0, 'No', 'Si', '0.11', '2020-02-24 09:46:03', '2020-02-24 09:44:00'),
+(510, 1, 1, NULL, NULL, NULL, 509, 'OP-012', '2020-02-24 09:45:34', '2020-02-14', NULL, NULL, NULL, NULL, 'Stanby', NULL, NULL, 'Si', 'Si', '0.12', '2020-02-24 09:46:03', '2020-02-24 09:45:34');
 
 -- --------------------------------------------------------
 
@@ -688,9 +799,28 @@ CREATE TABLE `orden_pedido_detalle` (
   `orden_redistribuida` tinyint(1) DEFAULT NULL,
   `orden_empacada` tinyint(1) DEFAULT NULL,
   `orden_ajustada` tinyint(1) DEFAULT NULL,
+  `fecha_entrega` date DEFAULT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_pedido_detalle`
+--
+
+INSERT INTO `orden_pedido_detalle` (`id`, `orden_pedido_id`, `producto_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `total`, `precio`, `cantidad`, `cant_red`, `orden_redistribuida`, `orden_empacada`, `orden_ajustada`, `fecha_entrega`, `updated_at`, `created_at`) VALUES
+(215, 461, 65, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0, 0, 24, '960.00', 24, 24, 1, 1, 1, NULL, '2020-02-18 09:07:54', '2020-02-17 17:14:29'),
+(216, 461, 74, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '975.00', 36, 36, 1, 1, 1, NULL, '2020-02-18 09:08:02', '2020-02-17 17:14:44'),
+(218, 463, 74, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 24, '980.00', 24, 24, 1, 1, 1, NULL, '2020-02-19 16:52:14', '2020-02-17 17:16:06'),
+(219, 463, 64, 0, 0, 5, 5, 4, 4, 4, 4, 5, 5, 0, 0, 36, '980.00', 36, 36, 1, 1, 1, NULL, '2020-02-19 16:52:10', '2020-02-17 17:16:14'),
+(221, 465, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, '980.00', 36, 36, 0, 0, NULL, NULL, '2020-02-17 17:29:13', '2020-02-17 17:29:13'),
+(223, 467, 74, 0, 0, 5, 5, 5, 4, 4, 4, 4, 5, 0, 0, 36, '980.00', 36, 36, 1, 1, 1, NULL, '2020-02-18 14:47:41', '2020-02-17 17:41:12'),
+(226, 469, 74, 0, 0, 2, 2, 1, 1, 1, 1, 2, 2, 0, 0, 12, '980.00', 12, 12, 1, 1, 1, NULL, '2020-02-24 13:42:25', '2020-02-17 17:55:49'),
+(227, 470, 41, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 10, '980.00', 10, 10, 1, 1, 1, '2020-03-04', '2020-02-18 11:07:56', '2020-02-17 17:56:10'),
+(228, 471, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, '980.00', 12, 12, 0, 0, NULL, '2020-02-28', '2020-02-17 17:56:37', '2020-02-17 17:56:37'),
+(233, 480, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, '980.00', 36, 36, 0, 0, NULL, '2020-02-14', '2020-02-19 16:05:54', '2020-02-19 16:05:54'),
+(257, 510, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, '980.00', 24, 24, 0, 0, NULL, '2020-02-14', '2020-02-24 09:45:34', '2020-02-24 09:45:34'),
+(258, 509, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, '980.00', 24, 24, 0, 0, NULL, NULL, '2020-02-24 09:45:53', '2020-02-24 09:45:53');
 
 -- --------------------------------------------------------
 
@@ -770,45 +900,16 @@ CREATE TABLE `permiso_usuario` (
 --
 
 INSERT INTO `permiso_usuario` (`id`, `user_id`, `permiso`, `created_at`, `updated_at`) VALUES
-(3, 1, 'Dashboard', '2020-01-29 17:05:35', '2020-01-29 17:05:35'),
-(4, 1, 'Usuarios', '2020-01-29 17:05:42', '2020-01-29 17:05:42'),
-(5, 1, 'Empleados', '2020-01-29 17:05:48', '2020-01-29 17:05:48'),
-(6, 1, 'Cliente', '2020-01-29 17:05:55', '2020-01-29 17:05:55'),
-(7, 1, 'Sucursales', '2020-01-29 17:06:02', '2020-01-29 17:06:02'),
-(8, 1, 'Suplidores', '2020-01-29 17:06:08', '2020-01-29 17:06:08'),
-(9, 1, 'Sku', '2020-01-29 17:06:13', '2020-01-29 17:06:13'),
-(10, 1, 'Producto', '2020-01-29 17:06:18', '2020-01-29 17:06:18'),
-(11, 1, 'Producto Terminado', '2020-01-29 17:06:22', '2020-01-29 17:06:22'),
-(12, 1, 'Composicion', '2020-01-29 17:06:27', '2020-01-29 17:06:27'),
-(13, 1, 'Telas', '2020-01-29 17:06:31', '2020-01-29 17:06:31'),
-(14, 1, 'Corte', '2020-01-29 17:06:36', '2020-01-29 17:06:36'),
-(15, 1, 'Lavanderia', '2020-01-29 17:06:42', '2020-01-29 17:06:42'),
-(16, 1, 'Recepcion', '2020-01-29 17:06:46', '2020-01-29 17:06:46'),
-(17, 1, 'Almacen', '2020-01-29 17:06:51', '2020-01-29 17:06:51'),
-(18, 1, 'Perdidas', '2020-01-29 17:06:56', '2020-01-29 17:06:56'),
-(19, 1, 'Orden Pedido', '2020-01-29 17:07:02', '2020-01-29 17:07:02'),
-(20, 1, 'Aprobacion', '2020-01-29 17:07:06', '2020-01-29 17:07:06'),
-(21, 1, 'Ordenes Procesos', '2020-01-29 17:07:10', '2020-01-29 17:07:10'),
-(22, 1, 'Imprimir Empaque', '2020-01-29 17:07:15', '2020-01-29 17:07:15'),
-(23, 1, 'Reportar Empaque', '2020-01-29 17:07:19', '2020-01-29 17:07:19'),
-(24, 1, 'Generar Factura', '2020-01-29 17:07:27', '2020-01-29 17:07:27'),
-(25, 1, 'Nota Credito', '2020-01-29 17:07:32', '2020-01-29 17:07:32'),
-(26, 1, 'Existencia', '2020-01-29 17:07:38', '2020-01-29 17:07:38'),
-(48, 6, 'Lavanderia', '2020-01-30 09:43:04', '2020-01-30 09:43:04'),
-(49, 6, 'Almacen', '2020-01-30 09:43:10', '2020-01-30 09:43:10'),
-(50, 6, 'Perdidas', '2020-01-30 09:43:14', '2020-01-30 09:43:14'),
-(51, 6, 'Orden Pedido', '2020-01-30 09:43:32', '2020-01-30 09:43:32'),
-(52, 6, 'Aprobacion', '2020-01-30 09:43:36', '2020-01-30 09:43:36'),
-(55, 6, 'Reportar Empaque', '2020-01-30 09:43:50', '2020-01-30 09:43:50'),
-(59, 6, 'Corte', '2020-01-30 11:17:20', '2020-01-30 11:17:20'),
-(60, 6, 'Recepcion', '2020-01-30 11:39:20', '2020-01-30 11:39:20'),
-(68, 8, 'Usuarios', '2020-02-11 09:27:55', '2020-02-11 09:27:55'),
-(69, 8, 'Sucursales', '2020-02-11 09:30:10', '2020-02-11 09:30:10'),
-(70, 8, 'Producto Terminado', '2020-02-11 09:30:22', '2020-02-11 09:30:22'),
-(73, 8, 'Rollos', '2020-02-11 11:25:28', '2020-02-11 11:25:28'),
-(74, 8, 'Aprobacion', '2020-02-11 11:25:35', '2020-02-11 11:25:35'),
-(75, 8, 'Perdidas', '2020-02-12 14:17:30', '2020-02-12 14:17:30'),
-(76, 8, 'Almacen', '2020-02-12 14:17:34', '2020-02-12 14:17:34');
+(1, 12, 'Usuarios', '2020-02-20 08:34:09', '2020-02-20 08:34:09'),
+(2, 12, 'Empleados', '2020-02-20 08:34:12', '2020-02-20 08:34:12'),
+(3, 12, 'Producto terminado', '2020-02-20 08:34:17', '2020-02-20 08:34:17'),
+(4, 12, 'Ordenes pedido', '2020-02-20 08:34:23', '2020-02-20 08:34:23'),
+(5, 12, 'Aprobar y redistribuir', '2020-02-20 08:34:26', '2020-02-20 08:34:26'),
+(6, 12, 'Ordenes proceso', '2020-02-20 08:34:27', '2020-02-20 08:34:27'),
+(7, 12, 'Imprimir ordenes empaque', '2020-02-20 08:34:30', '2020-02-20 08:34:30'),
+(8, 12, 'Reportar empaque', '2020-02-20 08:34:32', '2020-02-20 08:34:32'),
+(9, 12, 'Facturacion', '2020-02-20 08:34:38', '2020-02-20 08:34:38'),
+(10, 12, 'Cliente', '2020-02-20 08:34:49', '2020-02-20 08:34:49');
 
 -- --------------------------------------------------------
 
@@ -821,6 +922,7 @@ CREATE TABLE `producto` (
   `id_user` int(11) NOT NULL,
   `genero` int(11) DEFAULT NULL,
   `referencia_producto` varchar(50) NOT NULL,
+  `referencia_father` int(11) DEFAULT NULL,
   `referencia_producto_2` varchar(50) DEFAULT NULL,
   `descripcion` longtext DEFAULT NULL,
   `descripcion_2` longtext DEFAULT NULL,
@@ -840,6 +942,8 @@ CREATE TABLE `producto` (
   `precio_venta_publico_2` decimal(15,2) DEFAULT NULL,
   `enviado_lavanderia` tinyint(1) DEFAULT NULL,
   `producto_terminado` tinyint(1) DEFAULT NULL,
+  `min` varchar(5) DEFAULT NULL,
+  `max` varchar(5) DEFAULT NULL,
   `sec` decimal(2,1) DEFAULT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
@@ -849,12 +953,15 @@ CREATE TABLE `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id`, `id_user`, `genero`, `referencia_producto`, `referencia_producto_2`, `descripcion`, `descripcion_2`, `ubicacion`, `imagen_frente`, `imagen_trasero`, `imagen_perfil`, `imagen_bolsillo`, `tono`, `intensidad_proceso_seco`, `atributo_no_1`, `atributo_no_2`, `atributo_no_3`, `precio_lista`, `precio_lista_2`, `precio_venta_publico`, `precio_venta_publico_2`, `enviado_lavanderia`, `producto_terminado`, `sec`, `updated_at`, `created_at`) VALUES
-(39, 1, 2, 'M202-2001', NULL, 'Pant. Mujer Moda', NULL, 'a-1', '1579803029jean_frontal.jpg', '1579803029jean_trasera.jpg', '1579803029eclipse-solar-avion-national-04072019in5.jpg', '15798030292589018171f934247c228119079fbc4b.jpg', 'Dark Stone Suave', 'Alto contraste', 'Parcho', 'Bordado', 'Roto', '980.00', NULL, '1200.00', NULL, 1, 1, '0.1', '2020-01-23 14:10:34', '2020-01-23 13:56:48'),
-(41, 1, 2, 'M206-2003', NULL, 'Pantalon Dama Talle Alto', NULL, 'a-1', '1580308132persona-5-review-style-first-10-1280x720.jpg', '15803081321575388275_145305_1575388338_noticia_normal.jpg', '1580308132hipertextual-estas-son-imagenes-que-se-juegan-premio-mejor-astrofotografo-ano-2019530966.jpg', '15803081322589018171f934247c228119079fbc4b.jpg', 'Crudo o Puro', 'Alto contraste', 'Parcho', 'Parcho', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, '0.3', '2020-01-29 10:28:52', '2020-01-23 15:34:51'),
-(64, 1, 2, 'M206-2006', NULL, 'Pant. Dama Talle Alto', NULL, 'A-2', '1581706744persona-5-review-style-first-10-1280x720.jpg', '15817067441575388275_145305_1575388338_noticia_normal.jpg', '15817067442589018171f934247c228119079fbc4b.jpg', '158170674400351523-03.jpg', 'Crudo o Puro', 'Intermedio', 'Bordado', 'Parcho', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, '0.1', '2020-02-14 14:59:04', '2020-01-30 13:59:30'),
-(65, 1, 1, 'M103-2003', NULL, 'Panta', NULL, 'b-4', '1581368267persona-5-review-style-first-10-1280x720.jpg', '15813682671575388275_145305_1575388338_noticia_normal.jpg', '158136826700351523-03.jpg', '15813682672589018171f934247c228119079fbc4b.jpg', 'Crudo o Puro', 'Alto contraste', 'Parcho', 'Bordado', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, '0.1', '2020-02-10 16:57:51', '2020-01-31 09:39:53'),
-(74, 1, 2, 'M206-2007', NULL, 'Pantalon de Dama Talle Alto', NULL, 'D-4', '1581522669persona-5-review-style-first-10-1280x720.jpg', '15815226691575388275_145305_1575388338_noticia_normal.jpg', '158152266900351523-03.jpg', '15815226692589018171f934247c228119079fbc4b.jpg', 'Crudo o Puro', 'Intermedio', 'Roto', 'Bordado', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, '0.1', '2020-02-12 11:51:09', '2020-02-11 15:12:58');
+INSERT INTO `producto` (`id`, `id_user`, `genero`, `referencia_producto`, `referencia_father`, `referencia_producto_2`, `descripcion`, `descripcion_2`, `ubicacion`, `imagen_frente`, `imagen_trasero`, `imagen_perfil`, `imagen_bolsillo`, `tono`, `intensidad_proceso_seco`, `atributo_no_1`, `atributo_no_2`, `atributo_no_3`, `precio_lista`, `precio_lista_2`, `precio_venta_publico`, `precio_venta_publico_2`, `enviado_lavanderia`, `producto_terminado`, `min`, `max`, `sec`, `updated_at`, `created_at`) VALUES
+(39, 1, 2, 'M202-2001', NULL, NULL, 'Pant. Mujer Moda', NULL, 'a-1', '1579803029jean_frontal.jpg', '1579803029jean_trasera.jpg', '1579803029eclipse-solar-avion-national-04072019in5.jpg', '15798030292589018171f934247c228119079fbc4b.jpg', 'Dark Stone Suave', 'Alto contraste', 'Parcho', 'Bordado', 'Roto', '980.00', NULL, '1200.00', NULL, 1, 1, NULL, NULL, '0.1', '2020-01-23 14:10:34', '2020-01-23 13:56:48'),
+(41, 1, 2, 'M206-2003', NULL, NULL, 'Pantalon Dama Talle Alto', NULL, 'a-1', '1582038067persona-5-review-style-first-10-1280x720.jpg', '15820380671575388275_145305_1575388338_noticia_normal.jpg', '15820380672589018171f934247c228119079fbc4b.jpg', '158203806700351523-03.jpg', 'Crudo o Puro', 'Alto contraste', 'Parcho', 'Parcho', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, NULL, NULL, '0.3', '2020-02-18 11:01:07', '2020-01-23 15:34:51'),
+(64, 1, 2, 'M206-2006', NULL, NULL, 'Pant. Dama Talle Alto', NULL, 'A-2', '1582037547persona-5-review-style-first-10-1280x720.jpg', '15820375471575388275_145305_1575388338_noticia_normal.jpg', '15820375472589018171f934247c228119079fbc4b.jpg', '158203754700351523-03.jpg', 'Crudo o Puro', 'Intermedio', 'Bordado', 'Parcho', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, NULL, NULL, '0.1', '2020-02-18 10:52:27', '2020-01-30 13:59:30'),
+(65, 1, 1, 'M103-2003', NULL, NULL, 'Panta', NULL, 'b-4', '1581368267persona-5-review-style-first-10-1280x720.jpg', '15813682671575388275_145305_1575388338_noticia_normal.jpg', '158136826700351523-03.jpg', '15813682672589018171f934247c228119079fbc4b.jpg', 'Crudo o Puro', 'Alto contraste', 'Parcho', 'Bordado', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, NULL, NULL, '0.1', '2020-02-10 16:57:51', '2020-01-31 09:39:53'),
+(74, 1, 2, 'M206-2007', NULL, NULL, 'Pantalon de Dama Talle Alto', NULL, 'D-4', '1581522669persona-5-review-style-first-10-1280x720.jpg', '15815226691575388275_145305_1575388338_noticia_normal.jpg', '158152266900351523-03.jpg', '15815226692589018171f934247c228119079fbc4b.jpg', 'Crudo o Puro', 'Intermedio', 'Roto', 'Bordado', 'Parcho', '980.00', NULL, '1750.00', NULL, 1, 1, NULL, NULL, '0.1', '2020-02-12 11:51:09', '2020-02-11 15:12:58'),
+(78, 1, 2, 'M206-2008', NULL, NULL, 'Pant. Talle Alto', NULL, 'A-5', '158214101261LV8e1BQvL.jpg', '15821410121575388275_145305_1575388338_noticia_normal.jpg', '1582141012joker.jpg', '1582141012índice.jpg', 'Crudo o Puro', 'Alto contraste', 'Roto', 'Parcho', 'Bordado', '980.00', '0.00', '1750.00', '0.00', 1, 1, NULL, NULL, '0.1', '2020-02-19 15:36:54', '2020-02-19 15:22:04'),
+(85, 1, 3, 'P302-2003', NULL, NULL, 'Pant nino', NULL, 'C-4', '158229499261LV8e1BQvL.jpg', '15822949921575388275_145305_1575388338_noticia_normal.jpg', '1582294992joker.jpg', '1582294992super-smash-bros-ultimate-joker_hi.jpg', 'Dark Stone', 'Suave', 'Parcho', 'Roto', 'Bordado', '980.00', NULL, '1750.00', NULL, 1, 1, 'd', 'h', '0.1', '2020-02-21 10:26:07', '2020-02-20 15:10:55'),
+(86, 1, 3, 'P302-2004', 85, NULL, 'Pant nino', NULL, 'C-4', '158229499261LV8e1BQvL.jpg', '15822949921575388275_145305_1575388338_noticia_normal.jpg', '1582294992joker.jpg', '1582294992super-smash-bros-ultimate-joker_hi.jpg', 'Dark Stone', 'Suave', 'Parcho', 'Roto', 'Bordado', '990.00', NULL, '1800.00', NULL, NULL, NULL, 'd', 'h', NULL, '2020-02-21 10:26:07', '2020-02-21 10:26:07');
 
 -- --------------------------------------------------------
 
@@ -924,7 +1031,11 @@ INSERT INTO `recepcion` (`id`, `numero_recepcion`, `num_factura_rec`, `corte_id`
 (99, 'RE-037', '002122102', 17, NULL, '2020-02-12', 100, 0, 100, 690, 1, 1, '0.37', '2020-02-11 17:21:25', '2020-02-11 17:21:25'),
 (100, 'RE-038', '002022121', 17, NULL, '2020-02-13', 400, 400, NULL, 390, 1, NULL, '0.38', '2020-02-11 17:23:51', '2020-02-11 17:23:51'),
 (101, 'RE-039', '002000', 17, NULL, '2020-02-14', 390, 690, NULL, 100, 1, NULL, '0.39', '2020-02-11 17:25:20', '2020-02-11 17:24:12'),
-(102, 'RE-040', '5502210', 17, NULL, '2020-02-19', 100, 790, NULL, 0, 1, NULL, '0.40', '2020-02-11 17:26:07', '2020-02-11 17:26:07');
+(102, 'RE-040', '5502210', 17, NULL, '2020-02-19', 100, 790, NULL, 0, 1, NULL, '0.40', '2020-02-11 17:26:07', '2020-02-11 17:26:07'),
+(103, 'RE-041', '00020110', 21, NULL, '2020-02-19', 300, 300, NULL, 300, 1, NULL, '0.41', '2020-02-19 15:30:28', '2020-02-19 15:30:28'),
+(104, 'RE-042', '0002', 21, NULL, '2020-02-20', 250, 550, NULL, 50, 1, NULL, '0.42', '2020-02-19 15:31:01', '2020-02-19 15:31:01'),
+(105, 'RE-043', '0002122', 22, NULL, '2020-02-20', 400, 400, NULL, 0, 1, NULL, '0.43', '2020-02-20 16:47:52', '2020-02-20 16:47:52'),
+(106, 'RE-044', '0021452', 22, NULL, '2020-02-20', 320, 720, NULL, 0, 1, NULL, '0.44', '2020-02-20 16:50:30', '2020-02-20 16:50:30');
 
 -- --------------------------------------------------------
 
@@ -952,7 +1063,7 @@ CREATE TABLE `rollos` (
 --
 
 INSERT INTO `rollos` (`id`, `id_user`, `id_suplidor`, `id_tela`, `codigo_rollo`, `num_tono`, `no_factura_compra`, `fecha_compra`, `longitud_yarda`, `corte_utilizado`, `updated_at`, `created_at`) VALUES
-(19, 1, 5, 2, 'B-815', 'T-15', '0102222', '2020-01-23', 30, '2019-004', '2020-02-12 15:20:07', '2020-01-23 14:00:51'),
+(19, 1, 5, 2, 'B-815', 'T-15', '0102222', '2020-01-23', 30, '2020-004', '2020-02-20 16:28:06', '2020-01-23 14:00:51'),
 (20, 1, 6, 3, '10', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-003', '2020-01-30 14:09:31', '2020-01-23 14:44:14'),
 (21, 1, 6, 3, '11', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 120.3, '2019-003', '2020-01-30 14:09:08', '2020-01-23 14:44:27'),
 (22, 1, 6, 3, '12', '43', 'AFGI/EXP/0162/19-20', '2020-01-23', 164.04, '2019-003', '2020-01-30 14:09:21', '2020-01-23 14:44:40'),
@@ -982,7 +1093,8 @@ INSERT INTO `rollos` (`id`, `id_user`, `id_suplidor`, `id_tela`, `codigo_rollo`,
 (46, 1, 8, 8, '50', 'B', '1020121', '2020-02-11', 200, '2020-008', '2020-02-11 17:47:28', '2020-02-11 17:46:26'),
 (47, 1, 8, 8, '30', 'B', '1020121', '2020-02-11', 200, '2020-008', '2020-02-11 17:47:24', '2020-02-11 17:46:35'),
 (48, 1, 8, 8, '40', 'N', '1020121', '2020-02-11', 200, '2020-008', '2020-02-11 17:47:26', '2020-02-11 17:46:42'),
-(49, 1, 8, 8, '&', 'M', '1020121', '2020-02-11', 20, '2020-008', '2020-02-11 17:47:30', '2020-02-11 17:46:52');
+(49, 1, 8, 8, '&', 'M', '1020121', '2020-02-11', 20, '2020-008', '2020-02-11 17:47:30', '2020-02-11 17:46:52'),
+(50, 1, 8, 8, '4', 'C', '02010030', '2020-02-19', 160.3, '2020-008', '2020-02-19 15:28:01', '2020-02-19 15:27:18');
 
 -- --------------------------------------------------------
 
@@ -1076,16 +1188,6 @@ INSERT INTO `sku` (`id`, `producto_id`, `referencia_producto`, `sku`, `talla`, `
 (115, NULL, '74', '7432147518545', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:41:16'),
 (116, NULL, NULL, '7432147518552', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:47:13'),
 (117, 74, 'M206-2007', '7432147518569', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:48:11'),
-(118, 74, 'M206-2007', '7432147518576', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:49:57'),
-(119, 74, 'M206-2007', '7432147518583', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:00'),
-(120, 74, 'M206-2007', '7432147518590', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:01'),
-(121, 74, 'M206-2007', '7432147618603', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:03'),
-(122, 74, 'M206-2007', '7432147618610', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:05'),
-(123, 74, 'M206-2007', '7432147618627', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:07'),
-(124, 74, 'M206-2007', '7432147618634', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:08'),
-(125, 74, 'M206-2007', '7432147618641', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:10'),
-(126, 74, 'M206-2007', '7432147618658', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:50:12'),
-(127, 74, 'M206-2007', '7432147618665', 'General', 1, '2019-12-24 10:53:40', '2020-02-11 16:54:09'),
 (128, 74, 'M206-2007', '7432147618672', 'C', 1, '2019-12-24 10:53:40', '2020-02-11 16:54:16'),
 (129, 74, 'M206-2007', '7432147618689', 'D', 1, '2019-12-24 10:53:40', '2020-02-11 16:54:22'),
 (130, 74, 'M206-2007', '7432147618696', 'E', 1, '2019-12-24 10:53:40', '2020-02-11 16:54:24'),
@@ -1096,37 +1198,33 @@ INSERT INTO `sku` (`id`, `producto_id`, `referencia_producto`, `sku`, `talla`, `
 (135, 74, 'M206-2007', '7432147718747', 'J', 1, '2019-12-24 10:53:40', '2020-02-11 16:54:33'),
 (136, 64, 'M206-2006', '7432147718754', 'J', 1, '2019-12-24 10:53:40', '2020-02-11 17:48:04'),
 (137, 41, 'M206-2003', '7432147718761', 'J', 1, '2019-12-24 10:53:40', '2020-02-12 15:20:31'),
-(138, NULL, NULL, '7432147718778', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(139, NULL, NULL, '7432147718785', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(140, NULL, NULL, '7432147718792', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(141, NULL, NULL, '7432147818805', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(142, NULL, NULL, '7432147818812', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(143, NULL, NULL, '7432147818829', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(144, NULL, NULL, '7432147818836', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(145, NULL, NULL, '7432147818843', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(146, NULL, NULL, '7432147818850', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(147, NULL, NULL, '7432147818867', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(148, NULL, NULL, '7432147818874', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(149, NULL, NULL, '7432147818881', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(150, NULL, NULL, '7432147818898', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(151, NULL, NULL, '7432147918901', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(152, NULL, NULL, '7432147918918', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(153, NULL, NULL, '7432147918925', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(154, NULL, NULL, '7432147918932', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(155, NULL, NULL, '7432147918949', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(156, NULL, NULL, '7432147918956', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(157, NULL, NULL, '7432147918963', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(158, NULL, NULL, '7432147918970', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(159, NULL, NULL, '7432147918987', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(160, NULL, NULL, '7432147918994', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(161, NULL, NULL, '7432147019004', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(162, NULL, NULL, '7432147019011', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(163, NULL, NULL, '7432147019028', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(164, NULL, NULL, '7432147019035', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(165, NULL, NULL, '7432147019042', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(166, NULL, NULL, '7432147019059', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(167, NULL, NULL, '7432147019066', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(168, NULL, NULL, '7432147019073', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
+(138, 78, 'M206-2008', '7432147718778', 'General', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:20'),
+(139, 78, 'M206-2008', '7432147718785', 'C', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:23'),
+(140, 78, 'M206-2008', '7432147718792', 'D', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:25'),
+(141, 78, 'M206-2008', '7432147818805', 'E', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:27'),
+(142, 78, 'M206-2008', '7432147818812', 'F', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:29'),
+(143, 78, 'M206-2008', '7432147818829', 'G', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:31'),
+(144, 78, 'M206-2008', '7432147818836', 'H', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:33'),
+(145, 78, 'M206-2008', '7432147818843', 'I', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:35'),
+(146, 78, 'M206-2008', '7432147818850', 'J', 1, '2019-12-24 10:53:40', '2020-02-19 15:28:36'),
+(151, 85, 'P302-2003', '7432147918901', 'General', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:32'),
+(152, 85, 'P302-2004', '7432147918918', 'General', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:33'),
+(153, 85, 'P302-2003', '7432147918925', 'A', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:35'),
+(154, 85, 'P302-2004', '7432147918932', 'A', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:35'),
+(155, 85, 'P302-2003', '7432147918949', 'B', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:37'),
+(156, 85, 'P302-2004', '7432147918956', 'B', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:37'),
+(157, 85, 'P302-2003', '7432147918963', 'C', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:39'),
+(158, 85, 'P302-2004', '7432147918970', 'C', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:39'),
+(159, 85, 'P302-2003', '7432147918987', 'D', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:41'),
+(160, 85, 'P302-2004', '7432147918994', 'D', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:41'),
+(161, 85, 'P302-2003', '7432147019004', 'E', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:43'),
+(162, 85, 'P302-2004', '7432147019011', 'E', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:44'),
+(163, 85, 'P302-2003', '7432147019028', 'F', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:46'),
+(164, 85, 'P302-2004', '7432147019035', 'F', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:46'),
+(165, 85, 'P302-2003', '7432147019042', 'G', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:48'),
+(166, 85, 'P302-2004', '7432147019059', 'G', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:49'),
+(167, 85, 'P302-2003', '7432147019066', 'H', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:50'),
+(168, 85, 'P302-2004', '7432147019073', 'H', 1, '2019-12-24 10:53:40', '2020-02-20 16:28:50'),
 (169, NULL, NULL, '7432147019080', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (170, NULL, NULL, '7432147019097', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (171, NULL, NULL, '7432147119100', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
@@ -1547,8 +1645,7 @@ INSERT INTO `sku` (`id`, `producto_id`, `referencia_producto`, `sku`, `talla`, `
 (586, NULL, NULL, '7432147223258', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (587, NULL, NULL, '7432147223265', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (588, NULL, NULL, '7432147223272', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(589, NULL, NULL, '7432147223289', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40');
-INSERT INTO `sku` (`id`, `producto_id`, `referencia_producto`, `sku`, `talla`, `asignado`, `created_at`, `updated_at`) VALUES
+(589, NULL, NULL, '7432147223289', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (590, NULL, NULL, '7432147223296', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (591, NULL, NULL, '7432147323309', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (592, NULL, NULL, '7432147323316', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
@@ -1562,7 +1659,8 @@ INSERT INTO `sku` (`id`, `producto_id`, `referencia_producto`, `sku`, `talla`, `
 (600, NULL, NULL, '7432147323392', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (601, NULL, NULL, '7432147423405', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (602, NULL, NULL, '7432147423412', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
-(603, NULL, NULL, '7432147423429', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
+(603, NULL, NULL, '7432147423429', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40');
+INSERT INTO `sku` (`id`, `producto_id`, `referencia_producto`, `sku`, `talla`, `asignado`, `created_at`, `updated_at`) VALUES
 (604, NULL, NULL, '7432147423436', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (605, NULL, NULL, '7432147423443', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
 (606, NULL, NULL, '7432147423450', NULL, NULL, '2019-12-24 10:53:40', '2019-12-24 10:53:40'),
@@ -2036,7 +2134,9 @@ INSERT INTO `tallas` (`id`, `corte_id`, `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, 
 (11, 12, 0, 0, 40, 50, 30, 80, 80, 80, 40, 80, 0, 0, 480, '2020-02-03 09:37:07', '2020-02-03 09:37:07'),
 (12, 13, 0, 0, 50, 80, 120, 120, 120, 120, 80, 50, 0, 0, 740, '2020-02-04 09:07:57', '2020-02-04 09:07:57'),
 (13, 14, 40, 60, 80, 110, 110, 110, 110, 80, 60, 40, 0, 0, 800, '2020-02-10 16:48:06', '2020-02-10 16:48:06'),
-(16, 17, 0, 0, 40, 80, 120, 120, 120, 120, 120, 80, 0, 0, 800, '2020-02-11 16:54:37', '2020-02-11 16:54:37');
+(16, 17, 0, 0, 40, 80, 120, 120, 120, 120, 120, 80, 0, 0, 800, '2020-02-11 16:54:37', '2020-02-11 16:54:37'),
+(20, 21, 0, 0, 40, 50, 120, 120, 120, 120, 120, 80, 0, 0, 770, '2020-02-19 15:28:40', '2020-02-19 15:28:40'),
+(21, 22, 40, 80, 120, 120, 120, 120, 80, 40, 0, 0, 0, 0, 720, '2020-02-20 16:28:55', '2020-02-20 16:28:55');
 
 -- --------------------------------------------------------
 
@@ -2075,7 +2175,7 @@ INSERT INTO `tallas_perdidas` (`id`, `perdida_id`, `a`, `b`, `c`, `d`, `e`, `f`,
 (11, 12, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, '2020-01-30 14:18:03', '2020-01-30 14:18:03'),
 (12, 13, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, '2020-01-30 14:18:44', '2020-01-30 14:18:44'),
 (13, 14, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 16, 0, '2020-01-30 15:22:21', '2020-01-30 15:22:21'),
-(14, 15, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 8, 0, '2020-02-03 09:51:14', '2020-02-03 09:51:14'),
+(14, 15, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 16, 0, '2020-02-03 09:51:14', '2020-02-03 09:51:14'),
 (16, 17, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 10, 0, '2020-02-11 16:55:05', '2020-02-11 16:55:05'),
 (17, 18, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 24, 0, '2020-02-11 17:29:04', '2020-02-11 17:29:04');
 
@@ -2115,7 +2215,8 @@ CREATE TABLE `tela` (
 INSERT INTO `tela` (`id`, `id_suplidor`, `id_composiciones`, `user_id`, `referencia`, `precio_usd`, `composicion`, `composicion_2`, `composicion_3`, `composicion_4`, `composicion_5`, `tipo_tela`, `ancho_cortable`, `peso`, `elasticidad_trama`, `elasticidad_urdimbre`, `encogimiento_trama`, `encogimiento_urdimbre`, `updated_at`, `created_at`) VALUES
 (2, 5, 1, 1, 'test3', '3.55', 'Algodon-70.00', 'Elastano-15.00', '5-05.00', '3-10.00', '', 'Denim', '50.00', 30, '60.00', '65.55', '52.00', '51.00', '2020-01-28 17:41:13', '2020-01-23 13:59:41'),
 (3, 6, 1, 1, 'A4-13488', '2.70', 'Algodon-82.00', 'Poliester-16.00', '2-02.00', '', '', 'Denim', '44.00', 8.5, '56.00', '0.00', '0.00', '0.00', '2020-01-29 09:07:08', '2020-01-23 14:41:17'),
-(8, 8, 1, 1, 'Gisele Dark Power', '3.30', 'Algodon-90', 'T-400-8_', 'Elastano-2_', '', '', 'Denim', '53.00', 9.2, '60.00', '0.00', '13.00', '4.00', '2020-02-11 16:21:42', '2020-02-11 16:21:42');
+(8, 8, 1, 1, 'Gisele Dark Power', '3.30', 'Algodon-90', 'T-400-8_', 'Elastano-2_', '', '', 'Denim', '53.00', 9.2, '60.00', '0.00', '13.00', '4.00', '2020-02-11 16:21:42', '2020-02-11 16:21:42'),
+(9, 8, 1, 1, 'A4-13488', '3.50', 'Algodon-90', 'Elastano-8_', 'T-400-2_', '', '', 'Denim', '20.00', 20, '30.00', '10.00', '50.00', '50.00', '2020-02-19 15:23:51', '2020-02-19 15:23:51');
 
 -- --------------------------------------------------------
 
@@ -2135,6 +2236,7 @@ CREATE TABLE `users` (
   `celular` varchar(45) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
   `edad` varchar(45) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -2144,10 +2246,11 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `permiso_id`, `name`, `surname`, `email`, `password`, `role`, `telefono`, `celular`, `direccion`, `edad`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Anel', 'Dominguez', 'anel@anel.com', '$2y$10$J2IB.7dLUDdmMyYTBgzQCONs8hcnJ7H0JESsX7ejnGtm2bmaXEfnC', 'Administrador', '(809) 288-2113', '(829) 943-6531', 'c/ primera #4, Madre vieja, SC', '23', 'BWujp6wsnufpdYha3fZJQwhvxFrbQZm9fY72vzrauujRbb9F8000EAbVATXQ', '2019-12-24 09:37:56', '2019-12-26 09:18:59'),
-(6, 0, 'UserOfi', 'Oficina', 'oficina@cch.com', '$2y$10$LlB19o0yaz4ZKu1c7RCLbuvQt6nZVO3nk1Xt1LbvY1HZdySUckCyu', 'Oficina', '(809) 288-2113', '(809) 211-2022', 'c/ sanchez vieja', '20', NULL, '2020-01-29 11:32:33', '2020-01-29 11:32:33'),
-(8, NULL, 'Juan', 'Jose', 'juan@juan.com', '$2y$10$HO.UJZcmRJAkBIJNweb90OE.jXeH0KGyJVc.TerihkD.mwxzrJDzG', 'Oficina', '(809) 288-2113', '(829) 943-6531', 'c/ primera', '20', NULL, '2020-02-11 08:58:44', '2020-02-11 08:58:44');
+INSERT INTO `users` (`id`, `permiso_id`, `name`, `surname`, `email`, `password`, `role`, `telefono`, `celular`, `direccion`, `edad`, `avatar`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Anel', 'Dominguez', 'anel@anel.com', '$2y$10$PHttFrCrA/UNjmsHTamiLuUGU8Z.cMI42HHW1sx0PTB0MuwAXreg2', 'Administrador', '(809) 288-2113', '(829) 943-6531', 'c/ primera #4, Madre vieja, SC', '23', '15821274111575388275_145305_1575388338_noticia_normal.jpg', '1VbomI9ajDKaTEJSNd2kXb5tffc8jxmjD1GTywnWSWTGsuYMcB4KeZdOydgD', '2019-12-24 09:37:56', '2020-02-19 11:50:13'),
+(6, 0, 'UserOfi', 'Oficina', 'oficina@cch.com', '$2y$10$XGYgd8v6yownWZua53lNae5wmUtFG40PXFbyjVkITMua6LjMKMAKa', 'Oficina', '(809) 288-2113', '(809) 211-2022', 'c/ sanchez vieja', '20', '15821269392589018171f934247c228119079fbc4b.jpg', NULL, '2020-01-29 11:32:33', '2020-02-19 11:42:21'),
+(8, NULL, 'Juan', 'Jose', 'juan@juan.com', '$2y$10$HO.UJZcmRJAkBIJNweb90OE.jXeH0KGyJVc.TerihkD.mwxzrJDzG', 'Oficina', '(809) 288-2113', '(829) 943-6531', 'c/ primera', '20', NULL, NULL, '2020-02-11 08:58:44', '2020-02-11 08:58:44'),
+(12, NULL, 'Gabriel', 'Garcia', 'gabriel@cch.com', '$2y$10$3PjpQGa6MUofCPNRGXFN/e2gI79.I7oo8PXlQPoc6/U1pUGs2om.m', 'General', '(809) 288-2113', '(829) 943-6531', 'c/ trina de moya', '23', '158213851661LV8e1BQvL.jpg', NULL, '2020-02-19 14:55:18', '2020-02-19 14:55:18');
 
 --
 -- Índices para tablas volcadas
@@ -2194,7 +2297,8 @@ ALTER TABLE `composiciones`
 ALTER TABLE `corte`
   ADD PRIMARY KEY (`id`),
   ADD KEY `producto_id` (`producto_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `producto_id_ref_2` (`producto_id_ref_2`);
 
 --
 -- Indices de la tabla `empleado`
@@ -2398,25 +2502,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `almacen_detalle`
 --
 ALTER TABLE `almacen_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente_sucursales`
 --
 ALTER TABLE `cliente_sucursales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `composiciones`
@@ -2428,19 +2532,19 @@ ALTER TABLE `composiciones`
 -- AUTO_INCREMENT de la tabla `corte`
 --
 ALTER TABLE `corte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_detalle`
 --
 ALTER TABLE `empleado_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `existencias`
@@ -2452,61 +2556,61 @@ ALTER TABLE `existencias`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `lavanderia`
 --
 ALTER TABLE `lavanderia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_credito`
 --
 ALTER TABLE `nota_credito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_credito_detalle`
 --
 ALTER TABLE `nota_credito_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_empaque`
 --
 ALTER TABLE `orden_empaque`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_empaque_detalle`
 --
 ALTER TABLE `orden_empaque_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_facturacion`
 --
 ALTER TABLE `orden_facturacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_facturacion_detalle`
 --
 ALTER TABLE `orden_facturacion_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido`
 --
 ALTER TABLE `orden_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=401;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=513;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_pedido_detalle`
 --
 ALTER TABLE `orden_pedido_detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
 
 --
 -- AUTO_INCREMENT de la tabla `perdidas`
@@ -2524,25 +2628,25 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `permiso_usuario`
 --
 ALTER TABLE `permiso_usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcion`
 --
 ALTER TABLE `recepcion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT de la tabla `rollos`
 --
 ALTER TABLE `rollos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `sku`
@@ -2560,7 +2664,7 @@ ALTER TABLE `suplidor`
 -- AUTO_INCREMENT de la tabla `tallas`
 --
 ALTER TABLE `tallas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `tallas_perdidas`
@@ -2572,13 +2676,13 @@ ALTER TABLE `tallas_perdidas`
 -- AUTO_INCREMENT de la tabla `tela`
 --
 ALTER TABLE `tela`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -2609,7 +2713,8 @@ ALTER TABLE `cliente_sucursales`
 --
 ALTER TABLE `corte`
   ADD CONSTRAINT `corte_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `corte_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `corte_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `corte_ibfk_3` FOREIGN KEY (`producto_id_ref_2`) REFERENCES `producto` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado_detalle`

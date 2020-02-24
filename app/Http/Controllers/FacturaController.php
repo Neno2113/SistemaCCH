@@ -115,7 +115,7 @@ class FacturaController extends Controller
                 return str_replace(" ", "", $orden->no_orden_empaque);
             })
             ->addColumn('Opciones', function ($orden) {
-                return '<button onclick="mostrar(' . $orden->id . ')" id="agregar' . $orden->id . '"  class="btn btn-primary btn-sm ml-1"> <i class="fas fa-edit"></i></button>';
+                return '<button onclick="mostrar(' . $orden->id . ')" id="agregar' . $orden->id . '"  class="btn btn-warning btn-sm ml-1"><i class="fas fa-pencil-alt"></i></button>';
             })
             ->addColumn('no_orden_pedido', function ($orden) {
                 $orden_pedido = ordenPedido::find($orden->orden_pedido_id);

@@ -129,7 +129,10 @@ $(document).ready(function() {
         tabla = $("#branches").DataTable({
             serverSide: true,
             responsive: true,
-            ajax: "api/branches",
+            ajax:{
+                "url": "api/branches",
+                "type": "POST"
+            },
             dom: 'Bfrtip',
             iDisplayLength: 5,
             buttons: [

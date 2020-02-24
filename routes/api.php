@@ -20,15 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('users', 'UserController@users');
+Route::post('users', 'UserController@users');
 
 Route::get('compositions','CompositionController@compositions');
 
-Route::get('suppliers', 'SupplierController@suppliers');
+Route::post('suppliers', 'SupplierController@suppliers');
 
-Route::get('clients', 'ClientController@clients');
+Route::post('clients', 'ClientController@clients');
 
-Route::get('branches', 'ClientBranchController@branches');
+Route::post('branches', 'ClientBranchController@branches');
 
 Route::get('cloths', 'ClothController@cloths');
 
@@ -54,7 +54,7 @@ Route::get('almacenes', 'AlmacenController@almacenes');
 
 Route::get('producto-terminado', 'ProductController@productoTerminado');
 
-Route::get('ordenes', 'OrdenPedidoController@ordenes');
+Route::post('ordenes', 'OrdenPedidoController@ordenes');
 
 Route::get('ordenes_aprobacion', 'OrdenPedidoController@ordenesAprobacion');
 
@@ -86,9 +86,9 @@ Route::get('nota_credito/facturas', 'NotaCreditoController@facturas');
 
 Route::get('fact_detalle/{id}', 'NotaCreditoController@facturacionDetail');
 
-Route::get('empleados', 'EmpleadoController@empleados');
+Route::post('empleados', 'EmpleadoController@empleados');
 
 Route::get('listarDetalle/{id}', 'ordenPedidoController@listarOrdenRed');
 
-Route::get('permisos', 'PermisoController@permisos');
+Route::post('permisos', 'PermisoController@permisos');
 

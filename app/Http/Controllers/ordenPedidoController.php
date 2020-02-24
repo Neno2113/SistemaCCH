@@ -321,6 +321,9 @@ class ordenPedidoController extends Controller
                     // 'fecha_entrega' => $fecha_entrega
                 ];
             } else {
+                $total_real = $tallasSegundas->sum('a') + $tallasSegundas->sum('b') + $tallasSegundas->sum('c') + $tallasSegundas->sum('d')
+                + $tallasSegundas->sum('e') + $tallasSegundas->sum('f') + $tallasSegundas->sum('g') + $tallasSegundas->sum('h')
+                + $tallasSegundas->sum('i')  + $tallasSegundas->sum('j') + $tallasSegundas->sum('k') + $tallasSegundas->sum('l');
                 $data = [
                     'code' => 200,
                     'status' => 'success',
@@ -337,9 +340,8 @@ class ordenPedidoController extends Controller
                     'k' => $tallasSegundas->sum('k'),
                     'l' => $tallasSegundas->sum('l'),
                     'producto' => $producto,
-                    'total_corte' => $total_real,
+                    'total_corte' => ($total_real < 0) ? 0 : $total_real,
                     'corte_proceso' => $corte_proceso,
-                    'fecha_entrega' => $fecha_entrega,
                     'segunda' => 1
                 ];
             }
@@ -814,9 +816,8 @@ class ordenPedidoController extends Controller
     public function Productos()
     {
 
-        $productos = Product::select("producto.id", "producto.referencia_producto", "producto.referencia_producto_2")
-            // ->where('producto.referencia_producto', 'LIKE', "%$search%")
-            ->get();
+        $productos = Product::select("producto.id", "referencia_producto")
+        ->get();
 
         $data = [
             'code' => 200,
@@ -826,6 +827,20 @@ class ordenPedidoController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    // public function selectProducto(Request $request)
+    // {
+    //     $data = [];
+
+    //     if ($request->has('q')) {
+    //         $search = $request->q;
+    //         $data = Product::select("id", "nombre_cliente", "contacto_cliente_principal")
+    //             // ->where('enviado_lavanderia', 'LIKE', '0')
+    //             ->where('nombre_cliente', 'LIKE', "%$search%")
+    //             ->get();
+    //     }
+    //     return response()->json($data);
+    // }
 
     public function selectCliente(Request $request)
     {
@@ -1208,8 +1223,15 @@ class ordenPedidoController extends Controller
         $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id);
 
         if (!empty($orden)) {
+            $orden_proceso = ordenPedido::where('orden_pedido_father', $orden->id);
+            if(!empty($orden_proceso)){
+                $orden_proceso->delete();
+            }
+
             $orden_detalle->delete();
             $orden->delete();
+
+
 
             $data = [
                 'code' => 200,
@@ -1460,6 +1482,11 @@ class ordenPedidoController extends Controller
 
                 return $sucursal->nombre_sucursal;
             })
+            ->addColumn('referencia', function ($orden) {
+                $orden_detalle = OrdenPedidoDetalle::where('orden_pedido_id', $orden->id)->get()->first()->load('producto');
+
+                return $orden_detalle->producto->referencia_producto;
+            })
             ->addColumn('total', function ($orden) {
                 $ordenDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden->id)->get();
 
@@ -1532,7 +1559,9 @@ class ordenPedidoController extends Controller
 
     public function home_orden()
     {
-        $orden = ordenPedido::where('status_orden_pedido', 'LIKE', 'Stanby')->count();
+        $orden = ordenPedido::where('status_orden_pedido', 'LIKE', 'Stanby')
+        ->where('corte_en_proceso', 'LIKE', 'No')
+        ->count();
 
         $data = [
             'code' => 200,

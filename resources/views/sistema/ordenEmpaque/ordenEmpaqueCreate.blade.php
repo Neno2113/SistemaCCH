@@ -63,7 +63,7 @@
                     </div>
                     <div class="container">
                         <label for="" class="mt-5">Orden de empaque</label>
-                        <table id="orden_detalle" class="table datatables mt-5 mb-3 tabla-tallas"  style="width:106%;">
+                        <table id="orden_detalle" class="table datatables mt-5 mb-3 tabla-tallas" style="width:106%;">
                             <thead class="tabla-tallas">
                                 <tr>
                                     <th class="talla_head">MUJER PLUS:</th>
@@ -82,25 +82,23 @@
                                     <td class="talla"></td>
 
                                 </tr>
-
                                 <tr>
                                     <th class="talla_head">MUJER:</th>
-                                    <td class="talla" >0/0</td>
-                                    <td class="talla" >1/2</td>
-                                    <td class="talla" >3/4</td>
+                                    <td class="talla">0/0</td>
+                                    <td class="talla">1/2</td>
+                                    <td class="talla">3/4</td>
                                     <td class="talla">5/6</td>
                                     <td class="talla">7/8</td>
                                     <td class="talla">9/10</td>
-                                    <td class="talla" >11/12</td>
-                                    <td class="talla" >13/14</td>
-                                    <td class="talla" >15/16</td>
-                                    <td class="talla" >17/18</td>
+                                    <td class="talla">11/12</td>
+                                    <td class="talla">13/14</td>
+                                    <td class="talla">15/16</td>
+                                    <td class="talla">17/18</td>
                                     <td class="talla">19/20</td>
                                     <td class="talla">21/22</td>
                                     <td class="talla"></td>
 
                                 </tr>
-
                                 <tr>
                                     <th class="talla_head">HOMBRE:</th>
                                     <td class="talla">28</td>
@@ -118,7 +116,6 @@
                                     <td class="talla"></td>
 
                                 </tr>
-
                                 <tr>
                                     <th class="talla_head">NIÑO:</th>
                                     <td class="talla">2</td>
@@ -136,7 +133,6 @@
                                     <td class="talla"></td>
 
                                 </tr>
-
                                 <tr>
                                     <th class="talla_head">NIÑA:</th>
                                     <td class="talla">2</td>
@@ -207,7 +203,7 @@
             </div>
             <div class="card-footer">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
-                    class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
                 <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-success mt-4 mr-3 ml-3">
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
@@ -218,38 +214,43 @@
 </div>
 {{-- </div> --}}
 
-<div class="container" id="listadoUsers">
-    <table id="print_OE" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User Aprob</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. aprob.</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>F. Entr.</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>User Aprob</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. aprob.</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>F. Entr.</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Ordenes empaque</h4>
+    </div>
+    <div class="card-body">
+        <table id="print_OE" class="table table-striped table-bordered datatables">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>User Aprob</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>F. aprob.</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>F. Entr.</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Actions</th>
+                    <th>#</th>
+                    <th>User Aprob</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>F. aprob.</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>F. Entr.</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 
 </div>
 

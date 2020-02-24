@@ -253,7 +253,7 @@
                     <div class="container">
                         <h5 class="mt-3"><strong>Detalle de factura</strong></h5>
                         <table id="facturacion_detalle" class="table datatables mb-5 mb-3 tabla-tallas"
-                            style="width:100%;">
+                            style="width:105%; margin-left:-26px;">
                             <thead>
                                 <tr>
                                     <th class="talla_head">MUJER PLUS:</th>

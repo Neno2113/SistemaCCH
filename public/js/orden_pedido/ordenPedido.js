@@ -491,11 +491,41 @@ $(document).ready(function() {
     var cantidad;
 
     function consulta() {
+        let segunda = $("#cliente_segundas").val();
 
-        var ordenDetalle = {
-            producto_id: $("#productoSearch").val(),
-            referencia_producto: $("#productoSearch option:selected").text()
-        };
+        if(segunda == 1){
+            Swal.fire({
+                title: "Este ciiente acepta segundas",
+                text: "¿Desea realizar una venta de segundas?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, acepto"
+            }).then(result => {
+                if (result.value) {
+                    mostrarDetalle(true);
+                    $("input[name='r2'][value='1']").prop("checked", true);
+                    var ordenDetalle = {
+                        producto_id: $("#productoSearch").val(),
+                        referencia_producto: $("#productoSearch option:selected").text(),
+                        segunda: 1
+                    };
+                    ajaxConsulta(ordenDetalle);
+                }
+            });
+        }else{
+            var ordenDetalle = {
+                producto_id: $("#productoSearch").val(),
+                referencia_producto: $("#productoSearch option:selected").text()
+            };
+            ajaxConsulta(ordenDetalle);
+
+        }
+
+    }
+
+    function ajaxConsulta(ordenDetalle){
 
         $.ajax({
             url: "ordenPedido/consulta",
@@ -1541,6 +1571,7 @@ $(document).ready(function() {
                     $("#cantidad").val("");
                     $("#precio").val("");
                     $("#total").val("");
+                    $("#cliente_segundas").val("");
                     $("#btn-agregar").attr("disabled", true);
                     $("#btn-consultar").attr("disabled", true);
                     $("#alerta_proceso").hide();
@@ -1731,7 +1762,10 @@ $(document).ready(function() {
                     pageSize: "LEGAL"
                 }
             ],
-            ajax: "api/ordenes",
+            ajax:{
+                "url": "api/ordenes",
+                "type": "POST"
+            },
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 // { data: "Ver", orderable: false, searchable: false },

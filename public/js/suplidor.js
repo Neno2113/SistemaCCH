@@ -152,7 +152,10 @@ $(document).ready(function() {
         tabla = $("#suppliers").DataTable({
             serverSide: true,
             responsive: true,
-            ajax: "api/suppliers",
+            ajax:{
+                "url": "api/suppliers",
+                "type": "POST"
+            },
             dom: 'Bfrtip',
             iDisplayLength: 5,
             buttons: [
