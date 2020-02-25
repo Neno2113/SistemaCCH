@@ -90,6 +90,12 @@ $(document).ready(function() {
         $("#rnc").val("").attr("readonly", false);
     }
 
+    $("#nombre").keyup(function(){
+        let val =  $("#nombre").val();
+        $("#nombre").val(val.toUpperCase());
+    });
+
+
     $("#btn-guardar").click(function(e) {
 
         e.preventDefault();

@@ -76,10 +76,10 @@ class RollosController extends Controller
                 return "";
             })
             ->addColumn('Opciones', function ($rollo) {
-                return '<button id="btnEdit" onclick="mostrar(' . $rollo->id . ')" class="btn btn-warning btn-sm mr-1" > <i class="fas fa-edit"></i></button>'.
-                '<button onclick="eliminar(' . $rollo->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $rollo->id . ')" class="btn btn-warning btn-sm mr-1" > <i class="fas fa-edit"></i></button>' .
+                    '<button onclick="eliminar(' . $rollo->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
             })
-        
+
             ->rawColumns(['Opciones'])
             ->make(true);
     }
@@ -191,6 +191,19 @@ class RollosController extends Controller
                 ->where('referencia', 'LIKE', "%$search%")
                 ->get();
         }
+        return response()->json($data);
+    }
+
+    public function selectTela(Request $request)
+    {
+        $id = $request->input('suplidor');
+        $tela = Cloth::where('id_suplidor', $id)->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'tela' => $tela
+        ];
         return response()->json($data);
     }
 }

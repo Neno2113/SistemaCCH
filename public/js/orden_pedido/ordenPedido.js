@@ -12,6 +12,19 @@ var j_total;
 var k_total;
 var l_total;
 
+var a_red;
+var b_red;
+var c_red;
+var d_red;
+var e_red;
+var f_red;
+var g_red;
+var h_red;
+var i_red;
+var j_red;
+var k_red;
+var l_red;
+
 $(document).ready(function() {
     $("[data-mask]").inputmask();
     // var total_recibido;
@@ -48,7 +61,8 @@ $(document).ready(function() {
         $("#btn-consultar").hide();
         $("#precio_div").hide();
         $("#total_div").hide();
-        $("#btn-agregar").hide();
+        $("#btn-agregar").attr("disabled", true);
+        $("#btn-copia").attr("disabled", true);
         listar();
         $("#registroForm").hide();
         $("#btnCancelar").hide();
@@ -64,8 +78,6 @@ $(document).ready(function() {
         $("#orden_detalle").hide();
         $("#orden_create").show();
         $("#alerta_proceso").hide();
-        vendedores();
-        productos();
     }
 
     var data;
@@ -154,6 +166,7 @@ $(document).ready(function() {
     }
 
     function vendedores() {
+        $("#vendedores").empty();
         $.ajax({
             url: "vendedores/select",
             type: "GET",
@@ -214,6 +227,11 @@ $(document).ready(function() {
             }
         });
     }
+
+
+    // $("#sucursalSearch").on('change', function(){
+    //     $("#sucursalSearch").val(null).trigger('change');
+    // });
 
     function eliminarEmpty(){
         $.ajax({
@@ -302,6 +320,7 @@ $(document).ready(function() {
                                     .ajax.reload();
                                 // $("#listadoUsers").show();
                                 $("#orden_pedido_id").val(datos.orden.id);
+                                productos();
                                 const Toast = Swal.mixin({
                                     toast: true,
                                     position: "top-end",
@@ -396,6 +415,7 @@ $(document).ready(function() {
                                 item.contacto_cliente_principal,
                             id: item.id
                         };
+
                     })
                 };
             },
@@ -403,25 +423,68 @@ $(document).ready(function() {
         }
     });
 
-    $("#sucursalSearch").select2({
-        placeholder: "Nombre sucursal",
-        ajax: {
-            url: "selectSucursal",
+    function sucursal(){
+
+        $("#sucursalSearch").empty();
+        var sucursal = {
+            cliente: $("#clienteSearch").val(),
+        };
+
+        $.ajax({
+            url: "sucursal/select",
+            type: "POST",
             dataType: "json",
-            delay: 250,
-            processResults: function(data) {
-                return {
-                    results: $.map(data, function(item) {
-                        return {
-                            text: item.nombre_sucursal,
-                            id: item.id
-                        };
-                    })
-                };
+            data: JSON.stringify(sucursal),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.sucursal.length;
+
+                    for (let i = 0; i < longitud; i++) {
+                        var fila ="<option value=" +datos.sucursal[i].id +">"+datos.sucursal[i].nombre_sucursal+"</option>";
+                        $("#sucursalSearch").append(fila);
+                    }
+                    $("#sucursalSearch").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
             },
-            cache: true
-        }
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error"
+                );
+            }
+        });
+    }
+
+    $("#clienteSearch").change(function(){
+        sucursal();
+        vendedores();
     });
+
+
+    // $("#sucursalSearch").select2({
+    //     placeholder: "Nombre sucursal",
+    //     ajax: {
+    //         url: "selectSucursal",
+    //         dataType: "json",
+    //         delay: 250,
+    //         processResults: function(data) {
+    //             return {
+    //                 results: $.map(data, function(item) {
+    //                     return {
+    //                         text: item.nombre_sucursal,
+    //                         id: item.id
+    //                     };
+    //                 })
+    //             };
+    //         },
+    //         cache: true
+    //     }
+    // });
 
     $("#fecha_entrega").on("change", function() {
         var cliente = {
@@ -512,7 +575,14 @@ $(document).ready(function() {
                         segunda: 1
                     };
                     ajaxConsulta(ordenDetalle);
+                }else{
+                    var ordenDetalle = {
+                        producto_id: $("#productoSearch").val(),
+                        referencia_producto: $("#productoSearch option:selected").text()
+                    };
+                    ajaxConsulta(ordenDetalle);
                 }
+
             });
         }else{
             var ordenDetalle = {
@@ -570,19 +640,18 @@ $(document).ready(function() {
                     l_total = datos.l;
 
                     //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-                    datos.a <= 0 ? $("#a").attr("disabled", true) : $("#a").attr("disabled", false);
-                    datos.b <= 0 ? $("#b").attr("disabled", true) : $("#b").attr("disabled", false);
-                    datos.c <= 0 ? $("#c").attr("disabled", true) : $("#c").attr("disabled", false);
-                    datos.d <= 0 ? $("#d").attr("disabled", true) : $("#d").attr("disabled", false);
-                    datos.e <= 0 ? $("#e").attr("disabled", true) : $("#e").attr("disabled", false);
-                    datos.f <= 0 ? $("#f").attr("disabled", true) : $("#f").attr("disabled", false);
-                    datos.g <= 0 ? $("#g").attr("disabled", true) : $("#g").attr("disabled", false);
-                    datos.h <= 0 ? $("#h").attr("disabled", true) : $("#h").attr("disabled", false);
-                    datos.i <= 0 ? $("#i").attr("disabled", true) : $("#i").attr("disabled", false);
-                    datos.j <= 0 ? $("#j").attr("disabled", true) : $("#j").attr("disabled", false);
-                    datos.k <= 0 ? $("#k").attr("disabled", true) : $("#k").attr("disabled", false);
-                    datos.l <= 0 ? $("#l").attr("disabled", true) : $("#l").attr("disabled", false);
-
+                    datos.a <= 0 ? $("#a, #up-a, #down-a").attr("disabled", true) : $("#a, #up-a, #down-a").attr("disabled", false);
+                    datos.b <= 0 ? $("#b, #up-b, #down-b").attr("disabled", true) : $("#b, #up-b, #down-b").attr("disabled", false);
+                    datos.c <= 0 ? $("#c, #up-c, #down-c").attr("disabled", true) : $("#c, #up-c, #down-c").attr("disabled", false);
+                    datos.d <= 0 ? $("#d, #up-d, #down-d").attr("disabled", true) : $("#d, #up-d, #down-d").attr("disabled", false);
+                    datos.e <= 0 ? $("#e, #up-e, #down-e").attr("disabled", true) : $("#e, #up-e, #down-e").attr("disabled", false);
+                    datos.f <= 0 ? $("#f, #up-f, #down-f").attr("disabled", true) : $("#f, #up-f, #down-f").attr("disabled", false);
+                    datos.g <= 0 ? $("#g, #up-g, #down-g").attr("disabled", true) : $("#g, #up-g, #down-g").attr("disabled", false);
+                    datos.h <= 0 ? $("#h, #up-h, #down-h").attr("disabled", true) : $("#h, #up-h, #down-h").attr("disabled", false);
+                    datos.i <= 0 ? $("#i, #up-i, #down-i").attr("disabled", true) : $("#i, #up-i, #down-i").attr("disabled", false);
+                    datos.j <= 0 ? $("#j, #up-j, #down-j").attr("disabled", true) : $("#j, #up-j, #down-j").attr("disabled", false);
+                    datos.k <= 0 ? $("#k, #up-k, #down-k").attr("disabled", true) : $("#k, #up-k, #down-k").attr("disabled", false);
+                    datos.l <= 0 ? $("#l, #up-l, #down-l").attr("disabled", true) : $("#l, #up-l, #down-l").attr("disabled", false);
 
                     if(cantidad > total_alm){
 
@@ -613,18 +682,18 @@ $(document).ready(function() {
 
                     $("#disponibles").html(
                         "<tr id='cortes'>" +
-                        "<td id='a_corte'>"+validarNan(datos.a)+"</td>"+
-                        "<td id='b_corte'>"+validarNan(datos.b)+"</td>"+
-                        "<td id='c_corte'>"+validarNan(datos.c)+"</td>"+
-                        "<td id='d_corte'>"+validarNan(datos.d)+"</td>"+
-                        "<td id='e_corte'>"+validarNan(datos.e)+"</td>"+
-                        "<td id='f_corte'>"+validarNan(datos.f)+"</td>"+
-                        "<td id='g_corte'>"+validarNan(datos.g)+"</td>"+
-                        "<td id='h_corte'>"+validarNan(datos.h)+"</td>"+
-                        "<td id='i_corte'>"+validarNan(datos.i)+"</td>"+
-                        "<td id='j_corte'>"+validarNan(datos.j)+"</td>"+
-                        "<td id='j_corte'>"+validarNan(datos.k)+"</td>"+
-                        "<td id='j_corte'>"+validarNan(datos.l)+"</td>"+
+                        "<td id='a_corte' class='font-weight-bold'>"+validarNan(datos.a)+"</td>"+
+                        "<td id='b_corte' class='font-weight-bold'>"+validarNan(datos.b)+"</td>"+
+                        "<td id='c_corte' class='font-weight-bold'>"+validarNan(datos.c)+"</td>"+
+                        "<td id='d_corte' class='font-weight-bold'>"+validarNan(datos.d)+"</td>"+
+                        "<td id='e_corte' class='font-weight-bold'>"+validarNan(datos.e)+"</td>"+
+                        "<td id='f_corte' class='font-weight-bold'>"+validarNan(datos.f)+"</td>"+
+                        "<td id='g_corte' class='font-weight-bold'>"+validarNan(datos.g)+"</td>"+
+                        "<td id='h_corte' class='font-weight-bold'>"+validarNan(datos.h)+"</td>"+
+                        "<td id='i_corte' class='font-weight-bold'>"+validarNan(datos.i)+"</td>"+
+                        "<td id='j_corte' class='font-weight-bold'>"+validarNan(datos.j)+"</td>"+
+                        "<td id='j_corte' class='font-weight-bold'>"+validarNan(datos.k)+"</td>"+
+                        "<td id='j_corte' class='font-weight-bold'>"+validarNan(datos.l)+"</td>"+
                         "</tr>"
                     );
                     if (genero == 1) {
@@ -705,7 +774,6 @@ $(document).ready(function() {
                         $("#j").attr("placeholder", "");
                         $("#k").attr("placeholder", "");
                         $("#l").attr("placeholder", "");
-
 
                     }
                     if (genero == 2) {
@@ -871,7 +939,6 @@ $(document).ready(function() {
                     var k_val = datos.k;
                     var l_val = datos.l;
                     var val = true;
-
 
                     if (total > total_recibido) {
                         bootbox.alert(
@@ -1213,6 +1280,8 @@ $(document).ready(function() {
                                     "<th id='j_corte' class='font-weight-normal'>" +
                                     j +
                                     "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
                                     "</tr>";
                                 cont++;
                                 $("#orden_pedido").append(fila);
@@ -1240,6 +1309,8 @@ $(document).ready(function() {
                                     "<th id='g_corte' class='font-weight-normal'></th>" +
                                     "<th id='h_corte' class='font-weight-normal'></th>" +
                                     "<th id='i_corte' class='font-weight-normal'></th>" +
+                                    "<th id='j_corte' class='font-weight-normal'></th>" +
+                                    "<th id='j_corte' class='font-weight-normal'></th>" +
                                     "<th id='j_corte' class='font-weight-normal'></th>" +
                                     "</tr>";
                                 cont++;
@@ -1287,6 +1358,10 @@ $(document).ready(function() {
                                     "<th id='h_corte' class='font-weight-normal'>" +
                                     h +
                                     "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
                                     "</tr>";
                                 cont++;
                                 $("#orden_pedido").append(fila);
@@ -1311,6 +1386,10 @@ $(document).ready(function() {
                                     "<th id='e_corte' class='font-weight-normal'></th>" +
                                     "<th id='f_corte' class='font-weight-normal'></th>" +
                                     "<th id='g_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
                                     "<th id='h_corte' class='font-weight-normal'></th>" +
                                     "</tr>";
                                 cont++;
@@ -1358,6 +1437,11 @@ $(document).ready(function() {
                                     "<th id='h_corte' class='font-weight-normal'>" +
                                     h +
                                     "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+
                                     "</tr>";
                                 cont++;
                                 $("#orden_pedido").append(fila);
@@ -1383,6 +1467,10 @@ $(document).ready(function() {
                                     "<th id='f_corte' class='font-weight-normal'></th>" +
                                     "<th id='g_corte' class='font-weight-normal'></th>" +
                                     "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
                                     "</tr>";
                                 cont++;
                                 $("#orden_pedido").append(fila);
@@ -1393,17 +1481,17 @@ $(document).ready(function() {
                             if (detalle == 1) {
                                 cantidad = Number(
                                     a +
-                                        b +
-                                        c +
-                                        d +
-                                        e +
-                                        f +
-                                        g +
-                                        h +
-                                        i +
-                                        j +
-                                        k +
-                                        l
+                                    b +
+                                    c +
+                                    d +
+                                    e +
+                                    f +
+                                    g +
+                                    h +
+                                    i +
+                                    j +
+                                    k +
+                                    l
                                 );
                                 var fila =
                                     '<tr id="fila' +
@@ -1480,6 +1568,10 @@ $(document).ready(function() {
                                     "<th id='f_corte' class='font-weight-normal'></th>" +
                                     "<th id='g_corte' class='font-weight-normal'></th>" +
                                     "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
                                     "</tr>";
                                 cont++;
                                 $("#orden_pedido").append(fila);
@@ -1554,6 +1646,18 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    a_red = $("#a").val();
+                    b_red = $("#b").val();
+                    c_red = $("#c").val();
+                    d_red = $("#d").val();
+                    e_red = $("#e").val();
+                    f_red = $("#f").val();
+                    g_red = $("#g").val();
+                    h_red = $("#h").val();
+                    i_red = $("#i").val();
+                    j_red = $("#j").val();
+                    k_red = $("#k").val();
+                    l_red = $("#l").val();
                     $("#a").val("");
                     $("#b").val("");
                     $("#c").val("");
@@ -1573,6 +1677,7 @@ $(document).ready(function() {
                     $("#total").val("");
                     $("#cliente_segundas").val("");
                     $("#btn-agregar").attr("disabled", true);
+                    $("#btn-copia").attr("disabled", false);
                     $("#btn-consultar").attr("disabled", true);
                     $("#alerta_proceso").hide();
                     result = false;
@@ -1611,6 +1716,25 @@ $(document).ready(function() {
             }
         });
     }
+
+    $("#btn-copia").click(function(e){
+        e.preventDefault();
+        console.log(a_red);
+        console.log(b_red);
+        console.log(c_red);
+        $("#a").val(a_red);
+        $("#b").val(b_red);
+        $("#c").val(c_red);
+        $("#d").val(d_red);
+        $("#e").val(e_red);
+        $("#f").val(f_red);
+        $("#g").val(g_red);
+        $("#h").val(h_red);
+        $("#i").val(i_red);
+        $("#j").val(j_red);
+        $("#k").val(k_red);
+        $("#l").val(l_red);
+    });
 
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
@@ -2375,3 +2499,244 @@ function agregarProceso(id){
     });
 
 }
+
+
+
+
+
+//Sumar
+$("#up-a").click(function(e){
+    e.preventDefault();
+    let a = Number($("#a").val());
+
+    let result = a + 1;
+
+    $("#a").val(result);
+})
+$("#up-b").click(function(e){
+    e.preventDefault();
+    let b = Number($("#b").val());
+
+    let result = b + 1;
+
+    $("#b").val(result);
+})
+
+$("#up-c").click(function(e){
+    e.preventDefault();
+    let c = Number($("#c").val());
+
+    let result = c + 1;
+
+    $("#c").val(result);
+
+})
+
+$("#up-d").click(function(e){
+    e.preventDefault();
+    let d = Number($("#d").val());
+
+    let result = d + 1;
+
+    $("#d").val(result);
+
+})
+
+$("#up-e").click(function(t){
+    t.preventDefault();
+    let e = Number($("#e").val());
+
+    let result = e + 1;
+
+    $("#e").val(result);
+
+})
+
+$("#up-f").click(function(e){
+    e.preventDefault();
+    let f = Number($("#f").val());
+
+    let result = f + 1;
+
+    $("#f").val(result);
+
+})
+
+$("#up-g").click(function(e){
+    e.preventDefault();
+    let g = Number($("#g").val());
+
+    let result = g + 1;
+
+    $("#g").val(result);
+
+})
+
+$("#up-h").click(function(e){
+    e.preventDefault();
+    let h = Number($("#h").val());
+
+    let result = h + 1;
+
+    $("#h").val(result);
+
+})
+
+$("#up-i").click(function(e){
+    e.preventDefault();
+    let i = Number($("#i").val());
+
+    let result = i + 1;
+
+    $("#i").val(result);
+
+})
+
+$("#up-j").click(function(e){
+    e.preventDefault();
+    let j = Number($("#j").val());
+
+    let result = j + 1;
+
+    $("#j").val(result);
+
+})
+
+$("#up-k").click(function(e){
+    e.preventDefault();
+    let k = Number($("#k").val());
+
+    let result = k + 1;
+
+    $("#k").val(result);
+
+})
+$("#up-l").click(function(e){
+    e.preventDefault();
+    let l = Number($("#l").val());
+
+    let result = l + 1;
+
+    $("#l").val(result);
+
+})
+
+//restar
+$("#down-a").click(function(e){
+    e.preventDefault();
+    let a = Number($("#a").val());
+
+    let result = a - 1;
+
+    $("#a").val(result);
+})
+$("#down-b").click(function(e){
+    e.preventDefault();
+    let b = Number($("#b").val());
+
+    let result = b - 1;
+
+    $("#b").val(result);
+})
+
+$("#down-c").click(function(e){
+    e.preventDefault();
+    let c = Number($("#c").val());
+
+    let result = c - 1;
+
+    $("#c").val(result);
+
+})
+
+$("#down-d").click(function(e){
+    e.preventDefault();
+    let d = Number($("#d").val());
+
+    let result = d - 1;
+
+    $("#d").val(result);
+
+})
+
+$("#down-e").click(function(t){
+    t.preventDefault();
+    let e = Number($("#e").val());
+
+    let result = e - 1;
+
+    $("#e").val(result);
+
+})
+
+$("#down-f").click(function(e){
+    e.preventDefault();
+    let f = Number($("#f").val());
+
+    let result = f - 1;
+
+    $("#f").val(result);
+
+})
+
+$("#down-g").click(function(e){
+    e.preventDefault();
+    let g = Number($("#g").val());
+
+    let result = g - 1;
+
+    $("#g").val(result);
+
+})
+
+$("#down-h").click(function(e){
+    e.preventDefault();
+    let h = Number($("#h").val());
+
+    let result = h - 1;
+
+    $("#h").val(result);
+
+})
+
+$("#down-i").click(function(e){
+    e.preventDefault();
+    let i = Number($("#i").val());
+
+    let result = i - 1;
+
+    $("#i").val(result);
+
+})
+
+$("#down-j").click(function(e){
+    e.preventDefault();
+    let j = Number($("#j").val());
+
+    let result = j - 1;
+
+    $("#j").val(result);
+
+})
+
+$("#down-k").click(function(e){
+    e.preventDefault();
+    let k = Number($("#k").val());
+
+    let result = k - 1;
+
+    $("#k").val(result);
+
+})
+$("#down-l").click(function(e){
+    e.preventDefault();
+    let l = Number($("#l").val());
+
+    let result = l - 1;
+
+    $("#l").val(result);
+
+})
+
+
+

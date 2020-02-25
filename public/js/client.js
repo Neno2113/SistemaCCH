@@ -99,6 +99,11 @@ $(document).ready(function() {
 
     }
 
+    $("#nombre_cliente").keyup(function(){
+        let val =  $("#nombre_cliente").val();
+        $("#nombre_cliente").val(val.toUpperCase());
+    });
+
 
 
     function limpiar() {

@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="nombre_cliente">Tela(*):</label>
-                            <select name="tags[]" id="cloths" class="form-control select2">
+                            <select name="tags[]" id="cloths"  class="form-control select2">
 
                             </select>
                         </div>

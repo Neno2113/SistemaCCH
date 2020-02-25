@@ -870,6 +870,21 @@ class ordenPedidoController extends Controller
         return response()->json($data);
     }
 
+    public function selectSucu(Request $request)
+    {
+        $id = $request->input('cliente');
+        $sucursal = ClientBranch::where('cliente_id', $id)
+        ->orWhere('nombre_sucursal', 'LIKE', 'Principal')
+        ->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'sucursal' => $sucursal
+        ];
+        return response()->json($data);
+    }
+
     public function getDigits()
     {
         $orden = ordenPedido::orderBy('sec', 'desc')->first();

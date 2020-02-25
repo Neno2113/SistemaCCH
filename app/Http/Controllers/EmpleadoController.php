@@ -15,9 +15,9 @@ class EmpleadoController extends Controller
         $validar = $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',
-            'cedula' => 'required',
+            'cedula' => 'required|unique:empleado',
             'telefono_1' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:empleado',
             'cargo' => 'required',
             'departamento' => 'required',
             'calle' => 'required',

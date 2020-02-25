@@ -27,8 +27,8 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
 
                     <div class="row">
-                        <div class="col-md-10"></div>
-                        <div class="col-md-2">
+                        <div class="col-lg-10 col-md-8"></div>
+                        <div class="col-lg-2  col-md-4">
                             <label for="">Orden de pedido:</label>
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control font-weight-bold text-center" readonly>
@@ -155,7 +155,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6" id="corte_en_proceso">
+                            <div class="col-lg-6 col-md-3" id="corte_en_proceso">
                                 <div class="alert alert-warning alert-dismissible fade show" id="alerta_proceso"
                                     role="alert">
                                     <strong><i class="fas fa-exclamation-triangle"></i> Alerta!</strong>
@@ -169,53 +169,56 @@
 
                         </div>
                         <div class="container collapse mt-4" id="listarOrden">
-                            <table id="orden" class="table table-striped table-bordered datatables"
-                                style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Referencia</th>
-                                        <th>A</th>
-                                        <th>B</th>
-                                        <th>C</th>
-                                        <th>D</th>
-                                        <th>E</th>
-                                        <th>F</th>
-                                        <th>G</th>
-                                        <th>H</th>
-                                        <th>I</th>
-                                        <th>J</th>
-                                        <th>K</th>
-                                        <th>L</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Referencia</th>
-                                        <th>A</th>
-                                        <th>B</th>
-                                        <th>C</th>
-                                        <th>D</th>
-                                        <th>E</th>
-                                        <th>F</th>
-                                        <th>G</th>
-                                        <th>H</th>
-                                        <th>I</th>
-                                        <th>J</th>
-                                        <th>K</th>
-                                        <th>L</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                            <div class="table-responsive">
+                                <table id="orden" class="table table-striped table-bordered datatables"
+                                    style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Referencia</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>E</th>
+                                            <th>F</th>
+                                            <th>G</th>
+                                            <th>H</th>
+                                            <th>I</th>
+                                            <th>J</th>
+                                            <th>K</th>
+                                            <th>L</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Referencia</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>E</th>
+                                            <th>F</th>
+                                            <th>G</th>
+                                            <th>H</th>
+                                            <th>I</th>
+                                            <th>J</th>
+                                            <th>K</th>
+                                            <th>L</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
                         </div>
 
                         <div class="row">
-                            <div class="col-md-2" id="redistribucion">
+                            <div class="col-lg-2 col-md-4" id="redistribucion">
                                 <label for="">Cantidad:</label>
                                 <input type="text" name="cantidad" id="cantidad" class="form-control text-center"
                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
                             </div>
-                            <div class="col-md-3 mt-4">
+                            <div class="col-lg-3 col-md-4 mt-4">
                                 <button class="btn btn-success rounded-pill mt-2" name="btn-consultar"
                                     id="btn-consultar"><i class="fas fa-search"></i> Consultar</button>
                             </div>
@@ -224,7 +227,7 @@
                             </div>
                         </div>
                         <div class="row border-right" id="tallas">
-                            <div class="col-md-2 mt-3 " id="precio_div">
+                            <div class="col-lg-2 col-md-4 mt-3 " id="precio_div">
                                 <label for="">Precio:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -234,7 +237,7 @@
                                         data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                                 </div>
                             </div>
-                            <div class="col-md-2 mt-3" id="total_div">
+                            <div class="col-lg-2 col-md-4 mt-3" id="total_div">
                                 <label for="">Total Ref.:</label>
                                 <input type="text" name="total" id="total" class="form-control text-center" readonly>
                             </div>
@@ -249,115 +252,234 @@
                         <br>
                         <div class="" id="detallada">
                             <label for="">Disponible:</label>
-                            <table class="table table-bordered tabla-detallada  mb-3 text-sm">
-                                <thead class="">
-                                    <tr>
-                                        <th class="talla" id="ta">A</th>
-                                        <th class="talla" id="tb">B</th>
-                                        <th class="talla" id="tc">C</th>
-                                        <th class="talla" id="td">D</th>
-                                        <th class="talla" id="te">E</th>
-                                        <th class="talla" id="tf">F</th>
-                                        <th class="talla" id="tg">G</th>
-                                        <th class="talla" id="th">H</th>
-                                        <th class="talla" id="ti">I</th>
-                                        <th class="talla" id="tj">J</th>
-                                        <th class="talla" id="tk">K</th>
-                                        <th class="talla" id="tl">L</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="disponibles" class="text-align-center">
+                            <div class="table-responsive">
+                                <table class="table table-bordered tabla-detallada  mb-3 text-sm">
+                                    <thead class="">
+                                        <tr>
+                                            <th class="talla" id="ta">A</th>
+                                            <th class="talla" id="tb">B</th>
+                                            <th class="talla" id="tc">C</th>
+                                            <th class="talla" id="td">D</th>
+                                            <th class="talla" id="te">E</th>
+                                            <th class="talla" id="tf">F</th>
+                                            <th class="talla" id="tg">G</th>
+                                            <th class="talla" id="th">H</th>
+                                            <th class="talla" id="ti">I</th>
+                                            <th class="talla" id="tj">J</th>
+                                            <th class="talla" id="tk">K</th>
+                                            <th class="talla" id="tl">L</th>
+                                        </tr>
 
-                                </tbody>
-                                <tfoot>
-                                    <th>
 
-                                        {{-- <label for="" class="ml-4" id="da">A</label> --}}
-                                        <input type="text" name="" id="a" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                    </thead>
+                                    <tbody id="disponibles" class="text-align-center">
 
-                                    </th>
-                                    <th>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="bg-white">
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-a"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-b"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-c"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-d"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-e"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-f"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-g"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-h"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-i"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-j"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-k"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-secondary btn-sm" id="up-l"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="db">B</label> --}}
-                                        <input type="text" name="" id="b" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="da">A</label> --}}
+                                                <input type="text" name="" id="a"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="dc">C</label> --}}
-                                        <input type="text" name="" id="c" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="db">B</label> --}}
+                                                <input type="text" name="" id="b"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="dd">D</label> --}}
-                                        <input type="text" name="" id="d" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="dc">C</label> --}}
+                                                <input type="text" name="" id="c"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="de">E</label> --}}
-                                        <input type="text" name="" id="e" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="dd">D</label> --}}
+                                                <input type="text" name="" id="d"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="df">F</label> --}}
-                                        <input type="text" name="" id="f" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="de">E</label> --}}
+                                                <input type="text" name="" id="e"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="dg">G</label> --}}
-                                        <input type="text" name="" id="g" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="df">F</label> --}}
+                                                <input type="text" name="" id="f"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="dh">H</label> --}}
-                                        <input type="text" name="" id="h" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="dg">G</label> --}}
+                                                <input type="text" name="" id="g"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="di">I</label> --}}
-                                        <input type="text" name="" id="i" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="dh">H</label> --}}
+                                                <input type="text" name="" id="h"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="dj">J</label> --}}
-                                        <input type="text" name="" id="j" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="di">I</label> --}}
+                                                <input type="text" name="" id="i"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="dk">K</label> --}}
-                                        <input type="text" name="" id="k" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="dj">J</label> --}}
+                                                <input type="text" name="" id="j"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
-                                    <th>
+                                            </th>
+                                            <th>
 
-                                        {{-- <label for="" class="ml-4" id="dl">L</label> --}}
-                                        <input type="text" name="" id="l" class="form-control text-center detalle"
-                                            data-inputmask='"mask": "999"' data-mask>
+                                                {{-- <label for="" class="ml-4" id="dk">K</label> --}}
+                                                <input type="text" name="" id="k"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                                    </th>
+                                            </th>
+                                            <th>
 
-                                </tfoot>
+                                                {{-- <label for="" class="ml-4" id="dl">L</label> --}}
+                                                <input type="text" name="" id="l"
+                                                    class="form-control text-center detalle"
+                                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
 
-                            </table>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-a"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-b"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-c"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-d"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-e"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-f"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-g"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-h"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-i"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-j"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-k"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                            <th>
+                                                <button class="btn btn-danger btn-sm" id="down-l"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </th>
+                                        </tr>
+
+                                    </tfoot>
+
+                                </table>
+                            </div>
+
                             <div class="row" id="detalles" style="width: 98%; margin-left:-14px;">
 
                             </div>
@@ -366,8 +488,12 @@
 
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <button class="btn btn-primary rounded-lg" name="btn-agregar" id="btn-agregar">
+                                <button class="d-inline p-2 btn btn-primary rounded-lg" name="btn-agregar"
+                                    id="btn-agregar">
                                     <i class="fas fa-cart-plus"></i> Agregar</button>
+                                <button class="d-inline p-2 btn btn-secondary rounded-lg" name="btn-copia"
+                                    id="btn-copia">
+                                    <i class="fas fa-copy"></i> Copiar redistribucion</button>
                             </div>
 
                         </div>
@@ -375,26 +501,26 @@
                         <hr>
 
                         <div class="row" id="agregadas">
-                            <div class="col-md-12 pt-3 pl-3 pb-3">
-                                <table class="table  table-bordered mt-3 ">
-                                    <thead class="thead-light">
+                            <div class="col-md-12 pt-3 pl-3 pb-3 table-responsive">
+                                <table class="table  table-bordered  tabla-detallada mt-3 ">
+                                    <thead class="">
                                         <tr>
 
                                             <th>Referencias listadas</th>
                                             <th>Precio</th>
                                             <th>Cantidad</th>
-                                            <th>AP</th>
-                                            <th>BP</th>
-                                            <th>CP</th>
-                                            <th>DP</th>
-                                            <th>EP</th>
-                                            <th>FP</th>
-                                            <th>GP</th>
-                                            <th>HP</th>
-                                            <th>IP</th>
-                                            <th>JP</th>
-                                            <th>KP</th>
-                                            <th>LP</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>E</th>
+                                            <th>F</th>
+                                            <th>G</th>
+                                            <th>H</th>
+                                            <th>I</th>
+                                            <th>J</th>
+                                            <th>K</th>
+                                            <th>L</th>
                                         </tr>
                                     </thead>
                                     <tbody id="orden_pedido">
@@ -405,6 +531,9 @@
                                         <th>Referencias listadas</th>
                                         <th>Precio</th>
                                         <th>Cantidad</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>

@@ -1479,7 +1479,6 @@ function mostrar(id_almacen){
             }
         }
         if (genero == "3") {
-            $("#genero").val("Niño: " + val);
             $("#sub-genero").hide();
             $("#ta").html("2");
             $("#tb").html("4");
@@ -1506,7 +1505,6 @@ function mostrar(id_almacen){
             $("#bg").html("14");
             $("#bh").html("16");
         } else if (genero == "4") {
-            // $("#genero").val("Niña: " + val);
             $("#sub-genero").hide();
             $("#ta").html("2");
             $("#tb").html("4");

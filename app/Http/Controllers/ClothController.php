@@ -15,10 +15,14 @@ class ClothController extends Controller
     {
         $validar = $request->validate([
             'suplidor' => 'required',
-            'referencia' => 'required',
+            'referencia' => 'required|unique:tela',
             'tipo_tela' => 'required',
             'composiciones' => 'required',
-            'porcentaje_mat_1' => 'required'
+            'elasticidad_urdimbre' => 'required',
+            'elasticidad_trama' => 'required',
+            'encogimiento_trama' => 'required',
+            'encogimiento_urdimbre' => 'required',
+            'porcentaje_mat_1' => 'required',
 
         ]);
 
@@ -106,7 +110,6 @@ class ClothController extends Controller
                 'tela' => $cloth
             ];
         }
-
         return response()->json($data, $data['code']);
     }
 
@@ -128,7 +131,6 @@ class ClothController extends Controller
                 'message' => 'No existe el usuario'
             ];
         }
-
         return \response()->json($data, $data['code']);
     }
 
@@ -174,7 +176,7 @@ class ClothController extends Controller
 
             $cloth = Cloth::find($id);
 
-            $cloth->id_user = $id_user;
+            $cloth->user_id = $id_user;
             $cloth->id_suplidor = $id_suplidor;
             $cloth->id_composiciones = $id_composiciones;
             $cloth->referencia = $referencia;

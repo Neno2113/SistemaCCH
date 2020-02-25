@@ -12,7 +12,7 @@ class SupplierController extends Controller
     {
 
         $validar = $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|unique:suplidor',
             'rnc' => 'required',
             'calle' => 'required',
             'provincia' => 'required',

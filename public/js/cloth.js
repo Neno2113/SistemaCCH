@@ -149,6 +149,12 @@ $(document).ready(function() {
 
 
     }
+
+    $("#referencia").keyup(function(){
+        let val =  $("#referencia").val();
+        $("#referencia").val(val.toUpperCase());
+    });
+
     function suplidores (){
 
         $.ajax({

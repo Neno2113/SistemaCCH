@@ -47,6 +47,15 @@ $(document).ready(function() {
         //     $(thisRow).clone(true, true).insertAfter(thisRow).find('input:text').val("");
         //     // limpiar();
         // })
+        $("#suplidores").on('change', function(){
+            $("#cloths").val(null).trigger('change');
+        });
+
+        $("#num_tono").keyup(function(){
+            let val =  $("#num_tono").val();
+            $("#num_tono").val(val.toUpperCase());
+        });
+
 
         $("#suplidores").select2({
             placeholder: "Busca un suplidor...",
@@ -68,25 +77,28 @@ $(document).ready(function() {
             }
         })
 
-        $("#cloths").select2({
-            placeholder: "Busca una tela...",
-            ajax: {
-                url: 'cloths',
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data){
-                    return {
-                        results: $.map(data, function(item){
-                            return {
-                                text: item.referencia,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        })
+
+
+        // $("#cloths").select2({
+        //     placeholder: "Busca una tela...",
+        //     ajax: {
+        //         url: 'cloths',
+        //         dataType: 'json',
+        //         data: JSON.stringify(rollo),
+        //         delay: 250,
+        //         processResults: function(data){
+        //             return {
+        //                 results: $.map(data, function(item){
+        //                     return {
+        //                         text: item.referencia,
+        //                         id: item.id
+        //                     }
+        //                 })
+        //             };
+        //         },
+        //         cache: true
+        //     }
+        // })
 
     }
 
@@ -315,13 +327,53 @@ function eliminar(id_rollo){
             })
         }
       })
-    // bootbox.confirm("¿Estas seguro de eliminar este rollo?", function(result){
-    //     if(result){
-    //         $.post("rollo/delete/" + id_rollo, function(){
-    //             // bootbox.alert(e);
-    //             bootbox.alert("Rollo eliminado correctamente!!");
-    //             $("#rollos").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+
+}
+
+$("#cloths").click(function(){
+    telas();
+});
+
+
+
+
+// $("#cloths").change(function(){
+//     telas();
+// });
+
+function telas(){
+    $("#cloths").empty();
+    var rollo = {
+        suplidor: $("#suplidores").val(),
+    };
+
+    $.ajax({
+        url: "tela/select",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(rollo),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.tela.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila ="<option value=" +datos.tela[i].id +">"+datos.tela[i].referencia+"</option>";
+                    $("#cloths").append(fila);
+                }
+                $("#cloths").select2();
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error"
+            );
+        }
+    });
+
 }

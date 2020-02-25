@@ -167,6 +167,13 @@ $(document).ready(function() {
         });
     }
 
+
+    $("#nombre_sucursal").keyup(function(){
+        let val =  $("#nombre_sucursal").val();
+        $("#nombre_sucursal").val(val.toUpperCase());
+    });
+
+
     $("#btn-edit-branch").click(function(e) {
         e.preventDefault();
 

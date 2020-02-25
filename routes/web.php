@@ -189,6 +189,7 @@ Route::post('/rollos', 'RollosController@store');
 Route::post('/rollo/{id}', 'RollosController@show');
 Route::put('/rollo/edit', 'RollosController@update');
 Route::post('/rollo/delete/{id}', 'RollosController@destroy');
+Route::post('tela/select', 'RollosController@selectTela');
 
 //Rutas productos
 Route::get('product/lastdigit', 'ProductController@getDigits');
@@ -321,6 +322,7 @@ Route::get('ordenPedido/consulta/{id}', 'ordenPedidoController@consultaSustituto
 Route::get('productos/seleccionar', 'ordenPedidoController@Productos');
 Route::get('corte/fecha/{id}', 'ordenPedidoController@fechaEntrega');
 Route::get('ordenes/empty', 'ordenPedidoController@clearOP');
+Route::post('sucursal/select', 'ordenPedidoController@selectSucu');
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');

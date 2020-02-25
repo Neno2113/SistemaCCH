@@ -1,222 +1,211 @@
-
-
 .datatables {
     width: 100%;
     text-align: center;
-
 }
 
 .datatables tbody tr td {
     border: 1px solid #31343940;
 }
 
-table.dataTable tr.dtrg-group.dtrg-level-0 td{
+table.dataTable tr.dtrg-group.dtrg-level-0 td {
     background-color: #31343940;
 }
 
-
-
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before{
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr[role="row"]
+    > td:first-child::before {
     top: 30%;
     left: 30%;
 }
 
-.work-area{
-position: relative;
-border-radius: 3px;
-/* background: #fefffe;
+.work-area {
+    position: relative;
+    border-radius: 3px;
+    /* background: #fefffe;
 border-top: 1px solid #31343940;
 border-left: 1px solid #31343940;
 border-right: 1px solid #31343940;
 margin-bottom: 20px; */
-width: 100%;
-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.content-header h1{
+.content-header h1 {
     font-weight: 500;
 }
 
-.card-header{
-    background:#7d7d7d4d;
+.card-header {
+    background: #7d7d7d4d;
     border: 1px solid #31343940;
 }
-.card-header h4{
-    padding-top:15px;
+.card-header h4 {
+    padding-top: 15px;
     color: black;
     /* font-weight: bold; */
 }
 
-.card-body h5{
+.card-body h5 {
     font-weight: bold;
 }
 
-.card-body{
- /* background:#f7f4f4; */
- border-left: 1px solid#06090f73;
- border-right: 1px solid #06090f73;
+.card-body {
+    /* background:#f7f4f4; */
+    border-left: 1px solid#06090f73;
+    border-right: 1px solid #06090f73;
 }
 
 .card-body form {
     padding: 15px;
 }
 
-.card-footer{
+.card-footer {
     border: 1px solid #31343940;
     background: #e3e3e3;
 }
 
-.corteSearch{
+.corteSearch {
     padding: 45px;
     padding-left: 70px;
     padding-top: 1px;
 }
 
-.select2-container--default .select2-selection--single{
+.select2-container--default .select2-selection--single {
     padding: 7px;
     padding-bottom: 28px;
     border: 1px solid #31343940;
 }
 
-.form-control[readonly]{
+.form-control[readonly] {
     background-color: white;
 }
 
-form input[type= "date"],
-input[type = "text"],
-input[type = "number"],
-input[type = "email"],
-input[type = "password"],
-input[type = "number"]
-select,
+form input[type="date"],
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="number"] select,
 select.form-control,
-textarea.form-control
-{
+textarea.form-control {
     border: 1px solid #00000073;
 }
 
-.select2-container--default .select2-selection--single{
+.select2-container--default .select2-selection--single {
     border: 1px solid #00000073;
 }
 
 .error {
     color: red;
     background-color: #e6f0ff;
+}
 
- }
-
- label .error {
+label .error {
     text-align: center;
- }
+}
 
- .galeria{
+.galeria {
     padding: 20px;
     border: 1px solid #31343940;
     border-radius: 25px;
     padding-top: 34px;
- }
+}
 
- .prod_img {
+.prod_img {
     border: double #ccc;
- }
+}
 
- .rounded {
+.rounded {
     width: 96px;
     height: 139px;
- }
-
-
- .table-bordered td, .table-bordered th{
-     border: none;
-     border-top: 1px solid #dee2e6;
- }
-
-
- table td.fit,
- table th.fit {
-     white-space: nowrap;
-     width: 1%;
- }
-
- .ui-datepicker-calendar {
-    display: none;
- }
- .ui-datepicker-month {
-    display: none;
- }
- .ui-datepicker-next,.ui-datepicker-prev {
-   display:none;
- }
-
- .tabla-nc {
-
- }
- .tabla-nc thead{
-
- }
- .tabla-nc thead td{
-
 }
 
- .tabla-nc thead .genero{
-
+.table-bordered td,
+.table-bordered th {
+    border: none;
+    border-top: 1px solid #dee2e6;
 }
- .tabla-nc tbody td{
+
+table td.fit,
+table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+
+.ui-datepicker-calendar {
+    display: none;
+}
+.ui-datepicker-month {
+    display: none;
+}
+.ui-datepicker-next,
+.ui-datepicker-prev {
+    display: none;
+}
+
+.tabla-nc {
+}
+.tabla-nc thead {
+}
+.tabla-nc thead td {
+}
+
+.tabla-nc thead .genero {
+}
+.tabla-nc tbody td {
     padding-left: 2px;
     padding-right: 16px;
 }
 
- .tabla-nc tbody .cuerpo{
+.tabla-nc tbody .cuerpo {
+}
 
- }
+.tabla-dependientes {
+}
 
- .tabla-dependientes{
-
- }
-
-
- .tabla-dependientes thead{
-    border-left: 2px solid #0B447D;
-    border-right: 2px solid #0B447D;
-    background: #0B447D;
+.tabla-dependientes thead {
+    border-left: 2px solid #0b447d;
+    border-right: 2px solid #0b447d;
+    background: #0b447d;
     color: #fff;
 }
 
-
-.tabla-existencia thead{
-    border-left: 2px solid #0B447D;
-    border-right: 2px solid #0B447D;
-    background: #0B447D;
+.tabla-existencia thead {
+    border-left: 2px solid #0b447d;
+    border-right: 2px solid #0b447d;
+    background: #0b447d;
     color: #fff;
 }
 
-.tabla-existencia thead td{
+.tabla-existencia thead td {
     border-left: 2px solid #fff;
     border-right: 2px solid #fff;
     background: #ccc;
     color: #000;
     font-weight: bold;
 }
-.tabla-existencia td, .tabla-existencia th{
+.tabla-existencia td,
+.tabla-existencia th {
     border: 1px solid #dee2e6;
 }
 
-.tabla-perdidas thead{
-    border-left: 2px solid #0B447D;
-    border-right: 2px solid #0B447D;
-    background: #0B447D;
+.tabla-perdidas thead {
+    border-left: 2px solid #0b447d;
+    border-right: 2px solid #0b447d;
+    background: #0b447d;
     color: #fff;
     text-align: center;
 }
-.tabla-perdidas td, .tabla-perdidas th{
+.tabla-perdidas td,
+.tabla-perdidas th {
     border: 1px solid #dee2e6;
 }
 
-.tabla-perdidas tbody tr{
+.tabla-perdidas tbody tr {
     text-align: center;
 }
 
-.tabla-existencia tbody tr{
+.tabla-existencia tbody tr {
     text-align: center;
 }
 
@@ -224,60 +213,59 @@ textarea.form-control
     margin-left: -3px;
 }
 
-.tabla-detallada thead{
+.tabla-detallada thead {
     /* border-left: 2px solid #0B447D;
     border-right: 2px solid #0B447D; */
-    background: #262D35D6;
+    background: #262d35d6;
     color: #fff;
     text-align: center;
 }
 
-.tabla-detallada thead .talla{
+.tabla-detallada thead .talla {
     padding-left: 34px;
     padding-right: 29px;
     font-size: 12px;
 }
-.tabla-detallada td, .tabla-detallada th{
-    border: 1px solid #0606066b;;
+.tabla-detallada td,
+.tabla-detallada th {
+    border: 1px solid #0606066b;
 }
 
-.tabla-detallada tbody td{
+.tabla-detallada tbody td {
     text-align: center;
 }
 
-.tabla-detallada tbody tr{
+.tabla-detallada tbody tr {
     text-align: center;
 }
 
-.tabla-detallada tfoot tr{
+.tabla-detallada tfoot tr {
     text-align: center;
 }
 
-.tabla-detallada tfoot .detalle{
+.tabla-detallada tfoot .detalle {
     text-align: center;
 }
 
-.tabla-existencia tfoot{
+.tabla-existencia tfoot {
     /* border: 5px solid #9b988b; */
     font-weight: bold;
     border-radius: 35px 30px;
     background: #d9cf3538;
 }
-.tabla-existencia tfoot td{
+.tabla-existencia tfoot td {
     border: 4px solid #0000004f;
 }
 
-.tabla-existencia tfoot .totales{
+.tabla-existencia tfoot .totales {
     text-align: center;
 }
 
-.tabla-existencia tfoot .disp_venta{
+.tabla-existencia tfoot .disp_venta {
     text-align: center;
 }
-
 
 .tabla-tallas {
-
     border-collapse: collapse;
     border-spacing: 0;
     margin-left: -32px;
@@ -295,7 +283,6 @@ textarea.form-control
     /* border: solid 2px black; */
 }
 
-
 .tabla-tallas th {
     white-space: nowrap;
     font-weight: bold;
@@ -303,7 +290,6 @@ textarea.form-control
     font-size: 10px;
     /* border: solid 2px black; */
 }
-
 
 .tabla-tallas .talla_head {
     color: black;
@@ -315,7 +301,6 @@ textarea.form-control
     width: 143%;
     border: none;
     /* font-weight: bold; */
-
 }
 
 .tabla-tallas .talla {
@@ -328,48 +313,48 @@ textarea.form-control
 }
 
 .tabla-almacen-totales {
-
 }
 
-
-.tabla-almacen-totales thead{
-    border-left: 2px solid #787E846F;
-    border-right: 2px solid #787E846F;
-    background: #787E8470;
+.tabla-almacen-totales thead {
+    border-left: 2px solid #787e846f;
+    border-right: 2px solid #787e846f;
+    background: #787e8470;
     color: #000;
 }
 
-.tabla-almacen-totales thead td{
+.tabla-almacen-totales thead td {
     border-left: 2px solid #fff;
     border-right: 2px solid #fff;
     background: #ccc;
     color: #000;
     font-weight: bold;
 }
-.tabla-almacen-totales td, .tabla-almacen-totales th{
+.tabla-almacen-totales td,
+.tabla-almacen-totales th {
     border: 1px solid #dee2e6;
 }
 
-.tabla-almacen-pendientes thead{
-    border-left: 2px solid #0B447D;
-    border-right: 2px solid #0B447D;
-    background: #0B447D;
+.tabla-almacen-pendientes thead {
+    border-left: 2px solid #0b447d;
+    border-right: 2px solid #0b447d;
+    background: #0b447d;
     color: #fff;
 }
 
-.tabla-almacen-pendientes thead td{
+.tabla-almacen-pendientes thead td {
     background: #ccc;
     color: #000;
     font-weight: bold;
 }
-.tabla-almacen-pendientes td, .tabla-almacen-pendientes th{
+.tabla-almacen-pendientes td,
+.tabla-almacen-pendientes th {
     border: 1px solid #dee2e6;
     font-weight: bold;
     text-align: center;
     font-size: 14px;
 }
 
-.div-totales{
+.div-totales {
     border-left: 1px solid #00000036;
     border-right: 1px solid #00000036;
     border-top: 1px solid #00000036;
@@ -377,10 +362,7 @@ textarea.form-control
     padding-top: 20px;
 }
 
-
-
 .tabla-detalle {
-
     border-collapse: collapse;
     border-spacing: 0;
     margin-left: -32px;
@@ -398,7 +380,6 @@ textarea.form-control
     /* border: solid 2px black; */
 }
 
-
 .tabla-detalle th {
     white-space: nowrap;
     font-weight: bold;
@@ -406,7 +387,6 @@ textarea.form-control
     font-size: 10px;
     /* border: solid 2px black; */
 }
-
 
 .tabla-detalle .talla_head {
     color: black;
@@ -418,7 +398,6 @@ textarea.form-control
     width: 126%;
     border: none;
     /* font-weight: bold; */
-
 }
 
 .tabla-detalle .talla {
@@ -430,7 +409,9 @@ textarea.form-control
     background: #ddcdad3d;
 }
 
-
+.select2 {
+    width: 100% !important;
+}
 
 /* .ta {
     width: 100%;
@@ -457,7 +438,6 @@ input[type=number]::-webkit-inner-spin-button:hover {
     opacity: 1;
 } */
 
-
 /* input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
       -webkit-appearance: none;
@@ -469,6 +449,3 @@ input[type=number]::-webkit-outer-spin-button:hover {
     -webkit-appearance: ;
     opacity: 1;
 } */
-
-
-

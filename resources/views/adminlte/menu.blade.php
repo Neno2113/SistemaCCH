@@ -270,7 +270,7 @@
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Aprobacion y redistibucion</p>
+                                <p>Aprobar y redistibuir</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -12,7 +12,7 @@ class ClientController extends Controller
     {
 
         $validar = $request->validate([
-            'nombre_cliente' => 'required',
+            'nombre_cliente' => 'required|unique:cliente',
             'rnc' => 'required',
             'contacto_cliente_principal' => 'required|alpha',
             'telefono_1' => 'required',
