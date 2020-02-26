@@ -160,8 +160,6 @@
                     </ul>
                 </li>
 
-
-
                 <li class="nav-item has-treeview ">
 
                     <a href="#" class="nav-link ">
@@ -238,9 +236,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/sistemaCCH/public/definir-atributo" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Definir atributos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/sistemaCCH/public/almacen" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Almacen</p>
+                                <p>Entrada almacen</p>
                             </a>
                         </li>
                         <li class="nav-item">

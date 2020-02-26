@@ -89,7 +89,7 @@ class AlmacenController extends Controller
             $ref2 = $producto->referencia_producto_2;
 
             if(!empty($ref2)){
-                $producto = Product::find($producto_id);
+                $producto_father = Product::find($producto_id);
                 $select_product = DB::select("SHOW TABLE STATUS LIKE 'producto'");
                 $nexProductId = $select_product[0]->Auto_increment;
 
@@ -99,41 +99,40 @@ class AlmacenController extends Controller
 
                 $producto_ref_2 = new Product();
                 $producto_ref_2->id_user = Auth::user()->id;
-                $producto_ref_2->genero = $producto->genero;
+                $producto_ref_2->genero = $producto_father->genero;
                 $producto_ref_2->referencia_producto = $ref2;
                 $producto_ref_2->referencia_father = $producto->id;
-                $producto_ref_2->descripcion = $producto->descripcion_2;
-                $producto_ref_2->ubicacion = $producto->ubicacion;
-                $producto_ref_2->imagen_frente = $producto->imagen_frente;
-                $producto_ref_2->imagen_trasero = $producto->imagen_trasero;
-                $producto_ref_2->imagen_perfil = $producto->imagen_perfil;
-                $producto_ref_2->imagen_bolsillo = $producto->imagen_bolsillo;
-                $producto_ref_2->tono = $producto->tono;
-                $producto_ref_2->intensidad_proceso_seco = $producto->intensidad_proceso_seco;
-                $producto_ref_2->atributo_no_1 = $producto->atributo_no_1;
-                $producto_ref_2->atributo_no_2 = $producto->atributo_no_2;
-                $producto_ref_2->atributo_no_3 = $producto->atributo_no_3;
-                $producto_ref_2->precio_lista = $producto->precio_lista_2;
-                $producto_ref_2->precio_venta_publico = $producto->precio_venta_publico_2;
-                $producto_ref_2->min = $producto->min;
-                $producto_ref_2->max = $producto->max;
+                $producto_ref_2->descripcion = $producto_father->descripcion_2;
+                $producto_ref_2->ubicacion = $producto_father->ubicacion;
+                $producto_ref_2->imagen_frente = $producto_father->imagen_frente;
+                $producto_ref_2->imagen_trasero = $producto_father->imagen_trasero;
+                $producto_ref_2->imagen_perfil = $producto_father->imagen_perfil;
+                $producto_ref_2->imagen_bolsillo = $producto_father->imagen_bolsillo;
+                $producto_ref_2->tono = $producto_father->tono;
+                $producto_ref_2->intensidad_proceso_seco = $producto_father->intensidad_proceso_seco;
+                $producto_ref_2->atributo_no_1 = $producto_father->atributo_no_1;
+                $producto_ref_2->atributo_no_2 = $producto_father->atributo_no_2;
+                $producto_ref_2->atributo_no_3 = $producto_father->atributo_no_3;
+                $producto_ref_2->precio_lista = $producto_father->precio_lista_2;
+                $producto_ref_2->precio_venta_publico = $producto_father->precio_venta_publico_2;
+                $producto_ref_2->min = $producto_father->min;
+                $producto_ref_2->max = $producto_father->max;
 
                 $producto_ref_2->save();
 
                 //Quitar todo rastro de referencia 2 en el registro de la tabla de producto.
-                $producto->referencia_producto_2 = Null;
-                $producto->descripcion_2 = Null;
-                $producto->precio_lista_2 = Null;
-                $producto->precio_venta_publico_2 = Null;
-                $producto->save();
+                $producto_father->referencia_producto_2 = Null;
+                $producto_father->descripcion_2 = Null;
+                $producto_father->precio_lista_2 = Null;
+                $producto_father->precio_venta_publico_2 = Null;
+                $producto_father->save();
 
             }
 
-
             $select = DB::select("SHOW TABLE STATUS LIKE 'almacen'");
             $nextId = $select[0]->Auto_increment;
-            $almacen_detalle = AlmacenDetalle::where('almacen_id', $nextId)->first();
-            $total = $almacen_detalle->total;
+            // $almacen_detalle = AlmacenDetalle::where('almacen_id', $nextId)->first();
+            // $total = $almacen_detalle->total;
 
             $corte->fase = 'Almacen';
             $corte->save();
@@ -141,20 +140,9 @@ class AlmacenController extends Controller
             $almacen->producto_id = $producto_id;
             $almacen->corte_id = $corte_id;
             $almacen->user_id = \auth()->user()->id;
-            // $almacen->a = $a;
-            // $almacen->b = $b;
-            // $almacen->c = $c;
-            // $almacen->d = $d;
-            // $almacen->e = $e;
-            // $almacen->f = $f;
-            // $almacen->g = $g;
-            // $almacen->h = $h;
-            // $almacen->i = $i;
-            // $almacen->j = $j;
-            // $almacen->k = $k;
-            // $almacen->l = $l;
-            $almacen->total = $total;
-            $almacen->usado_curva = 0;
+
+            // $almacen->total = $total;
+            // $almacen->usado_curva = 0;
 
             $almacen->save();
 
@@ -350,7 +338,37 @@ class AlmacenController extends Controller
             })
             ->addColumn('Opciones', function ($almacen) {
                 return
-                    '<button id="btnEdit" onclick="mostrar(' . $almacen->id . ')" class="btn btn-primary btn-sm" ><i class="fas fa-list-alt"></i></button>' .
+                    '<button id="btnEdit" onclick="mostrar(' . $almacen->id . ')" class="btn btn-primary btn-sm" ><i class="fas fa-list-alt"></i></button>';
+            })
+            ->rawColumns(['Opciones'])
+            ->make(true);
+    }
+
+    public function atributoAlmacen()
+    {
+        $almacen = DB::table('almacen')->join('corte', 'almacen.corte_id', '=', 'corte.id')
+            ->join('producto', 'almacen.producto_id', '=', 'producto.id')
+            ->join('users', 'almacen.user_id', '=', 'users.id')
+            ->select([
+                'almacen.id', 'almacen.total', 'corte.numero_corte', 'corte.id as corte_id', 'corte.total as totalCorte',
+                'corte.fase', 'producto.referencia_producto', 'users.name', 'users.surname'
+            ]);
+
+        return DataTables::of($almacen)
+            ->addColumn('Expandir', function ($almacen) {
+                return "";
+            })
+            ->editColumn('name', function ($almacen) {
+                return "$almacen->name $almacen->surname";
+            })
+
+            ->editColumn('total', function ($almacen) {
+                $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
+                return $detalle->sum('total');
+            })
+            ->addColumn('Opciones', function ($almacen) {
+                return
+                    '<button id="btnEdit" onclick="mostrar(' . $almacen->id . ')" class="btn btn-warning btn-sm" ><i class="fas fa-edit"></i></button>' .
                     '<button onclick="eliminar(' . $almacen->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>';
             })
             ->rawColumns(['Opciones'])
@@ -486,7 +504,6 @@ class AlmacenController extends Controller
         ]);
 
         if (empty($validar)) {
-
             $data = [
                 'code' => 400,
                 'status' => 'error',
@@ -502,32 +519,7 @@ class AlmacenController extends Controller
             $atributo_no_1 = $request->input('atributo_no_1');
             $atributo_no_2 = $request->input('atributo_no_2');
             $atributo_no_3 = $request->input('atributo_no_3');
-            $a = $request->input('a');
-            $b = $request->input('b');
-            $c = $request->input('c');
-            $d = $request->input('d');
-            $e = $request->input('e');
-            $f = $request->input('f');
-            $g = $request->input('g');
-            $h = $request->input('h');
-            $i = $request->input('i');
-            $j = $request->input('j');
-            $k = $request->input('k');
-            $l = $request->input('l');
 
-            //validaciones
-            $a = intval(trim($a, "_"));
-            $b = intval(trim($b, "_"));
-            $c = intval(trim($c, "_"));
-            $d = intval(trim($d, "_"));
-            $e = intval(trim($e, "_"));
-            $f = intval(trim($f, "_"));
-            $g = intval(trim($g, "_"));
-            $h = intval(trim($h, "_"));
-            $i = intval(trim($i, "_"));
-            $j = intval(trim($j, "_"));
-            $k = intval(trim($k, "_"));
-            $l = intval(trim($l, "_"));
 
             $almacen = Almacen::find($id);
             $corte = Corte::find($corte_id);
@@ -554,19 +546,6 @@ class AlmacenController extends Controller
             $almacen->producto_id = $producto_id;
             $almacen->corte_id = $corte_id;
             $almacen->user_id = \auth()->user()->id;
-            $almacen->a = $a;
-            $almacen->b = $b;
-            $almacen->c = $c;
-            $almacen->d = $d;
-            $almacen->e = $e;
-            $almacen->f = $f;
-            $almacen->g = $g;
-            $almacen->h = $h;
-            $almacen->i = $i;
-            $almacen->j = $j;
-            $almacen->k = $k;
-            $almacen->l = $l;
-            $almacen->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
             $almacen->usado_curva = 0;
 
             $almacen->save();
@@ -654,6 +633,21 @@ class AlmacenController extends Controller
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }
+        return response()->json($data);
+    }
+
+    public function corteSelect(Request $request)
+    {
+        $corte = Corte::where('fase', 'LIKE', 'Terminacion')
+        ->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'cortes' => $corte
+        ];
+
+
         return response()->json($data);
     }
 

@@ -233,6 +233,11 @@ $(document).ready(function() {
         }
     })
 
+    $("#no_marcada").keyup(function(){
+        let val =  $("#no_marcada").val();
+        $("#no_marcada").val(val.toUpperCase());
+    });
+
 
     $("#productos").change(function(){
         let val = $("#productos option:selected").text();

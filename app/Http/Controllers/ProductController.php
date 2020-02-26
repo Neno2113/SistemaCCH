@@ -8,6 +8,7 @@ use App\Product;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\SKU;
+use App\CurvaProducto;
 use stdClass;
 
 class ProductController extends Controller
@@ -45,7 +46,37 @@ class ProductController extends Controller
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
             $min = $request->input('min');
             $max = $request->input('max');
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
 
+               //validaciones
+            $a = intval(trim($a, "_"));
+            $b = intval(trim($b, "_"));
+            $c = intval(trim($c, "_"));
+            $d = intval(trim($d, "_"));
+            $e = intval(trim($e, "_"));
+            $f = intval(trim($f, "_"));
+            $g = intval(trim($g, "_"));
+            $h = intval(trim($h, "_"));
+            $i = intval(trim($i, "_"));
+            $j = intval(trim($j, "_"));
+            $k = intval(trim($k, "_"));
+            $l = intval(trim($l, "_"));
+
+            if (empty($precio_lista_2)) {
+                $precio_lista_2 = 0;
+                $precio_venta_publico_2 = 0;
+            }
 
             $product = new Product();
             $product->genero = $genero;
@@ -60,87 +91,90 @@ class ProductController extends Controller
             $product->precio_lista_2 = trim($precio_lista_2, "RD$");
             $product->precio_venta_publico = trim($precio_venta_publico, "RD$");
             $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "RD$");
-            $product->min = $min;
-            $product->max = $max;
 
-            if (empty($precio_lista_2)) {
-                $precio_lista_2 = 0;
-                $precio_venta_publico_2 = 0;
-            }
             if (!empty($min)) {
                 switch ($min) {
-                    case '2':
+                    case 2:
                         $min = "a";
                         break;
-                    case '4':
+                    case 4:
                         $min = "b";
                         break;
-                    case '6':
+                    case 6:
                         $min = "c";
                         break;
-                    case '8':
+                    case 8:
                         $min = "d";
                         break;
-                    case '10':
+                    case  10:
                         $min = "e";
                         break;
-                    case '12':
+                    case 12:
                         $min = "f";
                         break;
-                    case '14':
+                    case 14:
                         $min = "g";
                         break;
-                    case '16':
+                    case  16:
                         $min = "h";
                         break;
-                    default:
-                        $min = $min;
-                        break;
                 }
-
-                switch ($max) {
-                    case '2':
-                        $max = "a";
-                        break;
-                    case '4':
-                        $max = "b";
-                        break;
-                    case '6':
-                        $max = "c";
-                        break;
-                    case '8':
-                        $max = "d";
-                        break;
-                    case '10':
-                        $max = "e";
-                        break;
-                    case '12':
-                        $max = "f";
-                        break;
-                    case '14':
-                        $max = "g";
-                        break;
-                    case '16':
-                        $max = "h";
-                        break;
-
-
-                    default:
-                        $max = $max;
-                        break;
-                }
+                $product->min = $min;
             }
 
-
-
-
+            if (!empty($max)) {
+                switch ($max) {
+                    case 2:
+                        $max = "a";
+                        break;
+                    case 4:
+                        $max = "b";
+                        break;
+                    case 6:
+                        $max = "c";
+                        break;
+                    case 8:
+                        $max = "d";
+                        break;
+                    case 10:
+                        $max = "e";
+                        break;
+                    case 12:
+                        $max = "f";
+                        break;
+                    case 14:
+                        $max = "g";
+                        break;
+                    case 16:
+                        $max = "h";
+                        break;
+                }
+                $product->max = $max;
+            }
 
             $product->save();
+            $curva = New CurvaProducto();
+            $curva->producto_id = $product->id;
+            $curva->a = $a;
+            $curva->b = $b;
+            $curva->c = $c;
+            $curva->d = $d;
+            $curva->e = $e;
+            $curva->f = $f;
+            $curva->g = $g;
+            $curva->h = $h;
+            $curva->i = $i;
+            $curva->j = $j;
+            $curva->k = $k;
+            $curva->l = $l;
+
+            $curva->save();
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'producto' => $product
+                'producto' => $product,
+                'curva' => $curva
             ];
         }
 
@@ -221,10 +255,13 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if (is_object($product)) {
+            $curva = CurvaProducto::where('producto_id', $product->id)->first();
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'product' => $product
+                'product' => $product,
+                'curva' => $curva
             ];
         } else {
             $data = [
@@ -263,6 +300,11 @@ class ProductController extends Controller
             // $sec = $request->input('sec', true);
 
             $product = Product::find($id);
+
+            if (empty($precio_lista_2)) {
+                $precio_lista_2 = 0;
+                $precio_venta_publico_2 = 0;
+            }
 
             $product->referencia_producto = $referencia;
             $product->descripcion_2 = $descripcion_2;

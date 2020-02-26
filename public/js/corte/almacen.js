@@ -296,9 +296,9 @@ $(document).ready(function() {
                 { data: "total", name: "almacen.total" },
                 { data: "totalCorte", name: "corte.total" },
             ],
-            order: [[4, "asc"]],
+            order: [[3, "desc"]],
             rowGroup: {
-                dataSrc: "referencia_producto"
+                dataSrc: "numero_corte"
             }
         });
     }
@@ -1304,6 +1304,11 @@ function mostrar(id_almacen){
         $("#form_producto_2").show();
         $("#form_talla").show();
         $("#btn-buscar").hide();
+        $("#btn-upload").hide();
+        $("#imagen_frente").hide();
+        $("#imagen_trasera").hide();
+        $("#imagen_perfil").hide();
+        $("#imagen_bolsillo").hide();
         // $("#btn-imprimir").hide();
         let genero = data.almacen.producto.referencia_producto.substring(1, 2);
         genero_global = data.almacen.producto.referencia_producto.substring(1, 2);
@@ -1326,12 +1331,12 @@ function mostrar(id_almacen){
 
         $("#id").val(data.almacen.id);
         $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);
-        $("#ubicacion").val(data.almacen.producto.ubicacion);
-        $("#tono").val(data.almacen.producto.tono);
-        $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
-        $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
-        $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
-        $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
+        $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
+        $("#tono").val(data.almacen.producto.tono).trigger("change").attr('disabled', true);
+        $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco).trigger("change").attr('disabled', true);
+        $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).trigger("change").attr('disabled', true) ;
+        $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).trigger("change").attr('disabled', true) ;
+        $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).trigger("change").attr('disabled', true) ;
         $("#ra").html(data.a);
         $("#rb").html(data.b);
         $("#rc").html(data.c);

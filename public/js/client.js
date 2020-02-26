@@ -118,7 +118,7 @@ $(document).ready(function() {
         $("#telefono_3").val("").attr('readonly', false);;
         $("#celular_principal").val("").attr('readonly', false);;
         $("#email_principal").val("").attr('readonly', false);;
-        $("#condiciones_credito").val("").attr('disabled', false);;
+        $("#condiciones_credito").val("").attr('disabled', false);
         $("#autorizacion_credito_req").val("").attr('readonly', false);;
         $("#notas").val("").attr('readonly', false);;
         $("#redistribucion_tallas").val("").attr('readonly', false);;

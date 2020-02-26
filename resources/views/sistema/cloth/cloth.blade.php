@@ -48,8 +48,8 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="precio_usd">Precio USD por yarda:</label>
-                            <input type="text" name="precio_usd" id="precio_usd" class="form-control"
-                                data-inputmask='"mask": "9[.99]"' data-mask>
+                            <input type="text" name="precio_usd" id="precio_usd" class="form-control text-center"
+                                data-inputmask='"mask": "9[.99]US"' data-mask>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="telefono_2">Tipo tela(*):</label>
@@ -77,24 +77,24 @@
                         <div class="col-md-4 mt-3">
                             <label for="elasticidad_trama">Elasticidad en trama:</label>
                             <input type="text" id="elasticidad_trama" class="form-control"
-                                data-inputmask='"mask": "99[.99]%"' data-mask placeholder="Porcentaje">
+                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
                         </div>
                     </div>
                     <div class="row" id="radios">
                         <div class="col-md-4 mt-4">
                             <label for="elasticidad_urdimbre">Elasticidad en urdimbre:</label>
                             <input type="text" id="elasticidad_urdimbre" class="form-control"
-                                data-inputmask='"mask": "99[.99]%"' data-mask placeholder="Porcentaje">
+                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="encogimiento_trama">Encogimiento en trama:</label>
                             <input type="text" id="encogimiento_trama" class="form-control"
-                                data-inputmask='"mask": "99[.99]%"' data-mask placeholder="Porcentaje">
+                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="encogimiento_urdimbre">Encogimiento en urdimbre:</label>
                             <input type="text" id="encogimiento_urdimbre" class="form-control"
-                                data-inputmask='"mask": "99[.99]%"' data-mask placeholder="Porcentaje">
+                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
                         </div>
                     </div>
             </div>

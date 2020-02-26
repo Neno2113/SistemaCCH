@@ -91,8 +91,11 @@
                             <input type="text" name="referencia_2" id="referencia_2" class="form-control">
                             <input type="hidden" name="" id="sec" value="">
                         </div>
-                        <div class="col-md-3 mt-5">
-                            <button class="btn btn-primary" id="btnGenerar">Generar</button>
+                        <div class="col-md-4 mt-5">
+                            <button class="d-inline btn btn-primary rounded-pill" id="btnGenerar">Generar</button>
+                            <button type="button" class="d-inline btn btn-secondary rounded-pill ml-3" id="btn-curva"
+                                data-toggle="modal" data-target=".bd-curva-modal-xl">
+                                <i class="fas fa-percentage"></i> Porcentaje por Talla</button>
                         </div>
 
                     </div>
@@ -220,59 +223,174 @@
 
 
 <!-- Modal Curva-->
-<div class="modal fade bd-curva-modal-xl" tabindex="-1" id="modalSKU" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bd-curva-modal-xl" tabindex="-1" role="dialog" id="test" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel"><strong> Declarar curva referencia</strong>
-                </h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Corte por tallas:</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" id="BrachForm">
-                    <div class="row">
-                        <h5>Referencia:</h5>
-                        <div class="col-md-3  mb-3">
-                            <input type="text" name="referencia_talla" id="referencia_talla"
-                                class="form-control text-center">
+                <div class="row">
+                    <label for="">Porcentaje a redistribuir por talla</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-2">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Atencion!</strong> El total del porcentaje debe ser igual a 100 para poder
+                            guardar.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     </div>
-                    <h5 class="text-center">Asignar porcentaje por talla</h5>
-                    <hr>
-                    <table class="table  table-bordered mt-3 tabla-perdidas">
-                        <thead>
+                </div>
+
+
+                <table class="table  table-bordered tabla-perdidas">
+                    <thead>
+                        <tr>
+
+                            <th id="ta">A</th>
+                            <th id="tb">B</th>
+                            <th id="tc">C</th>
+                            <th id="td">D</th>
+                            <th id="te">E</th>
+                            <th id="tf">F</th>
+                            <th id="tg">G</th>
+                            <th id="th">H</th>
+                            <th id="ti">I</th>
+                            <th id="tj">J</th>
+                            <th id="tk">K</th>
+                            <th id="tl">L</th>
+                            {{-- <th>Total</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+
+                                <input type="text" name="" id="a" class="form-control text-center detalle red"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <th>
+                                <input type="text" name="" id="b" class="form-control text-center detalle red"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                                </td>
+                            <td>
+
+
+                                <input type="text" name="" id="c" class="form-control text-center detalle red"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+
+                                <input type="text" name="" id="d" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="de">E</label> --}}
+                                <input type="text" name="" id="e" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="df">F</label> --}}
+                                <input type="text" name="" id="f" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="dg">G</label> --}}
+                                <input type="text" name="" id="g" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="dh">H</label> --}}
+                                <input type="text" name="" id="h" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="di">I</label> --}}
+                                <input type="text" name="" id="i" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="dj">J</label> --}}
+                                <input type="text" name="" id="j" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="dk">K</label> --}}
+                                <input type="text" name="" id="k" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            <td>
+
+                                {{-- <label for="" class="ml-4" id="dl">L</label> --}}
+                                <input type="text" name="" id="l" class="form-control text-center detalle"
+                                    data-inputmask='"mask": "99[.99]"' data-mask>
+
+                            </td>
+                            {{-- <td id="total_percent"></td> --}}
+                        </tr>
+                    </tbody>
+                    {{-- <tfoot>
                             <tr>
-                                <th id="ta">A</th>
-                                <th id="tb">B</th>
-                                <th id="tc">C</th>
-                                <th id="td">D</th>
-                                <th id="te">E</th>
-                                <th id="tf">F</th>
-                                <th id="tg">G</th>
-                                <th id="th">H</th>
-                                <th id="ti">I</th>
-                                <th id="tj">J</th>
-                                <th id="tk">K</th>
-                                <th id="tl">L</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        </thead>
-                        <tbody id="tallas">
+                        </tfoot> --}}
 
-                        </tbody>
-                    </table>
+
+                </table>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" name="total_percent" id="total_percent" class="form-control text-center" placeholder="Total">
+                    </div>
+
+                </div>
+
 
             </div>
-            <div class="modal-footer ">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            <div class="modal-footer">
+                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary"
+                    data-dismiss="modal">Guardar</button>
             </div>
-            </form>
         </div>
     </div>
 </div>
-
 
 
 @include('adminlte/scripts')

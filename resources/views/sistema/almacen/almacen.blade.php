@@ -8,7 +8,7 @@
 
 <div class="row mt-3 ml-3">
     <div class="col-md-6">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+        {{-- <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button> --}}
         {{-- <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i>
             ir a producto terminado </a> --}}
     </div>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="">Tono</label>
-                            <select name="tono" id="tono" class="form-control">
+                            <select name="tono" id="tono" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Crudo o Puro">1- Crudo o puro</option>
                                 <option value="Dark Stone Suave">2- Dark Stone Suave</option>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="">Intensidad proceso seco</label>
-                            <select name="intensidad_proceso_seco" id="intensidad_proceso_seco" class="form-control">
+                            <select name="intensidad_proceso_seco" id="intensidad_proceso_seco" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Alto contraste">1- Alto contraste</option>
                                 <option value="Intermedio">2- Intermedio</option>
@@ -101,7 +101,7 @@
                     <div class="row mt-2" id="form_producto_2">
                         <div class="col-md-4">
                             <label for="">Atributo No.1:</label>
-                            <select name="atributo_no_1" id="atributo_no_1" class="form-control">
+                            <select name="atributo_no_1" id="atributo_no_1" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Roto">1- Roto</option>
                                 <option value="Parcho">2- Parcho</option>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="">Atributo No.2:</label>
-                            <select name="atributo_no_2" id="atributo_no_2" class="form-control">
+                            <select name="atributo_no_2" id="atributo_no_2" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Roto">1- Roto</option>
                                 <option value="Parcho">2- Parcho</option>
@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="">Atributo No.3:</label>
-                            <select name="atributo_no_3" id="atributo_no_3" class="form-control">
+                            <select name="atributo_no_3" id="atributo_no_3" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Roto">1- Roto</option>
                                 <option value="Parcho">2- Parcho</option>
@@ -308,7 +308,9 @@
                     </div>
                     <div class="row">
                         {{-- <div class="col-md-3"></div> --}}
+
                         <div class="col-md-7">
+                            <label for="" class="ml-4">Pendientes:</label>
                             <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2" style="width:90">
                                 <thead class="text-center text-sm">
                                     <tr>
@@ -334,8 +336,8 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-12 mt-3">
+                    <label for="">Resultado entrada:</label>
                     <table id="corte_detalle" class="table tabla-existencia" style="width:100%">
                         <thead class="text-center">
                             <tr>
@@ -369,6 +371,8 @@
 
                 </div>
                 <br>
+                <hr>
+                <label for=""></label>
                 <div class="row mt-2">
                     <div class="col-lg-1 col-md-2">
                         <label for="" class="ml-4" id="ta">A</label>

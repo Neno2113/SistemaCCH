@@ -258,6 +258,7 @@ $(document).ready(function() {
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
+                    $("#btn-composicion").removeClass("btn-success").addClass("btn-secondary");
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"

@@ -1,5 +1,7 @@
 var min_global;
 var max_global;
+var genero_global;
+var genero_plus;
 $(document).ready(function() {
 
     $("[data-mask]").inputmask();
@@ -112,6 +114,18 @@ $(document).ready(function() {
         $("#descripcion_2").val("");
         $("#precio_lista_2").val("");
         $("#precio_venta_publico_2").val("");
+        $("#a").val("");
+        $("#b").val("");
+        $("#c").val("");
+        $("#d").val("");
+        $("#e").val("");
+        $("#f").val("");
+        $("#g").val("");
+        $("#h").val("");
+        $("#i").val("");
+        $("#j").val("");
+        $("#k").val("");
+        $("#l").val("");
     }
 
     $("#btnGenerar").on("click", function(e) {
@@ -133,6 +147,11 @@ $(document).ready(function() {
         var year = new Date().getFullYear().toString().substr(-2);
         var referencia = marca + genero + tipo_producto + categoria + "-" + year + i;
         $("#btn-sku").attr("disabled", false);
+
+        genero_global = $("#genero").val();
+        genero_plus = $("#categoria").val();
+        tallas();
+        $("#btn-curva").attr("disabled", false);
 
         if (genero == 3 || genero == 4) {
             $("#mostrarRef2").show();
@@ -160,7 +179,6 @@ $(document).ready(function() {
         let producto = {
             referencia_producto: referencia
         }
-        // console.log(JSON.stringify(corte));
 
         $.ajax({
             url: "validar/referencia",
@@ -205,10 +223,7 @@ $(document).ready(function() {
             }
         });
 
-
-
     });
-
 
 
 
@@ -232,6 +247,18 @@ $(document).ready(function() {
             precio_lista: $("#precio_lista").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
+            a: $("#a").val(),
+            b: $("#b").val(),
+            c: $("#c").val(),
+            d: $("#d").val(),
+            e: $("#e").val(),
+            f: $("#f").val(),
+            g: $("#g").val(),
+            h: $("#h").val(),
+            i: $("#i").val(),
+            j: $("#j").val(),
+            k: $("#k").val(),
+            l: $("#l").val(),
             min: min_global,
             max: max_global
         };
@@ -296,15 +323,9 @@ $(document).ready(function() {
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
                 { data: "name", name: "users.name" },
-                {
-                    data: "referencia_producto",
-                    name: "producto.referencia_producto"
-                },
+                { data: "referencia_producto", name: "producto.referencia_producto"},
                 { data: "precio_lista", name: "producto.precio_lista" },
-                {
-                    data: "precio_venta_publico",
-                    name: "producto.precio_venta_publico"
-                },
+                { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
             ],
             order: [[2, "asc"]],
@@ -326,7 +347,20 @@ $(document).ready(function() {
             precio_lista_2: $("#precio_lista_2").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
-            sec: $("#sec").val()
+            a: $("#a").val(),
+            b: $("#b").val(),
+            c: $("#c").val(),
+            d: $("#d").val(),
+            e: $("#e").val(),
+            f: $("#f").val(),
+            g: $("#g").val(),
+            h: $("#h").val(),
+            i: $("#i").val(),
+            j: $("#j").val(),
+            k: $("#k").val(),
+            l: $("#l").val(),
+            min: min_global,
+            max: max_global
         };
 
         // console.log(product);
@@ -374,6 +408,7 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#btn-curva").attr("disabled", true);
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -404,8 +439,146 @@ $(document).ready(function() {
         tabla.columns.adjust().responsive.recalc();
     };
 
+
+    function calcularPorcentaje(){
+        let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+        let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+        let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+        let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+        let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+        let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+        let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+        let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+        let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
+        let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
+        let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
+        let l = isNaN(parseFloat($("#l").val())) ? 0: parseFloat($("#l").val());
+        let total = a + b + c + d + e + f + g + h + i + j + k + l;
+        $("#total_percent").val(total+"%");
+        if(total == 100){
+            $("#btn-guardar").attr("disabled", false);
+            $("#btn-curva").removeClass("btn-secondary").addClass("btn-success");
+        }else{
+            $("#btn-guardar").attr("disabled", true);
+        }
+    }
+
+
+    //calculo porcentajes de los inputs
+    $("#a").keyup(function(){
+        calcularPorcentaje()
+
+    })
+
+    $("#b").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#c").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#d").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#e").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#f").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#g").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#h").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#i").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#j").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#k").keyup(function(){
+        calcularPorcentaje();
+
+    })
+    $("#l").keyup(function(){
+        calcularPorcentaje();
+
+    })
+
+
+
+
     init();
 });
+
+
+function tallas(){
+    if (genero_global == "2") {
+        if(genero_plus == "7"){
+
+            $("#ta").html("12W");
+            $("#tb").html("14W");
+            $("#tc").html("16W");
+            $("#td").html("18W");
+            $("#te").html("20W");
+            $("#tf").html("22W");
+            $("#tg").html("24W");
+            $("#th").html("26W");
+
+        }else{
+
+            $("#ta").html("0/0");
+            $("#tb").html("1/2");
+            $("#tc").html("3/4");
+            $("#td").html("5/6");
+            $("#te").html("7/8");
+            $("#tf").html("9/10");
+            $("#tg").html("11/12");
+            $("#th").html("13/14");
+            $("#ti").html("15/16");
+            $("#tj").html("17/18");
+            $("#tk").html("19/20");
+            $("#tl").html("21/22");
+
+        }
+    }
+    if (genero == "3" || genero == "4") {
+
+        $("#sub-genero").hide();
+        $("#ta").html("2");
+        $("#tb").html("4");
+        $("#tc").html("6");
+        $("#td").html("8");
+        $("#te").html("10");
+        $("#tf").html("12");
+        $("#tg").html("14");
+        $("#th").html("16");
+
+    }  else if (genero == "1") {
+
+        $("#ta").html("28");
+        $("#tb").html("29");
+        $("#tc").html("30");
+        $("#td").html("32");
+        $("#te").html("34");
+        $("#tf").html("36");
+        $("#tg").html("38");
+        $("#th").html("40");
+        $("#ti").html("42");
+        $("#tj").html("44");
+
+    }
+}
 
 function mostrar(id_prouct) {
     $.post("product/" + id_prouct, function(data, status) {
@@ -424,6 +597,18 @@ function mostrar(id_prouct) {
         $("#precio_lista_2").val(data.product.precio_lista_2);
         $("#precio_venta_publico").val(data.product.precio_venta_publico);
         $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
+        $("#a").val(data.curva.a);
+        $("#b").val(data.curva.b);
+        $("#c").val(data.curva.c);
+        $("#d").val(data.curva.d);
+        $("#e").val(data.curva.e);
+        $("#f").val(data.curva.f);
+        $("#g").val(data.curva.g);
+        $("#h").val(data.curva.h);
+        $("#i").val(data.curva.i);
+        $("#j").val(data.curva.j);
+        $("#k").val(data.curva.k);
+        $("#l").val(data.curva.l);
     });
 }
 
@@ -452,4 +637,5 @@ function eliminar(id_prouct){
 
 
 }
+
 

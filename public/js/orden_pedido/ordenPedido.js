@@ -1719,21 +1719,19 @@ $(document).ready(function() {
 
     $("#btn-copia").click(function(e){
         e.preventDefault();
-        console.log(a_red);
-        console.log(b_red);
-        console.log(c_red);
-        $("#a").val(a_red);
-        $("#b").val(b_red);
-        $("#c").val(c_red);
-        $("#d").val(d_red);
-        $("#e").val(e_red);
-        $("#f").val(f_red);
-        $("#g").val(g_red);
-        $("#h").val(h_red);
-        $("#i").val(i_red);
-        $("#j").val(j_red);
-        $("#k").val(k_red);
-        $("#l").val(l_red);
+        $("#a").prop('disabled') ? $("#a").val("") :  $("#a").val(a_red);
+        $("#b").prop('disabled') ? $("#b").val("") :  $("#b").val(b_red);
+        $("#c").prop('disabled') ? $("#c").val("") :  $("#c").val(c_red);
+        $("#d").prop('disabled') ? $("#d").val("") :  $("#d").val(d_red);
+        $("#e").prop('disabled') ? $("#e").val("") :  $("#e").val(e_red);
+        $("#f").prop('disabled') ? $("#f").val("") :  $("#f").val(f_red);
+        $("#g").prop('disabled') ? $("#g").val("") :  $("#g").val(g_red);
+        $("#h").prop('disabled') ? $("#h").val("") :  $("#h").val(h_red);
+        $("#i").prop('disabled') ? $("#i").val("") :  $("#i").val(i_red);
+        $("#j").prop('disabled') ? $("#j").val("") :  $("#j").val(j_red);
+        $("#k").prop('disabled') ? $("#k").val("") :  $("#k").val(k_red);
+        $("#l").prop('disabled') ? $("#l").val("") :  $("#l").val(l_red);
+
     });
 
     $("#btn-guardar").click(function(e) {

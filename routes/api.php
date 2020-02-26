@@ -52,6 +52,8 @@ Route::get('perdidas', 'PerdidaController@perdidas');
 
 Route::get('almacenes', 'AlmacenController@almacenes');
 
+Route::post('almacenes/atributos', 'AlmacenController@atributoAlmacen');
+
 Route::get('producto-terminado', 'ProductController@productoTerminado');
 
 Route::post('ordenes', 'OrdenPedidoController@ordenes');

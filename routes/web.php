@@ -90,6 +90,10 @@ Route::get('/perdida', function () {
     return view('sistema.perdidas.perdida');
 })->middleware('auth', 'admin:Perdidas');
 
+Route::get('/definir-atributo', function () {
+    return view('sistema.almacen.definirAtributo');
+})->middleware('auth', 'admin:Almacen');
+
 Route::get('/almacen', function () {
     return view('sistema.almacen.almacen');
 })->middleware('auth', 'admin:Almacen');
@@ -273,6 +277,7 @@ Route::get('/imprimir/perdida/{id}', 'PerdidaController@imprimir');
 //Almacen
 Route::get('almacen/lastdigit', 'AlmacenController@getDigits');
 Route::get('cortes-almacen', 'AlmacenController@selectCorte');
+Route::get('cortes/almacen', 'AlmacenController@corteSelect');
 Route::get('productos-almacen', 'AlmacenController@selectProducto');
 Route::post('/almacen', 'AlmacenController@store');
 Route::post('/almacen/detalle', 'AlmacenController@storeDetalle');
