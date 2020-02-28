@@ -76,7 +76,7 @@
                     <table id="detalle" class="table  mt-5 mb-3 mr-5 tabla-tallas text-sm" style="width:106%;">
                         <thead class="tabla-tallas">
                             <tr>
-                                <th class="talla_head">PLUS:</th>
+                                <th class="talla_head">PLUS</th>
                                 <td class="talla">12W</td>
                                 <td class="talla">14W</td>
                                 <td class="talla">16W</td>
@@ -95,7 +95,7 @@
                                 <td class="talla"></td>
                             </tr>
                             <tr>
-                                <th class="talla_head">MUJER:</th>
+                                <th class="talla_head">MUJER</th>
                                 <td class="talla">0/0  </td>
                                 <td class="talla">1/2  </td>
                                 <td class="talla">3/4  </td>
@@ -114,7 +114,7 @@
                                 <td class="talla"></td>
                             </tr>
                             <tr>
-                                <th class="talla_head">HOMBRE:</th>
+                                <th class="talla_head">HOMBRE</th>
                                 <td class="talla">28</td>
                                 <td class="talla">29</td>
                                 <td class="talla">30</td>
@@ -133,7 +133,7 @@
                                 <td class="talla"></td>
                             </tr>
                             <tr>
-                                <th class="talla_head">NIÑO:</th>
+                                <th class="talla_head">NIÑO</th>
                                 <td class="talla">2</td>
                                 <td class="talla">4</td>
                                 <td class="talla">6</td>
@@ -152,7 +152,7 @@
                                 <td class="talla"></td>
                             </tr>
                             <tr>
-                                <th class="talla_head">NIÑA:</th>
+                                <th class="talla_head">NIÑA</th>
                                 <td class="talla">2</td>
                                 <td class="talla">4</td>
                                 <td class="talla">6</td>
@@ -189,6 +189,7 @@
                                 <th class="talla_head">Red</th>
                                 <th class="talla_head">Man</th>
                             </tr>
+
                         </thead>
                         <tbody id="disponibles" class="text-sm">
 

@@ -28,7 +28,7 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row ">
                         <div class="col-md-3">
-                            <label for="nombre_cliente" class="">Marca(*):</label>
+                            <label for="nombre_cliente" class="">Marca:</label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="id" id="id_producto" value="">
                             <select name="marca" id="marca" class="form-control">
@@ -39,7 +39,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="">Genero(*):</label>
+                            <label for="" class="">Genero:</label>
                             <select name="genero" id="genero" class="form-control">
                                 <option value="" selected>Elige un genero...</option>
                                 <option value="1">Hombre</option>
@@ -49,7 +49,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="">Tipo producto(*):</label>
+                            <label for="" class="">Tipo producto:</label>
                             <select name="tipo_producto" id="tipo_producto" class="form-control">
                                 <option value="" selected>Elige un tipo...</option>
                                 <option value="0">Pantalon</option>
@@ -62,7 +62,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="">Categoria(*):</label>
+                            <label for="" class="">Categoria:</label>
                             <select name="categoria" id="categoria" class="form-control">
                                 <option value="">Elige una categoria</option>
                                 <option value="0">Basico</option>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2 mt-3">
-                            <label for="">Secuencia(*):</label>
+                            <label for="">Secuencia:</label>
                             <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control">
                         </div>
                         <div class="col-md-3 mt-3">
@@ -103,7 +103,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="precio_lista">Precio lista(*):</label>
+                            <label for="precio_lista">Precio lista:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="precio_venta_publico">Precio publico(*):</label>
+                            <label for="precio_venta_publico">Precio publico:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="row" id="precios_2">
                         <div class="col-md-4 mt-3">
-                            <label for="precio_lista">Precio lista Ref 2(*):</label>
+                            <label for="precio_lista">Precio lista Ref 2:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="precio_venta_publico">Precio publico Ref 2(*):</label>
+                            <label for="precio_venta_publico">Precio publico Ref 2:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>

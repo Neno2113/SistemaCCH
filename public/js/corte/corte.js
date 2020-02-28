@@ -1,3 +1,5 @@
+var total_alm;
+
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -54,10 +56,6 @@ $(document).ready(function() {
         $("#fila3").hide();
         productos();
 
-
-
-
-
     }
 
     //funcion para limpiar el formulario(los inputs)
@@ -71,6 +69,31 @@ $(document).ready(function() {
         $("#ancho_marcada").val("");
         $("#largo_marcada").val("");
         $("#aprovechamiento").val("");
+        $("#a").val("");
+        $("#b").val("");
+        $("#c").val("");
+        $("#d").val("");
+        $("#e").val("");
+        $("#f").val("");
+        $("#g").val("");
+        $("#h").val("");
+        $("#i").val("");
+        $("#j").val("");
+        $("#k").val("");
+        $("#l").val("");
+        $("#a_new").val("");
+        $("#b_new").val("");
+        $("#c_new").val("");
+        $("#d_new").val("");
+        $("#e_new").val("");
+        $("#f_new").val("");
+        $("#g_new").val("");
+        $("#h_new").val("");
+        $("#i_new").val("");
+        $("#j_new").val("");
+        $("#k_new").val("");
+        $("#l_new").val("");
+        $("#total_percent").val("");
     }
 
     // function ordenPedidoCod() {
@@ -500,6 +523,38 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    //Inventario
+                    $("#a_alm").html(datos.a_alm);
+                    $("#b_alm").html(datos.b_alm);
+                    $("#c_alm").html(datos.c_alm);
+                    $("#d_alm").html(datos.d_alm);
+                    $("#e_alm").html(datos.e_alm);
+                    $("#f_alm").html(datos.f_alm);
+                    $("#g_alm").html(datos.g_alm);
+                    $("#h_alm").html(datos.h_alm);
+                    $("#i_alm").html(datos.i_alm);
+                    $("#j_alm").html(datos.j_alm);
+                    $("#k_alm").html(datos.k_alm);
+                    $("#l_alm").html(datos.l_alm);
+                    //Curva actual
+                    $("#a_act").html(datos.a + "%");
+                    $("#b_act").html(datos.b + "%");
+                    $("#c_act").html(datos.c + "%");
+                    $("#d_act").html(datos.d + "%");
+                    $("#e_act").html(datos.e + "%");
+                    $("#f_act").html(datos.f + "%");
+                    $("#g_act").html(datos.g + "%");
+                    $("#h_act").html(datos.h + "%");
+                    $("#i_act").html(datos.i + "%");
+                    $("#j_act").html(datos.j + "%");
+                    $("#k_act").html(datos.k + "%");
+                    $("#l_act").html(datos.l + "%");
+                    $("#total_alm").val(datos.total_alm);
+                    total_alm = datos.total_alm;
+                    $("#fila-nuevo").show();
+                    $("#fila-actual").show();
+                    $("#fila-inventario").show();
+                    $("#fila-totales").show();
                     Swal.fire(
                         'Alerta',
                         'Esta referencia ya ha sido producia en otros cortes',
@@ -605,10 +660,7 @@ $(document).ready(function() {
                     'Corte creado correctamente.',
                     'success'
                     )
-                    limpiar();
 
-                    mostrarForm(false);
-                    $('#btn-generar').attr("disabled", false);
 
                     var talla = {
                         corte_id: datos.corte.id,
@@ -652,6 +704,13 @@ $(document).ready(function() {
                                 // tabla.ajax.reload();
                                 $("#edit-hide").css("background-color", "none");
                                 $("#cortes_listados").DataTable().ajax.reload();
+                                $("#btn-tallas").removeClass("btn-success").addClass("btn-secondary");
+                                $("#btn-sku").removeClass("btn-success").addClass("btn-secondary");
+                                $("#edit-hide").removeClass("btn-success").addClass("btn-secondary");
+                                limpiar();
+
+                                mostrarForm(false);
+                                $('#btn-generar').attr("disabled", false);
 
                             } else {
                                 bootbox.alert(
@@ -1000,8 +1059,13 @@ $(document).ready(function() {
             $("#fila1").hide();
             $("#fila2").hide();
             $("#fila3").hide();
+            $("#fila-nuevo").hide();
+            $("#fila-actual").hide();
+            $("#fila-inventario").hide();
+            $("#fila-totales").hide();
             $("#spiner").hide();
             $("#spiner2").hide();
+            $("#btn-curva").attr("disabled", true);
             // $("#rollo-edit").hide();
             $("#btn-guardar").attr("disabled", true);
             $("#btn-edit").hide();
@@ -1674,7 +1738,6 @@ function remover(id_rollo) {
     var rollo = {
         numero_corte: $("#numero_corte_gen").val(),
     };
-    // console.log(JSON.stringify(rollo));
 
     $.ajax({
         url: "remover/"+ id_rollo,
@@ -1702,3 +1765,208 @@ function remover(id_rollo) {
         }
     });
 }
+
+
+
+$("#a").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let result = (a / total_alm) * a;
+    result = result.toFixed(2);
+    $("#a_new").val(result);
+    calcularPorcentaje();
+
+})
+$("#b").keyup(function(){
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let result = (b / total_alm) * b;
+    result = result.toFixed(2);
+    $("#b_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#c").keyup(function(){
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let result = (c / total_alm) * c;
+    result = result.toFixed(2);
+    $("#c_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#d").keyup(function(){
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let result = (d / total_alm) * d;
+    result = result.toFixed(2);
+    $("#d_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#e").keyup(function(){
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let result = (e / total_alm) * e;
+    result = result.toFixed(2);
+    $("#e_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#f").keyup(function(){
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let result = (f / total_alm) * f;
+    result = result.toFixed(2);
+    $("#f_new").val(result);
+    calcularPorcentaje();
+
+})
+
+
+$("#g").keyup(function(){
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let result = (g / total_alm) * g;
+    result = result.toFixed(2);
+    $("#g_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#h").keyup(function(){
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+    let result = (h / total_alm) * h;
+    result = result.toFixed(2);
+    $("#h_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#i").keyup(function(){
+    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
+    let result = (i / total_alm) * i;
+    result = result.toFixed(2);
+    $("#i_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#j").keyup(function(){
+    let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
+    let result = (j / total_alm) * j;
+    result = result.toFixed(2);
+    $("#j_new").val(result);
+    calcularPorcentaje();
+
+})
+
+$("#k").keyup(function(){
+    let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
+    let result = (k / total_alm) * k;
+    result = result.toFixed(2);
+    $("#k_new").val(result);
+    calcularPorcentaje();
+})
+
+$("#l").keyup(function(){
+    let l = isNaN(parseFloat($("#l").val())) ? 0: parseFloat($("#l").val());
+    let result = (l / total_alm) * l;
+    result = result.toFixed(2);
+    $("#l_new").val(result);
+    calcularPorcentaje();
+
+})
+
+function calcularPorcentaje(){
+    let a = isNaN(parseFloat($("#a_new").val())) ? 0: parseFloat($("#a_new").val());
+    let b = isNaN(parseFloat($("#b_new").val())) ? 0: parseFloat($("#b_new").val());
+    let c = isNaN(parseFloat($("#c_new").val())) ? 0: parseFloat($("#c_new").val());
+    let d = isNaN(parseFloat($("#d_new").val())) ? 0: parseFloat($("#d_new").val());
+    let e = isNaN(parseFloat($("#e_new").val())) ? 0: parseFloat($("#e_new").val());
+    let f = isNaN(parseFloat($("#f_new").val())) ? 0: parseFloat($("#f_new").val());
+    let g = isNaN(parseFloat($("#g_new").val())) ? 0: parseFloat($("#g_new").val());
+    let h = isNaN(parseFloat($("#h_new").val())) ? 0: parseFloat($("#h_new").val());
+    let i = isNaN(parseFloat($("#i_new").val())) ? 0: parseFloat($("#i_new").val());
+    let j = isNaN(parseFloat($("#j_new").val())) ? 0: parseFloat($("#j_new").val());
+    let k = isNaN(parseFloat($("#k_new").val())) ? 0: parseFloat($("#k_new").val());
+    let l = isNaN(parseFloat($("#l_new").val())) ? 0: parseFloat($("#l_new").val());
+    let total = a + b + c + d + e + f + g + h + i + j + k + l;
+
+    $("#total_percent").val(total+"%");
+    if(total == 100){
+        $("#btn-curva").attr("disabled", false);
+    }else{
+        $("#btn-curva").attr("disabled", true);
+    }
+}
+
+
+$("#a_new, #b_new, #c_new, #d_new, #e_new, #f_new, #g_new, #h_new, #i_new, #j_new, #k_new, #l_new").keyup(function(){
+
+    calcularPorcentaje();
+})
+
+
+
+
+
+
+$("#btn-curva").click(function(e) {
+    e.preventDefault();
+
+    var curva = {
+        referencia: $("#productos").val(),
+        a: $("#a_new").val(),
+        b: $("#b_new").val(),
+        c: $("#c_new").val(),
+        d: $("#d_new").val(),
+        e: $("#e_new").val(),
+        f: $("#f_new").val(),
+        g: $("#g_new").val(),
+        h: $("#h_new").val(),
+        i: $("#i_new").val(),
+        j: $("#j_new").val(),
+        k: $("#k_new").val(),
+        l: $("#l_new").val()
+    };
+
+    console.log(JSON.stringify(curva));
+
+    $.ajax({
+        url: "curva/update",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(curva),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                Swal.fire(
+                    'Success',
+                    'Curva producto actualizada correctamente!',
+                    'success'
+                )
+                $("#a_new").val("");
+                $("#b_new").val("");
+                $("#c_new").val("");
+                $("#d_new").val("");
+                $("#e_new").val("");
+                $("#f_new").val("");
+                $("#g_new").val("");
+                $("#h_new").val("");
+                $("#i_new").val("");
+                $("#j_new").val("");
+                $("#k_new").val("");
+                $("#l_new").val("");
+
+
+            } else {
+                bootbox.alert("Ocurrio un error durante la actualizacion");
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+            );
+        }
+    });
+});
+
+

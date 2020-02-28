@@ -17,7 +17,7 @@ use App\Corte;
 use App\TallasPerdidas;
 use App\Talla;
 use App\Product;
-use App\Curva;
+use App\CurvaProducto;
 use App\ordenEmpaqueDetalle;
 
 class ordenEmpaqueController extends Controller
@@ -380,19 +380,21 @@ class ordenEmpaqueController extends Controller
                 $j_curva + $k_curva + $l_curva;
         }
 
+        $curva = CurvaProducto::where('producto_id', $producto_id)->latest()->first();
+
         //porcentaje total almacen
-        $a = ($a_curva / $total_curva) * 100;
-        $b = ($b_curva / $total_curva) * 100;
-        $c = ($c_curva / $total_curva) * 100;
-        $d = ($d_curva / $total_curva) * 100;
-        $e = ($e_curva / $total_curva) * 100;
-        $f = ($f_curva / $total_curva) * 100;
-        $g = ($g_curva / $total_curva) * 100;
-        $h = ($h_curva / $total_curva) * 100;
-        $i = ($i_curva / $total_curva) * 100;
-        $j = ($j_curva / $total_curva) * 100;
-        $k = ($k_curva / $total_curva) * 100;
-        $l = ($l_curva / $total_curva) * 100;
+        $a = $a_curva;
+        $b = $b_curva;
+        $c = $c_curva;
+        $d = $d_curva;
+        $e = $e_curva;
+        $f = $f_curva;
+        $g = $g_curva;
+        $h = $h_curva;
+        $i = $i_curva;
+        $j = $j_curva;
+        $k = $k_curva;
+        $l = $l_curva;
         $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         //calcular total con perdidas y segundas y ordenes de pedido
@@ -428,18 +430,18 @@ class ordenEmpaqueController extends Controller
         $total_alm = $a_alm + $b_alm + $c_alm + $d_alm + $e_alm + $f_alm + $g_alm + $h_alm + $i_alm + $j_alm + $k_alm + $l_alm;
 
         //porcentaje alm
-        $a_perc = ($a_alm / $total_alm) * 100;
-        $b_perc = ($b_alm / $total_alm) * 100;
-        $c_perc = ($c_alm / $total_alm) * 100;
-        $d_perc = ($d_alm / $total_alm) * 100;
-        $e_perc = ($e_alm / $total_alm) * 100;
-        $f_perc = ($f_alm / $total_alm) * 100;
-        $g_perc = ($g_alm / $total_alm) * 100;
-        $h_perc = ($h_alm / $total_alm) * 100;
-        $i_perc = ($i_alm / $total_alm) * 100;
-        $j_perc = ($j_alm / $total_alm) * 100;
-        $k_perc = ($k_alm / $total_alm) * 100;
-        $l_perc = ($l_alm / $total_alm) * 100;
+        $a_perc = $curva->a;
+        $b_perc = $curva->b;
+        $c_perc = $curva->c;
+        $d_perc = $curva->d;
+        $e_perc = $curva->e;
+        $f_perc = $curva->f;
+        $g_perc = $curva->g;
+        $h_perc = $curva->h;
+        $i_perc = $curva->i;
+        $j_perc = $curva->j;
+        $k_perc = $curva->k;
+        $l_perc = $curva->l;
 
         $total_perc = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
             $i_perc + $j_perc + $k_perc + $l_perc;
@@ -485,9 +487,6 @@ class ordenEmpaqueController extends Controller
         $j_red = round($cantidad * $j_ter);
         $k_red = round($cantidad * $k_ter);
         $l_red = round($cantidad * $l_ter);
-
-
-
 
         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
         $cant_total = round($cant_total);

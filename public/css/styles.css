@@ -413,6 +413,13 @@ table th.fit {
     width: 100% !important;
 }
 
+.tabla-perdidas td .new{
+    border: none;
+    font-weight: bold;
+    font-size: 13px;
+    width: 109%;
+}
+
 /* .ta {
     width: 100%;
     text-align: center;

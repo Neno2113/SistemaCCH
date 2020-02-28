@@ -225,6 +225,7 @@ Route::get('cortes_home', 'CorteController@corte_home');
 Route::post('verificacion/corte', 'CorteController@verificarCorte');
 Route::post('verificacion/producto', 'CorteController@verificarReferencia');
 Route::get('testSelectProduct', 'CorteController@testSelect2');
+Route::post('curva/update', 'CorteController@updateCurva');
 
 //Talla
 Route::post('/talla', 'TallaController@store');

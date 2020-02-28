@@ -261,8 +261,21 @@ class ProductController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'product' => $product,
-                'curva' => $curva
+                'a' => str_replace('.00', '', $curva->a),
+                'b' => str_replace('.00', '', $curva->b),
+                'c' => str_replace('.00', '', $curva->c),
+                'd' => str_replace('.00', '', $curva->d),
+                'e' => str_replace('.00', '', $curva->e),
+                'f' => str_replace('.00', '', $curva->f),
+                'g' => str_replace('.00', '', $curva->g),
+                'h' => str_replace('.00', '', $curva->h),
+                'i' => str_replace('.00', '', $curva->i),
+                'j' => str_replace('.00', '', $curva->j),
+                'k' => str_replace('.00', '', $curva->k),
+                'l' => str_replace('.00', '', $curva->l),
             ];
+
+
         } else {
             $data = [
                 'code' => 404,
@@ -297,7 +310,33 @@ class ProductController extends Controller
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
-            // $sec = $request->input('sec', true);
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
+
+               //validaciones
+            $a = intval(trim($a, "_"));
+            $b = intval(trim($b, "_"));
+            $c = intval(trim($c, "_"));
+            $d = intval(trim($d, "_"));
+            $e = intval(trim($e, "_"));
+            $f = intval(trim($f, "_"));
+            $g = intval(trim($g, "_"));
+            $h = intval(trim($h, "_"));
+            $i = intval(trim($i, "_"));
+            $j = intval(trim($j, "_"));
+            $k = intval(trim($k, "_"));
+            $l = intval(trim($l, "_"));
+
 
             $product = Product::find($id);
 
@@ -318,10 +357,27 @@ class ProductController extends Controller
 
             $product->save();
 
+            $curva =CurvaProducto::where('producto_id', $id)->first();
+            $curva->a = $a;
+            $curva->b = $b;
+            $curva->c = $c;
+            $curva->d = $d;
+            $curva->e = $e;
+            $curva->f = $f;
+            $curva->g = $g;
+            $curva->h = $h;
+            $curva->i = $i;
+            $curva->j = $j;
+            $curva->k = $k;
+            $curva->l = $l;
+
+            $curva->save();
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'product' => $product
+                'product' => $product,
+                'curva' => $curva
             ];
         }
 

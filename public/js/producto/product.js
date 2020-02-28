@@ -465,53 +465,8 @@ $(document).ready(function() {
 
 
     //calculo porcentajes de los inputs
-    $("#a").keyup(function(){
+    $("#a, #b, #c, #d, #e, #f, #g, #h, #i, #j, #k, #l").keyup(function(){
         calcularPorcentaje()
-
-    })
-
-    $("#b").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#c").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#d").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#e").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#f").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#g").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#h").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#i").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#j").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#k").keyup(function(){
-        calcularPorcentaje();
-
-    })
-    $("#l").keyup(function(){
-        calcularPorcentaje();
 
     })
 
@@ -552,7 +507,7 @@ function tallas(){
 
         }
     }
-    if (genero == "3" || genero == "4") {
+    if (genero_global == "3" || genero_global == "4") {
 
         $("#sub-genero").hide();
         $("#ta").html("2");
@@ -564,7 +519,7 @@ function tallas(){
         $("#tg").html("14");
         $("#th").html("16");
 
-    }  else if (genero == "1") {
+    }  else if (genero_global == "1") {
 
         $("#ta").html("28");
         $("#tb").html("29");
@@ -597,18 +552,29 @@ function mostrar(id_prouct) {
         $("#precio_lista_2").val(data.product.precio_lista_2);
         $("#precio_venta_publico").val(data.product.precio_venta_publico);
         $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
-        $("#a").val(data.curva.a);
-        $("#b").val(data.curva.b);
-        $("#c").val(data.curva.c);
-        $("#d").val(data.curva.d);
-        $("#e").val(data.curva.e);
-        $("#f").val(data.curva.f);
-        $("#g").val(data.curva.g);
-        $("#h").val(data.curva.h);
-        $("#i").val(data.curva.i);
-        $("#j").val(data.curva.j);
-        $("#k").val(data.curva.k);
-        $("#l").val(data.curva.l);
+        $("#a").val(data.a);
+        $("#b").val(data.b);
+        $("#c").val(data.c);
+        $("#d").val(data.d);
+        $("#e").val(data.e);
+        $("#f").val(data.f);
+        $("#g").val(data.g);
+        $("#h").val(data.h);
+        $("#i").val(data.i);
+        $("#j").val(data.j);
+        $("#k").val(data.k);
+        $("#l").val(data.l);
+        genero_global = data.product.genero;
+        genero_plus = data.product.referencia_producto.substring(3, 4);
+        let marca = data.product.referencia_producto.substring(0, 1);
+        let genero = data.product.referencia_producto.substring(1, 2);
+        let tipo_producto = data.product.referencia_producto.substring(2, 3);
+        let categoria = data.product.referencia_producto.substring(3, 4);
+        $("#marca").val(marca);
+        $("#genero").val(genero);
+        $("#tipo_producto").val(tipo_producto);
+        $("#categoria").val(categoria);
+        tallas();
     });
 }
 

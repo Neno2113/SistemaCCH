@@ -7,6 +7,8 @@ use App\Rollos;
 use App\Corte;
 use App\Talla;
 use App\Product;
+use App\CurvaProducto;
+use App\AlmacenDetalle;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
@@ -402,16 +404,45 @@ class CorteController extends Controller
         $id = $request->input('producto');
 
         $referencia = Product::find($id);
+        $curva = CurvaProducto::where('producto_id', $id)->first();
 
 
-        $corte = Corte::where('producto_id', $id)->first();
+        $corte = Corte::where('producto_id', $id)->latest()->first();
+
+        $tallasAlmacen = AlmacenDetalle::where('producto_id', $id)->get();
 
         if(!empty($corte)){
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'message' => 'Existe un corte con esta referencia',
-                'corte' => $corte
+                'corte' => $corte,
+                'a' => str_replace('.00', '', $curva->a),
+                'b' => str_replace('.00', '', $curva->b),
+                'c' => str_replace('.00', '', $curva->c),
+                'd' => str_replace('.00', '', $curva->d),
+                'e' => str_replace('.00', '', $curva->e),
+                'f' => str_replace('.00', '', $curva->f),
+                'g' => str_replace('.00', '', $curva->g),
+                'h' => str_replace('.00', '', $curva->h),
+                'i' => str_replace('.00', '', $curva->i),
+                'j' => str_replace('.00', '', $curva->j),
+                'k' => str_replace('.00', '', $curva->k),
+                'l' => str_replace('.00', '', $curva->l),
+                'a_alm'=> $tallasAlmacen->sum('a'),
+                'b_alm'=> $tallasAlmacen->sum('b'),
+                'c_alm'=> $tallasAlmacen->sum('c'),
+                'd_alm'=> $tallasAlmacen->sum('d'),
+                'e_alm'=> $tallasAlmacen->sum('e'),
+                'f_alm'=> $tallasAlmacen->sum('f'),
+                'g_alm'=> $tallasAlmacen->sum('g'),
+                'h_alm'=> $tallasAlmacen->sum('h'),
+                'i_alm'=> $tallasAlmacen->sum('i'),
+                'j_alm'=> $tallasAlmacen->sum('j'),
+                'k_alm'=> $tallasAlmacen->sum('k'),
+                'l_alm'=> $tallasAlmacen->sum('l'),
+                'total_alm'=> $tallasAlmacen->sum('total'),
+
             ];
 
         }else{
@@ -423,4 +454,69 @@ class CorteController extends Controller
         }
         return response()->json($data, $data['code']);
     }
+
+    public function updateCurva(Request $request){
+        $id = $request->input('referencia');
+        $a = $request->input('a');
+        $b = $request->input('b');
+        $c = $request->input('c');
+        $d = $request->input('d');
+        $e = $request->input('e');
+        $f = $request->input('f');
+        $g = $request->input('g');
+        $h = $request->input('h');
+        $i = $request->input('i');
+        $j = $request->input('j');
+        $k = $request->input('k');
+        $l = $request->input('l');
+
+           //validaciones
+        $a = intval(trim($a, "_"));
+        $b = intval(trim($b, "_"));
+        $c = intval(trim($c, "_"));
+        $d = intval(trim($d, "_"));
+        $e = intval(trim($e, "_"));
+        $f = intval(trim($f, "_"));
+        $g = intval(trim($g, "_"));
+        $h = intval(trim($h, "_"));
+        $i = intval(trim($i, "_"));
+        $j = intval(trim($j, "_"));
+        $k = intval(trim($k, "_"));
+        $l = intval(trim($l, "_"));
+
+        $curva = CurvaProducto::where('producto_id', $id)->latest()->first();
+
+        if(is_object($curva)){
+            $curva->a = $a;
+            $curva->b = $b;
+            $curva->c = $c;
+            $curva->d = $d;
+            $curva->e = $e;
+            $curva->f = $f;
+            $curva->g = $g;
+            $curva->h = $h;
+            $curva->i = $i;
+            $curva->j = $j;
+            $curva->k = $k;
+            $curva->l = $l;
+
+            $curva->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'curva' => $curva
+            ];
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'Ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
 }
+
+

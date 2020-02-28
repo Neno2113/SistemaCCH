@@ -26,7 +26,7 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="">Año(*):</label>
+                            <label for="">Año:</label>
                             {{-- <input type="text" name="numero_corte" id="numero_corte"
                                 class="form-control text-center " readonly> --}}
                             <input type="number" min="1900" max="2099" step="1" value="2019" id="year" class="form-control">
@@ -34,8 +34,8 @@
                             <input type="hidden" name="id" id="id" value="">
                         </div>
                         <div class="col-md-2">
-                            <label for="">Secuencia(*):</label>
-                            <input type="number" min="001" max="999" step="1"  id="sec_manual" class="form-control">
+                            <label for="">Secuencia:</label>
+                            <input type="number" min="001" max="999" step="1" value="1"  id="sec_manual" class="form-control">
                         </div>
                         <div class="col-md-2 mt-4 pt-2">
                             <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-cut"></i> Generar</button>
@@ -252,15 +252,18 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <label for="">Producto: </label>
+                    <label for="" class="mt-1">Producto</label>
                     <div class="col-md-3 mb-2">
                         <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center font-weight-bold">
                     </div>
                 </div>
+                <br>
+                <hr>
                 <div class="row">
                     <table class="table  table-bordered tabla-perdidas mt-4">
                         <thead>
                             <tr>
+                                <th>Tallas</th>
                                 <th id="ta">A</th>
                                 <th id="tb">B</th>
                                 <th id="tc">C</th>
@@ -275,64 +278,309 @@
                                 <th id="tl">L</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr id="fila-inventario">
+                                <th>Inventario</th>
+                                <td id="a_alm"></td>
+                                <td id="b_alm"></td>
+                                <td id="c_alm"></td>
+                                <td id="d_alm"></td>
+                                <td id="e_alm"></td>
+                                <td id="f_alm"></td>
+                                <td id="g_alm"></td>
+                                <td id="h_alm"></td>
+                                <td id="i_alm"></td>
+                                <td id="j_alm"></td>
+                                <td id="k_alm"></td>
+                                <td id="l_alm"></td>
+                            </tr>
+                            <tr id="fila-actual">
+                                <th>% Actual</th>
+                                <td id="a_act"></td>
+                                <td id="b_act"></td>
+                                <td id="c_act"></td>
+                                <td id="d_act"></td>
+                                <td id="e_act"></td>
+                                <td id="f_act"></td>
+                                <td id="g_act"></td>
+                                <td id="h_act"></td>
+                                <td id="i_act"></td>
+                                <td id="j_act"></td>
+                                <td id="k_act"></td>
+                                <td id="l_act"></td>
+                            </tr>
+                            <tr>
+                                <th>N. Corte</th>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="da">A</label> --}}
+                                    <input type="text" name="" id="a"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="db">B</label> --}}
+                                    <input type="text" name="" id="b"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dc">C</label> --}}
+                                    <input type="text" name="" id="c"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dd">D</label> --}}
+                                    <input type="text" name="" id="d"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="de">E</label> --}}
+                                    <input type="text" name="" id="e"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="df">F</label> --}}
+                                    <input type="text" name="" id="f"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dg">G</label> --}}
+                                    <input type="text" name="" id="g"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dh">H</label> --}}
+                                    <input type="text" name="" id="h"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="di">I</label> --}}
+                                    <input type="text" name="" id="i"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dj">J</label> --}}
+                                    <input type="text" name="" id="j"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dk">K</label> --}}
+                                    <input type="text" name="" id="k"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dl">L</label> --}}
+                                    <input type="text" name="" id="l"
+                                        class="form-control text-center detalle"
+                                        data-inputmask='"mask": "9[9[9]]"' data-mask>
+
+                                </td>
+                            </tr>
+                            <tr id="fila-nuevo">
+                                <th>% Nuevo</th>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="da">A</label> --}}
+                                    <input type="text" name="" id="a_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="db">B</label> --}}
+                                    <input type="text" name="" id="b_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dc">C</label> --}}
+                                    <input type="text" name="" id="c_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dd">D</label> --}}
+                                    <input type="text" name="" id="d_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="de">E</label> --}}
+                                    <input type="text" name="" id="e_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="df">F</label> --}}
+                                    <input type="text" name="" id="f_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dg">G</label> --}}
+                                    <input type="text" name="" id="g_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dh">H</label> --}}
+                                    <input type="text" name="" id="h_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="di">I</label> --}}
+                                    <input type="text" name="" id="i_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dj">J</label> --}}
+                                    <input type="text" name="" id="j_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dk">K</label> --}}
+                                    <input type="text" name="" id="k_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dl">L</label> --}}
+                                    <input type="text" name="" id="l_new"
+                                        class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
                         <tr id="tallas">
 
                         </tr>
 
                     </table>
                 </div>
-                <br>
-                <div class="row">
+
+                <div class="row" id="fila-totales">
+                    <label for="" class="mt-1">Total inventario</label>
+                    <div class="col-md-3 mb-2">
+                        <input type="text" name="total_alm" id="total_alm" class="form-control text-center font-weight-bold">
+                    </div>
+
+                    <label for="" class="mt-1 ml-4">Total % nuevo</label>
+                    <div class="col-md-3 mb-2">
+                        <input type="text" name="total_percent" id="total_percent" class="form-control text-center font-weight-bold">
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <button class="btn btn-primary ml-2" id="btn-curva"><i class="fas fa-chart-line"></i> Guardar curva</button>
+                    </div>
+
+                </div>
+                {{-- <div class="row">
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sa">A</label>
+
                         <input type="text" name="" id="a" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sb">B</label>
+
                         <input type="text" name="" id="b" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2 ">
-                        <label for="" class="ml-4" id="sc">C</label>
+
                         <input type="text" name="" id="c" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sd">D</label>
+
                         <input type="text" name="" id="d" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="se">E</label>
+
                         <input type="text" name="" id="e" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sf">F</label>
+
                         <input type="text" name="" id="f" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sg">G</label>
+
                         <input type="text" name="" id="g" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sh">H</label>
+
                         <input type="text" name="" id="h" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="si">I</label>
+
                         <input type="text" name="" id="i" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sj">J</label>
+
                         <input type="text" name="" id="j" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sk">K</label>
+
                         <input type="text" name="" id="k" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
                     <div class="col-lg-1 col-md-2">
-                        <label for="" class="ml-4" id="sl">L</label>
+
                         <input type="text" name="" id="l" class="form-control" data-inputmask='"mask": "999"' data-mask>
                     </div>
-                </div>
-                <hr>
+
                 {{-- <div class="row">
                     <label for="" class="mt-3">Total:</label>
                     <div class="col-md-6 mt-3">
@@ -395,6 +643,7 @@
                             </tr>
                         </thead>
                         <tbody id="tallas">
+
                             <tr>
                                 <td>
                                     <button class="btn btn-secondary btn-block" id="btn-asignar2" value="A">A</button>
