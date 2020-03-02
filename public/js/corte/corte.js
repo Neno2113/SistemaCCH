@@ -555,6 +555,7 @@ $(document).ready(function() {
                     $("#fila-actual").show();
                     $("#fila-inventario").show();
                     $("#fila-totales").show();
+                    $("#mod_curva").val(1);
                     Swal.fire(
                         'Alerta',
                         'Esta referencia ya ha sido producia en otros cortes',
@@ -621,7 +622,18 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-
+                $("#a_act").html(datos.responseJSON.a + "%");
+                $("#b_act").html(datos.responseJSON.b + "%");
+                $("#c_act").html(datos.responseJSON.c + "%");
+                $("#d_act").html(datos.responseJSON.d + "%");
+                $("#e_act").html(datos.responseJSON.e + "%");
+                $("#f_act").html(datos.responseJSON.f + "%");
+                $("#g_act").html(datos.responseJSON.g + "%");
+                $("#h_act").html(datos.responseJSON.h + "%");
+                $("#i_act").html(datos.responseJSON.i + "%");
+                $("#j_act").html(datos.responseJSON.j + "%");
+                $("#k_act").html(datos.responseJSON.k + "%");
+                $("#l_act").html(datos.responseJSON.l + "%");
             }
         });
 
@@ -643,8 +655,6 @@ $(document).ready(function() {
             aprovechamiento: $("#aprovechamiento").val()
         };
 
-        console.log(JSON.stringify(corte));
-
         // funcion que se ejecuta con el callback de la funcion para guardar
         //esta almacena las cantidades por tallas
         $.ajax({
@@ -661,7 +671,6 @@ $(document).ready(function() {
                     'success'
                     )
 
-
                     var talla = {
                         corte_id: datos.corte.id,
                         a: $("#a").val(),
@@ -675,7 +684,8 @@ $(document).ready(function() {
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
-                        l: $("#l").val()
+                        l: $("#l").val(),
+                        mod_curva: $("#mod_curva").val()
                     };
 
                     $.ajax({
@@ -874,7 +884,8 @@ $(document).ready(function() {
                         i: $("#i").val(),
                         j: $("#j").val(),
                         k: $("#k").val(),
-                        l: $("#l").val()
+                        l: $("#l").val(),
+                        mod_curva: $("#mod_curva").val()
                     };
 
                     $.ajax({
@@ -934,7 +945,6 @@ $(document).ready(function() {
 
     $("#btn-buscar").click(function(e) {
         e.preventDefault();
-
 
         var id = $("#cortesSearch").val()
 
@@ -1060,7 +1070,7 @@ $(document).ready(function() {
             $("#fila2").hide();
             $("#fila3").hide();
             $("#fila-nuevo").hide();
-            $("#fila-actual").hide();
+            // $("#fila-actual").hide();
             $("#fila-inventario").hide();
             $("#fila-totales").hide();
             $("#spiner").hide();
@@ -1770,7 +1780,7 @@ function remover(id_rollo) {
 
 $("#a").keyup(function(){
     let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let result = (a / total_alm) * a;
+    let result = (a / total_alm) * 100;
     result = result.toFixed(2);
     $("#a_new").val(result);
     calcularPorcentaje();
@@ -1778,7 +1788,7 @@ $("#a").keyup(function(){
 })
 $("#b").keyup(function(){
     let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let result = (b / total_alm) * b;
+    let result = (b / total_alm) * 100;
     result = result.toFixed(2);
     $("#b_new").val(result);
     calcularPorcentaje();
@@ -1787,7 +1797,7 @@ $("#b").keyup(function(){
 
 $("#c").keyup(function(){
     let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let result = (c / total_alm) * c;
+    let result = (c / total_alm) * 100;
     result = result.toFixed(2);
     $("#c_new").val(result);
     calcularPorcentaje();
@@ -1796,7 +1806,7 @@ $("#c").keyup(function(){
 
 $("#d").keyup(function(){
     let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let result = (d / total_alm) * d;
+    let result = (d / total_alm) * 100;
     result = result.toFixed(2);
     $("#d_new").val(result);
     calcularPorcentaje();
@@ -1805,7 +1815,7 @@ $("#d").keyup(function(){
 
 $("#e").keyup(function(){
     let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let result = (e / total_alm) * e;
+    let result = (e / total_alm) * 100;
     result = result.toFixed(2);
     $("#e_new").val(result);
     calcularPorcentaje();
@@ -1814,7 +1824,7 @@ $("#e").keyup(function(){
 
 $("#f").keyup(function(){
     let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let result = (f / total_alm) * f;
+    let result = (f / total_alm) * 100;
     result = result.toFixed(2);
     $("#f_new").val(result);
     calcularPorcentaje();
@@ -1824,7 +1834,7 @@ $("#f").keyup(function(){
 
 $("#g").keyup(function(){
     let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
-    let result = (g / total_alm) * g;
+    let result = (g / total_alm) * 100;
     result = result.toFixed(2);
     $("#g_new").val(result);
     calcularPorcentaje();
@@ -1833,7 +1843,7 @@ $("#g").keyup(function(){
 
 $("#h").keyup(function(){
     let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
-    let result = (h / total_alm) * h;
+    let result = (h / total_alm) * 100;
     result = result.toFixed(2);
     $("#h_new").val(result);
     calcularPorcentaje();
@@ -1842,7 +1852,7 @@ $("#h").keyup(function(){
 
 $("#i").keyup(function(){
     let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
-    let result = (i / total_alm) * i;
+    let result = (i / total_alm) * 100;
     result = result.toFixed(2);
     $("#i_new").val(result);
     calcularPorcentaje();
@@ -1851,7 +1861,7 @@ $("#i").keyup(function(){
 
 $("#j").keyup(function(){
     let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
-    let result = (j / total_alm) * j;
+    let result = (j / total_alm) * 100;
     result = result.toFixed(2);
     $("#j_new").val(result);
     calcularPorcentaje();
@@ -1860,7 +1870,7 @@ $("#j").keyup(function(){
 
 $("#k").keyup(function(){
     let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
-    let result = (k / total_alm) * k;
+    let result = (k / total_alm) * 100;
     result = result.toFixed(2);
     $("#k_new").val(result);
     calcularPorcentaje();
@@ -1868,7 +1878,7 @@ $("#k").keyup(function(){
 
 $("#l").keyup(function(){
     let l = isNaN(parseFloat($("#l").val())) ? 0: parseFloat($("#l").val());
-    let result = (l / total_alm) * l;
+    let result = (l / total_alm) * 100;
     result = result.toFixed(2);
     $("#l_new").val(result);
     calcularPorcentaje();
@@ -1891,7 +1901,7 @@ function calcularPorcentaje(){
     let total = a + b + c + d + e + f + g + h + i + j + k + l;
 
     $("#total_percent").val(total+"%");
-    if(total == 100){
+    if(total == 100.00){
         $("#btn-curva").attr("disabled", false);
     }else{
         $("#btn-curva").attr("disabled", true);

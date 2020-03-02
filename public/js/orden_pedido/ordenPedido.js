@@ -1613,7 +1613,9 @@ $(document).ready(function() {
                 precio: $("#precio").val(),
                 producto_id: $("#productoSearch").val(),
                 fecha_entrega: $("#fecha_proceso").val(),
-                segunda: $("#venta_segunda").val()
+                segunda: $("#venta_segunda").val(),
+                orden_detallada: 1
+
             };
         }else{
             var ordenDetalle = {

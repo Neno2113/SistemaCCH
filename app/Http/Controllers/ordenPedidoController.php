@@ -605,6 +605,7 @@ class ordenPedidoController extends Controller
         $precio = $request->input('precio');
         $fecha_entrega = $request->input('fecha_entrega');
         $segunda_form = $request->input('segunda');
+        $orden_redistribuida = $request->input('orden_detallada');
         // echo $segunda_input;
         // if(!empty($segunda_input)){
         //     echo "True";
@@ -718,6 +719,10 @@ class ordenPedidoController extends Controller
             }
         } else {
             $orden_detalle->orden_pedido_id = $orden_id;
+        }
+
+        if(empty($orden_redistribuida)){
+            $orden_redistribuida = 0;
         }
 
 

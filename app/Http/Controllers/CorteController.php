@@ -9,6 +9,7 @@ use App\Talla;
 use App\Product;
 use App\CurvaProducto;
 use App\AlmacenDetalle;
+use App\ordenPedidoDetalle;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
@@ -411,6 +412,8 @@ class CorteController extends Controller
 
         $tallasAlmacen = AlmacenDetalle::where('producto_id', $id)->get();
 
+        $tallasOrden = ordenPedidoDetalle::where('producto_id', $id)->get();
+
         if(!empty($corte)){
             $data = [
                 'code' => 200,
@@ -429,27 +432,39 @@ class CorteController extends Controller
                 'j' => str_replace('.00', '', $curva->j),
                 'k' => str_replace('.00', '', $curva->k),
                 'l' => str_replace('.00', '', $curva->l),
-                'a_alm'=> $tallasAlmacen->sum('a'),
-                'b_alm'=> $tallasAlmacen->sum('b'),
-                'c_alm'=> $tallasAlmacen->sum('c'),
-                'd_alm'=> $tallasAlmacen->sum('d'),
-                'e_alm'=> $tallasAlmacen->sum('e'),
-                'f_alm'=> $tallasAlmacen->sum('f'),
-                'g_alm'=> $tallasAlmacen->sum('g'),
-                'h_alm'=> $tallasAlmacen->sum('h'),
-                'i_alm'=> $tallasAlmacen->sum('i'),
-                'j_alm'=> $tallasAlmacen->sum('j'),
-                'k_alm'=> $tallasAlmacen->sum('k'),
-                'l_alm'=> $tallasAlmacen->sum('l'),
-                'total_alm'=> $tallasAlmacen->sum('total'),
+                'a_alm'=> ($tallasAlmacen->sum('a') - $tallasOrden->sum('a') < 0) ? 0 : $tallasAlmacen->sum('a') - $tallasOrden->sum('a'),
+                'b_alm'=> ($tallasAlmacen->sum('b') - $tallasOrden->sum('b') < 0) ? 0 : $tallasAlmacen->sum('b') - $tallasOrden->sum('b'),
+                'c_alm'=> ($tallasAlmacen->sum('c') - $tallasOrden->sum('c') < 0) ? 0 : $tallasAlmacen->sum('c') - $tallasOrden->sum('c'),
+                'd_alm'=> ($tallasAlmacen->sum('d') - $tallasOrden->sum('d') < 0) ? 0 : $tallasAlmacen->sum('d') - $tallasOrden->sum('d'),
+                'e_alm'=> ($tallasAlmacen->sum('e') - $tallasOrden->sum('e') < 0) ? 0 : $tallasAlmacen->sum('e') - $tallasOrden->sum('e'),
+                'f_alm'=> ($tallasAlmacen->sum('f') - $tallasOrden->sum('f') < 0) ? 0 : $tallasAlmacen->sum('f') - $tallasOrden->sum('f'),
+                'g_alm'=> ($tallasAlmacen->sum('g') - $tallasOrden->sum('g') < 0) ? 0 : $tallasAlmacen->sum('g') - $tallasOrden->sum('g'),
+                'h_alm'=> ($tallasAlmacen->sum('h') - $tallasOrden->sum('h') < 0) ? 0 : $tallasAlmacen->sum('h') - $tallasOrden->sum('h'),
+                'i_alm'=> ($tallasAlmacen->sum('i') - $tallasOrden->sum('i') < 0) ? 0 : $tallasAlmacen->sum('i') - $tallasOrden->sum('i'),
+                'j_alm'=> ($tallasAlmacen->sum('j') - $tallasOrden->sum('j') < 0) ? 0 : $tallasAlmacen->sum('j') - $tallasOrden->sum('j'),
+                'k_alm'=> ($tallasAlmacen->sum('k') - $tallasOrden->sum('k') < 0) ? 0 : $tallasAlmacen->sum('k') - $tallasOrden->sum('k'),
+                'l_alm'=> ($tallasAlmacen->sum('l') - $tallasOrden->sum('l') < 0) ? 0 : $tallasAlmacen->sum('l') - $tallasOrden->sum('l'),
+                'total_alm'=> ($tallasAlmacen->sum('total') - $tallasOrden->sum('total') < 0) ? 0 : $tallasAlmacen->sum('total') - $tallasOrden->sum('total'),
 
             ];
 
         }else{
             $data = [
                 'code' => 400,
-                'status' => 'erros',
-                'message' => 'No existe un corte con este referencia'
+                'status' => 'error',
+                'message' => 'No existe un corte con este referencia',
+                'a' => str_replace('.00', '', $curva->a),
+                'b' => str_replace('.00', '', $curva->b),
+                'c' => str_replace('.00', '', $curva->c),
+                'd' => str_replace('.00', '', $curva->d),
+                'e' => str_replace('.00', '', $curva->e),
+                'f' => str_replace('.00', '', $curva->f),
+                'g' => str_replace('.00', '', $curva->g),
+                'h' => str_replace('.00', '', $curva->h),
+                'i' => str_replace('.00', '', $curva->i),
+                'j' => str_replace('.00', '', $curva->j),
+                'k' => str_replace('.00', '', $curva->k),
+                'l' => str_replace('.00', '', $curva->l),
             ];
         }
         return response()->json($data, $data['code']);

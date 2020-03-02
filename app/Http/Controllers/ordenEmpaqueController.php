@@ -327,7 +327,9 @@ class ordenEmpaqueController extends Controller
             array_push($almacenes, $almacen[$i]['id']);
         }
 
-        $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();
+        $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)
+        ->where('orden_redistribuida', 'LIKE', 1)
+        ->get();
 
         //cantidad
         $cantidad = $ordenDetalle->cant_red;
@@ -364,7 +366,7 @@ class ordenEmpaqueController extends Controller
 
             "test";
             //curva
-            $a_curva = $tallasCurva->sum('a') + $tallasCorte->sum('a');
+            $a_curva = $tallasCurva->sum('a') + $tallasCorte->sum('a') ;
             $b_curva = $tallasCurva->sum('b') + $tallasCorte->sum('b');
             $c_curva = $tallasCurva->sum('c') + $tallasCorte->sum('c');
             $d_curva = $tallasCurva->sum('d') + $tallasCorte->sum('d');
@@ -382,37 +384,25 @@ class ordenEmpaqueController extends Controller
 
         $curva = CurvaProducto::where('producto_id', $producto_id)->latest()->first();
 
-        //porcentaje total almacen
-        $a = $a_curva;
-        $b = $b_curva;
-        $c = $c_curva;
-        $d = $d_curva;
-        $e = $e_curva;
-        $f = $f_curva;
-        $g = $g_curva;
-        $h = $h_curva;
-        $i = $i_curva;
-        $j = $j_curva;
-        $k = $k_curva;
-        $l = $l_curva;
-        $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
+        // $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         //calcular total con perdidas y segundas y ordenes de pedido
 
         $tallasAlmacen = AlmacenDetalle::where('producto_id', $producto_id)->get();
 
-        $a_alm = $tallasAlmacen->sum('a') - $tallasSegundas->sum('a');
-        $b_alm = $tallasAlmacen->sum('b') - $tallasSegundas->sum('b');
-        $c_alm = $tallasAlmacen->sum('c') - $tallasSegundas->sum('c');
-        $d_alm = $tallasAlmacen->sum('d') - $tallasSegundas->sum('d');
-        $e_alm = $tallasAlmacen->sum('e') - $tallasSegundas->sum('e');
-        $f_alm = $tallasAlmacen->sum('f') - $tallasSegundas->sum('f');
-        $g_alm = $tallasAlmacen->sum('g') - $tallasSegundas->sum('g');
-        $h_alm = $tallasAlmacen->sum('h') - $tallasSegundas->sum('h');
-        $i_alm = $tallasAlmacen->sum('i') - $tallasSegundas->sum('i');
-        $j_alm = $tallasAlmacen->sum('j') - $tallasSegundas->sum('j');
-        $k_alm = $tallasAlmacen->sum('k') - $tallasSegundas->sum('k');
-        $l_alm = $tallasAlmacen->sum('l') - $tallasSegundas->sum('l');
+        $a_alm = $tallasAlmacen->sum('a') - $tallasSegundas->sum('a') - $tallasOrdenes->sum('a');
+        $b_alm = $tallasAlmacen->sum('b') - $tallasSegundas->sum('b') - $tallasOrdenes->sum('b');
+        $c_alm = $tallasAlmacen->sum('c') - $tallasSegundas->sum('c') - $tallasOrdenes->sum('c');
+        $d_alm = $tallasAlmacen->sum('d') - $tallasSegundas->sum('d') - $tallasOrdenes->sum('d');
+        $e_alm = $tallasAlmacen->sum('e') - $tallasSegundas->sum('e') - $tallasOrdenes->sum('e');
+        $f_alm = $tallasAlmacen->sum('f') - $tallasSegundas->sum('f') - $tallasOrdenes->sum('f');
+        $g_alm = $tallasAlmacen->sum('g') - $tallasSegundas->sum('g') - $tallasOrdenes->sum('g');
+        $h_alm = $tallasAlmacen->sum('h') - $tallasSegundas->sum('h') - $tallasOrdenes->sum('h');
+        $i_alm = $tallasAlmacen->sum('i') - $tallasSegundas->sum('i') - $tallasOrdenes->sum('i');
+        $j_alm = $tallasAlmacen->sum('j') - $tallasSegundas->sum('j') - $tallasOrdenes->sum('j');
+        $k_alm = $tallasAlmacen->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k');
+        $l_alm = $tallasAlmacen->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l');
 
         $a_alm = ($a_alm < 0 ? 0 : $a_alm);
         $b_alm = ($b_alm < 0 ? 0 : $b_alm);
@@ -430,21 +420,38 @@ class ordenEmpaqueController extends Controller
         $total_alm = $a_alm + $b_alm + $c_alm + $d_alm + $e_alm + $f_alm + $g_alm + $h_alm + $i_alm + $j_alm + $k_alm + $l_alm;
 
         //porcentaje alm
-        $a_perc = $curva->a;
-        $b_perc = $curva->b;
-        $c_perc = $curva->c;
-        $d_perc = $curva->d;
-        $e_perc = $curva->e;
-        $f_perc = $curva->f;
-        $g_perc = $curva->g;
-        $h_perc = $curva->h;
-        $i_perc = $curva->i;
-        $j_perc = $curva->j;
-        $k_perc = $curva->k;
-        $l_perc = $curva->l;
+        $a_perc = ($a_alm / $total_alm) * 100;
+        $b_perc = ($b_alm / $total_alm) * 100;
+        $c_perc = ($c_alm / $total_alm) * 100;
+        $d_perc = ($d_alm / $total_alm) * 100;
+        $e_perc = ($e_alm / $total_alm) * 100;
+        $f_perc = ($f_alm / $total_alm) * 100;
+        $g_perc = ($g_alm / $total_alm) * 100;
+        $h_perc = ($h_alm / $total_alm) * 100;
+        $i_perc = ($i_alm / $total_alm) * 100;
+        $j_perc = ($j_alm / $total_alm) * 100;
+        $k_perc = ($k_alm / $total_alm) * 100;
+        $l_perc = ($l_alm / $total_alm) * 100;
+
+
+        //porcentaje curva general
+        // $tallas = Talla::
+
+        $a = $curva->a;
+        $b = $curva->b;
+        $c = $curva->c;
+        $d = $curva->d;
+        $e = $curva->e;
+        $f = $curva->f;
+        $g = $curva->g;
+        $h = $curva->h;
+        $i = $curva->i;
+        $j = $curva->j;
+        $k = $curva->k;
+        $l = $curva->l;
 
         $total_perc = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
-            $i_perc + $j_perc + $k_perc + $l_perc;
+        $i_perc + $j_perc + $k_perc + $l_perc;
 
         //segundo calculo
         $a_seg = ($a_alm <= 0) ? 0.1 : ($a_perc - $a) / $a;
@@ -541,18 +548,18 @@ class ordenEmpaqueController extends Controller
         // }
 
         //validacion
-        $a_red = ($a_red < 1 ? 0 : $a_red);
-        $b_red = ($b_red < 1 ? 0 : $b_red);
-        $c_red = ($c_red < 1 ? 0 : $c_red);
-        $d_red = ($d_red < 1 ? 0 : $d_red);
-        $e_red = ($e_red < 1 ? 0 : $e_red);
-        $f_red = ($f_red < 1 ? 0 : $f_red);
-        $g_red = ($g_red < 1 ? 0 : $g_red);
-        $h_red = ($h_red < 1 ? 0 : $h_red);
-        $i_red = ($i_red < 1 ? 0 : $i_red);
-        $j_red = ($j_red < 1 ? 0 : $j_red);
-        $k_red = ($k_red < 1 ? 0 : $k_red);
-        $l_red = ($l_red < 1 ? 0 : $l_red);
+        // $a_red = ($a_red < 1 ? 0 : $a_red);
+        // $b_red = ($b_red < 1 ? 0 : $b_red);
+        // $c_red = ($c_red < 1 ? 0 : $c_red);
+        // $d_red = ($d_red < 1 ? 0 : $d_red);
+        // $e_red = ($e_red < 1 ? 0 : $e_red);
+        // $f_red = ($f_red < 1 ? 0 : $f_red);
+        // $g_red = ($g_red < 1 ? 0 : $g_red);
+        // $h_red = ($h_red < 1 ? 0 : $h_red);
+        // $i_red = ($i_red < 1 ? 0 : $i_red);
+        // $j_red = ($j_red < 1 ? 0 : $j_red);
+        // $k_red = ($k_red < 1 ? 0 : $k_red);
+        // $l_red = ($l_red < 1 ? 0 : $l_red);
 
         // $a_red = round($a_red);
         // $b_red = round($b_red);
@@ -569,8 +576,9 @@ class ordenEmpaqueController extends Controller
         // $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
 
 
-        $orden_pedido_detalle = ordenPedidoDetalle::where('orden_pedido_id', $orden_id)
-            ->where('cant_red', $cantidad)->get()->first();
+        $orden_pedido_detalle = ordenPedidoDetalle::where('id', $id)
+        ->where('orden_pedido_id', $orden_id)
+        ->where('cant_red', $cantidad)->get()->first();
 
         if (\is_object($orden_pedido_detalle)) {
             $orden_pedido_detalle->a = ($a_red < 0 ? 0 : $a_red);
@@ -627,34 +635,48 @@ class ordenEmpaqueController extends Controller
         $data = [
             'code' => 200,
             'status' => 'success',
-            'orden' => $orden,
-            'cantidad' => $ordenDetalle,
+            // 'orden' => $orden,
+            // 'cantidad' => $orden_pedido_detalle,
+            'almacen' => 'almacen',
+            'a_alm' => $a_alm,
+            'b_alm' => $b_alm,
+            'c_alm' => $c_alm,
+            'd_alm' => $d_alm,
+            'e_alm' => $e_alm,
+            'f_alm' => $f_alm,
+            'g_alm' => $g_alm,
+            'h_alm' => $h_alm,
+            'i_alm' => $i_alm,
+            'j_alm' => $j_alm,
+            'k_alm' => $k_alm,
+            'l_alm' => $l_alm,
+            'total_alm'=> $total_alm,
             'curva' => 'Curva',
-            'a_curva' => $a_curva,
-            'b_curva' => $b_curva,
-            'c_curva' => $c_curva,
-            'd_curva' => $d_curva,
-            'e_curva' => $e_curva,
-            'f_curva' => $f_curva,
-            'g_curva' => $g_curva,
-            'h_curva' => $h_curva,
-            'i_curva' => $i_curva,
-            'j_curva' => $j_curva,
-            'k_curva' => $k_curva,
-            'l_curva' => $l_curva,
+            'a_%_alm' => $a_perc,
+            'b_%_alm' => $b_perc,
+            'c_%_alm' => $c_perc,
+            'd_%_alm' => $d_perc,
+            'e_%_alm' => $e_perc,
+            'f_%_alm' => $f_perc,
+            'g_%_alm' => $g_perc,
+            'h_%_alm' => $h_perc,
+            'i_%_alm' => $i_perc,
+            'j_%_alm' => $j_perc,
+            'k_%_alm' => $k_perc,
+            'l_%_alm' => $l_perc,
             'porcentaje' => 'porcentaje',
-            'a' => $a,
-            'b' => $b,
-            'c' => $c,
-            'd' => $d,
-            'e' => $e,
-            'f' => $f,
-            'g' => $g,
-            'h' => $h,
-            'i' => $i,
-            'j' => $j,
-            'k' => $k,
-            'l' => $l,
+            'a_%_curva' => $a,
+            'b_%_curva' => $b,
+            'c_%_curva' => $c,
+            'd_%_curva' => $d,
+            'e_%_curva' => $e,
+            'f_%_curva' => $f,
+            'g_%_curva' => $g,
+            'h_%_curva' => $h,
+            'i_%_curva' => $i,
+            'j_%_curva' => $j,
+            'k_%_curva' => $k,
+            'l_%_curva' => $l,
             'segundo' => 'Seg calculo',
             'a_seg' => $a_seg,
             'b_seg' => $b_seg,
@@ -697,8 +719,20 @@ class ordenEmpaqueController extends Controller
             'total_red' => $cant_total,
             // 'diferencia' => $cant_dif,
             'cant-detalle' => $cantidad,
-            'detalle' => $orden_pedido_detalle,
-            'genero' => $referencia_producto
+            // 'detalle' => $orden_pedido_detalle,
+            // 'genero' => $referencia_producto,
+            // 'a_orden' => $tallasOrdenes->sum('a'),
+            // 'b_orden' => $tallasOrdenes->sum('b'),
+            // 'c_orden' => $tallasOrdenes->sum('c'),
+            // 'd_orden' => $tallasOrdenes->sum('d'),
+            // 'e_orden' => $tallasOrdenes->sum('e'),
+            // 'f_orden' => $tallasOrdenes->sum('f'),
+            // 'g_orden' => $tallasOrdenes->sum('g'),
+            // 'h_orden' => $tallasOrdenes->sum('h'),
+            // 'i_orden' => $tallasOrdenes->sum('i'),
+            // 'j_orden' => $tallasOrdenes->sum('j'),
+            // 'k_orden' => $tallasOrdenes->sum('k'),
+            // 'l_orden' => $tallasOrdenes->sum('l'),
         ];
 
 

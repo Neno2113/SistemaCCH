@@ -29,20 +29,25 @@
                             <label for="">Año:</label>
                             {{-- <input type="text" name="numero_corte" id="numero_corte"
                                 class="form-control text-center " readonly> --}}
-                            <input type="number" min="1900" max="2099" step="1" value="2019" id="year" class="form-control">
+                            <input type="number" min="1900" max="2099" step="1" value="2019" id="year"
+                                class="form-control">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="id" id="id" value="">
+                            <input type="hidden" name="mod_curva" id="mod_curva" value="">
                         </div>
                         <div class="col-md-2">
                             <label for="">Secuencia:</label>
-                            <input type="number" min="001" max="999" step="1" value="1"  id="sec_manual" class="form-control">
+                            <input type="number" min="001" max="999" step="1" value="1" id="sec_manual"
+                                class="form-control">
                         </div>
                         <div class="col-md-2 mt-4 pt-2">
-                            <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-cut"></i> Generar</button>
+                            <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-cut"></i>
+                                Generar</button>
                         </div>
                         <div class="col-md-4">
                             <label for="" class="d-flex justify-content-center">Numero de corte:</label>
-                            <input type="text" name="numero_corte_gen" id="numero_corte_gen" class="form-control text-center font-weight-bold" readonly>
+                            <input type="text" name="numero_corte_gen" id="numero_corte_gen"
+                                class="form-control text-center font-weight-bold" readonly>
                         </div>
                     </div>
 
@@ -103,11 +108,10 @@
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="edit-hide"
                                 data-toggle="modal" data-target=".bd-rollo-modal-lg">
                                 {{-- <span class="spinner-grow spinner-grow-sm" role="status" id="spiner" aria-hidden="true"></span> --}}
-                                    Agregar rollos <i
-                                    class="fa fa-dolly-flatbed"></i>
-                                    {{-- <span class="spinner-grow spinner-grow-sm" role="status" id="spiner2" aria-hidden="true"></span>
+                                Agregar rollos <i class="fa fa-dolly-flatbed"></i>
+                                {{-- <span class="spinner-grow spinner-grow-sm" role="status" id="spiner2" aria-hidden="true"></span>
                                     <span class="sr-only">Loading...</span> --}}
-                                </button>
+                            </button>
                         </div>
                         <div class="col-md-4 mt-3">
                             <button type="button" class="btn btn-secondary btn-block mt-4" id="btn-tallas"
@@ -116,7 +120,8 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <button type="button" class="btn btn-secondary  btn-block mt-4" data-toggle="modal"
-                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Asignar SKU</button>
+                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Asignar
+                                SKU</button>
                         </div>
                     </div>
             </div>
@@ -185,8 +190,8 @@
 </div>
 
 <!-- Modal Rollos-->
-<div class="modal fade bd-rollo-modal-lg" tabindex="-1" role="dialog" id="modalRollos" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade bd-rollo-modal-lg" tabindex="-1" role="dialog" id="modalRollos"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -254,11 +259,11 @@
                 <div class="row">
                     <label for="" class="mt-1">Producto</label>
                     <div class="col-md-3 mb-2">
-                        <input type="text" name="corte_tallas" id="corte_tallas" class="form-control text-center font-weight-bold">
+                        <input type="text" name="corte_tallas" id="corte_tallas"
+                            class="form-control text-center font-weight-bold">
                     </div>
                 </div>
                 <br>
-                <hr>
                 <div class="row">
                     <table class="table  table-bordered tabla-perdidas mt-4">
                         <thead>
@@ -314,96 +319,84 @@
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="da">A</label> --}}
-                                    <input type="text" name="" id="a"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="a" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="db">B</label> --}}
-                                    <input type="text" name="" id="b"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="b" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dc">C</label> --}}
-                                    <input type="text" name="" id="c"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="c" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dd">D</label> --}}
-                                    <input type="text" name="" id="d"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="d" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="de">E</label> --}}
-                                    <input type="text" name="" id="e"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="e" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="df">F</label> --}}
-                                    <input type="text" name="" id="f"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="f" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dg">G</label> --}}
-                                    <input type="text" name="" id="g"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="g" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dh">H</label> --}}
-                                    <input type="text" name="" id="h"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="h" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="di">I</label> --}}
-                                    <input type="text" name="" id="i"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="i" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dj">J</label> --}}
-                                    <input type="text" name="" id="j"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="j" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dk">K</label> --}}
-                                    <input type="text" name="" id="k"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="k" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dl">L</label> --}}
-                                    <input type="text" name="" id="l"
-                                        class="form-control text-center detalle"
+                                    <input type="text" name="" id="l" class="form-control text-center detalle"
                                         data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                 </td>
@@ -413,96 +406,84 @@
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="da">A</label> --}}
-                                    <input type="text" name="" id="a_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="a_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="db">B</label> --}}
-                                    <input type="text" name="" id="b_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="b_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dc">C</label> --}}
-                                    <input type="text" name="" id="c_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="c_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dd">D</label> --}}
-                                    <input type="text" name="" id="d_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="d_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="de">E</label> --}}
-                                    <input type="text" name="" id="e_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="e_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="df">F</label> --}}
-                                    <input type="text" name="" id="f_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="f_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dg">G</label> --}}
-                                    <input type="text" name="" id="g_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="g_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dh">H</label> --}}
-                                    <input type="text" name="" id="h_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="h_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="di">I</label> --}}
-                                    <input type="text" name="" id="i_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="i_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dj">J</label> --}}
-                                    <input type="text" name="" id="j_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="j_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dk">K</label> --}}
-                                    <input type="text" name="" id="k_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="k_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dl">L</label> --}}
-                                    <input type="text" name="" id="l_new"
-                                        class="form-control text-center new"
+                                    <input type="text" name="" id="l_new" class="form-control text-center new"
                                         data-inputmask='"mask": "9[9][.99]"' data-mask>
 
                                 </td>
@@ -519,17 +500,28 @@
                 <div class="row" id="fila-totales">
                     <label for="" class="mt-1">Total inventario</label>
                     <div class="col-md-3 mb-2">
-                        <input type="text" name="total_alm" id="total_alm" class="form-control text-center font-weight-bold">
+                        <input type="text" name="total_alm" id="total_alm"
+                            class="form-control text-center font-weight-bold">
                     </div>
 
                     <label for="" class="mt-1 ml-4">Total % nuevo</label>
                     <div class="col-md-3 mb-2">
-                        <input type="text" name="total_percent" id="total_percent" class="form-control text-center font-weight-bold">
+                        <input type="text" name="total_percent" id="total_percent"
+                            class="form-control text-center font-weight-bold">
                     </div>
                     <div class="col-md-3 mb-2">
-                        <button class="btn btn-primary ml-2" id="btn-curva"><i class="fas fa-chart-line"></i> Guardar curva</button>
+                        <button class="btn btn-primary ml-2" id="btn-curva"><i class="fas fa-chart-line"></i> Guardar
+                            curva</button>
                     </div>
 
+                </div>
+                <div class="alert alert-warning alert-dismissible fade show" id="alerta_proceso" role="alert">
+                    <strong><i class="fas fa-exclamation-triangle"></i> Alerta!</strong>
+                    Para poder guardar una nueva curva del producto el total del % nuevo debe ser igual a 100.
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 {{-- <div class="row">
                     <div class="col-lg-1 col-md-2">
@@ -589,7 +581,8 @@
                 </div> --}}
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary" data-dismiss="modal">Guardar</button>
+                <button type="button" id="btn-tallas-cerrar" class="btn btn-secondary"
+                    data-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
@@ -611,14 +604,16 @@
                     <div class="row">
                         <h5>Referencia:</h5>
                         <div class="col-md-3  mb-3">
-                            <input type="text" name="referencia_talla" id="referencia_talla" class="form-control text-center">
+                            <input type="text" name="referencia_talla" id="referencia_talla"
+                                class="form-control text-center">
                         </div>
                     </div>
                     <h5 class="text-center">Asignar SKU por tallas</h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-2 mr-1">
-                            <button class="btn btn-secondary mb-4" id="btn-asignar" value="General"> <i class="fas fa-barcode"></i> SKU generel </button>
+                            <button class="btn btn-secondary mb-4" id="btn-asignar" value="General"> <i
+                                    class="fas fa-barcode"></i> SKU generel </button>
                         </div>
                         {{-- <div class="col-md-2 mr-1">
                             <button class="btn btn-secondary mb-4" id="btn-asignar-ref2" value="General"> <i class="fas fa-barcode"></i> SKU generel </button>
