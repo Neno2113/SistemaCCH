@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-lg-10 col-md-8"></div>
                         <div class="col-lg-2  col-md-4">
-                            <label for="">Orden de pedido:</label>
+                            <label for="" class="d-flex justify-content-center pers">Orden de pedido</label>
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control font-weight-bold text-center" readonly>
                             <input type="hidden" name="orden_pedido_id" id="orden_pedido_id">
@@ -44,7 +44,7 @@
                     <div id="orden_create">
                         <div class="row mt-3">
                             <div class="col-md-6" id="clienteBuscar">
-                                <label for="">Cliente(*):</label>
+                                <label for=""></label>
 
                                 <select name="tags[]" id="clienteSearch" class="form-control select2">
                                 </select>
@@ -56,8 +56,9 @@
                                     class="form-control font-weight-bold text-center mt-2" readonly>
                             </div>
                             <div class="col-md-6" id="sucursalBuscar">
-                                <label for="">Sucursal(*):</label>
+                                <label for=""></label>
                                 <select name="tags[]" id="sucursalSearch" class="form-control select2">
+                                    <option value="" disabled>Sucursal</option>
                                 </select>
                             </div>
                             <div class="col-md-6" id="sucursal">
@@ -69,22 +70,22 @@
                         <br>
                         <div class="row mt-3">
                             <div class="col-md-4 mt-2">
-                                <label for="">Vendedor:</label>
+                                <label for=""></label>
 
-                                <select name="tags[]" id="vendedores" class="form-control select2" style="width:90%;">
+                                <select name="tags[]" id="vendedores" class="form-control select2 mt-2" style="width:90%;">
                                     <option value=""></option>
                                 </select>
 
                             </div>
                             <div class="col-md-4 mt-2">
-                                <label for="">Fecha de entrega:</label>
-                                <div class="input-group">
+                                <label for="pers">Fecha de entrega</label>
+                                {{-- <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                    </div>
+                                    </div> --}}
                                     <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control">
                                     <input type="hidden" name="" id="fecha_proceso" value="">
-                                </div>
+                                {{-- </div> --}}
                             </div>
                             <div class="col-md-4 mt-2">
                                 <label for="autorizacion_credito_req">¿Generado internamente?(*):</label>
@@ -109,8 +110,8 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-4">
-                                <label for="">Notas:</label>
-                                <textarea name="notas" id="notas" cols="30" rows="1" class="form-control"></textarea>
+                                <label for=""></label>
+                                <textarea name="notas" id="notas" placeholder="Notas" cols="30" rows="1" class="form-control"></textarea>
                             </div>
                             <div class="col-md-6"></div>
                             <div class="col-md-2 mt-4 pt-2 float-right">

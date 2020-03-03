@@ -21,77 +21,78 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Registro</h4>
+                <h4 class="font-weight-bold">Registro</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de usuarios:</h5>
+                    <h5>Formulario de registro de usuarios</h5>
                     <hr>
                     <div class="row ">
                         <div class="col-md-4">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="name">Nombre(*):</label>
-                            <input type="text" name="name" id="name" class="form-control" pattern="[a-zA-Z]">
+                            <label for="name"></label>
+                            <input type="text" name="name" id="name" placeholder="Nombre" class="form-control" pattern="[a-zA-Z]">
                             @if ($errors->has('name'))
                             <div class="error">{{ $errors->name('name') }}</div>
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <label for="surname">Apellido(*):</label>
-                            <input type="text" name="surname" id="surname" class="form-control">
+                            <label for="surname"></label>
+                            <input type="text" name="surname" id="surname" placeholder="Apellido" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="edad">Edad:</label>
-                            <input type="text" name="edad" id="edad" class="form-control text-center" ]
+                            <label for="edad"></label>
+                            <input type="text" name="edad" id="edad" placeholder="Edad" class="form-control text-center" ]
                                 data-inputmask='"mask": "99"' data-mask>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="name">Telefono(*):</label>
-                            <div class="input-group">
+                            <label for="name"></label>
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="telefono" class="form-control"
+                                </div> --}}
+                                <input type="text" id="telefono" placeholder="Telefono" class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            </div>
+                            {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="celular">Celular:</label>
-                            <div class="input-group">
+                            <label for="celular"></label>
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="celular" class="form-control"
+                                </div> --}}
+                                <input type="text" id="celular" placeholder="Celular" class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            </div>
+                            {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="direccion">Direccion:</label>
-                            <div class="input-group">
+                            <label for="direccion"></label>
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                                </div>
-                                <input type="text" id="direccion" class="form-control">
-                            </div>
+                                </div> --}}
+                                <input type="text" id="direccion" placeholder="Direccion" class="form-control">
+                            {{-- </div> --}}
 
                         </div>
                     </div>
-                    <h4 class="text-center font-weight-bold mt-4">Datos de acceso</h4>
+                    <h4 class="text-center mt-4">Datos de acceso</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="name">Email(*):</label>
-                            <input type="Email" name="email" id="email" class="form-control">
+                            <label for="name"></label>
+                            <input type="Email" name="email" id="email" placeholder="Email" class="form-control">
                         </div>
                         <div class="col-md-4 mt-3" id="ver-contra">
-                            <label for="password">Contraseña(*):</label>
-                            <input type="password" name="password" id="password" class="form-control">
+                            <label for="password"></label>
+                            <input type="password" name="password" placeholder="Contraseña" id="password" class="form-control">
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="">Rol:</label>
+                            <label for=""></label>
                             <select name="role" id="role" class="form-control">
+                                <option value="" disabled>Rol</option>
                                 <option>Administrador</option>
                                 <option>Oficina</option>
                                 <option>Soporte</option>
@@ -105,7 +106,7 @@
                 <div class="row mt-3" id="vatar">
                     <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="exampleInputFile">Avatar</label>
+                            {{-- <label for="exampleInputFile">Avatar</label> --}}
                             <img src="" alt="" id="avatar" class="rounded img-fluid img-thumbnail">
                             <div class="input-group">
                                 <div class="custom-file">

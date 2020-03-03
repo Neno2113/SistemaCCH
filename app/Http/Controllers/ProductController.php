@@ -167,6 +167,7 @@ class ProductController extends Controller
             $curva->j = $j;
             $curva->k = $k;
             $curva->l = $l;
+            $curva->curva_porcentuada = 0;
 
             $curva->save();
 

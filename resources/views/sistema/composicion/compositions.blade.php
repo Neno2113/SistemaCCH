@@ -29,22 +29,27 @@
                             <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control"> --}}
                         </div>
                         <div class="col-md-12">
-                            <label for="nombre composicion">Nombre composicion(*):</label>
-                            <input type="text" name="nombre_composicion" id="nombre_composicion" class="form-control">
+                            <label for="nombre composicion"></label>
+                            <input type="text" name="nombre_composicion" placeholder="Nombre composicion"
+                                id="nombre_composicion" class="form-control">
                         </div>
                     </div>
-
-
-                    <input type="submit" value="Registrar" id="btn-guardar" class="btn btn-lg btn-info mt-4">
-                    <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-info mt-4">
                 </form>
+            </div>
+            <div class="card-footer  text-muted ">
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                        class="far fa-edit fa-lg"></i> Editar</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="container" id="listadoUsers">
-    <table id="compositions" class="table table-hover table-bordered datatables" >
+    <table id="compositions" class="table table-hover table-bordered datatables">
         <thead>
             <tr>
 

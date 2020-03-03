@@ -77,9 +77,11 @@ class TallaController extends Controller
 
             $talla->save();
 
-            if (empty($mod_curva)) {
+            $curva = CurvaProducto::where('producto_id', $producto_id)->get()->first();
+
+            if (!empty($curva) && empty($mod_curva) && $curva->curva_porcentuada == 0) {
                 //ACTUALIZAR CURVA
-                $curva = CurvaProducto::where('producto_id', $producto_id)->get()->first();
+
 
                 $a_curva = $curva->a;
                 $b_curva = $curva->b;
@@ -119,6 +121,7 @@ class TallaController extends Controller
                 $curva->j = $j_curva;
                 $curva->k = $k_curva;
                 $curva->l = $l_curva;
+                $curva->curva_porcentuada = 1;
 
                 $curva->save();
             }

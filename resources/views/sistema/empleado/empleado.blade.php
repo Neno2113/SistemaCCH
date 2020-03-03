@@ -28,16 +28,16 @@
                     <div class="row ">
                         <div class="col-md-4">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="nombre">Nombre(*):</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control">
+                            <label for="nombre"></label>
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="rnc">Apellido(*):</label>
-                            <input type="text" name="apellido" id="apellido" class="form-control">
+                            <label for="rnc"></label>
+                            <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="rnc">Cedula(*):</label>
-                            <input type="text" name="cedula" id="cedula" class="form-control text-center"
+                            <label for="rnc"></label>
+                            <input type="text" name="cedula" id="cedula" placeholder="RNC" class="form-control text-center"
                                 data-inputmask='"mask": "999-9999999-9"' data-mask>
                         </div>
 
@@ -45,33 +45,33 @@
                     </div>
                     <div class="row" id="fila-detail">
                         <div class="col-md-4 mt-3">
-                            <label for="email_principal">Email (*):</label>
-                            <div class="input-group">
+                            <label for="email_principal"></label>
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                </div>
-                                <input type="email" name="email" id="email" class="form-control">
-                            </div>
+                                </div> --}}
+                                <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+                            {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_1">Telefono:</label>
-                            <div class="input-group">
+                            <label for="telefono_1"></label>
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="telefono_1" name="telefono_1" class="form-control"
+                                </div> --}}
+                                <input type="text" id="telefono_1" placeholder="Telefono" name="telefono_1" class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            </div>
+                            {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_2">Celular:</label>
-                            <div class="input-group">
+                            <label for="telefono_2"></label>
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="telefono_2" name="telefono_2" class="form-control"
+                                </div> --}}
+                                <input type="text" id="telefono_2" placeholder="Celular" name="telefono_2" class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
 
@@ -82,27 +82,27 @@
 
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <label for="">Calle(*):</label>
-                                <div class="input-group">
+                                <label for=""></label>
+                                {{-- <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                    </div>
-                                    <input type="text" name="calle" id="calle" class="form-control">
-                                </div>
+                                    </div> --}}
+                                    <input type="text" name="calle" placeholder="Calle" id="calle" class="form-control">
+                                {{-- </div> --}}
                             </div>
                             <div class="col-md-4">
-                                <label for="">Sector:</label>
-                                <div class="input-group">
+                                <label for=""></label>
+                                {{-- <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                    </div>
-                                    <input type="text" name="sector" id="sector" class="form-control">
-                                </div>
+                                    </div> --}}
+                                    <input type="text" name="sector" placeholder="Sector" id="sector" class="form-control">
+                                {{-- </div> --}}
                             </div>
                             <div class="col-md-4">
-                                <label for="">Provincia(*):</label>
+                                <label for=""></label>
                                 <select name="provincia" id="provincia" class="form-control select2">
-                                    <option value=""></option>
+                                    <option value="" disabled>Provincia</option>
                                     <option>Santo Domingo</option>
                                     <option>Distrito Nacional</option>
                                     <option>Santiago</option>
@@ -140,16 +140,17 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4">
-                                <label for="">Referencias cercanas:</label>
-                                <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
+                                <label for=""></label>
+                                <input type="text" name="sitios_cercanos" id="sitios_cercanos" placeholder="Referencias cercanas" class="form-control">
 
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4 mt-3">
-                                <label for="condiciones_credito">Departamento(*):</label>
+                                <label for="condiciones_credito"></label>
                                 <select name="departamento" id="departamento" class="form-control">
+                                    <option value="" disabled>Departamento</option>
                                     <option>ADMINISTRACION</option>
                                     <option>VENTA</option>
                                     <option>CORTE</option>
@@ -160,8 +161,9 @@
                                 </select>
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="cargo">Cargo(*):</label>
+                                <label for="cargo"></label>
                                 <select name="cargo" id="cargo" class="form-control select2">
+                                    <option value="" disabled>Cargo</option>
                                     <option>OPERARIO-1738 - OPERARIO</option>
                                     <option>OPERARIO-1738 - COCER</option>
                                     <option>OPERARIO-1738 - SUPERVISOR CALIDAD</option>
@@ -194,8 +196,9 @@
                                 </select>
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="contacto_cliente">Tipo de Contrato(*):</label>
+                                <label for="contacto_cliente"></label>
                                 <select name="tipo_contrato" id="tipo_contrato" class="form-control">
+                                    <option value="" disabled>Tipo de contrato</option>
                                     <option value="Temporero">Temporero</option>
                                     <option value="Fijo">Fijo</option>
                                 </select>
@@ -217,22 +220,22 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="sueldo">Sueldo:</label>
-                                <input type="text" name="sueldo" id="sueldo" class="form-control text-center"
+                                <label for="sueldo"></label>
+                                <input type="text" name="sueldo" placeholder="Sueldo" id="sueldo" class="form-control text-center"
                                     placeholder="Mensualidad" data-inputmask='"mask": "RD$ 999[99]"' data-mask>
                             </div>
                             <div class="col-md-4">
-                                <label for="valor_hora">Valor de la Hora:</label>
-                                <input type="text" name="valor_hora" id="valor_hora" class="form-control text-center"
+                                <label for="valor_hora"></label>
+                                <input type="text" name="valor_hora" placeholder="Valor hora" id="valor_hora" class="form-control text-center"
                                     data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 mt-3">
-                                <label for="">Banco de cobro:</label>
+                                <label for=""></label>
                                 <select name="banco_tarjeta_cobro" id="banco_tarjeta_cobro"
                                     class="form-control select2">
-                                    <option></option>
+                                    <option disabled>Banco tarjeta cobro</option>
                                     <option>Banco Popular</option>
                                     <option>Banreservas</option>
                                     <option>Banco BHD Leon</option>
@@ -246,12 +249,12 @@
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label for="">No. de cuenta</label>
-                                <input type="text" name="no_cuenta" id="no_cuenta" class="form-control">
+                                <label for=""></label>
+                                <input type="text" name="no_cuenta" placeholder="No. de cuenta" id="no_cuenta" class="form-control">
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="">No. Seguridad Social</label>
-                                <input type="text" name="nss" id="nss" class="form-control text-center"
+                                <label for=""></label>
+                                <input type="text" name="nss" placeholder="No. seguridad social" id="nss" class="form-control text-center"
                                     data-inputmask='"mask": "999999999[99]"' data-mask>
 
                             </div>
@@ -284,12 +287,12 @@
                     <div class="collapse mt-5" id="collapseExample">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="">Nombre Esposo/a</label>
-                                <input type="text" name="nombre_esposa" id="nombre_esposa" class="form-control">
+                                <label for=""></label>
+                                <input type="text" name="nombre_esposa" placeholder="Nombre Esposo/a" id="nombre_esposa" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <label for="">Telefono Esposo/a</label>
-                                <input type="text" name="telefono_esposa" id="telefono_esposa" class="form-control"
+                                <label for=""></label>
+                                <input type="text" name="telefono_esposa" placeholder="Telefono esposo/a" id="telefono_esposa" class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
                             </div>
                             <div class="col-md-4">

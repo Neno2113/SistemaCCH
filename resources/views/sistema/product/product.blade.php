@@ -28,20 +28,20 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row ">
                         <div class="col-md-3">
-                            <label for="nombre_cliente" class="">Marca:</label>
+                            <label for="nombre_cliente" class=""></label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="id" id="id_producto" value="">
                             <select name="marca" id="marca" class="form-control">
-                                <option value="" selected>Elige una marca...</option>
+                                <option value="" selected disabled>Marca</option>
                                 <option value="L">Lavish</option>
                                 <option value="M">Mythos</option>
                                 <option value="P">Lavish Premium</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="">Genero:</label>
+                            <label for="" class=""></label>
                             <select name="genero" id="genero" class="form-control">
-                                <option value="" selected>Elige un genero...</option>
+                                <option value="" selected disabled>Genero</option>
                                 <option value="1">Hombre</option>
                                 <option value="2">Mujer</option>
                                 <option value="3">Niño</option>
@@ -49,9 +49,9 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="">Tipo producto:</label>
+                            <label for="" class=""></label>
                             <select name="tipo_producto" id="tipo_producto" class="form-control">
-                                <option value="" selected>Elige un tipo...</option>
+                                <option value="" selected disabled>Tipo producto</option>
                                 <option value="0">Pantalon</option>
                                 <option value="1">Bermuda</option>
                                 <option value="2">Capri</option>
@@ -62,9 +62,9 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="">Categoria:</label>
+                            <label for="" class=""></label>
                             <select name="categoria" id="categoria" class="form-control">
-                                <option value="">Elige una categoria</option>
+                                <option value="" disabled>Categoria</option>
                                 <option value="0">Basico</option>
                                 <option value="1">Semi-basico</option>
                                 <option value="2">Moda</option>
@@ -78,17 +78,17 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2 mt-3">
-                            <label for="">Secuencia:</label>
-                            <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control">
+                            <label for=""></label>
+                            <input type="number" min="1" max="999" step="1" id="sec_manual" placeholder="Secuencia" class="form-control">
                         </div>
                         <div class="col-md-3 mt-3">
-                            <label for="">Referencia:</label>
-                            <input type="text" name="referencia" id="referencia" class="form-control" readonly>
+                            <label for=""></label>
+                            <input type="text" name="referencia" placeholder="Referencia" id="referencia" class="form-control" readonly>
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-3" id="mostrarRef2">
-                            <label for="">Referencia 2:</label>
-                            <input type="text" name="referencia_2" id="referencia_2" class="form-control">
+                            <label for=""></label>
+                            <input type="text" name="referencia_2" placeholder="Referencia 2" id="referencia_2" class="form-control">
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-4 mt-5">
@@ -99,26 +99,27 @@
                         </div>
 
                     </div>
+                    <br>
                     <hr>
                     <br>
                     <div class="row">
-                        <div class="col-md-4 mt-3">
-                            <label for="precio_lista">Precio lista:</label>
+                        <div class="col-md-4 mt-2">
+                            <label for="precio_lista"></label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" name="precio_lista" id="precio_lista"
+                                <input type="text" placeholder="Precio lista" name="precio_lista" id="precio_lista"
                                     class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="precio_venta_publico">Precio publico:</label>
+                            <label for="precio_venta_publico"></label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" name="precio_venta_publico" id="precio_venta_publico"
+                                <input type="text" placeholder="Precio publico" name="precio_venta_publico" id="precio_venta_publico"
                                     class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
 
                             </div>
@@ -132,27 +133,27 @@
                     </div>
                     <div class="row" id="precios_2">
                         <div class="col-md-4 mt-3">
-                            <label for="precio_lista">Precio lista Ref 2:</label>
+                            <label for="precio_lista"></label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
                                 <input type="text" name="precio_lista_2" id="precio_lista_2"
-                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                   placeholder="Preio lista ref 2" class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="precio_venta_publico">Precio publico Ref 2:</label>
+                            <label for="precio_venta_publico"></label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" name="precio_venta_publico_2" id="precio_venta_publico_2"
+                                <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2" id="precio_venta_publico_2"
                                     class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="">Rango segunda referencia:</label>
+                            <label for="">Rango segunda referencia</label>
                             <input id="range_1" type="text" name="range_1" value="">
                         </div>
 
@@ -160,13 +161,13 @@
 
                     <div class="row">
                         <div class="col-md-12 mt-3">
-                            <label for="" class="d-flex justify-content-center">Descripcion(*):</label>
-                            <textarea name="descripcion" id="descripcion" cols="30" rows="1"
+                            <label for="" class="d-flex justify-content-center"></label>
+                            <textarea name="descripcion" id="descripcion" placeholder="Descripcion" cols="30" rows="1"
                                 class="form-control"></textarea>
                         </div>
                         <div class="col-md-12 mt-3" id="descripcion_ref2">
-                            <label for="" class="d-flex justify-content-center">Descripcion Ref 2(*):</label>
-                            <textarea name="descripcion" id="descripcion_2" cols="30" rows="1"
+                            <label for="" class="d-flex justify-content-center"></label>
+                            <textarea name="descripcion" id="descripcion_2" placeholder="Descripcion ref 2" cols="30" rows="1"
                                 class="form-control"></textarea>
                         </div>
                     </div>

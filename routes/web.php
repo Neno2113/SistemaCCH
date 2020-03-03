@@ -92,11 +92,11 @@ Route::get('/perdida', function () {
 
 Route::get('/definir-atributo', function () {
     return view('sistema.almacen.definirAtributo');
-})->middleware('auth', 'admin:Almacen');
+})->middleware('auth', 'admin:Definir Atributos');
 
 Route::get('/almacen', function () {
     return view('sistema.almacen.almacen');
-})->middleware('auth', 'admin:Almacen');
+})->middleware('auth', 'admin:Entrada Almacen');
 
 Route::get('/producto-terminado', function () {
     return view('sistema.product.terminado');

@@ -31,7 +31,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="">Numero de envio:</label>
+                            <label for="" class="d-flex justify-content-center pers">Numero de envio</label>
                             <input type="text" name="" id="numero_envio" class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="" id="sec" value="">
                             <input type="hidden" name="" id="id" value="">
@@ -66,7 +66,7 @@
                     <div id="formularioLavanderia">
                         <div class="row mt-3">
                             <div class="col-md-6" id="cortes">
-                                <label for="">Corte(*):</label>
+                                <label for=""></label>
                                 <div id="corteADD">
                                     <select name="tags[]" id="cortesSearch" class="form-control select2">
                                     </select>
@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="col-md-6" id="suplidor">
-                                <label for="">Lavanderia (*):</label>
+                                <label for=""></label>
                                 <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
                                 </select>
                                 <div id="lavanderia">
@@ -92,21 +92,19 @@
 
                         </div>
 
-
-
                         <div class="row mt-5">
-                            <div class="col-4">
-                                <label for="">Fecha(*):</label>
+                            <div class="col-md-4">
+                                <label for="" class=""></label>
                                 <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
                             </div>
 
                             <div class="col-md-2">
-                                <label for="">Cantidad(*):</label>
-                                <input type="text" name="cantidad" id="cantidad" class="form-control">
+                                <label for="" class=""></label>
+                                <input type="text" name="cantidad" placeholder="Cantidad" id="cantidad" class="form-control">
                             </div>
                             <div class="col-md-2">
-                                <label for="">Restante por enviar:</label>
-                                <input type="text" name="restante_enviar" id="restante_enviar" class="form-control text-center" readonly>
+                                <label for="" class=""></label>
+                                <input type="text" placeholder="Restante por enviar" name="restante_enviar" id="restante_enviar" class="form-control text-center" readonly>
                             </div>
                             <div class="col-md-4 pl-5">
                                 <label for="">¿Estandar incluido?</label>
@@ -130,8 +128,8 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-6">
-                                <label for="">Receta de lavado(*):</label>
-                                <textarea name="receta_lavado" id="receta_lavado" cols="30" rows="1"
+                                <label for=""></label>
+                                <textarea name="receta_lavado" placeholder="Receta de lavado" id="receta_lavado" cols="30" rows="1"
                                     class="form-control"></textarea>
                             </div>
                         </div>

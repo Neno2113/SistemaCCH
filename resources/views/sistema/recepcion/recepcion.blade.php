@@ -29,15 +29,15 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row d-flex justify-content-end">
                         <div class="col-md-2 ">
-                            <label for="" class="d-flex justify-content-center">Numero de recepcion:</label>
+                            <label for="" class="d-flex justify-content-center pers">Numero de recepcion</label>
                             <input type="text" name="numero_recepcion" id="numero_recepcion" class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="sec" id="sec" value="">
                         </div>
                     </div>
                     <hr>
-                    <div class="row mt-5">
+                    <div class="row ">
                         <div class="col-md-6 mt-2">
-                            <label for="">Corte(*):</label>
+                            <label for=""></label>
                             <input type="hidden" name="" id="id">
                             <div id="corteAdd">
                                 <select name="tags[]" id="cortesSearch" class="form-control select2">
@@ -52,7 +52,7 @@
                             <input type="text" name="corte" id="corte" class="form-control mt-2" readonly>
                         </div>
                         <div class="col-md-6 mt-2">
-                            <label for="">Numero factura o conduce</label>
+                            <label for=""></label>
                             <input type="text" name="num_factura" id="num_factura" class="form-control" placeholder="Numero de Factura o Conduce">
                             {{-- <div id="lavanderiaAdd">
                                 <select name="tags[]" id="lavanderias" class="form-control select2">
@@ -70,16 +70,16 @@
                     <br>
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="">Fecha(*):</label>
+                            <label for=""></label>
                             <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="">Cantidad Rec.(*):</label>
-                            <input type="text" name="cantidad_recibida" id="cantidad_recibida" class="form-control">
+                            <label for=""></label>
+                            <input type="text" placeholder="Cantidad recibida" name="cantidad_recibida" id="cantidad_recibida" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="">Restante por recibir:</label>
-                            <input type="text" name="cantidad_restante" id="cantidad_restante" class="form-control"
+                            <label for=""></label>
+                            <input type="text" placeholder="Restante por recibir" name="cantidad_restante" id="cantidad_restante" class="form-control"
                                 readonly>
                         </div>
 

@@ -43,10 +43,12 @@ margin-bottom: 20px; */
     padding-top: 15px;
     color: black;
     /* font-weight: bold; */
+    font-family: 'Slabo 13px', serif;
 }
 
 .card-body h5 {
     font-weight: bold;
+    font-family: 'Slabo 13px', serif;
 }
 
 .card-body {
@@ -88,11 +90,25 @@ input[type="password"],
 input[type="number"] select,
 select.form-control,
 textarea.form-control {
-    border: 1px solid #00000073;
+    /* border: 1px solid #00000073; */
+    border: none;
+    border-bottom:2px solid #ccc;
+    font-family: 'Slabo 13px', serif;
+}
+
+form input[type="date"]:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    border-bottom:2px solid#2463b9; ;
 }
 
 .select2-container--default .select2-selection--single {
-    border: 1px solid #00000073;
+    /* border: 1px solid #00000073; */
+    border: none;
+    border-bottom:2px solid #ccc;
 }
 
 .error {
@@ -299,8 +315,9 @@ table th.fit {
 }
 .tabla-tallas tbody .red {
     width: 143%;
-    border: none;
+    /* border: none; */
     /* font-weight: bold; */
+    font-size: 12px;
 }
 
 .tabla-tallas .talla {
@@ -456,3 +473,7 @@ input[type=number]::-webkit-outer-spin-button:hover {
     -webkit-appearance: ;
     opacity: 1;
 } */
+
+label .pers{
+    font-family: 'Slabo 13px', serif;
+}

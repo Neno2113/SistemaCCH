@@ -28,7 +28,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="">No. Orden pedido:</label>
+                            <label for="" class="pers">No. Orden pedido</label>
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="id" id="id" value="">
@@ -38,7 +38,7 @@
 
                         </div>
                         <div class="col-md-2 ">
-                            <label for="">No. Orden empaque:</label>
+                            <label for="" class="pers">No. Orden empaque</label>
                             <input type="text" name="no_orden_empaque" id="no_orden_empaque"
                                 class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="orden_empaque_id" id="orden_empaque_id" value="">
@@ -47,17 +47,17 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-4">
-                            <label for="">Cliente:</label>
+                            <label for="" class="pers">Cliente</label>
                             <input type="text" name="cliente" id="cliente"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Sucursal:</label>
+                            <label for="" class="pers">Sucursal</label>
                             <input type="text" name="sucursal" id="sucursal"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Fecha entrega:</label>
+                            <label for="" class="pers">Fecha entrega</label>
                             <input type="text" name="fecha_entrega" id="fecha_entrega"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>

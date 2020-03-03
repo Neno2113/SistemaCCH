@@ -69,6 +69,8 @@ $(document).ready(function() {
         $("#ancho_marcada").val("");
         $("#largo_marcada").val("");
         $("#aprovechamiento").val("");
+        // $("#year").val("");
+        // $("#sec").val("");
         $("#a").val("");
         $("#b").val("");
         $("#c").val("");
@@ -536,6 +538,19 @@ $(document).ready(function() {
                     $("#j_alm").html(datos.j_alm);
                     $("#k_alm").html(datos.k_alm);
                     $("#l_alm").html(datos.l_alm);
+                    // % Inventario
+                    // $("#a_perc_act").html(datos.a_perc);
+                    // $("#b_perc_act").html(datos.b_perc);
+                    // $("#c_perc_act").html(datos.c_perc);
+                    // $("#d_perc_act").html(datos.d_perc);
+                    // $("#e_perc_act").html(datos.e_perc);
+                    // $("#f_perc_act").html(datos.f_perc);
+                    // $("#g_perc_act").html(datos.g_perc);
+                    // $("#h_perc_act").html(datos.h_perc);
+                    // $("#i_perc_act").html(datos.i_perc);
+                    // $("#j_perc_act").html(datos.j_perc);
+                    // $("#k_perc_act").html(datos.k_perc);
+                    // $("#l_perc_act").html(datos.l_perc);
                     //Curva actual
                     $("#a_act").html(datos.a + "%");
                     $("#b_act").html(datos.b + "%");
@@ -554,6 +569,7 @@ $(document).ready(function() {
                     $("#fila-nuevo").show();
                     $("#fila-actual").show();
                     $("#fila-inventario").show();
+                    $("#fila-inventario-perc").show();
                     $("#fila-totales").show();
                     $("#mod_curva").val(1);
                     Swal.fire(
@@ -867,7 +883,7 @@ $(document).ready(function() {
                     'Corte actualizado correctamente.',
                     'success'
                     )
-                    limpiar();
+
                     $("#cortes").DataTable().ajax.reload();
                     $("#id").val("");
 
@@ -914,6 +930,7 @@ $(document).ready(function() {
                                 $("#edit-hide").css("background-color", "none");
                                 $("#cortes_listados").DataTable().ajax.reload();
                                 mostrarForm(false);
+                                limpiar();
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -1070,7 +1087,7 @@ $(document).ready(function() {
             $("#fila2").hide();
             $("#fila3").hide();
             $("#fila-nuevo").hide();
-            // $("#fila-actual").hide();
+            $("#fila-inventario-perc").hide();
             $("#fila-inventario").hide();
             $("#fila-totales").hide();
             $("#spiner").hide();
@@ -1660,6 +1677,7 @@ function mostrar(id_corte) {
         $("#ancho_marcada").val(data.corte.ancho_marcada);
         $("#largo_marcada").val(data.corte.largo_marcada);
         $("#aprovechamiento").val(data.corte.aprovechamiento);
+        $("#productos").val(data.corte.producto.id).select2().trigger('change');
         $("#a").val(data.a);
         $("#b").val(data.b);
         $("#c").val(data.c);
@@ -1672,6 +1690,18 @@ function mostrar(id_corte) {
         $("#j").val(data.j);
         $("#k").val(data.k);
         $("#l").val(data.l);
+        $("#a_act").html(data.curva.a + "%");
+        $("#b_act").html(data.curva.b + "%");
+        $("#c_act").html(data.curva.c + "%");
+        $("#d_act").html(data.curva.d + "%");
+        $("#e_act").html(data.curva.e + "%");
+        $("#f_act").html(data.curva.f + "%");
+        $("#g_act").html(data.curva.g + "%");
+        $("#h_act").html(data.curva.h + "%");
+        $("#i_act").html(data.curva.i + "%");
+        $("#j_act").html(data.curva.j + "%");
+        $("#k_act").html(data.curva.k + "%");
+        $("#l_act").html(data.curva.l + "%");
 
     });
 }

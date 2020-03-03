@@ -20,24 +20,26 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de creacion de corte:</h4>
+                <h4 class="font-weight-bold">Corte</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
+                    <h5>Formulario de creacion de corte</h5>
+                    <hr>
                     <div class="row">
                         <div class="col-md-2">
-                            <label for="">Año:</label>
+                            <label for="" class="d-flex justify-content-center pers">Año</label>
                             {{-- <input type="text" name="numero_corte" id="numero_corte"
                                 class="form-control text-center " readonly> --}}
                             <input type="number" min="1900" max="2099" step="1" value="2019" id="year"
-                                class="form-control">
+                                class="form-control" placeholder="Año">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="mod_curva" id="mod_curva" value="">
                         </div>
                         <div class="col-md-2">
-                            <label for="">Secuencia:</label>
-                            <input type="number" min="001" max="999" step="1" value="1" id="sec_manual"
+                            <label for="" class="d-flex justify-content-center pers">Secuencia</label>
+                            <input type="number" placeholder="Secuencia" min="001" max="999" step="1" value="1" id="sec_manual"
                                 class="form-control">
                         </div>
                         <div class="col-md-2 mt-4 pt-2">
@@ -45,7 +47,7 @@
                                 Generar</button>
                         </div>
                         <div class="col-md-4">
-                            <label for="" class="d-flex justify-content-center">Numero de corte:</label>
+                            <label for="" class="d-flex justify-content-center pers">Numero de corte</label>
                             <input type="text" name="numero_corte_gen" id="numero_corte_gen"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
@@ -69,37 +71,38 @@
                     <br>
                     <div class="row" id="fila1">
                         <div class="col-md-4">
-                            <label for="">Referencia producto(*):</label>
+                            <label for=""></label>
                             <select name="tags[]" id="productos" class="form-control select2">
+                                <option value="" disabled>Referencia producto</option>
                             </select>
                             {{-- <input type="hidden" name="genero" id="genero"> --}}
                         </div>
                         <div class="col-md-4">
-                            <label for="">Fecha estimada de entrega(*):</label>
-                            <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control"
+                            <label for=""></label>
+                            <input type="date" name="fecha_entrega" placeholder="Fecha estimada de entrega" id="fecha_entrega" class="form-control"
                                 data-toggle="tooltip" data-placement="bottom">
                         </div>
                         <div class="col-md-4">
-                            <label for="">Marcada No.</label>
-                            <input type="text" name="no_marcada" id="no_marcada" class="form-control">
+                            <label for=""></label>
+                            <input type="text" placeholder="Marcada No." name="no_marcada" id="no_marcada" class="form-control">
                         </div>
                     </div>
                     <br>
                     <div class="row mt-2" id="fila2">
 
                         <div class="col-md-4 mt-2">
-                            <label for="">Ancho marcada</label>
-                            <input type="text" name="ancho_marcada" id="ancho_marcada" class="form-control"
+                            <label for=""></label>
+                            <input type="text" placeholder="Ancho marcada" name="ancho_marcada" id="ancho_marcada" class="form-control"
                                 placeholder="Pulgadas">
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label for="">Largo marcada</label>
-                            <input type="text" name="largo_marcada" id="largo_marcada" class="form-control"
+                            <label for=""></label>
+                            <input type="text" placeholder="Largo marcada" name="largo_marcada" id="largo_marcada" class="form-control"
                                 placeholder="Yardas">
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label for="">Aprovechamiento(*):</label>
-                            <input type="text" name="aprovechamiento" id="aprovechamiento" class="form-control"
+                            <label for=""></label>
+                            <input type="text" name="aprovechamiento" placeholder="Aprovechamiento" id="aprovechamiento" class="form-control"
                                 data-inputmask='"mask": "99[.99]%"' data-mask>
                         </div>
                     </div>
@@ -299,6 +302,21 @@
                                 <td id="k_alm"></td>
                                 <td id="l_alm"></td>
                             </tr>
+                            {{-- <tr id="fila-inventario-perc">
+                                <th>% Invent</th>
+                                <td id="a_perc_act"></td>
+                                <td id="b_perc_act"></td>
+                                <td id="c_perc_act"></td>
+                                <td id="d_perc_act"></td>
+                                <td id="e_perc_act"></td>
+                                <td id="f_perc_act"></td>
+                                <td id="g_perc_act"></td>
+                                <td id="h_perc_act"></td>
+                                <td id="i_perc_act"></td>
+                                <td id="j_perc_act"></td>
+                                <td id="k_perc_act"></td>
+                                <td id="l_perc_act"></td>
+                            </tr> --}}
                             <tr id="fila-actual">
                                 <th>% Actual</th>
                                 <td id="a_act"></td>
@@ -515,7 +533,7 @@
                     </div>
 
                 </div>
-                <div class="alert alert-warning alert-dismissible fade show" id="alerta_proceso" role="alert">
+                <div class="alert alert-warning alert-dismissible fade show mt-4" id="alerta_proceso" role="alert">
                     <strong><i class="fas fa-exclamation-triangle"></i> Alerta!</strong>
                     Para poder guardar una nueva curva del producto el total del % nuevo debe ser igual a 100.
 

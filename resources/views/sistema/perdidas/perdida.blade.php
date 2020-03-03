@@ -23,16 +23,16 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de reporte de perdidas:</h4>
+                <h4 class="font-weight-bold">Perdidas</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h4>Generacion de codigo:</h4>
+                    <h4>Formulario de reporte de perdidas</h4>
                     <hr>
                     <br>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="">Corte(*):</label>
+                            <label for=""></label>
                             <div id="corteAdd">
                                 <select name="cortesSearch" id="cortesSearch" class="form-control select2">
                                 </select>
@@ -42,12 +42,12 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <label for="">Tipo de perdida(*)</label>
+                            <label for=""></label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="sec_segunda" id="sec_segunda" value="">
                             <select name="tipo_perdida" id="tipo_perdida" class="form-control text-center">
-                                <option value=""></option>
+                                <option value="" disabled>Tipo de perdida</option>
                                 {{-- <option value="Normal">Total</option>
                                 <option value="Segundas">Segundas</option> --}}
                             </select>
@@ -85,9 +85,9 @@
                     </div>
                     <div class="row mt-2" id="fila2">
                         <div class="col-6 mt-1">
-                            <label for="">Fase(*):</label>
+                            <label for=""></label>
                             <select name="fase" id="fase" class="form-control">
-                                <option value=""></option>
+                                <option value="" disabled>Fase</option>
                                 <option value="Produccion">Produccion</option>
                                 <option value="Procesos secos">Procesos secos</option>
                                 <option value="Lavanderia">Lavanderia</option>
@@ -97,9 +97,9 @@
                             </select>
                         </div>
                         <div class="col-6 mt-1">
-                            <label for="">Motivo(*):</label>
+                            <label for=""></label>
                             <select name="motivo" id="motivo" class="form-control">
-                                <option value=""></option>
+                                <option value="" disabled>Motivo</option>
                             </select>
                         </div>
                     </div>

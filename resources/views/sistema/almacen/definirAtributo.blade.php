@@ -33,11 +33,11 @@
                     <br><br>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="">Corte:</label>
+                            <label for=""></label>
                             <div id="corteAdd">
                                 <input type="hidden" name="id" id="id">
                                 <select name="tags[]" id="cortesSearch" class="form-control select2" style="width:100%">
-                                    <option value="">Seleccione el corte</option>
+                                    <option value="" disabled>Seleccione el corte</option>
                                 </select>
                             </div>
                             <div id="corteEdit">
@@ -64,9 +64,9 @@
                                 data-inputmask='"mask": "a-9"' data-mask>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Tono</label>
+                            <label for=""></label>
                             <select name="tono" id="tono" class="form-control">
-                                <option value=""></option>
+                                <option value="" disabled>Tono</option>
                                 <option value="Crudo o Puro">1- Crudo o puro</option>
                                 <option value="Dark Stone Suave">2- Dark Stone Suave</option>
                                 <option value="Dark Stone">3- Dark Stone</option>
@@ -76,9 +76,9 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Intensidad proceso seco</label>
+                            <label for=""></label>
                             <select name="intensidad_proceso_seco" id="intensidad_proceso_seco" class="form-control">
-                                <option value=""></option>
+                                <option value="" disabled>Intensidad proceso seco</option>
                                 <option value="Alto contraste">1- Alto contraste</option>
                                 <option value="Intermedio">2- Intermedio</option>
                                 <option value="Suave">3- Suave</option>
@@ -89,9 +89,9 @@
                     <br>
                     <div class="row mt-2" id="form_producto_2">
                         <div class="col-md-4">
-                            <label for="">Atributo No.1:</label>
+                            <label for=""></label>
                             <select name="atributo_no_1" id="atributo_no_1" class="form-control">
-                                <option value=""></option>
+                                <option value="" disabled>Atributo No.1</option>
                                 <option value="Roto">1- Roto</option>
                                 <option value="Parcho">2- Parcho</option>
                                 <option value="Bordado">3- Bordardo</option>
@@ -100,9 +100,9 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Atributo No.2:</label>
+                            <label for=""></label>
                             <select name="atributo_no_2" id="atributo_no_2" class="form-control">
-                                <option value=""></option>
+                                <option value="" disabled>Atributo No.2</option>
                                 <option value="Roto">1- Roto</option>
                                 <option value="Parcho">2- Parcho</option>
                                 <option value="Bordado">3- Bordardo</option>
@@ -111,9 +111,9 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Atributo No.3:</label>
+                            <label for=""></label>
                             <select name="atributo_no_3" id="atributo_no_3" class="form-control">
-                                <option value=""></option>
+                                <option value="" disabled>Atributo No.3</option>
                                 <option value="Roto">1- Roto</option>
                                 <option value="Parcho">2- Parcho</option>
                                 <option value="Bordado">3- Bordardo</option>

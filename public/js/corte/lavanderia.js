@@ -139,10 +139,28 @@ $(document).ready(function() {
                     $("#numero_envio").val(referencia);
                     $('#btn-generar').attr("disabled", true);
                     $("#formularioLavanderia").show();
-                    bootbox.alert(
-                        "Numero de envio generado exitosamente!!"
-                    );
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        // timerProgressBar: true,
+                        onOpen: toast => {
+                            toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                            );
+                            toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                            );
+                        }
+                    });
 
+                    Toast.fire({
+                        type: "success",
+                        title: "Numero de envio generado exitosamente!"
+                    });
                 } else {
                     bootbox.alert(
                         "Ocurrio un error !!"

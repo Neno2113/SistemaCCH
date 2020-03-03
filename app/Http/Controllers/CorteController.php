@@ -135,6 +135,8 @@ class CorteController extends Controller
         $rollos = Rollos::where('corte_utilizado', $corte->numero_corte)->get();
 
         if (is_object($corte)) {
+            $curva = CurvaProducto::where('producto_id', $corte->producto->id)->get()->first();
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
@@ -151,7 +153,8 @@ class CorteController extends Controller
                 'j' => $tallas->sum('j'),
                 'k' => $tallas->sum('a'),
                 'l' => $tallas->sum('a'),
-                'rollos' => $rollos
+                'rollos' => $rollos,
+                'curva' => $curva
             ];
         } else {
             $data = [
@@ -414,6 +417,34 @@ class CorteController extends Controller
 
         $tallasOrden = ordenPedidoDetalle::where('producto_id', $id)->get();
 
+        $a_alm = ($tallasAlmacen->sum('a') - $tallasOrden->sum('a') < 0) ? 0 : $tallasAlmacen->sum('a') - $tallasOrden->sum('a');
+        $b_alm = ($tallasAlmacen->sum('b') - $tallasOrden->sum('b') < 0) ? 0 : $tallasAlmacen->sum('b') - $tallasOrden->sum('b');
+        $c_alm = ($tallasAlmacen->sum('c') - $tallasOrden->sum('c') < 0) ? 0 : $tallasAlmacen->sum('c') - $tallasOrden->sum('c');
+        $d_alm = ($tallasAlmacen->sum('d') - $tallasOrden->sum('d') < 0) ? 0 : $tallasAlmacen->sum('d') - $tallasOrden->sum('d');
+        $e_alm = ($tallasAlmacen->sum('e') - $tallasOrden->sum('e') < 0) ? 0 : $tallasAlmacen->sum('e') - $tallasOrden->sum('e');
+        $f_alm = ($tallasAlmacen->sum('f') - $tallasOrden->sum('f') < 0) ? 0 : $tallasAlmacen->sum('f') - $tallasOrden->sum('f');
+        $g_alm = ($tallasAlmacen->sum('g') - $tallasOrden->sum('g') < 0) ? 0 : $tallasAlmacen->sum('g') - $tallasOrden->sum('g');
+        $h_alm = ($tallasAlmacen->sum('h') - $tallasOrden->sum('h') < 0) ? 0 : $tallasAlmacen->sum('h') - $tallasOrden->sum('h');
+        $i_alm = ($tallasAlmacen->sum('i') - $tallasOrden->sum('i') < 0) ? 0 : $tallasAlmacen->sum('i') - $tallasOrden->sum('i');
+        $j_alm = ($tallasAlmacen->sum('j') - $tallasOrden->sum('j') < 0) ? 0 : $tallasAlmacen->sum('j') - $tallasOrden->sum('j');
+        $k_alm = ($tallasAlmacen->sum('k') - $tallasOrden->sum('k') < 0) ? 0 : $tallasAlmacen->sum('k') - $tallasOrden->sum('k');
+        $l_alm = ($tallasAlmacen->sum('l') - $tallasOrden->sum('l') < 0) ? 0 : $tallasAlmacen->sum('l') - $tallasOrden->sum('l');
+        $total_alm = ($tallasAlmacen->sum('total') - $tallasOrden->sum('total') < 0) ? 0 : $tallasAlmacen->sum('total') - $tallasOrden->sum('total');
+
+         //porcentaje alm
+        $a_perc = number_format(($a_alm / $total_alm) * 100, 2);
+        $b_perc = number_format(($b_alm / $total_alm) * 100, 2);
+        $c_perc = number_format(($c_alm / $total_alm) * 100, 2);
+        $d_perc = number_format(($d_alm / $total_alm) * 100, 2);
+        $e_perc = number_format(($e_alm / $total_alm) * 100, 2);
+        $f_perc = number_format(($f_alm / $total_alm) * 100, 2);
+        $g_perc = number_format(($g_alm / $total_alm) * 100, 2);
+        $h_perc = number_format(($h_alm / $total_alm) * 100, 2);
+        $i_perc = number_format(($i_alm / $total_alm) * 100, 2);
+        $j_perc = number_format(($j_alm / $total_alm) * 100, 2);
+        $k_perc = number_format(($k_alm / $total_alm) * 100, 2);
+        $l_perc = number_format(($l_alm / $total_alm) * 100, 2);
+
         if(!empty($corte)){
             $data = [
                 'code' => 200,
@@ -432,20 +463,31 @@ class CorteController extends Controller
                 'j' => str_replace('.00', '', $curva->j),
                 'k' => str_replace('.00', '', $curva->k),
                 'l' => str_replace('.00', '', $curva->l),
-                'a_alm'=> ($tallasAlmacen->sum('a') - $tallasOrden->sum('a') < 0) ? 0 : $tallasAlmacen->sum('a') - $tallasOrden->sum('a'),
-                'b_alm'=> ($tallasAlmacen->sum('b') - $tallasOrden->sum('b') < 0) ? 0 : $tallasAlmacen->sum('b') - $tallasOrden->sum('b'),
-                'c_alm'=> ($tallasAlmacen->sum('c') - $tallasOrden->sum('c') < 0) ? 0 : $tallasAlmacen->sum('c') - $tallasOrden->sum('c'),
-                'd_alm'=> ($tallasAlmacen->sum('d') - $tallasOrden->sum('d') < 0) ? 0 : $tallasAlmacen->sum('d') - $tallasOrden->sum('d'),
-                'e_alm'=> ($tallasAlmacen->sum('e') - $tallasOrden->sum('e') < 0) ? 0 : $tallasAlmacen->sum('e') - $tallasOrden->sum('e'),
-                'f_alm'=> ($tallasAlmacen->sum('f') - $tallasOrden->sum('f') < 0) ? 0 : $tallasAlmacen->sum('f') - $tallasOrden->sum('f'),
-                'g_alm'=> ($tallasAlmacen->sum('g') - $tallasOrden->sum('g') < 0) ? 0 : $tallasAlmacen->sum('g') - $tallasOrden->sum('g'),
-                'h_alm'=> ($tallasAlmacen->sum('h') - $tallasOrden->sum('h') < 0) ? 0 : $tallasAlmacen->sum('h') - $tallasOrden->sum('h'),
-                'i_alm'=> ($tallasAlmacen->sum('i') - $tallasOrden->sum('i') < 0) ? 0 : $tallasAlmacen->sum('i') - $tallasOrden->sum('i'),
-                'j_alm'=> ($tallasAlmacen->sum('j') - $tallasOrden->sum('j') < 0) ? 0 : $tallasAlmacen->sum('j') - $tallasOrden->sum('j'),
-                'k_alm'=> ($tallasAlmacen->sum('k') - $tallasOrden->sum('k') < 0) ? 0 : $tallasAlmacen->sum('k') - $tallasOrden->sum('k'),
-                'l_alm'=> ($tallasAlmacen->sum('l') - $tallasOrden->sum('l') < 0) ? 0 : $tallasAlmacen->sum('l') - $tallasOrden->sum('l'),
-                'total_alm'=> ($tallasAlmacen->sum('total') - $tallasOrden->sum('total') < 0) ? 0 : $tallasAlmacen->sum('total') - $tallasOrden->sum('total'),
-
+                'a_alm'=> $a_alm,
+                'b_alm'=> $b_alm,
+                'c_alm'=> $c_alm,
+                'd_alm'=> $d_alm,
+                'e_alm'=> $e_alm,
+                'f_alm'=> $f_alm,
+                'g_alm'=> $g_alm,
+                'h_alm'=> $h_alm,
+                'i_alm'=> $i_alm,
+                'j_alm'=> $j_alm,
+                'k_alm'=> $k_alm,
+                'l_alm'=> $l_alm,
+                'total_alm'=> $total_alm,
+                'a_perc' => $a_perc,
+                'b_perc' => $b_perc,
+                'c_perc' => $c_perc,
+                'd_perc' => $d_perc,
+                'e_perc' => $e_perc,
+                'f_perc' => $f_perc,
+                'g_perc' => $g_perc,
+                'h_perc' => $h_perc,
+                'i_perc' => $i_perc,
+                'j_perc' => $j_perc,
+                'k_perc' => $k_perc,
+                'l_perc' => $l_perc
             ];
 
         }else{

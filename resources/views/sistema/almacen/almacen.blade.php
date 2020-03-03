@@ -28,12 +28,12 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body" enctype="multipart/form-data">
-                    <h5><strong> Formulario de introduccion a almacen:</strong></h5>
+                    <h5><strong> Formulario de entrada a almacen:</strong></h5>
                     <hr>
                     <br><br>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="">Corte:</label>
+                            <label for="" class="d-flex justify-content-center pers">Corte</label>
                             <div id="corteAdd">
                                 <input type="hidden" name="id" id="id">
                                 <select name="tags[]" id="cortesSearch" class="form-control select2" style="width:100%">
@@ -70,12 +70,12 @@
 
                     <div class="row mt-2" id="form_producto">
                         <div class="col-md-4">
-                            <label for="">Ubicacion</label>
+                            <label for="" class="d-flex justify-content-center pers">Ubicacion</label>
                             <input type="text" name="ubicacion" id="ubicacion" class="form-control text-center"
                                 data-inputmask='"mask": "a-9"' data-mask>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Tono</label>
+                            <label for="" class="d-flex justify-content-center pers">Tono</label>
                             <select name="tono" id="tono" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Crudo o Puro">1- Crudo o puro</option>
@@ -87,7 +87,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Intensidad proceso seco</label>
+                            <label for="" class="d-flex justify-content-center pers">Intensidad proceso seco</label>
                             <select name="intensidad_proceso_seco" id="intensidad_proceso_seco" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Alto contraste">1- Alto contraste</option>
@@ -100,7 +100,7 @@
                     <br>
                     <div class="row mt-2" id="form_producto_2">
                         <div class="col-md-4">
-                            <label for="">Atributo No.1:</label>
+                            <label for="" class="d-flex justify-content-center pers">Atributo No.1</label>
                             <select name="atributo_no_1" id="atributo_no_1" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Roto">1- Roto</option>
@@ -111,7 +111,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Atributo No.2:</label>
+                            <label for="" class="d-flex justify-content-center pers">Atributo No.2</label>
                             <select name="atributo_no_2" id="atributo_no_2" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Roto">1- Roto</option>
@@ -122,7 +122,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Atributo No.3:</label>
+                            <label for="" class="d-flex justify-content-center pers">Atributo No.3</label>
                             <select name="atributo_no_3" id="atributo_no_3" class="form-control" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="Roto">1- Roto</option>
@@ -137,7 +137,7 @@
                     <hr>
                     <div class="row" id="form_talla">
                         <div class="col-md-4">
-                            <label for="">Fecha:</label>
+                            <label for="" class="d-flex justify-content-center pers">Fecha</label>
                             <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control">
                         </div>
                         <div class="col-md-4 mt-2">

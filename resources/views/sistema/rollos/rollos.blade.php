@@ -24,48 +24,49 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de registro de rollos:</h4>
+                <h4 class="font-weight-bold">Rollos</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
+                    <h5>Formulario de registro de rollos</h5>
                     <hr>
                     <div class="row ">
                         <div class="col-md-3">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="nombre_cliente">Suplidor(*):</label>
+                            <label for="nombre_cliente"></label>
                             <select name="tags[]" id="suplidores" class="form-control select2">
 
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="nombre_cliente">Tela(*):</label>
+                            <label for="nombre_cliente"></label>
                             <select name="tags[]" id="cloths"  class="form-control select2">
 
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="">Fecha compra(*):</label>
-                            <input type="date" name="fecha_compra" id="fecha_compra" class="form-control">
+                            <label for=""></label>
+                            <input type="date" placeholder="Fecha compra" name="fecha_compra" id="fecha_compra" class="form-control">
                         </div>
 
                         <div class="col-md-3">
-                            <label for="">Factura(*):</label>
-                            <input type="text" name="no_factura_compra" id="no_factura_compra" placeholder="Numero" class="form-control">
+                            <label for=""></label>
+                            <input type="text" placeholder="Factura" name="no_factura_compra" id="no_factura_compra" placeholder="Numero" class="form-control">
                         </div>
 
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4 mt-2">
-                            <label for="">Numero de rollo(*):</label>
-                            <input type="text" name="codigo_rollo" id="codigo_rollo" class="form-control">
+                            <label for=""></label>
+                            <input type="text" placeholder="Numero de rollo" name="codigo_rollo" id="codigo_rollo" class="form-control">
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label for="">Tono(*):</label>
-                            <input type="text" name="num_tono" id="num_tono" class="form-control">
+                            <label for=""></label>
+                            <input type="text" placeholder="Tono" name="num_tono" id="num_tono" class="form-control">
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label for="">Longitud en yarda(*):</label>
-                            <input type="text" name="longitud_yarda" id="longitud_yarda" class="form-control">
+                            <label for=""></label>
+                            <input type="text" placeholder="Longitud en yarda" name="longitud_yarda" id="longitud_yarda" class="form-control">
                         </div>
                     </div>
             </div>

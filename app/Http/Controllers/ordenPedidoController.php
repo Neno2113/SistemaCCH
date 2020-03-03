@@ -721,8 +721,10 @@ class ordenPedidoController extends Controller
             $orden_detalle->orden_pedido_id = $orden_id;
         }
 
-        if(empty($orden_redistribuida)){
+        if(!$orden_redistribuida == 1){
             $orden_redistribuida = 0;
+        }else{
+            $orden_redistribuida = $orden_redistribuida;
         }
 
 
@@ -744,7 +746,7 @@ class ordenPedidoController extends Controller
         $orden_detalle->cantidad = $cantidad;
         $orden_detalle->cant_red = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l + $cantidad;
         $orden_detalle->precio = $precio;
-        $orden_detalle->orden_redistribuida = 0;
+        $orden_detalle->orden_redistribuida = $orden_redistribuida;
         $orden_detalle->orden_empacada = 0;
 
         $orden_detalle->save();

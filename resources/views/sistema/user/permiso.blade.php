@@ -29,7 +29,7 @@
                     <hr>
                     <div class="row" id="fila1">
                         <div class="col-md-5">
-                            <label for="">Accesos:</label>
+                            <label for="">Accesos</label>
                             <select name="tags[]" id="permisos" class="form-control select2">
                                 {{-- <option disabled>DASHBOARD</option>
                                 <option value="Dashboard">Dashboard</option>
@@ -58,7 +58,8 @@
                                 <option value="Corte">Corte</option>
                                 <option value="Lavanderia">Lavanderia</option>
                                 <option value="Recepcion">Recepcion</option>
-                                <option value="Almacen">Almacen</option>
+                                <option value="Definir Atributos">Definir atributos</option>
+                                <option value="Entrada Almacen">Entrada almacen</option>
                                 <option value="Perdidas">Perdidas</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>ORDEN PEDIDO</option>
@@ -80,7 +81,7 @@
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-5">
-                            <label for="">Usuario:</label>
+                            <label for="">Usuario</label>
                             <select name="usuario" id="usuario" class="form-control select2">
                                 <option value=""></option>
                             </select>

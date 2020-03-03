@@ -532,16 +532,26 @@
                         </li>
 
                     @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Almacen')->first())
+                    @if (Auth::user()->permisos()->where('permiso', 'Definir Atributos')->first())
 
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/almacen" class="nav-link">
+                            <a href="/sistemaCCH/public/definir-atributo" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Almacen</p>
+                                <p>Definir atributos</p>
                             </a>
                         </li>
 
                     @endif
+                    @if (Auth::user()->permisos()->where('permiso', 'Entrada Almacen')->first())
+
+                    <li class="nav-item">
+                        <a href="/sistemaCCH/public/almacen" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Entradas almacen</p>
+                        </a>
+                    </li>
+
+                @endif
                     @if (Auth::user()->permisos()->where('permiso', 'Perdidas')->first())
 
                         <li class="nav-item">
