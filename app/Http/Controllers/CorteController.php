@@ -431,19 +431,19 @@ class CorteController extends Controller
         $l_alm = ($tallasAlmacen->sum('l') - $tallasOrden->sum('l') < 0) ? 0 : $tallasAlmacen->sum('l') - $tallasOrden->sum('l');
         $total_alm = ($tallasAlmacen->sum('total') - $tallasOrden->sum('total') < 0) ? 0 : $tallasAlmacen->sum('total') - $tallasOrden->sum('total');
 
-         //porcentaje alm
-        $a_perc = number_format(($a_alm / $total_alm) * 100, 2);
-        $b_perc = number_format(($b_alm / $total_alm) * 100, 2);
-        $c_perc = number_format(($c_alm / $total_alm) * 100, 2);
-        $d_perc = number_format(($d_alm / $total_alm) * 100, 2);
-        $e_perc = number_format(($e_alm / $total_alm) * 100, 2);
-        $f_perc = number_format(($f_alm / $total_alm) * 100, 2);
-        $g_perc = number_format(($g_alm / $total_alm) * 100, 2);
-        $h_perc = number_format(($h_alm / $total_alm) * 100, 2);
-        $i_perc = number_format(($i_alm / $total_alm) * 100, 2);
-        $j_perc = number_format(($j_alm / $total_alm) * 100, 2);
-        $k_perc = number_format(($k_alm / $total_alm) * 100, 2);
-        $l_perc = number_format(($l_alm / $total_alm) * 100, 2);
+        $a = str_replace('.00', '', $curva->a);
+        $b = str_replace('.00', '', $curva->b);
+        $c = str_replace('.00', '', $curva->c);
+        $d = str_replace('.00', '', $curva->d);
+        $e = str_replace('.00', '', $curva->e);
+        $f = str_replace('.00', '', $curva->f);
+        $g = str_replace('.00', '', $curva->g);
+        $h = str_replace('.00', '', $curva->h);
+        $i = str_replace('.00', '', $curva->i);
+        $j = str_replace('.00', '', $curva->j);
+        $k = str_replace('.00', '', $curva->k);
+        $l = str_replace('.00', '', $curva->l);
+        $total_porc = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         if(!empty($corte)){
             $data = [
@@ -451,43 +451,44 @@ class CorteController extends Controller
                 'status' => 'success',
                 'message' => 'Existe un corte con esta referencia',
                 'corte' => $corte,
-                'a' => str_replace('.00', '', $curva->a),
-                'b' => str_replace('.00', '', $curva->b),
-                'c' => str_replace('.00', '', $curva->c),
-                'd' => str_replace('.00', '', $curva->d),
-                'e' => str_replace('.00', '', $curva->e),
-                'f' => str_replace('.00', '', $curva->f),
-                'g' => str_replace('.00', '', $curva->g),
-                'h' => str_replace('.00', '', $curva->h),
-                'i' => str_replace('.00', '', $curva->i),
-                'j' => str_replace('.00', '', $curva->j),
-                'k' => str_replace('.00', '', $curva->k),
-                'l' => str_replace('.00', '', $curva->l),
-                'a_alm'=> $a_alm,
-                'b_alm'=> $b_alm,
-                'c_alm'=> $c_alm,
-                'd_alm'=> $d_alm,
-                'e_alm'=> $e_alm,
-                'f_alm'=> $f_alm,
-                'g_alm'=> $g_alm,
-                'h_alm'=> $h_alm,
-                'i_alm'=> $i_alm,
-                'j_alm'=> $j_alm,
-                'k_alm'=> $k_alm,
-                'l_alm'=> $l_alm,
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l,
+                'total_porc' => $total_porc,
+                'a_alm'=> ($a_alm) < 0 ? 0 : $a_alm,
+                'b_alm'=> ($b_alm) < 0 ? 0 : $b_alm,
+                'c_alm'=> ($c_alm) < 0 ? 0 : $c_alm,
+                'd_alm'=> ($d_alm) < 0 ? 0 : $d_alm,
+                'e_alm'=> ($e_alm) < 0 ? 0 : $e_alm,
+                'f_alm'=> ($f_alm) < 0 ? 0 : $f_alm,
+                'g_alm'=> ($g_alm) < 0 ? 0 : $g_alm,
+                'h_alm'=> ($h_alm) < 0 ? 0 : $h_alm,
+                'i_alm'=> ($i_alm) < 0 ? 0 : $i_alm,
+                'j_alm'=> ($j_alm) < 0 ? 0 : $j_alm,
+                'k_alm'=> ($k_alm) < 0 ? 0 : $k_alm,
+                'l_alm'=> ($l_alm) < 0 ? 0 : $l_alm,
                 'total_alm'=> $total_alm,
-                'a_perc' => $a_perc,
-                'b_perc' => $b_perc,
-                'c_perc' => $c_perc,
-                'd_perc' => $d_perc,
-                'e_perc' => $e_perc,
-                'f_perc' => $f_perc,
-                'g_perc' => $g_perc,
-                'h_perc' => $h_perc,
-                'i_perc' => $i_perc,
-                'j_perc' => $j_perc,
-                'k_perc' => $k_perc,
-                'l_perc' => $l_perc
+                // 'a_perc' => $a_perc,
+                // 'b_perc' => $b_perc,
+                // 'c_perc' => $c_perc,
+                // 'd_perc' => $d_perc,
+                // 'e_perc' => $e_perc,
+                // 'f_perc' => $f_perc,
+                // 'g_perc' => $g_perc,
+                // 'h_perc' => $h_perc,
+                // 'i_perc' => $i_perc,
+                // 'j_perc' => $j_perc,
+                // 'k_perc' => $k_perc,
+                // 'l_perc' => $l_perc
             ];
 
         }else{
@@ -495,18 +496,19 @@ class CorteController extends Controller
                 'code' => 400,
                 'status' => 'error',
                 'message' => 'No existe un corte con este referencia',
-                'a' => str_replace('.00', '', $curva->a),
-                'b' => str_replace('.00', '', $curva->b),
-                'c' => str_replace('.00', '', $curva->c),
-                'd' => str_replace('.00', '', $curva->d),
-                'e' => str_replace('.00', '', $curva->e),
-                'f' => str_replace('.00', '', $curva->f),
-                'g' => str_replace('.00', '', $curva->g),
-                'h' => str_replace('.00', '', $curva->h),
-                'i' => str_replace('.00', '', $curva->i),
-                'j' => str_replace('.00', '', $curva->j),
-                'k' => str_replace('.00', '', $curva->k),
-                'l' => str_replace('.00', '', $curva->l),
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l,
+                'total_porc' => $total_porc,
             ];
         }
         return response()->json($data, $data['code']);
@@ -541,9 +543,9 @@ class CorteController extends Controller
         $k = intval(trim($k, "_"));
         $l = intval(trim($l, "_"));
 
-        $curva = CurvaProducto::where('producto_id', $id)->latest()->first();
-
-        if(is_object($curva)){
+        if(!empty($id)){
+            $curva = New CurvaProducto();
+            $curva->producto_id = $id;
             $curva->a = $a;
             $curva->b = $b;
             $curva->c = $c;

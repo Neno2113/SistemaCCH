@@ -14,8 +14,6 @@
 </div>
 <div class="row">
     <div class="col-12">
-
-
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center  border-top">
                 <div class="card-tools">
@@ -27,52 +25,57 @@
                 <h4 class="font-weight-bold">Rollos</h4>
             </div>
             <div class="card-body">
-                <form action="" id="formulario" class="form-group carta panel-body">
+                <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
                     <h5>Formulario de registro de rollos</h5>
                     <hr>
                     <div class="row ">
+                        <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-3">
-                            <input type="hidden" name="id" id="id" value="">
-                            <label for="nombre_cliente"></label>
                             <select name="tags[]" id="suplidores" class="form-control select2">
 
                             </select>
+                            <label for="nombre_cliente" class="label"></label>
                         </div>
                         <div class="col-md-3">
-                            <label for="nombre_cliente"></label>
                             <select name="tags[]" id="cloths"  class="form-control select2">
 
                             </select>
+                            <label for="nombre_cliente" class="label"></label>
                         </div>
                         <div class="col-md-3">
-                            <label for=""></label>
+
                             <input type="date" placeholder="Fecha compra" name="fecha_compra" id="fecha_compra" class="form-control">
+                            <label for="" class="label"></label>
                         </div>
 
                         <div class="col-md-3">
-                            <label for=""></label>
+
                             <input type="text" placeholder="Factura" name="no_factura_compra" id="no_factura_compra" placeholder="Numero" class="form-control">
+                            <label for="" class="label"></label>
                         </div>
 
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4 mt-2">
-                            <label for=""></label>
+
                             <input type="text" placeholder="Numero de rollo" name="codigo_rollo" id="codigo_rollo" class="form-control">
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label for=""></label>
+
                             <input type="text" placeholder="Tono" name="num_tono" id="num_tono" class="form-control">
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label for=""></label>
+
                             <input type="text" placeholder="Longitud en yarda" name="longitud_yarda" id="longitud_yarda" class="form-control">
+                            <label for="" class="label"></label>
                         </div>
                     </div>
             </div>
             <div class="card-footer  text-muted">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn  btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-guardar" class="btn  btn-primary mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
@@ -167,6 +170,7 @@
 
 
 @include('adminlte/scripts')
+<script src="{{asset('js/formulario.js')}}"></script>
 <script src="{{asset('js/rollos.js')}}"></script>
 
 

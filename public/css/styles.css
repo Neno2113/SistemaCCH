@@ -19,6 +19,14 @@ table.dataTable.dtr-inline.collapsed
     left: 30%;
 }
 
+div.dataTables_wrapper div.dataTables_filter{
+    text-align: left;
+}
+
+.btn-group, .btn-group-vertical {
+    float: right;
+}
+
 .work-area {
     position: relative;
     border-radius: 3px;
@@ -33,6 +41,7 @@ margin-bottom: 20px; */
 
 .content-header h1 {
     font-weight: 500;
+    font-family: 'Oswald', sans-serif;
 }
 
 .card-header {
@@ -40,26 +49,28 @@ margin-bottom: 20px; */
     border: 1px solid #31343940;
 }
 .card-header h4 {
-    padding-top: 15px;
+    padding-top: 7px;
     color: black;
     /* font-weight: bold; */
-    font-family: 'Slabo 13px', serif;
+    font-family: 'Oswald', sans-serif;
 }
 
 .card-body h5 {
     font-weight: bold;
-    font-family: 'Slabo 13px', serif;
+    font-family: "Slabo 13px", serif;
+    text-align: center;
+    padding-top: 9px;
 }
 
 .card-body {
-    /* background:#f7f4f4; */
-    border-left: 1px solid#06090f73;
-    border-right: 1px solid #06090f73;
+    background:#f7f4f4;
+    /* border-left: 1px solid#06090f73;
+    border-right: 1px solid #06090f73; */
 }
-
+/*
 .card-body form {
     padding: 15px;
-}
+} */
 
 .card-footer {
     border: 1px solid #31343940;
@@ -92,8 +103,19 @@ select.form-control,
 textarea.form-control {
     /* border: 1px solid #00000073; */
     border: none;
-    border-bottom:2px solid #ccc;
-    font-family: 'Slabo 13px', serif;
+    border-bottom: 2px solid #ccc;
+    font-family: "Slabo 13px", serif;
+}
+
+form input[type="date"]::placeholder,
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+textarea.form-control::placeholder {
+    font-weight: bold;
+    color: #000000bd;
 }
 
 form input[type="date"]:focus,
@@ -102,13 +124,53 @@ input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus {
-    border-bottom:2px solid#2463b9; ;
+    outline: none;
+    border-bottom: 2px solid#2463b9;
+}
+form input[type="date"].error,
+input[type="text"].error,
+input[type="number"].error,
+input[type="email"].error,
+input[type="password"].error,
+input[type="number"].error {
+    border-bottom: 2px solid #D32F2F;
+}
+
+form input[type="date"].error + label,
+input[type="text"].error + label,
+input[type="number"].error + label,
+input[type="email"].error + label,
+input[type="password"].error + label,
+input[type="number"].error + label {
+    color: #D32F2F;
+}
+
+
+.carta   .label {
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    font-size: 16px;
+    line-height: 16px;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    font-family: "Slabo 13px", serif;
+
+}
+
+.carta label .label .active {
+    top: -12px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #B6B6B6;
 }
 
 .select2-container--default .select2-selection--single {
     /* border: 1px solid #00000073; */
     border: none;
-    border-bottom:2px solid #ccc;
+    border-bottom: 2px solid #ccc;
 }
 
 .error {
@@ -276,8 +338,7 @@ table th.fit {
 .tabla-existencia tfoot .totales {
     text-align: center;
 }
-
-.tabla-existencia tfoot .disp_venta {
+.0 .tabla-existencia tfoot .disp_venta {
     text-align: center;
 }
 
@@ -430,7 +491,7 @@ table th.fit {
     width: 100% !important;
 }
 
-.tabla-perdidas td .new{
+.tabla-perdidas td .new {
     border: none;
     font-weight: bold;
     font-size: 13px;
@@ -474,6 +535,6 @@ input[type=number]::-webkit-outer-spin-button:hover {
     opacity: 1;
 } */
 
-label .pers{
-    font-family: 'Slabo 13px', serif;
+label .pers {
+    font-family: "Slabo 13px", serif;
 }

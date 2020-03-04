@@ -24,54 +24,62 @@
                 <h4>Suplidor</h4>
             </div>
             <div class="card-body">
-                <form action="" id="formulario" class="form-group carta panel-body">
+                <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
                     <h5>Formulario de registro de suplidores:</h5>
                     <hr>
                     <div class="row ">
+                        <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-4">
-                            <input type="hidden" name="id" id="id" value="">
-                            <label for="nombre"></label>
+
+
                             <input type="text" name="nombre" placeholder="Nombre" id="nombre" class="form-control">
+                            <label for="nombre" class="label"></label>
                         </div>
                         <div class="col-md-4">
-                            <label for="rnc"></label>
+
                             <input type="text" name="rnc" id="rnc" placeholder="RNC" class="form-control"
                                 data-inputmask='"mask": "99999999999"' data-mask>
+                            <label for="rnc" class="label"></label>
                         </div>
                         <div class="col-md-4">
-                            <label for="contacto_suplidor"></label>
-                            <input type="text" placeholder="Contacto suplidor" name="contacto_suplidor" id="contacto_suplidor" class="form-control">
+
+                            <input type="text" placeholder="Contacto suplidor" name="contacto_suplidor"
+                                id="contacto_suplidor" class="form-control">
+                            <label for="contacto_suplidor" class="label"></label>
                         </div>
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_1"></label>
+
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div> --}}
-                                <input type="text" id="telefono_1" placeholder="Telefono 1" class="form-control"
-                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+                            <input type="text" id="telefono_1" placeholder="Telefono 1" class="form-control"
+                                data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+                            <label for="telefono_1" class="label"></label>
                             {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_2"></label>
+
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div> --}}
-                                <input type="text" id="telefono_2" placeholder="Telefono 2" class="form-control"
-                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+                            <input type="text" id="telefono_2" placeholder="Telefono 2" class="form-control"
+                                data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+                            <label for="telefono_2" class="label"></label>
                             {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="celular"></label>
+
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div> --}}
-                                <input type="text" placeholder="Celular" id="celular" class="form-control"
-                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+                            <input type="text" placeholder="Celular" id="celular" class="form-control"
+                                data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+                            <label for="celular" class="label"></label>
                             {{-- </div> --}}
                         </div>
                     </div>
@@ -79,11 +87,12 @@
                     <hr><br>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="email"></label>
+
                             <input type="email" placeholder="Email" name="email" id="email" class="form-control">
+                            <label for="email" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="terminos_de_pago"></label>
+
                             <select name="tipo_suplidor" id="tipo_suplidor" class="form-control">
                                 <option value="" disabled>Tipo suplidor</option>
                                 <option value="">Elige un tipo...</option>
@@ -91,83 +100,88 @@
                                 <option value="Lavanderia">Lavanderia</option>
                                 <option value="Servicio">Servicio</option>
                             </select>
+                            <label for="terminos_de_pago" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="terminos_de_pago"></label>
+
                             <select name="terminos_pago" id="terminos_de_pago" class="form-control">
-                                <option value=""disabled>Termino de pago</option>
+                                <option value="" disabled>Termino de pago</option>
                                 <option value="Contado">Al contado</option>
                                 <option value="30 dias">30 dias</option>
                                 <option value="60 dias">60 dias</option>
                                 <option value="90 dias">90 dias</option>
                                 <option value="120 dias">120 dias</option>
                             </select>
-
+                            <label for="terminos_de_pago" class="label"></label>
                         </div>
                     </div>
                     <br>
                     <hr>
                     <div class="row">
                         <div class="col-md-4 mt-1">
-                            <label for="calle"></label>
+
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div> --}}
-                                <input name="calle" type="text" id="calle" class="form-control" placeholder="Calle">
+                            <input name="calle" type="text" id="calle" class="form-control" placeholder="Calle">
+                            <label for="calle" class="label"></label>
                             {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-1">
-                            <label for="sector"></label>
+
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div> --}}
-                                <input name="sector" type="text" id="sector" class="form-control" placeholder="Sector">
+                            <input name="sector" type="text" id="sector" class="form-control" placeholder="Sector">
+                            <label for="sector" class="label"></label>
                             {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-1">
-                            <label for="provincia"></label>
+
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div> --}}
-                                <select name="provincia" id="provincia" class="form-control select2" aria-placeholder="State">
-                                    <option value=""disabled>Provincia</option>
-                                    <option >No pertenece al pais</option>
-                                    <option>Santo Domingo</option>
-                                    <option>Distrito Nacional</option>
-                                    <option>Santiago</option>
-                                    <option>San Cristóbal</option>
-                                    <option>La Vega</option>
-                                    <option>Puerto Plata</option>
-                                    <option>San Pedro de Macorís</option>
-                                    <option>Duarte</option>
-                                    <option>La Altagracia</option>
-                                    <option>La Romana</option>
-                                    <option>San Juan</option>
-                                    <option>Espaillat</option>
-                                    <option>Azua</option>
-                                    <option>Barahona</option>
-                                    <option>Monte Plata</option>
-                                    <option>Peravia</option>
-                                    <option>Monseñor Nouel</option>
-                                    <option>Valverde</option>
-                                    <option>Sánchez Ramírez</option>
-                                    <option>María Trinidad Sánchez</option>
-                                    <option>Montecristi</option>
-                                    <option>Samaná</option>
-                                    <option>Bahoruco</option>
-                                    <option>Hermanas Mirabal</option>
-                                    <option>El Seibo</option>
-                                    <option>Hato Mayor</option>
-                                    <option>Dajabón</option>
-                                    <option>Elías Piña</option>
-                                    <option>San José de Ocoa</option>
-                                    <option>Santiago Rodríguez</option>
-                                    <option>Independencia</option>
-                                    <option>Pedernales</option>
-                                </select>
+                            <select name="provincia" id="provincia" class="form-control select2"
+                                aria-placeholder="State">
+                                <option value="" disabled>Provincia</option>
+                                <option>No pertenece al pais</option>
+                                <option>Santo Domingo</option>
+                                <option>Distrito Nacional</option>
+                                <option>Santiago</option>
+                                <option>San Cristóbal</option>
+                                <option>La Vega</option>
+                                <option>Puerto Plata</option>
+                                <option>San Pedro de Macorís</option>
+                                <option>Duarte</option>
+                                <option>La Altagracia</option>
+                                <option>La Romana</option>
+                                <option>San Juan</option>
+                                <option>Espaillat</option>
+                                <option>Azua</option>
+                                <option>Barahona</option>
+                                <option>Monte Plata</option>
+                                <option>Peravia</option>
+                                <option>Monseñor Nouel</option>
+                                <option>Valverde</option>
+                                <option>Sánchez Ramírez</option>
+                                <option>María Trinidad Sánchez</option>
+                                <option>Montecristi</option>
+                                <option>Samaná</option>
+                                <option>Bahoruco</option>
+                                <option>Hermanas Mirabal</option>
+                                <option>El Seibo</option>
+                                <option>Hato Mayor</option>
+                                <option>Dajabón</option>
+                                <option>Elías Piña</option>
+                                <option>San José de Ocoa</option>
+                                <option>Santiago Rodríguez</option>
+                                <option>Independencia</option>
+                                <option>Pedernales</option>
+                            </select>
+                            <label for="provincia" class="label"></label>
                             {{-- </div> --}}
                         </div>
 
@@ -175,7 +189,7 @@
                     <div class="row mt-2">
 
                         <div class="col-md-4">
-                            <label for=""></label>
+
                             <select name="pais" id="pais" class="form-control select2" placeholder="Country">
                                 <option value="Elegir" disabled>Pais</option>
                                 <option value="Afganistán" id="AF">Afganistán</option>
@@ -246,14 +260,16 @@
                                 <option value="Estados Unidos" id="US">Estados Unidos</option>
                                 <option value="Estonia" id="EE">Estonia</option>
                                 <option value="c" id="ET">Etiopía</option>
-                                <option value="Ex-República Yugoslava de Macedonia" id="MK">Ex-República Yugoslava de Macedonia</option>
+                                <option value="Ex-República Yugoslava de Macedonia" id="MK">Ex-República Yugoslava de
+                                    Macedonia</option>
                                 <option value="Filipinas" id="PH">Filipinas</option>
                                 <option value="Finlandia" id="FI">Finlandia</option>
                                 <option value="Francia" id="FR">Francia</option>
                                 <option value="Gabón" id="GA">Gabón</option>
                                 <option value="Gambia" id="GM">Gambia</option>
                                 <option value="Georgia" id="GE">Georgia</option>
-                                <option value="Georgia del Sur y las islas Sandwich del Sur" id="GS">Georgia del Sur y las islas Sandwich del Sur</option>
+                                <option value="Georgia del Sur y las islas Sandwich del Sur" id="GS">Georgia del Sur y
+                                    las islas Sandwich del Sur</option>
                                 <option value="Ghana" id="GH">Ghana</option>
                                 <option value="Gibraltar" id="GI">Gibraltar</option>
                                 <option value="Granada" id="GD">Granada</option>
@@ -286,10 +302,12 @@
                                 <option value="Islas de Cocos o Keeling" id="CC">Islas de Cocos o Keeling</option>
                                 <option value="Islas Faroe" id="FO">Islas Faroe</option>
                                 <option value="Islas Fiyi" id="FJ">Islas Fiyi</option>
-                                <option value="Islas Malvinas Islas Falkland" id="FK">Islas Malvinas Islas Falkland</option>
+                                <option value="Islas Malvinas Islas Falkland" id="FK">Islas Malvinas Islas Falkland
+                                </option>
                                 <option value="Islas Marianas del norte" id="MP">Islas Marianas del norte</option>
                                 <option value="Islas Marshall" id="MH">Islas Marshall</option>
-                                <option value="Islas menores de Estados Unidos" id="UM">Islas menores de Estados Unidos</option>
+                                <option value="Islas menores de Estados Unidos" id="UM">Islas menores de Estados Unidos
+                                </option>
                                 <option value="Islas Palau" id="PW">Islas Palau</option>
                                 <option value="Islas Salomón" d="SB">Islas Salomón</option>
                                 <option value="Islas Tokelau" id="TK">Islas Tokelau</option>
@@ -361,7 +379,8 @@
                                 <option value="República Centroafricana" id="CF">República Centroafricana</option>
                                 <option value="República Checa" id="CZ">República Checa</option>
                                 <option value="República de Sudáfrica" id="ZA">República de Sudáfrica</option>
-                                <option value="República Democrática del Congo Zaire" id="CD">República Democrática del Congo Zaire</option>
+                                <option value="República Democrática del Congo Zaire" id="CD">República Democrática del
+                                    Congo Zaire</option>
                                 <option value="República Dominicana" id="DO">República Dominicana</option>
                                 <option value="Reunión" id="RE">Reunión</option>
                                 <option value="Ruanda" id="RW">Ruanda</option>
@@ -372,7 +391,8 @@
                                 <option value="San Kitts y Nevis" id="KN">San Kitts y Nevis</option>
                                 <option value="San Marino" id="SM">San Marino</option>
                                 <option value="San Pierre y Miquelon" id="PM">San Pierre y Miquelon</option>
-                                <option value="San Vicente e Islas Granadinas" id="VC">San Vicente e Islas Granadinas</option>
+                                <option value="San Vicente e Islas Granadinas" id="VC">San Vicente e Islas Granadinas
+                                </option>
                                 <option value="Santa Helena" id="SH">Santa Helena</option>
                                 <option value="Santa Lucía" id="LC">Santa Lucía</option>
                                 <option value="Santo Tomé y Príncipe" id="ST">Santo Tomé y Príncipe</option>
@@ -394,8 +414,10 @@
                                 <option value="Taiwán" id="TW">Taiwán</option>
                                 <option value="Tanzania" id="TZ">Tanzania</option>
                                 <option value="Tayikistán" id="TJ">Tayikistán</option>
-                                <option value="Territorios británicos del océano Indico" id="IO">Territorios británicos del océano Indico</option>
-                                <option value="Territorios franceses del sur" id="TF">Territorios franceses del sur</option>
+                                <option value="Territorios británicos del océano Indico" id="IO">Territorios británicos
+                                    del océano Indico</option>
+                                <option value="Territorios franceses del sur" id="TF">Territorios franceses del sur
+                                </option>
                                 <option value="Timor Oriental" id="TP">Timor Oriental</option>
                                 <option value="Togo" id="TG">Togo</option>
                                 <option value="Tonga" id="TO">Tonga</option>
@@ -416,10 +438,13 @@
                                 <option value="Zambia" id="ZM">Zambia</option>
                                 <option value="Zimbabue" id="ZW">Zimbabue</option>
                             </select>
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4">
-                            <label for=""></label>
-                            <input type="text" placeholder="Referencias cercanas" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
+
+                            <input type="text" placeholder="Referencias cercanas" name="sitios_cercanos"
+                                id="sitios_cercanos" class="form-control">
+                            <label for="" class="label"></label>
 
                         </div>
                     </div>
@@ -427,15 +452,17 @@
                     <hr>
                     <div class="row mt-2">
                         <div class="col-md-12 mt-3">
-                            <label for="nota" class="d-flex justify-content-center"></label>
-                            <textarea name="nota" id="nota" cols="30" rows="1" placeholder="Nota" class="form-control"></textarea>
+
+                            <textarea name="nota" id="nota" cols="30" rows="1" placeholder="Nota"
+                                class="form-control"></textarea>
+                            <label for="nota" class="label"></label>
                         </div>
                     </div>
             </div>
             <div class="card-footer ">
                 <button class="btn btn-danger  mt-2" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
                     Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i
                         class="far fa-edit fa-lg"></i> Editar</button>
@@ -486,6 +513,7 @@
 </div>
 
 @include('adminlte/scripts')
+<script src="{{asset('js/formulario.js')}}"></script>
 <script src="{{asset('js/suplidor.js')}}"></script>
 
 

@@ -80,6 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Slabo+13px&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 
     <!-- PACE -->
     {{-- <script src="{{asset('adminlte/plugins/pace/pace.min.js')}}"></script>

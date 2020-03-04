@@ -1,46 +1,46 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
-    $("#formulario").validate({
-        rules: {
-            name: {
-                required: true,
-                minlength: 3
-            },
-            surname: {
-                required: true,
-                minlength: 4
-            },
-            edad: "required",
-            email: {
-                required: true,
-                email: true
-            },
-            password: {
-                required: true,
-                minlength: 8
-            }
-        },
-        messages: {
-            name: {
-                required: "Introduzca el name",
-                minlength: "Debe contener al menos 3 letras"
-            },
-            surname: {
-                required: "Introduzca el surname",
-                minlength: "Debe contener al menos 4 letras"
-            },
-            edad: "La edad es obligatoria",
-            email: {
-                required: "El email es obligatorio",
-                email: "Debe itroducir un email valido"
-            },
-            password: {
-                required: "La contraseña es obligatoria",
-                minlength: "Debe contener al menos 8 caracteres"
-            }
-        }
-    })
+    // $("#formulario").validate({
+    //     rules: {
+    //         name: {
+    //             required: true,
+    //             minlength: 3
+    //         },
+    //         surname: {
+    //             required: true,
+    //             minlength: 4
+    //         },
+    //         edad: "required",
+    //         email: {
+    //             required: true,
+    //             email: true
+    //         },
+    //         password: {
+    //             required: true,
+    //             minlength: 8
+    //         }
+    //     },
+    //     messages: {
+    //         name: {
+    //             required: "Introduzca el name",
+    //             minlength: "Debe contener al menos 3 letras"
+    //         },
+    //         surname: {
+    //             required: "Introduzca el surname",
+    //             minlength: "Debe contener al menos 4 letras"
+    //         },
+    //         edad: "La edad es obligatoria",
+    //         email: {
+    //             required: "El email es obligatorio",
+    //             email: "Debe itroducir un email valido"
+    //         },
+    //         password: {
+    //             required: "La contraseña es obligatoria",
+    //             minlength: "Debe contener al menos 8 caracteres"
+    //         }
+    //     }
+    // })
 
 
     var tabla;

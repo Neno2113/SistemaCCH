@@ -21,76 +21,78 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4 class="font-weight-bold">Registro</h4>
+                <h4 class="">Registro</h4>
             </div>
             <div class="card-body">
-                <form action="" id="formulario" class="form-group carta panel-body">
+                <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
                     <h5>Formulario de registro de usuarios</h5>
                     <hr>
                     <div class="row ">
+                        <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-4">
-                            <input type="hidden" name="id" id="id" value="">
-                            <label for="name"></label>
-                            <input type="text" name="name" id="name" placeholder="Nombre" class="form-control" pattern="[a-zA-Z]">
-                            @if ($errors->has('name'))
-                            <div class="error">{{ $errors->name('name') }}</div>
-                            @endif
+                            <input type="text" name="name" id="name" placeholder="Nombre" class="form-control"
+                                pattern="[a-zA-Z]">
+                            <label for="name" class="label"></label>
                         </div>
                         <div class="col-md-4">
-                            <label for="surname"></label>
                             <input type="text" name="surname" id="surname" placeholder="Apellido" class="form-control">
+                            <label for="surname" class="label"></label>
                         </div>
                         <div class="col-md-4">
-                            <label for="edad"></label>
-                            <input type="text" name="edad" id="edad" placeholder="Edad" class="form-control text-center" ]
-                                data-inputmask='"mask": "99"' data-mask>
+                            <input type="text" name="edad" id="edad" placeholder="Edad" class="form-control text-center"
+                                ] data-inputmask='"mask": "99"' data-mask>
+                            <label for="edad" class="label"></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="name"></label>
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div> --}}
-                                <input type="text" id="telefono" placeholder="Telefono" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                            <input type="text" id="telefono" placeholder="Telefono" class="form-control"
+                                data-inputmask='"mask": "(999) 999-9999"' data-mask>
                             {{-- </div> --}}
+                            <label for="name" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="celular"></label>
+
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div> --}}
-                                <input type="text" id="celular" placeholder="Celular" class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                            <input type="text" id="celular" placeholder="Celular" class="form-control"
+                                data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                            <label for="celular" class="label"></label>
                             {{-- </div> --}}
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="direccion"></label>
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                                 </div> --}}
-                                <input type="text" id="direccion" placeholder="Direccion" class="form-control">
+                            <input type="text" id="direccion" placeholder="Direccion" class="form-control">
+                            <label for="direccion" class="label"></label>
                             {{-- </div> --}}
 
                         </div>
                     </div>
-                    <h4 class="text-center mt-4">Datos de acceso</h4>
+                    <h4 class="text-center mt-4" style="padding-top:20px;">Datos de acceso</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="name"></label>
+
                             <input type="Email" name="email" id="email" placeholder="Email" class="form-control">
+                            <label for="name" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3" id="ver-contra">
-                            <label for="password"></label>
-                            <input type="password" name="password" placeholder="Contraseña" id="password" class="form-control">
+
+                            <input type="password" name="password" placeholder="Contraseña" id="password"
+                                class="form-control">
+                            <label for="password" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for=""></label>
+
                             <select name="role" id="role" class="form-control">
                                 <option value="" disabled>Rol</option>
                                 <option>Administrador</option>
@@ -98,6 +100,7 @@
                                 <option>Soporte</option>
                                 <option>General</option>
                             </select>
+                            <label for="" class="label"></label>
                         </div>
 
                     </div>
@@ -136,7 +139,7 @@
             <div class="card-footer  text-muted ">
                 <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
                     Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-1 float-right"><i
+                <button type="submit" id="btn-guardar" class="btn btn-primary mt-1 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i
                         class="far fa-edit fa-lg"></i> Editar</button>
@@ -191,6 +194,7 @@
 
 
 @include('adminlte/scripts')
+<script src="{{asset('js/formulario.js')}}"></script>
 <script src="{{asset('js/user.js')}}"></script>
 
 @endsection

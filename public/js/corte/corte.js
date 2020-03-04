@@ -1,45 +1,46 @@
 var total_alm;
+var genero_global;
 
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
-    $("#formulario").validate({
-        rules: {
-            no_marcada: {
-                required: true,
-                minlength: 1,
+    // $("#formulario").validate({
+    //     rules: {
+    //         no_marcada: {
+    //             required: true,
+    //             minlength: 1,
 
-            },
-            ancho_marcada: {
-                required: true,
-                minlength: 1,
-                number: true
-            },
-            largo_marcada: {
-                required: true,
-                minlength: 1,
-                number: true
-            },
-        },
-        messages: {
-            no_marcada: {
-                required: "El numero de marcada es obligatorio",
-                minlength: "Debe contener al menos 1 numero"
-            },
-            ancho_marcada: {
-                required: "El ancho de la marcada es obligatorio",
-                minlength: "Debe contener al menos 1 numero",
-                number: "Este campo solo admite numeros"
-            },
-            largo_marcada: {
-                required: "El largo de la marcada es obligatorio",
-                minlength: "Debe contener al menos 1 numero",
-                number: "Este campo solo admite numeros"
-            },
+    //         },
+    //         ancho_marcada: {
+    //             required: true,
+    //             minlength: 1,
+    //             number: true
+    //         },
+    //         largo_marcada: {
+    //             required: true,
+    //             minlength: 1,
+    //             number: true
+    //         },
+    //     },
+    //     messages: {
+    //         no_marcada: {
+    //             required: "El numero de marcada es obligatorio",
+    //             minlength: "Debe contener al menos 1 numero"
+    //         },
+    //         ancho_marcada: {
+    //             required: "El ancho de la marcada es obligatorio",
+    //             minlength: "Debe contener al menos 1 numero",
+    //             number: "Este campo solo admite numeros"
+    //         },
+    //         largo_marcada: {
+    //             required: "El largo de la marcada es obligatorio",
+    //             minlength: "Debe contener al menos 1 numero",
+    //             number: "Este campo solo admite numeros"
+    //         },
 
 
-        }
-    })
+    //     }
+    // })
 
 
     var tabla
@@ -95,6 +96,19 @@ $(document).ready(function() {
         $("#j_new").val("");
         $("#k_new").val("");
         $("#l_new").val("");
+        $("#total_percent").val("");
+        $("#a_act").val("");
+        $("#b_act").val("");
+        $("#c_act").val("");
+        $("#d_act").val("");
+        $("#e_act").val("");
+        $("#f_act").val("");
+        $("#g_act").val("");
+        $("#h_act").val("");
+        $("#i_act").val("");
+        $("#j_act").val("");
+        $("#k_act").val("");
+        $("#l_act").val("");
         $("#total_percent").val("");
     }
 
@@ -270,6 +284,7 @@ $(document).ready(function() {
         let genero = val.substring(1,2);
         let genero_plus = val.substr(3,1);
         $("#genero").val(genero);
+        genero_global = genero
 
         if (genero == "2") {
             if(genero_plus == "7"){
@@ -391,6 +406,12 @@ $(document).ready(function() {
             $("#tf").html("12");
             $("#tg").html("14");
             $("#th").html("16");
+            // $("#tj").hide();
+            // $("#tk").hide();
+            // $("#tl").hide();
+            // $("#ti").hide();
+            // $("#tj").hide();
+
             $("#sa").html("2");
             $("#sb").html("4");
             $("#sc").html("6");
@@ -438,6 +459,8 @@ $(document).ready(function() {
             $("#th").html("40");
             $("#ti").html("42");
             $("#tj").html("44");
+            // $("#tk").hide();
+            // $("#tl").hide();
             $("#sa").html("28");
             $("#sb").html("29");
             $("#sc").html("30");
@@ -526,6 +549,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     //Inventario
+
                     $("#a_alm").html(datos.a_alm);
                     $("#b_alm").html(datos.b_alm);
                     $("#c_alm").html(datos.c_alm);
@@ -564,7 +588,8 @@ $(document).ready(function() {
                     $("#j_act").html(datos.j + "%");
                     $("#k_act").html(datos.k + "%");
                     $("#l_act").html(datos.l + "%");
-                    $("#total_alm").val(datos.total_alm);
+                    $("#total_alm").html(datos.total_alm);
+                    $("#total_actual").html(datos.total_porc + "%");
                     total_alm = datos.total_alm;
                     $("#fila-nuevo").show();
                     $("#fila-actual").show();
@@ -638,18 +663,19 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                $("#a_act").html(datos.responseJSON.a + "%");
-                $("#b_act").html(datos.responseJSON.b + "%");
-                $("#c_act").html(datos.responseJSON.c + "%");
-                $("#d_act").html(datos.responseJSON.d + "%");
-                $("#e_act").html(datos.responseJSON.e + "%");
-                $("#f_act").html(datos.responseJSON.f + "%");
-                $("#g_act").html(datos.responseJSON.g + "%");
-                $("#h_act").html(datos.responseJSON.h + "%");
-                $("#i_act").html(datos.responseJSON.i + "%");
-                $("#j_act").html(datos.responseJSON.j + "%");
-                $("#k_act").html(datos.responseJSON.k + "%");
-                $("#l_act").html(datos.responseJSON.l + "%");
+                // $("#a_act").html(datos.responseJSON.a + "%");
+                // $("#b_act").html(datos.responseJSON.b + "%");
+                // $("#c_act").html(datos.responseJSON.c + "%");
+                // $("#d_act").html(datos.responseJSON.d + "%");
+                // $("#e_act").html(datos.responseJSON.e + "%");
+                // $("#f_act").html(datos.responseJSON.f + "%");
+                // $("#g_act").html(datos.responseJSON.g + "%");
+                // $("#h_act").html(datos.responseJSON.h + "%");
+                // $("#i_act").html(datos.responseJSON.i + "%");
+                // $("#j_act").html(datos.responseJSON.j + "%");
+                // $("#k_act").html(datos.responseJSON.k + "%");
+                // $("#l_act").html(datos.responseJSON.l + "%");
+                // $("#total_actual").html(datos.responseJSON.total_porc + "%");
             }
         });
 
@@ -1086,10 +1112,10 @@ $(document).ready(function() {
             $("#fila1").hide();
             $("#fila2").hide();
             $("#fila3").hide();
-            $("#fila-nuevo").hide();
+            // $("#fila-nuevo").hide();
             $("#fila-inventario-perc").hide();
             $("#fila-inventario").hide();
-            $("#fila-totales").hide();
+            // $("#fila-totales").hide();
             $("#spiner").hide();
             $("#spiner2").hide();
             $("#btn-curva").attr("disabled", true);
@@ -1807,113 +1833,448 @@ function remover(id_rollo) {
 }
 
 
+// //Curva nueva crearla
+// $("#a").keyup(function(){
+//     let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+//     let result = (a / total_alm) * 100;
+//     result = result.toFixed(2);
+//     $("#a_new").val(result);
+//     calcularPorcentaje();
+
+// })
+
+var total_nuevo;
 
 $("#a").keyup(function(){
     let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let result = (a / total_alm) * 100;
+    let total = a;
+    let result = (a / total) * 100;
     result = result.toFixed(2);
-    $("#a_new").val(result);
-    calcularPorcentaje();
+    $("#a_act").val(result);
+    calcularPorcentajeNuevo()
 
 })
+
 $("#b").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
     let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let result = (b / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#b_new").val(result);
-    calcularPorcentaje();
+    let total = a + b;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    calcularPorcentajeNuevo();
 
 })
+
 
 $("#c").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
     let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let result = (c / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#c_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    calcularPorcentajeNuevo();
+
 
 })
 
 $("#d").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
     let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let result = (d / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#d_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    calcularPorcentajeNuevo();
+
 
 })
 
 $("#e").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
     let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let result = (e / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#e_new").val(result);
-    calcularPorcentaje();
-
+    let total = a + b + c + d + e;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    calcularPorcentajeNuevo();
 })
 
 $("#f").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
     let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let result = (f / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#f_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d + e + f;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    resultf = resultf.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    $("#f_act").val(resultf);
+    calcularPorcentajeNuevo();
 
 })
 
 
 $("#g").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
     let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
-    let result = (g / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#g_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d + e + f + g;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    resultf = resultf.toFixed(2);
+    resultg = resultg.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    $("#f_act").val(resultf);
+    $("#g_act").val(resultg);
+    calcularPorcentajeNuevo();
 
 })
 
 $("#h").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
     let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
-    let result = (h / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#h_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d + e + f + g + h;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    let resulth = (h / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    resultf = resultf.toFixed(2);
+    resultg = resultg.toFixed(2);
+    resulth = resulth.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    $("#f_act").val(resultf);
+    $("#g_act").val(resultg);
+    $("#h_act").val(resulth);
+    calcularPorcentajeNuevo();
 
 })
 
 $("#i").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
     let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
-    let result = (i / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#i_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d + e + f + g + h + i;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    let resulth = (h / total) * 100;
+    let resulti = (i / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    resultf = resultf.toFixed(2);
+    resultg = resultg.toFixed(2);
+    resulth = resulth.toFixed(2);
+    resulti = resulti.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    $("#f_act").val(resultf);
+    $("#g_act").val(resultg);
+    $("#h_act").val(resulth);
+    $("#i_act").val(resulti);
+    calcularPorcentajeNuevo();
 
 })
 
 $("#j").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
     let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
-    let result = (j / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#j_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d + e + f + g + h + i + j;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    let resulth = (h / total) * 100;
+    let resulti = (i / total) * 100;
+    let resultj = (j / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    resultf = resultf.toFixed(2);
+    resultg = resultg.toFixed(2);
+    resulth = resulth.toFixed(2);
+    resulti = resulti.toFixed(2);
+    resultj = resultj.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    $("#f_act").val(resultf);
+    $("#g_act").val(resultg);
+    $("#h_act").val(resulth);
+    $("#i_act").val(resulti);
+    $("#j_act").val(resultj);
+    calcularPorcentajeNuevo();
 
 })
 
 $("#k").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
+    let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
     let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
-    let result = (k / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#k_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d + e + f + g + h + i + j + k;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    let resulth = (h / total) * 100;
+    let resulti = (i / total) * 100;
+    let resultj = (j / total) * 100;
+    let resultk = (k / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    resultf = resultf.toFixed(2);
+    resultg = resultg.toFixed(2);
+    resulth = resulth.toFixed(2);
+    resulti = resulti.toFixed(2);
+    resultj = resultj.toFixed(2);
+    resultk = resultk.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    $("#f_act").val(resultf);
+    $("#g_act").val(resultg);
+    $("#h_act").val(resulth);
+    $("#i_act").val(resulti);
+    $("#j_act").val(resultj);
+    $("#k_act").val(resultk);
+    calcularPorcentajeNuevo();
 })
 
 $("#l").keyup(function(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
+    let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
+    let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
     let l = isNaN(parseFloat($("#l").val())) ? 0: parseFloat($("#l").val());
-    let result = (l / total_alm) * 100;
-    result = result.toFixed(2);
-    $("#l_new").val(result);
-    calcularPorcentaje();
+    let total = a + b + c + d + e + f + g + h + i + j + k + l;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    let resulth = (h / total) * 100;
+    let resulti = (i / total) * 100;
+    let resultj = (j / total) * 100;
+    let resultk = (k / total) * 100;
+    let resultl = (l / total) * 100;
+    resulta = resulta.toFixed(2);
+    resultb = resultb.toFixed(2);
+    resultc = resultc.toFixed(2);
+    resultd = resultd.toFixed(2);
+    resulte = resulte.toFixed(2);
+    resultf = resultf.toFixed(2);
+    resultg = resultg.toFixed(2);
+    resulth = resulth.toFixed(2);
+    resulti = resulti.toFixed(2);
+    resultj = resultj.toFixed(2);
+    resultk = resultk.toFixed(2);
+    resultl = resultl.toFixed(2);
+    $("#a_act").val(resulta);
+    $("#b_act").val(resultb);
+    $("#c_act").val(resultc);
+    $("#d_act").val(resultd);
+    $("#e_act").val(resulte);
+    $("#f_act").val(resultf);
+    $("#g_act").val(resultg);
+    $("#h_act").val(resulth);
+    $("#i_act").val(resulti);
+    $("#j_act").val(resultj);
+    $("#k_act").val(resultk);
+    $("#k_act").val(resultl);
+    calcularPorcentajeNuevo();
 
 })
+
+
+function calcularPorcentajeNuevo(){
+    let a = isNaN(parseFloat($("#a_act").val())) ? 0: parseFloat($("#a_act").val());
+    let b = isNaN(parseFloat($("#b_act").val())) ? 0: parseFloat($("#b_act").val());
+    let c = isNaN(parseFloat($("#c_act").val())) ? 0: parseFloat($("#c_act").val());
+    let d = isNaN(parseFloat($("#d_act").val())) ? 0: parseFloat($("#d_act").val());
+    let e = isNaN(parseFloat($("#e_act").val())) ? 0: parseFloat($("#e_act").val());
+    let f = isNaN(parseFloat($("#f_act").val())) ? 0: parseFloat($("#f_act").val());
+    let g = isNaN(parseFloat($("#g_act").val())) ? 0: parseFloat($("#g_act").val());
+    let h = isNaN(parseFloat($("#h_act").val())) ? 0: parseFloat($("#h_act").val());
+    let i = isNaN(parseFloat($("#i_act").val())) ? 0: parseFloat($("#i_act").val());
+    let j = isNaN(parseFloat($("#j_act").val())) ? 0: parseFloat($("#j_act").val());
+    let k = isNaN(parseFloat($("#k_act").val())) ? 0: parseFloat($("#k_act").val());
+    let l = isNaN(parseFloat($("#l_act").val())) ? 0: parseFloat($("#l_act").val());
+    let total = a + b + c + d + e + f + g + h + i + j + k + l;
+    total = total.toFixed(2);
+
+    $("#total_actual").html(total+"%");
+    // if(total == 100.00){
+    //     $("#btn-curva").attr("disabled", false);
+    // }else{
+    //     $("#btn-curva").attr("disabled", true);
+    // }
+}
+
+function calcularTotalCorte(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
+    let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
+    let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
+    let l = isNaN(parseFloat($("#l").val())) ? 0: parseFloat($("#l").val());
+    let total = a + b + c + d + e + f + g + h + i + j + k + l;
+
+    $("#total_corte").html(total);
+
+}
+
 
 function calcularPorcentaje(){
     let a = isNaN(parseFloat($("#a_new").val())) ? 0: parseFloat($("#a_new").val());
@@ -1930,7 +2291,7 @@ function calcularPorcentaje(){
     let l = isNaN(parseFloat($("#l_new").val())) ? 0: parseFloat($("#l_new").val());
     let total = a + b + c + d + e + f + g + h + i + j + k + l;
 
-    $("#total_percent").val(total+"%");
+    $("#total_perc").html(total+"%");
     if(total == 100.00){
         $("#btn-curva").attr("disabled", false);
     }else{
@@ -1938,10 +2299,20 @@ function calcularPorcentaje(){
     }
 }
 
+$("#a_act, #b_act, #c_act, #d_act, #e_act, #f_act, #g_act, #h_act, #i_act, #j_act, #k_act, #l_act").keyup(function(){
+
+    calcularPorcentajeNuevo();
+})
+
 
 $("#a_new, #b_new, #c_new, #d_new, #e_new, #f_new, #g_new, #h_new, #i_new, #j_new, #k_new, #l_new").keyup(function(){
 
     calcularPorcentaje();
+})
+
+$("#a, #b, #c, #d, #e, #f, #g, #h, #i, #j, #k, #l").keyup(function(){
+
+    calcularTotalCorte();
 })
 
 

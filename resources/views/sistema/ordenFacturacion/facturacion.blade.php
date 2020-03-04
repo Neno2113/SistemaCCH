@@ -391,7 +391,7 @@
             <div class="card-footer ">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
                         class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info float-right">
+                <button type="submit" id="btn-guardar" class="btn btn-primary float-right">
                     <i class="far fa-save fa-lg"></i> Guardar
                 </button>
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}

@@ -1,68 +1,68 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
-    $("#formulario").validate({
-        rules: {
-            nombre: {
-                required: true,
-                minlength: 3
-            },
-            apellido: {
-                required: true,
-                minlength: 4
-            },
-            cedula:{
-                required: true,
-                minlength: 11,
+    // $("#formulario").validate({
+    //     rules: {
+    //         nombre: {
+    //             required: true,
+    //             minlength: 3
+    //         },
+    //         apellido: {
+    //             required: true,
+    //             minlength: 4
+    //         },
+    //         cedula:{
+    //             required: true,
+    //             minlength: 11,
 
-            },
-            telefono_1: {
-                required: true,
-                minlength: 10
-            },
-            email: {
-                required: true,
-                email: true
-            },
-            calle: {
-                required: true
-            },
-            provincia: {
-                required: true
-            }
-        },
-        messages: {
-            nombre: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 3 letras"
-            },
-            apellido: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 4 letras"
-            },
-            cedula:{
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 11 digitos"
+    //         },
+    //         telefono_1: {
+    //             required: true,
+    //             minlength: 10
+    //         },
+    //         email: {
+    //             required: true,
+    //             email: true
+    //         },
+    //         calle: {
+    //             required: true
+    //         },
+    //         provincia: {
+    //             required: true
+    //         }
+    //     },
+    //     messages: {
+    //         nombre: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 3 letras"
+    //         },
+    //         apellido: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 4 letras"
+    //         },
+    //         cedula:{
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 11 digitos"
 
-            },
-            telefono_1: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 10 digitos"
-            },
-            email: {
-                required: "El email es obligatorio",
-                email: "Debe itroducir un email valido"
-            },
-            calle: {
-                required: "Este campo es obligatorio"
-            },
-            provincia:{
-                required: "Este campo es obligatorio",
+    //         },
+    //         telefono_1: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 10 digitos"
+    //         },
+    //         email: {
+    //             required: "El email es obligatorio",
+    //             email: "Debe itroducir un email valido"
+    //         },
+    //         calle: {
+    //             required: "Este campo es obligatorio"
+    //         },
+    //         provincia:{
+    //             required: "Este campo es obligatorio",
 
 
-            }
-        }
-    })
+    //         }
+    //     }
+    // })
 
 
     var tabla;

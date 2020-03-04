@@ -24,40 +24,46 @@
                 <h4>Telas</h4>
             </div>
             <div class="card-body">
-                <form action="" id="formulario" class="form-group carta panel-body">
+                <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
                     <h5>Formulario de registro de telas:</h5>
                     <hr>
                     <div class="row ">
+                        <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-6">
-                            <input type="hidden" name="id" id="id" value="">
-                            <label for="nombre_cliente"></label>
+
                             <select name="tags[]" id="suplidores" class="form-control select2">
                                 <option value="" disabled>Suplidor</option>
                             </select>
+
+                            <label for="nombre_cliente" class="label"></label>
                         </div>
-                        <div class="col-md-6 pt-2" id="compo">
-                            <button type="button" class="btn btn-secondary btn-block mt-4" id="btn-composicion" data-toggle="modal"
-                                data-target=".bd-composition-modal-lg"><i
-                                class="fas fa-fill-drip"></i> Agregar composiciones </button>
+                        <div class="col-md-6" id="compo">
+                            <button type="button" class="btn btn-secondary btn-block " id="btn-composicion"
+                                data-toggle="modal" data-target=".bd-composition-modal-lg"><i
+                                    class="fas fa-fill-drip"></i> Agregar composiciones </button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="referencia"></label>
-                            <input type="text" placeholder="Referencia" name="referencia" id="referencia" class="form-control">
+
+                            <input type="text" placeholder="Referencia" name="referencia" id="referencia"
+                                class="form-control">
+                            <label for="referencia" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="precio_usd"></label>
-                            <input type="text" placeholder="Precio USD por yarda" name="precio_usd" id="precio_usd" class="form-control text-center"
-                                data-inputmask='"mask": "9[.99]US"' data-mask>
+
+                            <input type="text" placeholder="Precio USD por yarda" name="precio_usd" id="precio_usd"
+                                class="form-control text-center" data-inputmask='"mask": "USD 9[.99]"' data-mask>
+                            <label for="referencia" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_2"></label>
+
                             <select name="tipo_tela" id="tipo_tela" class="form-control">
                                 <option value="" disabled>Tipo tela</option>
                                 <option value="Denim">Denim</option>
                                 <option value="Twill">Twill</option>
                             </select>
+                            <label for="referencia" class="label"></label>
                         </div>
                     </div>
 
@@ -66,42 +72,53 @@
                     <br>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <label for="email_principal"></label>
-                            <input type="text" name="peso" id="peso" placeholder="Peso(Onzas/Yardas^2)" class="form-control" placeholder="Onzas/Yardas^2">
+
+                            <input type="text" name="peso" id="peso" placeholder="Peso(Onzas/Yardas^2)"
+                                class="form-control" placeholder="Onzas/Yardas^2">
+                            <label for="referencia" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="celular_principal"></label>
-                            <input type="text" id="ancho_cortable" placeholder="Ancho cortable(Pulgadas)" class="form-control" data-inputmask='"mask": "99"'
-                                data-mask placeholder="Pulgadas">
+
+                            <input type="text" id="ancho_cortable" placeholder="Ancho cortable(Pulgadas)"
+                                class="form-control" data-inputmask='"mask": "99"' data-mask placeholder="Pulgadas">
+                            <label for="referencia" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="elasticidad_trama"></label>
-                            <input type="text" id="elasticidad_trama" placeholder="Elasticidad en trama" class="form-control"
-                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
+
+                            <input type="text" id="elasticidad_trama" placeholder="Elasticidad en trama"
+                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                placeholder="Porcentaje">
+                            <label for="referencia" class="label"></label>
                         </div>
                     </div>
                     <div class="row" id="radios">
                         <div class="col-md-4 mt-4">
-                            <label for="elasticidad_urdimbre"></label>
-                            <input type="text" id="elasticidad_urdimbre" placeholder="Elasticidad en urdimbre" class="form-control"
-                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
+
+                            <input type="text" id="elasticidad_urdimbre" placeholder="Elasticidad en urdimbre"
+                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                placeholder="Porcentaje">
+                            <label for="referencia" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <label for="encogimiento_trama"></label>
-                            <input type="text" id="encogimiento_trama" placeholder="Encogimiento en trama" class="form-control"
-                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
+
+                            <input type="text" id="encogimiento_trama" placeholder="Encogimiento en trama"
+                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                placeholder="Porcentaje">
+                            <label for="referencia" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-4">
-                            <label for="encogimiento_urdimbre"></label>
-                            <input type="text" id="encogimiento_urdimbre" placeholder="Encogimiento en urdimbre" class="form-control"
-                                data-inputmask='"mask": "[-]99[.99]%"' data-mask placeholder="Porcentaje">
+
+                            <input type="text" id="encogimiento_urdimbre" placeholder="Encogimiento en urdimbre"
+                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                placeholder="Porcentaje">
+                            <label for="referencia" class="label"></label>
                         </div>
                     </div>
             </div>
             <div class="card-footer  text-muted ">
                 <button class="btn btn-danger mt-2" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
                     Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
                         class="far fa-edit fa-lg"></i> Editar</button>
@@ -185,7 +202,8 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1"
-                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask
+                                placeholder="%">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -200,7 +218,8 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2"
-                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask
+                                placeholder="%">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -215,7 +234,8 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3"
-                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask
+                                placeholder="%">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -230,7 +250,8 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4"
-                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask
+                                placeholder="%">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -245,7 +266,8 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5"
-                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask placeholder="%">
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask
+                                placeholder="%">
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -282,6 +304,7 @@
 
 
 @include('adminlte/scripts')
+<script src="{{asset('js/formulario.js')}}"></script>
 <script src="{{asset('js/cloth.js')}}"></script>
 
 

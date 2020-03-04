@@ -22,24 +22,26 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de creacion de referencia de producto:</h4>
+                <h4 class="">Producto</h4>
             </div>
             <div class="card-body">
+                <h5>Formulario de creacion de referencia de producto</h5>
+                <hr>
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <div class="row ">
+                        <input type="hidden" name="id" id="id" value="">
+                        <input type="hidden" name="id" id="id_producto" value="">
                         <div class="col-md-3">
-                            <label for="nombre_cliente" class=""></label>
-                            <input type="hidden" name="id" id="id" value="">
-                            <input type="hidden" name="id" id="id_producto" value="">
                             <select name="marca" id="marca" class="form-control">
                                 <option value="" selected disabled>Marca</option>
                                 <option value="L">Lavish</option>
                                 <option value="M">Mythos</option>
                                 <option value="P">Lavish Premium</option>
                             </select>
+                            <label for="nombre_cliente" class="label"></label>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class=""></label>
+
                             <select name="genero" id="genero" class="form-control">
                                 <option value="" selected disabled>Genero</option>
                                 <option value="1">Hombre</option>
@@ -47,9 +49,9 @@
                                 <option value="3">Niño</option>
                                 <option value="4">Niña</option>
                             </select>
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class=""></label>
                             <select name="tipo_producto" id="tipo_producto" class="form-control">
                                 <option value="" selected disabled>Tipo producto</option>
                                 <option value="0">Pantalon</option>
@@ -60,9 +62,10 @@
                                 <option value="5">Jacket</option>
                                 <option value="6">Camisa</option>
                             </select>
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class=""></label>
+
                             <select name="categoria" id="categoria" class="form-control">
                                 <option value="" disabled>Categoria</option>
                                 <option value="0">Basico</option>
@@ -74,28 +77,35 @@
                                 <option value="6">Talla alto</option>
                                 <option value="7">Super plus</option>
                             </select>
+                            <label for="" class="label"></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2 mt-3">
-                            <label for=""></label>
-                            <input type="number" min="1" max="999" step="1" id="sec_manual" placeholder="Secuencia" class="form-control">
+
+                            <input type="number" min="1" max="999" step="1" id="sec_manual" placeholder="Secuencia"
+                                class="form-control">
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-3 mt-3">
-                            <label for=""></label>
-                            <input type="text" name="referencia" placeholder="Referencia" id="referencia" class="form-control" readonly>
+
+                            <input type="text" name="referencia" placeholder="Referencia" id="referencia"
+                                class="form-control" readonly>
+                            <label for="" class="label"></label>
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-3" id="mostrarRef2">
-                            <label for=""></label>
-                            <input type="text" name="referencia_2" placeholder="Referencia 2" id="referencia_2" class="form-control">
+
+                            <input type="text" name="referencia_2" placeholder="Referencia 2" id="referencia_2"
+                                class="form-control">
+                            <label for="" class="label"></label>
                             <input type="hidden" name="" id="sec" value="">
                         </div>
-                        <div class="col-md-4 mt-5">
+                        <div class="col-md-4 mt-3">
                             <button class="d-inline btn btn-primary rounded-pill" id="btnGenerar">Generar</button>
-                            <button type="button" class="d-inline btn btn-secondary rounded-pill ml-3" id="btn-curva"
+                            {{-- <button type="button" class="d-inline btn btn-secondary rounded-pill ml-3" id="btn-curva"
                                 data-toggle="modal" data-target=".bd-curva-modal-xl">
-                                <i class="fas fa-percentage"></i> Porcentaje por Talla</button>
+                                <i class="fas fa-percentage"></i> Porcentaje por Talla</button> --}}
                         </div>
 
                     </div>
@@ -104,7 +114,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-4 mt-2">
-                            <label for="precio_lista"></label>
+
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -112,17 +122,20 @@
                                 <input type="text" placeholder="Precio lista" name="precio_lista" id="precio_lista"
                                     class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
+                            <label for="" class="label"></label>
                         </div>
-                        <div class="col-md-4 mt-3">
-                            <label for="precio_venta_publico"></label>
+                        <div class="col-md-4 mt-2">
+
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" placeholder="Precio publico" name="precio_venta_publico" id="precio_venta_publico"
-                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                <input type="text" placeholder="Precio publico" name="precio_venta_publico"
+                                    id="precio_venta_publico" class="form-control text-center"
+                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
 
                             </div>
+                            <label for="" class="label"></label>
                         </div>
                         {{-- <div class="col-md-4 mt-4">
                             <label for=""></label>
@@ -133,24 +146,28 @@
                     </div>
                     <div class="row" id="precios_2">
                         <div class="col-md-4 mt-3">
-                            <label for="precio_lista"></label>
+
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
                                 <input type="text" name="precio_lista_2" id="precio_lista_2"
-                                   placeholder="Preio lista ref 2" class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                    placeholder="Preio lista ref 2" class="form-control text-center"
+                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="precio_venta_publico"></label>
+
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2" id="precio_venta_publico_2"
-                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2"
+                                    id="precio_venta_publico_2" class="form-control text-center"
+                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="">Rango segunda referencia</label>
@@ -161,21 +178,23 @@
 
                     <div class="row">
                         <div class="col-md-12 mt-3">
-                            <label for="" class="d-flex justify-content-center"></label>
+
                             <textarea name="descripcion" id="descripcion" placeholder="Descripcion" cols="30" rows="1"
                                 class="form-control"></textarea>
+                            <label for="" class="label"></label>
                         </div>
                         <div class="col-md-12 mt-3" id="descripcion_ref2">
-                            <label for="" class="d-flex justify-content-center"></label>
-                            <textarea name="descripcion" id="descripcion_2" placeholder="Descripcion ref 2" cols="30" rows="1"
-                                class="form-control"></textarea>
+
+                            <textarea name="descripcion" id="descripcion_2" placeholder="Descripcion ref 2" cols="30"
+                                rows="1" class="form-control"></textarea>
+                            <label for="" class="label"></label>
                         </div>
                     </div>
             </div>
             <div class="card-footer  text-muted">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
                         class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
+                <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
                         class="far fa-edit fa-lg"></i> Editar</button>
@@ -378,7 +397,8 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="text" name="total_percent" id="total_percent" class="form-control text-center" placeholder="Total">
+                        <input type="text" name="total_percent" id="total_percent" class="form-control text-center"
+                            placeholder="Total">
                     </div>
 
                 </div>
@@ -395,6 +415,7 @@
 
 
 @include('adminlte/scripts')
+<script src="{{asset('js/formulario.js')}}"></script>
 <script src="{{asset('js/producto/product.js')}}"></script>
 
 

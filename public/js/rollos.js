@@ -1,37 +1,37 @@
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
-    $("#formulario").validate({
-        rules: {
-            codigo_rollo: {
-                required: true
+    // $("#formulario").validate({
+    //     rules: {
+    //         codigo_rollo: {
+    //             required: true
 
-            },
-            num_tono: {
-                required: true,
-                minlength: 1
-            },
-            longitud_yarda: {
-                required: true
+    //         },
+    //         num_tono: {
+    //             required: true,
+    //             minlength: 1
+    //         },
+    //         longitud_yarda: {
+    //             required: true
 
 
-            }
-        },
-        messages: {
-            codigo_rollo: {
-                required: "Este campo es obligatorio"
+    //         }
+    //     },
+    //     messages: {
+    //         codigo_rollo: {
+    //             required: "Este campo es obligatorio"
 
-            },
-            num_tono: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 1 caracter"
-            },
-            longitud_yarda: {
-                required: "Este campo es obligatorio",
+    //         },
+    //         num_tono: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 1 caracter"
+    //         },
+    //         longitud_yarda: {
+    //             required: "Este campo es obligatorio",
 
-            }
-        }
-    });
+    //         }
+    //     }
+    // });
 
     var tabla;
 
@@ -330,7 +330,7 @@ function eliminar(id_rollo){
 
 }
 
-$("#cloths").click(function(){
+$("#suplidores").change(function(){
     telas();
 });
 

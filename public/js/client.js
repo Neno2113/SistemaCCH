@@ -286,6 +286,10 @@ $(document).ready(function() {
 
     });
 
+    $("#provincia").change(function(){
+        $("#autorizaciones").show();
+    });
+
     function mostrarForm(flag) {
         limpiar();
         if (flag) {
@@ -293,12 +297,14 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#autorizaciones").hide();
             $("#radios").show();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
+
             $("#autorizacion_credito_req").hide();
             $("#redistribucion_tallas").hide();
             $("#factura_desglosada_tallas").hide();
