@@ -116,8 +116,8 @@ class ordenPedidoController extends Controller
                 $max = $producto_f->max;
                 $ref_father = $producto_f->referencia_father;
                 $almacen = AlmacenDetalle::where('producto_id', $ref_father)
-                    ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
-                    ->get();
+                ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
+                ->get();
                 $tallasOrdenes_f = ordenPedidoDetalle::where('producto_id', $ref_father)->get();
                 $tallasCredito_f = NotaCreditoDetalle::where('producto_id', $ref_father)->get();
 

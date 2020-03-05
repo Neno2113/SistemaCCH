@@ -14,8 +14,10 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+        <hr>
+    </div><!-- /.container-fluid -->
     </div>
+
     <!-- /.content-header -->
 
     <!-- Main content -->

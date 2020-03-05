@@ -268,13 +268,18 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <label for="" class="mt-1">Producto</label>
+                    <label for="" class="mt-1 label">Producto</label>
                     <div class="col-md-3 mb-2">
                         <input type="text" name="corte_tallas" id="corte_tallas"
                             class="form-control text-center font-weight-bold">
                     </div>
+                    <div class="col-md-3 mb-2">
+                        <input type="text" name="corte_tallas_2" id="corte_tallas_2"
+                            class="form-control text-center font-weight-bold">
+                    </div>
                 </div>
                 <br>
+                <hr>
                 <div class="row">
                     <table class="table  table-bordered tabla-perdidas mt-4">
                         <thead>
@@ -290,8 +295,8 @@
                                 <th id="th">H</th>
                                 <th id="ti">I</th>
                                 <th id="tj">J</th>
-                                <td id="tk">K</td>
-                                <td id="tl">L</td>
+                                <th id="tk">K</th>
+                                <th id="tl">L</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -313,8 +318,8 @@
                                 <td id="total_alm"></td>
 
                             </tr>
-                            {{-- <tr id="fila-inventario-perc">
-                                <th>% Invent</th>
+                            <tr id="fila-inventario-perc">
+                                <th>% Actual</th>
                                 <td id="a_perc_act"></td>
                                 <td id="b_perc_act"></td>
                                 <td id="c_perc_act"></td>
@@ -327,7 +332,8 @@
                                 <td id="j_perc_act"></td>
                                 <td id="k_perc_act"></td>
                                 <td id="l_perc_act"></td>
-                            </tr> --}}
+                                <td id="total_perc_act"></td>
+                            </tr>
 
                             <tr>
                                 <th>N. Corte</th>
@@ -419,6 +425,172 @@
 
                                 </td>
                             </tr>
+                            <tr id="fila-ref1">
+                                <th>% Ref1</th>
+                                <td>
+                                    <input type="text" name="" id="a_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                </td>
+                                <td>
+                                    <input type="text" name="" id="b_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dc">C</label> --}}
+                                    <input type="text" name="" id="c_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dd">D</label> --}}
+                                    <input type="text" name="" id="d_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="de">E</label> --}}
+                                    <input type="text" name="" id="e_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="df">F</label> --}}
+                                    <input type="text" name="" id="f_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dg">G</label> --}}
+                                    <input type="text" name="" id="g_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dh">H</label> --}}
+                                    <input type="text" name="" id="h_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="di">I</label> --}}
+                                    <input type="text" name="" id="i_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dj">J</label> --}}
+                                    <input type="text" name="" id="j_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dk">K</label> --}}
+                                    <input type="text" name="" id="k_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dl">L</label> --}}
+                                    <input type="text" name="" id="l_ref1" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td id="total_ref1"></td>
+                            </tr>
+                            <tr id="fila-ref2">
+                                <th>% Ref2</th>
+                                <td>
+                                    <input type="text" name="" id="a_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                </td>
+                                <td>
+                                    <input type="text" name="" id="b_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dc">C</label> --}}
+                                    <input type="text" name="" id="c_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dd">D</label> --}}
+                                    <input type="text" name="" id="d_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="de">E</label> --}}
+                                    <input type="text" name="" id="e_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="df">F</label> --}}
+                                    <input type="text" name="" id="f_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dg">G</label> --}}
+                                    <input type="text" name="" id="g_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dh">H</label> --}}
+                                    <input type="text" name="" id="h_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="di">I</label> --}}
+                                    <input type="text" name="" id="i_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dj">J</label> --}}
+                                    <input type="text" name="" id="j_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dk">K</label> --}}
+                                    <input type="text" name="" id="k_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td>
+
+                                    {{-- <label for="" class="ml-4" id="dl">L</label> --}}
+                                    <input type="text" name="" id="l_ref2" class="form-control text-center new"
+                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+
+                                </td>
+                                <td id="total_ref2"></td>
+                            </tr>
                             <tr id="fila-actual">
                                 <th>%</th>
                                 <td>
@@ -502,6 +674,7 @@
                                 </td>
                                 <td id="total_actual"></td>
                             </tr>
+
                             <tr id="fila-nuevo">
                                 <th>% Nuevo</th>
                                 <td>
@@ -600,7 +773,7 @@
 
                     </table>
                 </div>
-
+                <hr>
                 <div class="row" id="fila-totales">
                     {{-- <label for="" class="mt-1">Total inventario</label>
                     <div class="col-md-3 mb-2">
@@ -620,6 +793,7 @@
                     </div>
 
                 </div>
+                <hr>
                 <div class="alert alert-warning alert-dismissible fade show mt-4" id="alerta_proceso" role="alert">
                     <strong><i class="fas fa-exclamation-triangle"></i> Alerta!</strong>
                     Para poder guardar una nueva curva del producto el total del % nuevo debe ser igual a 100.

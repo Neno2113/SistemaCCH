@@ -1,6 +1,14 @@
 var total_alm;
 var genero_global;
-
+var plus_global;
+var a_ref2;
+var b_ref2;
+var c_ref2;
+var d_ref2;
+var e_ref2;
+var f_ref2;
+var g_ref2;
+var h_ref2;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -110,114 +118,25 @@ $(document).ready(function() {
         $("#k_act").val("");
         $("#l_act").val("");
         $("#total_percent").val("");
+        $("#a_ref1").val("");
+        $("#b_ref1").val("");
+        $("#c_ref1").val("");
+        $("#d_ref1").val("");
+        $("#e_ref1").val("");
+        $("#f_ref1").val("");
+        $("#g_ref1").val("");
+        $("#h_ref1").val("");
+        $("#a_ref2").val("");
+        $("#b_ref2").val("");
+        $("#c_ref2").val("");
+        $("#d_ref2").val("");
+        $("#e_ref2").val("");
+        $("#f_ref2").val("");
+        $("#g_ref2").val("");
+        $("#h_ref2").val("");
     }
 
-    // function ordenPedidoCod() {
-    //     $("#sec").val("");
-    //     $("#numero_corte_gen").val("");
-    //     $("#corte").val("");
-    //     $("#numero_corte").val("");
-    //     $("#corte_tallas").val("");
 
-    //     $.ajax({
-    //         url: "corte/lastdigit",
-    //         type: "GET",
-    //         dataType: "json",
-    //         success: function(datos) {
-    //             if (datos.status == "success") {
-
-    //                 var i = Number(datos.sec);
-    //                 $("#sec").val(i);
-    //                 i = (i + 0.01).toFixed(2).split('.').join("");
-    //                 var year = new Date().getFullYear().toString();
-    //                 var referencia = year+'-'+i;
-    //                 // console.log(referencia);
-
-    //                 $("#numero_corte_gen").val(referencia);
-    //                 $("#corte").val(referencia);
-    //                 $("#numero_corte").val(referencia);
-    //                 $("#corte_tallas").val(referencia);
-
-
-    //             } else {
-    //                 bootbox.alert(
-    //                     "Ocurrio un error !!"
-    //                 );
-    //             }
-    //         },
-    //         error: function() {
-    //             bootbox.alert(
-    //                 "Ocurrio un error!!"
-    //             );
-    //         }
-    //     });
-    // }
-
-    // //funcion para generar codigo de corte
-    // $("#btn-generar").on('click', function(e){
-    //     e.preventDefault();
-
-    //     $.ajax({
-    //         url: "corte/lastdigit",
-    //         type: "GET",
-    //         dataType: "json",
-    //         success: function(datos) {
-    //             if (datos.status == "success") {
-    //                 var i = Number(datos.sec);
-    //                 $("#sec").val(i);
-    //                 i = (i + 0.01).toFixed(2).split('.').join("");
-    //                 var year = new Date().getFullYear().toString();
-    //                 var referencia = year+'-'+i;
-
-
-    //                 $("#numero_corte").val(referencia);
-    //                 $("#corte").val(referencia);
-    //                 // $("#corte_tallas").val(referencia +" - "+ referencia_producto );
-    //                 $('#btn-generar').attr("disabled", true);
-    //                 $("#fila1").show();
-    //                 $("#fila2").show();
-    //                 $("#fila3").show();
-    //                 $("#edit-hide").show();
-    //                 $("#edit-hide2").show();
-    //                 bootbox.alert(
-    //                     "Numero de corte generado exitosamente!!"
-    //                 );
-
-    //             } else {
-    //                 bootbox.alert(
-    //                     "Ocurrio un error !!"
-    //                 );
-    //             }
-    //         },
-    //         error: function() {
-    //             bootbox.alert(
-    //                 "Ocurrio un error!!"
-    //             );
-    //         }
-    //     });
-    // });
-
-    //Select2 productos
-
-    // $("#productos").select2({
-    //     placeholder: "Busca una referencia de producto...",
-    //     ajax: {
-    //         url: 'products',
-    //         dataType: 'json',
-    //         delay: 250,
-    //         processResults: function(data){
-    //             return {
-    //                 results: $.map(data, function(item){
-    //                     return {
-    //                         text: item.referencia_producto,
-    //                         id: item.id
-    //                     }
-    //                 })
-    //             };
-    //         },
-    //         cache: true
-    //     }
-    // })
 
     function productos (){
 
@@ -284,7 +203,8 @@ $(document).ready(function() {
         let genero = val.substring(1,2);
         let genero_plus = val.substr(3,1);
         $("#genero").val(genero);
-        genero_global = genero
+        genero_global = genero;
+        plus_global = genero_plus;
 
         if (genero == "2") {
             if(genero_plus == "7"){
@@ -396,8 +316,10 @@ $(document).ready(function() {
 
         }
         if (genero == "3" || genero == "4") {
-            $("#corte_tallas").val('Niño: '+val);
-            $("#sub-genero").hide();
+            $("#fila-ref1").show();
+            $("#fila-ref2").show();
+            $("#fila-actual").hide();
+            $("#corte_tallas").val(val);
             $("#ta").html("2");
             $("#tb").html("4");
             $("#tc").html("6");
@@ -406,11 +328,7 @@ $(document).ready(function() {
             $("#tf").html("12");
             $("#tg").html("14");
             $("#th").html("16");
-            // $("#tj").hide();
-            // $("#tk").hide();
-            // $("#tl").hide();
-            // $("#ti").hide();
-            // $("#tj").hide();
+
 
             $("#sa").html("2");
             $("#sb").html("4");
@@ -562,34 +480,22 @@ $(document).ready(function() {
                     $("#j_alm").html(datos.j_alm);
                     $("#k_alm").html(datos.k_alm);
                     $("#l_alm").html(datos.l_alm);
-                    // % Inventario
-                    // $("#a_perc_act").html(datos.a_perc);
-                    // $("#b_perc_act").html(datos.b_perc);
-                    // $("#c_perc_act").html(datos.c_perc);
-                    // $("#d_perc_act").html(datos.d_perc);
-                    // $("#e_perc_act").html(datos.e_perc);
-                    // $("#f_perc_act").html(datos.f_perc);
-                    // $("#g_perc_act").html(datos.g_perc);
-                    // $("#h_perc_act").html(datos.h_perc);
-                    // $("#i_perc_act").html(datos.i_perc);
-                    // $("#j_perc_act").html(datos.j_perc);
-                    // $("#k_perc_act").html(datos.k_perc);
-                    // $("#l_perc_act").html(datos.l_perc);
+
                     //Curva actual
-                    $("#a_act").html(datos.a + "%");
-                    $("#b_act").html(datos.b + "%");
-                    $("#c_act").html(datos.c + "%");
-                    $("#d_act").html(datos.d + "%");
-                    $("#e_act").html(datos.e + "%");
-                    $("#f_act").html(datos.f + "%");
-                    $("#g_act").html(datos.g + "%");
-                    $("#h_act").html(datos.h + "%");
-                    $("#i_act").html(datos.i + "%");
-                    $("#j_act").html(datos.j + "%");
-                    $("#k_act").html(datos.k + "%");
-                    $("#l_act").html(datos.l + "%");
+                    $("#a_perc_act").html(datos.a + "%");
+                    $("#b_perc_act").html(datos.b + "%");
+                    $("#c_perc_act").html(datos.c + "%");
+                    $("#d_perc_act").html(datos.d + "%");
+                    $("#e_perc_act").html(datos.e + "%");
+                    $("#f_perc_act").html(datos.f + "%");
+                    $("#g_perc_act").html(datos.g + "%");
+                    $("#h_perc_act").html(datos.h + "%");
+                    $("#i_perc_act").html(datos.i + "%");
+                    $("#j_perc_act").html(datos.j + "%");
+                    $("#k_perc_act").html(datos.k + "%");
+                    $("#l_perc_act").html(datos.l + "%");
                     $("#total_alm").html(datos.total_alm);
-                    $("#total_actual").html(datos.total_porc + "%");
+                    $("#total_perc_act").html(datos.total_porc + "%");
                     total_alm = datos.total_alm;
                     $("#fila-nuevo").show();
                     $("#fila-actual").show();
@@ -597,11 +503,67 @@ $(document).ready(function() {
                     $("#fila-inventario-perc").show();
                     $("#fila-totales").show();
                     $("#mod_curva").val(1);
+                    $("#corte_tallas_2").val(datos.producto.referencia_producto_2);
+
+                    a_ref2 = datos.a_ref2;
+                    b_ref2 = datos.b_ref2;
+                    c_ref2 = datos.c_ref2;
+                    d_ref2 = datos.d_ref2;
+                    e_ref2 = datos.e_ref2;
+                    f_ref2 = datos.f_ref2;
+                    g_ref2 = datos.g_ref2;
+                    h_ref2 = datos.h_ref2;
+
+                    if(genero_global == 1){
+                        $("td:nth-child(12),th:nth-child(12)").hide();
+                        $("td:nth-child(13),th:nth-child(13)").hide();
+
+
+                    }else if(genero_global == 3 || genero_global == 4 ){
+                        $("td:nth-child(10),th:nth-child(10)").hide();
+                        $("td:nth-child(11),th:nth-child(11)").hide();
+                        $("td:nth-child(12),th:nth-child(12)").hide();
+                        $("td:nth-child(13),th:nth-child(13)").hide();
+                        $("#fila-nuevo").hide();
+                        $("#fila-actual").hide();
+                        $("#fila-inventario").show();
+                        $("#fila-inventario-perc").hide();
+                        $("#fila-totales").hide();
+                        $("#a_ref1").val(datos.a);
+                        $("#b_ref1").val(datos.b);
+                        $("#c_ref1").val(datos.c);
+                        $("#d_ref1").val(datos.d);
+                        $("#e_ref1").val(datos.e);
+                        $("#f_ref1").val(datos.f);
+                        $("#g_ref1").val(datos.g);
+                        $("#h_ref1").val(datos.h);
+                        $("#total_ref1").html(datos.total_porc + "%");
+
+                        $("#a_ref2").val(datos.a_curva2);
+                        $("#b_ref2").val(datos.b_curva2);
+                        $("#c_ref2").val(datos.c_curva2);
+                        $("#d_ref2").val(datos.d_curva2);
+                        $("#e_ref2").val(datos.e_curva2);
+                        $("#f_ref2").val(datos.f_curva2);
+                        $("#g_ref2").val(datos.g_curva2);
+                        $("#h_ref2").val(datos.h_curva2);
+                        $("#total_ref2").html(datos.total_porc2 + "%");
+                    }
+                    if(plus_global == 7){
+                        $("td:nth-child(10),th:nth-child(10)").hide();
+                        $("td:nth-child(11),th:nth-child(11)").hide();
+                        $("td:nth-child(12),th:nth-child(12)").hide();
+                        $("td:nth-child(13),th:nth-child(13)").hide();
+                    }
+
                     Swal.fire(
                         'Alerta',
                         'Esta referencia ya ha sido producia en otros cortes',
                         'warning'
                     )
+
+
+
                     var referencias = {
                         referencia: $("#productos").val()
                     };
@@ -663,24 +625,43 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                // $("#a_act").html(datos.responseJSON.a + "%");
-                // $("#b_act").html(datos.responseJSON.b + "%");
-                // $("#c_act").html(datos.responseJSON.c + "%");
-                // $("#d_act").html(datos.responseJSON.d + "%");
-                // $("#e_act").html(datos.responseJSON.e + "%");
-                // $("#f_act").html(datos.responseJSON.f + "%");
-                // $("#g_act").html(datos.responseJSON.g + "%");
-                // $("#h_act").html(datos.responseJSON.h + "%");
-                // $("#i_act").html(datos.responseJSON.i + "%");
-                // $("#j_act").html(datos.responseJSON.j + "%");
-                // $("#k_act").html(datos.responseJSON.k + "%");
-                // $("#l_act").html(datos.responseJSON.l + "%");
-                // $("#total_actual").html(datos.responseJSON.total_porc + "%");
+                if(genero_global == 1){
+                    $("td:nth-child(12),th:nth-child(12)").hide();
+                    $("td:nth-child(13),th:nth-child(13)").hide();
+
+
+                }else if(genero_global == 3 || genero_global == 4 ){
+                    $("td:nth-child(10),th:nth-child(10)").hide();
+                    $("td:nth-child(11),th:nth-child(11)").hide();
+                    $("td:nth-child(12),th:nth-child(12)").hide();
+                    $("td:nth-child(13),th:nth-child(13)").hide();
+                    $("#fila-nuevo").hide();
+                }
+                if(plus_global == 7){
+                    $("td:nth-child(10),th:nth-child(10)").hide();
+                    $("td:nth-child(11),th:nth-child(11)").hide();
+                    $("td:nth-child(12),th:nth-child(12)").hide();
+                    $("td:nth-child(13),th:nth-child(13)").hide();
+                }
+
+                a_ref2 = datos.responseJSON.a_ref2;
+                b_ref2 = datos.responseJSON.b_ref2;
+                c_ref2 = datos.responseJSON.c_ref2;
+                d_ref2 = datos.responseJSON.d_ref2;
+                e_ref2 = datos.responseJSON.e_ref2;
+                f_ref2 = datos.responseJSON.f_ref2;
+                g_ref2 = datos.responseJSON.g_ref2;
+                h_ref2 = datos.responseJSON.h_ref2;
+                $("#corte_tallas_2").val(datos.responseJSON.producto.referencia_producto_2);
+
+
             }
         });
 
 
     }
+
+
 
     //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e){
@@ -1112,7 +1093,8 @@ $(document).ready(function() {
             $("#fila1").hide();
             $("#fila2").hide();
             $("#fila3").hide();
-            // $("#fila-nuevo").hide();
+            $("#fila-ref1").hide();
+            $("#fila-ref2").hide();
             $("#fila-inventario-perc").hide();
             $("#fila-inventario").hide();
             // $("#fila-totales").hide();
@@ -1843,341 +1825,8 @@ function remover(id_rollo) {
 
 // })
 
-var total_nuevo;
 
-$("#a").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let total = a;
-    let result = (a / total) * 100;
-    result = result.toFixed(2);
-    $("#a_act").val(result);
-    calcularPorcentajeNuevo()
-
-})
-
-$("#b").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let total = a + b;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    calcularPorcentajeNuevo();
-
-})
-
-
-$("#c").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let total = a + b + c;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    calcularPorcentajeNuevo();
-
-
-})
-
-$("#d").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let total = a + b + c + d;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    calcularPorcentajeNuevo();
-
-
-})
-
-$("#e").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let total = a + b + c + d + e;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    let resulte = (e / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    resulte = resulte.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    $("#e_act").val(resulte);
-    calcularPorcentajeNuevo();
-})
-
-$("#f").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let total = a + b + c + d + e + f;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    let resulte = (e / total) * 100;
-    let resultf = (f / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    resulte = resulte.toFixed(2);
-    resultf = resultf.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    $("#e_act").val(resulte);
-    $("#f_act").val(resultf);
-    calcularPorcentajeNuevo();
-
-})
-
-
-$("#g").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
-    let total = a + b + c + d + e + f + g;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    let resulte = (e / total) * 100;
-    let resultf = (f / total) * 100;
-    let resultg = (g / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    resulte = resulte.toFixed(2);
-    resultf = resultf.toFixed(2);
-    resultg = resultg.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    $("#e_act").val(resulte);
-    $("#f_act").val(resultf);
-    $("#g_act").val(resultg);
-    calcularPorcentajeNuevo();
-
-})
-
-$("#h").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
-    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
-    let total = a + b + c + d + e + f + g + h;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    let resulte = (e / total) * 100;
-    let resultf = (f / total) * 100;
-    let resultg = (g / total) * 100;
-    let resulth = (h / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    resulte = resulte.toFixed(2);
-    resultf = resultf.toFixed(2);
-    resultg = resultg.toFixed(2);
-    resulth = resulth.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    $("#e_act").val(resulte);
-    $("#f_act").val(resultf);
-    $("#g_act").val(resultg);
-    $("#h_act").val(resulth);
-    calcularPorcentajeNuevo();
-
-})
-
-$("#i").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
-    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
-    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
-    let total = a + b + c + d + e + f + g + h + i;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    let resulte = (e / total) * 100;
-    let resultf = (f / total) * 100;
-    let resultg = (g / total) * 100;
-    let resulth = (h / total) * 100;
-    let resulti = (i / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    resulte = resulte.toFixed(2);
-    resultf = resultf.toFixed(2);
-    resultg = resultg.toFixed(2);
-    resulth = resulth.toFixed(2);
-    resulti = resulti.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    $("#e_act").val(resulte);
-    $("#f_act").val(resultf);
-    $("#g_act").val(resultg);
-    $("#h_act").val(resulth);
-    $("#i_act").val(resulti);
-    calcularPorcentajeNuevo();
-
-})
-
-$("#j").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
-    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
-    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
-    let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
-    let total = a + b + c + d + e + f + g + h + i + j;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    let resulte = (e / total) * 100;
-    let resultf = (f / total) * 100;
-    let resultg = (g / total) * 100;
-    let resulth = (h / total) * 100;
-    let resulti = (i / total) * 100;
-    let resultj = (j / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    resulte = resulte.toFixed(2);
-    resultf = resultf.toFixed(2);
-    resultg = resultg.toFixed(2);
-    resulth = resulth.toFixed(2);
-    resulti = resulti.toFixed(2);
-    resultj = resultj.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    $("#e_act").val(resulte);
-    $("#f_act").val(resultf);
-    $("#g_act").val(resultg);
-    $("#h_act").val(resulth);
-    $("#i_act").val(resulti);
-    $("#j_act").val(resultj);
-    calcularPorcentajeNuevo();
-
-})
-
-$("#k").keyup(function(){
-    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
-    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
-    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
-    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
-    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
-    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
-    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
-    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
-    let i = isNaN(parseFloat($("#i").val())) ? 0: parseFloat($("#i").val());
-    let j = isNaN(parseFloat($("#j").val())) ? 0: parseFloat($("#j").val());
-    let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
-    let total = a + b + c + d + e + f + g + h + i + j + k;
-    let resulta = (a / total) * 100;
-    let resultb = (b / total) * 100;
-    let resultc = (c / total) * 100;
-    let resultd = (d / total) * 100;
-    let resulte = (e / total) * 100;
-    let resultf = (f / total) * 100;
-    let resultg = (g / total) * 100;
-    let resulth = (h / total) * 100;
-    let resulti = (i / total) * 100;
-    let resultj = (j / total) * 100;
-    let resultk = (k / total) * 100;
-    resulta = resulta.toFixed(2);
-    resultb = resultb.toFixed(2);
-    resultc = resultc.toFixed(2);
-    resultd = resultd.toFixed(2);
-    resulte = resulte.toFixed(2);
-    resultf = resultf.toFixed(2);
-    resultg = resultg.toFixed(2);
-    resulth = resulth.toFixed(2);
-    resulti = resulti.toFixed(2);
-    resultj = resultj.toFixed(2);
-    resultk = resultk.toFixed(2);
-    $("#a_act").val(resulta);
-    $("#b_act").val(resultb);
-    $("#c_act").val(resultc);
-    $("#d_act").val(resultd);
-    $("#e_act").val(resulte);
-    $("#f_act").val(resultf);
-    $("#g_act").val(resultg);
-    $("#h_act").val(resulth);
-    $("#i_act").val(resulti);
-    $("#j_act").val(resultj);
-    $("#k_act").val(resultk);
-    calcularPorcentajeNuevo();
-})
-
-$("#l").keyup(function(){
+function calcularPorcentajeActual(){
     let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
     let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
     let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
@@ -2227,9 +1876,7 @@ $("#l").keyup(function(){
     $("#j_act").val(resultj);
     $("#k_act").val(resultk);
     $("#k_act").val(resultl);
-    calcularPorcentajeNuevo();
-
-})
+}
 
 
 function calcularPorcentajeNuevo(){
@@ -2299,6 +1946,268 @@ function calcularPorcentaje(){
     }
 }
 
+
+
+
+function calcularPorcentajeRef1(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+
+    if(a_ref2 == 0){
+        a = a;
+
+    }else{
+        a = 0;
+    }
+    if(b_ref2 == 0){
+        b = b;
+
+    }else{
+        b = 0;
+    }
+    if(c_ref2 == 0){
+        c = c;
+
+    }else{
+        c= 0;
+    }
+    if(d_ref2 == 0){
+        d = d;
+
+    }else{
+        d = 0;
+    }
+    if(e_ref2 == 0){
+        e = e;
+
+    }else{
+        e = 0
+    }
+    if(f_ref2 == 0){
+        f = f;
+
+    }else{
+        f = 0;
+    }
+    if(g_ref2 == 0){
+        g = g;
+
+    }else{
+        g = 0;
+    }
+    if(h_ref2 == 0){
+        h = h;
+
+    }else{
+        h = 0;
+    }
+
+    let total = a + b + c + d + e + f + g + h;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    let resulth = (h / total) * 100;
+
+    resulta = (resulta) == 0 ? "" : resulta.toFixed(2);
+    resultb = (resultb) == 0 ? "" : resultb.toFixed(2);
+    resultc = (resultc) == 0 ? "" : resultc.toFixed(2);
+    resultd = (resultd) == 0 ? "" : resultd.toFixed(2);
+    resulte = (resulte) == 0 ? "" : resulte.toFixed(2);
+    resultf = (resultf) == 0 ? "" : resultf.toFixed(2);
+    resultg = (resultg) == 0 ? "" : resultg.toFixed(2);
+    resulth = (resulth) == 0 ? "" : resulth.toFixed(2);
+
+    $("#a_ref1").val(resulta);
+    $("#b_ref1").val(resultb);
+    $("#c_ref1").val(resultc);
+    $("#d_ref1").val(resultd);
+    $("#e_ref1").val(resulte);
+    $("#f_ref1").val(resultf);
+    $("#g_ref1").val(resultg);
+    $("#h_ref1").val(resulth);
+
+    let a_porc_ref1 = isNaN(parseFloat($("#a_ref1").val())) ? 0: parseFloat($("#a_ref1").val());
+    let b_porc_ref1 = isNaN(parseFloat($("#b_ref1").val())) ? 0: parseFloat($("#b_ref1").val());
+    let c_porc_ref1 = isNaN(parseFloat($("#c_ref1").val())) ? 0: parseFloat($("#c_ref1").val());
+    let d_porc_ref1 = isNaN(parseFloat($("#d_ref1").val())) ? 0: parseFloat($("#d_ref1").val());
+    let e_porc_ref1 = isNaN(parseFloat($("#e_ref1").val())) ? 0: parseFloat($("#e_ref1").val());
+    let f_porc_ref1 = isNaN(parseFloat($("#f_ref1").val())) ? 0: parseFloat($("#f_ref1").val());
+    let g_porc_ref1 = isNaN(parseFloat($("#g_ref1").val())) ? 0: parseFloat($("#g_ref1").val());
+    let h_porc_ref1 = isNaN(parseFloat($("#h_ref1").val())) ? 0: parseFloat($("#h_ref1").val());
+
+    let total_ref1 = a_porc_ref1 + b_porc_ref1 + c_porc_ref1 + d_porc_ref1 + e_porc_ref1 + f_porc_ref1
+    + g_porc_ref1 + h_porc_ref1;
+    total_ref1 = total_ref1.toFixed(2);
+
+    $("#total_ref1").html(total_ref1 + "%");
+
+}
+
+function calcularPorcentajeRef2(){
+    let a = isNaN(parseFloat($("#a").val())) ? 0: parseFloat($("#a").val());
+    let b = isNaN(parseFloat($("#b").val())) ? 0: parseFloat($("#b").val());
+    let c = isNaN(parseFloat($("#c").val())) ? 0: parseFloat($("#c").val());
+    let d = isNaN(parseFloat($("#d").val())) ? 0: parseFloat($("#d").val());
+    let e = isNaN(parseFloat($("#e").val())) ? 0: parseFloat($("#e").val());
+    let f = isNaN(parseFloat($("#f").val())) ? 0: parseFloat($("#f").val());
+    let g = isNaN(parseFloat($("#g").val())) ? 0: parseFloat($("#g").val());
+    let h = isNaN(parseFloat($("#h").val())) ? 0: parseFloat($("#h").val());
+
+    if(a_ref2 == 0){
+        a = 0;
+
+    }else{
+        a = a;
+    }
+    if(b_ref2 == 0){
+        b = 0;
+
+    }else{
+        b = b;
+    }
+    if(c_ref2 == 0){
+        c = 0;
+
+    }else{
+        c= c;
+    }
+    if(d_ref2 == 0){
+        d = 0;
+
+    }else{
+        d = d;
+    }
+    if(e_ref2 == 0){
+        e = 0;
+
+    }else{
+        e = e
+    }
+    if(f_ref2 == 0){
+        f = 0;
+
+    }else{
+        f = f;
+    }
+    if(g_ref2 == 0){
+        g = 0;
+
+    }else{
+        g = g;
+    }
+    if(h_ref2 == 0){
+        h = 0;
+
+    }else{
+        h = h;
+    }
+
+    let total = a + b + c + d + e + f + g + h;
+    let resulta = (a / total) * 100;
+    let resultb = (b / total) * 100;
+    let resultc = (c / total) * 100;
+    let resultd = (d / total) * 100;
+    let resulte = (e / total) * 100;
+    let resultf = (f / total) * 100;
+    let resultg = (g / total) * 100;
+    let resulth = (h / total) * 100;
+
+    resulta = (resulta) == 0 ? "" : resulta.toFixed(2);
+    resultb = (resultb) == 0 ? "" : resultb.toFixed(2);
+    resultc = (resultc) == 0 ? "" : resultc.toFixed(2);
+    resultd = (resultd) == 0 ? "" : resultd.toFixed(2);
+    resulte = (resulte) == 0 ? "" : resulte.toFixed(2);
+    resultf = (resultf) == 0 ? "" : resultf.toFixed(2);
+    resultg = (resultg) == 0 ? "" : resultg.toFixed(2);
+    resulth = (resulth) == 0 ? "" : resulth.toFixed(2);
+
+    $("#a_ref2").val(resulta);
+    $("#b_ref2").val(resultb);
+    $("#c_ref2").val(resultc);
+    $("#d_ref2").val(resultd);
+    $("#e_ref2").val(resulte);
+    $("#f_ref2").val(resultf);
+    $("#g_ref2").val(resultg);
+    $("#h_ref2").val(resulth);
+
+    let a_porc_ref2 = isNaN(parseFloat($("#a_ref2").val())) ? 0: parseFloat($("#a_ref2").val());
+    let b_porc_ref2 = isNaN(parseFloat($("#b_ref2").val())) ? 0: parseFloat($("#b_ref2").val());
+    let c_porc_ref2 = isNaN(parseFloat($("#c_ref2").val())) ? 0: parseFloat($("#c_ref2").val());
+    let d_porc_ref2 = isNaN(parseFloat($("#d_ref2").val())) ? 0: parseFloat($("#d_ref2").val());
+    let e_porc_ref2 = isNaN(parseFloat($("#e_ref2").val())) ? 0: parseFloat($("#e_ref2").val());
+    let f_porc_ref2 = isNaN(parseFloat($("#f_ref2").val())) ? 0: parseFloat($("#f_ref2").val());
+    let g_porc_ref2 = isNaN(parseFloat($("#g_ref2").val())) ? 0: parseFloat($("#g_ref2").val());
+    let h_porc_ref2 = isNaN(parseFloat($("#h_ref2").val())) ? 0: parseFloat($("#h_ref2").val());
+
+    let total_ref2 = a_porc_ref2 + b_porc_ref2 + c_porc_ref2 + d_porc_ref2 + e_porc_ref2 + f_porc_ref2
+    + g_porc_ref2 + h_porc_ref2;
+    total_ref2 = total_ref2.toFixed(2);
+
+    $("#total_ref2").html(total_ref2 + "%");
+
+}
+
+
+function PorcentajeRef1(){
+    let a = isNaN(parseFloat($("#a_ref1").val())) ? 0: parseFloat($("#a_ref1").val());
+    let b = isNaN(parseFloat($("#b_ref1").val())) ? 0: parseFloat($("#b_ref1").val());
+    let c = isNaN(parseFloat($("#c_ref1").val())) ? 0: parseFloat($("#c_ref1").val());
+    let d = isNaN(parseFloat($("#d_ref1").val())) ? 0: parseFloat($("#d_ref1").val());
+    let e = isNaN(parseFloat($("#e_ref1").val())) ? 0: parseFloat($("#e_ref1").val());
+    let f = isNaN(parseFloat($("#f_ref1").val())) ? 0: parseFloat($("#f_ref1").val());
+    let g = isNaN(parseFloat($("#g_ref1").val())) ? 0: parseFloat($("#g_ref1").val());
+    let h = isNaN(parseFloat($("#h_ref1").val())) ? 0: parseFloat($("#h_ref1").val());
+
+    let total = a + b + c + d + e + f + g + h;
+
+    $("#total_ref1").html(total+"%");
+    if(total == 100.00){
+        $("#btn-curva").attr("disabled", false);
+    }else{
+        $("#btn-curva").attr("disabled", true);
+    }
+}
+
+function PorcentajeRef2(){
+    let a = isNaN(parseFloat($("#a_ref2").val())) ? 0: parseFloat($("#a_ref2").val());
+    let b = isNaN(parseFloat($("#b_ref2").val())) ? 0: parseFloat($("#b_ref2").val());
+    let c = isNaN(parseFloat($("#c_ref2").val())) ? 0: parseFloat($("#c_ref2").val());
+    let d = isNaN(parseFloat($("#d_ref2").val())) ? 0: parseFloat($("#d_ref2").val());
+    let e = isNaN(parseFloat($("#e_ref2").val())) ? 0: parseFloat($("#e_ref2").val());
+    let f = isNaN(parseFloat($("#f_ref2").val())) ? 0: parseFloat($("#f_ref2").val());
+    let g = isNaN(parseFloat($("#g_ref2").val())) ? 0: parseFloat($("#g_ref2").val());
+    let h = isNaN(parseFloat($("#h_ref2").val())) ? 0: parseFloat($("#h_ref2").val());
+
+    let total = a + b + c + d + e + f + g + h;
+
+    $("#total_ref2").html(total+"%");
+    if(total == 100.00){
+        $("#btn-curva").attr("disabled", false);
+    }else{
+        $("#btn-curva").attr("disabled", true);
+    }
+}
+
+
+$("#a, #b, #c, #d, #e, #f, #g, #h, #i, #j, #k, #l").keyup(function(){
+    calcularPorcentajeActual();
+    calcularTotalCorte();
+    calcularPorcentajeNuevo();
+    calcularPorcentajeRef1();
+    calcularPorcentajeRef2();
+})
+
+
 $("#a_act, #b_act, #c_act, #d_act, #e_act, #f_act, #g_act, #h_act, #i_act, #j_act, #k_act, #l_act").keyup(function(){
 
     calcularPorcentajeNuevo();
@@ -2310,36 +2219,56 @@ $("#a_new, #b_new, #c_new, #d_new, #e_new, #f_new, #g_new, #h_new, #i_new, #j_ne
     calcularPorcentaje();
 })
 
-$("#a, #b, #c, #d, #e, #f, #g, #h, #i, #j, #k, #l").keyup(function(){
-
-    calcularTotalCorte();
-})
-
+$("#a_ref1, #b_ref1, #c_ref1, #d_ref1, #e_ref1, #f_ref1, #g_ref1, #h_ref1").keyup(function(){
+    PorcentajeRef1();
+});
 
 
-
+$("#a_ref2, #b_ref2, #c_ref2, #d_ref2, #e_ref2, #f_ref2, #g_ref2, #h_ref2").keyup(function(){
+    PorcentajeRef2();
+});
 
 
 $("#btn-curva").click(function(e) {
     e.preventDefault();
 
-    var curva = {
-        referencia: $("#productos").val(),
-        a: $("#a_new").val(),
-        b: $("#b_new").val(),
-        c: $("#c_new").val(),
-        d: $("#d_new").val(),
-        e: $("#e_new").val(),
-        f: $("#f_new").val(),
-        g: $("#g_new").val(),
-        h: $("#h_new").val(),
-        i: $("#i_new").val(),
-        j: $("#j_new").val(),
-        k: $("#k_new").val(),
-        l: $("#l_new").val()
-    };
-
-    console.log(JSON.stringify(curva));
+    if(genero_global == 1 || genero_global == 2 ){
+        var curva = {
+            referencia: $("#productos").val(),
+            a: $("#a_new").val(),
+            b: $("#b_new").val(),
+            c: $("#c_new").val(),
+            d: $("#d_new").val(),
+            e: $("#e_new").val(),
+            f: $("#f_new").val(),
+            g: $("#g_new").val(),
+            h: $("#h_new").val(),
+            i: $("#i_new").val(),
+            j: $("#j_new").val(),
+            k: $("#k_new").val(),
+            l: $("#l_new").val()
+        };
+    }else{
+        var curva = {
+            referencia: $("#productos").val(),
+            a_ref1: $("#a_ref1").val(),
+            b_ref1: $("#b_ref1").val(),
+            c_ref1: $("#c_ref1").val(),
+            d_ref1: $("#d_ref1").val(),
+            e_ref1: $("#e_ref1").val(),
+            f_ref1: $("#f_ref1").val(),
+            g_ref1: $("#g_ref1").val(),
+            h_ref1: $("#h_ref1").val(),
+            a_ref2: $("#a_ref2").val(),
+            b_ref2: $("#b_ref2").val(),
+            c_ref2: $("#c_ref2").val(),
+            d_ref2: $("#d_ref2").val(),
+            e_ref2: $("#e_ref2").val(),
+            f_ref2: $("#f_ref2").val(),
+            g_ref2: $("#g_ref2").val(),
+            h_ref2: $("#h_ref2").val(),
+        };
+    }
 
     $.ajax({
         url: "curva/update",
@@ -2351,21 +2280,10 @@ $("#btn-curva").click(function(e) {
             if (datos.status == "success") {
                 Swal.fire(
                     'Success',
-                    'Curva producto actualizada correctamente!',
+                    datos.message,
                     'success'
                 )
-                $("#a_new").val("");
-                $("#b_new").val("");
-                $("#c_new").val("");
-                $("#d_new").val("");
-                $("#e_new").val("");
-                $("#f_new").val("");
-                $("#g_new").val("");
-                $("#h_new").val("");
-                $("#i_new").val("");
-                $("#j_new").val("");
-                $("#k_new").val("");
-                $("#l_new").val("");
+                $("#btn-curva").attr('disabled', true);
 
 
             } else {

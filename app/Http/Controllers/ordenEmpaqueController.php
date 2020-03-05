@@ -384,6 +384,21 @@ class ordenEmpaqueController extends Controller
 
         $curva = CurvaProducto::where('producto_id', $producto_id)->latest()->first();
 
+        //porcentaje curva general
+        // $tallas = Talla::
+
+        $a = $curva->a;
+        $b = $curva->b;
+        $c = $curva->c;
+        $d = $curva->d;
+        $e = $curva->e;
+        $f = $curva->f;
+        $g = $curva->g;
+        $h = $curva->h;
+        $i = $curva->i;
+        $j = $curva->j;
+        $k = $curva->k;
+        $l = $curva->l;
 
         // $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
@@ -404,82 +419,65 @@ class ordenEmpaqueController extends Controller
         $k_alm = $tallasAlmacen->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k');
         $l_alm = $tallasAlmacen->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l');
 
-        $a_alm = ($a_alm < 0 ? 0 : $a_alm);
-        $b_alm = ($b_alm < 0 ? 0 : $b_alm);
-        $c_alm = ($c_alm < 0 ? 0 : $c_alm);
-        $d_alm = ($d_alm < 0 ? 0 : $d_alm);
-        $e_alm = ($e_alm < 0 ? 0 : $e_alm);
-        $f_alm = ($f_alm < 0 ? 0 : $f_alm);
-        $g_alm = ($g_alm < 0 ? 0 : $g_alm);
-        $h_alm = ($h_alm < 0 ? 0 : $h_alm);
-        $i_alm = ($i_alm < 0 ? 0 : $i_alm);
-        $j_alm = ($j_alm < 0 ? 0 : $j_alm);
-        $k_alm = ($k_alm < 0 ? 0 : $k_alm);
-        $l_alm = ($l_alm < 0 ? 0 : $l_alm);
+        $a_alm = ($a_alm <= 0 || empty($a)  ? 0 : $a_alm);
+        $b_alm = ($b_alm <= 0 || empty($b)  ? 0 : $b_alm);
+        $c_alm = ($c_alm <= 0 || empty($c)  ? 0 : $c_alm);
+        $d_alm = ($d_alm <= 0 || empty($d)  ? 0 : $d_alm);
+        $e_alm = ($e_alm <= 0 || empty($e)  ? 0 : $e_alm);
+        $f_alm = ($f_alm <= 0 || empty($f)  ? 0 : $f_alm);
+        $g_alm = ($g_alm <= 0 || empty($g)  ? 0 : $g_alm);
+        $h_alm = ($h_alm <= 0 || empty($h)  ? 0 : $h_alm);
+        $i_alm = ($i_alm <= 0 || empty($i)  ? 0 : $i_alm);
+        $j_alm = ($j_alm <= 0 || empty($j)  ? 0 : $j_alm);
+        $k_alm = ($k_alm <= 0 || empty($k)  ? 0 : $k_alm);
+        $l_alm = ($l_alm <= 0 || empty($l)  ? 0 : $l_alm);
 
         $total_alm = $a_alm + $b_alm + $c_alm + $d_alm + $e_alm + $f_alm + $g_alm + $h_alm + $i_alm + $j_alm + $k_alm + $l_alm;
 
         //porcentaje alm
-        $a_perc = ($a_alm / $total_alm) * 100;
-        $b_perc = ($b_alm / $total_alm) * 100;
-        $c_perc = ($c_alm / $total_alm) * 100;
-        $d_perc = ($d_alm / $total_alm) * 100;
-        $e_perc = ($e_alm / $total_alm) * 100;
-        $f_perc = ($f_alm / $total_alm) * 100;
-        $g_perc = ($g_alm / $total_alm) * 100;
-        $h_perc = ($h_alm / $total_alm) * 100;
-        $i_perc = ($i_alm / $total_alm) * 100;
-        $j_perc = ($j_alm / $total_alm) * 100;
-        $k_perc = ($k_alm / $total_alm) * 100;
-        $l_perc = ($l_alm / $total_alm) * 100;
-
-
-        //porcentaje curva general
-        // $tallas = Talla::
-
-        $a = $curva->a;
-        $b = $curva->b;
-        $c = $curva->c;
-        $d = $curva->d;
-        $e = $curva->e;
-        $f = $curva->f;
-        $g = $curva->g;
-        $h = $curva->h;
-        $i = $curva->i;
-        $j = $curva->j;
-        $k = $curva->k;
-        $l = $curva->l;
+        $a_perc = (empty($a)) ? 0 : ($a_alm / $total_alm) * 100;
+        $b_perc = (empty($b)) ? 0 : ($b_alm / $total_alm) * 100;
+        $c_perc = (empty($c)) ? 0 : ($c_alm / $total_alm) * 100;
+        $d_perc = (empty($d)) ? 0 : ($d_alm / $total_alm) * 100;
+        $e_perc = (empty($e)) ? 0 : ($e_alm / $total_alm) * 100;
+        $f_perc = (empty($f)) ? 0 : ($f_alm / $total_alm) * 100;
+        $g_perc = (empty($g)) ? 0 : ($g_alm / $total_alm) * 100;
+        $h_perc = (empty($h)) ? 0 : ($h_alm / $total_alm) * 100;
+        $i_perc = (empty($i)) ? 0 : ($i_alm / $total_alm) * 100;
+        $j_perc = (empty($j)) ? 0 : ($j_alm / $total_alm) * 100;
+        $k_perc = (empty($k)) ? 0 : ($k_alm / $total_alm) * 100;
+        $l_perc = (empty($l)) ? 0 : ($l_alm / $total_alm) * 100;
 
         $total_perc = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
         $i_perc + $j_perc + $k_perc + $l_perc;
 
         //segundo calculo
-        $a_seg = ($a_alm <= 0) ? 0.1 : ($a_perc - $a) / $a;
-        $b_seg = ($b_alm == 0) ? 0.1 : ($b_perc - $b) / $b;
-        $c_seg = ($c_alm == 0) ? 0.1 : ($c_perc - $c) / $c;
-        $d_seg = ($d_alm == 0) ? 0.1 : ($d_perc - $d) / $d;
-        $e_seg = ($e_alm == 0) ? 0.1 : ($e_perc - $e) / $e;
-        $f_seg = ($e_alm == 0) ? 0.1 : ($f_perc - $f) / $f;
-        $g_seg = ($g_perc - $g) / $g;
-        $h_seg = ($h_perc - $h) / $h;
-        $i_seg = ($i_perc - $i) / $i;
-        $j_seg = ($j_perc - $j) / $j;
-        $k_seg = ($k_alm == 0) ?  0.1  : ($k_alm - $k) / $k;
-        $l_seg = ($l_alm == 0) ? 0.1 : ($l_alm - $l) / $l;
+        $a_seg = ($a_alm <= 0 || empty($a)) ? 0.1 : ($a_perc - $a) / $a;
+        $b_seg = ($b_alm == 0 || empty($b)) ? 0.1 : ($b_perc - $b) / $b;
+        $c_seg = ($c_alm == 0 || empty($c)) ? 0.1 : ($c_perc - $c) / $c;
+        $d_seg = ($d_alm == 0 || empty($d)) ? 0.1 : ($d_perc - $d) / $d;
+        $e_seg = ($e_alm == 0 || empty($e)) ? 0.1 : ($e_perc - $e) / $e;
+        $f_seg = ($f_alm == 0 || empty($f)) ? 0.1 : ($f_perc - $f) / $f;
+        $g_seg = ($g_alm == 0 || empty($g)) ? 0.1 : ($g_perc - $g) / $g;
+        $h_seg = ($h_alm == 0 || empty($h)) ? 0.1 : ($h_perc - $h) / $h;
+        $i_seg = ($i_alm == 0 || empty($i)) ? 0.1 : ($i_perc - $i) / $i;
+        $j_seg = ($j_alm == 0 || empty($j)) ? 0.1 : ($j_perc - $j) / $j;
+        $k_seg = ($k_alm == 0 || empty($k)) ? 0.1 : ($k_perc - $k) / $k;
+        $l_seg = ($l_alm == 0 || empty($l)) ? 0.1 : ($l_perc - $l) / $l;
 
         //tercer calculo
-        $a_ter = $a_perc * (1 + $a_seg) / 100;
-        $b_ter = $b_perc * (1 + $b_seg) / 100;
-        $c_ter = $c_perc * (1 + $c_seg) / 100;
-        $d_ter = $d_perc * (1 + $d_seg) / 100;
-        $e_ter = $e_perc * (1 + $e_seg) / 100;
-        $f_ter = $f_perc * (1 + $f_seg) / 100;
-        $g_ter = $g_perc * (1 + $g_seg) / 100;
-        $h_ter = $h_perc * (1 + $h_seg) / 100;
-        $i_ter = $i_perc * (1 + $i_seg) / 100;
-        $j_ter = $j_perc * (1 + $j_seg) / 100;
-        $k_ter = $k_perc * (1 + $k_seg) / 100;
-        $l_ter = $l_perc * (1 + $l_seg) / 100;
+        $a_ter = ($a_seg == 0.1) ? 0 : $a_perc * (1 + $a_seg) / 100;
+        $b_ter = ($b_seg == 0.1) ? 0 : $b_perc * (1 + $b_seg) / 100;
+        $c_ter = ($c_seg == 0.1) ? 0 : $c_perc * (1 + $c_seg) / 100;
+        $d_ter = ($d_seg == 0.1) ? 0 : $d_perc * (1 + $d_seg) / 100;
+        $e_ter = ($e_seg == 0.1) ? 0 : $e_perc * (1 + $e_seg) / 100;
+        $f_ter = ($f_seg == 0.1) ? 0 : $f_perc * (1 + $f_seg) / 100;
+        $g_ter = ($g_seg == 0.1) ? 0 : $g_perc * (1 + $g_seg) / 100;
+        $h_ter = ($h_seg == 0.1) ? 0 : $h_perc * (1 + $h_seg) / 100;
+        $i_ter = ($i_seg == 0.1) ? 0 : $i_perc * (1 + $i_seg) / 100;
+        $j_ter = ($j_seg == 0.1) ? 0 : $j_perc * (1 + $j_seg) / 100;
+        $k_ter = ($k_seg == 0.1) ? 0 : $k_perc * (1 + $k_seg) / 100;
+        $l_ter = ($l_seg == 0.1) ? 0 : $l_perc * (1 + $l_seg) / 100;
 
         //redistribuir
         $a_red = round($cantidad * $a_ter);
@@ -677,6 +675,7 @@ class ordenEmpaqueController extends Controller
             'j_%_curva' => $j,
             'k_%_curva' => $k,
             'l_%_curva' => $l,
+            'total_%_curva' => $total_perc,
             'segundo' => 'Seg calculo',
             'a_seg' => $a_seg,
             'b_seg' => $b_seg,

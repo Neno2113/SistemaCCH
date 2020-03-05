@@ -14,6 +14,7 @@ use App\Talla;
 use App\AlmacenDetalle;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
+use App\CurvaProducto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -119,6 +120,16 @@ class AlmacenController extends Controller
                 $producto_ref_2->max = $producto_father->max;
 
                 $producto_ref_2->save();
+
+                //asignar curva a la referencia 2
+                $curva = CurvaProducto::where('producto_id', $producto_father->id)
+                ->where('producto_padre', $producto_father->id)->get()->last();
+
+                if(is_object($curva)){
+                    $curva->producto_id = $producto_ref_2->id;
+                    $curva->curva_ref_2 = "";
+                    $curva->save();
+                }
 
                 //Quitar todo rastro de referencia 2 en el registro de la tabla de producto.
                 $producto_father->referencia_producto_2 = Null;
