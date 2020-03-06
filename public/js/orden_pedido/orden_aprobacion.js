@@ -77,7 +77,7 @@ $(document).ready(function() {
             ],
             ajax: "api/ordenes_aprobacion",
             columns: [
-                // { data: "Expandir", orderable: false, searchable: false },
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido"},
                 { data: "nombre", name: "empleado.nombre" },

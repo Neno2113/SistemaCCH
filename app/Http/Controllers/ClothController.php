@@ -63,7 +63,7 @@ class ClothController extends Controller
             $cloth->id_suplidor = $id_suplidor;
             $cloth->id_composiciones = $id_composiciones;
             $cloth->referencia = $referencia;
-            $cloth->precio_usd = trim($precio_usd, "_US");
+            $cloth->precio_usd = trim($precio_usd, "USD_");
             $cloth->tipo_tela = $tipo_tela;
             $cloth->ancho_cortable = $ancho_cortable;
             $cloth->peso = $peso;

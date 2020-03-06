@@ -352,18 +352,18 @@ function mostrar(id_factura) {
 
             var fila =  "<tr >"+
             "<td class='talla'> "+data.detalle[i].producto.referencia_producto+"</td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].a+" name='a' id='a"+data.detalle[i].id+"' value="+data.detalle[i].a+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].b+" name='b' id='b"+data.detalle[i].id+"' value="+data.detalle[i].b+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].c+" name='c' id='c"+data.detalle[i].id+"' value="+data.detalle[i].c+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].d+" name='d' id='d"+data.detalle[i].id+"' value="+data.detalle[i].d+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].e+" name='e' id='e"+data.detalle[i].id+"' value="+data.detalle[i].e+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].f+" name='f' id='f"+data.detalle[i].id+"' value="+data.detalle[i].f+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].g+" name='g' id='g"+data.detalle[i].id+"' value="+data.detalle[i].g+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].h+" name='h' id='h"+data.detalle[i].id+"' value="+data.detalle[i].h+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].i+" name='i' id='i"+data.detalle[i].id+"' value="+data.detalle[i].i+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].j+" name='j' id='j"+data.detalle[i].id+"' value="+data.detalle[i].j+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].k+" name='k' id='k"+data.detalle[i].id+"' value="+data.detalle[i].k+"></td>"+
-            "<td ><input type='number' class='form-control talla red' max="+data.detalle[i].l+" name='l' id='l"+data.detalle[i].id+"' value="+data.detalle[i].l+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].a+" name='a' id='a"+data.detalle[i].id+"' value="+data.detalle[i].a+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].b+" name='b' id='b"+data.detalle[i].id+"' value="+data.detalle[i].b+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].c+" name='c' id='c"+data.detalle[i].id+"' value="+data.detalle[i].c+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].d+" name='d' id='d"+data.detalle[i].id+"' value="+data.detalle[i].d+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].e+" name='e' id='e"+data.detalle[i].id+"' value="+data.detalle[i].e+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].f+" name='f' id='f"+data.detalle[i].id+"' value="+data.detalle[i].f+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].g+" name='g' id='g"+data.detalle[i].id+"' value="+data.detalle[i].g+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].h+" name='h' id='h"+data.detalle[i].id+"' value="+data.detalle[i].h+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].i+" name='i' id='i"+data.detalle[i].id+"' value="+data.detalle[i].i+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].j+" name='j' id='j"+data.detalle[i].id+"' value="+data.detalle[i].j+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].k+" name='k' id='k"+data.detalle[i].id+"' value="+data.detalle[i].k+"></td>"+
+            "<td ><input type='number' class='form-control  red' max="+data.detalle[i].l+" name='l' id='l"+data.detalle[i].id+"' value="+data.detalle[i].l+"></td>"+
             "<td ><button type='button' id='btn-detalle"+data.detalle[i].id+"' class='btn btn-info btn-sm' onclick='agregar("+data.detalle[i].id+")'><i class='far fa-save'></i></button></td>"+
             "</tr>";
 

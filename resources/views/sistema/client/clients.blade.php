@@ -23,13 +23,15 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de registro de clientes:</h4>
+                <h4 class="font-weight-bold">Corte</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
+                    <h5>Formulario de registro de clientes</h5>
+                    <hr>
                     <div class="Datos">
 
-                        <div class="row ">
+                        <div class="row mt-4">
                             <input type="hidden" name="id" id="id" value="">
                             <div class="col-md-4">
 
@@ -56,7 +58,7 @@
                             </div>
 
                         </div>
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-md-4 mt-3">
 
                                 {{-- <div class="input-group">

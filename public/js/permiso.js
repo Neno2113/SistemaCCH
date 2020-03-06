@@ -202,6 +202,7 @@ $(document).ready(function() {
                 }
                 ],
             columns: [
+                { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "name", name: 'users.name'},
                 // { data: "permiso", name: 'permiso_usuario.permiso'},

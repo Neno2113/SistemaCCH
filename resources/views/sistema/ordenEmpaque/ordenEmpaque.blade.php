@@ -83,8 +83,9 @@
                     </div>
                     <div class="container">
                         <label for="" class="mt-5 mr-5">Orden de empaque</label>
-                        <table id="orden_detalle" class="table tabla-tallas datatables mt-5 mb-3 mr-5"
-                            style="width:105%; margin-left:-26px;">
+                        <div class="table-responsive">
+                            <table id="orden_detalle" class="table tabla-tallas datatables mt-5 mb-3 mr-5"
+                            style="width:104%; margin-left:-26px;">
                             <thead class="tabla-tallas">
                                 <tr>
                                     <th class="talla_head">MUJER PLUS:</th>
@@ -220,6 +221,8 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        </div>
+
 
                     </div>
 

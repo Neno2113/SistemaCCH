@@ -42,6 +42,7 @@ margin-bottom: 20px; */
 .content-header h1 {
     font-weight: 500;
     font-family: 'Oswald', sans-serif;
+    text-shadow: 0px 0px 1px #000;
 }
 
 .card-header {
@@ -64,8 +65,8 @@ margin-bottom: 20px; */
 
 .card-body {
     background:#f7f4f4;
-    /* border-left: 1px solid#06090f73;
-    border-right: 1px solid #06090f73; */
+    border-left: 1px solid#06090f73;
+    border-right: 1px solid #06090f73;
 }
 /*
 .card-body form {
@@ -103,9 +104,21 @@ select.form-control,
 textarea.form-control {
     /* border: 1px solid #00000073; */
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 3px solid #ccc;
     font-family: "Slabo 13px", serif;
+    box-shadow: 0px 0px 2px rgb(0, 0, 0);
 }
+
+}
+
+/* form input[type="date"],
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    box-shadow: 0 0px 1px rgba(0,0,0,.5);
+} */
 
 form input[type="date"]::placeholder,
 input[type="text"]::placeholder,
@@ -125,7 +138,7 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus {
     outline: none;
-    border-bottom: 2px solid#2463b9;
+    border-bottom: 4px solid#2463b9;
 }
 form input[type="date"].error,
 input[type="text"].error,
@@ -170,7 +183,9 @@ input[type="number"].error + label {
 .select2-container--default .select2-selection--single {
     /* border: 1px solid #00000073; */
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 3px solid #ccc;
+    font-family: "Slabo 13px", serif;
+    box-shadow: 0px 0px 2px rgb(0, 0, 0);
 }
 
 .error {
@@ -338,14 +353,14 @@ table th.fit {
 .tabla-existencia tfoot .totales {
     text-align: center;
 }
-.0 .tabla-existencia tfoot .disp_venta {
+.tabla-existencia tfoot .disp_venta {
     text-align: center;
 }
 
 .tabla-tallas {
     border-collapse: collapse;
     border-spacing: 0;
-    margin-left: -32px;
+    margin-left: -15px;
     /* margin-bottom: 20px; */
     table-layout: auto;
     border: solid 1px black;
@@ -379,6 +394,7 @@ table th.fit {
     /* border: none; */
     /* font-weight: bold; */
     font-size: 12px;
+    box-shadow: none;
 }
 
 .tabla-tallas .talla {
@@ -454,7 +470,7 @@ table th.fit {
     /* padding: 20px; */
     background: #fff;
     text-align: center;
-    border-bottom: 1px solid black;
+    border: 1px solid black;
     /* border: solid 2px black; */
 }
 
@@ -474,8 +490,10 @@ table th.fit {
 }
 .tabla-detalle tbody .red {
     width: 126%;
-    border: none;
+    /* border: none; */
     /* font-weight: bold; */
+    box-shadow: none;
+
 }
 
 .tabla-detalle .talla {
@@ -497,6 +515,15 @@ table th.fit {
     font-size: 13px;
     width: 109%;
 }
+
+.tabla-perdidas td .no-shadow {
+   box-shadow: none;
+}
+
+.tabla-existencia td .no-shadow {
+    box-shadow: none;
+ }
+
 
 /* .ta {
     width: 100%;
@@ -541,4 +568,24 @@ label .pers {
 
 .hideCol {
     display: none;
+}
+
+.modal-body .modal-h5{
+    font-family: "Slabo 13px", serif;
+    text-align: center;
+    padding-top: 11px;
+    font-weight: bold;
+}
+
+.modal-body .modal-almacen-h5{
+    font-family: "Slabo 13px", serif;
+    text-align: center;
+}
+
+.modal {
+    overflow-y: auto !important;
+}
+
+.card-body .formUpload{
+
 }

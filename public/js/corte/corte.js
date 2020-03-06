@@ -503,7 +503,7 @@ $(document).ready(function() {
                     $("#fila-inventario-perc").show();
                     $("#fila-totales").show();
                     $("#mod_curva").val(1);
-                    $("#corte_tallas_2").val(datos.producto.referencia_producto_2);
+
 
                     a_ref2 = datos.a_ref2;
                     b_ref2 = datos.b_ref2;
@@ -528,26 +528,31 @@ $(document).ready(function() {
                         $("#fila-actual").hide();
                         $("#fila-inventario").show();
                         $("#fila-inventario-perc").hide();
-                        $("#fila-totales").hide();
-                        $("#a_ref1").val(datos.a);
-                        $("#b_ref1").val(datos.b);
-                        $("#c_ref1").val(datos.c);
-                        $("#d_ref1").val(datos.d);
-                        $("#e_ref1").val(datos.e);
-                        $("#f_ref1").val(datos.f);
-                        $("#g_ref1").val(datos.g);
-                        $("#h_ref1").val(datos.h);
-                        $("#total_ref1").html(datos.total_porc + "%");
+                        // $("#fila-totales").hide();
+                        $("#fila-perc-ref1").show();
+                        $("#fila-perc-ref2").show();
+                        $("#corte_tallas_2").show();
+                        $("#corte_tallas_2").show();
+                        $("#a_perc_ref1").html(datos.a);
+                        $("#b_perc_ref1").html(datos.b);
+                        $("#c_perc_ref1").html(datos.c);
+                        $("#d_perc_ref1").html(datos.d);
+                        $("#e_perc_ref1").html(datos.e);
+                        $("#f_perc_ref1").html(datos.f);
+                        $("#g_perc_ref1").html(datos.g);
+                        $("#h_perc_ref1").html(datos.h);
+                        $("#total_perc_ref1").html(datos.total_porc + "%");
+                        $("#corte_tallas_2").val(datos.referencia2.referencia_producto);
 
-                        $("#a_ref2").val(datos.a_curva2);
-                        $("#b_ref2").val(datos.b_curva2);
-                        $("#c_ref2").val(datos.c_curva2);
-                        $("#d_ref2").val(datos.d_curva2);
-                        $("#e_ref2").val(datos.e_curva2);
-                        $("#f_ref2").val(datos.f_curva2);
-                        $("#g_ref2").val(datos.g_curva2);
-                        $("#h_ref2").val(datos.h_curva2);
-                        $("#total_ref2").html(datos.total_porc2 + "%");
+                        $("#a_perc_ref2").html(datos.a_curva2);
+                        $("#b_perc_ref2").html(datos.b_curva2);
+                        $("#c_perc_ref2").html(datos.c_curva2);
+                        $("#d_perc_ref2").html(datos.d_curva2);
+                        $("#e_perc_ref2").html(datos.e_curva2);
+                        $("#f_perc_ref2").html(datos.f_curva2);
+                        $("#g_perc_ref2").html(datos.g_curva2);
+                        $("#h_perc_ref2").html(datos.h_curva2);
+                        $("#total_perc_ref2").html(datos.total_porc2 + "%");
                     }
                     if(plus_global == 7){
                         $("td:nth-child(10),th:nth-child(10)").hide();
@@ -735,11 +740,8 @@ $(document).ready(function() {
                                 $("#k").val(""),
                                 $("#l").val("");
                                 // tabla.ajax.reload();
-                                $("#edit-hide").css("background-color", "none");
                                 $("#cortes_listados").DataTable().ajax.reload();
-                                $("#btn-tallas").removeClass("btn-success").addClass("btn-secondary");
-                                $("#btn-sku").removeClass("btn-success").addClass("btn-secondary");
-                                $("#edit-hide").removeClass("btn-success").addClass("btn-secondary");
+
                                 limpiar();
 
                                 mostrarForm(false);
@@ -1097,7 +1099,13 @@ $(document).ready(function() {
             $("#fila-ref2").hide();
             $("#fila-inventario-perc").hide();
             $("#fila-inventario").hide();
-            // $("#fila-totales").hide();
+            $("#fila-perc-ref1").hide();
+            $("#fila-perc-ref2").hide();
+            $("#corte_tallas_2").hide();
+            $("#btn-rollos").removeClass("btn-dark").addClass("btn-secondary");
+            $("#btn-tallas").removeClass("btn-dark").addClass("btn-secondary");
+            $("#btn-sku").removeClass("btn-success").addClass("btn-secondary");
+            // $("#fila-totales").hide();secondary
             $("#spiner").hide();
             $("#spiner2").hide();
             $("#btn-curva").attr("disabled", true);
@@ -1120,13 +1128,12 @@ $(document).ready(function() {
     });
 
     $("#edit-hide").click(function(){
-        $("#spiner").show();
-        $("#spiner2").show();
+
     });
 
     $("#btn-tallas-cerrar").click(function(e){
         e.preventDefault();
-        $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
+        $("#btn-tallas").removeClass("btn-secondary").addClass("btn-dark");
     });
 
     // $('#test').on('hidden.bs.modal', function (e) {
@@ -1201,7 +1208,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Error");
                 }
@@ -1233,7 +1240,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar2").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1266,7 +1273,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar3").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1299,7 +1306,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar4").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1332,7 +1339,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar5").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1375,7 +1382,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar6").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1419,7 +1426,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar7").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1462,7 +1469,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar8").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1505,7 +1512,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar9").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1538,7 +1545,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar10").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1570,7 +1577,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar11").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1603,7 +1610,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar12").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1636,7 +1643,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar13").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1686,6 +1693,11 @@ function mostrar(id_corte) {
         $("#largo_marcada").val(data.corte.largo_marcada);
         $("#aprovechamiento").val(data.corte.aprovechamiento);
         $("#productos").val(data.corte.producto.id).select2().trigger('change');
+        let val = data.corte.producto.referencia_producto;
+        let genero = val.substring(1, 2);
+        let mujer_plus = val.substring(3, 4);
+        genero_global = genero;
+        plus_global = mujer_plus;
         $("#a").val(data.a);
         $("#b").val(data.b);
         $("#c").val(data.c);
@@ -1710,6 +1722,7 @@ function mostrar(id_corte) {
         $("#j_act").html(data.curva.j + "%");
         $("#k_act").html(data.curva.k + "%");
         $("#l_act").html(data.curva.l + "%");
+        eliminarColumnas();
 
     });
 }
@@ -1762,11 +1775,8 @@ function asignar(id_rollo) {
                 bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> asignado correctamente al corte: <strong>"
                     +datos.rollo.corte_utilizado+"</strong>");
                 $("#btn-guardar").attr("disabled", false);
-                $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
-                $("#spiner").hide();
-                $("#spiner2").hide();
+                $("#btn-rollos").removeClass("btn-secondary").addClass("btn-dark");
                 $("#rollos").DataTable().ajax.reload();
-                $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
             } else {
                 bootbox.alert(
                     "Ocurrio un error durante esta operacion!!"
@@ -2297,5 +2307,29 @@ $("#btn-curva").click(function(e) {
         }
     });
 });
+
+
+function eliminarColumnas(){
+    if(genero_global == 3 || genero_global == 4){
+        $("td:nth-child(10) ,th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+
+    }else if(genero_global == 1){
+        $("td:nth-child(10) ,th:nth-child(10)").show();
+        $("td:nth-child(11),th:nth-child(11)").show();
+
+        $("td:nth-child(12),th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+    }
+
+    if(plus_global == 7){
+        $("td:nth-child(10),th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+    }
+}
 
 

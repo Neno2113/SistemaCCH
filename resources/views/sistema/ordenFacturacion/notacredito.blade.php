@@ -20,7 +20,7 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de nota de credito:</h4>
+                <h4>Nota de credito</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
@@ -91,10 +91,10 @@
                     <div id="detalle-factura">
                         <label for="" class="mt-5">Detalle Factura</label>
                         <table id="invoice_detail" class="table datatables tabla-detalle mt-5 mb-3 mr-5 tabla-nc"
-                            style="width:106%; margin-left: -31px;">
+                            style="width:103%; margin-left: -15px;">
                             <thead class="tabla-tallas">
                                 <tr>
-                                    <th class="talla_head">PLUS:</th>
+                                    <th class="talla_head">PLUS</th>
                                     <td class="talla">12W</td>
                                     <td class="talla">14W</td>
                                     <td class="talla">16W</td>
@@ -111,7 +111,7 @@
 
                                 </tr>
                                 <tr>
-                                    <th class="talla_head">MUJER:</th>
+                                    <th class="talla_head">MUJER</th>
                                     <td class="talla">0/0 </td>
                                     <td class="talla">1/2 </td>
                                     <td class="talla">3/4 </td>
@@ -129,7 +129,7 @@
 
                                 </tr>
                                 <tr>
-                                    <th class="talla_head">HOMBRE:</th>
+                                    <th class="talla_head">HOMBRE</th>
                                     <td class="talla">28</td>
                                     <td class="talla">29</td>
                                     <td class="talla">30</td>
@@ -147,7 +147,7 @@
 
                                 </tr>
                                 <tr>
-                                    <th class="talla_head">NIÑO:</th>
+                                    <th class="talla_head">NIÑO</th>
                                     <td class="talla">2</td>
                                     <td class="talla">4</td>
                                     <td class="talla">6</td>
@@ -165,7 +165,7 @@
 
                                 </tr>
                                 <tr>
-                                    <th class="talla_head">NIÑA:</th>
+                                    <th class="talla_head">NIÑA</th>
                                     <td class="talla">2</td>
                                     <td class="talla">4</td>
                                     <td class="talla">6</td>

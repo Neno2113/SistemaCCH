@@ -44,7 +44,7 @@
                     <div id="orden_create">
                         <div class="row mt-3">
                             <div class="col-md-6" id="clienteBuscar">
-                                <label for=""></label>
+                                <label for="">Cliente</label>
 
                                 <select name="tags[]" id="clienteSearch" class="form-control select2">
                                 </select>
@@ -56,7 +56,7 @@
                                     class="form-control font-weight-bold text-center mt-2" readonly>
                             </div>
                             <div class="col-md-6" id="sucursalBuscar">
-                                <label for=""></label>
+                                <label for="">Sucursal</label>
                                 <select name="tags[]" id="sucursalSearch" class="form-control select2">
                                     <option value="" disabled>Sucursal</option>
                                 </select>
@@ -70,7 +70,7 @@
                         <br>
                         <div class="row mt-3">
                             <div class="col-md-4 mt-2">
-                                <label for=""></label>
+                                <label for="">Vendedor</label>
 
                                 <select name="tags[]" id="vendedores" class="form-control select2 mt-2" style="width:90%;">
                                     <option value=""></option>

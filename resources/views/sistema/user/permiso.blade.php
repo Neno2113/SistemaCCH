@@ -134,6 +134,7 @@
         <table id="users" class="table table-bordered table-hover datatables" style="width: 100%" >
             <thead>
                 <tr>
+                    <th></th>
                     <th>Permisos</th>
                     <th>Nombre</th>
                     {{-- <th>Permiso</th> --}}
@@ -144,6 +145,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
+                    <th></th>
                     <th>Permisos</th>
                     <th>Nombre</th>
                     {{-- <th>Permiso</th> --}}

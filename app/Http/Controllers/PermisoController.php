@@ -87,6 +87,9 @@ class PermisoController extends Controller
         ->editColumn('name', function($permiso){
             return $permiso->name." ". $permiso->surname;
         })
+        ->addColumn('Expandir', function ($permiso) {
+            return "";
+        })
         ->addColumn('Opciones', function ($permiso) {
             return '<button onclick="mostrar(' . $permiso->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-user-cog"></i></button>';
         })

@@ -291,7 +291,7 @@ class CorteController extends Controller
 
     public function testSelect2()
     {
-        $productos = Product::all();
+        $productos = Product::where('referencia_father', NUll)->get();
 
         $data = [
             'code' => 200,
@@ -473,6 +473,8 @@ class CorteController extends Controller
                 $k_curva2 = (is_null($curva_prod2->k)) ? 0 : str_replace('.00', '', $curva_prod2->k);
                 $l_curva2 = (is_null($curva_prod2->l)) ? 0 : str_replace('.00', '', $curva_prod2->l);
                 $total_porc_2 = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
+                $referencia2 = Product::where('referencia_father', $referencia->id)->get()->last();
             }
 
             $a_ref2 = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
@@ -486,6 +488,7 @@ class CorteController extends Controller
         }
 
         if (!empty($corte)) {
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
@@ -539,6 +542,7 @@ class CorteController extends Controller
                 'k_curva2' => (isset($k_curva2)) ? $k_curva2 : 0,
                 'l_curva2' => (isset($l_curva2)) ? $l_curva2 : 0,
                 'total_porc2' => (isset($total_porc_2)) ? $total_porc_2 : 0,
+                'referencia2' => (isset($referencia2)) ? $referencia2 : 0
 
             ];
         } else {

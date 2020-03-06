@@ -53,6 +53,13 @@ class FacturaController extends Controller
             if($numero_comprobante == 1){
                 $tipo_factura = "FB";
             }
+            //actualizar campo impreso para recargar dattable
+            $orden_facturacion = OrdenFacturacion::find($orden_facturacion_id);
+
+            if(is_object($orden_facturacion)){
+                $orden_facturacion->impreso = 1;
+                $orden_facturacion->save();
+            }
 
             $numeracion = trim($numeracion, "_");
             $numero_comprobante = trim($numero_comprobante, "_");
