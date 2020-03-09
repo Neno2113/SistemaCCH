@@ -59,7 +59,7 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",
-            iDisplayLength: 5,
+            // iDisplayLength: 5,
             buttons: [
                 "pageLength",
                 "copyHtml5",
@@ -89,7 +89,7 @@ $(document).ready(function() {
                 { data: "total", name: "orden_pedido.total", searchable: false  },
                 { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
             ],
-            order: [[1, "desc"]],
+            order: [[9, "desc"]],
             rowGroup: {
                 dataSrc: "status_orden_pedido"
             }

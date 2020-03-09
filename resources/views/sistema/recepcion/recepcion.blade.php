@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for=""></label>
-                            <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control">
+                            <input type="text" name="fecha_recepcion" placeholder="Fecha de recepcion"  onfocus="(this.type='date')" id="fecha_recepcion" class="form-control">
                         </div>
                         <div class="col-md-4">
                             <label for=""></label>

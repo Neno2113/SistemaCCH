@@ -162,7 +162,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4">
-                            <input type="submit" value="Guardar" id="btn-upload" class="btn btn-primary">
+                            <button type="submit" id="btn-upload" class="btn btn-primary"><i class="fas fa-file-upload"></i> Guardar</button>
 
                         </div>
                     </div>

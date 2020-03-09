@@ -1318,6 +1318,8 @@ class ordenPedidoController extends Controller
                     return '<span class="badge badge-pill badge-secondary">Stanby</span>';
                 } else if ($orden->status_orden_pedido == 'Despachado') {
                     return '<span class="badge badge-pill badge-info">Despachado</span>';
+                } else if ($orden->status_orden_pedido == 'Facturado') {
+                    return '<span class="badge badge-pill badge-dark">Facturado</span>';
                 }
             })
             ->addColumn('Opciones', function ($orden) {
@@ -1325,9 +1327,9 @@ class ordenPedidoController extends Controller
                     return  '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm mr-1"><i class="fas fa-window-close fa-sm"></i></button>' .
                         '<button onclick="ver(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"><i class="fas fa-random fa-sm"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Stanby') {
-                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-secondary  btn-sm" id="btn-status"> <i class="far fa-square"></i></button>';
+                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-outline-dark  btn-sm" id="btn-status"> <i class="far fa-square"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Cancelado') {
-                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-secondary btn-sm  ml-1" id="btn-status"> <i class="far fa-square"></i></button>';
+                    return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-outline-dark  btn-sm  ml-1" id="btn-status"> <i class="far fa-square"></i></button>';
                 } else {
                     return '<span class="badge badge-pill badge-info">Facturado</span>';
                 }
@@ -1582,6 +1584,7 @@ class ordenPedidoController extends Controller
     public function home_orden()
     {
         $orden = ordenPedido::where('status_orden_pedido', 'LIKE', 'Stanby')
+        ->orWhere('status_orden_pedido', 'LIKE', 'Vigente')
         ->where('corte_en_proceso', 'LIKE', 'No')
         ->count();
 

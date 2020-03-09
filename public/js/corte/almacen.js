@@ -138,6 +138,18 @@ $(document).ready(function() {
         $("#j").val("");
         $("#k").val("");
         $("#l").val("");
+        $("#a_m").val("");
+        $("#b_m").val("");
+        $("#c_m").val("");
+        $("#d_m").val("");
+        $("#e_m").val("");
+        $("#f_m").val("");
+        $("#g_m").val("");
+        $("#h_m").val("");
+        $("#i_m").val("");
+        $("#j_m").val("");
+        $("#k_m").val("");
+        $("#l_m").val("");
     }
 
     $("#cortesSearch").select2({
@@ -402,6 +414,7 @@ $(document).ready(function() {
         $("#entrada-form").show();
         $("#formUpload").hide();
         $("#form_talla").hide();
+        $("#corte-div").hide();
     });
 
     $("#fecha_entrada").change(function(){
@@ -760,20 +773,32 @@ $(document).ready(function() {
     });
 
     function validarTallas(){
+        let a = validarNan(parseInt($("#a").val())) == "" ? validarNan(parseInt($("#a_m").val())) : validarNan(parseInt($("#a").val()));
+        let b = validarNan(parseInt($("#b").val())) == "" ? validarNan(parseInt($("#b_m").val())) : validarNan(parseInt($("#b").val()));
+        let c = validarNan(parseInt($("#c").val())) == "" ? validarNan(parseInt($("#c_m").val())) : validarNan(parseInt($("#c").val()));
+        let d = validarNan(parseInt($("#d").val())) == "" ? validarNan(parseInt($("#d_m").val())) : validarNan(parseInt($("#d").val()));
+        let e = validarNan(parseInt($("#e").val())) == "" ? validarNan(parseInt($("#e_m").val())) : validarNan(parseInt($("#e").val()));
+        let f = validarNan(parseInt($("#f").val())) == "" ? validarNan(parseInt($("#f_m").val())) : validarNan(parseInt($("#f").val()));
+        let g = validarNan(parseInt($("#g").val())) == "" ? validarNan(parseInt($("#g_m").val())) : validarNan(parseInt($("#g").val()));
+        let h = validarNan(parseInt($("#h").val())) == "" ? validarNan(parseInt($("#h_m").val())) : validarNan(parseInt($("#h").val()));
+        let i = validarNan(parseInt($("#i").val())) == "" ? validarNan(parseInt($("#i_m").val())) : validarNan(parseInt($("#i").val()));
+        let j = validarNan(parseInt($("#j").val())) == "" ? validarNan(parseInt($("#j_m").val())) : validarNan(parseInt($("#j").val()));
+        let k = validarNan(parseInt($("#k").val())) == "" ? validarNan(parseInt($("#k_m").val())) : validarNan(parseInt($("#k").val()));
+        let l = validarNan(parseInt($("#l").val())) == "" ? validarNan(parseInt($("#l_m").val())) : validarNan(parseInt($("#l").val()));
 
         var validar = {
-            a: $("#a").val(),
-            b: $("#b").val(),
-            c: $("#c").val(),
-            d: $("#d").val(),
-            e: $("#e").val(),
-            f: $("#f").val(),
-            g: $("#g").val(),
-            h: $("#h").val(),
-            i: $("#i").val(),
-            j: $("#j").val(),
-            k: $("#k").val(),
-            l: $("#l").val(),
+            a: a,
+            b: b,
+            c: c,
+            d: d,
+            e: e,
+            f: f,
+            g: g,
+            h: h,
+            i: i,
+            j: j,
+            k: k,
+            l: l,
             almacen_id: $("#id").val()
         };
 
@@ -1122,18 +1147,18 @@ $(document).ready(function() {
     });
 
     function agregarDetalle(){
-        let a = validarNan(parseInt($("#a").val()));
-        let b = validarNan(parseInt($("#b").val()));
-        let c = validarNan(parseInt($("#c").val()));
-        let d = validarNan(parseInt($("#d").val()));
-        let e = validarNan(parseInt($("#e").val()));
-        let f = validarNan(parseInt($("#f").val()));
-        let g = validarNan(parseInt($("#g").val()));
-        let h = validarNan(parseInt($("#h").val()));
-        let i = validarNan(parseInt($("#i").val()));
-        let j = validarNan(parseInt($("#j").val()));
-        let k = validarNan(parseInt($("#k").val()));
-        let l = validarNan(parseInt($("#l").val()));
+        let a = validarNan(parseInt($("#a").val())) == "" ? validarNan(parseInt($("#a_m").val())) : validarNan(parseInt($("#a").val()));
+        let b = validarNan(parseInt($("#b").val())) == "" ? validarNan(parseInt($("#b_m").val())) : validarNan(parseInt($("#b").val()));
+        let c = validarNan(parseInt($("#c").val())) == "" ? validarNan(parseInt($("#c_m").val())) : validarNan(parseInt($("#c").val()));
+        let d = validarNan(parseInt($("#d").val())) == "" ? validarNan(parseInt($("#d_m").val())) : validarNan(parseInt($("#d").val()));
+        let e = validarNan(parseInt($("#e").val())) == "" ? validarNan(parseInt($("#e_m").val())) : validarNan(parseInt($("#e").val()));
+        let f = validarNan(parseInt($("#f").val())) == "" ? validarNan(parseInt($("#f_m").val())) : validarNan(parseInt($("#f").val()));
+        let g = validarNan(parseInt($("#g").val())) == "" ? validarNan(parseInt($("#g_m").val())) : validarNan(parseInt($("#g").val()));
+        let h = validarNan(parseInt($("#h").val())) == "" ? validarNan(parseInt($("#h_m").val())) : validarNan(parseInt($("#h").val()));
+        let i = validarNan(parseInt($("#i").val())) == "" ? validarNan(parseInt($("#i_m").val())) : validarNan(parseInt($("#i").val()));
+        let j = validarNan(parseInt($("#j").val())) == "" ? validarNan(parseInt($("#j_m").val())) : validarNan(parseInt($("#j").val()));
+        let k = validarNan(parseInt($("#k").val())) == "" ? validarNan(parseInt($("#k_m").val())) : validarNan(parseInt($("#k").val()));
+        let l = validarNan(parseInt($("#l").val())) == "" ? validarNan(parseInt($("#l_m").val())) : validarNan(parseInt($("#l").val()));
         let total_zero = a + b + c + d + e + f + g + h + i + j + k + l;
 
         var tallas = {
@@ -1338,6 +1363,7 @@ function mostrar(id_almacen){
         $("#imagen_trasera").hide();
         $("#imagen_perfil").hide();
         $("#imagen_bolsillo").hide();
+
         // $("#btn-imprimir").hide();
         let genero = data.almacen.producto.referencia_producto.substring(1, 2);
         genero_global = data.almacen.producto.referencia_producto.substring(1, 2);
@@ -1345,18 +1371,18 @@ function mostrar(id_almacen){
         genero_plus_global = data.almacen.producto.referencia_producto.substring(3, 4);
 
         //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-        (data.a <= 0 ) ? $("#a").attr('disabled', true) : $("#a").attr('disabled', false);
-        (data.b <= 0 ) ? $("#b").attr('disabled', true) : $("#b").attr('disabled', false);
-        (data.c <= 0 ) ? $("#c").attr('disabled', true) : $("#c").attr('disabled', false);
-        (data.d <= 0 ) ? $("#d").attr('disabled', true) : $("#d").attr('disabled', false);
-        (data.e <= 0 ) ? $("#e").attr('disabled', true) : $("#e").attr('disabled', false);
-        (data.f <= 0 ) ? $("#f").attr('disabled', true) : $("#f").attr('disabled', false);
-        (data.g <= 0 ) ? $("#g").attr('disabled', true) : $("#g").attr('disabled', false);
-        (data.h <= 0 ) ? $("#h").attr('disabled', true) : $("#h").attr('disabled', false);
-        (data.i <= 0 ) ? $("#i").attr('disabled', true) : $("#i").attr('disabled', false);
-        (data.j <= 0 ) ? $("#j").attr('disabled', true) : $("#j").attr('disabled', false);
-        (data.k <= 0 ) ? $("#k").attr('disabled', true) : $("#k").attr('disabled', false);
-        (data.l <= 0 ) ? $("#l").attr('disabled', true) : $("#l").attr('disabled', false);
+        (data.a <= 0 ) ? $("#a, #a_m").attr('disabled', true) : $("#a, #a_m").attr('disabled', false);
+        (data.b <= 0 ) ? $("#b, #b_m").attr('disabled', true) : $("#b, #b_m").attr('disabled', false);
+        (data.c <= 0 ) ? $("#c, #c_m").attr('disabled', true) : $("#c, #c_m").attr('disabled', false);
+        (data.d <= 0 ) ? $("#d, #d_m").attr('disabled', true) : $("#d, #d_m").attr('disabled', false);
+        (data.e <= 0 ) ? $("#e, #e_m").attr('disabled', true) : $("#e, #e_m").attr('disabled', false);
+        (data.f <= 0 ) ? $("#f, #f_m").attr('disabled', true) : $("#f, #f_m").attr('disabled', false);
+        (data.g <= 0 ) ? $("#g, #g_m").attr('disabled', true) : $("#g, #g_m").attr('disabled', false);
+        (data.h <= 0 ) ? $("#h, #h_m").attr('disabled', true) : $("#h, #h_m").attr('disabled', false);
+        (data.i <= 0 ) ? $("#i, #i_m").attr('disabled', true) : $("#i, #i_m").attr('disabled', false);
+        (data.j <= 0 ) ? $("#j, #j_m").attr('disabled', true) : $("#j, #j_m").attr('disabled', false);
+        (data.k <= 0 ) ? $("#k, #k_m").attr('disabled', true) : $("#k, #k_m").attr('disabled', false);
+        (data.l <= 0 ) ? $("#l, #l_m").attr('disabled', true) : $("#l, #l_m").attr('disabled', false);
 
         $("#id").val(data.almacen.id);
         $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);

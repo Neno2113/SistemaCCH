@@ -30,8 +30,8 @@
                 <form action="" id="formulario" class="form-group carta panel-body" enctype="multipart/form-data">
                     <h5><strong> Formulario de entrada a almacen:</strong></h5>
                     <hr>
-                    <br><br>
-                    <div class="row">
+
+                    <div class="row" id="corte-div">
                         <div class="col-md-6">
                             <label for="" class="d-flex justify-content-center pers">Corte</label>
                             <div id="corteAdd">
@@ -52,11 +52,11 @@
                             <button type="button" id="btn-buscar" class="btn btn-secondary btn-block rounded-pill"><i
                                     class="fas fa-search"></i></button>
                         </div>
+                        <br>
+                        <hr>
                     </div>
 
-                    <br>
-                    <hr>
-                    <div class="row" id="form_talla">
+                    <div class="row mt-3" id="form_talla">
                         <div class="col-md-4">
                             <label for="" class="d-flex justify-content-center pers">Fecha</label>
                             <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control">
@@ -66,16 +66,15 @@
                                 data-toggle="modal">
                                 <i class="fas fa-sort-alpha-down"></i> Entrada por talla</button>
                         </div>
+                        <br>
+                        <hr>
                     </div>
-                    <br>
-                    <hr>
-
                     <div class="div" id="entrada-form">
                         <div class="row">
                             <label for="" class="mt-1">Referencia producto: </label>
                             <div class="col-md-6 mb-2">
-                                <input type="text" name="genero" id="genero" class="form-control text-center font-weight-bold"
-                                    readonly>
+                                <input type="text" name="genero" id="genero"
+                                    class="form-control text-center font-weight-bold" readonly>
                                 <input type="hidden" name="producto_id" id="producto_id">
                                 <input type="hidden" name="almacen_id" id="almacen_id">
                             </div>
@@ -84,8 +83,8 @@
                             </div>
                             <label for="" class="mt-1">Entrada almacen: </label>
                             <div class="col-md-2 mb-2">
-                                <input type="text" class="form-control font-weight-bold text-center" name="codigo_entrada"
-                                    id="codigo_entrada" readonly>
+                                <input type="text" class="form-control font-weight-bold text-center"
+                                    name="codigo_entrada" id="codigo_entrada" readonly>
                                 <input type="hidden" name="sec" id="sec">
                             </div>
                         </div>
@@ -93,11 +92,11 @@
 
                             <div class="row">
                                 {{-- <div class="col-md-3"></div> --}}
-
-                                <div class="col-md-7">
-                                    <h5 for="" class="modal-almacen-h5">Pendientes</h5>
-                                    <div class="table-responsive">
-                                        <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2" style="width:90">
+                                <div class="table-responsive">
+                                    <div class="col-md-6">
+                                        <h5 for="" class="modal-almacen-h5">Pendientes</h5>
+                                        <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2"
+                                            style="width:90">
                                             <thead class="text-center text-sm">
                                                 <tr>
                                                     <th>Pendiente produccion</th>
@@ -122,57 +121,58 @@
                                 </div>
 
                             </div>
-                            <div class="row">
+
+                            <div class="table-responsive">
                                 <div class="col-md-12">
                                     <h5 for="" class="modal-almacen-h5">Total corte</h5>
-                                    <div class="table-responsive">
-                                        <table id="total-corte" class="table text-sm tabla-almacen-totales ml-2" style="width:99%">
-                                            <thead class="text-center">
-                                                <tr>
-                                                    <th id="ba">A</th>
-                                                    <th id="bb">B</th>
-                                                    <th id="bc">C</th>
-                                                    <th id="bd">D</th>
-                                                    <th id="be">E</th>
-                                                    <th id="bf">F</th>
-                                                    <th id="bg">G</th>
-                                                    <th id="bh">H</th>
-                                                    <th id="bi">I</th>
-                                                    <th id="bj">J</th>
-                                                    <th id="bk">K</th>
-                                                    <th id="bl">L</th>
-                                                    <th id="">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="text-center font-weight-bold">
-                                                <tr>
-                                                    <td id="ra"></td>
-                                                    <td id="rb"></td>
-                                                    <td id="rc"></td>
-                                                    <td id="rd"></td>
-                                                    <td id="re"></td>
-                                                    <td id="rf"></td>
-                                                    <td id="rg"></td>
-                                                    <td id="rh"></td>
-                                                    <td id="ri"></td>
-                                                    <td id="rj"></td>
-                                                    <td id="rk"></td>
-                                                    <td id="rl"></td>
-                                                    <td id="total"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
+                                    <table id="total-corte" class="table text-sm tabla-almacen-totales ml-2"
+                                        style="width:99%">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th id="ba">A</th>
+                                                <th id="bb">B</th>
+                                                <th id="bc">C</th>
+                                                <th id="bd">D</th>
+                                                <th id="be">E</th>
+                                                <th id="bf">F</th>
+                                                <th id="bg">G</th>
+                                                <th id="bh">H</th>
+                                                <th id="bi">I</th>
+                                                <th id="bj">J</th>
+                                                <th id="bk">K</th>
+                                                <th id="bl">L</th>
+                                                <th id="">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center font-weight-bold">
+                                            <tr>
+                                                <td id="ra"></td>
+                                                <td id="rb"></td>
+                                                <td id="rc"></td>
+                                                <td id="rd"></td>
+                                                <td id="re"></td>
+                                                <td id="rf"></td>
+                                                <td id="rg"></td>
+                                                <td id="rh"></td>
+                                                <td id="ri"></td>
+                                                <td id="rj"></td>
+                                                <td id="rk"></td>
+                                                <td id="rl"></td>
+                                                <td id="total"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
+
+
                             </div>
 
                         </div>
-
-                        <div class="col-md-12 mt-3">
-                            <h5 class="modal-almacen-h5" style="padding-top: 21px; font-weight:bold;">Entrada nueva</h5>
-                            <hr>
-                            <div class="table-responsive">
+                        <div class="table-responsive">
+                            <div class="col-md-12 mt-3">
+                                <h5 class="modal-almacen-h5" style="padding-top: 21px; font-weight:bold;">Entrada nueva
+                                </h5>
+                                <hr>
                                 <table id="corte_detalle" class="table tabla-existencia" style="width:100%">
                                     <thead class="text-center">
                                         <tr>
@@ -191,64 +191,113 @@
                                             <th id="">Total</th>
                                         </tr>
                                         <tr id="entradas">
-                                            <td >
-                                                <input type="text" name="a" id="a" class="form-control text-center no-shadow"
+                                            <td>
+                                                <input name="a" id="a"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
                                                     data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-
-                                                <input type="text" name="b" id="b" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-
-                                                <input type="text" name="c" id="c" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="td">D</label> --}}
-                                                <input type="text" name="d" id="d" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="te">E</label> --}}
-                                                <input type="text" name="e" id="e" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="tf">F</label> --}}
-                                                <input type="text" name="f" id="f" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="tg">G</label> --}}
-                                                <input type="text" name="g" id="g" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="th">H</label> --}}
-                                                <input type="text" name="" id="h" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="ti">I</label> --}}
-                                                <input type="text" name="i" id="i" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="tj">J</label> --}}
-                                                <input type="text" name="j" id="j" class="form-control text-center no-shadow"
-                                                    data-inputmask='"mask": "999"' data-mask>
-                                            </td>
-                                            <td >
-                                                {{-- <label for="" class="ml-4" id="tk">K</label> --}}
-                                                <input type="text" name="k" id="k" class="form-control text-center no-shadow"
+                                                <input type="number" name="a_m" id="a_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
                                                     data-inputmask='"mask": "999"' data-mask>
                                             </td>
                                             <td>
-                                                {{-- <label for="" class="ml-4" id="tl">L</label> --}}
-                                                <input type="text" name="l" id="l" class="form-control text-center no-shadow"
+
+                                                <input type="text" name="b" id="b"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
                                                     data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="b_m" id="b_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+
+                                                <input type="text" name="c" id="c"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="c_m" id="c_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="td">D</label> --}}
+                                                <input type="text" name="d" id="d"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="d_m" id="d_m"
+                                                    class="form-control text-center no-shadow  d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="te">E</label> --}}
+                                                <input type="text" name="e" id="e"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="e_m" id="e_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="tf">F</label> --}}
+                                                <input type="text" name="f" id="f"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="f_m" id="f_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="tg">G</label> --}}
+                                                <input type="text" name="g" id="g"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="g_m" id="g_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="th">H</label> --}}
+                                                <input type="text" name="" id="h"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="h_m" id="h_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="ti">I</label> --}}
+                                                <input type="text" name="i" id="i"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="i_m" id="i_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="tj">J</label> --}}
+                                                <input type="text" name="j" id="j"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                                <input type="number" name="j_m" id="j_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask": "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="tk">K</label> --}}
+                                                <input type="text" name="k" id="k"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='" mask": "999"' data-mask>
+                                                <input type="number" name="k_m" id="k_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask" : "999"' data-mask>
+                                            </td>
+                                            <td>
+                                                {{-- <label for="" class="ml-4" id="tl">L</label> --}}
+                                                <input type="text" name="l" id="l"
+                                                    class="form-control text-center no-shadow d-md-none d-lg-block"
+                                                    data-inputmask='"mask" : "999"' data-mask>
+
+                                                <input type="number" name="l_m" id="l_m"
+                                                    class="form-control text-center no-shadow d-none d-md-block d-lg-none"
+                                                    data-inputmask='"mask" : "999"' data-mask>
                                             </td>
                                             <td>
 
@@ -319,7 +368,7 @@
             </div>
             <div class="card-footer">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
-                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
                 <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i
@@ -389,8 +438,7 @@
 </div>
 
 
-@include('adminlte/scripts')
-<script src="{{asset('js/corte/almacen.js')}}"></script>
+@include(' adminlte/scripts') <script src="{{asset('js/corte/almacen.js')}}"></script>
 
 
 

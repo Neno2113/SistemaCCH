@@ -81,8 +81,8 @@
                         </div>
                         <div class="col-md-4">
 
-                            <input type="date" name="fecha_entrega" placeholder="Fecha estimada de entrega"
-                                id="fecha_entrega" class="form-control" data-toggle="tooltip" data-placement="bottom">
+                            <input type="text" name="fecha_entrega" placeholder="Fecha de entrega"
+                                id="fecha_entrega" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
                             <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4">
@@ -220,7 +220,7 @@
                 </div>
                 <br>
                 <hr>
-                <div class="row mt-2">
+                <div class="table-responsive">
                     <div class="col-md-12">
                         <table id="rollos" style="width: 100%;" class="table table-hover table-bordered datatables">
                             <thead>

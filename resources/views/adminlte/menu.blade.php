@@ -392,8 +392,8 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    @if (Auth::user()->permisos()->where('permiso', 'Usuarios')->first())
                     <ul class="nav nav-treeview">
+                    @if (Auth::user()->permisos()->where('permiso', 'Usuarios')->first())
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/user" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

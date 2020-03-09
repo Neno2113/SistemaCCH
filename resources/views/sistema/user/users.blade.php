@@ -27,18 +27,18 @@
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
                     <h5>Formulario de registro de usuarios</h5>
                     <hr>
-                    <div class="row ">
+                    <div class="row">
                         <input type="hidden" name="id" id="id" value="">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-6 mt-3">
                             <input type="text" name="name" id="name" placeholder="Nombre" class="form-control"
                                 pattern="[a-zA-Z]">
                             <label for="name" class="label"></label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-6 mt-3">
                             <input type="text" name="surname" id="surname" placeholder="Apellido" class="form-control">
                             <label for="surname" class="label"></label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-3">
                             <input type="text" name="edad" id="edad" placeholder="Edad" class="form-control text-center"
                                 ] data-inputmask='"mask": "99"' data-mask>
                             <label for="edad" class="label"></label>

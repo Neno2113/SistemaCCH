@@ -15,6 +15,7 @@ use App\AlmacenDetalle;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
 use App\CurvaProducto;
+use App\SKU;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -120,6 +121,90 @@ class AlmacenController extends Controller
                 $producto_ref_2->max = $producto_father->max;
 
                 $producto_ref_2->save();
+
+                //Asigar los SKU a la nueva referencia
+                $min = $producto_ref_2->min;
+                $max = $producto_ref_2->max;
+                $array = array("a" => 'A', "b" => 'B', "c" => 'C', "d" => 'D', "e" => 'E', "f" => 'F', "g" => 'G', "h" => 'H');
+                $res = array_keys($array);
+                $result = array_search($min, $res);
+                $result2 = array_search($max, $res);
+                $tallas = array_slice($array, $result, $result2);
+
+                $a = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
+                $b = (array_key_exists("b", $tallas) ? $tallas['b'] : 0);
+                $c = (array_key_exists("c", $tallas) ? $tallas['c'] : 0);
+                $d = (array_key_exists("d", $tallas) ? $tallas['d'] : 0);
+                $e = (array_key_exists("e", $tallas) ? $tallas['e'] : 0);
+                $f = (array_key_exists("f", $tallas) ? $tallas['f'] : 0);
+                $g = (array_key_exists("g", $tallas) ? $tallas['g'] : 0);
+                $h = (array_key_exists("h", $tallas) ? $tallas['h'] : 0);
+
+                $sku_a = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $a)->get()->last();
+
+                $sku_b = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $b)->get()->last();
+
+                $sku_c = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $c)->get()->last();
+
+                $sku_d = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $d)->get()->last();
+
+                $sku_e = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $e)->get()->last();
+
+                $sku_f = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $f)->get()->last();
+
+                $sku_g = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $g)->get()->last();
+
+                $sku_h = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                ->where('talla', $h)->get()->last();
+
+
+                if(is_object($sku_a)){
+                    $sku_a->producto_id = $producto_ref_2->id;
+                    $sku_a->save();
+                }
+
+                if(is_object($sku_b)){
+                    $sku_b->producto_id = $producto_ref_2->id;
+                    $sku_b->save();
+                }
+                if(is_object($sku_c)){
+                    $sku_c->producto_id = $producto_ref_2->id;
+                    $sku_c->save();
+                }
+                if(is_object($sku_d)){
+                    $sku_d->producto_id = $producto_ref_2->id;
+                    $sku_d->save();
+                }
+                if(is_object($sku_e)){
+                    $sku_e->producto_id = $producto_ref_2->id;
+                    $sku_e->save();
+                }
+                if(is_object($sku_f)){
+                    $sku_f->producto_id = $producto_ref_2->id;
+                    $sku_f->save();
+                }
+                if(is_object($sku_g)){
+                    $sku_g->producto_id = $producto_ref_2->id;
+                    $sku_g->save();
+                }
+                if(is_object($sku_h)){
+                    $sku_h->producto_id = $producto_ref_2->id;
+                    $sku_h->save();
+                }
+
+                //asignar uno genero
+                $sku_general = SKU::where('producto_id', NULL)->get()->first();
+                $sku_general->producto_id = $producto_ref_2->id;
+                $sku_general->referencia_producto = $producto_ref_2->referencia_producto;
+                $sku_general->talla = 'General';
+                $sku_general->save();
 
                 //asignar curva a la referencia 2
                 $curva = CurvaProducto::where('producto_id', $producto_father->id)

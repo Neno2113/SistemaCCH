@@ -72,9 +72,11 @@
 
                     </div>
 
-                    <label for="" style="font-size:20px;" class="mt-5 d-flex justify-content-center pers">Detalle orden</label><span class="badge badge-success ml-2" id="badge-red">Redistribuido <i class="fas fa-check"></i></span>
-                        <hr>
-                    <div class="table-responsive">
+                    <label for="" style="font-size:20px;" class="mt-5 d-flex justify-content-center pers">Detalle
+                        orden</label><span class="badge badge-success ml-2" id="badge-red">Redistribuido <i
+                            class="fas fa-check"></i></span>
+                    <hr>
+                    <div class="">
                         <table id="detalle" class="table  mt-5 mb-3 mr-5 tabla-tallas text-sm" style="width:103%;">
                             <thead class="tabla-tallas">
                                 <tr>
@@ -98,12 +100,12 @@
                                 </tr>
                                 <tr>
                                     <th class="talla_head">MUJER</th>
-                                    <td class="talla">0/0  </td>
-                                    <td class="talla">1/2  </td>
-                                    <td class="talla">3/4  </td>
-                                    <td class="talla">5/6  </td>
-                                    <td class="talla">7/8  </td>
-                                    <td class="talla">9/10  </td>
+                                    <td class="talla">0/0 </td>
+                                    <td class="talla">1/2 </td>
+                                    <td class="talla">3/4 </td>
+                                    <td class="talla">5/6 </td>
+                                    <td class="talla">7/8 </td>
+                                    <td class="talla">9/10 </td>
                                     <td class="talla">11/12</td>
                                     <td class="talla">13/14</td>
                                     <td class="talla">15/16</td>
@@ -237,42 +239,49 @@
 </div>
 
 
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4>Listado de ordenes</h4>
+    </div>
+    <div class="card-body">
 
+        <div class="" id="AprobarPedido">
+            <table id="ordenes_aprobacion" class="table table-striped table-bordered datatables" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Actions</th>
+                        <th>#</th>
+                        <th>Vendedor</th>
+                        <th>Cliente</th>
+                        <th>Sucursal</th>
+                        <th>Fecha</th>
+                        <th>F. Entr.</th>
+                        {{-- <th>F. Aprob.</th> --}}
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Actions</th>
+                        <th>#</th>
+                        <th>Vendedor</th>
+                        <th>Cliente</th>
+                        <th>Sucursal</th>
+                        <th>Fecha</th>
+                        <th>F. Entr.</th>
+                        {{-- <th>F. Aprob.</th> --}}
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 
-<div class="" id="AprobarPedido">
-    <table id="ordenes_aprobacion" class="table table-striped table-bordered datatables" style="width: 100%;">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>Vendedor</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>Fecha</th>
-                <th>F. Entr.</th>
-                {{-- <th>F. Aprob.</th> --}}
-                <th>Total</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Actions</th>
-                <th>#</th>
-                <th>Vendedor</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>Fecha</th>
-                <th>F. Entr.</th>
-                {{-- <th>F. Aprob.</th> --}}
-                <th>Total</th>
-                <th>Status</th>
-            </tr>
-        </tfoot>
-    </table>
 </div>
 
 {{-- <div class="container collapse mt-4" id="RedistribuirPedido">

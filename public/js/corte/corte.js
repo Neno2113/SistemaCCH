@@ -833,23 +833,8 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             ajax: "api/rollos_corte",
-            dom: 'Bfrtip',
+            // dom: 'Bfrtip',
             iDisplayLength: 5,
-            buttons: [
-                'pageLength',
-                'copyHtml5',
-                 {
-                    extend: 'excelHtml5',
-                    autoFilter: true,
-                    sheetName: 'Exported data'
-                },
-                'csvHtml5',
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'landscape',
-                    pageSize: 'LEGAL'
-                }
-                ],
             columns: [
                 { data: "codigo_rollo", name: "rollos.codigo_rollo" },
                 { data: "referencia", name: "tela.referencia" },

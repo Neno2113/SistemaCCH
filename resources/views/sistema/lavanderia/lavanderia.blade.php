@@ -95,7 +95,7 @@
                         <div class="row mt-5">
                             <div class="col-md-4">
                                 <label for="" class=""></label>
-                                <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
+                                <input type="text" placeholder="Fecha de envio" onfocus="(this.type='date')" name="fecha_envio" id="fecha_envio" class="form-control">
                             </div>
 
                             <div class="col-md-2">
