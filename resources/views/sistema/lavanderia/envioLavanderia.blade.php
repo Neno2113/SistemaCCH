@@ -5,294 +5,150 @@
 @section('title', 'Lavanderia')
 
 @section('content')
-{{-- <div class="container"> --}}
-<div class="row mt-3 ml-2">
-    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+<body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
+      </div>
+      <div id="company">
+        <h2 class="name">Confecciones Carmen Herrera</h2>
+        <div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
+        <div>(809) 699-8400</div>
+        <div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
+        <div>RNC: 130-746974</div>
+      </div>
+      </div>
+    </header>
+    <main>
+      <div id="details" class="clearfix">
+        <table class="tabla-cliente">
+          <thead class="cod">
+            <tr>
+              <th>LAVANDERIA CODIGO</th>
+              <td>{{$lavanderia->numero_envio}}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Nombre</th>
+              <td>{{$lavanderia->suplidor->nombre}}</td>
+            </tr>
+            <tr>
+              <th class="direccion">Direccion</th>
+              <td class="direccion">{{$lavanderia->suplidor->calle}}, {{$lavanderia->suplidor->sector}}
+                {{$lavanderia->suplidor->provincia}} {{$lavanderia->suplidor->sitios_cercanos}}</td>
+            </tr>
+            <tr>
+              <th>Tel</th>
+              <td>{{$lavanderia->suplidor->telefono_1}}</td>
+            </tr>
+            <tr>
+              <th>RNC</th>
+              <td>{{$lavanderia->suplidor->rnc}}</td>
+            </tr>
+          </tbody>
 
-    {{-- <button class="btn btn-secondary mb-3 ml-2" id="edit-hide2" data-toggle="modal"
-        data-target=".bd-talla-modal-xl"> <i class="fas fa-print"></i></button> --}}
-</div>
-
-<div class="row">
-    <div class="col-12">
-        <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                            class="fas fa-remove"></i></button>
-                </div>
-                <h4><strong>Envio lavanderia</strong></h4>
-            </div>
-            <div class="card-body">
-                <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario de envio a lavanderia:</strong></h5>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label for="">Numero de envio:</label>
-                            <input type="text" name="" id="numero_envio" class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="" id="sec" value="">
-                            <input type="hidden" name="" id="id" value="">
-                        </div>
-                        <div class="col-6 mt-4 pt-2">
-                            <button id="btn-generar" class="btn btn-secondary "><i class="fas fa-file-alt fa-lg"></i> Generar</button>
-                            <input type="text" name="tota_enviado" id="total_enviado"
-                                class="form-control text-center" readonly>
-
-                        </div>
-                    </div>
-                    <br><br>
-                    <hr>
-
-                    {{-- <div class="row mt-5" id="formularioLavanderia">
-                        <div class="col-12" id="producto">
-                            <label for="">Producto(*):</label>
-                            <div id="productoADD">
-                                <select name="tags[]" id="productos" class="form-control select2" style="width:100%">
-                                </select>
-                            </div>
-                            <div id="productoEdit" class="mt-3">
-                                <select name="tags[]" id="productosEdit" class="form-control select2"
-                                    style="width:100%">
-                                </select>
-                            </div>
-                            <input type="text" name="" id="referencia_producto" class="form-control text-center mt-3"
-                                readonly>
-                        </div>
-
-                    </div> --}}
-                    <div id="formularioLavanderia">
-                        <div class="row mt-3">
-                            <div class="col-md-6" id="cortes">
-                                <label for="">Corte(*):</label>
-                                <div id="corteADD">
-                                    <select name="tags[]" id="cortesSearch" class="form-control select2">
-                                    </select>
-                                </div>
-
-                                <div id="corteEdit">
-                                    <select name="tags[]" id="cortesSearchEdit" class="form-control select2">
-                                    </select>
-                                </div>
-                                <input type="text" name="" id="numero_corte" readonly
-                                    class="form-control text-center mt-3">
-                            </div>
-
-                            <div class="col-md-6" id="suplidor">
-                                <label for="">Lavanderia (*):</label>
-                                <select name="tags[]" id="suplidores" class="form-control select2" style="width: 100%">
-                                </select>
-                                <div id="lavanderia">
-                                </div>
-                                <input type="text" name="suplidor_lavanderia" id="suplidor_lavanderia"
-                                    class="form-control text-center mt-3" readonly>
-                            </div>
-
-                        </div>
-
-                        <hr>
-
-                        <div class="row mt-5">
-                            <div class="col-4">
-                                <label for="">Fecha(*):</label>
-                                <input type="date" name="fecha_envio" id="fecha_envio" class="form-control">
-                            </div>
-
-                            <div class="col-md-2">
-                                <label for="">Cantidad(*):</label>
-                                <input type="text" name="cantidad" id="cantidad" class="form-control">
-                            </div>
-                            <div class="col-md-2">
-                                <label for="">Restante por enviar:</label>
-                                <input type="text" name="restante_enviar" id="restante_enviar" class="form-control text-center" readonly>
-                            </div>
-                            <div class="col-md-4 pl-5">
-                                <label for="">¿Estandar incluido?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
-                                        <label for="radioPrimary1">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary2" value="0" name="r1">
-                                        <label for="radioPrimary2">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <input type="text" name="estandar_incluido" id="estandar_incluido"
-                                    class="form-control text-center" readonly>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <label for="">Receta de lavado(*):</label>
-                                <textarea name="receta_lavado" id="receta_lavado" cols="30" rows="1"
-                                    class="form-control"></textarea>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <div class="card-footer ">
-                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
-            </div>
-
-            </form>
-        </div>
-    </div>
-</div>
-{{-- </div> --}}
-
-<div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Cortes en lavanderia:</h4>
-    </div>
-    <div class="card-body">
-        <table id="lavanderias" class="table table-striped table-bordered datatables" style="width: 100%">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Ver</th>
-                    <th>Actions</th>
-                    <th># Envio</th>
-                    <th># Corte</th>
-                    <th>Ref.</th>
-                    <th>Enviado</th>
-                    <th>T. Enviado</th>
-                    <th>T. Cortado</th>
-                    <th>Lav.</th>
-                    <th>Estandar </th>
-
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Ver</th>
-                    <th>Actions</th>
-                    <th># Envio</th>
-                    <th># Corte</th>
-                    <th>Ref.</th>
-                    <th>Enviado</th>
-                    <th>T. Enviado</th>
-                    <th>T. Cortado</th>
-                    <th>Lav.</th>
-                    <th>Estandar </th>
-                </tr>
-            </tfoot>
         </table>
-    </div>
+
+        <table class="tabla-factura">
+          <thead>
+            <tr>
+              <th class="factura">CONDUCE LAVANDERIA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="num_factura">{{$lavanderia->numero_envio}}</td>
+            </tr>
+            <tr>
+              <td class="fecha">Fecha:{{$lavanderia->fecha_envio}}</td>
+            </tr>
+            <tr>
+              <td class="page">Pagina 1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
 
-</div>
+      <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
+        <thead>
+          <tr>
+            <th class="desc">CORTE</th>
+            <th class="no">REFERENCIA</th>
+            <th class="unit">UPC/SKU</th>
+            <th class="desc">ESTANDAR</th>
+            {{-- <th class="unit">PRECIO</th> --}}
+            <th class="total">TOTAL ENVIADO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="no">
+              <li>{{$lavanderia->corte->numero_corte}}</li>
+            </td>
+            <td class="no">
+            @if (!empty($lavanderia->producto->referencia_producto_2))
+              <li>{{$lavanderia->producto->referencia_producto}} - {{$lavanderia->producto->referencia_producto_2}}</li>
+            @else
+            <li>{{$lavanderia->producto->referencia_producto}}</li>
+            @endif
+
+            </td>
+            <td class="desc-des">
+              <li>{{$lavanderia->sku->sku}}</li>
+            </td>
+            <td class="unit">
+              <li>
+                @if ($lavanderia->estandar_incluido == 1)
+                Si
+                @else
+                No
+                @endif
+              </li>
+            </td>
+            <td class="total">
+              <li>{{$lavanderia->total_enviado}}</li>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+
+
+
+      <div id="thanks">CONDUCE DE LAVANDERIA</div>
+      <div id="notices">
+        <div>LAVADO:</div>
+        <p class="notice">{{$lavanderia->receta_lavado}}</p>
+
+      </div>
+
+
+
+      <div class="firmas">
+        <div class="firma_enviado">ENVIADO POR:</div>
+
+        <div class="firma_recibido">RECIBIDO POR:</div>
+      </div>
+    </main>
+    <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+    <footer class="pagina1">
+      Factura generada desde SistemaCCH.
+    </footer>
+
+
+  </body>
+
+
 
 
 
 @include('adminlte/scripts')
 <script src="{{asset('js/corte/envio-lavanderia.js')}}"></script>
 
-<script>
-    function mostrar(id_lavanderia) {
-        $.post("lavanderia/" + id_lavanderia, function(data, status) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
-            $("#numero_corte").show();
-            $("#btn-generar").hide();
-            $("#referencia_producto").show();
-            $("#corteEdit").show();
-            $("#corteADD").hide();
-            $("#productoEdit").show();
-            $("#productoADD").hide();
-            $("#estandar_incluido").show();
-            $("#suplidor_lavanderia").show();
-            $("#formularioLavanderia").show();
-            $("#total_enviado").hide();
-        
-            let result;
-            if(data.lavanderia.estandar_incluido == 1){
-                result = 'Si'
-            }else{
-                result = 'No'
-            }
 
-            $("#id").val(data.lavanderia.id);
-            $("#numero_envio").val(data.lavanderia.numero_envio).attr('readonly', false);
-            $("#fecha_envio").val(data.lavanderia.fecha_envio).attr('disabled', false);
-            $("#cantidad").val(data.lavanderia.total_enviado).attr('readonly', false);
-            $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte);
-            $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto);
-            $("#receta_lavado").val(data.lavanderia.receta_lavado).attr('readonly', false);
-            $("#estandar_incluido").val(result);
-            $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre);
-            // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
-            
-        });
-    }
-
-    function ver(id_lavanderia) {
-        $.post("lavanderia/" + id_lavanderia, function(data, status) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-guardar").hide();
-            $("#numero_corte").show();
-            $("#btn-generar").hide();
-            $("#referencia_producto").show();
-            $("#corteEdit").show();
-            $("#corteADD").hide();
-            $("#productoEdit").show();
-            $("#productoADD").hide();
-            $("#estandar_incluido").show();
-            $("#suplidor_lavanderia").show();
-            $("#formularioLavanderia").show();
-            $("#total_enviado").show();
-        
-            let result;
-            if(data.lavanderia.estandar_incluido == 1){
-                result = 'Si'
-            }else{
-                result = 'No'
-            }
-
-            $("#total_enviado").val('Total enviado: '+data.lavanderia.total_enviado);
-            $("#numero_envio").val(data.lavanderia.numero_envio).attr('readonly', true);
-            $("#fecha_envio").val(data.lavanderia.fecha_envio).attr('disabled', true);
-            $("#cantidad").val(data.lavanderia.cantidad).attr('readonly', true);
-            $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte).attr('readonly', true);
-            $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto).attr('readonly', true);
-            $("#receta_lavado").val(data.lavanderia.receta_lavado).attr('readonly', true);
-            $("#estandar_incluido").val(result).attr('readonly', true);
-            $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre).attr('readonly', true);
-            // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
-            
-        });
-    }
-
-
-    function eliminar(id_lavanderia){
-        bootbox.confirm("¿Estas seguro de eliminar este conduce de envio?", function(result){
-            if(result){
-                $.post("lavanderia/delete/" + id_lavanderia, function(){
-                    bootbox.alert("Conduce a lavanderia eliminada correctamente");
-                    $("#lavanderias").DataTable().ajax.reload();
-                })
-            }
-        })
-    }
-
-</script>
 
 
 

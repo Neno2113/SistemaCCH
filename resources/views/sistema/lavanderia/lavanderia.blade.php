@@ -170,7 +170,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-4 pl-5" id="reparada_lav">
+                            <div class="col-md-4 pl-5 mt-3" id="reparada_lav">
                                 <label for="">¿Envio de mercancia reparada a lavanderia?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">

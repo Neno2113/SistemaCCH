@@ -78,6 +78,10 @@ Route::get('/lavanderia', function () {
     return view('sistema.lavanderia.lavanderia');
 })->middleware('auth', 'admin:Lavanderia');
 
+Route::get('/lavanderia/conduce', function () {
+    return view('sistema.lavanderia.conduce');
+})->middleware('auth', 'admin:Lavanderia');
+
 Route::get('/devolucion-lavanderia', function () {
     return view('sistema.lavanderia.envioLavanderia');
 })->middleware('auth');
@@ -246,6 +250,7 @@ Route::put('/lavanderia/edit', 'LavanderiaController@update');
 Route::post('/lavanderia/delete/{id}', 'LavanderiaController@destroy');
 Route::get('/conduce/{id}', 'LavanderiaController@Agregar');
 Route::post('/cantidades', 'LavanderiaController@cantidad');
+
 
 
 //Recepcion o Terminacion

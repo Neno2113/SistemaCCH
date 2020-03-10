@@ -121,7 +121,7 @@ class TallaController extends Controller
                 $curva->j = $j_curva;
                 $curva->k = $k_curva;
                 $curva->l = $l_curva;
-                $curva->curva_porcentuada = 1;
+                // $curva->curva_porcentuada = 1;
 
                 $curva->save();
             }

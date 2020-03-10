@@ -169,7 +169,7 @@
                             </div>
                             <label for="" class="label"></label>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4">
                             <label for="">Rango segunda referencia</label>
                             <input id="range_1" type="text" name="range_1" value="">
                         </div>

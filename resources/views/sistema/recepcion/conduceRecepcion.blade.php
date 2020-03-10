@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Conduce Recepcion Lavanderia</title>
+    <title>Conduce Recepcion</title>
     <style>
         @font-face {
             font-family: SourceSansPro;
@@ -34,8 +35,8 @@
 
         header {
             padding: 0px 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #AAAAAA;
+            /* margin-bottom: 20px; */
+            /* border-bottom: 1px solid #AAAAAA; */
             margin-right: 8%;
         }
 
@@ -57,13 +58,13 @@
 
 
         #details {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         #client {
             /* padding-left: 6px;
-                border-left: 6px solid #0087C3;
-                float: left; */
+            border-left: 6px solid #0087C3;
+            float: left; */
         }
 
         #client .to {
@@ -73,10 +74,10 @@
         #client-orden {
             padding-left: 6px;
             /* border-left: 6px solid #0087C3;
-                border-bottom: 6px solid #0087C3; */
+            border-bottom: 6px solid #0087C3; */
             /* padding: 5px;
-                float: left;
-                margin-left: 20%; */
+            float: left;
+            margin-left: 20%; */
         }
 
         #client-orden .to {
@@ -147,10 +148,9 @@
             width: 90%;
             border-collapse: collapse;
             border-spacing: 0;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             table-layout: auto;
             border: solid 2px black;
-            margin-top: 100px;
         }
 
         .tabla-principal th,
@@ -165,7 +165,9 @@
         .tabla-principal th {
             white-space: nowrap;
             font-weight: bold;
-            background-color: #131980;
+            /* background-color: #131980; */
+            font-size: 8.5px;
+            padding: 5px;
             /* border: solid 2px black; */
         }
 
@@ -183,7 +185,7 @@
         }
 
         .tabla-principal .no {
-            color: #fff;
+            /* color: #fff; */
             font-size: 13px;
             /* background: #160c70; */
             text-align: center;
@@ -194,7 +196,7 @@
         .tabla-principal .desc {
             text-align: center;
             font-size: 13px;
-            color: #fff;
+            /* color: #fff; */
             border: solid 2px black;
 
         }
@@ -202,7 +204,7 @@
         .tabla-principal .unit {
             /* background-color: #160c70; */
             font-size: 13px;
-            color: #fff;
+            /* color: #fff; */
             border: solid 2px black;
             /* font-weight: bold; */
         }
@@ -216,16 +218,19 @@
         .tabla-principal .unit_talla {
             background: #fff;
             text-align: center;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: bold;
             border: solid 2px black;
+            padding-left: 15px;
+            padding-right: 12px;
+            /* border: solid 2px black; */
         }
 
         .tabla-principal .qty {}
 
         .tabla-principal .total {
             /* background: #fff; */
-            color: #fff;
+            /* color: #fff; */
             font-size: 13px;
             border: solid 2px black;
         }
@@ -261,14 +266,14 @@
             /* padding-bottom: 350px; */
         }
 
-
+        .tabla-principal li,
+        .tabla-principal li,
+        .tabla-principal li,
+        .tabla-principal li,
         .tabla-principal li {
             list-style-type: none;
             text-align: center;
-            padding-top: 16px;
-            padding-bottom: 15px;
-            padding-left: 16px;
-            padding-right: 16px;
+            /* padding-bottom: 350px; */
         }
 
         .tabla-principal td.desc-des li {
@@ -283,7 +288,7 @@
 
         .tabla-principal tbody tr:last-child td {
             /* border: none; */
-            /* padding-bottom: 350px; */
+            padding-bottom: 350px;
         }
 
         .tabla-principal tfoot td {
@@ -307,17 +312,19 @@
         }
 
         /*
-            .tabla-totales {
-                border: 2px  solid black;
-                text-align: center;
-            }
-            .tabla-totales tbody {
-                border: 2px  solid black;
-            } */
+        .tabla-totales {
+            border: 2px  solid black;
+            text-align: center;
+        }
+        .tabla-totales tbody {
+            border: 2px  solid black;
+        } */
 
 
         .tabla-principal tfoot tr td:first-child {
-            border: none;
+            color: #0087C3;
+            font-size: 1.4em;
+            border-top: 1px solid #0087C3;
         }
 
         #thanks {
@@ -349,24 +356,65 @@
             text-align: center;
         }
 
+        .tabla-tallas {
+            width: 83%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            /* margin-bottom: 20px; */
+            table-layout: auto;
+            border: solid 2px black;
+        }
+
+        .tabla-tallas th,
+        .tabla-tallas td {
+            /* padding: 20px; */
+            background: #fff;
+            text-align: center;
+            border-bottom: 1px solid #FFFFFF;
+            /* border: solid 2px black; */
+        }
+
+        .tabla-tallas th {
+            white-space: nowrap;
+            font-weight: bold;
+            background-color: #131980;
+            font-size: 10px;
+            /* border: solid 2px black; */
+        }
+
+        .tabla-tallas .talla_head {
+            color: #fff;
+            font-size: 6.5px;
+        }
+
+        .tabla-tallas .talla {
+            border: 2px solid black;
+            text-align: center;
+            font-weight: bold;
+            font-size: 8px;
+        }
+
         .firmas {
             margin-top: 35px;
             text-align: center;
             font-weight: bold;
             color: #000;
+            /* padding-top: 200px */
         }
 
         .firma_enviado {
             float: left;
             border-top: 1px solid black;
-            width: 15%;
+            width: 19%;
+            font-size: 13px;
         }
 
         .firma_despachado {
             float: right;
             border-top: 1px solid black;
-            margin-right: 52%;
-            width: 15%;
+            margin-right: 49%;
+            width: 19%;
+            font-size: 13px;
         }
 
         .firma_recibido {
@@ -376,11 +424,7 @@
             width: 15%;
         }
 
-        footer {
-            page-break-after: always;
-        }
-
-        . .tabla-principal-totales {
+        .tabla-principal-totales {
             border: none;
         }
 
@@ -391,16 +435,17 @@
         }
 
         .tabla-bultos thead th {
-            border: 2px solid black;
+            /* border: 2px solid black; */
             padding: 5px;
             text-align: start;
         }
 
         .tabla-factura {
             float: right;
-            width: 50%;
-            border: 2px solid black;
-            margin-right: 34%;
+            width: 40%;
+            /* border: 1px solid black; */
+            margin-right: 10%;
+            padding-top: 5px;
         }
 
         .tabla-factura thead .factura {
@@ -409,20 +454,33 @@
         }
 
         .tabla-factura th {
-            font-size: 12px;
-            /* padding-left: 19px;
-          padding-right: 16px; */
-            padding-top: 7px;
-            text-align: center;
+            font-size: 14px;
+            /* padding-left: 15px;
+            padding-right: 16px; */
+            /* padding-top: 7px; */
+            text-align: right;
         }
 
+        .tabla-factura td {
+            font-size: 12px;
+            padding-left: 19px;
+            /* padding-right: 16px; */
+            /* padding-top: 7px; */
+            text-align: left;
+        }
+
+
         .tabla-factura tbody .num_factura {
-            border-top: 2px solid black;
-            border-bottom: 2px solid black;
-            text-align: center;
-            padding: 7px;
+            /* border-top: 2px solid black;
+            border-bottom: 2px solid black; */
+            /* text-align: center; */
             font-size: 12px;
             color: #c85b5b;
+        }
+        .tabla-factura thead .num_factura {
+            /* color: #c85b5b; */
+            font-size: 14px;
+            font-weight: bolder;
         }
 
         .tabla-factura tbody .fecha {
@@ -434,14 +492,13 @@
         .tabla-factura tbody .page {
             text-align: center;
             font-size: 10px;
-            padding: 10px;
-            /* padding-bottom: 13px; */
-            border-top: 2px solid black;
+            /* padding: 11px; */
+            /* border-top: 2px solid black; */
 
         }
 
         .tabla-totales {
-            width: 40%;
+            width: 28%;
             color: #000;
             float: right;
             margin-right: 10%;
@@ -454,7 +511,7 @@
 
         .tabla-totales td {
             font-weight: normal;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .tabla-totales th .total {
@@ -464,42 +521,51 @@
 
         .tabla-cliente {
             float: left;
-            border-top: 2px solid black;
-            border-left: 2px solid black;
-            border-right: 2px solid black;
-            width: 40%;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+            width: 30%;
+            padding-top: 8%;
 
 
         }
 
         .tabla-cliente thead th {
-            border-bottom: 2px solid black;
+            border-bottom: 1px solid black;
             font-size: 11px;
-            padding-left: 11px;
+            padding: 5px;
+            text-align: center;
+            font-size: 15px;
         }
 
         .tabla-cliente thead td {
-            border-bottom: 2px solid black;
+            border-bottom: 1px solid black;
             padding-left: 47px;
         }
 
         .tabla-cliente tbody td {
-            border-bottom: 2px solid black;
+            /* border-bottom: 1px solid black; */
             padding-right: 106px;
-            padding-left: 11px;
-
+            padding-left: 9px;
+            font-size: 12px;
+            padding-top: 1px;
+            color: #000000b0;
+            /* padding-bottom: 9px; */
         }
 
         .tabla-cliente tbody th {
-            border-right: 2px solid black;
-            border-bottom: 2px solid black;
+            /* border-right: 1px solid black;
+            border-bottom: 1px solid black; */
             font-size: 11px;
             font-weight: bold;
             padding-left: 11px;
         }
 
         .tabla-cliente tbody .direccion {
-            padding: 12px;
+            padding-right: 17px;
+            color:#000000a6;;
+            font-size: 12px;
         }
 
         .tabla-original {
@@ -516,23 +582,25 @@
         }
 
         .tabla-ncf {
-            width: 90%;
+            width: 75%;
             /* border-collapse: collapse;
-                border-spacing: 0; */
+            border-spacing: 0; */
             margin-bottom: 20px;
             table-layout: auto;
-            border: solid 2px black;
+            border: solid 1px black;
         }
 
         .tabla-ncf thead th {
-            border-bottom: 2px solid black;
-            /* border-left: 2px solid black */
-            background-color: #131980;
-            color: #fff;
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            /* background-color: #131980; */
+            /* color: #fff; */
             text-align: center;
             /* padding-left: 40px; */
             /* padding-right: 40px; */
             /* margin-left: 20px; */
+            padding: 5px;
+            font-size: 15px;
         }
 
         .tabla-ncf tbody td {
@@ -540,6 +608,8 @@
             text-align: center;
             font-size: 12px;
             color: #000;
+            border-left: 1px solid black;
+            padding: 5px;
         }
 
         .tabla-ncf thead .op {
@@ -588,116 +658,125 @@
             font-weight: lighter;
         }
 
-        .tabla-tallas {
-            width: 90%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            margin-bottom: 20px;
-            table-layout: auto;
-            border: solid 2px black;
-        }
-
-        .tabla-tallas th,
-        .tabla-tallas td {
-            /* padding: 20px; */
-            background: #fff;
+        .main-h5 {
             text-align: center;
-            border-bottom: 1px solid #FFFFFF;
-            border: solid 2px black;
-        }
-
-        .tabla-tallas th {
-            white-space: nowrap;
-            font-weight: bold;
-            background-color: #131980;
-            font-size: 10px;
-            border: solid 2px black;
-            color: #fff;
-        }
-
-        .tabla-tallas .talla_head {
-            color: #fff;
-            font-size: 6.5px;
-        }
-
-        .tabla-tallas .talla {
-            border: 2px solid black;
-            text-align: center;
-            font-weight: bold;
-            font-size: 8px;
-        }
-
-        .tabla-tallas tbody tr:last-child td {
-            padding-bottom: 250px;
+            font-weight: bolder;
+            font-size: 30px;
+            border-bottom: 1px solid #AAAAAA;
         }
     </style>
 </head>
 
 <body>
-    <header class="clearfix">
-        <div id="logo">
-            <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
-        </div>
-        <div id="company">
-            <h2 class="name">Confecciones Carmen Herrera</h2>
-            <div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
-            <div>(809) 699-8400</div>
-            <div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
-            <div>RNC: 130-746974</div>
-        </div>
-        </div>
+    <header class="">
+        <h5 class="main-h5">CONDUCE RECEPCION DE LAVANDERIA</h5>
     </header>
     <main>
+        {{-- <h5 class="main-h5">CONDUCE DE ENTREGA A LAVANDERIA</h5>
+        <hr> --}}
         <div id="details" class="clearfix">
-            <table class="tabla-cliente">
+            <table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
                 <thead class="cod">
                     <tr>
-                        <th>RECEPCION</th>
-                        <td></td>
+                        <th>Enviado a</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Nombre</th>
                         <td>{{$lavanderia->suplidor->nombre}}</td>
                     </tr>
                     <tr>
-                        <th class="direccion">Direccion</th>
                         <td class="direccion">{{$lavanderia->suplidor->calle}}, {{$lavanderia->suplidor->sector}}
                             {{$lavanderia->suplidor->provincia}} {{$lavanderia->suplidor->sitios_cercanos}}</td>
+
                     </tr>
                     <tr>
-                        <th>Tel</th>
                         <td>{{$lavanderia->suplidor->telefono_1}}</td>
                     </tr>
                     <tr>
-                        <th>RNC</th>
                         <td>{{$lavanderia->suplidor->rnc}}</td>
                     </tr>
                 </tbody>
 
             </table>
+            {{-- <div id="client">
+                <div class="to">FACTURA PARA:</div>
+                <h2 class="name">{{$orden_pedido->cliente->nombre_cliente}}</h2>
+            <div class="address">{{$orden_pedido->cliente->direccion_principal}}</div>
+            <div class="name">RNC:{{$orden_pedido->cliente->rnc}}</div>
+            <div class="name">{{$orden_pedido->cliente->telefono_1}}</div>
+            <div class="email"><a href="mailto:john@example.com">{{$orden_pedido->cliente->email_principal}}</a>
+            </div>
+            <div class="to">SUCURSAL:</div>
+            <h2 class="name">{{$orden_pedido->sucursal->nombre_sucursal}}</h2>
+        </div> --}}
+        {{-- <div id="invoice"> --}}
+        <table class="tabla-factura">
+            <thead>
+                <tr>
+                    <th class="factura">Conduce Lavanderia</th>
+                    <td class="num_factura">{{$recepcion->numero_recepcion}}</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="factura">Fecha:</th>
+                    <td class="num_factura">{{$recepcion->fecha_recepcion}}</td>
+                </tr>
+                <tr>
+                    <th class="factura">Pagina </th>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
 
-            <table class="tabla-factura">
+        {{-- <h1>{{$factura->no_factura}}</h1>
+        <div class="date">Fecha: {{$factura->fecha}} </div>
+        <div class="date">Fecha Entrega: </div> --}}
+        {{-- </div> --}}
+        {{-- <div id="client-orden">
+                <div class="to">ORDEN PEDIDO:</div>
+                @foreach ($ordenes_pedido as $orden)
+                <h2 class="name">{{$orden->no_orden_pedido}}</h2>
+        @endforeach
+        <div class="date">Fecha: {{$orden_pedido->fecha}} </div>
+        <div class="to">TERMINOS DE PAGO:</div>
+        <div class="address">{{$orden_pedido->cliente->condiciones_credito}}</div>
+        <div class="email"><a href="mailto:john@example.com"></a></div>
+        <div class="to">SUCURSAL:</div>
+        <h2 class="name"></h2>
+        </div> --}}
+
+        {{-- <table    class="tabla-original">
                 <thead>
                     <tr>
-                        <th class="factura">RECEPCION LAVANDERIA</th>
+                        <th>Original:</th>
+                    </tr>
+                    <tr>
+                        <th>Copia:</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="num_factura">{{$recepcion->numero_recepcion}}</td>
-                    </tr>
-                    <tr>
-                        <td class="fecha">Fecha:{{$recepcion->fecha_recepcion}}</td>
-                    </tr>
-                    <tr>
-                        <td class="page">Pagina 1</td>
-                    </tr>
-                </tbody>
-            </table>
+
+            </table> --}}
+
         </div>
 
+        <table cellspacing="0" class="tabla-ncf">
+            <thead>
+                <tr>
+                    <th class="op">Codigo cliente</th>
+                    <th class="terminos_pago">Enviado con</th>
+                    <th class="">Enviado por</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>IS350</td>
+                    <td>Chofer</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
 
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
             <thead>
@@ -705,32 +784,31 @@
                     <th class="desc">CORTE</th>
                     <th class="no">REFERENCIA</th>
                     <th class="desc">ESTANDAR</th>
-                    <th class="total">CANT REC.</th>
+                    <th class="unit">CANT REC.</th>
                     <th class="unit">TOTAL REC.</th>
-                    <th class="unit">CANT PEND.</th>
+                    <th class="total">CANT PEND.</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="no">
+                    <td class="desc">
                         <li>{{$lavanderia->corte->numero_corte}}</li>
                     </td>
-                    <td class="desc-des">
+                    <td class="unit">
                         @if (!empty($lavanderia->producto->referencia_producto_2))
                         <li>{{$lavanderia->producto->referencia_producto}} -
                             {{$lavanderia->producto->referencia_producto_2}}</li>
                         @else
                         <li>{{$lavanderia->producto->referencia_producto}}</li>
                         @endif
+
                     </td>
-                    <td class="unit">
-                        <li>
-                            @if ($recepcion->estandar_recibido == 1)
-                            Si
-                            @else
-                            No
-                            @endif
-                        </li>
+                    <td class="desc-des">
+                        @if ($recepcion->estandar_recibido == 1)
+                        Si
+                        @else
+                        No
+                        @endif
                     </td>
                     <td class="total">
                         <li>{{$recepcion->recibido_parcial}}</li>
@@ -743,36 +821,63 @@
                     </td>
                 </tr>
             </tbody>
-
+            {{-- <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2">SUBTOTAL</td>
+                    <td>{{number_format($subtotal)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">DESCUENTO {{$factura->descuento}}%</td>
+                <td>{{number_format($descuento)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">IMPUESTO {{$factura->itbis}}%</td>
+                <td>{{number_format($impuesto)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">TOTAL FINAL</td>
+                <td>{{number_format($total_final)}} RD$</td>
+            </tr>
+            </tfoot> --}}
         </table>
+        <div style="clear: fix;">
+            <table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
+                <thead>
+                    <tr>
+                        <p>{{$lavanderia->receta_lavado}}</p>
+                    </tr>
 
+                </thead>
 
+            </table>
 
-
-        <div id="thanks">RECEPCION DE LAVANDERIA</div>
-        <div id="notices">
-            <div>LAVADO:</div>
-            <p class="notice">{{$lavanderia->receta_lavado}}</p>
-
+            <table class="tabla-totales">
+                <tr class="total">
+                    <th style="font-weight:bold;">TOTAL</th>
+                    <td >{{$lavanderia->total_enviado}}</td>
+                </tr>
+            </table>
         </div>
 
 
 
-        <div class="firmas">
-            <div class="firma_enviado">ENVIADO POR:</div>
 
-            <div class="firma_recibido">RECIBIDO POR:</div>
+        <div class="firmas" style="padding-top: 100px ">
+            <div class="firma_enviado">Enviado por:</div>
+            <div class="firma_despachado">Recibido por:</div>
         </div>
+
+
     </main>
     <footer class="pagina1">
-        Factura generada desde SistemaCCH.
+        Conduce generado desde SistemaCCH.
     </footer>
 
 
 </body>
-
-
-
-
 
 </html>

@@ -1173,36 +1173,36 @@ $(document).ready(function() {
         });
     });
 
-    $("#btn-asignar-ref2").click(function(e) {
-        e.preventDefault();
+    // $("#btn-asignar-ref2").click(function(e) {
+    //     e.preventDefault();
 
-        var asignacion = {
-            id: $("#productos").val(),
-            talla: $("#btn-asignar-ref2").val(),
-            referencia: $("#productos option:selected").text()
-        };
+    //     var asignacion = {
+    //         id: $("#productos").val(),
+    //         talla: $("#btn-asignar-ref2").val(),
+    //         referencia: $("#productos option:selected").text()
+    //     };
 
-        $.ajax({
-            url: "sku",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(asignacion),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
-                    tabla.ajax.reload();
-                    $("#btn-asignar").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
-                } else {
-                    bootbox.alert("Error");
-                }
-            },
-            error: function() {
-                bootbox.alert("Ocurrio un error!!");
-            }
-        });
-    });
+    //     $.ajax({
+    //         url: "sku",
+    //         type: "POST",
+    //         dataType: "json",
+    //         data: JSON.stringify(asignacion),
+    //         contentType: "application/json",
+    //         success: function(datos) {
+    //             if (datos.status == "success") {
+    //                 bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+    //                 tabla.ajax.reload();
+    //                 $("#btn-asignar").attr("disabled", true);
+    //                 $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+    //             } else {
+    //                 bootbox.alert("Error");
+    //             }
+    //         },
+    //         error: function() {
+    //             bootbox.alert("Ocurrio un error!!");
+    //         }
+    //     });
+    // });
 
 
     $("#btn-asignar2").click(function(e) {

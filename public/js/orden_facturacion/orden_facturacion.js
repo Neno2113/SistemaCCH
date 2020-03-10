@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     $("#btn-generar").click(function(e){
         e.preventDefault()
-        
+
         $.ajax({
             url: "ordenfacturacion/lastdigit",
             type: "GET",
@@ -65,7 +65,7 @@ $(document).ready(function() {
                             if (datos.status == "success") {
                                 bootbox.alert("Orden de facturacion <strong>"+ referencia + "</strong> creada exitosamente!!");
                                 $("#id").val(datos.orden_facturacion.id);
-                              
+
                             } else {
                                 bootbox.alert(
                                     "Ocurrio un error durante la creacion de la composicion"
@@ -91,7 +91,6 @@ $(document).ready(function() {
 
     })
 
-    
 
     $("#ordenEmpaqueSearch").select2({
         placeholder: "Numero de orden de empaque",
@@ -134,7 +133,7 @@ $(document).ready(function() {
                     bootbox.alert("Corte creado !!");
                     limpiar();
                     mostrarForm(false);
-                  
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -259,7 +258,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#empaque_detalle").DataTable().destroy();
-                
+
                     listarEmpaqueDetalle(datos.orden_empaque.id);
                     $("#cliente").val(
                         datos.orden_pedido.cliente.nombre_cliente
@@ -270,7 +269,7 @@ $(document).ready(function() {
                     $("#orden_pedido").val(datos.orden_pedido.no_orden_pedido);
                     $("#fila1").show();
                     $("#fila2").show();
-    
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"

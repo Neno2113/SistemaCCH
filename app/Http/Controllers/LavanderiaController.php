@@ -592,6 +592,8 @@ class LavanderiaController extends Controller
 
         $lavanderia->enviado = 1;
 
+        $lavanderia->fecha_envio = date("d F 20y", strtotime($lavanderia->fecha_envio));
+
         $pdf = \PDF::loadView('sistema.lavanderia.conduce', \compact('lavanderia'));
         return $pdf->download('conduce.pdf');
         return View('sistema.lavanderia.conduce', \compact('lavanderia'));

@@ -137,7 +137,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Factura generada");
+                    Swal.fire(
+                        'Success',
+                        'Factura generada correctamente!',
+                        'success'
+                    )
                     limpiar();
                     mostrarForm(false);
                     $("#orden_facturacion").DataTable().ajax.reload();

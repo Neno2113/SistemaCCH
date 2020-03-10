@@ -153,29 +153,29 @@ class ProductController extends Controller
             }
 
             $product->save();
-            $curva = New CurvaProducto();
-            $curva->producto_id = $product->id;
-            $curva->a = $a;
-            $curva->b = $b;
-            $curva->c = $c;
-            $curva->d = $d;
-            $curva->e = $e;
-            $curva->f = $f;
-            $curva->g = $g;
-            $curva->h = $h;
-            $curva->i = $i;
-            $curva->j = $j;
-            $curva->k = $k;
-            $curva->l = $l;
-            $curva->curva_porcentuada = 0;
+            // $curva = New CurvaProducto();
+            // $curva->producto_id = $product->id;
+            // $curva->a = $a;
+            // $curva->b = $b;
+            // $curva->c = $c;
+            // $curva->d = $d;
+            // $curva->e = $e;
+            // $curva->f = $f;
+            // $curva->g = $g;
+            // $curva->h = $h;
+            // $curva->i = $i;
+            // $curva->j = $j;
+            // $curva->k = $k;
+            // $curva->l = $l;
+            // $curva->curva_porcentuada = 0;
 
-            $curva->save();
+            // $curva->save();
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'producto' => $product,
-                'curva' => $curva
+                // 'curva' => $curva
             ];
         }
 
@@ -469,28 +469,28 @@ class ProductController extends Controller
 
         $sku_update->save();
 
-        if (!empty($referencia_2)) {
+        // if (!empty($referencia_2)) {
 
-            $val_2 = 0;
-            $sku_2 = SKU::where('asignado', $val)->get()->first();
-            \json_encode($sku_2);
+        //     $val_2 = 0;
+        //     $sku_2 = SKU::where('asignado', $val)->get()->first();
+        //     \json_encode($sku_2);
 
-            if (empty($sku_2)) {
-                $val_2 = null;
-                $sku_2 = SKU::where('asignado', $val_2)->get()->first();
-                \json_encode($sku_2);
-            }
+        //     if (empty($sku_2)) {
+        //         $val_2 = null;
+        //         $sku_2 = SKU::where('asignado', $val_2)->get()->first();
+        //         \json_encode($sku_2);
+        //     }
 
-            $id_2 = $sku_2['id'];
+        //     $id_2 = $sku_2['id'];
 
-            $sku_update_2 = SKU::find($id_2);
-            $sku_update_2->producto_id = $producto_id;
-            $sku_update_2->talla = $talla;
-            $sku_update_2->referencia_producto = $referencia_2;
-            $sku_update_2->asignado = 1;
+        //     $sku_update_2 = SKU::find($id_2);
+        //     $sku_update_2->producto_id = $producto_id;
+        //     $sku_update_2->talla = $talla;
+        //     $sku_update_2->referencia_producto = $referencia_2;
+        //     $sku_update_2->asignado = 1;
 
-            $sku_update_2->save();
-        }
+        //     $sku_update_2->save();
+        // }
 
 
 

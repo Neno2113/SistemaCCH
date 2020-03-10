@@ -292,24 +292,29 @@ class FacturaController extends Controller
 
             $id_orden_empaque = $factura->orden_facturacion->orden_empaque_id;
             $orden_facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)
-                ->get();
+                ->get()->load('producto');
             $productos_id = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)->select('producto_id')
                 ->get();
 
+            // echo $productos_id;
+            // die();
 
             $productos = array();
 
             $longitudProductos = count($productos_id);
 
             for ($i = 0; $i < $longitudProductos; $i++) {
-                array_push($productos, $productos_id[$i]['producto_id']);
+                array_push($productos, $orden_facturacion_detalle[$i]['producto']['referencia_producto']);
             }
 
             $productosFactura = Product::whereIn('id', $productos)->get();
-            $sku = SKU::whereIn('producto_id', $productos)
+            $sku = SKU::whereIn('referencia_producto', $productos)
             ->where('talla', 'LIKE', 'General')
+            ->orderBy('producto_id')
             ->get();
 
+            // echo $sku;
+            // die();
 
             $orden_empaque = ordenEmpaque::find($id_orden_empaque);
             $orden_pedido_id = $orden_empaque->orden_pedido_id;
@@ -323,7 +328,6 @@ class FacturaController extends Controller
             $precio_total = array();
 
             $longitudDetalles = count($orden_facturacion_detalle);
-
 
             for ($i = 0; $i < $longitudDetalles; $i++) {
                 array_push($detalles_totales, number_format(str_replace('.00', '', $orden_facturacion_detalle[$i]['precio']) * $orden_facturacion_detalle[$i]['total']));
@@ -395,7 +399,8 @@ class FacturaController extends Controller
                 'ordenes_pedido',
                 'subtotal_real',
                 'total_articulos',
-                'orden_empaque_detalle'
+                'orden_empaque_detalle',
+                'productos_id'
             ));
             return $pdf->download('facturaResumida.pdf');
             return view('sistema.ordenFacturacion.facturaResumida',\compact(

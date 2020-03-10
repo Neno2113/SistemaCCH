@@ -285,10 +285,16 @@ $(document).ready(function() {
                     bootbox.alert("Se genero la referencia");
                 }
             },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
             }
         });
     }
@@ -328,7 +334,7 @@ $(document).ready(function() {
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
             ],
-            order: [[2, "asc"]],
+            order: [[4, "desc"]],
             rowGroup: {
                 dataSrc: "name"
             }

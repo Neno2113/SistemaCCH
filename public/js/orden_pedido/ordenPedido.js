@@ -523,6 +523,7 @@ $(document).ready(function() {
         } else if (val == 0) {
             mostrarDetalle(false);
             consulta();
+            $("#btn-copia").attr("disabled", false);
         }
     });
 
@@ -725,18 +726,18 @@ $(document).ready(function() {
                         $("#kp").hide();
                         $("#lp").hide();
 
-                        $("#a").attr("placeholder", "28");
-                        $("#b").attr("placeholder", "29");
-                        $("#c").attr("placeholder", "30");
-                        $("#d").attr("placeholder", "32");
-                        $("#e").attr("placeholder", "34");
-                        $("#f").attr("placeholder", "36");
-                        $("#g").attr("placeholder", "38");
-                        $("#h").attr("placeholder", "40");
-                        $("#i").attr("placeholder", "42");
-                        $("#j").attr("placeholder", "44");
-                        $("#k").attr("placeholder", "");
-                        $("#l").attr("placeholder", "");
+                        // $("#a").attr("placeholder", "28");
+                        // $("#b").attr("placeholder", "29");
+                        // $("#c").attr("placeholder", "30");
+                        // $("#d").attr("placeholder", "32");
+                        // $("#e").attr("placeholder", "34");
+                        // $("#f").attr("placeholder", "36");
+                        // $("#g").attr("placeholder", "38");
+                        // $("#h").attr("placeholder", "40");
+                        // $("#i").attr("placeholder", "42");
+                        // $("#j").attr("placeholder", "44");
+                        // $("#k").attr("placeholder", "");
+                        // $("#l").attr("placeholder", "");
 
 
                     } else if (genero == 3 || genero == 4) {
@@ -762,18 +763,18 @@ $(document).ready(function() {
                         // $("#k").attr("disabled", true);
                         // $("#l").attr("disabled", true);
 
-                        $("#a").attr("placeholder", "2");
-                        $("#b").attr("placeholder", "4");
-                        $("#c").attr("placeholder", "6");
-                        $("#d").attr("placeholder", "8");
-                        $("#e").attr("placeholder", "10");
-                        $("#f").attr("placeholder", "12");
-                        $("#g").attr("placeholder", "14");
-                        $("#h").attr("placeholder", "16");
-                        $("#i").attr("placeholder", "");
-                        $("#j").attr("placeholder", "");
-                        $("#k").attr("placeholder", "");
-                        $("#l").attr("placeholder", "");
+                        // $("#a").attr("placeholder", "2");
+                        // $("#b").attr("placeholder", "4");
+                        // $("#c").attr("placeholder", "6");
+                        // $("#d").attr("placeholder", "8");
+                        // $("#e").attr("placeholder", "10");
+                        // $("#f").attr("placeholder", "12");
+                        // $("#g").attr("placeholder", "14");
+                        // $("#h").attr("placeholder", "16");
+                        // $("#i").attr("placeholder", "");
+                        // $("#j").attr("placeholder", "");
+                        // $("#k").attr("placeholder", "");
+                        // $("#l").attr("placeholder", "");
 
                     }
                     if (genero == 2) {
@@ -801,18 +802,18 @@ $(document).ready(function() {
                             // // $("#k").attr("disabled", true);
                             // // $("#l").attr("disabled", true);
 
-                            $("#a").attr("placeholder", "12W");
-                            $("#b").attr("placeholder", "14W");
-                            $("#c").attr("placeholder", "16W");
-                            $("#d").attr("placeholder", "18W");
-                            $("#e").attr("placeholder", "20W");
-                            $("#f").attr("placeholder", "22W");
-                            $("#g").attr("placeholder", "24W");
-                            $("#h").attr("placeholder", "26W");
-                            $("#i").attr("placeholder", "");
-                            $("#j").attr("placeholder", "");
-                            $("#k").attr("placeholder", "");
-                            $("#l").attr("placeholder", "");
+                            // $("#a").attr("placeholder", "12W");
+                            // $("#b").attr("placeholder", "14W");
+                            // $("#c").attr("placeholder", "16W");
+                            // $("#d").attr("placeholder", "18W");
+                            // $("#e").attr("placeholder", "20W");
+                            // $("#f").attr("placeholder", "22W");
+                            // $("#g").attr("placeholder", "24W");
+                            // $("#h").attr("placeholder", "26W");
+                            // $("#i").attr("placeholder", "");
+                            // $("#j").attr("placeholder", "");
+                            // $("#k").attr("placeholder", "");
+                            // $("#l").attr("placeholder", "");
 
 
                         } else {
@@ -845,18 +846,18 @@ $(document).ready(function() {
                             // $("#k").attr("disabled", false);
                             // $("#l").attr("disabled", false);
 
-                            $("#a").attr("placeholder", "0/0");
-                            $("#b").attr("placeholder", "1/2");
-                            $("#c").attr("placeholder", "3/4");
-                            $("#d").attr("placeholder", "5/6");
-                            $("#e").attr("placeholder", "7/8");
-                            $("#f").attr("placeholder", "9/10");
-                            $("#g").attr("placeholder", "11/12");
-                            $("#h").attr("placeholder", "13/14");
-                            $("#i").attr("placeholder", "15/16");
-                            $("#j").attr("placeholder", "17/18");
-                            $("#k").attr("placeholder", "19/20");
-                            $("#l").attr("placeholder", "21/22");
+                            // $("#a").attr("placeholder", "0/0");
+                            // $("#b").attr("placeholder", "1/2");
+                            // $("#c").attr("placeholder", "3/4");
+                            // $("#d").attr("placeholder", "5/6");
+                            // $("#e").attr("placeholder", "7/8");
+                            // $("#f").attr("placeholder", "9/10");
+                            // $("#g").attr("placeholder", "11/12");
+                            // $("#h").attr("placeholder", "13/14");
+                            // $("#i").attr("placeholder", "15/16");
+                            // $("#j").attr("placeholder", "17/18");
+                            // $("#k").attr("placeholder", "19/20");
+                            // $("#l").attr("placeholder", "21/22");
 
 
                         }
