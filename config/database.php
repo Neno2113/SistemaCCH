@@ -52,11 +52,15 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
+            'modes' => [
+                'NO_ZERO_DATE'
+            ],
             'strict' => true,
             'engine' => null,
             'options' => array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]),
+
         ],
 
         'pgsql' => [

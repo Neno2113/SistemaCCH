@@ -58,6 +58,7 @@ class ProductController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
+            $marca = $request->input('marca');
 
                //validaciones
             $a = intval(trim($a, "_"));
@@ -80,6 +81,7 @@ class ProductController extends Controller
 
             $product = new Product();
             $product->genero = $genero;
+            $product->marca = $marca;
             $product->referencia_producto = $referencia;
             $product->referencia_producto_2 = $referencia_2;
             $product->id_user = \auth()->user()->id;

@@ -355,6 +355,14 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Reportes</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
         </nav>
         @elseif (Auth::user()->role != "Administrador")

@@ -247,6 +247,7 @@ $(document).ready(function() {
             precio_lista: $("#precio_lista").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
+            marca: $("#marca").val(),
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),

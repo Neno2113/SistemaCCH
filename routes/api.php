@@ -94,3 +94,10 @@ Route::get('listarDetalle/{id}', 'ordenPedidoController@listarOrdenRed');
 
 Route::post('permisos', 'PermisoController@permisos');
 
+Route::get('existencias', 'ExistenciaController@existencias');
+
+Route::get('reporteExistencias', 'ExistenciaController@existenciasPorTallas');
+
+Route::get('existencia/produccion', 'ExistenciaController@existenciasProduccion');
+
+Route::get('existencia/almacen', 'ExistenciaController@existenciasAlmacen');

@@ -145,6 +145,10 @@ Route::get('/facturacion', function () {
 Route::get('/nota_credito', function () {
     return view('sistema.ordenFacturacion.notacredito');
 })->middleware('auth', 'admin:Nota credito');
+
+Route::get('/reporte', function () {
+    return view('sistema.existencia.reporte');
+})->middleware('auth', 'admin:Reportes');
 // Fin vistas
 
 //Rutas de usuarios

@@ -15,8 +15,11 @@ use App\ordenPedidoDetalle;
 use App\NotaCredito;
 use App\NotaCreditoDetalle;
 use App\Factura;
+use App\Lavanderia;
 use App\OrdenFacturacion;
 use App\ordenFacturacionDetalle;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class ExistenciaController extends Controller
 {
@@ -351,4 +354,232 @@ class ExistenciaController extends Controller
         }
         return response()->json($data);
     }
+
+    public function existenciasPorTallas()
+    {
+        $existencias = DB::table('corte')->join('producto', 'corte.producto_id', 'producto.id')
+            ->join('tallas', 'tallas.corte_id', 'corte.id')
+            ->join('recepcion', 'recepcion.corte_id', 'corte.id')
+            ->join('lavanderia', 'lavanderia.corte_id', 'corte.id')
+            ->join('almacen_detalle', 'almacen_detalle.producto_id', 'producto.id')
+            ->select([
+                'corte.id as corte_id', 'producto.id as producto_id', 'producto.referencia_producto', 'producto.marca', 'tallas.a','tallas.b',
+                'tallas.c', 'tallas.d', 'tallas.e', 'tallas.f', 'tallas.g', 'tallas.h', 'tallas.i',
+                'tallas.j', 'tallas.k', 'tallas.l', 'corte.fase', 'recepcion.total_recibido as total_terminacion ',
+                'recepcion.pendiente as pendiente_lavanderia', 'lavanderia.cantidad as enviado_lavanderia', 'lavanderia.total_enviado',
+                'almacen_detalle.a as a_alm', 'almacen_detalle.b as b_alm', 'almacen_detalle.c as c_alm', 'almacen_detalle.d as d_alm',
+                'almacen_detalle.e as e_alm', 'almacen_detalle.f as f_alm', 'almacen_detalle.g as g_alm', 'almacen_detalle.h as h_alm',
+                'almacen_detalle.i as i_alm', 'almacen_detalle.j as j_alm', 'almacen_detalle.k as k_alm', 'almacen_detalle.l as l_alm',
+                DB::raw('SUM(almacen_detalle.a ) as a_sub, SUM(almacen_detalle.b ) as b_sub, SUM(almacen_detalle.c) as c_sub, SUM(almacen_detalle.d ) as d_sub
+                , SUM(almacen_detalle.e) as e_sub, SUM(almacen_detalle.f) as f_sub, SUM(almacen_detalle.g ) as g_sub, SUM(almacen_detalle.h ) as h_sub, SUM(almacen_detalle.i) as i_sub, SUM(almacen_detalle.j ) as j_sub,
+                SUM(almacen_detalle.k ) as k_sub, SUM(almacen_detalle.l) as l_sub'
+                )
+            ])->groupBy('fase', 'marca','referencia_producto');
+
+        return DataTables::of($existencias)
+            ->addColumn('Expandir', function () {
+                return "";
+            })
+            // ->addColumn('total_almacen', function ($existencia) {
+            //     $total = $existencia->a_sub + $existencia->b_sub + $existencia->c_sub + $existencia->d_sub + $existencia->e_sub
+            //     + $existencia->f_sub + $existencia->g_sub + $existencia->h_sub + $existencia->i_sub + $existencia->j_sub + $existencia->k_sub
+            //     + $existencia->l_sub;
+            //     return $total;
+            // })
+            // ->editColumn('generado_internamente', function ($orden) {
+            //     return ($orden->generado_internamente == 1 ? 'Si' : 'No');
+            // })
+            // ->editColumn('detallada', function ($orden) {
+            //     return ($orden->detallada == 1 ? 'Si' : 'No');
+            // })
+            // ->editColumn('fecha_entrega', function ($orden) {
+            //     return date("d-m-20y", strtotime($orden->fecha_entrega));
+            // })
+            // ->editColumn('fecha', function ($orden) {
+            //     return date("h:i:s  d-m", strtotime($orden->fecha));
+            // })
+            // ->editColumn('fecha_aprobacion', function ($orden) {
+            //     return date("h:i d-m", strtotime($orden->fecha_aprobacion));
+            // })
+            // ->editColumn('status_orden_pedido', function ($orden) {
+            //     if ($orden->status_orden_pedido == 'Vigente') {
+            //         return '<span class="badge badge-pill badge-success">Vigente</span>';
+            //     } else if ($orden->status_orden_pedido == 'Cancelado') {
+            //         return '<span class="badge badge-pill badge-danger">Cancelada</span>';
+            //     } else if ($orden->status_orden_pedido == 'Stanby') {
+            //         return '<span class="badge badge-pill badge-secondary">Stanby</span>';
+            //     } else if ($orden->status_orden_pedido == 'Despachado') {
+            //         return '<span class="badge badge-pill badge-info">Despachado</span>';
+            //     } else if ($orden->status_orden_pedido == 'Facturado') {
+            //         return '<span class="badge badge-pill badge-dark">Facturado</span>';
+            //     }
+            // })
+            ->addColumn('Opciones', function ($existencia) {
+                return  '<a href="reporte/existencias/" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
+            })
+            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->make(true);
+    }
+
+    public function existenciasProduccion()
+    {
+        $existencias = DB::table('corte')->join('producto', 'corte.producto_id', 'producto.id')
+            ->join('tallas', 'tallas.corte_id', 'corte.id')
+            ->select([
+                'corte.id as corte_id', 'producto.id as producto_id', 'producto.referencia_producto', 'producto.marca', 'tallas.a','tallas.b',
+                'tallas.c', 'tallas.d', 'tallas.e', 'tallas.f', 'tallas.g', 'tallas.h', 'tallas.i',
+                'tallas.j', 'tallas.k', 'tallas.l', 'corte.fase', DB::raw('SUM(a) as a_sub, SUM(b) as b_sub, SUM(c) as c_sub, SUM(d) as d_sub
+                , SUM(e) as e_sub, SUM(f) as f_sub, SUM(g) as g_sub, SUM(h) as h_sub, SUM(i) as i_sub, SUM(j) as j_sub, SUM(k) as k_sub, SUM(l) as l_sub'
+                )
+
+            ])->where('fase', 'LIKE', 'Produccion')
+
+            ->groupBy('fase', 'marca','referencia_producto');
+
+        return DataTables::of($existencias)
+            ->addColumn('Expandir', function () {
+                return "";
+            })
+            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->make(true);
+    }
+
+    public function existenciasAlmacen()
+    {
+        $existencias = DB::table('corte')->join('producto', 'corte.producto_id', 'producto.id')
+            ->join('almacen_detalle', 'almacen_detalle.producto_id', 'producto.id')
+            ->select([
+            'corte.id as corte_id', 'producto.id as producto_id', 'producto.referencia_producto', 'producto.marca',
+            'almacen_detalle.a', 'almacen_detalle.b', 'almacen_detalle.c', 'almacen_detalle.d',
+            'almacen_detalle.e', 'almacen_detalle.f', 'almacen_detalle.g', 'almacen_detalle.h',
+            'almacen_detalle.i', 'almacen_detalle.j', 'almacen_detalle.k', 'almacen_detalle.l',
+            DB::raw('SUM(a) as a_alm, SUM(b) as b_alm, SUM(c) as c_alm, SUM(d) as d_alm ,SUM(e) as e_alm, SUM(f) as f_alm, SUM(g) as g_alm,
+            SUM(h) as h_alm, SUM(i) as i_alm, SUM(j) as j_alm, SUM(k) as k_alm, SUM(l) as l_alm')
+
+            ])->where('fase', 'LIKE', 'Almacen')
+            ->groupBy('fase', 'marca','referencia_producto');
+
+        return DataTables::of($existencias)
+            ->addColumn('Expandir', function () {
+                return "";
+            })
+
+            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->make(true);
+    }
+
+    public function existencias()
+    {
+        $existencias = DB::table('corte')->join('producto', 'corte.producto_id', 'producto.id')
+            ->join('almacen_detalle', 'almacen_detalle.producto_id', 'producto.id')
+            ->select([
+            'corte.id as corte_id', 'producto.id as producto_id', 'producto.referencia_producto', 'producto.marca',
+            'corte.fase as fase'
+
+            ])
+            ->groupBy('fase', 'marca','referencia_producto');
+
+        return DataTables::of($existencias)
+            ->addColumn('Expandir', function () {
+                return "";
+            })
+            ->addColumn('total_alm', function ($existencia) {
+                $almacen = Almacen::where('producto_id', $existencia->producto_id)->get();
+
+                //SEGUNDA
+                $segunda = Perdida::where('producto_id', $existencia->producto_id)
+                ->where('tipo_perdida', 'LIKE', 'Segundas')
+                ->get();
+
+                $segundas = array();
+
+                $longitudSegunda = count($segunda);
+
+                for ($i = 0; $i < $longitudSegunda; $i++) {
+                    array_push($segundas, $segunda[$i]['id']);
+                }
+                $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
+                $facturado = ordenFacturacionDetalle::where('producto_id', $existencia->producto_id)->get();
+                $orden = ordenPedidoDetalle::where('producto_id', $existencia->producto_id)->get();
+                $exist = $almacen->sum('total') - $facturado->sum('total') + $tallasSegundas->sum('total');
+                $dispVenta = $exist - $orden->sum('total') - $tallasSegundas->sum('total');
+
+                if($existencia->fase != "Almacen"){
+                    return 0;
+                }else{
+                    return $dispVenta;
+                }
+
+            })
+            ->addColumn('total_produccion', function ($existencia) {
+                $corte = Corte::where('producto_id', $existencia->producto_id)
+                ->where('fase', 'LIKE', 'produccion')
+                ->select('id')
+                ->get();
+
+                $cortes = array();
+
+                $longitudCorte = count($corte);
+
+                for ($i = 0; $i < $longitudCorte; $i++) {
+                    array_push($cortes, $corte[$i]['id']);
+                }
+                $tallasCorte = Talla::whereIn('corte_id', $cortes)->get();
+
+                $perdidas = Perdida::where('producto_id', $existencia->producto_id)
+                ->where('tipo_perdida', 'LIKE', 'Normal')
+                ->whereIn('fase', ['Produccion', 'Procesos secos'])
+                ->get();
+
+                $perdidas = array();
+
+                $longitudSegunda = count($perdidas);
+
+                for ($i = 0; $i < $longitudSegunda; $i++) {
+                    array_push($perdidas, $perdidas[$i]['id']);
+                }
+                $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+
+                $dispo = $tallasCorte->sum('total') - $tallasPerdidas->sum('total');
+
+                if($existencia->fase != "Produccion"){
+                    return 0;
+                }else{
+                    return $dispo;
+                }
+
+            })
+            ->addColumn('total_lavanderia', function ($existencia) {
+                $corte = Corte::where('producto_id', $existencia->producto_id)
+                ->where('fase', 'LIKE', 'Lavanderia')
+                ->select('id')
+                ->get();
+
+                $cortes = array();
+
+                $longitudCorte = count($corte);
+
+                for ($i = 0; $i < $longitudCorte; $i++) {
+                    array_push($cortes, $corte[$i]['id']);
+                }
+                $lavanderia = Lavanderia::whereIn('corte_id', $cortes)->get();
+
+
+                if($existencia->fase != "Lavanderia"){
+                    return 0;
+                }else{
+                    return $dispo;
+                }
+
+            })
+
+
+            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->make(true);
+    }
+
+
+
+
 }
+
