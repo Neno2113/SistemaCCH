@@ -329,13 +329,14 @@
 
         #thanks {
             font-size: 2em;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: #000;
+            padding-top: 58px;
         }
 
         #notices {
             padding-left: 6px;
-            border-left: 6px solid #160c70;
+            /* border-left: 6px solid #160c70; */
             color: #000;
         }
 
@@ -343,6 +344,9 @@
             font-size: 1.2em;
             width: 90%;
             color: #000;
+            border-left: 6px solid #160c70;
+            padding-left: 4px;
+
         }
 
         footer {
@@ -435,9 +439,10 @@
         }
 
         .tabla-bultos thead th {
-            /* border: 2px solid black; */
-            padding: 5px;
+            border: 2px solid black;
+            padding: 3px;
             text-align: start;
+            font-weight: lighter;
         }
 
         .tabla-factura {
@@ -477,6 +482,7 @@
             font-size: 12px;
             color: #c85b5b;
         }
+
         .tabla-factura thead .num_factura {
             /* color: #c85b5b; */
             font-size: 14px;
@@ -564,7 +570,8 @@
 
         .tabla-cliente tbody .direccion {
             padding-right: 17px;
-            color:#000000a6;;
+            color: #000000a6;
+            ;
             font-size: 12px;
         }
 
@@ -647,7 +654,9 @@
         }
 
         .tabla-bultos thead .total_articulos {
-            font-weight: lighter;
+            font-weight: bolder;
+            font-size: 13px;
+
         }
 
         .tabla-bultos thead .bultos {
@@ -781,6 +790,7 @@
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
             <thead>
                 <tr>
+                    <th class="desc">CORTE</th>
                     <th class="desc">CANT</th>
                     <th class="unit">UPC/SKU</th>
                     <th class="no">REFERENCIA</th>
@@ -791,6 +801,9 @@
             </thead>
             <tbody>
                 <tr>
+                    <td class="no">
+                        <li>{{$lavanderia->corte->numero_corte}}</li>
+                    </td>
                     <td class="desc">
                         <li>{{$lavanderia->total_enviado}}</li>
                     </td>
@@ -846,12 +859,26 @@
             <table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th>
+
+                            @if ($lavanderia->estandar_incluido == 1)
+                            ESTANDAR INCLUIDO: <span class="total_articulos"> Si</span>
+                            @else
+                            ESTANDAR INCLUIDO: <span class="total_articulos">No</span>
+                            @endif
+
+                        </th>
+                        <th>
+                            ENVIO NUEVO: <span class="total_articulos"> Si</span>
+                        </th>
                     </tr>
                     <tr>
-                        <th></th>
-                        <th></th>
+                        <th>
+                            ENVIO REPARACION: <span class="total_articulos"> No</span>
+                        </th>
+                        <th>
+                            ENVIO REPARADA: <span class="total_articulos"> No</span>
+                        </th>
                     </tr>
 
                 </thead>
@@ -861,18 +888,20 @@
             <table class="tabla-totales">
                 <tr class="total">
                     <th style="font-weight:bold;">TOTAL</th>
-                    <td >{{$lavanderia->total_enviado}}</td>
+                    <td>{{$lavanderia->total_enviado}}</td>
                 </tr>
             </table>
         </div>
+        <div id="thanks">RECETA DE LAVADO</div>
+        <div id="notices">
+            <p class="notice">
+                {{$lavanderia->receta_lavado}}
+            </p>
 
-
-
-
-        <div class="firmas" style="padding-top: 100px ">
-            <div class="firma_enviado">Enviado por:</div>
-            <div class="firma_despachado">Recibido por:</div>
-        </div>
+            <div class="firmas" style="padding-top: 0px ">
+                <div class="firma_enviado">Enviado por:</div>
+                <div class="firma_despachado">Recibido por:</div>
+            </div>
 
 
     </main>

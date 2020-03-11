@@ -714,7 +714,7 @@
         <table class="tabla-factura">
             <thead>
                 <tr>
-                    <th class="factura">Conduce Lavanderia</th>
+                    <th class="factura">Conduce Recepcion</th>
                     <td class="num_factura">{{$recepcion->numero_recepcion}}</td>
                 </tr>
             </thead>
@@ -803,7 +803,7 @@
                         @endif
 
                     </td>
-                    <td class="desc-des">
+                    <td class="desc">
                         @if ($recepcion->estandar_recibido == 1)
                         Si
                         @else
@@ -848,7 +848,26 @@
             <table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
                 <thead>
                     <tr>
-                        <p>{{$lavanderia->receta_lavado}}</p>
+                        <th>
+
+                            @if ($recepcion->estandar_recibido  == 1)
+                            ESTANDAR RECIBIDO: <span class="total_articulos"> Si</span>
+                            @else
+                            ESTANDAR RECIBIDO: <span class="total_articulos">No</span>
+                            @endif
+
+                        </th>
+                        <th>
+                            ENVIO NUEVO: <span class="total_articulos"> Si</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            ENVIO REPARACION: <span class="total_articulos"> No</span>
+                        </th>
+                        <th>
+                            ENVIO REPARADA: <span class="total_articulos"> No</span>
+                        </th>
                     </tr>
 
                 </thead>
