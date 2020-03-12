@@ -36,6 +36,7 @@ class TallaController extends Controller
             $j = $request->input('j');
             $k = $request->input('k');
             $l = $request->input('l');
+            $producto_id = $request->input('producto');
             $mod_curva = $request->input('mod_curva');
 
             $a = intval(trim($a, "_"));
@@ -61,6 +62,7 @@ class TallaController extends Controller
             $corte->save();
 
             $talla->corte_id = $corte_id;
+            $talla->producto_id = $producto_id;
             $talla->a = $a;
             $talla->b = $b;
             $talla->c = $c;
@@ -73,6 +75,7 @@ class TallaController extends Controller
             $talla->j = $j;
             $talla->k = $k;
             $talla->l = $l;
+
             $talla->total = $total;
 
             $talla->save();

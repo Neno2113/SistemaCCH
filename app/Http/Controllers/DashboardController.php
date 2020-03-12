@@ -67,7 +67,20 @@ class DashboardController extends Controller
          $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
 
         $facturado = ordenFacturacionDetalle::all();
-        $orden = ordenPedidoDetalle::all();
+        // $orden = ordenPedidoDetalle::all();
+
+        //perdidas
+        $orden_pedido = ordenPedido::where('status_orden_pedido', 'LIKE', 'Vigente')
+        ->select('id')
+        ->get();
+
+        $ordenes = array();
+
+        for ($i = 0; $i < count($orden_pedido); $i++) {
+            array_push($ordenes, $orden_pedido[$i]['id']);
+        }
+
+        $orden = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)->get();
 
         $nota_credito = NotaCreditoDetalle::all();
 

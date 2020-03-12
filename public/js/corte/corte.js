@@ -713,6 +713,7 @@ $(document).ready(function() {
                         j: $("#j").val(),
                         k: $("#k").val(),
                         l: $("#l").val(),
+                        producto: $("#productos").val(),
                         mod_curva: $("#mod_curva").val()
                     };
 

@@ -306,6 +306,7 @@ Route::get('/imprimir/DocEA/{id}', 'AlmacenController@imprimir')->name('print');
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
 Route::post('existencia/consulta', 'ExistenciaController@show');
 Route::post('existencia', 'ExistenciaController@store');
+Route::get('/reporte/existencia', 'ExistenciaController@imprimirReporte')->name('print');
 
 //Orden de pedido
 Route::post('ordenPedido/consulta', 'ordenPedidoController@show');

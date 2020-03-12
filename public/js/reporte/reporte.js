@@ -14,11 +14,11 @@ $(document).ready(function() {
 
     //funcion para listar en el Datatable
     function listar() {
-        tabla = $("#facturas_listadas").DataTable({
+        tabla = $("#existencias").DataTable({
             serverSide: true,
             autoWidth: false,
             responsive: true,
-            iDisplayLength: 5,
+            iDisplayLength: 10,
             dom: 'Bfrtip',
             buttons: [
                 'pageLength',
@@ -35,22 +35,21 @@ $(document).ready(function() {
                     pageSize: 'LEGAL'
                 }
                 ],
-            ajax: "api/reporteExistencias",
+            ajax: "api/existencias",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_factura", name: 'factura.no_factura' },
-                { data: "cliente", name: 'factura.cliente',  orderable: false, searchable: false },
-                { data: "sucursal", name: 'factura.sucursal',  orderable: false, searchable: false },
-                // { data: "referencia_producto", name: 'producto.referencia_producto', orderable: false, searchable: false },
-                { data: "fecha", name: 'factura.fecha' },
-                { data: "fecha_impresion", name: 'factura.fecha_impresion' },
-                // { data: "total", name: 'orden_facturacion_detalle.total' },
-                { data: "por_transporte", name: 'orden_facturacion.por_transporte' },
+                // { data: "Opciones", orderable: false, searchable: false },
+                // { data: "fase", name: 'corte.fase' },
+                { data: "marca", name: 'corte.marca' },
+                { data: "referencia_producto", name: 'producto.referencia_producto',  orderable: false, searchable: false },
+                { data: "total_produccion", name: 'producto.total_produccion',  orderable: false, searchable: false },
+                { data: "total_lavanderia", name: 'producto.total_lavanderia',  orderable: false, searchable: false },
+                { data: "total_recepcion", name: 'producto.total_recepcion',  orderable: false, searchable: false },
+                { data: "total_alm", name: 'producto.total_alm',  orderable: false, searchable: false },
             ],
-            order: [[5, 'desc']],
+            order: [[3, 'desc']],
             rowGroup: {
-                dataSrc: 'cliente'
+                dataSrc: 'marca'
             }
         });
     }
