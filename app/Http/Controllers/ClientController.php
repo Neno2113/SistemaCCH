@@ -13,6 +13,7 @@ class ClientController extends Controller
 
         $validar = $request->validate([
             'nombre_cliente' => 'required|unique:cliente',
+            'codigo_cliente' => 'required',
             'rnc' => 'required',
             'contacto_cliente_principal' => 'required|alpha',
             'telefono_1' => 'required',
@@ -32,7 +33,8 @@ class ClientController extends Controller
             ];
         } else {
 
-            $nombre_cliente = $request->input('nombre_cliente', true);
+            $nombre_cliente = $request->input('nombre_cliente' );
+            $codigo_cliente = $request->input('codigo_cliente');
             $calle = $request->input('calle', true);
             $sector = $request->input('sector');
             $provincia = $request->input('provincia');
@@ -54,6 +56,7 @@ class ClientController extends Controller
 
             $cliente = new Client();
             $cliente->nombre_cliente = $nombre_cliente;
+            $cliente->codigo_cliente = $codigo_cliente;
             $cliente->calle = $calle;
             $cliente->sector = $sector;
             $cliente->provincia = $provincia;
@@ -129,6 +132,7 @@ class ClientController extends Controller
         } else {
             $id = $request->input('id', true);
             $nombre_cliente = $request->input('nombre_cliente', true);
+            $codigo_cliente = $request->input('codigo_cliente');
             $calle = $request->input('calle', true);
             $sector = $request->input('sector');
             $provincia = $request->input('provincia');
@@ -150,6 +154,7 @@ class ClientController extends Controller
             $client = Client::find($id);
 
             $client->nombre_cliente = $nombre_cliente;
+            $client->codigo_cliente = $codigo_cliente;
             $client->calle = $calle;
             $client->sector = $sector;
             $client->provincia = $provincia;

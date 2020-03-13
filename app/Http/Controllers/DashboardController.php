@@ -64,7 +64,10 @@ class DashboardController extends Controller
              array_push($segundas, $segunda[$i]['id']);
          }
 
-         $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
+        $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
+
+
+
 
         $facturado = ordenFacturacionDetalle::all();
         // $orden = ordenPedidoDetalle::all();

@@ -1074,7 +1074,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{$sub_lav_l}}</td>
+                    <td>{{$sub_total_lav}}</td>
                 </tr>
                 <tr>
                     <td>Recepcion</td>
@@ -1217,7 +1217,47 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{$sub_rec_l}}</td>
+                    <td>{{$sub_total_rec}}</td>
+                </tr>
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                {{-- Aqui va el Subtotal --}}
+                <tr style="font-weight:800;">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        SUBTOTAL
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$sub_total_rec}}</td>
                 </tr>
                 <tr>
                     <td>Almacen</td>
@@ -1235,9 +1275,9 @@
                     <td></td>
                     <td></td>
                     <td>
-                        {{$alm_m->producto->referencia_producto}}
+                        {{$alm_m->referencia_producto}}
                     </td>
-                    <td>{{$alm_m->a}}</td>
+                    <td>{{$alm_m->a }}</td>
                     <td>{{$alm_m->b}}</td>
                     <td>{{$alm_m->c}}</td>
                     <td>{{$alm_m->d}}</td>
@@ -1300,26 +1340,26 @@
                         Lavish
                     </td>
                 </tr>
-                @foreach ($almacen_lavish as $alm_m)
+                @foreach ($almacen_lavish as $alm_l)
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
-                        {{$alm_m->producto->referencia_producto}}
+                        {{$alm_l->referencia_producto}}
                     </td>
-                    <td>{{$alm_m->a}}</td>
-                    <td>{{$alm_m->b}}</td>
-                    <td>{{$alm_m->c}}</td>
-                    <td>{{$alm_m->d}}</td>
-                    <td>{{$alm_m->e}}</td>
-                    <td>{{$alm_m->f}}</td>
-                    <td>{{$alm_m->g}}</td>
-                    <td>{{$alm_m->h}}</td>
-                    <td>{{$alm_m->i}}</td>
-                    <td>{{$alm_m->j}}</td>
-                    <td>{{$alm_m->k}}</td>
-                    <td>{{$alm_m->l}}</td>
-                    <td>{{$alm_m->total}}</td>
+                    <td>{{$alm_l->a}}</td>
+                    <td>{{$alm_l->b}}</td>
+                    <td>{{$alm_l->c}}</td>
+                    <td>{{$alm_l->d}}</td>
+                    <td>{{$alm_l->e}}</td>
+                    <td>{{$alm_l->f}}</td>
+                    <td>{{$alm_l->g}}</td>
+                    <td>{{$alm_l->h}}</td>
+                    <td>{{$alm_l->i}}</td>
+                    <td>{{$alm_l->j}}</td>
+                    <td>{{$alm_l->k}}</td>
+                    <td>{{$alm_l->l}}</td>
+                    <td>{{$alm_l->total}}</td>
                 </tr>
                 @endforeach
                 <tr>

@@ -487,7 +487,7 @@ class ExistenciaController extends Controller
                 return "";
             })
             ->addColumn('total_alm', function ($existencia) {
-                $almacen = Almacen::where('producto_id', $existencia->producto_id)->get();
+                $almacen = AlmacenDetalle::where('producto_id', $existencia->producto_id)->get();
 
                 //SEGUNDA
                 $segunda = Perdida::where('producto_id', $existencia->producto_id)
@@ -502,9 +502,11 @@ class ExistenciaController extends Controller
                     array_push($segundas, $segunda[$i]['id']);
                 }
 
+
+                //pedido
                 $orden_pedido = ordenPedido::where('status_orden_pedido', 'LIKE', 'Vigente')
-                ->select('id')
-                ->get();
+                    ->select('id')
+                    ->get();
 
                 $ordenes = array();
 
@@ -515,7 +517,10 @@ class ExistenciaController extends Controller
 
                 $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
                 $facturado = ordenFacturacionDetalle::where('producto_id', $existencia->producto_id)->get();
-                $orden = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)->get();
+                $orden = ordenPedidoDetalle::where('producto_id', $existencia->producto_id)
+                    ->whereIn('orden_pedido_id', $ordenes)->get();
+
+
                 $exist = $almacen->sum('total') - $facturado->sum('total') + $tallasSegundas->sum('total');
                 $dispVenta = $exist - $orden->sum('total') - $tallasSegundas->sum('total');
 
@@ -649,7 +654,7 @@ class ExistenciaController extends Controller
         $k_sub_my = $tallasCorte->sum('k');
         $l_sub_my = $tallasCorte->sum('l');
         $total_sub_my = $a_sub_my + $b_sub_my + $c_sub_my + $d_sub_my + $e_sub_my + $f_sub_my + $g_sub_my +
-        $h_sub_my + $i_sub_my + $j_sub_my + $k_sub_my + $l_sub_my;
+            $h_sub_my + $i_sub_my + $j_sub_my + $k_sub_my + $l_sub_my;
 
         //producto Produccion Lavish
         $producction_lavish = Product::where('marca', 'LIKE', 'Lavish')->select('id')->get();
@@ -685,7 +690,7 @@ class ExistenciaController extends Controller
         $k_sub_lav = $tallasCorteLavish->sum('k');
         $l_sub_lav = $tallasCorteLavish->sum('l');
         $total_sub_lav = $a_sub_lav + $b_sub_lav + $c_sub_lav + $d_sub_lav + $e_sub_lav + $f_sub_lav + $g_sub_lav +
-        $h_sub_lav + $i_sub_lav + $j_sub_lav + $k_sub_lav + $l_sub_lav;
+            $h_sub_lav + $i_sub_lav + $j_sub_lav + $k_sub_lav + $l_sub_lav;
 
         //resultado Prod
         $a_sub_prod = $a_sub_my + $a_sub_lav;
@@ -701,7 +706,7 @@ class ExistenciaController extends Controller
         $k_sub_prod = $k_sub_my + $k_sub_lav;
         $l_sub_prod = $l_sub_my + $l_sub_lav;
         $total_sub_prod = $a_sub_prod + $b_sub_prod + $c_sub_prod + $d_sub_prod + $e_sub_prod + $f_sub_prod + $g_sub_prod +
-        $h_sub_prod + $i_sub_prod + $j_sub_prod + $k_sub_prod + $l_sub_lav;
+            $h_sub_prod + $i_sub_prod + $j_sub_prod + $k_sub_prod + $l_sub_lav;
 
         $perdidas = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
             ->whereIn('fase', ['Produccion', 'Procesos secos'])
@@ -750,6 +755,7 @@ class ExistenciaController extends Controller
 
         $lavanderia_lavish = Lavanderia::whereIn('corte_id', $cortes_lav_lav)->get()->load('producto');
         $sub_lav_l = $lavanderia_lavish->sum('total_enviado');
+        $sub_total_lav = $sub_lav_m + $sub_lav_l;
         //Recepcion Mythos
 
         $corte_rec_mythos = Corte::where('fase', 'LIKE', 'Recepcion')
@@ -780,11 +786,20 @@ class ExistenciaController extends Controller
 
         $recepcion_lavish = Lavanderia::whereIn('corte_id', $cortes_rec_lavish)->get()->load('producto');
         $sub_rec_l = $recepcion_lavish->sum('total_recibido');
+
+        //subtotal recepcion
+        $sub_total_rec = $sub_rec_m + $sub_rec_l;
+
         //Almacen Mythos
-        $almacen_mythos = AlmacenDetalle::whereIn('producto_id', $product_mythos)
-        // ->groupBy('producto_id')
-        ->get()
-        ->load('producto');
+        $almacen_mythos = DB::table('almacen_detalle')
+            ->join('producto', 'almacen_detalle.producto_id', 'producto.id')
+            ->selectRaw('producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
+        SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total')
+            ->whereIn('producto_id', $product_mythos)
+            ->groupBy('producto_id')
+            ->get();
+
+
         $a_alm_m = $almacen_mythos->sum('a');
         $b_alm_m = $almacen_mythos->sum('b');
         $c_alm_m = $almacen_mythos->sum('c');
@@ -798,14 +813,32 @@ class ExistenciaController extends Controller
         $k_alm_m = $almacen_mythos->sum('k');
         $l_alm_m = $almacen_mythos->sum('l');
         $total_alm_m = $a_alm_m + $b_alm_m + $c_alm_m + $d_alm_m + $e_alm_m + $f_alm_m + $g_alm_m + $h_alm_m
-        + $i_alm_m + $j_alm_m + $k_alm_m + $k_alm_m;
+            + $i_alm_m + $j_alm_m + $k_alm_m + $k_alm_m;
+
+
+        // $sqlquery = "SELECT producto.referencia_producto , SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
+        // SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total
+        // FROM `almacen_detalle` inner join `producto` on `almacen_detalle`.`producto_id` = `producto`.`id` GROUP By producto_id";
+        // $result = DB::select($sqlquery);
+        // $almacen_lavish = json_decode(json_encode($result), true);
+        // print_r($almacen_lavish[0]['a']);
+        // die();
 
         //Almacen Lavish
-        $almacen_lavish = AlmacenDetalle::whereIn('producto_id', $product_lavish)
-        // ->sum('a')
-        // ->groupBy('producto_id')
-        ->get()
-        ->load('producto');
+        $almacen_lavish = DB::table('almacen_detalle')
+            ->join('producto', 'almacen_detalle.producto_id', 'producto.id')
+
+            ->selectRaw('producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
+            SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total')
+
+            ->whereIn('almacen_detalle.producto_id', $product_lavish)
+            ->groupBy('producto_id')
+            // ->join('orden_facturacion_detalle', 'orden_facturacion_detalle.producto_id', 'producto.id')
+            ->get();
+        // ->load('producto');
+
+        // print_r($almacen_lavish);
+        // die();
 
         $a_alm_l = $almacen_lavish->sum('a');
         $b_alm_l = $almacen_lavish->sum('b');
@@ -819,8 +852,9 @@ class ExistenciaController extends Controller
         $j_alm_l = $almacen_lavish->sum('j');
         $k_alm_l = $almacen_lavish->sum('k');
         $l_alm_l = $almacen_lavish->sum('l');
+        // $ref_alm_l = $almacen_lavish[0]['referencia_producto'];
         $total_alm_l = $a_alm_l + $b_alm_l + $c_alm_l + $d_alm_l + $e_alm_l + $f_alm_l + $g_alm_l + $h_alm_l
-        + $i_alm_l + $j_alm_l + $k_alm_l + $k_alm_l;
+            + $i_alm_l + $j_alm_l + $k_alm_l + $k_alm_l;
 
         $a_sub_alm = $a_alm_m + $a_alm_l;
         $b_sub_alm = $b_alm_m + $b_alm_l;
@@ -835,7 +869,7 @@ class ExistenciaController extends Controller
         $k_sub_alm = $k_alm_m + $k_alm_l;
         $l_sub_alm = $l_alm_m + $l_alm_l;
         $total_sub_alm = $a_sub_alm + $b_sub_alm + $c_sub_alm + $d_sub_alm + $e_sub_alm + $f_sub_alm + $g_sub_alm + $h_sub_alm
-        + $i_sub_alm + $j_sub_alm + $k_sub_alm + $l_sub_alm;
+            + $i_sub_alm + $j_sub_alm + $k_sub_alm + $l_sub_alm;
 
         //Gran total
         $a_total = $a_sub_prod + $a_sub_alm;
@@ -851,7 +885,7 @@ class ExistenciaController extends Controller
         $k_total = $k_sub_prod + $k_sub_alm;
         $l_total = $l_sub_prod + $l_sub_alm;
         $total_reporte = $a_total + $b_total + $c_total + $d_total + $e_total + $f_total + $g_total + $h_total
-        + $i_total + $j_total + $k_total + $l_total;
+            + $i_total + $j_total + $k_total + $l_total + $sub_total_rec + $sub_total_lav;
 
 
         // $pdf = \PDF::loadView('sistema.existencia.reporteDetallado', );
@@ -909,6 +943,8 @@ class ExistenciaController extends Controller
             'sub_lav_l',
             'sub_rec_m',
             'sub_rec_l',
+            'sub_total_rec',
+            'sub_total_lav',
             'a_alm_m',
             'b_alm_m',
             'c_alm_m',
@@ -921,6 +957,7 @@ class ExistenciaController extends Controller
             'j_alm_m',
             'k_alm_m',
             'l_alm_m',
+            // 'ref_alm_l',
             'total_alm_m',
             'a_alm_l',
             'b_alm_l',

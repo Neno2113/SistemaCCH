@@ -108,6 +108,7 @@ $(document).ready(function() {
 
     function limpiar() {
         $("#nombre_cliente").val("").attr('readonly', false);
+        $("#codigo_cliente").val("").attr('readonly', false);
         $("#calle").val("").attr('readonly', false);
         $("#sector").val("").attr('readonly', false);
         $("#provincia").val("").trigger("change").attr('disabled', false);
@@ -132,6 +133,7 @@ $(document).ready(function() {
 
         var client = {
             nombre_cliente: $("#nombre_cliente").val(),
+            codigo_cliente: $("#codigo_cliente").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
@@ -159,7 +161,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se registro correctamente el cliente!!");
+                    Swal.fire(
+                        'Success',
+                        'Se ha creado el cliente correctamente.',
+                        'success'
+                        )
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -232,6 +238,7 @@ $(document).ready(function() {
         var client = {
             id: $("#id").val(),
             nombre_cliente: $("#nombre_cliente").val(),
+            codigo_cliente: $("#codigo_cliente").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
@@ -260,7 +267,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
+                    Swal.fire(
+                        'Success',
+                        'Se ha actualizado los datos del cliente correctamente.',
+                        'success'
+                        )
                     $("#id").val("");
                     limpiar();
                     tabla.ajax.reload();
@@ -369,6 +380,7 @@ function mostrar(id_client) {
         // console.log(typeof data.client.autorizacion_credito_req);
         $("#id").val(data.client.id);
         $("#nombre_cliente").val(data.client.nombre_cliente).attr('readonly', false);
+        $("#codigo_cliente").val(data.client.codigo_cliente).attr('readonly', false);
         $("#rnc").val(data.client.rnc).attr('readonly', false);
         $("#calle").val(data.client.calle).attr('readonly', false);
         $("#sector").val(data.client.sector).attr('readonly', false);

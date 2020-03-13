@@ -23,7 +23,7 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4 class="font-weight-bold">Corte</h4>
+                <h4 class="font-weight-bold">Cliente</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
@@ -32,34 +32,38 @@
                     <div class="Datos">
 
                         <div class="row mt-4">
+                            <div class="col-md-4 mt-2">
+                                <input type="text" name="codigo_cliente" placeholder="Codigo Cliente" id="codigo_cliente"
+                                    class="form-control">
+                                <label for="nombre_cliente" class="label"></label>
+                            </div>
                             <input type="hidden" name="id" id="id" value="">
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2">
 
                                 <input type="text" name="nombre_cliente" placeholder="Nombre" id="nombre_cliente"
                                     class="form-control">
                                 <label for="nombre_cliente" class="label"></label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2">
 
                                 <input type="text" name="rnc" id="rnc" placeholder="RNC"
                                     class="form-control text-center" data-inputmask='"mask": "99999999999"' data-mask>
                                 <label for="rnc" class="label"></label>
                             </div>
-                            <div class="col-md-4">
 
-                                {{-- <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                                <input type="text" id="celular_principal" placeholder="Celular principal"
-                                    class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                <label for="celular_principal" class="label"></label>
-                                {{-- </div> --}}
-                            </div>
+
 
                         </div>
                         <div class="row mt-4">
-                            <div class="col-md-4 mt-3">
+                            <div class="col-md-3 mt-3">
+
+
+                                <input type="text" id="celular_principal" placeholder="Celular principal"
+                                    class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                <label for="celular_principal" class="label"></label>
+
+                            </div>
+                            <div class="col-md-3 mt-3">
 
                                 {{-- <div class="input-group">
                                 <div class="input-group-prepend">
@@ -70,7 +74,7 @@
                                 <label for="telefono_1" class="label"></label>
                                 {{-- </div> --}}
                             </div>
-                            <div class="col-md-4 mt-3">
+                            <div class="col-md-3 mt-3">
 
                                 {{-- <div class="input-group">
                                 <div class="input-group-prepend">
@@ -81,7 +85,7 @@
                                 <label for="telefono_2" class="label"></label>
                                 {{-- </div> --}}
                             </div>
-                            <div class="col-md-4 mt-3">
+                            <div class="col-md-3 mt-3">
 
                                 {{-- <div class="input-group">
                                 <div class="input-group-prepend">
