@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+{{-- <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> --}}
 
 <head>
     <meta charset="utf-8">
-    <title>Conduce Orden Pedido</title>
+    <title>Reporte de existencias</title>
     <style>
         @font-face {
-            font-family: SourceSansPro;
-            src: url(SourceSansPro-Regular.ttf);
+            font-family: 'Roboto', sans-serif;
+            /* src: url("<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">" ); */
         }
 
         .clearfix:after {
@@ -30,7 +31,7 @@
             background: #FFFFFF;
             font-family: Arial, sans-serif;
             font-size: 10px;
-            font-family: SourceSansPro;
+            font-family: 'Roboto', sans-serif;
         }
 
         header {
@@ -158,7 +159,7 @@
             /* padding: 20px; */
             background: #fff;
             text-align: center;
-            border-bottom: 1px solid #FFFFFF;
+            /* border-bottom: 1px solid #FFFFFF; */
             /* border: solid 2px black; */
         }
 
@@ -617,7 +618,7 @@
 
         .tabla-tallas .talla_head {
             color: #fff;
-            font-size: 6.5px;
+            font-size: 9.5px;
             border: none;
             border-left: solid 2px black;
         }
@@ -635,7 +636,7 @@
     </style>
 </head>
 
-<body>
+<body >
     <header class="clearfix">
         <div id="logo">
             <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
@@ -647,7 +648,8 @@
         </div>
     </header>
     <main>
-
+        <h3>Reporte de existencias</h3>
+        <p style="width:20%;" >Al dia <span style="font-weight:bolder; ">{{date('jS')}}</span> del mes <span style="font-weight:bolder; ">{{date('F')}}</span> del año <span style="font-weight:bolder; ">{{date('Y')}}</span></p>
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
             <thead class="tabla-tallas">
                 <tr>
@@ -666,7 +668,7 @@
                     <td class="talla"></td>
                     <td class="talla"></td>
                     <td class="talla"></td>
-                    <td class="talla"></td>
+                    <th class="talla_head"></th>
                 </tr>
 
                 <tr>
@@ -685,7 +687,7 @@
                     <td class="talla">17/18</td>
                     <td class="talla">19/20</td>
                     <td class="talla">21/22</td>
-                    <td class="talla"></td>
+                    <th class="talla_head"></th>
                 </tr>
 
                 <tr>
@@ -723,7 +725,7 @@
                     <td class="talla"></td>
                     <td class="talla"></td>
                     <td class="talla"></td>
-                    <td class="talla"></td>
+                    <th class="talla_head"></th>
                 </tr>
 
                 <tr>
@@ -742,7 +744,7 @@
                     <td class="talla"></td>
                     <td class="talla"></td>
                     <td class="talla"></td>
-                    <td class="talla"></td>
+                    <th class="talla_head"></th>
                 </tr>
 
             </thead>
@@ -750,16 +752,45 @@
 
             </thead> --}}
             <tbody>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>Produccion</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
-                        Mthos
+                        Mythos
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 {{-- ForEach esta fila  --}}
                 @foreach ($tallasCorte as $talla)
@@ -823,13 +854,27 @@
                     <td>{{$l_sub_my}}</td>
                     <td>{{$total_sub_my}}</td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
                         Lavish
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 @foreach ($tallasCorteLavish as $talla)
                 <tr>
@@ -930,23 +975,53 @@
                     <td>{{$l_sub_prod}}</td>
                     <td>{{$total_sub_prod}}</td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>Lavanderia</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
-                        Mthos
+                        Mythos
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
                 </tr>
                 @foreach ($lavanderia as $lav)
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
-                      {{$lav->producto->referencia_producto}}
+                        {{$lav->producto->referencia_producto}}
                     </td>
                     <td></td>
                     <td></td>
@@ -1004,13 +1079,27 @@
                     <td></td>
                     <td>{{$sub_lav_m}}</td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
                         Lavish
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 </tr>
                 @foreach ($lavanderia_lavish as $lav_lavish)
@@ -1076,16 +1165,45 @@
                     <td></td>
                     <td>{{$sub_total_lav}}</td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>Recepcion</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
-                        Mthos
+                        Mythos
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 @foreach ($recepcion_mythos as $rec)
                 <tr>
@@ -1149,13 +1267,27 @@
                     <td></td>
                     <td>{{$sub_rec_m}}</td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
                         Lavish
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 @foreach ($recepcion_lavish as $rec_lav)
                 <tr>
@@ -1259,25 +1391,56 @@
                     <td></td>
                     <td>{{$sub_total_rec}}</td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>Almacen</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
-                        Mthos
+                        Mythos
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
+
                 @foreach ($almacen_mythos as $alm_m)
+                {{-- @foreach ($facturado_m as $fac) --}}
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
                         {{$alm_m->referencia_producto}}
                     </td>
-                    <td>{{$alm_m->a }}</td>
+                    <td>{{$alm_m->a}}</td>
                     <td>{{$alm_m->b}}</td>
                     <td>{{$alm_m->c}}</td>
                     <td>{{$alm_m->d}}</td>
@@ -1291,7 +1454,31 @@
                     <td>{{$alm_m->l}}</td>
                     <td>{{$alm_m->total}}</td>
                 </tr>
+                {{-- @endforeach --}}
                 @endforeach
+                {{-- @foreach ($orden_m as $orden)
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        {{$alm_m->referencia_producto}}
+                    </td>
+                    <td>{{$orden_m->a}}</td>
+                    <td>{{$orden_m->b}}</td>
+                    <td>{{$orden_m->c}}</td>
+                    <td>{{$orden_m->d}}</td>
+                    <td>{{$orden_m->e}}</td>
+                    <td>{{$orden_m->f}}</td>
+                    <td>{{$orden_m->g}}</td>
+                    <td>{{$orden_m->h}}</td>
+                    <td>{{$orden_m->i}}</td>
+                    <td>{{$orden_m->j}}</td>
+                    <td>{{$orden_m->k}}</td>
+                    <td>{{$orden_m->l}}</td>
+                    <td>{{$orden_m->total}}</td>
+                </tr>
+                @endforeach --}}
                 <tr>
                     <td style="color:#fff;">test</td>
                     <td></td>
@@ -1332,13 +1519,27 @@
                     <td>{{$l_alm_m}}</td>
                     <td>{{$total_alm_m}}</td>
                 </tr>
-                <tr>
+                <tr style="font-weight:800;">
                     <td>
 
                     </td>
                     <td>
                         Lavish
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 @foreach ($almacen_lavish as $alm_l)
                 <tr>

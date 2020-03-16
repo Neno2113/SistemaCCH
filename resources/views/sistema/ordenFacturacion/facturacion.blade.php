@@ -172,7 +172,7 @@
                     <br>
                     <div class="row mt-3">
                         <div class="col-md-4">
-                            <label for="">Tipo Factura(*):</label>
+                            <label for="">Tipo Factura</label>
                             <select name="tipo_factura" id="tipo_factura" class="form-control">
                                 <option value="IN">Factura</option>
                                 <option value="B01">Credito Fiscal</option>
@@ -205,8 +205,12 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4 mt-3">
-                            <label for="">Fecha(*):</label>
+                            <label for="">Fecha</label>
                             <input type="date" name="fecha" id="fecha" class="form-control text-center">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="">Fecha vencimiento</label>
+                            <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control text-center">
                         </div>
                         <div class="col-md-4 mt-3">
                             <div id="comprobante">
@@ -216,6 +220,9 @@
                                     data-inputmask='"mask": "999999999999[9999999999]"' data-mask>
                             </div>
                         </div>
+
+                    </div>
+                    <div class="row mt-2">
                         <div class="col-md-4 mt-3">
                             <label for="">Nota:</label>
                             <textarea name="nota" id="nota" cols="30" rows="1" class="form-control"></textarea>

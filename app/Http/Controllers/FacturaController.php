@@ -26,6 +26,7 @@ class FacturaController extends Controller
             'itbis' => 'required',
 
             'fecha' => 'required',
+            'fecha_vencimiento' => 'required',
             'comprobante_fiscal' => 'required'
         ]);
 
@@ -43,6 +44,7 @@ class FacturaController extends Controller
             $itbis = $request->input('itbis');
             $descuento = $request->input('descuento');
             $fecha = $request->input('fecha');
+            $fecha_vencimiento = $request->input('fecha_vencimiento');
             $comprobante_fiscal = $request->input('comprobante_fiscal');
             $numero_comprobante = $request->input('numero_comprobante');
             $nota = $request->input('nota');
@@ -75,6 +77,7 @@ class FacturaController extends Controller
             $factura->descuento = trim($descuento, '_%');
             $factura->itbis = trim($itbis, '_%');;
             $factura->fecha = $fecha;
+            $factura->fecha_vencimiento = $fecha_vencimiento;
             $factura->nota = $nota;
             $factura->nc_uso = 0;
 
@@ -384,6 +387,7 @@ class FacturaController extends Controller
 
             $orden_empaque_detalle->fecha_empacado = date("d/m/20y h:i:s", strtotime($orden_empaque_detalle->fecha_empacado));
 
+            $factura->fecha_vencimiento = date("d/m/20y", strtotime($factura->fecha_vencimiento));
             $pdf = \PDF::loadView('sistema.ordenFacturacion.facturaResumida', \compact(
                 'factura',
                 'orden_pedido',
@@ -418,7 +422,8 @@ class FacturaController extends Controller
                 'ordenes_pedido',
                 'subtotal_real',
                 'total_articulos',
-                'orden_empaque_detalle'
+                'orden_empaque_detalle',
+                'productos_id'
             ));
         }
     }

@@ -29,27 +29,28 @@
                     <hr>
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
-                        <div class="col-md-4">
-
-
+                        <div class="col-md-4 mt-1">
                             <input type="text" name="nombre" placeholder="Nombre" id="nombre" class="form-control">
                             <label for="nombre" class="label"></label>
                         </div>
-                        <div class="col-md-4">
-
+                        <div class="col-md-4 mt-1">
+                            <input type="text" name="codigo_suplidor" placeholder="Codigo Suplidor" id="codigo_suplidor" class="form-control">
+                            <label for="nombre" class="label"></label>
+                        </div>
+                        <div class="col-md-4 mt-1">
                             <input type="text" name="rnc" id="rnc" placeholder="RNC" class="form-control"
                                 data-inputmask='"mask": "99999999999"' data-mask>
                             <label for="rnc" class="label"></label>
                         </div>
-                        <div class="col-md-4">
 
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-md-3 mt-3">
                             <input type="text" placeholder="Contacto suplidor" name="contacto_suplidor"
                                 id="contacto_suplidor" class="form-control">
                             <label for="contacto_suplidor" class="label"></label>
                         </div>
-                    </div>
-                    <div class="row mt-1">
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
 
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
@@ -60,7 +61,7 @@
                             <label for="telefono_1" class="label"></label>
                             {{-- </div> --}}
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
 
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
@@ -71,7 +72,7 @@
                             <label for="telefono_2" class="label"></label>
                             {{-- </div> --}}
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
 
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">

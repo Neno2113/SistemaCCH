@@ -75,6 +75,7 @@ $(document).ready(function() {
 
     function limpiar() {
         $("#nombre").val("").attr("readonly", false);
+        $("#codigo_suplidor").val("").attr("readonly", false);
         $("#calle").val("").attr("readonly", false);
         $("#sector").val("").attr("readonly", false);
         $("#provincia").val("").trigger("change").attr("disabled", false);
@@ -102,6 +103,7 @@ $(document).ready(function() {
 
         var suplidor = {
             nombre: $("#nombre").val(),
+            codigo_suplidor: $("#codigo_suplidor").val(),
             rnc: $("#rnc").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
@@ -204,6 +206,7 @@ $(document).ready(function() {
         var suplidor = {
             id: $("#id").val(),
             nombre: $("#nombre").val(),
+            codigo_suplidor: $("#codigo_suplidor").val(),
             rnc: $("#rnc").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
@@ -306,6 +309,7 @@ function mostrar(id_supplier) {
 
         $("#id").val(data.supplier.id);
         $("#nombre").val(data.supplier.nombre).attr("readonly", false);
+        $("#codigo_suplidor").val(data.supplier.codigo_suplidor).attr("readonly", false);
         $("#rnc").val(data.supplier.rnc).attr("readonly", false);
         $("#calle").val(data.supplier.calle).attr("readonly", false);
         $("#sector").val(data.supplier.sector).attr("readonly", false);

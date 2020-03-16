@@ -764,14 +764,14 @@
         <table cellspacing="0" class="tabla-ncf">
             <thead>
                 <tr>
-                    <th class="op">Codigo cliente</th>
+                    <th class="op">Codigo suplidor</th>
                     <th class="terminos_pago">Enviado con</th>
                     <th class="">Enviado por</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>IS350</td>
+                    <td>{{$lavanderia->suplidor->codigo_suplidor}}</td>
                     <td>Chofer</td>
                     <td></td>
                 </tr>

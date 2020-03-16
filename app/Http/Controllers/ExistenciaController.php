@@ -800,18 +800,36 @@ class ExistenciaController extends Controller
             ->get();
 
 
-        $a_alm_m = $almacen_mythos->sum('a');
-        $b_alm_m = $almacen_mythos->sum('b');
-        $c_alm_m = $almacen_mythos->sum('c');
-        $d_alm_m = $almacen_mythos->sum('d');
-        $e_alm_m = $almacen_mythos->sum('e');
-        $f_alm_m = $almacen_mythos->sum('f');
-        $g_alm_m = $almacen_mythos->sum('g');
-        $h_alm_m = $almacen_mythos->sum('h');
-        $i_alm_m = $almacen_mythos->sum('i');
-        $j_alm_m = $almacen_mythos->sum('j');
-        $k_alm_m = $almacen_mythos->sum('k');
-        $l_alm_m = $almacen_mythos->sum('l');
+        //ordenes
+        $orden_pedido = ordenPedido::where('status_orden_pedido', 'LIKE', 'Vigente')
+        ->select('id')
+        ->get();
+
+        $ordenes = array();
+
+        for ($i = 0; $i < count($orden_pedido); $i++) {
+            array_push($ordenes, $orden_pedido[$i]['id']);
+        }
+
+        $orden_m = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)
+        ->whereIn('producto_id', $product_mythos)->get();
+        $facturado_m = ordenFacturacionDetalle::whereIn('producto_id', $product_mythos)->get();
+
+        // array_push($almacen_mythos, $facturado_m);
+
+
+        $a_alm_m = $almacen_mythos->sum('a') - $facturado_m->sum('a') - $orden_m->sum('a');
+        $b_alm_m = $almacen_mythos->sum('b') - $facturado_m->sum('b') - $orden_m->sum('b');
+        $c_alm_m = $almacen_mythos->sum('c') - $facturado_m->sum('c') - $orden_m->sum('c');
+        $d_alm_m = $almacen_mythos->sum('d') - $facturado_m->sum('d') - $orden_m->sum('d');
+        $e_alm_m = $almacen_mythos->sum('e') - $facturado_m->sum('e') - $orden_m->sum('e');
+        $f_alm_m = $almacen_mythos->sum('f') - $facturado_m->sum('f') - $orden_m->sum('f');
+        $g_alm_m = $almacen_mythos->sum('g') - $facturado_m->sum('g') - $orden_m->sum('g');
+        $h_alm_m = $almacen_mythos->sum('h') - $facturado_m->sum('h') - $orden_m->sum('h');
+        $i_alm_m = $almacen_mythos->sum('i') - $facturado_m->sum('i') - $orden_m->sum('i');
+        $j_alm_m = $almacen_mythos->sum('j') - $facturado_m->sum('j') - $orden_m->sum('j');
+        $k_alm_m = $almacen_mythos->sum('k') - $facturado_m->sum('k') - $orden_m->sum('k');
+        $l_alm_m = $almacen_mythos->sum('l') - $facturado_m->sum('l') - $orden_m->sum('l');
         $total_alm_m = $a_alm_m + $b_alm_m + $c_alm_m + $d_alm_m + $e_alm_m + $f_alm_m + $g_alm_m + $h_alm_m
             + $i_alm_m + $j_alm_m + $k_alm_m + $k_alm_m;
 
@@ -831,27 +849,33 @@ class ExistenciaController extends Controller
             ->selectRaw('producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
             SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total')
 
+            // ->selectRaw('SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
+            // SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
+
             ->whereIn('almacen_detalle.producto_id', $product_lavish)
             ->groupBy('producto_id')
             // ->join('orden_facturacion_detalle', 'orden_facturacion_detalle.producto_id', 'producto.id')
             ->get();
         // ->load('producto');
 
-        // print_r($almacen_lavish);
-        // die();
+        $orden_l = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)
+        ->whereIn('producto_id', $product_lavish)->get();
+        echo $almacen_lavish;
+        die();
+        $facturado_l = ordenFacturacionDetalle::whereIn('producto_id', $product_lavish)->get();
 
-        $a_alm_l = $almacen_lavish->sum('a');
-        $b_alm_l = $almacen_lavish->sum('b');
-        $c_alm_l = $almacen_lavish->sum('c');
-        $d_alm_l = $almacen_lavish->sum('d');
-        $e_alm_l = $almacen_lavish->sum('e');
-        $f_alm_l = $almacen_lavish->sum('f');
-        $g_alm_l = $almacen_lavish->sum('g');
-        $h_alm_l = $almacen_lavish->sum('h');
-        $i_alm_l = $almacen_lavish->sum('i');
-        $j_alm_l = $almacen_lavish->sum('j');
-        $k_alm_l = $almacen_lavish->sum('k');
-        $l_alm_l = $almacen_lavish->sum('l');
+        $a_alm_l = $almacen_lavish->sum('a') - $facturado_l->sum('a') - $orden_l->sum('a');
+        $b_alm_l = $almacen_lavish->sum('b') - $facturado_l->sum('b') - $orden_l->sum('b');
+        $c_alm_l = $almacen_lavish->sum('c') - $facturado_l->sum('c') - $orden_l->sum('c');
+        $d_alm_l = $almacen_lavish->sum('d') - $facturado_l->sum('d') - $orden_l->sum('d');
+        $e_alm_l = $almacen_lavish->sum('e') - $facturado_l->sum('e') - $orden_l->sum('e');
+        $f_alm_l = $almacen_lavish->sum('f') - $facturado_l->sum('f') - $orden_l->sum('f');
+        $g_alm_l = $almacen_lavish->sum('g') - $facturado_l->sum('g') - $orden_l->sum('g');
+        $h_alm_l = $almacen_lavish->sum('h') - $facturado_l->sum('h') - $orden_l->sum('h');
+        $i_alm_l = $almacen_lavish->sum('i') - $facturado_l->sum('i') - $orden_l->sum('i');
+        $j_alm_l = $almacen_lavish->sum('j') - $facturado_l->sum('j') - $orden_l->sum('j');
+        $k_alm_l = $almacen_lavish->sum('k') - $facturado_l->sum('k') - $orden_l->sum('k');
+        $l_alm_l = $almacen_lavish->sum('l') - $facturado_l->sum('l') - $orden_l->sum('l');
         // $ref_alm_l = $almacen_lavish[0]['referencia_producto'];
         $total_alm_l = $a_alm_l + $b_alm_l + $c_alm_l + $d_alm_l + $e_alm_l + $f_alm_l + $g_alm_l + $h_alm_l
             + $i_alm_l + $j_alm_l + $k_alm_l + $k_alm_l;
@@ -888,7 +912,117 @@ class ExistenciaController extends Controller
             + $i_total + $j_total + $k_total + $l_total + $sub_total_rec + $sub_total_lav;
 
 
-        // $pdf = \PDF::loadView('sistema.existencia.reporteDetallado', );
+        // $pdf = \PDF::loadView('sistema.existencia.reporteDetallado',   compact(
+        //     'tallasCorte',
+        //     'tallasPerdidas',
+        //     'tallasCorteLavish',
+        //     'lavanderia',
+        //     'lavanderia_lavish',
+        //     'recepcion_mythos',
+        //     'recepcion_lavish',
+        //     'almacen_mythos',
+        //     'almacen_lavish',
+        //     'a_sub_my',
+        //     'b_sub_my',
+        //     'c_sub_my',
+        //     'd_sub_my',
+        //     'e_sub_my',
+        //     'f_sub_my',
+        //     'g_sub_my',
+        //     'h_sub_my',
+        //     'i_sub_my',
+        //     'j_sub_my',
+        //     'k_sub_my',
+        //     'l_sub_my',
+        //     'total_sub_my',
+        //     'a_sub_lav',
+        //     'b_sub_lav',
+        //     'c_sub_lav',
+        //     'd_sub_lav',
+        //     'e_sub_lav',
+        //     'f_sub_lav',
+        //     'g_sub_lav',
+        //     'h_sub_lav',
+        //     'i_sub_lav',
+        //     'j_sub_lav',
+        //     'k_sub_lav',
+        //     'l_sub_lav',
+        //     'total_sub_lav',
+        //     'a_sub_prod',
+        //     'b_sub_prod',
+        //     'c_sub_prod',
+        //     'd_sub_prod',
+        //     'e_sub_prod',
+        //     'f_sub_prod',
+        //     'g_sub_prod',
+        //     'h_sub_prod',
+        //     'i_sub_prod',
+        //     'j_sub_prod',
+        //     'k_sub_prod',
+        //     'l_sub_prod',
+        //     'total_sub_prod',
+        //     'sub_lav_m',
+        //     'sub_lav_l',
+        //     'sub_rec_m',
+        //     'sub_rec_l',
+        //     'sub_total_rec',
+        //     'sub_total_lav',
+        //     'a_alm_m',
+        //     'b_alm_m',
+        //     'c_alm_m',
+        //     'd_alm_m',
+        //     'e_alm_m',
+        //     'f_alm_m',
+        //     'g_alm_m',
+        //     'h_alm_m',
+        //     'i_alm_m',
+        //     'j_alm_m',
+        //     'k_alm_m',
+        //     'l_alm_m',
+        //     // 'ref_alm_l',
+        //     'total_alm_m',
+        //     'a_alm_l',
+        //     'b_alm_l',
+        //     'c_alm_l',
+        //     'd_alm_l',
+        //     'e_alm_l',
+        //     'f_alm_l',
+        //     'g_alm_l',
+        //     'h_alm_l',
+        //     'i_alm_l',
+        //     'j_alm_l',
+        //     'k_alm_l',
+        //     'l_alm_l',
+        //     'total_alm_l',
+        //     'a_sub_alm',
+        //     'b_sub_alm',
+        //     'c_sub_alm',
+        //     'd_sub_alm',
+        //     'e_sub_alm',
+        //     'f_sub_alm',
+        //     'g_sub_alm',
+        //     'h_sub_alm',
+        //     'i_sub_alm',
+        //     'j_sub_alm',
+        //     'k_sub_alm',
+        //     'l_sub_alm',
+        //     'total_sub_alm',
+        //     'a_total',
+        //     'b_total',
+        //     'c_total',
+        //     'd_total',
+        //     'e_total',
+        //     'f_total',
+        //     'g_total',
+        //     'h_total',
+        //     'i_total',
+        //     'j_total',
+        //     'k_total',
+        //     'l_total',
+        //     'total_reporte',
+        //     'orden_m',
+        //     'orden_l'
+        // ));
         // return $pdf->download('ReporteExistencias.pdf');
         return View('sistema.existencia.reporteDetallado', compact(
             'tallasCorte',
@@ -997,7 +1131,12 @@ class ExistenciaController extends Controller
             'j_total',
             'k_total',
             'l_total',
-            'total_reporte'
+            'total_reporte',
+            'orden_m',
+            'orden_l',
+            'facturado_m',
+            'facturado_l'
+
         ));
     }
 }

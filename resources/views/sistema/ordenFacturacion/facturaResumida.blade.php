@@ -264,6 +264,7 @@
             list-style-type: none;
             text-align: center;
             /* padding-bottom: 350px; */
+            /* border-bottom: 1px solid black; */
         }
 
         .tabla-principal li,
@@ -493,11 +494,14 @@
         .tabla-totales th {
             font-weight: normal;
             font-size: 14px;
+            text-align: right;
+            padding-left: 0px;
         }
 
         .tabla-totales td {
             font-weight: normal;
             font-size: 12px;
+            text-align: left;
         }
 
         .tabla-totales th .total {
@@ -656,7 +660,7 @@
                 <thead class="cod">
                     <tr>
                         <th>Cliente codigo</th>
-                        <td>Cod</td>
+                        <td>{{$orden_pedido->cliente->codigo_cliente}}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -765,7 +769,7 @@
                         {{$orden->no_orden_pedido}}
                         @endforeach</td>
                     <td>{{$orden_pedido->cliente->condiciones_credito}}</td>
-                    <td class="vencimiento">18/1/20</td>
+                    <td class="vencimiento">{{$factura->fecha_vencimiento}}</td>
                     <td>{{$orden_pedido->vendedor->nombre}} {{$orden_pedido->vendedor->apellido}}</td>
                     @if ($factura->comprobante_fiscal == 1)
                     <td>31/12/2019</td>
@@ -830,9 +834,17 @@
                     </td>
                     <td class="total">
                         @foreach ($detalles_totales as $total)
-                        <li>{{$total}} RD$</li>
+                        <li>{{$total}}</li>
                         @endforeach
                     </td>
+                </tr>
+                <tr style="">
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                    <td class="unit"></td>
                 </tr>
             </tbody>
             {{-- <tfoot>
@@ -876,26 +888,31 @@
             </table>
 
             <table class="tabla-totales">
+                <tr>
+                    <th>SUBTOTAL:</th>
+                    <td>RD$ {{number_format($subtotal)}}</td>
+
+                </tr>
                 @if ($factura->descuento <> 0)
                     <tr>
                         <th>DESCUENTO: {{$factura->descuento}}%</th>
-                        <td>{{number_format($descuento)}} RD$</td>
+                        <td>RD$ {{number_format($descuento)}}</td>
 
                     </tr>
                     @endif
 
                     <tr>
                         <th>SUBTOTAL:</th>
-                        <td>{{number_format($subtotal_real)}} RD$</td>
+                        <td>RD$ {{number_format($subtotal_real)}}</td>
 
                     </tr>
                     <tr>
                         <th>IMPUESTO: {{$factura->itbis}}%</th>
-                        <td>{{number_format($impuesto)}} RD$</td>
+                        <td>RD$ {{number_format($impuesto)}}</td>
                     </tr>
                     <tr class="total">
                         <th style="font-weight:bold;">TOTAL FINAL:</th>
-                        <td style="font-weight:bold;">{{number_format($total_final)}} RD$</td>
+                        <td style="font-weight:bold;">RD$ {{number_format($total_final)}}</td>
                     </tr>
             </table>
         </div>
@@ -928,7 +945,7 @@
             @endif
 
             @if ( $factura->descuento == 0)
-            <div class="firmas" style="padding-top: 200px ">
+            <div class="firmas" style="padding-top: 200px; ">
                 <div class="firma_enviado">Preparado por:</div>
                 <div class="firma_despachado">Despachado por:</div>
                 <div class="firma_recibido">Recibido por:</div>

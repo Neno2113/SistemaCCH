@@ -14,6 +14,7 @@ class SupplierController extends Controller
         $validar = $request->validate([
             'nombre' => 'required|unique:suplidor',
             'rnc' => 'required',
+            'codigo_suplidor' => 'required',
             'calle' => 'required',
             'provincia' => 'required',
             'contacto_suplidor' => 'required',
@@ -32,6 +33,7 @@ class SupplierController extends Controller
             ];
         } else {
             $nombre = $request->input('nombre', true);
+            $codigo_suplidor = $request->input('codigo_suplidor', true);
             $calle = $request->input('calle', true);
             $sector = $request->input('sector', true);
             $provincia = $request->input('provincia', true);
@@ -49,6 +51,7 @@ class SupplierController extends Controller
 
             $suplidor = new Supplier();
             $suplidor->nombre = $nombre;
+            $suplidor->codigo_suplidor = $codigo_suplidor;
             $suplidor->rnc = trim($rnc, "_");
             $suplidor->calle = $calle;
             $suplidor->sector = $sector;
@@ -121,6 +124,7 @@ class SupplierController extends Controller
         } else {
             $id = $request->input('id', true);
             $nombre = $request->input('nombre', true);
+            $codigo_suplidor = $request->input('codigo_suplidor', true);
             $rnc = $request->input('rnc');
             $calle = $request->input('calle', true);
             $sector = $request->input('sector', true);
@@ -139,6 +143,7 @@ class SupplierController extends Controller
             $supplier = Supplier::find($id);
 
             $supplier->nombre = $nombre;
+            $supplier->codigo_suplidor = $codigo_suplidor;
             $supplier->calle = $calle;
             $supplier->sector = $sector;
             $supplier->provincia = $provincia;

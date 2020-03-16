@@ -121,6 +121,7 @@ $(document).ready(function() {
             itbis: $("#itbis").val(),
             descuento: discount,
             fecha: $("#fecha").val(),
+            fecha_vencimiento: $("#fecha_vencimiento").val(),
             comprobante_fiscal: comprobante,
             numero_comprobante: $("#numero_comprobante").val(),
             nota: $("#nota").val()
