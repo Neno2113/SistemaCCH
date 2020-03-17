@@ -633,11 +633,14 @@
         .tabla-tallas tbody tr:last-child td {
             /* padding-bottom: 31px; */
         }
+        /* footer {
+            page-break-after: always;
+        } */
     </style>
 </head>
 
 <body >
-    <header class="clearfix">
+    {{-- <header class="clearfix">
         <div id="logo">
             <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
         </div>
@@ -645,11 +648,11 @@
             <h1>CCH</h1>
         </div> --}}
 
-        </div>
-    </header>
+        {{-- </div>
+    </header> --}}
     <main>
         <h3>Reporte de existencias</h3>
-        <p style="width:20%;" >Al dia <span style="font-weight:bolder; ">{{date('jS')}}</span> del mes <span style="font-weight:bolder; ">{{date('F')}}</span> del año <span style="font-weight:bolder; ">{{date('Y')}}</span></p>
+        <p style="width:40%;" >Al dia <span style="font-weight:bolder; ">{{date('jS')}}</span> del mes <span style="font-weight:bolder; ">{{date('F')}}</span> del año <span style="font-weight:bolder; ">{{date('Y')}}</span></p>
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
             <thead class="tabla-tallas">
                 <tr>
@@ -752,7 +755,7 @@
 
             </thead> --}}
             <tbody>
-                <tr style="font-weight:800;">
+                <tr style="font-weight:800; font-size:12px;">
                     <td>Produccion</td>
                     <td></td>
                     <td></td>
@@ -956,6 +959,126 @@
                     <td></td>
                 </tr>
                 <tr style="font-weight:800;">
+                    <td>
+
+                    </td>
+                    <td>
+                        Genius
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {{-- ForEach esta fila  --}}
+                @foreach ($tallasCorteGenius as $talla)
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        {{$talla->producto->referencia_producto}}
+                    </td>
+                    <td>{{$talla->a}}</td>
+                    <td>{{$talla->b}}</td>
+                    <td>{{$talla->c}}</td>
+                    <td>{{$talla->d}}</td>
+                    <td>{{$talla->e}}</td>
+                    <td>{{$talla->f}}</td>
+                    <td>{{$talla->g}}</td>
+                    <td>{{$talla->h}}</td>
+                    <td>{{$talla->i}}</td>
+                    <td>{{$talla->j}}</td>
+                    <td>{{$talla->k}}</td>
+                    <td>{{$talla->l}}</td>
+                    <td></td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {{-- Aqui va el Subtotal --}}
+                <tr style="font-weight:800;">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        SUBTOTAL
+                    </td>
+                    <td>{{$a_sub_gen}}</td>
+                    <td>{{$b_sub_gen}}</td>
+                    <td>{{$c_sub_gen}}</td>
+                    <td>{{$d_sub_gen}}</td>
+                    <td>{{$e_sub_gen}}</td>
+                    <td>{{$f_sub_gen}}</td>
+                    <td>{{$g_sub_gen}}</td>
+                    <td>{{$h_sub_gen}}</td>
+                    <td>{{$i_sub_gen}}</td>
+                    <td>{{$j_sub_gen}}</td>
+                    <td>{{$k_sub_gen}}</td>
+                    <td>{{$l_sub_gen}}</td>
+                    <td>{{$total_sub_gen}}</td>
+                </tr>
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="font-weight:800; font-size:12px;">
                     <td></td>
                     <td></td>
                     <td>
@@ -975,7 +1098,7 @@
                     <td>{{$l_sub_prod}}</td>
                     <td>{{$total_sub_prod}}</td>
                 </tr>
-                <tr style="font-weight:800;">
+                <tr style="font-weight:800; font-size:12px;">
                     <td>Lavanderia</td>
                     <td></td>
                     <td></td>
@@ -1142,10 +1265,149 @@
                     <td></td>
                     <td></td>
                 </tr>
-
-
-                {{-- Aqui va el Subtotal --}}
                 <tr style="font-weight:800;">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        SUBTOTAL
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$sub_lav_l}}</td>
+                </tr>
+                <tr style="font-weight:800;">
+                    <td>
+
+                    </td>
+                    <td>
+                        Genius
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+                @foreach ($lavanderia_genius as $lav)
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        {{$lav->producto->referencia_producto}}
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$lav->total_enviado}}</td>
+
+                </tr>
+                @endforeach
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                  {{-- Aqui va el Subtotal --}}
+                  <tr style="font-weight:800;">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        SUBTOTAL
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$sub_lav_g}}</td>
+                </tr>
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 {{-- Aqui va el Subtotal --}}
+                <tr style="font-weight:800; font-size:12px;">
                     <td></td>
                     <td></td>
                     <td>
@@ -1165,8 +1427,8 @@
                     <td></td>
                     <td>{{$sub_total_lav}}</td>
                 </tr>
-                <tr style="font-weight:800;">
-                    <td>Recepcion</td>
+                <tr style="font-weight:800; font-size:12px;">
+                    <td>Terminacion</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1349,7 +1611,126 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{$sub_total_rec}}</td>
+                    <td>{{$sub_rec_l}}</td>
+                </tr>
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="font-weight:800;">
+                    <td>
+
+                    </td>
+                    <td>
+                        Genius
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                @foreach ($recepcion_genius as $rec)
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        {{$rec->producto->referencia_producto}}
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$rec->total_recibido}}</td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                  {{-- Aqui va el Subtotal --}}
+                  <tr style="font-weight:800;">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        SUBTOTAL
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$sub_rec_g}}</td>
+                </tr>
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td style="color:#fff;">test</td>
@@ -1371,7 +1752,7 @@
                 </tr>
 
                 {{-- Aqui va el Subtotal --}}
-                <tr style="font-weight:800;">
+                <tr style="font-weight:800; font-size: 12px;">
                     <td></td>
                     <td></td>
                     <td>
@@ -1391,7 +1772,7 @@
                     <td></td>
                     <td>{{$sub_total_rec}}</td>
                 </tr>
-                <tr style="font-weight:800;">
+                <tr style="font-weight:800; font-size:12px;">
                     <td>Almacen</td>
                     <td></td>
                     <td></td>
@@ -1433,52 +1814,34 @@
                 </tr>
 
                 @foreach ($almacen_mythos as $alm_m)
-                {{-- @foreach ($facturado_m as $fac) --}}
+                @foreach ($facturado_m as $fac)
+                {{-- @foreach ($orden_m as $orden) --}}
+                @if ($alm_m->producto_id == $fac->producto_id )
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
                         {{$alm_m->referencia_producto}}
                     </td>
-                    <td>{{$alm_m->a}}</td>
-                    <td>{{$alm_m->b}}</td>
-                    <td>{{$alm_m->c}}</td>
-                    <td>{{$alm_m->d}}</td>
-                    <td>{{$alm_m->e}}</td>
-                    <td>{{$alm_m->f}}</td>
-                    <td>{{$alm_m->g}}</td>
-                    <td>{{$alm_m->h}}</td>
-                    <td>{{$alm_m->i}}</td>
-                    <td>{{$alm_m->j}}</td>
-                    <td>{{$alm_m->k}}</td>
-                    <td>{{$alm_m->l}}</td>
-                    <td>{{$alm_m->total}}</td>
+                    <td>{{$alm_m->a - $fac->a}}</td>
+                    <td>{{$alm_m->b - $fac->b}}</td>
+                    <td>{{$alm_m->c - $fac->c}}</td>
+                    <td>{{$alm_m->d - $fac->d}}</td>
+                    <td>{{$alm_m->e - $fac->e}}</td>
+                    <td>{{$alm_m->f - $fac->f}}</td>
+                    <td>{{$alm_m->g - $fac->g}}</td>
+                    <td>{{$alm_m->h - $fac->h}}</td>
+                    <td>{{$alm_m->i - $fac->i}}</td>
+                    <td>{{$alm_m->j - $fac->j}}</td>
+                    <td>{{$alm_m->k - $fac->k}}</td>
+                    <td>{{$alm_m->l - $fac->l}}</td>
+                    <td>{{$alm_m->total - $fac->total}}</td>
                 </tr>
+                @endif
                 {{-- @endforeach --}}
                 @endforeach
-                {{-- @foreach ($orden_m as $orden)
+                @endforeach
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        {{$alm_m->referencia_producto}}
-                    </td>
-                    <td>{{$orden_m->a}}</td>
-                    <td>{{$orden_m->b}}</td>
-                    <td>{{$orden_m->c}}</td>
-                    <td>{{$orden_m->d}}</td>
-                    <td>{{$orden_m->e}}</td>
-                    <td>{{$orden_m->f}}</td>
-                    <td>{{$orden_m->g}}</td>
-                    <td>{{$orden_m->h}}</td>
-                    <td>{{$orden_m->i}}</td>
-                    <td>{{$orden_m->j}}</td>
-                    <td>{{$orden_m->k}}</td>
-                    <td>{{$orden_m->l}}</td>
-                    <td>{{$orden_m->total}}</td>
-                </tr>
-                @endforeach --}}
                 <tr>
                     <td style="color:#fff;">test</td>
                     <td></td>
@@ -1542,26 +1905,123 @@
                     <td></td>
                 </tr>
                 @foreach ($almacen_lavish as $alm_l)
+                @foreach ($facturado_l as $facturado)
+                @if ($alm_l->producto_id == $facturado->producto_id && $alm_l->producto_id == $facturado->referencia_father || $alm_l->producto_id == $facturado->producto_id )
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
                         {{$alm_l->referencia_producto}}
                     </td>
-                    <td>{{$alm_l->a}}</td>
-                    <td>{{$alm_l->b}}</td>
-                    <td>{{$alm_l->c}}</td>
-                    <td>{{$alm_l->d}}</td>
-                    <td>{{$alm_l->e}}</td>
-                    <td>{{$alm_l->f}}</td>
-                    <td>{{$alm_l->g}}</td>
-                    <td>{{$alm_l->h}}</td>
-                    <td>{{$alm_l->i}}</td>
-                    <td>{{$alm_l->j}}</td>
-                    <td>{{$alm_l->k}}</td>
-                    <td>{{$alm_l->l}}</td>
-                    <td>{{$alm_l->total}}</td>
+
+                    <td>{{$alm_l->a - $facturado->a}}</td>
+
+
+                    <td>{{$alm_l->b - $facturado->b}}</td>
+                    <td>{{$alm_l->c - $facturado->c}}</td>
+                    <td>{{$alm_l->d - $facturado->d}}</td>
+                    <td>{{$alm_l->e - $facturado->e}}</td>
+                    <td>{{$alm_l->f - $facturado->f}}</td>
+                    <td>{{$alm_l->g - $facturado->g}}</td>
+                    <td>{{$alm_l->h - $facturado->h}}</td>
+                    <td>{{$alm_l->i - $facturado->i}}</td>
+                    <td>{{$alm_l->j - $facturado->j}}</td>
+                    <td>{{$alm_l->k - $facturado->k}}</td>
+                    <td>{{$alm_l->l - $facturado->l}}</td>
+                    <td>{{$alm_l->total - $facturado->total}}</td>
                 </tr>
+                @endif
+                @endforeach
+                @endforeach
+                <tr>
+                    <td style="color:#fff;">test</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                    {{-- Aqui va el Subtotal --}}
+                    <tr style="font-weight:800;">
+                        <td></td>
+                        <td></td>
+                        <td>
+                            SUBTOTAL
+                        </td>
+                        <td>{{$a_alm_l}}</td>
+                        <td>{{$b_alm_l}}</td>
+                        <td>{{$c_alm_l}}</td>
+                        <td>{{$d_alm_l}}</td>
+                        <td>{{$e_alm_l}}</td>
+                        <td>{{$f_alm_l}}</td>
+                        <td>{{$g_alm_l}}</td>
+                        <td>{{$h_alm_l}}</td>
+                        <td>{{$i_alm_l}}</td>
+                        <td>{{$j_alm_l}}</td>
+                        <td>{{$k_alm_l}}</td>
+                        <td>{{$l_alm_l}}</td>
+                        <td>{{$total_alm_l}}</td>
+                    </tr>
+                <tr style="font-weight:800;">
+                    <td>
+
+                    </td>
+                    <td>
+                        Genius
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                @foreach ($almacen_genius as $alm_l)
+                @foreach ($facturado_g as $facturado)
+                @if ($alm_l->producto_id == $facturado->producto_id && $alm_l->producto_id == $facturado->referencia_father || $alm_l->producto_id == $facturado->producto_id )
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        {{$alm_l->referencia_producto}}
+                    </td>
+
+                    <td>{{$alm_l->a - $facturado->a}}</td>
+
+
+                    <td>{{$alm_l->b - $facturado->b}}</td>
+                    <td>{{$alm_l->c - $facturado->c}}</td>
+                    <td>{{$alm_l->d - $facturado->d}}</td>
+                    <td>{{$alm_l->e - $facturado->e}}</td>
+                    <td>{{$alm_l->f - $facturado->f}}</td>
+                    <td>{{$alm_l->g - $facturado->g}}</td>
+                    <td>{{$alm_l->h - $facturado->h}}</td>
+                    <td>{{$alm_l->i - $facturado->i}}</td>
+                    <td>{{$alm_l->j - $facturado->j}}</td>
+                    <td>{{$alm_l->k - $facturado->k}}</td>
+                    <td>{{$alm_l->l - $facturado->l}}</td>
+                    <td>{{$alm_l->total - $facturado->total}}</td>
+                </tr>
+                @endif
+                @endforeach
                 @endforeach
                 <tr>
                     <td style="color:#fff;">test</td>
@@ -1582,44 +2042,27 @@
                     <td></td>
                 </tr>
 
-                {{-- Aqui va el Subtotal --}}
-                <tr style="font-weight:800;">
+
+                 {{-- Aqui va el Subtotal --}}
+                 <tr style="font-weight:800;">
                     <td></td>
                     <td></td>
                     <td>
                         SUBTOTAL
                     </td>
-                    <td>{{$a_alm_l}}</td>
-                    <td>{{$b_alm_l}}</td>
-                    <td>{{$c_alm_l}}</td>
-                    <td>{{$d_alm_l}}</td>
-                    <td>{{$e_alm_l}}</td>
-                    <td>{{$f_alm_l}}</td>
-                    <td>{{$g_alm_l}}</td>
-                    <td>{{$h_alm_l}}</td>
-                    <td>{{$i_alm_l}}</td>
-                    <td>{{$j_alm_l}}</td>
-                    <td>{{$k_alm_l}}</td>
-                    <td>{{$l_alm_l}}</td>
-                    <td>{{$total_alm_l}}</td>
-                </tr>
-                <tr>
-                    <td style="color:#fff;">test</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$a_alm_g}}</td>
+                    <td>{{$b_alm_g}}</td>
+                    <td>{{$c_alm_g}}</td>
+                    <td>{{$d_alm_g}}</td>
+                    <td>{{$e_alm_g}}</td>
+                    <td>{{$f_alm_g}}</td>
+                    <td>{{$g_alm_g}}</td>
+                    <td>{{$h_alm_g}}</td>
+                    <td>{{$i_alm_g}}</td>
+                    <td>{{$j_alm_g}}</td>
+                    <td>{{$k_alm_g}}</td>
+                    <td>{{$l_alm_g}}</td>
+                    <td>{{$total_alm_g}}</td>
                 </tr>
                 <tr>
                     <td style="color:#fff;">test</td>
@@ -1641,7 +2084,7 @@
                 </tr>
 
                 {{-- Aqui va el Subtotal --}}
-                <tr style="font-weight:800;">
+                <tr style="font-weight:800; font-size: 12px;">
                     <td></td>
                     <td></td>
                     <td>
@@ -1666,19 +2109,19 @@
                     <td>GRAN TOTAL</td>
                     <td></td>
                     <td></td>
-                    <td>{{$a_total}}</td>
-                    <td>{{$b_total}}</td>
-                    <td>{{$c_total}}</td>
-                    <td>{{$d_total}}</td>
-                    <td>{{$e_total}}</td>
-                    <td>{{$f_total}}</td>
-                    <td>{{$g_total}}</td>
-                    <td>{{$h_total}}</td>
-                    <td>{{$i_total}}</td>
-                    <td>{{$j_total}}</td>
-                    <td>{{$k_total}}</td>
-                    <td>{{$l_total}}</td>
-                    <td>{{$total_reporte}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-size: 12px;">{{$total_reporte}}</td>
                 </tr>
             </tbody>
         </table>

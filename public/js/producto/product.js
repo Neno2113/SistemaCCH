@@ -132,6 +132,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         let sec_manual = $("#sec_manual").val();
+        // let year =
         let sec_manual_2 = Number(sec_manual) + 1;
 
         var i = Number(sec_manual) / 100;
@@ -144,7 +145,7 @@ $(document).ready(function() {
         var genero = $("#genero").val();
         var tipo_producto = $("#tipo_producto").val();
         var categoria = $("#categoria").val();
-        var year = new Date().getFullYear().toString().substr(-2);
+        var year = $("#year").val().toString().substr(+2);
         var referencia = marca + genero + tipo_producto + categoria + "-" + year + i;
         $("#btn-sku").attr("disabled", false);
 
@@ -247,7 +248,7 @@ $(document).ready(function() {
             precio_lista: $("#precio_lista").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
-            marca: $("#marca").val(),
+            marca: $("#marca option:selected").text(),
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),
@@ -263,6 +264,7 @@ $(document).ready(function() {
             min: min_global,
             max: max_global
         };
+        // console.log(JSON.stringify(product));
 
         $.ajax({
             url: "product",

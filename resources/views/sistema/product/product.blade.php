@@ -27,16 +27,16 @@
             <div class="card-body">
                 <h5>Formulario de creacion de referencia de producto</h5>
                 <hr>
-                <form action="" id="formulario" class="form-group carta panel-body">
+                <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
                         <input type="hidden" name="id" id="id_producto" value="">
                         <div class="col-md-3">
                             <select name="marca" id="marca" class="form-control">
                                 <option value="" selected disabled>Marca</option>
-                                <option value="L">Lavish</option>
+                                <option value="L">Genius</option>
                                 <option value="M">Mythos</option>
-                                <option value="P">Lavish Premium</option>
+                                <option value="P">Lavish</option>
                             </select>
                             <label for="nombre_cliente" class="label"></label>
                         </div>
@@ -82,6 +82,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2 mt-3">
+                            <input type="text" min="1900" max="2099" step="1" value="2019" id="year"
+                                class="form-control" placeholder="Año" onfocus="(this.type='number')">
+                            <label for="" class="d-flex justify-content-center pers"></label>
+                        </div>
+                        <div class="col-md-2 mt-3">
 
                             <input type="number" min="1" max="999" step="1" id="sec_manual" placeholder="Secuencia"
                                 class="form-control">
@@ -114,28 +119,28 @@
                     <br>
                     <div class="row">
                         <div class="col-md-4 mt-2">
-
-                            <div class="input-group">
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div>
+                                </div> --}}
                                 <input type="text" placeholder="Precio lista" name="precio_lista" id="precio_lista"
                                     class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                            </div>
-                            <label for="" class="label"></label>
+                                    <label for="" class="label"></label>
+                                {{-- </div> --}}
+
                         </div>
                         <div class="col-md-4 mt-2">
-
-                            <div class="input-group">
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div>
+                                </div> --}}
                                 <input type="text" placeholder="Precio publico" name="precio_venta_publico"
                                     id="precio_venta_publico" class="form-control text-center"
                                     data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                    <label for="" class="label"></label>
 
-                            </div>
-                            <label for="" class="label"></label>
+                            {{-- </div> --}}
+
                         </div>
                         {{-- <div class="col-md-4 mt-4">
                             <label for=""></label>

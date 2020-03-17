@@ -272,8 +272,16 @@ class ordenEmpaqueController extends Controller
         $orden = ordenPedido::find($orden_id);
         $orden->detallada = 1;
         $orden->save();
-
+        $producto_curva = $ordenDetalle->producto_id;
         $producto_id = $ordenDetalle->producto_id;
+
+        //producto
+        $producto = Product::find($producto_id);
+        $ref_f = $producto->referencia_father;
+
+        if(!empty($ref_f)){
+            $producto_id = $ref_f;
+        }
 
         //perdidas
         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
@@ -335,8 +343,6 @@ class ordenEmpaqueController extends Controller
         $cantidad = $ordenDetalle->cant_red;
 
 
-        //producto
-        $producto = Product::find($producto_id);
 
         $tallasAlmacenCurva = AlmacenDetalle::where('producto_id', $producto_id)->select('id')->get();
         $tallasCurva = AlmacenDetalle::where('producto_id', $producto_id)->get();
@@ -382,7 +388,8 @@ class ordenEmpaqueController extends Controller
                 $j_curva + $k_curva + $l_curva;
         }
 
-        $curva = CurvaProducto::where('producto_id', $producto_id)->latest()->first();
+
+        $curva = CurvaProducto::where('producto_id', $producto_curva)->latest()->first();
 
         //porcentaje curva general
         // $tallas = Talla::
@@ -434,6 +441,8 @@ class ordenEmpaqueController extends Controller
 
         $total_alm = $a_alm + $b_alm + $c_alm + $d_alm + $e_alm + $f_alm + $g_alm + $h_alm + $i_alm + $j_alm + $k_alm + $l_alm;
 
+        // echo $e_alm;
+        // die();
         //porcentaje alm
         $a_perc = (empty($a)) ? 0 : ($a_alm / $total_alm) * 100;
         $b_perc = (empty($b)) ? 0 : ($b_alm / $total_alm) * 100;
@@ -450,6 +459,9 @@ class ordenEmpaqueController extends Controller
 
         $total_perc = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
         $i_perc + $j_perc + $k_perc + $l_perc;
+
+        // echo $e_alm;
+        // die();
 
         //segundo calculo
         $a_seg = ($a_alm <= 0 || empty($a)) ? 0.1 : ($a_perc - $a) / $a;

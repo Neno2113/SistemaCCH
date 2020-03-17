@@ -677,7 +677,7 @@
                     {{-- <th>Ver</th> --}}
                     <th>Actions</th>
                     <th>#</th>
-                    <th>User</th>
+                    <th>Vendedor</th>
                     <th>Cliente</th>
                     <th>Sucursal</th>
                     <th>Fecha</th>
@@ -693,7 +693,7 @@
                     {{-- <th>Ver</th> --}}
                     <th>Actions</th>
                     <th>#</th>
-                    <th>User</th>
+                    <th>Vendedor</th>
                     <th>Cliente</th>
                     <th>Sucursal</th>
                     <th>F. Gen</th>

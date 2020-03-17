@@ -749,6 +749,14 @@ class ordenPedidoController extends Controller
         $orden_detalle->orden_redistribuida = $orden_redistribuida;
         $orden_detalle->orden_empacada = 0;
 
+        $producto = Product::find($producto_id);
+        $ref_f = $producto->referencia_father;
+        if(empty($ref_f)){
+            $orden_detalle->referencia_father = $producto_id;
+        }else{
+            $orden_detalle->referencia_father = $ref_f;
+        }
+
         $orden_detalle->save();
 
         $data = [
@@ -943,10 +951,11 @@ class ordenPedidoController extends Controller
     public function ordenes()
     {
         $ordenes = DB::table('orden_pedido')->join('users', 'orden_pedido.user_id', 'users.id')
+            ->join('empleado', 'orden_pedido.vendedor_id', 'empleado.id')
             ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
             ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
             ->select([
-                'orden_pedido.id',
+                'orden_pedido.id', 'empleado.nombre',
                 'orden_pedido.no_orden_pedido', 'orden_pedido.fecha', 'orden_pedido.fecha_entrega',
                 'orden_pedido.notas', 'orden_pedido.generado_internamente', 'orden_pedido.detallada',
                 'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal', 'orden_pedido.corte_en_proceso'

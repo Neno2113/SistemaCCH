@@ -404,7 +404,7 @@ $(document).ready(function() {
         let porcentaje = $("#porcentaje_mat_1").val();
         $("#porcentaje_mat_total").val(porcentaje+"%");
         let total = porcentaje;
-        if(total == 99.99){
+        if(total == 100){
             $("#btn-guardar").attr("disabled", false);
             $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
         }else{

@@ -8,7 +8,7 @@ use App\ordenEmpaque;
 use App\ordenPedido;
 use App\ordenEmpaqueDetalle;
 use App\ordenFacturacionDetalle;
-
+use App\Product;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
@@ -101,6 +101,7 @@ class OrdenFacturacionController extends Controller
             $producto_id = $empaque_detalle->producto_id;
             $orden_pedido_id = $orden_pedido->id;
 
+
             $factura_detalle = new ordenFacturacionDetalle();
             $factura_detalle->a = $a;
             $factura_detalle->b = $b;
@@ -118,11 +119,21 @@ class OrdenFacturacionController extends Controller
             $factura_detalle->precio = $precio;
             $factura_detalle->cant_bultos = $bultos;
             $factura_detalle->producto_id = $producto_id;
+
             $factura_detalle->user_id = \auth()->user()->id;
             $factura_detalle->orden_facturacion_id = $orden_facturacion_id;
             $factura_detalle->fecha = date('Y/m/d h:i:s');
             $factura_detalle->orden_pedido_id = $orden_pedido_id;
             $factura_detalle->nota_credito = 0;
+
+            $producto = Product::find($producto_id);
+            $ref_f = $producto->referencia_father;
+            if(empty($ref_f)){
+                $factura_detalle->referencia_father = $producto_id;
+            }else{
+                $factura_detalle->referencia_father = $ref_f;
+            }
+
 
             $factura_detalle->save();
 

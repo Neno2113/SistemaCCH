@@ -652,7 +652,7 @@
 				<thead class="cod">
 					<tr>
 						<th>Cliente codigo</th>
-						<td>Cod</td>
+						<td>{{$orden->cliente->codigo_cliente}}</td>
 					</tr>
 				</thead>
 				<tbody>
