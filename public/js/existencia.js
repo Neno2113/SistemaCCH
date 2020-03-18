@@ -568,6 +568,10 @@ $(document).ready(function() {
     });
 
 
+
+
+
+
     init();
 });
 
@@ -628,3 +632,8 @@ function eliminar(id_almacen){
         }
     })
 }
+
+// function test(){
+//     alert("test");
+//     console.log("Test");
+// }

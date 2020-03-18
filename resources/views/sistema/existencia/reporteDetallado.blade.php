@@ -652,7 +652,7 @@
     </header> --}}
     <main>
         <h3>Reporte de existencias</h3>
-        <p style="width:40%;" >Al dia <span style="font-weight:bolder; ">{{date('jS')}}</span> del mes <span style="font-weight:bolder; ">{{date('F')}}</span> del año <span style="font-weight:bolder; ">{{date('Y')}}</span></p>
+        <p style="width:40%;" >Desde <span style="font-weight:bolder; ">{{date("d/m/20y", strtotime($desde))}}</span> hasta <span style="font-weight:bolder; ">{{date("d/m/20y", strtotime($hasta))}}</span>
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
             <thead class="tabla-tallas">
                 <tr>
@@ -1958,19 +1958,19 @@
                         <td>
                             SUBTOTAL
                         </td>
-                        <td>{{$a_alm_l}}</td>
-                        <td>{{$b_alm_l}}</td>
-                        <td>{{$c_alm_l}}</td>
-                        <td>{{$d_alm_l}}</td>
-                        <td>{{$e_alm_l}}</td>
-                        <td>{{$f_alm_l}}</td>
-                        <td>{{$g_alm_l}}</td>
-                        <td>{{$h_alm_l}}</td>
-                        <td>{{$i_alm_l}}</td>
-                        <td>{{$j_alm_l}}</td>
-                        <td>{{$k_alm_l}}</td>
-                        <td>{{$l_alm_l}}</td>
-                        <td>{{$total_alm_l}}</td>
+                        <td>{{($a_alm_l <= 0) ? 0 : $a_alm_l}}</td>
+                        <td>{{($b_alm_l <= 0) ? 0 : $b_alm_l}}</td>
+                        <td>{{($c_alm_l <= 0) ? 0 : $c_alm_l}}</td>
+                        <td>{{($d_alm_l <= 0) ? 0 : $d_alm_l}}</td>
+                        <td>{{($e_alm_l <= 0) ? 0 : $e_alm_l}}</td>
+                        <td>{{($f_alm_l <= 0) ? 0 : $f_alm_l}}</td>
+                        <td>{{($g_alm_l <= 0) ? 0 : $g_alm_l}}</td>
+                        <td>{{($h_alm_l <= 0) ? 0 : $h_alm_l}}</td>
+                        <td>{{($i_alm_l <= 0) ? 0 : $i_alm_l}}</td>
+                        <td>{{($j_alm_l <= 0) ? 0 : $j_alm_l}}</td>
+                        <td>{{($k_alm_l <= 0) ? 0 : $k_alm_l}}</td>
+                        <td>{{($l_alm_l <= 0) ? 0 : $l_alm_l}}</td>
+                        <td>{{($total_alm_l <= 0) ? 0 : $total_alm_l}}</td>
                     </tr>
                 <tr style="font-weight:800;">
                     <td>
@@ -2090,19 +2090,19 @@
                     <td>
                         SUBTOTAL
                     </td>
-                    <td>{{$a_sub_alm}}</td>
-                    <td>{{$b_sub_alm}}</td>
-                    <td>{{$c_sub_alm}}</td>
-                    <td>{{$d_sub_alm}}</td>
-                    <td>{{$e_sub_alm}}</td>
-                    <td>{{$f_sub_alm}}</td>
-                    <td>{{$g_sub_alm}}</td>
-                    <td>{{$h_sub_alm}}</td>
-                    <td>{{$i_sub_alm}}</td>
-                    <td>{{$j_sub_alm}}</td>
-                    <td>{{$k_sub_alm}}</td>
-                    <td>{{$l_sub_alm}}</td>
-                    <td>{{$total_sub_alm}}</td>
+                    <td>{{($a_sub_alm <= 0) ? 0 : $a_sub_alm}}</td>
+                    <td>{{($b_sub_alm <= 0) ? 0 : $b_sub_alm}}</td>
+                    <td>{{($c_sub_alm <= 0) ? 0 : $c_sub_alm}}</td>
+                    <td>{{($d_sub_alm <= 0) ? 0 : $d_sub_alm}}</td>
+                    <td>{{($e_sub_alm <= 0) ? 0 : $e_sub_alm}}</td>
+                    <td>{{($f_sub_alm <= 0) ? 0 : $f_sub_alm}}</td>
+                    <td>{{($g_sub_alm <= 0) ? 0 : $g_sub_alm}}</td>
+                    <td>{{($h_sub_alm <= 0) ? 0 : $h_sub_alm}}</td>
+                    <td>{{($i_sub_alm <= 0) ? 0 : $i_sub_alm}}</td>
+                    <td>{{($j_sub_alm <= 0) ? 0 : $j_sub_alm}}</td>
+                    <td>{{($k_sub_alm <= 0) ? 0 : $k_sub_alm}}</td>
+                    <td>{{($l_sub_alm <= 0) ? 0 : $l_sub_alm}}</td>
+                    <td>{{($total_sub_alm <= 0) ? 0 : $total_sub_alm}}</td>
                 </tr>
                 {{-- Aqui va el Grantotal --}}
                 <tr style="font-weight:800; line-height: 45px;">

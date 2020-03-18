@@ -48,27 +48,28 @@
     </div>
 </div>
 
-<div class="container" id="listadoUsers">
-    <table id="compositions" class="table table-hover table-bordered datatables">
-        <thead>
-            <tr>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4> Listado de composiciones</h4>
+    </div>
+    <div class="card-body">
+        <table id="compositions" class="table table-hover table-bordered datatables">
+            <thead>
+                <tr>
+                    <th>Opciones</th>
+                    <th>Nombre composicion</th>
 
-                <th>Opciones</th>
-
-                <th>Nombre composicion</th>
-
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-
-                <th>Opciones</th>
-
-                <th>Nombre composicion</th>
-            </tr>
-        </tfoot>
-    </table>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th>Opciones</th>
+                    <th>Nombre composicion</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 
 </div>
 

@@ -619,8 +619,11 @@ class ExistenciaController extends Controller
             ->make(true);
     }
 
-    public function imprimirReporte()
+    public function imprimirReporte($desde, $hasta)
     {
+        // echo $desde ."<br>";
+        // echo $hasta ."<br>";
+
         //producto Produccion Mythos
         $producction_mythos = Product::where('marca', 'LIKE', 'Mythos')->select('id')->get();
 
@@ -631,6 +634,7 @@ class ExistenciaController extends Controller
         }
 
         $corte_pro_myhtos = Corte::where('fase', 'LIKE', 'produccion')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_mythos)
             ->get();
 
@@ -639,7 +643,8 @@ class ExistenciaController extends Controller
         for ($i = 0; $i < count($corte_pro_myhtos); $i++) {
             array_push($cortes_pro_mythos, $corte_pro_myhtos[$i]['id']);
         }
-        $tallasCorte = Talla::whereIn('corte_id', $cortes_pro_mythos)->get()->load('producto');
+        $tallasCorte = Talla::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_pro_mythos)->get()->load('producto');
 
         $a_sub_my = $tallasCorte->sum('a');
         $b_sub_my = $tallasCorte->sum('b');
@@ -666,6 +671,7 @@ class ExistenciaController extends Controller
         }
 
         $corte_pro_lavish = Corte::where('fase', 'LIKE', 'produccion')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_lavish)
             ->get();
 
@@ -675,7 +681,8 @@ class ExistenciaController extends Controller
             array_push($cortes_pro_lavish, $corte_pro_lavish[$i]['id']);
         }
 
-        $tallasCorteLavish = Talla::whereIn('corte_id', $cortes_pro_lavish)->get()->load('producto');
+        $tallasCorteLavish = Talla::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_pro_lavish)->get()->load('producto');
 
         $a_sub_lav = $tallasCorteLavish->sum('a');
         $b_sub_lav = $tallasCorteLavish->sum('b');
@@ -702,6 +709,7 @@ class ExistenciaController extends Controller
         }
 
         $corte_pro_geniu = Corte::where('fase', 'LIKE', 'produccion')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_genius)
             ->get();
 
@@ -711,7 +719,8 @@ class ExistenciaController extends Controller
             array_push($cortes_pro_genius, $corte_pro_geniu[$i]['id']);
         }
 
-        $tallasCorteGenius = Talla::whereIn('corte_id', $cortes_pro_genius)->get()->load('producto');
+        $tallasCorteGenius = Talla::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_pro_genius)->get()->load('producto');
 
         $a_sub_gen = $tallasCorteGenius->sum('a');
         $b_sub_gen = $tallasCorteGenius->sum('b');
@@ -763,6 +772,7 @@ class ExistenciaController extends Controller
         //Lavanderia Mythos
 
         $corte_lav = Corte::where('fase', 'LIKE', 'Lavanderia')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_mythos)
             ->select('id')
             ->get();
@@ -773,12 +783,14 @@ class ExistenciaController extends Controller
             array_push($cortes_lav, $corte_lav[$i]['id']);
         }
 
-        $lavanderia = Lavanderia::whereIn('corte_id', $cortes_lav)->get()->load('producto');
+        $lavanderia = Lavanderia::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_lav)->get()->load('producto');
         $sub_lav_m = $lavanderia->sum('total_enviado');
 
         //Lavanderia Lavish
 
         $corte_lav_lav = Corte::where('fase', 'LIKE', 'Lavanderia')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_lavish)
             ->select('id')
             ->get();
@@ -789,13 +801,15 @@ class ExistenciaController extends Controller
             array_push($cortes_lav_lav, $corte_lav_lav[$i]['id']);
         }
 
-        $lavanderia_lavish = Lavanderia::whereIn('corte_id', $cortes_lav_lav)->get()->load('producto');
+        $lavanderia_lavish = Lavanderia::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_lav_lav)->get()->load('producto');
         $sub_lav_l = $lavanderia_lavish->sum('total_enviado');
 
 
         //Lavanderia Genius
 
         $corte_lav_gen = Corte::where('fase', 'LIKE', 'Lavanderia')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_genius)
             ->select('id')
             ->get();
@@ -806,13 +820,15 @@ class ExistenciaController extends Controller
             array_push($cortes_lav_gens, $corte_lav_gen[$i]['id']);
         }
 
-        $lavanderia_genius = Lavanderia::whereIn('corte_id', $cortes_lav_gens)->get()->load('producto');
+        $lavanderia_genius = Lavanderia::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_lav_gens)->get()->load('producto');
         $sub_lav_g = $lavanderia_genius->sum('total_enviado');
 
         $sub_total_lav = $sub_lav_m + $sub_lav_l + $sub_lav_g;
         //Recepcion Mythos
 
         $corte_rec_mythos = Corte::where('fase', 'LIKE', 'Recepcion')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_mythos)
             ->select('id')
             ->get();
@@ -823,11 +839,13 @@ class ExistenciaController extends Controller
             array_push($cortes_rec_mythos, $corte_rec_mythos[$i]['id']);
         }
 
-        $recepcion_mythos = Lavanderia::whereIn('corte_id', $cortes_rec_mythos)->get()->load('producto');
+        $recepcion_mythos = Recepcion::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_rec_mythos)->get()->load('producto');
         $sub_rec_m = $recepcion_mythos->sum('total_recibido');
         //Recepcion Lavish
 
         $corte_rec_lavish = Corte::where('fase', 'LIKE', 'Recepcion')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_lavish)
             ->select('id')
             ->get();
@@ -838,12 +856,14 @@ class ExistenciaController extends Controller
             array_push($cortes_rec_lavish, $corte_rec_lavish[$i]['id']);
         }
 
-        $recepcion_lavish = Lavanderia::whereIn('corte_id', $cortes_rec_lavish)->get()->load('producto');
+        $recepcion_lavish = Recepcion::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_rec_lavish)->get()->load('producto');
         $sub_rec_l = $recepcion_lavish->sum('total_recibido');
 
         //Recepcion Genius
 
         $corte_rec_genius = Corte::where('fase', 'LIKE', 'Recepcion')
+        ->whereBetween('updated_at', [$desde, $hasta])
             ->whereIn('producto_id', $product_genius)
             ->select('id')
             ->get();
@@ -854,23 +874,22 @@ class ExistenciaController extends Controller
             array_push($cortes_rec_genius, $corte_rec_genius[$i]['id']);
         }
 
-        $recepcion_genius = Lavanderia::whereIn('corte_id', $cortes_rec_genius)->get()->load('producto');
+        $recepcion_genius = Recepcion::whereBetween('updated_at', [$desde, $hasta])
+        ->whereIn('corte_id', $cortes_rec_genius)->get()->load('producto');
         $sub_rec_g = $recepcion_genius->sum('total_recibido');
 
         //subtotal recepcion
         $sub_total_rec = $sub_rec_m + $sub_rec_l + $sub_rec_g;
 
-
-
         //Almacen Mythos
         $almacen_mythos = DB::table('almacen_detalle')
             ->join('producto', 'almacen_detalle.producto_id', 'producto.id')
-            ->selectRaw('producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
+            ->selectRaw(' almacen_detalle.updated_at, almacen_detalle.fecha_entrada, producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
         SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total')
-            ->whereIn('producto_id', $product_mythos)
-            ->groupBy('producto_id')
+        ->whereIn('producto_id', $product_mythos)
+        ->whereBetween('almacen_detalle.updated_at', [$desde, $hasta])
+        ->groupBy('producto_id')
             ->get();
-
 
         //ordenes
         $orden_pedido = ordenPedido::where('status_orden_pedido', 'LIKE', 'Vigente')
@@ -893,16 +912,12 @@ class ExistenciaController extends Controller
 
         $facturado_m = DB::table('orden_facturacion_detalle')
             ->join('producto', 'orden_facturacion_detalle.producto_id', 'producto.id')
-            ->selectRaw('orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
+            ->selectRaw('orden_facturacion_detalle.updated_at, orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
         SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-            ->whereIn('producto_id', $product_mythos)
+        ->whereBetween('orden_facturacion_detalle.updated_at', [$desde, $hasta])
+        ->whereIn('producto_id', $product_mythos)
             ->groupBy('referencia_father')
             ->get();
-
-        // echo $almacen_mythos."<br>";
-        // echo $facturado_m."<br>";
-        // echo $orden_m."<br>";
-        // die();
 
 
         $a_alm_m = $almacen_mythos->sum('a') - $facturado_m->sum('a');
@@ -920,23 +935,16 @@ class ExistenciaController extends Controller
         $total_alm_m = $a_alm_m + $b_alm_m + $c_alm_m + $d_alm_m + $e_alm_m + $f_alm_m + $g_alm_m + $h_alm_m
             + $i_alm_m + $j_alm_m + $k_alm_m + $k_alm_m;
 
-
-
         //Almacen Lavish
         $almacen_lavish = DB::table('almacen_detalle')
             ->join('producto', 'almacen_detalle.producto_id', 'producto.id')
-
-            ->selectRaw('producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
+            ->selectRaw('almacen_detalle.updated_at, producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
             SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total')
-
-            // ->selectRaw('SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
-            // SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-
+            ->whereBetween('almacen_detalle.updated_at', [$desde, $hasta])
             ->whereIn('almacen_detalle.producto_id', $product_lavish)
             ->groupBy('producto_id')
-            // ->join('orden_facturacion_detalle', 'orden_facturacion_detalle.producto_id', 'producto.id')
             ->get();
-        // ->load('producto');
+
 
         $orden_l = DB::table('orden_pedido_detalle')
             ->selectRaw('orden_pedido_detalle.referencia_father, SUM(orden_pedido_detalle.a) as a, SUM(orden_pedido_detalle.b) as b, SUM(orden_pedido_detalle.c) as c, SUM(orden_pedido_detalle.d) as d, SUM(orden_pedido_detalle.e) as e, SUM(orden_pedido_detalle.f) as f, SUM(orden_pedido_detalle.g) as g, SUM(orden_pedido_detalle.h) as h, SUM(orden_pedido_detalle.i) as i,
@@ -949,9 +957,10 @@ class ExistenciaController extends Controller
 
         $facturado_l = DB::table('orden_facturacion_detalle')
             ->join('producto', 'orden_facturacion_detalle.producto_id', 'producto.id')
-            ->selectRaw('orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
+            ->selectRaw('orden_facturacion_detalle.updated_at, orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
         SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-            ->whereIn('producto_id', $product_lavish)
+        ->whereBetween('orden_facturacion_detalle.updated_at', [$desde, $hasta])
+        ->whereIn('producto_id', $product_lavish)
             ->groupBy('referencia_father')
             ->get();
         // echo $facturado_l;
@@ -977,12 +986,12 @@ class ExistenciaController extends Controller
         $almacen_genius = DB::table('almacen_detalle')
             ->join('producto', 'almacen_detalle.producto_id', 'producto.id')
 
-            ->selectRaw('producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
+            ->selectRaw('almacen_detalle.updated_at, producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
           SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total')
 
             // ->selectRaw('SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
             // SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-
+            ->whereBetween('almacen_detalle.updated_at', [$desde, $hasta])
             ->whereIn('almacen_detalle.producto_id', $product_genius)
             ->groupBy('producto_id')
             // ->join('orden_facturacion_detalle', 'orden_facturacion_detalle.producto_id', 'producto.id')
@@ -1000,11 +1009,14 @@ class ExistenciaController extends Controller
 
         $facturado_g = DB::table('orden_facturacion_detalle')
             ->join('producto', 'orden_facturacion_detalle.producto_id', 'producto.id')
-            ->selectRaw('orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
+            ->selectRaw('orden_facturacion_detalle.updated_at, orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
       SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-            ->whereIn('producto_id', $product_genius)
+      ->whereBetween('orden_facturacion_detalle.updated_at', [$desde, $hasta])
+      ->whereIn('producto_id', $product_genius)
             ->groupBy('referencia_father')
             ->get();
+
+
 
         $a_alm_g = $almacen_genius->sum('a') - $facturado_g->sum('a');
         $b_alm_g = $almacen_genius->sum('b') - $facturado_g->sum('b');
@@ -1023,18 +1035,19 @@ class ExistenciaController extends Controller
             + $i_alm_g + $j_alm_g + $k_alm_g + $k_alm_g;
 
 
-        $a_sub_alm = $a_alm_m + $a_alm_l + $a_alm_g;
-        $b_sub_alm = $b_alm_m + $b_alm_l + $b_alm_g;
-        $c_sub_alm = $c_alm_m + $c_alm_l + $c_alm_g;
-        $d_sub_alm = $d_alm_m + $d_alm_l + $d_alm_g;
-        $e_sub_alm = $e_alm_m + $e_alm_l + $e_alm_g;
-        $f_sub_alm = $f_alm_m + $f_alm_l + $f_alm_g;
-        $g_sub_alm = $g_alm_m + $g_alm_l + $g_alm_g;
-        $h_sub_alm = $h_alm_m + $h_alm_l + $h_alm_g;
-        $i_sub_alm = $i_alm_m + $i_alm_l + $i_alm_g;
-        $j_sub_alm = $j_alm_m + $j_alm_l + $j_alm_g;
-        $k_sub_alm = $k_alm_m + $k_alm_l + $k_alm_g;
-        $l_sub_alm = $l_alm_m + $l_alm_l + $l_alm_g;
+        $a_sub_alm = ($a_alm_m + $a_alm_l + $a_alm_g <= 0) ? 0 : $a_alm_m + $a_alm_l + $a_alm_g;
+        $b_sub_alm = ($b_alm_m + $b_alm_l + $b_alm_g <= 0) ? 0 : $b_alm_m + $b_alm_l + $b_alm_g;
+        $c_sub_alm = ($c_alm_m + $c_alm_l + $c_alm_g <= 0) ? 0 : $c_alm_m + $c_alm_l + $c_alm_g;
+        $d_sub_alm = ($d_alm_m + $d_alm_l + $d_alm_g <= 0) ? 0 : $d_alm_m + $d_alm_l + $d_alm_g;
+        $e_sub_alm = ($e_alm_m + $e_alm_l + $e_alm_g <= 0) ? 0 : $e_alm_m + $e_alm_l + $e_alm_g;
+        $f_sub_alm = ($f_alm_m + $f_alm_l + $f_alm_g <= 0) ? 0 : $f_alm_m + $f_alm_l + $f_alm_g;
+        $g_sub_alm = ($g_alm_m + $g_alm_l + $g_alm_g <= 0) ? 0 : $g_alm_m + $g_alm_l + $g_alm_g;
+        $h_sub_alm = ($h_alm_m + $h_alm_l + $h_alm_g <= 0) ? 0 : $h_alm_m + $h_alm_l + $h_alm_g;
+        $i_sub_alm = ($i_alm_m + $i_alm_l + $i_alm_g <= 0) ? 0 : $i_alm_m + $i_alm_l + $i_alm_g;
+        $j_sub_alm = ($j_alm_m + $j_alm_l + $j_alm_g <= 0) ? 0 : $j_alm_m + $j_alm_l + $j_alm_g;
+        $k_sub_alm = ($k_alm_m + $k_alm_l + $k_alm_g <= 0) ? 0 : $k_alm_m + $k_alm_l + $k_alm_g;
+        $l_sub_alm = ($l_alm_m + $l_alm_l + $l_alm_g <= 0) ? 0 : $l_alm_m + $l_alm_l + $l_alm_g;
+
         $total_sub_alm = $a_sub_alm + $b_sub_alm + $c_sub_alm + $d_sub_alm + $e_sub_alm + $f_sub_alm + $g_sub_alm + $h_sub_alm
             + $i_sub_alm + $j_sub_alm + $k_sub_alm + $l_sub_alm;
 
@@ -1069,6 +1082,8 @@ class ExistenciaController extends Controller
             'almacen_mythos',
             'almacen_lavish',
             'almacen_genius',
+            'desde',
+            'hasta',
             'a_sub_my',
             'b_sub_my',
             'c_sub_my',
