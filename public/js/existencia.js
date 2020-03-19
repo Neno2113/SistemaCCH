@@ -253,6 +253,24 @@ $(document).ready(function() {
                             "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_fb+"</th>"+
                             "<th id='l_op' class='text-primary font-weight-normal'></th>"+
                             "<th id='l_op' class='text-primary font-weight-bold'>"+datos.total_fb+"</th>"+
+                            "</tr>"+
+                            "<tr id='nota_credito'>"+
+                            "<th>NC(Nota credito)</th>"+
+                            "<th class='font-weight-normal'>"+ref+"</th>"+
+                            "<th id='a_op'  class='text-primary font-weight-normal'>"+datos.a_nc+"</th>"+
+                            "<th id='b_op' class='text-primary font-weight-normal'>"+datos.b_nc+"</th>"+
+                            "<th id='c_op' class='text-primary font-weight-normal'>"+datos.c_nc+"</th>"+
+                            "<th id='d_op' class='text-primary font-weight-normal'>"+datos.d_nc+"</th>"+
+                            "<th id='e_op' class='text-primary font-weight-normal'>"+datos.e_nc+"</th>"+
+                            "<th id='f_op' class='text-primary font-weight-normal'>"+datos.f_nc+"</th>"+
+                            "<th id='g_op' class='text-primary font-weight-normal'>"+datos.g_nc+"</th>"+
+                            "<th id='h_op' class='text-primary font-weight-normal'>"+datos.h_nc+"</th>"+
+                            "<th id='i_op' class='text-primary font-weight-normal'>"+datos.i_nc+"</th>"+
+                            "<th id='j_op' class='text-primary font-weight-normal'>"+datos.j_nc+"</th>"+
+                            "<th id='k_op' class='text-primary font-weight-normal'>"+datos.k_nc+"</th>"+
+                            "<th id='l_op' class='text-primary font-weight-normal'>"+datos.l_nc+"</th>"+
+                            "<th id='l_op' class='text-primary font-weight-normal'></th>"+
+                            "<th id='l_op' class='text-primary font-weight-bold'>"+datos.total_nc+"</th>"+
                             "</tr>"
 
 
@@ -322,7 +340,9 @@ $(document).ready(function() {
                         $("#totales").hide();
                         $("#disp_venta").hide();
                         $("#facturado").hide();
+                        $("#nota_credito").hide();
                         $("#orden_pedido").hide();
+                        $("#disp_venta_segunda").hide();
 
                         for (let i = 0; i < longitud; i++) {
                             var fila =  "<tr>"+
@@ -619,6 +639,17 @@ function mostrar(id_almacen) {
     });
 }
 
+
+function printDiv(divName) {
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+}
 
 
 

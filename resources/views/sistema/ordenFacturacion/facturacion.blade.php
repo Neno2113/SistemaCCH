@@ -183,7 +183,7 @@
                                 <option value="B14">Comprobante Regimen Especiales</option>
                                 <option value="B15">Comprobante Gubernamental</option>
                                 <option value="B16">Comprobante para Exportaciones</option>
-                                <option value="CN">Nota de Credito</option>
+                                {{-- <option value="CN">Nota de Credito</option> --}}
                             </select>
                         </div>
                         <div class="col-md-3">

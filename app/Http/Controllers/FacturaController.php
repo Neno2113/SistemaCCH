@@ -428,101 +428,101 @@ class FacturaController extends Controller
         }
     }
 
-    public function verificar($id)
-    {
-        $factura = Factura::find($id)->load('orden_facturacion');
+    // public function verificar($id)
+    // {
+    //     $factura = Factura::find($id)->load('orden_facturacion');
 
-        if (\is_object($factura)) {
+    //     if (\is_object($factura)) {
 
-            $id_orden_facturacion = $factura->orden_facturacion->id;
-            $id_orden_empaque = $factura->orden_facturacion->orden_empaque_id;
-            $orden_facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)
-                ->get();
-            $productos_id = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)->select('producto_id')
-                ->get();
+    //         $id_orden_facturacion = $factura->orden_facturacion->id;
+    //         $id_orden_empaque = $factura->orden_facturacion->orden_empaque_id;
+    //         $orden_facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)
+    //             ->get();
+    //         $productos_id = ordenFacturacionDetalle::where('orden_facturacion_id', 'LIKE', $id_orden_facturacion)->select('producto_id')
+    //             ->get();
 
-            $productos = array();
+    //         $productos = array();
 
-            $longitudProductos = count($productos_id);
+    //         $longitudProductos = count($productos_id);
 
-            for ($i = 0; $i < $longitudProductos; $i++) {
-                array_push($productos, $productos_id[$i]['producto_id']);
-            }
+    //         for ($i = 0; $i < $longitudProductos; $i++) {
+    //             array_push($productos, $productos_id[$i]['producto_id']);
+    //         }
 
-            $productosFactura = Product::whereIn('id', $productos)->get();
-            $sku = SKU::whereIn('producto_id', $productos)->get();
-
-
-            $orden_empaque = ordenEmpaque::find($id_orden_empaque);
-            $orden_pedido_id = $orden_empaque->orden_pedido_id;
-            $orden_pedido = ordenPedido::find($orden_pedido_id)->load('cliente')
-                ->load('sucursal');
-
-            $orden_pedido->fecha = date("h:i:s A d-m-20y", strtotime($orden_pedido->fecha));
-
-            $detalles_totales = array();
-            $totales_detalles = array();
-            $precio_total = array();
-
-            $longitudDetalles = count($orden_facturacion_detalle);
+    //         $productosFactura = Product::whereIn('id', $productos)->get();
+    //         $sku = SKU::whereIn('producto_id', $productos)->get();
 
 
-            for ($i = 0; $i < $longitudDetalles; $i++) {
-                array_push($detalles_totales, number_format(str_replace('.', '', $orden_facturacion_detalle[$i]['precio']) * $orden_facturacion_detalle[$i]['total']));
-                array_push($totales_detalles, $orden_facturacion_detalle[$i]['total']);
-                array_push($precio_total, $orden_facturacion_detalle[$i]['precio']);
-            }
+    //         $orden_empaque = ordenEmpaque::find($id_orden_empaque);
+    //         $orden_pedido_id = $orden_empaque->orden_pedido_id;
+    //         $orden_pedido = ordenPedido::find($orden_pedido_id)->load('cliente')
+    //             ->load('sucursal');
 
-            $total = implode($precio_total);
-            $total = str_replace('.', '', $total);
+    //         $orden_pedido->fecha = date("h:i:s A d-m-20y", strtotime($orden_pedido->fecha));
 
-            $subtotal = array_sum(str_replace(',', '', $detalles_totales));
+    //         $detalles_totales = array();
+    //         $totales_detalles = array();
+    //         $precio_total = array();
 
-            $itbis = $factura->itbis / 100;
-            $impuesto = $itbis * $subtotal;
+    //         $longitudDetalles = count($orden_facturacion_detalle);
 
 
-            $porc_desc = $factura->descuento / 100;
-            $descuento = $porc_desc * $subtotal;
-            $total_final = $subtotal + $impuesto - $descuento;
+    //         for ($i = 0; $i < $longitudDetalles; $i++) {
+    //             array_push($detalles_totales, number_format(str_replace('.', '', $orden_facturacion_detalle[$i]['precio']) * $orden_facturacion_detalle[$i]['total']));
+    //             array_push($totales_detalles, $orden_facturacion_detalle[$i]['total']);
+    //             array_push($precio_total, $orden_facturacion_detalle[$i]['precio']);
+    //         }
 
-            $ordenes_pedido_id = array();
+    //         $total = implode($precio_total);
+    //         $total = str_replace('.', '', $total);
 
-            $longitudOrdenes = count($orden_facturacion_detalle);
+    //         $subtotal = array_sum(str_replace(',', '', $detalles_totales));
 
-            for ($i = 0; $i < $longitudOrdenes; $i++) {
-                array_push($ordenes_pedido_id, $orden_facturacion_detalle[$i]['orden_pedido_id']);
-            }
+    //         $itbis = $factura->itbis / 100;
+    //         $impuesto = $itbis * $subtotal;
 
-            //actualizar orden pedido status
-            $orden_pedidos_id = $factura->orden_pedido_id;
 
-            $ordenes_pedido = ordenPedido::whereIn('id', $ordenes_pedido_id)->get();
+    //         $porc_desc = $factura->descuento / 100;
+    //         $descuento = $porc_desc * $subtotal;
+    //         $total_final = $subtotal + $impuesto - $descuento;
 
-            $longitudOrden = count($ordenes_pedido);
+    //         $ordenes_pedido_id = array();
 
-            for ($i = 0; $i < $longitudOrden; $i++) {
-                $ordenes_pedido[$i]->status_orden_pedido = 'Despachado';
-                $ordenes_pedido[$i]->save();
-            }
+    //         $longitudOrdenes = count($orden_facturacion_detalle);
 
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'factura' => $factura,
-                'orden_pedido' => $orden_pedido,
-                'facturacion_detalle' => $orden_facturacion_detalle,
-                'productos' => $productosFactura,
-                'sku' => $sku,
-                'totales' => $detalles_totales,
-                'subtotal' => $subtotal,
-                'itbis' => $impuesto,
-                'total' => number_format($total_final),
-                'descuento' => $descuento,
-                'orden_pedidos' => $ordenes_pedido,
-                'bultos' => $orden_facturacion_detalle->sum('cant_bultos')
-            ];
-        }
-        return response()->json($data, $data['code']);
-    }
+    //         for ($i = 0; $i < $longitudOrdenes; $i++) {
+    //             array_push($ordenes_pedido_id, $orden_facturacion_detalle[$i]['orden_pedido_id']);
+    //         }
+
+    //         //actualizar orden pedido status
+    //         $orden_pedidos_id = $factura->orden_pedido_id;
+
+    //         $ordenes_pedido = ordenPedido::whereIn('id', $ordenes_pedido_id)->get();
+
+    //         $longitudOrden = count($ordenes_pedido);
+
+    //         for ($i = 0; $i < $longitudOrden; $i++) {
+    //             $ordenes_pedido[$i]->status_orden_pedido = 'Despachado';
+    //             $ordenes_pedido[$i]->save();
+    //         }
+
+    //         $data = [
+    //             'code' => 200,
+    //             'status' => 'success',
+    //             'factura' => $factura,
+    //             'orden_pedido' => $orden_pedido,
+    //             'facturacion_detalle' => $orden_facturacion_detalle,
+    //             'productos' => $productosFactura,
+    //             'sku' => $sku,
+    //             'totales' => $detalles_totales,
+    //             'subtotal' => $subtotal,
+    //             'itbis' => $impuesto,
+    //             'total' => number_format($total_final),
+    //             'descuento' => $descuento,
+    //             'orden_pedidos' => $ordenes_pedido,
+    //             'bultos' => $orden_facturacion_detalle->sum('cant_bultos')
+    //         ];
+    //     }
+    //     return response()->json($data, $data['code']);
+    // }
 }

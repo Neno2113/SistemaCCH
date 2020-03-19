@@ -90,32 +90,45 @@ class ExistenciaController extends Controller
 
         $tallasAlmacen = AlmacenDetalle::where('producto_id', $producto_id)->get();
 
+
+        //ordenes
+        $orden_pedido = ordenPedido::where('status_orden_pedido', 'LIKE', 'Vigente')
+        ->select('id')
+        ->get();
+
+        $ordenes = array();
+
+        for ($i = 0; $i < count($orden_pedido); $i++) {
+            array_push($ordenes, $orden_pedido[$i]['id']);
+        }
+
         //Ordenes
-        $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)
+        $tallasOrdenes = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)
+        ->where('referencia_father', $producto_id)
             // ->where('orden_empacada' , 'LIKE', '0')
             ->get()->load('ordenPedido');
 
         //nota de credito
-        $tallasNC = NotaCreditoDetalle::where('producto_id', $producto_id)
+        $tallasNC = NotaCreditoDetalle::where('referencia_father', $producto_id)
             ->get()->load('notaCredito');
 
         //orden facturacion
-        $tallasfacturacion = ordenFacturacionDetalle::where('producto_id', $producto_id)
+        $tallasfacturacion = ordenFacturacionDetalle::where('referencia_father', $producto_id)
             ->get();
 
         //Existencia
-        $a = $tallasAlmacen->sum('a') - $tallasfacturacion->sum('a') + $tallasNC->sum('a') + $tallasSegundas->sum('a');
-        $b = $tallasAlmacen->sum('b') - $tallasfacturacion->sum('b') + $tallasNC->sum('b') + $tallasSegundas->sum('a');
-        $c = $tallasAlmacen->sum('c') - $tallasfacturacion->sum('c') + $tallasNC->sum('c') + $tallasSegundas->sum('a');
-        $d = $tallasAlmacen->sum('d') - $tallasfacturacion->sum('d') + $tallasNC->sum('d') + $tallasSegundas->sum('a');
-        $e = $tallasAlmacen->sum('e') - $tallasfacturacion->sum('e') + $tallasNC->sum('e') + $tallasSegundas->sum('a');
-        $f = $tallasAlmacen->sum('f') - $tallasfacturacion->sum('f') + $tallasNC->sum('f') + $tallasSegundas->sum('a');
-        $g = $tallasAlmacen->sum('g') - $tallasfacturacion->sum('g') + $tallasNC->sum('g') + $tallasSegundas->sum('a');
-        $h = $tallasAlmacen->sum('h') - $tallasfacturacion->sum('h') + $tallasNC->sum('h') + $tallasSegundas->sum('a');
-        $i = $tallasAlmacen->sum('i') - $tallasfacturacion->sum('i') + $tallasNC->sum('i') + $tallasSegundas->sum('a');
-        $j = $tallasAlmacen->sum('j') - $tallasfacturacion->sum('j') + $tallasNC->sum('j') + $tallasSegundas->sum('a');
-        $k = $tallasAlmacen->sum('k') - $tallasfacturacion->sum('k') + $tallasNC->sum('k') + $tallasSegundas->sum('a');
-        $l = $tallasAlmacen->sum('l') - $tallasfacturacion->sum('l') + $tallasNC->sum('l') + $tallasSegundas->sum('a');
+        $a = $tallasAlmacen->sum('a') - $tallasfacturacion->sum('a')  + $tallasSegundas->sum('a') + $tallasNC->sum('a');
+        $b = $tallasAlmacen->sum('b') - $tallasfacturacion->sum('b')  + $tallasSegundas->sum('a') + $tallasNC->sum('b');
+        $c = $tallasAlmacen->sum('c') - $tallasfacturacion->sum('c')  + $tallasSegundas->sum('a') + $tallasNC->sum('c');
+        $d = $tallasAlmacen->sum('d') - $tallasfacturacion->sum('d')  + $tallasSegundas->sum('a') + $tallasNC->sum('d');
+        $e = $tallasAlmacen->sum('e') - $tallasfacturacion->sum('e')  + $tallasSegundas->sum('a') + $tallasNC->sum('e');
+        $f = $tallasAlmacen->sum('f') - $tallasfacturacion->sum('f')  + $tallasSegundas->sum('a') + $tallasNC->sum('f');
+        $g = $tallasAlmacen->sum('g') - $tallasfacturacion->sum('g')  +  $tallasSegundas->sum('a') + $tallasNC->sum('g');
+        $h = $tallasAlmacen->sum('h') - $tallasfacturacion->sum('h')  +  $tallasSegundas->sum('a') + $tallasNC->sum('h');
+        $i = $tallasAlmacen->sum('i') - $tallasfacturacion->sum('i')  +  $tallasSegundas->sum('a') + $tallasNC->sum('i');
+        $j = $tallasAlmacen->sum('j') - $tallasfacturacion->sum('j')  +  $tallasSegundas->sum('a') + $tallasNC->sum('j');
+        $k = $tallasAlmacen->sum('k') - $tallasfacturacion->sum('k')  +  $tallasSegundas->sum('a') + $tallasNC->sum('k');
+        $l = $tallasAlmacen->sum('l') - $tallasfacturacion->sum('l')  +  $tallasSegundas->sum('a') + $tallasNC->sum('l');
         $total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         //disponible para la venta
@@ -351,6 +364,7 @@ class ExistenciaController extends Controller
         if ($request->has('q')) {
             $search = $request->q;
             $data = Product::select("id", "referencia_producto")
+                ->where('referencia_father', NUll)
                 ->where('referencia_producto', 'LIKE', "%$search%")
                 ->get();
         }
@@ -919,19 +933,30 @@ class ExistenciaController extends Controller
             ->groupBy('referencia_father')
             ->get();
 
+        $nota_credito_m = DB::table('nota_credito_detalle')
+        ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
+        ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
+        SUM(nota_credito_detalle.j) as j, SUM(nota_credito_detalle.k) as k, SUM(nota_credito_detalle.l) as l,SUM(nota_credito_detalle.total) as total')
+        ->whereBetween('nota_credito_detalle.updated_at', [$desde, $hasta])
+        ->whereIn('producto_id', $product_mythos)
+            ->groupBy('referencia_father')
+            ->get();
 
-        $a_alm_m = $almacen_mythos->sum('a') - $facturado_m->sum('a');
-        $b_alm_m = $almacen_mythos->sum('b') - $facturado_m->sum('b');
-        $c_alm_m = $almacen_mythos->sum('c') - $facturado_m->sum('c');
-        $d_alm_m = $almacen_mythos->sum('d') - $facturado_m->sum('d');
-        $e_alm_m = $almacen_mythos->sum('e') - $facturado_m->sum('e');
-        $f_alm_m = $almacen_mythos->sum('f') - $facturado_m->sum('f');
-        $g_alm_m = $almacen_mythos->sum('g') - $facturado_m->sum('g');
-        $h_alm_m = $almacen_mythos->sum('h') - $facturado_m->sum('h');
-        $i_alm_m = $almacen_mythos->sum('i') - $facturado_m->sum('i');
-        $j_alm_m = $almacen_mythos->sum('j') - $facturado_m->sum('j');
-        $k_alm_m = $almacen_mythos->sum('k') - $facturado_m->sum('k');
-        $l_alm_m = $almacen_mythos->sum('l') - $facturado_m->sum('l');
+        // echo $nota_credito_m;
+        // die();
+
+        $a_alm_m = ($almacen_mythos->sum('a') - $facturado_m->sum('a') <= 0) ? 0 :$almacen_mythos->sum('a') - $facturado_m->sum('a') + $nota_credito_m->sum('a');
+        $b_alm_m = ($almacen_mythos->sum('b') - $facturado_m->sum('b') <= 0) ? 0 :$almacen_mythos->sum('b') - $facturado_m->sum('b') + $nota_credito_m->sum('b');
+        $c_alm_m = ($almacen_mythos->sum('c') - $facturado_m->sum('c') <= 0) ? 0 :$almacen_mythos->sum('c') - $facturado_m->sum('c') + $nota_credito_m->sum('c');
+        $d_alm_m = ($almacen_mythos->sum('d') - $facturado_m->sum('d') <= 0) ? 0 :$almacen_mythos->sum('d') - $facturado_m->sum('d') + $nota_credito_m->sum('d');
+        $e_alm_m = ($almacen_mythos->sum('e') - $facturado_m->sum('e') <= 0) ? 0 :$almacen_mythos->sum('e') - $facturado_m->sum('e') + $nota_credito_m->sum('e');
+        $f_alm_m = ($almacen_mythos->sum('f') - $facturado_m->sum('f') <= 0) ? 0 :$almacen_mythos->sum('f') - $facturado_m->sum('f') + $nota_credito_m->sum('f');
+        $g_alm_m = ($almacen_mythos->sum('g') - $facturado_m->sum('g') <= 0) ? 0 :$almacen_mythos->sum('g') - $facturado_m->sum('g') + $nota_credito_m->sum('g');
+        $h_alm_m = ($almacen_mythos->sum('h') - $facturado_m->sum('h') <= 0) ? 0 :$almacen_mythos->sum('h') - $facturado_m->sum('h') + $nota_credito_m->sum('h');
+        $i_alm_m = ($almacen_mythos->sum('i') - $facturado_m->sum('i') <= 0) ? 0 :$almacen_mythos->sum('i') - $facturado_m->sum('i') + $nota_credito_m->sum('i');
+        $j_alm_m = ($almacen_mythos->sum('j') - $facturado_m->sum('j') <= 0) ? 0 :$almacen_mythos->sum('j') - $facturado_m->sum('j') + $nota_credito_m->sum('j');
+        $k_alm_m = ($almacen_mythos->sum('k') - $facturado_m->sum('k') <= 0) ? 0 :$almacen_mythos->sum('k') - $facturado_m->sum('k') + $nota_credito_m->sum('k');
+        $l_alm_m = ($almacen_mythos->sum('l') - $facturado_m->sum('l') <= 0) ? 0 :$almacen_mythos->sum('l') - $facturado_m->sum('l') + $nota_credito_m->sum('l');
         $total_alm_m = $a_alm_m + $b_alm_m + $c_alm_m + $d_alm_m + $e_alm_m + $f_alm_m + $g_alm_m + $h_alm_m
             + $i_alm_m + $j_alm_m + $k_alm_m + $k_alm_m;
 
@@ -963,21 +988,29 @@ class ExistenciaController extends Controller
         ->whereIn('producto_id', $product_lavish)
             ->groupBy('referencia_father')
             ->get();
-        // echo $facturado_l;
-        // die();
 
-        $a_alm_l = $almacen_lavish->sum('a') - $facturado_l->sum('a');
-        $b_alm_l = $almacen_lavish->sum('b') - $facturado_l->sum('b');
-        $c_alm_l = $almacen_lavish->sum('c') - $facturado_l->sum('c');
-        $d_alm_l = $almacen_lavish->sum('d') - $facturado_l->sum('d');
-        $e_alm_l = $almacen_lavish->sum('e') - $facturado_l->sum('e');
-        $f_alm_l = $almacen_lavish->sum('f') - $facturado_l->sum('f');
-        $g_alm_l = $almacen_lavish->sum('g') - $facturado_l->sum('g');
-        $h_alm_l = $almacen_lavish->sum('h') - $facturado_l->sum('h');
-        $i_alm_l = $almacen_lavish->sum('i') - $facturado_l->sum('i');
-        $j_alm_l = $almacen_lavish->sum('j') - $facturado_l->sum('j');
-        $k_alm_l = $almacen_lavish->sum('k') - $facturado_l->sum('k');
-        $l_alm_l = $almacen_lavish->sum('l') - $facturado_l->sum('l');
+
+        $nota_credito_l = DB::table('nota_credito_detalle')
+        ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
+        ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
+        SUM(nota_credito_detalle.j) as j, SUM(nota_credito_detalle.k) as k, SUM(nota_credito_detalle.l) as l,SUM(nota_credito_detalle.total) as total')
+        ->whereBetween('nota_credito_detalle.updated_at', [$desde, $hasta])
+        ->whereIn('producto_id', $product_lavish)
+            ->groupBy('referencia_father')
+            ->get();
+
+        $a_alm_l = $almacen_lavish->sum('a') - $facturado_l->sum('a') + $nota_credito_l->sum('a');
+        $b_alm_l = $almacen_lavish->sum('b') - $facturado_l->sum('b') + $nota_credito_l->sum('b');
+        $c_alm_l = $almacen_lavish->sum('c') - $facturado_l->sum('c') + $nota_credito_l->sum('c');
+        $d_alm_l = $almacen_lavish->sum('d') - $facturado_l->sum('d') + $nota_credito_l->sum('d');
+        $e_alm_l = $almacen_lavish->sum('e') - $facturado_l->sum('e') + $nota_credito_l->sum('e');
+        $f_alm_l = $almacen_lavish->sum('f') - $facturado_l->sum('f') + $nota_credito_l->sum('f');
+        $g_alm_l = $almacen_lavish->sum('g') - $facturado_l->sum('g') + $nota_credito_l->sum('g');
+        $h_alm_l = $almacen_lavish->sum('h') - $facturado_l->sum('h') + $nota_credito_l->sum('h');
+        $i_alm_l = $almacen_lavish->sum('i') - $facturado_l->sum('i') + $nota_credito_l->sum('i');
+        $j_alm_l = $almacen_lavish->sum('j') - $facturado_l->sum('j') + $nota_credito_l->sum('j');
+        $k_alm_l = $almacen_lavish->sum('k') - $facturado_l->sum('k') + $nota_credito_l->sum('k');
+        $l_alm_l = $almacen_lavish->sum('l') - $facturado_l->sum('l') + $nota_credito_l->sum('l');
         // $ref_alm_l = $almacen_lavish[0]['referencia_producto'];
         $total_alm_l = $a_alm_l + $b_alm_l + $c_alm_l + $d_alm_l + $e_alm_l + $f_alm_l + $g_alm_l + $h_alm_l
             + $i_alm_l + $j_alm_l + $k_alm_l + $k_alm_l;
@@ -1017,19 +1050,28 @@ class ExistenciaController extends Controller
             ->get();
 
 
+        $nota_credito_g = DB::table('nota_credito_detalle')
+        ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
+        ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
+        SUM(nota_credito_detalle.j) as j, SUM(nota_credito_detalle.k) as k, SUM(nota_credito_detalle.l) as l,SUM(nota_credito_detalle.total) as total')
+        ->whereBetween('nota_credito_detalle.updated_at', [$desde, $hasta])
+        ->whereIn('producto_id', $product_genius)
+            ->groupBy('referencia_father')
+            ->get();
 
-        $a_alm_g = $almacen_genius->sum('a') - $facturado_g->sum('a');
-        $b_alm_g = $almacen_genius->sum('b') - $facturado_g->sum('b');
-        $c_alm_g = $almacen_genius->sum('c') - $facturado_g->sum('c');
-        $d_alm_g = $almacen_genius->sum('d') - $facturado_g->sum('d');
-        $e_alm_g = $almacen_genius->sum('e') - $facturado_g->sum('e');
-        $f_alm_g = $almacen_genius->sum('f') - $facturado_g->sum('f');
-        $g_alm_g = $almacen_genius->sum('g') - $facturado_g->sum('g');
-        $h_alm_g = $almacen_genius->sum('h') - $facturado_g->sum('h');
-        $i_alm_g = $almacen_genius->sum('i') - $facturado_g->sum('i');
-        $j_alm_g = $almacen_genius->sum('j') - $facturado_g->sum('j');
-        $k_alm_g = $almacen_genius->sum('k') - $facturado_g->sum('k');
-        $l_alm_g = $almacen_genius->sum('l') - $facturado_l->sum('l');
+
+        $a_alm_g = $almacen_genius->sum('a') - $facturado_g->sum('a') + $nota_credito_g->sum('a');
+        $b_alm_g = $almacen_genius->sum('b') - $facturado_g->sum('b') + $nota_credito_g->sum('b');
+        $c_alm_g = $almacen_genius->sum('c') - $facturado_g->sum('c') + $nota_credito_g->sum('c');
+        $d_alm_g = $almacen_genius->sum('d') - $facturado_g->sum('d') + $nota_credito_g->sum('d');
+        $e_alm_g = $almacen_genius->sum('e') - $facturado_g->sum('e') + $nota_credito_g->sum('e');
+        $f_alm_g = $almacen_genius->sum('f') - $facturado_g->sum('f') + $nota_credito_g->sum('f');
+        $g_alm_g = $almacen_genius->sum('g') - $facturado_g->sum('g') + $nota_credito_g->sum('g');
+        $h_alm_g = $almacen_genius->sum('h') - $facturado_g->sum('h') + $nota_credito_g->sum('h');
+        $i_alm_g = $almacen_genius->sum('i') - $facturado_g->sum('i') + $nota_credito_g->sum('i');
+        $j_alm_g = $almacen_genius->sum('j') - $facturado_g->sum('j') + $nota_credito_g->sum('j');
+        $k_alm_g = $almacen_genius->sum('k') - $facturado_g->sum('k') + $nota_credito_g->sum('k');
+        $l_alm_g = $almacen_genius->sum('l') - $facturado_l->sum('l') + $nota_credito_g->sum('l');
         // $ref_alm_l = $almacen_lavish[0]['referencia_producto'];
         $total_alm_g = $a_alm_g + $b_alm_g + $c_alm_g + $d_alm_g + $e_alm_g + $f_alm_g + $g_alm_g + $h_alm_g
             + $i_alm_g + $j_alm_g + $k_alm_g + $k_alm_g;
@@ -1214,7 +1256,10 @@ class ExistenciaController extends Controller
             'orden_l',
             'facturado_m',
             'facturado_l',
-            'facturado_g'
+            'facturado_g',
+            'nota_credito_m',
+            'nota_credito_l',
+            'nota_credito_g',
         ));
         return $pdf->download('ReporteExistencias.pdf');
         return View('sistema.existencia.reporteDetallado', compact(

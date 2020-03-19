@@ -344,7 +344,7 @@ function mostrar(id_factura) {
         $("#sucursal").val(data.sucursal.nombre_sucursal);
         $("#fecha_factura").val(data.factura.fecha);
         $("#fecha_impresion").val(data.factura.fecha_impresion);
-        $("#precio_lista_factura").val(data.precio + " RD$")
+        $("#precio_lista_factura").val(" RD$" + data.factura.total);
 
         var longitud = data.detalle.length;
         longitud_global = data.detalle.length;

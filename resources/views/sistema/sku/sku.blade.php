@@ -54,35 +54,46 @@
         </div>
     </div>
 </div>
-<div class="container" id="listadoUsers">
-    <table id="skus" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th>SKU</th>
-                <th>Producto</th>
-                <th>Talla</th>
 
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th>SKU</th>
-                <th>Producto</th>
-                <th>Talla</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="card" id="listadoUsers">
+    <div class="card-header text-center">
+        <h4> Listado de skus</h4>
+    </div>
+    <div class="card-body">
+        <div class="container" id="listadoUsers">
+            <table id="skus" class="table table-striped table-bordered datatables">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Opcion</th>
+                        <th>SKU</th>
+                        <th>Producto</th>
+                        <th>Talla</th>
 
-</div>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Opcion</th>
+                        <th>SKU</th>
+                        <th>Producto</th>
+                        <th>Talla</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
 
 
 
-@include('adminlte/scripts')
-<script src="{{asset('js/sku.js')}}"></script>
+    @include('adminlte/scripts')
+    <script src="{{asset('js/sku.js')}}"></script>
 
-<script>
-    function mostrar(id_composition) {
+    <script>
+        function mostrar(id_composition) {
         $.post("composition/" + id_composition, function(data, status) {
             // data = JSON.parse(data);
             $("#listadoUsers").hide();
@@ -96,7 +107,7 @@
             $("#id").val(data.composition.id);
             $("#codigo_composicion").val(data.composition.codigo_composicion);
             $("#nombre_composicion").val(data.composition.nombre_composicion);
-           
+
         });
     }
 
@@ -112,8 +123,8 @@
         })
     }
 
-</script>
+    </script>
 
 
 
-@endsection
+    @endsection

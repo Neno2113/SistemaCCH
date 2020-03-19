@@ -238,7 +238,7 @@ $(document).ready(function() {
                 { data: "status", name: "factura.status"},
 
             ],
-            order: [[6, "asc"]],
+            order: [[3, "desc"]],
             rowGroup: {
                 dataSrc: "tipo_factura"
             }

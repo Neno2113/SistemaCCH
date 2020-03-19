@@ -10,7 +10,7 @@ $(document).ready(function() {
                 required: true,
                 minlength: 1
             },
-          
+
         },
         messages: {
             codigo_composicion: {
@@ -23,7 +23,7 @@ $(document).ready(function() {
             }
         }
     })
-   
+
 
     var tabla
 
@@ -36,14 +36,14 @@ $(document).ready(function() {
     function limpiar() {
         $("#codigo_composicion").val("");
         $("#nombre_composicion").val("");
-     
+
     }
 
- 
+
 
     // $("#btn-guardar").click(function(e){
     //     e.preventDefault();
-        
+
     //     // var data = new FormData()
     //     // jQuery.each(jQuery('#file')[0].files, function(i, file){
     //     //     data.append('file-'+i, file);
@@ -98,13 +98,14 @@ $(document).ready(function() {
                 ],
             ajax: "api/skus",
             columns: [
-                // { data: "Expandir", orderable: false, searchable: false },
+                { data: "Expandir", orderable: false, searchable: false },
+                { data: "Editar" },
                 { data: "sku" },
                 { data: "referencia_producto", searchable: false },
                 { data: "talla" },
-              
+
             ],
-            order: [[1, 'desc']],
+            order: [[3, 'desc']],
             rowGroup: {
                 dataSrc: 'referencia_producto'
             }
@@ -119,7 +120,7 @@ $(document).ready(function() {
             codigo_composicion: $("#codigo_composicion").val(),
             nombre_composicion: $("#nombre_composicion").val()
         };
-     
+
         $.ajax({
             url: "composition/edit",
             type: "PUT",
@@ -152,9 +153,9 @@ $(document).ready(function() {
                 );
             }
         });
-       
+
     });
-   
+
 
     function mostrarForm(flag) {
         limpiar();
@@ -177,7 +178,7 @@ $(document).ready(function() {
     $("#btnCancelar").click(function(e) {
         mostrarForm(false);
     });
-  
+
 
     init();
 });

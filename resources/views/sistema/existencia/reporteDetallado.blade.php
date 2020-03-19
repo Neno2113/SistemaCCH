@@ -1815,30 +1815,85 @@
 
                 @foreach ($almacen_mythos as $alm_m)
                 @foreach ($facturado_m as $fac)
-                {{-- @foreach ($orden_m as $orden) --}}
-                @if ($alm_m->producto_id == $fac->producto_id )
+                @foreach ($nota_credito_m as $nc)
+                @if ($alm_m->producto_id == $fac->referencia_father )
+                {{-- @if ($alm_m->producto_id == $nc->referencia_father) --}}
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
                         {{$alm_m->referencia_producto}}
                     </td>
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->a - $fac->a + $nc->a}}</td>
+                    @else
                     <td>{{$alm_m->a - $fac->a}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->b - $fac->b + $nc->b}}</td>
+                    @else
                     <td>{{$alm_m->b - $fac->b}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->c - $fac->c + $nc->c}}</td>
+                    @else
                     <td>{{$alm_m->c - $fac->c}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->d - $fac->d + $nc->d}}</td>
+                    @else
                     <td>{{$alm_m->d - $fac->d}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->e - $fac->e + $nc->e}}</td>
+                    @else
                     <td>{{$alm_m->e - $fac->e}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->f - $fac->f + $nc->f}}</td>
+                    @else
                     <td>{{$alm_m->f - $fac->f}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->g - $fac->g + $nc->g}}</td>
+                    @else
                     <td>{{$alm_m->g - $fac->g}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->h - $fac->h + $nc->h}}</td>
+                    @else
                     <td>{{$alm_m->h - $fac->h}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->i - $fac->i + $nc->i}}</td>
+                    @else
                     <td>{{$alm_m->i - $fac->i}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->j - $fac->j + $nc->j}}</td>
+                    @else
                     <td>{{$alm_m->j - $fac->j}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->k - $fac->k + $nc->k}}</td>
+                    @else
                     <td>{{$alm_m->k - $fac->k}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->l - $fac->l + $nc->l}}</td>
+                    @else
                     <td>{{$alm_m->l - $fac->l}}</td>
+                    @endif
+                    @if ($alm_m->producto_id == $nc->referencia_father)
+                    <td>{{$alm_m->total - $fac->total + $nc->total}}</td>
+                    @else
                     <td>{{$alm_m->total - $fac->total}}</td>
+                    @endif
+
                 </tr>
+
                 @endif
-                {{-- @endforeach --}}
+                @endforeach
                 @endforeach
                 @endforeach
 
@@ -1905,32 +1960,83 @@
                     <td></td>
                 </tr>
                 @foreach ($almacen_lavish as $alm_l)
-                @foreach ($facturado_l as $facturado)
-                @if ($alm_l->producto_id == $facturado->producto_id && $alm_l->producto_id == $facturado->referencia_father || $alm_l->producto_id == $facturado->producto_id )
+                @foreach ($facturado_l as $fac)
+                @foreach ($nota_credito_m as $nc)
+                @if ($alm_l->producto_id == $fac->referencia_father )
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
                         {{$alm_l->referencia_producto}}
                     </td>
-
-                    <td>{{$alm_l->a - $facturado->a}}</td>
-
-
-                    <td>{{$alm_l->b - $facturado->b}}</td>
-                    <td>{{$alm_l->c - $facturado->c}}</td>
-                    <td>{{$alm_l->d - $facturado->d}}</td>
-                    <td>{{$alm_l->e - $facturado->e}}</td>
-                    <td>{{$alm_l->f - $facturado->f}}</td>
-                    <td>{{$alm_l->g - $facturado->g}}</td>
-                    <td>{{$alm_l->h - $facturado->h}}</td>
-                    <td>{{$alm_l->i - $facturado->i}}</td>
-                    <td>{{$alm_l->j - $facturado->j}}</td>
-                    <td>{{$alm_l->k - $facturado->k}}</td>
-                    <td>{{$alm_l->l - $facturado->l}}</td>
-                    <td>{{$alm_l->total - $facturado->total}}</td>
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->a - $fac->a + $nc->a}}</td>
+                    @else
+                    <td>{{$alm_l->a - $fac->a}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->b - $fac->b + $nc->b}}</td>
+                    @else
+                    <td>{{$alm_l->b - $fac->b}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->c - $fac->c + $nc->c}}</td>
+                    @else
+                    <td>{{$alm_l->c - $fac->c}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->d - $fac->d + $nc->d}}</td>
+                    @else
+                    <td>{{$alm_l->d - $fac->d}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->e - $fac->e + $nc->e}}</td>
+                    @else
+                    <td>{{$alm_l->e - $fac->e}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->f - $fac->f + $nc->f}}</td>
+                    @else
+                    <td>{{$alm_l->f - $fac->f}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->g - $fac->g + $nc->g}}</td>
+                    @else
+                    <td>{{$alm_l->g - $fac->g}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->h - $fac->h + $nc->h}}</td>
+                    @else
+                    <td>{{$alm_l->h - $fac->h}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->i - $fac->i + $nc->i}}</td>
+                    @else
+                    <td>{{$alm_l->i - $fac->i}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->j - $fac->j + $nc->j}}</td>
+                    @else
+                    <td>{{$alm_l->j - $fac->j}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->k - $fac->k + $nc->k}}</td>
+                    @else
+                    <td>{{$alm_l->k - $fac->k}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->l - $fac->l + $nc->l}}</td>
+                    @else
+                    <td>{{$alm_l->l - $fac->l}}</td>
+                    @endif
+                    @if ($alm_l->producto_id == $nc->referencia_father)
+                    <td>{{$alm_l->total - $fac->total + $nc->total}}</td>
+                    @else
+                    <td>{{$alm_l->total - $fac->total}}</td>
+                    @endif
                 </tr>
                 @endif
+                @endforeach
                 @endforeach
                 @endforeach
                 <tr>
@@ -1994,33 +2100,85 @@
                     <td></td>
                     <td></td>
                 </tr>
-                @foreach ($almacen_genius as $alm_l)
-                @foreach ($facturado_g as $facturado)
-                @if ($alm_l->producto_id == $facturado->producto_id && $alm_l->producto_id == $facturado->referencia_father || $alm_l->producto_id == $facturado->producto_id )
+                @foreach ($almacen_genius as $alm_g)
+                @foreach ($facturado_g as $fac)
+                @foreach ($nota_credito_g as $nc)
+                @if ($alm_g->producto_id == $fac->referencia_father)
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
-                        {{$alm_l->referencia_producto}}
+                        {{$alm_g->referencia_producto}}
                     </td>
 
-                    <td>{{$alm_l->a - $facturado->a}}</td>
-
-
-                    <td>{{$alm_l->b - $facturado->b}}</td>
-                    <td>{{$alm_l->c - $facturado->c}}</td>
-                    <td>{{$alm_l->d - $facturado->d}}</td>
-                    <td>{{$alm_l->e - $facturado->e}}</td>
-                    <td>{{$alm_l->f - $facturado->f}}</td>
-                    <td>{{$alm_l->g - $facturado->g}}</td>
-                    <td>{{$alm_l->h - $facturado->h}}</td>
-                    <td>{{$alm_l->i - $facturado->i}}</td>
-                    <td>{{$alm_l->j - $facturado->j}}</td>
-                    <td>{{$alm_l->k - $facturado->k}}</td>
-                    <td>{{$alm_l->l - $facturado->l}}</td>
-                    <td>{{$alm_l->total - $facturado->total}}</td>
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->a - $fac->a + $nc->a}}</td>
+                    @else
+                    <td>{{$alm_g->a - $fac->a}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->b - $fac->b + $nc->b}}</td>
+                    @else
+                    <td>{{$alm_g->b - $fac->b}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->c - $fac->c + $nc->c}}</td>
+                    @else
+                    <td>{{$alm_g->c - $fac->c}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->d - $fac->d + $nc->d}}</td>
+                    @else
+                    <td>{{$alm_g->d - $fac->d}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->e - $fac->e + $nc->e}}</td>
+                    @else
+                    <td>{{$alm_g->e - $fac->e}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->f - $fac->f + $nc->f}}</td>
+                    @else
+                    <td>{{$alm_g->f - $fac->f}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->g - $fac->g + $nc->g}}</td>
+                    @else
+                    <td>{{$alm_g->g - $fac->g}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->h - $fac->h + $nc->h}}</td>
+                    @else
+                    <td>{{$alm_g->h - $fac->h}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->i - $fac->i + $nc->i}}</td>
+                    @else
+                    <td>{{$alm_g->i - $fac->i}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->j - $fac->j + $nc->j}}</td>
+                    @else
+                    <td>{{$alm_g->j - $fac->j}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->k - $fac->k + $nc->k}}</td>
+                    @else
+                    <td>{{$alm_g->k - $fac->k}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->l - $fac->l + $nc->l}}</td>
+                    @else
+                    <td>{{$alm_g->l - $fac->l}}</td>
+                    @endif
+                    @if ($alm_g->producto_id == $nc->referencia_father)
+                    <td>{{$alm_g->total - $fac->total + $nc->total}}</td>
+                    @else
+                    <td>{{$alm_g->total - $fac->total}}</td>
+                    @endif
                 </tr>
                 @endif
+                @endforeach
                 @endforeach
                 @endforeach
                 <tr>
