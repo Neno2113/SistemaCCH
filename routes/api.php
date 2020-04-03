@@ -101,3 +101,7 @@ Route::get('reporteExistencias', 'ExistenciaController@existenciasPorTallas');
 Route::get('existencia/produccion', 'ExistenciaController@existenciasProduccion');
 
 Route::get('existencia/almacen', 'ExistenciaController@existenciasAlmacen');
+
+Route::get('catalogos', 'productController@catalogos');
+
+Route::post('articulos', 'productController@articulos');

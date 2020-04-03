@@ -172,15 +172,24 @@
 
 
                     <ul class="nav nav-treeview">
-
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/catelogo-cuenta" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Catalogo Cuenta</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/product" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Producto</p>
                             </a>
                         </li>
-
-
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/articulo" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Articulo</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

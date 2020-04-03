@@ -426,18 +426,18 @@ class ordenEmpaqueController extends Controller
         $k_alm = $tallasAlmacen->sum('k') - $tallasSegundas->sum('k') - $tallasOrdenes->sum('k');
         $l_alm = $tallasAlmacen->sum('l') - $tallasSegundas->sum('l') - $tallasOrdenes->sum('l');
 
-        $a_alm = ($a_alm <= 0 || empty($a)  ? 0 : $a_alm);
-        $b_alm = ($b_alm <= 0 || empty($b)  ? 0 : $b_alm);
-        $c_alm = ($c_alm <= 0 || empty($c)  ? 0 : $c_alm);
-        $d_alm = ($d_alm <= 0 || empty($d)  ? 0 : $d_alm);
-        $e_alm = ($e_alm <= 0 || empty($e)  ? 0 : $e_alm);
-        $f_alm = ($f_alm <= 0 || empty($f)  ? 0 : $f_alm);
-        $g_alm = ($g_alm <= 0 || empty($g)  ? 0 : $g_alm);
-        $h_alm = ($h_alm <= 0 || empty($h)  ? 0 : $h_alm);
-        $i_alm = ($i_alm <= 0 || empty($i)  ? 0 : $i_alm);
-        $j_alm = ($j_alm <= 0 || empty($j)  ? 0 : $j_alm);
-        $k_alm = ($k_alm <= 0 || empty($k)  ? 0 : $k_alm);
-        $l_alm = ($l_alm <= 0 || empty($l)  ? 0 : $l_alm);
+        $a_alm = ($a_alm <= 0 || empty($a) || $a == 0.00   ? 0 : $a_alm);
+        $b_alm = ($b_alm <= 0 || empty($b) || $b == 0.00   ? 0 : $b_alm);
+        $c_alm = ($c_alm <= 0 || empty($c) || $c == 0.00   ? 0 : $c_alm);
+        $d_alm = ($d_alm <= 0 || empty($d) || $d == 0.00   ? 0 : $d_alm);
+        $e_alm = ($e_alm <= 0 || empty($e) || $e == 0.00   ? 0 : $e_alm);
+        $f_alm = ($f_alm <= 0 || empty($f) || $f == 0.00   ? 0 : $f_alm);
+        $g_alm = ($g_alm <= 0 || empty($g) || $g == 0.00   ? 0 : $g_alm);
+        $h_alm = ($h_alm <= 0 || empty($h) || $h == 0.00   ? 0 : $h_alm);
+        $i_alm = ($i_alm <= 0 || empty($i) || $i == 0.00   ? 0 : $i_alm);
+        $j_alm = ($j_alm <= 0 || empty($j) || $j == 0.00   ? 0 : $j_alm);
+        $k_alm = ($k_alm <= 0 || empty($k) || $k == 0.00   ? 0 : $k_alm);
+        $l_alm = ($l_alm <= 0 || empty($l) || $l == 0.00   ? 0 : $l_alm);
 
         $total_alm = $a_alm + $b_alm + $c_alm + $d_alm + $e_alm + $f_alm + $g_alm + $h_alm + $i_alm + $j_alm + $k_alm + $l_alm;
 
@@ -460,22 +460,22 @@ class ordenEmpaqueController extends Controller
         $total_perc = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
         $i_perc + $j_perc + $k_perc + $l_perc;
 
-        // echo $e_alm;
+        // echo $curva;
         // die();
 
         //segundo calculo
-        $a_seg = ($a_alm <= 0 || empty($a)) ? 0.1 : ($a_perc - $a) / $a;
-        $b_seg = ($b_alm == 0 || empty($b)) ? 0.1 : ($b_perc - $b) / $b;
-        $c_seg = ($c_alm == 0 || empty($c)) ? 0.1 : ($c_perc - $c) / $c;
-        $d_seg = ($d_alm == 0 || empty($d)) ? 0.1 : ($d_perc - $d) / $d;
-        $e_seg = ($e_alm == 0 || empty($e)) ? 0.1 : ($e_perc - $e) / $e;
-        $f_seg = ($f_alm == 0 || empty($f)) ? 0.1 : ($f_perc - $f) / $f;
-        $g_seg = ($g_alm == 0 || empty($g)) ? 0.1 : ($g_perc - $g) / $g;
-        $h_seg = ($h_alm == 0 || empty($h)) ? 0.1 : ($h_perc - $h) / $h;
-        $i_seg = ($i_alm == 0 || empty($i)) ? 0.1 : ($i_perc - $i) / $i;
-        $j_seg = ($j_alm == 0 || empty($j)) ? 0.1 : ($j_perc - $j) / $j;
-        $k_seg = ($k_alm == 0 || empty($k)) ? 0.1 : ($k_perc - $k) / $k;
-        $l_seg = ($l_alm == 0 || empty($l)) ? 0.1 : ($l_perc - $l) / $l;
+        $a_seg = ($a_alm <= 0 || empty($a) || $a == 0.00) ? 0.1 : ($a_perc - $a) / $a;
+        $b_seg = ($b_alm == 0 || empty($b) || $b == 0.00) ? 0.1 : ($b_perc - $b) / $b;
+        $c_seg = ($c_alm == 0 || empty($c) || $c == 0.00) ? 0.1 : ($c_perc - $c) / $c;
+        $d_seg = ($d_alm == 0 || empty($d) || $d == 0.00) ? 0.1 : ($d_perc - $d) / $d;
+        $e_seg = ($e_alm == 0 || empty($e) || $e == 0.00) ? 0.1 : ($e_perc - $e) / $e;
+        $f_seg = ($f_alm == 0 || empty($f) || $f == 0.00) ? 0.1 : ($f_perc - $f) / $f;
+        $g_seg = ($g_alm == 0 || empty($g) || $g == 0.00) ? 0.1 : ($g_perc - $g) / $g;
+        $h_seg = ($h_alm == 0 || empty($h) || $h == 0.00) ? 0.1 : ($h_perc - $h) / $h;
+        $i_seg = ($i_alm == 0 || empty($i) || $i == 0.00) ? 0.1 : ($i_perc - $i) / $i;
+        $j_seg = ($j_alm == 0 || empty($j) || $j == 0.00) ? 0.1 : ($j_perc - $j) / $j;
+        $k_seg = ($k_alm == 0 || empty($k) || $k == 0.00) ? 0.1 : ($k_perc - $k) / $k;
+        $l_seg = ($l_alm == 0 || empty($l) || $l == 0.00) ? 0.1 : ($l_perc - $l) / $l;
 
         //tercer calculo
         $a_ter = ($a_seg == 0.1) ? 0 : $a_perc * (1 + $a_seg) / 100;

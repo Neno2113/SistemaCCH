@@ -75,6 +75,7 @@ $(document).ready(function() {
     function init() {
         listar();
         mostrarForm(false);
+        catalogos();
         $('#range_1').ionRangeSlider({
             min     : 02,
             max     : 16,
@@ -226,6 +227,35 @@ $(document).ready(function() {
 
     });
 
+    function catalogos(){
+
+        $.ajax({
+            url: "catalogo-select",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.catalogo.length;
+
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =
+                        "<option value='' disabled>Cuenta Catalogo</option>"+
+                        "<option value=" +datos.catalogo[i].id +">"+datos.catalogo[i].codigo+"</option>";
+                        $("#tipo_cuenta").append(fila);
+                    }
+                    $("#tipo_cuenta").select2();
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                console.log("No cargaron los productos");
+            }
+        });
+    }
 
 
     $("#btn-guardar").click(function(e) {
@@ -242,6 +272,7 @@ $(document).ready(function() {
             referencia_2: $("#referencia_2").val(),
             sec: $("#sec").val(),
             genero: $("#genero").val(),
+            catalogo: $("#tipo_cuenta").val(),
             descripcion: $("#descripcion").val(),
             descripcion_2: $("#descripcion_2").val(),
             precio_lista_2: $("#precio_lista_2").val(),
@@ -264,7 +295,6 @@ $(document).ready(function() {
             min: min_global,
             max: max_global
         };
-        // console.log(JSON.stringify(product));
 
         $.ajax({
             url: "product",
@@ -352,10 +382,12 @@ $(document).ready(function() {
             referencia: $("#referencia").val(),
             descripcion: $("#descripcion").val(),
             referencia_2: $("#referencia_2").val(),
+            catalogo: $("#tipo_cuenta").val(),
             precio_lista: $("#precio_lista").val(),
             precio_lista_2: $("#precio_lista_2").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
+
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),

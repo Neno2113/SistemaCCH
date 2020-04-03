@@ -15,10 +15,10 @@
     <div class="card-body">
 
         <div class="row">
-            <div class="col-md-5">
+            {{-- <div class="col-md-5">
                 <label for="">Desde:</label>
                 <input type="date" name="desde" id="desde" class="form-control">
-            </div>
+            </div> --}}
             <div class="col-md-5">
                 <label for="">Hasta:</label>
                 <input type="date" name="hasta" id="hasta" class="form-control">

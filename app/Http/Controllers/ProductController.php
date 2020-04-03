@@ -9,6 +9,8 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\SKU;
 use App\CurvaProducto;
+use App\CatalogoCuenta;
+use App\Articulo;
 use stdClass;
 
 class ProductController extends Controller
@@ -41,6 +43,7 @@ class ProductController extends Controller
             $descripcion_2 = $request->input('descripcion_2', true);
             $precio_lista = $request->input('precio_lista');
             $genero = $request->input('genero');
+            $catalogo = $request->input('catalogo');
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
@@ -87,6 +90,7 @@ class ProductController extends Controller
             $product->id_user = \auth()->user()->id;
             $product->sec = $sec + 0.1;
             $product->enviado_lavanderia = 0;
+            $product->id_catalogo = $catalogo;
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
             $product->precio_lista = trim($precio_lista, "RD$");
@@ -310,6 +314,7 @@ class ProductController extends Controller
             $descripcion = $request->input('descripcion', true);
             $descripcion_2 = $request->input('descripcion_2', true);
             $precio_lista = $request->input('precio_lista');
+            $catalogo = $request->input('catalogo');
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
@@ -351,6 +356,7 @@ class ProductController extends Controller
             $product->referencia_producto = $referencia;
             $product->descripcion_2 = $descripcion_2;
             $product->descripcion = $descripcion;
+            $product->id_catalogo = $catalogo;
             $product->precio_lista = trim($precio_lista, "_RD$");
             $product->precio_lista_2 = trim($precio_lista_2, "_RD$");
             $product->precio_venta_publico = trim($precio_venta_publico, "_RD$");
@@ -646,6 +652,300 @@ class ProductController extends Controller
                 'corte' => 'Test'
             ];
         }
+        return response()->json($data, $data['code']);
+    }
+
+    public function storeCatalogo(Request $request){
+        $validar = $request->validate([
+            'codigo' => 'required',
+            'descripcion' => 'required',
+            'tipo_cuenta' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $codigo = $request->input('codigo');
+            $descripcion = $request->input('descripcion');
+            $tipo_cuenta = $request->input('tipo_cuenta');
+
+
+            $catalogo = new CatalogoCuenta();
+            $catalogo->codigo = $codigo;
+            $catalogo->descripcion = $descripcion;
+            $catalogo->tipo_cuenta = $tipo_cuenta;
+
+            $catalogo->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'catalogo' => $catalogo
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function catalogos()
+    {
+        $catalogos = DB::table('catalogo_cuenta')->select([
+            'catalogo_cuenta.id', 'catalogo_cuenta.codigo', 'catalogo_cuenta.descripcion', 'catalogo_cuenta.tipo_cuenta'
+        ]);
+        return DataTables::of($catalogos)
+            ->addColumn('Expandir', function ($catalogo) {
+                return "";
+            })
+
+            ->addColumn('Editar', function ($catalogo) {
+                return '<button id="btnEdit" onclick="mostrar(' . $catalogo->id . ')" class="btn btn-warning btn-sm mr-1"><i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $catalogo->id . ')" class="btn btn-danger btn-sm ml-1"><i class="fas fa-eraser"></i></button>';
+            })
+
+            ->rawColumns(['Editar'])
+            ->make(true);
+    }
+
+    public function showCatalogo($id){
+        $catalogo = CatalogoCuenta::find($id);
+
+        if(is_object($catalogo)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'catalogo' => $catalogo
+            ];
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'Ocurrio un error en la busqueda'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function updateCatalogo(Request $request)
+    {
+        $validar = $request->validate([
+            'codigo' => 'required',
+            'descripcion' => 'required',
+            'tipo_cuenta' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id');
+            $codigo = $request->input('codigo');
+            $descripcion = $request->input('descripcion');
+            $tipo_cuenta = $request->input('tipo_cuenta');
+
+
+            $catalogo = CatalogoCuenta::find($id);
+
+            $catalogo->codigo = $codigo;
+            $catalogo->descripcion = $descripcion;
+            $catalogo->tipo_cuenta = $tipo_cuenta;
+
+            $catalogo->save();
+
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'catalogo' => $catalogo
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroyCatalogo($id){
+        $catalogo = CatalogoCuenta::find($id);
+
+        if(is_object($catalogo)){
+            $catalogo->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'catalogo' => $catalogo
+            ];
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'no se encontro nada'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function catalogoSeleccionar(){
+        $catalogo = CatalogoCuenta::all();
+
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'catalogo' => $catalogo
+        ];
+
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function storeArticulo(Request $request){
+        $validar = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'tipo_articulo' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $nombre = $request->input('nombre');
+            $descripcion = $request->input('descripcion');
+            $tipo_articulo = $request->input('tipo_articulo');
+
+
+            $articulo = new Articulo();
+            $articulo->nombre = $nombre;
+            $articulo->descripcion = $descripcion;
+            $articulo->tipo_articulo = $tipo_articulo;
+
+            $articulo->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'articulo' => $articulo
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function articulos()
+    {
+        $catalogos = DB::table('producto_articulo')->select([
+            'producto_articulo.id', 'producto_articulo.nombre', 'producto_articulo.descripcion', 'producto_articulo.tipo_articulo'
+        ]);
+        return DataTables::of($catalogos)
+            ->addColumn('Expandir', function ($catalogo) {
+                return "";
+            })
+
+            ->addColumn('Editar', function ($catalogo) {
+                return '<button id="btnEdit" onclick="mostrar(' . $catalogo->id . ')" class="btn btn-warning btn-sm mr-1"><i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $catalogo->id . ')" class="btn btn-danger btn-sm ml-1"><i class="fas fa-eraser"></i></button>';
+            })
+
+            ->rawColumns(['Editar'])
+            ->make(true);
+    }
+
+    public function showArticulo($id){
+        $articulo = Articulo::find($id);
+
+        if(is_object($articulo)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'articulo' => $articulo
+            ];
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'Ocurrio un error en la busqueda'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function updateArticulo(Request $request)
+    {
+        $validar = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'tipo_articulo' => 'required'
+        ]);
+
+        if (empty($validar)) {
+
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id');
+            $nombre = $request->input('nombre');
+            $descripcion = $request->input('descripcion');
+            $tipo_articulo = $request->input('tipo_articulo');
+
+
+            $catalogo = CatalogoCuenta::find($id);
+
+            $articulo = Articulo::find($id);
+            $articulo->nombre = $nombre;
+            $articulo->descripcion = $descripcion;
+            $articulo->tipo_articulo = $tipo_articulo;
+
+            $articulo->save();
+
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'articulo' => $articulo
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function destroyArticulo($id){
+        $articulo = Articulo::find($id);
+
+        if(is_object($articulo)){
+            $articulo->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'articulo' => $articulo
+            ];
+        }else{
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'no se encontro nada'
+            ];
+        }
+
         return response()->json($data, $data['code']);
     }
 }

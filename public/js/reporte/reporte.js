@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 $("#btn-generar").click(function(e){
     e.preventDefault();
-    let desde  = $("#desde").val();
+
     let hasta  = $("#hasta").val();
 
     Swal.fire(
@@ -72,7 +72,7 @@ $("#btn-generar").click(function(e){
         'info'
     )
 
-    $("#btn-print").attr("href", 'reporte/existencia/'+desde +"/"+ hasta);
+    $("#btn-print").attr("href", 'reporte/existencia/'+hasta);
 
     // $.ajax({
     //     url: "reporte/fechas",

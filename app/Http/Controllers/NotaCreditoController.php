@@ -23,7 +23,6 @@ class NotaCreditoController extends Controller
     public function store(Request $request)
     {
         $validar = $request->validate([
-            'sec' => 'required',
             'no_nota_credito' => 'required',
             'factura_id' => 'required',
             'cliente' => 'required',
@@ -41,6 +40,8 @@ class NotaCreditoController extends Controller
             $factura_id = $request->input('factura_id');
             $no_nota_credito = $request->input('no_nota_credito');
             $sec = $request->input('sec');
+            $itbis = $request->input('itbis');
+            $descuento = $request->input('descuento');
             $tipo_nota_credito = $request->input('tipo_nota_credito');
             $precio_lista_factura = $request->input('precio_lista_factura');
             $ncf = $request->input('ncf');
@@ -61,12 +62,14 @@ class NotaCreditoController extends Controller
             $nota_credito = new NotaCredito();
 
             $nota_credito->factura_id = $factura_id;
-            $nota_credito->no_nota_credito = $no_nota_credito;
+            $nota_credito->no_nota_credito = trim($no_nota_credito, "_");
             $nota_credito->ncf = $ncf;
             $nota_credito->user_id = \auth()->user()->id;
             $nota_credito->fecha =  date('Y/m/d h:i:s');
             $nota_credito->sec = $sec + 0.01;
             $nota_credito->cliente_id = $cliente_id;
+            $nota_credito->itbis = $itbis;
+            $nota_credito->descuento = $descuento;
             $nota_credito->precio_lista_factura = $precio_lista_factura;
             $nota_credito->tipo_nota_credito = $tipo_nota_credito;
 
@@ -144,18 +147,18 @@ class NotaCreditoController extends Controller
             $k = intval(trim($k, "_"));
             $l = intval(trim($l, "_"));
 
-            $a = $a_detalle - $a;
-            $b = $b_detalle - $b;
-            $c = $c_detalle - $c;
-            $d = $d_detalle - $d;
-            $e = $e_detalle - $e;
-            $f = $f_detalle - $f;
-            $g = $g_detalle - $g;
-            $h = $h_detalle - $h;
-            $i = $i_detalle - $i;
-            $j = $j_detalle - $j;
-            $k = $k_detalle - $k;
-            $l = $l_detalle - $l;
+            $a = $a;
+            $b = $b;
+            $c = $c;
+            $d = $d;
+            $e = $e;
+            $f = $f;
+            $g = $g;
+            $h = $h;
+            $i = $i;
+            $j = $j;
+            $k = $k;
+            $l = $l;
 
             //actualizar detalle de orden de facturacion
             // $a_detalle = $a_detalle - $a;
@@ -206,6 +209,15 @@ class NotaCreditoController extends Controller
             $nota_credito_detalle->l = $l;
             $nota_credito_detalle->total = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
             $nota_credito_detalle->producto_id = $producto_id;
+
+            $producto = Product::find($producto_id);
+            $ref_f = $producto->referencia_father;
+            if(empty($ref_f)){
+                $nota_credito_detalle->referencia_father = $producto_id;
+            }else{
+                $nota_credito_detalle->referencia_father = $ref_f;
+            }
+
 
             $nota_credito_detalle->save();
 
@@ -431,6 +443,37 @@ class NotaCreditoController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function validar($id){
+        $factura_detalle = ordenFacturacionDetalle::find($id);
+
+        if(is_object($factura_detalle)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'a' => $factura_detalle->a,
+                'b' => $factura_detalle->b,
+                'c' => $factura_detalle->c,
+                'd' => $factura_detalle->d,
+                'e' => $factura_detalle->e,
+                'f' => $factura_detalle->f,
+                'g' => $factura_detalle->g,
+                'h' => $factura_detalle->h,
+                'i' => $factura_detalle->i,
+                'j' => $factura_detalle->j,
+                'k' => $factura_detalle->k,
+                'l' => $factura_detalle->l,
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
     public function imprimir($id)
     {
         $factura = Factura::find($id)->load('orden_facturacion');
@@ -467,7 +510,6 @@ class NotaCreditoController extends Controller
             ->where('talla', 'LIKE', 'General')
             ->get();
 
-
             $orden_empaque = ordenEmpaque::find($id_orden_empaque);
             $orden_pedido_id = $orden_empaque->orden_pedido_id;
             $orden_pedido = ordenPedido::find($orden_pedido_id)->load('cliente')
@@ -481,9 +523,8 @@ class NotaCreditoController extends Controller
 
             $longitudDetalles = count($nota_detalle);
 
-
             for ($i = 0; $i < $longitudDetalles; $i++) {
-                array_push($detalles_totales, number_format(str_replace('.00', '', $orden_facturacion_detalle[$i]['precio']) * $nota_detalle[$i]['total']));
+                array_push($detalles_totales, number_format(str_replace('.00', '', $nota_detalle[$i]['producto']['precio_lista']) * $nota_detalle[$i]['total']));
                 array_push($totales_detalles, $nota_detalle[$i]['total']);
                 array_push($precio_total, $orden_facturacion_detalle[$i]['precio']);
             }
@@ -493,35 +534,19 @@ class NotaCreditoController extends Controller
 
             $subtotal = array_sum(str_replace(',', '', $detalles_totales));
 
-
-            $porc_desc = $nota_credito->factura->descuento / 100;
+            $porc_desc = $nota_credito->descuento / 100;
             $descuento = $porc_desc * $subtotal;
 
+            $itbis = $nota_credito->itbis / 100;
 
-            if(!empty($nota_credito->ncf)){
-                $itbis = $factura->itbis / 100;
+            $subtotal_real = $subtotal - $descuento;;
+            $impuesto = $itbis * $subtotal_real;
 
-                $subtotal_real = $subtotal - $descuento;;
-                $impuesto = $itbis * $subtotal_real;
+            $total_final = $subtotal_real + $impuesto;
 
-                $total_final = $subtotal_real + $impuesto;
-
-                $nota_credito->total = $total_final;
-                $nota_credito->hora_impresion = date('Y/m/d h:i:s');
-                $nota_credito->save();
-            }else{
-
-                $subtotal_real = $subtotal;
-
-                $total_final = $subtotal_real - $descuento;;
-                $impuesto = 0;
-                $nota_credito->total = $total_final;
-                $nota_credito->hora_impresion = date('Y/m/d h:i:s');
-                $nota_credito->save();
-            }
-
-
-
+            $nota_credito->total = $total_final;
+            $nota_credito->hora_impresion = date('Y/m/d h:i:s');
+            $nota_credito->save();
 
 
             $ordenes_pedido_id = array();

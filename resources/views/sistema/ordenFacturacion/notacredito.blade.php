@@ -37,13 +37,7 @@
                         <div class="col-md-8">
 
                         </div>
-                        <div class="col-md-2 ">
-                            <label for="">No. Nota de credito:</label>
-                            <input type="text" name="no_nota_credito" id="no_nota_credito"
-                                class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="sec" id="sec" value="">
-                            <input type="hidden" name="nc_id" id="nc_id" value="">
-                        </div>
+
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-4">
@@ -81,12 +75,36 @@
                                 <option value="CB">NOTA DE CREDITO NCF</option>
                             </select>
                         </div>
-                        <div class="col-md-4 mt-2" id="comprobante">
+
+                        <div class="col-md-4 mt-2">
+                            <label for="">No. Nota de credito:</label>
+                            <input type="text" name="no_nota_credito" id="no_nota_credito"
+                                class="form-control text-center font-weight-bold" data-inputmask='"mask": "aa-999999999"' data-mask>
+                            <input type="hidden" name="sec" id="sec" value="">
+                            <input type="hidden" name="nc_id" id="nc_id" value="">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 mt-2">
+                            <label for="">ITBIS</label>
+                            <input type="text" name="itbis_m" id="itbis" class="form-control text-center"
+                                data-inputmask='"mask": "99[99]%"' data-mask>
+                        </div>
+                        <div class="col-md-2 mt-2">
+                            <label for="">Descuento</label>
+                            <input type="text" name="descuento_m" id="descuento" class="form-control text-center"
+                                data-inputmask='"mask": "99[99]%"' data-mask>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 mt-2 pt-2">
+                            <button class="btn btn-secondary float-right mt-4" id="btn-generar"><i class="fas fa-file-alt"></i> Generar</button>
+                        </div>
+                        {{-- <div class="col-md-4 mt-2" id="comprobante">
                             <label for="">NCF</label>
                             <input type="text" name="ncf" id="ncf" class="form-control font-weight-bold">
 
-                        </div>
-
+                        </div> --}}
                     </div>
                     <div id="detalle-factura">
                         <label for="" class="mt-5">Detalle Factura</label>
@@ -204,6 +222,25 @@
                             <tbody id="disponibles" class="text-sm">
 
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="talla"></th>
+                                    <td class="talla">A</td>
+                                    <td class="talla">B</td>
+                                    <td class="talla">C</td>
+                                    <td class="talla">D</td>
+                                    <td class="talla">E</td>
+                                    <td class="talla">F</td>
+                                    <td class="talla">G</td>
+                                    <td class="talla">H</td>
+                                    <td class="talla">I</td>
+                                    <td class="talla">J</td>
+                                    <td class="talla">K</td>
+                                    <td class="talla">L</td>
+                                    <td class="talla"></td>
+
+                                </tr>
+                            </tfoot>
 
                         </table>
                     </div>
@@ -335,7 +372,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/nota_credito.js')}}"></script>
+<script src="{{asset('js/orden_facturacion/nota_credito.js')}}"></script>
 
 
 

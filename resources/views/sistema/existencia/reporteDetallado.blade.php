@@ -652,7 +652,7 @@
     </header> --}}
     <main>
         <h3>Reporte de existencias</h3>
-        <p style="width:40%;" >Desde <span style="font-weight:bolder; ">{{date("d/m/20y", strtotime($desde))}}</span> hasta <span style="font-weight:bolder; ">{{date("d/m/20y", strtotime($hasta))}}</span>
+        <p style="width:40%;" >Hasta <span style="font-weight:bolder; ">{{date("d/m/20y", strtotime($hasta))}}</span>
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
             <thead class="tabla-tallas">
                 <tr>
@@ -1961,7 +1961,7 @@
                 </tr>
                 @foreach ($almacen_lavish as $alm_l)
                 @foreach ($facturado_l as $fac)
-                @foreach ($nota_credito_m as $nc)
+                @foreach ($nota_credito_l as $nc)
                 @if ($alm_l->producto_id == $fac->referencia_father )
                 <tr>
                     <td></td>

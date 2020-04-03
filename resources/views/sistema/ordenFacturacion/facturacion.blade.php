@@ -6,7 +6,14 @@
 
 @section('content')
 
-<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+<div class="row">
+    <div class="col-md-6 mt-3 ml-2 ">
+        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+
+    </div>
+</div>
+
+<ul class="nav nav-tabs" id="custom-content-below-tab " role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill"
             href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home"
@@ -68,7 +75,7 @@
         aria-labelledby="custom-content-below-profile-tab">
 
 
-        <div class="card" id="listadoUsers">
+        <div class="card" id="listadoFacturas">
             <div class="card-header text-center">
                 <h4>Facturas para imprimir</h4>
             </div>
@@ -124,7 +131,7 @@
     </div>
 </div> --}}
 
-<div class="row mt-3">
+<div class="row mt-3" id="pantalones">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header text-center ">
@@ -401,6 +408,8 @@
                 <button type="submit" id="btn-guardar" class="btn btn-primary float-right">
                     <i class="far fa-save fa-lg"></i> Guardar
                 </button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                    class="far fa-edit fa-lg"></i> Editar</button>
                 {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
             </div>
 
@@ -408,7 +417,172 @@
         </div>
     </div>
 </div>
-{{-- </div> --}}
+
+<div class="row mt-3" id="normal">
+    <div class="col-12">
+        <div class="card  mb-3" id="registroForm">
+            <div class="card-header text-center ">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
+                <h4><strong>Facturacion</strong></h4>
+            </div>
+            <div class="card-body">
+                <form action="" id="formulario" class="form-group carta panel-body">
+                    <h5><strong> Formulario facturacion:</strong></h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8 ">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">No. Factura:</label>
+                            <input type="text" name="no_factura" id="no_factura"
+                                class="form-control text-center font-weight-bold" readonly>
+                            <input type="hidden" name="sec_manual" id="sec" value="">
+
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="">Cliente</label>
+                            <select name="clienteSearch" id="clienteSearch" class="form-control">
+
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Sucursal</label>
+                            <select name="sucursalSearch" id="sucursalSearch" class="form-control">
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Fecha</label>
+                            <input type="date" name="fecha_m" id="fecha_m" class="form-control text-center">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Fecha vencimiento</label>
+                            <input type="date" name="fecha_vencimiento_m" id="fecha_vencimiento_m" class="form-control text-center">
+                        </div>
+
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="">Tipo Factura</label>
+                            <select name="tipo_factura_m" id="tipo_factura_m" class="form-control">
+                                <option value="IN">Factura</option>
+                                <option value="B01">Credito Fiscal</option>
+                                <option value="B02">Consumidor Final</option>
+                                <option value="B03">Nota de Debito(Gubernamental)</option>
+                                <option value="DN">Nota de Debito(Normal)</option>
+                                <option value="B04">Nota de Credito con NCF(Gubernamental)</option>
+                                <option value="B14">Comprobante Regimen Especiales</option>
+                                <option value="B15">Comprobante Gubernamental</option>
+                                <option value="B16">Comprobante para Exportaciones</option>
+                                {{-- <option value="CN">Nota de Credito</option> --}}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Numero Factura</label>
+                            <input type="text" name="numeracion_m" id="numeracion_m" class="form-control text-center"
+                            data-inputmask='"mask": "999999999999[9999999999]"' data-mask>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">ITBIS</label>
+                            <input type="text" name="itbis_m" id="itbis_m" class="form-control text-center"
+                                data-inputmask='"mask": "99%"' data-mask>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Descuento</label>
+                            <input type="text" name="descuento_m" id="descuento_m" class="form-control text-center"
+                                data-inputmask='"mask": "99%"' data-mask>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="">Producto</label>
+                            <select name="productoSearch" id="productoSearch" class="form-control">
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 ">
+                            <label for="">Cantidad</label>
+                            <input type="number" name="cantidad" min="0" max="10000" id="cantidad" class="form-control text-center">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Precio</label>
+                            <input type="text" name="precio" id="precio" class="form-control text-center"
+                            data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-4 mt-3">
+                            <label for="">Nota:</label>
+                            <textarea name="nota_m" id="nota_m" cols="30" rows="1" class="form-control"></textarea>
+                        </div>
+                        <div class="col-md-4 mt-3">
+
+                        </div>
+                        <div class="col-md-4 mt-4">
+
+                            <button class="btn btn-success float-right mt-5" id="btn-agregar"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" id="agregadas">
+                        <div class="col-md-12 pt-3 pl-3 pb-3 table-responsive">
+                            <table class="table  table-bordered  tabla-detallada mt-3 ">
+                                <thead class="">
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="detalle_manual">
+
+                                </tbody>
+                                <tfoot class="light">
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="card-footer ">
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                <button type="submit" id="btn-guardar_m" class="btn btn-primary float-right">
+                    <i class="far fa-save fa-lg"></i> Guardar
+                </button>
+                {{-- <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                    class="far fa-edit fa-lg"></i> Editar</button> --}}
+                {{-- <input type="submit" value="Actualizar" id="btn-edit" class="btn btn-lg btn-warning mt-4"> --}}
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -419,64 +593,6 @@
 @include('adminlte/scripts')
 <script src="{{asset('js/orden_facturacion/facturacion.js')}}"></script>
 
-<script>
-    function mostrar(id_orden) {
-        $.get("orden_facturacion/" + id_orden, function(data, status) {
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            // $("#btn-edit").show();
-            $("#btn-guardar").show();
-            $("#btnImprimir").hide();
-            $("#btn-opciones").hide();
-
-
-            $("#id").val(data.orden_facturacion.id);
-            $("#cliente").val(data.orden_pedido.cliente.nombre_cliente);
-            $("#sucursal").val(data.orden_pedido.sucursal.nombre_sucursal);
-            $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
-
-            $("#facturacion_detalle").DataTable().destroy();
-            listarOrdenDetalle(data.orden_facturacion.id);
-
-
-
-        });
-    }
-
-      //funcion para listar en el Datatable
-      function listarOrdenDetalle(id) {
-       var tabla_orden = $("#facturacion_detalle").DataTable({
-            serverSide: true,
-            bFilter: false,
-            lengthChange: false,
-            bPaginate: false,
-            bInfo: false,
-            retrieve: true,
-            ajax: "api/factura_detalle/"+id,
-            columns: [
-                { data: "referencia_producto",name: "producto.referencia_producto"},
-                { data: "a",name: "orden_pedido_detalle.a"},
-                { data: "b", name: "orden_pedido_detalle.b" },
-                { data: "c", name: "orden_pedido_detalle.c" },
-                { data: "d", name: "orden_pedido_detalle.d"},
-                { data: "e", name: "orden_pedido_detalle.e"},
-                { data: "f", name: "orden_pedido_detalle.f"},
-                { data: "g", name: "orden_pedido_detalle.g"},
-                { data: "h", name: "orden_pedido_detalle.h"},
-                { data: "i", name: "orden_pedido_detalle.i"},
-                { data: "j", name: "orden_pedido_detalle.j"},
-                { data: "k", name: "orden_pedido_detalle.k"},
-                { data: "l", name: "orden_pedido_detalle.l"},
-                { data: "total", name: "orden_pedido_detalle.total"},
-
-            ],
-        });
-    }
-
-
-</script>
 
 
 

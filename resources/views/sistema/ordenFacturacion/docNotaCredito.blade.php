@@ -306,7 +306,7 @@
 
         }
 
-        /* 
+        /*
         .tabla-totales {
             border: 2px  solid black;
             text-align: center;
@@ -539,7 +539,7 @@
             text-align: center;
             font-size: 16px;
             color: #000;
-            padding-bottom: 20px;
+            padding-bottom: 5px;
         }
         .tabla-motivo {
             width: 40%;
@@ -574,7 +574,7 @@
             width: 6px;
             float: left;
 
-            
+
         }
 
 
@@ -729,7 +729,7 @@
                         <th>Copia:</th>
                     </tr>
                 </thead>
-    
+
             </table> --}}
 
         </div>
@@ -759,7 +759,7 @@
             </tbody>
         </table>
 
-        @if (!empty($nota_credito->ncf))
+        @if ($nota_credito->ncf == 0)
         <div id="invoice-fiscal">
             <h1>NOTA CREDITO VALIDA PARA CREDITO FISCAL</h1>
         </div>
@@ -799,32 +799,33 @@
                         @endforeach
                     </td>
                     <td class="no">
-                        @foreach ($productosFactura as $producto)
-                        <li>{{$producto->referencia_producto}}</li>
+                        @foreach ($nota_detalle as $producto)
+                        <li>{{$producto->producto->referencia_producto}}</li>
                         @endforeach
                     </td>
                     <td class="unit">
                         @foreach ($sku as $barra)
-                        {{-- @if ($barra->talla = "General") --}}
+                        @foreach ($nota_detalle as $producto)
+                        @if ($barra->producto_id == $producto->producto->id)
                         <li>{{$barra->sku}}</li>
-                        {{-- @endif --}}
+                        @endif
                         {{-- @break --}}
-
+                        @endforeach
                         @endforeach
                     </td>
-                    <td class="desc-des">
-                        @foreach ($productosFactura as $producto)
-                        <li>{{$producto->descripcion}}</li>
+                    <td class="desc">
+                        @foreach ($nota_detalle as $producto)
+                        <li>{{$producto->producto->descripcion}}</li>
                         @endforeach
                     </td>
                     <td class="unit">
-                        @foreach ($orden_facturacion_detalle as $precio)
-                        <li>{{$precio->precio}}</li>
+                        @foreach ($nota_detalle as $precio)
+                        <li>{{$precio->producto->precio_lista}}</li>
                         @endforeach
                     </td>
                     <td class="total">
                         @foreach ($detalles_totales as $total)
-                        <li>{{$total}} RD$</li>
+                        <li>RD${{$total}} </li>
                         @endforeach
                     </td>
                 </tr>
@@ -864,27 +865,30 @@
             </table>
 
             <table class="tabla-totales">
+                <tr>
+                    <th>SUBTOTAL:</th>
+                    <td>RD$ {{number_format($subtotal)}}</td>
+
+                </tr>
 
                 <tr>
                     <th>DESCUENTO: {{$nota_credito->factura->descuento}}%</th>
-                    <td>{{number_format($descuento)}} RD$</td>
+                    <td>RD$ {{number_format($descuento)}}</td>
 
                 </tr>
                 <tr>
                     <th>SUBTOTAL:</th>
-                    <td>{{number_format($subtotal_real)}} RD$</td>
+                    <td>RD$ {{number_format($subtotal_real)}}</td>
 
                 </tr>
-                @if (!empty($nota_credito->ncf))
+
                 <tr>
-                    <th>IMPUESTO: {{$nota_credito->factura->itbis}}%</th>
-                    <td>{{number_format($impuesto)}} RD$</td>
+                    <th>IMPUESTO: {{$nota_credito->itbis}}%</th>
+                    <td>RD$ {{number_format($impuesto)}}</td>
                 </tr>
-                @endif
-               
                 <tr class="total">
                     <th style="font-weight:bold;">TOTAL FINAL:</th>
-                    <td style="font-weight:bold;">{{number_format($total_final)}} RD$</td>
+                    <td style="font-weight:bold;">RD$ {{number_format($total_final)}}</td>
                 </tr>
             </table>
         </div>
@@ -926,7 +930,7 @@
     <footer class="pagina1">
         Factura generada desde SistemaCCH.
     </footer>
-  
+
 
 </body>
 

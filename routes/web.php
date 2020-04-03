@@ -149,6 +149,14 @@ Route::get('/nota_credito', function () {
 Route::get('/reporte', function () {
     return view('sistema.existencia.reporte');
 })->middleware('auth', 'admin:Reportes');
+
+Route::get('/catelogo-cuenta', function () {
+    return view('sistema.product.catalogo');
+})->middleware('auth', 'admin:Catalogo Cuenta');
+
+Route::get('/articulo', function () {
+    return view('sistema.product.articulo');
+})->middleware('auth', 'admin:Articulos');
 // Fin vistas
 
 //Rutas de usuarios
@@ -306,7 +314,7 @@ Route::get('/imprimir/DocEA/{id}', 'AlmacenController@imprimir')->name('print');
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
 Route::post('existencia/consulta', 'ExistenciaController@show');
 Route::post('existencia', 'ExistenciaController@store');
-Route::get('/reporte/existencia/{desde}/{hasta}', 'ExistenciaController@imprimirReporte')->name('print');
+Route::get('/reporte/existencia/{hasta}', 'ExistenciaController@imprimirReporte')->name('print');
 Route::post('/reporte/fechas', 'ExistenciaController@imprimirReporte')->name('print');
 
 //Orden de pedido
@@ -361,7 +369,12 @@ Route::get('factura/lastdigit', 'FacturaController@getDigits');
 Route::post('factura', 'FacturaController@store');
 Route::get('factura/resumida/{id}', 'FacturaController@imprimir');
 Route::get('factura/{id}', 'FacturaController@verificar');
+Route::get('factura-edit/{id}', 'FacturaController@showFactura');
 Route::get('factura-vista', 'FacturaController@verificar');
+Route::put('/factura/edit', 'FacturaController@updateFactura');
+Route::get('/producto/normal', 'FacturaController@productoNormal');
+Route::post('factura_manual', 'FacturaController@storeManual');
+Route::post('factura_detalle', 'FacturaController@storeDetalle');
 
 
 //Home
@@ -379,6 +392,7 @@ Route::post('nota-credito', 'NotaCreditoController@store');
 Route::post('nota-credito/detalle/{id}', 'NotaCreditoController@storeDetalle');
 Route::post('nota-credito/delete/{id}', 'NotaCreditoController@destroy');
 Route::get('imprimir_notaCredito/{id}', 'NotaCreditoController@imprimir');
+Route::get('factura/validar/{id}', 'NotaCreditoController@validar');
 
 //Empleado
 Route::post('empleado', 'EmpleadoController@store');
@@ -393,3 +407,15 @@ Route::post('permiso', 'PermisoController@store');
 Route::post('permiso/delete/{id}', 'PermisoController@destroy');
 Route::get('permiso/{id}', 'PermisoController@show');
 
+//Catalogo
+Route::post('catalogo', 'ProductController@storeCatalogo');
+Route::get('catalogo/{id}', 'ProductController@showCatalogo');
+Route::put('catalogo/edit', 'ProductController@updateCatalogo');
+Route::post('catalogo/delete/{id}', 'ProductController@destroyCatalogo');
+Route::get('catalogo-select', 'ProductController@catalogoSeleccionar');
+
+//articulo
+Route::post('articulo', 'ProductController@storeArticulo');
+Route::get('articulo/{id}', 'ProductController@showArticulo');
+Route::put('articulo/edit', 'ProductController@updateArticulo');
+Route::post('articulo/delete/{id}', 'ProductController@destroyArticulo');

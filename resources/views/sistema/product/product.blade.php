@@ -123,10 +123,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div> --}}
-                                <input type="text" placeholder="Precio lista" name="precio_lista" id="precio_lista"
-                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                                    <label for="" class="label"></label>
-                                {{-- </div> --}}
+                            <input type="text" placeholder="Precio lista" name="precio_lista" id="precio_lista"
+                                class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            <label for="" class="label"></label>
+                            {{-- </div> --}}
 
                         </div>
                         <div class="col-md-4 mt-2">
@@ -134,44 +134,44 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div> --}}
-                                <input type="text" placeholder="Precio publico" name="precio_venta_publico"
-                                    id="precio_venta_publico" class="form-control text-center"
-                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                                    <label for="" class="label"></label>
+                            <input type="text" placeholder="Precio publico" name="precio_venta_publico"
+                                id="precio_venta_publico" class="form-control text-center"
+                                data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            <label for="" class="label"></label>
 
                             {{-- </div> --}}
 
                         </div>
-                        {{-- <div class="col-md-4 mt-4">
-                            <label for=""></label>
-                            <button type="button" class="btn btn-secondary  btn-block " data-toggle="modal"
-                                data-target=".bd-curva-modal-xl" id="btn-sku"><i class="fas fa-chart-area"></i> Asignar curva</button>
-                        </div> --}}
+                        <div class="col-md-4 mt-2">
+                            <select name="tags[]" id="tipo_cuenta" class="form-control select2">
+
+                            </select>
+                            <label for="" class="label"></label>
+                        </div>
 
                     </div>
                     <div class="row" id="precios_2">
                         <div class="col-md-4 mt-3">
 
-                            <div class="input-group">
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div>
-                                <input type="text" name="precio_lista_2" id="precio_lista_2"
-                                    placeholder="Preio lista ref 2" class="form-control text-center"
-                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                            </div>
+                                </div> --}}
+                            <input type="text" name="precio_lista_2" id="precio_lista_2" placeholder="Preio lista ref 2"
+                                class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            {{-- </div> --}}
                             <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4 mt-3">
 
-                            <div class="input-group">
+                            {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div>
-                                <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2"
-                                    id="precio_venta_publico_2" class="form-control text-center"
-                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                            </div>
+                                </div> --}}
+                            <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2"
+                                id="precio_venta_publico_2" class="form-control text-center"
+                                data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                            {{-- </div> --}}
                             <label for="" class="label"></label>
                         </div>
                         <div class="col-md-4">
