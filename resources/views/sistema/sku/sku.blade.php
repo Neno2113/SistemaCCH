@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row mt-3 ml-3">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+
         <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
             Cancelar</button>
     </div>
@@ -23,20 +23,20 @@
     @endif
     <div class="row d-flex justify-content-center">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header text-center bg-dark">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Importacion de SKU</h4>
+                {{-- <h4>Importacion de SKU</h4> --}}
             </div>
             <div class="card-body">
                 <form action="/sistemaCCH/public/text-read" method="POST" enctype="multipart/form-data" id="formulario"
                     class="form-group carta panel-body">
                     @csrf
-                    <h5>Importar SKUs:</h5>
+                    <h5>Importar SKUs</h5>
                     <hr>
                     <div class="row ">
                         <div class="col-md-12 d-flex justify-content-center">
@@ -56,8 +56,14 @@
 </div>
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4> Listado de skus</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Listado de skus</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <div class="container" id="listadoUsers">

@@ -5,13 +5,7 @@
 @section('title', 'Articulo')
 
 @section('content')
-{{-- <div class="container"> --}}
-<div class="row">
-    <div class="col-md-6 mt-3 ml-2 ">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
 
-    </div>
-</div>
 <div class="row ">
     <div class="col-12 ">
         <div class="card  mb-3" id="registroForm">
@@ -66,8 +60,14 @@
 </div>
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de productos</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Listado de productos</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="products" class="table table-hover table-bordered datatables" style="width:100%">

@@ -5,107 +5,118 @@
 @section('title', 'Nota de credito')
 
 @section('content')
-{{-- <div class="container "> --}}
-<div class="row mt-3 ml-2">
-    {{-- <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button> --}}
 
-</div>
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Nota de credito</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario Nota de Credito:</strong></h5>
+                    <h5>Formulario Nota de Credito</h5>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label for="">No. Factura:</label>
-                            <input type="text" name="no_factura" id="no_factura"
-                                class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="factura_id" id="factura_id" value="">
-                            <input type="hidden" name="orden_facturacion_id" id="orden_facturacion_id" value="">
-                        </div>
-                        <div class="col-md-8">
-
-                        </div>
-
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <label for="">Cliente:</label>
-                            <input type="text" name="cliente" id="cliente"
-                                class="form-control text-center font-weight-bold" readonly>
-                            <input type="hidden" name="cliente_id" id="cliente_id">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="">Sucursal:</label>
-                            <input type="text" name="sucursal" id="sucursal"
-                                class="form-control text-center font-weight-bold" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Fecha factura:</label>
-                            <input type="text" name="fecha_factura" id="fecha_factura"
-                                class="form-control text-center font-weight-bold" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="">Fecha impresion:</label>
-                            <input type="text" name="fecha_impresion" id="fecha_impresion"
-                                class="form-control text-center font-weight-bold" readonly>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-4 mt-2">
-                            <label for="">Total Factura</label>
-                            <input type="text" name="precio_lista_factura" id="precio_lista_factura"
-                                class="form-control text-center font-weight-bold" readonly>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <label for="">Tipo Nota de credito</label>
-                            <select name="tipo_nota_credito" id="tipo_nota_credito" class="form-control">
-                                <option value="CN">NOTA DE CREDITO</option>
-                                <option value="CB">NOTA DE CREDITO NCF</option>
+                    <div class="row" id="buscador">
+                        <div class="col-md-6">
+                            <select name="tags[]" id="facturas" class="form-control select2">
+                                <option value="" disabled>Facturas</option>
                             </select>
+                            <label for="" class="label"></label>
                         </div>
-
-                        <div class="col-md-4 mt-2">
-                            <label for="">No. Nota de credito:</label>
-                            <input type="text" name="no_nota_credito" id="no_nota_credito"
-                                class="form-control text-center font-weight-bold" data-inputmask='"mask": "aa-999999999"' data-mask>
-                            <input type="hidden" name="sec" id="sec" value="">
-                            <input type="hidden" name="nc_id" id="nc_id" value="">
+                        <div class="col-md-1 ml-2">
+                            <button type="button" id="btn-buscar" class="btn btn-secondary btn-block rounded-pill"><i
+                                    class="fas fa-search"></i></button>
                         </div>
-
                     </div>
-                    <div class="row">
-                        <div class="col-md-2 mt-2">
-                            <label for="">ITBIS</label>
-                            <input type="text" name="itbis_m" id="itbis" class="form-control text-center"
-                                data-inputmask='"mask": "99[99]%"' data-mask>
-                        </div>
-                        <div class="col-md-2 mt-2">
-                            <label for="">Descuento</label>
-                            <input type="text" name="descuento_m" id="descuento" class="form-control text-center"
-                                data-inputmask='"mask": "99[99]%"' data-mask>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 mt-2 pt-2">
-                            <button class="btn btn-secondary float-right mt-4" id="btn-generar"><i class="fas fa-file-alt"></i> Generar</button>
-                        </div>
-                        {{-- <div class="col-md-4 mt-2" id="comprobante">
-                            <label for="">NCF</label>
-                            <input type="text" name="ncf" id="ncf" class="form-control font-weight-bold">
+                    <div id="factura-form">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="">No. Factura:</label>
+                                <input type="text" name="no_factura" id="no_factura"
+                                    class="form-control text-center font-weight-bold" readonly>
+                                <input type="hidden" name="factura_id" id="factura_id" value="">
+                                <input type="hidden" name="orden_facturacion_id" id="orden_facturacion_id" value="">
+                            </div>
+                            <div class="col-md-8">
 
-                        </div> --}}
+                            </div>
+
+                        </div>
+                        <div class="row mt-3" id="">
+                            <div class="col-md-4">
+                                <label for="">Cliente:</label>
+                                <input type="text" name="cliente" id="cliente"
+                                    class="form-control text-center font-weight-bold" readonly>
+                                <input type="hidden" name="cliente_id" id="cliente_id">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">Sucursal:</label>
+                                <input type="text" name="sucursal" id="sucursal"
+                                    class="form-control text-center font-weight-bold" readonly>
+                                    <input type="hidden" name="sucursal_id" id="sucursal_id">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="">Fecha factura:</label>
+                                <input type="text" name="fecha_factura" id="fecha_factura"
+                                    class="form-control text-center font-weight-bold" readonly>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="">Fecha impresion:</label>
+                                <input type="text" name="fecha_impresion" id="fecha_impresion"
+                                    class="form-control text-center font-weight-bold" readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 mt-2">
+                                <label for="">Total Factura</label>
+                                <input type="text" name="precio_lista_factura" id="precio_lista_factura"
+                                    class="form-control text-center font-weight-bold" readonly>
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <label for="">Tipo Nota de credito</label>
+                                <select name="tipo_nota_credito" id="tipo_nota_credito" class="form-control">
+                                    <option value="CN">NOTA DE CREDITO</option>
+                                    <option value="CB">NOTA DE CREDITO NCF</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mt-2">
+                                <label for="">No. Nota de credito:</label>
+                                <input type="text" name="no_nota_credito" id="no_nota_credito"
+                                    class="form-control text-center font-weight-bold" data-inputmask='"mask": "aa-999999999"' data-mask>
+                                <input type="hidden" name="sec" id="sec" value="">
+                                <input type="hidden" name="nc_id" id="nc_id" value="">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mt-2">
+                                <label for="">ITBIS</label>
+                                <input type="text" name="itbis_m" id="itbis" class="form-control text-center"
+                                    data-inputmask='"mask": "99[99]%"' data-mask>
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <label for="">Descuento</label>
+                                <input type="text" name="descuento_m" id="descuento" class="form-control text-center"
+                                    data-inputmask='"mask": "99[99]%"' data-mask>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 mt-2 pt-2">
+                                <button class="btn btn-secondary float-right mt-4" id="btn-generar"><i class="fas fa-file-alt"></i> Generar</button>
+                            </div>
+                            {{-- <div class="col-md-4 mt-2" id="comprobante">
+                                <label for="">NCF</label>
+                                <input type="text" name="ncf" id="ncf" class="form-control font-weight-bold">
+
+                            </div> --}}
+                        </div>
                     </div>
+
                     <div id="detalle-factura">
                         <label for="" class="mt-5">Detalle Factura</label>
                         <table id="invoice_detail" class="table datatables tabla-detalle mt-5 mb-3 mr-5 tabla-nc"
@@ -328,8 +339,14 @@
 {{-- </div> --}}
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Nota de creditos</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Nota de creditos</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="facturas_listadas" class="table table-hover table-bordered datatables" style="width:100%">
@@ -337,13 +354,13 @@
                 <tr>
                     <th></th>
                     <th>Opciones</th>
+                    <th># Nota</th>
                     <th># Factura</th>
                     <th>Cliente</th>
                     <th>Sucursal</th>
                     <th>Fecha fact.</th>
-                    <th>Fecha imp.</th>
-                    {{-- <th>Total</th> --}}
-                    <th>Transporte</th>
+                    <th>Fecha Nota</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -351,13 +368,13 @@
                 <tr>
                     <th></th>
                     <th>Opciones</th>
+                    <th># Nota</th>
                     <th># Factura</th>
                     <th>Cliente</th>
                     <th>Sucursal</th>
                     <th>Fecha fact.</th>
-                    <th>Fecha imp.</th>
-                    {{-- <th>Total</th> --}}
-                    <th>Transporte</th>
+                    <th>Fecha Nota</th>
+                    <th>Total</th>
                 </tr>
             </tfoot>
         </table>

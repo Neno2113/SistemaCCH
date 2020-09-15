@@ -84,7 +84,7 @@ Route::get('listarorden/{id}', 'ordenPedidoController@listarOrden');
 
 Route::get('detalle_corte/{id}', 'AlmacenController@corte_detalle');
 
-Route::get('nota_credito/facturas', 'NotaCreditoController@facturas');
+Route::get('nota_creditos', 'NotaCreditoController@facturas');
 
 Route::get('fact_detalle/{id}', 'NotaCreditoController@facturacionDetail');
 
@@ -105,3 +105,5 @@ Route::get('existencia/almacen', 'ExistenciaController@existenciasAlmacen');
 Route::get('catalogos', 'productController@catalogos');
 
 Route::post('articulos', 'productController@articulos');
+
+Route::get('exportarFacturas', 'ExistenciaController@exportarFactura');

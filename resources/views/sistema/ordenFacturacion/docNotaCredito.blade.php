@@ -378,9 +378,9 @@
             width: 15%;
         }
 
-        footer {
+        /* footer {
             page-break-after: always;
-        }
+        } */
 
         . .tabla-principal-totales {
             border: none;
@@ -786,7 +786,7 @@
                     <th class="desc">CANT</th>
                     <th class="no">REFERENCIA</th>
                     <th class="unit">UPC/SKU</th>
-                    <th class="desc">DESCRIPCION</th>
+                    <th class="desc" style="padding-left: 50px; padding-right: 50px;">DESCRIPCION</th>
                     <th class="unit">PRECIO</th>
                     <th class="total">TOTAL</th>
                 </tr>
@@ -928,7 +928,7 @@
             </div>
     </main>
     <footer class="pagina1">
-        Factura generada desde SistemaCCH.
+        Nota de credito generada desde SistemaCCH.
     </footer>
 
 

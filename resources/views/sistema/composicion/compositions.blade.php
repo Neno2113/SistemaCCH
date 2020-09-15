@@ -8,49 +8,58 @@
 @section('content')
 <div class="container">
     <div class="row mt-3 ml-3">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+
         <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
             Cancelar</button>
     </div>
 
     <div class="row d-flex justify-content-center">
-        <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
-                <h4>Composiciones</h4>
-            </div>
-            <div class="card-body">
-                <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de composiciones:</h5>
-                    <hr>
-                    <div class="row ">
-                        <div class="col-md-6">
-                            <input type="hidden" name="id" id="id" value="">
-                            {{-- <label for="codigo composicion">Codigo composicion(*):</label>
-                            <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control"> --}}
+        <div class="col-6">
+            <div class="card  mb-3" id="registroForm">
+                <div class="card-header bg-dark pb-4">
+                    {{-- <h4>Composiciones</h4> --}}
+                </div>
+                <div class="card-body">
+                    <form action="" id="formulario" class="form-group carta panel-body">
+                        <h5>Formulario de creacion composiciones:</h5>
+                        <hr>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <input type="hidden" name="id" id="id" value="">
+                                {{-- <label for="codigo composicion">Codigo composicion(*):</label>
+                                <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control"> --}}
+                            </div>
+                            <div class="col-md-12">
+                                <label for="nombre composicion"></label>
+                                <input type="text" name="nombre_composicion" placeholder="Nombre composicion"
+                                    id="nombre_composicion" class="form-control">
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <label for="nombre composicion"></label>
-                            <input type="text" name="nombre_composicion" placeholder="Nombre composicion"
-                                id="nombre_composicion" class="form-control">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer  text-muted ">
-                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
-                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
-                        class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
-                        class="far fa-edit fa-lg"></i> Editar</button>
+                    </form>
+                </div>
+                <div class="card-footer  text-muted ">
+                    <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                            class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                    <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
+                            class="far fa-save fa-lg"></i> Guardar</button>
+                    <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                            class="far fa-edit fa-lg"></i> Editar</button>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4> Listado de composiciones</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Listado de composiciones</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="compositions" class="table table-hover table-bordered datatables">

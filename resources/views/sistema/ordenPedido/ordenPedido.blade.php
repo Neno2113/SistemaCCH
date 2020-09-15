@@ -6,26 +6,21 @@
 
 @section('content')
 
-<div class="row mt-3 ml-3">
-    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-
-</div>
-
 <div class="row" id="creacion-orden">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Formulario de orden de pedido:</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-
+                    <h5>Formulario de orden de pedido</h5>
+                    <hr>
                     <div class="row">
                         <div class="col-lg-10 col-md-8"></div>
                         <div class="col-lg-2  col-md-4">
@@ -553,12 +548,12 @@
 
             </div>
             <div class="card-footer text-muted">
-                <button class="btn btn-danger" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+                <button class="btn btn-danger float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left"></i>
                     Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-primary mt-4 float-right"><i
-                        class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-4 float-right"><i
-                        class="far fa-edit fa-lg"></i> Editar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-primary float-right"><i
+                        class="far fa-save"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning float-right"><i
+                        class="far fa-edit"></i> Editar</button>
             </div>
 
             </form>
@@ -666,8 +661,14 @@
 
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de ordenes</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Listado de ordenes</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="ordenes" class="table table-hover table-bordered datatables" style="width:100%">

@@ -5,24 +5,17 @@
 @section('title', 'Rollos')
 
 @section('content')
-{{-- <div class="container"> --}}
-<div class="row">
-    <div class="col-md-6 mt-3 ml-3">
-        <button class="btn btn-primary mb-3 " id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
 
-    </div>
-</div>
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center  border-top">
+            <div class="card-header bg-dark">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4 class="font-weight-bold">Rollos</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
@@ -84,8 +77,14 @@
 </div>
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de rollos</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left " id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Listado de rollos</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="rollos" class="table table-hover table-bordered datatables text-sm" style="width:100%">

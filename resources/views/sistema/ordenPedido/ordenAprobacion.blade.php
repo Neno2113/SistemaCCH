@@ -23,14 +23,13 @@
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header text-center bg-dark">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4><strong>Redistribuir orden</strong></h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
@@ -240,8 +239,8 @@
 
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de ordenes</h4>
+    <div class="card-header text-center bg-dark">
+        <h4 class="text-white">Listado de ordenes</h4>
     </div>
     <div class="card-body">
 

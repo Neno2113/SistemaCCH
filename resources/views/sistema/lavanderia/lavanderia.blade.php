@@ -5,29 +5,22 @@
 @section('title', 'Lavanderia')
 
 @section('content')
-{{-- <div class="container"> --}}
-<div class="row mt-3 ml-2">
-    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-
-    {{-- <button class="btn btn-secondary mb-3 ml-2" id="edit-hide2" data-toggle="modal"
-        data-target=".bd-talla-modal-xl"> <i class="fas fa-print"></i></button> --}}
-</div>
 
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark ">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4><strong>Envio lavanderia</strong></h4>
+                {{-- <h4><strong>Envio lavanderia</strong></h4> --}}
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario de envio a lavanderia:</strong></h5>
+                    <h5>Formulario de envio a lavanderia</h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
@@ -204,8 +197,14 @@
 {{-- </div> --}}
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Cortes en lavanderia:</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Cortes en lavanderia</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="lavanderias" class="table table-hover table-bordered datatables text-sm" style="width: 100%">

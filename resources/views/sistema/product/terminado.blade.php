@@ -10,18 +10,18 @@
 <div class="row mt-4">
     <div class="col-12 ">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center">
+            <div class="card-header bg-dark">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Producto Terminado</h4>
+                {{-- <h4>Producto Terminado</h4> --}}
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body" enctype="multipart/form-data">
-                    <h5><strong> Producto terminado:</strong></h5>
+                    <h5>Producto terminado</h5>
                     <hr>
                     <br><br>
                     <div class="row">
@@ -130,8 +130,8 @@
 </div>
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de producto terminado</h4>
+    <div class="card-header text-center bg-dark">
+        <h4 class="text-white">Listado de producto terminado</h4>
     </div>
     <div class="card-body">
         <table id="producto-terminado" class="table table-hover table-bordered datatables" style="width:100%">

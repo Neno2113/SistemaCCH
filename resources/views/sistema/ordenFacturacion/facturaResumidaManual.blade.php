@@ -777,7 +777,7 @@
                 <tr>
                     <th class="desc">CANT</th>
                     <th class="no">PRODUCTO</th>
-                    <th class="desc">DESCRIPCION</th>
+                    <th class="desc" style="padding-left: 50px; padding-right: 50px;">DESCRIPCION</th>
                     <th class="unit">PRECIO</th>
                     <th class="total">TOTAL</th>
                 </tr>

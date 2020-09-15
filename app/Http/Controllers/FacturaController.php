@@ -69,7 +69,7 @@ class FacturaController extends Controller
             $numero_comprobante = trim($numero_comprobante, "_");
 
             $factura->orden_facturacion_id = $orden_facturacion_id;
-            $factura->no_factura = $tipo_factura . '-' . $numeracion;
+            $factura->no_factura = $numeracion;
             $factura->user_id = \auth()->user()->id;
             $factura->tipo_factura = $tipo_factura;
             $factura->sec = $sec + 0.01;
@@ -380,7 +380,7 @@ class FacturaController extends Controller
             $numeracion = trim($numeracion, "_");
             $numero_comprobante = trim($numero_comprobante, "_");
 
-            $factura->no_factura = $tipo_factura . '-' . $numeracion;
+            $factura->no_factura = $numeracion;
             $factura->user_id = \auth()->user()->id;
             $factura->tipo_factura = $tipo_factura;
             $factura->sec = $sec + 0.01;
@@ -440,7 +440,7 @@ class FacturaController extends Controller
             $numeracion = trim($numeracion, "_");
 
             $factura->orden_facturacion_id = Null;
-            $factura->no_factura = $tipo_factura . '-' . $numeracion;
+            $factura->no_factura = $numeracion;
             $factura->user_id = \auth()->user()->id;
             $factura->cliente_id = $cliente;
             $factura->sucursal_id = $sucursal;
@@ -508,6 +508,35 @@ class FacturaController extends Controller
             ];
         }
 
+        return response()->json($data, $data['code']);
+    }
+
+    public function getNoFactura(Request $request){
+        $tipo = $request->input('tipo');
+        $factura = Factura::where('tipo_factura', '=', $tipo)->get()
+        ->last();
+
+        if(is_object($factura)){
+            $sec = $factura->no_factura;
+        }
+        // var_dump($sec);
+        // die();
+
+        if(empty($sec)){
+            $sec = 00000000;
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sec' => $sec
+            ];
+        }else{
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sec' => $sec + 1
+            ];
+        }
         return response()->json($data, $data['code']);
     }
 
@@ -640,24 +669,24 @@ class FacturaController extends Controller
                 'productos_id'
             ));
             return $pdf->download('facturaResumida.pdf');
-            // return view('sistema.ordenFacturacion.facturaResumida', \compact(
-            //     'factura',
-            //     'orden_pedido',
-            //     'orden_facturacion_detalle',
-            //     'productosFactura',
-            //     'sku',
-            //     'detalles_totales',
-            //     'subtotal',
-            //     'impuesto',
-            //     'descuento',
-            //     'total_final',
-            //     'bultos',
-            //     'ordenes_pedido',
-            //     'subtotal_real',
-            //     'total_articulos',
-            //     'orden_empaque_detalle',
-            //     'productos_id'
-            // ));
+            return view('sistema.ordenFacturacion.facturaResumida', \compact(
+                'factura',
+                'orden_pedido',
+                'orden_facturacion_detalle',
+                'productosFactura',
+                'sku',
+                'detalles_totales',
+                'subtotal',
+                'impuesto',
+                'descuento',
+                'total_final',
+                'bultos',
+                'ordenes_pedido',
+                'subtotal_real',
+                'total_articulos',
+                'orden_empaque_detalle',
+                'productos_id'
+            ));
         }else{
 
             $factura->fecha_impresion = date('Y/m/d h:i:s');

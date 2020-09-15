@@ -108,7 +108,7 @@ Route::get('/producto-terminado', function () {
 
 Route::get('/existencia', function () {
     return view('sistema.existencia.existencia');
-})->middleware('auth', 'admin:existencia');
+})->middleware('auth', 'admin:Existencia Talla');
 
 Route::get('/orden_pedido', function () {
     return view('sistema.ordenPedido.ordenPedido');
@@ -148,15 +148,19 @@ Route::get('/nota_credito', function () {
 
 Route::get('/reporte', function () {
     return view('sistema.existencia.reporte');
-})->middleware('auth', 'admin:Reportes');
+})->middleware('auth', 'admin:Reporte');
 
 Route::get('/catelogo-cuenta', function () {
     return view('sistema.product.catalogo');
-})->middleware('auth', 'admin:Catalogo Cuenta');
+})->middleware('auth', 'admin:Catalogo cuenta');
 
 Route::get('/articulo', function () {
     return view('sistema.product.articulo');
 })->middleware('auth', 'admin:Articulos');
+
+Route::get('/exportar-peach', function () {
+    return view('sistema.existencia.exportarPeach');
+})->middleware('auth', 'admin:ExportarPeach');
 // Fin vistas
 
 //Rutas de usuarios
@@ -364,6 +368,7 @@ Route::post('orden_facturacion', 'ordenFacturacionController@store');
 Route::post('factura_detalle', 'ordenFacturacionController@storeDetalle');
 
 //Factura
+Route::post('secuencia/factura', 'FacturaController@getNoFactura');
 Route::get('/orden_facturacion/{id}', 'FacturaController@show');
 Route::get('factura/lastdigit', 'FacturaController@getDigits');
 Route::post('factura', 'FacturaController@store');
@@ -374,7 +379,7 @@ Route::get('factura-vista', 'FacturaController@verificar');
 Route::put('/factura/edit', 'FacturaController@updateFactura');
 Route::get('/producto/normal', 'FacturaController@productoNormal');
 Route::post('factura_manual', 'FacturaController@storeManual');
-Route::post('factura_detalle', 'FacturaController@storeDetalle');
+Route::post('manual_detalle', 'FacturaController@storeDetalle');
 
 
 //Home
@@ -393,6 +398,7 @@ Route::post('nota-credito/detalle/{id}', 'NotaCreditoController@storeDetalle');
 Route::post('nota-credito/delete/{id}', 'NotaCreditoController@destroy');
 Route::get('imprimir_notaCredito/{id}', 'NotaCreditoController@imprimir');
 Route::get('factura/validar/{id}', 'NotaCreditoController@validar');
+Route::get('factura-select', 'NotaCreditoController@facturaSelect');
 
 //Empleado
 Route::post('empleado', 'EmpleadoController@store');

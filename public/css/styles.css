@@ -74,8 +74,11 @@ margin-bottom: 20px; */
 } */
 
 .card-footer {
-    border: 1px solid #31343940;
-    background: #e3e3e3;
+    border-left: 1px solid #06090f73;
+    border-right: 1px solid #06090f73;
+    border-bottom: 1px solid #06090f73;
+    /* border-radius: 5px; */
+    background: #f7f4f4 !important;
 }
 
 .corteSearch {

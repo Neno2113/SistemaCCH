@@ -6,29 +6,20 @@
 
 @section('content')
 
-<div class="row mt-3 ml-3">
-    <div class="col-md-6">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
-        {{-- <a href="/sistemaCCH/public/producto-terminado" class="btn btn-info mb-3 ml-2"><i class="fas fa-link mr-2"></i>
-            ir a producto terminado </a> --}}
-    </div>
-</div>
-
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark ">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4><strong>Almacen</strong></h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body" enctype="multipart/form-data">
-                    <h5><strong> Formulario de definir atributos producto:</strong></h5>
+                    <h5>Formulario de definir atributos del producto</h5>
                     <hr>
                     <br><br>
                     <div class="row">
@@ -184,8 +175,14 @@
 {{-- </div> --}}
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de cortes en almacen</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Listado de cortes en almacen</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="almacenes" class="table table-hover table-bordered datatables" style="width:100%">

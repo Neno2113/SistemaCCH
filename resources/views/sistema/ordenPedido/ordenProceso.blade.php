@@ -15,39 +15,51 @@
 
 
 <div class="container" id="listadoUsers">
-    <table id="ordenes_proceso" class="table table-striped table-bordered datatables">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Action</th>
-                <th>#</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. Entrega</th>
-                <th>Referencia</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Gen. Interno</th>
-                <th>Notas</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Action</th>
-                <th>#</th>
-                <th>Cliente</th>
-                <th>Sucursal</th>
-                <th>F. Entrega</th>
-                <th>Referencia</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Gen. Interno</th>
-                <th>Notas</th>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                {{-- <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button> --}}
+                <h4 class="text-white text-center">Listado de ordenes</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <table id="ordenes_proceso" class="table table-striped table-bordered datatables">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Action</th>
+                    <th>#</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>F. Entrega</th>
+                    <th>Referencia</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Gen. Interno</th>
+                    <th>Notas</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Action</th>
+                    <th>#</th>
+                    <th>Cliente</th>
+                    <th>Sucursal</th>
+                    <th>F. Entrega</th>
+                    <th>Referencia</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Gen. Interno</th>
+                    <th>Notas</th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
 
 </div>
 

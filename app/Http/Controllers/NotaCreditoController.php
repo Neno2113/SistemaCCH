@@ -46,6 +46,7 @@ class NotaCreditoController extends Controller
             $precio_lista_factura = $request->input('precio_lista_factura');
             $ncf = $request->input('ncf');
             $cliente_id = $request->input('cliente');
+            $sucursal_id = $request->input('sucursal');
 
             if (preg_match('/_/', $precio_lista_factura)) {
                 $precio_lista_factura = trim($precio_lista_factura, "_,RD$");
@@ -68,6 +69,7 @@ class NotaCreditoController extends Controller
             $nota_credito->fecha =  date('Y/m/d h:i:s');
             $nota_credito->sec = $sec + 0.01;
             $nota_credito->cliente_id = $cliente_id;
+            $nota_credito->sucursal_id = $sucursal_id;
             $nota_credito->itbis = $itbis;
             $nota_credito->descuento = $descuento;
             $nota_credito->precio_lista_factura = $precio_lista_factura;
@@ -234,41 +236,29 @@ class NotaCreditoController extends Controller
 
     public function facturas()
     {
-        $facturas = DB::table('factura')->join('users', 'factura.user_id', 'users.id')
-            ->join('orden_facturacion', 'factura.orden_facturacion_id', 'orden_facturacion.id')
+        $facturas = DB::table('nota_credito')->join('users', 'nota_credito.user_id', 'users.id')
+            ->join('factura', 'nota_credito.factura_id', 'factura.id')
+            ->join('cliente', 'nota_credito.cliente_id', 'cliente.id')
+            ->join('cliente_sucursales', 'nota_credito.sucursal_id', 'cliente_sucursales.id')
             ->select([
-                'factura.id', 'factura.no_factura', 'factura.fecha', 'factura.fecha_impresion',
-                'orden_facturacion.por_transporte', 'factura.nc_uso', 'users.name', 'users.surname',
-                'orden_facturacion.orden_empaque_id as empaque_id'
+                'factura.id as factura_id', 'nota_credito.id', 'factura.no_factura', 'factura.fecha',
+                'factura.nc_uso', 'users.name', 'users.surname', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal',
+                'nota_credito.no_nota_credito', 'nota_credito.fecha as fecha_nota'
             ]);
 
         return DataTables::of($facturas)
             ->addColumn('Expandir', function ($factura) {
                 return "";
             })
-            ->addColumn('cliente', function ($factura) {
-                $orden_empaque = ordenEmpaque::find($factura->empaque_id);
-                $orden_pedido = ordenPedido::find($orden_empaque->orden_pedido_id);
-                $cliente = Client::find($orden_pedido->cliente_id);
-
-                return $cliente->nombre_cliente;
-            })
-            ->addColumn('sucursal', function ($factura) {
-                $orden_empaque = ordenEmpaque::find($factura->empaque_id);
-                $orden_pedido = ordenPedido::find($orden_empaque->orden_pedido_id);
-                $sucursal = ClientBranch::find($orden_pedido->sucursal_id);
-
-                return $sucursal->nombre_sucursal;
-            })
             ->editColumn('fecha', function ($facturas) {
                 return date("d-m-20y", strtotime($facturas->fecha));
             })
-            ->editColumn('fecha_impresion', function ($facturas) {
-                return date("h:i:s  d-m-20y", strtotime($facturas->fecha_impresion));
+            ->editColumn('fecha_nota', function ($facturas) {
+                return date("d-m-20y", strtotime($facturas->fecha_nota));
             })
-            ->editColumn('por_transporte', function ($facturas) {
-                return ($facturas->por_transporte == 1) ? "Si" : "No";
-            })
+            // ->editColumn('fecha_impresion', function ($facturas) {
+            //     return date("h:i:s  d-m-20y", strtotime($facturas->fecha_impresion));
+            // })
             ->editColumn('name', function ($factura) {
                 return $factura->name." ". $factura->surname;
             })
@@ -289,15 +279,14 @@ class NotaCreditoController extends Controller
 
             //     return $productos;
             // })
-            // ->addColumn('total', function ($factura) {
-            //     $orden_facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', $factura->id)->get();
+            ->addColumn('total', function ($factura) {
+                $nota_detalle = NotaCreditoDetalle::where('nota_credito_id', $factura->id)->get();
 
-            //     return $orden_facturacion_detalle->total;
-            // })
+                return $nota_detalle->sum('total');
+            })
             ->addColumn('Opciones', function ($facturas) {
-                return ($facturas->nc_uso == 0) ? '<button onclick="mostrar(' . $facturas->id . ')" id="agregar"  class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt "></i></button>':
-                '<button onclick="eliminar(' . $facturas->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>'.
-                '<a href="imprimir_notaCredito/' . $facturas->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
+                return '<button onclick="eliminar(' . $facturas->factura_id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>'.
+                '<a href="imprimir_notaCredito/' . $facturas->factura_id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
 
 
             })
@@ -362,6 +351,19 @@ class NotaCreditoController extends Controller
                 'message' => "Ocurrio un error"
             ];
         }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function facturaSelect()
+    {
+        $facturas = Factura::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'facturas' => $facturas
+        ];
 
         return response()->json($data, $data['code']);
     }

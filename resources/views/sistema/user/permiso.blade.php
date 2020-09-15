@@ -14,14 +14,13 @@
 <div class="row ">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark ">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4>Permisos</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
@@ -48,7 +47,9 @@
                                 <option disabled>SKU</option>
                                 <option value="Sku">SKU</option>
                                 <option disabled>PRODUCTO</option>
+                                <option value="Catalogo cuenta">Producto</option>
                                 <option value="Productos">Producto</option>
+                                <option value="Articulos">Producto</option>
                                 <option value="Producto terminado">Producto Terminado</option>
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>CORTE</option>
@@ -75,8 +76,10 @@
                                 <option value="Facturacion">Generar Factura</option>
                                 <option value="Nota credito">Nota de Credito</option>
                                 <option  disabled>_______________________________________________________</option>
-                                <option disabled>Existencia</option>
-                                <option value="Existencias">Existencia</option>
+                                <option disabled>Reportes</option>
+                                <option value="Existencia Talla">Existencia por talla</option>
+                                <option value="Reporte">Reporte existencias</option>
+                                <option value="ExportarPeach">Existencia</option>
                             </select>
                         </div>
                         <div class="col-md-1"></div>
@@ -126,8 +129,13 @@
 {{-- </div> --}}
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4 > Listado de usuarios</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="text-white text-center"> Listado de usuarios</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
 

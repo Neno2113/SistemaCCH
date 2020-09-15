@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Corte;
 use App\Product;
 use App\Talla;
+use App\Client;
 use App\Perdida;
 use App\TallasPerdidas;
 use App\Almacen;
@@ -15,11 +16,14 @@ use App\ordenPedidoDetalle;
 use App\NotaCredito;
 use App\NotaCreditoDetalle;
 use App\Factura;
+use App\CatalogoCuenta;
 use App\Lavanderia;
+use App\ordenEmpaque;
 use App\OrdenFacturacion;
 use App\ordenFacturacionDetalle;
 use App\Recepcion;
 use App\ordenPedido;
+use App\SKU;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -1413,4 +1417,195 @@ class ExistenciaController extends Controller
             'facturado_g'
         ));
     }
+
+    public function exportarFactura()
+    {
+        $existencias = DB::table('orden_facturacion_detalle')->join('producto', 'orden_facturacion_detalle.producto_id', 'producto.id')
+            ->join('orden_facturacion', 'orden_facturacion_detalle.orden_facturacion_id', 'orden_facturacion.id')
+            ->select([
+                'orden_facturacion_detalle.orden_facturacion_id', 'orden_facturacion.por_transporte', 'orden_facturacion_detalle.total',
+                'producto.referencia_producto', 'producto.descripcion', 'producto.id as producto_id', 'producto.id_catalogo', 'orden_facturacion_detalle.precio'
+                // 'factura.no_factura', 'factura.fecha', 'factura.fecha_vencimiento',
+                // 'factura.itbis', 'factura.descuento', 'factura.nota'
+
+            ])->where('orden_facturacion_id', '<>', NUll);
+        return DataTables::of($existencias)
+            ->addColumn('Customer ID', function ($factura) {
+                $orden_facturacion = OrdenFacturacion::find($factura->orden_facturacion_id);
+                $orden_empaque = ordenEmpaque::find($orden_facturacion->orden_empaque_id);
+                $orden_pedido = OrdenPedido::find($orden_empaque->orden_pedido_id);
+                $cliente = Client::find($orden_pedido->cliente_id);
+
+                return $cliente->codigo_cliente;
+            })
+            ->addColumn('Invoice/CM #', function ($orden) {
+                $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
+                ->where('orden_facturacion_id', '<>', NUll)
+                ->first();
+                return $factura['no_factura'];
+            })
+            ->addColumn('Credit Memo', function ($orden) {
+                return "False";
+            })
+            ->addColumn('Date', function ($orden) {
+                $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
+                ->where('orden_facturacion_id', '<>', NUll)
+                ->first();
+                return date("d/m/20y", strtotime($factura['fecha']));
+            })
+            ->addColumn('Ship to Name', function ($factura) {
+                $orden_facturacion = OrdenFacturacion::find($factura->orden_facturacion_id);
+                $orden_empaque = ordenEmpaque::find($orden_facturacion->orden_empaque_id);
+                $orden_pedido = OrdenPedido::find($orden_empaque->orden_pedido_id);
+                $cliente = Client::find($orden_pedido->cliente_id);
+
+                return $cliente->nombre_cliente;
+            })
+            ->addColumn('Ship to Address-Line One', function ($factura) {
+                $orden_facturacion = OrdenFacturacion::find($factura->orden_facturacion_id);
+                $orden_empaque = ordenEmpaque::find($orden_facturacion->orden_empaque_id);
+                $orden_pedido = OrdenPedido::find($orden_empaque->orden_pedido_id);
+                $cliente = Client::find($orden_pedido->cliente_id);
+
+                return $cliente->calle;
+            })
+            ->addColumn('Ship to Address-Line Two', function ($factura) {
+                $orden_facturacion = OrdenFacturacion::find($factura->orden_facturacion_id);
+                $orden_empaque = ordenEmpaque::find($orden_facturacion->orden_empaque_id);
+                $orden_pedido = OrdenPedido::find($orden_empaque->orden_pedido_id);
+                $cliente = Client::find($orden_pedido->cliente_id);
+
+                return $cliente->sector;
+            })
+            ->addColumn('Ship to City', function ($factura) {
+                $orden_facturacion = OrdenFacturacion::find($factura->orden_facturacion_id);
+                $orden_empaque = ordenEmpaque::find($orden_facturacion->orden_empaque_id);
+                $orden_pedido = OrdenPedido::find($orden_empaque->orden_pedido_id);
+                $cliente = Client::find($orden_pedido->cliente_id);
+
+                return $cliente->provincia;
+            })
+            ->addColumn('Ship to Country', function ($factura) {
+
+
+                return "REP. DOM.";
+            })
+            ->addColumn('Ship Via', function ($factura) {
+                if($factura->por_transporte == 1){
+                    return "T. BLANCO";
+                }else{
+                    return "CHOFER";
+                }
+            })
+            ->addColumn('Date Due', function ($orden) {
+                $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
+                ->where('orden_facturacion_id', '<>', NUll)
+                ->first();
+                return date("d/m/20y", strtotime($factura['fecha_vencimiento']));
+            })
+            ->addColumn('Sales Representative ID', function ($orden) {
+                return "";
+            })
+            ->addColumn('Accounts Receivable Account', function ($orden) {
+                return "11020-000";
+            })
+            ->addColumn('Sales Tax ID', function ($orden) {
+                $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
+                ->where('orden_facturacion_id', '<>', NUll)
+                ->first();
+
+                if($factura['itbis'] == 0){
+                    return "";
+                }else{
+                    return "ITBIS";
+                }
+
+            })
+            ->addColumn('Invoice Note', function ($orden) {
+                $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
+                ->where('orden_facturacion_id', '<>', NUll)
+                ->first();
+
+                return (isset($factura['nota']))? $factura['nota'] : "";
+            })
+            ->addColumn('Note Prints After Line Items', function ($orden) {
+
+                return "FALSE";
+            })
+            ->addColumn('Number of Distributions', function ($orden) {
+                $orden_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', $orden->orden_facturacion_id)->get();
+                return count($orden_detalle);
+
+            })
+            ->addColumn('Invoice/CM Distribution', function ($orden) {
+                return "pendiente";
+
+            })
+            ->addColumn('Quantity', function ($orden) {
+                return $orden->total;
+
+            })
+            ->addColumn('Item ID', function ($orden) {
+                return $orden->referencia_producto;
+
+            })
+            ->addColumn('Description', function ($orden) {
+                return $orden->descripcion;
+
+            })
+            ->addColumn('G/L Account', function ($orden) {
+                $catalogo_cuenta = CatalogoCuenta::find($orden->id_catalogo);
+
+                return $catalogo_cuenta->codigo;
+
+            })
+            ->addColumn('Unit Price', function ($orden) {
+
+                return str_replace('.00', '', $orden->precio);
+
+            })
+            ->addColumn('Tax Type', function ($orden) {
+                return "1";
+            })
+            ->addColumn('UPC / SKU', function ($orden) {
+                $sku = SKU::where('producto_id', $orden->producto_id)->get()
+                ->first();
+                return $sku['sku'];
+
+            })
+            ->addColumn('Amount', function ($orden) {
+                $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)->get()
+                ->first();
+                if($factura['nc_uso'] == 1){
+                    return $factura->total;
+                }else{
+                    return "-" .$factura['total'];
+                }
+
+            })
+            ->addColumn('U/M ID', function ($orden) {
+                return "UNIDAD";
+            })
+            ->addColumn('U/M No. of Stocking Units', function ($orden) {
+                return "1";
+            })
+            ->addColumn('Sales Tax Agency ID', function ($orden) {
+                $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)->get()
+                ->first();
+
+                if($factura['itbis'] == 0){
+                    return "";
+                }else{
+                    return "ITBIS";
+                }
+
+            })
+            ->addColumn('Return Authorization', function ($orden) {
+                return "";
+            })
+
+            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->make(true);
+    }
 }
+

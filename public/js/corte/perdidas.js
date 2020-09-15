@@ -188,7 +188,16 @@ $(document).ready(function() {
                     let year = fecha.substr(6, 4);
                     let fase =  datos.fase;
 
-                    $("#fecha").attr('min', year +"-"+ month+"-"+dia);
+                    month = month + 1;
+                    var i = Number(month) / 100;
+                    i = (i).toFixed(2).split(".").join("");
+                    i = i.substr(1, 4);
+
+                    var e = Number(dia) / 100;
+                    e = (e).toFixed(2).split(".").join("");
+                    e = e.substr(1, 4);
+
+                    $("#fecha").attr('min', year +"-"+ i+"-"+e);
 
                     a_total = datos.a;
                     b_total = datos.b;

@@ -5,16 +5,17 @@
 @section('title', 'Sucursales')
 
 @section('content')
-<div class="container">
-    <div class="row mt-2">
-        <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg" id="btn-agregar">
-            <i class="fas fa-building fa-lg"></i> Agregar sucursales</button>
-    </div>
-</div>
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de sucursales</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" data-toggle="modal" data-target=".bd-example-modal-lg" id="btn-agregar">
+                    <i class="fas fa-building fa-lg"></i> Agregar sucursales</button>
+                <h4 class="text-center text-white">Listado de sucursales</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="branches" class="table  table-hover table-bordered datatables" style="width:100%">

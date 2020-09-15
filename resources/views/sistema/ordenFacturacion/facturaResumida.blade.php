@@ -707,7 +707,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="num_factura">{{$factura->no_factura}}</td>
+                    <td class="num_factura">{{$factura->tipo_factura}}-{{$factura->no_factura}}</td>
                 </tr>
                 <tr>
                     <td class="fecha">Fecha:{{$factura->fecha}}</td>
@@ -772,7 +772,7 @@
                     <td class="vencimiento">{{$factura->fecha_vencimiento}}</td>
                     <td>{{$orden_pedido->vendedor->nombre}} {{$orden_pedido->vendedor->apellido}}</td>
                     @if ($factura->comprobante_fiscal == 1)
-                    <td>31/12/2019</td>
+                    <td>{{$factura->fecha_vencimiento}}</td>
                     <td class="ncf">{{$factura->numero_comprobante}}</td>
                     @endif
 
@@ -792,7 +792,7 @@
                     <th class="desc">CANT</th>
                     <th class="no">REFERENCIA</th>
                     <th class="unit">UPC/SKU</th>
-                    <th class="desc">DESCRIPCION</th>
+                    <th class="desc" style="padding-left: 50px; padding-right: 50px;">DESCRIPCION</th>
                     <th class="unit">PRECIO</th>
                     <th class="total">TOTAL</th>
                 </tr>

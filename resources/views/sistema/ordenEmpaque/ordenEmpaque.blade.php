@@ -13,18 +13,17 @@
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark ">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4><strong>Orden de empaque</strong></h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario Orden Empaque:</strong></h5>
+                    <h5>Formulario Orden Empaque</h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
@@ -242,8 +241,8 @@
 {{-- </div> --}}
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Reportar empaque</h4>
+    <div class="card-header text-center bg-dark">
+        <h4 class="text-white">Reportar empaque</h4>
     </div>
     <div class="card-body">
         <table id="listar_OE" class="table table-striped table-bordered datatables">

@@ -1,3 +1,5 @@
+var contado;
+var fecha_vencimiento;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -186,8 +188,46 @@ $(document).ready(function() {
 
 
     $("#tipo_factura").on('change', function() {
+        $("#numeracion").val("");
         let val = $("#tipo_factura").val();
 
+
+        var factura = {
+            tipo: val
+        };
+
+        $.ajax({
+            url: "secuencia/factura",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(factura),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    $("#numeracion").val(datos.sec);
+                    var cant = $("#numeracion").val();
+                    cant = cant.split('_').join("");
+                    let nume = "00000000";
+                    var res = nume.concat(cant);
+
+                    while(res.length > 8){
+                       res = res.replace("0", "");
+
+                    }
+                    // console.log(res);
+                    $("#numeracion").val(res);
+
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                console.log("Ocurrio un error")
+            }
+        });
 
         if (val == "B01") {
             comprobante = 1;
@@ -198,16 +238,45 @@ $(document).ready(function() {
         }
     });
 
-    $("#fecha").click(function(){
+    $("#fecha, #fecha_m").on('click', () =>{
         let fecha = new Date();
         let dia = fecha.getDate();
         let year = fecha.getFullYear();
         let month = fecha.getMonth();
 
         month = month + 1;
+        var i = Number(month) / 100;
+        i = (i).toFixed(2).split(".").join("");
+        i = i.substr(1, 4);
 
-        $("#fecha").attr('min', year +"-"+ month+"-"+ dia);
+        var e = Number(dia) / 100;
+        e = (e).toFixed(2).split(".").join("");
+        e = e.substr(1, 4);
+
+        $("#fecha").attr('min', year +"-"+ i+"-"+ e);
+        $("#fecha_m").attr('min', year +"-"+ i+"-"+ e);
+        contado = Number(contado);
+        e = Number(e);
+        vencimiento = contado + e;
+        var result = new Date();
+        result.setDate(result.getDate() + vencimiento);
+        let dia_ven = result.getDate();
+        let year_ven = result.getFullYear();
+        let month_ven = result.getMonth();
+        month_ven = Number(month_ven) + 1;
+        // console.log(dia_ven);
+        // console.log(year_ven);
+        // console.log(month_ven + 1);
+        fecha_vencimiento = year_ven +"-"+month_ven+"-"+dia_ven;
+
+
+
     });
+
+    $("#fecha").on('change', () => {
+        $("#fecha_vencimiento").val(fecha_vencimiento);
+
+    })
 
 
     //funcion que envia los datos del form al backend usando AJAX
@@ -233,8 +302,6 @@ $(document).ready(function() {
             nota: $("#nota").val()
 
         };
-
-        // console.log(JSON.stringify(factura));
 
         $.ajax({
             url: "factura",
@@ -484,7 +551,7 @@ $(document).ready(function() {
 
 
         $.ajax({
-            url: "factura_detalle",
+            url: "manual_detalle",
             type: "POST",
             dataType: "json",
             data: JSON.stringify(detalle_manual),
@@ -558,6 +625,7 @@ $(document).ready(function() {
             $("#listadoFacturas").show();
             $("#registroForm").hide();
             $("#normal").hide();
+            // $("#botones-imprimir").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#AprobarPedido").hide();
@@ -578,6 +646,7 @@ $(document).ready(function() {
         e.preventDefault();
         $("#pantalones").hide();
         $("#normal").show();
+        $("#botones-imprimir").hide();
         mostrarForm(true);
 
         // $("#btn-edit").hide();
@@ -616,7 +685,7 @@ function mostrar(id_orden) {
         $("#cliente").val(data.orden_pedido.cliente.nombre_cliente);
         $("#sucursal").val(data.orden_pedido.sucursal.nombre_sucursal);
         $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
-
+        contado = data.orden_pedido.cliente.condiciones_credito;
         $("#facturacion_detalle").DataTable().destroy();
         listarOrdenDetalle(data.orden_facturacion.id);
 
@@ -653,6 +722,13 @@ function mostrar(id_orden) {
 
         ],
     });
+}
+
+function addDays(days) {
+    var result = new Date();
+    result.setDate(result.getDate() + days);
+    console.log(result);
+    return result;
 }
 
 

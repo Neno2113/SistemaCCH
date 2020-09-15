@@ -5,25 +5,17 @@
 @section('title', 'Clientes')
 
 @section('content')
-{{-- <div class="container"> --}}
-<div class="row mt-3 ml-4">
-    <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-user-plus fa-lg"></i> Agregar</button>
-
-    {{-- <button class="btn btn-info mb-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg">
-        <i class="fas fa-building fa-lg"></i> Agregar sucursales</button> --}}
-</div>
 
 <div class="row">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center">
+            <div class="card-header bg-dark">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4 class="font-weight-bold">Cliente</h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
@@ -107,11 +99,11 @@
 
                                 <select name="condiciones_credito" id="condiciones_credito" class="form-control">
                                     <option value="" disabled>Condiciones de credito</option>
-                                    <option value="Contado">Al contado</option>
-                                    <option value="30 dias">30 dias</option>
-                                    <option value="60 dias">60 dias</option>
-                                    <option value="90 dias">90 dias</option>
-                                    <option value="120 dias">120 dias</option>
+                                    <option value="0">Al contado</option>
+                                    <option value="30">30 dias</option>
+                                    <option value="60">60 dias</option>
+                                    <option value="90">90 dias</option>
+                                    <option value="120">120 dias</option>
                                 </select>
                                 <label for="condiciones_credito" class="label"></label>
                             </div>
@@ -321,8 +313,14 @@
 {{-- </div> --}}
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Listado de clientes</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                <h4 class="text-white text-center">Listado de clientes</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
         <table id="clients" class="table table-hover table-bordered datatables" style="width:100%">

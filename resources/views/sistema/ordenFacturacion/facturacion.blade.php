@@ -6,115 +6,120 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-6 mt-3 ml-2 ">
-        <button class="btn btn-primary mb-3" id="btnAgregar"><i class="fas fa-plus-circle fa-lg"></i> Agregar</button>
+<div id="botones-imprimir">
+    <ul class="nav nav-tabs" id="custom-content-below-tab " role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill"
+                href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home"
+                aria-selected="true">Facturar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill"
+                href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile"
+                aria-selected="false">Imprimir</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer;">
+            <a class="btn btn-primary nav-link text-white" id="btnAgregar"><i class="fas fa-plus"></i> Crear</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="custom-content-below-tabContent">
+        <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel"
+            aria-labelledby="custom-content-below-home-tab">
 
-    </div>
-</div>
+            <div class="card" id="listadoUsers">
+                <div class="card-header bg-dark">
+                    <div class="row">
+                        <div class="col-12">
 
-<ul class="nav nav-tabs" id="custom-content-below-tab " role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill"
-            href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home"
-            aria-selected="true">Facturar</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill"
-            href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile"
-            aria-selected="false">Imprimir</a>
-    </li>
-</ul>
-<div class="tab-content" id="custom-content-below-tabContent">
-    <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel"
-        aria-labelledby="custom-content-below-home-tab">
+                            <h4 class="text-white text-center">Facturas para generar</h4>
+                        </div>
+                    </div>
 
-        <div class="card" id="listadoUsers">
-            <div class="card-header text-center">
-                <h4>Facturas para generar</h4>
+                </div>
+                <div class="card-body">
+                    <table id="orden_facturacion" class="table  table-striped table-bordered datatables mt-2">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Accion</th>
+                                <th>Usuario Gen.</th>
+                                <th>No. Orden E.</th>
+                                <th>Fecha Creado.</th>
+                                <th>Env. Transporte</th>
+                                <th>Fecha empacado</th>
+                                {{-- <th>No Orden P.</th>
+                                <th>F. entrega</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody id="disponibles">
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Accion</th>
+                                <th>Usuario Gen.</th>
+                                <th>No. Orden E.</th>
+                                <th>Fecha Creado.</th>
+                                <th>Env. Transporte</th>
+
+                                <th>Fecha empacado</th>
+                                {{-- <th>No Orden P.</th>
+                                <th>F. entrega</th> --}}
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+
             </div>
-            <div class="card-body">
-                <table id="orden_facturacion" class="table  table-striped table-bordered datatables mt-2">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Accion</th>
-                            <th>Usuario Gen.</th>
-                            <th>No. Orden E.</th>
-                            <th>Fecha Creado.</th>
-                            <th>Env. Transporte</th>
-                            <th>Fecha empacado</th>
-                            {{-- <th>No Orden P.</th>
-                            <th>F. entrega</th> --}}
-                        </tr>
-                    </thead>
-                    <tbody id="disponibles">
+        </div>
+        <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
+            aria-labelledby="custom-content-below-profile-tab">
 
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th></th>
-                            <th>Accion</th>
-                            <th>Usuario Gen.</th>
-                            <th>No. Orden E.</th>
-                            <th>Fecha Creado.</th>
-                            <th>Env. Transporte</th>
 
-                            <th>Fecha empacado</th>
-                            {{-- <th>No Orden P.</th>
-                            <th>F. entrega</th> --}}
-                        </tr>
-                    </tfoot>
-                </table>
+            <div class="card" id="listadoFacturas">
+                <div class="card-header text-center bg-dark">
+                    <h4 class="text-white">Facturas para imprimir</h4>
+                </div>
+                <div class="card-body">
+                    <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Actions</th>
+                                <th>Usuario</th>
+                                <th># Factura</th>
+                                <th>Fecha</th>
+                                <th>Descuento</th>
+                                <th>ITBIS</th>
+                                <th>Tipo Fact.</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Actions</th>
+                                <th>Usuario</th>
+                                <th># Factura</th>
+                                <th>Fecha</th>
+                                <th>Descuento</th>
+                                <th>ITBIS</th>
+                                <th>Tipo Fact.</th>
+                                <th>Status</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
 
             </div>
 
         </div>
-    </div>
-    <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
-        aria-labelledby="custom-content-below-profile-tab">
-
-
-        <div class="card" id="listadoFacturas">
-            <div class="card-header text-center">
-                <h4>Facturas para imprimir</h4>
-            </div>
-            <div class="card-body">
-                <table id="facturas" class="table table-striped table-bordered datatables" style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Actions</th>
-                            <th>Usuario</th>
-                            <th># Factura</th>
-                            <th>Fecha</th>
-                            <th>Descuento</th>
-                            <th>ITBIS</th>
-                            <th>Tipo Fact.</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Actions</th>
-                            <th>Usuario</th>
-                            <th># Factura</th>
-                            <th>Fecha</th>
-                            <th>Descuento</th>
-                            <th>ITBIS</th>
-                            <th>Tipo Fact.</th>
-                            <th>Status</th>
-                        </tr>
-                    </tfoot>
-                </table>
-
-            </div>
-
-        </div>
 
     </div>
-
 </div>
+
 {{-- <div class="row mt-3" id="btn-opciones">
     <div class="col-md-6 d-flex justify-content-center border-right border-bottom">
         <button class="btn btn-info rounded-pill  mt-3 mb-4" type="button" data-toggle="collapse"
@@ -134,18 +139,18 @@
 <div class="row mt-3" id="pantalones">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark ">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4><strong>Facturacion</strong></h4>
+                {{-- <h4><strong>Facturacion</strong></h4> --}}
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario facturacion:</strong></h5>
+                    <h5>Formulario de facturacion</h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-2">
@@ -236,38 +241,11 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row mt-5">
-                        {{-- <div class="col-md-2">
-                            <label for="autorizacion_credito_req">¿Comprobante fiscal?(*):</label>
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary1" name="r1" value="1">
-                                    <label for="radioPrimary1">
-                                        Si
-                                    </label>
-                                </div>
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary2" name="r1" value="0" checked>
-                                    <label for="radioPrimary2">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <div class="col-md-4">
 
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-
-                    </div>
-                    {{-- <label for="">Detalle</label> --}}
                     <div class="container">
-                        <h5 class="mt-3"><strong>Detalle de factura</strong></h5>
+                        <h5><strong>Detalle de factura</strong></h5>
                         <table id="facturacion_detalle" class="table datatables mb-5 mb-3 tabla-tallas"
-                            style="width:104%; margin-left:-21px;">
+                            style="margin:0px auto; border-radius: 5px;">
                             <thead>
                                 <tr>
                                     <th class="talla_head">MUJER PLUS:</th>
@@ -421,18 +399,17 @@
 <div class="row mt-3" id="normal">
     <div class="col-12">
         <div class="card  mb-3" id="registroForm">
-            <div class="card-header text-center ">
+            <div class="card-header bg-dark ">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                             class="fas fa-remove"></i></button>
                 </div>
-                <h4><strong>Facturacion</strong></h4>
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario facturacion:</strong></h5>
+                    <h5>Formulario facturacion</h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-2">

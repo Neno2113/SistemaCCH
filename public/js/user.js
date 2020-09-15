@@ -260,11 +260,14 @@ $(document).ready(function() {
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#userForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
+            $("#avatar-img").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#userForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#btn-edit").hide();
@@ -311,11 +314,13 @@ function mostrar(id_user) {
         // data = JSON.parse(data);
         $("#listadoUsers").hide();
         $("#registroForm").show();
+        $("#userForm").show();
         $("#btnCancelar").show();
         $("#btn-edit").show();
         $("#btnAgregar").hide();
         $("#btn-guardar").hide();
         $("#ver-contra").show();
+        $("#avatar-img").show();
 
         // console.log(data);
         $("#id").val(data.user.id);
@@ -327,7 +332,7 @@ function mostrar(id_user) {
         $("#direccion").val(data.user.direccion).attr('readonly', false);
         $("#email").val(data.user.email).attr('readonly', false);
         $("#role").val(data.user.role).attr('disabled', false);
-        $("#avatar").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
+        $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
     });
 }
 

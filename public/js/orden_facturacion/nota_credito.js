@@ -81,6 +81,38 @@ $(document).ready(function() {
     //     });
     // }
 
+    function facturas (){
+
+        $.ajax({
+            url: "factura-select",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.facturas.length;
+
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.facturas[i].id +">"+datos.facturas[i].no_factura+"</option>"
+
+                        $("#facturas").append(fila);
+                    }
+                    $("#facturas").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    }
+
     $("#tipo_nota_credito").on('change', function(){
 
 
@@ -108,6 +140,7 @@ $(document).ready(function() {
             no_nota_credito: $("#no_nota_credito").val(),
             factura_id: $("#factura_id").val(),
             cliente: $("#cliente_id").val(),
+            sucursal: $("#sucursal_id").val(),
             itbis: $("#itbis").val(),
             descuento: $("#descuento").val(),
             tipo_nota_credito: $("#tipo_nota_credito").val(),
@@ -209,22 +242,21 @@ $(document).ready(function() {
                     pageSize: 'LEGAL'
                 }
                 ],
-            ajax: "api/nota_credito/facturas",
+            ajax: "api/nota_creditos",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
+                { data: "no_nota_credito", name: 'nota_credito.no_nota_credito' },
                 { data: "no_factura", name: 'factura.no_factura' },
-                { data: "cliente", name: 'factura.cliente',  orderable: false, searchable: false },
-                { data: "sucursal", name: 'factura.sucursal',  orderable: false, searchable: false },
-                // { data: "referencia_producto", name: 'producto.referencia_producto', orderable: false, searchable: false },
+                { data: "nombre_cliente", name: 'cliente.nombre_cliente'},
+                { data: "nombre_sucursal", name: 'cliente_sucursales.nombre_sucursal',  orderable: false, searchable: false },
                 { data: "fecha", name: 'factura.fecha' },
-                { data: "fecha_impresion", name: 'factura.fecha_impresion' },
-                // { data: "total", name: 'orden_facturacion_detalle.total' },
-                { data: "por_transporte", name: 'orden_facturacion.por_transporte' },
+                { data: "fecha_nota", name: 'nota_credito.fecha' },
+                { data: "total", name: 'nota_credito.total'},
             ],
-            order: [[5, 'desc']],
+            order: [[4, 'desc']],
             rowGroup: {
-                dataSrc: 'cliente'
+                dataSrc: 'nombre_cliente'
             }
         });
     }
@@ -284,6 +316,7 @@ $(document).ready(function() {
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#factura-form").hide();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#edit-hide").attr("disabled", false);
@@ -292,6 +325,7 @@ $(document).ready(function() {
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#buscador").show();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#btn-guardar").attr("disabled", true);
@@ -306,6 +340,7 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         $("#btn-generar").show();
+        facturas();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
@@ -325,11 +360,13 @@ function mostrar(id_factura) {
     $.get("nota_credito/" + id_factura, function(data, status) {
 
         $("#listadoUsers").hide();
-        $("#registroForm").show();
+        $("#factura-form").show();
+        $("#buscador").hide();
         $("#btnCancelar").show();
         $("#btnAgregar").hide();
         $("#btn-edit").hide();
         $("#btn-guardar").show();
+
         // $("#btn-generar").hide();
         $("#edit-hide").hide();
         $("#edit-hide2").hide();
@@ -344,6 +381,7 @@ function mostrar(id_factura) {
         $("#cliente").val(data.cliente.nombre_cliente);
         $("#cliente_id").val(data.cliente.id);
         $("#sucursal").val(data.sucursal.nombre_sucursal);
+        $("#sucursal_id").val(data.sucursal.id);
         $("#fecha_factura").val(data.factura.fecha);
         $("#fecha_impresion").val(data.factura.fecha_impresion);
         $("#precio_lista_factura").val(" RD$" + data.factura.total);
@@ -388,6 +426,11 @@ function mostrar(id_factura) {
 
     });
 }
+$("#btn-buscar").click(function(){
+    let id = $("#facturas").val();
+    mostrar(id);
+
+});
 
 //  //funcion para listar en el Datatable
 //  function listarFacturaDetalle(id) {

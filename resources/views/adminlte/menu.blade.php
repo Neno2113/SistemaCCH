@@ -352,7 +352,7 @@
                     <a href="#" class="nav-link ">
                         <i class="fas fa-random"></i>
                         <p>
-                            Existencias
+                            Reportes
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -360,7 +360,7 @@
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/existencia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Existencia</p>
+                                <p>Existencia por talla</p>
                             </a>
                         </li>
                     </ul>
@@ -368,7 +368,15 @@
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/reporte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Reportes</p>
+                                <p>Existencias</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/exportar-peach" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Exportar Peachtree</p>
                             </a>
                         </li>
                     </ul>
