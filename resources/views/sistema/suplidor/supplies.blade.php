@@ -515,7 +515,7 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/formulario.js')}}"></script>
-<script src="{{asset('js/suplidor.js')}}"></script>
+<script src="{{asset('js/suplidor/suplidor.js')}}"></script>
 
 
 

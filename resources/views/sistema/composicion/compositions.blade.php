@@ -86,7 +86,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/composition.js')}}"></script>
+<script src="{{asset('js/corte/composition.js')}}"></script>
 
 <script>
     function mostrar(id_composition) {

@@ -307,7 +307,7 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/formulario.js')}}"></script>
-<script src="{{asset('js/cloth.js')}}"></script>
+<script src="{{asset('js/corte/cloth.js')}}"></script>
 
 
 

@@ -473,7 +473,7 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/formulario.js')}}"></script>
-<script src="{{asset('js/client.js')}}"></script>
+<script src="{{asset('js/cliente/client.js')}}"></script>
 <script src="{{asset('js/client_branch.js')}}"></script>
 
 

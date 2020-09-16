@@ -9,8 +9,8 @@
 
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Reporte existencias</h4>
+    <div class="card-header bg-dark">
+        <h4 class="text-center text-white">Reporte existencias</h4>
     </div>
     <div class="card-body">
 

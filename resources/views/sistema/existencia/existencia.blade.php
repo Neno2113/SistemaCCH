@@ -130,7 +130,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/existencia.js')}}"></script>
+<script src="{{asset('js/reporte/existencia.js')}}"></script>
 
 
 

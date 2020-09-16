@@ -40,6 +40,28 @@
                     <th>Ship to Address-Line One</th>
                     <th>Ship to Address-Line Two</th>
                     <th>Ship to City</th>
+                    <th>Ship to Country</th>
+                    <th>Ship Via</th>
+                    <th>Date Due</th>
+                    <th>Sales Representative ID</th>
+                    <th>Accounts Receivable Account</th>
+                    <th>Sales Tax ID</th>
+                    <th>Invoice Note</th>
+                    <th>Note Prints After Line Items</th>
+                    <th>Number of Distributions</th>
+                    <th>Invoice/CM Distribution</th>
+                    <th>Quantity</th>
+                    <th>Item ID</th>
+                    <th>Description</th>
+                    <th>G/L Account</th>
+                    <th>Unit Price</th>
+                    <th>Tax Type</th>
+                    <th>UPC / SKU</th>
+                    <th>Amount</th>
+                    <th>U/M ID</th>
+                    <th>U/M No. of Stocking Units</th>
+                    <th>Sales Tax Agency ID</th>
+                    <th>Return Authorization</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -51,7 +73,30 @@
                     <th>Date</th>
                     <th>Ship to Name</th>
                     <th>Ship to Address-Line One</th>
-                    <th>Ship to Address-Li
+                    <th>Ship to Address-Line Two</th>
+                    <th>Ship to City</th>
+                    <th>Ship to Country</th>
+                    <th>Ship Via</th>
+                    <th>Date Due</th>
+                    <th>Sales Representative ID</th>
+                    <th>Accounts Receivable Account</th>
+                    <th>Sales Tax ID</th>
+                    <th>Invoice Note</th>
+                    <th>Note Prints After Line Items</th>
+                    <th>Number of Distributions</th>
+                    <th>Invoice/CM Distribution</th>
+                    <th>Quantity</th>
+                    <th>Item ID</th>
+                    <th>Description</th>
+                    <th>G/L Account</th>
+                    <th>Unit Price</th>
+                    <th>Tax Type</th>
+                    <th>UPC / SKU</th>
+                    <th>Amount</th>
+                    <th>U/M ID</th>
+                    <th>U/M No. of Stocking Units</th>
+                    <th>Sales Tax Agency ID</th>
+                    <th>Return Authorization</th>
                 </tr>
             </tfoot>
         </table>
@@ -65,6 +110,6 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/reporte/reporte.js')}}"></script>
+<script src="{{asset('js/reporte/exportar.js')}}"></script>
 
 @endsection

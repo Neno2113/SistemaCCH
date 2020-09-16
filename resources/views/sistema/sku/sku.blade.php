@@ -96,7 +96,7 @@
 
 
     @include('adminlte/scripts')
-    <script src="{{asset('js/sku.js')}}"></script>
+    <script src="{{asset('js/sku/sku.js')}}"></script>
 
     <script>
         function mostrar(id_composition) {

@@ -170,7 +170,7 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/formulario.js')}}"></script>
-<script src="{{asset('js/rollos.js')}}"></script>
+<script src="{{asset('js/corte/rollos.js')}}"></script>
 
 
 @endsection

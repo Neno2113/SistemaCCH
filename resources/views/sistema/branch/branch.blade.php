@@ -175,7 +175,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/client_branch.js')}}"></script>
+<script src="{{asset('js/cliente/client_branch.js')}}"></script>
 <script>
     function mostrar(id_branch) {
         $.post("client-branch/" + id_branch, function(data, status) {

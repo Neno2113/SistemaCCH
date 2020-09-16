@@ -687,18 +687,7 @@
                 </tbody>
 
             </table>
-            {{-- <div id="client">
-                <div class="to">FACTURA PARA:</div>
-                <h2 class="name">{{$orden_pedido->cliente->nombre_cliente}}</h2>
-            <div class="address">{{$orden_pedido->cliente->direccion_principal}}</div>
-            <div class="name">RNC:{{$orden_pedido->cliente->rnc}}</div>
-            <div class="name">{{$orden_pedido->cliente->telefono_1}}</div>
-            <div class="email"><a href="mailto:john@example.com">{{$orden_pedido->cliente->email_principal}}</a>
-            </div>
-            <div class="to">SUCURSAL:</div>
-            <h2 class="name">{{$orden_pedido->sucursal->nombre_sucursal}}</h2>
-        </div> --}}
-        {{-- <div id="invoice"> --}}
+
         <table class="tabla-factura">
             <thead>
                 <tr>
@@ -718,34 +707,6 @@
             </tbody>
         </table>
 
-        {{-- <h1>{{$factura->no_factura}}</h1>
-        <div class="date">Fecha: {{$factura->fecha}} </div>
-        <div class="date">Fecha Entrega: </div> --}}
-        {{-- </div> --}}
-        {{-- <div id="client-orden">
-                <div class="to">ORDEN PEDIDO:</div>
-                @foreach ($ordenes_pedido as $orden)
-                <h2 class="name">{{$orden->no_orden_pedido}}</h2>
-        @endforeach
-        <div class="date">Fecha: {{$orden_pedido->fecha}} </div>
-        <div class="to">TERMINOS DE PAGO:</div>
-        <div class="address">{{$orden_pedido->cliente->condiciones_credito}}</div>
-        <div class="email"><a href="mailto:john@example.com"></a></div>
-        <div class="to">SUCURSAL:</div>
-        <h2 class="name"></h2>
-        </div> --}}
-
-        {{-- <table    class="tabla-original">
-                <thead>
-                    <tr>
-                        <th>Original:</th>
-                    </tr>
-                    <tr>
-                        <th>Copia:</th>
-                    </tr>
-                </thead>
-
-            </table> --}}
 
         </div>
 

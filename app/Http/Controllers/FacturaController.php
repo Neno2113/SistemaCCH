@@ -75,7 +75,7 @@ class FacturaController extends Controller
             $factura->sec = $sec + 0.01;
             $factura->impreso = 0;
             $factura->comprobante_fiscal = $comprobante_fiscal;
-            $factura->numero_comprobante = 'B01' . $numero_comprobante;
+            $factura->numero_comprobante = 'B01' . $numeracion;
             $factura->descuento = trim($descuento, '_%');
             $factura->itbis = trim($itbis, '_%');;
             $factura->fecha = $fecha;
