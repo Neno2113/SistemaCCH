@@ -9,25 +9,17 @@
 
 
 <div class="card" id="listadoUsers">
-    <div class="card-header text-center">
-        <h4>Reporte existencias</h4>
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" id="btn-generar" class="btn btn-primary float-left mr-2"> <i class="fas fa-calculator"></i> Generar</button>
+                <button type="button" id="btn-add" class="btn btn-primary float-left"> Add</button>
+                <h4 class="text-center text-white">Reporte existencias</h4>
+            </div>
+        </div>
+
     </div>
     <div class="card-body">
-
-        {{-- <div class="row">
-            <div class="col-md-5">
-                <label for="">Desde:</label>
-                <input type="date" name="desde" id="desde" class="form-control">
-            </div>
-            <div class="col-md-5">
-                <label for="">Hasta:</label>
-                <input type="date" name="hasta" id="hasta" class="form-control">
-            </div> --}}
-            <div class="col-md-2 mt-4 pt-2">
-                <button type="button" id="btn-generar" class="btn btn-primary"> <i class="fas fa-calculator"></i> Generar</a>
-
-            </div>
-        {{-- </div> --}}
 
         <table id="existencias" class="table table-bordered table-hover datatables" style="width: 100%">
             <thead>
@@ -65,7 +57,7 @@
                 </tr>
             </thead>
             <tbody></tbody>
-            <tfoot>
+            {{-- <tfoot>
                 <tr>
                     <th>Customer ID</th>
                     <th>Invoice/CM #</th>
@@ -98,7 +90,7 @@
                     <th>Sales Tax Agency ID</th>
                     <th>Return Authorization</th>
                 </tr>
-            </tfoot>
+            </tfoot> --}}
         </table>
     </div>
     <div class="card-footer text-muted " style="background: transparent;">

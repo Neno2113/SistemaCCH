@@ -1,9 +1,11 @@
+var tabla;
+var counter = 1;
 $(document).ready(function() {
 
 
 
 
-    var tabla
+
 
     //Funcion que se ejecuta al inicio
     function init() {
@@ -119,12 +121,91 @@ function listar() {
             { data: "sales_agency", name: '',  orderable: false, searchable: false },
             { data: "return_auth", name: '',  orderable: false, searchable: false },
         ],
-        order: [[1, 'desc']],
-        rowGroup: {
-            dataSrc: 'no_factura'
-        },
+        // order: [[1, 'desc']],
+        // rowGroup: {
+        //     dataSrc: 'no_factura'
+        // },
 
     });
 }
 
+function anadir(){
+    tabla.row.add([
+        "codigo_cliente",
+        "no_factura",
+        "nota",
+        "fecha",
+        "nombre_cliente" ,
+        "calle",
+        "sector" ,
+        "provincia",
+        "pais" ,
+        "transporte",
+        "fecha_vencimiento" ,
+        "codigo_empleado",
+        "account_re" ,
+        "tax_id",
+        "factura_nota" ,
+        "nota_impresa",
+        "distribuiciones" ,
+        "Invoice_distribuciones",
+        "cantidad" ,
+        "referencia_producto",
+        "Description" ,
+        "gl_cuenta",
+        "precio_unitario",
+        "tax_type",
+        "sku",
+        "Amount",
+        "um_id",
+        "um_stockings",
+        "sales_agency",
+        "return_auth",
 
+    ]).draw( false );
+}
+
+$("#btn-add").on('click', () => {
+    anadir();
+
+});
+
+// $('#btn-add').on( 'click', function () {
+//     tabla.row.add( [
+//         counter +'.1',
+//         counter +'.2',
+//         counter +'.3',
+//         counter +'.4',
+//         counter +'.5',
+//         counter +'.6',
+//         counter +'.7',
+//         counter +'.8',
+//         counter +'.9',
+//         counter +'.10',
+//         counter +'.11',
+//         counter +'.12',
+//         counter +'.13',
+//         counter +'.14',
+//         counter +'.15',
+//         counter +'.16',
+//         counter +'.17',
+//         counter +'.18',
+//         counter +'.19',
+//         counter +'.20',
+//         counter +'.21',
+//         counter +'.22',
+//         counter +'.23',
+//         counter +'.24',
+//         counter +'.25',
+//         counter +'.26',
+//         counter +'.27',
+//         counter +'.28',
+//         counter +'.29',
+
+//     ] ).draw( false );
+
+//     counter++;
+// } );
+
+// // Automatically add a first row of data
+// $('#btn-add').click();
