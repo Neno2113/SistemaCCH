@@ -26,6 +26,10 @@ use App\ordenPedido;
 use App\SKU;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use App\Exports\Exports;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+
 
 class ExistenciaController extends Controller
 {
@@ -97,8 +101,8 @@ class ExistenciaController extends Controller
 
         //ordenes
         $orden_pedido = ordenPedido::where('status_orden_pedido', 'LIKE', 'Vigente')
-        ->select('id')
-        ->get();
+            ->select('id')
+            ->get();
 
         $ordenes = array();
 
@@ -108,7 +112,7 @@ class ExistenciaController extends Controller
 
         //Ordenes
         $tallasOrdenes = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)
-        ->where('referencia_father', $producto_id)
+            ->where('referencia_father', $producto_id)
             // ->where('orden_empacada' , 'LIKE', '0')
             ->get()->load('ordenPedido');
 
@@ -652,7 +656,7 @@ class ExistenciaController extends Controller
         }
 
         $corte_pro_myhtos = Corte::where('fase', 'LIKE', 'produccion')
-        ->where('updated_at', '<', $hasta)
+            ->where('updated_at', '<', $hasta)
             ->whereIn('producto_id', $product_mythos)
             ->get();
 
@@ -662,7 +666,7 @@ class ExistenciaController extends Controller
             array_push($cortes_pro_mythos, $corte_pro_myhtos[$i]['id']);
         }
         $tallasCorte = Talla::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_pro_mythos)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_pro_mythos)->get()->load('producto');
 
         $a_sub_my = $tallasCorte->sum('a');
         $b_sub_my = $tallasCorte->sum('b');
@@ -689,7 +693,7 @@ class ExistenciaController extends Controller
         }
 
         $corte_pro_lavish = Corte::where('fase', 'LIKE', 'produccion')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_lavish)
             ->get();
 
@@ -700,7 +704,7 @@ class ExistenciaController extends Controller
         }
 
         $tallasCorteLavish = Talla::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_pro_lavish)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_pro_lavish)->get()->load('producto');
 
         $a_sub_lav = $tallasCorteLavish->sum('a');
         $b_sub_lav = $tallasCorteLavish->sum('b');
@@ -727,7 +731,7 @@ class ExistenciaController extends Controller
         }
 
         $corte_pro_geniu = Corte::where('fase', 'LIKE', 'produccion')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_genius)
             ->get();
 
@@ -738,7 +742,7 @@ class ExistenciaController extends Controller
         }
 
         $tallasCorteGenius = Talla::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_pro_genius)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_pro_genius)->get()->load('producto');
 
         $a_sub_gen = $tallasCorteGenius->sum('a');
         $b_sub_gen = $tallasCorteGenius->sum('b');
@@ -790,7 +794,7 @@ class ExistenciaController extends Controller
         //Lavanderia Mythos
 
         $corte_lav = Corte::where('fase', 'LIKE', 'Lavanderia')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_mythos)
             ->select('id')
             ->get();
@@ -802,13 +806,13 @@ class ExistenciaController extends Controller
         }
 
         $lavanderia = Lavanderia::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_lav)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_lav)->get()->load('producto');
         $sub_lav_m = $lavanderia->sum('total_enviado');
 
         //Lavanderia Lavish
 
         $corte_lav_lav = Corte::where('fase', 'LIKE', 'Lavanderia')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_lavish)
             ->select('id')
             ->get();
@@ -820,14 +824,14 @@ class ExistenciaController extends Controller
         }
 
         $lavanderia_lavish = Lavanderia::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_lav_lav)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_lav_lav)->get()->load('producto');
         $sub_lav_l = $lavanderia_lavish->sum('total_enviado');
 
 
         //Lavanderia Genius
 
         $corte_lav_gen = Corte::where('fase', 'LIKE', 'Lavanderia')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_genius)
             ->select('id')
             ->get();
@@ -839,14 +843,14 @@ class ExistenciaController extends Controller
         }
 
         $lavanderia_genius = Lavanderia::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_lav_gens)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_lav_gens)->get()->load('producto');
         $sub_lav_g = $lavanderia_genius->sum('total_enviado');
 
         $sub_total_lav = $sub_lav_m + $sub_lav_l + $sub_lav_g;
         //Recepcion Mythos
 
         $corte_rec_mythos = Corte::where('fase', 'LIKE', 'Recepcion')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_mythos)
             ->select('id')
             ->get();
@@ -858,12 +862,12 @@ class ExistenciaController extends Controller
         }
 
         $recepcion_mythos = Recepcion::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_rec_mythos)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_rec_mythos)->get()->load('producto');
         $sub_rec_m = $recepcion_mythos->sum('total_recibido');
         //Recepcion Lavish
 
         $corte_rec_lavish = Corte::where('fase', 'LIKE', 'Recepcion')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_lavish)
             ->select('id')
             ->get();
@@ -875,13 +879,13 @@ class ExistenciaController extends Controller
         }
 
         $recepcion_lavish = Recepcion::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_rec_lavish)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_rec_lavish)->get()->load('producto');
         $sub_rec_l = $recepcion_lavish->sum('total_recibido');
 
         //Recepcion Genius
 
         $corte_rec_genius = Corte::where('fase', 'LIKE', 'Recepcion')
-        ->where('updated_at', '<',  $hasta)
+            ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_genius)
             ->select('id')
             ->get();
@@ -893,7 +897,7 @@ class ExistenciaController extends Controller
         }
 
         $recepcion_genius = Recepcion::where('updated_at', '<',  $hasta)
-        ->whereIn('corte_id', $cortes_rec_genius)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_rec_genius)->get()->load('producto');
         $sub_rec_g = $recepcion_genius->sum('total_recibido');
 
         //subtotal recepcion
@@ -904,9 +908,9 @@ class ExistenciaController extends Controller
             ->join('producto', 'almacen_detalle.producto_id', 'producto.id')
             ->selectRaw(' almacen_detalle.updated_at, almacen_detalle.fecha_entrada, producto.referencia_producto, producto.id as producto_id  ,SUM(almacen_detalle.a) as a, SUM(almacen_detalle.b) as b, SUM(almacen_detalle.c) as c, SUM(almacen_detalle.d) as d, SUM(almacen_detalle.e) as e, SUM(almacen_detalle.f) as f, SUM(almacen_detalle.g) as g, SUM(almacen_detalle.h) as h, SUM(almacen_detalle.i) as i,
         SUM(almacen_detalle.j) as j, SUM(almacen_detalle.k) as k, SUM(almacen_detalle.l) as l,SUM(almacen_detalle.total) as total')
-        ->whereIn('producto_id', $product_mythos)
-        ->where('almacen_detalle.updated_at', '<', $hasta)
-        ->groupBy('producto_id')
+            ->whereIn('producto_id', $product_mythos)
+            ->where('almacen_detalle.updated_at', '<', $hasta)
+            ->groupBy('producto_id')
             ->get();
         // echo $almacen_mythos;
         // die();
@@ -934,17 +938,17 @@ class ExistenciaController extends Controller
             ->join('producto', 'orden_facturacion_detalle.producto_id', 'producto.id')
             ->selectRaw('orden_facturacion_detalle.updated_at, orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
         SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-        ->where('orden_facturacion_detalle.updated_at',  '<',  $hasta)
-        ->whereIn('producto_id', $product_mythos)
+            ->where('orden_facturacion_detalle.updated_at',  '<',  $hasta)
+            ->whereIn('producto_id', $product_mythos)
             ->groupBy('referencia_father')
             ->get();
 
         $nota_credito_m = DB::table('nota_credito_detalle')
-        ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
-        ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
+            ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
+            ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
         SUM(nota_credito_detalle.j) as j, SUM(nota_credito_detalle.k) as k, SUM(nota_credito_detalle.l) as l,SUM(nota_credito_detalle.total) as total')
-        ->where('nota_credito_detalle.updated_at',  '<',  $hasta)
-        ->whereIn('producto_id', $product_mythos)
+            ->where('nota_credito_detalle.updated_at',  '<',  $hasta)
+            ->whereIn('producto_id', $product_mythos)
             ->groupBy('referencia_father')
             ->get();
 
@@ -958,18 +962,18 @@ class ExistenciaController extends Controller
         // echo $nota_credito_m;
         // die();
 
-        $a_alm_m = ($almacen_mythos->sum('a') - $facturado_m->sum('a') <= 0) ? 0 :$almacen_mythos->sum('a') - $facturado_m->sum('a') + $nota_credito_m->sum('a');
-        $b_alm_m = ($almacen_mythos->sum('b') - $facturado_m->sum('b') <= 0) ? 0 :$almacen_mythos->sum('b') - $facturado_m->sum('b') + $nota_credito_m->sum('b');
-        $c_alm_m = ($almacen_mythos->sum('c') - $facturado_m->sum('c') <= 0) ? 0 :$almacen_mythos->sum('c') - $facturado_m->sum('c') + $nota_credito_m->sum('c');
-        $d_alm_m = ($almacen_mythos->sum('d') - $facturado_m->sum('d') <= 0) ? 0 :$almacen_mythos->sum('d') - $facturado_m->sum('d') + $nota_credito_m->sum('d');
-        $e_alm_m = ($almacen_mythos->sum('e') - $facturado_m->sum('e') <= 0) ? 0 :$almacen_mythos->sum('e') - $facturado_m->sum('e') + $nota_credito_m->sum('e');
-        $f_alm_m = ($almacen_mythos->sum('f') - $facturado_m->sum('f') <= 0) ? 0 :$almacen_mythos->sum('f') - $facturado_m->sum('f') + $nota_credito_m->sum('f');
-        $g_alm_m = ($almacen_mythos->sum('g') - $facturado_m->sum('g') <= 0) ? 0 :$almacen_mythos->sum('g') - $facturado_m->sum('g') + $nota_credito_m->sum('g');
-        $h_alm_m = ($almacen_mythos->sum('h') - $facturado_m->sum('h') <= 0) ? 0 :$almacen_mythos->sum('h') - $facturado_m->sum('h') + $nota_credito_m->sum('h');
-        $i_alm_m = ($almacen_mythos->sum('i') - $facturado_m->sum('i') <= 0) ? 0 :$almacen_mythos->sum('i') - $facturado_m->sum('i') + $nota_credito_m->sum('i');
-        $j_alm_m = ($almacen_mythos->sum('j') - $facturado_m->sum('j') <= 0) ? 0 :$almacen_mythos->sum('j') - $facturado_m->sum('j') + $nota_credito_m->sum('j');
-        $k_alm_m = ($almacen_mythos->sum('k') - $facturado_m->sum('k') <= 0) ? 0 :$almacen_mythos->sum('k') - $facturado_m->sum('k') + $nota_credito_m->sum('k');
-        $l_alm_m = ($almacen_mythos->sum('l') - $facturado_m->sum('l') <= 0) ? 0 :$almacen_mythos->sum('l') - $facturado_m->sum('l') + $nota_credito_m->sum('l');
+        $a_alm_m = ($almacen_mythos->sum('a') - $facturado_m->sum('a') <= 0) ? 0 : $almacen_mythos->sum('a') - $facturado_m->sum('a') + $nota_credito_m->sum('a');
+        $b_alm_m = ($almacen_mythos->sum('b') - $facturado_m->sum('b') <= 0) ? 0 : $almacen_mythos->sum('b') - $facturado_m->sum('b') + $nota_credito_m->sum('b');
+        $c_alm_m = ($almacen_mythos->sum('c') - $facturado_m->sum('c') <= 0) ? 0 : $almacen_mythos->sum('c') - $facturado_m->sum('c') + $nota_credito_m->sum('c');
+        $d_alm_m = ($almacen_mythos->sum('d') - $facturado_m->sum('d') <= 0) ? 0 : $almacen_mythos->sum('d') - $facturado_m->sum('d') + $nota_credito_m->sum('d');
+        $e_alm_m = ($almacen_mythos->sum('e') - $facturado_m->sum('e') <= 0) ? 0 : $almacen_mythos->sum('e') - $facturado_m->sum('e') + $nota_credito_m->sum('e');
+        $f_alm_m = ($almacen_mythos->sum('f') - $facturado_m->sum('f') <= 0) ? 0 : $almacen_mythos->sum('f') - $facturado_m->sum('f') + $nota_credito_m->sum('f');
+        $g_alm_m = ($almacen_mythos->sum('g') - $facturado_m->sum('g') <= 0) ? 0 : $almacen_mythos->sum('g') - $facturado_m->sum('g') + $nota_credito_m->sum('g');
+        $h_alm_m = ($almacen_mythos->sum('h') - $facturado_m->sum('h') <= 0) ? 0 : $almacen_mythos->sum('h') - $facturado_m->sum('h') + $nota_credito_m->sum('h');
+        $i_alm_m = ($almacen_mythos->sum('i') - $facturado_m->sum('i') <= 0) ? 0 : $almacen_mythos->sum('i') - $facturado_m->sum('i') + $nota_credito_m->sum('i');
+        $j_alm_m = ($almacen_mythos->sum('j') - $facturado_m->sum('j') <= 0) ? 0 : $almacen_mythos->sum('j') - $facturado_m->sum('j') + $nota_credito_m->sum('j');
+        $k_alm_m = ($almacen_mythos->sum('k') - $facturado_m->sum('k') <= 0) ? 0 : $almacen_mythos->sum('k') - $facturado_m->sum('k') + $nota_credito_m->sum('k');
+        $l_alm_m = ($almacen_mythos->sum('l') - $facturado_m->sum('l') <= 0) ? 0 : $almacen_mythos->sum('l') - $facturado_m->sum('l') + $nota_credito_m->sum('l');
         $total_alm_m = $a_alm_m + $b_alm_m + $c_alm_m + $d_alm_m + $e_alm_m + $f_alm_m + $g_alm_m + $h_alm_m
             + $i_alm_m + $j_alm_m + $k_alm_m + $k_alm_m;
 
@@ -997,18 +1001,18 @@ class ExistenciaController extends Controller
             ->join('producto', 'orden_facturacion_detalle.producto_id', 'producto.id')
             ->selectRaw('orden_facturacion_detalle.updated_at, orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
         SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-        ->where('orden_facturacion_detalle.updated_at',  '<',  $hasta)
-        ->whereIn('producto_id', $product_lavish)
+            ->where('orden_facturacion_detalle.updated_at',  '<',  $hasta)
+            ->whereIn('producto_id', $product_lavish)
             ->groupBy('referencia_father')
             ->get();
 
 
         $nota_credito_l = DB::table('nota_credito_detalle')
-        ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
-        ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
+            ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
+            ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
         SUM(nota_credito_detalle.j) as j, SUM(nota_credito_detalle.k) as k, SUM(nota_credito_detalle.l) as l,SUM(nota_credito_detalle.total) as total')
-        ->where('nota_credito_detalle.updated_at',  '<',  $hasta)
-        ->whereIn('producto_id', $product_lavish)
+            ->where('nota_credito_detalle.updated_at',  '<',  $hasta)
+            ->whereIn('producto_id', $product_lavish)
             ->groupBy('referencia_father')
             ->get();
 
@@ -1060,18 +1064,18 @@ class ExistenciaController extends Controller
             ->join('producto', 'orden_facturacion_detalle.producto_id', 'producto.id')
             ->selectRaw('orden_facturacion_detalle.updated_at, orden_facturacion_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(orden_facturacion_detalle.a) as a, SUM(orden_facturacion_detalle.b) as b, SUM(orden_facturacion_detalle.c) as c, SUM(orden_facturacion_detalle.d) as d, SUM(orden_facturacion_detalle.e) as e, SUM(orden_facturacion_detalle.f) as f, SUM(orden_facturacion_detalle.g) as g, SUM(orden_facturacion_detalle.h) as h, SUM(orden_facturacion_detalle.i) as i,
       SUM(orden_facturacion_detalle.j) as j, SUM(orden_facturacion_detalle.k) as k, SUM(orden_facturacion_detalle.l) as l,SUM(orden_facturacion_detalle.total) as total')
-      ->where('orden_facturacion_detalle.updated_at',  '<',  $hasta)
-      ->whereIn('producto_id', $product_genius)
+            ->where('orden_facturacion_detalle.updated_at',  '<',  $hasta)
+            ->whereIn('producto_id', $product_genius)
             ->groupBy('referencia_father')
             ->get();
 
 
         $nota_credito_g = DB::table('nota_credito_detalle')
-        ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
-        ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
+            ->join('producto', 'nota_credito_detalle.producto_id', 'producto.id')
+            ->selectRaw('nota_credito_detalle.updated_at, nota_credito_detalle.referencia_father, producto.referencia_producto, producto.id as producto_id ,SUM(nota_credito_detalle.a) as a, SUM(nota_credito_detalle.b) as b, SUM(nota_credito_detalle.c) as c, SUM(nota_credito_detalle.d) as d, SUM(nota_credito_detalle.e) as e, SUM(nota_credito_detalle.f) as f, SUM(nota_credito_detalle.g) as g, SUM(nota_credito_detalle.h) as h, SUM(nota_credito_detalle.i) as i,
         SUM(nota_credito_detalle.j) as j, SUM(nota_credito_detalle.k) as k, SUM(nota_credito_detalle.l) as l,SUM(nota_credito_detalle.total) as total')
-        ->where('nota_credito_detalle.updated_at',  '<',  $hasta)
-        ->whereIn('producto_id', $product_genius)
+            ->where('nota_credito_detalle.updated_at',  '<',  $hasta)
+            ->whereIn('producto_id', $product_genius)
             ->groupBy('referencia_father')
             ->get();
 
@@ -1127,7 +1131,7 @@ class ExistenciaController extends Controller
 
 
         $pdf = \PDF::loadView('sistema.existencia.reporteDetallado',   compact(
-         'tallasCorte',
+            'tallasCorte',
             'tallasPerdidas',
             'tallasCorteLavish',
             'tallasCorteGenius',
@@ -1439,7 +1443,7 @@ class ExistenciaController extends Controller
 
             ])
             ->where('orden_facturacion_id', '=', 45);
-            // ->groupBy('orden_facturacion_id');
+        // ->groupBy('orden_facturacion_id');
         return DataTables::of($existencias)
             ->addColumn('codigo_cliente', function ($factura) {
                 $orden_facturacion = OrdenFacturacion::find($factura->orden_facturacion_id);
@@ -1451,9 +1455,9 @@ class ExistenciaController extends Controller
             })
             ->addColumn('no_factura', function ($orden) {
                 $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
-                ->where('orden_facturacion_id', '<>', NUll)
-                ->first();
-                return $factura['tipo_factura'].'-'.$factura['no_factura'];
+                    ->where('orden_facturacion_id', '<>', NUll)
+                    ->first();
+                return $factura['tipo_factura'] . '-' . $factura['no_factura'];
                 // return "";
             })
             ->addColumn('nota', function ($orden) {
@@ -1461,8 +1465,8 @@ class ExistenciaController extends Controller
             })
             ->addColumn('fecha', function ($orden) {
                 $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
-                ->where('orden_facturacion_id', '<>', NUll)
-                ->first();
+                    ->where('orden_facturacion_id', '<>', NUll)
+                    ->first();
                 return date("d/m/20y", strtotime($factura['fecha']));
             })
             ->addColumn('nombre_cliente', function ($factura) {
@@ -1503,16 +1507,16 @@ class ExistenciaController extends Controller
                 return "REP. DOM.";
             })
             ->addColumn('transporte', function ($factura) {
-                if($factura->por_transporte == 1){
+                if ($factura->por_transporte == 1) {
                     return "T. BLANCO";
-                }else{
+                } else {
                     return "CHOFER";
                 }
             })
             ->addColumn('fecha_vencimiento', function ($orden) {
                 $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
-                ->where('orden_facturacion_id', '<>', NUll)
-                ->first();
+                    ->where('orden_facturacion_id', '<>', NUll)
+                    ->first();
                 return date("d/m/20y", strtotime($factura['fecha_vencimiento']));
             })
             ->addColumn('codigo_empleado', function ($orden) {
@@ -1523,22 +1527,21 @@ class ExistenciaController extends Controller
             })
             ->addColumn('tax_id', function ($orden) {
                 $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
-                ->where('orden_facturacion_id', '<>', NUll)
-                ->first();
+                    ->where('orden_facturacion_id', '<>', NUll)
+                    ->first();
 
-                if($factura['itbis'] == 0){
+                if ($factura['itbis'] == 0) {
                     return "";
-                }else{
+                } else {
                     return "ITBIS";
                 }
-
             })
             ->addColumn('factura_nota', function ($orden) {
                 $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)
-                ->where('orden_facturacion_id', '<>', NUll)
-                ->first();
+                    ->where('orden_facturacion_id', '<>', NUll)
+                    ->first();
 
-                return (isset($factura['nota']))? $factura['nota'] : "";
+                return (isset($factura['nota'])) ? $factura['nota'] : "";
             })
             ->addColumn('nota_impresa', function ($orden) {
 
@@ -1547,55 +1550,46 @@ class ExistenciaController extends Controller
             ->addColumn('distribuiciones', function ($orden) {
                 $orden_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', $orden->orden_facturacion_id)->get();
                 return count($orden_detalle);
-
             })
             ->addColumn('Invoice_distribuciones', function ($orden) {
                 return "pendiente";
-
             })
             ->addColumn('cantidad', function ($orden) {
                 return $orden->total;
-
             })
             ->addColumn('referencia_producto', function ($orden) {
                 return $orden->referencia_producto;
-
             })
             ->addColumn('Description', function ($orden) {
                 return $orden->descripcion;
-
             })
             ->addColumn('gl_cuenta', function ($orden) {
                 $catalogo_cuenta = CatalogoCuenta::find($orden->id_catalogo);
 
                 return $catalogo_cuenta->codigo;
-
             })
             ->addColumn('precio_unitario', function ($orden) {
 
                 return str_replace('.00', '', $orden->precio);
-
             })
             ->addColumn('tax_type', function ($orden) {
                 return "1";
             })
             ->addColumn('sku', function ($orden) {
                 $sku = SKU::where('producto_id', $orden->producto_id)->get()
-                ->first();
+                    ->first();
                 return $sku['sku'];
-
             })
             ->addColumn('Amount', function ($orden) {
                 $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)->get()
-                ->first();
-                if($factura['nc_uso'] == 1){
+                    ->first();
+                if ($factura['nc_uso'] == 1) {
                     $amount = $orden->total * $orden->precio;
                     return $amount;
-                }else{
+                } else {
                     $amount = $orden->total * $orden->precio;
-                    return '-'.$amount;
+                    return '-' . $amount;
                 }
-
             })
             ->addColumn('um_id', function ($orden) {
                 return "UNIDAD";
@@ -1605,14 +1599,13 @@ class ExistenciaController extends Controller
             })
             ->addColumn('sales_agency', function ($orden) {
                 $factura = Factura::where('orden_facturacion_id', $orden->orden_facturacion_id)->get()
-                ->first();
+                    ->first();
 
-                if($factura['itbis'] == 0){
+                if ($factura['itbis'] == 0) {
                     return "";
-                }else{
+                } else {
                     return "ITBIS";
                 }
-
             })
             ->addColumn('return_auth', function ($orden) {
                 return "";
@@ -1621,5 +1614,9 @@ class ExistenciaController extends Controller
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
     }
+    public function userExport()
+    {
+        return Excel::download(new Exports, 'usersView.xlsx');
+        // return (new Exports)->download('usersView.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
 }
-

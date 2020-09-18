@@ -60,10 +60,26 @@ class FacturaController extends Controller
             //actualizar campo impreso para recargar dattable
             $orden_facturacion = OrdenFacturacion::find($orden_facturacion_id);
 
+
             if (is_object($orden_facturacion)) {
+                $empaque_id = $orden_facturacion->orden_empaque_id;
                 $orden_facturacion->impreso = 1;
                 $orden_facturacion->save();
             }
+
+            $empaque = ordenEmpaque::find($empaque_id);
+            $orden_id = $empaque->orden_pedido_id;
+            $orden = ordenPedido::find($orden_id);
+
+            if(is_object($orden)) {
+                $cliente_id = $orden->cliente_id;
+                $sucursal_id = $orden->sucursal_id;
+                $empleado_id = $orden->vendedor_id;
+            }
+
+            //distribuciones
+            $factura_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion_id)->get();
+            $distrbucion = count($factura_detalle);
 
             $numeracion = trim($numeracion, "_");
             $numero_comprobante = trim($numero_comprobante, "_");
@@ -82,6 +98,10 @@ class FacturaController extends Controller
             $factura->fecha_vencimiento = $fecha_vencimiento;
             $factura->nota = $nota;
             $factura->nc_uso = 0;
+            $factura->cliente_id = $cliente_id;
+            $factura->sucursal_id = $sucursal_id;
+            $factura->vendedor = $empleado_id;
+            $factura->distribuciones = $distrbucion;
 
             $factura->save();
 

@@ -170,6 +170,7 @@ Route::post('/user/delete/{id}', 'UserController@destroy');
 Route::post('/user/{id}', 'UserController@show');
 Route::post('/avatar', 'UserController@upload');
 Route::get('/avatar/{filname}', 'UserController@getImage');
+Route::get('exportar/test', 'ExistenciaController@userExport');
 
 //Rutas composition
 Route::post('/composition', 'CompositionController@store');

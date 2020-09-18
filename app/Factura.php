@@ -32,4 +32,8 @@ class Factura extends Model
     {
         return $this->belongsTo('App\ClientBranch', 'sucursal_id');
     }
+    public function empleado()
+    {
+        return $this->belongsTo('App\Empleado', 'vendedor');
+    }
 }

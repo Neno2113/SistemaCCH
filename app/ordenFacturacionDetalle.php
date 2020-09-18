@@ -17,4 +17,14 @@ class ordenFacturacionDetalle extends Model
     {
         return $this->belongsTo('App\Product', 'producto_id');
     }
+
+    public function sku()
+    {
+        return $this->belongsTo('App\SKU', 'sku_id');
+    }
+
+    public function catalogo()
+    {
+        return $this->belongsTo('App\CatalogoCuenta', 'id_catalogo');
+    }
 }

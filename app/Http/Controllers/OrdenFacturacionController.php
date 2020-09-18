@@ -9,6 +9,7 @@ use App\ordenPedido;
 use App\ordenEmpaqueDetalle;
 use App\ordenFacturacionDetalle;
 use App\Product;
+use App\SKU;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
@@ -127,6 +128,7 @@ class OrdenFacturacionController extends Controller
             $factura_detalle->nota_credito = 0;
 
             $producto = Product::find($producto_id);
+            $catalogo = $producto->id_catalogo;
             $ref_f = $producto->referencia_father;
             if(empty($ref_f)){
                 $factura_detalle->referencia_father = $producto_id;
@@ -134,7 +136,14 @@ class OrdenFacturacionController extends Controller
                 $factura_detalle->referencia_father = $ref_f;
             }
 
+            $sku = SKU::where('producto_id', $producto->id)
+            ->where('talla', 'LIKE', 'General')
+            ->get()->first();
 
+            if(is_object($sku)){
+                $factura_detalle->sku_id = $sku->sku;
+            }
+            $factura_detalle->id_catalogo = $catalogo;
             $factura_detalle->save();
 
             $data = [

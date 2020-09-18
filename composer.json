@@ -15,7 +15,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laraveles/spanish": "^1.4",
-        "maatwebsite/excel": "~2.1.0",
+        "maatwebsite/excel": "3.0.10",
         "phpoffice/phpspreadsheet": "^1.9",
         "yajra/laravel-datatables-oracle": "~9.0"
     },

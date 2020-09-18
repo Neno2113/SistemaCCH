@@ -7,9 +7,19 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use  Yajra\DataTables\Facades\DataTables;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
     public function store(Request $request)
     {
 
