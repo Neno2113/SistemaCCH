@@ -238,11 +238,12 @@ class ProductController extends Controller
             ->addColumn('Expandir', function ($product) {
                 return "";
             })
-            ->editColumn('name', function ($product) {
-                return "$product->name $product->surname";
-            })
+      
             ->editColumn('precio_lista', function ($product) {
                 return number_format($product->precio_lista) . " RD$";
+            })
+            ->editColumn('name', function ($product) {
+                return "$product->name $product->surname";
             })
             ->editColumn('precio_venta_publico', function ($product) {
                 return number_format($product->precio_venta_publico) . " RD$";
@@ -531,7 +532,7 @@ class ProductController extends Controller
 
 
             ->addColumn('Opciones', function ($product) {
-                return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-eye fa-lg"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-dark btn-sm" > <i class="fas fa-eye fa-lg"></i></button>';
             })
 
             ->rawColumns(['Opciones'])
@@ -640,18 +641,17 @@ class ProductController extends Controller
 
     public function verificarReferencia(Request $request)
     {
-
-        $validar = $request->validate([
-            'referencia_producto' => 'unique:producto',
-
-        ]);
-        if (!empty($validar)) {
+        $ref = $request->input('referencia_producto');
+        $product = Product::where('referencia_producto', 'LIKE', $ref)
+        ->orWhere('referencia_producto_2', 'LIKE', $ref)->get()->first();
+     
+        if (empty($product)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'corte' => 'Test'
+                'message' => 'Este referencia ya fue creada'
             ];
-        }
+        } 
         return response()->json($data, $data['code']);
     }
 

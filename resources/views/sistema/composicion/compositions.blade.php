@@ -30,8 +30,8 @@
                                 <input type="text" name="codigo_composicion" id="codigo_composicion" class="form-control"> --}}
                             </div>
                             <div class="col-md-12">
-                                <label for="nombre composicion"></label>
-                                <input type="text" name="nombre_composicion" placeholder="Nombre composicion"
+                                <label for="nombre composicion">Nombre composicion</label>
+                                <input type="text" name="nombre_composicion"
                                     id="nombre_composicion" class="form-control">
                             </div>
                         </div>

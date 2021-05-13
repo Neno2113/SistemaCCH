@@ -33,7 +33,7 @@ class ordenEmpaqueController extends Controller
                 'orden_pedido.detallada', 'cliente.redistribucion_tallas',
                 'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal',
                 'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
-            ])->where('status_orden_pedido', 'LIKE', 'Vigente');
+            ]);
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function () {
@@ -58,11 +58,19 @@ class ordenEmpaqueController extends Controller
                 } else if ($orden->status_orden_pedido == 'Stanby') {
                     return '<span class="badge badge-pill badge-secondary">Stanby</span>';
                 } else if ($orden->status_orden_pedido == 'Despachado') {
-                    return '<span class="badge badge-pill badge-info">Stanby</span>';
+                    return '<span class="badge badge-pill badge-dark">Despachado</span>';
+                } else if( $orden->status_orden_pedido == 'Facturado') {
+                    return '<span class="badge badge-pill badge-primary">A facturar</span>';
                 }
             })
             ->addColumn('Opciones', function ($orden) {
-                return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>';
+                if($orden->status_orden_pedido == 'Vigente'){
+                    return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>';
+                } else {
+                    return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>' .
+                    '<a href="empaque/facturar/' . $orden->id . '" class="btn btn-dark btn-sm ml-1" > <i class="fas fa-print"></i></a>';
+                }
+               
             })
             ->rawColumns(['Opciones', 'status_orden_pedido'])
             ->make(true);
@@ -79,7 +87,7 @@ class ordenEmpaqueController extends Controller
                 'orden_pedido.detallada', 'cliente.redistribucion_tallas',
                 'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal',
                 'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
-            ])->where('status_orden_pedido', 'LIKE', 'Vigente');;
+            ])->where('status_orden_pedido', 'LIKE', 'Vigente');
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function () {
@@ -196,6 +204,47 @@ class ordenEmpaqueController extends Controller
         return  View('sistema.ordenEmpaque.conduceEmpaque', \compact('orden', 'orden_detalle', 'orden_empaque', 'productos'));
     }
 
+
+    public function imprimirConduce($id)
+    {
+        
+        //orden normal
+        $orden = ordenPedido::find($id)->load('cliente')
+            ->load('user')
+            ->load('vendedor')
+            ->load('sucursal')
+            ->load('producto');
+
+        $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get()->load('producto');
+
+        $orden_empaque = ordenEmpaque::where('orden_pedido_id', $id)->first();
+
+        $empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $orden_empaque->id)->get()->load('producto');;
+
+        $productos_id = array();
+
+        $longitudProducto = count($orden_detalle);
+
+        for ($i = 0; $i < $longitudProducto; $i++) {
+            array_push($productos_id, $orden_detalle[$i]->producto['id']);
+        }
+
+        $productos = Product::whereIn('id', $productos_id)
+            ->orderBy('ubicacion', 'asc')
+            ->get();
+
+        // $empaque_detalle->fecha_empacado = date("d/m h:i:s", strtotime($empaque_detalle->fecha_empacado));
+
+        $orden_empaque->fecha_impresion = date('d/m/20y h:i:s');
+
+
+        $pdf = \PDF::loadView('sistema.ordenEmpaque.conduceFacturacion', \compact('orden', 'empaque_detalle', 'orden_empaque', 'productos'));
+        return $pdf->download('conduceFacturacion.pdf');
+        return  View('sistema.ordenEmpaque.conduceFacturacion', \compact('orden', 'empaque_detalle', 'orden_empaque', 'productos'));
+    }
+
+
+    
 
     public function verificar($id)
     {
@@ -766,6 +815,22 @@ class ordenEmpaqueController extends Controller
         $orden_empaque = ordenEmpaque::where('orden_pedido_id', $orden_id)->get()->first();
         $empaque_id = $orden_empaque->id;
 
+
+        // Eliminar detalle de empaque en caso de darle de nuevo al boton de mostrar
+        $empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)->get();
+
+        if(!empty($empaque_detalle)){
+            
+            for ($i = 0; $i < count($empaque_detalle); $i++) {
+                $orden_detalle[$i]->orden_empacada = 0;
+                $orden_detalle[$i]->save();
+                $empaque_detalle[$i]->delete();
+            }
+            $orden_pedido->status_orden_pedido = 'Vigente';
+            $orden_pedido->save();
+            
+        }
+
         $productos = array();
 
         $longitudProducto = count($orden_detalle);
@@ -809,18 +874,18 @@ class ordenEmpaqueController extends Controller
         $empaque_id = $request->input('id');
         $cant_bultos = $request->input('cantidad');
 
-        $a = $orden_detalle->a;
-        $b = $orden_detalle->b;
-        $c = $orden_detalle->c;
-        $d = $orden_detalle->d;
-        $e = $orden_detalle->e;
-        $f = $orden_detalle->f;
-        $g = $orden_detalle->g;
-        $h = $orden_detalle->h;
-        $i = $orden_detalle->i;
-        $j = $orden_detalle->j;
-        $k = $orden_detalle->k;
-        $l = $orden_detalle->l;
+        $a = $request->input('a');
+        $b = $request->input('b');
+        $c = $request->input('c');
+        $d = $request->input('d');
+        $e = $request->input('e');
+        $f = $request->input('f');
+        $g = $request->input('g');
+        $h = $request->input('h');
+        $i = $request->input('i');
+        $j = $request->input('j');
+        $k = $request->input('k');
+        $l = $request->input('l');
         $cantidad = $orden_detalle->cant_red;
         $total = $orden_detalle->total;
 
@@ -887,9 +952,143 @@ class ordenEmpaqueController extends Controller
             ])->where('orden_pedido_id', 'LIKE', $id);
 
         return DataTables::of($ordenes)
+        ->editColumn('a', function ($orden) {
+          
+            if( $orden->a <= 0 ){
+                return '<input type="text" id="a' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="a' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->a . '>';
+            } else {
+                return '<input type="number"  id="a' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->a . '>';
+            }
+           
+            
+        })
+        ->editColumn('b', function ($orden) {
+         
+            if($orden->b <= 0){
+                return '<input type="text" id="b' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="b' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->b . '>';
+            } else {
+                return '<input type="number"  id="b' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->b . '>';
+            }
+            
+        })
+        ->editColumn('c', function ($orden) {
+        
+            if($orden->c <= 0 ){
+                return '<input type="text" id="c' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="c' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->c . '>';
+            } else {
+                return '<input type="number"  id="c' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->c . '>';
+            }
+            
+        })
+        ->editColumn('d', function ($orden) {
+         
+            if($orden->d <= 0){
+                return '<input type="text" id="d' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="d' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->d . '>';
+            } else {
+                return '<input type="number"  id="d' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->d . '>';
+            }
+            
+        })
+        ->editColumn('e', function ($orden) {
+           
+            if($orden->e <= 0){
+                return '<input type="text" id="e' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="e' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->e . '>';
+            } else {
+                return '<input type="number"  id="e' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->e . '>';
+            }
+            
+        })
+        ->editColumn('f', function ($orden) {
+          
+            if($orden->f <= 0 ){
+                return '<input type="text" id="f' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="f' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->f . '>';
+            } else {
+                return '<input type="number"  id="f' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->f . '>';
+            }
+            
+        })
+        ->editColumn('g', function ($orden) {
+         
+            if($orden->g <= 0 ){
+                return '<input type="text" id="g' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="g' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->g . '>';
+            } else {
+                return '<input type="number"  id="g' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->g . '>';
+            }
+            
+        })
+        ->editColumn('h', function ($orden) {
+         
+            if($orden->h <= 0 ){
+                return '<input type="text" id="h' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="h' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->h . '>';
+            } else {
+                return '<input type="number"  id="h' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->h . '>';
+            }
+            
+        })
+        ->editColumn('i', function ($orden) {
+     
+            if($orden->i <= 0 ){
+                return '<input type="text" id="i' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="i' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->i . '>';
+            } else {
+                return '<input type="number"  id="i' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->i . '>';
+            }
+            
+        })
+        ->editColumn('j', function ($orden) {
+          
+            if($orden->j <= 0 ){
+                return '<input type="text" id="j' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="j' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->j . '>';
+            } else {
+                return '<input type="number"  id="j' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->j . '>';
+            }
+            
+        })
+        ->editColumn('k', function ($orden) {
+       
+            if($orden->k <= 0 ){
+                return '<input type="text" id="k' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="k' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->k . '>';
+            } else {
+                return '<input type="number"  id="k' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->k . '>';
+            }
+            
+        })
+        ->editColumn('l', function ($orden) {
+         
+            if($orden->l <= 0  ){
+                return '<input type="text" id="l' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
+            } elseif($orden->orden_empacada == 1) {
+                return '<input type="text" id="l' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->l . '>';
+            } else {
+                return '<input type="number"  id="l' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->l . '>';
+            }
+            
+        })
             ->addColumn('cantidad', function ($orden) {
-                return ($orden->orden_empacada == 1) ? '<input type="text" id="cantidad'.$orden->id.'" name="cantidad" class="cantidad form-control-sm text-center" disabled>'
-                :'<input type="text" id="cantidad'.$orden->id.'" name="cantidad" class="cantidad form-control-sm text-center" >';
+                return ($orden->orden_empacada == 1) ? 
+                '<input type="text" id="cantidad'.$orden->id.'" name="cantidad" class="cantidad  form-control red text-center" disabled>'
+                :'<input type="text" id="cantidad'.$orden->id.'" name="cantidad" class="cantidad form-control red text-center" >';
             })
             ->addColumn('Opciones', function ($orden) {
                 return ($orden->orden_empacada == 1) ? '<span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span>':
@@ -898,7 +1097,9 @@ class ordenEmpaqueController extends Controller
             ->addColumn('records', function ($orden) {
                 return ;
             })
-            ->rawColumns(['Opciones', 'cantidad'])
+            ->rawColumns(['Opciones', 'cantidad',
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'
+            ])
             ->make(true);
     }
 }

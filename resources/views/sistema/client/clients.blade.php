@@ -25,22 +25,23 @@
 
                         <div class="row mt-4">
                             <div class="col-md-4 mt-2">
-                                <input type="text" name="codigo_cliente" placeholder="Codigo Cliente" id="codigo_cliente"
-                                    class="form-control">
-                                <label for="nombre_cliente" class="label"></label>
+                                <label for="nombre_cliente">Codigo Cliente</label>
+                                <input type="text" name="codigo_cliente"
+                                    id="codigo_cliente" class="form-control">
+
                             </div>
                             <input type="hidden" name="id" id="id" value="">
                             <div class="col-md-4 mt-2">
+                                <label for="nombre_cliente">Nombre </label>
+                                <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control">
 
-                                <input type="text" name="nombre_cliente" placeholder="Nombre" id="nombre_cliente"
-                                    class="form-control">
-                                <label for="nombre_cliente" class="label"></label>
                             </div>
                             <div class="col-md-4 mt-2">
+                                <label for="rnc" >RNC</label>
+                                <input type="text" name="rnc" id="rnc"
+                                    class="form-control text-center" data-inputmask='"mask": "999999999[9[9]]"'
+                                    data-mask>
 
-                                <input type="text" name="rnc" id="rnc" placeholder="RNC"
-                                    class="form-control text-center" data-inputmask='"mask": "99999999999"' data-mask>
-                                <label for="rnc" class="label"></label>
                             </div>
 
 
@@ -48,45 +49,49 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-3 mt-3">
+                                <label for="celular_principal">Celular principal</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" id="celular_principal" 
+                                        class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
 
-
-                                <input type="text" id="celular_principal" placeholder="Celular principal"
-                                    class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                <label for="celular_principal" class="label"></label>
+                                </div>
 
                             </div>
                             <div class="col-md-3 mt-3">
-
-                                {{-- <div class="input-group">
+                                <label for="telefono_1" >Telefono</label>
+                                <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                                <input type="text" id="telefono_1" placeholder="Telefono" class="form-control"
+                                </div>
+                                <input type="text" id="telefono_1"  class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                <label for="telefono_1" class="label"></label>
-                                {{-- </div> --}}
+                               
+                                </div>
                             </div>
                             <div class="col-md-3 mt-3">
-
-                                {{-- <div class="input-group">
+                                <label for="telefono_2" >Telefono 2</label>
+                                <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                                <input type="text" id="telefono_2" placeholder="Telefono 2" class="form-control"
+                                </div>
+                                <input type="text" id="telefono_2"  class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                <label for="telefono_2" class="label"></label>
-                                {{-- </div> --}}
+                               
+                                </div>
                             </div>
                             <div class="col-md-3 mt-3">
-
-                                {{-- <div class="input-group">
+                                <label for="telefono_2" >Telefono 3</label>
+                                <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                                <input type="text" id="telefono_3" placeholder="Telefono 3" class="form-control"
+                                </div>
+                                <input type="text" id="telefono_3"  class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                <label for="telefono_2" class="label"></label>
-                                {{-- </div> --}}
+                                
+                                </div>
                             </div>
                         </div>
 
@@ -96,7 +101,7 @@
 
                         <div class="row">
                             <div class="col-md-4 mt-3">
-
+                                <label for="condiciones_credito" >Condiciones de credito</label>
                                 <select name="condiciones_credito" id="condiciones_credito" class="form-control">
                                     <option value="" disabled>Condiciones de credito</option>
                                     <option value="0">Al contado</option>
@@ -105,51 +110,51 @@
                                     <option value="90">90 dias</option>
                                     <option value="120">120 dias</option>
                                 </select>
-                                <label for="condiciones_credito" class="label"></label>
+                              
                             </div>
                             <div class="col-md-4 mt-3">
-
-                                {{-- <div class="input-group">
+                                <label for="email_principal" >Email</label>
+                                <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                </div> --}}
+                                </div>
                                 <input type="email" name="email_principal" placeholder="Email principal"
                                     id="email_principal" class="form-control">
-                                <label for="email_principal" class="label"></label>
-                                {{-- </div> --}}
+                               
+                                </div>
                             </div>
                             <div class="col-md-4 mt-3">
-
-                                <input type="text" name="contacto_cliente_principal" placeholder="Contacto cliente"
+                                <label for="contacto_cliente" >Contacto Cliente</label>
+                                <input type="text" name="contacto_cliente_principal" 
                                     id="contacto_cliente_principal" class="form-control">
-                                <label for="contacto_cliente" class="label"></label>
+                               
                             </div>
                         </div>
                         <br>
                         <hr>
                         <div class="row mt-3">
                             <div class="col-md-4">
-
-                                {{-- <div class="input-group">
+                                <label for="" >Calle</label>
+                                <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                </div> --}}
-                                <input type="text" placeholder="Calle" name="calle" id="calle" class="form-control">
-                                <label for="" class="label"></label>
-                                {{-- </div> --}}
+                                </div>
+                                <input type="text"  name="calle" id="calle" class="form-control">
+                              
+                                </div>
                             </div>
                             <div class="col-md-4">
-
-                                {{-- <div class="input-group">
+                                <label for="" >Sector</label>
+                                <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                </div> --}}
-                                <input type="text" name="sector" placeholder="Sector" id="sector" class="form-control">
-                                <label for="" class="label"></label>
-                                {{-- </div> --}}
+                                </div>
+                                <input type="text" name="sector"  id="sector" class="form-control">
+                         
+                                </div>
                             </div>
                             <div class="col-md-4">
-
+                                <label for="" >Provincia</label>
                                 <select name="provincia" id="provincia" class="form-control select2">
                                     <option value="" disabled>Provincia</option>
                                     <option>Santo Domingo</option>
@@ -185,15 +190,15 @@
                                     <option>Independencia</option>
                                     <option>Pedernales</option>
                                 </select>
-                                <label for="" class="label"></label>
+                               
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4">
-
-                                <input type="text" name="sitios_cercanos" placeholder="Referencias cercanas"
+                                <label for="" >Sitios cercanos</label>
+                                <input type="text" name="sitios_cercanos" 
                                     id="sitios_cercanos" class="form-control">
-                                <label for="" class="label"></label>
+                               
                             </div>
                         </div>
                         <br>
@@ -288,9 +293,9 @@
                         <div class="row">
                             <div class="col-md-12 mt-2">
 
-                                <textarea name="notas" id="notas" placeholder="Notas" cols="30" rows="1"
+                                <textarea name="notas" id="notas"  cols="30" rows="1"
                                     class="form-control"></textarea>
-                                <label for="notas" class="label"></label>
+                                <label for="notas" ></label>
                             </div>
                         </div>
                     </div>
@@ -379,7 +384,7 @@
                         <div class="col-md-6 mt-4">
                             <label for="nombre_sucursal">Nombre Sucursal(*)</label>
                             <input type="text" name="nombre_sucursal" id="nombre_sucursal" class="form-control"
-                                placeholder="Puede ser el nombre mas la direccion">
+                                >
                         </div>
                         <div class="col-md-6 mt-4">
                             <label for="telefono_sucursal">Telefono(*):</label>
@@ -472,7 +477,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/cliente/client.js')}}"></script>
 <script src="{{asset('js/client_branch.js')}}"></script>
 

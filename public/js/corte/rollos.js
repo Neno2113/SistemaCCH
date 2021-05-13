@@ -141,10 +141,12 @@ $(document).ready(function() {
                     limpiar();
                     tabla.ajax.reload();
                     // mostrarForm(false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
+                } else if(datos.status == 'info') {
+                    Swal.fire(
+                        'Info!',
+                        'Este rollo ya existe!.',
+                        'info'
+                        )
                 }
             },
             error: function(datos) {
@@ -160,6 +162,7 @@ $(document).ready(function() {
             }
         });
     });
+    
 
     function listar() {
         tabla = $("#rollos").DataTable({

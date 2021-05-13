@@ -1620,6 +1620,8 @@ class ordenPedidoController extends Controller
         $j = $request->input('j');
         $k = $request->input('k');
         $l = $request->input('l');
+        $orden = $request->input('orden_id');
+        $producto = $request->input('producto_id');
 
         //validaciones
         $a = intval(trim($a, "_"));
@@ -1651,7 +1653,8 @@ class ordenPedidoController extends Controller
             'j' => $j,
             'k' => $k,
             'l' => $l,
-            'total' => $total
+            'total' => $total,
+            'producto' => $producto
         ];
 
         return response()->json($data, $data['code']);
@@ -2164,6 +2167,34 @@ class ordenPedidoController extends Controller
         ];
 
 
+        return response()->json($data, $data['code']);
+    }
+
+    
+    public function destroyProduct($id)
+    {
+        // $select = DB::select("SHOW TABLE STATUS LIKE 'orden_pedido'");
+        // $detail_id = $select[0]->Auto_increment - 1;
+
+        $detalle = ordenPedidoDetalle::find($id);
+
+        if(!empty($detalle)){
+            $detalle->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'detalle' => $detalle
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'Ocurrio un error',
+                'detail' => $detalle
+            ];
+        }
+       
         return response()->json($data, $data['code']);
     }
 }

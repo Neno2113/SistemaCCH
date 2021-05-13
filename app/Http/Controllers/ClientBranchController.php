@@ -67,17 +67,17 @@ class ClientBranchController extends Controller
     }
 
 
-    public function select(Request $request)
+    public function select()
     {
-        $data = [];
+        $clientes = Client::all();
 
-        if ($request->has('q')) {
-            $search = $request->q;
-            $data = Client::select("id", "nombre_cliente")
-                ->where('nombre_cliente', 'LIKE', "%$search%")
-                ->get();
-        }
-        return response()->json($data);
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'clientes' => $clientes
+        ];
+
+        return response()->json($data, $data['code']);
     }
 
     public function show($id)

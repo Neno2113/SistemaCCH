@@ -59,6 +59,12 @@ $(document).ready(function() {
     $("#btn-guardar").click(function(e) {
         e.preventDefault();
 
+       save();
+
+
+    });
+
+    const save = () => {
         var ordenFacturacion = {
             empaque_id: $("#orden_empaque_id").val(),
             por_transporte: $("input[name='r1']:checked").val(),
@@ -75,6 +81,7 @@ $(document).ready(function() {
                     $("#orden_facturacion_id").val(datos.orden_facturacion.id);
                     $("#listar_OE").DataTable().ajax.reload();
                     mostrarForm(false);
+                    
                     Swal.fire(
                     'Success!',
                     'Orden empacada correctamente.',
@@ -94,9 +101,7 @@ $(document).ready(function() {
                 );
             }
         });
-
-
-    });
+    }
 
     //funcion para listar en el Datatable
     function listar() {
@@ -205,7 +210,7 @@ $(document).ready(function() {
             $("#btnCancelar").hide();
             $("#btnAgregar").hide();
             $("#btn-edit").hide();
-            $("#btn-guardar").show().attr("disabled", true);
+            // $("#btn-guardar").show().attr("disabled", true);
         }
     }
 
@@ -285,9 +290,22 @@ function listarOrdenDetalle(id) {
 }
 
 function test(id){
+    // console.log(id);
     var empaque = {
         id: $("#id").val(),
-        cantidad: $("#cantidad"+id).val()
+        cantidad: $("#cantidad"+id).val(),
+        a: $("#a"+id).val(),
+        b: $("#b"+id).val(),
+        c: $("#c"+id).val(),
+        d: $("#d"+id).val(),
+        e: $("#e"+id).val(),
+        f: $("#f"+id).val(),
+        g: $("#g"+id).val(),
+        h: $("#h"+id).val(),
+        i: $("#i"+id).val(),
+        j: $("#j"+id).val(),
+        k: $("#k"+id).val(),
+        l: $("#l"+id).val(),
     }
     $.ajax({
         url: "empaque_detalle/"+id,
@@ -297,6 +315,8 @@ function test(id){
         contentType: "application/json",
         success: function(datos) {
             if (datos.status == "success") {
+                // $("#btn-guardar").attr("href", 'empaque/facturar/'+datos.orden_empaque.orden_pedido_id);
+                // console.log(datos);
                 bootbox.alert("Referencia perteneciente a la orden empaque <strong>"+ datos.orden_empaque.no_orden_empaque+"</strong> ha sido empacada");
                 $(".cantidad").val("");
 
@@ -324,7 +344,7 @@ function test(id){
                         }
                     },
                     error: function() {
-                        bootbox.alert("Ocurrio un error!!");
+                        bootbox.alert("Recuerde digitar la cantidad de bultos!!");
                     }
                 });
 
@@ -335,7 +355,7 @@ function test(id){
             }
         },
         error: function() {
-            bootbox.alert("Ocurrio un error!!");
+            bootbox.alert("Recuerde digitar la cantidad de bultos!!");
         }
     });
 

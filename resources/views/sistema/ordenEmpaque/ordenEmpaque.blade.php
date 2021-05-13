@@ -83,7 +83,7 @@
 
                         <label for="" class="mt-5 mr-5">Orden de empaque</label>
                         <div class="table-responsive">
-                            <table id="orden_detalle" class="table tabla-tallas datatables mt-5 mb-3 mr-5"
+                            <table id="orden_detalle" class="table tabla-tallas  mt-5 mb-3 mr-5"
                             style="width:100%; margin-left:0px;">
                             <thead class="tabla-tallas">
                                 <tr>
@@ -192,11 +192,11 @@
                                     <th class="talla_head"></th>
                                     <th class="talla_head"></th>
                                     <th class="talla_head"></th>
-                                    <th class="talla_head">Cant Bultos</th>
+                                    <th class="talla_head">Bultos</th>
                                     <th class="talla_head">Total</th>
                                 </tr>
                             </thead>
-                            <tbody id="disponibles">
+                            <tbody id="disponibles" class="text-sm">
 
                             </tbody>
                             <tfoot>

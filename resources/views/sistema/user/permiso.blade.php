@@ -169,7 +169,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/permiso.js')}}"></script>
+<script src="{{asset('js/users/permiso.js')}}"></script>
 
 <script>
 

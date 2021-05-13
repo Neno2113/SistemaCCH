@@ -70,6 +70,7 @@ $(document).ready(function() {
 
                         $("#usuario").append(fila);
                     }
+                    $("#usuario").attr('disabled', true);
                     $("#usuario").select2();
 
                 } else {

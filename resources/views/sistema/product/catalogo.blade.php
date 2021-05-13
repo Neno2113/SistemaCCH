@@ -25,16 +25,18 @@
                     <div class="row">
                         <input type="hidden" name="catalogo" id="catalogo">
                         <div class="col-md-4">
-
+                            <label for="" >Codigo</label>
                             <input type="text" name="codigo" id="codigo" placeholder="Codigo" class="form-control text-center"
                             data-inputmask='"mask": "99999-999"' data-mask>
-                            <label for="" class="label"></label>
+                          
                         </div>
                         <div class="col-md-4">
+                            <label for="" >Descripcion</label>
                             <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
-                            <label for="" class="label"></label>
+                          
                         </div>
                         <div class="col-md-4">
+                            <label for="" >Tipo de cuenta</label>
                             <select name="tipo_cuenta" id="tipo_cuenta" class="form-control">
                                 <option selected disabled>Tipo de cuenta</option>
                                 <option >Cash</option>
@@ -51,7 +53,7 @@
                                 <option>Cost of sale</option>
                                 <option>Expenses</option>
                             </select>
-                            <label for="" class="label"></label>
+                           
                         </div>
                     </div>
 
@@ -110,7 +112,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/producto/catalogo.js')}}"></script>
 
 

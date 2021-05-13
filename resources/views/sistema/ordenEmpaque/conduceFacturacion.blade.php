@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ENTRADA ALMACEN</title>
+    <title>Factura Resumida</title>
     <style>
         @font-face {
             font-family: SourceSansPro;
@@ -153,38 +153,12 @@
             border: solid 2px black;
         }
 
-        .tabla-tallas {
-            width: 83%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            /* margin-bottom: 20px; */
-            table-layout: auto;
-            border: solid 2px black;
-        }
-
-        .tabla-tallas th,
-        .tabla-tallas td {
-            /* padding: 20px; */
-            background: #fff;
-            text-align: center;
-            border-bottom: 1px solid #FFFFFF;
-            /* border: solid 2px black; */
-        }
-
         .tabla-principal th,
         .tabla-principal td {
             /* padding: 20px; */
             background: #fff;
             text-align: center;
             border-bottom: 1px solid #FFFFFF;
-            /* border: solid 2px black; */
-        }
-
-        .tabla-tallas th {
-            white-space: nowrap;
-            font-weight: bold;
-            background-color: #131980;
-            font-size: 10px;
             /* border: solid 2px black; */
         }
 
@@ -195,7 +169,6 @@
             font-size: 8.5px;
             padding: 5px;
             /* border: solid 2px black; */
-            /* padding-right: 37px; */
         }
 
         .tabla-principal td {
@@ -250,19 +223,7 @@
             border: solid 2px black;
             padding-left: 15px;
             padding-right: 12px;
-            /* width: 21.95px; */
-        }
-
-        .tabla-tallas .talla_head {
-            color: #fff;
-            font-size: 6.5px;
-        }
-
-        .tabla-tallas .talla {
-            border: 2px solid black;
-            text-align: center;
-            font-weight: bold;
-            font-size: 8px;
+            /* border: solid 2px black; */
         }
 
         .tabla-principal .qty {}
@@ -277,8 +238,6 @@
         .tabla-principal tbody tr {
             padding-bottom: 30px;
         }
-
-        .tabla-principal tbody td {}
 
         .tabla-principal td.unit,
         .tabla-principal td.desc,
@@ -305,6 +264,7 @@
             list-style-type: none;
             text-align: center;
             /* padding-bottom: 350px; */
+            /* border-bottom: 1px solid black; */
         }
 
         .tabla-principal li,
@@ -363,7 +323,9 @@
 
 
         .tabla-principal tfoot tr td:first-child {
-            border: none;
+            color: #0087C3;
+            font-size: 1.4em;
+            border-top: 1px solid #0087C3;
         }
 
         #thanks {
@@ -395,11 +357,50 @@
             text-align: center;
         }
 
+        .tabla-tallas {
+            width: 83%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            /* margin-bottom: 20px; */
+            table-layout: auto;
+            border: solid 2px black;
+        }
+
+        .tabla-tallas th,
+        .tabla-tallas td {
+            /* padding: 20px; */
+            background: #fff;
+            text-align: center;
+            border-bottom: 1px solid #FFFFFF;
+            /* border: solid 2px black; */
+        }
+
+        .tabla-tallas th {
+            white-space: nowrap;
+            font-weight: bold;
+            background-color: #131980;
+            font-size: 10px;
+            /* border: solid 2px black; */
+        }
+
+        .tabla-tallas .talla_head {
+            color: #fff;
+            font-size: 6.5px;
+        }
+
+        .tabla-tallas .talla {
+            border: 2px solid black;
+            text-align: center;
+            font-weight: bold;
+            font-size: 8px;
+        }
+
         .firmas {
             margin-top: 35px;
             text-align: center;
             font-weight: bold;
             color: #000;
+            /* padding-top: 200px */
         }
 
         .firma_enviado {
@@ -422,9 +423,9 @@
             width: 15%;
         }
 
-        /* footer {
+        footer {
             page-break-after: always;
-        } */
+        }
 
         . .tabla-principal-totales {
             border: none;
@@ -442,30 +443,23 @@
             text-align: start;
         }
 
-        .tabla-bultos tbody td {
-            border: 2px solid black;
-            text-align: center;
-        }
-
         .tabla-factura {
-            float: left;
-            width: 50%;
+            float: right;
+            width: 19%;
             border: 2px solid black;
-            margin-right: 20%;
+            margin-right: 34%;
         }
 
         .tabla-factura thead .factura {
             font-weight: bolder;
             color: #000;
-            font-size: 11px;
         }
 
         .tabla-factura th {
-            font-size: 15px;
-            /* padding-left: 19px;
-			padding-right: 16px; */
+            font-size: 20px;
+            padding-left: 19px;
+            padding-right: 16px;
             padding-top: 7px;
-            text-align: center;
         }
 
         .tabla-factura tbody .num_factura {
@@ -479,7 +473,7 @@
         .tabla-factura tbody .fecha {
             text-align: center;
             font-size: 10px;
-            padding: 10px;
+            padding: 6px;
         }
 
         .tabla-factura tbody .page {
@@ -500,11 +494,14 @@
         .tabla-totales th {
             font-weight: normal;
             font-size: 14px;
+            text-align: right;
+            padding-left: 0px;
         }
 
         .tabla-totales td {
             font-weight: normal;
             font-size: 12px;
+            text-align: left;
         }
 
         .tabla-totales th .total {
@@ -645,6 +642,9 @@
         <div id="logo">
             <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
         </div>
+        {{-- <div id="logo">
+            <h1>CCH</h1>
+        </div> --}}
         <div id="company">
             <h2 class="name">Confecciones Carmen Herrera</h2>
             <div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
@@ -656,269 +656,184 @@
     </header>
     <main>
         <div id="details" class="clearfix">
-            {{-- <table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
-				<thead class="cod">
-					<tr>
-						<th>Cliente codigo</th>
-						<td>Cod</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Nombre</th>
-						<td>{{$orden->cliente->nombre_cliente}}</td>
-            </tr>
-            <tr>
-                <th class="direccion">Direccion</th>
-                <td class="direccion">{{$orden->cliente->calle}}, {{$orden->cliente->sector}}
-                    {{$orden->cliente->provincia}}, {{$orden->cliente->sitios_cercanos}}<</td> </tr> <tr>
-                <th>Sucursal</th>
-                <td>{{$orden->sucursal->nombre_sucursal}}</td>
-            </tr>
-            <tr>
-                <th>Tel</th>
-                <td>{{$orden->cliente->telefono_1}}</td>
-            </tr>
-            <tr>
-                <th>RNC</th>
-                <td>{{$orden->cliente->rnc}}</td>
-            </tr>
-            </tbody>
-
-            </table> --}}
-
-            <table class="tabla-factura">
-                <thead>
+            <table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
+                <thead class="cod">
                     <tr>
-                        <th class="factura">ENTRADA ALMACEN</th>
+                        <th>Cliente codigo</th>
+                        <td>{{$orden->cliente->codigo_cliente}}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="num_factura">{{$almacen_detalle->codigo_entrada}}</td>
+                        <th>Nombre</th>
+                        <td>{{$orden->cliente->nombre_cliente}}</td>
                     </tr>
                     <tr>
-                        <td class="fecha">Fecha Imp: {{$almacen_detalle->fecha_impreso}}</td>
-
+                        <th class="direccion">Direccion</th>
+                        <td class="direccion">{{$orden->cliente->calle}}, {{$orden->cliente->sector}}
+                            {{$orden->cliente->provincia}}, {{$orden->cliente->sitios_cercanos}}<</td>
+                                </tr> <tr>
+                        <th>Sucursal</th>
+                        <td>{{$orden->sucursal->nombre_sucursal}}</td>
                     </tr>
                     <tr>
-                        <td class="page">Pagina 1</td>
+                        <th>Tel</th>
+                        <td>{{$orden->cliente->telefono_1}}</td>
+                    </tr>
+                    <tr>
+                        <th>RNC</th>
+                        <td>{{$orden->cliente->rnc}}</td>
                     </tr>
                 </tbody>
+
             </table>
 
+        {{-- <table class="tabla-factura">
+            <thead>
+                <tr>
+                    <th class="factura">FACTURA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="num_factura">{{$factura->tipo_factura}}-{{$factura->no_factura}}</td>
+                </tr>
+                <tr>
+                    <td class="fecha">Fecha:{{$factura->fecha}}</td>
+                </tr>
+                <tr>
+                    <td class="page">Pagina 1</td>
+                </tr>
+            </tbody>
+        </table> --}}
 
 
         </div>
 
-        {{-- <table cellspacing="0" class="tabla-ncf">
-			<thead>
-				<tr>
-					<th class="op">ORDEN PEDIDO</th>
-					<th class="terminos_pago">FECHA PEDIDO</th>
-					<th class="">FECHA ENTREGA</th>
-					<th class="vendedor">VENDEDOR</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td> {{$orden->no_orden_pedido}}</td>
-        <td>{{$orden->fecha}}</td>
-        <td class="vencimiento">{{$orden->fecha_entrega}}</td>
-        <td>{{$orden->vendedor->nombre}} {{$orden->vendedor->apellido}}</td>
-        </tr>
-        </tbody>
-        </table> --}}
-
-        <table class="tabla-tallas">
-
-        </table>
-
-        <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
-            <thead class="tabla-tallas">
-                <tr>
-                    <th class="talla_head">MUJER PLUS:</th>
-                    <td class="talla"></td>
-                    <td class="talla">12W</td>
-                    <td class="talla">14W</td>
-                    <td class="talla">16W</td>
-                    <td class="talla">18W</td>
-                    <td class="talla">20W</td>
-                    <td class="talla">22W</td>
-                    <td class="talla">24W</td>
-                    <td class="talla">26W</td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                </tr>
-
-                <tr>
-                    <th class="talla_head">MUJER:</th>
-                    <td class="talla" ></td>
-                    <td class="talla" >0/0</td>
-                    <td class="talla" >1/2</td>
-                    <td class="talla" >3/4</td>
-                    <td class="talla" >5/6</td>
-                    <td class="talla" >7/8</td>
-                    <td class="talla" >9/10</td>
-                    <td class="talla" >11/12</td>
-                    <td class="talla" >13/14</td>
-                    <td class="talla" >15/16</td>
-                    <td class="talla" >17/18</td>
-                    <td class="talla" >19/20</td>
-                    <td class="talla" >21/22</td>
-                    <td class="talla"></td>
-                </tr>
-
-                <tr>
-                    <th class="talla_head">HOMBRE:</th>
-                    <td class="talla"></td>
-                    <td class="talla">28</td>
-                    <td class="talla">29</td>
-                    <td class="talla">30</td>
-                    <td class="talla">31</td>
-                    <td class="talla">32</td>
-                    <td class="talla">34</td>
-                    <td class="talla">36</td>
-                    <td class="talla">38</td>
-                    <td class="talla">40</td>
-                    <td class="talla">42</td>
-                    <td class="talla">44</td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                </tr>
-
-                <tr>
-                    <th class="talla_head">NIÑO:</th>
-                    <td class="talla"></td>
-                    <td class="talla">2</td>
-                    <td class="talla">4</td>
-                    <td class="talla">6</td>
-                    <td class="talla">8</td>
-                    <td class="talla">10</td>
-                    <td class="talla">12</td>
-                    <td class="talla">14</td>
-                    <td class="talla">16</td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                </tr>
-
-                <tr>
-                    <th class="talla_head">NIÑA:</th>
-                    <td class="talla"></td>
-                    <td class="talla">2</td>
-                    <td class="talla">4</td>
-                    <td class="talla">6</td>
-                    <td class="talla">8</td>
-                    <td class="talla">10</td>
-                    <td class="talla">12</td>
-                    <td class="talla">14</td>
-                    <td class="talla">16</td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                </tr>
-
-            </thead>
+        <table cellspacing="0" class="tabla-ncf">
             <thead>
                 <tr>
-                    <th style="color:#fff;">REFERENCIA</th>
-                    <th style="color:#fff;">UBICACION</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th style="color:#fff">TOTAL</th>
+                    <th class="op">No. EMPAQUE</th>
+                    <th class="vendedor">VENDEDOR</th>
+                    <th class="nfc_vence">FECHA GENERACION</th>
+                  
+                  
+
                 </tr>
             </thead>
             <tbody>
-                <tr style="margin-top:5px;">
-                    <td class="unit_talla">{{$producto->referencia_producto}}</td>
-                    <td class="unit_talla">{{$producto->ubicacion}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->a}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->b}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->c}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->d}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->e}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->f}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->g}}</td>
-                    <td class="unit_talla">{{$almacen_detalle->h}}</td>
-                    @if ($almacen_detalle->i == null ||$almacen_detalle->i < 0) <td class="unit_talla">0</td>
-                        @else
-                        <td class="unit_talla">{{$almacen_detalle->i}}</td>
-                        @endif
-                        @if ($almacen_detalle->j == null || $almacen_detalle->j < 0 ) <td class="unit_talla">0</td>
-                            @else
-                            <td class="unit_talla">{{$almacen_detalle->j}}</td>
-                            @endif
-                            @if ($almacen_detalle->k == null || $almacen_detalle->k < 0) <td class="unit_talla">0</td>
-                                @else
-                                <td class="unit_talla">{{$almacen_detalle->k}}</td>
-                                @endif
-                                @if ($almacen_detalle->l == null || $almacen_detalle->l < 0) <td class="unit_talla">0
-                                    </td>
-                                    @else
-                                    <td class="unit_talla">{{$almacen_detalle->l}}</td>
-                                    @endif
+                <tr>
+                    <td>{{ $orden_empaque->no_orden_empaque}}</td>
+                    <td>{{$orden->vendedor->nombre}} {{$orden->vendedor->apellido}}</td>
+                    <td>{{$orden_empaque->fecha_impresion}}</td>
+                   
+                  
 
-                                    <td class="unit_talla">{{$almacen_detalle->total}}</td>
                 </tr>
-
-
             </tbody>
         </table>
 
+
+        <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
+            <thead>
+                <tr>
+                    <th class="desc">CANT</th>
+                    <th class="no">REFERENCIA</th>
+                    <th class="desc" style="padding-left: 50px; padding-right: 50px;">DESCRIPCION</th>
+                    <th class="unit">Bultos</th>
+                    <th class="total">Hora Empaque</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="desc">
+                        @foreach ($empaque_detalle as $cantidad)
+                        <li>{{$cantidad->total}}</li>
+                        @endforeach
+                    </td>
+                    <td class="no">
+                        @foreach ($empaque_detalle as $producto)
+                        <li>{{$producto->producto->referencia_producto}}</li>
+                        @endforeach
+                    </td>
+                    <td class="desc">
+                        @foreach ($empaque_detalle as $producto)
+                        <li>{{$producto->producto->descripcion}}</li>
+                        @endforeach
+                    </td>
+                    <td class="unit">
+                        @foreach ($empaque_detalle as $detalle)
+                        <li>{{$detalle->cant_bulto}}</li>
+                        @endforeach
+                    </td>
+                    <td class="total">
+                        @foreach ($empaque_detalle as $detalle)
+                        <li>{{date("d/m  h:i:s", strtotime($detalle->fecha_empacado))}}</li>
+                        @endforeach
+                    </td>
+               
+                </tr>
+                <tr style="">
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                    <td class="unit"></td>
+                </tr>
+            </tbody>
+            {{-- <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2">SUBTOTAL</td>
+                    <td>{{number_format($subtotal)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">DESCUENTO {{$factura->descuento}}%</td>
+                <td>{{number_format($descuento)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">IMPUESTO {{$factura->itbis}}%</td>
+                <td>{{number_format($impuesto)}} RD$</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2">TOTAL FINAL</td>
+                <td>{{number_format($total_final)}} RD$</td>
+            </tr>
+            </tfoot> --}}
+        </table>
         {{-- <div style="clear: fix;">
             <table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
                 <thead>
                     <tr>
-                        <th>UBICACION:</th>
-                        <th>REFERENCIA:</th>
+                        <th>TOTAL DE ARTICULOS: <span class="total_articulos">{{$total_articulos}}</span></th>
+                        <th>FECHA: <span class="fecha_factura">{{$factura->fecha}}</span></th>
+                    </tr>
+                    <tr>
+                        <th>CANTIDAD DE BULTOS: <span class="bultos">{{$bultos}}</span></th>
+                        <th>HORA DE EMPACADO: <span
+                                class="hora_empaque">{{$orden_empaque_detalle->fecha_empacado}}<span></th>
                     </tr>
 
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>{{$producto->ubicacion}}</td>
-                        <td>{{$producto->referencia_producto}}</td>
-                    </tr>
-
-                </tbody>
 
             </table>
 
-
+           
         </div> --}}
 
 
+       
 
+     
 
-
-        <div class="firmas" style="padding-top: 200px">
-                <div class="firma_enviado">Firma:</div>
-                <div class="firma_despachado">Firma:</div>
-                <div class="firma_recibido">Firma:</div>
-            </div>
     </main>
     <footer class="pagina1">
         Factura generada desde SistemaCCH.
     </footer>
-
+   
 
 </body>
 

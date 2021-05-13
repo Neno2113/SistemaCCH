@@ -24,7 +24,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for=""></label>
+                            <label for="">No. Corte</label>
                             <div id="corteAdd">
                                 <select name="cortesSearch" id="cortesSearch" class="form-control select2">
                                 </select>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <label for=""></label>
+                            <label for="">Tipo</label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="sec_segunda" id="sec_segunda" value="">
@@ -53,15 +53,16 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-3 mt-4 pt-2 mr-3">
-                            <input type="text" name="no_perdida" id="no_perdida" class="form-control text-center"
-                                readonly>
-                        </div>
+                 
                         <div class="col-3">
                             <div class="mt-4 pt-2">
                                 <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-trash-restore"></i>
                                     Generar</button>
                             </div>
+                        </div>
+                        <div class="col-3 mt-4 pt-2 mr-3">
+                            <input type="text" name="no_perdida" id="no_perdida" class="form-control text-center"
+                                readonly>
                         </div>
                     </div>
                     <br>
@@ -71,7 +72,7 @@
                     <div class="row" id="fila1">
 
                         <div class="col-md-6">
-                            <label for="">Fecha(*)</label>
+                            <label for="">Fecha</label>
                             <input type="date" name="fecha" id="fecha" class="form-control">
                         </div>
                     </div>

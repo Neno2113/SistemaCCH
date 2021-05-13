@@ -45,12 +45,12 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-4">
-                            <label for="">Cliente:</label>
+                            <label for="">Cliente</label>
                             <input type="text" name="cliente" id="cliente"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Sucursal:</label>
+                            <label for="">Sucursal</label>
                             <input type="text" name="sucursal" id="sucursal"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>

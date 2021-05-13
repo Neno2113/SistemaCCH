@@ -39,10 +39,20 @@ margin-bottom: 20px; */
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
+.content-header {
+    padding: 0px .5rem;
+}
+
 .content-header h1 {
     font-weight: 500;
     font-family: 'Oswald', sans-serif;
     text-shadow: 0px 0px 1px #000;
+    font-size: 25px !important;
+    padding-top: 6px;
+}
+
+.content-header .breadcrumb {
+    padding-top: 6px;
 }
 
 .card-header {
@@ -50,7 +60,7 @@ margin-bottom: 20px; */
     border: 1px solid #31343940;
 }
 .card-header h4 {
-    padding-top: 7px;
+    padding-top: 0px;
     color: black;
     /* font-weight: bold; */
     font-family: 'Oswald', sans-serif;
@@ -64,7 +74,8 @@ margin-bottom: 20px; */
 }
 
 .card-body {
-    background:#f7f4f4;
+    /* background:#f7f4f4; */
+    background:#f8f9fa;
     border-left: 1px solid#06090f73;
     border-right: 1px solid #06090f73;
 }
@@ -78,7 +89,8 @@ margin-bottom: 20px; */
     border-right: 1px solid #06090f73;
     border-bottom: 1px solid #06090f73;
     /* border-radius: 5px; */
-    background: #f7f4f4 !important;
+    /* background: #f7f4f4 !important; */
+    background-color:#e9ecef  !important;
 }
 
 .corteSearch {
@@ -107,12 +119,17 @@ select.form-control,
 textarea.form-control {
     /* border: 1px solid #00000073; */
     border: none;
-    border-bottom: 3px solid #ccc;
-    font-family: "Slabo 13px", serif;
-    box-shadow: 0px 0px 2px rgb(0, 0, 0);
+    border-bottom: 1px solid #ccc;
+    /* font-family: "Slabo 13px", serif; */
+    box-shadow: 0px 0px 1px #444;
+    height: 33px;
 }
 
+textarea.form-control {
+    height: 50px;
 }
+
+
 
 /* form input[type="date"],
 input[type="text"],
@@ -130,7 +147,7 @@ input[type="email"]::placeholder,
 input[type="password"]::placeholder,
 input[type="number"]::placeholder,
 textarea.form-control::placeholder {
-    font-weight: bold;
+    font-weight: lighter;
     color: #000000bd;
 }
 
@@ -214,6 +231,10 @@ label .error {
 .rounded {
     width: 96px;
     height: 139px;
+}
+
+.table {
+    background-color: white;
 }
 
 .table-bordered td,
@@ -526,6 +547,10 @@ table th.fit {
 .tabla-existencia td .no-shadow {
     box-shadow: none;
  }
+
+ /* .datatables tbody tr td {
+    border: none;
+ } */
 
 
 /* .ta {

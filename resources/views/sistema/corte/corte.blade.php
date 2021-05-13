@@ -68,44 +68,45 @@
                     <br>
                     <div class="row" id="fila1">
                         <div class="col-md-4">
+                            <label for="" >Referencia Producto</label>
                             <select name="tags[]" id="productos" class="form-control select2">
                                 <option value="" disabled>Referencia producto</option>
                             </select>
-                            <label for="" class="label"></label>
+                           
                             {{-- <input type="hidden" name="genero" id="genero"> --}}
                         </div>
                         <div class="col-md-4">
-
-                            <input type="text" name="fecha_entrega" placeholder="Fecha de entrega"
+                            <label for="" >Fecha disponibilidad</label>
+                            <input type="text" name="fecha_entrega" 
                                 id="fecha_entrega" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
-                            <label for="" class="label"></label>
+                           
                         </div>
                         <div class="col-md-4">
-
-                            <input type="text" placeholder="Marcada No." name="no_marcada" id="no_marcada"
+                            <label for="" >No. Marcada</label>
+                            <input type="text"  name="no_marcada" id="no_marcada"
                                 class="form-control">
-                            <label for="" class="label"></label>
+                       
                         </div>
                     </div>
                     <br>
                     <div class="row mt-2" id="fila2">
                         <div class="col-md-4 mt-2">
-
-                            <input type="text" placeholder="Ancho marcada" name="ancho_marcada" id="ancho_marcada"
-                                class="form-control" placeholder="Pulgadas">
-                            <label for="" class="label"></label>
+                            <label for="" >Ancho Marcada</label>
+                            <input type="text" name="ancho_marcada" id="ancho_marcada"
+                                class="form-control" >
+                           
                         </div>
                         <div class="col-md-4 mt-2">
-
-                            <input type="text" placeholder="Largo marcada" name="largo_marcada" id="largo_marcada"
-                                class="form-control" placeholder="Yardas">
-                            <label for="" class="label"></label>
+                            <label for="" >Largo marcada</label>
+                            <input type="text"  name="largo_marcada" id="largo_marcada"
+                                class="form-control" >
+                           
                         </div>
                         <div class="col-md-4 mt-2">
-
-                            <input type="text" name="aprovechamiento" placeholder="Aprovechamiento" id="aprovechamiento"
+                            <label for="" >Aprovechamiento</label>
+                            <input type="text" name="aprovechamiento" id="aprovechamiento"
                                 class="form-control" data-inputmask='"mask": "99[.99]%"' data-mask>
-                            <label for="" class="label"></label>
+                            
                         </div>
                     </div>
                     <div class="row mt-2" id="fila3">
@@ -1045,7 +1046,7 @@
 {{-- </div> --}}
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/corte/corte.js')}}"></script>
 
 

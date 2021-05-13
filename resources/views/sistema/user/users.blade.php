@@ -24,31 +24,36 @@
                     <hr>
                     <div class="row">
                         <input type="hidden" name="id" id="id" value="">
+                       
                         <div class="col-md-6 col-sm-6 mt-3">
-                            <input type="text" name="name" id="name" placeholder="Nombre" class="form-control"
+                            <label for="name">Nombre</label>
+                            <input type="text" name="name" id="name"  class="form-control"
                                 pattern="[a-zA-Z]">
-                            <label for="name" class="label"></label>
+                            {{-- <label for="name" class="label"></label> --}}
                         </div>
                         <div class="col-md-6 col-sm-6 mt-3">
-                            <input type="text" name="surname" id="surname" placeholder="Apellido" class="form-control">
-                            <label for="surname" class="label"></label>
+                            <label for="surname">Apellido</label>
+                            <input type="text" name="surname" id="surname"  class="form-control">
+                            {{-- <label for="surname" class="label"></label> --}}
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-2 mt-3">
-                            <input type="text" name="edad" id="edad" placeholder="Edad" class="form-control text-center" ]
+                            <label for="edad">Edad</label>
+                            <input type="text" name="edad" id="edad"  class="form-control text-center" ]
                                 data-inputmask='"mask": "99"' data-mask>
-                            <label for="edad" class="label"></label>
+                            {{-- <label for="edad" class="label"></label> --}}
                         </div>
                         <div class="col-md-5 mt-3">
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div> --}}
-                            <input type="text" id="telefono" placeholder="Telefono" class="form-control"
+                            <label for="telefono">Telefono</label>
+                            <input type="text" id="telefono" class="form-control"
                                 data-inputmask='"mask": "(999) 999-9999"' data-mask>
                             {{-- </div> --}}
-                            <label for="name" class="label"></label>
+                            {{-- <label for="name" class="label"></label> --}}
                         </div>
                         <div class="col-md-5 mt-3">
 
@@ -56,9 +61,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div> --}}
-                            <input type="text" id="celular" placeholder="Celular" class="form-control"
+                            <label for="celular">Celular</label>
+                            <input type="text" id="celular" class="form-control"
                                 data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            <label for="celular" class="label"></label>
+                            {{-- <label for="celular" class="label"></label> --}}
                             {{-- </div> --}}
                         </div>
                     </div>
@@ -71,8 +77,9 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                                 </div> --}}
-                            <textarea  id="direccion" placeholder="Direccion" class="form-control"></textarea>
-                            <label for="direccion" class="label"></label>
+                            <label for="direccion">Direccion</label> 
+                            <textarea  id="direccion" class="form-control"></textarea>
+                            {{-- <label for="direccion" class="label"></label> --}}
                             {{-- </div> --}}
 
                         </div>
@@ -112,21 +119,21 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6 mt-3">
-
-                            <input type="Email" name="email" id="email" placeholder="Email" class="form-control">
-                            <label for="name" class="label"></label>
+                            <label for="password"> Email</label>
+                            <input type="Email" name="email" id="email"  class="form-control">
+                           
                         </div>
                         <div class="col-md-6 mt-3" id="ver-contra">
-
-                            <input type="password" name="password" placeholder="Contraseña" id="password"
+                            <label for="password"> Contraseña</label>
+                            <input type="password" name="password"  id="password"
                                 class="form-control">
-                            <label for="password" class="label"></label>
+                           
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-3">
-
+                            <label for="role" >Rol</label>
                             <select name="role" id="role" class="form-control">
                                 <option value="" disabled>Rol</option>
                                 <option>Administrador</option>
@@ -134,7 +141,7 @@
                                 <option>Soporte</option>
                                 <option>General</option>
                             </select>
-                            <label for="" class="label"></label>
+                          
                         </div>
                     </div>
 
@@ -144,7 +151,7 @@
                 <div class="row mt-3" id="vatar">
                     <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                         <div class="form-group">
-                            {{-- <label for="exampleInputFile">Avatar</label> --}}
+                            <label for="exampleInputFile">Avatar</label>
                             <img src="" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
                             <div class="input-group mt-4">
                                 <div class="custom-file">
@@ -235,7 +242,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/users/user.js')}}"></script>
 
 @endsection

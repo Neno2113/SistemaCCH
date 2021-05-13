@@ -37,6 +37,7 @@ class OrdenFacturacionController extends Controller
             $por_transporte = $request->input('por_transporte');
             // $sec = $request->input('sec');
 
+            $orden_empaque = ordenEmpaque::find($orden_empaque_id);
             $orden_facturacion = new OrdenFacturacion();
 
             // $orden_facturacion->no_orden_facturacion = $no_orden_facturacion;
@@ -52,7 +53,8 @@ class OrdenFacturacionController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'orden_facturacion' => $orden_facturacion
+                'orden_facturacion' => $orden_facturacion,
+                'empaque' => $orden_empaque
             ];
         }
 
@@ -121,11 +123,23 @@ class OrdenFacturacionController extends Controller
             $factura_detalle->cant_bultos = $bultos;
             $factura_detalle->producto_id = $producto_id;
 
+            //invoice /cm distribution
+            $detalle_invoice = ordenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion_id)->get()
+            ->last();
+            if(is_object($detalle_invoice)){
+                $cm_distribution = $detalle_invoice->cm_distribuciones;
+              
+            }
+            if(empty($cm_distribution)){
+                $cm_distribution = 0;
+            }
+
             $factura_detalle->user_id = \auth()->user()->id;
             $factura_detalle->orden_facturacion_id = $orden_facturacion_id;
             $factura_detalle->fecha = date('Y/m/d h:i:s');
             $factura_detalle->orden_pedido_id = $orden_pedido_id;
             $factura_detalle->nota_credito = 0;
+            $factura_detalle->cm_distribuciones = $cm_distribution + 1;
 
             $producto = Product::find($producto_id);
             $catalogo = $producto->id_catalogo;

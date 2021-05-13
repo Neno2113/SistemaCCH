@@ -54,6 +54,7 @@
                                 <label for="">Sucursal</label>
                                 <select name="tags[]" id="sucursalSearch" class="form-control select2">
                                     <option value="" disabled>Sucursal</option>
+                                    
                                 </select>
                             </div>
                             <div class="col-md-6" id="sucursal">
@@ -105,7 +106,7 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-4">
-                                <label for=""></label>
+                                <label for="">Notas</label>
                                 <textarea name="notas" id="notas" placeholder="Notas" cols="30" rows="1" class="form-control"></textarea>
                             </div>
                             <div class="col-md-6"></div>
@@ -502,7 +503,7 @@
                                     <thead class="">
                                         <tr>
 
-                                            <th>Referencias listadas</th>
+                                            <th>Referencias</th>
                                             <th>Precio</th>
                                             <th>Cantidad</th>
                                             <th>A</th>
@@ -517,6 +518,7 @@
                                             <th>J</th>
                                             <th>K</th>
                                             <th>L</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="orden_pedido">
@@ -524,9 +526,10 @@
                                     </tbody>
                                     <tfoot class="light">
 
-                                        <th>Referencias listadas</th>
+                                        <th>Referencias</th>
                                         <th>Precio</th>
                                         <th>Cantidad</th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>

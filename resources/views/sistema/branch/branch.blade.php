@@ -59,7 +59,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Formulario de registro de sucursales</h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel">Formulario de registro de sucursales</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -68,53 +68,54 @@
                 <form action="" id="BrachForm">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="Cliente"></label>
+                            <label for="Cliente">Cliente</label>
                             <input type="hidden" name="id" id="id">
                             <select name="tags[]" id="clientes" class="form-control select2">
+                                <option value="" disabled>Selecciona o busca un cliente</option>
 
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-4">
-                            <label for="nombre_sucursal"></label>
-                            <input type="text" placeholder="Nombre sucursal" name="nombre_sucursal" id="nombre_sucursal" class="form-control"
+                            <label for="nombre_sucursal">Nombre Sucursal</label>
+                            <input type="text"  id="nombre_sucursal" class="form-control"
                                 placeholder="Puede ser el nombre mas la direccion">
                         </div>
                         <div class="col-md-6 mt-4">
-                            <label for="telefono_sucursal"></label>
-                            {{-- <div class="input-group">
+                            <label for="telefono_sucursal">Telefono</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                                <input type="text" placeholder="Telefono" id="telefono_sucursal" class="form-control"
+                                </div>
+                                <input type="text"  id="telefono_sucursal" class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                            {{-- </div> --}}
+                            </div>
                         </div>
                     </div>
                     <br>
                     <hr>
                     <div class="row mt-4">
                         <div class="col-md-4">
-                            <label for="calle"></label>
-                            {{-- <div class="input-group">
+                            <label for="calle">Calle</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                </div> --}}
-                                <input type="text" placeholder="Calle" id="calle" name="calle" class="form-control">
-                            {{-- </div> --}}
+                                </div>
+                                <input type="text"  id="calle" name="calle" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-4 ">
-                            <label for="sector"></label>
-                            {{-- <div class="input-group">
+                            <label for="sector">Sector</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                </div> --}}
-                                <input type="text" id="sector" placeholder="Sector" name="sector" class="form-control">
-                            {{-- </div> --}}
+                                </div>
+                                <input type="text" id="sector"  name="sector" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="provincia"></label>
+                            <label for="provincia">Provincia</label>
                             <select name="provincia" id="provincia" class="form-control select2" style="width:100%">
                                 <option value="" disabled>Provincia</option>
                                 <option>Santo Domingo</option>
@@ -155,8 +156,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4">
-                            <label for=""></label>
-                            <input type="text" placeholder="Referencias cercanas" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
+                            <label for="">Referencias cercanas</label>
+                            <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
 
                         </div>
                     </div>
@@ -176,63 +177,7 @@
 
 @include('adminlte/scripts')
 <script src="{{asset('js/cliente/client_branch.js')}}"></script>
-<script>
-    function mostrar(id_branch) {
-        $.post("client-branch/" + id_branch, function(data, status) {
 
-            $("#exampleModal").modal('show');
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit-branch").show();
-            $("#btn-guardar-branch").hide();
-
-
-            $("#id").val(data.branch.id);
-            $("#clientes").val(data.branch.cliente.nombre_cliente).trigger("change");
-            $("#nombre_sucursal").val(data.branch.nombre_sucursal).attr("readonly", false);
-            $("#telefono_sucursal").val(data.branch.telefono_sucursal).attr("readonly", false);
-            $("#calle").val(data.branch.calle).attr("readonly", false);
-            $("#sector").val(data.branch.sector).attr("readonly", false);
-            $("#provincia").val(data.branch.provincia).trigger("change").attr("disabled", false);
-            $("#sitios_cercanos").val(data.branch.sitios_cercanos).attr("disabled", false);
-
-
-        });
-    }
-
-    function eliminar(id_branch){
-        Swal.fire({
-        title: '¿Esta seguro de eliminar eliminar esta sucursal?',
-        text: "Va a eliminar esta sucursal!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("client-branch/delete/" + id_branch, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Sucursal eliminada correctamente.',
-                'success'
-                )
-                $("#branches").DataTable().ajax.reload();
-            })
-        }
-      })
-        // bootbox.confirm("¿Estas seguro de eliminar esta sucursal?", function(result){
-        //     if(result){
-        //         $.post("client-branch/delete/" + id_branch, function(){
-        //             // bootbox.alert(e);
-        //             bootbox.alert("Sucursal eliminada correctamente!!");
-        //             $("#branches").DataTable().ajax.reload();
-        //         })
-        //     }
-        // })
-    }
-
-</script>
 
 
 

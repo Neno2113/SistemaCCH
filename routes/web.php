@@ -353,9 +353,12 @@ Route::get('productos/seleccionar', 'ordenPedidoController@Productos');
 Route::get('corte/fecha/{id}', 'ordenPedidoController@fechaEntrega');
 Route::get('ordenes/empty', 'ordenPedidoController@clearOP');
 Route::post('sucursal/select', 'ordenPedidoController@selectSucu');
+Route::post('/detalle/delete/{id}', 'ordenPedidoController@destroyProduct');
+
 
 //orden empaque
 Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');
+Route::get('/empaque/facturar/{id}', 'ordenEmpaqueController@imprimirConduce');
 Route::get('/orden_redistribuir/{id}', 'ordenEmpaqueController@redistibucion');
 Route::get('/orden_empaque/{id}', 'ordenEmpaqueController@show');
 Route::post('/empaque_detalle/{id}', 'ordenEmpaqueController@empaque');

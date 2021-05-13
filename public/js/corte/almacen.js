@@ -1220,7 +1220,7 @@ $(document).ready(function() {
                     entradaCod();
                     $("#btn-imprimir").show();
                     $("#entrada_alm").removeClass("btn-primary").addClass("btn-dark");
-                    $("#btn-print").attr("href", 'imprimir/DocEA/'+datos.detalle.id);
+                    $("#btn-imprimir").attr("href", 'imprimir/DocEA/'+datos.detalle.id);
                     eliminarColumnas();
                     // Swal.fire({
                     //     position: 'top-end',

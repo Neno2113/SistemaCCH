@@ -739,6 +739,7 @@
 			<thead class="tabla-tallas">
 				<tr>
 					<th class="talla_head">MUJER PLUS:</th>
+					<td class="talla"></td>
 					<td class="talla">12W</td>
 					<td class="talla">14W</td>
 					<td class="talla">16W</td>
@@ -756,6 +757,7 @@
 
 				<tr>
 					<th class="talla_head">MUJER:</th>
+					<td class="talla"></td>
 					<td class="talla" style="width: 41.883px;">0/0</td>
 					<td class="talla" style="width: 39.233px;">1/2</td>
 					<td class="talla" style="width: 39.233px;">3/4</td>
@@ -773,6 +775,7 @@
 
 				<tr>
 					<th class="talla_head">HOMBRE:</th>
+					<td class="talla"></td>
 					<td class="talla">28</td>
 					<td class="talla">29</td>
 					<td class="talla">30</td>
@@ -790,6 +793,7 @@
 
 				<tr>
 					<th class="talla_head">NIÑO:</th>
+					<td class="talla"></td>
 					<td class="talla">2</td>
 					<td class="talla">4</td>
 					<td class="talla">6</td>
@@ -807,6 +811,7 @@
 
 				<tr>
 					<th class="talla_head">NIÑA:</th>
+					<td class="talla"></td>
 					<td class="talla">2</td>
 					<td class="talla">4</td>
 					<td class="talla">6</td>
@@ -826,6 +831,7 @@
 			<thead>
 				<tr>
 					<th style="color:#fff;">REFERENCIA</th>
+					<th style="color:#fff;">UBICACION</th>
 					<th></th>
 					<th></th>
 					<th></th>
@@ -845,6 +851,7 @@
 				@foreach ($orden_detalle as $talla)
 				<tr>
 					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
+					<td class="unit_talla">{{$talla->producto->ubicacion}}</td>
 					<td class="unit_talla">{{$talla->a}}</td>
 					<td class="unit_talla">{{$talla->b}}</td>
 					<td class="unit_talla">{{$talla->c}}</td>
@@ -877,28 +884,7 @@
 			</tbody>
 		</table>
 
-		<div style="clear: fix;">
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-bultos">
-				<thead>
-					<tr>
-						<th>UBICACION:</th>
-						<th>REFERENCIA:</th>
-					</tr>
-
-				</thead>
-				<tbody>
-					@foreach ($productos as $talla )
-					<tr>
-						<td>{{$talla->ubicacion}}</td>
-						<td>{{$talla->referencia_producto}}</td>
-					</tr>
-					@endforeach
-				</tbody>
-
-			</table>
-
-
-		</div>
+	
 
 
 

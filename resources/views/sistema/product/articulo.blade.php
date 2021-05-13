@@ -25,14 +25,17 @@
                     <div class="row">
                         <input type="hidden" name="articulo" id="articulo">
                         <div class="col-md-4">
+                            <label for="" >Nombre</label>
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control text-center">
-                            <label for="" class="label"></label>
+                           
                         </div>
                         <div class="col-md-4">
+                            <label for="" >Descripcion</label>
                             <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
-                            <label for="" class="label"></label>
+                           
                         </div>
                         <div class="col-md-4">
+                            <label for="" >Tipo de Articulo</label>
                             <select name="tipo_articulo" id="tipo_articulo" class="form-control">
                                 <option selected disabled>Tipo de articulo</option>
                                 <option >Material</option>
@@ -41,7 +44,7 @@
                                 <option >Otros</option>
 
                             </select>
-                            <label for="" class="label"></label>
+                         
                         </div>
                     </div>
 
@@ -100,7 +103,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/producto/articulo.js')}}"></script>
 
 

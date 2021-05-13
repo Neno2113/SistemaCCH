@@ -74,7 +74,7 @@
     <!-- Custom tabs (Charts with tabs)-->
     @if (Auth::user()->role == "Administrador")
     <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-dark">
           <h3 class="card-title">
             <i class="fas fa-chart-pie mr-1"></i>
             Ventas ultimos 12 meses
@@ -100,7 +100,7 @@
     <!-- /.card -->
     <!-- TABLE: LATEST ORDERS -->
     <div class="card">
-      <div class="card-header border-transparent text-black bg-gradient-info">
+      <div class="card-header bg-dark">
         <h3 class="card-title">Ultimas Ordenes generadas</h3>
 
         <div class="card-tools">
@@ -148,7 +148,7 @@
 
      <!-- TABLE: LATEST CORTES -->
      <div class="card ">
-      <div class="card-header border-transparent text-black bg-gradient-primary">
+      <div class="card-header bg-dark">
         <h3 class="card-title">Ultimos cortes creados</h3>
 
         <div class="card-tools">
@@ -196,7 +196,7 @@
      <!-- Custom tabs (Charts with tabs)-->
      @if (Auth::user()->role == "Administrador")
      <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-dark">
           <h3 class="card-title">
             <i class="fas fa-chart-pie mr-1"></i>
             Ventas ultimos 10 dias
@@ -223,7 +223,7 @@
 
     <!-- PRODUCT LIST -->
     <div class="card">
-      <div class="card-header">
+      <div class="card-header bg-dark">
         <h3 class="card-title">Referencias creadas recientemente</h3>
 
         <div class="card-tools">

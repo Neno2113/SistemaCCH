@@ -24,70 +24,78 @@
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-4 mt-1">
-                            <input type="text" name="nombre" placeholder="Nombre" id="nombre" class="form-control">
-                            <label for="nombre" class="label"></label>
+                            <label for="nombre">Codigo Suplidor</label>
+                            <input type="text" name="codigo_suplidor" id="codigo_suplidor" class="form-control">
+
                         </div>
                         <div class="col-md-4 mt-1">
-                            <input type="text" name="codigo_suplidor" placeholder="Codigo Suplidor" id="codigo_suplidor" class="form-control">
-                            <label for="nombre" class="label"></label>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control">
+
                         </div>
+
                         <div class="col-md-4 mt-1">
-                            <input type="text" name="rnc" id="rnc" placeholder="RNC" class="form-control"
+                            <label for="rnc">RNC</label>
+                            <input type="text" name="rnc" id="rnc" class="form-control"
                                 data-inputmask='"mask": "99999999999"' data-mask>
-                            <label for="rnc" class="label"></label>
+
                         </div>
 
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-3 mt-3">
-                            <input type="text" placeholder="Contacto suplidor" name="contacto_suplidor"
-                                id="contacto_suplidor" class="form-control">
-                            <label for="contacto_suplidor" class="label"></label>
+                            <label for="contacto_suplidor">Contacto suplidor</label>
+                            <input type="text" name="contacto_suplidor" id="contacto_suplidor" class="form-control">
+
                         </div>
                         <div class="col-md-3 mt-3">
-
-                            {{-- <div class="input-group">
+                            <label for="telefono_1">Telefono 1</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                            <input type="text" id="telefono_1" placeholder="Telefono 1" class="form-control"
-                                data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
-                            <label for="telefono_1" class="label"></label>
-                            {{-- </div> --}}
+                                </div>
+                                <input type="text" id="telefono_1" class="form-control"
+                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+
+                            </div>
                         </div>
                         <div class="col-md-3 mt-3">
-
-                            {{-- <div class="input-group">
+                            <label for="telefono_2">Telefono 2</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                            <input type="text" id="telefono_2" placeholder="Telefono 2" class="form-control"
-                                data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
-                            <label for="telefono_2" class="label"></label>
-                            {{-- </div> --}}
+                                </div>
+                                <input type="text" id="telefono_2" class="form-control"
+                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+
+                            </div>
                         </div>
                         <div class="col-md-3 mt-3">
-
-                            {{-- <div class="input-group">
+                            <label for="celular">Celular</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div> --}}
-                            <input type="text" placeholder="Celular" id="celular" class="form-control"
-                                data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
-                            <label for="celular" class="label"></label>
-                            {{-- </div> --}}
+                                </div>
+                                <input type="text" id="celular" class="form-control"
+                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
+
+                            </div>
                         </div>
                     </div>
                     <br>
                     <hr><br>
                     <div class="row">
                         <div class="col-md-4 mt-3">
-
-                            <input type="email" placeholder="Email" name="email" id="email" class="form-control">
-                            <label for="email" class="label"></label>
+                            <label for="email">Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                </div>
+                                <input type="email"  name="email" id="email" class="form-control">
+                            </div>
                         </div>
                         <div class="col-md-4 mt-3">
-
+                            <label for="tipo_suplidor">Tipo suplidor</label>
                             <select name="tipo_suplidor" id="tipo_suplidor" class="form-control">
                                 <option value="" disabled>Tipo suplidor</option>
                                 <option value="">Elige un tipo...</option>
@@ -95,10 +103,10 @@
                                 <option value="Lavanderia">Lavanderia</option>
                                 <option value="Servicio">Servicio</option>
                             </select>
-                            <label for="terminos_de_pago" class="label"></label>
+                           
                         </div>
                         <div class="col-md-4 mt-3">
-
+                            <label for="terminos_de_pago">terminos de pago</label>
                             <select name="terminos_pago" id="terminos_de_pago" class="form-control">
                                 <option value="" disabled>Termino de pago</option>
                                 <option value="Contado">Al contado</option>
@@ -107,34 +115,34 @@
                                 <option value="90 dias">90 dias</option>
                                 <option value="120 dias">120 dias</option>
                             </select>
-                            <label for="terminos_de_pago" class="label"></label>
+                           
                         </div>
                     </div>
                     <br>
                     <hr>
                     <div class="row">
                         <div class="col-md-4 mt-1">
-
-                            {{-- <div class="input-group">
+                            <label for="calle">Calle</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                </div> --}}
-                            <input name="calle" type="text" id="calle" class="form-control" placeholder="Calle">
-                            <label for="calle" class="label"></label>
-                            {{-- </div> --}}
+                                </div>
+                            <input name="calle" type="text" id="calle" class="form-control" >
+                          
+                            </div>
                         </div>
                         <div class="col-md-4 mt-1">
-
-                            {{-- <div class="input-group">
+                            <label for="sector">Sector</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                </div> --}}
-                            <input name="sector" type="text" id="sector" class="form-control" placeholder="Sector">
-                            <label for="sector" class="label"></label>
-                            {{-- </div> --}}
+                                </div>
+                            <input name="sector" type="text" id="sector" class="form-control" >
+                           
+                            </div>
                         </div>
                         <div class="col-md-4 mt-1">
-
+                            <label for="provincia">Provincia</label>
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
@@ -176,7 +184,7 @@
                                 <option>Independencia</option>
                                 <option>Pedernales</option>
                             </select>
-                            <label for="provincia" class="label"></label>
+                         
                             {{-- </div> --}}
                         </div>
 
@@ -184,7 +192,7 @@
                     <div class="row mt-2">
 
                         <div class="col-md-4">
-
+                            <label for="">Pais</label>
                             <select name="pais" id="pais" class="form-control select2" placeholder="Country">
                                 <option value="Elegir" disabled>Pais</option>
                                 <option value="Afganistán" id="AF">Afganistán</option>
@@ -433,24 +441,24 @@
                                 <option value="Zambia" id="ZM">Zambia</option>
                                 <option value="Zimbabue" id="ZW">Zimbabue</option>
                             </select>
-                            <label for="" class="label"></label>
+                          
                         </div>
                         <div class="col-md-4">
-
-                            <input type="text" placeholder="Referencias cercanas" name="sitios_cercanos"
+                            <label for="">Referencas cercanas</label>
+                            <input type="text"  name="sitios_cercanos"
                                 id="sitios_cercanos" class="form-control">
-                            <label for="" class="label"></label>
+                          
 
                         </div>
                     </div>
                     <br>
                     <hr>
-                    <div class="row mt-2">
-                        <div class="col-md-12 mt-3">
-
-                            <textarea name="nota" id="nota" cols="30" rows="1" placeholder="Nota"
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <label for="nota">Nota</label>
+                            <textarea name="nota" id="nota" cols="30" rows="1" 
                                 class="form-control"></textarea>
-                            <label for="nota" class="label"></label>
+                         
                         </div>
                     </div>
             </div>
@@ -514,7 +522,7 @@
 </div>
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/suplidor/suplidor.js')}}"></script>
 
 

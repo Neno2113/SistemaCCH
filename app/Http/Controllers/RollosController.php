@@ -29,6 +29,7 @@ class RollosController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
+
             $id_user = \auth()->user()->id;
             $id_suplidor = $request->input('suplidor', true);
             $id_tela = $request->input('tela', true);
@@ -38,24 +39,43 @@ class RollosController extends Controller
             $longitud_yarda = $request->input('longitud_yarda', true);
             $no_factura_compra = $request->input('no_factura_compra', true);
 
+            
+            $verificar = Rollos::where('id_suplidor', 'LIKE', $id_suplidor)
+            ->where('id_tela', 'LIKE', $id_tela)
+            ->where('codigo_rollo', 'LIKE', $codigo_rollo)->get()->first();
 
-            $rollos = new Rollos();
-            $rollos->id_user = $id_user;
-            $rollos->id_suplidor = $id_suplidor;
-            $rollos->id_tela = $id_tela;
-            $rollos->codigo_rollo = $codigo_rollo;
-            $rollos->num_tono = $num_tono;
-            $rollos->fecha_compra = $fecha_compra;
-            $rollos->no_factura_compra = $no_factura_compra;
-            $rollos->longitud_yarda = $longitud_yarda;
 
-            $rollos->save();
+            if(empty($verificar) || $verificar == null){
 
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'rollo' => $rollos
-            ];
+                $rollos = new Rollos();
+                $rollos->id_user = $id_user;
+                $rollos->id_suplidor = $id_suplidor;
+                $rollos->id_tela = $id_tela;
+                $rollos->codigo_rollo = $codigo_rollo;
+                $rollos->num_tono = $num_tono;
+                $rollos->fecha_compra = $fecha_compra;
+                $rollos->no_factura_compra = $no_factura_compra;
+                $rollos->longitud_yarda = $longitud_yarda;
+    
+                $rollos->save();
+    
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'rollo' => $rollos
+                ];
+            } else {
+                $data = [
+                    'code' => 200,
+                    'status' => 'info',
+                    'message' => 'Este rollo ya existe!',
+                    'rollo' => $verificar
+                ];
+            }
+
+           
+
+           
         }
 
         return response()->json($data, $data['code']);

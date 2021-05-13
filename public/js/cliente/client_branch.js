@@ -38,30 +38,64 @@ $(document).ready(function() {
     function init() {
         $("#provincia").select2();
         listar();
+        clientes();
         // mostrarForm(false);
         $("#btn-edit-branch").hide();
         // $("#results").hide();
+    
+    function clientes (){
 
+        $.ajax({
+            url: "clients",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    console.log(datos);
+                    var longitud = datos.clientes.length;
 
-    $("#clientes").select2({
-        placeholder: "Elige un cliente...",
-        ajax: {
-            url: 'clients',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.nombre_cliente,
-                            id: item.id
-                        }
-                    })
-                };
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.clientes[i].id +">"+datos.clientes[i].nombre_cliente+"</option>"
+
+                        $("#clientes").append(fila);
+                    }
+                    // $("#clientes").attr('disabled', true);
+                    $("#clientes").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
             },
-            cache: true
-        }
-    })
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    }
+
+    // $("#clientes").select2({
+    //     placeholder: "Elige un cliente...",
+    //     ajax: {
+    //         url: 'clients',
+    //         dataType: 'json',
+    //         delay: 250,
+    //         processResults: function(data){
+    //             return {
+    //                 results: $.map(data, function(item){
+    //                     return {
+    //                         text: item.nombre_cliente,
+    //                         id: item.id
+    //                     }
+    //                 })
+    //             };
+    //         },
+    //         cache: true
+    //     }
+    // })
 
     }
 
@@ -243,6 +277,7 @@ $(document).ready(function() {
         e.preventDefault();
         $("#btn-edit-branch").hide();
         $("#btn-guardar-branch").show();
+        limpiar();
    })
 
 
@@ -252,3 +287,60 @@ $(document).ready(function() {
 
     init();
 });
+
+
+function mostrar(id_branch) {
+    $.post("client-branch/" + id_branch, function(data, status) {
+
+        $("#exampleModal").modal('show');
+        $("#btnCancelar").show();
+        $("#btnAgregar").hide();
+        $("#btn-edit-branch").show();
+        $("#btn-guardar-branch").hide();
+
+
+        $("#id").val(data.branch.id);
+        // console.log(data.branch.cliente_id);
+        $("#clientes").val(data.branch.cliente_id).select2().trigger('change');
+        $("#nombre_sucursal").val(data.branch.nombre_sucursal).attr("readonly", false);
+        $("#telefono_sucursal").val(data.branch.telefono_sucursal).attr("readonly", false);
+        $("#calle").val(data.branch.calle).attr("readonly", false);
+        $("#sector").val(data.branch.sector).attr("readonly", false);
+        $("#provincia").val(data.branch.provincia).trigger("change").attr("disabled", false);
+        $("#sitios_cercanos").val(data.branch.sitios_cercanos).attr("disabled", false);
+
+
+    });
+}
+
+function eliminar(id_branch){
+    Swal.fire({
+    title: '¿Esta seguro de eliminar eliminar esta sucursal?',
+    text: "Va a eliminar esta sucursal!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, acepto'
+  }).then((result) => {
+    if (result.value) {
+        $.post("client-branch/delete/" + id_branch, function(){
+            Swal.fire(
+            'Eliminado!',
+            'Sucursal eliminada correctamente.',
+            'success'
+            )
+            $("#branches").DataTable().ajax.reload();
+        })
+    }
+  })
+    // bootbox.confirm("¿Estas seguro de eliminar esta sucursal?", function(result){
+    //     if(result){
+    //         $.post("client-branch/delete/" + id_branch, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Sucursal eliminada correctamente!!");
+    //             $("#branches").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
+}

@@ -67,8 +67,8 @@
                     @else
                     FALSE
             @endif</td>
-            <td>{{$loop->iteration}}</td>
             <td>{{$factura->distribuciones}}</td>
+            <td>{{$detalle->cm_distribuciones}}</td>
             <td>{{$detalle->total}}</td>
             <td>{{$detalle->producto->referencia_producto}}</td>
             <td>{{$detalle->producto->descripcion}}</td>

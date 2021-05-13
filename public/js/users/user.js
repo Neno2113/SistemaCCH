@@ -333,6 +333,7 @@ function mostrar(id_user) {
         $("#email").val(data.user.email).attr('readonly', false);
         $("#role").val(data.user.role).attr('disabled', false);
         $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
+        $("#image_name").val(data.user.avatar);
     });
 }
 

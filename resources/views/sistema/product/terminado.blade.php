@@ -26,12 +26,12 @@
                     <br><br>
                     <div class="row">
                         <div class="col-md-6">
-                            <p for="">Referencia producto:</p>
+                            <label for="">Referencia producto</label>
                             <input type="text" name="referencia_producto" id="referencia_producto"
                                 class="form-control mt-2 text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-6">
-                            <p for="">Descripcion:</p>
+                            <label for="">Descripcion</label>
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control mt-2 font-weight-bold" readonly></textarea>
                         </div>
@@ -41,17 +41,17 @@
 
                     <div class="row mt-2 ">
                         <div class="col-md-4">
-                            <p for="">Ubicacion:</p>
+                            <label for="">Ubicacion</label>
                             <input type="text" name="ubicacion" id="ubicacion"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
-                            <p for="">Tono:</p>
+                            <label for="">Tono</label>
                             <input type="text" name="tono" id="tono" class="form-control text-center font-weight-bold"
                                 readonly>
                         </div>
                         <div class="col-md-4">
-                            <p for="">Intensidad proceso seco:</p>
+                            <label for="">Intensidad proceso seco</label>
                             <input type="text" name="intensidad_proceso_seco" id="intensidad_proceso_seco"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
@@ -59,17 +59,17 @@
                     <br>
                     <div class="row mt-2">
                         <div class="col-md-4">
-                            <p for="">Atributo No.1:</p>
+                            <label for="">Atributo No.1</label>
                             <input type="text" name="atributo_no_1" id="atributo_no_1"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
-                            <p for="">Atributo No.2:</p>
+                            <label for="">Atributo No.2</label>
                             <input type="text" name="atributo_no_2" id="atributo_no_2"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-4">
-                            <p for="">Atributo No.3:</p>
+                            <label for="">Atributo No.3</label>
                             <input type="text" name="atributo_no_3" id="atributo_no_3"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
@@ -78,12 +78,12 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <p for="">Precio lista:</p>
+                            <label for="">Precio lista</label>
                             <input type="text" name="precio_lista" id="precio_lista"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                         <div class="col-md-6">
-                            <p for="">Precio venta:</p>
+                            <label for="">Precio venta</label>
                             <input type="text" name="precio_venta_publico" id="precio_venta_publico"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>

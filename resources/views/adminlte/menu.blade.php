@@ -235,13 +235,13 @@
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/lavanderia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Lavanderia</p>
+                                <p>Envio Lavanderia</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/recepcion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Recepcion</p>
+                                <p>Recepcion Lavanderia</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -349,6 +349,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview ">
+
                     <a href="#" class="nav-link ">
                         <i class="fas fa-random"></i>
                         <p>
@@ -363,16 +364,14 @@
                                 <p>Existencia por talla</p>
                             </a>
                         </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
+
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/reporte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencias</p>
                             </a>
                         </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
+
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/exportar-peach" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -418,7 +417,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                    @if (Auth::user()->permisos()->where('permiso', 'Usuarios')->first())
+                        @if (Auth::user()->permisos()->where('permiso', 'Usuarios')->first())
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/user" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -426,8 +425,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Empleados')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Empleados')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/employee" class="nav-link">
@@ -436,8 +435,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Cliente')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Cliente')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/client" class="nav-link">
@@ -446,8 +445,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Sucursales')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Sucursales')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/branch" class="nav-link">
@@ -456,8 +455,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Suplidores')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Suplidores')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/supplier" class="nav-link">
@@ -466,8 +465,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Sku')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Sku')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/sku" class="nav-link">
@@ -476,8 +475,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Productos')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Productos')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/product" class="nav-link">
@@ -486,8 +485,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Producto terminado')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Producto terminado')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
@@ -496,8 +495,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Composicion')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Composicion')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/composition" class="nav-link">
@@ -506,8 +505,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Telas')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Telas')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/cloth" class="nav-link">
@@ -516,8 +515,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Rollos')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Rollos')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/rollos" class="nav-link">
@@ -526,8 +525,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Corte')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Corte')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/corte" class="nav-link">
@@ -536,28 +535,28 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Lavanderia')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Lavanderia')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/lavanderia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Lavanderia</p>
+                                <p>Enviar lavanderia</p>
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Recepcion')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Recepcion')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/recepcion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Recepcion</p>
+                                <p>Recibir lavanderia</p>
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Definir Atributos')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Definir Atributos')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/definir-atributo" class="nav-link">
@@ -566,18 +565,18 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Entrada Almacen')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Entrada Almacen')->first())
 
-                    <li class="nav-item">
-                        <a href="/sistemaCCH/public/almacen" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Entradas almacen</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/almacen" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Entradas almacen</p>
+                            </a>
+                        </li>
 
-                @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Perdidas')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Perdidas')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/perdida" class="nav-link">
@@ -586,8 +585,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Ordenes pedido')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Ordenes pedido')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
@@ -596,8 +595,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Aprobar y redistribuir')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Aprobar y redistribuir')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
@@ -606,8 +605,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Ordenes proceso')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Ordenes proceso')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
@@ -616,8 +615,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Imprimir ordenes empaque')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Imprimir ordenes empaque')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_empaque_listar" class="nav-link">
@@ -626,8 +625,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Reportar empaque')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Reportar empaque')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
@@ -636,8 +635,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Facturacion')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Facturacion')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/facturacion" class="nav-link">
@@ -646,8 +645,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Nota credito')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Nota credito')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/nota_credito" class="nav-link">
@@ -656,8 +655,8 @@
                             </a>
                         </li>
 
-                    @endif
-                    @if (Auth::user()->permisos()->where('permiso', 'Existencias')->first())
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Existencias')->first())
 
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/existencia" class="nav-link">

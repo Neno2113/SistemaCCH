@@ -38,7 +38,7 @@
                     </div>
                     <div class="row ">
                         <div class="col-md-6 mt-2">
-                            <label for=""></label>
+                            <label for="">Numero Corte</label>
                             <input type="hidden" name="" id="id">
                             <div id="corteAdd">
                                 <select name="tags[]" id="cortesSearch" class="form-control select2">
@@ -53,7 +53,7 @@
                             <input type="text" name="corte" id="corte" class="form-control mt-2" readonly>
                         </div>
                         <div class="col-md-6 mt-2">
-                            <label for=""></label>
+                            <label for="">No. Factura o Conduce</label>
                             <input type="text" name="num_factura" id="num_factura" class="form-control" placeholder="Numero de Factura o Conduce">
                             {{-- <div id="lavanderiaAdd">
                                 <select name="tags[]" id="lavanderias" class="form-control select2">
@@ -71,15 +71,15 @@
                     <br>
                     <div class="row">
                         <div class="col-md-4">
-                            <label for=""></label>
-                            <input type="text" name="fecha_recepcion" placeholder="Fecha de recepcion"  onfocus="(this.type='date')" id="fecha_recepcion" class="form-control">
+                            <label for="">Fecha Recepcion</label>
+                            <input type="text" name="fecha_recepcion" onfocus="(this.type='date')" id="fecha_recepcion" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for=""></label>
-                            <input type="text" placeholder="Cantidad recibida" name="cantidad_recibida" id="cantidad_recibida" class="form-control">
+                            <label for="">Cantidad Recibida</label>
+                            <input type="text" placeholder="Cantidad recibida" id="cantidad_recibida" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for=""></label>
+                            <label for="">Restante Recibir</label>
                             <input type="text" placeholder="Restante por recibir" name="cantidad_restante" id="cantidad_restante" class="form-control"
                                 readonly>
                         </div>

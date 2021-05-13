@@ -24,45 +24,52 @@
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-3">
+                            <label for="nombre_cliente" >Suplidores</label>
                             <select name="tags[]" id="suplidores" class="form-control select2">
 
                             </select>
-                            <label for="nombre_cliente" class="label"></label>
+                          
                         </div>
+                  
                         <div class="col-md-3">
+                            <label for="nombre_cliente" >Telas</label>
                             <select name="tags[]" id="cloths"  class="form-control select2">
 
                             </select>
-                            <label for="nombre_cliente" class="label"></label>
+                           
                         </div>
+                        
                         <div class="col-md-3">
-
+                            <label for="" >Fecha compra</label>
                             <input type="date" placeholder="Fecha compra" name="fecha_compra" id="fecha_compra" class="form-control">
-                            <label for="" class="label"></label>
+                          
                         </div>
-
+                      
                         <div class="col-md-3">
-
+                            <label for="" >No. Factura</label>
                             <input type="text" placeholder="Factura" name="no_factura_compra" id="no_factura_compra" placeholder="Numero" class="form-control">
-                            <label for="" class="label"></label>
+                      
                         </div>
 
                     </div>
                     <div class="row mt-2">
+                       
                         <div class="col-md-4 mt-2">
-
+                            <label for="" >Numero de rollo</label>
                             <input type="text" placeholder="Numero de rollo" name="codigo_rollo" id="codigo_rollo" class="form-control">
-                            <label for="" class="label"></label>
+                         
                         </div>
+                       
                         <div class="col-md-4 mt-2">
-
+                            <label for="" >Numero de tono</label>
                             <input type="text" placeholder="Tono" name="num_tono" id="num_tono" class="form-control">
-                            <label for="" class="label"></label>
+                       
                         </div>
+                       
                         <div class="col-md-4 mt-2">
-
+                            <label for="" >Longitud Yarda</label>
                             <input type="text" placeholder="Longitud en yarda" name="longitud_yarda" id="longitud_yarda" class="form-control">
-                            <label for="" class="label"></label>
+                          
                         </div>
                     </div>
             </div>
@@ -169,7 +176,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script>/ --}}
 <script src="{{asset('js/corte/rollos.js')}}"></script>
 
 

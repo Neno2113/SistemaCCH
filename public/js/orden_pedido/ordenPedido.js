@@ -25,6 +25,26 @@ var j_red;
 var k_red;
 var l_red;
 
+let val_valid;
+let gen;
+let detallado;
+let cantidad_wr;
+let precio_valid;
+let producto_valid;
+let a;
+let b;
+let c;
+let d;
+let e;
+let f;
+let g;
+let h;
+let i;
+let j;
+let k;
+let l;
+
+
 $(document).ready(function() {
     $("[data-mask]").inputmask();
     // var total_recibido;
@@ -441,7 +461,10 @@ $(document).ready(function() {
                     var longitud = datos.sucursal.length;
 
                     for (let i = 0; i < longitud; i++) {
-                        var fila ="<option value=" +datos.sucursal[i].id +">"+datos.sucursal[i].nombre_sucursal+"</option>";
+                        var fila =`<option value="">PRINCIPAL</option>
+                        <option value="${datos.sucursal[i].id}">"${datos.sucursal[i].nombre_sucursal}"</option>`;
+                        
+                        
                         $("#sucursalSearch").append(fila);
                     }
                     $("#sucursalSearch").select2();
@@ -618,7 +641,7 @@ $(document).ready(function() {
                     $("#btn-agregar").show();
                     $("#btn-consultar").attr("disabled", true);
                     $("#btn-agregar").attr("disabled", false);
-                    var genero = ref.substring(1, 2);
+                    let genero = ref.substring(1, 2);
                     var mujer_plus = ref.substring(3, 4);
                     // genero_global = ref.substring(1, 2);
                     // mujer_plus_global = ref.substring(3, 4);
@@ -883,25 +906,25 @@ $(document).ready(function() {
     });
 
     function validarDetalle(){
-        let a = validarNan(parseInt($("#a").val()));
-        let b = validarNan(parseInt($("#b").val()));
-        let c = validarNan(parseInt($("#c").val()));
-        let d = validarNan(parseInt($("#d").val()));
-        let e = validarNan(parseInt($("#e").val()));
-        let f = validarNan(parseInt($("#f").val()));
-        let g = validarNan(parseInt($("#g").val()));
-        let h = validarNan(parseInt($("#h").val()));
-        let i = validarNan(parseInt($("#i").val()));
-        let j = validarNan(parseInt($("#j").val()));
-        let k = validarNan(parseInt($("#k").val()));
-        let l = validarNan(parseInt($("#l").val()));
+        a = validarNan(parseInt($("#a").val()));
+        b = validarNan(parseInt($("#b").val()));
+        c = validarNan(parseInt($("#c").val()));
+        d = validarNan(parseInt($("#d").val()));
+        e = validarNan(parseInt($("#e").val()));
+        f = validarNan(parseInt($("#f").val()));
+        g = validarNan(parseInt($("#g").val()));
+        h = validarNan(parseInt($("#h").val()));
+        i = validarNan(parseInt($("#i").val()));
+        j = validarNan(parseInt($("#j").val()));
+        k = validarNan(parseInt($("#k").val()));
+        l = validarNan(parseInt($("#l").val()));
         let referencia = $("#productoSearch option:selected").text();
-        let producto = referencia.substring(0, 9);
-        let genero = producto.substring(1, 2);
-        let subGenero = producto.substring(3, 4);
-        var detalle = $("input[name='r2']:checked").val();
-        let cantidad_wr = $("#cantidad").val();
-        let precio = $("#precio").val();
+        producto_valid = referencia.substring(0, 9);
+        gen = producto_valid.substring(1, 2);
+        let subGenero = producto_valid.substring(3, 4);
+        detallado = $("input[name='r2']:checked").val();
+        cantidad_wr = $("#cantidad").val();
+        precio_valid = $("#precio").val();
 
         var validar = {
             a: $("#a").val(),
@@ -915,7 +938,9 @@ $(document).ready(function() {
             i: $("#i").val(),
             j: $("#j").val(),
             k: $("#k").val(),
-            l: $("#l").val()
+            l: $("#l").val(),
+            orden_id: $("#orden_pedido_id").val(),
+            producto_id: $("#productoSearch").val()
         };
 
         $.ajax({
@@ -939,7 +964,8 @@ $(document).ready(function() {
                     var j_val = datos.j;
                     var k_val = datos.k;
                     var l_val = datos.l;
-                    var val = true;
+                    val_valid = true;
+                  
 
                     if (total > total_recibido) {
                         bootbox.alert(
@@ -949,7 +975,7 @@ $(document).ready(function() {
                         );
                     } else {
                         $("#btn-guardar").show();
-                        if (genero == 2) {
+                        if (gen == 2) {
                             if (subGenero == 7) {
                                 if (a_val > a_total) {
                                     bootbox.alert(
@@ -957,56 +983,56 @@ $(document).ready(function() {
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 12W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = true;
+                                    val_valid = true;
                                 } else if (b_val > b_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 14W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = true;
+                                    val_valid = true;
                                 } else if (c_val > c_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 16W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (d_val > d_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 18W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (e_val > e_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 20W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (f_val > f_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 22W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (g_val > g_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 24W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (h_val > h_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 26W a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else {
                                     agregarDetalle();
                                 }
@@ -1017,569 +1043,218 @@ $(document).ready(function() {
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 0/0 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (b_val > b_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 1/2 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (c_val > c_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 3/4 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (d_val > d_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 5/6 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (e_val > e_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 7/8 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (f_val > f_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 9/10 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (g_val > g_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 11/12 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (h_val > h_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 13/14 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (i_val > i_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 15/16 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (j_val > j_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 17/18 a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (k_val > k_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 19/20  a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else if (l_val > l_total) {
                                     bootbox.alert(
                                         "<div class='alert alert-danger' role='alert'>" +
                                             "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 21/22  a la cantidad disponible para la venta de esta talla" +
                                             "</div>"
                                     );
-                                    val = false;
+                                    val_valid = false;
                                 } else {
                                     agregarDetalle();
                                 }
                             }
-                        } else if (genero == 3 || genero == 4) {
+                        } else if (gen == 3 || gen == 4) {
                             if (a_val > a_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 2  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (b_val > b_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 4  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (c_val > c_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 6  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (d_val > d_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 8  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (e_val > e_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 10  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (f_val > f_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 12  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (g_val > g_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 14  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (h_val > h_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 16  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else {
                                 agregarDetalle();
                             }
-                        } else if (genero == 1) {
+                        } else if (gen == 1) {
                             if (a_val > a_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 28  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (b_val > b_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 30  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (c_val > c_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 32  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (d_val > d_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 34  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (e_val > e_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 36  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (f_val > f_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 38  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (g_val > g_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 40  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (h_val > h_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 42  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else if (i_val > i_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
                                         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44  a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
-                                val = false;
+                                val_valid = false;
                             } else {
                                 agregarDetalle();
                             }
                         }
                     }
-                    if (val == false) {
-                        val = true;
-                    } else if (val == true) {
-                        var cont;
-
-                        if (genero == 1) {
-                            if (detalle == 1) {
-                                cantidad = Number(
-                                    a + b + c + d + e + f + g + h + i + j
-                                );
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    a +
-                                    "</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>" +
-                                    b +
-                                    "</th>" +
-                                    "<th id='c_corte' class='font-weight-normal'>" +
-                                    c +
-                                    "</th>" +
-                                    "<th id='d_corte' class='font-weight-normal'>" +
-                                    d +
-                                    "</th>" +
-                                    "<th id='e_corte' class='font-weight-normal'>" +
-                                    e +
-                                    "</th>" +
-                                    "<th id='f_corte' class='font-weight-normal'>" +
-                                    f +
-                                    "</th>" +
-                                    "<th id='g_corte' class='font-weight-normal'>" +
-                                    g +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'>" +
-                                    h +
-                                    "</th>" +
-                                    "<th id='i_corte' class='font-weight-normal'>" +
-                                    i +
-                                    "</th>" +
-                                    "<th id='j_corte' class='font-weight-normal'>" +
-                                    j +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "</tr>";
-                                cont++;
-                                $("#orden_pedido").append(fila);
-                            } else if (detalle == 0) {
-                                // let cantidad_wr = $("#cantidad").val();
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad_wr +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'></th>" +
-                                    "<th id='b_corte' class='font-weight-normal'></th>" +
-                                    "<th id='c_corte' class='font-weight-normal'></th>" +
-                                    "<th id='d_corte' class='font-weight-normal'></th>" +
-                                    "<th id='e_corte' class='font-weight-normal'></th>" +
-                                    "<th id='f_corte' class='font-weight-normal'></th>" +
-                                    "<th id='g_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='i_corte' class='font-weight-normal'></th>" +
-                                    "<th id='j_corte' class='font-weight-normal'></th>" +
-                                    "<th id='j_corte' class='font-weight-normal'></th>" +
-                                    "<th id='j_corte' class='font-weight-normal'></th>" +
-                                    "</tr>";
-                                cont++;
-                                $("#orden_pedido").append(fila);
-                            }
-                        } else if (genero == 3) {
-                            if (detalle == 1) {
-                                cantidad = Number(
-                                    a + b + c + d + e + f + g + h
-                                );
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    a +
-                                    "</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>" +
-                                    b +
-                                    "</th>" +
-                                    "<th id='c_corte' class='font-weight-normal'>" +
-                                    c +
-                                    "</th>" +
-                                    "<th id='d_corte' class='font-weight-normal'>" +
-                                    d +
-                                    "</th>" +
-                                    "<th id='e_corte' class='font-weight-normal'>" +
-                                    e +
-                                    "</th>" +
-                                    "<th id='f_corte' class='font-weight-normal'>" +
-                                    f +
-                                    "</th>" +
-                                    "<th id='g_corte' class='font-weight-normal'>" +
-                                    g +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'>" +
-                                    h +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "</tr>";
-                                cont++;
-                                $("#orden_pedido").append(fila);
-                            } else if (detalle == 0) {
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad_wr +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'></th>" +
-                                    "<th id='b_corte' class='font-weight-normal'></th>" +
-                                    "<th id='c_corte' class='font-weight-normal'></th>" +
-                                    "<th id='d_corte' class='font-weight-normal'></th>" +
-                                    "<th id='e_corte' class='font-weight-normal'></th>" +
-                                    "<th id='f_corte' class='font-weight-normal'></th>" +
-                                    "<th id='g_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "</tr>";
-                                cont++;
-                                $("#orden_pedido").append(fila);
-                            }
-                        } else if (genero == 4) {
-                            if (detalle == 1) {
-                                cantidad = Number(
-                                    a + b + c + d + e + f + g + h
-                                );
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    a +
-                                    "</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>" +
-                                    b +
-                                    "</th>" +
-                                    "<th id='c_corte' class='font-weight-normal'>" +
-                                    c +
-                                    "</th>" +
-                                    "<th id='d_corte' class='font-weight-normal'>" +
-                                    d +
-                                    "</th>" +
-                                    "<th id='e_corte' class='font-weight-normal'>" +
-                                    e +
-                                    "</th>" +
-                                    "<th id='f_corte' class='font-weight-normal'>" +
-                                    f +
-                                    "</th>" +
-                                    "<th id='g_corte' class='font-weight-normal'>" +
-                                    g +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'>" +
-                                    h +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-
-                                    "</tr>";
-                                cont++;
-                                $("#orden_pedido").append(fila);
-                            } else if (detalle == 0) {
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad_wr +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'></th>" +
-                                    "<th id='b_corte' class='font-weight-normal'></th>" +
-                                    "<th id='c_corte' class='font-weight-normal'></th>" +
-                                    "<th id='d_corte' class='font-weight-normal'></th>" +
-                                    "<th id='e_corte' class='font-weight-normal'></th>" +
-                                    "<th id='f_corte' class='font-weight-normal'></th>" +
-                                    "<th id='g_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "</tr>";
-                                cont++;
-                                $("#orden_pedido").append(fila);
-                            }
-                        }
-
-                        if (genero == 2) {
-                            if (detalle == 1) {
-                                cantidad = Number(
-                                    a +
-                                    b +
-                                    c +
-                                    d +
-                                    e +
-                                    f +
-                                    g +
-                                    h +
-                                    i +
-                                    j +
-                                    k +
-                                    l
-                                );
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    a +
-                                    "</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>" +
-                                    b +
-                                    "</th>" +
-                                    "<th id='c_corte' class='font-weight-normal'>" +
-                                    c +
-                                    "</th>" +
-                                    "<th id='d_corte' class='font-weight-normal'>" +
-                                    d +
-                                    "</th>" +
-                                    "<th id='e_corte' class='font-weight-normal'>" +
-                                    e +
-                                    "</th>" +
-                                    "<th id='f_corte' class='font-weight-normal'>" +
-                                    f +
-                                    "</th>" +
-                                    "<th id='g_corte' class='font-weight-normal'>" +
-                                    g +
-                                    "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'>" +
-                                    h +
-                                    "</th>" +
-                                    "<th id='i_corte' class='font-weight-normal'>" +
-                                    i +
-                                    "</th>" +
-                                    "<th id='j_corte' class='font-weight-normal'>" +
-                                    j +
-                                    "</th>" +
-                                    "<th id='k_corte' class='font-weight-normal'>" +
-                                    k +
-                                    "</th>" +
-                                    "<th id='l_corte' class='font-weight-normal'>" +
-                                    l +
-                                    "</th>" +
-                                    "</tr>";
-                                cont++;
-
-                                $("#orden_pedido").append(fila);
-                            } else if (detalle == 0) {
-                                var fila =
-                                    '<tr id="fila' +
-                                    cont +
-                                    '">' +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    producto +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    precio +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
-                                    cantidad_wr +
-                                    "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'></th>" +
-                                    "<th id='b_corte' class='font-weight-normal'></th>" +
-                                    "<th id='c_corte' class='font-weight-normal'></th>" +
-                                    "<th id='d_corte' class='font-weight-normal'></th>" +
-                                    "<th id='e_corte' class='font-weight-normal'></th>" +
-                                    "<th id='f_corte' class='font-weight-normal'></th>" +
-                                    "<th id='g_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "</tr>";
-                                cont++;
-                                $("#orden_pedido").append(fila);
-                            }
-                        }
-                        // agregarDetalle();
-                    }
+                  
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -1649,6 +1324,7 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
+
                     a_red = $("#a").val();
                     b_red = $("#b").val();
                     c_red = $("#c").val();
@@ -1706,6 +1382,391 @@ $(document).ready(function() {
                         type: "success",
                         title: "Referencia agregada a la orden correctamente!"
                     });
+                    console.log(val_valid);
+                   
+                    if (val_valid == false) {
+                        val_valid = true;
+                    } else if (val_valid == true) {
+                        var cont;
+                        console.log('Tamo aqui mas abajo');
+                        if (gen == 1) {
+                            if (detallado == 1) {
+                                cantidad = Number(
+                                    a + b + c + d + e + f + g + h + i + j
+                                );
+                                var fila =
+                                    '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    a +
+                                    "</th>" +
+                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    b +
+                                    "</th>" +
+                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    c +
+                                    "</th>" +
+                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    d +
+                                    "</th>" +
+                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    e +
+                                    "</th>" +
+                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    f +
+                                    "</th>" +
+                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    g +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    h +
+                                    "</th>" +
+                                    "<th id='i_corte' class='font-weight-normal'>" +
+                                    i +
+                                    "</th>" +
+                                    "<th id='j_corte' class='font-weight-normal'>" +
+                                    j +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+                                $("#orden_pedido").append(fila);
+                            } else if (detallado == 0) {
+                                // let cantidad_wr = $("#cantidad").val();
+                                var fila =
+                                '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad_wr +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'></th>" +
+                                    "<th id='b_corte' class='font-weight-normal'></th>" +
+                                    "<th id='c_corte' class='font-weight-normal'></th>" +
+                                    "<th id='d_corte' class='font-weight-normal'></th>" +
+                                    "<th id='e_corte' class='font-weight-normal'></th>" +
+                                    "<th id='f_corte' class='font-weight-normal'></th>" +
+                                    "<th id='g_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='i_corte' class='font-weight-normal'></th>" +
+                                    "<th id='j_corte' class='font-weight-normal'></th>" +
+                                    "<th id='j_corte' class='font-weight-normal'></th>" +
+                                    "<th id='j_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+                                $("#orden_pedido").append(fila);
+                            }
+                        } else if (gen == 3) {
+                            if (detallado == 1) {
+                                cantidad = Number(
+                                    a + b + c + d + e + f + g + h
+                                );
+                                var fila =
+                                '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    a +
+                                    "</th>" +
+                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    b +
+                                    "</th>" +
+                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    c +
+                                    "</th>" +
+                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    d +
+                                    "</th>" +
+                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    e +
+                                    "</th>" +
+                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    f +
+                                    "</th>" +
+                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    g +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    h +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+                                $("#orden_pedido").append(fila);
+                            } else if (detallado == 0) {
+                                var fila =
+                                '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad_wr +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'></th>" +
+                                    "<th id='b_corte' class='font-weight-normal'></th>" +
+                                    "<th id='c_corte' class='font-weight-normal'></th>" +
+                                    "<th id='d_corte' class='font-weight-normal'></th>" +
+                                    "<th id='e_corte' class='font-weight-normal'></th>" +
+                                    "<th id='f_corte' class='font-weight-normal'></th>" +
+                                    "<th id='g_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+                                $("#orden_pedido").append(fila);
+                            }
+                        } else if (gen == 4) {
+                            if (detallado == 1) {
+                                cantidad = Number(
+                                    a + b + c + d + e + f + g + h
+                                );
+                                var fila =
+                                '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    a +
+                                    "</th>" +
+                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    b +
+                                    "</th>" +
+                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    c +
+                                    "</th>" +
+                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    d +
+                                    "</th>" +
+                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    e +
+                                    "</th>" +
+                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    f +
+                                    "</th>" +
+                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    g +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    h +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+                                $("#orden_pedido").append(fila);
+                            } else if (detallado == 0) {
+                                var fila =
+                                '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad_wr +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'></th>" +
+                                    "<th id='b_corte' class='font-weight-normal'></th>" +
+                                    "<th id='c_corte' class='font-weight-normal'></th>" +
+                                    "<th id='d_corte' class='font-weight-normal'></th>" +
+                                    "<th id='e_corte' class='font-weight-normal'></th>" +
+                                    "<th id='f_corte' class='font-weight-normal'></th>" +
+                                    "<th id='g_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+                                $("#orden_pedido").append(fila);
+                            }
+                        }
+
+                        if (gen == 2) {
+                            if (detallado == 1) {
+                                cantidad = Number(
+                                    a +
+                                    b +
+                                    c +
+                                    d +
+                                    e +
+                                    f +
+                                    g +
+                                    h +
+                                    i +
+                                    j +
+                                    k +
+                                    l
+                                );
+                                var fila =
+                                '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    a +
+                                    "</th>" +
+                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    b +
+                                    "</th>" +
+                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    c +
+                                    "</th>" +
+                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    d +
+                                    "</th>" +
+                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    e +
+                                    "</th>" +
+                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    f +
+                                    "</th>" +
+                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    g +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    h +
+                                    "</th>" +
+                                    "<th id='i_corte' class='font-weight-normal'>" +
+                                    i +
+                                    "</th>" +
+                                    "<th id='j_corte' class='font-weight-normal'>" +
+                                    j +
+                                    "</th>" +
+                                    "<th id='k_corte' class='font-weight-normal'>" +
+                                    k +
+                                    "</th>" +
+                                    "<th id='l_corte' class='font-weight-normal'>" +
+                                    l +
+                                    "</th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button  type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+
+                                $("#orden_pedido").append(fila);
+                            } else if (detallado == 0) {
+                                var fila =
+                                '<tr id="fila'+datos.detalle.id+'"' +
+                                    cont +
+                                    '">' +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    producto_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    precio_valid +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    cantidad_wr +
+                                    "</th>" +
+                                    "<th id='a_corte' class='font-weight-normal'></th>" +
+                                    "<th id='b_corte' class='font-weight-normal'></th>" +
+                                    "<th id='c_corte' class='font-weight-normal'></th>" +
+                                    "<th id='d_corte' class='font-weight-normal'></th>" +
+                                    "<th id='e_corte' class='font-weight-normal'></th>" +
+                                    "<th id='f_corte' class='font-weight-normal'></th>" +
+                                    "<th id='g_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='h_corte' class='font-weight-normal'>"+
+                                    "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
+                                    "<i class='far fa-trash-alt'></i>"+
+                                    "</button> </th>"+
+                                    "</tr>";
+                                cont++;
+                                $("#orden_pedido").append(fila);
+                            }
+                        }
+                        // agregarDetalle();
+                    }
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -1997,6 +2058,7 @@ $(document).ready(function() {
     }
 
     $("#btnAgregar").click(function(e) {
+        limpiar();
         $("#btnCancelar").show();
         $("#btnAgregar").hide();
         $("#registroForm").show();
@@ -2728,5 +2790,31 @@ $("#down-l").click(function(e){
 
 })
 
+function delProducto(id) {
+    // console.log(producto);
+    Swal.fire({
+        title: '¿Esta seguro de eliminar esta referencia del pedido?',
+        text: "Va a eliminar esta referencia!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      })
+      .then((result) => {
+        if (result.value) {
+            $.post("detalle/delete/" + id, function(data){
+                console.log(data);
+                Swal.fire(
+                    'Eliminado!',
+                    'Producto eliminado correctamente.',
+                    'success'
+                    )
+                    $("#fila"+id).remove();
+            })
+        } 
+        
+      })
+}
 
 

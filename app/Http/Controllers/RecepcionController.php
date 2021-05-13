@@ -63,11 +63,34 @@ class RecepcionController extends Controller
 
             $recepcion_total = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
 
+            $perdida = Perdida::where('corte_id', 'LIKE', "$corte_id")
+            ->where('tipo_perdida', 'LIKE', 'Normal')
+            ->where('fase', 'LIKE', 'Lavanderia')
+            ->select('id')->get();
+            $perdida_id = array();
+
+            $longitud = count($perdida);
+
+            for ($i = 0; $i < $longitud; $i++) {
+                array_push($perdida_id, $perdida[$i]['id']);
+            }
+
+            $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
+            $totales = array();
+
+            $lent = count($talla_perdida);
+
+            for ($i = 0; $i < $lent; $i++) {
+                array_push($totales, $talla_perdida[$i]['total']);
+            }
+            $cant_perdida = array_sum($totales);
+            $total_enviado = $total_enviado - $cant_perdida;
+
             if ($devolver_produccion == 1 && is_object($recepcion_total)) {
                 $recepcion = Recepcion::where('corte_id', $corte_id)->get()->last();
                 $total_recibido = $recepcion_total->total_recibido;
                 $recibido_parcial = $recepcion_total->recibido_parcial;
-                $pendiente = $recepcion->pendiente;
+                $pendiente = $recepcion->pendiente - $cant_perdida;
                 $recepcion_total->total_recibido = $total_recibido - $cantidad_recibida;
                 $recepcion_total->recibido_parcial = $recibido_parcial - $cantidad_recibida;
                 $recepcion_total->pendiente = $pendiente + $cantidad_recibida;
@@ -79,8 +102,11 @@ class RecepcionController extends Controller
             $total_devuelto = $recepcion_total['total_devuelto'];
             $total_porcentaje = $cantidad_recibida + $total_recibido;
 
-            $porcentaje = ($total_porcentaje / $total_enviado) * 100;
+            $porcentaje = ($total_porcentaje / $total_enviado ) * 100;
 
+          
+            // echo $total_porcentaje;
+            // echo $total_enviado;
             if ($porcentaje > 90.00) {
                 $corte->fase = 'Terminacion';
                 $corte->save();
@@ -93,7 +119,7 @@ class RecepcionController extends Controller
             $recepcion->fecha_recepcion = $fecha_recepcion;
             $recepcion->recibido_parcial = $cantidad_recibida;
             $recepcion->total_recibido = $cantidad_recibida + $total_recibido;
-            $recepcion->pendiente = $total_enviado - $cantidad_recibida - $total_recibido;
+            $recepcion->pendiente = $total_enviado - $cantidad_recibida - $total_recibido - $cant_perdida;
             $recepcion->estandar_recibido = $estandar_recibido;
             $recepcion->sec = $sec + 0.01;
 
@@ -112,7 +138,8 @@ class RecepcionController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'recepcion' => $recepcion,
-                'porcentaje' => $porcentaje
+                'porcentaje' => $porcentaje,
+                'enviado' => $total_enviado
             ];
             // } else {
             // $data = [
@@ -204,7 +231,7 @@ class RecepcionController extends Controller
             // ->join('lavanderia', 'recepcion.id_lavanderia', '=', 'lavanderia.id')
             ->select([
                 'recepcion.id', 'recepcion.fecha_recepcion', 'recepcion.recibido_parcial', 'recepcion.estandar_recibido',
-                'corte.numero_corte', 'recepcion.numero_recepcion', 'recepcion.pendiente',
+                'corte.numero_corte', 'recepcion.numero_recepcion', 'recepcion.pendiente', 'corte_id',
                 'recepcion.total_recibido', 'recepcion.devuelto_produccion'
             ]);
 
@@ -212,6 +239,31 @@ class RecepcionController extends Controller
             ->addColumn('Expandir', function ($recepcion) {
                 return "";
             })
+            // ->editColumn('pendiente', function ($recepcion) {
+            //     $perdida = Perdida::where('corte_id', 'LIKE', $recepcion->corte_id)
+            //     ->where('tipo_perdida', 'LIKE', 'Normal')
+            //     ->where('fase', 'LIKE', 'Lavanderia')
+            //     ->select('id')->get();
+            //     $perdida_id = array();
+
+            //     $longitud = count($perdida);
+
+            //     for ($i = 0; $i < $longitud; $i++) {
+            //         array_push($perdida_id, $perdida[$i]['id']);
+            //     }
+
+            //     $talla_perdida = TallasPerdidas::whereIn('perdida_id', $perdida_id)->get();
+            //     $totales = array();
+
+            //     $lent = count($talla_perdida);
+
+            //     for ($i = 0; $i < $lent; $i++) {
+            //         array_push($totales, $talla_perdida[$i]['total']);
+            //     }
+            //     $cant_perdida = array_sum($totales);
+
+            //     return $recepcion->pendiente - $cant_perdida;
+            // })
             ->editColumn('estandar_recibido', function ($recepcion) {
                 return ($recepcion->estandar_recibido == 1 ? 'Si' : 'No');
             })

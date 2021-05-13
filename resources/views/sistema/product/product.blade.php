@@ -26,16 +26,17 @@
                         <input type="hidden" name="id" id="id" value="">
                         <input type="hidden" name="id" id="id_producto" value="">
                         <div class="col-md-3">
+                            <label for="nombre_cliente">Nombre Cliente</label>
                             <select name="marca" id="marca" class="form-control">
                                 <option value="" selected disabled>Marca</option>
                                 <option value="L">Genius</option>
                                 <option value="M">Mythos</option>
                                 <option value="P">Lavish</option>
                             </select>
-                            <label for="nombre_cliente" class="label"></label>
+                           
                         </div>
                         <div class="col-md-3">
-
+                            <label for="" >Genero</label>
                             <select name="genero" id="genero" class="form-control">
                                 <option value="" selected disabled>Genero</option>
                                 <option value="1">Hombre</option>
@@ -43,9 +44,10 @@
                                 <option value="3">Niño</option>
                                 <option value="4">Niña</option>
                             </select>
-                            <label for="" class="label"></label>
+                           
                         </div>
                         <div class="col-md-3">
+                            <label for="" >Tipo producto</label>
                             <select name="tipo_producto" id="tipo_producto" class="form-control">
                                 <option value="" selected disabled>Tipo producto</option>
                                 <option value="0">Pantalon</option>
@@ -56,10 +58,10 @@
                                 <option value="5">Jacket</option>
                                 <option value="6">Camisa</option>
                             </select>
-                            <label for="" class="label"></label>
+                        
                         </div>
                         <div class="col-md-3">
-
+                            <label for="" >Categoria</label>
                             <select name="categoria" id="categoria" class="form-control">
                                 <option value="" disabled>Categoria</option>
                                 <option value="0">Basico</option>
@@ -71,37 +73,38 @@
                                 <option value="6">Talla alto</option>
                                 <option value="7">Super plus</option>
                             </select>
-                            <label for="" class="label"></label>
+                           
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2 mt-3">
+                            <label for="">Año</label>
                             <input type="text" min="1900" max="2099" step="1" value="2019" id="year"
-                                class="form-control" placeholder="Año" onfocus="(this.type='number')">
+                                class="form-control"  onfocus="(this.type='number')">
                             <label for="" class="d-flex justify-content-center pers"></label>
                         </div>
                         <div class="col-md-2 mt-3">
-
-                            <input type="number" min="1" max="999" step="1" id="sec_manual" placeholder="Secuencia"
+                            <label for="" >Secuencia</label>
+                            <input type="number" min="1" max="999" step="1" id="sec_manual" 
                                 class="form-control">
-                            <label for="" class="label"></label>
+                           
                         </div>
                         <div class="col-md-3 mt-3">
-
-                            <input type="text" name="referencia" placeholder="Referencia" id="referencia"
+                            <label for="" >Referencia</label>
+                            <input type="text" name="referencia" id="referencia"
                                 class="form-control" readonly>
-                            <label for="" class="label"></label>
+                           
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-3" id="mostrarRef2">
-
-                            <input type="text" name="referencia_2" placeholder="Referencia 2" id="referencia_2"
+                            <label for="" >Referencia 2</label>
+                            <input type="text" name="referencia_2"  id="referencia_2"
                                 class="form-control">
-                            <label for="" class="label"></label>
+                           
                             <input type="hidden" name="" id="sec" value="">
                         </div>
-                        <div class="col-md-4 mt-3">
-                            <button class="d-inline btn btn-primary rounded-pill" id="btnGenerar">Generar</button>
+                        <div class="col-md-4 align-self-center mt-4">
+                            <button class="d-inline btn btn-primary rounded-pill mt-2" id="btnGenerar">Generar</button>
                             {{-- <button type="button" class="d-inline btn btn-secondary rounded-pill ml-3" id="btn-curva"
                                 data-toggle="modal" data-target=".bd-curva-modal-xl">
                                 <i class="fas fa-percentage"></i> Porcentaje por Talla</button> --}}
@@ -113,60 +116,63 @@
                     <br>
                     <div class="row">
                         <div class="col-md-4 mt-2">
-                            {{-- <div class="input-group">
+                            <label for="" >Precio lista</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div> --}}
-                            <input type="text" placeholder="Precio lista" name="precio_lista" id="precio_lista"
+                                </div>
+                            <input type="text"  name="precio_lista" id="precio_lista"
                                 class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                            <label for="" class="label"></label>
-                            {{-- </div> --}}
+                   
+                            </div>
 
                         </div>
                         <div class="col-md-4 mt-2">
-                            {{-- <div class="input-group">
+                            <label for="" >Precio publico</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div> --}}
-                            <input type="text" placeholder="Precio publico" name="precio_venta_publico"
+                                </div>
+                            <input type="text" name="precio_venta_publico"
                                 id="precio_venta_publico" class="form-control text-center"
                                 data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                            <label for="" class="label"></label>
+                     
 
-                            {{-- </div> --}}
+                            </div>
 
                         </div>
                         <div class="col-md-4 mt-2">
+                            <label for="" >Cuenta contable</label>
                             <select name="tags[]" id="tipo_cuenta" class="form-control select2">
 
                             </select>
-                            <label for="" class="label"></label>
+                          
                         </div>
 
                     </div>
                     <div class="row" id="precios_2">
                         <div class="col-md-4 mt-3">
-
-                            {{-- <div class="input-group">
+                            <label for="" >Precio Lista ref 2</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div> --}}
-                            <input type="text" name="precio_lista_2" id="precio_lista_2" placeholder="Preio lista ref 2"
+                                </div>
+                            <input type="text" name="precio_lista_2" id="precio_lista_2" 
                                 class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                            {{-- </div> --}}
-                            <label for="" class="label"></label>
+                            </div>
+                           
                         </div>
                         <div class="col-md-4 mt-3">
-
-                            {{-- <div class="input-group">
+                            <label for="" >Precio Publico ref 2</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                </div> --}}
+                                </div>
                             <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2"
                                 id="precio_venta_publico_2" class="form-control text-center"
                                 data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                            {{-- </div> --}}
-                            <label for="" class="label"></label>
+                            </div>
+                          
                         </div>
                         <div class="col-md-4">
                             <label for="">Rango segunda referencia</label>
@@ -177,16 +183,16 @@
 
                     <div class="row">
                         <div class="col-md-12 mt-3">
-
-                            <textarea name="descripcion" id="descripcion" placeholder="Descripcion" cols="30" rows="1"
+                            <label for="" >Descripcion</label>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control"></textarea>
-                            <label for="" class="label"></label>
+                           
                         </div>
                         <div class="col-md-12 mt-3" id="descripcion_ref2">
-
-                            <textarea name="descripcion" id="descripcion_2" placeholder="Descripcion ref 2" cols="30"
+                            <label for="" >Descripcion ref 2</label>
+                            <textarea name="descripcion" id="descripcion_2" cols="30"
                                 rows="1" class="form-control"></textarea>
-                            <label for="" class="label"></label>
+                           
                         </div>
                     </div>
             </div>
@@ -220,8 +226,8 @@
                     <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>Usuario </th>
                     <th>Referencia producto</th>
+                    <th>Usuario </th>
                     <th>Precio lista</th>
                     <th>Precio venta publico</th>
                     <th>Descripcion</th>
@@ -233,8 +239,8 @@
                     <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>Usuario</th>
                     <th>Referencia producto</th>
+                    <th>Usuario</th>
                     <th>Precio lista</th>
                     <th>Precio venta publico</th>
                     <th>Descripcion</th>
@@ -420,7 +426,7 @@
 
 
 @include('adminlte/scripts')
-<script src="{{asset('js/formulario.js')}}"></script>
+{{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/producto/product.js')}}"></script>
 
 

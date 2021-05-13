@@ -179,7 +179,7 @@ $(document).ready(function() {
         $("#referencia").val(referencia);
 
         let producto = {
-            referencia_producto: referencia
+            ';[[': referencia
         }
 
         $.ajax({
@@ -361,8 +361,9 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
-                { data: "name", name: "users.name" },
+             
                 { data: "referencia_producto", name: "producto.referencia_producto"},
+                { data: "name", name: "users.name" },
                 { data: "precio_lista", name: "producto.precio_lista" },
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
@@ -629,9 +630,11 @@ function eliminar(id_prouct){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, acepto'
-      }).then((result) => {
+      })
+      .then((result) => {
         if (result.value) {
-            $.post("product/delete/" + id_prouct, function(){
+            $.post("product/delete/" + id_prouct, function(data){
+                console.log(data);
                 Swal.fire(
                     'Eliminado!',
                     'Referencia  eliminada correctamente.',
@@ -639,8 +642,9 @@ function eliminar(id_prouct){
                     )
                 $("#products").DataTable().ajax.reload();
             })
-        }
-      })
+        } 
+        
+      }).catch(Swal.noop);
 
 
 }

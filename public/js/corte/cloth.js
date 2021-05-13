@@ -216,6 +216,20 @@ $(document).ready(function() {
     $("#btn-guardar").click(function(e){
         e.preventDefault();
 
+        if(total_global !== 100){
+            Swal.fire(
+                'Info',
+                'Debe digitar las composiciones correctamente.',
+                'info'
+            )
+        } else {
+            guardar();
+        }
+
+        
+    });
+
+    const guardar = () => {
         var cloth = {
             suplidor: $("#suplidores").val(),
             id_composiciones: $("#compositions").val(),
@@ -277,7 +291,7 @@ $(document).ready(function() {
                 });
             }
         });
-    });
+    }
 
     function listar() {
         tabla = $("#cloths").DataTable({
@@ -402,6 +416,8 @@ $(document).ready(function() {
 
     $("#porcentaje_mat_1").keyup(function(){
         let porcentaje = $("#porcentaje_mat_1").val();
+     
+        ( porcentaje == NaN || undefined ? 0 : porcentaje)
         $("#porcentaje_mat_total").val(porcentaje+"%");
         let total = porcentaje;
         if(total == 100){
@@ -416,7 +432,9 @@ $(document).ready(function() {
         let porcentaje = parseFloat($("#porcentaje_mat_1").val());
         let porcentaje_2 = parseFloat($("#porcentaje_mat_2").val());
         let total = porcentaje + porcentaje_2;
-        $("#porcentaje_mat_total").val(total+"%");
+        isNaN(total) ? 
+        $("#porcentaje_mat_total").val(0)
+        :  $("#porcentaje_mat_total").val(`${total} %`)
 
         total_global = total;
         if(total == 100){
@@ -432,7 +450,9 @@ $(document).ready(function() {
         let porcentaje_2 = parseFloat($("#porcentaje_mat_2").val());
         let porcentaje_3 = parseFloat($("#porcentaje_mat_3").val());
         let total = porcentaje + porcentaje_2 + porcentaje_3;
-        $("#porcentaje_mat_total").val(total+ "%");
+        isNaN(total) ? 
+        $("#porcentaje_mat_total").val(0)
+        :  $("#porcentaje_mat_total").val(`${total} %`);
 
         total_global = total;
         if(total ==  100){
@@ -449,8 +469,10 @@ $(document).ready(function() {
         let porcentaje_3 = parseFloat($("#porcentaje_mat_3").val());
         let porcentaje_4 = parseFloat($("#porcentaje_mat_4").val());
         let total = porcentaje + porcentaje_2 + porcentaje_3 + porcentaje_4;
-        $("#porcentaje_mat_total").val(total +"%");
-
+        isNaN(total) ? 
+        $("#porcentaje_mat_total").val(0)
+        :  $("#porcentaje_mat_total").val(`${total} %`);
+        
         total_global = total;
         if(total ==  100){
             $("#btn-guardar").attr("disabled", false);
@@ -467,7 +489,9 @@ $(document).ready(function() {
         let porcentaje_4 = parseFloat($("#porcentaje_mat_4").val());
         let porcentaje_5 = parseFloat($("#porcentaje_mat_5").val());
         let total = porcentaje + porcentaje_2 + porcentaje_3 + porcentaje_4 + porcentaje_5;
-        $("#porcentaje_mat_total").val(total+"%");
+        isNaN(total) ? 
+        $("#porcentaje_mat_total").val(0)
+        :  $("#porcentaje_mat_total").val(`${total} %`);
 
         total_global = total;
         if(total ==  100){
@@ -499,6 +523,27 @@ $(document).ready(function() {
         }
     });
 
+    $('#modalComposiciones').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+
+        if(total_global <  99.99){
+            bootbox.alert({
+                message:
+                    "<h4 class='invalid-feedback d-block'>"+
+                    "El total a guardar debe ser igual a 100%."+"</h4>",
+                size: "small"
+            });
+        }else if(total_global > 100){
+            bootbox.alert({
+                message:
+                    "<h4 class='invalid-feedback d-block'>"+
+                    "El total a guardar debe ser igual a 100%."+"</h4>",
+                size: "small"
+            });
+        }
+        
+    })
+
 
     function mostrarForm(flag) {
         limpiar();
@@ -514,7 +559,7 @@ $(document).ready(function() {
             $("#btnAgregar").show();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
-            $("#btn-guardar").attr("disabled", true);
+            // $("#btn-guardar").attr("disabled", true);
         }
     }
 
