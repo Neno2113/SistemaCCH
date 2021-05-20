@@ -1652,96 +1652,109 @@ $(document).ready(function() {
 
 function mostrar(id_corte) {
     $.post("corte/" + id_corte, function(data, status) {
-        // data = JSON.parse(data);
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
-        $("#fila1").show();
-        $("#fila2").show();
-        $("#fila3").show();
-        $("#btn-generar").hide();
-        // $("#edit-hide").hide();
-        // $("#rollo-agregar").hide();
-        $("#rollo-edit").show();
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            // data = JSON.parse(data);
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#fila1").show();
+            $("#fila2").show();
+            $("#fila3").show();
+            $("#btn-generar").hide();
+            // $("#edit-hide").hide();
+            // $("#rollo-agregar").hide();
+            $("#rollo-edit").show();
 
 
-        // console.log(data);
-        $("#id").val(data.corte.id);
-        $("#numero_corte_gen").val(data.corte.numero_corte);
-        // $("#productos").val(data.corte.producto.referencia_producto);
-        $("#fecha_entrega").val(data.corte.fecha_entrega);
-        // $("#productos").select2('refresh');
-        $("#no_marcada").val(data.corte.no_marcada);
-        $("#ancho_marcada").val(data.corte.ancho_marcada);
-        $("#largo_marcada").val(data.corte.largo_marcada);
-        $("#aprovechamiento").val(data.corte.aprovechamiento);
-        $("#productos").val(data.corte.producto.id).select2().trigger('change');
-        let val = data.corte.producto.referencia_producto;
-        let genero = val.substring(1, 2);
-        let mujer_plus = val.substring(3, 4);
-        genero_global = genero;
-        plus_global = mujer_plus;
-        $("#a").val(data.a);
-        $("#b").val(data.b);
-        $("#c").val(data.c);
-        $("#d").val(data.d);
-        $("#e").val(data.e);
-        $("#f").val(data.f);
-        $("#g").val(data.g);
-        $("#h").val(data.h);
-        $("#i").val(data.i);
-        $("#j").val(data.j);
-        $("#k").val(data.k);
-        $("#l").val(data.l);
-        $("#a_act").html(data.curva.a + "%");
-        $("#b_act").html(data.curva.b + "%");
-        $("#c_act").html(data.curva.c + "%");
-        $("#d_act").html(data.curva.d + "%");
-        $("#e_act").html(data.curva.e + "%");
-        $("#f_act").html(data.curva.f + "%");
-        $("#g_act").html(data.curva.g + "%");
-        $("#h_act").html(data.curva.h + "%");
-        $("#i_act").html(data.curva.i + "%");
-        $("#j_act").html(data.curva.j + "%");
-        $("#k_act").html(data.curva.k + "%");
-        $("#l_act").html(data.curva.l + "%");
-        eliminarColumnas();
+            // console.log(data);
+            $("#id").val(data.corte.id);
+            $("#numero_corte_gen").val(data.corte.numero_corte);
+            // $("#productos").val(data.corte.producto.referencia_producto);
+            $("#fecha_entrega").val(data.corte.fecha_entrega);
+            // $("#productos").select2('refresh');
+            $("#no_marcada").val(data.corte.no_marcada);
+            $("#ancho_marcada").val(data.corte.ancho_marcada);
+            $("#largo_marcada").val(data.corte.largo_marcada);
+            $("#aprovechamiento").val(data.corte.aprovechamiento);
+            $("#productos").val(data.corte.producto.id).select2().trigger('change');
+            let val = data.corte.producto.referencia_producto;
+            let genero = val.substring(1, 2);
+            let mujer_plus = val.substring(3, 4);
+            genero_global = genero;
+            plus_global = mujer_plus;
+            $("#a").val(data.a);
+            $("#b").val(data.b);
+            $("#c").val(data.c);
+            $("#d").val(data.d);
+            $("#e").val(data.e);
+            $("#f").val(data.f);
+            $("#g").val(data.g);
+            $("#h").val(data.h);
+            $("#i").val(data.i);
+            $("#j").val(data.j);
+            $("#k").val(data.k);
+            $("#l").val(data.l);
+            $("#a_act").html(data.curva.a + "%");
+            $("#b_act").html(data.curva.b + "%");
+            $("#c_act").html(data.curva.c + "%");
+            $("#d_act").html(data.curva.d + "%");
+            $("#e_act").html(data.curva.e + "%");
+            $("#f_act").html(data.curva.f + "%");
+            $("#g_act").html(data.curva.g + "%");
+            $("#h_act").html(data.curva.h + "%");
+            $("#i_act").html(data.curva.i + "%");
+            $("#j_act").html(data.curva.j + "%");
+            $("#k_act").html(data.curva.k + "%");
+            $("#l_act").html(data.curva.l + "%");
+            eliminarColumnas();
+        }
+      
 
     });
 }
 
 function eliminar(id_corte){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar este corte?',
-        text: "Va a eliminar este corte!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("corte/delete/" + id_corte, function(data){
-                Swal.fire(
-                'Eliminado!',
-                'Corte eliminado correctamente.',
-                'success'
-                )
-                $("#cortes_listados").DataTable().ajax.reload();
-            })
+    $.post("cortecheck/delete/" + id_corte, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar este corte?',
+                text: "Va a eliminar este corte!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("corte/delete/" + id_corte, function(data){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Corte eliminado correctamente.',
+                        'success'
+                        )
+                        $("#cortes_listados").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
-    // bootbox.confirm("¿Estas seguro de eliminar este corte?", function(result){
-    //     if(result){
-    //         $.post("corte/delete/" + id_corte, function(data){
-    //             bootbox.alert("Corte <strong>"+ data.corte.numero_corte+ "</strong> eliminado correctamente");
-    //             $("#cortes_listados").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+    })
+
 }
 
 function asignar(id_rollo) {

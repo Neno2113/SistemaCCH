@@ -1468,11 +1468,13 @@
                     <td></td>
                 </tr>
                 @foreach ($recepcion_mythos as $rec)
+                @foreach ($corte_rec_mythos as $corte)
+                @if ($rec->corte_id == $corte->id )
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
-                        {{$rec->producto->referencia_producto}}
+                        {{$corte->producto->referencia_producto}}
                     </td>
                     <td></td>
                     <td></td>
@@ -1488,6 +1490,8 @@
                     <td></td>
                     <td>{{$rec->total_recibido}}</td>
                 </tr>
+                @endif
+                @endforeach
                 @endforeach
                 <tr>
                     <td style="color:#fff;">test</td>
@@ -1552,11 +1556,13 @@
                     <td></td>
                 </tr>
                 @foreach ($recepcion_lavish as $rec_lav)
+                @foreach ($corte_rec_lavish as $corte)
+                @if ($rec_lav->corte_id == $corte->id )
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
-                        {{$rec_lav->producto->referencia_producto}}
+                        {{$corte->producto->referencia_producto}}
                     </td>
                     <td></td>
                     <td></td>
@@ -1572,6 +1578,8 @@
                     <td></td>
                     <td>{{$rec_lav->total_recibido}}</td>
                 </tr>
+                @endif
+                @endforeach
                 @endforeach
                 <tr>
                     <td style="color:#fff;">test</td>
@@ -1654,11 +1662,13 @@
                     <td></td>
                 </tr>
                 @foreach ($recepcion_genius as $rec)
+                @foreach ($corte_rec_genius as $corte)
+                @if ($rec->corte_id == $corte->id )
                 <tr>
                     <td></td>
                     <td></td>
                     <td>
-                        {{$rec->producto->referencia_producto}}
+                        {{$corte->producto->referencia_producto}}
                     </td>
                     <td></td>
                     <td></td>
@@ -1674,6 +1684,8 @@
                     <td></td>
                     <td>{{$rec->total_recibido}}</td>
                 </tr>
+                @endif
+                @endforeach
                 @endforeach
                 <tr>
                     <td style="color:#fff;">test</td>

@@ -10,7 +10,7 @@ class PermisoUsuario extends Model
 
 
     protected $fillable = [
-        'id', 'user_id', 'permiso'
+        'id', 'user_id', 'permiso', 'ver', 'modificar', 'eliminar', 'agregar'
     ];
 
     public function user()

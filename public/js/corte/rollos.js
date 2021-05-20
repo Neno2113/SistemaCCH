@@ -37,6 +37,7 @@ $(document).ready(function() {
 
     function init() {
         listar();
+        suplidores();
         mostrarForm(true);
         $("#btn-edit").hide();
 
@@ -57,40 +58,17 @@ $(document).ready(function() {
         });
 
 
-        $("#suplidores").select2({
-            placeholder: "Busca un suplidor...",
-            ajax: {
-                url: 'suplidores',
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data){
-                    return {
-                        results: $.map(data, function(item){
-                            return {
-                                text: item.nombre+' - '+ item.contacto_suplidor,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        })
-
-
-
-        // $("#cloths").select2({
-        //     placeholder: "Busca una tela...",
+        // $("#suplidores").select2({
+        //     placeholder: "Busca un suplidor...",
         //     ajax: {
-        //         url: 'cloths',
+        //         url: 'suplidores',
         //         dataType: 'json',
-        //         data: JSON.stringify(rollo),
         //         delay: 250,
         //         processResults: function(data){
         //             return {
         //                 results: $.map(data, function(item){
         //                     return {
-        //                         text: item.referencia,
+        //                         text: item.nombre+' - '+ item.contacto_suplidor,
         //                         id: item.id
         //                     }
         //                 })
@@ -100,6 +78,40 @@ $(document).ready(function() {
         //     }
         // })
 
+    }
+
+    const suplidores = () => {
+
+        $.ajax({
+            url: "suppliers",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    // console.log(datos);
+                    var longitud = datos.suplidores.length;
+
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.suplidores[i].id +">"+datos.suplidores[i].nombre+"</option>"
+
+                        $("#suplidores").append(fila);
+                    }
+                    // $("#clientes").attr('disabled', true);
+                    $("#suplidores").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
     }
 
     function limpiar() {
@@ -289,51 +301,73 @@ $(document).ready(function() {
 
 function mostrar(id_rollo) {
     $.post("rollo/" + id_rollo, function(data, status) {
-        // data = JSON.parse(data);
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
 
-        // console.log(data);
-        // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
-        $("#id").val(data.rollo.id);
-        $("#codigo_rollo").val(data.rollo.codigo_rollo);
-        $("#num_tono").val(data.rollo.num_tono);
-        $("#no_factura_compra").val(data.rollo.no_factura_compra);
-        $("#fecha_compra").val(data.rollo.fecha_compra);
-        $("#longitud_yarda").val(data.rollo.longitud_yarda);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            // data = JSON.parse(data);
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+
+            // console.log(data);
+            // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
+            $("#id").val(data.rollo.id);
+            $("#suplidores").val(data.rollo.id_suplidor).select2().trigger('change');
+            $("#codigo_rollo").val(data.rollo.codigo_rollo);
+            $("#num_tono").val(data.rollo.num_tono);
+            $("#no_factura_compra").val(data.rollo.no_factura_compra);
+            $("#fecha_compra").val(data.rollo.fecha_compra);
+            $("#longitud_yarda").val(data.rollo.longitud_yarda);
+        }
+     
     });
 }
 
 
 function eliminar(id_rollo){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar este rollo?',
-        text: "Va a eliminar este rollo!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("rollo/delete/" + id_rollo, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Rollo eliminado correctamente.',
-                'success'
-                )
-                $("#rollos").DataTable().ajax.reload();
-            })
+    $.post("rollocheck/delete/" + id_rollo, function(data, status) {
+        console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar este rollo?',
+                text: "Va a eliminar este rollo!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("rollo/delete/" + id_rollo, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Rollo eliminado correctamente.',
+                        'success'
+                        )
+                        $("#rollos").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
+    })
 
 }
 
-$("#suplidores").change(function(){
+$("#suplidores").on('change', () => {
     telas();
 });
 

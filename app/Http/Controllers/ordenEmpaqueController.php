@@ -19,6 +19,8 @@ use App\Talla;
 use App\Product;
 use App\CurvaProducto;
 use App\ordenEmpaqueDetalle;
+use App\PermisoUsuario;
+use Illuminate\Support\Facades\Auth;
 
 class ordenEmpaqueController extends Controller
 {
@@ -801,6 +803,21 @@ class ordenEmpaqueController extends Controller
 
     public function show($id)
     {
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Usuarios')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+        
         $orden_pedido = ordenPedido::find($id);
         $orden_id = $orden_pedido->id;
 

@@ -15,6 +15,7 @@ use App\AlmacenDetalle;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
 use App\CurvaProducto;
+use App\PermisoUsuario;
 use App\SKU;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -486,6 +487,21 @@ class AlmacenController extends Controller
 
     public function show($id)
     {
+
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Definir Atributos')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
         $almacen = Almacen::find($id)->load('producto')->load('corte');
         $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
         $corte_id =  $almacen->corte_id;
@@ -590,6 +606,128 @@ class AlmacenController extends Controller
         return \response()->json($data, $data['code']);
     }
 
+    
+    public function showAlmacen($id)
+    {
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Entrada Almacen')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+        $almacen = Almacen::find($id)->load('producto')->load('corte');
+        $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
+        $corte_id =  $almacen->corte_id;
+
+        $tallas = Talla::where('corte_id', $almacen->corte->id)->first();
+
+        $recepcion  = Recepcion::where('corte_id', $almacen->corte->id)->get()->last();
+        $lavanderia  = Lavanderia::where('corte_id', $almacen->corte->id)->get()->last();
+
+        //perdidas
+        $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+            ->where('corte_id', $corte_id)->select('id')->get();
+
+        $perdidas = array();
+
+        $longitudPerdida = count($perdida);
+
+        for ($i = 0; $i < $longitudPerdida; $i++) {
+            array_push($perdidas, $perdida[$i]['id']);
+        }
+
+        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+
+        //calcular total real
+        $a = $tallas->a - $tallasPerdidas->sum('a');
+        $b = $tallas->b - $tallasPerdidas->sum('b');
+        $c = $tallas->c - $tallasPerdidas->sum('c');
+        $d = $tallas->d - $tallasPerdidas->sum('d');
+        $e = $tallas->e - $tallasPerdidas->sum('e');
+        $f = $tallas->f - $tallasPerdidas->sum('f');
+        $g = $tallas->g - $tallasPerdidas->sum('g');
+        $h = $tallas->h - $tallasPerdidas->sum('h');
+        $i = $tallas->i - $tallasPerdidas->sum('i');
+        $j = $tallas->j - $tallasPerdidas->sum('j');
+        $k = $tallas->k - $tallasPerdidas->sum('k');
+        $l = $tallas->l - $tallasPerdidas->sum('l');
+
+        //Validacion de numeros negativos
+        $a = ($a < 0 ? 0 : $a);
+        $b = ($b < 0 ? 0 : $b);
+        $c = ($c < 0 ? 0 : $c);
+        $d = ($d < 0 ? 0 : $d);
+        $e = ($e < 0 ? 0 : $e);
+        $f = ($f < 0 ? 0 : $f);
+        $g = ($g < 0 ? 0 : $g);
+        $h = ($h < 0 ? 0 : $h);
+        $i = ($i < 0 ? 0 : $i);
+        $j = ($j < 0 ? 0 : $j);
+        $k = ($k < 0 ? 0 : $k);
+        $l = ($l < 0 ? 0 : $l);
+        $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+
+        $pendiente_lavanderia = $almacen->corte->total - $tallasPerdidas->sum('total');
+        $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
+
+        if (is_object($almacen)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'almacen' => $almacen,
+                'detalle' => $detalle,
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l,
+                'total' => $total_real,
+                // 'perdida' => $perdida,
+                'pen_lavanderia' => $recepcion->pendiente,
+                'total_recibido' => $recepcion->total_recibido,
+                'pen_produccion' => $pendiente_lavanderia,
+                'perdida_x' => $tallasPerdidas->sum('talla_x'),
+                'a_alm' => $detalle->sum('a'),
+                'b_alm' => $detalle->sum('b'),
+                'c_alm' => $detalle->sum('c'),
+                'd_alm' => $detalle->sum('d'),
+                'e_alm' => $detalle->sum('e'),
+                'f_alm' => $detalle->sum('f'),
+                'g_alm' => $detalle->sum('g'),
+                'h_alm' => $detalle->sum('h'),
+                'i_alm' => $detalle->sum('i'),
+                'j_alm' => $detalle->sum('j'),
+                'k_alm' => $detalle->sum('k'),
+                'l_alm' => $detalle->sum('l'),
+                'total_alm' => $detalle->sum('total')
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
+
     public function update(Request $request)
     {
         $validar = $request->validate([
@@ -654,6 +792,25 @@ class AlmacenController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function checkDestroy(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Definir Atributos')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
 
     public function destroy($id)
     {

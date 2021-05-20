@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use App\PermisoUsuario;
@@ -43,6 +44,10 @@ class PermisoController extends Controller
 
                 $permiso_usuario->user_id = $user_id;
                 $permiso_usuario->permiso = $permiso;
+                $permiso_usuario->ver = 0;
+                $permiso_usuario->agregar = 0;
+                $permiso_usuario->modificar = 0;
+                $permiso_usuario->eliminar = 0;
 
                 $permiso_usuario->save();
 
@@ -120,7 +125,132 @@ class PermisoController extends Controller
     }
 
     public function show($id){
+
+ 
+     
+
         $permiso_usuario = PermisoUsuario::where('user_id', $id)->get()->load('user');
+
+        if(!empty($permiso_usuario)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'permiso' => $permiso_usuario
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function permisoAdd(Request $request){
+        
+        $permiso = $request->input('permiso');
+        $acceso = $request->input('acceso');
+
+        $permiso_usuario = PermisoUsuario::find($permiso);
+
+        if(!empty($permiso_usuario)){
+
+            if($acceso == 'r'){
+                $permiso_usuario->ver = 1;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'a'){
+                $permiso_usuario->agregar = 1;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'w'){
+                $permiso_usuario->modificar = 1;
+                $permiso_usuario->ver = 1;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'd'){
+                $permiso_usuario->eliminar = 1;
+                $permiso_usuario->ver = 1;
+                $permiso_usuario->save();
+            }
+            
+            return $data = [
+                'code' => 200,
+                'status' => 'success',
+                'permiso' => $permiso_usuario,
+                'acceso' => $acceso
+            ];
+
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No encontro el permiso'
+            ];
+        }
+        // $data = [
+        //     'code' => 404,
+        //     'status' => 'error',
+        //     'message' => $permiso_usuario
+        // ];
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function permisoRemove(Request $request){
+        
+        $permiso = $request->input('permiso');
+        $acceso = $request->input('acceso');
+
+        $permiso_usuario = PermisoUsuario::find($permiso);
+
+        if(is_object($permiso_usuario)){
+
+            if($acceso == 'r'){
+                $permiso_usuario->ver = 0;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'a'){
+                $permiso_usuario->agregar = 0;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'w'){
+                $permiso_usuario->modificar = 0;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'd'){
+                $permiso_usuario->eliminar = 0;
+                $permiso_usuario->save();
+            }
+
+            return $data = [
+                'code' => 200,
+                'status' => 'success',
+                'permiso' => $permiso_usuario,
+                'acceso' => $acceso
+            ];
+
+        } else {
+           return $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No encontro el permiso'
+            ];
+        }
+     
+        return response()->json($data, $data['code']);
+    }
+
+    public function showPermiso($id){
+        $permiso_usuario = PermisoUsuario::find($id);
 
         if(!empty($permiso_usuario)){
             $data = [

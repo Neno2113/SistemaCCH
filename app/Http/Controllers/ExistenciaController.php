@@ -655,7 +655,7 @@ class ExistenciaController extends Controller
             array_push($product_mythos, $producction_mythos[$i]['id']);
         }
 
-        $corte_pro_myhtos = Corte::where('fase', 'LIKE', 'produccion')
+        $corte_pro_myhtos = Corte::where('fase', 'LIKE', 'Produccion')
             ->where('updated_at', '<', $hasta)
             ->whereIn('producto_id', $product_mythos)
             ->get();
@@ -692,7 +692,7 @@ class ExistenciaController extends Controller
             array_push($product_lavish, $producction_lavish[$i]['id']);
         }
 
-        $corte_pro_lavish = Corte::where('fase', 'LIKE', 'produccion')
+        $corte_pro_lavish = Corte::where('fase', 'LIKE', 'Produccion')
             ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_lavish)
             ->get();
@@ -730,7 +730,7 @@ class ExistenciaController extends Controller
             array_push($product_genius, $producction_genius[$i]['id']);
         }
 
-        $corte_pro_geniu = Corte::where('fase', 'LIKE', 'produccion')
+        $corte_pro_geniu = Corte::where('fase', 'LIKE', 'Produccion')
             ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_genius)
             ->get();
@@ -852,8 +852,8 @@ class ExistenciaController extends Controller
         $corte_rec_mythos = Corte::where('fase', 'LIKE', 'Recepcion')
             ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_mythos)
-            ->select('id')
-            ->get();
+            ->select('id', 'producto_id')
+            ->get()->load('producto');
 
         $cortes_rec_mythos = array();
 
@@ -862,15 +862,15 @@ class ExistenciaController extends Controller
         }
 
         $recepcion_mythos = Recepcion::where('updated_at', '<',  $hasta)
-            ->whereIn('corte_id', $cortes_rec_mythos)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_rec_mythos)->get();
         $sub_rec_m = $recepcion_mythos->sum('total_recibido');
         //Recepcion Lavish
 
-        $corte_rec_lavish = Corte::where('fase', 'LIKE', 'Recepcion')
+        $corte_rec_lavish = Corte::where('fase', 'LIKE', 'Terminacion')
             ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_lavish)
-            ->select('id')
-            ->get();
+            ->select('id', 'producto_id')
+            ->get()->load('producto');
 
         $cortes_rec_lavish = array();
 
@@ -879,7 +879,7 @@ class ExistenciaController extends Controller
         }
 
         $recepcion_lavish = Recepcion::where('updated_at', '<',  $hasta)
-            ->whereIn('corte_id', $cortes_rec_lavish)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_rec_lavish)->get();
         $sub_rec_l = $recepcion_lavish->sum('total_recibido');
 
         //Recepcion Genius
@@ -887,8 +887,8 @@ class ExistenciaController extends Controller
         $corte_rec_genius = Corte::where('fase', 'LIKE', 'Recepcion')
             ->where('updated_at', '<',  $hasta)
             ->whereIn('producto_id', $product_genius)
-            ->select('id')
-            ->get();
+            ->select('id', 'producto_id')
+            ->get()->load('producto');
 
         $cortes_rec_genius = array();
 
@@ -897,7 +897,7 @@ class ExistenciaController extends Controller
         }
 
         $recepcion_genius = Recepcion::where('updated_at', '<',  $hasta)
-            ->whereIn('corte_id', $cortes_rec_genius)->get()->load('producto');
+            ->whereIn('corte_id', $cortes_rec_genius)->get();
         $sub_rec_g = $recepcion_genius->sum('total_recibido');
 
         //subtotal recepcion
@@ -1131,6 +1131,8 @@ class ExistenciaController extends Controller
 
 
         $pdf = \PDF::loadView('sistema.existencia.reporteDetallado', \compact([
+            'corte_rec_lavish',
+            'product_lavish',
             'tallasCorte',
             'tallasPerdidas',
             'tallasCorteLavish',
@@ -1279,8 +1281,10 @@ class ExistenciaController extends Controller
             'nota_credito_l',
             'nota_credito_g',
         ]));
-        // return $pdf->download('ReporteExistencias.pdf');
+        return $pdf->download('ReporteExistencias.pdf');
         return View('sistema.existencia.reporteDetallado', compact([
+            'corte_rec_lavish',
+            'product_lavish',
             'tallasCorte',
             'tallasPerdidas',
             'tallasCorteLavish',

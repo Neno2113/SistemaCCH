@@ -157,27 +157,39 @@ function inicio(){
 
 function aprobar(id_orden) {
     // e.preventDefault();
-    Swal.fire({
-        title: "¿Estas seguro de aprobar este pedido?",
-        text: "Va a aprobar este pedido!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, acepto"
-    }).then(result => {
-        if (result.value) {
-            $.post("orden-aprobacion/" + id_orden, function(data, status){
-                Swal.fire(
-                    "Aprobado!",
-                    "Orden <strong>"+ data.orden.no_orden_pedido +"</strong> aprobada",
-                    "success"
-                );
-                $("#ordenes_aprobacion").DataTable().ajax.reload();
-                $("#ordenes_red").DataTable().ajax.reload();
+    $.post("checkAprob/delete/" + id_orden, function(data, status) {
+        console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: "¿Estas seguro de aprobar este pedido?",
+                text: "Va a aprobar este pedido!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, acepto"
+            }).then(result => {
+                if (result.value) {
+                    $.post("orden-aprobacion/" + id_orden, function(data, status){
+                        Swal.fire(
+                            "Aprobado!",
+                            "Orden <strong>"+ data.orden.no_orden_pedido +"</strong> aprobada",
+                            "success"
+                        );
+                        $("#ordenes_aprobacion").DataTable().ajax.reload();
+                        $("#ordenes_red").DataTable().ajax.reload();
+                    });
+                }
             });
         }
-    });
+   
+    })
     // bootbox.confirm("¿Estas seguro de aprobar esta orden?", function(result){
     //     if(result){
     //         $.post("orden-aprobacion/" + id_orden, function(data, status){

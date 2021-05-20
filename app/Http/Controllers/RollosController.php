@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cloth;
+use App\PermisoUsuario;
 use App\Rollos;
+use App\Supplier;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
@@ -106,6 +109,21 @@ class RollosController extends Controller
 
     public function show($id)
     {
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Rollos')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+
         $rollo = Rollos::find($id)->load('suplidor')
             ->load('tela');
 
@@ -177,6 +195,25 @@ class RollosController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function checkDestroy(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Rollos')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
+
     public function destroy($id)
     {
         $rollo = Rollos::find($id);
@@ -212,6 +249,19 @@ class RollosController extends Controller
                 ->get();
         }
         return response()->json($data);
+    }
+
+    public function select()
+    {
+        $suppliers = Supplier::where('tipo_suplidor', 'Material')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'suplidores' => $suppliers
+        ];
+
+        return response()->json($data, $data['code']);
     }
 
     public function selectTela(Request $request)

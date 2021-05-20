@@ -11,6 +11,8 @@ use App\SKU;
 use App\CurvaProducto;
 use App\CatalogoCuenta;
 use App\Articulo;
+use App\PermisoUsuario;
+use Illuminate\Support\Facades\Auth;
 use stdClass;
 
 class ProductController extends Controller
@@ -260,6 +262,58 @@ class ProductController extends Controller
 
     public function show($id)
     {
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Productos')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+        $product = Product::find($id);
+
+        if (is_object($product)) {
+            $curva = CurvaProducto::where('producto_id', $product->id)->first();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'product' => $product,
+                'a' => str_replace('.00', '', $curva->a),
+                'b' => str_replace('.00', '', $curva->b),
+                'c' => str_replace('.00', '', $curva->c),
+                'd' => str_replace('.00', '', $curva->d),
+                'e' => str_replace('.00', '', $curva->e),
+                'f' => str_replace('.00', '', $curva->f),
+                'g' => str_replace('.00', '', $curva->g),
+                'h' => str_replace('.00', '', $curva->h),
+                'i' => str_replace('.00', '', $curva->i),
+                'j' => str_replace('.00', '', $curva->j),
+                'k' => str_replace('.00', '', $curva->k),
+                'l' => str_replace('.00', '', $curva->l),
+            ];
+
+
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+    }
+
+    public function showTerminado($id)
+    {
+     
         $product = Product::find($id);
 
         if (is_object($product)) {
@@ -393,6 +447,25 @@ class ProductController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function checkDestroy(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Productos')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
 
     public function destroy($id)
     {

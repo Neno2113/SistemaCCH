@@ -1,3 +1,5 @@
+let permiso_id;
+
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -159,6 +161,7 @@ $(document).ready(function() {
                     '<tr id="fila'+datos.permiso.id+'">'+
                     "<td class=''><input type='hidden' id='usuario"+datos.permiso.user.id+"' value="+datos.permiso.user.id+">"+datos.permiso.user.name+"</td>"+
                     "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.permiso.id+"' value="+datos.permiso.id+">"+datos.permiso.permiso+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='verUser("+datos.permiso.id+")' data-toggle='modal' data-target='.bd-edit-modal-lg' class='btn btn-dark'><i class='fas fa-users-cog'></i></button></td>"+
                     "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+datos.permiso.id+")' class='btn btn-danger'><i class='fas fa-user-lock'></i></i></button></td>"+
                     "</tr>";
                     $("#permisos-agregados").append(fila);
@@ -313,27 +316,38 @@ $(document).ready(function() {
 function mostrar(id_user) {
     $.get("permiso/" + id_user, function(data, status) {
 
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        // $("#btn-edit").show();
-        // $("#btn-agregar").hide();
-        // $("#btn-guardar").hide();
-        $("#fila1").show();
-        $("#ver-contra").show();
-        $("#editar-permisos").show();
-        $("#permisos-agregados").empty();
-        $("#usuario").val(id_user).select2().trigger('change');
-
-        for (let i = 0; i < data.permiso.length; i++) {
-            var fila =
-            '<tr id="fila'+data.permiso[i].id+'">'+
-            "<td class=''><input type='hidden' id='usuario"+data.permiso[i].user.id+"' value="+data.permiso[i].user.id+">"+data.permiso[i].user.name+"</td>"+
-            "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.permiso[i].id+"' value="+data.permiso[i].id+">"+data.permiso[i].permiso+"</td>"+
-            "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+data.permiso[i].id+")' class='btn btn-danger'><i class='fas fa-user-lock'></i></i></button></td>"+
-            "</tr>";
-            $("#permisos-agregados").append(fila);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            // $("#btn-edit").show();
+            // $("#btn-agregar").hide();
+            // $("#btn-guardar").hide();
+            $("#fila1").show();
+            $("#ver-contra").show();
+            $("#editar-permisos").show();
+            $("#permisos-agregados").empty();
+            $("#usuario").val(id_user).select2().trigger('change');
+    
+            for (let i = 0; i < data.permiso.length; i++) {
+                var fila =
+                '<tr id="fila'+data.permiso[i].id+'">'+
+                "<td class=''><input type='hidden' id='usuario"+data.permiso[i].user.id+"' value="+data.permiso[i].user.id+">"+data.permiso[i].user.name+"</td>"+
+                "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.permiso[i].id+"' value="+data.permiso[i].id+">"+data.permiso[i].permiso+"</td>"+
+                "<td><button type='button' id='btn-eliminar' onclick='verUser("+data.permiso[i].id+")' data-toggle='modal' data-target='.bd-edit-modal-lg'  class='btn btn-dark'><i class='fas fa-users-cog'></i></button></td>"+
+                "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+data.permiso[i].id+")' class='btn btn-danger'><i class='fas fa-user-lock'></i></i></button></td>"+
+                "</tr>";
+                $("#permisos-agregados").append(fila);
+            }
         }
+
+     
 
 
     });
@@ -393,6 +407,58 @@ function eliminarAcceso(id){
     });
 }
 
+const verUser = (id) => {
+    permiso_id = id;
+    $.ajax({
+        url: "permiso/access/"+id,
+        type: "GET",
+        dataType: "json",
+        // data: JSON.stringify(permiso),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                // console.log(datos);
+                if(datos.permiso.agregar == 1){
+                    $('#agregar').prop('checked', true).trigger("change");
+                } else {
+                    $('#agregar').prop('checked', false).trigger("change");
+                }
+                if(datos.permiso.ver == 1){
+                    $('#ver').prop('checked', true).trigger("change");
+                } else {
+                    $('#ver').prop('checked', false).trigger("change");
+                }
+                if(datos.permiso.modificar == 1){
+                    $('#modificar').prop('checked', true).trigger("change");
+                } else {
+                    $('#modificar').prop('checked', false).trigger("change");
+                }
+                if(datos.permiso.eliminar == 1){
+                    $('#eliminar').prop('checked', true).trigger("change");
+                } else {
+                    $('#eliminar').prop('checked', false).trigger("change");
+                }
+           
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.errors);
+            let errores = datos.responseJSON.errors;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                    size: 'small'
+                });
+            });
+        }
+    });
+}
 
 // function eliminar(id_permiso){
 //     bootbox.confirm("¿Estas seguro de eliminarle este acceso a este usuario?", function(result){
@@ -406,5 +472,62 @@ function eliminarAcceso(id){
 //     })
 // }
 
+$('input[name="permiso"]').click(function(){
 
+    if($(this).prop("checked") == true){
+        const permiso = {
+            permiso: permiso_id,
+            acceso: $(this).val()
+        }
+        console.log(permiso);
+
+        $.ajax({
+            url: "permiso-add",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify(permiso),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+             
+            
+       
+                }
+            },
+            error: function() {
+                console.log("Ocurrio un error");
+            }
+        });
+   
+    }
+
+    else if($(this).prop("checked") == false){
+        const permiso = {
+            permiso: permiso_id,
+            acceso: $(this).val()
+        }
+        // console.log(permiso);
+
+        $.ajax({
+            url: "permiso-remove",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify(permiso),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+              
+            
+       
+                }
+            },
+            error: function() {
+                console.log("Ocurrio un error");
+            }
+        });
+
+
+    }
+
+});
 

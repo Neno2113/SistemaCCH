@@ -2120,37 +2120,41 @@ function validarNan(val) {
 }
 
 function eliminar(id_orden) {
-    Swal.fire({
-        title: "¿Estas seguro de eliminar esta orden de pedido?",
-        text: "Va a eliminar la orden de pedido!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, acepto"
-    }).then(result => {
-        if (result.value) {
-            $.post("orden_pedido/delete/" + id_orden, function() {
-                Swal.fire(
-                    "Eliminado!",
-                    "Orden de pedido eliminada correctamente.",
-                    "success"
-                );
-                $("#ordenes")
-                    .DataTable()
-                    .ajax.reload();
+    $.post("orden_pedidocheck/delete/" + id_orden, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: "¿Estas seguro de eliminar esta orden de pedido?",
+                text: "Va a eliminar la orden de pedido!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, acepto"
+            }).then(result => {
+                if (result.value) {
+                    $.post("orden_pedido/delete/" + id_orden, function() {
+                        Swal.fire(
+                            "Eliminado!",
+                            "Orden de pedido eliminada correctamente.",
+                            "success"
+                        );
+                        $("#ordenes")
+                            .DataTable()
+                            .ajax.reload();
+                    });
+                }
             });
         }
-    });
+  
+    })
 
-    // bootbox.confirm("¿Estas seguro de eliminar esta orden de producto?", function(result){
-    //     if(result){
-    //         $.post("orden_pedido/delete/" + id_orden, function(){
-    //             bootbox.alert("Orden de pedido eliminada correctamente!!");
-    //             $("#ordenes").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
 }
 
 function ver(id_orden) {

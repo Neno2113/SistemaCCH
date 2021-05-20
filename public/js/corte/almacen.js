@@ -1342,304 +1342,313 @@ $(document).ready(function() {
 });
 
 function mostrar(id_almacen){
-    $.get("almacen/" + id_almacen, function(data, status) {
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").hide();
-        $("#btn-guardar").hide();
-        $("#referencia_producto").show();
-        $("#numero_corte").show();
-        // $("#corteEdit").show();
-        $("#corteAdd").hide();
-        $("#formUpload").show();
-        $("#form_producto").show();
-        $("#form_producto_2").show();
-        $("#form_talla").show();
-        $("#btn-buscar").hide();
-        $("#btn-upload").hide();
-        $("#imagen_frente").hide();
-        $("#imagen_trasera").hide();
-        $("#imagen_perfil").hide();
-        $("#imagen_bolsillo").hide();
+    $.get("almacen-entrada/" + id_almacen, function(data, status) {
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").hide();
+            $("#btn-guardar").hide();
+            $("#referencia_producto").show();
+            $("#numero_corte").show();
+            // $("#corteEdit").show();
+            $("#corteAdd").hide();
+            $("#formUpload").show();
+            $("#form_producto").show();
+            $("#form_producto_2").show();
+            $("#form_talla").show();
+            $("#btn-buscar").hide();
+            $("#btn-upload").hide();
+            $("#imagen_frente").hide();
+            $("#imagen_trasera").hide();
+            $("#imagen_perfil").hide();
+            $("#imagen_bolsillo").hide();
 
-        // $("#btn-imprimir").hide();
-        let genero = data.almacen.producto.referencia_producto.substring(1, 2);
-        genero_global = data.almacen.producto.referencia_producto.substring(1, 2);
-        let mujer_plus = data.almacen.producto.referencia_producto.substring(3, 4);
-        genero_plus_global = data.almacen.producto.referencia_producto.substring(3, 4);
+            // $("#btn-imprimir").hide();
+            let genero = data.almacen.producto.referencia_producto.substring(1, 2);
+            genero_global = data.almacen.producto.referencia_producto.substring(1, 2);
+            let mujer_plus = data.almacen.producto.referencia_producto.substring(3, 4);
+            genero_plus_global = data.almacen.producto.referencia_producto.substring(3, 4);
 
-        //validacion de talla igual 0 desabilitar input correspondiente a esa talla
-        (data.a <= 0 ) ? $("#a, #a_m").attr('disabled', true) : $("#a, #a_m").attr('disabled', false);
-        (data.b <= 0 ) ? $("#b, #b_m").attr('disabled', true) : $("#b, #b_m").attr('disabled', false);
-        (data.c <= 0 ) ? $("#c, #c_m").attr('disabled', true) : $("#c, #c_m").attr('disabled', false);
-        (data.d <= 0 ) ? $("#d, #d_m").attr('disabled', true) : $("#d, #d_m").attr('disabled', false);
-        (data.e <= 0 ) ? $("#e, #e_m").attr('disabled', true) : $("#e, #e_m").attr('disabled', false);
-        (data.f <= 0 ) ? $("#f, #f_m").attr('disabled', true) : $("#f, #f_m").attr('disabled', false);
-        (data.g <= 0 ) ? $("#g, #g_m").attr('disabled', true) : $("#g, #g_m").attr('disabled', false);
-        (data.h <= 0 ) ? $("#h, #h_m").attr('disabled', true) : $("#h, #h_m").attr('disabled', false);
-        (data.i <= 0 ) ? $("#i, #i_m").attr('disabled', true) : $("#i, #i_m").attr('disabled', false);
-        (data.j <= 0 ) ? $("#j, #j_m").attr('disabled', true) : $("#j, #j_m").attr('disabled', false);
-        (data.k <= 0 ) ? $("#k, #k_m").attr('disabled', true) : $("#k, #k_m").attr('disabled', false);
-        (data.l <= 0 ) ? $("#l, #l_m").attr('disabled', true) : $("#l, #l_m").attr('disabled', false);
+            //validacion de talla igual 0 desabilitar input correspondiente a esa talla
+            (data.a <= 0 ) ? $("#a, #a_m").attr('disabled', true) : $("#a, #a_m").attr('disabled', false);
+            (data.b <= 0 ) ? $("#b, #b_m").attr('disabled', true) : $("#b, #b_m").attr('disabled', false);
+            (data.c <= 0 ) ? $("#c, #c_m").attr('disabled', true) : $("#c, #c_m").attr('disabled', false);
+            (data.d <= 0 ) ? $("#d, #d_m").attr('disabled', true) : $("#d, #d_m").attr('disabled', false);
+            (data.e <= 0 ) ? $("#e, #e_m").attr('disabled', true) : $("#e, #e_m").attr('disabled', false);
+            (data.f <= 0 ) ? $("#f, #f_m").attr('disabled', true) : $("#f, #f_m").attr('disabled', false);
+            (data.g <= 0 ) ? $("#g, #g_m").attr('disabled', true) : $("#g, #g_m").attr('disabled', false);
+            (data.h <= 0 ) ? $("#h, #h_m").attr('disabled', true) : $("#h, #h_m").attr('disabled', false);
+            (data.i <= 0 ) ? $("#i, #i_m").attr('disabled', true) : $("#i, #i_m").attr('disabled', false);
+            (data.j <= 0 ) ? $("#j, #j_m").attr('disabled', true) : $("#j, #j_m").attr('disabled', false);
+            (data.k <= 0 ) ? $("#k, #k_m").attr('disabled', true) : $("#k, #k_m").attr('disabled', false);
+            (data.l <= 0 ) ? $("#l, #l_m").attr('disabled', true) : $("#l, #l_m").attr('disabled', false);
 
-        $("#id").val(data.almacen.id);
-        $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);
-        $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
-        $("#tono").val(data.almacen.producto.tono).trigger("change").attr('disabled', true);
-        $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco).trigger("change").attr('disabled', true);
-        $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).trigger("change").attr('disabled', true) ;
-        $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).trigger("change").attr('disabled', true) ;
-        $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).trigger("change").attr('disabled', true) ;
-        $("#ra").html(data.a);
-        $("#rb").html(data.b);
-        $("#rc").html(data.c);
-        $("#rd").html(data.d);
-        $("#re").html(data.e);
-        $("#rf").html(data.f);
-        $("#rg").html(data.g);
-        $("#rh").html(data.h);
-        $("#ri").html(data.i);
-        $("#rj").html(data.j);
-        $("#rk").html(data.k);
-        $("#rl").html(data.l);
-        a_total = data.a;
-        b_total = data.b;
-        c_total = data.c;
-        d_total = data.d;
-        e_total = data.e;
-        f_total = data.f;
-        g_total = data.g;
-        h_total = data.h;
-        i_total = data.i;
-        j_total = data.j;
-        k_total = data.k;
-        l_total = data.l;
-        total_recibido = data.total_recibido;
+            $("#id").val(data.almacen.id);
+            $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);
+            $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
+            $("#tono").val(data.almacen.producto.tono).trigger("change").attr('disabled', true);
+            $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco).trigger("change").attr('disabled', true);
+            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).trigger("change").attr('disabled', true) ;
+            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).trigger("change").attr('disabled', true) ;
+            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).trigger("change").attr('disabled', true) ;
+            $("#ra").html(data.a);
+            $("#rb").html(data.b);
+            $("#rc").html(data.c);
+            $("#rd").html(data.d);
+            $("#re").html(data.e);
+            $("#rf").html(data.f);
+            $("#rg").html(data.g);
+            $("#rh").html(data.h);
+            $("#ri").html(data.i);
+            $("#rj").html(data.j);
+            $("#rk").html(data.k);
+            $("#rl").html(data.l);
+            a_total = data.a;
+            b_total = data.b;
+            c_total = data.c;
+            d_total = data.d;
+            e_total = data.e;
+            f_total = data.f;
+            g_total = data.g;
+            h_total = data.h;
+            i_total = data.i;
+            j_total = data.j;
+            k_total = data.k;
+            l_total = data.l;
+            total_recibido = data.total_recibido;
 
-        $("#total").html(data.total);
-        $("#genero").val(data.almacen.producto.referencia_producto);
-        $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
-        $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
-        $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
-        $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
-        $("#pendiente_produccion").html(data.pen_produccion);
-        $("#pendiente_lavanderia").html(data.pen_lavanderia);
-        $("#total_terminacion").html(data.total_recibido);
-        $("#perdida_x").html(data.perdida_x);
-        $("#producto_id").val(data.almacen.producto.id);
+            $("#total").html(data.total);
+            $("#genero").val(data.almacen.producto.referencia_producto);
+            $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
+            $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
+            $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
+            $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+            $("#pendiente_produccion").html(data.pen_produccion);
+            $("#pendiente_lavanderia").html(data.pen_lavanderia);
+            $("#total_terminacion").html(data.total_recibido);
+            $("#perdida_x").html(data.perdida_x);
+            $("#producto_id").val(data.almacen.producto.id);
 
-        $("#disponibles").empty();
-        $("#resultados").empty();
+            $("#disponibles").empty();
+            $("#resultados").empty();
 
-        for (let t = 0; t < data.detalle.length; t++) {
-            var fila =
-            '<tr id="fila">'+
-            "<td><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].a+"</td>"+
-            "<td><input type='hidden' name='b[]' id='b[]' value="+data.detalle[t].b+">"+data.detalle[t].b+"</td>"+
-            "<td><input type='hidden' name='c[]' id='c[]' value="+data.detalle[t].c+">"+data.detalle[t].c+"</td>"+
-            "<td><input type='hidden' name='d[]' id='d[]' value="+data.detalle[t].d+">"+data.detalle[t].d+"</td>"+
-            "<td><input type='hidden' name='e[]' id='e[]' value="+data.detalle[t].e+">"+data.detalle[t].e+"</td>"+
-            "<td><input type='hidden' name='f[]' id='f[]' value="+data.detalle[t].f+">"+data.detalle[t].f+"</td>"+
-            "<td><input type='hidden' name='g[]' id='g[]' value="+data.detalle[t].g+">"+data.detalle[t].g+"</td>"+
-            "<td><input type='hidden' name='h[]' id='h[]' value="+data.detalle[t].h+">"+data.detalle[t].h+"</td>"+
-            "<td><input type='hidden' name='i[]' id='i[]' value="+data.detalle[t].i+">"+data.detalle[t].i+"</td>"+
-            "<td><input type='hidden' name='j[]' id='j[]' value="+data.detalle[t].j+">"+data.detalle[t].j+"</td>"+
-            "<td><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
-            "<td><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
-            "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
-            "</tr>";
-            $("#disponibles").append(fila);
-        }
+            for (let t = 0; t < data.detalle.length; t++) {
+                var fila =
+                '<tr id="fila">'+
+                "<td><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].a+"</td>"+
+                "<td><input type='hidden' name='b[]' id='b[]' value="+data.detalle[t].b+">"+data.detalle[t].b+"</td>"+
+                "<td><input type='hidden' name='c[]' id='c[]' value="+data.detalle[t].c+">"+data.detalle[t].c+"</td>"+
+                "<td><input type='hidden' name='d[]' id='d[]' value="+data.detalle[t].d+">"+data.detalle[t].d+"</td>"+
+                "<td><input type='hidden' name='e[]' id='e[]' value="+data.detalle[t].e+">"+data.detalle[t].e+"</td>"+
+                "<td><input type='hidden' name='f[]' id='f[]' value="+data.detalle[t].f+">"+data.detalle[t].f+"</td>"+
+                "<td><input type='hidden' name='g[]' id='g[]' value="+data.detalle[t].g+">"+data.detalle[t].g+"</td>"+
+                "<td><input type='hidden' name='h[]' id='h[]' value="+data.detalle[t].h+">"+data.detalle[t].h+"</td>"+
+                "<td><input type='hidden' name='i[]' id='i[]' value="+data.detalle[t].i+">"+data.detalle[t].i+"</td>"+
+                "<td><input type='hidden' name='j[]' id='j[]' value="+data.detalle[t].j+">"+data.detalle[t].j+"</td>"+
+                "<td><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
+                "<td><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
+                "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
+                "</tr>";
+                $("#disponibles").append(fila);
+            }
 
-        var resultados =
-            '<tr id="fila">'+
-            "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+"</td>"+
-            "<td><input type='hidden' name='b[]' id='b[]' value="+data.b_alm+">"+data.b_alm+"</td>"+
-            "<td><input type='hidden' name='c[]' id='c[]' value="+data.c_alm+">"+data.c_alm+"</td>"+
-            "<td><input type='hidden' name='d[]' id='d[]' value="+data.d_alm+">"+data.d_alm+"</td>"+
-            "<td><input type='hidden' name='e[]' id='e[]' value="+data.e_alm+">"+data.e_alm+"</td>"+
-            "<td><input type='hidden' name='f[]' id='f[]' value="+data.f_alm+">"+data.f_alm+"</td>"+
-            "<td><input type='hidden' name='g[]' id='g[]' value="+data.g_alm+">"+data.g_alm+"</td>"+
-            "<td><input type='hidden' name='h[]' id='h[]' value="+data.h_alm+">"+data.h_alm+"</td>"+
-            "<td><input type='hidden' name='i[]' id='i[]' value="+data.i_alm+">"+data.i_alm+"</td>"+
-            "<td><input type='hidden' name='j[]' id='j[]' value="+data.j_alm+">"+data.j_alm+"</td>"+
-            "<td><input type='hidden' name='k[]' id='k[]' value="+data.k_alm+">"+data.k_alm+"</td>"+
-            "<td><input type='hidden' name='l[]' id='l[]' value="+data.l_alm+">"+data.l_alm+"</td>"+
-            "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.total_alm+">"+data.total_alm+"</td>"+
-            "</tr>";
-            $("#resultados").append(resultados);
+            var resultados =
+                '<tr id="fila">'+
+                "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+"</td>"+
+                "<td><input type='hidden' name='b[]' id='b[]' value="+data.b_alm+">"+data.b_alm+"</td>"+
+                "<td><input type='hidden' name='c[]' id='c[]' value="+data.c_alm+">"+data.c_alm+"</td>"+
+                "<td><input type='hidden' name='d[]' id='d[]' value="+data.d_alm+">"+data.d_alm+"</td>"+
+                "<td><input type='hidden' name='e[]' id='e[]' value="+data.e_alm+">"+data.e_alm+"</td>"+
+                "<td><input type='hidden' name='f[]' id='f[]' value="+data.f_alm+">"+data.f_alm+"</td>"+
+                "<td><input type='hidden' name='g[]' id='g[]' value="+data.g_alm+">"+data.g_alm+"</td>"+
+                "<td><input type='hidden' name='h[]' id='h[]' value="+data.h_alm+">"+data.h_alm+"</td>"+
+                "<td><input type='hidden' name='i[]' id='i[]' value="+data.i_alm+">"+data.i_alm+"</td>"+
+                "<td><input type='hidden' name='j[]' id='j[]' value="+data.j_alm+">"+data.j_alm+"</td>"+
+                "<td><input type='hidden' name='k[]' id='k[]' value="+data.k_alm+">"+data.k_alm+"</td>"+
+                "<td><input type='hidden' name='l[]' id='l[]' value="+data.l_alm+">"+data.l_alm+"</td>"+
+                "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.total_alm+">"+data.total_alm+"</td>"+
+                "</tr>";
+                $("#resultados").append(resultados);
 
 
-        if (genero == "2") {
-            if (mujer_plus == 7) {
-                $("#ta").html("12W");
-                $("#tb").html("14W");
-                $("#tc").html("16W");
-                $("#td").html("18W");
-                $("#te").html("20W");
-                $("#tf").html("22W");
-                $("#tg").html("24W");
-                $("#th").html("26W");
-                $("#sa").html("12W");
-                $("#sb").html("14W");
-                $("#sc").html("16W");
-                $("#sd").html("18W");
-                $("#se").html("20W");
-                $("#sf").html("22W");
-                $("#sg").html("24W");
-                $("#sh").html("26W");
-                $("#ba").html("12W");
-                $("#bb").html("14W");
-                $("#bc").html("16W");
-                $("#bd").html("18W");
-                $("#be").html("20W");
-                $("#bf").html("22W");
-                $("#bg").html("24W");
-                $("#bh").html("26W");
-            } else {
-                $("#ta").html("0/0");
-                $("#tb").html("1/2");
-                $("#tc").html("3/4");
-                $("#td").html("5/6");
-                $("#te").html("7/8");
-                $("#tf").html("9/10");
-                $("#tg").html("11/12");
-                $("#th").html("13/14");
-                $("#ti").html("15/16");
-                $("#tj").html("17/18");
-                $("#tk").html("19/20");
-                $("#tl").html("21/22");
-                $("#sa").html("0/0");
-                $("#sb").html("1/2");
-                $("#sc").html("3/4");
-                $("#sd").html("5/6");
-                $("#se").html("7/8");
-                $("#sf").html("9/10");
-                $("#sg").html("11/12");
-                $("#sh").html("13/14");
-                $("#si").html("15/16");
-                $("#sj").html("17/18");
-                $("#sk").html("19/20");
-                $("#sl").html("21/22");
-                $("#ba").html("0/0");
-                $("#bb").html("1/2");
-                $("#bc").html("3/4");
-                $("#bd").html("5/6");
-                $("#be").html("7/8");
-                $("#bf").html("9/10");
-                $("#bg").html("11/12");
-                $("#bh").html("13/14");
-                $("#bi").html("15/16");
-                $("#bj").html("17/18");
-                $("#bk").html("19/20");
-                $("#bl").html("21/22");
+            if (genero == "2") {
+                if (mujer_plus == 7) {
+                    $("#ta").html("12W");
+                    $("#tb").html("14W");
+                    $("#tc").html("16W");
+                    $("#td").html("18W");
+                    $("#te").html("20W");
+                    $("#tf").html("22W");
+                    $("#tg").html("24W");
+                    $("#th").html("26W");
+                    $("#sa").html("12W");
+                    $("#sb").html("14W");
+                    $("#sc").html("16W");
+                    $("#sd").html("18W");
+                    $("#se").html("20W");
+                    $("#sf").html("22W");
+                    $("#sg").html("24W");
+                    $("#sh").html("26W");
+                    $("#ba").html("12W");
+                    $("#bb").html("14W");
+                    $("#bc").html("16W");
+                    $("#bd").html("18W");
+                    $("#be").html("20W");
+                    $("#bf").html("22W");
+                    $("#bg").html("24W");
+                    $("#bh").html("26W");
+                } else {
+                    $("#ta").html("0/0");
+                    $("#tb").html("1/2");
+                    $("#tc").html("3/4");
+                    $("#td").html("5/6");
+                    $("#te").html("7/8");
+                    $("#tf").html("9/10");
+                    $("#tg").html("11/12");
+                    $("#th").html("13/14");
+                    $("#ti").html("15/16");
+                    $("#tj").html("17/18");
+                    $("#tk").html("19/20");
+                    $("#tl").html("21/22");
+                    $("#sa").html("0/0");
+                    $("#sb").html("1/2");
+                    $("#sc").html("3/4");
+                    $("#sd").html("5/6");
+                    $("#se").html("7/8");
+                    $("#sf").html("9/10");
+                    $("#sg").html("11/12");
+                    $("#sh").html("13/14");
+                    $("#si").html("15/16");
+                    $("#sj").html("17/18");
+                    $("#sk").html("19/20");
+                    $("#sl").html("21/22");
+                    $("#ba").html("0/0");
+                    $("#bb").html("1/2");
+                    $("#bc").html("3/4");
+                    $("#bd").html("5/6");
+                    $("#be").html("7/8");
+                    $("#bf").html("9/10");
+                    $("#bg").html("11/12");
+                    $("#bh").html("13/14");
+                    $("#bi").html("15/16");
+                    $("#bj").html("17/18");
+                    $("#bk").html("19/20");
+                    $("#bl").html("21/22");
+
+                }
+            }
+            if (genero == "3") {
+                $("#sub-genero").hide();
+                $("#ta").html("2");
+                $("#tb").html("4");
+                $("#tc").html("6");
+                $("#td").html("8");
+                $("#te").html("10");
+                $("#tf").html("12");
+                $("#tg").html("14");
+                $("#th").html("16");
+                $("#sa").html("2");
+                $("#sb").html("4");
+                $("#sc").html("6");
+                $("#sd").html("8");
+                $("#se").html("10");
+                $("#sf").html("12");
+                $("#sg").html("14");
+                $("#sh").html("16");
+                $("#ba").html("2");
+                $("#bb").html("4");
+                $("#bc").html("6");
+                $("#bd").html("8");
+                $("#be").html("10");
+                $("#bf").html("12");
+                $("#bg").html("14");
+                $("#bh").html("16");
+
+
+            //Ocultar columnas en base a las tallas que no utilizan
+
+
+
+            } else if (genero == "4") {
+                $("#sub-genero").hide();
+                $("#ta").html("2");
+                $("#tb").html("4");
+                $("#tc").html("6");
+                $("#td").html("8");
+                $("#te").html("10");
+                $("#tf").html("12");
+                $("#tg").html("14");
+                $("#th").html("16");
+                $("#sa").html("2");
+                $("#sb").html("4");
+                $("#sc").html("6");
+                $("#sd").html("8");
+                $("#se").html("10");
+                $("#sf").html("12");
+                $("#sg").html("14");
+                $("#sh").html("16");
+                $("#ba").html("2");
+                $("#bb").html("4");
+                $("#bc").html("6");
+                $("#bd").html("8");
+                $("#be").html("10");
+                $("#bf").html("12");
+                $("#bg").html("14");
+                $("#bh").html("16");
+
+
+
+
+            } else if (genero == "1") {
+                // $("#genero").val("Hombre: " + val);
+                $("#sub-genero").hide();
+                $("#ta").html("28");
+                $("#tb").html("29");
+                $("#tc").html("30");
+                $("#td").html("32");
+                $("#te").html("34");
+                $("#tf").html("36");
+                $("#tg").html("38");
+                $("#th").html("40");
+                $("#ti").html("42");
+                $("#tj").html("44");
+                $("#sa").html("28");
+                $("#sb").html("29");
+                $("#sc").html("30");
+                $("#sd").html("32");
+                $("#se").html("34");
+                $("#sf").html("36");
+                $("#sg").html("38");
+                $("#sh").html("40");
+                $("#si").html("42");
+                $("#sj").html("44");
+                $("#ba").html("28");
+                $("#bb").html("29");
+                $("#bc").html("30");
+                $("#bd").html("32");
+                $("#be").html("34");
+                $("#bf").html("36");
+                $("#bg").html("38");
+                $("#bh").html("40")
+                $("#bi").html("42")
+                $("#bj").html("44")
+
+
+
 
             }
+
+            eliminarColumnas();
         }
-        if (genero == "3") {
-            $("#sub-genero").hide();
-            $("#ta").html("2");
-            $("#tb").html("4");
-            $("#tc").html("6");
-            $("#td").html("8");
-            $("#te").html("10");
-            $("#tf").html("12");
-            $("#tg").html("14");
-            $("#th").html("16");
-            $("#sa").html("2");
-            $("#sb").html("4");
-            $("#sc").html("6");
-            $("#sd").html("8");
-            $("#se").html("10");
-            $("#sf").html("12");
-            $("#sg").html("14");
-            $("#sh").html("16");
-            $("#ba").html("2");
-            $("#bb").html("4");
-            $("#bc").html("6");
-            $("#bd").html("8");
-            $("#be").html("10");
-            $("#bf").html("12");
-            $("#bg").html("14");
-            $("#bh").html("16");
-
-
-          //Ocultar columnas en base a las tallas que no utilizan
-
-
-
-        } else if (genero == "4") {
-            $("#sub-genero").hide();
-            $("#ta").html("2");
-            $("#tb").html("4");
-            $("#tc").html("6");
-            $("#td").html("8");
-            $("#te").html("10");
-            $("#tf").html("12");
-            $("#tg").html("14");
-            $("#th").html("16");
-            $("#sa").html("2");
-            $("#sb").html("4");
-            $("#sc").html("6");
-            $("#sd").html("8");
-            $("#se").html("10");
-            $("#sf").html("12");
-            $("#sg").html("14");
-            $("#sh").html("16");
-            $("#ba").html("2");
-            $("#bb").html("4");
-            $("#bc").html("6");
-            $("#bd").html("8");
-            $("#be").html("10");
-            $("#bf").html("12");
-            $("#bg").html("14");
-            $("#bh").html("16");
-
-
-
-
-        } else if (genero == "1") {
-            // $("#genero").val("Hombre: " + val);
-            $("#sub-genero").hide();
-            $("#ta").html("28");
-            $("#tb").html("29");
-            $("#tc").html("30");
-            $("#td").html("32");
-            $("#te").html("34");
-            $("#tf").html("36");
-            $("#tg").html("38");
-            $("#th").html("40");
-            $("#ti").html("42");
-            $("#tj").html("44");
-            $("#sa").html("28");
-            $("#sb").html("29");
-            $("#sc").html("30");
-            $("#sd").html("32");
-            $("#se").html("34");
-            $("#sf").html("36");
-            $("#sg").html("38");
-            $("#sh").html("40");
-            $("#si").html("42");
-            $("#sj").html("44");
-            $("#ba").html("28");
-            $("#bb").html("29");
-            $("#bc").html("30");
-            $("#bd").html("32");
-            $("#be").html("34");
-            $("#bf").html("36");
-            $("#bg").html("38");
-            $("#bh").html("40")
-            $("#bi").html("42")
-            $("#bj").html("44")
-
-
-
-
-        }
-
-        eliminarColumnas();
+        
     });
 }
 

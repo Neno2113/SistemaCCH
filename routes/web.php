@@ -167,6 +167,7 @@ Route::get('/exportar-peach', function () {
 Route::post('/user', 'UserController@store');
 Route::put('/user/edit', 'UserController@update');
 Route::post('/user/delete/{id}', 'UserController@destroy');
+Route::post('/usercheck/delete/{id}', 'UserController@checkDestroy');
 Route::post('/user/{id}', 'UserController@show');
 Route::post('/avatar', 'UserController@upload');
 Route::get('/avatar/{filname}', 'UserController@getImage');
@@ -177,6 +178,7 @@ Route::post('/composition', 'CompositionController@store');
 Route::post('/composition/{id}', 'CompositionController@show');
 Route::put('/composition/edit', 'CompositionController@update');
 Route::post('/composition/delete/{id}', 'CompositionController@destroy');
+Route::post('/compositioncheck/delete/{id}', 'CompositionController@checkDestroy');
 // Route::get('/text', 'CompositionController@test_page');
 // Route::get('/text-read', 'CompositionController@read_test');
 
@@ -185,12 +187,14 @@ Route::post('/supplier', 'SupplierController@store');
 Route::post('/supplier/{id}', 'SupplierController@show');
 Route::put('/supplier/edit', 'SupplierController@update');
 Route::post('/supplier/delete/{id}', 'SupplierController@destroy');
+Route::post('/suppliercheck/delete/{id}', 'SupplierController@checkDestroy');
 
 //Rutas clientes
 Route::post('/client', 'ClientController@store');
 Route::post('/client/{id}', 'ClientController@show');
 Route::put('/client/edit', 'ClientController@update');
 Route::post('/client/delete/{id}', 'ClientController@destroy');
+Route::post('clientcheck/delete/{id}', 'ClientController@checkDestroy');
 
 //Sucursales
 Route::get('clients', 'ClientBranchController@select');
@@ -198,6 +202,7 @@ Route::post('/client-branch', 'ClientBranchController@store');
 Route::post('/client-branch/{id}', 'ClientBranchController@show');
 Route::put('/client-branch/edit', 'ClientBranchController@update');
 Route::post('/client-branch/delete/{id}', 'ClientBranchController@destroy');
+Route::post('/branchcheck/delete/{id}', 'ClientBranchController@checkDestroy');
 
 //Rutas telas/cloth
 Route::post('/cloth', 'ClothController@store');
@@ -206,14 +211,17 @@ Route::get('compositions', 'ClothController@selectComposition');
 Route::post('/cloth/{id}', 'ClothController@show');
 Route::put('/cloth/edit', 'ClothController@update');
 Route::post('/cloth/delete/{id}', 'ClothController@destroy');
+Route::post('/clothcheck/delete/{id}', 'ClothController@checkDestroy');
 Route::get('suplidor/select', 'ClothController@supplidorSelect');
 
 //Rutas rollos
 Route::get('cloths', 'RollosController@selectCloth');
+Route::get('suppliers', 'RollosController@select');
 Route::post('/rollos', 'RollosController@store');
 Route::post('/rollo/{id}', 'RollosController@show');
 Route::put('/rollo/edit', 'RollosController@update');
 Route::post('/rollo/delete/{id}', 'RollosController@destroy');
+Route::post('/rollocheck/delete/{id}', 'RollosController@checkDestroy');
 Route::post('tela/select', 'RollosController@selectTela');
 
 //Rutas productos
@@ -221,12 +229,14 @@ Route::get('product/lastdigit', 'ProductController@getDigits');
 Route::post('/product', 'ProductController@store');
 Route::post('/product_ref', 'ProductController@guardarReferencias');
 Route::post('/product/{id}', 'ProductController@show');
+Route::post('/product-terminado/{id}', 'ProductController@showTerminado');
 Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');
 Route::post('sku', 'ProductController@asignarSKU');
 Route::get('producto/terminado/{filname}', 'ProductController@getImage');
 Route::post('producto/validarSku', 'ProductController@validarSku');
 Route::post('validar/referencia', 'ProductController@verificarReferencia');
+Route::post('/productcheck/delete/{id}', 'ProductController@checkDestroy');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
@@ -241,6 +251,7 @@ Route::post('/corte', 'CorteController@store');
 Route::post('/corte/{id}', 'CorteController@show');
 Route::put('/corte/edit', 'CorteController@update');
 Route::post('/corte/delete/{id}', 'CorteController@destroy');
+Route::post('/cortecheck/delete/{id}', 'CorteController@checkDestroy');
 Route::get('cortes', 'CorteController@selectCorte');
 Route::get('cortes_home', 'CorteController@corte_home');
 Route::post('verificacion/corte', 'CorteController@verificarCorte');
@@ -265,6 +276,7 @@ Route::get('cortes_edit', 'LavanderiaController@selectCorteEdit');
 Route::get('/imprimir/conduce/{id}', 'LavanderiaController@imprimir')->name('print');
 Route::put('/lavanderia/edit', 'LavanderiaController@update');
 Route::post('/lavanderia/delete/{id}', 'LavanderiaController@destroy');
+Route::post('/lavanderiacheck/delete/{id}', 'LavanderiaController@checkDestroy');
 Route::get('/conduce/{id}', 'LavanderiaController@Agregar');
 Route::post('/cantidades', 'LavanderiaController@cantidad');
 
@@ -280,6 +292,7 @@ Route::post('/recepcion', 'RecepcionController@store');
 Route::get('/recepcion/{id}', 'RecepcionController@show');
 Route::put('/recepcion/edit', 'RecepcionController@update');
 Route::post('/recepcion/delete/{id}', 'RecepcionController@destroy');
+Route::post('/recepcioncheck/delete/{id}', 'RecepcionController@checkDestroy');
 Route::post('/cantidades_recibidas', 'RecepcionController@cantidad');
 Route::get('/imprimir/conduceRecepcion/{id}', 'RecepcionController@imprimir')->name('print');
 
@@ -293,6 +306,7 @@ Route::get('/perdida/{id}', 'PerdidaController@show');
 Route::put('/perdida/edit', 'PerdidaController@update');
 Route::put('/talla_perdidas/edit', 'PerdidaController@updateTallas');
 Route::post('/perdida/delete/{id}', 'PerdidaController@destroy');
+Route::post('/perdidacheck/delete/{id}', 'PerdidaController@checkDestroy');
 Route::post('/perdida/verificar', 'PerdidaController@verificarFecha');
 Route::get('/imprimir/perdida/{id}', 'PerdidaController@imprimir');
 
@@ -305,8 +319,10 @@ Route::get('productos-almacen', 'AlmacenController@selectProducto');
 Route::post('/almacen', 'AlmacenController@store');
 Route::post('/almacen/detalle', 'AlmacenController@storeDetalle');
 Route::get('almacen/{id}', 'AlmacenController@show');
+Route::get('almacen-entrada/{id}', 'AlmacenController@showAlmacen');
 Route::put('/almacen/edit', 'AlmacenController@update');
 Route::post('/almacen/delete/{id}', 'AlmacenController@destroy');
+Route::post('/almacencheck/delete/{id}', 'AlmacenController@checkDestroy');
 Route::post('/almacen/producto', 'AlmacenController@corteProducto');
 Route::post('/almacen/imagen', 'AlmacenController@upload');
 Route::post('/show/corte/producto', 'AlmacenController@verificar_ref');
@@ -337,7 +353,9 @@ Route::get('/imprimir_orden/conduce/{id}', 'ordenPedidoController@imprimir');
 Route::get('/verificar/{id}', 'ordenPedidoController@verificar');
 Route::get('/orden_pedido/{id}', 'ordenPedidoController@mostrar');
 Route::post('/orden_pedido/delete/{id}', 'ordenPedidoController@destroy');
+Route::post('/orden_pedidocheck/delete/{id}', 'ordenPedidoController@checkDestroy');
 Route::post('/orden-aprobacion/{id}', 'ordenPedidoController@aprobar');
+Route::post('/checkAprob/delete/{id}', 'ordenPedidoController@checkAprob');
 Route::post('/orden-cancelacion/{id}', 'ordenPedidoController@cancelar');
 Route::post('mostrar/{id}', 'ordenPedidoController@mostrar');
 Route::get('orden_all', 'ordenPedidoController@home_orden');
@@ -410,12 +428,17 @@ Route::post('empleado/detalle', 'EmpleadoController@storeDetalle');
 Route::get('empleado/{id}', 'EmpleadoController@show');
 Route::put('empleado/edit', 'EmpleadoController@update');
 Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
+Route::post('empleadocheck/delete/{id}', 'EmpleadoController@checkDestroy');
 
 //Permiso
 Route::get('usuarios', 'PermisoController@usuarios');
 Route::post('permiso', 'PermisoController@store');
 Route::post('permiso/delete/{id}', 'PermisoController@destroy');
+Route::post('permiso/user/{id}', 'PermisoController@destroy');
 Route::get('permiso/{id}', 'PermisoController@show');
+Route::post('permiso-add', 'PermisoController@permisoAdd');
+Route::post('permiso-remove', 'PermisoController@permisoRemove');
+Route::get('permiso/access/{id}', 'PermisoController@showPermiso');
 
 //Catalogo
 Route::post('catalogo', 'ProductController@storeCatalogo');

@@ -506,41 +506,50 @@ $(document).ready(function() {
 
 function mostrar(id_lavanderia) {
     $.post("lavanderia/" + id_lavanderia, function(data, status) {
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
-        $("#numero_corte").show();
-        $("#btn-generar").hide();
-        $("#referencia_producto").show();
-        $("#corteEdit").show();
-        $("#corteADD").hide();
-        $("#productoEdit").show();
-        $("#productoADD").hide();
-        $("#estandar_incluido").show();
-        $("#suplidor_lavanderia").show();
-        $("#formularioLavanderia").show();
-        $("#total_enviado").hide();
-
-        let result;
-        if(data.lavanderia.estandar_incluido == 1){
-            result = 'Si'
-        }else{
-            result = 'No'
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#numero_corte").show();
+            $("#btn-generar").hide();
+            $("#referencia_producto").show();
+            $("#corteEdit").show();
+            $("#corteADD").hide();
+            $("#productoEdit").show();
+            $("#productoADD").hide();
+            $("#estandar_incluido").show();
+            $("#suplidor_lavanderia").show();
+            $("#formularioLavanderia").show();
+            $("#total_enviado").hide();
+    
+            let result;
+            if(data.lavanderia.estandar_incluido == 1){
+                result = 'Si'
+            }else{
+                result = 'No'
+            }
+    
+            $("#id").val(data.lavanderia.id);
+            $("#numero_envio").val(data.lavanderia.numero_envio).attr('readonly', false);
+            $("#fecha_envio").val(data.lavanderia.fecha_envio).attr('disabled', false);
+            $("#cantidad").val(data.lavanderia.total_enviado).attr('readonly', false);
+            $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte);
+            $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto);
+            $("#receta_lavado").val(data.lavanderia.receta_lavado).attr('readonly', false);
+            $("#estandar_incluido").val(result);
+            $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre);
+            // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
         }
-
-        $("#id").val(data.lavanderia.id);
-        $("#numero_envio").val(data.lavanderia.numero_envio).attr('readonly', false);
-        $("#fecha_envio").val(data.lavanderia.fecha_envio).attr('disabled', false);
-        $("#cantidad").val(data.lavanderia.total_enviado).attr('readonly', false);
-        $("#numero_corte").val('Corte elegida: '+data.lavanderia.corte.numero_corte);
-        $("#referencia_producto").val('Referencia elegida: '+data.lavanderia.producto.referencia_producto);
-        $("#receta_lavado").val(data.lavanderia.receta_lavado).attr('readonly', false);
-        $("#estandar_incluido").val(result);
-        $("#suplidor_lavanderia").val('Lavanderia elegida: '+data.lavanderia.suplidor.nombre);
-        // $("#productos").val(data.lavanderia.producto.referencia_producto).trigger('change');
+       
 
     });
 }
@@ -587,32 +596,36 @@ function ver(id_lavanderia) {
 
 
 function eliminar(id_lavanderia){
-    Swal.fire({
-        title: '¿Estas seguro de eliminar este conduce de envio?',
-        text: "Va a eliminar este envio a lavanderia!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("lavanderia/delete/" + id_lavanderia, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Conduce de envio eliminado correctamente.',
-                'success'
-                )
-                $("#lavanderias").DataTable().ajax.reload();
-            })
+    $.post("lavanderiacheck/delete/" + id_lavanderia, function(data, status) {
+        console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Estas seguro de eliminar este conduce de envio?',
+                text: "Va a eliminar este envio a lavanderia!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("lavanderia/delete/" + id_lavanderia, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Conduce de envio eliminado correctamente.',
+                        'success'
+                        )
+                        $("#lavanderias").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
-    // bootbox.confirm("¿Estas seguro de eliminar este conduce de envio?", function(result){
-    //     if(result){
-    //         $.post("lavanderia/delete/" + id_lavanderia, function(){
-    //             bootbox.alert("Conduce a lavanderia eliminada correctamente");
-    //             $("#lavanderias").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+    })
+  
 }

@@ -10,7 +10,8 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
-
+use App\PermisoUsuario;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -77,13 +78,29 @@ class UserController extends Controller
 
     public function show($id)
     {
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Usuarios')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+    
         $user = User::find($id);
 
         if (is_object($user)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'user' => $user
+                'user' => $user,
+                'user_login' => $user_login
             ];
         } else {
             $data = [
@@ -152,8 +169,28 @@ class UserController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function checkDestroy(){
+      //Chekcing if the user has access to this function
+      $user_loginId = Auth::user()->id;
+      $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Usuarios')
+      ->first();
+      if(Auth::user()->role != 'Administrador'){
+          if($user_login->eliminar == 0 || $user_login->eliminar == null){
+              return  $data = [
+                  'code' => 200,
+                  'status' => 'denied',
+                  'message' => 'No tiene permiso para realizar esta accion.'
+              ];
+          }
+  
+      }
+
+        // return response()->json($data, $data['code']);
+    }
+
     public function destroy($id)
     {
+
         $user = User::find($id);
 
         if (!empty($user)) {
@@ -183,16 +220,16 @@ class UserController extends Controller
             ->addColumn('Expandir', function ($user) {
                 return "";
             })
-            ->addColumn('Ver', function ($user) {
-                return '<button id="btnEdit" onclick="ver(' . $user->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
+            ->addColumn('editar', function ($user) {
+              
+                return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm mr-1"> <i class="fas fa-user-edit "></i></button>';
 
             })
-            ->addColumn('Editar', function ($user) {
-                return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm mr-1"> <i class="fas fa-user-edit "></i></button>'.
-                '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-user-times"></i></button>';
+            ->addColumn('eliminar', function ($user) {
+                return '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-user-times"></i></button>';
             })
 
-            ->rawColumns(['Editar', 'Ver'])
+            ->rawColumns(['editar', 'eliminar'])
             ->make(true);
     }
 

@@ -579,74 +579,121 @@ function tallas(){
 
 function mostrar(id_prouct) {
     $.post("product/" + id_prouct, function(data, status) {
-        // data = JSON.parse(data);
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
 
-        $("#id").val(data.product.id);
-        $("#referencia").val(data.product.referencia_producto);
-        $("#descripcion").val(data.product.descripcion);
-        $("#precio_lista").val(data.product.precio_lista);
-        $("#precio_lista_2").val(data.product.precio_lista_2);
-        $("#precio_venta_publico").val(data.product.precio_venta_publico);
-        $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
-        $("#a").val(data.a);
-        $("#b").val(data.b);
-        $("#c").val(data.c);
-        $("#d").val(data.d);
-        $("#e").val(data.e);
-        $("#f").val(data.f);
-        $("#g").val(data.g);
-        $("#h").val(data.h);
-        $("#i").val(data.i);
-        $("#j").val(data.j);
-        $("#k").val(data.k);
-        $("#l").val(data.l);
-        genero_global = data.product.genero;
-        genero_plus = data.product.referencia_producto.substring(3, 4);
-        let marca = data.product.referencia_producto.substring(0, 1);
-        let genero = data.product.referencia_producto.substring(1, 2);
-        let tipo_producto = data.product.referencia_producto.substring(2, 3);
-        let categoria = data.product.referencia_producto.substring(3, 4);
-        $("#marca").val(marca);
-        $("#genero").val(genero);
-        $("#tipo_producto").val(tipo_producto);
-        $("#categoria").val(categoria);
-        tallas();
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            // data = JSON.parse(data);
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+
+            $("#id").val(data.product.id);
+            $("#referencia").val(data.product.referencia_producto);
+            $("#descripcion").val(data.product.descripcion);
+            $("#precio_lista").val(data.product.precio_lista);
+            $("#precio_lista_2").val(data.product.precio_lista_2);
+            $("#precio_venta_publico").val(data.product.precio_venta_publico);
+            $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
+            $("#a").val(data.a);
+            $("#b").val(data.b);
+            $("#c").val(data.c);
+            $("#d").val(data.d);
+            $("#e").val(data.e);
+            $("#f").val(data.f);
+            $("#g").val(data.g);
+            $("#h").val(data.h);
+            $("#i").val(data.i);
+            $("#j").val(data.j);
+            $("#k").val(data.k);
+            $("#l").val(data.l);
+            genero_global = data.product.genero;
+            genero_plus = data.product.referencia_producto.substring(3, 4);
+            let marca = data.product.referencia_producto.substring(0, 1);
+            let genero = data.product.referencia_producto.substring(1, 2);
+            let tipo_producto = data.product.referencia_producto.substring(2, 3);
+            let categoria = data.product.referencia_producto.substring(3, 4);
+            $("#marca").val(marca);
+            $("#genero").val(genero);
+            $("#tipo_producto").val(tipo_producto);
+            $("#categoria").val(categoria);
+            tallas();
+        }
+        
     });
 }
 
 
 function eliminar(id_prouct){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar esta referencia?',
-        text: "Va a eliminar esta referencia!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      })
-      .then((result) => {
-        if (result.value) {
-            $.post("product/delete/" + id_prouct, function(data){
-                console.log(data);
+    $.post("productcheck/delete/" + id_prouct, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar esta referencia?',
+                text: `Solo puede eliminar referencias recien creadas que no se encuentren en uso.`,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              })
+              .then((result) => {
+                if(result.value){
+                    EliminarProducto(id_prouct);
+                }
+                
+              });
+        }
+  
+    })
+
+}
+
+const EliminarProducto = (id) => {
+
+    $.ajax({
+        url: "product/delete/"+id,
+        type: "POST",
+        dataType: "json",
+        // data: JSON.stringify(permiso),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                // console.log(datos);
                 Swal.fire(
                     'Eliminado!',
                     'Referencia  eliminada correctamente.',
                     'success'
                     )
                 $("#products").DataTable().ajax.reload();
-            })
-        } 
-        
-      }).catch(Swal.noop);
 
-
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                );
+            }
+        },
+        error: function(datos) {
+            Swal.fire(
+            'Info!',
+            'Esta referencia no puede ser borrada ya que se encuentra en uso.',
+            'info'
+            )
+        }
+    });
 }
 
 

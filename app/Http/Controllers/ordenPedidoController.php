@@ -16,6 +16,14 @@ use App\ordenPedido;
 use App\ordenPedidoDetalle;
 use App\NotaCreditoDetalle;
 use App\Empleado;
+use App\ordenEmpaque;
+use App\ordenEmpaqueDetalle;
+use App\OrdenFacturacion;
+use App\ordenFacturacionDetalle;
+use App\Factura;
+use App\FacturaDetalle;
+use App\PermisoUsuario;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -1248,6 +1256,26 @@ class ordenPedidoController extends Controller
         return \response()->json($data, $data['code']);
     }
 
+    public function checkDestroy(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Ordenes pedido')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
+
+
     public function destroy($id)
     {
         $orden = ordenPedido::find($id);
@@ -1259,15 +1287,69 @@ class ordenPedidoController extends Controller
                 $orden_proceso->delete();
             }
 
+         
+
+            $orden_empaque = ordenEmpaque::where('orden_pedido_id', $id)->first();
+
+         
+
+            if(!empty($orden_empaque)){
+
+                $empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $orden_empaque->id)->get();
+                
+                //Orden facturacion
+                $orden_facturacion = OrdenFacturacion::where('orden_empaque_id', $orden_empaque->id)->first();
+                if(!empty($orden_facturacion)){
+                    // $ordenes_id = [];
+
+                    // for ($i = 0; $i < count($orden_facturacion); $i++) {
+                    //     array_push($ordenes_id, $orden_facturacion[$i]['id']);
+                    // }
+            
+
+                    $facturacion_detalle = OrdenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion->id)->get();
+
+                    //Factura
+                    $factura = Factura::where('orden_facturacion_id', $orden_facturacion->id)->first();
+
+                    if(!empty($factura)){
+                        $factura_detalle = FacturaDetalle::where('factura_id', $factura->id)->get();
+
+                        for ($i = 0; $i < count($factura_detalle); $i++) {
+                            $factura_detalle[$i]->delete();
+                        }
+                
+                        // $factura_detalle->delete();
+                        $factura->delete();
+                    }
+                    for ($i = 0; $i < count($facturacion_detalle); $i++) {
+                        $facturacion_detalle[$i]->delete();
+                    }
+                    // $facturacion_detalle->delete();
+                    $orden_facturacion->delete();
+
+                }
+                for ($i = 0; $i < count($empaque_detalle); $i++) {
+                    $empaque_detalle[$i]->delete();
+                }
+                // $empaque_detalle->delete();
+                $orden_empaque->delete();
+                
+
+            }
+            
             $orden_detalle->delete();
             $orden->delete();
+
+
 
 
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'orden' => $orden
+                'orden' => $orden,
+                'empaque_detalle' => $empaque_detalle
             ];
         } else {
             $data = [
@@ -1376,6 +1458,25 @@ class ordenPedidoController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function checkAprob(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Aprobar y redistribuir')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
 
     public function aprobar($id)
     {

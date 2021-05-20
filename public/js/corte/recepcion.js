@@ -420,65 +420,77 @@ $(document).ready(function() {
 
 function mostrar(id_recepcion) {
     $.get("recepcion/" + id_recepcion, function(data, status) {
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
-        $("#estandar_recibido").show();
-        $("#lavanderia").show();
-        $("#corte").show();
-        $("#corteAdd").hide();
-        $("#corteEdit").show();
-        $("#lavanderiaAdd").hide();
-        $("#lavanderiaEdit").show();
-
-        let result;
-        if(data.recepcion.estandar_recibido == 1){
-            result = 'Si'
-        }else{
-            result = 'No'
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#estandar_recibido").show();
+            $("#lavanderia").show();
+            $("#corte").show();
+            $("#corteAdd").hide();
+            $("#corteEdit").show();
+            $("#lavanderiaAdd").hide();
+            $("#lavanderiaEdit").show();
+    
+            let result;
+            if(data.recepcion.estandar_recibido == 1){
+                result = 'Si'
+            }else{
+                result = 'No'
+            }
+    
+            $("#id").val(data.recepcion.id);
+            $("#corte").val('Corte elegido: '+data.recepcion.corte.numero_corte);
+            $("#lavanderia").val('Numero de envio: '+data.recepcion.lavanderia.numero_envio);
+            $("#fecha_recepcion").val(data.recepcion.fecha_recepcion);
+            $("#cantidad_recibida").val(data.recepcion.cantidad_recibida);
+            $("#estandar_recibido").val('Estandar recbido: '+result);
         }
-
-        $("#id").val(data.recepcion.id);
-        $("#corte").val('Corte elegido: '+data.recepcion.corte.numero_corte);
-        $("#lavanderia").val('Numero de envio: '+data.recepcion.lavanderia.numero_envio);
-        $("#fecha_recepcion").val(data.recepcion.fecha_recepcion);
-        $("#cantidad_recibida").val(data.recepcion.cantidad_recibida);
-        $("#estandar_recibido").val('Estandar recbido: '+result);
+       
     });
 }
 
 function eliminar(id_recepcion){
-    Swal.fire({
-        title: '¿Estas seguro de eliminar esta recepcion?',
-        text: "Va a eliminar esta recepcion!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("recepcion/delete/" + id_recepcion, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Recepcion eliminada correctamente.',
-                'success'
-                )
-                $("#recepciones").DataTable().ajax.reload();
-            })
+    $.post("recepcioncheck/delete/" + id_recepcion, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Estas seguro de eliminar esta recepcion?',
+                text: "Va a eliminar esta recepcion!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("recepcion/delete/" + id_recepcion, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Recepcion eliminada correctamente.',
+                        'success'
+                        )
+                        $("#recepciones").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
+    })
 
-    // bootbox.confirm("¿Estas seguro de eliminar esta recepcion?", function(result){
-    //     if(result){
-    //         $.post("recepcion/delete/" + id_recepcion, function(){
-    //             // bootbox.alert(e);
-    //             bootbox.alert("Recepcion eliminada correctamente!!");
-    //             $("#recepciones").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+   
 }

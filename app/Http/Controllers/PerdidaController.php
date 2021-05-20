@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Corte;
 use App\Perdida;
+use App\PermisoUsuario;
 use App\Product;
 use App\TallasPerdidas;
 use App\Talla;
 use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -175,6 +177,21 @@ class PerdidaController extends Controller
 
     public function show($id)
     {
+
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Perdidas')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
         $perdida = Perdida::find($id)->load('corte')
             ->load('producto');
             // ->load('talla');
@@ -325,6 +342,25 @@ class PerdidaController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function checkDestroy(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Perdidas')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
 
     public function destroy($id)
     {

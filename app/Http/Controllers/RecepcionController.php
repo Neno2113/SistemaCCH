@@ -7,7 +7,9 @@ use App\Recepcion;
 use App\Corte;
 use App\Lavanderia;
 use App\Perdida;
+use App\PermisoUsuario;
 use App\TallasPerdidas;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -119,10 +121,10 @@ class RecepcionController extends Controller
             $recepcion->fecha_recepcion = $fecha_recepcion;
             $recepcion->recibido_parcial = $cantidad_recibida;
             $recepcion->total_recibido = $cantidad_recibida + $total_recibido;
-            $recepcion->pendiente = $total_enviado - $cantidad_recibida - $total_recibido - $cant_perdida;
+            $recepcion->pendiente = $total_enviado - $cantidad_recibida - $total_recibido;
             $recepcion->estandar_recibido = $estandar_recibido;
             $recepcion->sec = $sec + 0.01;
-
+            // $recepcion->pendiente = ($recepcion->pendiente < 0) ? 0 : $recepcion->pendiente;
             if($devolver_produccion == 1){
                 $cantidad_enviada->total_enviado = $total_enviado - $cantidad_recibida;
                 $cantidad_enviada->save();
@@ -139,7 +141,8 @@ class RecepcionController extends Controller
                 'status' => 'success',
                 'recepcion' => $recepcion,
                 'porcentaje' => $porcentaje,
-                'enviado' => $total_enviado
+                'enviado' => $total_enviado,
+                'pendiente' => $recepcion->pendiente
             ];
             // } else {
             // $data = [
@@ -289,6 +292,20 @@ class RecepcionController extends Controller
 
     public function show($id)
     {
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Recepcion')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
         $recepcion = Recepcion::find($id)->load('corte')
             ->load('lavanderia');
 
@@ -435,6 +452,25 @@ class RecepcionController extends Controller
 
         return response()->json($data, $data['code']);
     }
+    
+    public function checkDestroy(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Recepcion')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
 
     public function destroy($id)
     {

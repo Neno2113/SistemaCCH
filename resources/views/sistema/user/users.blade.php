@@ -148,6 +148,7 @@
 
                 </form>
                 {{-- <div class="row"> --}}
+                    
                 <div class="row mt-3" id="vatar">
                     <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                         <div class="form-group">
@@ -183,35 +184,41 @@
                     Cancelar</button> --}}
                 <button type="submit" id="btn-guardar" class="btn btn-primary mt-1 float-right"><i
                         class="far fa-save "></i> Guardar</button>
+                @if(Auth::user()->permisos()->where('permiso', 'Usuarios')->where('modificar', 1)->first())
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i
                         class="far fa-edit "></i> Editar</button>
-
+                @endif
             </div>
 
         </div>
     </div>
-
 </div>
-{{-- </div> --}}
+
+
 
 <div class="card" id="listadoUsers">
     <div class="card-header bg-dark ">
         <div class="row">
+          
             <div class="col-12">
+                @if (Auth::user()->role == "Administrador" )
                 <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-user-plus"></i> Agregar </button>
-
+                @elseif (Auth::user()->permisos()->where('permiso', 'Usuarios')->where('agregar', 1)->first() )
+                <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-user-plus"></i> Agregar </button>
+                @endif
                 <h4 class="text-center  text-white">Listado de usuarios</h4>
             </div>
+          
         </div>
     </div>
     <div class="card-body">
-
+        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Usuarios')->where('ver', 1)->first())
         <table id="users" class="table table-bordered table-hover datatables" style="width: 100%">
             <thead>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Elim</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
@@ -224,8 +231,8 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Elim</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
@@ -235,6 +242,33 @@
                 </tr>
             </tfoot>
         </table>
+        @else
+        <div class="row" id="alerts">
+            <div class="col-md-12">
+              <div class="card card-default">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                     Info
+                  </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-info"></i> Acceso negado!</h5>
+                        Usted no posee permisos necesarios para realizar esta accion.
+                        Para poder realizar la accion debe comunicarse con el administrador.
+                  </div>
+               
+               
+                </div>
+        
+              </div>
+              <!-- /.card -->
+            </div>
+        </div>
+        @endif
     </div>
 
 </div>

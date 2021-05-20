@@ -579,29 +579,40 @@ $(document).ready(function() {
 
 function mostrar(id_cloth) {
     $.post("cloth/" + id_cloth, function(data, status) {
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
-        $("#compo").hide();
-        // console.log(data.tela.suplidor.nombre);
 
-        $("#id").val(data.tela.id);
-        $("#referencia").val(data.tela.referencia).attr('readonly', false);
-        $("#suplidores").find('option[value='+data.suplidor.id+']').attr('selected', 'selected').trigger("change");
-        // $("#suplidores").select2(data.suplidor.nombre).trigger("change");
-        // $("#suplidores").select2(data.suplidor, {id:data.suplidor.id, item:data.suplidor.nombre}).trigger("change");
-        $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
-        $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
-        $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', false);
-        $("#peso").val(data.tela.peso).attr('readonly', false);
-        $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', false);
-        $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', false);
-        $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
-        $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#compo").hide();
+            // console.log(data.tela.suplidor.nombre);
+    
+            $("#id").val(data.tela.id);
+            $("#referencia").val(data.tela.referencia).attr('readonly', false);
+            $("#suplidores").find('option[value='+data.suplidor.id+']').attr('selected', 'selected').trigger("change");
+            // $("#suplidores").select2(data.suplidor.nombre).trigger("change");
+            // $("#suplidores").select2(data.suplidor, {id:data.suplidor.id, item:data.suplidor.nombre}).trigger("change");
+            $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
+            $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
+            $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', false);
+            $("#peso").val(data.tela.peso).attr('readonly', false);
+            $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', false);
+            $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', false);
+            $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
+            $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
+    
+        }
 
+     
     });
 }
 
@@ -631,32 +642,36 @@ function ver(id_cloth) {
 
 
 function eliminar(id_cloth){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar esta tela?',
-        text: "Va a eliminar la tela permanentemente!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("cloth/delete/" + id_cloth, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Tela eliminada correctamente.',
-                'success'
-                )
-                $("#cloths").DataTable().ajax.reload();
-            })
+    $.post("clothcheck/delete/" + id_cloth, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar esta tela?',
+                text: "Va a eliminar la tela permanentemente!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("cloth/delete/" + id_cloth, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Tela eliminada correctamente.',
+                        'success'
+                        )
+                        $("#cloths").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
-    // bootbox.confirm("¿Estas seguro de eliminar esta tela?", function(result){
-    //     if(result){
-    //         $.post("cloth/delete/" + id_cloth, function(){
-    //             bootbox.alert("Composicion eliminada correctamente");
-    //             $("#cloths").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+    })
+
 }

@@ -55,13 +55,16 @@
     <div class="card-header bg-dark">
         <div class="row">
             <div class="col-12">
+                @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Composicion')->where('agregar', 1)->first())
                 <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+                @endif
                 <h4 class="text-white text-center">Listado de composiciones</h4>
             </div>
         </div>
 
     </div>
     <div class="card-body">
+        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Composicion')->where('ver', 1)->first())
         <table id="compositions" class="table table-hover table-bordered datatables">
             <thead>
                 <tr>
@@ -78,6 +81,33 @@
                 </tr>
             </tfoot>
         </table>
+        @else
+        <div class="row" id="alerts">
+            <div class="col-md-12">
+              <div class="card card-default">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                     Info
+                  </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-info"></i> Acceso negado!</h5>
+                        Usted no posee permisos necesarios para realizar esta accion.
+                        Para poder realizar la accion debe comunicarse con el administrador.
+                  </div>
+               
+               
+                </div>
+        
+              </div>
+              <!-- /.card -->
+            </div>
+        </div>
+        @endif
     </div>
 
 </div>
@@ -88,59 +118,6 @@
 @include('adminlte/scripts')
 <script src="{{asset('js/corte/composition.js')}}"></script>
 
-<script>
-    function mostrar(id_composition) {
-        $.post("composition/" + id_composition, function(data, status) {
-            // data = JSON.parse(data);
-            $("#listadoUsers").hide();
-            $("#registroForm").show();
-            $("#btnCancelar").show();
-            $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
-
-            // console.log(data);
-            $("#id").val(data.composition.id);
-            $("#codigo_composicion").val(data.composition.codigo_composicion);
-            $("#nombre_composicion").val(data.composition.nombre_composicion);
-
-        });
-    }
-
-    function eliminar(id_composition){
-        Swal.fire({
-        title: '¿Esta seguro de eliminar esta composicion?',
-        text: "Va a eliminar esta composicion!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("composition/delete/" + id_composition, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Composicion eliminada correctamente.',
-                'success'
-                )
-                $("#compositions").DataTable().ajax.reload();
-            })
-        }
-      })
-
-        // bootbox.confirm("¿Estas seguro de eliminar esta composicion?", function(result){
-        //     if(result){
-        //         $.post("composition/delete/" + id_composition, function(){
-        //             // bootbox.alert(e);
-        //             bootbox.alert("Composicion eliminada correctamente");
-        //             $("#compositions").DataTable().ajax.reload();
-        //         })
-        //     }
-        // })
-    }
-
-</script>
 
 
 

@@ -495,90 +495,99 @@ $(document).ready(function() {
 
 function mostrar(id_almacen){
     $.get("almacen/" + id_almacen, function(data, status) {
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
-        $("#referencia_producto").show();
-        // $("#numero_corte").show();
-        // $("#corteEdit").show();
-        // $("#corteAdd").hide();
-        $("#formUpload").show();
-        $("#form_producto").show();
-        $("#form_producto_2").show();
-        $("#form_talla").show();
-        $("#btn-buscar").hide();
-        // $("#btn-imprimir").hide();
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#referencia_producto").show();
+            // $("#numero_corte").show();
+            // $("#corteEdit").show();
+            // $("#corteAdd").hide();
+            $("#formUpload").show();
+            $("#form_producto").show();
+            $("#form_producto_2").show();
+            $("#form_talla").show();
+            $("#btn-buscar").hide();
+            // $("#btn-imprimir").hide();
 
-        var fila =  "<option value="+data.almacen.corte_id +">"+data.almacen.corte.numero_corte+"</option>"
+            var fila =  "<option value="+data.almacen.corte_id +">"+data.almacen.corte.numero_corte+"</option>"
 
-        $("#cortesSearch").append(fila);
+            $("#cortesSearch").append(fila);
 
-        $("#id").val(data.almacen.id);
-        $("#cortesSearch").val(data.almacen.corte_id).select2().trigger('change');
-        $("#ubicacion").val(data.almacen.producto.ubicacion);
-        $("#tono").val(data.almacen.producto.tono);
-        $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
-        $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
-        $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
-        $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
+            $("#id").val(data.almacen.id);
+            $("#cortesSearch").val(data.almacen.corte_id).select2().trigger('change');
+            $("#ubicacion").val(data.almacen.producto.ubicacion);
+            $("#tono").val(data.almacen.producto.tono);
+            $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
+            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
+            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
+            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
 
-        total_recibido = data.total_recibido;
+            total_recibido = data.total_recibido;
 
-        $("#total").html(data.total);
-        $("#genero").val(data.almacen.producto.referencia_producto);
-        $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
-        $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
-        $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
-        $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
-        $("#pendiente_produccion").html(data.pen_produccion);
-        $("#pendiente_lavanderia").html(data.pen_lavanderia);
-        $("#total_terminacion").html(data.total_recibido);
-        $("#perdida_x").html(data.perdida_x);
-        $("#producto_id").val(data.almacen.producto.id);
+            $("#total").html(data.total);
+            $("#genero").val(data.almacen.producto.referencia_producto);
+            $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
+            $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
+            $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
+            $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+            $("#pendiente_produccion").html(data.pen_produccion);
+            $("#pendiente_lavanderia").html(data.pen_lavanderia);
+            $("#total_terminacion").html(data.total_recibido);
+            $("#perdida_x").html(data.perdida_x);
+            $("#producto_id").val(data.almacen.producto.id);
 
-        $("#disponibles").empty();
-        $("#resultados").empty();
+            $("#disponibles").empty();
+            $("#resultados").empty();
 
-        for (let t = 0; t < data.detalle.length; t++) {
-            var fila =  "<tr>"+
-            '<tr id="fila">'+
-            "<td><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].a+"</td>"+
-            "<td><input type='hidden' name='b[]' id='b[]' value="+data.detalle[t].b+">"+data.detalle[t].b+"</td>"+
-            "<td><input type='hidden' name='c[]' id='c[]' value="+data.detalle[t].c+">"+data.detalle[t].c+"</td>"+
-            "<td><input type='hidden' name='d[]' id='d[]' value="+data.detalle[t].d+">"+data.detalle[t].d+"</td>"+
-            "<td><input type='hidden' name='e[]' id='e[]' value="+data.detalle[t].e+">"+data.detalle[t].e+"</td>"+
-            "<td><input type='hidden' name='f[]' id='f[]' value="+data.detalle[t].f+">"+data.detalle[t].f+"</td>"+
-            "<td><input type='hidden' name='g[]' id='g[]' value="+data.detalle[t].g+">"+data.detalle[t].g+"</td>"+
-            "<td><input type='hidden' name='h[]' id='h[]' value="+data.detalle[t].h+">"+data.detalle[t].h+"</td>"+
-            "<td><input type='hidden' name='i[]' id='i[]' value="+data.detalle[t].i+">"+data.detalle[t].i+"</td>"+
-            "<td><input type='hidden' name='j[]' id='j[]' value="+data.detalle[t].j+">"+data.detalle[t].j+"</td>"+
-            "<td><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
-            "<td><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
-            "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
-            "</tr>";
+            for (let t = 0; t < data.detalle.length; t++) {
+                var fila =  "<tr>"+
+                '<tr id="fila">'+
+                "<td><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].a+"</td>"+
+                "<td><input type='hidden' name='b[]' id='b[]' value="+data.detalle[t].b+">"+data.detalle[t].b+"</td>"+
+                "<td><input type='hidden' name='c[]' id='c[]' value="+data.detalle[t].c+">"+data.detalle[t].c+"</td>"+
+                "<td><input type='hidden' name='d[]' id='d[]' value="+data.detalle[t].d+">"+data.detalle[t].d+"</td>"+
+                "<td><input type='hidden' name='e[]' id='e[]' value="+data.detalle[t].e+">"+data.detalle[t].e+"</td>"+
+                "<td><input type='hidden' name='f[]' id='f[]' value="+data.detalle[t].f+">"+data.detalle[t].f+"</td>"+
+                "<td><input type='hidden' name='g[]' id='g[]' value="+data.detalle[t].g+">"+data.detalle[t].g+"</td>"+
+                "<td><input type='hidden' name='h[]' id='h[]' value="+data.detalle[t].h+">"+data.detalle[t].h+"</td>"+
+                "<td><input type='hidden' name='i[]' id='i[]' value="+data.detalle[t].i+">"+data.detalle[t].i+"</td>"+
+                "<td><input type='hidden' name='j[]' id='j[]' value="+data.detalle[t].j+">"+data.detalle[t].j+"</td>"+
+                "<td><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
+                "<td><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
+                "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
+                "</tr>";
             $("#disponibles").append(fila);
-        }
+            }
 
-        var resultados =  "<tr>"+
-            '<tr id="fila">'+
-            "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+"</td>"+
-            "<td><input type='hidden' name='b[]' id='b[]' value="+data.b_alm+">"+data.b_alm+"</td>"+
-            "<td><input type='hidden' name='c[]' id='c[]' value="+data.c_alm+">"+data.c_alm+"</td>"+
-            "<td><input type='hidden' name='d[]' id='d[]' value="+data.d_alm+">"+data.d_alm+"</td>"+
-            "<td><input type='hidden' name='e[]' id='e[]' value="+data.e_alm+">"+data.e_alm+"</td>"+
-            "<td><input type='hidden' name='f[]' id='f[]' value="+data.f_alm+">"+data.f_alm+"</td>"+
-            "<td><input type='hidden' name='g[]' id='g[]' value="+data.g_alm+">"+data.g_alm+"</td>"+
-            "<td><input type='hidden' name='h[]' id='h[]' value="+data.h_alm+">"+data.h_alm+"</td>"+
-            "<td><input type='hidden' name='i[]' id='i[]' value="+data.i_alm+">"+data.i_alm+"</td>"+
-            "<td><input type='hidden' name='j[]' id='j[]' value="+data.j_alm+">"+data.j_alm+"</td>"+
-            "<td><input type='hidden' name='k[]' id='k[]' value="+data.k_alm+">"+data.k_alm+"</td>"+
-            "<td><input type='hidden' name='l[]' id='l[]' value="+data.l_alm+">"+data.l_alm+"</td>"+
-            "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.total_alm+">"+data.total_alm+"</td>"+
-            "</tr>";
+            var resultados =  "<tr>"+
+                '<tr id="fila">'+
+                "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+"</td>"+
+                "<td><input type='hidden' name='b[]' id='b[]' value="+data.b_alm+">"+data.b_alm+"</td>"+
+                "<td><input type='hidden' name='c[]' id='c[]' value="+data.c_alm+">"+data.c_alm+"</td>"+
+                "<td><input type='hidden' name='d[]' id='d[]' value="+data.d_alm+">"+data.d_alm+"</td>"+
+                "<td><input type='hidden' name='e[]' id='e[]' value="+data.e_alm+">"+data.e_alm+"</td>"+
+                "<td><input type='hidden' name='f[]' id='f[]' value="+data.f_alm+">"+data.f_alm+"</td>"+
+                "<td><input type='hidden' name='g[]' id='g[]' value="+data.g_alm+">"+data.g_alm+"</td>"+
+                "<td><input type='hidden' name='h[]' id='h[]' value="+data.h_alm+">"+data.h_alm+"</td>"+
+                "<td><input type='hidden' name='i[]' id='i[]' value="+data.i_alm+">"+data.i_alm+"</td>"+
+                "<td><input type='hidden' name='j[]' id='j[]' value="+data.j_alm+">"+data.j_alm+"</td>"+
+                "<td><input type='hidden' name='k[]' id='k[]' value="+data.k_alm+">"+data.k_alm+"</td>"+
+                "<td><input type='hidden' name='l[]' id='l[]' value="+data.l_alm+">"+data.l_alm+"</td>"+
+                "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.total_alm+">"+data.total_alm+"</td>"+
+                "</tr>";
             $("#resultados").append(resultados);
+        }
+        
 
 
 
@@ -587,26 +596,37 @@ function mostrar(id_almacen){
 
 
 function eliminar(id_almacen){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar este corte de almacen?',
-        text: "Va a eliminar las entradas a almacen!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("almacen/delete/" + id_almacen, function(){
-                Swal.fire(
-                    'Eliminado!',
-                    'Entrada a almacen eliminado correctamente.',
-                    'success'
-                    )
-                $("#almacenes").DataTable().ajax.reload();
-            })
+    $.post("almacencheck/delete/" + id_almacen, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar este corte de almacen?',
+                text: "Va a eliminar las entradas a almacen!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("almacen/delete/" + id_almacen, function(){
+                        Swal.fire(
+                            'Eliminado!',
+                            'Entrada a almacen eliminado correctamente.',
+                            'success'
+                            )
+                        $("#almacenes").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
+    })
 
 }
 

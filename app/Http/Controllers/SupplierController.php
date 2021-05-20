@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\PermisoUsuario;
 use Illuminate\Http\Request;
 use App\Supplier;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class SupplierController extends Controller
@@ -82,6 +84,22 @@ class SupplierController extends Controller
 
     public function show($id)
     {
+
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Suplidores')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+
         $supplier = Supplier::find($id);
 
         if (is_object($supplier)) {
@@ -171,6 +189,25 @@ class SupplierController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function checkDestroy(){
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Suplidores')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+  
+          // return response()->json($data, $data['code']);
+      }
 
 
     public function destroy($id)

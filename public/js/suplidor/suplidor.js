@@ -298,33 +298,42 @@ $(document).ready(function() {
 
 function mostrar(id_supplier) {
     $.post("supplier/" + id_supplier, function(data, status) {
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
 
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
 
+            $("#id").val(data.supplier.id);
+            $("#nombre").val(data.supplier.nombre).attr("readonly", false);
+            $("#codigo_suplidor").val(data.supplier.codigo_suplidor).attr("readonly", false);
+            $("#rnc").val(data.supplier.rnc).attr("readonly", false);
+            $("#calle").val(data.supplier.calle).attr("readonly", false);
+            $("#sector").val(data.supplier.sector).attr("readonly", false);
+            $("#provincia").val(data.supplier.provincia).trigger("change").attr("disabled", false);
+            $("#pais").val(data.supplier.pais).trigger("change").attr("disabled", false);
+            // $("#provincia").val(data.supplier.provincia).selectpicker('refresh');
+            $("#sitios_cercanos").val(data.supplier.sitios_cercanos).attr("readonly", false);
+            $("#contacto_suplidor").val(data.supplier.contacto_suplidor).attr("readonly", false);
+            $("#telefono_1").val(data.supplier.telefono_1).attr("readonly", false);
+            $("#telefono_2").val(data.supplier.telefono_2).attr("readonly", false);
+            $("#celular").val(data.supplier.celular).attr("readonly", false);
+            $("#email").val(data.supplier.email).attr("readonly", false);
+            $("#tipo_suplidor").val(data.supplier.tipo_suplidor).attr("disabled", false);
+            $("#terminos_de_pago").val(data.supplier.terminos_de_pago).attr("disabled", false);
+            $("#nota").val(data.supplier.nota).attr("readonly", false);
+        }
 
-        $("#id").val(data.supplier.id);
-        $("#nombre").val(data.supplier.nombre).attr("readonly", false);
-        $("#codigo_suplidor").val(data.supplier.codigo_suplidor).attr("readonly", false);
-        $("#rnc").val(data.supplier.rnc).attr("readonly", false);
-        $("#calle").val(data.supplier.calle).attr("readonly", false);
-        $("#sector").val(data.supplier.sector).attr("readonly", false);
-        $("#provincia").val(data.supplier.provincia).trigger("change").attr("disabled", false);
-        $("#pais").val(data.supplier.pais).trigger("change").attr("disabled", false);
-        // $("#provincia").val(data.supplier.provincia).selectpicker('refresh');
-        $("#sitios_cercanos").val(data.supplier.sitios_cercanos).attr("readonly", false);
-        $("#contacto_suplidor").val(data.supplier.contacto_suplidor).attr("readonly", false);
-        $("#telefono_1").val(data.supplier.telefono_1).attr("readonly", false);
-        $("#telefono_2").val(data.supplier.telefono_2).attr("readonly", false);
-        $("#celular").val(data.supplier.celular).attr("readonly", false);
-        $("#email").val(data.supplier.email).attr("readonly", false);
-        $("#tipo_suplidor").val(data.supplier.tipo_suplidor).attr("disabled", false);
-        $("#terminos_de_pago").val(data.supplier.terminos_de_pago).attr("disabled", false);
-        $("#nota").val(data.supplier.nota).attr("readonly", false);
+        
 
     });
 }
@@ -359,33 +368,36 @@ function ver(id_supplier) {
 }
 
 function eliminar(id_supplier){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar este suplidor?',
-        text: "Va a eliminar este suplidor de manera permanente!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("supplier/delete/" + id_supplier, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Entrada a almacen eliminado correctamente.',
-                'success'
-                )
-                $("#suppliers").DataTable().ajax.reload();
-            })
+    $.post("suppliercheck/delete/" + id_supplier, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar este suplidor?',
+                text: "Va a eliminar este suplidor de manera permanente!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("supplier/delete/" + id_supplier, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Entrada a almacen eliminado correctamente.',
+                        'success'
+                        )
+                        $("#suppliers").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
-    // bootbox.confirm("¿Estas seguro de eliminar este suplidor?", function(result){
-    //     if(result){
-    //         $.post("supplier/delete/" + id_supplier, function(){
-    //             // bootbox.alert(e);
-    //             bootbox.alert("Suplidor eliminado!!");
-    //             $("#suppliers").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+    
+    })
 }

@@ -447,6 +447,14 @@ $(document).ready(function() {
 function mostrar(id_empleado) {
     $.get("empleado/" + id_empleado, function(data, status) {
 
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+
         $("#listadoUsers").hide();
         $("#registroForm").show();
         $("#btnCancelar").show();
@@ -530,6 +538,7 @@ function mostrar(id_empleado) {
         if(data.empleado_detalle.dependiente_7_nss == 1){
             $("input[name='hijo_6']").prop('checked', true);
         }
+    }
 
     });
 }
@@ -649,34 +658,37 @@ function ver(id_empleado) {
 }
 
 function eliminar(id_client){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar este empleado?',
-        text: "Va a eliminar este empleado de manera permanente!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("empleado/delete/" + id_client, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Usuario eliminado de manera correcta.',
-                'success'
-                )
-                $("#clients").DataTable().ajax.reload();
-            })
+    $.post("empleadocheck/delete/" + id_client, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar este empleado?',
+                text: "Va a eliminar este empleado de manera permanente!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("empleado/delete/" + id_client, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Usuario eliminado de manera correcta.',
+                        'success'
+                        )
+                        $("#clients").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
-
-    // bootbox.confirm("¿Estas seguro de eliminar este empleado?", function(result){
-    //     if(result){
-    //         $.post("empleado/delete/" + id_client, function(){
-    //             // bootbox.alert(e);
-    //             bootbox.alert("Empleado eliminado correctamente!!");
-
-    //         })
-    //     }
-    // })
+   
+    })
+    
 }

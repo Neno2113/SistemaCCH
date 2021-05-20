@@ -237,23 +237,35 @@ var orden_detalle;
 function mostrar(id_orden) {
     $("#disponibles").empty("");
     $.get("orden_empaque/" + id_orden, function(data, status) {
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        // $("#btn-guardar").hide();
 
-        $("#id").val(data.orden_empaque.id);
-        $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);
-        $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);
-        $("#orden_empaque_id").val(data.orden_empaque.id);
-        $("#cliente").val(data.cliente.nombre_cliente);
-        $("#sucursal").val(data.sucursal.nombre_sucursal);
-        $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
-        $("#orden_detalle").DataTable().destroy();
-        listarOrdenDetalle(data.orden_pedido.id);
-        orden_detalle = data.orden_detalle;
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            // $("#btn-guardar").hide();
+    
+            $("#id").val(data.orden_empaque.id);
+            $("#no_orden_pedido").val(data.orden_pedido.no_orden_pedido);
+            $("#no_orden_empaque").val(data.orden_empaque.no_orden_empaque);
+            $("#orden_empaque_id").val(data.orden_empaque.id);
+            $("#cliente").val(data.cliente.nombre_cliente);
+            $("#sucursal").val(data.sucursal.nombre_sucursal);
+            $("#fecha_entrega").val(data.orden_pedido.fecha_entrega);
+            $("#orden_detalle").DataTable().destroy();
+            listarOrdenDetalle(data.orden_pedido.id);
+            orden_detalle = data.orden_detalle;
+        }
+
+
+ 
     });
 }
 

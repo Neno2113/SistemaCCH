@@ -144,8 +144,8 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Ver", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
+                { data: "editar", orderable: false, searchable: false },
+                { data: "eliminar", orderable: false, searchable: false },
                 { data: "name" },
                 { data: "surname" },
                 { data: "email" },
@@ -266,6 +266,7 @@ $(document).ready(function() {
             $("#avatar-img").hide();
         } else {
             $("#listadoUsers").show();
+            $("#alerts").hide();
             $("#registroForm").hide();
             $("#userForm").hide();
             $("#btnCancelar").hide();
@@ -311,29 +312,39 @@ $(document).ready(function() {
 
 function mostrar(id_user) {
     $.post("user/" + id_user, function(data, status) {
-        // data = JSON.parse(data);
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#userForm").show();
-        $("#btnCancelar").show();
-        $("#btn-edit").show();
-        $("#btnAgregar").hide();
-        $("#btn-guardar").hide();
-        $("#ver-contra").show();
-        $("#avatar-img").show();
+           
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
 
-        // console.log(data);
-        $("#id").val(data.user.id);
-        $("#name").val(data.user.name).attr('readonly', false);
-        $("#surname").val(data.user.surname).attr('readonly', false);
-        $("#edad").val(data.user.edad).attr('readonly', false);
-        $("#telefono").val(data.user.telefono).attr('readonly', false);
-        $("#celular").val(data.user.celular).attr('readonly', false);
-        $("#direccion").val(data.user.direccion).attr('readonly', false);
-        $("#email").val(data.user.email).attr('readonly', false);
-        $("#role").val(data.user.role).attr('disabled', false);
-        $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
-        $("#image_name").val(data.user.avatar);
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#userForm").show();
+            $("#btnCancelar").show();
+            $("#btn-edit").show();
+            $("#btnAgregar").hide();
+            $("#btn-guardar").hide();
+            $("#ver-contra").show();
+            $("#avatar-img").show();
+            $("#alerts").show();
+
+            // console.log(data);
+            $("#id").val(data.user.id);
+            $("#name").val(data.user.name).attr('readonly', false);
+            $("#surname").val(data.user.surname).attr('readonly', false);
+            $("#edad").val(data.user.edad).attr('readonly', false);
+            $("#telefono").val(data.user.telefono).attr('readonly', false);
+            $("#celular").val(data.user.celular).attr('readonly', false);
+            $("#direccion").val(data.user.direccion).attr('readonly', false);
+            $("#email").val(data.user.email).attr('readonly', false);
+            $("#role").val(data.user.role).attr('disabled', false);
+            $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
+            $("#image_name").val(data.user.avatar);
+        }
     });
 }
 
@@ -361,33 +372,36 @@ function ver(id_user) {
 
 
 function eliminar(id_user){
-    Swal.fire({
-        title: '¿Esta seguro de eliminar este usuario?',
-        text: "Va a eliminar este usuario!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("user/delete/" + id_user, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Usuario eliminado correctamente.',
-                'success'
-                )
-                $("#users").DataTable().ajax.reload();
-            })
+    $.post("usercheck/delete/" + id_user, function(data, status) {
+        console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar este usuario?',
+                text: "Va a eliminar este usuario!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("user/delete/" + id_user, function(data){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Usuario eliminado correctamente.',
+                        'success'
+                        )
+                        $("#users").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
-    // bootbox.confirm("¿Estas seguro de eliminar este usuario?", function(result){
-    //     if(result){
-    //         $.post("user/delete/" + id_user, function(){
-    //             // bootbox.alert(e);
-    //             bootbox.alert("Usuario eliminado correctamente");
-    //             $("#users").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
+    })
+   
 }

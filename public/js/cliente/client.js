@@ -341,63 +341,73 @@ $(document).ready(function() {
 function mostrar(id_client) {
     $.post("client/" + id_client, function(data, status) {
 
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
-        $("#autorizacion_credito_req").show();
-        $("#redistribucion_tallas").show();
-        $("#factura_desglosada_tallas").show();
-        $("#acepta_segundas").show();
 
-        let result1, result2, result3, result4;
-        if(data.client.autorizacion_credito_req == 1){
-            result1 = 'Si';
-        }else{
-            result1 = 'No';
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else { 
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#autorizacion_credito_req").show();
+            $("#redistribucion_tallas").show();
+            $("#factura_desglosada_tallas").show();
+            $("#acepta_segundas").show();
+
+            let result1, result2, result3, result4;
+            if(data.client.autorizacion_credito_req == 1){
+                result1 = 'Si';
+            }else{
+                result1 = 'No';
+            }
+
+            if(data.client.redistribucion_tallas == 1){
+                result2 = 'Si';
+            }else{
+                result2 = 'No';
+            }
+
+            if(data.client.factura_desglosada_talla == 1){
+                result3 = 'Si';
+            }else{
+                result3 = 'No';
+            }
+
+            if(data.client.acepta_segundas == 1){
+                result4 = 'Si';
+            }else{
+                result4 = 'No';
+            }
+
+            // console.log(typeof data.client.autorizacion_credito_req);
+            $("#id").val(data.client.id);
+            $("#nombre_cliente").val(data.client.nombre_cliente).attr('readonly', false);
+            $("#codigo_cliente").val(data.client.codigo_cliente).attr('readonly', false);
+            $("#rnc").val(data.client.rnc).attr('readonly', false);
+            $("#calle").val(data.client.calle).attr('readonly', false);
+            $("#sector").val(data.client.sector).attr('readonly', false);
+            $("#provincia").val(data.client.provincia).trigger("change").attr('disabled', false);
+            $("#sitios_cercanos").val(data.client.sitios_cercanos).attr('readonly', false);
+            $("#contacto_cliente_principal").val(data.client.contacto_cliente_principal).attr('readonly', false);
+            $("#telefono_1").val(data.client.telefono_1).attr('readonly', false);
+            $("#telefono_2").val(data.client.telefono_2).attr('readonly', false);
+            $("#telefono_3").val(data.client.telefono_3).attr('readonly', false);
+            $("#celular_principal").val(data.client.celular_principal).attr('readonly', false);
+            $("#email_principal").val(data.client.email_principal).attr('readonly', false);
+            $("#condiciones_credito").val(data.client.condiciones_credito).attr('disabled', false);
+            $("#autorizacion_credito_req").val(result1);
+            $("#notas").val(data.client.notas);
+            $("#redistribucion_tallas").val(result2);
+            $("#factura_desglosada_tallas").val(result3);
+            $("#acepta_segundas").val(result4);
+
         }
-
-        if(data.client.redistribucion_tallas == 1){
-            result2 = 'Si';
-        }else{
-            result2 = 'No';
-        }
-
-        if(data.client.factura_desglosada_talla == 1){
-            result3 = 'Si';
-        }else{
-            result3 = 'No';
-        }
-
-        if(data.client.acepta_segundas == 1){
-            result4 = 'Si';
-        }else{
-            result4 = 'No';
-        }
-
-        // console.log(typeof data.client.autorizacion_credito_req);
-        $("#id").val(data.client.id);
-        $("#nombre_cliente").val(data.client.nombre_cliente).attr('readonly', false);
-        $("#codigo_cliente").val(data.client.codigo_cliente).attr('readonly', false);
-        $("#rnc").val(data.client.rnc).attr('readonly', false);
-        $("#calle").val(data.client.calle).attr('readonly', false);
-        $("#sector").val(data.client.sector).attr('readonly', false);
-        $("#provincia").val(data.client.provincia).trigger("change").attr('disabled', false);
-        $("#sitios_cercanos").val(data.client.sitios_cercanos).attr('readonly', false);
-        $("#contacto_cliente_principal").val(data.client.contacto_cliente_principal).attr('readonly', false);
-        $("#telefono_1").val(data.client.telefono_1).attr('readonly', false);
-        $("#telefono_2").val(data.client.telefono_2).attr('readonly', false);
-        $("#telefono_3").val(data.client.telefono_3).attr('readonly', false);
-        $("#celular_principal").val(data.client.celular_principal).attr('readonly', false);
-        $("#email_principal").val(data.client.email_principal).attr('readonly', false);
-        $("#condiciones_credito").val(data.client.condiciones_credito).attr('disabled', false);
-        $("#autorizacion_credito_req").val(result1);
-        $("#notas").val(data.client.notas);
-        $("#redistribucion_tallas").val(result2);
-        $("#factura_desglosada_tallas").val(result3);
-        $("#acepta_segundas").val(result4);
 
     });
 }
@@ -464,13 +474,44 @@ function ver(id_client) {
 }
 
 function eliminar(id_client){
-    bootbox.confirm("¿Estas seguro de eliminar este cliente?", function(result){
-        if(result){
-            $.post("client/delete/" + id_client, function(){
-                // bootbox.alert(e);
-                bootbox.alert("Cliente eliminado correctamente!!");
-                $("#clients").DataTable().ajax.reload();
-            })
+    $.post("clientcheck/delete/" + id_client, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Estas seguro de eliminar este cliente?',
+                text: "Va a eliminar este cliente!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("client/delete/" + id_client, function(data){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Cliente eliminado correctamente.',
+                        'success'
+                        )
+                        $("#clients").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
     })
+    // bootbox.confirm("", function(result){
+    //     if(result){
+    //         $.post("client/delete/" + id_client, function(){
+    //             // bootbox.alert(e);
+    //             bootbox.alert("Cliente eliminado correctamente!!");
+    //             $("#clients").DataTable().ajax.reload();
+    //         })
+    //     }
+    // })
 }

@@ -1094,84 +1094,96 @@ $(document).ready(function() {
 
 function mostrar(id_perdida) {
     $.get("perdida/" + id_perdida, function(data, status) {
-        $("#listadoUsers").hide();
-        $("#registroForm").show();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").show();
-        $("#btn-guardar").hide();
-        $("#estandar_recibido").show();
-        $("#lavanderia").show();
-        $("#corte").show();
-        // $("#corteAdd").hide();
-        $("#corteEdit").show();
-        $("#btn-generar").hide();
-        $("#productoEdit").show();
-        $("#referencia_producto").show();
-        $("#fila1").show();
-        $("#fila2").show();
-        $("#fila3").show();
-        $("#btn-close").hide();
-
-
-        $("#id").val(data.perdida.id);
-        $("#no_perdida").val(data.perdida.no_perdida);
-        $("#tipo_perdida").val(data.perdida.tipo_perdida).change();
-        $("#referencia_producto").val('Producto seleccionado: '+data.perdida.producto.referencia_producto);
-        $("#fecha").val(data.perdida.fecha);
-        $("#fase").val(data.perdida.fase).change();
-        $("#motivo").val(data.perdida.motivo).change();
-        $("#numero_corte").val('Corte seleccionado: '+data.perdida.corte.numero_corte);
-
-        $("#a").val(data.tallas.a);
-        $("#b").val(data.tallas.b);
-        $("#c").val(data.tallas.c);
-        $("#d").val(data.tallas.d);
-        $("#e").val(data.tallas.e);
-        $("#f").val(data.tallas.f);
-        $("#g").val(data.tallas.g);
-        $("#h").val(data.tallas.h);
-        $("#i").val(data.tallas.i);
-        $("#j").val(data.tallas.j);
-        $("#k").val(data.tallas.k);
-        $("#l").val(data.tallas.l);
-        $("#i").attr('disabled', false);
-        $("#j").attr('disabled', false);
-        $("#k").attr('disabled', false);
-        $("#l").attr('disabled', false);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+            $("#estandar_recibido").show();
+            $("#lavanderia").show();
+            $("#corte").show();
+            // $("#corteAdd").hide();
+            $("#corteEdit").show();
+            $("#btn-generar").hide();
+            $("#productoEdit").show();
+            $("#referencia_producto").show();
+            $("#fila1").show();
+            $("#fila2").show();
+            $("#fila3").show();
+            $("#btn-close").hide();
+    
+    
+            $("#id").val(data.perdida.id);
+            $("#no_perdida").val(data.perdida.no_perdida);
+            $("#tipo_perdida").val(data.perdida.tipo_perdida).change();
+            $("#referencia_producto").val('Producto seleccionado: '+data.perdida.producto.referencia_producto);
+            $("#fecha").val(data.perdida.fecha);
+            $("#fase").val(data.perdida.fase).change();
+            $("#motivo").val(data.perdida.motivo).change();
+            $("#numero_corte").val('Corte seleccionado: '+data.perdida.corte.numero_corte);
+    
+            $("#a").val(data.tallas.a);
+            $("#b").val(data.tallas.b);
+            $("#c").val(data.tallas.c);
+            $("#d").val(data.tallas.d);
+            $("#e").val(data.tallas.e);
+            $("#f").val(data.tallas.f);
+            $("#g").val(data.tallas.g);
+            $("#h").val(data.tallas.h);
+            $("#i").val(data.tallas.i);
+            $("#j").val(data.tallas.j);
+            $("#k").val(data.tallas.k);
+            $("#l").val(data.tallas.l);
+            $("#i").attr('disabled', false);
+            $("#j").attr('disabled', false);
+            $("#k").attr('disabled', false);
+            $("#l").attr('disabled', false);
+        }
+       
 
     });
 }
 
 function eliminar(id_perdida){
-    Swal.fire({
-        title: '¿Estas seguro de eliminar esta perdida?',
-        text: "Va a eliminar las perdidas registradas de este corte!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
-      }).then((result) => {
-        if (result.value) {
-            $.post("perdida/delete/" + id_perdida, function(){
-                Swal.fire(
-                'Eliminado!',
-                'Perdida eliminada correctamente.',
-                'success'
-                )
-                $("#perdida_listada").DataTable().ajax.reload();
-            })
+    $.post("perdidacheck/delete/" + id_perdida, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Estas seguro de eliminar esta perdida?',
+                text: "Va a eliminar las perdidas registradas de este corte!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("perdida/delete/" + id_perdida, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Perdida eliminada correctamente.',
+                        'success'
+                        )
+                        $("#perdida_listada").DataTable().ajax.reload();
+                    })
+                }
+              })
         }
-      })
+    
+    })
 
-    // bootbox.confirm("¿Estas seguro de eliminar esta perdida?", function(result){
-    //     if(result){
-    //         $.post("perdida/delete/" + id_perdida, function(){
-    //             // bootbox.alert(e);
-    //             bootbox.alert("Recepcion eliminada correctamente!!");
-    //             $("#perdida_listada").DataTable().ajax.reload();
-    //         })
-    //     }
-    // })
 }

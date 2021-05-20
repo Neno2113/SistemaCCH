@@ -184,3 +184,67 @@ $(document).ready(function() {
 
     init();
 });
+
+
+function mostrar(id_composition) {
+    $.post("composition/" + id_composition, function(data, status) {
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            // data = JSON.parse(data);
+            $("#listadoUsers").hide();
+            $("#registroForm").show();
+            $("#btnCancelar").show();
+            $("#btnAgregar").hide();
+            $("#btn-edit").show();
+            $("#btn-guardar").hide();
+
+            // console.log(data);
+            $("#id").val(data.composition.id);
+            $("#codigo_composicion").val(data.composition.codigo_composicion);
+            $("#nombre_composicion").val(data.composition.nombre_composicion);
+        }
+      
+
+    });
+}
+
+function eliminar(id_composition){
+    $.post("compositioncheck/delete/" + id_composition, function(data, status) {
+        // console.log(data);
+        if(data.status == 'denied'){
+            return Swal.fire(
+                'Acceso denegado!',
+                'No tiene permiso para realizar esta accion.',
+                'info'
+            )
+        } else {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar esta composicion?',
+                text: "Va a eliminar esta composicion!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, acepto'
+              }).then((result) => {
+                if (result.value) {
+                    $.post("composition/delete/" + id_composition, function(){
+                        Swal.fire(
+                        'Eliminado!',
+                        'Composicion eliminada correctamente.',
+                        'success'
+                        )
+                        $("#compositions").DataTable().ajax.reload();
+                    })
+                }
+              })
+        }
+ 
+    })
+  
+}
