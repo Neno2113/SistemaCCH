@@ -900,6 +900,7 @@ class ordenPedidoController extends Controller
         ->orWhere('nombre_sucursal', 'LIKE', 'Principal')
         ->get();
 
+       
         $data = [
             'code' => 200,
             'status' => 'success',

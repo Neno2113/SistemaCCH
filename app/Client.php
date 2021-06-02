@@ -20,5 +20,10 @@ class Client extends Model
         return $this->hasMany('App\ClientBranch');
     }
 
+    public function clienteDistribucion(){
+        
+        return $this->hasMany('App\ClienteDistribucion');
+    }
+
 
 }

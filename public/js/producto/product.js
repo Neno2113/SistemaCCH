@@ -127,6 +127,10 @@ $(document).ready(function() {
         $("#j").val("");
         $("#k").val("");
         $("#l").val("");
+        $("#frente").attr("src", '');
+        $("#trasera").attr("src", '');
+        $("#perfil").attr("src", '');
+        $("#bolsillo").attr("src", '');
     }
 
     $("#btnGenerar").on("click", function(e) {
@@ -179,7 +183,7 @@ $(document).ready(function() {
         $("#referencia").val(referencia);
 
         let producto = {
-            ';[[': referencia
+            referencia_producto: referencia
         }
 
         $.ajax({
@@ -210,18 +214,16 @@ $(document).ready(function() {
 
 
                     $("#btn-guardar").attr('disabled', false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
+                } else if(datos.status == "validation"){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Esta referencia ya fue creada!'
+                    })
                 }
             },
             error: function(datos) {
-            Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                text: 'Esta referencia ya fue creada!'
-            })
+         
             }
         });
 
@@ -304,11 +306,53 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    $("#product_id").val(datos.producto.id);
+                    
+
+                    var formData = new FormData($("#formUpload")[0]);
+            
+                    $.ajax({
+                        url: "product/imagen",
+                        type: "POST",
+                        data: formData,
+                        dataType: "JSON",
+                        processData: false,
+                        cache: false,
+                        contentType: false,
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                            
+                                $("#imagen_frente").val("");
+                                $("#imagen_trasera").val("");
+                                $("#imagen_perfil").val("");
+                                $("#imagen_bolsillo").val("");
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function(datos) {
+                            console.log(datos.responseJSON.message);
+                            let errores = datos.responseJSON.message;
+            
+                            Object.entries(errores).forEach(([key, val]) => {
+                                bootbox.alert({
+                                    message:
+                                        "<h4 class='invalid-feedback d-block'>" +
+                                        val +
+                                        "</h4>",
+                                    size: "small"
+                                });
+                            });
+                        }
+                    });
                     Swal.fire(
                         'Success',
                         'Referencia creada correctamente!',
                         'success'
                     )
+                  
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
@@ -512,8 +556,11 @@ $(document).ready(function() {
 
     })
 
-
-
+  
+    // $("#btn-upload").on('click', (e) => {
+    //     e.preventDefault();
+    //     console.log($("#formUpload"));
+    // })
 
     init();
 });
@@ -596,6 +643,7 @@ function mostrar(id_prouct) {
             $("#btn-guardar").hide();
 
             $("#id").val(data.product.id);
+            $("#product_id").val(data.product.id);
             $("#referencia").val(data.product.referencia_producto);
             $("#descripcion").val(data.product.descripcion);
             $("#precio_lista").val(data.product.precio_lista);
@@ -614,6 +662,10 @@ function mostrar(id_prouct) {
             $("#j").val(data.j);
             $("#k").val(data.k);
             $("#l").val(data.l);
+            $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_frente);
+            $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_trasero);
+            $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_perfil);
+            $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_bolsillo);
             genero_global = data.product.genero;
             genero_plus = data.product.referencia_producto.substring(3, 4);
             let marca = data.product.referencia_producto.substring(0, 1);

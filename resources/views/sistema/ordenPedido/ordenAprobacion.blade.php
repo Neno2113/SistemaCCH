@@ -33,50 +33,38 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body">
-                    <h5><strong> Formulario redistribuir orden:</strong></h5>
+                    <h5>Formulario redistribuir orden</h5>
                     <hr>
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="" class="pers">No. Orden pedido</label>
                             <input type="text" name="no_orden_pedido" id="no_orden_pedido"
                                 class="form-control text-center font-weight-bold" readonly>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="producto_id" id="producto_id" value="">
                         </div>
-                        <div class="col-md-8">
-
-                        </div>
-                        <div class="col-md-2 ">
-
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="" class="pers">Cliente</label>
                             <input type="text" name="cliente_apro" id="cliente_apro"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="" class="pers">Sucursal</label>
                             <input type="text" name="sucursal_apro" id="sucursal_apro"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="" class="pers">Vendedor</label>
                             <input type="text" name="vendedor" id="vendedor"
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                     </div>
-                    <div class="row mt-3">
-
-                    </div>
-
-                    <label for="" style="font-size:20px;" class="mt-5 d-flex justify-content-center pers">Detalle
+                    <label for="" style="font-size:20px;" class="mt-3 d-flex justify-content-center pers">Detalle
                         orden</label><span class="badge badge-success ml-2" id="badge-red">Redistribuido <i
                             class="fas fa-check"></i></span>
                     <hr>
                     <div class="">
-                        <table id="detalle" class="table  mt-5 mb-3 mr-5 tabla-tallas text-sm" style="width:103%;">
+                        <table id="detalle" class="table  mt-5 mb-3 mr-5 tabla-tallas text-sm" style="width:102%;">
                             <thead class="tabla-tallas">
                                 <tr>
                                     <th class="talla_head">PLUS</th>

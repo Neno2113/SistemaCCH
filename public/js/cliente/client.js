@@ -1,3 +1,7 @@
+let genero_global;
+let plus_global;
+let id;
+let clienteId;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -76,6 +80,7 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         $("#results").hide();
+        productos();
 
         $("#clientes").select2({
             placeholder: "Elige un cliente...",
@@ -105,7 +110,36 @@ $(document).ready(function() {
     });
 
 
+    const productos = () => {
+        $.ajax({
+            url: "select-product",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.productos.length;
 
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.productos[i].id +">"+datos.productos[i].referencia_producto+"</option>"
+
+                        $("#productos").append(fila);
+                    }
+                    $("#productos").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
+    }
     function limpiar() {
         $("#nombre_cliente").val("").attr('readonly', false);
         $("#codigo_cliente").val("").attr('readonly', false);
@@ -125,6 +159,21 @@ $(document).ready(function() {
         $("#redistribucion_tallas").val("").attr('readonly', false);;
         $("#factura_desglosada_talla").val("").attr('readonly', false);;
         $("#rnc").val("").attr('readonly', false);;
+    }
+
+    const limpiarDistri = () => {
+        $("#a").val("");
+        $("#b").val("");
+        $("#c").val("");
+        $("#d").val("");
+        $("#e").val("");
+        $("#f").val("");
+        $("#g").val("");
+        $("#h").val("");
+        $("#i").val("");
+        $("#j").val("");
+        $("#k").val("");
+        $("#l").val("");
     }
 
     $("#btn-guardar").click(function(e) {
@@ -189,6 +238,198 @@ $(document).ready(function() {
         });
 
     });
+
+    $("#bntAgregar").on('click', () => {
+        const distribucion = {
+            producto: id,
+            cliente: clienteId,
+            a: $("#a").val(),
+            b: $("#b").val(),
+            c: $("#c").val(),
+            d: $("#d").val(),
+            e: $("#e").val(),
+            f: $("#f").val(),
+            g: $("#g").val(),
+            h: $("#h").val(),
+            i: $("#i").val(),
+            j: $("#j").val(),
+            k: $("#k").val(),
+            l: $("#l").val()
+
+        }
+        // console.log(distribucion);
+        $.ajax({
+            url: "client-distribution",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(distribucion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    limpiarDistri();
+                    let fila = `
+                    <tr id="fila${datos.distribucion.id}">
+                    <th>${datos.distribucion.producto.referencia_producto}</th>
+                    <td>${datos.distribucion.a}</td>
+                    <td>${datos.distribucion.b}</td>
+                    <td>${datos.distribucion.c}</td>
+                    <td>${datos.distribucion.d}</td>
+                    <td>${datos.distribucion.e}</td>
+                    <td>${datos.distribucion.f}</td>
+                    <td>${datos.distribucion.g}</td>
+                    <td>${datos.distribucion.h}</td>
+                    <td>${datos.distribucion.i}</td>
+                    <td>${datos.distribucion.j}</td>
+                    <td>${datos.distribucion.k}</td>
+                    <td>${datos.distribucion.l}</td>
+                    <td><button class="btn btn-danger" onclick='delDistribucion(${datos.distribucion.id})'><i class="fas fa-trash-alt"></i></button></td>
+                    </tr>
+                `;
+                $("#fila").append(fila);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion del cliente verifique los datos suministrados!!"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+    })
+
+    $("#btnAdd").on('click', () => {
+        id = $("#productos").val();
+        // ClienteProductoDistribucion(clienteId);
+        let referencia = $("#productos option:selected").text();
+        const producto = {
+            id: id,
+            cliente: clienteId
+        };
+
+        $.ajax({
+            url: "distribution-check",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(producto),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    genero_global = referencia.substring(1,2);
+                    plus_global = referencia.substr(3,1);
+                    $("#refe").html(referencia);
+                    // eliminarColumnas();
+                   
+                    
+                    $("#porc_a").html(datos.a +" %");
+                    $("#porc_b").html(datos.b +" %");
+                    $("#porc_c").html(datos.c +" %");
+                    $("#porc_d").html(datos.d +" %");
+                    $("#porc_e").html(datos.e +" %");
+                    $("#porc_f").html(datos.f +" %");
+                    $("#porc_g").html(datos.g +" %");
+                    $("#porc_h").html(datos.h +" %");
+                    $("#porc_i").html(datos.i +" %");
+                    $("#porc_j").html(datos.j +" %");
+                    $("#porc_k").html(datos.k +" %");
+                    $("#porc_l").html(datos.l +" %");
+
+                    if (genero_global == "2") {
+                        if(plus_global == "7"){
+                        
+                            $("#ta").html("12W");
+                            $("#tb").html("14W");
+                            $("#tc").html("16W");
+                            $("#td").html("18W");
+                            $("#te").html("20W");
+                            $("#tf").html("22W");
+                            $("#tg").html("24W");
+                            $("#th").html("26W");
+                    
+                        }else{
+                        
+                            $("#ta").html("0/0");
+                            $("#tb").html("1/2");
+                            $("#tc").html("3/4");
+                            $("#td").html("5/6");
+                            $("#te").html("7/8");
+                            $("#tf").html("9/10");
+                            $("#tg").html("11/12");
+                            $("#th").html("13/14");
+                            $("#ti").html("15/16");
+                            $("#tj").html("17/18");
+                            $("#tk").html("19/20");
+                            $("#tl").html("21/22");
+                    
+                        }
+
+                    }
+                    if (genero_global == "3" || genero_global == "4") {
+                        $("#ta").html("2");
+                        $("#tb").html("4");
+                        $("#tc").html("6");
+                        $("#td").html("8");
+                        $("#te").html("10");
+                        $("#tf").html("12");
+                        $("#tg").html("14");
+                        $("#th").html("16");
+
+                    }  else if (genero_global == "1") {
+                    
+                        $("#sub-genero").hide();
+                        $("#ta").html("28");
+                        $("#tb").html("29");
+                        $("#tc").html("30");
+                        $("#td").html("32");
+                        $("#te").html("34");
+                        $("#tf").html("36");
+                        $("#tg").html("38");
+                        $("#th").html("40");
+                        $("#ti").html("42");
+                        $("#tj").html("44");
+                    
+                    }
+
+
+                   
+                    
+                } else {
+                    Swal.fire(
+                        'Info',
+                        'Este producto ya esta agregado.',
+                        'info'
+                    )
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+
+
+        
+        
+      
+       
+    })
+
+  
 
     function listar() {
         tabla = $("#clients").DataTable({
@@ -303,9 +544,11 @@ $(document).ready(function() {
 
     function mostrarForm(flag) {
         limpiar();
+        limpiarDistri();
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#datosForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#autorizaciones").hide();
@@ -313,6 +556,7 @@ $(document).ready(function() {
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#datosForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
 
@@ -351,6 +595,7 @@ function mostrar(id_client) {
         } else { 
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#datosForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit").show();
@@ -359,6 +604,8 @@ function mostrar(id_client) {
             $("#redistribucion_tallas").show();
             $("#factura_desglosada_tallas").show();
             $("#acepta_segundas").show();
+            clienteId = id_client;
+            ClienteProductoDistribucion(id_client);
 
             let result1, result2, result3, result4;
             if(data.client.autorizacion_credito_req == 1){
@@ -410,6 +657,67 @@ function mostrar(id_client) {
         }
 
     });
+}
+
+const ClienteProductoDistribucion = (id) => {
+    // console.log(id);
+    if(id){
+        const cliente = {
+            id
+        }
+
+        $.ajax({
+            url: "cliente-distribuciones",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(cliente),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    
+                    for (let i = 0; i < datos.distribucion.length; i++) {
+                        let fila =`
+                        <tr id="fila${datos.distribucion[i].id}">
+                        <th>${datos.distribucion[i].producto.referencia_producto}</th>
+                        <td>${datos.distribucion[i].a}</td>
+                        <td>${datos.distribucion[i].b}</td>
+                        <td>${datos.distribucion[i].c}</td>
+                        <td>${datos.distribucion[i].d}</td>
+                        <td>${datos.distribucion[i].e}</td>
+                        <td>${datos.distribucion[i].f}</td>
+                        <td>${datos.distribucion[i].g}</td>
+                        <td>${datos.distribucion[i].h}</td>
+                        <td>${datos.distribucion[i].i}</td>
+                        <td>${datos.distribucion[i].j}</td>
+                        <td>${datos.distribucion[i].k}</td>
+                        <td>${datos.distribucion[i].l}</td>
+                        <td><button class="btn btn-danger" onclick='delDistribucion(${datos.distribucion[i].id})' ><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        `
+                        $("#fila").append(fila);
+                    }
+                    
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion del cliente verifique los datos suministrados!!"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+
+    } 
+  
 }
 
 function ver(id_client) {
@@ -515,3 +823,52 @@ function eliminar(id_client){
     //     }
     // })
 }
+
+function eliminarColumnas(){
+    if(genero_global == 3 || genero_global == 4){
+        $("td:nth-child(10) ,th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+
+    }else if(genero_global == 1){
+        $("td:nth-child(10) ,th:nth-child(10)").show();
+        $("td:nth-child(11),th:nth-child(11)").show();
+
+        $("td:nth-child(12),th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+    }
+
+    if(plus_global == 7){
+        $("td:nth-child(10),th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+    }
+}
+
+
+const delDistribucion = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar esta distribucion?',
+        text: "Eliminar distribucion del producto al cliente",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("distribucion/delete/" + id, function(){
+                Swal.fire(
+                'Eliminada!',
+                'Distribucion del producto eliminada correctamente.',
+                'success'
+                )
+                $("#fila"+id).remove();
+            })
+        }
+      })
+}
+
+

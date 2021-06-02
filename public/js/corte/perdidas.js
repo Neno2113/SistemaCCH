@@ -1,20 +1,21 @@
+var total_recibido;
+var a_total;
+var b_total;
+var c_total;
+var d_total;
+var e_total;
+var f_total;
+var g_total;
+var h_total;
+var i_total;
+var j_total;
+var k_total;
+var l_total;
+var genero_global;
+var genero_plus_global;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
-    var total_recibido;
-    var a_total;
-    var b_total;
-    var c_total;
-    var d_total;
-    var e_total;
-    var f_total;
-    var g_total;
-    var h_total;
-    var i_total;
-    var j_total;
-    var k_total;
-    var l_total;
-    var genero_global;
-    var genero_plus_global;
+   
 
     $("#formulario").validate({
         rules: {
@@ -188,7 +189,7 @@ $(document).ready(function() {
                     let year = fecha.substr(6, 4);
                     let fase =  datos.fase;
 
-                    month = month + 1;
+                    month = month;
                     var i = Number(month) / 100;
                     i = (i).toFixed(2).split(".").join("");
                     i = i.substr(1, 4);
@@ -198,6 +199,10 @@ $(document).ready(function() {
                     e = e.substr(1, 4);
 
                     $("#fecha").attr('min', year +"-"+ i+"-"+e);
+                    // console.log(month);
+                    // console.log(year);
+                    // console.log(i);
+                    // console.log(e);
 
                     a_total = datos.a;
                     b_total = datos.b;
@@ -514,7 +519,7 @@ $(document).ready(function() {
                         );
                     }
 
-
+                    eliminarColumnas();
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -1186,4 +1191,28 @@ function eliminar(id_perdida){
     
     })
 
+}
+
+
+function eliminarColumnas(){
+    if(genero_global == 3 || genero_global == 4){
+        $("td:nth-child(9) ,th:nth-child(9)").hide();
+        $("td:nth-child(10),th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+
+    }else if(genero_global == 1){
+        $("td:nth-child(9) ,th:nth-child(9)").show();
+        $("td:nth-child(10),th:nth-child(10)").show();
+
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+    }
+
+    if(genero_plus_global == 7){
+        $("td:nth-child(9),th:nth-child(9)").hide();
+        $("td:nth-child(11),th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+    }
 }

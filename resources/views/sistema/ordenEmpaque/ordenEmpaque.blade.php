@@ -81,9 +81,11 @@
                         </div>
                     </div>
 
-                        <label for="" class="mt-5 mr-5">Orden de empaque</label>
-                        <div class="table-responsive">
-                            <table id="orden_detalle" class="table tabla-tallas  mt-5 mb-3 mr-5"
+                    <label for="" style="font-size:20px;" class="d-flex justify-content-center pers">Detalle
+                        orden</label>
+                    <hr>
+                    <div class="table-responsive">
+                        <table id="orden_detalle" class="table tabla-tallas   mb-3 mr-5"
                             style="width:100%; margin-left:0px;">
                             <thead class="tabla-tallas">
                                 <tr>
@@ -220,7 +222,7 @@
                                 </tr>
                             </tfoot>
                         </table>
-                        </div>
+                    </div>
 
 
 
@@ -245,7 +247,8 @@
         <h4 class="text-white">Reportar empaque</h4>
     </div>
     <div class="card-body">
-        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Reportar empaque')->where('ver', 1)->first())
+        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Reportar
+        empaque')->where('ver', 1)->first())
         <table id="listar_OE" class="table table-striped table-bordered datatables">
             <thead>
                 <tr>
@@ -280,27 +283,27 @@
         @else
         <div class="row" id="alerts">
             <div class="col-md-12">
-              <div class="card card-default">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-exclamation-triangle"></i>
-                     Info
-                  </h3>
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Info
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-info"></i> Acceso negado!</h5>
+                            Usted no posee permisos necesarios para realizar esta accion.
+                            Para poder realizar la accion debe comunicarse con el administrador.
+                        </div>
+
+
+                    </div>
+
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5><i class="icon fas fa-info"></i> Acceso negado!</h5>
-                        Usted no posee permisos necesarios para realizar esta accion.
-                        Para poder realizar la accion debe comunicarse con el administrador.
-                  </div>
-               
-               
-                </div>
-        
-              </div>
-              <!-- /.card -->
+                <!-- /.card -->
             </div>
         </div>
         @endif

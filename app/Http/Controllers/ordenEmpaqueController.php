@@ -13,6 +13,7 @@ use App\Almacen;
 use App\AlmacenDetalle;
 use App\Client;
 use App\ClientBranch;
+use App\ClienteDistribucion;
 use App\Corte;
 use App\TallasPerdidas;
 use App\Talla;
@@ -326,6 +327,13 @@ class ordenEmpaqueController extends Controller
         $producto_curva = $ordenDetalle->producto_id;
         $producto_id = $ordenDetalle->producto_id;
 
+
+        //cliente
+        $clienteId = $orden->cliente_id;
+        // $cliente = Client::find($clienteId);
+        $clienteDistribucion = ClienteDistribucion::where('cliente_id', $clienteId)
+        ->where('producto', $producto_id)->get()->first();
+
         //producto
         $producto = Product::find($producto_id);
         $ref_f = $producto->referencia_father;
@@ -508,6 +516,19 @@ class ordenEmpaqueController extends Controller
         $k_perc = (empty($k)) ? 0 : ($k_alm / $total_alm) * 100;
         $l_perc = (empty($l)) ? 0 : ($l_alm / $total_alm) * 100;
 
+        $a_perc = (empty($clienteDistribucion->a) ? $a_perc : $a_perc - $clienteDistribucion->a);
+        $b_perc = (empty($clienteDistribucion->b) ? $b_perc : $b_perc - $clienteDistribucion->b);
+        $c_perc = (empty($clienteDistribucion->c) ? $c_perc : $c_perc - $clienteDistribucion->c);
+        $d_perc = (empty($clienteDistribucion->d) ? $d_perc : $d_perc - $clienteDistribucion->d);
+        $e_perc = (empty($clienteDistribucion->e) ? $e_perc : $e_perc - $clienteDistribucion->e);
+        $f_perc = (empty($clienteDistribucion->f) ? $f_perc : $f_perc - $clienteDistribucion->f);
+        $g_perc = (empty($clienteDistribucion->g) ? $g_perc : $g_perc - $clienteDistribucion->g);
+        $h_perc = (empty($clienteDistribucion->h) ? $h_perc : $h_perc - $clienteDistribucion->h);
+        $i_perc = (empty($clienteDistribucion->i) ? $i_perc : $i_perc - $clienteDistribucion->i);
+        $j_perc = (empty($clienteDistribucion->j) ? $j_perc : $j_perc - $clienteDistribucion->j);
+        $k_perc = (empty($clienteDistribucion->k) ? $k_perc : $k_perc - $clienteDistribucion->k);
+        $l_perc = (empty($clienteDistribucion->l) ? $l_perc : $l_perc - $clienteDistribucion->l);
+
         $total_perc = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
         $i_perc + $j_perc + $k_perc + $l_perc;
 
@@ -555,9 +576,239 @@ class ordenEmpaqueController extends Controller
         $j_red = round($cantidad * $j_ter);
         $k_red = round($cantidad * $k_ter);
         $l_red = round($cantidad * $l_ter);
-
+        
         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-        $cant_total = round($cant_total);
+        // $cant_total = round($cant_total);
+
+        $cantidad_pedida = $ordenDetalle->cantidad;
+        $diferencia_distri = $cant_total - $cantidad_pedida ; 
+
+        if($cant_total != $cantidad_pedida){
+            $a_round = round($cantidad * $a_ter, 2);
+            $b_round = round($cantidad * $b_ter, 2);
+            $c_round = round($cantidad * $c_ter, 2);
+            $d_round = round($cantidad * $d_ter, 2);
+            $e_round = round($cantidad * $e_ter, 2);
+            $f_round = round($cantidad * $f_ter, 2);
+            $g_round = round($cantidad * $g_ter, 2);
+            $h_round = round($cantidad * $h_ter, 2);
+            $i_round = round($cantidad * $i_ter, 2);
+            $j_round = round($cantidad * $j_ter, 2);
+            $k_round = round($cantidad * $k_ter, 2);
+            $l_round = round($cantidad * $l_ter, 2);
+    
+            $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
+            $i_round + $j_round + $k_round + $l_round;
+            //Cambios a la redistribucion para corregir problema de total mayor o menos
+    
+    
+            //Resta de lo redondeado y el resultado
+            $dif_red_a = $a_round - $a_red ; 
+            $dif_red_b = $b_round - $b_red;
+            $dif_red_c = $c_round - $c_red;
+            $dif_red_d = $d_round - $d_red;
+            $dif_red_e = $e_round - $e_red;
+            $dif_red_f = $f_round - $f_red;
+            $dif_red_g = $g_round - $g_red;
+            $dif_red_h = $h_round - $h_red;
+            $dif_red_i = $i_round - $i_red;
+            $dif_red_j = $j_round - $j_red;
+            $dif_red_k = $k_round - $k_red;
+            $dif_red_l = $l_round - $l_red;
+    
+            $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
+            $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
+        
+            //Absoluto
+            $a_abs = abs($dif_red_a);
+            $b_abs = abs($dif_red_b);
+            $c_abs = abs($dif_red_c);
+            $d_abs = abs($dif_red_d);
+            $e_abs = abs($dif_red_e);
+            $f_abs = abs($dif_red_f);
+            $g_abs = abs($dif_red_g);
+            $h_abs = abs($dif_red_h);
+            $i_abs = abs($dif_red_i);
+            $j_abs = abs($dif_red_j);
+            $k_abs = abs($dif_red_k);
+            $l_abs = abs($dif_red_l);
+    
+            //max Value of the ABS
+            $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
+            $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
+    
+    
+            $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
+            $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
+            $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
+            $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
+            $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
+            $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
+            $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
+            $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
+            $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
+            $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
+            $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
+            $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
+    
+            $a_equal = ($a_abs == $max_abs) ? 1 : 0;
+            $b_equal = ($b_abs == $max_abs) ? 1 : 0;
+            $c_equal = ($c_abs == $max_abs) ? 1 : 0;
+            $d_equal = ($d_abs == $max_abs) ? 1 : 0;
+            $e_equal = ($e_abs == $max_abs) ? 1 : 0;
+            $f_equal = ($f_abs == $max_abs) ? 1 : 0;
+            $g_equal = ($g_abs == $max_abs) ? 1 : 0;
+            $h_equal = ($h_abs == $max_abs) ? 1 : 0;
+            $i_equal = ($i_abs == $max_abs) ? 1 : 0;
+            $j_equal = ($j_abs == $max_abs) ? 1 : 0;
+            $k_equal = ($k_abs == $max_abs) ? 1 : 0;
+            $l_equal = ($l_abs == $max_abs) ? 1 : 0;
+
+            if($cant_total > $cantidad_pedida){
+                $a_red = $a_red - $a_equal;
+                $b_red = $b_red - $b_equal;
+                $c_red = $c_red - $c_equal;
+                $d_red = $d_red - $d_equal;
+                $e_red = $e_red - $e_equal;
+                $f_red = $f_red - $f_equal;
+                $g_red = $g_red - $g_equal;
+                $h_red = $h_red - $h_equal;
+                $i_red = $i_red - $i_equal;
+                $j_red = $j_red - $j_equal;
+                $k_red = $k_red - $k_equal;
+                $l_red = $l_red - $l_equal;
+                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                // $cant_total = round($cant_total);
+            } else if($cant_total < $cantidad_pedida){
+                $a_red = $a_red + $a_equal;
+                $b_red = $b_red + $b_equal;
+                $c_red = $c_red + $c_equal;
+                $d_red = $d_red + $d_equal;
+                $e_red = $e_red + $e_equal;
+                $f_red = $f_red + $f_equal;
+                $g_red = $g_red + $g_equal;
+                $h_red = $h_red + $h_equal;
+                $i_red = $i_red + $i_equal;
+                $j_red = $j_red + $j_equal;
+                $k_red = $k_red + $k_equal;
+                $l_red = $l_red + $l_equal;
+                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+            }
+        }
+
+        if($cant_total != $cantidad_pedida){ 
+            //segundo Mayor absoluto
+            $a_abs2 = $a_abs - $a_abs_equal;
+            $b_abs2 = $b_abs - $b_abs_equal;  
+            $c_abs2 = $c_abs - $c_abs_equal;  
+            $d_abs2 = $d_abs - $d_abs_equal;  
+            $e_abs2 = $e_abs - $e_abs_equal;  
+            $f_abs2 = $f_abs - $f_abs_equal;  
+            $g_abs2 = $g_abs - $g_abs_equal;  
+            $h_abs2 = $h_abs - $h_abs_equal;  
+            $i_abs2 = $i_abs - $i_abs_equal;  
+            $j_abs2 = $j_abs - $j_abs_equal;  
+            $k_abs2 = $k_abs - $k_abs_equal;  
+            $l_abs2 = $l_abs - $l_abs_equal; 
+            
+            $max_abs2 = max($a_abs2, $b_abs2, $c_abs2, $d_abs2, $e_abs2, $f_abs2, $g_abs2, 
+            $h_abs2, $i_abs2, $j_abs2, $k_abs2, $l_abs2);
+
+            $a_abs2_equal = ($a_abs == $max_abs2) ? $max_abs2 : 0;
+            $b_abs2_equal = ($b_abs == $max_abs2) ? $max_abs2 : 0;
+            $c_abs2_equal = ($c_abs == $max_abs2) ? $max_abs2 : 0;
+            $d_abs2_equal = ($d_abs == $max_abs2) ? $max_abs2 : 0;
+            $e_abs2_equal = ($e_abs == $max_abs2) ? $max_abs2 : 0;
+            $f_abs2_equal = ($f_abs == $max_abs2) ? $max_abs2 : 0;
+            $g_abs2_equal = ($g_abs == $max_abs2) ? $max_abs2 : 0;
+            $h_abs2_equal = ($h_abs == $max_abs2) ? $max_abs2 : 0;
+            $i_abs2_equal = ($i_abs == $max_abs2) ? $max_abs2 : 0;
+            $j_abs2_equal = ($j_abs == $max_abs2) ? $max_abs2 : 0;
+            $k_abs2_equal = ($k_abs == $max_abs2) ? $max_abs2 : 0;
+            $l_abs2_equal = ($l_abs == $max_abs2) ? $max_abs2 : 0;
+
+
+            $a_equal2 = ($a_abs == $max_abs2) ? 1 : 0;
+            $b_equal2 = ($b_abs == $max_abs2) ? 1 : 0;
+            $c_equal2 = ($c_abs == $max_abs2) ? 1 : 0;
+            $d_equal2 = ($d_abs == $max_abs2) ? 1 : 0;
+            $e_equal2 = ($e_abs == $max_abs2) ? 1 : 0;
+            $f_equal2 = ($f_abs == $max_abs2) ? 1 : 0;
+            $g_equal2 = ($g_abs == $max_abs2) ? 1 : 0;
+            $h_equal2 = ($h_abs == $max_abs2) ? 1 : 0;
+            $i_equal2 = ($i_abs == $max_abs2) ? 1 : 0;
+            $j_equal2 = ($j_abs == $max_abs2) ? 1 : 0;
+            $k_equal2 = ($k_abs == $max_abs2) ? 1 : 0;
+            $l_equal2 = ($l_abs == $max_abs2) ? 1 : 0;
+
+            if($cant_total > $cantidad_pedida){
+                $a_red = $a_red - $a_equal2;
+                $b_red = $b_red - $b_equal2;
+                $c_red = $c_red - $c_equal2;
+                $d_red = $d_red - $d_equal2;
+                $e_red = $e_red - $e_equal2;
+                $f_red = $f_red - $f_equal2;
+                $g_red = $g_red - $g_equal2;
+                $h_red = $h_red - $h_equal2;
+                $i_red = $i_red - $i_equal2;
+                $j_red = $j_red - $j_equal2;
+                $k_red = $k_red - $k_equal2;
+                $l_red = $l_red - $l_equal2;
+                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                // $cant_total = round($cant_total);
+            } else if($cant_total < $cantidad_pedida){
+                $a_red = $a_red + $a_equal2;
+                $b_red = $b_red + $b_equal2;
+                $c_red = $c_red + $c_equal2;
+                $d_red = $d_red + $d_equal2;
+                $e_red = $e_red + $e_equal2;
+                $f_red = $f_red + $f_equal2;
+                $g_red = $g_red + $g_equal2;
+                $h_red = $h_red + $h_equal2;
+                $i_red = $i_red + $i_equal2;
+                $j_red = $j_red + $j_equal2;
+                $k_red = $k_red + $k_equal2;
+                $l_red = $l_red + $l_equal2;
+                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+            }
+        }
+      
+
+        // $result_a = $a_equal2 + $a_equal;
+        // $result_b = $b_equal2 + $b_equal;
+        // $result_c = $c_equal2 + $c_equal;
+        // $result_d = $d_equal2 + $d_equal;
+        // $result_e = $e_equal2 + $e_equal;
+        // $result_f = $f_equal2 + $f_equal;
+        // $result_g = $g_equal2 + $g_equal;
+        // $result_h = $h_equal2 + $h_equal;
+        // $result_i = $i_equal2 + $i_equal;
+        // $result_j = $j_equal2 + $j_equal;
+        // $result_k = $k_equal2 + $k_equal;
+        // $result_l = $l_equal2 + $l_equal;
+
+    
+        
+        // if($cantidad_pedida != $cant_total){
+        //     if($cant_total > $cantidad_pedida){
+        //         $a_red = $a_red - $result_a;
+        //     }else {
+
+        //     }
+        // }
+
+        // $a_red_rounded = round($a_red);
+        // $b_red_rounded = round($b_red);
+        // $c_red_rounded = round($c_red);
+        // $d_red_rounded = round($d_red);
+        // $e_red_rounded = round($e_red);
+        // $f_red_rounded = round($f_red);
+        // $g_red_rounded = round($g_red);
+        // $h_red_rounded = round($h_red);
+        // $i_red_rounded = round($i_red);
+        // $j_red_rounded = round($j_red);
+        // $k_red_rounded = round($k_red);
+        // $l_red_rounded = round($l_red);
 
         $referencia_producto = $producto->referencia_producto;
         $referencia_producto = substr($referencia_producto, 2, 1);
@@ -725,6 +976,7 @@ class ordenEmpaqueController extends Controller
             'j_%_alm' => $j_perc,
             'k_%_alm' => $k_perc,
             'l_%_alm' => $l_perc,
+            'total_%_curva' => $total_perc,
             'porcentaje' => 'porcentaje',
             'a_%_curva' => $a,
             'b_%_curva' => $b,
@@ -738,7 +990,7 @@ class ordenEmpaqueController extends Controller
             'j_%_curva' => $j,
             'k_%_curva' => $k,
             'l_%_curva' => $l,
-            'total_%_curva' => $total_perc,
+      
             'segundo' => 'Seg calculo',
             'a_seg' => $a_seg,
             'b_seg' => $b_seg,
@@ -779,7 +1031,112 @@ class ordenEmpaqueController extends Controller
             'k_red' => $k_red,
             'l_red' => $l_red,
             'total_red' => $cant_total,
-            // 'diferencia' => $cant_dif,
+            // 'redistribuido y redondeo' => 'Redistribuido redondeado',
+            // 'a_round' => $a_round,
+            // 'b_round' => $b_round,
+            // 'c_round' => $c_round,
+            // 'd_round' => $d_round,
+            // 'e_round' => $e_round,
+            // 'f_round' => $f_round,
+            // 'g_round' => $g_round,
+            // 'h_round' => $h_round,
+            // 'i_round' => $i_round,
+            // 'j_round' => $j_round,
+            // 'k_round' => $k_round,
+            // 'l_round' => $l_round,
+            // 'total_round' => $total_round,
+            // 'Diferencia' => 'Diferencia_distri',
+            // 'a_dif' => $dif_red_a,
+            // 'b_dif' => $dif_red_b,
+            // 'c_dif' => $dif_red_c,
+            // 'd_dif' => $dif_red_d,
+            // 'e_dif' => $dif_red_e,
+            // 'f_dif' => $dif_red_f,
+            // 'g_dif' => $dif_red_g,
+            // 'h_dif' => $dif_red_h,
+            // 'i_dif' => $dif_red_i,
+            // 'j_dif' => $dif_red_j,
+            // 'k_dif' => $dif_red_k,
+            // 'l_dif' => $dif_red_l,
+            // 'Absoluto' => 'Absoluto',
+            // 'a_abs' => $a_abs,
+            // 'b_abs' => $b_abs,
+            // 'c_abs' => $c_abs,
+            // 'd_abs' => $d_abs,
+            // 'e_abs' => $e_abs,
+            // 'f_abs' => $f_abs,
+            // 'g_abs' => $g_abs,
+            // 'h_abs' => $h_abs,
+            // 'i_abs' => $i_abs,
+            // 'j_abs' => $j_abs,
+            // 'k_abs' => $k_abs,
+            // 'l_abs' => $l_abs,
+            // 'max_Abs' => $max_abs,
+            // 'igual_al_abs' => 'igual_al_abs',
+            // 'a_abs_equal' => $a_abs_equal,
+            // 'b_abs_equal' => $b_abs_equal,
+            // 'c_abs_equal' => $c_abs_equal,
+            // 'd_abs_equal' => $d_abs_equal,
+            // 'e_abs_equal' => $e_abs_equal,
+            // 'f_abs_equal' => $f_abs_equal,
+            // 'g_abs_equal' => $g_abs_equal,
+            // 'h_abs_equal' => $h_abs_equal,
+            // 'i_abs_equal' => $i_abs_equal,
+            // 'j_abs_equal' => $j_abs_equal,
+            // 'k_abs_equal' => $k_abs_equal,
+            // 'l_abs_equal' => $l_abs_equal,
+            // 'Equal' => 'ver coincidencia',
+            // 'a_equal' => $a_equal,
+            // 'b_equal' => $b_equal,
+            // 'c_equal' => $c_equal,
+            // 'd_equal' => $d_equal,
+            // 'e_equal' => $e_equal,
+            // 'f_equal' => $f_equal,
+            // 'g_equal' => $g_equal,
+            // 'h_equal' => $h_equal,
+            // 'i_equal' => $i_equal,
+            // 'j_equal' => $j_equal,
+            // 'k_equal' => $k_equal,
+            // 'l_equal' => $l_equal,
+            // 'segundo Mayor absoluto',  
+            // 'a_abs2' => $a_abs2,
+            // 'b_abs2' => $b_abs2,
+            // 'c_abs2' => $c_abs2,
+            // 'd_abs2' => $d_abs2,
+            // 'e_abs2' => $e_abs2,
+            // 'f_abs2' => $f_abs2,
+            // 'g_abs2' => $g_abs2,
+            // 'h_abs2' => $h_abs2,
+            // 'i_abs2' => $i_abs2,
+            // 'j_abs2' => $j_abs2,
+            // 'k_abs2' => $k_abs2,
+            // 'l_abs2' => $l_abs2,
+            // 'segun mayor' => $max_abs2,
+            // 'a_abs2_equal' => $a_abs2_equal,
+            // 'b_abs2_equal' => $b_abs2_equal,
+            // 'c_abs2_equal' => $c_abs2_equal,
+            // 'd_abs2_equal' => $d_abs2_equal,
+            // 'e_abs2_equal' => $e_abs2_equal,
+            // 'f_abs2_equal' => $f_abs2_equal,
+            // 'g_abs2_equal' => $g_abs2_equal,
+            // 'h_abs2_equal' => $h_abs2_equal,
+            // 'i_abs2_equal' => $i_abs2_equal,
+            // 'j_abs2_equal' => $j_abs2_equal,
+            // 'k_abs2_equal' => $k_abs2_equal,
+            // 'l_abs2_equal' => $l_abs2_equal,
+            // 'second_mayor',
+            // 'a_equal2' => $a_equal2,
+            // 'b_equal2' => $b_equal2,
+            // 'c_equal2' => $c_equal2,
+            // 'd_equal2' => $d_equal2,
+            // 'e_equal2' => $e_equal2,
+            // 'f_equal2' => $f_equal2,
+            // 'g_equal2' => $g_equal2,
+            // 'h_equal2' => $h_equal2,
+            // 'i_equal2' => $i_equal2,
+            // 'j_equal2' => $j_equal2,
+            // 'k_equal2' => $k_equal2,
+            // 'l_equal2' => $l_equal2,
             'cant-detalle' => $cantidad,
             // 'detalle' => $orden_pedido_detalle,
             // 'genero' => $referencia_producto,

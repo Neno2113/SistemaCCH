@@ -27,6 +27,17 @@ class HomeController extends Controller
         return view('/home');
     }
 
+    /**
+     * Show the application dashboard.
+     *yse
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function confirm()
+    {
+        return view('confirm');
+    }
+
+
 
    
 }

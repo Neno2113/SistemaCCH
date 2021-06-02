@@ -310,6 +310,65 @@ $(document).ready(function() {
     init();
 });
 
+$("#btnConfirm").on('click', (e) => {
+    e.preventDefault();
+   
+    const password = {
+        vieja: $("#vieja").val(),
+        nueva: $("#nueva").val(),
+        confirmar: $("#confirmar").val()
+    }
+    // console.log(password);
+    $.ajax({
+        url: "confirm-password",
+        type: "POST",
+        dataType: "json",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: JSON.stringify(password),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                // location.reload();
+                Swal.fire(
+                    'contraseña actualizada',
+                    'La proxima vez para accesar debe escribir su contraseña nueva.',
+                    'success'
+                )
+             
+                setInterval(() => {
+                    window.location = './home';
+                }, 5000);
+               
+            } else if(datos.status == 'validation') {
+                Swal.fire(
+                    'Error',
+                    'Las contraseñas digitadas no coincicen.',
+                    'error'
+                )
+            } else if(datos.status == 'validationBoth'){
+                Swal.fire(
+                    'Error',
+                    'La contraseña actual no coincide.',
+                    'error'
+                )
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.errors);
+            let errores = datos.responseJSON.errors;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                    size: 'small'
+                });
+            });
+        }
+    });
+})
+
 function mostrar(id_user) {
     $.post("user/" + id_user, function(data, status) {
            

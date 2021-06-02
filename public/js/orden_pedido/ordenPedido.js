@@ -461,8 +461,8 @@ $(document).ready(function() {
                     var longitud = datos.sucursal.length;
 
                     for (let i = 0; i < longitud; i++) {
-                        var fila =`<option value="">PRINCIPAL</option>
-                        <option value="${datos.sucursal[i].id}">"${datos.sucursal[i].nombre_sucursal}"</option>`;
+                        var fila =
+                        `<option value="${datos.sucursal[i].id}">"${datos.sucursal[i].nombre_sucursal}"</option>`;
                         
                         
                         $("#sucursalSearch").append(fila);

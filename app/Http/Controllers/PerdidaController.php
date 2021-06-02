@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Almacen;
+use App\AlmacenDetalle;
 use Illuminate\Http\Request;
 use App\Corte;
 use App\Perdida;
@@ -453,7 +455,7 @@ class PerdidaController extends Controller
 
         //perdidas
         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
-            ->where('producto_id', $producto_id)->select('id')->get();
+            ->where('corte_id', $cortes)->select('id')->get();
 
         $perdidas = array();
 
@@ -479,22 +481,35 @@ class PerdidaController extends Controller
 
         $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get()->load('perdida');
 
+
+        $almacen = Almacen::where('corte_id', $corte_id)->get();
+
+        $almacen_id = [];
+
+        $longitudAlmacen = count($almacen);
+
+        for ($i = 0; $i < $longitudAlmacen; $i++) {
+            array_push($almacen_id, $almacen[$i]['id']);
+        }
+
+        $tallasAlmacen = AlmacenDetalle::whereIn('almacen_id', $almacen_id)->get();
+
         //producto
         $producto = Product::find($producto_id);
 
         //calcular total real
-        $a = $tallas->sum('a') - $tallasPerdidas->sum('a');
-        $b = $tallas->sum('b') - $tallasPerdidas->sum('b');
-        $c = $tallas->sum('c') - $tallasPerdidas->sum('c');
-        $d = $tallas->sum('d') - $tallasPerdidas->sum('d');
-        $e = $tallas->sum('e') - $tallasPerdidas->sum('e');
-        $f = $tallas->sum('f') - $tallasPerdidas->sum('f');
-        $g = $tallas->sum('g') - $tallasPerdidas->sum('g');
-        $h = $tallas->sum('h') - $tallasPerdidas->sum('h');
-        $i = $tallas->sum('i') - $tallasPerdidas->sum('i');
-        $j = $tallas->sum('j') - $tallasPerdidas->sum('j');
-        $k = $tallas->sum('k') - $tallasPerdidas->sum('k');
-        $l = $tallas->sum('l') - $tallasPerdidas->sum('l');
+        $a = $tallas->sum('a') - $tallasPerdidas->sum('a') - $tallasAlmacen->sum('a');
+        $b = $tallas->sum('b') - $tallasPerdidas->sum('b') - $tallasAlmacen->sum('b');
+        $c = $tallas->sum('c') - $tallasPerdidas->sum('c') - $tallasAlmacen->sum('c');
+        $d = $tallas->sum('d') - $tallasPerdidas->sum('d') - $tallasAlmacen->sum('d');
+        $e = $tallas->sum('e') - $tallasPerdidas->sum('e') - $tallasAlmacen->sum('e');
+        $f = $tallas->sum('f') - $tallasPerdidas->sum('f') - $tallasAlmacen->sum('f');
+        $g = $tallas->sum('g') - $tallasPerdidas->sum('g') - $tallasAlmacen->sum('g');
+        $h = $tallas->sum('h') - $tallasPerdidas->sum('h') - $tallasAlmacen->sum('h');
+        $i = $tallas->sum('i') - $tallasPerdidas->sum('i') - $tallasAlmacen->sum('i');
+        $j = $tallas->sum('j') - $tallasPerdidas->sum('j') - $tallasAlmacen->sum('j');
+        $k = $tallas->sum('k') - $tallasPerdidas->sum('k') - $tallasAlmacen->sum('k');
+        $l = $tallas->sum('l') - $tallasPerdidas->sum('l') - $tallasAlmacen->sum('l');
 
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);
@@ -530,7 +545,9 @@ class PerdidaController extends Controller
             'l' => $l,
             'total' => $total_real,
             'ref' => $producto->referencia_producto,
-            'fase' => $fecha_corte->fase
+            'fase' => $fecha_corte->fase,
+            'almacen' => $tallasAlmacen,
+            'perdida' => $tallasPerdidas
         ];
 
         return response()->json($data, $data['code']);

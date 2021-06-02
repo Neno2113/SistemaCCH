@@ -285,18 +285,18 @@ class ProductController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'product' => $product,
-                'a' => str_replace('.00', '', $curva->a),
-                'b' => str_replace('.00', '', $curva->b),
-                'c' => str_replace('.00', '', $curva->c),
-                'd' => str_replace('.00', '', $curva->d),
-                'e' => str_replace('.00', '', $curva->e),
-                'f' => str_replace('.00', '', $curva->f),
-                'g' => str_replace('.00', '', $curva->g),
-                'h' => str_replace('.00', '', $curva->h),
-                'i' => str_replace('.00', '', $curva->i),
-                'j' => str_replace('.00', '', $curva->j),
-                'k' => str_replace('.00', '', $curva->k),
-                'l' => str_replace('.00', '', $curva->l),
+                // 'a' => str_replace('.00', '', $curva->a),
+                // 'b' => str_replace('.00', '', $curva->b),
+                // 'c' => str_replace('.00', '', $curva->c),
+                // 'd' => str_replace('.00', '', $curva->d),
+                // 'e' => str_replace('.00', '', $curva->e),
+                // 'f' => str_replace('.00', '', $curva->f),
+                // 'g' => str_replace('.00', '', $curva->g),
+                // 'h' => str_replace('.00', '', $curva->h),
+                // 'i' => str_replace('.00', '', $curva->i),
+                // 'j' => str_replace('.00', '', $curva->j),
+                // 'k' => str_replace('.00', '', $curva->k),
+                // 'l' => str_replace('.00', '', $curva->l),
             ];
 
 
@@ -319,22 +319,25 @@ class ProductController extends Controller
         if (is_object($product)) {
             $curva = CurvaProducto::where('producto_id', $product->id)->first();
 
+            $product->precio_lista = number_format($product->precio_lista);
+            $product->precio_venta_publico = number_format($product->precio_venta_publico);
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'product' => $product,
-                'a' => str_replace('.00', '', $curva->a),
-                'b' => str_replace('.00', '', $curva->b),
-                'c' => str_replace('.00', '', $curva->c),
-                'd' => str_replace('.00', '', $curva->d),
-                'e' => str_replace('.00', '', $curva->e),
-                'f' => str_replace('.00', '', $curva->f),
-                'g' => str_replace('.00', '', $curva->g),
-                'h' => str_replace('.00', '', $curva->h),
-                'i' => str_replace('.00', '', $curva->i),
-                'j' => str_replace('.00', '', $curva->j),
-                'k' => str_replace('.00', '', $curva->k),
-                'l' => str_replace('.00', '', $curva->l),
+                // 'a' => str_replace('.00', '', $curva->a),
+                // 'b' => str_replace('.00', '', $curva->b),
+                // 'c' => str_replace('.00', '', $curva->c),
+                // 'd' => str_replace('.00', '', $curva->d),
+                // 'e' => str_replace('.00', '', $curva->e),
+                // 'f' => str_replace('.00', '', $curva->f),
+                // 'g' => str_replace('.00', '', $curva->g),
+                // 'h' => str_replace('.00', '', $curva->h),
+                // 'i' => str_replace('.00', '', $curva->i),
+                // 'j' => str_replace('.00', '', $curva->j),
+                // 'k' => str_replace('.00', '', $curva->k),
+                // 'l' => str_replace('.00', '', $curva->l),
             ];
 
 
@@ -597,10 +600,10 @@ class ProductController extends Controller
                 return "";
             })
             ->editColumn('precio_lista', function ($product) {
-                return $product->precio_lista . " RD$";
+                return number_format($product->precio_lista) . " RD$";
             })
             ->editColumn('precio_venta_publico', function ($product) {
-                return $product->precio_lista . " RD$";
+                return number_format($product->precio_lista) . " RD$";
             })
 
 
@@ -722,9 +725,19 @@ class ProductController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'message' => 'Este referencia ya fue creada'
+                'message' => 'Este referencia esta disponible',
+                'product' => $product
+            
             ];
-        } 
+        }  else {
+            $data = [
+                'code' => 200,
+                'status' => 'validation',
+                'message' => 'Este referencia ya fue creada',
+                'product' => $product
+            ];
+         
+        }
         return response()->json($data, $data['code']);
     }
 
@@ -1021,4 +1034,67 @@ class ProductController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+
+    public function upload(Request $request)
+    {
+
+        //validar la imagen
+        $validate = \Validator::make($request->all(), [
+            'imagen_frente' => 'required|image|mimes:jpg,jpeg,png',
+            'imagen_trasera' => 'required|image|mimes:jpg,jpeg,png',
+            'imagen_perfil' => 'required|image|mimes:jpg,jpeg,png',
+            'imagen_bolsillo' => 'required|image|mimes:jpg,jpeg,png',
+            'product_id' => 'required'
+        ]);
+        // Guardar la imagen
+        if ($validate->fails()) {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => $validate->errors()
+            ];
+        } else {
+            $imagen_frente = $request->file('imagen_frente');
+            $imagen_trasero = $request->file('imagen_trasera');
+            $imagen_perfil = $request->file('imagen_perfil');
+            $imagen_bolsillo = $request->file('imagen_bolsillo');
+            $product_id = $request->input('product_id');
+            $image_name_1 = time() . $imagen_frente->getClientOriginalName();
+            $image_name_2 = time() . $imagen_trasero->getClientOriginalName();
+            $image_name_3 = time() . $imagen_perfil->getClientOriginalName();
+            $image_name_4 = time() . $imagen_bolsillo->getClientOriginalName();
+
+            if(empty($product_id)){
+                $select = DB::select("SHOW TABLE STATUS LIKE 'producto'");
+                $nextId = $select[0]->Auto_increment;
+
+                $product_id = $nextId;
+            }
+
+            $producto = Product::find($product_id);
+            $producto->imagen_frente = $image_name_1;
+            $producto->imagen_trasero = $image_name_2;
+            $producto->imagen_perfil = $image_name_3;
+            $producto->imagen_bolsillo = $image_name_4;
+            $producto->save();
+
+            \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
+            \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
+            \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
+            \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'frente' => $image_name_1,
+                'trasero' => $image_name_2,
+                'perfil' => $image_name_3,
+                'bolsillo' => $image_name_4
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+    
 }

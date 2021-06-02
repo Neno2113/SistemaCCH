@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->middleware('auth', 'FirstLogin');
+Route::get('/confirm', 'HomeController@confirm');
+
 
 
 // Vistas
@@ -161,9 +163,12 @@ Route::get('/articulo', function () {
 Route::get('/exportar-peach', function () {
     return view('sistema.existencia.exportarPeach');
 })->middleware('auth', 'admin:ExportarPeach');
+
+
 // Fin vistas
 
 //Rutas de usuarios
+Route::post('/confirm-password', 'UserController@updatePassword');
 Route::post('/user', 'UserController@store');
 Route::put('/user/edit', 'UserController@update');
 Route::post('/user/delete/{id}', 'UserController@destroy');
@@ -172,6 +177,7 @@ Route::post('/user/{id}', 'UserController@show');
 Route::post('/avatar', 'UserController@upload');
 Route::get('/avatar/{filname}', 'UserController@getImage');
 Route::get('exportar/test', 'ExistenciaController@userExport');
+
 
 //Rutas composition
 Route::post('/composition', 'CompositionController@store');
@@ -191,10 +197,16 @@ Route::post('/suppliercheck/delete/{id}', 'SupplierController@checkDestroy');
 
 //Rutas clientes
 Route::post('/client', 'ClientController@store');
+Route::post('/client-distribution', 'ClientController@storeDistribution');
+Route::post('/distribution-check', 'ClientController@storeDistribution');
 Route::post('/client/{id}', 'ClientController@show');
 Route::put('/client/edit', 'ClientController@update');
 Route::post('/client/delete/{id}', 'ClientController@destroy');
 Route::post('clientcheck/delete/{id}', 'ClientController@checkDestroy');
+Route::post('/distribution-check', 'ClientController@checkDistribution');
+Route::get('/select-product', 'ClientController@Select2Producto');
+Route::post('/cliente-distribuciones', 'ClientController@distribucionCLiente');
+Route::post('/distribucion/delete/{id}', 'ClientController@destroyDistribucion');
 
 //Sucursales
 Route::get('clients', 'ClientBranchController@select');
@@ -227,6 +239,7 @@ Route::post('tela/select', 'RollosController@selectTela');
 //Rutas productos
 Route::get('product/lastdigit', 'ProductController@getDigits');
 Route::post('/product', 'ProductController@store');
+Route::post('/product/imagen', 'ProductController@upload');
 Route::post('/product_ref', 'ProductController@guardarReferencias');
 Route::post('/product/{id}', 'ProductController@show');
 Route::post('/product-terminado/{id}', 'ProductController@showTerminado');

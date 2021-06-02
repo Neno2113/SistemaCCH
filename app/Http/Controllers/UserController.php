@@ -15,10 +15,68 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
+    
+  
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+
+    public function updatePassword(Request $request) 
+    {
+        $validar = $request->validate([
+            'nueva' => 'required',
+            'vieja' => 'required'
+        ]);
+
+        if(empty($validar)){
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $vieja = $request->input('vieja');
+            $nueva = $request->input('nueva');
+            $confirmar = $request->input('confirmar');
+            $userId = Auth::user()->id;
+            
+            $user = User::find($userId);
+            
+            if($nueva != $confirmar){
+                $data = [
+                    'code' => 200,
+                    'status' => 'validationBoth',
+                    'message' => 'Las contrasenas no coinciden'
+                ];
+            } else {
+                $current_password = $user->password;
+                // $old_pwd = Hash::make($vieja);
+
+                if(!Hash::check($vieja, $current_password)){
+                    $data = [
+                        'code' => 200,
+                        'status' => 'validation',
+                        'message' => 'Las contrasena vieja no coincide',
+                        'current' => $current_password
+                    ];
+                } else {
+                    $new_pwd = Hash::make($nueva);
+                    $user->password = $new_pwd;
+                    $user->first_login = 1;
+                    $user->save();
+    
+                    $data = [
+                        'code' => 200,
+                        'status' => 'success',
+                        'message' => 'Password actualizada correctamente'
+                    ];
+                }
+            }
+        }
+
+        return response()->json($data, $data['code']);
     }
 
     public function store(Request $request)
@@ -62,6 +120,7 @@ class UserController extends Controller
             $user->celular = $celular;
             $user->surname = $apellido;
             $user->edad = $edad;
+            $user->first_login = 0;
             $user->avatar = $avatar;
 
             $user->save();
@@ -155,6 +214,7 @@ class UserController extends Controller
             $user->celular = $celular;
             $user->surname = $apellido;
             $user->edad = $edad;
+            $user->first_login = 0;
             $user->avatar = $avatar;
 
             $user->save();
@@ -295,6 +355,7 @@ class UserController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
 
 }
 

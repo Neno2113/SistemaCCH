@@ -267,6 +267,7 @@ function ver(id_orden) {
     $.get("ver/orden/" + id_orden, function(data, status) {
 
         $("#AprobarPedido").hide();
+        $("#listadoUsers").hide();
         $("#registroForm").show();
         $("#btnCancelar").show();
         $("#btnAgregar").hide();

@@ -277,12 +277,15 @@ $(document).ready(function() {
         limpiar();
         if (flag) {
             $("#listadoUsers").hide();
+        
             $("#registroForm").show();
+            $("#permisoCard").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#permisoCard").hide();
             $("#btnCancelar").hide();
             $("#fila1").show();
             $("#btn-agregar").show();
@@ -325,6 +328,7 @@ function mostrar(id_user) {
         } else {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#permisoCard").show();
             $("#btnCancelar").show();
             // $("#btn-edit").show();
             // $("#btn-agregar").hide();

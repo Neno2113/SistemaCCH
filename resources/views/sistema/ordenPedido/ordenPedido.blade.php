@@ -53,7 +53,7 @@
                             <div class="col-md-6" id="sucursalBuscar">
                                 <label for="">Sucursal</label>
                                 <select name="tags[]" id="sucursalSearch" class="form-control select2">
-                                    <option value="" disabled>Sucursal</option>
+                                    <option value='Principal' >Principal</option>
                                     
                                 </select>
                             </div>

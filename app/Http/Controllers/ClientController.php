@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\ClientBranch;
+use App\ClienteDistribucion;
+use App\CurvaProducto;
 use App\PermisoUsuario;
+use App\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class ClientController extends Controller
@@ -76,8 +81,14 @@ class ClientController extends Controller
             $cliente->redistribucion_tallas = $redistribucion_tallas;
             $cliente->factura_desglosada_talla = $factura_desglosada_talla;
             $cliente->acepta_segundas = $acepta_segundas;
-
             $cliente->save();
+
+
+            // $branch_principal = new ClientBranch();
+            // $branch_principal->cliente_id = $cliente->id;
+            // $branch_principal->nombre_sucursal = 'Principal';
+            // $branch_principal->save();
+         
 
             $data = [
                 'code' => 200,
@@ -273,5 +284,208 @@ class ClientController extends Controller
             })
             ->rawColumns(['Ver', 'Opciones'])
             ->make(true);
+    }
+
+
+    public function storeDistribution (Request $request){
+
+        $validar = $request->validate([
+            'producto' => 'required',
+         
+        ]);
+
+        if(empty($validar)){
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('producto');
+            $cliente = $request->input('cliente');
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
+
+            //validaciones
+            $a = trim($a, "_");
+            $b = trim($b, "_");
+            $c = trim($c, "_");
+            $d = trim($d, "_");
+            $e = trim($e, "_");
+            $f = trim($f, "_");
+            $g = trim($g, "_");
+            $h = trim($h, "_");
+            $i = trim($i, "_");
+            $j = trim($j, "_");
+            $k = trim($k, "_");
+            $l = trim($l, "_");
+
+
+            $distribucion = new ClienteDistribucion();
+            if(empty($cliente)){
+                $select = DB::select("SHOW TABLE STATUS LIKE 'cliente'");
+                $nextId = $select[0]->Auto_increment;
+
+                $distribucion->cliente_id = $nextId;
+            } else {
+                $distribucion->cliente_id = $cliente;
+            }
+
+            $distribucion->producto = $id;
+            $distribucion->a = ($a == "" ? 0 : $a);
+            $distribucion->b = ($b == "" ? 0 : $b);
+            $distribucion->c = ($c == "" ? 0 : $c);
+            $distribucion->d = ($d == "" ? 0 : $d);
+            $distribucion->e = ($e == "" ? 0 : $e);
+            $distribucion->f = ($f == "" ? 0 : $f);
+            $distribucion->g = ($g == "" ? 0 : $g);
+            $distribucion->h = ($h == "" ? 0 : $h);
+            $distribucion->i = ($i == "" ? 0 : $i);
+            $distribucion->j = ($j == "" ? 0 : $j);
+            $distribucion->k = ($k == "" ? 0 : $k);
+            $distribucion->l = ($l == "" ? 0 : $l);
+
+            $distribucion->save();
+            
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'distribucion' => $distribucion->load('producto')
+            ];
+           
+        
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function checkDistribution(Request $request){
+        
+
+        $cliente = $request->input('cliente');
+        $producto = $request->input('id');
+        $unico = ClienteDistribucion::where('cliente_id', $cliente)
+        ->where('producto', $producto)
+        ->get()->first();
+
+
+        if(empty($unico)){  
+            $curva_producto = CurvaProducto::where('producto_id', $request->input('id'))->first();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'paso',
+                'curva' => $curva_producto,
+                'a' => str_replace('.00', '', $curva_producto->a),
+                'b' => str_replace('.00', '', $curva_producto->b),
+                'c' => str_replace('.00', '', $curva_producto->c),
+                'd' => str_replace('.00', '', $curva_producto->d),
+                'e' => str_replace('.00', '', $curva_producto->e),
+                'f' => str_replace('.00', '', $curva_producto->f),
+                'g' => str_replace('.00', '', $curva_producto->g),
+                'h' => str_replace('.00', '', $curva_producto->h),
+                'i' => str_replace('.00', '', $curva_producto->i),
+                'j' => str_replace('.00', '', $curva_producto->j),
+                'k' => str_replace('.00', '', $curva_producto->k),
+                'l' => str_replace('.00', '', $curva_producto->l),
+            ];
+           
+        } else {
+            $data = [
+                'code' => 200,
+                'status' => 'validation',
+                'message' => 'No paso'
+            ];
+           
+           
+        }
+        return response()->json($data, $data['code']);
+    }
+
+    public function Select2Producto()
+    {
+        $productos = Product::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'productos' => $productos
+        ];
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function distribucionCLiente(Request $request) 
+    {
+        $id = $request->input('id');
+
+        if(empty($id)){
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No se envio el cliente'
+            ];
+        } else {
+            $distri = ClienteDistribucion::where('cliente_id', $id)->get()->load('producto');
+
+            for ($i=0 ; $i < count($distri) ; $i++ ) { 
+               str_replace('.00', '', $distri[$i]['a']);
+               str_replace('.00', '', $distri[$i]['b']);
+               str_replace('.00', '', $distri[$i]['c']);
+               str_replace('.00', '', $distri[$i]['d']);
+               str_replace('.00', '', $distri[$i]['e']);
+               str_replace('.00', '', $distri[$i]['f']);
+               str_replace('.00', '', $distri[$i]['g']);
+               str_replace('.00', '', $distri[$i]['h']);
+               str_replace('.00', '', $distri[$i]['i']);
+               str_replace('.00', '', $distri[$i]['j']);
+               str_replace('.00', '', $distri[$i]['k']);
+               str_replace('.00', '', $distri[$i]['l']);
+            }
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'distribucion' => $distri
+            ];
+        }  
+
+    
+
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroyDistribucion($id)
+    {
+        $distribucion = ClienteDistribucion::find($id);
+
+        if (!empty($distribucion)) {
+            $distribucion->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'distribucion' => $distribucion
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
     }
 }

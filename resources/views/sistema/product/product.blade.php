@@ -33,10 +33,10 @@
                                 <option value="M">Mythos</option>
                                 <option value="P">Lavish</option>
                             </select>
-                           
+
                         </div>
                         <div class="col-md-3">
-                            <label for="" >Genero</label>
+                            <label for="">Genero</label>
                             <select name="genero" id="genero" class="form-control">
                                 <option value="" selected disabled>Genero</option>
                                 <option value="1">Hombre</option>
@@ -44,10 +44,10 @@
                                 <option value="3">Niño</option>
                                 <option value="4">Niña</option>
                             </select>
-                           
+
                         </div>
                         <div class="col-md-3">
-                            <label for="" >Tipo producto</label>
+                            <label for="">Tipo producto</label>
                             <select name="tipo_producto" id="tipo_producto" class="form-control">
                                 <option value="" selected disabled>Tipo producto</option>
                                 <option value="0">Pantalon</option>
@@ -58,10 +58,10 @@
                                 <option value="5">Jacket</option>
                                 <option value="6">Camisa</option>
                             </select>
-                        
+
                         </div>
                         <div class="col-md-3">
-                            <label for="" >Categoria</label>
+                            <label for="">Categoria</label>
                             <select name="categoria" id="categoria" class="form-control">
                                 <option value="" disabled>Categoria</option>
                                 <option value="0">Basico</option>
@@ -73,34 +73,31 @@
                                 <option value="6">Talla alto</option>
                                 <option value="7">Super plus</option>
                             </select>
-                           
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2 mt-3">
                             <label for="">Año</label>
                             <input type="text" min="1900" max="2099" step="1" value="2019" id="year"
-                                class="form-control"  onfocus="(this.type='number')">
+                                class="form-control" onfocus="(this.type='number')">
                             <label for="" class="d-flex justify-content-center pers"></label>
                         </div>
                         <div class="col-md-2 mt-3">
-                            <label for="" >Secuencia</label>
-                            <input type="number" min="1" max="999" step="1" id="sec_manual" 
-                                class="form-control">
-                           
+                            <label for="">Secuencia</label>
+                            <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control">
+
                         </div>
                         <div class="col-md-3 mt-3">
-                            <label for="" >Referencia</label>
-                            <input type="text" name="referencia" id="referencia"
-                                class="form-control" readonly>
-                           
+                            <label for="">Referencia</label>
+                            <input type="text" name="referencia" id="referencia" class="form-control" readonly>
+
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-3" id="mostrarRef2">
-                            <label for="" >Referencia 2</label>
-                            <input type="text" name="referencia_2"  id="referencia_2"
-                                class="form-control">
-                           
+                            <label for="">Referencia 2</label>
+                            <input type="text" name="referencia_2" id="referencia_2" class="form-control">
+
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-4 align-self-center mt-4">
@@ -113,68 +110,77 @@
                     </div>
                     <br>
                     <hr>
-                    <br>
                     <div class="row">
-                        <div class="col-md-4 mt-2">
-                            <label for="" >Precio lista</label>
+                        <div class="col-md-3 mt-2">
+                            <label for="">Precio lista</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                            <input type="text"  name="precio_lista" id="precio_lista"
-                                class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                   
+                                <input type="text" name="precio_lista" id="precio_lista"
+                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+
                             </div>
 
                         </div>
-                        <div class="col-md-4 mt-2">
-                            <label for="" >Precio publico</label>
+                        <div class="col-md-3 mt-2">
+                            <label for="">Precio publico</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                            <input type="text" name="precio_venta_publico"
-                                id="precio_venta_publico" class="form-control text-center"
-                                data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                <input type="text" name="precio_venta_publico" id="precio_venta_publico"
+                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+
+
+                            </div>
+
+                        </div>
                      
-
-                            </div>
-
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <label for="" >Cuenta contable</label>
+                        <div class="col-md-3 mt-2">
+                            <label for="">Cuenta contable</label>
                             <select name="tags[]" id="tipo_cuenta" class="form-control select2">
 
                             </select>
-                          
+
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for=""></label>
+                            <button type="button" class="btn btn-secondary btn-block mt-1" id="btn-rollos"
+                                data-toggle="modal" data-target=".bd-rollo-modal-xl">
+                                <i class="fas fa-images"></i>
+                                Subir imagenes
+
+                            </button>
                         </div>
 
                     </div>
                     <div class="row" id="precios_2">
-                        <div class="col-md-4 mt-3">
-                            <label for="" >Precio Lista ref 2</label>
+                        <div class="col-md-3 mt-3">
+                            <label for="">Precio Lista ref 2</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                            <input type="text" name="precio_lista_2" id="precio_lista_2" 
-                                class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                <input type="text" name="precio_lista_2" id="precio_lista_2"
+                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
-                           
+
                         </div>
-                        <div class="col-md-4 mt-3">
-                            <label for="" >Precio Publico ref 2</label>
+                        <div class="col-md-3 mt-3">
+                            <label for="">Precio Publico ref 2</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                 </div>
-                            <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2"
-                                id="precio_venta_publico_2" class="form-control text-center"
-                                data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                <input type="text" placeholder="Precio publico ref 2" name="precio_venta_publico_2"
+                                    id="precio_venta_publico_2" class="form-control text-center"
+                                    data-inputmask='"mask": "RD$ 999[9]"' data-mask>
                             </div>
-                          
+
                         </div>
-                        <div class="col-md-4">
+                      
+                        <div class="col-md-3">
                             <label for="">Rango segunda referencia</label>
                             <input id="range_1" type="text" name="range_1" value="">
                         </div>
@@ -182,17 +188,17 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <label for="" >Descripcion</label>
+                        <div class="col-md-6 mt-3">
+                            <label for="">Descripcion</label>
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control"></textarea>
-                           
+
                         </div>
-                        <div class="col-md-12 mt-3" id="descripcion_ref2">
-                            <label for="" >Descripcion ref 2</label>
-                            <textarea name="descripcion" id="descripcion_2" cols="30"
-                                rows="1" class="form-control"></textarea>
-                           
+                        <div class="col-md-6 mt-3" id="descripcion_ref2">
+                            <label for="">Descripcion ref 2</label>
+                            <textarea name="descripcion" id="descripcion_2" cols="30" rows="1"
+                                class="form-control"></textarea>
+
                         </div>
                     </div>
             </div>
@@ -213,7 +219,8 @@
     <div class="card-header bg-dark">
         <div class="row">
             <div class="col-12">
-                @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Productos')->where('agregar', 1)->first())
+                @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso',
+                'Productos')->where('agregar', 1)->first())
                 <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
                 @endif
                 <h4 class="text-white text-center">Listado de productos</h4>
@@ -222,7 +229,8 @@
 
     </div>
     <div class="card-body">
-        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Productos')->where('ver', 1)->first())
+        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso',
+        'Productos')->where('ver', 1)->first())
         <table id="products" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
@@ -253,27 +261,27 @@
         @else
         <div class="row" id="alerts">
             <div class="col-md-12">
-              <div class="card card-default">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-exclamation-triangle"></i>
-                     Info
-                  </h3>
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Info
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-info"></i> Acceso negado!</h5>
+                            Usted no posee permisos necesarios para realizar esta accion.
+                            Para poder realizar la accion debe comunicarse con el administrador.
+                        </div>
+
+
+                    </div>
+
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5><i class="icon fas fa-info"></i> Acceso negado!</h5>
-                        Usted no posee permisos necesarios para realizar esta accion.
-                        Para poder realizar la accion debe comunicarse con el administrador.
-                  </div>
-               
-               
-                </div>
-        
-              </div>
-              <!-- /.card -->
+                <!-- /.card -->
             </div>
         </div>
         @endif
@@ -459,6 +467,67 @@
 {{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/producto/product.js')}}"></script>
 
+<!-- Modal Rollos-->
+<div class="modal fade bd-rollo-modal-xl" tabindex="-1" role="dialog" id="modalRollos"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imagenes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-h5">Subida de imagenes de la referencia</h5>
+                <hr>
 
+                <form action="" method="POST" id="formUpload" class="formUpload" enctype="multipart/form-data">
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                       
+                            <input type="hidden" name="product_id" id="product_id" value="">
+                            {{-- <input type="hidden" name="corte_id_edit" id="corte_id_edit" value=""> --}}
+                            <img src="" alt="" id="frente" class="rounded img-fluid img-thumbnail">
+                            <label for="" >Imagen frente</label>
+                            <input type="file" src="" name="imagen_frente" id="imagen_frente" alt=""
+                                class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                          
+                            <img src="" alt="" id="trasera" class="rounded img-fluid img-thumbnail">
+                            <label for="" >Imagen trasera</label>
+                            <input type="file" src="" alt="" name="imagen_trasera" id="imagen_trasera"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            
+                            <img src="" alt="" id="perfil" class="rounded img-fluid img-thumbnail">
+                            <label for="" >Imagen perfil</label>
+                            <input type="file" src="" alt="" name="imagen_perfil" id="imagen_perfil"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                          
+                            <img src="" alt="" id="bolsillo" class="rounded img-fluid img-thumbnail">
+                            <label for="" >Imagen bolsillo</label>
+                            <input type="file" src="" alt="" name="imagen_bolsillo" id="imagen_bolsillo"
+                                class="form-control">
+                        </div>
+                    </div>
+                    {{-- <div class="row mt-2">
+                        <div class="col-md-4">
+                            <button type="submit" id="btn-upload" class="btn btn-primary"><i class="fas fa-file-upload"></i> Guardar</button>
+
+                        </div>
+                    </div> --}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

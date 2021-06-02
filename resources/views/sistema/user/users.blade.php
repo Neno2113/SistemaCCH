@@ -184,10 +184,10 @@
                     Cancelar</button> --}}
                 <button type="submit" id="btn-guardar" class="btn btn-primary mt-1 float-right"><i
                         class="far fa-save "></i> Guardar</button>
-                @if(Auth::user()->permisos()->where('permiso', 'Usuarios')->where('modificar', 1)->first())
+             
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i
                         class="far fa-edit "></i> Editar</button>
-                @endif
+              
             </div>
 
         </div>

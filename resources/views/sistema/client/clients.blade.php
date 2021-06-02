@@ -7,9 +7,9 @@
 @section('content')
 
 <div class="row">
-    <div class="col-12">
-        <div class="card  mb-3" id="registroForm">
-            <div class="card-header bg-dark">
+    <div class="col-7" id="registroForm">
+        <div class="card " >
+            <div class="card-header bg-dark p-1">
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                             class="fas fa-minus"></i></button>
@@ -19,11 +19,10 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de clientes</h5>
+                    <h5>Registro clientes</h5>
                     <hr>
                     <div class="Datos">
-
-                        <div class="row mt-4">
+                        <div class="row mt-2">
                             <div class="col-md-4 mt-2">
                                 <label for="nombre_cliente">Codigo Cliente</label>
                                 <input type="text" name="codigo_cliente"
@@ -48,7 +47,7 @@
 
                         </div>
                         <div class="row mt-4">
-                            <div class="col-md-3 mt-3">
+                            <div class="col-md-4 mt-2">
                                 <label for="celular_principal">Celular principal</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -60,7 +59,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-3 mt-3">
+                            <div class="col-md-4 mt-2">
                                 <label for="telefono_1" >Telefono</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
@@ -71,7 +70,7 @@
                                
                                 </div>
                             </div>
-                            <div class="col-md-3 mt-3">
+                            <div class="col-md-4 mt-2">
                                 <label for="telefono_2" >Telefono 2</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
@@ -82,7 +81,10 @@
                                
                                 </div>
                             </div>
-                            <div class="col-md-3 mt-3">
+                      
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6 mt-1">
                                 <label for="telefono_2" >Telefono 3</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
@@ -93,14 +95,28 @@
                                 
                                 </div>
                             </div>
+                            <div class="col-md-6 mt-1">
+                                <label for="email_principal" >Email</label>
+                                <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                </div>
+                                <input type="email" name="email_principal" placeholder="Email principal"
+                                    id="email_principal" class="form-control">
+                               
+                                </div>
+                            </div>
+                          
                         </div>
 
-                        <br>
-
-                        <br>
-
-                        <div class="row">
-                            <div class="col-md-4 mt-3">
+                        <div class="row mt-2">
+                            <div class="col-md-5 mt-2">
+                                <label for="contacto_cliente" >Contacto Cliente</label>
+                                <input type="text" name="contacto_cliente_principal" 
+                                    id="contacto_cliente_principal" class="form-control">
+                               
+                            </div>
+                            <div class="col-md-7 mt-2">
                                 <label for="condiciones_credito" >Condiciones de credito</label>
                                 <select name="condiciones_credito" id="condiciones_credito" class="form-control">
                                     <option value="" disabled>Condiciones de credito</option>
@@ -112,28 +128,43 @@
                                 </select>
                               
                             </div>
-                            <div class="col-md-4 mt-3">
-                                <label for="email_principal" >Email</label>
-                                <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                </div>
-                                <input type="email" name="email_principal" placeholder="Email principal"
-                                    id="email_principal" class="form-control">
-                               
-                                </div>
-                            </div>
-                            <div class="col-md-4 mt-3">
-                                <label for="contacto_cliente" >Contacto Cliente</label>
-                                <input type="text" name="contacto_cliente_principal" 
-                                    id="contacto_cliente_principal" class="form-control">
-                               
-                            </div>
                         </div>
-                        <br>
                         <hr>
-                        <div class="row mt-3">
-                            <div class="col-md-4">
+                     
+                    </div>
+                
+
+            </div>
+
+            <div class="card-footer  text-muted ">
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                {{-- <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
+                        class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
+                        class="far fa-edit fa-lg"></i> Editar</button> --}}
+            </div>
+        </div>
+
+        </form>
+    </div>
+    <div class="col-5"  id="datosForm">
+        <div class="card">
+            <div class="card-header bg-dark p-1">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
+                    <h5></h5>
+                    <hr>
+                    <div class="Datos">
+                        <div class="row mt-5">
+                            <div class="col-md-6">
                                 <label for="" >Calle</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
@@ -143,7 +174,7 @@
                               
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="" >Sector</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
@@ -153,7 +184,10 @@
                          
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                          
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
                                 <label for="" >Provincia</label>
                                 <select name="provincia" id="provincia" class="form-control select2">
                                     <option value="" disabled>Provincia</option>
@@ -192,12 +226,19 @@
                                 </select>
                                
                             </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="" >Sitios cercanos</label>
                                 <input type="text" name="sitios_cercanos" 
                                     id="sitios_cercanos" class="form-control">
+                               
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                        
+                            <div class="col-md-12 mt-1">
+                                <label for="" ></label>
+                                <button type="button" class="btn btn-primary  mt-1" id="btn-distribucion"
+                                data-toggle="modal" data-target=".bd-talla-modal-xl"><i class="fas fa-sort-alpha-down"></i> Distribucion Cliente</button>
                                
                             </div>
                         </div>
@@ -207,7 +248,7 @@
                     <br>
                     <div id="autorizaciones">
                         <div class="row" id="radios">
-                            <div class="col-md-4 mt-4">
+                            <div class="col-md-6">
                                 <label for="autorizacion_credito_req">¿Autorizacion de credito requerida?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -226,7 +267,7 @@
                                 <input type="text" name="autorizacion_credito_req" id="autorizacion_credito_req"
                                     class="form-control" readonly>
                             </div>
-                            <div class="col-md-4 mt-4">
+                            <div class="col-md-6">
                                 <label for="autorizacion_credito_req">¿Acepta redistribucion de tallas?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -245,7 +286,10 @@
                                 <input type="text" name="redistribucion_tallas" id="redistribucion_tallas"
                                     class="form-control" readonly>
                             </div>
-                            <div class="col-md-4 mt-4">
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mt-2">
                                 <label for="autorizacion_credito_req">¿Acepta segundas?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -265,8 +309,6 @@
                                     readonly>
 
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6 mt-2">
                                 <label for="autorizacion_credito_req">Exige factura desglosada por tallas?(*):</label>
                                 <div class="form-group clearfix">
@@ -287,12 +329,10 @@
                                     class="form-control" readonly>
                             </div>
                         </div>
-                        <br>
                         <hr>
-                        <br>
                         <div class="row">
                             <div class="col-md-12 mt-2">
-
+                                <label for="">Nota</label>
                                 <textarea name="notas" id="notas"  cols="30" rows="1"
                                     class="form-control"></textarea>
                                 <label for="notas" ></label>
@@ -303,8 +343,8 @@
             </div>
 
             <div class="card-footer  text-muted ">
-                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
-                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+                {{-- <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
+                        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button> --}}
                 <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
@@ -503,13 +543,180 @@
     </div>
 </div>
 
+<!-- Modal Tallas-->
+<div class="modal fade bd-talla-modal-xl" tabindex="-1" role="dialog" id="test" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Distribucion del cliente</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            
+                <h5 class="modal-h5">Asignar porcentaje de distribucion al cliente</h5>
+                <hr>
+                <div class="row mt-3">
+                    <label for="" class="mt-1 label">Referencia</label>
+                    <div class="col-md-3 mb-2">
+                        <select name="tags[]" id="productos" class="form-control select2">
+                            <option value="" disabled>Referencia producto</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <button type="button" id="btnAdd" class="btn btn-dark"
+                        >Seleccionar</button>
+                    </div>
+                </div>
+              
+                <div class="row">
+                    <table id="tabla-curva" class="table  table-bordered tabla-perdidas mt-4">
+                        <thead >
+                        
+                            <tr id="rowHead">
+                                <th>Productos</th>
+                                <th id="ta">A</th>
+                                <th id="tb">B</th>
+                                <th id="tc">C</th>
+                                <th id="td">D</th>
+                                <th id="te">E</th>
+                                <th id="tf">F</th>
+                                <th id="tg">G</th>
+                                <th id="th">H</th>
+                                <th id="ti">I</th>
+                                <th id="tj">J</th>
+                                <th id="tk">K</th>
+                                <th id="tl">L</th>
+                                <th>Add</th>
+                            </tr>
+                        
+                        </thead>
+                        <tr>
+                            <th>% Curva</th>
+                            <td id="porc_a"></td>
+                            <td id="porc_b"></td>
+                            <td id="porc_c"></td>
+                            <td id="porc_d"></td>
+                            <td id="porc_e"></td>
+                            <td id="porc_f"></td>
+                            <td id="porc_g"></td>
+                            <td id="porc_h"></td>
+                            <td id="porc_i"></td>
+                            <td id="porc_j"></td>
+                            <td id="porc_k"></td>
+                            <td id="porc_l"></td>
+                            <td></td>
+                        </tr>
+                        <tbody >
+                            <th id="refe"></th>
+                            <td> 
+                                <input type="text" name="" id="a" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="b" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="c" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="d" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="e" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="f" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="g" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="h" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="i" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="j" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="k" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td> 
+                                <input type="text" name="" id="l" class="form-control text-center detalle no-shadow"
+                                data-inputmask='"mask": "9[9][.99]"'  data-mask>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" id="bntAgregar"><i class="fas fa-plus"></i></button>
+                            </td>
+                        </tbody>
+                        <tr id="tallas">
+
+                        </tr>
+
+                    </table>
+                </div>
+                <h5 class="modal-h5">Distribucion de productos del cliente</h5>
+                <hr>
+                <div class="row">
+                    <table class="table  table-bordered tabla-perdidas mt-4">
+                        <thead>
+                            <tr >
+                                <th>Productos</th>
+                                <th id="ta">A</th>
+                                <th id="tb">B</th>
+                                <th id="tc">C</th>
+                                <th id="td">D</th>
+                                <th id="te">E</th>
+                                <th id="tf">F</th>
+                                <th id="tg">G</th>
+                                <th id="th">H</th>
+                                <th id="ti">I</th>
+                                <th id="tj">J</th>
+                                <th id="tk">K</th>
+                                <th id="tl">L</th>
+                                <th>Del</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fila">
+                       
+                        </tbody>
+                    
+
+                    </table>
+                </div>
+         
+          
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-tallas-cerrar" class="btn btn-danger"
+                    data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
 @include('adminlte/scripts')
 {{-- <script src="{{asset('js/formulario.js')}}"></script> --}}
 <script src="{{asset('js/cliente/client.js')}}"></script>
-<script src="{{asset('js/client_branch.js')}}"></script>
+{{-- <script src="{{asset('js/client_branch.js')}}"></script> --}}
 
 
 

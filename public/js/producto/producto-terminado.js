@@ -67,11 +67,13 @@ $(document).ready(function() {
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#imageCard").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#imageCard").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#mostrarRef2").hide();
@@ -87,6 +89,7 @@ $(document).ready(function() {
 
 
     $("#btnCancelar").click(function(e) {
+        e.preventDefault();
         mostrarForm(false);
     });
 
@@ -107,6 +110,7 @@ function mostrar(id_prouct) {
         // data = JSON.parse(data);
         $("#listadoUsers").hide();
         $("#registroForm").show();
+        $("#imageCard").show();
         $("#btnCancelar").show();
         $("#btn-guardar").hide();
 
