@@ -11,6 +11,8 @@ use App\CurvaProducto;
 use App\AlmacenDetalle;
 use App\ordenPedidoDetalle;
 use App\PermisoUsuario;
+use App\RollosDetail;
+use App\SKU;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -50,27 +52,39 @@ class CorteController extends Controller
 
             $date = date('20y-m-d');
 
-            $corte = new Corte();
+            $curva_verificar = CurvaProducto::where('producto_id', $producto_id)->get();
 
-            $corte->numero_corte = $numero_corte;
-            $corte->producto_id = $producto_id;
-            $corte->user_id = \auth()->user()->id;
-            $corte->fecha_corte = $date;
-            $corte->no_marcada = $no_marcada;
-            $corte->largo_marcada = $largo_marcada;
-            $corte->ancho_marcada = $ancho_marcada;
-            $corte->aprovechamiento = trim($aprovechamiento, '%');
-            $corte->fase = $fase;
-            $corte->sec = $sec + 0.01;
-            $corte->fecha_entrega = $fecha_entrega;
+            if( count($curva_verificar) <= 0){
+                $data = [
+                    'code' => 200,
+                    'status' => 'info',
+                    'message' => 'Este producto no tiene curva registrada'
+                ];
+            } else {
+                $corte = new Corte();
 
-            $corte->save();
+                $corte->numero_corte = $numero_corte;
+                $corte->producto_id = $producto_id;
+                $corte->user_id = \auth()->user()->id;
+                $corte->fecha_corte = $date;
+                $corte->no_marcada = $no_marcada;
+                $corte->largo_marcada = $largo_marcada;
+                $corte->ancho_marcada = $ancho_marcada;
+                $corte->aprovechamiento = trim($aprovechamiento, '%');
+                $corte->fase = $fase;
+                $corte->sec = $sec + 0.01;
+                $corte->fecha_entrega = $fecha_entrega;
 
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'corte' => $corte
-            ];
+                $corte->save();
+
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'corte' => $corte
+                ];
+            }
+
+            
         }
 
         return response()->json($data, $data['code']);
@@ -112,8 +126,10 @@ class CorteController extends Controller
     public function rollos()
     {
         $cond = null;
-        $rollos = DB::table('rollos')->join('tela', 'rollos.id_tela', '=', 'tela.id')
-            ->select(['rollos.id', 'tela.referencia', 'rollos.codigo_rollo', 'rollos.longitud_yarda', 'rollos.num_tono', 'rollos.corte_utilizado']);
+        $rollos = DB::table('rollos_detail')->join('tela', 'rollos_detail.id_tela', '=', 'tela.id')
+            ->join('rollos', 'rollos_detail.id_rollo', '=', 'rollos.id')
+            ->select([ 'rollos_detail.id', 'tela.referencia', 'rollos_detail.numero', 'rollos_detail.longitud', 'rollos_detail.tono', 
+            'rollos_detail.corte_utilizado']);
         // ->where('corte_utilizado', $cond);
 
         return DataTables::of($rollos)
@@ -252,8 +268,16 @@ class CorteController extends Controller
         $corte = Corte::find($id);
 
         if (!empty($corte)) {
-            $corte->delete();
+            $rollos = RollosDetail::where('corte_utilizado', $corte->numero_core)->get();
 
+            if(count($rollos) > 0){
+                for ($i=0; $i < count($rollos); $i++) { 
+                    $rollos[$i]->corte_utilizado = '';
+                    $rollos[$i]->save();
+                }
+            }
+         
+            $corte->delete();
             $data = [
                 'code' => 200,
                 'status' => 'success',
@@ -340,7 +364,7 @@ class CorteController extends Controller
 
     public function asignar($id, Request $request)
     {
-        $rollo = Rollos::find($id);
+        $rollo = RollosDetail::find($id);
 
         $numero_corte = $request->input('numero_corte');
 
@@ -378,7 +402,7 @@ class CorteController extends Controller
 
     public function remover($id, Request $request)
     {
-        $rollo = Rollos::find($id);
+        $rollo = RollosDetail::find($id);
 
         $numero_corte = $request->input('numero_corte');
 
@@ -583,8 +607,8 @@ class CorteController extends Controller
             ];
         } else {
             $data = [
-                'code' => 400,
-                'status' => 'error',
+                'code' => 200,
+                'status' => 'info',
                 'message' => 'No existe un corte con este referencia',
                 'a' => (isset($a)) ? $a : 0,
                 'b' => (isset($b)) ? $b : 0,
@@ -607,7 +631,21 @@ class CorteController extends Controller
                 'f_ref2' => (isset($f_ref2)) ? $f_ref2 : 0,
                 'g_ref2' => (isset($g_ref2)) ? $g_ref2 : 0,
                 'h_ref2' => (isset($h_ref2)) ? $h_ref2 : 0,
-                'producto' => $referencia
+                'producto' => $referencia,
+                'a_curva2' => (isset($a_curva2)) ? $a_curva2 : 0,
+                'b_curva2' => (isset($b_curva2)) ? $b_curva2 : 0,
+                'c_curva2' => (isset($c_curva2)) ? $c_curva2 : 0,
+                'd_curva2' => (isset($d_curva2)) ? $d_curva2 : 0,
+                'e_curva2' => (isset($e_curva2)) ? $e_curva2 : 0,
+                'f_curva2' => (isset($f_curva2)) ? $f_curva2 : 0,
+                'g_curva2' => (isset($g_curva2)) ? $g_curva2 : 0,
+                'h_curva2' => (isset($h_curva2)) ? $h_curva2 : 0,
+                'i_curva2' => (isset($i_curva2)) ? $i_curva2 : 0,
+                'j_curva2' => (isset($j_curva2)) ? $j_curva2 : 0,
+                'k_curva2' => (isset($k_curva2)) ? $k_curva2 : 0,
+                'l_curva2' => (isset($l_curva2)) ? $l_curva2 : 0,
+                'total_porc2' => (isset($total_porc_2)) ? $total_porc_2 : 0,
+                'referencia2' => (isset($referencia2)) ? $referencia2 : 0
 
             ];
         }
@@ -785,6 +823,20 @@ class CorteController extends Controller
             }
 
         }
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function checkSkus($producto){
+
+        $skus = SKU::where('producto_id', $producto)->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'skus' => $skus,
+        ];
 
         return response()->json($data, $data['code']);
     }

@@ -87,7 +87,7 @@ class DashboardController extends Controller
 
         $nota_credito = NotaCreditoDetalle::all();
 
-        $existencia = $almacen->sum('total') - $facturado->sum('total') + $tallasSegundas->sum('total') + $nota_credito->sum('total');
+        $existencia = $almacen->sum('total')  + $tallasSegundas->sum('total') + $nota_credito->sum('total');
         $dispVenta = $existencia - $orden->sum('total') - $tallasSegundas->sum('total');
 
         $data = [

@@ -7,75 +7,79 @@ $(document).ready(function() {
     $("[data-mask]").inputmask();
 
 
-    $("#formulario").validate({
-        rules: {
-            precio_lista: {
-                required: true,
-                minlength: 3
-            },
-            precio_publico: {
-                required: true,
-                minlength: 4
-            },
-            descripcion: {
-                required: true,
-                minlength: 5
-            },
-            telefono_1: {
-                required: true,
-                minlength: 10
-            },
-            email_principal: {
-                required: true,
-                email: true
-            },
-            condiciones_credito: {
-                required: true,
-                minlengh: 1
-            },
-            rnc: {
-                required: true,
-                digits: true,
-                minlengh: 9
-            }
-        },
-        messages: {
-            precio_lista: {
-                required: "Este campo es obligatorio",
-                minlength: "Este campo debe contener al menos 3 numeros"
-            },
-            direccion_principal: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 4 letras"
-            },
-            descripcion: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 5 letras"
-            },
-            telefono_1: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 10 caracteres"
-            },
-            email_principal: {
-                required: "El email es obligatorio",
-                email: "Debe itroducir un email valido"
-            },
-            condiciones_credito: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 1 caracter"
-            },
-            rnc: {
-                required: "Este campo es obligatorio",
-                minlengh: "Debe contener al menos 9 numeros",
-                digits: "Este campo solo puedo contener numeros"
-            }
-        }
-    });
+    // $("#formulario").validate({
+    //     rules: {
+    //         precio_lista: {
+    //             required: true,
+    //             minlength: 3
+    //         },
+    //         precio_publico: {
+    //             required: true,
+    //             minlength: 4
+    //         },
+    //         descripcion: {
+    //             required: true,
+    //             minlength: 5
+    //         },
+    //         telefono_1: {
+    //             required: true,
+    //             minlength: 10
+    //         },
+    //         email_principal: {
+    //             required: true,
+    //             email: true
+    //         },
+    //         condiciones_credito: {
+    //             required: true,
+    //             minlengh: 1
+    //         },
+    //         rnc: {
+    //             required: true,
+    //             digits: true,
+    //             minlengh: 9
+    //         }
+    //     },
+    //     messages: {
+    //         precio_lista: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Este campo debe contener al menos 3 numeros"
+    //         },
+    //         direccion_principal: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 4 letras"
+    //         },
+    //         descripcion: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 5 letras"
+    //         },
+    //         telefono_1: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 10 caracteres"
+    //         },
+    //         email_principal: {
+    //             required: "El email es obligatorio",
+    //             email: "Debe itroducir un email valido"
+    //         },
+    //         condiciones_credito: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 1 caracter"
+    //         },
+    //         rnc: {
+    //             required: "Este campo es obligatorio",
+    //             minlengh: "Debe contener al menos 9 numeros",
+    //             digits: "Este campo solo puedo contener numeros"
+    //         }
+    //     }
+    // });
 
     function init() {
         listar();
         mostrarForm(false);
         catalogos();
+        marcas();
+        generos();
+        tipos();
+        categorias();
         $('#range_1').ionRangeSlider({
             min     : 02,
             max     : 16,
@@ -258,6 +262,7 @@ $(document).ready(function() {
             }
         });
     }
+
 
 
     $("#btn-guardar").click(function(e) {
@@ -562,7 +567,91 @@ $(document).ready(function() {
     //     console.log($("#formUpload"));
     // })
 
+    $("#btn-cat").on('click', (e) => {
+        e.preventDefault();
+        let select = $("#btn-cat").val();
+        $("#tipo").val(select);
+        listarCategorias(select);
+    })
+    $("#btn-mar").on('click', (e) => {
+        e.preventDefault();
+        let select = $("#btn-mar").val();
+        $("#tipo").val(select);
+        listarCategorias(select);
+    })
+    $("#btn-gen").on('click', (e) => {
+        e.preventDefault();
+        let select = $("#btn-gen").val();
+        $("#tipo").val(select);
+        listarCategorias(select);
+    })
+    $("#btn-tipo").on('click', (e) => {
+        e.preventDefault();
+        let select = $("#btn-tipo").val();
+        $("#tipo").val(select);
+        listarCategorias(select);
+    })
+
     init();
+    $("#btn-save").on('click', () => {
+    
+        let data = {
+            tipo: $("#tipo").val(),
+            indice: $("#indice").val(),
+            nombre: $("#nombre").val()
+        }
+    
+
+        $.ajax({
+            url: "categoria",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Nueva entrada registrada.'
+                    })
+                    $("#indice").val('');
+                    $("#nombre").val('');
+                    marcas();
+                    generos();
+                    tipos();
+                    categorias();
+                    listarCategorias($("#tipo").val());
+                
+                
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+    });
 });
 
 
@@ -747,5 +836,187 @@ const EliminarProducto = (id) => {
         }
     });
 }
+
+
+const listarCategorias = (tipo) => {
+
+    $("#permisos-agregados").empty();
+
+    $.ajax({
+        url: "listar/"+tipo,
+        type: "get",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                
+                for (let i = 0; i < datos.categorias.length; i++) {
+                    var fila =
+                    '<tr id="fila'+datos.categorias[i].id+'">'+
+                    "<td class=''><input type='hidden' id='usuario"+datos.categorias[i].id+"' value="+datos.categorias[i].id+">"+datos.categorias[i].tipo+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.categorias[i].indice+"' value="+datos.categorias[i].indice+">"+datos.categorias[i].indice+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.categorias[i].nombre+"' value="+datos.categorias[i].nombre+">"+datos.categorias[i].nombre+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delCategoria("+datos.categorias[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                    $("#permisos-agregados").append(fila);
+                }
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error"
+            );
+        }
+    });
+}
+
+
+const delCategoria = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar esta categoria?',
+        text: "Va a eliminar esta categoria!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("categoria/delete/" + id, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Rollo eliminado correctamente.',
+                'success'
+                )
+                $("#fila"+id).remove();
+                marcas();
+                generos();
+                tipos();
+                categorias();
+            })
+        }
+      })
+}
+
+
+const marcas = () => {
+    $("#marca").empty();
+
+    $.ajax({
+        url: "marcas",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.marcas.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.marcas[i].indice}">${datos.marcas[i].indice} - ${datos.marcas[i].nombre}</option>`
+                    $("#marca").append(fila);
+                }
+                $("#marca").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
+const generos = () => {
+    $("#genero").empty();
+    $.ajax({
+        url: "generos",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.generos.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.generos[i].indice}">${datos.generos[i].indice} - ${datos.generos[i].nombre}</option>`
+                    $("#genero").append(fila);
+                }
+                $("#genero").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
+const tipos = () => {
+    $("#tipo_producto").empty();
+    $.ajax({
+        url: "tipos",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.tipos.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.tipos[i].indice}">${datos.tipos[i].indice} - ${datos.tipos[i].nombre}</option>`
+                    $("#tipo_producto").append(fila);
+                }
+                $("#tipo_producto").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
+const categorias = () => {
+    $("#categoria").empty();
+    $.ajax({
+        url: "categorias",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.categorias.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.categorias[i].indice}">${datos.categorias[i].indice} - ${datos.categorias[i].nombre}</option>`
+                    $("#categoria").append(fila);
+                }
+                $("#categoria").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
+
 
 

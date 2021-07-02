@@ -7,6 +7,7 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Empleado;
 use App\EmpleadoDetalle;
 use App\PermisoUsuario;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 
 class EmpleadoController extends Controller
@@ -45,6 +46,7 @@ class EmpleadoController extends Controller
             $cedula = $request->input('cedula');
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
+            $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
@@ -61,6 +63,7 @@ class EmpleadoController extends Controller
             $empleado->cedula = $cedula;
             $empleado->cargo = $cargo;
             $empleado->departamento = $departamento;
+            $empleado->fecha_nacimiento = $fecha_nacimiento;
             $empleado->telefono_1 = $telefono_1;
             $empleado->telefono_2 = $telefono_2;
             $empleado->email = $email;
@@ -188,15 +191,19 @@ class EmpleadoController extends Controller
             ->addColumn('Expandir', function ($empleado) {
                 return "";
             })
-            ->addColumn('Ver', function ($empleado) {
-                return '<button onclick="ver(' . $empleado->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
-            })
+        
             ->editColumn('nombre', function ($empleado) {
                 return $empleado->nombre." ".$empleado->apellido;
             })
             ->editColumn('cargo', function ($empleado) {
                 return substr($empleado->cargo, 0, 20);
             })
+            ->editColumn('fecha_nacimiento', function ($user){
+                $bDay = new DateTime($user->fecha_nacimiento);
+                $today = new DateTime(date('m.d.y'));
+                $diff = $today->diff($bDay);
+                return $diff->y;
+             })
             ->addColumn('Opciones', function ($empleado) {
                 if($empleado->detallado == 1){
                     return '<button id="btnEdit" onclick="mostrar(' . $empleado->id . ')" class="btn btn-warning btn-sm mr-1 ml-1" ><i class="fas fa-user-edit"></i></button>'.
@@ -293,6 +300,7 @@ class EmpleadoController extends Controller
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
             $tipo_contrato = $request->input('tipo_contrato');
+            $fecha_nacimiento = $request->input('fecha_nacimiento');
             $forma_pago = $request->input('forma_pago');
             $sueldo = $request->input('sueldo');
             $valor_hora = $request->input('valor_hora');
@@ -337,6 +345,7 @@ class EmpleadoController extends Controller
             $empleado->sitios_cercanos = $sitios_cercanos;
             $empleado->cedula = $cedula;
             $empleado->cargo = $cargo;
+            $empleado->fecha_nacimiento = $fecha_nacimiento;
             $empleado->departamento = $departamento;
             $empleado->telefono_1 = $telefono_1;
             $empleado->telefono_2 = $telefono_2;

@@ -11,6 +11,7 @@ use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\PermisoUsuario;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -83,8 +84,8 @@ class UserController extends Controller
     {
 
         $validar = $request->validate([
-            'nombre' => 'required|alpha|',
-            'apellido' => 'required|alpha',
+            'nombre' => 'required',
+            'apellido' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
@@ -99,7 +100,7 @@ class UserController extends Controller
         } else {
             $nombre = $request->input('nombre', true);
             $apellido = $request->input('apellido', true);
-            $edad = $request->input('edad', true);
+            $fecha_nacimiento = $request->input('fecha_nacimiento', true);
             $email = $request->input('email', true);
             $role = $request->input('role', true);
             $password = $request->input('password', true);
@@ -119,7 +120,7 @@ class UserController extends Controller
             $user->telefono = $telefono;
             $user->celular = $celular;
             $user->surname = $apellido;
-            $user->edad = $edad;
+            $user->fecha_nacimiento = $fecha_nacimiento;
             $user->first_login = 0;
             $user->avatar = $avatar;
 
@@ -192,7 +193,7 @@ class UserController extends Controller
             $id = $request->input('id', true);
             $nombre = $request->input('nombre', true);
             $apellido = $request->input('apellido', true);
-            $edad = $request->input('edad', true);
+            $fecha_nacimiento = $request->input('fecha_nacimiento', true);
             $email = $request->input('email', true);
             $role = $request->input('role', true);
             $password = $request->input('password', true);
@@ -213,7 +214,7 @@ class UserController extends Controller
             $user->telefono = $telefono;
             $user->celular = $celular;
             $user->surname = $apellido;
-            $user->edad = $edad;
+            $user->fecha_nacimiento = $fecha_nacimiento;
             $user->first_login = 0;
             $user->avatar = $avatar;
 
@@ -280,16 +281,37 @@ class UserController extends Controller
             ->addColumn('Expandir', function ($user) {
                 return "";
             })
+            ->editColumn('fecha_nacimiento', function ($user){
+                $bDay = new DateTime($user->fecha_nacimiento);
+                $today = new DateTime(date('m.d.y'));
+                $diff = $today->diff($bDay);
+                return $diff->y;
+             })
             ->addColumn('editar', function ($user) {
               
-                return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm mr-1"> <i class="fas fa-user-edit "></i></button>';
+                return '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-user-times"></i></button>'. 
+                '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-user-edit "></i></button>';
 
             })
             ->addColumn('eliminar', function ($user) {
-                return '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-user-times"></i></button>';
+                if($user->active == 1 && $user->role == '!Administrador'){
+                    return '<button onclick="desactivar(' . $user->id . ')" class="btn btn-dark btn-sm "><i class="fas fa-user-slash"></i></button>';
+                } elseif($user->role == 'Administrador' ) {
+                    return  '<span class="badge badge-pill badge-success">Admin</span>';
+                } else {
+                    return '<button onclick="activar(' . $user->id . ')" class="btn btn-success btn-sm "><i class="fas fa-user-check"></i></button>';
+
+                }
+            })
+            ->addColumn('status', function ($user) {
+                if($user->active == 1){
+                    return  '<span class="badge badge-pill badge-success">Activo</span>';
+                } else {
+                    return  '<span class="badge badge-pill badge-danger">Desactivado</span>';
+                }
             })
 
-            ->rawColumns(['editar', 'eliminar'])
+            ->rawColumns(['editar', 'eliminar', 'status'])
             ->make(true);
     }
 
@@ -351,6 +373,58 @@ class UserController extends Controller
                 'status' => 'error',
                 'message' => 'La imagen no existe'
             ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function activar($id){
+
+        $user = User::find($id);
+
+        if(empty($user)){
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No se encontro el usuario'
+            ];
+        } else {
+            $user->active = 1;
+            $user->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'user' =>$user
+            ];
+
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function desactivar($id){
+
+        $user = User::find($id);
+
+        if(empty($user)){
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No se encontro el usuario'
+            ];
+        } else {
+            $user->active = 0;
+            $user->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'user' =>$user
+            ];
+
         }
 
         return response()->json($data, $data['code']);

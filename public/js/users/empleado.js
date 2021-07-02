@@ -126,6 +126,7 @@ $(document).ready(function() {
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
             sitios_cercanos: $("#sitios_cercanos").val(),
+            fecha_nacimiento: $("#fecha_nacimiento").val(),
             cedula: $("#cedula").val(),
             departamento: $("#departamento").val(),
             telefono_1: $("#telefono_1").val(),
@@ -298,14 +299,13 @@ $(document).ready(function() {
             ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                // { data: "codigo" },
                 { data: "nombre" },
                 { data: "departamento" },
                 { data: "cargo" },
                 { data: "tipo_contrato" },
                 { data: "email" },
+                { data: "fecha_nacimiento" },
 
             ],
             order: [[4, 'asc']],
@@ -326,6 +326,7 @@ $(document).ready(function() {
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
             sitios_cercanos: $("#sitios_cercanos").val(),
+            fecha_nacimiento: $("#fecha_nacimiento").val(),
             cedula: $("#cedula").val(),
             departamento: $("#departamento").val(),
             telefono_1: $("#telefono_1").val(),
@@ -479,6 +480,7 @@ function mostrar(id_empleado) {
         $("#provincia").val(data.empleado.provincia).trigger("change").attr('disabled', false);
         $("#sitios_cercanos").val(data.empleado.sitios_cercanos).attr('readonly', false);
         $("#email").val(data.empleado.email).attr('readonly', false);
+        $("#fecha_nacimiento").val(data.empleado.fecha_nacimiento).attr('readonly', false);
         $("#telefono_1").val(data.empleado.telefono_1).attr('readonly', false);
         $("#telefono_2").val(data.empleado.telefono_2).attr('readonly', false);
         $("#departamento").val(data.empleado.departamento).trigger("change").attr('disabled', false);

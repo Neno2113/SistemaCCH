@@ -26,82 +26,86 @@
                         <input type="hidden" name="id" id="id" value="">
                         <input type="hidden" name="id" id="id_producto" value="">
                         <div class="col-md-3">
-                            <label for="nombre_cliente">Nombre Cliente</label>
+                            <label for="nombre_cliente">Marca</label> <button class="btn btn-primary btn-sm mb-2" id="btn-mar" value="marca" type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="marca" id="marca" class="form-control">
-                                <option value="" selected disabled>Marca</option>
-                                <option value="L">Genius</option>
-                                <option value="M">Mythos</option>
-                                <option value="P">Lavish</option>
+                                {{-- <option value="" selected disabled>Marca</option>
+                                <option value="L"><b>L</b> - Genius</option>
+                                <option value="M"><b>M</b> - Mythos</option>
+                                <option value="P"><b>L</b> - Lavish</option> --}}
                             </select>
 
                         </div>
                         <div class="col-md-3">
-                            <label for="">Genero</label>
+                            <label for="">Genero</label> <button class="btn btn-primary btn-sm mb-2" id="btn-gen" value="genero" type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="genero" id="genero" class="form-control">
-                                <option value="" selected disabled>Genero</option>
-                                <option value="1">Hombre</option>
-                                <option value="2">Mujer</option>
-                                <option value="3">Niño</option>
-                                <option value="4">Niña</option>
+                                {{-- <option value="" selected disabled>Genero</option>
+                                <option value="1"><b>1</b> - Hombre</option>
+                                <option value="2"><b>2</b> - Mujer</option>
+                                <option value="3"><b>3</b> - Niño</option>
+                                <option value="4"><b>4</b> - Niña</option> --}}
                             </select>
 
                         </div>
                         <div class="col-md-3">
-                            <label for="">Tipo producto</label>
+                            <label for="">Tipo producto</label> <button class="btn btn-primary btn-sm mb-2 " id="btn-tipo" value="tipo_producto" type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="tipo_producto" id="tipo_producto" class="form-control">
-                                <option value="" selected disabled>Tipo producto</option>
-                                <option value="0">Pantalon</option>
-                                <option value="1">Bermuda</option>
-                                <option value="2">Capri</option>
-                                <option value="3">Falda</option>
-                                <option value="4">Short</option>
-                                <option value="5">Jacket</option>
-                                <option value="6">Camisa</option>
+                                {{-- <option value="" selected disabled>Tipo producto</option>
+                                <option value="0"><b>0</b> - Pantalon</option>
+                                <option value="1"><b>1</b> - Bermuda</option>
+                                <option value="2"><b>2</b> - Capri</option>
+                                <option value="3"><b>3</b> - Falda</option>
+                                <option value="4"><b>4</b> - Short</option>
+                                <option value="5"><b>5</b> - Jacket</option>
+                                <option value="6"><b>6</b> - Camisa</option> --}}
                             </select>
 
                         </div>
                         <div class="col-md-3">
-                            <label for="">Categoria</label>
+                            <label for="">Categoria</label> <button class="btn btn-primary btn-sm mb-2" id="btn-cat" value="categoria" type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="categoria" id="categoria" class="form-control">
-                                <option value="" disabled>Categoria</option>
-                                <option value="0">Basico</option>
-                                <option value="1">Semi-basico</option>
-                                <option value="2">Moda</option>
-                                <option value="3">T-plus</option>
-                                <option value="4">Escolar</option>
-                                <option value="5">Tubito</option>
-                                <option value="6">Talla alto</option>
-                                <option value="7">Super plus</option>
+                                {{-- <option value="" disabled>Categoria</option>
+                                <option value="0"><b>0</b> - Basico</option>
+                                <option value="1"><b>1</b> - Semi-basico</option>
+                                <option value="2"><b>2</b> - Moda</option>
+                                <option value="3"><b>3</b> - T-plus</option>
+                                <option value="4"><b>4</b> - Escolar</option>
+                                <option value="5"><b>5</b> - Tubito</option>
+                                <option value="6"><b>6</b> - Talla alto</option>
+                                <option value="7"><b>7</b> - Super plus</option> --}}
                             </select>
 
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2 mt-3">
+                        <div class="col-md-2 mt-4">
                             <label for="">Año</label>
                             <input type="text" min="1900" max="2099" step="1" value="2019" id="year"
                                 class="form-control" onfocus="(this.type='number')">
                             <label for="" class="d-flex justify-content-center pers"></label>
                         </div>
-                        <div class="col-md-2 mt-3">
+                        <div class="col-md-2 mt-4">
                             <label for="">Secuencia</label>
                             <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control">
 
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-md-3 mt-4">
                             <label for="">Referencia</label>
                             <input type="text" name="referencia" id="referencia" class="form-control" readonly>
 
                             <input type="hidden" name="" id="sec" value="">
                         </div>
-                        <div class="col-md-3 mt-3" id="mostrarRef2">
+                        <div class="col-md-3 mt-4" id="mostrarRef2">
                             <label for="">Referencia 2</label>
                             <input type="text" name="referencia_2" id="referencia_2" class="form-control">
 
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-4 align-self-center mt-4">
-                            <button class="d-inline btn btn-primary rounded-pill mt-2" id="btnGenerar">Generar</button>
+                            <button class="d-inline btn btn-primary rounded-pill mt-3" id="btnGenerar">Generar</button>
                             {{-- <button type="button" class="d-inline btn btn-secondary rounded-pill ml-3" id="btn-curva"
                                 data-toggle="modal" data-target=".bd-curva-modal-xl">
                                 <i class="fas fa-percentage"></i> Porcentaje por Talla</button> --}}
@@ -525,6 +529,72 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="btn-close" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Rollos-->
+<div class="modal fade bd-marca-modal-xl" tabindex="-1" role="dialog" id="modalRollos"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-h5">Agregar nueva entrada</h5>
+                <hr>
+                <form action="" class="form-group">
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="">Tipo</label>
+                            <select name="tipo" id="tipo" class="form-control">
+                                <option value="marca">Marca</option>
+                                <option value="genero">Genero</option>
+                                <option value="tipo_producto">Tipo Producto</option>
+                                <option value="categoria">Categoria</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="">Indice</label>
+                            <input type="text" name="indice" id="indice" class="form-control text-center">
+                        </div>
+                        <div class="col-4">
+                            <label for="">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control text-center">
+                        </div>
+                       
+                    </div>
+                  
+                    <div class="row mt-3">
+                        <hr>
+                        <table class="table tabla-existencia table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Indice</th>
+                                    <th>Nombre</th>
+                                    <th id="editar-permisos">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="permisos-agregados">
+    
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btn-save" class="btn btn-primary" ><i class="fas fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>

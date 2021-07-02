@@ -103,6 +103,7 @@ class AlmacenController extends Controller
                 $producto_ref_2 = new Product();
                 $producto_ref_2->id_user = Auth::user()->id;
                 $producto_ref_2->genero = $producto_father->genero;
+                $producto_ref_2->marca = $producto_father->marca;
                 $producto_ref_2->referencia_producto = $ref2;
                 $producto_ref_2->referencia_father = $producto->id;
                 $producto_ref_2->descripcion = $producto_father->descripcion_2;

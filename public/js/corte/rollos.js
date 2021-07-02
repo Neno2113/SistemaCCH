@@ -1,3 +1,5 @@
+let id_rollo = 0;
+
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -58,25 +60,7 @@ $(document).ready(function() {
         });
 
 
-        // $("#suplidores").select2({
-        //     placeholder: "Busca un suplidor...",
-        //     ajax: {
-        //         url: 'suplidores',
-        //         dataType: 'json',
-        //         delay: 250,
-        //         processResults: function(data){
-        //             return {
-        //                 results: $.map(data, function(item){
-        //                     return {
-        //                         text: item.nombre+' - '+ item.contacto_suplidor,
-        //                         id: item.id
-        //                     }
-        //                 })
-        //             };
-        //         },
-        //         cache: true
-        //     }
-        // })
+     
 
     }
 
@@ -129,11 +113,7 @@ $(document).ready(function() {
 
         var rollo = {
             suplidor: $("#suplidores").val(),
-            tela: $("#cloths").val(),
-            codigo_rollo: $("#codigo_rollo").val(),
-            num_tono: $("#num_tono").val(),
             fecha_compra: $("#fecha_compra").val(),
-            longitud_yarda: $("#longitud_yarda").val(),
             no_factura_compra: $("#no_factura_compra").val()
         };
 
@@ -150,16 +130,13 @@ $(document).ready(function() {
                     'Rollo creado correctamente.',
                     'success'
                     )
-                    limpiar();
-                    tabla.ajax.reload();
+                    // limpiar();
+                    // tabla.ajax.reload();
                     // mostrarForm(false);
-                } else if(datos.status == 'info') {
-                    Swal.fire(
-                        'Info!',
-                        'Este rollo ya existe!.',
-                        'info'
-                        )
-                }
+                    id_rollo = datos.rollo.id;
+                    $("#row-detail").show();
+                    $("#btn-guardar").attr("disabled", true);
+                } 
             },
             error: function(datos) {
                 console.log(datos.responseJSON.errors);
@@ -174,6 +151,69 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    $("#btn-agregar").on('click', (e) => {
+        e.preventDefault();
+        let data = {
+            id_rollo: id_rollo,
+            id_tela: $("#cloths").val(),
+            numero: $("#codigo_rollo").val(),
+            tono: $("#num_tono").val(),
+            longitud: $("#longitud_yarda").val()
+        }
+
+        // console.log(JSON.stringify(data));
+
+        $.ajax({
+            url: "detalle",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Rollo agregado correctamente.'
+                    })
+                    limpiar();
+                    var fila =
+                    '<tr id="fila'+datos.rollo.id+'">'+
+                    "<td class=''><input type='hidden' id='usuario"+datos.rollo.id+"' value="+datos.rollo.numero+">"+datos.rollo.numero+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.rollo.tono+"' value="+datos.rollo.tono+">"+datos.rollo.tono+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.rollo.longitud+"' value="+datos.rollo.longitud+">"+datos.rollo.longitud+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delRollo("+datos.rollo.id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                    $("#permisos-agregados").append(fila);
+                } else if(datos.status == 'info') {
+                    Swal.fire(
+                        'Info!',
+                        'Este rollo ya existe!.',
+                        'info'
+                        )
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+
+    })
     
 
     function listar() {
@@ -202,13 +242,9 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre", name: "suplidor.nombre" },
-                { data: "referencia", name: "tela.ferencia", searchable: false },
-                { data: "codigo_rollo", name: "rollos.codigo_rollo" },
-                { data: "num_tono", name: "rollos.num_tono" },
+                { data: "tela", name: "rollos.tela", orderable: false, searchable: false },
                 { data: "fecha_compra", name: "rollos.fecha_compra" },
                 { data: "no_factura_compra", name: "rollos.no_factura_compra" },
-                { data: "corte_utilizado", name: "rollos.corte_utilizado" },
-                { data: "longitud_yarda", name: "rollos.longitud_yarda" },
             ],
             order: [[2, 'asc']],
             rowGroup: {
@@ -223,11 +259,7 @@ $(document).ready(function() {
         var rollo = {
             id: $("#id").val(),
             suplidor: $("#suplidores").val(),
-            tela: $("#cloths").val(),
-            codigo_rollo: $("#codigo_rollo").val(),
-            num_tono: $("#num_tono").val(),
             fecha_compra: $("#fecha_compra").val(),
-            longitud_yarda: $("#longitud_yarda").val(),
             no_factura_compra: $("#no_factura_compra").val()
         };
 
@@ -241,19 +273,16 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
-                    'Rollo actualizado correctamente.',
-                    'success'
-                    )
-                    tabla.ajax.reload();
-                    limpiar();
-                    $("#id").val("");
-                    $("#listadoUsers").show();
-                    $("#registroForm").hide();
-                    $("#btnCancelar").hide();
-                    $("#btn-edit").hide();
-                    $("#btn-guardar").show();
-                    $("#btnAgregar").show();
+                        'Success',
+                        'Rollo actualizado correctamente.',
+                        'success'
+                        )
+                    // limpiar();
+                    // tabla.ajax.reload();
+                    // mostrarForm(false);
+                    id_rollo = datos.rollo.id;
+                  
+                    // $("#btn-guardar").attr("disabled", true);
 
                 } else {
                     bootbox.alert(
@@ -275,21 +304,45 @@ $(document).ready(function() {
         if (flag) {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#rollosForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
         } else {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#rollosForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit").hide();
-            $("#btn-guardar").show();
+            $("#btn-finish").show();
         }
     }
+
+
+    $("#btn-finish").on('click', (e) => {
+        e.preventDefault();
+        Swal.fire(
+            'Success',
+            'Rollos agregados correctamente.',
+            'success'
+            );
+
+        limpiar();
+        tabla.ajax.reload();
+        mostrarForm(true);
+    })
 
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         mostrarForm(false);
+        $("#suplidores").val('').select2().trigger('change').attr("disabled", false);
+        $("#cloths").val('').select2().trigger('change').attr("disabled", false);
+        $("#no_factura_compra").val('');
+        $("#fecha_compra").val('');
+        $("#permisos-agregados").empty();
+        $("#btn-guardar").attr("disabled", false);
+        $("#row-detail").hide();
+
     });
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
@@ -312,20 +365,37 @@ function mostrar(id_rollo) {
             // data = JSON.parse(data);
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#rollosForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
+            $("#btn-finish").show();
+            // $("#btn-save").hide();
 
             // console.log(data);
             // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
             $("#id").val(data.rollo.id);
-            $("#suplidores").val(data.rollo.id_suplidor).select2().trigger('change');
+            $("#suplidores").val(data.rollo.id_suplidor).select2().trigger('change').attr("disabled", true);
             $("#codigo_rollo").val(data.rollo.codigo_rollo);
             $("#num_tono").val(data.rollo.num_tono);
             $("#no_factura_compra").val(data.rollo.no_factura_compra);
             $("#fecha_compra").val(data.rollo.fecha_compra);
             $("#longitud_yarda").val(data.rollo.longitud_yarda);
+            $("#permisos-agregados").empty();
+            $("#cloths").val(data.rollo.id_tela).select2().trigger('change');
+            // telas();
+
+            for (let i = 0; i < data.rollos.length; i++) {
+                var fila =
+                '<tr id="fila'+data.rollos[i].id+'">'+
+                "<td class=''><input type='hidden' id='usuario"+data.rollos[i].id+"' value="+data.rollos[i].id+">"+data.rollos[i].numero+"</td>"+
+                "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.rollos[i].tono+"' value="+data.rollos[i].tono+">"+data.rollos[i].tono+"</td>"+
+                "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.rollos[i].longitud+"' value="+data.rollos[i].longitud+">"+data.rollos[i].longitud+"</td>"+
+                "<td><button type='button' id='btn-eliminar' onclick='delRollo("+data.rollos[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                "</tr>";
+                $("#permisos-agregados").append(fila);
+            }
         }
      
     });
@@ -413,4 +483,28 @@ function telas(){
         }
     });
 
+}
+
+
+const delRollo = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este rollo?',
+        text: "Va a eliminar este rollo!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("detail/delete/" + id, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Rollo eliminado correctamente.',
+                'success'
+                )
+                $("#fila"+id).remove();
+            })
+        }
+      })
 }

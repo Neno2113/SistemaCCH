@@ -973,7 +973,7 @@ class ExistenciaController extends Controller
         $i_alm_m = ($almacen_mythos->sum('i') - $facturado_m->sum('i') <= 0) ? 0 : $almacen_mythos->sum('i') - $facturado_m->sum('i') + $nota_credito_m->sum('i');
         $j_alm_m = ($almacen_mythos->sum('j') - $facturado_m->sum('j') <= 0) ? 0 : $almacen_mythos->sum('j') - $facturado_m->sum('j') + $nota_credito_m->sum('j');
         $k_alm_m = ($almacen_mythos->sum('k') - $facturado_m->sum('k') <= 0) ? 0 : $almacen_mythos->sum('k') - $facturado_m->sum('k') + $nota_credito_m->sum('k');
-        $l_alm_m = ($almacen_mythos->sum('l') - $facturado_m->sum('l') <= 0) ? 0 : $almacen_mythos->sum('l') - $facturado_m->sum('l') + $nota_credito_m->sum('l');
+        $l_alm_m = ($almacen_mythos->sum('l') - $facturado_m->sum('l') <= 0) ? 0 : $almacen_mythos->sum('l') - $orden_m->sum('l') + $nota_credito_m->sum('l');
         $total_alm_m = $a_alm_m + $b_alm_m + $c_alm_m + $d_alm_m + $e_alm_m + $f_alm_m + $g_alm_m + $h_alm_m
             + $i_alm_m + $j_alm_m + $k_alm_m + $k_alm_m;
 
@@ -1016,8 +1016,7 @@ class ExistenciaController extends Controller
             ->groupBy('referencia_father')
             ->get();
 
-        // echo $nota_credito_l;
-        // die();
+    
 
         $a_alm_l = $almacen_lavish->sum('a') - $facturado_l->sum('a') + $nota_credito_l->sum('a');
         $b_alm_l = $almacen_lavish->sum('b') - $facturado_l->sum('b') + $nota_credito_l->sum('b');
@@ -1091,7 +1090,7 @@ class ExistenciaController extends Controller
         $i_alm_g = $almacen_genius->sum('i') - $facturado_g->sum('i') + $nota_credito_g->sum('i');
         $j_alm_g = $almacen_genius->sum('j') - $facturado_g->sum('j') + $nota_credito_g->sum('j');
         $k_alm_g = $almacen_genius->sum('k') - $facturado_g->sum('k') + $nota_credito_g->sum('k');
-        $l_alm_g = $almacen_genius->sum('l') - $facturado_l->sum('l') + $nota_credito_g->sum('l');
+        $l_alm_g = $almacen_genius->sum('l') - $facturado_g->sum('l') + $nota_credito_g->sum('l');
         // $ref_alm_l = $almacen_lavish[0]['referencia_producto'];
         $total_alm_g = $a_alm_g + $b_alm_g + $c_alm_g + $d_alm_g + $e_alm_g + $f_alm_g + $g_alm_g + $h_alm_g
             + $i_alm_g + $j_alm_g + $k_alm_g + $k_alm_g;

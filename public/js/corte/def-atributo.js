@@ -272,7 +272,7 @@ $(document).ready(function() {
             $("#form_producto").hide();
             $("#form_producto_2").hide();
             $("#form_talla").hide();
-            $("#btn-guardar").attr("disabled", true);
+            // $("#btn-guardar").attr("disabled", true);
         }
     }
 
@@ -320,6 +320,10 @@ $(document).ready(function() {
                     $("#atributo_no_1").val(datos.producto.atributo_no_1);
                     $("#atributo_no_2").val(datos.producto.atributo_no_2);
                     $("#atributo_no_3").val(datos.producto.atributo_no_3);
+                    $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_frente);
+                    $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_trasero);
+                    $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_perfil);
+                    $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_bolsillo);
 
                     if (ubicacion != null) {
                         bootbox.confirm({
@@ -417,9 +421,9 @@ $(document).ready(function() {
     //         .ajax.reload();
     // }
 
-    $("#btn-upload").click(function() {
-        $("#btn-guardar").attr("disabled", false);
-    });
+    // $("#btn-upload").click(function() {
+    //     $("#btn-guardar").attr("disabled", false);
+    // });
 
     $("#btnAgregar").click(function(e) {
         e.preventDefault();

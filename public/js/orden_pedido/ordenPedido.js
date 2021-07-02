@@ -462,7 +462,7 @@ $(document).ready(function() {
 
                     for (let i = 0; i < longitud; i++) {
                         var fila =
-                        `<option value="${datos.sucursal[i].id}">"${datos.sucursal[i].nombre_sucursal}"</option>`;
+                        `<option value="${datos.sucursal[i].id}">${datos.sucursal[i].nombre_sucursal}</option>`;
                         
                         
                         $("#sucursalSearch").append(fila);
@@ -639,7 +639,7 @@ $(document).ready(function() {
                     $("#precio_div").show();
                     $("#total_div").show();
                     $("#btn-agregar").show();
-                    $("#btn-consultar").attr("disabled", true);
+                    // $("#btn-consultar").attr("disabled", true);
                     $("#btn-agregar").attr("disabled", false);
                     let genero = ref.substring(1, 2);
                     var mujer_plus = ref.substring(3, 4);
@@ -678,7 +678,7 @@ $(document).ready(function() {
                     datos.l <= 0 ? $("#l, #up-l, #down-l").attr("disabled", true) : $("#l, #up-l, #down-l").attr("disabled", false);
 
                     if(cantidad > total_alm){
-
+                        $("#btn-agregar").attr("disabled", true);
                         if(total_alm == 0){
                             Swal.fire({
                                 type: 'warning',

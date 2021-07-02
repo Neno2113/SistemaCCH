@@ -222,7 +222,7 @@
     </div>
     <div class="card-body">
         @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Imprimir ordenes empaque')->where('ver', 1)->first())
-        <table id="print_OE" class="table table-striped table-bordered datatables">
+        <table id="print_OE" class="table table-striped table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
                     <th></th>

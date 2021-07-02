@@ -24,23 +24,33 @@
                     <hr>
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
 
                             <label for="nombre" >Nombre</label>
                             <input type="text" name="nombre" id="nombre"  class="form-control">
                          
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="apellido" >Apellido</label>
                             <input type="text" name="apellido" id="apellido" 
                                 class="form-control">
                           
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="rnc" >Identificacion</label>
                             <input type="text" name="cedula" id="cedula" 
                                 class="form-control text-center" data-inputmask='"mask": "999-9999999-9"' data-mask>
                             
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Fecha Nacimiento</label>
+                            <input 
+                            type="date" 
+                            name="fecha_nacimiento" 
+                            id="fecha_nacimiento" 
+                            class="form-control"
+                            value="2000-01-01"    
+                        >
                         </div>
 
 
@@ -399,26 +409,26 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Departamento</th>
                     <th>Cargo</th>
                     <th>Contrato</th>
                     <th>Email</th>
+                    <th>Edad</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Departamento</th>
                     <th>Cargo</th>
                     <th>Contrato</th>
                     <th>Email</th>
+                    <th>Edad</th>
                 </tr>
             </tfoot>
         </table>

@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-7">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header bg-dark">
                 <div class="card-tools">
@@ -23,7 +23,7 @@
                     <hr>
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label for="nombre_cliente" >Suplidores</label>
                             <select name="tags[]" id="suplidores" class="form-control select2">
 
@@ -31,7 +31,7 @@
                           
                         </div>
                   
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label for="nombre_cliente" >Telas</label>
                             <select name="tags[]" id="cloths"  class="form-control select2">
 
@@ -39,20 +39,25 @@
                            
                         </div>
                         
-                        <div class="col-md-3">
-                            <label for="" >Fecha compra</label>
-                            <input type="date" placeholder="Fecha compra" name="fecha_compra" id="fecha_compra" class="form-control">
-                          
-                        </div>
-                      
-                        <div class="col-md-3">
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
                             <label for="" >No. Factura</label>
                             <input type="text" placeholder="Factura" name="no_factura_compra" id="no_factura_compra" placeholder="Numero" class="form-control">
                       
                         </div>
+                        <div class="col-md-6">
+                            <label for="" >Fecha compra</label>
+                            <input type="date" placeholder="Fecha compra" name="fecha_compra" id="fecha_compra" class="form-control">
+                          
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" id="btn-guardar" class="btn  btn-dark mt-2 "><i class="fas fa-dolly-flatbed"></i> Rollo</button>
+                        <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
 
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id="row-detail">
                        
                         <div class="col-md-4 mt-2">
                             <label for="" >Numero de rollo</label>
@@ -74,11 +79,50 @@
                     </div>
             </div>
             <div class="card-footer  text-muted">
+                <button type="submit" id="btn-agregar" class="btn  btn-info mt-2 float-right"><i class="fas fa-dolly"></i> Agregar</button>
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn  btn-primary mt-2 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
+                {{-- <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i class="far fa-edit fa-lg"></i> Editar</button> --}}
             </div>
             </form>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card  mb-3" id="rollosForm">
+            <div class="card-header bg-dark">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                
+                <h5>Rollos</h5>
+                <hr>
+                <div class="row">
+                    <table class="table tabla-existencia table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Numero</th>
+                                <th>Tono</th>
+                                <th>Longitud</th>
+                                <th id="editar-permisos">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="permisos-agregados">
+
+                        </tbody>
+                    </table>
+                </div>
+                   
+                  
+            </div>
+            <div class="card-footer  text-muted">
+                {{-- <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button> --}}
+                <button type="submit" id="btn-finish" class="btn  btn-primary mt-2 float-right"><i class="far fa-save"></i> Guardar</button>
+            </div>
+           
         </div>
     </div>
 </div>
@@ -104,12 +148,8 @@
                     <th>Actions</th>
                     <th>Suplidor</th>
                     <th>Tela</th>
-                    <th>Codigo</th>
-                    <th>Tono</th>
-                    <th>F. compra</th>
+                    <th>Fecha Compra</th>
                     <th>No. Factura</th>
-                    <th>Corte asig.</th>
-                    <th>Yardas</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -119,12 +159,8 @@
                     <th>Actions</th>
                     <th>Suplidor</th>
                     <th>Tela</th>
-                    <th>Codigo</th>
-                    <th>Tono</th>
-                    <th>F. compra</th>
+                    <th>Fecha Compra</th>
                     <th>No. Factura</th>
-                    <th>Corte asig.</th>
-                    <th>Yardas</th>
                 </tr>
             </tfoot>
         </table>

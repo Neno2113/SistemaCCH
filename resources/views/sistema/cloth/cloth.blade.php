@@ -41,24 +41,25 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4 mt-4">
                             <label for="referencia" >Referencia</label>
                             <input type="text" name="referencia" id="referencia"
                                 class="form-control">
                            
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4 mt-4">
                             <label for="referencia" >Precio</label>
                             <input type="text" placeholder="Precio USD por yarda" name="precio_usd" id="precio_usd"
                                 class="form-control text-center" data-inputmask='"mask": "USD 9[.99]"' data-mask>
                           
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="referencia" >Tipo tela</label>
+                            <label for="referencia" >Tipo tela</label>  <button class="btn btn-primary btn-sm mb-2" id="btn-telas"  type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="tipo_tela" id="tipo_tela" class="form-control">
-                                <option value="" disabled>Tipo tela</option>
+                                {{-- <option value="" disabled>Tipo tela</option>
                                 <option value="Denim">Denim</option>
-                                <option value="Twill">Twill</option>
+                                <option value="Twill">Twill</option> --}}
                             </select>
                            
                         </div>
@@ -330,6 +331,59 @@
                 <button type="button" id="btn-close" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
             </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Rollos-->
+<div class="modal fade bd-marca-modal-xl" tabindex="-1" role="dialog" id="modalRollos"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-h5">Agregar nueva entrada</h5>
+                <hr>
+                <form action="" class="form-group">
+                    <div class="row">
+                        <div class="col-7">
+                            <label for="">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control text-center">
+                            <button type="button" id="btn-save" class="btn btn-primary mt-3" ><i class="fas fa-plus"></i> Agregar</button>
+
+                        </div>
+                    
+                       
+                    </div>
+                  
+                    <div class="row mt-3">
+                        <hr>
+                        <table class="table tabla-existencia table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th id="editar-permisos">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="permisos-agregados">
+    
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
 </div>

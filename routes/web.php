@@ -177,6 +177,8 @@ Route::post('/user/{id}', 'UserController@show');
 Route::post('/avatar', 'UserController@upload');
 Route::get('/avatar/{filname}', 'UserController@getImage');
 Route::get('exportar/test', 'ExistenciaController@userExport');
+Route::post('/user/active/{id}', 'UserController@activar');
+Route::post('/user/desactive/{id}', 'UserController@desactivar');
 
 
 //Rutas composition
@@ -225,6 +227,9 @@ Route::put('/cloth/edit', 'ClothController@update');
 Route::post('/cloth/delete/{id}', 'ClothController@destroy');
 Route::post('/clothcheck/delete/{id}', 'ClothController@checkDestroy');
 Route::get('suplidor/select', 'ClothController@supplidorSelect');
+Route::post('/tela/delete/{id}', 'ClothController@destroyCategoriaTela');
+Route::get('/telas', 'ClothController@showCategoriasTela');
+Route::post('/tela-cat', 'ClothController@storeCategoriaTela');
 
 //Rutas rollos
 Route::get('cloths', 'RollosController@selectCloth');
@@ -235,6 +240,8 @@ Route::put('/rollo/edit', 'RollosController@update');
 Route::post('/rollo/delete/{id}', 'RollosController@destroy');
 Route::post('/rollocheck/delete/{id}', 'RollosController@checkDestroy');
 Route::post('tela/select', 'RollosController@selectTela');
+Route::post('/detalle', 'RollosController@storeDetail');
+Route::post('/detail/delete/{id}', 'RollosController@destroyDetail');
 
 //Rutas productos
 Route::get('product/lastdigit', 'ProductController@getDigits');
@@ -250,6 +257,13 @@ Route::get('producto/terminado/{filname}', 'ProductController@getImage');
 Route::post('producto/validarSku', 'ProductController@validarSku');
 Route::post('validar/referencia', 'ProductController@verificarReferencia');
 Route::post('/productcheck/delete/{id}', 'ProductController@checkDestroy');
+Route::get('/marcas', 'ProductController@catMarcas');
+Route::get('/generos', 'ProductController@catGenero');
+Route::get('/tipos', 'ProductController@catTipo');
+Route::get('/categorias', 'ProductController@catCategoria');
+Route::post('/categoria', 'ProductController@storeCategoria');
+Route::get('/listar/{tipo}', 'ProductController@showCategorias');
+Route::post('/categoria/delete/{id}', 'ProductController@destroyCategoria');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
@@ -271,6 +285,7 @@ Route::post('verificacion/corte', 'CorteController@verificarCorte');
 Route::post('verificacion/producto', 'CorteController@verificarReferencia');
 Route::get('testSelectProduct', 'CorteController@testSelect2');
 Route::post('curva/update', 'CorteController@updateCurva');
+Route::get('sku-check/{id}', 'CorteController@checkSkus');
 
 //Talla
 Route::post('/talla', 'TallaController@store');
@@ -392,6 +407,7 @@ Route::get('/imprimir_empaque/{id}', 'ordenEmpaqueController@imprimir');
 Route::get('/empaque/facturar/{id}', 'ordenEmpaqueController@imprimirConduce');
 Route::get('/orden_redistribuir/{id}', 'ordenEmpaqueController@redistibucion');
 Route::get('/orden_empaque/{id}', 'ordenEmpaqueController@show');
+Route::get('/validar_empaque/{id}', 'ordenEmpaqueController@validar');
 Route::post('/empaque_detalle/{id}', 'ordenEmpaqueController@empaque');
 Route::get('/verificar_empaque/{id}', 'ordenEmpaqueController@verificar');
 

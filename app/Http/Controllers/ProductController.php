@@ -11,6 +11,7 @@ use App\SKU;
 use App\CurvaProducto;
 use App\CatalogoCuenta;
 use App\Articulo;
+use App\CategoriaProducto;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
@@ -1095,6 +1096,125 @@ class ProductController extends Controller
         }
 
         return response()->json($data, $data['code']);
+    }
+
+
+    public function catMarcas(){
+        $marcas = CategoriaProducto::where('tipo', 'marca')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'marcas' => $marcas
+        ];
+        return response()->json($data, $data['code']);
+    }   
+
+
+    public function catGenero(){
+        $generos = CategoriaProducto::where('tipo', 'genero')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'generos' => $generos
+        ];
+        return response()->json($data, $data['code']);
+    } 
+
+    public function catTipo(){
+        $tipos = CategoriaProducto::where('tipo', 'tipo_producto')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'tipos' => $tipos
+        ];
+        return response()->json($data, $data['code']);
+    } 
+
+    public function catCategoria(){
+        $categorias = CategoriaProducto::where('tipo', 'categoria')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'categorias' => $categorias
+        ];
+        return response()->json($data, $data['code']);
+    } 
+
+    public function storeCategoria(Request $request){
+
+        $validar = $request->validate([
+            'tipo' => 'required',
+            'indice' => 'required',
+            'nombre' => 'required'
+        ]);
+
+        if(empty($validar)){
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+
+            $tipo = $request->input('tipo');
+            $indice = $request->input('indice');
+            $nombre = $request->input('nombre');
+
+            $categoria = new CategoriaProducto();
+
+            $categoria->tipo = $tipo;
+            $categoria->indice = $indice;
+            $categoria->nombre = $nombre;
+
+            $categoria->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'categoria' => $categoria
+            ];
+
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function showCategorias($tipo) {
+        $tipos = CategoriaProducto::where('tipo', $tipo)->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'categorias' => $tipos
+        ];
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroyCategoria($id){
+        $categoria = CategoriaProducto::find($id);
+
+        if(is_object($categoria)){
+            $categoria->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'categoria' => $categoria
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+        
     }
     
 }

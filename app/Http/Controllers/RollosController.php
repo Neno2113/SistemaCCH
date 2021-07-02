@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cloth;
 use App\PermisoUsuario;
 use App\Rollos;
+use App\RollosDetail;
 use App\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -17,11 +18,9 @@ class RollosController extends Controller
     {
         $validar = $request->validate([
             'suplidor' => 'required',
-            'tela' => 'required',
-            'codigo_rollo' => 'required',
-            'num_tono' => 'required',
+            'fecha_compra' => 'required',
             'no_factura_compra' => 'required',
-            'longitud_yarda' => 'required'
+
         ]);
 
         if (empty($validar)) {
@@ -35,37 +34,73 @@ class RollosController extends Controller
 
             $id_user = \auth()->user()->id;
             $id_suplidor = $request->input('suplidor', true);
-            $id_tela = $request->input('tela', true);
-            $codigo_rollo = $request->input('codigo_rollo', true);
-            $num_tono = $request->input('num_tono', true);
             $fecha_compra = $request->input('fecha_compra', true);
-            $longitud_yarda = $request->input('longitud_yarda', true);
             $no_factura_compra = $request->input('no_factura_compra', true);
 
-            
-            $verificar = Rollos::where('id_suplidor', 'LIKE', $id_suplidor)
-            ->where('id_tela', 'LIKE', $id_tela)
-            ->where('codigo_rollo', 'LIKE', $codigo_rollo)->get()->first();
+
+            $rollos = new Rollos();
+            $rollos->id_user = $id_user;
+            $rollos->id_suplidor = $id_suplidor;
+            $rollos->fecha_compra = $fecha_compra;
+            $rollos->no_factura_compra = $no_factura_compra;
 
 
-            if(empty($verificar) || $verificar == null){
+            $rollos->save();
 
-                $rollos = new Rollos();
-                $rollos->id_user = $id_user;
-                $rollos->id_suplidor = $id_suplidor;
-                $rollos->id_tela = $id_tela;
-                $rollos->codigo_rollo = $codigo_rollo;
-                $rollos->num_tono = $num_tono;
-                $rollos->fecha_compra = $fecha_compra;
-                $rollos->no_factura_compra = $no_factura_compra;
-                $rollos->longitud_yarda = $longitud_yarda;
-    
-                $rollos->save();
-    
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'rollo' => $rollos
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function storeDetail(Request $request)
+    {
+        $validar = $request->validate([
+            'numero' => 'required',
+            'tono' => 'required',
+            'longitud' => 'required',
+
+        ]);
+
+        if (empty($validar)) {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $rollo = $request->input('id_rollo');
+            $tela = $request->input('id_tela');
+            $numero = $request->input('numero');
+            $tono = $request->input('tono');
+            $longitud = $request->input('longitud');
+
+
+
+            $verificar = RollosDetail::where('id_rollo', 'LIKE', $rollo)
+                ->where('id_tela', 'LIKE', $tela)
+                ->where('numero', 'LIKE', $numero)->get()->first();
+
+            if (empty($verificar) || $verificar == null) {
+
+                $rollos_detail = new RollosDetail();
+
+                $rollos_detail->id_rollo = $rollo;
+                $rollos_detail->id_tela = $tela;
+                $rollos_detail->numero = $numero;
+                $rollos_detail->tono = $tono;
+                $rollos_detail->longitud = $longitud;
+
+                $rollos_detail->save();
+
                 $data = [
                     'code' => 200,
                     'status' => 'success',
-                    'rollo' => $rollos
+                    'rollo' => $rollos_detail
                 ];
             } else {
                 $data = [
@@ -75,10 +110,6 @@ class RollosController extends Controller
                     'rollo' => $verificar
                 ];
             }
-
-           
-
-           
         }
 
         return response()->json($data, $data['code']);
@@ -88,15 +119,18 @@ class RollosController extends Controller
     {
 
         $rollos = DB::table('rollos')->join('suplidor', 'rollos.id_suplidor', '=', 'suplidor.id')
-            ->join('tela', 'rollos.id_tela', '=', 'tela.id')
             ->select([
-                'rollos.id', 'tela.referencia', 'suplidor.nombre', 'rollos.codigo_rollo', 'rollos.num_tono',
-                'rollos.no_factura_compra', 'rollos.fecha_compra', 'rollos.longitud_yarda', 'rollos.corte_utilizado'
+                'rollos.id', 'suplidor.nombre','rollos.no_factura_compra', 'rollos.fecha_compra'
             ]);
 
         return DataTables::of($rollos)
             ->addColumn('Expandir', function ($rollo) {
                 return "";
+            })
+            ->addColumn('tela', function ($rollo) {
+                $rollos_detail = RollosDetail::where('id_rollo', $rollo->id)->get()->first()->load('telas');
+
+                return $rollos_detail->telas->referencia;
             })
             ->addColumn('Opciones', function ($rollo) {
                 return '<button id="btnEdit" onclick="mostrar(' . $rollo->id . ')" class="btn btn-warning btn-sm mr-1" > <i class="fas fa-edit"></i></button>' .
@@ -112,26 +146,28 @@ class RollosController extends Controller
         //Chekcing if the user has access to this function
         $user_loginId = Auth::user()->id;
         $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Rollos')
-        ->first();
-        if(Auth::user()->role != 'Administrador'){
-            if($user_login->modificar == 0 || $user_login->modificar == null){
+            ->first();
+        if (Auth::user()->role != 'Administrador') {
+            if ($user_login->modificar == 0 || $user_login->modificar == null) {
                 return  $data = [
                     'code' => 200,
                     'status' => 'denied',
                     'message' => 'No tiene permiso para realizar esta accion.'
                 ];
             }
-    
         }
 
         $rollo = Rollos::find($id)->load('suplidor')
             ->load('tela');
 
         if (is_object($rollo)) {
+            $rollos = RollosDetail::where('id_rollo', $rollo->id)->get();
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'rollo' => $rollo
+                'rollo' => $rollo,
+                'rollos' => $rollos
             ];
         } else {
             $data = [
@@ -148,10 +184,8 @@ class RollosController extends Controller
     {
         $validar = $request->validate([
             'suplidor' => 'required',
-            'tela' => 'required',
-            'codigo_rollo' => 'required',
-            'num_tono' => 'required',
-            'no_factura_compra' => 'required'
+            'fecha_compra' => 'required',
+            'no_factura_compra' => 'required',
         ]);
 
         if (empty($validar)) {
@@ -165,22 +199,14 @@ class RollosController extends Controller
             $id = $request->input('id', true);
             $id_user = \auth()->user()->id;
             $id_suplidor = $request->input('suplidor', true);
-            $id_tela = $request->input('tela', true);
-            $codigo_rollo = $request->input('codigo_rollo', true);
-            $num_tono = $request->input('num_tono', true);
             $fecha_compra = $request->input('fecha_compra', true);
-            $longitud_yarda = $request->input('longitud_yarda', true);
             $no_factura_compra = $request->input('no_factura_compra', true);
 
             $rollo = Rollos::find($id);
 
             $rollo->id_user = $id_user;
             $rollo->id_suplidor = $id_suplidor;
-            $rollo->id_tela = $id_tela;
-            $rollo->codigo_rollo = $codigo_rollo;
-            $rollo->num_tono = $num_tono;
             $rollo->fecha_compra = $fecha_compra;
-            $rollo->longitud_yarda = $longitud_yarda;
             $rollo->no_factura_compra = $no_factura_compra;
 
             $rollo->save();
@@ -195,24 +221,24 @@ class RollosController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function checkDestroy(){
+    public function checkDestroy()
+    {
         //Chekcing if the user has access to this function
         $user_loginId = Auth::user()->id;
         $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Rollos')
-        ->first();
-        if(Auth::user()->role != 'Administrador'){
-            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+            ->first();
+        if (Auth::user()->role != 'Administrador') {
+            if ($user_login->eliminar == 0 || $user_login->eliminar == null) {
                 return  $data = [
                     'code' => 200,
                     'status' => 'denied',
                     'message' => 'No tiene permiso para realizar esta accion.'
                 ];
             }
-    
         }
-  
-          // return response()->json($data, $data['code']);
-      }
+
+        // return response()->json($data, $data['code']);
+    }
 
     public function destroy($id)
     {
@@ -275,5 +301,27 @@ class RollosController extends Controller
             'tela' => $tela
         ];
         return response()->json($data);
+    }
+
+    public function destroyDetail($id){
+        $rollo = RollosDetail::find($id);
+
+        if(is_object($rollo)){
+            $rollo->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'rollo' => $rollo
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+        
     }
 }

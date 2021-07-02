@@ -93,19 +93,19 @@
                         <div class="col-md-4 mt-2">
                             <label for="" >Ancho Marcada</label>
                             <input type="text" name="ancho_marcada" id="ancho_marcada"
-                                class="form-control" >
+                                class="form-control text-center" >
                            
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="" >Largo marcada</label>
                             <input type="text"  name="largo_marcada" id="largo_marcada"
-                                class="form-control" >
+                                class="form-control text-center" >
                            
                         </div>
                         <div class="col-md-4 mt-2">
                             <label for="" >Aprovechamiento</label>
                             <input type="text" name="aprovechamiento" id="aprovechamiento"
-                                class="form-control" data-inputmask='"mask": "99[.99]%"' data-mask>
+                                class="form-control text-center" data-inputmask='"mask": "99[.99]%"' data-mask>
                             
                         </div>
                     </div>
@@ -238,19 +238,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rollos:</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Asignacion de Rollos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    {{-- <label for="">Corte: </label>
-                    <div class="col-md-6">
-                        <input type="text" name="corte" id="corte" class="form-control text-center">
-                    </div> --}}
-                </div>
-                <br>
+                <h5 class="modal-h5">Seleccione los rollos para el corte</h5>
                 <hr>
                 <div class="table-responsive">
                     <div class="col-md-12">
@@ -293,7 +287,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Corte por tallas:</strong></h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Corte por tallas</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -960,6 +954,11 @@
                         <div class="col-md-2 mr-1">
                             <button class="btn btn-secondary mb-4" id="btn-asignar" value="General"> <i
                                     class="fas fa-barcode"></i> SKU generico </button>
+                        </div>
+
+                        <div class="col-md-2 mr-1">
+                            <button class="btn btn-dark mb-4" id="btn-reset" value="General"> <i
+                                    class="fas fa-barcode"></i> Asignar nuevo SKU </button>
                         </div>
                         {{-- <div class="col-md-2 mr-1">
                             <button class="btn btn-secondary mb-4" id="btn-asignar-ref2" value="General"> <i class="fas fa-barcode"></i> SKU generel </button>

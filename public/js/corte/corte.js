@@ -205,6 +205,7 @@ $(document).ready(function() {
         $("#genero").val(genero);
         genero_global = genero;
         plus_global = genero_plus;
+         setTimeout(verficarReferencia, 2000);
 
         if (genero == "2") {
             if(genero_plus == "7"){
@@ -448,7 +449,7 @@ $(document).ready(function() {
             $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);
         }
 
-        setTimeout(verficarReferencia, 5000);
+       
 
     });
 
@@ -625,39 +626,82 @@ $(document).ready(function() {
                     });
 
 
-                } else {
-                    console.log("error");
+                } else if(datos.status == 'info') {
+                    
+                    $("#a_perc_act").html(datos.a + "%");
+                    $("#b_perc_act").html(datos.b + "%");
+                    $("#c_perc_act").html(datos.c + "%");
+                    $("#d_perc_act").html(datos.d + "%");
+                    $("#e_perc_act").html(datos.e + "%");
+                    $("#f_perc_act").html(datos.f + "%");
+                    $("#g_perc_act").html(datos.g + "%");
+                    $("#h_perc_act").html(datos.h + "%");
+                    $("#i_perc_act").html(datos.i + "%");
+                    $("#j_perc_act").html(datos.j + "%");
+                    $("#k_perc_act").html(datos.k + "%");
+                    $("#l_perc_act").html(datos.l + "%");
+                    $("#total_perc_act").html(datos.total_porc + "%");
+                    $("#fila-inventario-perc").show();
+                    $("#fila-inventario").hide();
+
+                    if(genero_global == 1){
+                        $("td:nth-child(12),th:nth-child(12)").hide();
+                        $("td:nth-child(13),th:nth-child(13)").hide();
+    
+    
+                    }else if(genero_global == 3 || genero_global == 4 ){
+                        $("td:nth-child(10),th:nth-child(10)").hide();
+                        $("td:nth-child(11),th:nth-child(11)").hide();
+                        $("td:nth-child(12),th:nth-child(12)").hide();
+                        $("td:nth-child(13),th:nth-child(13)").hide();
+                        $("#fila-nuevo").hide();
+                        $("#fila-actual").hide();
+                        $("#fila-inventario-perc").hide();
+                        // $("#fila-totales").hide();
+                        $("#fila-perc-ref1").show();
+                        $("#fila-perc-ref2").show();
+                        $("#corte_tallas_2").show();
+                        $("#corte_tallas_2").show();
+                        $("#a_perc_ref1").html(datos.a);
+                        $("#b_perc_ref1").html(datos.b);
+                        $("#c_perc_ref1").html(datos.c);
+                        $("#d_perc_ref1").html(datos.d);
+                        $("#e_perc_ref1").html(datos.e);
+                        $("#f_perc_ref1").html(datos.f);
+                        $("#g_perc_ref1").html(datos.g);
+                        $("#h_perc_ref1").html(datos.h);
+                        $("#total_perc_ref1").html(datos.total_porc + "%");
+                        $("#corte_tallas_2").val(datos.referencia2.referencia_producto);
+
+                        $("#a_perc_ref2").html(datos.a_curva2);
+                        $("#b_perc_ref2").html(datos.b_curva2);
+                        $("#c_perc_ref2").html(datos.c_curva2);
+                        $("#d_perc_ref2").html(datos.d_curva2);
+                        $("#e_perc_ref2").html(datos.e_curva2);
+                        $("#f_perc_ref2").html(datos.f_curva2);
+                        $("#g_perc_ref2").html(datos.g_curva2);
+                        $("#h_perc_ref2").html(datos.h_curva2);
+                        $("#total_perc_ref2").html(datos.total_porc2 + "%");
+                    }
+                    if(plus_global == 7){
+                        $("td:nth-child(10),th:nth-child(10)").hide();
+                        $("td:nth-child(11),th:nth-child(11)").hide();
+                        $("td:nth-child(12),th:nth-child(12)").hide();
+                        $("td:nth-child(13),th:nth-child(13)").hide();
+                    }
+                 
+                    a_ref2 = datos.a_ref2;
+                    b_ref2 = datos.b_ref2;
+                    c_ref2 = datos.c_ref2;
+                    d_ref2 = datos.d_ref2;
+                    e_ref2 = datos.e_ref2;
+                    f_ref2 = datos.f_ref2;
+                    g_ref2 = datos.g_ref2;
+                    h_ref2 = datos.h_ref2;
                 }
             },
             error: function(datos) {
-                if(genero_global == 1){
-                    $("td:nth-child(12),th:nth-child(12)").hide();
-                    $("td:nth-child(13),th:nth-child(13)").hide();
-
-
-                }else if(genero_global == 3 || genero_global == 4 ){
-                    $("td:nth-child(10),th:nth-child(10)").hide();
-                    $("td:nth-child(11),th:nth-child(11)").hide();
-                    $("td:nth-child(12),th:nth-child(12)").hide();
-                    $("td:nth-child(13),th:nth-child(13)").hide();
-                    $("#fila-nuevo").hide();
-                }
-                if(plus_global == 7){
-                    $("td:nth-child(10),th:nth-child(10)").hide();
-                    $("td:nth-child(11),th:nth-child(11)").hide();
-                    $("td:nth-child(12),th:nth-child(12)").hide();
-                    $("td:nth-child(13),th:nth-child(13)").hide();
-                }
-
-                a_ref2 = datos.responseJSON.a_ref2;
-                b_ref2 = datos.responseJSON.b_ref2;
-                c_ref2 = datos.responseJSON.c_ref2;
-                d_ref2 = datos.responseJSON.d_ref2;
-                e_ref2 = datos.responseJSON.e_ref2;
-                f_ref2 = datos.responseJSON.f_ref2;
-                g_ref2 = datos.responseJSON.g_ref2;
-                h_ref2 = datos.responseJSON.h_ref2;
-                $("#corte_tallas_2").val(datos.responseJSON.producto.referencia_producto_2);
+               
 
 
             }
@@ -761,10 +805,12 @@ $(document).ready(function() {
                         }
                     });
 
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
+                } else if(datos.status == 'info') {
+                    Swal.fire(
+                        'Info',
+                        'Debe digitar la curva del producto para poder guardar.',
+                        'info'
+                        )
                 }
             },
             error: function(datos) {
@@ -837,11 +883,11 @@ $(document).ready(function() {
             // dom: 'Bfrtip',
             iDisplayLength: 5,
             columns: [
-                { data: "codigo_rollo", name: "rollos.codigo_rollo" },
+                { data: "numero", name: "rollos_detail.numero" },
                 { data: "referencia", name: "tela.referencia" },
-                { data: "longitud_yarda", name: "rollos.longitud_yarda" },
-                { data: "num_tono", name: "rollos.num_tono" },
-                { data: "corte_utilizado", name: "rollos.corte_utilizado" },
+                { data: "longitud", name: "rollos_detail.longitud" },
+                { data: "tono", name: "rollos_detail.tono" },
+                { data: "corte_utilizado", name: "rollos_detail.corte_utilizado" },
                 { data: "Editar", orderable: false, searchable: false },
             ],
             order: [[1, 'desc']],
@@ -1090,7 +1136,7 @@ $(document).ready(function() {
             $("#corte_tallas_2").hide();
             $("#btn-rollos").removeClass("btn-dark").addClass("btn-secondary");
             $("#btn-tallas").removeClass("btn-dark").addClass("btn-secondary");
-            $("#btn-sku").removeClass("btn-success").addClass("btn-secondary");
+            $("#btn-sku").removeClass("btn-dark").addClass("btn-secondary");
             // $("#fila-totales").hide();secondary
             $("#spiner").hide();
             $("#spiner2").hide();
@@ -1646,6 +1692,22 @@ $(document).ready(function() {
         tabla.columns.adjust().responsive.recalc();
     }
 
+    $("#btn-sku").on('click', (e) => {
+        e.preventDefault();
+        let producto = $("#productos").val();
+        checkSkus(producto);
+
+        
+    });
+
+    $('#btn-reset').on('click', (e) => {
+        e.preventDefault();
+
+        $("#btn-asignar, #btn-asignar1, #btn-asignar2, #btn-asignar3, #btn-asignar4, #btn-asignar5, #btn-asignar6").attr("disabled", false);
+        $("#btn-asignar7, #btn-asignar8, #btn-asignar9, #btn-asignar10, #btn-asignar11, #btn-asignar12, #btn-asignar13").attr("disabled", false);
+        bootbox.alert("Puede asignar nuevos SKU");
+    });
+
 
     init();
 });
@@ -1771,7 +1833,7 @@ function asignar(id_rollo) {
         contentType: "application/json",
         success: function(datos) {
             if (datos.status == "success") {
-                bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> asignado correctamente al corte: <strong>"
+                bootbox.alert("Rollo <strong>"+datos.rollo.numero +"</strong> asignado correctamente al corte: <strong>"
                     +datos.rollo.corte_utilizado+"</strong>");
                 $("#btn-guardar").attr("disabled", false);
                 $("#btn-rollos").removeClass("btn-secondary").addClass("btn-dark");
@@ -1804,7 +1866,7 @@ function remover(id_rollo) {
         contentType: "application/json",
         success: function(datos) {
             if (datos.status == "success") {
-                bootbox.alert("Rollo <strong>"+datos.rollo.codigo_rollo +"</strong> removido correctamente al corte: <strong>"
+                bootbox.alert("Rollo <strong>"+datos.rollo.numero +"</strong> removido correctamente al corte: <strong>"
                     +datos.corte_utilizado+"</strong>");
 
                 $("#edit-hide").css("background-color", "green");
@@ -2329,6 +2391,59 @@ function eliminarColumnas(){
         $("td:nth-child(12),th:nth-child(12)").hide();
         $("td:nth-child(13),th:nth-child(13)").hide();
     }
+}
+
+const checkSkus = (producto) => {
+
+    $.ajax({
+        url: "sku-check/"+ producto,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+
+                for (let i = 0; i < datos.skus.length; i++) {
+                    if(datos.skus[i].talla == 'General'){
+                        $("#btn-asignar").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'A'){
+                        $("#btn-asignar2").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'B'){
+                        $("#btn-asignar3").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'C'){
+                        $("#btn-asignar4").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'D'){
+                        $("#btn-asignar5").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'E'){
+                        $("#btn-asignar6").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'F'){
+                        $("#btn-asignar7").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'G'){
+                        $("#btn-asignar8").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'H'){
+                        $("#btn-asignar9").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'I'){
+                        $("#btn-asignar10").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'J'){
+                        $("#btn-asignar11").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'K'){
+                        $("#btn-asignar12").attr('disabled', true);
+                    }else if(datos.skus[i].talla == 'L'){
+                        $("#btn-asignar13").attr('disabled', true);
+                    }
+                    
+                }
+
+            } else {
+                bootbox.alert("Ocurrio un error durante la actualizacion");
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+            );
+        }
+    });
 }
 
 

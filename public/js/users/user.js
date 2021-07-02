@@ -54,7 +54,7 @@ $(document).ready(function() {
     function limpiar() {
         $("#name").val("").attr('readonly', false);
         $("#surname").val("").attr('readonly', false);
-        $("#edad").val("").attr('readonly', false);
+        $("#fecha_nacimiento").val("2000-01-01").attr('readonly', false);
         $("#telefono").val("").attr('readonly', false);
         $("#celular").val("").attr('readonly', false);
         $("#direccion").val("").attr('readonly', false);
@@ -72,7 +72,7 @@ $(document).ready(function() {
             nombre: $("#name").val(),
             apellido: $("#surname").val(),
             email: $("#email").val(),
-            edad: $("#edad").val(),
+            fecha_nacimiento: $("#fecha_nacimiento").val(),
             telefono: $("#telefono").val(),
             celular: $("#celular").val(),
             direccion: $("#direccion").val(),
@@ -144,14 +144,15 @@ $(document).ready(function() {
                 ],
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "editar", orderable: false, searchable: false },
                 { data: "eliminar", orderable: false, searchable: false },
+                { data: "editar", orderable: false, searchable: false },
                 { data: "name" },
                 { data: "surname" },
                 { data: "email" },
                 { data: "role" },
-                { data: "edad" },
+                { data: "fecha_nacimiento" },
                 { data: "celular" },
+                { data: "status", orderable: false, searchable: false },
             ],
             order: [[6, 'asc']],
             rowGroup: {
@@ -167,7 +168,7 @@ $(document).ready(function() {
             nombre: $("#name").val(),
             apellido: $("#surname").val(),
             email: $("#email").val(),
-            edad: $("#edad").val(),
+            fecha_nacimiento: $("#fecha_nacimiento").val(),
             telefono: $("#telefono").val(),
             celular: $("#celular").val(),
             direccion: $("#direccion").val(),
@@ -395,7 +396,7 @@ function mostrar(id_user) {
             $("#id").val(data.user.id);
             $("#name").val(data.user.name).attr('readonly', false);
             $("#surname").val(data.user.surname).attr('readonly', false);
-            $("#edad").val(data.user.edad).attr('readonly', false);
+            $("#fecha_nacimiento").val(data.user.fecha_nacimiento).attr('readonly', false);
             $("#telefono").val(data.user.telefono).attr('readonly', false);
             $("#celular").val(data.user.celular).attr('readonly', false);
             $("#direccion").val(data.user.direccion).attr('readonly', false);
@@ -420,7 +421,7 @@ function ver(id_user) {
         $("#name").val(data.user.name).attr('readonly', true);
         $("#ver-contra").hide();
         $("#surname").val(data.user.surname).attr('readonly', true);
-        $("#edad").val(data.user.edad).attr('readonly', true);
+        $("#fecha_nacimiento").val(data.user.fecha_nacimiento).attr('readonly', true);
         $("#telefono").val(data.user.telefono).attr('readonly', true);
         $("#celular").val(data.user.celular).attr('readonly', true);
         $("#direccion").val(data.user.direccion).attr('readonly', true);
@@ -463,4 +464,53 @@ function eliminar(id_user){
         }
     })
    
+}
+
+const activar = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de activar este usuario?',
+        text: "Va a darle acceso a este usuario!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("user/active/" + id, function(data){
+                Swal.fire(
+                'Usuario activado!',
+                'Usuario activado correctamente.',
+                'success'
+                )
+                $("#users").DataTable().ajax.reload();
+            })
+        }
+      })
+
+}
+
+
+const desactivar = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de desactivar este usuario?',
+        text: "Este usuario no podra accesar al sistema!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("user/desactive/" + id, function(data){
+                Swal.fire(
+                'Usuario desactivado!',
+                'Usuario desactivado correctamente.',
+                'success'
+                )
+                $("#users").DataTable().ajax.reload();
+            })
+        }
+      })
+
 }

@@ -89,7 +89,7 @@ $(document).ready(function() {
                 { data: "total", name: "orden_pedido.total", searchable: false  },
                 { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido" },
             ],
-            order: [[9, "desc"]],
+            order: [[2, "desc"]],
             rowGroup: {
                 dataSrc: "status_orden_pedido"
             }
@@ -111,6 +111,7 @@ $(document).ready(function() {
         } else {
             $("#AprobarPedido").show();
             $("#registroForm").hide();
+            $("#listadoUsers").show();
             $("#btnCancelar").hide();
             $("#badge-red").hide();
             $("#btnAgregar").show();
@@ -137,6 +138,7 @@ $(document).ready(function() {
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
         mostrarForm(false);
+        $("#ordenes_aprobacion").DataTable().ajax.reload();
 
     });
 
@@ -214,6 +216,7 @@ function redistribuir(id_orden){
       }).then((result) => {
         if (result.value) {
             accionRedistribuir(id_orden);
+            
         }
       })
 
@@ -222,13 +225,58 @@ function redistribuir(id_orden){
 function accionRedistribuir(id_orden){
     $.get("orden_redistribuir/" + id_orden, function(data){
         // console.log(data);
+       
         Swal.fire(
             'Guardado!',
             'Redistribucion completa',
             'success'
             )
         $("#detalle").DataTable().ajax.reload();
+        validarCant(id_orden, data);
     })
+}
+
+
+const validarCant = (id,data) => {
+    // console.log("estoy funcionando");
+    if(data.a_red > data.a_alm){
+        $("#a"+id).addClass('text-danger');
+    } 
+    if(data.b_red > data.b_alm){
+        $("#b"+id).addClass('text-danger');
+    } 
+    if(data.c_red > data.c_alm){
+        $("#c"+id).addClass('text-danger');
+    } 
+    if(data.d_red > data.d_alm){
+        $("#d"+id).addClass('text-danger');
+    } 
+    if(data.e_red > data.e_alm){
+        $("#e"+id).addClass('text-danger');
+    } 
+    if(data.f_red > data.f_alm){
+        $("#f"+id).addClass('text-danger');
+    } 
+    if(data.g_red > data.g_alm){
+        $("#g"+id).addClass('text-danger');
+    } 
+    if(data.h_red > data.h_alm){
+        $("#h"+id).addClass('text-danger');
+    } 
+    if(data.i_red > data.i_alm){
+        $("#i"+id).addClass('text-danger');
+    } 
+    if(data.j_red > data.j_alm){
+        $("#j"+id).addClass('text-danger');
+    } 
+    if(data.k_red > data.k_alm){
+        $("#k"+id).addClass('text-danger');
+    } 
+    if(data.l_red > data.l_alm){
+        $("#l"+id).addClass('text-danger');
+    } 
+    
+
 }
 
 function cancelar(id_orden){
@@ -364,6 +412,8 @@ function validar(id){
 
     let sum = a + b + c + d + e + f + g + h + i + j + k + l;
 
+    // console.log(sum);
+    // console.log(total);
     if(sum > total){
         $("#red"+id).val(sum).addClass('text-danger');
         // total.attr('class', '')

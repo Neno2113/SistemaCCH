@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\ordenPedido;
 use Yajra\DataTables\Facades\DataTables;
 use App\ordenPedidoDetalle;
+use App\OrdenFacturacion;
 use App\ordenEmpaque;
 use App\Perdida;
 use App\Almacen;
@@ -27,15 +28,13 @@ class ordenEmpaqueController extends Controller
 {
     public function ordenesAprobacion()
     {
-        $ordenes = DB::table('orden_pedido')->join('users', 'orden_pedido.user_aprobacion', 'users.id')
-            ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
-            ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
+        $ordenes = DB::table('orden_empaque')
+            ->join('orden_pedido', 'orden_empaque.orden_pedido_id', 'orden_pedido.id')
             ->select([
-                'orden_pedido.id', 'orden_pedido.fecha_aprobacion',
+                'orden_pedido.id', 'orden_empaque.no_orden_empaque', 'orden_pedido.sucursal_id',
                 'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega',
-                'orden_pedido.detallada', 'cliente.redistribucion_tallas',
-                'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal',
-                'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
+                'orden_pedido.detallada', 'orden_empaque.impreso', 'orden_pedido.cliente_id',
+                'orden_pedido.status_orden_pedido'
             ]);
 
         return DataTables::of($ordenes)
@@ -47,24 +46,31 @@ class ordenEmpaqueController extends Controller
 
                 return $ordenDetalle->sum('total');
             })
+            ->addColumn('cliente', function ($orden) {
+
+                $cliente = Client::find($orden->cliente_id);
+
+                return $cliente->nombre_cliente;
+                
+            })
+            ->addColumn('sucursal', function ($orden) {
+                $sucursal = ClientBranch::find($orden->sucursal_id);
+
+                return $sucursal->nombre_sucursal;
+            })
             ->editColumn('fecha_entrega', function ($orden) {
                 return date("d-m-20y", strtotime($orden->fecha_entrega));
             })
-            ->editColumn('fecha_aprobacion', function ($orden) {
-                return date("h:i:s d-m", strtotime($orden->fecha_aprobacion));
-            })
-            ->editColumn('status_orden_pedido', function ($orden) {
-                if ($orden->status_orden_pedido == 'Vigente') {
-                    return '<span class="badge badge-pill badge-success">Vigente</span>';
-                } else if ($orden->status_orden_pedido == 'Cancelado') {
-                    return '<span class="badge badge-pill badge-danger">Cancelada</span>';
-                } else if ($orden->status_orden_pedido == 'Stanby') {
-                    return '<span class="badge badge-pill badge-secondary">Stanby</span>';
-                } else if ($orden->status_orden_pedido == 'Despachado') {
-                    return '<span class="badge badge-pill badge-dark">Despachado</span>';
-                } else if( $orden->status_orden_pedido == 'Facturado') {
-                    return '<span class="badge badge-pill badge-primary">A facturar</span>';
+        
+            ->editColumn('impreso', function ($orden) {
+
+                if($orden->impreso == 1){
+                    return '<span class="badge badge-pill badge-success">impreso</span>';
+                } else {
+                    
+                    return '<span class="badge badge-pill badge-danger">No impreso</span>'; 
                 }
+
             })
             ->addColumn('Opciones', function ($orden) {
                 if($orden->status_orden_pedido == 'Vigente'){
@@ -75,7 +81,7 @@ class ordenEmpaqueController extends Controller
                 }
                
             })
-            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->rawColumns(['Opciones', 'impreso', 'cliente', 'sucursal'])
             ->make(true);
     }
 
@@ -85,7 +91,7 @@ class ordenEmpaqueController extends Controller
             ->join('cliente', 'orden_pedido.cliente_id', 'cliente.id')
             ->join('cliente_sucursales', 'orden_pedido.sucursal_id', 'cliente_sucursales.id')
             ->select([
-                'orden_pedido.id', 'orden_pedido.fecha_aprobacion',
+                'orden_pedido.id', 'orden_pedido.fecha_aprobacion', 'orden_pedido.empaque_impreso',
                 'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega',
                 'orden_pedido.detallada', 'cliente.redistribucion_tallas',
                 'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal',
@@ -118,6 +124,16 @@ class ordenEmpaqueController extends Controller
                     return '<span class="badge badge-pill badge-info">Stanby</span>';
                 }
             })
+            ->editColumn('empaque_impreso', function ($orden) {
+
+                if($orden->empaque_impreso == 1){
+                    return '<span class="badge badge-pill badge-success">impreso</span>';
+                } else {
+                    
+                    return '<span class="badge badge-pill badge-danger">No impreso</span>'; 
+                }
+
+            })
             ->addColumn('Opciones', function ($orden) {
                 if ($orden->detallada == '0' && $orden->redistribucion_tallas == '1')
                 {
@@ -141,7 +157,7 @@ class ordenEmpaqueController extends Controller
                         '<button onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="far fa-eye fa-lg"></i></button>';
                 }
             })
-            ->rawColumns(['Opciones', 'status_orden_pedido'])
+            ->rawColumns(['Opciones', 'status_orden_pedido', 'empaque_impreso'])
             ->make(true);
     }
 
@@ -172,9 +188,24 @@ class ordenEmpaqueController extends Controller
             $orden_empaque->no_orden_empaque = "OE-" . str_replace('.', '', $next_sec);
             $orden_empaque->fecha = date('Y/m/d h:i:s');
             $orden_empaque->sec = number_format($sec + 0.01, 2);
+            $orden_empaque->impreso = 1;
             $orden_empaque->save();
+
+            $orden_facturacion = new OrdenFacturacion();
+
+            // $orden_facturacion->no_orden_facturacion = $no_orden_facturacion;
+            $orden_facturacion->orden_empaque_id = $orden_empaque->id;
+            $orden_facturacion->user_id = \auth()->user()->id;
+            $orden_facturacion->fecha = date('Y/m/d h:i:s');
+            $orden_facturacion->impreso = 0;
+            // $orden_facturacion->por_transporte = $por_transporte;
+            // $orden_facturacion->sec = $sec + 0.01;
+
+            $orden_facturacion->save();
         } else {
             $orden_empaque = $orden_pedido;
+            $orden_empaque->impreso = 0;
+            $orden_empaque->save();
         }
 
         //orden normal
@@ -197,6 +228,9 @@ class ordenEmpaqueController extends Controller
         $productos = Product::whereIn('id', $productos_id)
             ->orderBy('ubicacion', 'asc')
             ->get();
+
+        $orden->empaque_impreso = 1;
+        $orden->save();
 
         $orden->fecha = date("d/m/20y", strtotime($orden->fecha));
         $orden->fecha_entrega = date("d/m/20y", strtotime($orden->fecha_entrega));
@@ -235,10 +269,16 @@ class ordenEmpaqueController extends Controller
         $productos = Product::whereIn('id', $productos_id)
             ->orderBy('ubicacion', 'asc')
             ->get();
-
         // $empaque_detalle->fecha_empacado = date("d/m h:i:s", strtotime($empaque_detalle->fecha_empacado));
 
         $orden_empaque->fecha_impresion = date('d/m/20y h:i:s');
+
+
+
+        $orden_empaque->impreso = 1;
+        $orden_empaque->save();
+
+
 
 
         $pdf = \PDF::loadView('sistema.ordenEmpaque.conduceFacturacion', \compact('orden', 'empaque_detalle', 'orden_empaque', 'productos'));
@@ -581,197 +621,425 @@ class ordenEmpaqueController extends Controller
         // $cant_total = round($cant_total);
 
         $cantidad_pedida = $ordenDetalle->cantidad;
-        $diferencia_distri = $cant_total - $cantidad_pedida ; 
+        $diferencia_distri = $cantidad_pedida - $cant_total; 
+
+        $diferencia = abs($diferencia_distri);
 
         if($cant_total != $cantidad_pedida){
-            $a_round = round($cantidad * $a_ter, 2);
-            $b_round = round($cantidad * $b_ter, 2);
-            $c_round = round($cantidad * $c_ter, 2);
-            $d_round = round($cantidad * $d_ter, 2);
-            $e_round = round($cantidad * $e_ter, 2);
-            $f_round = round($cantidad * $f_ter, 2);
-            $g_round = round($cantidad * $g_ter, 2);
-            $h_round = round($cantidad * $h_ter, 2);
-            $i_round = round($cantidad * $i_ter, 2);
-            $j_round = round($cantidad * $j_ter, 2);
-            $k_round = round($cantidad * $k_ter, 2);
-            $l_round = round($cantidad * $l_ter, 2);
-    
-            $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
-            $i_round + $j_round + $k_round + $l_round;
-            //Cambios a la redistribucion para corregir problema de total mayor o menos
-    
-    
-            //Resta de lo redondeado y el resultado
-            $dif_red_a = $a_round - $a_red ; 
-            $dif_red_b = $b_round - $b_red;
-            $dif_red_c = $c_round - $c_red;
-            $dif_red_d = $d_round - $d_red;
-            $dif_red_e = $e_round - $e_red;
-            $dif_red_f = $f_round - $f_red;
-            $dif_red_g = $g_round - $g_red;
-            $dif_red_h = $h_round - $h_red;
-            $dif_red_i = $i_round - $i_red;
-            $dif_red_j = $j_round - $j_red;
-            $dif_red_k = $k_round - $k_red;
-            $dif_red_l = $l_round - $l_red;
-    
-            $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
-            $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
+
         
-            //Absoluto
-            $a_abs = abs($dif_red_a);
-            $b_abs = abs($dif_red_b);
-            $c_abs = abs($dif_red_c);
-            $d_abs = abs($dif_red_d);
-            $e_abs = abs($dif_red_e);
-            $f_abs = abs($dif_red_f);
-            $g_abs = abs($dif_red_g);
-            $h_abs = abs($dif_red_h);
-            $i_abs = abs($dif_red_i);
-            $j_abs = abs($dif_red_j);
-            $k_abs = abs($dif_red_k);
-            $l_abs = abs($dif_red_l);
-    
-            //max Value of the ABS
-            $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
-            $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
-    
-    
-            $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
-            $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
-            $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
-            $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
-            $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
-            $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
-            $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
-            $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
-            $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
-            $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
-            $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
-            $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
-    
-            $a_equal = ($a_abs == $max_abs) ? 1 : 0;
-            $b_equal = ($b_abs == $max_abs) ? 1 : 0;
-            $c_equal = ($c_abs == $max_abs) ? 1 : 0;
-            $d_equal = ($d_abs == $max_abs) ? 1 : 0;
-            $e_equal = ($e_abs == $max_abs) ? 1 : 0;
-            $f_equal = ($f_abs == $max_abs) ? 1 : 0;
-            $g_equal = ($g_abs == $max_abs) ? 1 : 0;
-            $h_equal = ($h_abs == $max_abs) ? 1 : 0;
-            $i_equal = ($i_abs == $max_abs) ? 1 : 0;
-            $j_equal = ($j_abs == $max_abs) ? 1 : 0;
-            $k_equal = ($k_abs == $max_abs) ? 1 : 0;
-            $l_equal = ($l_abs == $max_abs) ? 1 : 0;
-
             if($cant_total > $cantidad_pedida){
-                $a_red = $a_red - $a_equal;
-                $b_red = $b_red - $b_equal;
-                $c_red = $c_red - $c_equal;
-                $d_red = $d_red - $d_equal;
-                $e_red = $e_red - $e_equal;
-                $f_red = $f_red - $f_equal;
-                $g_red = $g_red - $g_equal;
-                $h_red = $h_red - $h_equal;
-                $i_red = $i_red - $i_equal;
-                $j_red = $j_red - $j_equal;
-                $k_red = $k_red - $k_equal;
-                $l_red = $l_red - $l_equal;
-                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                // $cant_total = round($cant_total);
-            } else if($cant_total < $cantidad_pedida){
-                $a_red = $a_red + $a_equal;
-                $b_red = $b_red + $b_equal;
-                $c_red = $c_red + $c_equal;
-                $d_red = $d_red + $d_equal;
-                $e_red = $e_red + $e_equal;
-                $f_red = $f_red + $f_equal;
-                $g_red = $g_red + $g_equal;
-                $h_red = $h_red + $h_equal;
-                $i_red = $i_red + $i_equal;
-                $j_red = $j_red + $j_equal;
-                $k_red = $k_red + $k_equal;
-                $l_red = $l_red + $l_equal;
-                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-            }
-        }
+                $a_round = round($cantidad * $a_ter, 2);
+                $b_round = round($cantidad * $b_ter, 2);
+                $c_round = round($cantidad * $c_ter, 2);
+                $d_round = round($cantidad * $d_ter, 2);
+                $e_round = round($cantidad * $e_ter, 2);
+                $f_round = round($cantidad * $f_ter, 2);
+                $g_round = round($cantidad * $g_ter, 2);
+                $h_round = round($cantidad * $h_ter, 2);
+                $i_round = round($cantidad * $i_ter, 2);
+                $j_round = round($cantidad * $j_ter, 2);
+                $k_round = round($cantidad * $k_ter, 2);
+                $l_round = round($cantidad * $l_ter, 2);
+        
+                $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
+                $i_round + $j_round + $k_round + $l_round;
+                //Cambios a la redistribucion para corregir problema de total mayor o menos
 
-        if($cant_total != $cantidad_pedida){ 
-            //segundo Mayor absoluto
-            $a_abs2 = $a_abs - $a_abs_equal;
-            $b_abs2 = $b_abs - $b_abs_equal;  
-            $c_abs2 = $c_abs - $c_abs_equal;  
-            $d_abs2 = $d_abs - $d_abs_equal;  
-            $e_abs2 = $e_abs - $e_abs_equal;  
-            $f_abs2 = $f_abs - $f_abs_equal;  
-            $g_abs2 = $g_abs - $g_abs_equal;  
-            $h_abs2 = $h_abs - $h_abs_equal;  
-            $i_abs2 = $i_abs - $i_abs_equal;  
-            $j_abs2 = $j_abs - $j_abs_equal;  
-            $k_abs2 = $k_abs - $k_abs_equal;  
-            $l_abs2 = $l_abs - $l_abs_equal; 
+                $count = 0;
+                while($count <= $diferencia){
+
+                 
+
+                    //Resta de lo redondeado y el resultado
+                    $dif_red_a = $a_round - $a_red; 
+                    $dif_red_b = $b_round - $b_red;
+                    $dif_red_c = $c_round - $c_red;
+                    $dif_red_d = $d_round - $d_red;
+                    $dif_red_e = $e_round - $e_red;
+                    $dif_red_f = $f_round - $f_red;
+                    $dif_red_g = $g_round - $g_red;
+                    $dif_red_h = $h_round - $h_red;
+                    $dif_red_i = $i_round - $i_red;
+                    $dif_red_j = $j_round - $j_red;
+                    $dif_red_k = $k_round - $k_red;
+                    $dif_red_l = $l_round - $l_red;
             
-            $max_abs2 = max($a_abs2, $b_abs2, $c_abs2, $d_abs2, $e_abs2, $f_abs2, $g_abs2, 
-            $h_abs2, $i_abs2, $j_abs2, $k_abs2, $l_abs2);
+                    $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
+                    $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
+                
+                    //Absoluto
+                    $a_abs = abs($dif_red_a);
+                    $b_abs = abs($dif_red_b);
+                    $c_abs = abs($dif_red_c);
+                    $d_abs = abs($dif_red_d);
+                    $e_abs = abs($dif_red_e);
+                    $f_abs = abs($dif_red_f);
+                    $g_abs = abs($dif_red_g);
+                    $h_abs = abs($dif_red_h);
+                    $i_abs = abs($dif_red_i);
+                    $j_abs = abs($dif_red_j);
+                    $k_abs = abs($dif_red_k);
+                    $l_abs = abs($dif_red_l);
+            
+                    //max Value of the ABS
+                    $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
+                    $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
+            
+            
+                    // $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
+                    // $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
+                    // $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
+                    // $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
+                    // $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
+                    // $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
+                    // $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
+                    // $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
+                    // $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
+                    // $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
+                    // $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
+                    // $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
+            
+                    $a_equal = ($a_abs == $max_abs) ? 1 : 0;
+                    $b_equal = ($b_abs == $max_abs) ? 1 : 0;
+                    $c_equal = ($c_abs == $max_abs) ? 1 : 0;
+                    $d_equal = ($d_abs == $max_abs) ? 1 : 0;
+                    $e_equal = ($e_abs == $max_abs) ? 1 : 0;
+                    $f_equal = ($f_abs == $max_abs) ? 1 : 0;
+                    $g_equal = ($g_abs == $max_abs) ? 1 : 0;
+                    $h_equal = ($h_abs == $max_abs) ? 1 : 0;
+                    $i_equal = ($i_abs == $max_abs) ? 1 : 0;
+                    $j_equal = ($j_abs == $max_abs) ? 1 : 0;
+                    $k_equal = ($k_abs == $max_abs) ? 1 : 0;
+                    $l_equal = ($l_abs == $max_abs) ? 1 : 0;
 
-            $a_abs2_equal = ($a_abs == $max_abs2) ? $max_abs2 : 0;
-            $b_abs2_equal = ($b_abs == $max_abs2) ? $max_abs2 : 0;
-            $c_abs2_equal = ($c_abs == $max_abs2) ? $max_abs2 : 0;
-            $d_abs2_equal = ($d_abs == $max_abs2) ? $max_abs2 : 0;
-            $e_abs2_equal = ($e_abs == $max_abs2) ? $max_abs2 : 0;
-            $f_abs2_equal = ($f_abs == $max_abs2) ? $max_abs2 : 0;
-            $g_abs2_equal = ($g_abs == $max_abs2) ? $max_abs2 : 0;
-            $h_abs2_equal = ($h_abs == $max_abs2) ? $max_abs2 : 0;
-            $i_abs2_equal = ($i_abs == $max_abs2) ? $max_abs2 : 0;
-            $j_abs2_equal = ($j_abs == $max_abs2) ? $max_abs2 : 0;
-            $k_abs2_equal = ($k_abs == $max_abs2) ? $max_abs2 : 0;
-            $l_abs2_equal = ($l_abs == $max_abs2) ? $max_abs2 : 0;
+                    $a_red = $a_red - $a_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $b_red = $b_red - $b_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    
+                    $c_red = $c_red - $c_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $d_red = $d_red - $d_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $e_red = $e_red - $e_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $f_red = $f_red - $f_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $g_red = $g_red - $g_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $h_red = $h_red - $h_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $i_red = $i_red - $i_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $j_red = $j_red - $j_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $k_red = $k_red - $k_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $l_red = $l_red - $l_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $count++;
+                }
+            }  
+            
+            if($cant_total < $cantidad_pedida){
 
+                $a_round = round($cantidad * $a_ter, 2);
+                $b_round = round($cantidad * $b_ter, 2);
+                $c_round = round($cantidad * $c_ter, 2);
+                $d_round = round($cantidad * $d_ter, 2);
+                $e_round = round($cantidad * $e_ter, 2);
+                $f_round = round($cantidad * $f_ter, 2);
+                $g_round = round($cantidad * $g_ter, 2);
+                $h_round = round($cantidad * $h_ter, 2);
+                $i_round = round($cantidad * $i_ter, 2);
+                $j_round = round($cantidad * $j_ter, 2);
+                $k_round = round($cantidad * $k_ter, 2);
+                $l_round = round($cantidad * $l_ter, 2);
+        
+                $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
+                $i_round + $j_round + $k_round + $l_round;
+                //Cambios a la redistribucion para corregir problema de total mayor o menos
+                $count = 0;
+                while($count <= $diferencia){
 
-            $a_equal2 = ($a_abs == $max_abs2) ? 1 : 0;
-            $b_equal2 = ($b_abs == $max_abs2) ? 1 : 0;
-            $c_equal2 = ($c_abs == $max_abs2) ? 1 : 0;
-            $d_equal2 = ($d_abs == $max_abs2) ? 1 : 0;
-            $e_equal2 = ($e_abs == $max_abs2) ? 1 : 0;
-            $f_equal2 = ($f_abs == $max_abs2) ? 1 : 0;
-            $g_equal2 = ($g_abs == $max_abs2) ? 1 : 0;
-            $h_equal2 = ($h_abs == $max_abs2) ? 1 : 0;
-            $i_equal2 = ($i_abs == $max_abs2) ? 1 : 0;
-            $j_equal2 = ($j_abs == $max_abs2) ? 1 : 0;
-            $k_equal2 = ($k_abs == $max_abs2) ? 1 : 0;
-            $l_equal2 = ($l_abs == $max_abs2) ? 1 : 0;
+                   
+                    
+                    //Resta de lo redondeado y el resultado
+                    $dif_red_a = $a_round - $a_red ; 
+                    $dif_red_b = $b_round - $b_red;
+                    $dif_red_c = $c_round - $c_red;
+                    $dif_red_d = $d_round - $d_red;
+                    $dif_red_e = $e_round - $e_red;
+                    $dif_red_f = $f_round - $f_red;
+                    $dif_red_g = $g_round - $g_red;
+                    $dif_red_h = $h_round - $h_red;
+                    $dif_red_i = $i_round - $i_red;
+                    $dif_red_j = $j_round - $j_red;
+                    $dif_red_k = $k_round - $k_red;
+                    $dif_red_l = $l_round - $l_red;
+            
+                    $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
+                    $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
+                    
+                    //Absoluto
+                    $a_abs = abs($dif_red_a);
+                    $b_abs = abs($dif_red_b);
+                    $c_abs = abs($dif_red_c);
+                    $d_abs = abs($dif_red_d);
+                    $e_abs = abs($dif_red_e);
+                    $f_abs = abs($dif_red_f);
+                    $g_abs = abs($dif_red_g);
+                    $h_abs = abs($dif_red_h);
+                    $i_abs = abs($dif_red_i);
+                    $j_abs = abs($dif_red_j);
+                    $k_abs = abs($dif_red_k);
+                    $l_abs = abs($dif_red_l);
+            
+                    //max Value of the ABS
+                    $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
+                    $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
+            
+            
+                    // $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
+                    // $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
+                    // $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
+                    // $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
+                    // $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
+                    // $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
+                    // $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
+                    // $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
+                    // $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
+                    // $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
+                    // $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
+                    // $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
+            
+                    $a_equal = ($a_abs == $max_abs) ? 1 : 0;
+                    $b_equal = ($b_abs == $max_abs) ? 1 : 0;
+                    $c_equal = ($c_abs == $max_abs) ? 1 : 0;
+                    $d_equal = ($d_abs == $max_abs) ? 1 : 0;
+                    $e_equal = ($e_abs == $max_abs) ? 1 : 0;
+                    $f_equal = ($f_abs == $max_abs) ? 1 : 0;
+                    $g_equal = ($g_abs == $max_abs) ? 1 : 0;
+                    $h_equal = ($h_abs == $max_abs) ? 1 : 0;
+                    $i_equal = ($i_abs == $max_abs) ? 1 : 0;
+                    $j_equal = ($j_abs == $max_abs) ? 1 : 0;
+                    $k_equal = ($k_abs == $max_abs) ? 1 : 0;
+                    $l_equal = ($l_abs == $max_abs) ? 1 : 0;
 
-            if($cant_total > $cantidad_pedida){
-                $a_red = $a_red - $a_equal2;
-                $b_red = $b_red - $b_equal2;
-                $c_red = $c_red - $c_equal2;
-                $d_red = $d_red - $d_equal2;
-                $e_red = $e_red - $e_equal2;
-                $f_red = $f_red - $f_equal2;
-                $g_red = $g_red - $g_equal2;
-                $h_red = $h_red - $h_equal2;
-                $i_red = $i_red - $i_equal2;
-                $j_red = $j_red - $j_equal2;
-                $k_red = $k_red - $k_equal2;
-                $l_red = $l_red - $l_equal2;
-                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                // $cant_total = round($cant_total);
-            } else if($cant_total < $cantidad_pedida){
-                $a_red = $a_red + $a_equal2;
-                $b_red = $b_red + $b_equal2;
-                $c_red = $c_red + $c_equal2;
-                $d_red = $d_red + $d_equal2;
-                $e_red = $e_red + $e_equal2;
-                $f_red = $f_red + $f_equal2;
-                $g_red = $g_red + $g_equal2;
-                $h_red = $h_red + $h_equal2;
-                $i_red = $i_red + $i_equal2;
-                $j_red = $j_red + $j_equal2;
-                $k_red = $k_red + $k_equal2;
-                $l_red = $l_red + $l_equal2;
-                $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    $a_red = $a_red + $a_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $b_red = $b_red + $b_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    
+                    $c_red = $c_red + $c_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $d_red = $d_red + $d_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $e_red = $e_red + $e_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $f_red = $f_red + $f_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $g_red = $g_red + $g_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $h_red = $h_red + $h_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $i_red = $i_red + $i_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $j_red = $j_red + $j_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $k_red = $k_red + $k_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $l_red = $l_red + $l_equal;
+                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+                    if($cant_total == $cantidad_pedida){
+                        break;
+                    }
+                    $count++;
+                }
             }
+
         }
+
+            
+
+        //     if($cant_total > $cantidad_pedida){
+        //         $a_red = $a_red - $a_equal;
+        //         $b_red = $b_red - $b_equal;
+        //         $c_red = $c_red - $c_equal;
+        //         $d_red = $d_red - $d_equal;
+        //         $e_red = $e_red - $e_equal;
+        //         $f_red = $f_red - $f_equal;
+        //         $g_red = $g_red - $g_equal;
+        //         $h_red = $h_red - $h_equal;
+        //         $i_red = $i_red - $i_equal;
+        //         $j_red = $j_red - $j_equal;
+        //         $k_red = $k_red - $k_equal;
+        //         $l_red = $l_red - $l_equal;
+        //         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //         // $cant_total = round($cant_total);
+        //     } else if($cant_total < $cantidad_pedida){
+        //         $a_red = $a_red + $a_equal;
+        //         $b_red = $b_red + $b_equal;
+        //         $c_red = $c_red + $c_equal;
+        //         $d_red = $d_red + $d_equal;
+        //         $e_red = $e_red + $e_equal;
+        //         $f_red = $f_red + $f_equal;
+        //         $g_red = $g_red + $g_equal;
+        //         $h_red = $h_red + $h_equal;
+        //         $i_red = $i_red + $i_equal;
+        //         $j_red = $j_red + $j_equal;
+        //         $k_red = $k_red + $k_equal;
+        //         $l_red = $l_red + $l_equal;
+        //         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //     }
+        // }
+
+        // if($cant_total != $cantidad_pedida){ 
+        //     //segundo Mayor absoluto
+        //     $a_abs2 = $a_abs - $a_abs_equal;
+        //     $b_abs2 = $b_abs - $b_abs_equal;  
+        //     $c_abs2 = $c_abs - $c_abs_equal;  
+        //     $d_abs2 = $d_abs - $d_abs_equal;  
+        //     $e_abs2 = $e_abs - $e_abs_equal;  
+        //     $f_abs2 = $f_abs - $f_abs_equal;  
+        //     $g_abs2 = $g_abs - $g_abs_equal;  
+        //     $h_abs2 = $h_abs - $h_abs_equal;  
+        //     $i_abs2 = $i_abs - $i_abs_equal;  
+        //     $j_abs2 = $j_abs - $j_abs_equal;  
+        //     $k_abs2 = $k_abs - $k_abs_equal;  
+        //     $l_abs2 = $l_abs - $l_abs_equal; 
+            
+        //     $max_abs2 = max($a_abs2, $b_abs2, $c_abs2, $d_abs2, $e_abs2, $f_abs2, $g_abs2, 
+        //     $h_abs2, $i_abs2, $j_abs2, $k_abs2, $l_abs2);
+
+        //     $a_abs2_equal = ($a_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $b_abs2_equal = ($b_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $c_abs2_equal = ($c_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $d_abs2_equal = ($d_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $e_abs2_equal = ($e_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $f_abs2_equal = ($f_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $g_abs2_equal = ($g_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $h_abs2_equal = ($h_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $i_abs2_equal = ($i_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $j_abs2_equal = ($j_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $k_abs2_equal = ($k_abs == $max_abs2) ? $max_abs2 : 0;
+        //     $l_abs2_equal = ($l_abs == $max_abs2) ? $max_abs2 : 0;
+
+
+        //     $a_equal2 = ($a_abs == $max_abs2) ? 1 : 0;
+        //     $b_equal2 = ($b_abs == $max_abs2) ? 1 : 0;
+        //     $c_equal2 = ($c_abs == $max_abs2) ? 1 : 0;
+        //     $d_equal2 = ($d_abs == $max_abs2) ? 1 : 0;
+        //     $e_equal2 = ($e_abs == $max_abs2) ? 1 : 0;
+        //     $f_equal2 = ($f_abs == $max_abs2) ? 1 : 0;
+        //     $g_equal2 = ($g_abs == $max_abs2) ? 1 : 0;
+        //     $h_equal2 = ($h_abs == $max_abs2) ? 1 : 0;
+        //     $i_equal2 = ($i_abs == $max_abs2) ? 1 : 0;
+        //     $j_equal2 = ($j_abs == $max_abs2) ? 1 : 0;
+        //     $k_equal2 = ($k_abs == $max_abs2) ? 1 : 0;
+        //     $l_equal2 = ($l_abs == $max_abs2) ? 1 : 0;
+
+        //     if($cant_total > $cantidad_pedida){
+        //         $a_red = $a_red - $a_equal2;
+        //         $b_red = $b_red - $b_equal2;
+        //         $c_red = $c_red - $c_equal2;
+        //         $d_red = $d_red - $d_equal2;
+        //         $e_red = $e_red - $e_equal2;
+        //         $f_red = $f_red - $f_equal2;
+        //         $g_red = $g_red - $g_equal2;
+        //         $h_red = $h_red - $h_equal2;
+        //         $i_red = $i_red - $i_equal2;
+        //         $j_red = $j_red - $j_equal2;
+        //         $k_red = $k_red - $k_equal2;
+        //         $l_red = $l_red - $l_equal2;
+        //         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //         // $cant_total = round($cant_total);
+        //     } else if($cant_total < $cantidad_pedida){
+        //         $a_red = $a_red + $a_equal2;
+        //         $b_red = $b_red + $b_equal2;
+        //         $c_red = $c_red + $c_equal2;
+        //         $d_red = $d_red + $d_equal2;
+        //         $e_red = $e_red + $e_equal2;
+        //         $f_red = $f_red + $f_equal2;
+        //         $g_red = $g_red + $g_equal2;
+        //         $h_red = $h_red + $h_equal2;
+        //         $i_red = $i_red + $i_equal2;
+        //         $j_red = $j_red + $j_equal2;
+        //         $k_red = $k_red + $k_equal2;
+        //         $l_red = $l_red + $l_equal2;
+        //         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //     }
+        // }
       
 
         // $result_a = $a_equal2 + $a_equal;
@@ -1031,7 +1299,8 @@ class ordenEmpaqueController extends Controller
             'k_red' => $k_red,
             'l_red' => $l_red,
             'total_red' => $cant_total,
-            // 'redistribuido y redondeo' => 'Redistribuido redondeado',
+            'pedido' => $cantidad_pedida,
+            'redistribuido y redondeo' => 'Redistribuido redondeado',
             // 'a_round' => $a_round,
             // 'b_round' => $b_round,
             // 'c_round' => $c_round,
@@ -1045,7 +1314,7 @@ class ordenEmpaqueController extends Controller
             // 'k_round' => $k_round,
             // 'l_round' => $l_round,
             // 'total_round' => $total_round,
-            // 'Diferencia' => 'Diferencia_distri',
+            // 'Diferencia' => $diferencia,
             // 'a_dif' => $dif_red_a,
             // 'b_dif' => $dif_red_b,
             // 'c_dif' => $dif_red_c,
@@ -1137,7 +1406,8 @@ class ordenEmpaqueController extends Controller
             // 'j_equal2' => $j_equal2,
             // 'k_equal2' => $k_equal2,
             // 'l_equal2' => $l_equal2,
-            'cant-detalle' => $cantidad,
+            // 'cant-detalle' => $cantidad,
+          
             // 'detalle' => $orden_pedido_detalle,
             // 'genero' => $referencia_producto,
             // 'a_orden' => $tallasOrdenes->sum('a'),
@@ -1157,6 +1427,24 @@ class ordenEmpaqueController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+
+    // public function validarCantidades(Request $request){
+
+    //     $a = $request->input('a');
+    //     $b = $request->input('b');
+    //     $c = $request->input('c');
+    //     $d = $request->input('d');
+    //     $e = $request->input('e');
+    //     $f = $request->input('f');
+    //     $g = $request->input('g');
+    //     $h = $request->input('h');
+    //     $i = $request->input('i');
+    //     $j = $request->input('j');
+    //     $k = $request->input('k');
+    //     $l = $request->input('l');
+    //     $total = $request->input('total');
+    // }
 
     public function show($id)
     {
@@ -1193,15 +1481,37 @@ class ordenEmpaqueController extends Controller
         // Eliminar detalle de empaque en caso de darle de nuevo al boton de mostrar
         $empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)->get();
 
+        //Orden facturacion
+        $orden_facturacion = OrdenFacturacion::where('orden_empaque_id', $empaque_id)->first();
+
         if(!empty($empaque_detalle)){
             
             for ($i = 0; $i < count($empaque_detalle); $i++) {
-                $orden_detalle[$i]->orden_empacada = 0;
-                $orden_detalle[$i]->save();
-                $empaque_detalle[$i]->delete();
+
+                if($orden_detalle[$i]->producto_id == $empaque_detalle[$i]->producto_id){
+                    
+
+                    $orden_detalle[$i]->a = $orden_detalle[$i]->a - $empaque_detalle[$i]->a;
+                    $orden_detalle[$i]->b = $orden_detalle[$i]->b - $empaque_detalle[$i]->b;
+                    $orden_detalle[$i]->c = $orden_detalle[$i]->c - $empaque_detalle[$i]->c;
+                    $orden_detalle[$i]->d = $orden_detalle[$i]->d - $empaque_detalle[$i]->d;
+                    $orden_detalle[$i]->e = $orden_detalle[$i]->e - $empaque_detalle[$i]->e;
+                    $orden_detalle[$i]->f = $orden_detalle[$i]->f - $empaque_detalle[$i]->f;
+                    $orden_detalle[$i]->g = $orden_detalle[$i]->g - $empaque_detalle[$i]->g;
+                    $orden_detalle[$i]->h = $orden_detalle[$i]->h - $empaque_detalle[$i]->h;
+                    $orden_detalle[$i]->i = $orden_detalle[$i]->i - $empaque_detalle[$i]->i;
+                    $orden_detalle[$i]->j = $orden_detalle[$i]->j - $empaque_detalle[$i]->j;
+                    $orden_detalle[$i]->k = $orden_detalle[$i]->k - $empaque_detalle[$i]->k;
+                    $orden_detalle[$i]->l = $orden_detalle[$i]->l - $empaque_detalle[$i]->l;
+
+                    $orden_detalle[$i]->total = $orden_detalle[$i]->a - $orden_detalle[$i]->b - $orden_detalle[$i]->c - $orden_detalle[$i]->d
+                    - $orden_detalle[$i]->e - $orden_detalle[$i]->f - $orden_detalle[$i]->g - $orden_detalle[$i]->h 
+                    - $orden_detalle[$i]->i - $orden_detalle[$i]->j - $orden_detalle[$i]->k - $orden_detalle[$i]->k; 
+                    $orden_detalle[$i]->total = abs($orden_detalle[$i]->total);
+                }
+             
             }
-            $orden_pedido->status_orden_pedido = 'Vigente';
-            $orden_pedido->save();
+            
             
         }
 
@@ -1226,9 +1536,10 @@ class ordenEmpaqueController extends Controller
                 'status' => 'success',
                 'orden_empaque' => $orden_empaque,
                 'orden_pedido' => $orden_pedido,
-                'orden_detalle' => $orden_detalle,
+                'orden_detalle' => $orden_detalle->load('producto'),
                 'cliente' => $cliente,
                 'sucursal' => $sucursal,
+                'orden_facturacion' => $orden_facturacion
             ];
         } else {
             $data = [
@@ -1241,73 +1552,143 @@ class ordenEmpaqueController extends Controller
         return response()->json($data, $data['code']);
     }
 
+   
+
     public function empaque($id, Request $request)
     {
-        $orden_detalle = ordenPedidoDetalle::find($id);
 
-        $empaque_id = $request->input('id');
-        $cant_bultos = $request->input('cantidad');
+        $validar = $request->validate([
+            'cantidad' => 'required',
+        ]);
 
-        $a = $request->input('a');
-        $b = $request->input('b');
-        $c = $request->input('c');
-        $d = $request->input('d');
-        $e = $request->input('e');
-        $f = $request->input('f');
-        $g = $request->input('g');
-        $h = $request->input('h');
-        $i = $request->input('i');
-        $j = $request->input('j');
-        $k = $request->input('k');
-        $l = $request->input('l');
-        $cantidad = $orden_detalle->cant_red;
-        $total = $orden_detalle->total;
-
-        if (\is_object($orden_detalle)) {
-            $orden_detalle->orden_empacada = 1;
-            $orden_detalle->save();
-
-            $orden_empaque_detalle = new ordenEmpaqueDetalle();
-            $orden_empaque_detalle->orden_empaque_id = $empaque_id;
-            $orden_empaque_detalle->producto_id = $orden_detalle->producto_id;
-            $orden_empaque_detalle->user_id = \auth()->user()->id;
-            $orden_empaque_detalle->a = $a;
-            $orden_empaque_detalle->b = $b;
-            $orden_empaque_detalle->c = $c;
-            $orden_empaque_detalle->d = $d;
-            $orden_empaque_detalle->e = $e;
-            $orden_empaque_detalle->f = $f;
-            $orden_empaque_detalle->g = $g;
-            $orden_empaque_detalle->h = $h;
-            $orden_empaque_detalle->i = $i;
-            $orden_empaque_detalle->j = $j;
-            $orden_empaque_detalle->k = $k;
-            $orden_empaque_detalle->l = $l;
-            $orden_empaque_detalle->cantidad = $cantidad;
-            $orden_empaque_detalle->precio = $orden_detalle->precio;
-            $orden_empaque_detalle->cant_bulto = $cant_bultos;
-            $orden_empaque_detalle->total = $total;
-            $orden_empaque_detalle->fecha_empacado = date('Y/m/d h:i:s');
-            $orden_empaque_detalle->empacado = 1;
-            $orden_empaque_detalle->facturado = 0;
-            $orden_empaque_detalle->save();
-
-            $orden_empaque = ordenEmpaque::find($empaque_id);
-
-
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'orden_empaque_detalle' => $orden_empaque_detalle,
-                'orden_empaque' => $orden_empaque
-            ];
-        } else {
+        if(empty($validar)){ 
             $data = [
                 'code' => 400,
                 'status' => 'error',
-                'message' => 'No se encontro la orden'
+                'message' => 'Debe digitar la cantidad de bultos'
             ];
+        } else {
+            $orden_detalle = ordenPedidoDetalle::find($id);
+
+            $empaque_id = $request->input('id');
+            $cant_bultos = $request->input('cantidad');
+    
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
+            $producto = $request->input('producto');
+            $orden_facturacion_id = $request->input('facturacion_id');
+            $transporte = $request->input('por_transporte');
+            $totalEmpacar = $request->input('total');
+            $cantidad = $orden_detalle->cant_red;
+            $total = $orden_detalle->total;
+    
+            $sumEmpaque = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+    
+            if($sumEmpaque > $totalEmpacar){
+                $data = [
+                    'code' => 200,
+                    'status' => 'mayor',
+                    'message' => 'La cantidad digitada es mayor a la que puede empacar'
+                ];
+            } else {
+                if (\is_object($orden_detalle)) {
+
+                    $empaqueDetalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)
+                    ->where('producto_id', $producto)->first();
+
+                    $ordenFacturacion = OrdenFacturacion::find($orden_facturacion_id);
+
+                    $ordenFacturacion->por_transporte = $transporte;
+                    $ordenFacturacion->save();
+
+                    if(is_object($empaqueDetalle)){
+                        $empaqueDetalle->a = $empaqueDetalle->a + $a;
+                        $empaqueDetalle->b = $empaqueDetalle->b + $b;
+                        $empaqueDetalle->c = $empaqueDetalle->c + $c;
+                        $empaqueDetalle->d = $empaqueDetalle->d + $d;
+                        $empaqueDetalle->e = $empaqueDetalle->e + $e;
+                        $empaqueDetalle->f = $empaqueDetalle->f + $f;
+                        $empaqueDetalle->g = $empaqueDetalle->g + $g;
+                        $empaqueDetalle->h = $empaqueDetalle->h + $h;
+                        $empaqueDetalle->i = $empaqueDetalle->i + $i;
+                        $empaqueDetalle->j = $empaqueDetalle->j + $j;
+                        $empaqueDetalle->k = $empaqueDetalle->k + $k;
+                        $empaqueDetalle->l = $empaqueDetalle->l + $l;
+
+                        $empaqueDetalle->save();
+
+                        $orden_empaque = ordenEmpaque::find($empaque_id);
+
+                        $data = [
+                            'code' => 200,
+                            'status' => 'success',
+                            'orden_empaque_detalle' => $empaqueDetalle,
+                            'orden_empaque' => $orden_empaque,
+                            'orden' => $orden_detalle
+                           
+                        ];
+                    } else {
+
+                
+                        $orden_empaque_detalle = new ordenEmpaqueDetalle();
+                        $orden_empaque_detalle->orden_empaque_id = $empaque_id;
+                        $orden_empaque_detalle->producto_id = $orden_detalle->producto_id;
+                        $orden_empaque_detalle->user_id = \auth()->user()->id;
+                        $orden_empaque_detalle->a = $a;
+                        $orden_empaque_detalle->b = $b;
+                        $orden_empaque_detalle->c = $c;
+                        $orden_empaque_detalle->d = $d;
+                        $orden_empaque_detalle->e = $e;
+                        $orden_empaque_detalle->f = $f;
+                        $orden_empaque_detalle->g = $g;
+                        $orden_empaque_detalle->h = $h;
+                        $orden_empaque_detalle->i = $i;
+                        $orden_empaque_detalle->j = $j;
+                        $orden_empaque_detalle->k = $k;
+                        $orden_empaque_detalle->l = $l;
+                        $orden_empaque_detalle->cantidad = $cantidad;
+                        $orden_empaque_detalle->precio = $orden_detalle->precio;
+                        $orden_empaque_detalle->cant_bulto = $cant_bultos;
+                        $orden_empaque_detalle->total = $total;
+                        $orden_empaque_detalle->fecha_empacado = date('Y/m/d h:i:s');
+                        // $orden_empaque_detalle->empacado = 1;
+                        $orden_empaque_detalle->facturado = 0;
+                        $orden_empaque_detalle->save();
+            
+                        $orden_empaque = ordenEmpaque::find($empaque_id);
+            
+            
+                        $data = [
+                            'code' => 200,
+                            'status' => 'success',
+                            'orden_empaque_detalle' => $orden_empaque_detalle,
+                            'orden_empaque' => $orden_empaque,
+                            'suma' => $sumEmpaque,
+                            'orden' => $orden_detalle
+                        ];
+                    }
+                } else {
+                    $data = [
+                        'code' => 400,
+                        'status' => 'error',
+                        'message' => 'No se encontro la orden'
+                    ];
+                }
+            }
         }
+       
+
+       
 
         return response()->json($data, $data['code']);
     }
@@ -1317,7 +1698,7 @@ class ordenEmpaqueController extends Controller
         $ordenes = DB::table('orden_pedido_detalle')
             ->join('producto', 'orden_pedido_detalle.producto_id', 'producto.id')
             ->select([
-                'orden_pedido_detalle.id', 'orden_pedido_detalle.a',
+                'orden_pedido_detalle.id', 'orden_pedido_detalle.a', 'orden_pedido_detalle.orden_pedido_id',
                 'orden_pedido_detalle.b', 'orden_pedido_detalle.c', 'orden_pedido_detalle.d',
                 'orden_pedido_detalle.e', 'orden_pedido_detalle.f', 'orden_pedido_detalle.f',
                 'orden_pedido_detalle.g', 'orden_pedido_detalle.h', 'orden_pedido_detalle.i',
@@ -1328,10 +1709,15 @@ class ordenEmpaqueController extends Controller
         return DataTables::of($ordenes)
         ->editColumn('a', function ($orden) {
           
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
+
             if( $orden->a <= 0 ){
                 return '<input type="text" id="a' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="a' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->a . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="a' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->a - $detalle->a . '>';
             } else {
                 return '<input type="number"  id="a' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->a . '>';
             }
@@ -1339,121 +1725,179 @@ class ordenEmpaqueController extends Controller
             
         })
         ->editColumn('b', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
          
             if($orden->b <= 0){
                 return '<input type="text" id="b' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="b' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->b . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="b' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->b - $detalle->b . '>';
             } else {
                 return '<input type="number"  id="b' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->b . '>';
             }
             
         })
         ->editColumn('c', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->first();
         
             if($orden->c <= 0 ){
                 return '<input type="text" id="c' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="c' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->c . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="c' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->c - $detalle->c . '>';
             } else {
                 return '<input type="number"  id="c' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->c . '>';
             }
             
         })
         ->editColumn('d', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
          
             if($orden->d <= 0){
                 return '<input type="text" id="d' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="d' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->d . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="d' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->d - $detalle->d . '>';
             } else {
                 return '<input type="number"  id="d' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->d . '>';
             }
             
         })
         ->editColumn('e', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
            
             if($orden->e <= 0){
                 return '<input type="text" id="e' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="e' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->e . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="e' . $orden->id . '" name="e"  class="form-control red" value=' . $orden->e - $detalle->e . '>';
             } else {
-                return '<input type="number"  id="e' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->e . '>';
+                return '<input type="number"  id="e' . $orden->id . '" name="e"  class="form-control red" value=' . $orden->e . '>';
             }
             
         })
         ->editColumn('f', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
           
             if($orden->f <= 0 ){
                 return '<input type="text" id="f' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="f' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->f . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="f' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->f - $detalle->f . '>';
             } else {
                 return '<input type="number"  id="f' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->f . '>';
             }
             
         })
         ->editColumn('g', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
          
             if($orden->g <= 0 ){
                 return '<input type="text" id="g' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="g' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->g . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="g' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->g - $detalle->g . '>';
             } else {
                 return '<input type="number"  id="g' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->g . '>';
             }
             
         })
         ->editColumn('h', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
          
             if($orden->h <= 0 ){
                 return '<input type="text" id="h' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="h' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->h . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="h' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->h - $detalle->h . '>';
             } else {
                 return '<input type="number"  id="h' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->h . '>';
             }
             
         })
         ->editColumn('i', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
      
             if($orden->i <= 0 ){
                 return '<input type="text" id="i' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="i' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->i . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="i' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->i - $detalle->i . '>';
             } else {
                 return '<input type="number"  id="i' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->i . '>';
             }
             
+            
         })
         ->editColumn('j', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
           
             if($orden->j <= 0 ){
                 return '<input type="text" id="j' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="j' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->j . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="j' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->j - $detalle->j . '>';
             } else {
                 return '<input type="number"  id="j' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->j . '>';
             }
             
         })
         ->editColumn('k', function ($orden) {
+            
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
+          
        
             if($orden->k <= 0 ){
                 return '<input type="text" id="k' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="k' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->k . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="k' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->k - $detalle->k . '>';
             } else {
                 return '<input type="number"  id="k' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->k . '>';
             }
             
+            
         })
         ->editColumn('l', function ($orden) {
+
+            $empaque = ordenEmpaque::where('orden_pedido_id', $orden->orden_pedido_id)->first();
+            $detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque->id)->get();
          
             if($orden->l <= 0  ){
                 return '<input type="text" id="l' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . 0 . '>';
             } elseif($orden->orden_empacada == 1) {
                 return '<input type="text" id="l' . $orden->id . '" name="i" class="form-control font-weight-bold red" readonly value=' . $orden->l . '>';
+            // } elseif(count($detalle) > 0) {
+            //     return '<input type="number"  id="l' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->l - $detalle->l . '>';
             } else {
                 return '<input type="number"  id="l' . $orden->id . '" name="a"  class="form-control red" value=' . $orden->l . '>';
             }

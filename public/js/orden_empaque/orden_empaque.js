@@ -129,9 +129,9 @@ $(document).ready(function() {
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
             ],
             order: [[2, "desc"]],
-            // rowGroup: {
-            //     dataSrc: "name"
-            // }
+            rowGroup: {
+                dataSrc: "nombre_cliente"
+            }
         });
     }
 
@@ -141,7 +141,7 @@ $(document).ready(function() {
             serverSide: true,
             responsive: true,
             dom: "Bfrtip",
-            iDisplayLength: 5,
+            iDisplayLength: 10,
             buttons: [
                 "pageLength",
                 "copyHtml5",
@@ -167,13 +167,13 @@ $(document).ready(function() {
                 { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
                 { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion"},
                 { data: "total", name: "orden_pedido.total", searchable: false },
-                { data: "status_orden_pedido", name: "orden_pedido.status_orden_pedido"},
+                { data: "empaque_impreso", name: "orden_pedido.empaque_impreso", orderable: false, searchable: false},
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
             ],
             order: [[2, "desc"]],
-            // rowGroup: {
-            //     dataSrc: "name"
-            // }
+            rowGroup: {
+                dataSrc: "name"
+            }
         });
     }
 

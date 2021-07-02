@@ -174,7 +174,7 @@ class ordenPedidoController extends Controller
                 $l_ref2 = $l_ref2 - $tallasSegundas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
 
                 $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
-                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 - $cantidad_ordenadas;
+                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
             }else{
 
                 $producto_f = Product::find($producto_id);
@@ -233,7 +233,7 @@ class ordenPedidoController extends Controller
                 // print_r($tallas);
                 // die();
                 $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
-                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 - $cantidad_ordenadas;
+                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 ;
             }
 
             $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
@@ -264,8 +264,9 @@ class ordenPedidoController extends Controller
                 'k' => $k_ref2,
                 'l' => $l_ref2,
                 'producto' => $producto,
-                'total_corte' => ($total_real < 0) ? 0 : $total_real,
+                'total_corte' => $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2,
                 'corte_proceso' => $corte_proceso,
+                'Im here'
                 // 'fecha_entrega' => $fecha_entrega
             ];
 
@@ -304,7 +305,7 @@ class ordenPedidoController extends Controller
             $l = ($l < 0 ? 0 : $l);
 
             $cantidad_ordenadas = $tallasOrdenes->sum('cantidad');
-            $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l - $cantidad_ordenadas;
+            $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
             if (empty($segunda_input)) {
                 //respuesta
@@ -326,6 +327,7 @@ class ordenPedidoController extends Controller
                     'producto' => $producto,
                     'total_corte' => ($total_real < 0) ? 0 : $total_real,
                     'corte_proceso' => $corte_proceso,
+                    'cantidad_ordenadas' => $cantidad_ordenadas
                     // 'fecha_entrega' => $fecha_entrega
                 ];
             } else {

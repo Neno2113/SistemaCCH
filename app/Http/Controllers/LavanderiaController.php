@@ -500,6 +500,10 @@ class LavanderiaController extends Controller
         $lavanderia = Lavanderia::find($id);
 
         if (!empty($lavanderia)) {
+            $corte = Corte::find($lavanderia->corte_id);
+            $corte->fase = 'Produccion';
+            $corte->save();
+
             $lavanderia->delete();
 
             $data = [

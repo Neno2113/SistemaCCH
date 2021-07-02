@@ -40,8 +40,13 @@
                     <div class="row mt-4">
                         <div class="col-md-2 mt-3">
                             <label for="edad">Edad</label>
-                            <input type="text" name="edad" id="edad"  class="form-control text-center" ]
-                                data-inputmask='"mask": "99"' data-mask>
+                            <input 
+                                type="date" 
+                                name="fecha_nacimiento" 
+                                id="fecha_nacimiento" 
+                                class="form-control"
+                                value="2000-01-01"    
+                            >
                             {{-- <label for="edad" class="label"></label> --}}
                         </div>
                         <div class="col-md-5 mt-3">
@@ -217,28 +222,30 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Edit</th>
-                    <th>Elim</th>
+                    <th>Active</th>
+                    <th>Actions</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Rol</th>
                     <th>Edad</th>
                     <th>Celular</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Edit</th>
-                    <th>Elim</th>
+                    <th>Active</th>
+                    <th>Actions</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Rol</th>
                     <th>Edad</th>
                     <th>Celular</th>
+                    <th>Status</th>
                 </tr>
             </tfoot>
         </table>

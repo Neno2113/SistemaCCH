@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoriaTela;
 use Illuminate\Http\Request;
 use App\Cloth;
 use App\Composition;
@@ -351,5 +352,72 @@ class ClothController extends Controller
         ];
 
         return response()->json($data, $data['code']);
+    }
+
+    
+    public function storeCategoriaTela(Request $request){
+
+        $validar = $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        if(empty($validar)){
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+
+            $nombre = $request->input('nombre');
+
+            $categoria = new CategoriaTela();
+
+            $categoria->nombre = $nombre;
+
+            $categoria->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'categoria' => $categoria
+            ];
+
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function showCategoriasTela() {
+        $tipos = CategoriaTela::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'categorias' => $tipos
+        ];
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroyCategoriaTela($id){
+        $categoria = CategoriaTela::find($id);
+
+        if(is_object($categoria)){
+            $categoria->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'categoria' => $categoria
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+        
     }
 }

@@ -42,6 +42,7 @@ $(document).ready(function() {
 
     function init() {
         listar();
+        telas();
         mostrarForm(false);
         $("#btn-edit").hide();
         suplidores();
@@ -210,6 +211,8 @@ $(document).ready(function() {
         $("#porcentaje_mat_5").val("").attr('readonly', false);
         $("#porcentaje_mat_total").val("");
     }
+
+   
 
 
 
@@ -574,6 +577,68 @@ $(document).ready(function() {
     });
 
 
+    $("#btn-telas").on('click', (e) => {
+        e.preventDefault();
+      
+        listarCategorias();
+    })
+
+    $("#btn-save").on('click', () => {
+    
+        let data = {
+            nombre: $("#nombre").val()
+        }
+
+        $.ajax({
+            url: "tela-cat",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Nueva entrada registrada.'
+                    })
+                    // $("#indice").val('');
+                    $("#nombre").val('');
+                    telas();
+                  
+                    listarCategorias();
+                
+                
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+    });
+
+
     init();
 });
 
@@ -594,6 +659,7 @@ function mostrar(id_cloth) {
             $("#btn-edit").show();
             $("#btn-guardar").hide();
             $("#compo").hide();
+            listarCategorias();
             // console.log(data.tela.suplidor.nombre);
     
             $("#id").val(data.tela.id);
@@ -674,4 +740,95 @@ function eliminar(id_cloth){
         }
     })
 
+}
+
+
+const listarCategorias = () => {
+
+    $("#permisos-agregados").empty();
+
+    $.ajax({
+        url: "telas",
+        type: "get",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                
+                for (let i = 0; i < datos.categorias.length; i++) {
+                    var fila =
+                    '<tr id="fila'+datos.categorias[i].id+'">'+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.categorias[i].nombre+"' value="+datos.categorias[i].nombre+">"+datos.categorias[i].nombre+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delCategoria("+datos.categorias[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                    $("#permisos-agregados").append(fila);
+                }
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error"
+            );
+        }
+    });
+}
+
+const delCategoria = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este tipo de tela?',
+        text: "Va a eliminar este tipo de tela!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("tela/delete/" + id, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Tela eliminada correctamente.',
+                'success'
+                )
+                $("#fila"+id).remove();
+                telas();
+            })
+        }
+      })
+}
+
+
+const telas = () => {
+    $("#tipo_tela").empty();
+
+    $.ajax({
+        url: "telas",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.categorias.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.categorias[i].indice}">${datos.categorias[i].nombre}</option>`
+                    $("#tipo_tela").append(fila);
+                }
+                $("#tipo_tela").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
 }

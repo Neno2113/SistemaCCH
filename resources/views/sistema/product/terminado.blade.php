@@ -151,8 +151,7 @@
         <h4 class="text-white">Listado de producto terminado</h4>
     </div>
     <div class="card-body">
-        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Producto
-        terminado')->where('ver', 1)->first())
+        @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Producto terminado')->where('ver', 1)->first())
         <table id="producto-terminado" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
