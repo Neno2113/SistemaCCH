@@ -233,7 +233,6 @@
                     <th>Sucursal</th>
                     <th>F. aprob.</th>
                     <th>Total</th>
-                    <th>Status</th>
                     <th>F. Entr.</th>
                 </tr>
             </thead>
@@ -248,7 +247,6 @@
                     <th>Sucursal</th>
                     <th>F. aprob.</th>
                     <th>Total</th>
-                    <th>Status</th>
                     <th>F. Entr.</th>
                 </tr>
             </tfoot>

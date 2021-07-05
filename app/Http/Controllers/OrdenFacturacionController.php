@@ -92,26 +92,33 @@ class OrdenFacturacionController extends Controller
             $orden_empaque = ordenEmpaque::find($orden_empaque_id)->load('orden_pedido');
             $orden_pedido_id = $orden_empaque->orden_pedido->id;
             $orden_pedido = ordenPedido::find($orden_pedido_id);
-            $orden_pedido->status_orden_pedido = 'Facturado';
+            // $orden_pedido->status_orden_pedido = 'Facturado';
             $orden_pedido->save();
 
-            $a = $empaque_detalle->a;
-            $b = $empaque_detalle->b;
-            $c = $empaque_detalle->c;
-            $d = $empaque_detalle->d;
-            $e = $empaque_detalle->e;
-            $f = $empaque_detalle->f;
-            $g = $empaque_detalle->g;
-            $h = $empaque_detalle->h;
-            $i = $empaque_detalle->i;
-            $j = $empaque_detalle->j;
-            $k = $empaque_detalle->k;
-            $l = $empaque_detalle->l;
-            $total = $empaque_detalle->total;
+            $orden_empaque->empacado = 1;
+            $orden_empaque->save();
+
+            $a = $request->input('a');
+            $b = $request->input('b');
+            $c = $request->input('c');
+            $d = $request->input('d');
+            $e = $request->input('e');
+            $f = $request->input('f');
+            $g = $request->input('g');
+            $h = $request->input('h');
+            $i = $request->input('i');
+            $j = $request->input('j');
+            $k = $request->input('k');
+            $l = $request->input('l');
+
+            $sumEmpaque = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+            
+            // $total = $empaque_detalle->sumEmpaque;
             $precio = $empaque_detalle->precio;
             $bultos = $empaque_detalle->cant_bulto;
             $producto_id = $empaque_detalle->producto_id;
             $orden_pedido_id = $orden_pedido->id;
+
 
             $facturaDetalle = ordenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion_id)
             ->where('producto_id', $producto_id)->first();
@@ -130,7 +137,7 @@ class OrdenFacturacionController extends Controller
                 $facturaDetalle->j = $facturaDetalle->j + $j;
                 $facturaDetalle->k = $facturaDetalle->k + $k;
                 $facturaDetalle->l = $facturaDetalle->l + $l;
-
+                $facturaDetalle->total = $facturaDetalle->total + $sumEmpaque;
                 $facturaDetalle->save();
 
                 $data = [
@@ -152,7 +159,7 @@ class OrdenFacturacionController extends Controller
                 $factura_detalle->j = $j;
                 $factura_detalle->k = $k;
                 $factura_detalle->l = $l;
-                $factura_detalle->total = $total;
+                $factura_detalle->total = $sumEmpaque;
                 $factura_detalle->precio = $precio;
                 $factura_detalle->cant_bultos = $bultos;
                 $factura_detalle->producto_id = $producto_id;

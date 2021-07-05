@@ -118,7 +118,7 @@ class ordenPedidoController extends Controller
         // die();
 
         if ($genero == 3 || $genero == 4) {
-            if (count($tallasAlmacen) == 0) {
+            if (count($tallasAlmacen) <= 0) {
                 $producto_f = Product::find($producto_id);
                 $min = $producto_f->min;
                 $max = $producto_f->max;
@@ -126,8 +126,8 @@ class ordenPedidoController extends Controller
                 $almacen = AlmacenDetalle::where('producto_id', $ref_father)
                 ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
                 ->get();
-                $tallasOrdenes_f = ordenPedidoDetalle::where('producto_id', $ref_father)->get();
-                $tallasCredito_f = NotaCreditoDetalle::where('producto_id', $ref_father)->get();
+                $tallasOrdenes_f = ordenPedidoDetalle::where('referencia_father', $ref_father)->get();
+                $tallasCredito_f = NotaCreditoDetalle::where('referencia_father', $ref_father)->get();
 
                 $a = $almacen->sum('a');
                 $b = $almacen->sum('b');
@@ -175,6 +175,41 @@ class ordenPedidoController extends Controller
 
                 $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
                 $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
+                
+                $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
+                $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
+                $c_ref2 = ($c_ref2 < 0 ? 0 : $c_ref2);
+                $d_ref2 = ($d_ref2 < 0 ? 0 : $d_ref2);
+                $e_ref2 = ($e_ref2 < 0 ? 0 : $e_ref2);
+                $f_ref2 = ($f_ref2 < 0 ? 0 : $f_ref2);
+                $g_ref2 = ($g_ref2 < 0 ? 0 : $g_ref2);
+                $h_ref2 = ($h_ref2 < 0 ? 0 : $h_ref2);
+                $i_ref2 = ($i_ref2 < 0 ? 0 : $i_ref2);
+                $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
+                $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
+                $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'a' => $a_ref2,
+                    'b' => $b_ref2,
+                    'c' => $c_ref2,
+                    'd' => $d_ref2,
+                    'e' => $e_ref2,
+                    'f' => $f_ref2,
+                    'g' => $g_ref2,
+                    'h' => $h_ref2,
+                    'i' => $i_ref2,
+                    'j' => $j_ref2,
+                    'k' => $k_ref2,
+                    'l' => $l_ref2,
+                    'producto' => $producto,
+                    'total_corte' => $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2,
+                    'corte_proceso' => $corte_proceso,
+                    'ordenes'=> $tallasOrdenes_f,
+                    'Im here' => 'here'
+                    // 'fecha_entrega' => $fecha_entrega
+                ];
             }else{
 
                 $producto_f = Product::find($producto_id);
@@ -234,41 +269,44 @@ class ordenPedidoController extends Controller
                 // die();
                 $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
                 $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 ;
+                
+                $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
+                $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
+                $c_ref2 = ($c_ref2 < 0 ? 0 : $c_ref2);
+                $d_ref2 = ($d_ref2 < 0 ? 0 : $d_ref2);
+                $e_ref2 = ($e_ref2 < 0 ? 0 : $e_ref2);
+                $f_ref2 = ($f_ref2 < 0 ? 0 : $f_ref2);
+                $g_ref2 = ($g_ref2 < 0 ? 0 : $g_ref2);
+                $h_ref2 = ($h_ref2 < 0 ? 0 : $h_ref2);
+                $i_ref2 = ($i_ref2 < 0 ? 0 : $i_ref2);
+                $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
+                $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
+                $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'a' => $a_ref2,
+                    'b' => $b_ref2,
+                    'c' => $c_ref2,
+                    'd' => $d_ref2,
+                    'e' => $e_ref2,
+                    'f' => $f_ref2,
+                    'g' => $g_ref2,
+                    'h' => $h_ref2,
+                    'i' => $i_ref2,
+                    'j' => $j_ref2,
+                    'k' => $k_ref2,
+                    'l' => $l_ref2,
+                    'producto' => $producto,
+                    'total_corte' => $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2,
+                    'corte_proceso' => $corte_proceso,
+                    'ordenes'=> $tallasOrdenes_f,
+                    'Im here' => $tallasAlmacen
+                    // 'fecha_entrega' => $fecha_entrega
+                ];
             }
 
-            $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
-            $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
-            $c_ref2 = ($c_ref2 < 0 ? 0 : $c_ref2);
-            $d_ref2 = ($d_ref2 < 0 ? 0 : $d_ref2);
-            $e_ref2 = ($e_ref2 < 0 ? 0 : $e_ref2);
-            $f_ref2 = ($f_ref2 < 0 ? 0 : $f_ref2);
-            $g_ref2 = ($g_ref2 < 0 ? 0 : $g_ref2);
-            $h_ref2 = ($h_ref2 < 0 ? 0 : $h_ref2);
-            $i_ref2 = ($i_ref2 < 0 ? 0 : $i_ref2);
-            $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
-            $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
-            $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'a' => $a_ref2,
-                'b' => $b_ref2,
-                'c' => $c_ref2,
-                'd' => $d_ref2,
-                'e' => $e_ref2,
-                'f' => $f_ref2,
-                'g' => $g_ref2,
-                'h' => $h_ref2,
-                'i' => $i_ref2,
-                'j' => $j_ref2,
-                'k' => $k_ref2,
-                'l' => $l_ref2,
-                'producto' => $producto,
-                'total_corte' => $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2,
-                'corte_proceso' => $corte_proceso,
-                'Im here'
-                // 'fecha_entrega' => $fecha_entrega
-            ];
+           
 
         }else{
             $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->get();

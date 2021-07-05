@@ -167,7 +167,6 @@ $(document).ready(function() {
                 { data: "nombre_sucursal", name: "cliente_sucursales.nombre_sucursal"},
                 { data: "fecha_aprobacion", name: "orden_pedido.fecha_aprobacion"},
                 { data: "total", name: "orden_pedido.total", searchable: false },
-                { data: "empaque_impreso", name: "orden_pedido.empaque_impreso", orderable: false, searchable: false},
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
             ],
             order: [[2, "desc"]],

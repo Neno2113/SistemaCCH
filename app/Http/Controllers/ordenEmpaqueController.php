@@ -34,7 +34,7 @@ class ordenEmpaqueController extends Controller
                 'orden_pedido.id', 'orden_empaque.no_orden_empaque', 'orden_pedido.sucursal_id',
                 'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega',
                 'orden_pedido.detallada', 'orden_empaque.impreso', 'orden_pedido.cliente_id',
-                'orden_pedido.status_orden_pedido'
+                'orden_pedido.status_orden_pedido', 'orden_empaque.empacado'
             ]);
 
         return DataTables::of($ordenes)
@@ -73,7 +73,7 @@ class ordenEmpaqueController extends Controller
 
             })
             ->addColumn('Opciones', function ($orden) {
-                if($orden->status_orden_pedido == 'Vigente'){
+                if($orden->empacado == '0' || is_null($orden->empacado == 0)){
                     return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>';
                 } else {
                     return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>' .
@@ -188,7 +188,7 @@ class ordenEmpaqueController extends Controller
             $orden_empaque->no_orden_empaque = "OE-" . str_replace('.', '', $next_sec);
             $orden_empaque->fecha = date('Y/m/d h:i:s');
             $orden_empaque->sec = number_format($sec + 0.01, 2);
-            $orden_empaque->impreso = 1;
+            // $orden_empaque->impreso = 1;
             $orden_empaque->save();
 
             $orden_facturacion = new OrdenFacturacion();
@@ -277,6 +277,9 @@ class ordenEmpaqueController extends Controller
 
         $orden_empaque->impreso = 1;
         $orden_empaque->save();
+
+        $orden->status_orden_pedido = 'Facturado';
+        $orden->save();
 
 
 
@@ -1186,31 +1189,31 @@ class ordenEmpaqueController extends Controller
             $sec = $numero_antiguo->sec;
         }
 
-        $orden_pedido = ordenEmpaque::where('orden_pedido_id', $orden_id)->get()->first();
+        // $orden_pedido = ordenEmpaque::where('orden_pedido_id', $orden_id)->get()->first();
 
-        if (empty($orden_pedido) || $orden_pedido == "[]") {
-            //Crear nuevo objeto de orden de empaque
-            $orden_empaque = new ordenEmpaque();
+        // if (empty($orden_pedido) || $orden_pedido == "[]") {
+        //     //Crear nuevo objeto de orden de empaque
+        //     $orden_empaque = new ordenEmpaque();
 
-            $orden_empaque->orden_pedido_id = $orden_id;
-            $next_sec = $sec + 0.01;
-            $orden_empaque->no_orden_empaque = "OE - " . str_replace('.', '', $next_sec);
-            $orden_empaque->fecha = date('Y/m/d h:i:s');
-            $orden_empaque->sec = $sec + 0.01;
-            $orden_empaque->a = ($a_red < 0 ? 0 : $a_red);
-            $orden_empaque->b = ($b_red < 0 ? 0 : $b_red);
-            $orden_empaque->c = ($c_red < 0 ? 0 : $c_red);
-            $orden_empaque->d = ($d_red < 0 ? 0 : $d_red);
-            $orden_empaque->e = ($e_red < 0 ? 0 : $e_red);
-            $orden_empaque->f = ($f_red < 0 ? 0 : $f_red);
-            $orden_empaque->g = ($g_red < 0 ? 0 : $g_red);
-            $orden_empaque->h = ($h_red < 0 ? 0 : $h_red);
-            $orden_empaque->i = ($i_red < 0 ? 0 : $i_red);
-            $orden_empaque->j = ($j_red < 0 ? 0 : $j_red);
-            $orden_empaque->k = ($k_red < 0 ? 0 : $k_red);
-            $orden_empaque->l = ($l_red < 0 ? 0 : $l_red);
-            $orden_empaque->save();
-        }
+        //     $orden_empaque->orden_pedido_id = $orden_id;
+        //     $next_sec = $sec + 0.01;
+        //     $orden_empaque->no_orden_empaque = "OE - " . str_replace('.', '', $next_sec);
+        //     $orden_empaque->fecha = date('Y/m/d h:i:s');
+        //     $orden_empaque->sec = $sec + 0.01;
+        //     $orden_empaque->a = ($a_red < 0 ? 0 : $a_red);
+        //     $orden_empaque->b = ($b_red < 0 ? 0 : $b_red);
+        //     $orden_empaque->c = ($c_red < 0 ? 0 : $c_red);
+        //     $orden_empaque->d = ($d_red < 0 ? 0 : $d_red);
+        //     $orden_empaque->e = ($e_red < 0 ? 0 : $e_red);
+        //     $orden_empaque->f = ($f_red < 0 ? 0 : $f_red);
+        //     $orden_empaque->g = ($g_red < 0 ? 0 : $g_red);
+        //     $orden_empaque->h = ($h_red < 0 ? 0 : $h_red);
+        //     $orden_empaque->i = ($i_red < 0 ? 0 : $i_red);
+        //     $orden_empaque->j = ($j_red < 0 ? 0 : $j_red);
+        //     $orden_empaque->k = ($k_red < 0 ? 0 : $k_red);
+        //     $orden_empaque->l = ($l_red < 0 ? 0 : $l_red);
+        //     $orden_empaque->save();
+        // }
 
         $data = [
             'code' => 200,
@@ -1624,7 +1627,7 @@ class ordenEmpaqueController extends Controller
                         $empaqueDetalle->j = $empaqueDetalle->j + $j;
                         $empaqueDetalle->k = $empaqueDetalle->k + $k;
                         $empaqueDetalle->l = $empaqueDetalle->l + $l;
-
+                        $empaqueDetalle->total = $empaqueDetalle->total + $sumEmpaque;
                         $empaqueDetalle->save();
 
                         $orden_empaque = ordenEmpaque::find($empaque_id);
@@ -1659,7 +1662,7 @@ class ordenEmpaqueController extends Controller
                         $orden_empaque_detalle->cantidad = $cantidad;
                         $orden_empaque_detalle->precio = $orden_detalle->precio;
                         $orden_empaque_detalle->cant_bulto = $cant_bultos;
-                        $orden_empaque_detalle->total = $total;
+                        $orden_empaque_detalle->total = $sumEmpaque;
                         $orden_empaque_detalle->fecha_empacado = date('Y/m/d h:i:s');
                         // $orden_empaque_detalle->empacado = 1;
                         $orden_empaque_detalle->facturado = 0;

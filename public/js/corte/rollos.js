@@ -352,8 +352,8 @@ $(document).ready(function() {
     init();
 });
 
-function mostrar(id_rollo) {
-    $.post("rollo/" + id_rollo, function(data, status) {
+function mostrar(id) {
+    $.post("rollo/" + id, function(data, status) {
 
         if(data.status == 'denied'){
             return Swal.fire(
@@ -376,6 +376,7 @@ function mostrar(id_rollo) {
             // console.log(data);
             // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
             $("#id").val(data.rollo.id);
+            id_rollo = data.rollo.id;
             $("#suplidores").val(data.rollo.id_suplidor).select2().trigger('change').attr("disabled", true);
             $("#codigo_rollo").val(data.rollo.codigo_rollo);
             $("#num_tono").val(data.rollo.num_tono);

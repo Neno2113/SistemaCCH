@@ -134,7 +134,7 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido", orderable: false, searchable: false },
+                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido", searchable: false },
                 { data: "cliente", name: "cliente", orderable: false, searchable: false  },
                 { data: "sucursal", name: "sucursal", orderable: false, searchable: false},
                 { data: "total", name: "orden_pedido.total", searchable: false },
@@ -348,7 +348,19 @@ function test(id){
 
                 var detalle = {
                     orden_facturacion_id: orden_facturacion_id,
-                    detalle: datos.orden_empaque_detalle.id
+                    detalle: datos.orden_empaque_detalle.id,
+                    a: $("#a"+id).val(),
+                    b: $("#b"+id).val(),
+                    c: $("#c"+id).val(),
+                    d: $("#d"+id).val(),
+                    e: $("#e"+id).val(),
+                    f: $("#f"+id).val(),
+                    g: $("#g"+id).val(),
+                    h: $("#h"+id).val(),
+                    i: $("#i"+id).val(),
+                    j: $("#j"+id).val(),
+                    k: $("#k"+id).val(),
+                    l: $("#l"+id).val(),
                 }
 
                 $.ajax({
