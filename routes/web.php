@@ -252,6 +252,7 @@ Route::post('/product/{id}', 'ProductController@show');
 Route::post('/product-terminado/{id}', 'ProductController@showTerminado');
 Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');
+Route::post('sku-save', 'ProductController@skuStore');
 Route::post('sku', 'ProductController@asignarSKU');
 Route::get('producto/terminado/{filname}', 'ProductController@getImage');
 Route::post('producto/validarSku', 'ProductController@validarSku');
@@ -264,6 +265,8 @@ Route::get('/categorias', 'ProductController@catCategoria');
 Route::post('/categoria', 'ProductController@storeCategoria');
 Route::get('/listar/{tipo}', 'ProductController@showCategorias');
 Route::post('/categoria/delete/{id}', 'ProductController@destroyCategoria');
+Route::post('/sku/delete/{id}', 'ProductController@destroySKU');
+Route::post('/sku/edit/{id}', 'ProductController@editSKU');
 
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
@@ -410,6 +413,10 @@ Route::get('/orden_empaque/{id}', 'ordenEmpaqueController@show');
 Route::get('/validar_empaque/{id}', 'ordenEmpaqueController@validar');
 Route::post('/empaque_detalle/{id}', 'ordenEmpaqueController@empaque');
 Route::get('/verificar_empaque/{id}', 'ordenEmpaqueController@verificar');
+Route::post('/empaque_completar', 'ordenEmpaqueController@empaqueCompletar');
+Route::get('orden-productos/{id}', 'ordenEmpaqueController@OrdenProductos');
+Route::post('/producto-curva', 'ordenEmpaqueController@curvas');
+Route::post('/orden_distribuir', 'ordenEmpaqueController@distribucion');
 
 //orden facturacion
 Route::get('ordenfacturacion/lastdigit', 'ordenFacturacionController@getDigits');

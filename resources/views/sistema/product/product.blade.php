@@ -29,8 +29,8 @@
                             <label for="nombre_cliente">Marca</label> <button class="btn btn-primary btn-sm mb-2" id="btn-mar" value="marca" type="button"
                             data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="marca" id="marca" class="form-control">
-                                {{-- <option value="" selected disabled>Marca</option>
-                                <option value="L"><b>L</b> - Genius</option>
+                                {{-- <option value="" selected disabled>Marca</option> --}}
+                                {{-- <option value="L"><b>L</b> - Genius</option>
                                 <option value="M"><b>M</b> - Mythos</option>
                                 <option value="P"><b>L</b> - Lavish</option> --}}
                             </select>
@@ -84,23 +84,23 @@
                         <div class="col-md-2 mt-4">
                             <label for="">Año</label>
                             <input type="text" min="1900" max="2099" step="1" value="2019" id="year"
-                                class="form-control" onfocus="(this.type='number')">
+                                class="form-control text-center" onfocus="(this.type='number')">
                             <label for="" class="d-flex justify-content-center pers"></label>
                         </div>
                         <div class="col-md-2 mt-4">
                             <label for="">Secuencia</label>
-                            <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control">
+                            <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control text-center">
 
                         </div>
                         <div class="col-md-3 mt-4">
                             <label for="">Referencia</label>
-                            <input type="text" name="referencia" id="referencia" class="form-control" readonly>
+                            <input type="text" name="referencia" id="referencia" class="form-control text-center" readonly>
 
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-3 mt-4" id="mostrarRef2">
                             <label for="">Referencia 2</label>
-                            <input type="text" name="referencia_2" id="referencia_2" class="form-control">
+                            <input type="text" name="referencia_2" id="referencia_2" class="form-control text-center">
 
                             <input type="hidden" name="" id="sec" value="">
                         </div>
@@ -141,16 +141,19 @@
 
                         </div>
                      
-                        <div class="col-md-3 mt-2">
-                            <label for="">Cuenta contable</label>
-                            <select name="tags[]" id="tipo_cuenta" class="form-control select2">
+                        <div class="col-md-3 mt-1" id="boton-sku">
+                            <label for="">SKU</label>
+                            {{-- <select name="tags[]" id="tipo_cuenta" class="form-control select2">
 
-                            </select>
+                            </select> --}}
+                            <button type="button" class="btn btn-dark  btn-block" data-toggle="modal"
+                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i>
+                                SKUS</button>
 
                         </div>
                         <div class="col-md-3 mt-2">
                             <label for=""></label>
-                            <button type="button" class="btn btn-secondary btn-block mt-1" id="btn-rollos"
+                            <button type="button" class="btn btn-dark btn-block mt-1" id="btn-rollos"
                                 data-toggle="modal" data-target=".bd-rollo-modal-xl">
                                 <i class="fas fa-images"></i>
                                 Subir imagenes
@@ -322,7 +325,7 @@
                     </div>
                 </div>
 
-
+{{-- 
                 <table class="table  table-bordered tabla-perdidas">
                     <thead>
                         <tr>
@@ -339,114 +342,16 @@
                             <th id="tj">J</th>
                             <th id="tk">K</th>
                             <th id="tl">L</th>
-                            {{-- <th>Total</th> --}}
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-
-                                <input type="text" name="" id="a" class="form-control text-center detalle red"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <th>
-                                <input type="text" name="" id="b" class="form-control text-center detalle red"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                                </td>
-                            <td>
-
-
-                                <input type="text" name="" id="c" class="form-control text-center detalle red"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-
-                                <input type="text" name="" id="d" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="de">E</label> --}}
-                                <input type="text" name="" id="e" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="df">F</label> --}}
-                                <input type="text" name="" id="f" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="dg">G</label> --}}
-                                <input type="text" name="" id="g" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="dh">H</label> --}}
-                                <input type="text" name="" id="h" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="di">I</label> --}}
-                                <input type="text" name="" id="i" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="dj">J</label> --}}
-                                <input type="text" name="" id="j" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="dk">K</label> --}}
-                                <input type="text" name="" id="k" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            <td>
-
-                                {{-- <label for="" class="ml-4" id="dl">L</label> --}}
-                                <input type="text" name="" id="l" class="form-control text-center detalle"
-                                    data-inputmask='"mask": "99[.99]"' data-mask>
-
-                            </td>
-                            {{-- <td id="total_percent"></td> --}}
-                        </tr>
+                      
                     </tbody>
-                    {{-- <tfoot>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </tfoot> --}}
+              
 
 
-                </table>
+                </table> --}}
 
                 <div class="row">
                     <div class="col-md-4">
@@ -596,6 +501,164 @@
                 <button type="button" id="btn-close" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 <button type="button" id="btn-save" class="btn btn-primary" ><i class="fas fa-save"></i> Guardar</button>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal SKU-->
+<div class="modal fade bd-sku-modal-xl" tabindex="-1" id="modalSKU" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong> Asignacion de SKU</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="BrachForm">
+                    <div class="row">
+                        <h5>Referencia</h5>
+                        <div class="col-md-3  mb-3">
+                            <input type="text" name="referencia_talla" id="referencia_talla"
+                                class="form-control text-center">
+                        </div>
+                    </div>
+                    <h5 class="text-center">Skus</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">SKU</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i
+                                            class="fas fa-barcode"></i></span>
+                                    </div>
+                                    <input type="text" id="sku" class="form-control text-center" 
+                                        />
+                                </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label >Talla</label>
+                            <select name="talla" id="talla" class="form-control">
+                             
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mt-4" >
+                            <button class="btn btn-dark mb-4 mt-2" id="btn-saveSku" > <i
+                                    class="fas fa-barcode"></i> Asignar SKU </button>
+                        </div>
+                  
+                    </div>
+                    <table class="table  table-bordered mt-3 tabla-perdidas">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Talla</th>
+                                <th>Eliminar</th>
+                                {{-- <th id="tb">B</th>
+                                <th id="tc">C</th>
+                                <th id="td">D</th>
+                                <th id="te">E</th>
+                                <th id="tf">F</th>
+                                <th id="tg">G</th>
+                                <th id="th">H</th>
+                                <th id="ti">I</th>
+                                <th id="tj">J</th>
+                                <th id="tk">K</th>
+                                <th id="tl">L</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody id="tallas">
+
+                            {{-- <tr>
+                                <td>
+                                    <input type="text"  class="form-control text-center" id="a"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="b"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="c"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="d"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="e"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="f"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="g"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="h"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="i"  />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control text-center" id="j"  />
+                                </td>
+                                <td>
+                                    <input type="text"  class="form-control text-center" id="k"  />
+                                </td>
+                                <td>
+                                    <input type="text"  class="form-control text-center" id="l"  />
+                                </td>
+                            </tr> --}}
+                        </tbody>
+                    </table>
+
+                    {{-- <div class="row">
+
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar2" value="A">A</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar3" value="B">B</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar4" value="C">C</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar5" value="D">D</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar6" value="E">E</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar7" value="F">F</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar8" value="G">G</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar9" value="H">H</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar10" value="I">I</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar11" value="J">J</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar12" value="K">K</button>
+                        </div>
+                        <div class="col-lg-1 col-xs-">
+                            <button class="btn btn-secondary btn-block" id="btn-asignar13" value="L">L</button>
+                        </div>
+                    </div> --}}
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>

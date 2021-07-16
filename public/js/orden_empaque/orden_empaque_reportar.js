@@ -1,5 +1,5 @@
 let orden_facturacion_id;
-
+let orden_id;
 
 $(document).ready(function() {
     $("[data-mask]").inputmask();
@@ -254,6 +254,7 @@ function mostrar(id_orden) {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit").show();
+            $('#btn-completar').hide();
             // $("#btn-guardar").hide();
     
             $("#id").val(data.orden_empaque.id);
@@ -267,8 +268,9 @@ function mostrar(id_orden) {
             // listarOrdenDetalle(data.orden_pedido.id);
             orden_detalle = data.orden_detalle;
             orden_facturacion_id = data.orden_facturacion.id;
+            orden_id = data.orden_empaque.orden_pedido_id;
 
-            table(id_orden);
+            tablaDetalle(id_orden);
         }
 
 
@@ -344,7 +346,7 @@ function test(id){
                 // console.log(datos);
                 bootbox.alert("Referencia perteneciente a la orden empaque <strong>"+ datos.orden_empaque.no_orden_empaque+"</strong> ha sido empacada");
                 $(".cantidad").val("");
-                table(datos.orden.orden_pedido_id);
+                tablaDetalle(datos.orden.orden_pedido_id);
 
                 var detalle = {
                     orden_facturacion_id: orden_facturacion_id,
@@ -439,8 +441,52 @@ function redistribuir(id_orden){
     // })
 }
 
+$('#btn-completar').on('click', (e) => {
+    e.preventDefault();
+    Swal.fire({
+        title: '¿Esta seguro de marcar completa esta orden?',
+        text: "No podra revertir este cambio!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            let data = {
+                orden: orden_id,
+                orden_empaque: $("#id").val()
+            }
 
-const table = (id) => {
+            $.ajax({
+                url: "empaque_completar",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        tablaDetalle(orden_id);    
+                        $('#btn-completar').hide();
+
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la actualizacion de la composicion"
+                        );
+                    }
+                },
+                error: function() {
+                    bootbox.alert("Recuerde digitar la cantidad de bultos!!");
+                }
+            });
+        }
+      })
+
+
+})
+
+
+const tablaDetalle = (id) => {
 
     $.get("orden_empaque/" + id, function(data, status) { 
         $("#disponibles").empty();
@@ -522,12 +568,11 @@ const table = (id) => {
                   <td><span id='total${data.orden_detalle[i].id}'>${data.orden_detalle[i].total}</span></td>
                     ${
                         (data.orden_detalle[i].total <= 0)
-                        ? `<td></td>`
+                        ? `<td></td> `
                         : `<td><input type="text" id="cantidad${data.orden_detalle[i].id}" name="cantidad" class="cantidad form-control red text-center" ></td>`
                     }
                   
                     ${
-
                         (data.orden_detalle[i].total <= 0)
                         ? `<td><span id="empacado_listo" class="badge badge-success">Empacado <i class="fas fa-check"></i> </span></td>`
                         : `<td><a onclick="test(${data.orden_detalle[i].id})" id="guardar" class="btn btn-primary btn-sm ml-1 text-white"> <i class="far fa-save"></i></a></td>`
@@ -535,8 +580,18 @@ const table = (id) => {
                  
               </tr>`        
             
-            
             $("#disponibles").append(fila);
+
+
+            if(data.orden_empaque.empacado == 0){
+                $('#btn-completar').hide(); 
+            } else {
+                $('#btn-completar').show();
+            }
+
+            if(data.orden_detalle[i].total <= 0){
+                $('#btn-completar').hide(); 
+            }
           }
     }
 

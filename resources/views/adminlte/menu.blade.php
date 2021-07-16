@@ -198,11 +198,12 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link ">
-                        <i class="fas fa-cut"></i>
+                        <i class="fas fa-toolbox"></i>
                         <p>
-                            Corte
+                            Materiales
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -225,7 +226,21 @@
                                 <p>Rollos</p>
                             </a>
                         </li>
-                        <li class="nav-header">CORTE Y FASES</li>
+                    
+                      
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link ">
+                        <i class="fas fa-cut"></i>
+                        <p>
+                            Corte y Fases
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        
+                        {{-- <li class="nav-header">CORTE Y FASES</li> --}}
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/corte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -319,7 +334,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview ">
+                {{-- <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link ">
                         <i class="fas fa-file-invoice"></i>
                         <p>
@@ -328,12 +343,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        {{-- <li class="nav-item">
-              <a href="/sistemaCCH/public/orden_facturacion" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Orden Facturacion</p>
-              </a>
-            </li> --}}
+            
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/facturacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -347,7 +357,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item has-treeview ">
 
                     <a href="#" class="nav-link ">
@@ -372,12 +382,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/sistemaCCH/public/exportar-peach" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Exportar Peachtree</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
         </nav>

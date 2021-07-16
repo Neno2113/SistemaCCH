@@ -272,6 +272,19 @@ class ClientController extends Controller
             ->editColumn('redistribucion_tallas', function ($client) {
                 return ($client->redistribucion_tallas == 1 ? 'Si' : 'No');
             })
+            ->editColumn('condiciones_credito', function ($client) {
+                if($client->condiciones_credito == '60' ){
+                    return $client->condiciones_credito . ' dias'; 
+                } else if($client->condiciones_credito == '90' ){
+                    return $client->condiciones_credito . ' dias';
+                } else if($client->condiciones_credito == '120' ){   
+                    return $client->condiciones_credito . ' dias';
+                }else if($client->condiciones_credito == '0' ){   
+                    return 'Al contado';
+                } else if($client->condiciones_credito == '30' ){   
+                    return $client->condiciones_credito . ' dias';
+                }
+            })
             ->editColumn('factura_desglosada_talla', function ($client) {
                 return ($client->factura_desglosada_talla == 1 ? 'Si' : 'No');
             })

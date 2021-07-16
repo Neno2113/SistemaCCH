@@ -233,7 +233,7 @@
                                
                             </div>
                         </div>
-                        <div class="row mt-4">
+                        {{-- <div class="row mt-4">
                         
                             <div class="col-md-12 mt-1">
                                 <label for="" ></label>
@@ -241,7 +241,7 @@
                                 data-toggle="modal" data-target=".bd-talla-modal-xl"><i class="fas fa-sort-alpha-down"></i> Distribucion Cliente</button>
                                
                             </div>
-                        </div>
+                        </div> --}}
                         <br>
                         <hr>
                     </div>
@@ -381,7 +381,8 @@
                     <th>RNC</th>
                     <th>Contacto</th>
                     <th>Email</th>
-                    <th>Condiciones de Credito</th>
+                    <th>Credito</th>
+                    <th>Segundas</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -394,7 +395,8 @@
                     <th>RNC</th>
                     <th>Contacto</th>
                     <th>Email</th>
-                    <th>Condiciones de Credito</th>
+                    <th>Credito</th>
+                    <th>Segundas</th>
                 </tr>
             </tfoot>
         </table>

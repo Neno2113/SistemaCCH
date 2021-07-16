@@ -11,6 +11,9 @@ var i_total;
 var j_total;
 var k_total;
 var l_total;
+var venta_segunda = 0;
+var genero_global;
+var genero_plus_global;
 
 var a_red;
 var b_red;
@@ -182,7 +185,7 @@ $(document).ready(function() {
         $("#corte_proceso").val("");
         $("#orden_pedido").empty();
         $("#cliente_segundas").val("");
-        $("#venta_segunda").val("");
+        venta_segunda = '';
     }
 
     function vendedores() {
@@ -579,10 +582,17 @@ $(document).ready(function() {
 
     function consulta() {
         let segunda = $("#cliente_segundas").val();
-
+        // console.log(segunda);
+        let referencia = $("#productoSearch option:selected").text();
+        genero_global = referencia.substring(1, 2);
+        genero_plus_global = referencia.substring(3, 4);
+        console.log(genero_global);
+        console.log(genero_plus_global);
+        // eliminarColumnas()
+        
         if(segunda == 1){
             Swal.fire({
-                title: "Este ciiente acepta segundas",
+                title: "Este cliente acepta segundas",
                 text: "¿Desea realizar una venta de segundas?",
                 type: "warning",
                 showCancelButton: true,
@@ -598,6 +608,7 @@ $(document).ready(function() {
                         referencia_producto: $("#productoSearch option:selected").text(),
                         segunda: 1
                     };
+                    venta_segunda = 1;
                     ajaxConsulta(ordenDetalle);
                 }else{
                     var ordenDetalle = {
@@ -718,6 +729,7 @@ $(document).ready(function() {
                         "<td id='j_corte' class='font-weight-bold'>"+validarNan(datos.j)+"</td>"+
                         "<td id='j_corte' class='font-weight-bold'>"+validarNan(datos.k)+"</td>"+
                         "<td id='j_corte' class='font-weight-bold'>"+validarNan(datos.l)+"</td>"+
+                        "<td id='j_corte' class='font-weight-bold'>"+validarNan(datos.total_corte)+"</td>"+
                         "</tr>"
                     );
                     if (genero == 1) {
@@ -1289,7 +1301,7 @@ $(document).ready(function() {
                 precio: $("#precio").val(),
                 producto_id: $("#productoSearch").val(),
                 fecha_entrega: $("#fecha_proceso").val(),
-                segunda: $("#venta_segunda").val(),
+                venta_segunda: venta_segunda,
                 orden_detallada: 1
 
             };
@@ -1312,7 +1324,7 @@ $(document).ready(function() {
                 fecha_entrega: $("#fecha_proceso").val(),
                 producto_id: $("#productoSearch").val(),
                 cantidad: $("#cantidad").val(),
-                segunda: $("#venta_segunda").val()
+                venta_segunda: venta_segunda
             };
         }
 
@@ -1382,7 +1394,7 @@ $(document).ready(function() {
                         type: "success",
                         title: "Referencia agregada a la orden correctamente!"
                     });
-                    console.log(val_valid);
+                    // console.log(val_valid);
                    
                     if (val_valid == false) {
                         val_valid = true;
@@ -2568,6 +2580,8 @@ $("#up-a").click(function(e){
     let result = a + 1;
 
     $("#a").val(result);
+
+    sumaDetalles();
 })
 $("#up-b").click(function(e){
     e.preventDefault();
@@ -2576,6 +2590,7 @@ $("#up-b").click(function(e){
     let result = b + 1;
 
     $("#b").val(result);
+    sumaDetalles();
 })
 
 $("#up-c").click(function(e){
@@ -2585,7 +2600,7 @@ $("#up-c").click(function(e){
     let result = c + 1;
 
     $("#c").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-d").click(function(e){
@@ -2595,7 +2610,7 @@ $("#up-d").click(function(e){
     let result = d + 1;
 
     $("#d").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-e").click(function(t){
@@ -2605,7 +2620,7 @@ $("#up-e").click(function(t){
     let result = e + 1;
 
     $("#e").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-f").click(function(e){
@@ -2615,7 +2630,7 @@ $("#up-f").click(function(e){
     let result = f + 1;
 
     $("#f").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-g").click(function(e){
@@ -2625,7 +2640,7 @@ $("#up-g").click(function(e){
     let result = g + 1;
 
     $("#g").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-h").click(function(e){
@@ -2635,7 +2650,7 @@ $("#up-h").click(function(e){
     let result = h + 1;
 
     $("#h").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-i").click(function(e){
@@ -2645,7 +2660,7 @@ $("#up-i").click(function(e){
     let result = i + 1;
 
     $("#i").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-j").click(function(e){
@@ -2655,7 +2670,7 @@ $("#up-j").click(function(e){
     let result = j + 1;
 
     $("#j").val(result);
-
+    sumaDetalles();
 })
 
 $("#up-k").click(function(e){
@@ -2665,8 +2680,8 @@ $("#up-k").click(function(e){
     let result = k + 1;
 
     $("#k").val(result);
-
-})
+    sumaDetalles(); 
+})  
 $("#up-l").click(function(e){
     e.preventDefault();
     let l = Number($("#l").val());
@@ -2674,7 +2689,7 @@ $("#up-l").click(function(e){
     let result = l + 1;
 
     $("#l").val(result);
-
+    sumaDetalles();
 })
 
 //restar
@@ -2685,6 +2700,7 @@ $("#down-a").click(function(e){
     let result = a - 1;
 
     $("#a").val(result);
+    sumaDetalles();
 })
 $("#down-b").click(function(e){
     e.preventDefault();
@@ -2693,6 +2709,7 @@ $("#down-b").click(function(e){
     let result = b - 1;
 
     $("#b").val(result);
+    sumaDetalles();
 })
 
 $("#down-c").click(function(e){
@@ -2702,7 +2719,7 @@ $("#down-c").click(function(e){
     let result = c - 1;
 
     $("#c").val(result);
-
+    sumaDetalles();
 })
 
 $("#down-d").click(function(e){
@@ -2712,7 +2729,7 @@ $("#down-d").click(function(e){
     let result = d - 1;
 
     $("#d").val(result);
-
+    sumaDetalles();
 })
 
 $("#down-e").click(function(t){
@@ -2722,8 +2739,8 @@ $("#down-e").click(function(t){
     let result = e - 1;
 
     $("#e").val(result);
-
-})
+    sumaDetalles();
+})      
 
 $("#down-f").click(function(e){
     e.preventDefault();
@@ -2732,7 +2749,7 @@ $("#down-f").click(function(e){
     let result = f - 1;
 
     $("#f").val(result);
-
+    sumaDetalles();
 })
 
 $("#down-g").click(function(e){
@@ -2742,7 +2759,7 @@ $("#down-g").click(function(e){
     let result = g - 1;
 
     $("#g").val(result);
-
+    sumaDetalles();
 })
 
 $("#down-h").click(function(e){
@@ -2752,7 +2769,7 @@ $("#down-h").click(function(e){
     let result = h - 1;
 
     $("#h").val(result);
-
+    sumaDetalles();
 })
 
 $("#down-i").click(function(e){
@@ -2762,7 +2779,7 @@ $("#down-i").click(function(e){
     let result = i - 1;
 
     $("#i").val(result);
-
+    sumaDetalles();
 })
 
 $("#down-j").click(function(e){
@@ -2772,7 +2789,7 @@ $("#down-j").click(function(e){
     let result = j - 1;
 
     $("#j").val(result);
-
+    sumaDetalles();
 })
 
 $("#down-k").click(function(e){
@@ -2782,7 +2799,7 @@ $("#down-k").click(function(e){
     let result = k - 1;
 
     $("#k").val(result);
-
+    sumaDetalles();
 })
 $("#down-l").click(function(e){
     e.preventDefault();
@@ -2791,8 +2808,28 @@ $("#down-l").click(function(e){
     let result = l - 1;
 
     $("#l").val(result);
-
+    sumaDetalles();
 })
+
+
+const sumaDetalles = () => {
+    let a = Number($("#a").val());
+    let b = Number($("#b").val());
+    let c = Number($("#c").val());
+    let d = Number($("#d").val());
+    let e = Number($("#e").val());
+    let f = Number($("#f").val());
+    let g = Number($("#g").val());
+    let h = Number($("#h").val());
+    let i = Number($("#i").val());
+    let j = Number($("#j").val());
+    let k = Number($("#k").val());
+    let l = Number($("#l").val());
+
+    let total = a + b + c + d + e + f + g + h + i + j + k + l;
+
+    $('#total_detalle').html(total);
+}
 
 function delProducto(id) {
     // console.log(producto);
@@ -2819,6 +2856,28 @@ function delProducto(id) {
         } 
         
       })
+}
+
+function eliminarColumnas(){
+    if(genero_global == 3 || genero_global == 4){
+        $("td:nth-child(9) ,th:nth-child(9)").hide();
+        $("td:nth-child(10),th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+
+    }else if(genero_global == 1){
+        $("td:nth-child(9) ,th:nth-child(9)").show();
+        $("td:nth-child(10),th:nth-child(10)").show();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+    }
+
+    if(genero_plus_global == 7){
+        $("td:nth-child(9),th:nth-child(9)").hide();
+        $("td:nth-child(10),th:nth-child(10)").hide();
+        $("td:nth-child(11),th:nth-child(11)").hide();
+        $("td:nth-child(12),th:nth-child(12)").hide();
+    }
 }
 
 

@@ -101,6 +101,8 @@
                                                     <th>Pendiente produccion</th>
                                                     <th>Pendiente lavanderia</th>
                                                     <th>Total terminacion</th>
+                                                    <th>Perdidas</th>
+                                                    <th>Segundas</th>
                                                     <th>Perdida X</th>
                                                 </tr>
                                             </thead>
@@ -109,6 +111,8 @@
                                                     <td id="pendiente_produccion"></td>
                                                     <td id="pendiente_lavanderia"></td>
                                                     <td id="total_terminacion"></td>
+                                                    <td id="total_perdidas"></td>
+                                                    <td id="total_segundas"></td>
                                                     <td id="perdida_x"></td>
                                                 </tr>
                                             </tbody>

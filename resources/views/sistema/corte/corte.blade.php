@@ -28,7 +28,7 @@
                             {{-- <input type="text" name="numero_corte" id="numero_corte"
                                 class="form-control text-center " readonly> --}}
                             <input type="number" min="1900" max="2099" step="1" value="2019" id="year"
-                                class="form-control" placeholder="Año">
+                                class="form-control" data-inputmask='"mask": "9999"' data-mask autocomplete="off">
                             <input type="hidden" name="sec" id="sec" value="">
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="mod_curva" id="mod_curva" value="">
@@ -36,7 +36,8 @@
                         <div class="col-md-2">
                             <label for="" class="d-flex justify-content-center pers">Secuencia</label>
                             <input type="number" placeholder="Secuencia" min="001" max="999" step="1" value="1"
-                                id="sec_manual" class="form-control">
+                                id="sec_manual" class="form-control" data-inputmask='"mask": "9[9][9]"' data-mask
+                                autocomplete="off">
                         </div>
                         <div class="col-md-2 mt-4 pt-2">
                             <button class="btn btn-secondary" id="btn-generar"><i class="fas fa-cut"></i>

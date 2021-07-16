@@ -517,7 +517,7 @@ $(document).ready(function() {
                         contentType: "application/json",
                         success: function(datos) {
                             if (datos.status == "success") {
-                                total_recibido = datos.total_recibido;
+                                total_recibido = datos.total;
                                 $("#total_terminacion").html(datos.total_recibido);
 
                             } else {
@@ -830,7 +830,7 @@ $(document).ready(function() {
                         Swal.fire({
                             type: 'error',
                             title: 'Oops...',
-                            text: 'No puede introducir realizar esta accion.'
+                            text: 'No puede introducir 0 al almacen.'
                         })
                     }else{
                         if(total > total_recibido){
@@ -1435,6 +1435,8 @@ function mostrar(id_almacen){
             $("#pendiente_lavanderia").html(data.pen_lavanderia);
             $("#total_terminacion").html(data.total_recibido);
             $("#perdida_x").html(data.perdida_x);
+            $("#total_perdidas").html(data.total_perdidas);
+            $("#total_segundas").html(data.total_segundas);
             $("#producto_id").val(data.almacen.producto.id);
 
             $("#disponibles").empty();

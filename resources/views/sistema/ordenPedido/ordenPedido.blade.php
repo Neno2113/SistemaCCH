@@ -250,7 +250,7 @@
                         <div class="" id="detallada">
                             <label for="">Disponible:</label>
                             <div class="table-responsive">
-                                <table class="table table-bordered tabla-detallada  mb-3 text-sm">
+                                <table id="tabla_detalle" class="table table-bordered tabla-detallada  mb-3 text-sm">
                                     <thead class="">
                                         <tr>
                                             <th class="talla" id="ta">A</th>
@@ -265,6 +265,7 @@
                                             <th class="talla" id="tj">J</th>
                                             <th class="talla" id="tk">K</th>
                                             <th class="talla" id="tl">L</th>
+                                            <th class="talla">Total</th>
                                         </tr>
 
 
@@ -275,53 +276,54 @@
                                     <tfoot>
                                         <tr class="bg-white">
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-a"><i
+                                                <button class="btn btn-dark btn-sm" id="up-a"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-b"><i
+                                                <button class="btn btn-dark btn-sm" id="up-b"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-c"><i
+                                                <button class="btn btn-dark btn-sm" id="up-c"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-d"><i
+                                                <button class="btn btn-dark btn-sm" id="up-d"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-e"><i
+                                                <button class="btn btn-dark btn-sm" id="up-e"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-f"><i
+                                                <button class="btn btn-dark btn-sm" id="up-f"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-g"><i
+                                                <button class="btn btn-dark btn-sm" id="up-g"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-h"><i
+                                                <button class="btn btn-dark btn-sm" id="up-h"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-i"><i
+                                                <button class="btn btn-dark btn-sm" id="up-i"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-j"><i
+                                                <button class="btn btn-dark btn-sm" id="up-j"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-k"><i
+                                                <button class="btn btn-dark btn-sm" id="up-k"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
                                             <th>
-                                                <button class="btn btn-secondary btn-sm" id="up-l"><i
+                                                <button class="btn btn-dark btn-sm" id="up-l"><i
                                                         class="fas fa-plus"></i></button>
                                             </th>
+                                            <th></th>
                                         </tr>
                                         <tr>
                                             <th>
@@ -420,6 +422,9 @@
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
+                                            <th id="total_detalle" class="text-danger">
+
+                                            </th>
                                         </tr>
                                         <tr>
                                             <th>
@@ -470,6 +475,7 @@
                                                 <button class="btn btn-danger btn-sm" id="down-l"><i
                                                         class="fas fa-minus"></i></button>
                                             </th>
+                                            <th></th>
                                         </tr>
 
                                     </tfoot>

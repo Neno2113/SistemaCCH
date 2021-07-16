@@ -5,71 +5,63 @@ let clienteId;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
-    $("#formulario").validate({
-        rules: {
-            nombre_cliente: {
-                required: true,
-                minlength: 3
-            },
-            direccion_principal: {
-                required: true,
-                minlength: 4
-            },
-            contacto_cliente_principal:{
-                required: true,
-                minlength: 4
-            },
-            telefono_1: {
-                required: true,
-                minlength: 10
-            },
-            email_principal: {
-                required: true,
-                email: true
-            },
-            condiciones_credito: {
-                required: true,
-                minlengh: 1
-            },
-            rnc: {
-                required: true,
-                digits: true,
-                minlengh: 9
-            }
-        },
-        messages: {
-            nombre_cliente: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 3 letras"
-            },
-            direccion_principal: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 4 letras"
-            },
-            contacto_cliente_principal:{
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 4 letras"
-            },
-            telefono_1: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 10 caracteres"
-            },
-            email_principal: {
-                required: "El email es obligatorio",
-                email: "Debe itroducir un email valido"
-            },
-            condiciones_credito: {
-                required: "Este campo es obligatorio",
-                minlength: "Debe contener al menos 1 caracter"
-            },
-            rnc:{
-                required: "Este campo es obligatorio",
-                minlengh: "Debe contener al menos 9 numeros",
-                digits: "Este campo solo puedo contener numeros"
+    // $("#formulario").validate({
+    //     rules: {
+    //         nombre_cliente: {
+    //             required: true,
+    //             minlength: 3
+    //         },
+    //         direccion_principal: {
+    //             required: true,
+    //             minlength: 4
+    //         },
+    //         telefono_1: {
+    //             required: true,
+    //             minlength: 10
+    //         },
+    //         email_principal: {
+    //             required: true,
+    //             email: true
+    //         },
+    //         condiciones_credito: {
+    //             required: true,
+    //             minlengh: 1
+    //         },
+    //         rnc: {
+    //             required: true,
+    //             digits: true,
+    //             minlengh: 9
+    //         }
+    //     },
+    //     messages: {
+    //         nombre_cliente: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 3 letras"
+    //         },
+    //         direccion_principal: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 4 letras"
+    //         },
+    //         telefono_1: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 10 caracteres"
+    //         },
+    //         email_principal: {
+    //             required: "El email es obligatorio",
+    //             email: "Debe itroducir un email valido"
+    //         },
+    //         condiciones_credito: {
+    //             required: "Este campo es obligatorio",
+    //             minlength: "Debe contener al menos 1 caracter"
+    //         },
+    //         rnc:{
+    //             required: "Este campo es obligatorio",
+    //             minlengh: "Debe contener al menos 9 numeros",
+    //             digits: "Este campo solo puedo contener numeros"
 
-            }
-        }
-    })
+    //         }
+    //     }
+    // })
 
 
     var tabla;
@@ -465,6 +457,7 @@ $(document).ready(function() {
                 { data: "contacto_cliente_principal" },
                 { data: "email_principal" },
                 { data: "condiciones_credito" },
+                { data: 'acepta_segundas' }
 
             ],
             order: [[2, 'asc']],

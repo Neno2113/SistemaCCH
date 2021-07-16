@@ -7,7 +7,6 @@ $(document).ready(function() {
         rules: {
             referencia: {
                 required: true,
-                minlength: 3
             },
             tipo_tela: {
                 required: true
@@ -23,7 +22,6 @@ $(document).ready(function() {
         messages: {
             referencia: {
                 required: "Este campo es obligatorio",
-                minlength: "Este campo debe tener al menos 3 caracteres"
             },
             tipo_tela: {
                 required: "**Este campo es obligatorio**"
@@ -805,7 +803,7 @@ const delCategoria = (id) => {
 
 const telas = () => {
     $("#tipo_tela").empty();
-
+    $("#tipo_tela").append(`<option value="" disabled>Tipo tela</option>`);
     $.ajax({
         url: "telas",
         type: "GET",

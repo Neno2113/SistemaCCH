@@ -164,7 +164,7 @@ class CorteController extends Controller
         }
         $corte = Corte::find($id)->load('producto');
         $tallas = Talla::where('corte_id', $id)->get();
-        $rollos = Rollos::where('corte_utilizado', $corte->numero_corte)->get();
+        $rollos = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get();
 
         if (is_object($corte)) {
             $curva = CurvaProducto::where('producto_id', $corte->producto->id)->get()->first();
@@ -491,21 +491,25 @@ class CorteController extends Controller
 
         $tallasAlmacen = AlmacenDetalle::where('producto_id', $id)->get();
 
-        $tallasOrden = ordenPedidoDetalle::where('producto_id', $id)->get();
+        $tallasOrden = ordenPedidoDetalle::where('producto_id', $id)
+        ->where('venta_segunda', '0')->get();
 
-        $a_alm = ($tallasAlmacen->sum('a') - $tallasOrden->sum('a') < 0) ? 0 : $tallasAlmacen->sum('a') - $tallasOrden->sum('a');
-        $b_alm = ($tallasAlmacen->sum('b') - $tallasOrden->sum('b') < 0) ? 0 : $tallasAlmacen->sum('b') - $tallasOrden->sum('b');
-        $c_alm = ($tallasAlmacen->sum('c') - $tallasOrden->sum('c') < 0) ? 0 : $tallasAlmacen->sum('c') - $tallasOrden->sum('c');
-        $d_alm = ($tallasAlmacen->sum('d') - $tallasOrden->sum('d') < 0) ? 0 : $tallasAlmacen->sum('d') - $tallasOrden->sum('d');
-        $e_alm = ($tallasAlmacen->sum('e') - $tallasOrden->sum('e') < 0) ? 0 : $tallasAlmacen->sum('e') - $tallasOrden->sum('e');
-        $f_alm = ($tallasAlmacen->sum('f') - $tallasOrden->sum('f') < 0) ? 0 : $tallasAlmacen->sum('f') - $tallasOrden->sum('f');
-        $g_alm = ($tallasAlmacen->sum('g') - $tallasOrden->sum('g') < 0) ? 0 : $tallasAlmacen->sum('g') - $tallasOrden->sum('g');
-        $h_alm = ($tallasAlmacen->sum('h') - $tallasOrden->sum('h') < 0) ? 0 : $tallasAlmacen->sum('h') - $tallasOrden->sum('h');
-        $i_alm = ($tallasAlmacen->sum('i') - $tallasOrden->sum('i') < 0) ? 0 : $tallasAlmacen->sum('i') - $tallasOrden->sum('i');
-        $j_alm = ($tallasAlmacen->sum('j') - $tallasOrden->sum('j') < 0) ? 0 : $tallasAlmacen->sum('j') - $tallasOrden->sum('j');
-        $k_alm = ($tallasAlmacen->sum('k') - $tallasOrden->sum('k') < 0) ? 0 : $tallasAlmacen->sum('k') - $tallasOrden->sum('k');
-        $l_alm = ($tallasAlmacen->sum('l') - $tallasOrden->sum('l') < 0) ? 0 : $tallasAlmacen->sum('l') - $tallasOrden->sum('l');
-        $total_alm = ($tallasAlmacen->sum('total') - $tallasOrden->sum('total') < 0) ? 0 : $tallasAlmacen->sum('total') - $tallasOrden->sum('total');
+        $ventas_segunda = ordenPedidoDetalle::where('producto_id', $id)
+        ->where('venta_segunda', '1')->get();
+
+        $a_alm = ($tallasAlmacen->sum('a') - $tallasOrden->sum('a') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('a') - $tallasOrden->sum('a') - $ventas_segunda->sum('a');
+        $b_alm = ($tallasAlmacen->sum('b') - $tallasOrden->sum('b') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('b') - $tallasOrden->sum('b') - $ventas_segunda->sum('b');
+        $c_alm = ($tallasAlmacen->sum('c') - $tallasOrden->sum('c') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('c') - $tallasOrden->sum('c') - $ventas_segunda->sum('c');
+        $d_alm = ($tallasAlmacen->sum('d') - $tallasOrden->sum('d') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('d') - $tallasOrden->sum('d') - $ventas_segunda->sum('d');
+        $e_alm = ($tallasAlmacen->sum('e') - $tallasOrden->sum('e') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('e') - $tallasOrden->sum('e') - $ventas_segunda->sum('e');
+        $f_alm = ($tallasAlmacen->sum('f') - $tallasOrden->sum('f') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('f') - $tallasOrden->sum('f') - $ventas_segunda->sum('f');
+        $g_alm = ($tallasAlmacen->sum('g') - $tallasOrden->sum('g') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('g') - $tallasOrden->sum('g') - $ventas_segunda->sum('g');
+        $h_alm = ($tallasAlmacen->sum('h') - $tallasOrden->sum('h') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('h') - $tallasOrden->sum('h') - $ventas_segunda->sum('h');
+        $i_alm = ($tallasAlmacen->sum('i') - $tallasOrden->sum('i') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('i') - $tallasOrden->sum('i') - $ventas_segunda->sum('i');
+        $j_alm = ($tallasAlmacen->sum('j') - $tallasOrden->sum('j') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('j') - $tallasOrden->sum('j') - $ventas_segunda->sum('j');
+        $k_alm = ($tallasAlmacen->sum('k') - $tallasOrden->sum('k') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('k') - $tallasOrden->sum('k') - $ventas_segunda->sum('k');
+        $l_alm = ($tallasAlmacen->sum('l') - $tallasOrden->sum('l') - $ventas_segunda->sum('a') < 0) ? 0 : $tallasAlmacen->sum('l') - $tallasOrden->sum('l') - $ventas_segunda->sum('l');
+        $total_alm = ($tallasAlmacen->sum('total') - $tallasOrden->sum('total') < 0) ? 0 : $tallasAlmacen->sum('total') - $tallasOrden->sum('total') - $ventas_segunda->sum('total');
 
         $genero = $referencia->genero;
         $ref2 = $referencia->referencia_producto_2;

@@ -393,7 +393,7 @@ table th.fit {
     /* padding: 20px; */
     background: #fff;
     text-align: center;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     /* border: solid 2px black; */
 }
 
@@ -421,7 +421,7 @@ table th.fit {
 }
 
 .tabla-tallas .talla {
-    border-left: 1px solid black;
+    /* border-left: 1px solid black; */
     text-align: center;
     font-weight: bold;
     font-size: 12px;

@@ -647,19 +647,38 @@ class AlmacenController extends Controller
 
         $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
 
+        
+
+        $pendiente_lavanderia = $almacen->corte->total - $tallasPerdidas->sum('total');
+        $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
+
+       //segundas
+        $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
+        ->where('corte_id', $corte_id)->select('id')->get();
+
+        $segundas = array();
+
+        $longitudSegunda = count($segunda);
+
+        for ($i = 0; $i < $longitudSegunda; $i++) {
+            array_push($segundas, $segunda[$i]['id']);
+        }
+
+        $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
+
         //calcular total real
-        $a = $tallas->a - $tallasPerdidas->sum('a');
-        $b = $tallas->b - $tallasPerdidas->sum('b');
-        $c = $tallas->c - $tallasPerdidas->sum('c');
-        $d = $tallas->d - $tallasPerdidas->sum('d');
-        $e = $tallas->e - $tallasPerdidas->sum('e');
-        $f = $tallas->f - $tallasPerdidas->sum('f');
-        $g = $tallas->g - $tallasPerdidas->sum('g');
-        $h = $tallas->h - $tallasPerdidas->sum('h');
-        $i = $tallas->i - $tallasPerdidas->sum('i');
-        $j = $tallas->j - $tallasPerdidas->sum('j');
-        $k = $tallas->k - $tallasPerdidas->sum('k');
-        $l = $tallas->l - $tallasPerdidas->sum('l');
+        $a = $tallas->a - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a'); 
+        $b = $tallas->b - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b');
+        $c = $tallas->c - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c');
+        $d = $tallas->d - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d');
+        $e = $tallas->e - $tallasPerdidas->sum('e') - $tallasSegundas->sum('e');
+        $f = $tallas->f - $tallasPerdidas->sum('f') - $tallasSegundas->sum('f');
+        $g = $tallas->g - $tallasPerdidas->sum('g') - $tallasSegundas->sum('g');
+        $h = $tallas->h - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h');
+        $i = $tallas->i - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i');
+        $j = $tallas->j - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j');
+        $k = $tallas->k - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k'); 
+        $l = $tallas->l - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l');
 
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);
@@ -676,8 +695,7 @@ class AlmacenController extends Controller
         $l = ($l < 0 ? 0 : $l);
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
-        $pendiente_lavanderia = $almacen->corte->total - $tallasPerdidas->sum('total');
-        $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
+        
 
         if (is_object($almacen)) {
             $data = [
@@ -703,6 +721,8 @@ class AlmacenController extends Controller
                 'total_recibido' => ($recepcion->total_recibido < 0 ) ? 0 : $recepcion->total_recibido,
                 'pen_produccion' => ($pendiente_lavanderia < 0 ) ? 0 : $pendiente_lavanderia,
                 'perdida_x' => $tallasPerdidas->sum('talla_x'),
+                'total_perdidas' => $tallasPerdidas->sum('total'),
+                'total_segundas' => $tallasSegundas->sum('total'),
                 'a_alm' => $detalle->sum('a'),
                 'b_alm' => $detalle->sum('b'),
                 'c_alm' => $detalle->sum('c'),
@@ -715,7 +735,8 @@ class AlmacenController extends Controller
                 'j_alm' => $detalle->sum('j'),
                 'k_alm' => $detalle->sum('k'),
                 'l_alm' => $detalle->sum('l'),
-                'total_alm' => $detalle->sum('total')
+                'total_alm' => $detalle->sum('total'),
+                'segundas' => $tallasSegundas
             ];
         } else {
             $data = [
@@ -1184,7 +1205,8 @@ class AlmacenController extends Controller
                 'i' => $i,
                 'j' => $j,
                 'k' => $k,
-                'l' => $l
+                'l' => $l,
+                'total' => $total,
             ];
         }
 

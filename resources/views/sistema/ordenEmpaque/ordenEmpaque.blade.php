@@ -61,7 +61,7 @@
                                 class="form-control text-center font-weight-bold" readonly>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <div class="row mt-2">
                         <div class="col-md-3 mt-2">
                             <label for="autorizacion_credito_req">¿Iran por transporte?</label>
                             <div class="form-group clearfix">
@@ -78,6 +78,12 @@
                                     </label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3 mt-2">
+                            {{-- <label for="">Marcar completa</label> --}}
+                            <button class="btn btn-danger mt-4" id="btn-completar"><i class="fas fa-sort-numeric-up"></i> 
+                                Completar orden</button>
                         </div>
                     </div>
 

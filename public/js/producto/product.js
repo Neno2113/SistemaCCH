@@ -118,6 +118,7 @@ $(document).ready(function() {
         $("#precio_venta_publico").val("");
         $("#descripcion_2").val("");
         $("#precio_lista_2").val("");
+        $('#referencia_talla').val('');
         $("#precio_venta_publico_2").val("");
         $("#a").val("");
         $("#b").val("");
@@ -156,7 +157,7 @@ $(document).ready(function() {
         var categoria = $("#categoria").val();
         var year = $("#year").val().toString().substr(+2);
         var referencia = marca + genero + tipo_producto + categoria + "-" + year + i;
-        $("#btn-sku").attr("disabled", false);
+        // $("#btn-sku").attr("disabled", false);
 
         genero_global = $("#genero").val();
         genero_plus = $("#categoria").val();
@@ -198,7 +199,7 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-
+                    $("#referencia_talla").val(referencia);
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -500,6 +501,7 @@ $(document).ready(function() {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-curva").attr("disabled", true);
+            $("#boton-sku").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -508,7 +510,7 @@ $(document).ready(function() {
             $("#mostrarRef2").hide();
             $("#precios_2").hide();
             $("#descripcion_ref2").hide();
-            $("#btn-sku").attr("disabled", true);
+            // $("#btn-sku").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
             $("#btn-guardar").attr("disabled", true);
@@ -561,11 +563,67 @@ $(document).ready(function() {
 
     })
 
-  
-    // $("#btn-upload").on('click', (e) => {
-    //     e.preventDefault();
-    //     console.log($("#formUpload"));
-    // })
+    $("#btn-saveSku").on('click', (e) => {
+        e.preventDefault();
+
+        let data = {
+            producto: $("#id").val(),
+            sku: $("#sku").val(),
+            talla: $("#talla").val()
+        }
+
+        $.ajax({
+            url: "sku-save",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    $("#sku").val('');
+
+                    let fila =
+                    '<tr id="fila'+datos.sku.id+'">'+
+                    "<td class='font-weight-bold'><input type='hidden' id='sku"+datos.sku.id+"' value="+sku.id+">"+datos.sku.sku+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+datos.sku.talla+"</td>"+
+                    "<td>"+
+                    "<button type='button' id='btn-eliminar' onclick='editSKU("+datos.sku.id+")'   class='btn btn-warning mr-2'><i class='far fa-edit'></i></button>"+
+                    "<button type='button' id='btn-eliminar' onclick='delSKU("+datos.sku.id+")'  class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                    $("#tallas").append(fila);
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        // timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'SKU agregado correctamente!'
+                    })
+                } else if(datos.status == 'validation') {
+                    Swal.fire(
+                        'Info!',
+                        'Este SKU ya esta asignado.',
+                        'info'
+                        )
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                );
+            }
+        });
+    })
+ 
 
     $("#btn-cat").on('click', (e) => {
         e.preventDefault();
@@ -731,9 +789,11 @@ function mostrar(id_prouct) {
             $("#btn-edit").show();
             $("#btn-guardar").hide();
 
+            $("#boton-sku").show();
             $("#id").val(data.product.id);
             $("#product_id").val(data.product.id);
             $("#referencia").val(data.product.referencia_producto);
+            $("#referencia_talla").val(data.product.referencia_producto);
             $("#descripcion").val(data.product.descripcion);
             $("#precio_lista").val(data.product.precio_lista);
             $("#precio_lista_2").val(data.product.precio_lista_2);
@@ -761,11 +821,18 @@ function mostrar(id_prouct) {
             let genero = data.product.referencia_producto.substring(1, 2);
             let tipo_producto = data.product.referencia_producto.substring(2, 3);
             let categoria = data.product.referencia_producto.substring(3, 4);
-            $("#marca").val(marca);
-            $("#genero").val(genero);
-            $("#tipo_producto").val(tipo_producto);
-            $("#categoria").val(categoria);
+            let year = data.product.referencia_producto.substring(5, 7);
+            let secuence = data.product.referencia_producto.substring(8, 9);
+            $("#year").val(20+year);
+            $("#sec_manual").val(secuence);
+            $("#marca").val(marca).attr('selected', 'selected').trigger("change");
+            $("#genero").val(genero).attr('selected', 'selected').trigger("change");
+            $("#tipo_producto").val(tipo_producto).attr('selected', 'selected').trigger("change");
+            $("#categoria").val(categoria).attr('selected', 'selected').trigger("change");
+            // $("#skuGeneral").val(data.skuGen.sku);
             tallas();
+            eliminarColumnas();
+            skus(data);
         }
         
     });
@@ -906,7 +973,7 @@ const delCategoria = (id) => {
 
 const marcas = () => {
     $("#marca").empty();
-
+    $("#marca").append(`<option value="" selected disabled>Marca</option>`);
     $.ajax({
         url: "marcas",
         type: "GET",
@@ -935,6 +1002,7 @@ const marcas = () => {
 }
 const generos = () => {
     $("#genero").empty();
+    $("#genero").append(`<option value="" selected disabled>Genero</option>`);
     $.ajax({
         url: "generos",
         type: "GET",
@@ -963,6 +1031,7 @@ const generos = () => {
 }
 const tipos = () => {
     $("#tipo_producto").empty();
+    $("#tipo_producto").append(`<option value="" selected disabled>Tipo producto</option>`);
     $.ajax({
         url: "tipos",
         type: "GET",
@@ -991,6 +1060,7 @@ const tipos = () => {
 }
 const categorias = () => {
     $("#categoria").empty();
+    $("#categoria").append(`<option value="" selected disabled>Categoria</option>`);
     $.ajax({
         url: "categorias",
         type: "GET",
@@ -1016,6 +1086,201 @@ const categorias = () => {
             console.log("No cargaron los productos");
         }
     });
+}
+
+function eliminarColumnas(){
+    if(genero_global == 3 || genero_global == 4){
+        $("#talla").empty();
+        let tallas = `
+        <option value="General">General</option>
+        <option value="A">2</option>
+        <option value="B">4</option>
+        <option value="C">6</option>
+        <option value="D">8</option>
+        <option value="E">10</option>
+        <option value="F">12</option>
+        <option value="G">14</option>
+        <option value="H">16</option>
+        `
+        $("#talla").append(tallas);
+    }else if(genero_global == 1){
+        $("#talla").empty();
+        let tallas = `
+            <option value="General">General</option>
+            <option value="A">28</option>
+            <option value="B">29</option>
+            <option value="C">30</option>
+            <option value="D">32</option>
+            <option value="E">34</option>
+            <option value="F">36</option>
+            <option value="G">38</option>
+            <option value="H">40</option>
+            <option value="I">42</option>
+            <option value="J">44</option>
+        `
+        $("#talla").append(tallas);
+    }
+
+    if(genero_global == 2){
+        $("#talla").empty();
+        let tallas = `
+        <option value="General">General</option>
+        <option value="A">0/0</option>
+        <option value="B">1/2</option>
+        <option value="C">3/4</option>
+        <option value="D">5/6</option>
+        <option value="E">7/8</option>
+        <option value="F">9/10</option>
+        <option value="G">11/12</option>
+        <option value="H">13/14</option>
+        <option value="I">15/16</option>
+        <option value="J">17/18</option>
+        <option value="J">19/20</option>
+        <option value="J">21/22</option>
+    `
+    $("#talla").append(tallas);
+    }
+
+    if(genero_plus == 7){
+        $("#talla").empty();
+        let tallas = `
+        <option value="General">General</option>
+        <option value="A">12W</option>
+        <option value="B">14W</option>
+        <option value="C">16W</option>
+        <option value="D">18W</option>
+        <option value="E">20W</option>
+        <option value="F">22W</option>
+        <option value="G">24W</option>
+        <option value="H">26W</option>
+    `
+    $("#talla").append(tallas);
+    }
+}
+
+const skus = ( { sku } ) => {
+    if(genero_global == 3 || genero_global == 4){
+        
+        for (let i = 0; i < sku.length; i++) {
+            (sku[i].talla == 'A') ? sku[i].talla = '2' : '';
+            (sku[i].talla == 'B') ? sku[i].talla = '4' : '';
+            (sku[i].talla == 'C') ? sku[i].talla = '6' : '';
+            (sku[i].talla == 'D') ? sku[i].talla = '8' : '';
+            (sku[i].talla == 'E') ? sku[i].talla = '10' : '';
+            (sku[i].talla == 'F') ? sku[i].talla = '12' : '';
+            (sku[i].talla == 'G') ? sku[i].talla = '14' : '';
+            (sku[i].talla == 'H') ? sku[i].talla = '16' : '';
+        }
+    }else if(genero_global == 1){
+
+        for (let i = 0; i < sku.length; i++) {
+            (sku[i].talla == 'A') ? sku[i].talla = '28' : '';
+            (sku[i].talla == 'B') ? sku[i].talla = '29' : '';
+            (sku[i].talla == 'C') ? sku[i].talla = '30' : '';
+            (sku[i].talla == 'D') ? sku[i].talla = '32' : '';
+            (sku[i].talla == 'E') ? sku[i].talla = '34' : '';
+            (sku[i].talla == 'F') ? sku[i].talla = '36' : '';
+            (sku[i].talla == 'G') ? sku[i].talla = '38' : '';
+            (sku[i].talla == 'H') ? sku[i].talla = '40' : '';
+            (sku[i].talla == 'I') ? sku[i].talla = '42' : '';
+            (sku[i].talla == 'J') ? sku[i].talla = '44' : '';
+        }
+    }
+
+    if(genero_global == 2){ 
+        for (let i = 0; i < sku.length; i++) {
+            (sku[i].talla == 'A') ? sku[i].talla = '0/0' : '';
+            (sku[i].talla == 'B') ? sku[i].talla = '1/2' : '';
+            (sku[i].talla == 'C') ? sku[i].talla = '3/4' : '';
+            (sku[i].talla == 'D') ? sku[i].talla = '5/6' : '';
+            (sku[i].talla == 'E') ? sku[i].talla = '7/8' : '';
+            (sku[i].talla == 'F') ? sku[i].talla = '9/10' : '';
+            (sku[i].talla == 'G') ? sku[i].talla = '11/12' : '';
+            (sku[i].talla == 'H') ? sku[i].talla = '13/14' : '';
+            (sku[i].talla == 'I') ? sku[i].talla = '15/16' : '';
+            (sku[i].talla == 'J') ? sku[i].talla = '17/18' : '';
+            (sku[i].talla == 'K') ? sku[i].talla = '19/20' : '';
+            (sku[i].talla == 'L') ? sku[i].talla = '21/22' : '';
+        }
+    }
+
+    if(genero_plus == 7){ 
+        for (let i = 0; i < sku.length; i++) {
+            (sku[i].talla == 'A') ? sku[i].talla = '12W' : '';
+            (sku[i].talla == 'B') ? sku[i].talla = '14W' : '';
+            (sku[i].talla == 'C') ? sku[i].talla = '16W' : '';
+            (sku[i].talla == 'D') ? sku[i].talla = '18W' : '';
+            (sku[i].talla == 'E') ? sku[i].talla = '20W' : '';
+            (sku[i].talla == 'F') ? sku[i].talla = '22W' : '';
+            (sku[i].talla == 'G') ? sku[i].talla = '24W' : '';
+            (sku[i].talla == 'H') ? sku[i].talla = '26W' : '';
+
+        }
+    }
+
+
+    $("#tallas").empty();
+    for (let i = 0; i < sku.length; i++) {
+        let fila =
+        '<tr id="fila'+sku[i].id+'">'+
+        "<td class='font-weight-bold'><input type='hidden' id='sku"+sku[i].id+"' value="+sku[i].id+">"+sku[i].sku+"</td>"+
+        "<td class='font-weight-bold'><input type='hidden' id='permiso"+sku[i].id+"' value="+sku[i].id+">"+sku[i].talla+"</td>"+
+        "<td>" +
+        "<button type='button' id='btn-eliminar' onclick='editSKU("+sku[i].id+")'   class='btn btn-warning mr-2'><i class='far fa-edit'></i></button>"+
+        "<button type='button' id='btn-eliminar' onclick='delSKU("+sku[i].id+")'  class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+        "</tr>";
+        $("#tallas").append(fila);
+    }
+
+}
+
+
+const delSKU = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este SKU?',
+        text: "Va a eliminar este SKU!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("sku/delete/" + id, function(){
+                Swal.fire(
+                'Eliminado!',
+                'SKU eliminado correctamente.',
+                'success'
+                )
+                $("#fila"+id).remove();
+          
+            })
+        }
+      })
+}
+
+const editSKU = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este producto a este SKU?',
+        text: "Va a eliminar el producto asignado al SKU!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("sku/edit/" + id, function(){
+                Swal.fire(
+                'SKU del producto desvinculado correctamente!',
+                'SKU desvinculado correctamente.',
+                'success'
+                )
+                $("#fila"+id).remove();
+          
+            })
+        }
+      })
 }
 
 

@@ -453,6 +453,10 @@ $(document).ready(function() {
 
     });
 
+    $('#sec_manual').on('change', () => {
+        $('#btn-generar').attr('disabled', false);
+    })
+
     function verficarReferencia(){
 
         var referencia = {

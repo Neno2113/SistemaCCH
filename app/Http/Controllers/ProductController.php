@@ -243,13 +243,13 @@ class ProductController extends Controller
             })
       
             ->editColumn('precio_lista', function ($product) {
-                return number_format($product->precio_lista) . " RD$";
+                return  "RD$ " . number_format($product->precio_lista);
             })
             ->editColumn('name', function ($product) {
                 return "$product->name $product->surname";
             })
             ->editColumn('precio_venta_publico', function ($product) {
-                return number_format($product->precio_venta_publico) . " RD$";
+                return "RD$ " . number_format($product->precio_venta_publico);
             })
             ->addColumn('Editar', function ($product) {
                 return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>';
@@ -282,10 +282,17 @@ class ProductController extends Controller
         if (is_object($product)) {
             $curva = CurvaProducto::where('producto_id', $product->id)->first();
 
+            $skus = SKU::where('producto_id', $id)->get();
+            
+
+           
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'product' => $product,
+                'sku' => $skus,
+               
                 // 'a' => str_replace('.00', '', $curva->a),
                 // 'b' => str_replace('.00', '', $curva->b),
                 // 'c' => str_replace('.00', '', $curva->c),
@@ -310,6 +317,46 @@ class ProductController extends Controller
         }
 
         return \response()->json($data, $data['code']);
+    }
+
+    public function skuStore(Request $request){
+        
+        $producto = $request->input('producto');
+        $sku = $request->input('sku');
+        $talla = $request->input('talla');
+        
+
+
+        $sku_gen = SKU::where('producto_id', $producto)
+        ->where('sku', $sku)->first();
+
+        if(is_object($sku_gen)){
+            $data = [
+                'code' => 200,
+                'status' => 'validation',
+                'message' => 'El SKU General ya existe'
+            ];
+        } else {
+            $sku_gen = new SKU();
+
+            $ref = Product::find($producto);
+            $sku_gen->producto_id = $producto;
+            $sku_gen->talla = $talla;
+            $sku_gen->sku = $sku;
+            $sku_gen->referencia_producto = $ref->referencia_producto;
+
+            $sku_gen->save();
+
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sku' => $sku_gen
+            ];
+
+        }
+
+        return \response()->json($data, $data['code']); 
     }
 
     public function showTerminado($id)
@@ -493,6 +540,55 @@ class ProductController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function editSKU($id)
+    {
+        $sku = SKU::find($id);
+
+        if (!empty($sku)) {
+
+            $sku->producto_id = '';
+            $sku->referencia_producto = '';
+            $sku->talla = '';
+            $sku->asignado = '';
+            $sku->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sku' => $sku
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function destroySKU($id)
+    {
+        $sku = SKU::find($id);
+
+        if (!empty($sku)) {
+            $sku->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sku' => $sku
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+    }
 
     public function getDigits()
     {

@@ -72,19 +72,19 @@
                         <div class="col-md-4 mt-3">
                             <label for="referencia" >Peso</label>
                             <input type="text" name="peso" id="peso" placeholder="Peso(Onzas/Yardas^2)"
-                                class="form-control" placeholder="Onzas/Yardas^2">
+                                class="form-control text-center" placeholder="Onzas/Yardas^2">
                         
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="referencia" >Ancho Cortable</label>
                             <input type="text" id="ancho_cortable" placeholder="Ancho cortable(Pulgadas)"
-                                class="form-control" data-inputmask='"mask": "99"' data-mask placeholder="Pulgadas">
+                                class="form-control text-center" data-inputmask='"mask": "99"' data-mask placeholder="Pulgadas">
                            
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="referencia" >Elasticidad en trama</label>
                             <input type="text" id="elasticidad_trama"
-                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "[-]99[.99]%"' data-mask
                                 placeholder="Porcentaje">
                           
                         </div>
@@ -93,21 +93,21 @@
                         <div class="col-md-4 mt-4">
                             <label for="referencia" >Elasticidad en urdimbre</label>
                             <input type="text" id="elasticidad_urdimbre"
-                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "[-]99[.99]%"' data-mask
                                 placeholder="Porcentaje">
                            
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="referencia" >Encogimiento en trama</label>
                             <input type="text" id="encogimiento_trama" 
-                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "[-]99[.99]%"' data-mask
                                 placeholder="Porcentaje">
                             
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="referencia" >Encogimiento en urdimbre</label>
                             <input type="text" id="encogimiento_urdimbre"
-                                class="form-control" data-inputmask='"mask": "[-]99[.99]%"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "[-]99[.99]%"' data-mask
                                 placeholder="Porcentaje">
                             
                         </div>
