@@ -294,8 +294,8 @@ class UserController extends Controller
 
             })
             ->addColumn('eliminar', function ($user) {
-                if($user->active == 1 && $user->role == '!Administrador'){
-                    return '<button onclick="desactivar(' . $user->id . ')" class="btn btn-dark btn-sm "><i class="fas fa-user-slash"></i></button>';
+                if($user->active == 1 && $user->role != 'Administrador'){
+                    return '<button onclick="desactivar(' . $user->id . ')" class="btn btn-outline-danger btn-sm "><i class="fas fa-user-slash"></i></button>';
                 } elseif($user->role == 'Administrador' ) {
                     return  '<span class="badge badge-pill badge-success">Admin</span>';
                 } else {

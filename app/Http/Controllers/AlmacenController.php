@@ -12,6 +12,7 @@ use App\Perdida;
 use App\TallasPerdidas;
 use App\Talla;
 use App\AlmacenDetalle;
+use App\AtributosProducto;
 use App\ordenPedido;
 use App\ordenPedidoDetalle;
 use App\CurvaProducto;
@@ -357,7 +358,7 @@ class AlmacenController extends Controller
 
             $perdida = Perdida::where('corte_id', 'LIKE', "$corte_id")
                 ->where('tipo_perdida', 'LIKE', 'Normal')
-                ->whereIn('fase', ['Terminacion', 'Terminacion o almacen'])
+                // ->whereIn('fase', ['Terminacion', 'Terminacion o almacen'])
                 ->select('id')->get();
             $perdida_id = array();
 
@@ -384,12 +385,19 @@ class AlmacenController extends Controller
             // $recepcion = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
             // $total_recibido = $recepcion['total_recibido'];
 
+            $alm_id = $request->input('almacen_id');
+
+            $tallasAlmacen = AlmacenDetalle::where('almacen_id', $alm_id)->get();
+
+            $real_terminacion =  $total_recibido - $tallasAlmacen->sum('total');
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'total_cortado' => $cantidad_total,
                 'perdidas' => $cant_perdida,
-                'total_recibido' => $total_recibido
+                'total_recibido' => $total_recibido,
+                'real_terminacion' => $real_terminacion
 
             ];
         }
@@ -413,26 +421,40 @@ class AlmacenController extends Controller
             ->editColumn('name', function ($almacen) {
                 return "$almacen->name $almacen->surname";
             })
-            ->editColumn('totalCorte', function ($almacen) {
-                //perdidas
-                $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
-                ->where('corte_id', $almacen->corte_id)->select('id')->get();
+            // ->editColumn('totalCorte', function ($almacen) {
+            //     //perdidas
+            //     $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+            //     ->where('corte_id', $almacen->corte_id)->select('id')->get();
 
-                $perdidas = array();
+            //     $perdidas = array();
 
-                $longitudPerdida = count($perdida);
+            //     $longitudPerdida = count($perdida);
+
+            //     for ($i = 0; $i < $longitudPerdida; $i++) {
+            //         array_push($perdidas, $perdida[$i]['id']);
+            //     }
+
+            //     $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+
+            //     return $almacen->totalCorte;
+            // })
+            ->editColumn('total', function ($almacen) {
+                $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
+                    ->where('corte_id', $almacen->corte_id)->select('id')->get();
+
+                $segundas = array();
+
+                $longitudPerdida = count($segunda);
 
                 for ($i = 0; $i < $longitudPerdida; $i++) {
-                    array_push($perdidas, $perdida[$i]['id']);
+                    array_push($segundas, $segunda[$i]['id']);
                 }
 
-                $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+                $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
+    
 
-                return $almacen->totalCorte - $tallasPerdidas->sum('total');
-            })
-            ->editColumn('total', function ($almacen) {
                 $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
-                return $detalle->sum('total');
+                return $detalle->sum('total') + $tallasSegundas->sum('total');
             })
             ->addColumn('Opciones', function ($almacen) {
                 return
@@ -645,11 +667,20 @@ class AlmacenController extends Controller
             array_push($perdidas, $perdida[$i]['id']);
         }
 
-        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get();
+        $tallasPerdidas = TallasPerdidas::where('talla_x', '0')
+        ->whereIn('perdida_id', $perdidas)->get();
+
+
+        $tallasPerdidasX = TallasPerdidas::where('talla_x','>', '0')
+        ->whereIn('perdida_id', $perdidas)->get();
+
+        // $perdidaProduccion = TallasPerdidas::where('talla_x', '0')
+        // ->where('fase', 'Produccion')
+        // ->whereIn('perdida_id', $perdidas)->get();
 
         
 
-        $pendiente_lavanderia = $almacen->corte->total - $tallasPerdidas->sum('total');
+        $pendiente_lavanderia = $almacen->corte->total;
         $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
        //segundas
@@ -667,7 +698,7 @@ class AlmacenController extends Controller
         $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
 
         //calcular total real
-        $a = $tallas->a - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a'); 
+        $a = $tallas->a - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a');  
         $b = $tallas->b - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b');
         $c = $tallas->c - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c');
         $d = $tallas->d - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d');
@@ -677,7 +708,7 @@ class AlmacenController extends Controller
         $h = $tallas->h - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h');
         $i = $tallas->i - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i');
         $j = $tallas->j - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j');
-        $k = $tallas->k - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k'); 
+        $k = $tallas->k - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k');
         $l = $tallas->l - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l');
 
         //Validacion de numeros negativos
@@ -695,7 +726,12 @@ class AlmacenController extends Controller
         $l = ($l < 0 ? 0 : $l);
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
-        
+        $real_terminacion =  $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total');
+        $total_entrada = $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total') 
+        - $tallasPerdidas->sum('total') - $tallasPerdidasX->sum('talla_x');
+
+        $corte = Corte::find($corte_id);
+
 
         if (is_object($almacen)) {
             $data = [
@@ -720,23 +756,28 @@ class AlmacenController extends Controller
                 'pen_lavanderia' => ($recepcion->pendiente < 0 ) ? 0 : $recepcion->pendiente,
                 'total_recibido' => ($recepcion->total_recibido < 0 ) ? 0 : $recepcion->total_recibido,
                 'pen_produccion' => ($pendiente_lavanderia < 0 ) ? 0 : $pendiente_lavanderia,
-                'perdida_x' => $tallasPerdidas->sum('talla_x'),
+                'perdida_x' => $tallasPerdidasX->sum('talla_x'),
                 'total_perdidas' => $tallasPerdidas->sum('total'),
                 'total_segundas' => $tallasSegundas->sum('total'),
-                'a_alm' => $detalle->sum('a'),
-                'b_alm' => $detalle->sum('b'),
-                'c_alm' => $detalle->sum('c'),
-                'd_alm' => $detalle->sum('d'),
-                'e_alm' => $detalle->sum('e'),
-                'f_alm' => $detalle->sum('f'),
-                'g_alm' => $detalle->sum('g'),
-                'h_alm' => $detalle->sum('h'),
-                'i_alm' => $detalle->sum('i'),
-                'j_alm' => $detalle->sum('j'),
-                'k_alm' => $detalle->sum('k'),
-                'l_alm' => $detalle->sum('l'),
-                'total_alm' => $detalle->sum('total'),
-                'segundas' => $tallasSegundas
+                'a_alm' => $detalle->sum('a') + $tallasSegundas->sum('a'),
+                'b_alm' => $detalle->sum('b') + $tallasSegundas->sum('b'),
+                'c_alm' => $detalle->sum('c') + $tallasSegundas->sum('c'),
+                'd_alm' => $detalle->sum('d') + $tallasSegundas->sum('d'),
+                'e_alm' => $detalle->sum('e') + $tallasSegundas->sum('e'),
+                'f_alm' => $detalle->sum('f') + $tallasSegundas->sum('f'),
+                'g_alm' => $detalle->sum('g') + $tallasSegundas->sum('g'),
+                'h_alm' => $detalle->sum('h') + $tallasSegundas->sum('h'),
+                'i_alm' => $detalle->sum('i') + $tallasSegundas->sum('i'),
+                'j_alm' => $detalle->sum('j') + $tallasSegundas->sum('j'),
+                'k_alm' => $detalle->sum('k') + $tallasSegundas->sum('k'),
+                'l_alm' => $detalle->sum('l') + $tallasSegundas->sum('l'),
+                'total_alm' => $detalle->sum('total') + $tallasSegundas->sum('total'),
+                'segundas' => $tallasSegundas,
+                'real_terminacion' => ($real_terminacion < 0 ) ? 0 : $real_terminacion,
+                'total_entrada' => ($total_entrada < 0 ) ? 0 : $total_entrada,
+                'tallasPerdidasX' => $tallasPerdidasX,
+                'tallasPerdidas' => $tallasPerdidas,
+                'total_cortado' => $corte->total
             ];
         } else {
             $data = [
@@ -1174,7 +1215,7 @@ class AlmacenController extends Controller
                 'j' => $j + $detalle->sum('j'),
                 'k' => $k + $detalle->sum('k'),
                 'l' => $l + $detalle->sum('l'),
-                'total' => $total + $detalle->sum('total'),
+                'total' => $total,
                 'a_alm' => $detalle->sum('a'),
                 'b_alm' => $detalle->sum('b'),
                 'c_alm' => $detalle->sum('c'),
@@ -1290,5 +1331,74 @@ class AlmacenController extends Controller
         $pdf = \PDF::loadView('sistema.almacen.DocEA', \compact('almacen_detalle', 'producto'));
         return $pdf->download('EADoc.pdf');
         return View('sistema.almacen.DocEA', \compact('almacen_detalle', 'producto'));
+    }
+
+    public function atributos(){
+        $categorias = AtributosProducto::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'atributos' => $categorias
+        ];
+        return response()->json($data, $data['code']);
+    } 
+
+    public function storeAtributo(Request $request){
+
+        $validar = $request->validate([
+            'indice' => 'required',
+            'nombre' => 'required'
+        ]);
+
+        if(empty($validar)){
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+
+            $indice = $request->input('indice');
+            $nombre = $request->input('nombre');
+
+            $categoria = new AtributosProducto();
+
+            $categoria->indice = $indice;
+            $categoria->nombre = $nombre;
+
+            $categoria->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'atributo' => $categoria
+            ];
+
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function destroyAtributo($id){
+        $categoria = AtributosProducto::find($id);
+
+        if(is_object($categoria)){
+            $categoria->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'categoria' => $categoria
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+        
     }
 }

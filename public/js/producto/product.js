@@ -510,6 +510,7 @@ $(document).ready(function() {
             $("#mostrarRef2").hide();
             $("#precios_2").hide();
             $("#descripcion_ref2").hide();
+            $("#btn-rollos").removeClass("btn-success").addClass("btn-orange");
             // $("#btn-sku").attr("disabled", true);
             $("#btn-edit").hide();
             $("#btn-guardar").show();
@@ -550,11 +551,16 @@ $(document).ready(function() {
         $("#total_percent").val(total+"%");
         if(total == 100){
             $("#btn-guardar").attr("disabled", false);
-            $("#btn-curva").removeClass("btn-secondary").addClass("btn-success");
+            $("#btn-curva").removeClass("btn-orange").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
     }
+
+    $('#modalRollos').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+        $("#btn-rollos").removeClass("btn-orange").addClass("btn-success");
+    })
 
 
     //calculo porcentajes de los inputs
@@ -581,11 +587,14 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#sku").val('');
+                    let talla = $(
+                        "#talla option:selected"
+                    ).text();
 
                     let fila =
                     '<tr id="fila'+datos.sku.id+'">'+
                     "<td class='font-weight-bold'><input type='hidden' id='sku"+datos.sku.id+"' value="+sku.id+">"+datos.sku.sku+"</td>"+
-                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+datos.sku.talla+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+talla+"</td>"+
                     "<td>"+
                     "<button type='button' id='btn-eliminar' onclick='editSKU("+datos.sku.id+")'   class='btn btn-warning mr-2'><i class='far fa-edit'></i></button>"+
                     "<button type='button' id='btn-eliminar' onclick='delSKU("+datos.sku.id+")'  class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
@@ -767,6 +776,7 @@ function tallas(){
         $("#th").html("40");
         $("#ti").html("42");
         $("#tj").html("44");
+        $("#tk").html("44");
 
     }
 }
@@ -1117,6 +1127,7 @@ function eliminarColumnas(){
             <option value="H">40</option>
             <option value="I">42</option>
             <option value="J">44</option>
+            <option value="K">46</option>
         `
         $("#talla").append(tallas);
     }
@@ -1184,6 +1195,7 @@ const skus = ( { sku } ) => {
             (sku[i].talla == 'H') ? sku[i].talla = '40' : '';
             (sku[i].talla == 'I') ? sku[i].talla = '42' : '';
             (sku[i].talla == 'J') ? sku[i].talla = '44' : '';
+            (sku[i].talla == 'K') ? sku[i].talla = '46' : '';
         }
     }
 

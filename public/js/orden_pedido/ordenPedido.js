@@ -84,6 +84,7 @@ $(document).ready(function() {
         $("#btn-consultar").hide();
         $("#precio_div").hide();
         $("#total_div").hide();
+        $("#total_almdiv").hide();
         $("#btn-agregar").attr("disabled", true);
         $("#btn-copia").attr("disabled", true);
         listar();
@@ -162,6 +163,7 @@ $(document).ready(function() {
         $("#j").val("");
         $("#k").val("");
         $("#l").val("");
+        $('#total_detalle').html('');
         $("#total").val("");
         $("#orden_pedido_id").val("");
         $("#orden_pedido_id_proceso").val("");
@@ -186,6 +188,21 @@ $(document).ready(function() {
         $("#orden_pedido").empty();
         $("#cliente_segundas").val("");
         venta_segunda = '';
+    }
+
+    const limpiarCampos = () => {
+        $("#a").val("");
+        $("#b").val("");
+        $("#c").val("");
+        $("#d").val("");
+        $("#e").val("");
+        $("#f").val("");
+        $("#g").val("");
+        $("#h").val("");
+        $("#i").val("");
+        $("#j").val("");
+        $("#k").val("");
+        $("#l").val("");
     }
 
     function vendedores() {
@@ -419,6 +436,7 @@ $(document).ready(function() {
         $("#btn-consultar").show();
         $("#precio_div").show();
         $("#total_div").show();
+        $("#total_almdiv").show();
     });
 
 
@@ -545,6 +563,7 @@ $(document).ready(function() {
 
         if (val == 1) {
             mostrarDetalle(true);
+            limpiarCampos();
             consulta();
         } else if (val == 0) {
             mostrarDetalle(false);
@@ -586,8 +605,8 @@ $(document).ready(function() {
         let referencia = $("#productoSearch option:selected").text();
         genero_global = referencia.substring(1, 2);
         genero_plus_global = referencia.substring(3, 4);
-        console.log(genero_global);
-        console.log(genero_plus_global);
+        // console.log(genero_global);
+        // console.log(genero_plus_global);
         // eliminarColumnas()
         
         if(segunda == 1){
@@ -615,6 +634,7 @@ $(document).ready(function() {
                         producto_id: $("#productoSearch").val(),
                         referencia_producto: $("#productoSearch option:selected").text()
                     };
+                    venta_segunda = 0;
                     ajaxConsulta(ordenDetalle);
                 }
 
@@ -624,6 +644,7 @@ $(document).ready(function() {
                 producto_id: $("#productoSearch").val(),
                 referencia_producto: $("#productoSearch option:selected").text()
             };
+            venta_segunda = 0;
             ajaxConsulta(ordenDetalle);
 
         }
@@ -647,8 +668,10 @@ $(document).ready(function() {
                     var ref = $("#productoSearch option:selected").text();
                     $("#precio").val(precio);
                     $("#total").val(datos.total_corte);
+                    $("#total_alm").val(datos.total_almacen);
                     $("#precio_div").show();
                     $("#total_div").show();
+                    $('#total_almdiv').show();
                     $("#btn-agregar").show();
                     // $("#btn-consultar").attr("disabled", true);
                     $("#btn-agregar").attr("disabled", false);
@@ -937,7 +960,48 @@ $(document).ready(function() {
         detallado = $("input[name='r2']:checked").val();
         cantidad_wr = $("#cantidad").val();
         precio_valid = $("#precio").val();
+        let total_detalle = a + b + c + d + e + f + g + h + i + j + k + l;
+        // console.log(cantidad_wr);
+        // console.log(total_detalle);
+        // console.log(detallado);
 
+        if(detallado == 1){
+            if(total_detalle > cantidad_wr ){
+                Swal.fire(
+                    'Cuidado!',
+                    'Digito una cantidad mayor a la consultada en el sistema.',
+                    'info'
+                )
+            } else if(total_detalle < cantidad_wr) {
+                Swal.fire({
+                    title: '¿Esta seguro de continuar?',
+                    text: "La cantidad total es menor a la cantidad consultada en el sistema!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, acepto'
+                  })
+                  .then((result) => {
+                    if (result.value) {
+                        validarTotalDetalle();
+                    } 
+                    
+                  })
+            } else {
+                validarTotalDetalle();
+            }
+
+        } else {
+            validarTotalDetalle();
+        }
+        
+
+        
+    }
+
+
+    const validarTotalDetalle = () => {
         var validar = {
             a: $("#a").val(),
             b: $("#b").val(),
@@ -1141,56 +1205,56 @@ $(document).ready(function() {
                             if (a_val > a_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 2  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 2 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (b_val > b_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 4  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 4 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (c_val > c_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 6  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 6 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (d_val > d_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 8  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 8 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (e_val > e_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 10  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 10 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (f_val > f_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 12  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 12 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (g_val > g_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 14  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 14 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (h_val > h_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 16  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 16 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
@@ -1201,67 +1265,81 @@ $(document).ready(function() {
                             if (a_val > a_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 28  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 28 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (b_val > b_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 30  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 29 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (c_val > c_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 32  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 30 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (d_val > d_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 34  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 32 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (e_val > e_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 36  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 34 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (f_val > f_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 38  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 36 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (g_val > g_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 40  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 38 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (h_val > h_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 42  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 40 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
                             } else if (i_val > i_total) {
                                 bootbox.alert(
                                     "<div class='alert alert-danger' role='alert'>" +
-                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44  a la cantidad disponible para la venta de esta talla" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 42 a la cantidad disponible para la venta de esta talla" +
                                         "</div>"
                                 );
                                 val_valid = false;
-                            } else {
+                            } else if (j_val > j_total) {
+                                bootbox.alert(
+                                    "<div class='alert alert-danger' role='alert'>" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44 a la cantidad disponible para la venta de esta talla" +
+                                        "</div>"
+                                );
+                                val_valid = false;
+                            } else if (k_val > k_total) {
+                                bootbox.alert(
+                                    "<div class='alert alert-danger' role='alert'>" +
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 46 a la cantidad disponible para la venta de esta talla" +
+                                        "</div>"
+                                );
+                                val_valid = false;
+                            }else {
                                 agregarDetalle();
                             }
                         }
@@ -1301,6 +1379,7 @@ $(document).ready(function() {
                 precio: $("#precio").val(),
                 producto_id: $("#productoSearch").val(),
                 fecha_entrega: $("#fecha_proceso").val(),
+                cantidad: $("#cantidad").val(),
                 venta_segunda: venta_segunda,
                 orden_detallada: 1
 
@@ -1975,7 +2054,8 @@ $(document).ready(function() {
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
                 { data: "total", name: "orden_pedido.total", searchable: false, orderable: false},
-                { data: "detallada", name: "orden_pedido.detallada" }
+                { data: "detallada", name: "orden_pedido.detallada" },
+                { data: "orden_proceso_impresa", name: "orden_pedido.orden_proceso_impresa" }
             ],
             order: [[2, "desc"]],
             rowGroup: {
@@ -2809,6 +2889,54 @@ $("#down-l").click(function(e){
 
     $("#l").val(result);
     sumaDetalles();
+})
+$('#a').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#b').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#c').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#d').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#e').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#f').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#g').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#h').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#i').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#j').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#k').on('keyup', () => {
+    sumaDetalles();
+    
+})
+$('#l').on('keyup', () => {
+    sumaDetalles();
+    
 })
 
 

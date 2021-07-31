@@ -134,9 +134,10 @@ $(document).ready(function() {
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "no_orden_pedido",name: "orden_pedido.no_orden_pedido", searchable: false },
+                { data: "no_orden_empaque",name: "orden_empaque.no_orden_empaque", searchable: false },
                 { data: "cliente", name: "cliente", orderable: false, searchable: false  },
                 { data: "sucursal", name: "sucursal", orderable: false, searchable: false},
+                { data: "total_empaque", name: "orden_empaque.total_empaque", searchable: false },
                 { data: "total", name: "orden_pedido.total", searchable: false },
                 { data: "impreso", name: "orden_pedido.impreso", searchable: false, orderable: false, },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" }
@@ -267,7 +268,8 @@ function mostrar(id_orden) {
             $("#orden_detalle").DataTable().destroy();
             // listarOrdenDetalle(data.orden_pedido.id);
             orden_detalle = data.orden_detalle;
-            orden_facturacion_id = data.orden_facturacion.id;
+             orden_facturacion_id = '';
+            // orden_facturacion_id = data.orden_facturacion.id;
             orden_id = data.orden_empaque.orden_pedido_id;
 
             tablaDetalle(id_orden);
@@ -347,6 +349,10 @@ function test(id){
                 bootbox.alert("Referencia perteneciente a la orden empaque <strong>"+ datos.orden_empaque.no_orden_empaque+"</strong> ha sido empacada");
                 $(".cantidad").val("");
                 tablaDetalle(datos.orden.orden_pedido_id);
+                if(datos.orden_facturacion){
+                    orden_facturacion_id = datos.orden_facturacion.id;
+
+                }
 
                 var detalle = {
                     orden_facturacion_id: orden_facturacion_id,
@@ -375,6 +381,7 @@ function test(id){
                         if (datos.status == "success") {
                             // $("#btn-guardar").attr("disabled", false);
                             // $("#orden_detalle").DataTable().ajax.reload();
+                            // orden_facturacion_id = '';
 
 
                         } else {
@@ -497,79 +504,79 @@ const tablaDetalle = (id) => {
                     ${
                         (data.orden_detalle[i].a) <= 0 
                         ? `<td><input type="text"  id="a${data.orden_detalle[i].id}" name="a" readonly  class="form-control red " value='0'></td>` 
-                        : `<td><input type="number"  id="a${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].a}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="a${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].a}'></td>`
                     }            
                     ${
                         (data.orden_detalle[i].b) <= 0
                         ? `<td><input type="text"  id="b${data.orden_detalle[i].id}" name="a" readonly  class="form-control red " value='0'></td>` 
-                        : `<td><input type="number"  id="b${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].b}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="b${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].b}'></td>`
                     }
     
                     ${
                         (data.orden_detalle[i].c <= 0)
                         ? `<td><input type="text"  id="c${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="c${data.orden_detalle[i].id}" name="a"   class="form-control red" value='${data.orden_detalle[i].c}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="c${data.orden_detalle[i].id}" name="a"   class="form-control red" value='${data.orden_detalle[i].c}'></td>`
                     }
                     
                     ${
                         (data.orden_detalle[i].d <= 0)
                         ? `<td><input type="text"  id="d${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="d${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].d}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="d${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].d}'></td>`
                     }
     
                     ${
                         (data.orden_detalle[i].e <= 0)
                         ? `<td><input type="text"  id="e${data.orden_detalle[i].id}" name="a"  readonly class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="e${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].e}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="e${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].e}'></td>`
                     }
     
                     ${
                         (data.orden_detalle[i].f <= 0)
                         ? `<td><input type="text"  id="f${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="f${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].f}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="f${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].f}'></td>`
                     }
     
                     ${
                         (data.orden_detalle[i].g <= 0)
                         ? `<td><input type="text"  id="g${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="g${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].g}'></td>`
+                        : `<td><input type="number" autocomplete="off" id="g${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].g}'></td>`
                     }
                   
                     ${
                         (data.orden_detalle[i].h <= 0)
                         ? `<td><input type="text"  id="h${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="h${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].h}'></td>`
+                        : `<td><input type="number" autocomplete="off" id="h${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].h}'></td>`
                     }
                  
                     ${
                         (data.orden_detalle[i].i <= 0)
                         ? `<td><input type="text"  id="i${data.orden_detalle[i].id}" name="a"  readonly class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="i${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].i}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="i${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].i}'></td>`
                     }
                     
                     ${
                         (data.orden_detalle[i].j <= 0)
                         ? `<td><input type="text"  id="j${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="j${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].j}'></td>`  
+                        : `<td><input type="number" autocomplete="off"  id="j${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].j}'></td>`  
                     }
                     
                     ${
                         (data.orden_detalle[i].k <= 0)
                         ? `<td><input type="text"  id="k${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="k${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].k}'></td>`
+                        : `<td><input type="number" autocomplete="off"  id="k${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].k}'></td>`
                     }
                   
                     ${
                         (data.orden_detalle[i].l <= 0)
                         ? `<td><input type="text"  id="l${data.orden_detalle[i].id}" name="a" readonly  class="form-control red" value='0'></td>`
-                        : `<td><input type="number"  id="l${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].l}'></td>`
+                        : `<td><input type="number" autocomplete="off" id="l${data.orden_detalle[i].id}" name="a"  class="form-control red" value='${data.orden_detalle[i].l}'></td>`
                     }
                    
                   <td><span id='total${data.orden_detalle[i].id}'>${data.orden_detalle[i].total}</span></td>
                     ${
                         (data.orden_detalle[i].total <= 0)
                         ? `<td></td> `
-                        : `<td><input type="text" id="cantidad${data.orden_detalle[i].id}" name="cantidad" class="cantidad form-control red text-center" ></td>`
+                        : `<td><input type="text" autocomplete="off" id="cantidad${data.orden_detalle[i].id}" name="cantidad" class="cantidad form-control red text-center" ></td>`
                     }
                   
                     ${

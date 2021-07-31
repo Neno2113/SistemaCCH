@@ -16,6 +16,7 @@ $(document).ready(function() {
         $("#loading2").hide();
         $("#loading3").hide();
         cortes();
+        atributos();
 
     }
 
@@ -494,6 +495,62 @@ $(document).ready(function() {
 
     });
 
+    $("#btn-save").on('click', () => {
+    
+        let data = {
+            indice: $("#indice").val(),
+            nombre: $("#nombre").val()
+        }
+    
+
+        $.ajax({
+            url: "atributo",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Nueva entrada registrada.'
+                    })
+                    $("#indice").val('');
+                    $("#nombre").val('');
+                    atributos();
+                    listarAtributos();
+                
+                
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+    });
+
     init();
 });
 
@@ -522,6 +579,7 @@ function mostrar(id_almacen){
             $("#form_talla").show();
             $("#btn-buscar").hide();
             // $("#btn-imprimir").hide();
+            listarAtributos();
 
             var fila =  "<option value="+data.almacen.corte_id +">"+data.almacen.corte.numero_corte+"</option>"
 
@@ -599,6 +657,91 @@ function mostrar(id_almacen){
 }
 
 
+const listarAtributos = () => {
+
+    $("#permisos-agregados").empty();
+
+    $.ajax({
+        url: "atributos",
+        type: "get",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                
+                for (let i = 0; i < datos.atributos.length; i++) {
+                    var fila =
+                    '<tr id="fila'+datos.atributos[i].id+'">'+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.atributos[i].indice+"' value="+datos.atributos[i].indice+">"+datos.atributos[i].indice+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.atributos[i].nombre+"' value="+datos.atributos[i].nombre+">"+datos.atributos[i].nombre+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delCategoria("+datos.atributos[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                    $("#permisos-agregados").append(fila);
+                }
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error"
+            );
+        }
+    });
+}
+
+const atributos = () => {
+    $("#atributo_no_1").empty();
+    $("#atributo_no_2").empty();
+    $("#atributo_no_3").empty();
+    $("#atributo_no_1").append(`<option value="" selected disabled>Atributo 1</option>`);
+    $("#atributo_no_2").append(`<option value="" selected disabled>Atributo 2</option>`);
+    $("#atributo_no_3").append(`<option value="" selected disabled>Atributo 3</option>`);
+    $.ajax({
+        url: "atributos",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.atributos.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.atributos[i].indice}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
+                    $("#atributo_no_1").append(fila);
+                }
+                $("#atributo_no_1").select2();
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.atributos[i].indice}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
+                    $("#atributo_no_2").append(fila);
+                }
+                $("#atributo_no_2").select2();
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.atributos[i].indice}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
+                    $("#atributo_no_3").append(fila);
+                }
+                $("#atributo_no_3").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
+
+
 function eliminar(id_almacen){
     $.post("almacencheck/delete/" + id_almacen, function(data, status) {
         // console.log(data);
@@ -632,5 +775,31 @@ function eliminar(id_almacen){
         }
     })
 
+}
+
+
+const delCategoria = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar este atributo?',
+        text: "Va a eliminar este atributo!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("atributo/delete/" + id, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Atributo eliminado correctamente.',
+                'success'
+                )
+                $("#fila"+id).remove();
+                atributos();
+           
+            })
+        }
+      })
 }
 

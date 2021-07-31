@@ -53,7 +53,7 @@
                         <div class="col-md-4">
                             <label for="" >Ubicacion</label>
                             <input type="text" name="ubicacion" id="ubicacion" class="form-control text-center"
-                                data-inputmask='"mask": "a-9"' data-mask>
+                                data-inputmask='"mask": "A[A]-9"' data-mask>
                            
                         </div>
                         <div class="col-md-4">
@@ -84,7 +84,8 @@
                     <br>
                     <div class="row mt-2" id="form_producto_2">
                         <div class="col-md-4">
-                            <label for="" >Atributo 1</label>
+                            <label for="" >Atributo 1</label> <button class="btn btn-primary btn-sm mb-2" id="btn-cat"  type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="atributo_no_1" id="atributo_no_1" class="form-control">
                                 <option value="" disabled>Atributo No.1</option>
                                 <option value="Roto">1- Roto</option>
@@ -96,7 +97,8 @@
                             
                         </div>
                         <div class="col-md-4">
-                            <label for="" >Atributo 2</label>
+                            <label for="" >Atributo 2</label> <button class="btn btn-primary btn-sm mb-2" id="btn-cat"  type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="atributo_no_2" id="atributo_no_2" class="form-control">
                                 <option value="" disabled>Atributo No.2</option>
                                 <option value="Roto">1- Roto</option>
@@ -108,7 +110,8 @@
                            
                         </div>
                         <div class="col-md-4">
-                            <label for="" >Atributo 3</label>
+                            <label for="" >Atributo 3</label> <button class="btn btn-primary btn-sm mb-2" id="btn-cat"  type="button"
+                            data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="atributo_no_3" id="atributo_no_3" class="form-control">
                                 <option value="" disabled>Atributo No.3</option>
                                 <option value="Roto">1- Roto</option>
@@ -243,6 +246,65 @@
     </div>
 </div>
 
+
+
+<!-- Modal Rollos-->
+<div class="modal fade bd-marca-modal-xl" tabindex="-1" role="dialog" id="modalRollos"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-h5">Agregar nuevo Atributo</h5>
+                <hr>
+                <form action="" class="form-group">
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="">Indice</label>
+                            <input type="text" name="indice" id="indice" class="form-control text-center">
+                        </div>
+                        <div class="col-4">
+                            <label for="">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control text-center">
+                        </div>
+                        <div class="col-4 mt-3">
+                            <button type="button" id="btn-save" class="btn btn-outline-danger rounded-pill mt-3 " ><i class="fas fa-plus"></i> Agregar</button>
+
+                        </div>
+                    </div>
+                  
+                    <div class="row mt-3">
+                        <hr>
+                        <table class="table tabla-existencia table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Indice</th>
+                                    <th>Nombre</th>
+                                    <th id="editar-permisos">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="permisos-agregados">
+    
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

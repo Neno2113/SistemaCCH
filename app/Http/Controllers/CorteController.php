@@ -25,7 +25,7 @@ class CorteController extends Controller
         $validar = $request->validate([
             'numero_corte' => 'required',
             'producto' => 'required',
-            'no_marcada' => 'required|unique:corte',
+            'no_marcada' => 'required',
             'fecha_entrega' => 'required',
             'aprovechamiento' => 'required'
         ]);

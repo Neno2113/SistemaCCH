@@ -687,12 +687,12 @@
         <table class="tabla-factura">
             <thead>
                 <tr>
-                    <th class="factura">NOTA DE CREDITO</th>
+                    <th class="factura">DEVOLUCION</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="num_factura">{{$factura->no_factura}}</td>
+                    <td class="num_factura">{{$nota_credito->no_nota_credito}}</td>
                 </tr>
                 <tr>
                     <td class="fecha">Fecha:{{$nota_credito->fecha}}</td>
@@ -737,33 +737,31 @@
         <table cellspacing="0" class="tabla-ncf">
             <thead>
                 <tr>
+                    <th class="op">ORDEN FACTURACION</th>
                     <th class="op">ORDEN PEDIDO</th>
                     <th class="terminos_pago">TERMINOS PAGO</th>
                     {{-- <th class="">VENCIMIENTO</th> --}}
                     <th class="vendedor">VENDEDOR</th>
                     {{-- <th class="nfc_vence">NCF VENCE</th> --}}
-                    <th>NCF</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td> @foreach ($ordenes_pedido as $orden)
-                        {{$orden->no_orden_pedido}}
-                        @endforeach</td>
+                    <td>{{trim(strtoupper($nota_credito->no_factura), '_')}}</td>
+                    <td>{{$orden_pedido->no_orden_pedido }}</td>
                     <td>{{$orden_pedido->cliente->condiciones_credito}}</td>
                     {{-- <td class="vencimiento">18/1/20</td> --}}
                     <td>Carmen Herrera</td>
                     {{-- <td></td> --}}
-                    <td class="vencimiento">{{$nota_credito->ncf}}</td>
                 </tr>
             </tbody>
         </table>
 
-        @if ($nota_credito->ncf == 0)
+        {{-- @if ($nota_credito->ncf == 0)
         <div id="invoice-fiscal">
             <h1>NOTA CREDITO VALIDA PARA CREDITO FISCAL</h1>
         </div>
-        @endif
+        @endif --}}
 
         {{-- <table cellspacing="0" class="tabla-motivo">
             <thead>
@@ -785,10 +783,10 @@
                 <tr>
                     <th class="desc">CANT</th>
                     <th class="no">REFERENCIA</th>
-                    <th class="unit">UPC/SKU</th>
+                    {{-- <th class="unit">UPC/SKU</th> --}}
                     <th class="desc" style="padding-left: 50px; padding-right: 50px;">DESCRIPCION</th>
-                    <th class="unit">PRECIO</th>
-                    <th class="total">TOTAL</th>
+                    {{-- <th class="unit">PRECIO</th> --}}
+                    {{-- <th class="total">TOTAL</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -803,22 +801,22 @@
                         <li>{{$producto->producto->referencia_producto}}</li>
                         @endforeach
                     </td>
-                    <td class="unit">
+                    {{-- <td class="unit">
                         @foreach ($sku as $barra)
                         @foreach ($nota_detalle as $producto)
                         @if ($barra->producto_id == $producto->producto->id)
                         <li>{{$barra->sku}}</li>
                         @endif
-                        {{-- @break --}}
+                        @break
                         @endforeach
                         @endforeach
-                    </td>
+                    </td> --}}
                     <td class="desc">
                         @foreach ($nota_detalle as $producto)
                         <li>{{$producto->producto->descripcion}}</li>
                         @endforeach
                     </td>
-                    <td class="unit">
+                    {{-- <td class="unit">
                         @foreach ($nota_detalle as $precio)
                         <li>{{$precio->producto->precio_lista}}</li>
                         @endforeach
@@ -827,7 +825,7 @@
                         @foreach ($detalles_totales as $total)
                         <li>RD${{$total}} </li>
                         @endforeach
-                    </td>
+                    </td> --}}
                 </tr>
             </tbody>
             {{-- <tfoot>
@@ -863,7 +861,7 @@
                 </thead>
 
             </table>
-
+{{-- 
             <table class="tabla-totales">
                 <tr>
                     <th>SUBTOTAL:</th>
@@ -872,7 +870,7 @@
                 </tr>
 
                 <tr>
-                    <th>DESCUENTO: {{$nota_credito->factura->descuento}}%</th>
+                    <th>DESCUENTO: {{$nota_credito->descuento}}%</th>
                     <td>RD$ {{number_format($descuento)}}</td>
 
                 </tr>
@@ -890,7 +888,7 @@
                     <th style="font-weight:bold;">TOTAL FINAL:</th>
                     <td style="font-weight:bold;">RD$ {{number_format($total_final)}}</td>
                 </tr>
-            </table>
+            </table> --}}
         </div>
 
 

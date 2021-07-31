@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6" id="compo">
                             <label for=""></label>
-                            <button type="button" class="btn btn-secondary btn-block mt-1" id="btn-composicion"
+                            <button type="button" class="btn btn-orange btn-block mt-1" id="btn-composicion"
                                 data-toggle="modal" data-target=".bd-composition-modal-lg"><i
                                     class="fas fa-fill-drip"></i> Agregar composiciones </button>
                         </div>

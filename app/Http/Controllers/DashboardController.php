@@ -83,7 +83,9 @@ class DashboardController extends Controller
             array_push($ordenes, $orden_pedido[$i]['id']);
         }
 
-        $orden = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)->get();
+        $orden = ordenPedidoDetalle::whereIn('orden_pedido_id', $ordenes)
+        ->where('orden_empacada', '0')->where('venta_segunda', '0')
+        ->get();
 
         $nota_credito = NotaCreditoDetalle::all();
 

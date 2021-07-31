@@ -206,6 +206,7 @@ $(document).ready(function() {
         genero_global = genero;
         plus_global = genero_plus;
          setTimeout(verficarReferencia, 2000);
+      
 
         if (genero == "2") {
             if(genero_plus == "7"){
@@ -378,6 +379,7 @@ $(document).ready(function() {
             $("#th").html("40");
             $("#ti").html("42");
             $("#tj").html("44");
+            $("#tk").html("46");
             // $("#tk").hide();
             // $("#tl").hide();
             $("#sa").html("28");
@@ -390,6 +392,7 @@ $(document).ready(function() {
             $("#sh").html("40");
             $("#si").html("42");
             $("#sj").html("44");
+            $("#sk").html("46");
             //Modal SKU
             $("#ra").html("28");
             $("#rb").html("29");
@@ -401,6 +404,7 @@ $(document).ready(function() {
             $("#rh").html("40");
             $("#ri").html("42");
             $("#rj").html("44");
+            $("#rk").html("46");
             $("#i").attr('disabled', false);
             $("#j").attr('disabled', false);
             $("#k").attr('disabled', true);
@@ -415,6 +419,7 @@ $(document).ready(function() {
             $("#btn-asignar9").html("40");
             $("#btn-asignar10").html("42");
             $("#btn-asignar11").html("44");
+            $("#btn-asignar12").html("46");
             $("#btn-asignar12").attr("disabled", true);
             $("#btn-asignar13").attr("disabled", true);
 
@@ -649,7 +654,7 @@ $(document).ready(function() {
                     $("#fila-inventario").hide();
 
                     if(genero_global == 1){
-                        $("td:nth-child(12),th:nth-child(12)").hide();
+                   
                         $("td:nth-child(13),th:nth-child(13)").hide();
     
     
@@ -662,8 +667,8 @@ $(document).ready(function() {
                         $("#fila-actual").hide();
                         $("#fila-inventario-perc").hide();
                         // $("#fila-totales").hide();
-                        $("#fila-perc-ref1").show();
-                        $("#fila-perc-ref2").show();
+                        $("#fila-perc-ref1").hide();
+                        $("#fila-perc-ref2").hide();
                         $("#corte_tallas_2").show();
                         $("#corte_tallas_2").show();
                         $("#a_perc_ref1").html(datos.a);
@@ -1138,9 +1143,9 @@ $(document).ready(function() {
             $("#fila-perc-ref1").hide();
             $("#fila-perc-ref2").hide();
             $("#corte_tallas_2").hide();
-            $("#btn-rollos").removeClass("btn-dark").addClass("btn-secondary");
-            $("#btn-tallas").removeClass("btn-dark").addClass("btn-secondary");
-            $("#btn-sku").removeClass("btn-dark").addClass("btn-secondary");
+            $("#btn-rollos").removeClass("btn-success").addClass("btn-orange");
+            $("#btn-tallas").removeClass("btn-success").addClass("btn-orange");
+            $("#btn-sku").removeClass("btn-success").addClass("btn-orange");
             // $("#fila-totales").hide();secondary
             $("#spiner").hide();
             $("#spiner2").hide();
@@ -1169,23 +1174,23 @@ $(document).ready(function() {
 
     $("#btn-tallas-cerrar").click(function(e){
         e.preventDefault();
-        $("#btn-tallas").removeClass("btn-secondary").addClass("btn-dark");
+        $("#btn-tallas").removeClass("btn-orange").addClass("btn-success");
     });
 
     // $('#test').on('hidden.bs.modal', function (e) {
     //     e.preventDefault();
-    //     $("#btn-tallas").removeClass("btn-secondary").addClass("btn-success");
+    //     $("#btn-tallas").removeClass("btn-orange").addClass("btn-success");
     // })
 
     // $('#modalRollos').on('hidden.bs.modal', function (e) {
     //     e.preventDefault();
-    //     $("#edit-hide").removeClass("btn-secondary").addClass("btn-success");
+    //     $("#edit-hide").removeClass("btn-orange").addClass("btn-success");
     // })
 
 
     // $('#modalSKU').on('hidden.bs.modal', function (e) {
     //     e.preventDefault();
-    //     $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+    //     $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
     // })
 
 
@@ -1213,7 +1218,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-success");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Error");
                 }
@@ -1244,7 +1249,7 @@ $(document).ready(function() {
     //                 bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
     //                 tabla.ajax.reload();
     //                 $("#btn-asignar").attr("disabled", true);
-    //                 $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+    //                 $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
     //             } else {
     //                 bootbox.alert("Error");
     //             }
@@ -1276,7 +1281,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar2").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1309,7 +1314,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar3").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1342,7 +1347,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar4").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1375,7 +1380,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar5").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1418,7 +1423,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar6").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1462,7 +1467,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar7").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1505,7 +1510,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar8").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1548,7 +1553,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar9").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1581,7 +1586,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar10").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1613,7 +1618,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar11").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1646,7 +1651,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar12").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1679,7 +1684,7 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar13").attr("disabled", true);
-                    $("#btn-sku").removeClass("btn-secondary").addClass("btn-dark");
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Se genero la referencia");
                 }
@@ -1840,7 +1845,7 @@ function asignar(id_rollo) {
                 bootbox.alert("Rollo <strong>"+datos.rollo.numero +"</strong> asignado correctamente al corte: <strong>"
                     +datos.rollo.corte_utilizado+"</strong>");
                 $("#btn-guardar").attr("disabled", false);
-                $("#btn-rollos").removeClass("btn-secondary").addClass("btn-dark");
+                $("#btn-rollos").removeClass("btn-orange").addClass("btn-success");
                 $("#rollos").DataTable().ajax.reload();
             } else {
                 bootbox.alert(
@@ -2384,8 +2389,8 @@ function eliminarColumnas(){
     }else if(genero_global == 1){
         $("td:nth-child(10) ,th:nth-child(10)").show();
         $("td:nth-child(11),th:nth-child(11)").show();
+        $("td:nth-child(12),th:nth-child(12)").show();
 
-        $("td:nth-child(12),th:nth-child(12)").hide();
         $("td:nth-child(13),th:nth-child(13)").hide();
     }
 

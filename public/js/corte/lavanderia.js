@@ -48,9 +48,9 @@ $(document).ready(function() {
     }
 
 
-    $("#receta_lavado").on('keyup', function(){
-        $("#btn-guardar").attr('disabled', false);
-    })
+    // $("#receta_lavado").on('keyup', function(){
+    //     $("#btn-guardar").attr('disabled', false);
+    // })
 
     $("#fecha_envio").on('change', function(){
         var corte = {
@@ -71,12 +71,20 @@ $(document).ready(function() {
                     let cantidad_corte = datos.total_cortado;
                     let cantidad_perdida = datos.perdidas;
                     let parcial = datos.parcial;
-                    cantidad_guardar = cantidad_corte - cantidad_perdida;
+                    cantidad_guardar = cantidad_corte;
 
-                    let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
-                    if(cantidad < 0){
+                    let cantidad = cantidad_corte - cantidad_restante;
+                    if(cantidad <= 0){
                         cantidad = 0
                         $("#devolucion").show();
+                        Swal.fire(
+                        'Alerta!',
+                        'No podra enviar a lavanderia debido a que el total a enviar es total a 0',
+                        'warning'
+                        )
+                        $('#btn-guardar').attr('disabled', true);
+                    } else {
+                        $('#btn-guardar').attr('disabled', false); 
                     }
 
                     if(cantidad_restante == null || cantidad_restante == 0 && parcial == null || parcial == 0){

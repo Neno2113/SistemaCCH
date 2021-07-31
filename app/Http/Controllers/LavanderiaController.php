@@ -298,7 +298,7 @@ class LavanderiaController extends Controller
 
                 }
                 $cant_perdida = array_sum($totales);
-                $cantidad_real = $lavanderia->total - $cant_perdida;
+                $cantidad_real = $lavanderia->total;
                 $total_enviado = $lavanderia->total_enviado;
                 return ($cantidad_real - $total_enviado < 0 ) ? 0 : $cantidad_real - $total_enviado;
             })
@@ -573,6 +573,7 @@ class LavanderiaController extends Controller
                 ->where('fase', 'LIKE', 'Produccion')
                 ->orWhere('fase', 'LIKE', 'Lavanderia')
                 ->orWhere('fase', 'LIKE', 'Terminacion')
+                 ->orWhere('fase', 'LIKE', 'Almacen')
                 ->where('numero_corte', 'LIKE', "%$search%")
                 ->get();
         }

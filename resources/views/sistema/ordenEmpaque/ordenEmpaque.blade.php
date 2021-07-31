@@ -142,7 +142,7 @@
                                     <td class="talla">40</td>
                                     <td class="talla">42</td>
                                     <td class="talla">44</td>
-                                    <td class="talla"></td>
+                                    <td class="talla">46</td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
@@ -263,7 +263,8 @@
                     <th>#</th>
                     <th>Cliente</th>
                     <th>Sucursal</th>
-                    <th>Total</th>
+                    <th>Total E.</th>
+                    <th>Total P.</th>
                     <th>Status</th>
                     <th>F. Entr.</th>
                 </tr>
@@ -276,7 +277,8 @@
                     <th>#</th>
                     <th>Cliente</th>
                     <th>Sucursal</th>
-                    <th>Total</th>
+                    <th>Total E.</th>
+                    <th>Total P.</th>
                     <th>Status</th>
                     <th>F. Entr.</th>
                 </tr>

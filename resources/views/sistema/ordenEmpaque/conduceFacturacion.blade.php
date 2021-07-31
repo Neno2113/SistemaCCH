@@ -713,6 +713,8 @@
         <table cellspacing="0" class="tabla-ncf">
             <thead>
                 <tr>
+                    <th class="op">No. ORDEN FACTURACION</th>
+                    <th class="op">No. PEDIDO</th>
                     <th class="op">No. EMPAQUE</th>
                     <th class="vendedor">VENDEDOR</th>
                     <th class="nfc_vence">FECHA GENERACION</th>
@@ -723,12 +725,11 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>{{ $orden_facturacion->no_orden_facturacion}}</td>
+                    <td>{{ $orden->no_orden_pedido}}</td>
                     <td>{{ $orden_empaque->no_orden_empaque}}</td>
                     <td>{{$orden->vendedor->nombre}} {{$orden->vendedor->apellido}}</td>
                     <td>{{$orden_empaque->fecha_impresion}}</td>
-                   
-                  
-
                 </tr>
             </tbody>
         </table>
@@ -747,7 +748,7 @@
             <tbody>
                 <tr>
                     <td class="desc">
-                        @foreach ($empaque_detalle as $cantidad)
+                        @foreach ($facturacion_detalle as $cantidad)
                         <li>{{$cantidad->total}}</li>
                         @endforeach
                     </td>

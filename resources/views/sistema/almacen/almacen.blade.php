@@ -92,28 +92,34 @@
                             <div class="row">
                                 {{-- <div class="col-md-3"></div> --}}
                                 <div class="table-responsive">
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <h5 for="" class="modal-almacen-h5">Pendientes</h5>
                                         <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2"
                                             style="width:90">
                                             <thead class="text-center text-sm">
                                                 <tr>
+                                                    <th>Total Cortado</th>
                                                     <th>Pendiente produccion</th>
                                                     <th>Pendiente lavanderia</th>
+                                                    <th>Recibido lavanderia</th>
                                                     <th>Total terminacion</th>
                                                     <th>Perdidas</th>
                                                     <th>Segundas</th>
                                                     <th>Perdida X</th>
+                                                    {{-- <th>Total entrada</th> --}}
                                                 </tr>
                                             </thead>
                                             <tbody class="text-sm text-center font-weight-bold">
                                                 <tr>
+                                                    <td id="total_cortado"></td>
                                                     <td id="pendiente_produccion"></td>
                                                     <td id="pendiente_lavanderia"></td>
+                                                    <td id="recibido_lavanderia"></td>
                                                     <td id="total_terminacion"></td>
                                                     <td id="total_perdidas"></td>
                                                     <td id="total_segundas"></td>
                                                     <td id="perdida_x"></td>
+                                                    {{-- <td id="total_entrada"></td> --}}
                                                 </tr>
                                             </tbody>
 
@@ -127,7 +133,7 @@
 
                             <div class="table-responsive">
                                 <div class="col-md-12">
-                                    <h5 for="" class="modal-almacen-h5">Total corte</h5>
+                                    <h5 for="" class="modal-almacen-h5">Total entrada por talla</h5>
                                     <table id="total-corte" class="table text-sm tabla-almacen-totales ml-2"
                                         style="width:99%">
                                         <thead class="text-center">
@@ -197,110 +203,110 @@
                                             <td>
                                                 <input name="a" id="a"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="a_m" id="a_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
 
                                                 <input type="text" name="b" id="b"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="b_m" id="b_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
 
                                                 <input type="text" name="c" id="c"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="c_m" id="c_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="td">D</label> --}}
                                                 <input type="text" name="d" id="d"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="d_m" id="d_m"
                                                     class="form-control text-center no-shadow  d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="te">E</label> --}}
                                                 <input type="text" name="e" id="e"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="e_m" id="e_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="tf">F</label> --}}
                                                 <input type="text" name="f" id="f"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="f_m" id="f_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="tg">G</label> --}}
                                                 <input type="text" name="g" id="g"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="g_m" id="g_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="th">H</label> --}}
                                                 <input type="text" name="" id="h"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="h_m" id="h_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="ti">I</label> --}}
                                                 <input type="text" name="i" id="i"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="i_m" id="i_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="tj">J</label> --}}
                                                 <input type="text" name="j" id="j"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="j_m" id="j_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask": "999"' data-mask>
+                                                    data-inputmask='"mask": "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="tk">K</label> --}}
                                                 <input type="text" name="k" id="k"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='" mask": "999"' data-mask>
+                                                    data-inputmask='" mask": "999"' data-mask autocomplete="off">
                                                 <input type="number" name="k_m" id="k_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask" : "999"' data-mask>
+                                                    data-inputmask='"mask" : "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
                                                 {{-- <label for="" class="ml-4" id="tl">L</label> --}}
                                                 <input type="text" name="l" id="l"
                                                     class="form-control text-center no-shadow d-md-none d-lg-block"
-                                                    data-inputmask='"mask" : "999"' data-mask>
+                                                    data-inputmask='"mask" : "999"' data-mask autocomplete="off">
 
                                                 <input type="number" name="l_m" id="l_m"
                                                     class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                                    data-inputmask='"mask" : "999"' data-mask>
+                                                    data-inputmask='"mask" : "999"' data-mask autocomplete="off">
                                             </td>
                                             <td>
 

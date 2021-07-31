@@ -84,12 +84,12 @@
                         <div class="col-md-2 mt-4">
                             <label for="">Año</label>
                             <input type="text" min="1900" max="2099" step="1" value="2019" id="year"
-                                class="form-control text-center" onfocus="(this.type='number')">
+                                class="form-control text-center" onfocus="(this.type='number')" autocomplete="off">
                             <label for="" class="d-flex justify-content-center pers"></label>
                         </div>
                         <div class="col-md-2 mt-4">
                             <label for="">Secuencia</label>
-                            <input type="number" min="1" max="999" step="1" id="sec_manual" class="form-control text-center">
+                            <input type="number" min="1" max="999" step="1" id="sec_manual" autocomplete="off" class="form-control text-center">
 
                         </div>
                         <div class="col-md-3 mt-4">
@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-md-3 mt-2">
                             <label for=""></label>
-                            <button type="button" class="btn btn-dark btn-block mt-1" id="btn-rollos"
+                            <button type="button" class="btn btn-orange btn-block mt-1" id="btn-rollos"
                                 data-toggle="modal" data-target=".bd-rollo-modal-xl">
                                 <i class="fas fa-images"></i>
                                 Subir imagenes

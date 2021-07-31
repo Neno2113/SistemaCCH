@@ -235,8 +235,12 @@
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-4 mt-3" id="total_div">
-                                <label for="">Total Ref.:</label>
+                                <label for="">Disponible Venta</label>
                                 <input type="text" name="total" id="total" class="form-control text-center" readonly>
+                            </div>
+                            <div class="col-lg-2 col-md-4 mt-3" id="total_almdiv">
+                                <label for="">Total Almacen</label>
+                                <input type="text" name="total" id="total_alm" class="form-control text-center" readonly>
                             </div>
                             <div class="col-md-4 mr-3">
 
@@ -244,9 +248,7 @@
 
                         </div>
 
-                        <br>
                         <hr>
-                        <br>
                         <div class="" id="detallada">
                             <label for="">Disponible:</label>
                             <div class="table-responsive">
@@ -265,7 +267,7 @@
                                             <th class="talla" id="tj">J</th>
                                             <th class="talla" id="tk">K</th>
                                             <th class="talla" id="tl">L</th>
-                                            <th class="talla">Total</th>
+                                            <th class="talla" style="font-size: 20px">Total</th>
                                         </tr>
 
 
@@ -330,7 +332,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="da">A</label> --}}
                                                 <input type="text" name="" id="a"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -338,7 +340,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="db">B</label> --}}
                                                 <input type="text" name="" id="b"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -346,7 +348,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="dc">C</label> --}}
                                                 <input type="text" name="" id="c"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -354,7 +356,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="dd">D</label> --}}
                                                 <input type="text" name="" id="d"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -362,7 +364,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="de">E</label> --}}
                                                 <input type="text" name="" id="e"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -370,7 +372,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="df">F</label> --}}
                                                 <input type="text" name="" id="f"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -378,7 +380,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="dg">G</label> --}}
                                                 <input type="text" name="" id="g"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -386,7 +388,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="dh">H</label> --}}
                                                 <input type="text" name="" id="h"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -394,7 +396,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="di">I</label> --}}
                                                 <input type="text" name="" id="i"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -402,7 +404,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="dj">J</label> --}}
                                                 <input type="text" name="" id="j"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -410,7 +412,7 @@
 
                                                 {{-- <label for="" class="ml-4" id="dk">K</label> --}}
                                                 <input type="text" name="" id="k"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
@@ -418,11 +420,11 @@
 
                                                 {{-- <label for="" class="ml-4" id="dl">L</label> --}}
                                                 <input type="text" name="" id="l"
-                                                    class="form-control text-center detalle"
+                                                    class="form-control text-center detalle" autocomplete="off"
                                                     data-inputmask='"mask": "9[9[9]]"' data-mask>
 
                                             </th>
-                                            <th id="total_detalle" class="text-danger">
+                                            <th id="total_detalle" class="text-danger" style="font-size: 20px">
 
                                             </th>
                                         </tr>
@@ -697,6 +699,7 @@
                     <th>F. Entrega</th>
                     <th>Total</th>
                     <th>Detallado</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -713,6 +716,7 @@
                     <th>F. Entrega</th>
                     <th>Total</th>
                     <th>Detallado</th>
+                    <th>Status</th>
                 </tr>
             </tfoot>
         </table>

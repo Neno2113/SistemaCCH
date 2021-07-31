@@ -48,9 +48,9 @@ $(document).ready(function() {
         recepcionCod();
     }
 
-    $("#cantidad_recibida").on('keyup', function(){
-        $("#btn-guardar").attr("disabled", false);
-    })
+    // $("#cantidad_recibida").on('keyup', function(){
+    //     $("#btn-guardar").attr("disabled", false);
+    // })
 
 
     function limpiar() {
@@ -188,10 +188,17 @@ $(document).ready(function() {
                     let total_recibido = datos.total_recibido;
                     let total_devuelto = datos.total_devuelto;
                     total_devuelto_gloabl = datos.total_devuelto;
-                    let pendiente = total_enviado - total_recibido - cantidad_perdida;
+                    let pendiente = total_enviado - total_recibido;
                     pendiente_guardar = pendiente;
-                    if(pendiente < 0){
+                    if(pendiente <= 0){
                         pendiente = 0;
+                        $('#btn-guardar').attr('disabled', true);
+                        Swal.fire(
+                        'Info!',
+                        'No podra guardar debido a que el total pendiente por recibir es igual a 0.',
+                        'warning')
+                    } else {
+                        $('#btn-guardar').attr('disabled', false);
                     }
 
                     // $("#cantidad_recibida").val(parcial);
@@ -203,7 +210,7 @@ $(document).ready(function() {
                     // }
 
                     if(total_recibido == null || total_recibido == 0){
-                        $("#cantidad_restante").val(total_enviado - cantidad_perdida);
+                        $("#cantidad_restante").val(total_enviado);
                     }else{
                         $("#cantidad_restante").val(pendiente);
                         // bootbox.alert("Se han recibido: "+total_recibido+" de: "+ total_enviado);
@@ -243,7 +250,7 @@ $(document).ready(function() {
             sec: $("#sec").val()
         };
 
-        console.log(JSON.stringify(recepcion));
+        // console.log(JSON.stringify(recepcion));
         var cant_recibida = $("#cantidad_recibida").val();
 
         if(cant_recibida > pendiente_guardar){

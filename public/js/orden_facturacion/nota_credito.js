@@ -49,51 +49,22 @@ $(document).ready(function() {
         $("#no_nota_credito").val("");
     }
 
-    // function ncCod() {
-    //     $("#sec").val("");
-    //     $("#no_nota_credito").val("");
 
-    //     $.ajax({
-    //         url: "nc/lastdigit",
-    //         type: "GET",
-    //         dataType: "json",
-    //         success: function(datos) {
-    //             if (datos.status == "success") {
 
-    //                 var i = Number(datos.sec);
-    //                 $("#sec").val(i);
-    //                 i = (i + 0.01).toFixed(2).split('.').join("");
-    //                 var referencia = "NC"+'-'+i;
-
-    //                 $("#no_nota_credito").val(referencia);
-
-    //             } else {
-    //                 bootbox.alert(
-    //                     "Ocurrio un error !!"
-    //                 );
-    //             }
-    //         },
-    //         error: function() {
-    //             bootbox.alert(
-    //                 "Ocurrio un error!!"
-    //             );
-    //         }
-    //     });
-    // }
-
-    function facturas (){
-
+    function empaques (){
+        $("#facturas").empty();
+        $("#facturas").append(`<option value="" selected disabled>Orden facturacion</option>`);
         $.ajax({
-            url: "factura-select",
+            url: "facturacion-select",
             type: "GET",
             dataType: "json",
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    var longitud = datos.facturas.length;
+                    var longitud = datos.facturacion.length;
 
                     for (let i = 0; i < longitud; i++) {
-                        var fila =  "<option value="+datos.facturas[i].id +">"+datos.facturas[i].no_factura+"</option>"
+                        var fila =  "<option value="+datos.facturacion[i].id +">Orden facturacion: "+datos.facturacion[i].no_orden_facturacion+"</option>"
 
                         $("#facturas").append(fila);
                     }
@@ -138,7 +109,9 @@ $(document).ready(function() {
         var nota_credito = {
             sec: $("#sec").val(),
             no_nota_credito: $("#no_nota_credito").val(),
-            factura_id: $("#factura_id").val(),
+            fecha: $('#fecha').val(),
+            no_factura: $("#no_factura").val(),
+            facturacion_id: $("#factura_id").val(),
             cliente: $("#cliente_id").val(),
             sucursal: $("#sucursal_id").val(),
             itbis: $("#itbis").val(),
@@ -147,6 +120,8 @@ $(document).ready(function() {
             precio_lista_factura: $("#precio_lista_factura").val(),
             ncf: ncf
         };
+
+        // console.log(JSON.stringify(nota_credito));
 
         $.ajax({
             url: "nota-credito",
@@ -247,10 +222,9 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "no_nota_credito", name: 'nota_credito.no_nota_credito' },
-                { data: "no_factura", name: 'factura.no_factura' },
+                { data: "no_factura", name: 'nota_credito.no_factura' },
                 { data: "nombre_cliente", name: 'cliente.nombre_cliente'},
                 { data: "nombre_sucursal", name: 'cliente_sucursales.nombre_sucursal',  orderable: false, searchable: false },
-                { data: "fecha", name: 'factura.fecha' },
                 { data: "fecha_nota", name: 'nota_credito.fecha' },
                 { data: "total", name: 'nota_credito.total'},
             ],
@@ -340,7 +314,7 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         $("#btn-generar").show();
-        facturas();
+        empaques();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
@@ -366,6 +340,7 @@ function mostrar(id_factura) {
         $("#btnAgregar").hide();
         $("#btn-edit").hide();
         $("#btn-guardar").show();
+        ncCod();
 
         // $("#btn-generar").hide();
         $("#edit-hide").hide();
@@ -373,18 +348,27 @@ function mostrar(id_factura) {
         $("#detalle-factura").hide();
         $("#comprobante").hide();
 
-        $("#factura_id").val(data.factura.id);
-        $("#orden_facturacion_id").val(data.factura.id);
-        $("#no_factura").val(data.factura.no_factura);
-        $("#itbis").val(data.factura.itbis);
-        $("#descuento").val(data.factura.descuento);
+        // var i = Number(data.facturacion.sec);
+        // // i = i + 001;
+        // i = (i).toFixed(2).split('.').join("");
+
+        // let referencia = 'DE'+ "-"+ i;
+        // console.log(i);
+        // console.log(referencia);
+        $("#factura_id").val(data.facturacion.id);
+        // $("#orden_facturacion_id").val(data.factura.id);
+        // $('#no_nota_credito').val(referencia);
+        $("#no_factura").val(data.facturacion.no_orden_facturacion);
+        // $("#itbis").val(data.factura.itbis);
+        // $("#descuento").val(data.factura.descuento);
         $("#cliente").val(data.cliente.nombre_cliente);
         $("#cliente_id").val(data.cliente.id);
         $("#sucursal").val(data.sucursal.nombre_sucursal);
         $("#sucursal_id").val(data.sucursal.id);
-        $("#fecha_factura").val(data.factura.fecha);
-        $("#fecha_impresion").val(data.factura.fecha_impresion);
-        $("#precio_lista_factura").val(" RD$" + data.factura.total);
+        $("sec").val(data.facturacion.sec);
+        // $("#fecha_factura").val(data.factura.fecha);
+        // $("#fecha_impresion").val(data.factura.fecha_impresion);
+        // $("#precio_lista_factura").val(" RD$" + data.factura.total);
 
         var longitud = data.detalle.length;
         longitud_global = data.detalle.length;
@@ -423,6 +407,33 @@ function mostrar(id_factura) {
             (data.detalle[i].l <= 0 ) ? $("#l"+data.detalle[i].id).attr('disabled', true) : $("#l"+data.detalle[i].id).attr('disabled', false);
         }
 
+        $("#ver_pedido").empty();
+        for (let i = 0; i < data.detalle.length; i++) {
+            let fila = `
+            <tr>
+                <td>${data.detalle[i].producto.referencia_producto}</td>
+                <td class="text-dark"> ${data.detalle[i].a}</td>
+                <td class="text-dark"> ${data.detalle[i].b}</td>
+                <td class="text-dark"> ${data.detalle[i].c}</td>
+                <td class="text-dark"> ${data.detalle[i].d}</td>
+                <td class="text-dark"> ${data.detalle[i].e}</td>
+                <td class="text-dark"> ${data.detalle[i].f}</td>
+                <td class="text-dark"> ${data.detalle[i].g}</td>
+                <td class="text-dark"> ${data.detalle[i].h}</td>
+                <td class="text-dark"> ${data.detalle[i].i}</td>
+                <td class="text-dark"> ${data.detalle[i].j}</td>
+                <td class="text-dark"> ${data.detalle[i].k}</td>
+                <td class="text-dark"> ${data.detalle[i].l}</td>
+                <td class="text-danger">${data.detalle[i].total}</td>
+                <td></td>
+            
+            
+            </tr>
+            `
+            $("#ver_pedido").append(fila);
+            
+        }
+
 
     });
 }
@@ -431,6 +442,38 @@ $("#btn-buscar").click(function(){
     mostrar(id);
 
 });
+
+function ncCod() {
+    $("#sec").val("");
+    $("#no_nota_credito").val("");
+
+    $.ajax({
+        url: "nc/lastdigit",
+        type: "GET",
+        dataType: "json",
+        success: function(datos) {
+            if (datos.status == "success") {
+
+                var i = Number(datos.sec);
+                $("#sec").val(i);
+                i = (i + 0.01).toFixed(2).split('.').join("");
+                var referencia = "DE"+'-'+i;
+
+                $("#no_nota_credito").val(referencia);
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error !!"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error!!"
+            );
+        }
+    });
+}
 
 //  //funcion para listar en el Datatable
 //  function listarFacturaDetalle(id) {
@@ -479,7 +522,7 @@ $("#btn-buscar").click(function(){
 // }
 
 
-function eliminar(id_factura){
+function eliminar(id){
     Swal.fire({
         title: '¿Esta seguro de eliminar esta nota de credito?',
         text: "Va a eliminar esta nota de credito!",
@@ -490,7 +533,7 @@ function eliminar(id_factura){
         confirmButtonText: 'Si, acepto'
       }).then((result) => {
         if (result.value) {
-            $.post("nota-credito/delete/" + id_factura, function(data){
+            $.post("nota-credito/delete/" + id, function(data){
                 Swal.fire(
                 'Eliminado!',
                 'Nota de credito <strong>'+ data.nota_credito.no_nota_credito+'</strong> eliminada correctamente.',
@@ -503,10 +546,10 @@ function eliminar(id_factura){
 
 }
 
-function agregar(factura_detella_id){
+function agregar(id){
 
     $.ajax({
-        url: "factura/validar/"+factura_detella_id,
+        url: "empaque/validar/"+id,
         type: "GET",
         dataType: "json",
         contentType: "application/json",
@@ -524,7 +567,7 @@ function agregar(factura_detella_id){
                 j_total = datos.j;
                 k_total = datos.k;
                 l_total = datos.l;
-                console.log(datos);
+                // console.log(datos);
                 Swal.fire({
                     title: '¿Esta seguro de guardar?',
                     text: "Va a agregarle detalle a la nota de credito!",
@@ -535,7 +578,7 @@ function agregar(factura_detella_id){
                     confirmButtonText: 'Si, guardar'
                   }).then((result) => {
                     if (result.value) {
-                        accionAgregar(factura_detella_id);
+                        accionAgregar(id);
                     }
                   })
 
@@ -561,19 +604,19 @@ function agregar(factura_detella_id){
 
 }
 
-function accionAgregar(factura_detella_id){
-    var a = $('#a'+factura_detella_id).val();
-    var b = $('#b'+factura_detella_id).val();
-    var c = $('#c'+factura_detella_id).val();
-    var d = $('#d'+factura_detella_id).val();
-    var e = $('#e'+factura_detella_id).val();
-    var f = $('#f'+factura_detella_id).val();
-    var g = $('#g'+factura_detella_id).val();
-    var h = $('#h'+factura_detella_id).val();
-    var i = $('#i'+factura_detella_id).val();
-    var j = $('#j'+factura_detella_id).val();
-    var k = $('#k'+factura_detella_id).val();
-    var l = $('#l'+factura_detella_id).val();
+function accionAgregar(id){
+    var a = Number($('#a'+id).val());
+    var b = Number($('#b'+id).val());
+    var c = Number($('#c'+id).val());
+    var d = Number($('#d'+id).val());
+    var e = Number($('#e'+id).val());
+    var f = Number($('#f'+id).val());
+    var g = Number($('#g'+id).val());
+    var h = Number($('#h'+id).val());
+    var i = Number($('#i'+id).val());
+    var j = Number($('#j'+id).val());
+    var k = Number($('#k'+id).val());
+    var l = Number($('#l'+id).val());
 
     // console.log(a);
     // console.log(a_total);
@@ -627,38 +670,38 @@ function accionAgregar(factura_detella_id){
         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla L "+
        "</div>")
     }else{
-        agregarDetalle(factura_detella_id)
+        agregarDetalle(id)
     }
 
 }
 
-function agregarDetalle(factura_detella_id){
+function agregarDetalle(id){
     var nota_credito_detalle = {
         nc_id: $("#nc_id").val(),
-        a: $('#a'+factura_detella_id).val(),
-        b: $("#b"+factura_detella_id).val(),
-        c: $("#c"+factura_detella_id).val(),
-        d: $("#d"+factura_detella_id).val(),
-        e: $("#e"+factura_detella_id).val(),
-        f: $("#f"+factura_detella_id).val(),
-        g: $("#g"+factura_detella_id).val(),
-        h: $("#h"+factura_detella_id).val(),
-        i: $("#i"+factura_detella_id).val(),
-        j: $("#j"+factura_detella_id).val(),
-        k: $("#k"+factura_detella_id).val(),
-        l: $("#l"+factura_detella_id).val()
+        a: $('#a'+id).val(),
+        b: $("#b"+id).val(),
+        c: $("#c"+id).val(),
+        d: $("#d"+id).val(),
+        e: $("#e"+id).val(),
+        f: $("#f"+id).val(),
+        g: $("#g"+id).val(),
+        h: $("#h"+id).val(),
+        i: $("#i"+id).val(),
+        j: $("#j"+id).val(),
+        k: $("#k"+id).val(),
+        l: $("#l"+id).val()
     }
     // console.log(JSON.stringify(nota_credito_detalle));
 
     $.ajax({
-        url: "nota-credito/detalle/"+factura_detella_id,
+        url: "nota-credito/detalle/"+id,
         type: "POST",
         dataType: "json",
         data: JSON.stringify(nota_credito_detalle),
         contentType: "application/json",
         success: function(datos) {
             if (datos.status == "success") {
-                $("#btn-detalle"+ factura_detella_id).attr('disabled', true);
+                $("#btn-detalle"+ id).attr('disabled', true);
 
                 $("#btn-guardar").attr("disabled", false);
                 Swal.fire(

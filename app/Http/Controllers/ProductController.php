@@ -93,7 +93,7 @@ class ProductController extends Controller
             $product->id_user = \auth()->user()->id;
             $product->sec = $sec + 0.1;
             $product->enviado_lavanderia = 0;
-            $product->id_catalogo = $catalogo;
+            $product->id_catalogo = 3;
             $product->descripcion = $descripcion;
             $product->descripcion_2 = $descripcion_2;
             $product->precio_lista = trim($precio_lista, "RD$");
@@ -327,8 +327,7 @@ class ProductController extends Controller
         
 
 
-        $sku_gen = SKU::where('producto_id', $producto)
-        ->where('sku', $sku)->first();
+        $sku_gen = SKU::where('sku', $sku)->first();
 
         if(is_object($sku_gen)){
             $data = [
@@ -462,7 +461,7 @@ class ProductController extends Controller
             $product->referencia_producto = $referencia;
             $product->descripcion_2 = $descripcion_2;
             $product->descripcion = $descripcion;
-            $product->id_catalogo = $catalogo;
+            $product->id_catalogo = 3;
             $product->precio_lista = trim($precio_lista, "_RD$");
             $product->precio_lista_2 = trim($precio_lista_2, "_RD$");
             $product->precio_venta_publico = trim($precio_venta_publico, "_RD$");

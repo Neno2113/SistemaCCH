@@ -273,7 +273,7 @@ $(document).ready(function() {
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
-                    $("#btn-composicion").removeClass("btn-success").addClass("btn-secondary");
+                    $("#btn-composicion").removeClass("btn-success").addClass("btn-orange");
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
@@ -423,7 +423,7 @@ $(document).ready(function() {
         let total = porcentaje;
         if(total == 100){
             $("#btn-guardar").attr("disabled", false);
-            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
+            $("#btn-composicion").removeClass("btn-orange").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -440,7 +440,7 @@ $(document).ready(function() {
         total_global = total;
         if(total == 100){
             $("#btn-guardar").attr("disabled", false);
-            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
+            $("#btn-composicion").removeClass("btn-orange").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -458,7 +458,7 @@ $(document).ready(function() {
         total_global = total;
         if(total ==  100){
             $("#btn-guardar").attr("disabled", false);
-            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
+            $("#btn-composicion").removeClass("btn-orange").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -477,7 +477,7 @@ $(document).ready(function() {
         total_global = total;
         if(total ==  100){
             $("#btn-guardar").attr("disabled", false);
-            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
+            $("#btn-composicion").removeClass("btn-orange").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }
@@ -497,7 +497,7 @@ $(document).ready(function() {
         total_global = total;
         if(total ==  100){
             $("#btn-guardar").attr("disabled", false);
-            $("#btn-composicion").removeClass("btn-secondary").addClass("btn-success");
+            $("#btn-composicion").removeClass("btn-orange").addClass("btn-success");
         }else{
             $("#btn-guardar").attr("disabled", true);
         }

@@ -111,7 +111,7 @@
                                         <td class="talla">40</td>
                                         <td class="talla">42</td>
                                         <td class="talla">44</td>
-                                        <td class="talla"></td>
+                                        <td class="talla">46</td>
                                         <td class="talla"></td>
                                         <td class="talla"></td>
 

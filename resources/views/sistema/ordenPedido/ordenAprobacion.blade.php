@@ -62,7 +62,7 @@
                             <button class="btn btn-outline-dark mt-4 rounded-pill" id="btn-seleccionar"><i class="fas fa-hand-pointer"></i> Seleccionar</button>
                         </div>
                         <div class="col-md-4 mt-2">
-                            <button type="button" class="btn btn-secondary  btn-block mt-4" data-toggle="modal"
+                            <button type="button" class="btn btn-dark  btn-block mt-4" data-toggle="modal"
                             data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Ver Pedido</button>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                                     <td class="talla">40</td>
                                     <td class="talla">42</td>
                                     <td class="talla">44</td>
-                                    <td class="talla"></td>
+                                    <td class="talla">46</td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
@@ -380,7 +380,7 @@
                             <td class="talla">40</td>
                             <td class="talla">42</td>
                             <td class="talla">44</td>
-                            <td class="talla"></td>
+                            <td class="talla">46</td>
                             <td class="talla"></td>
                             <td class="talla"></td>
                         </tr>

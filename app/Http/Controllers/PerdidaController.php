@@ -6,9 +6,11 @@ use App\Almacen;
 use App\AlmacenDetalle;
 use Illuminate\Http\Request;
 use App\Corte;
+use App\Lavanderia;
 use App\Perdida;
 use App\PermisoUsuario;
 use App\Product;
+use App\Recepcion;
 use App\TallasPerdidas;
 use App\Talla;
 use Barryvdh\DomPDF\PDF;
@@ -170,10 +172,13 @@ class PerdidaController extends Controller
             })
             ->addColumn('Opciones', function ($perdida) {
                 return '<button id="btnEdit" onclick="mostrar(' . $perdida->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
-                '<button onclick="eliminar(' . $perdida->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>'.
-                '<a href="imprimir/perdida/' . $perdida->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Perdida"><i class="fas fa-file-alt"></i></a>';
+                '<button onclick="eliminar(' . $perdida->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
             })
-            ->rawColumns(['Opciones'])
+
+            ->addColumn('imprimir', function ($perdida) {
+                return '<a href="imprimir/perdida/' . $perdida->id . '" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" data-placement="top" title="Perdida"><i class="fas fa-file-alt"></i></a>';
+            })
+            ->rawColumns(['Opciones', 'imprimir'])
             ->make(true);
     }
 
@@ -430,32 +435,26 @@ class PerdidaController extends Controller
     }
 
     public function verificarFecha(Request $request){
+
         $corte_id = $request->input('corte_id');
 
-        $fecha_corte = Corte::find($corte_id);
+        $corte = Corte::find($corte_id)->load('producto');
 
-        $producto_id = $fecha_corte->producto_id;
+        $almacen = Almacen::where('corte_id', $corte_id)->first();
 
-        $producto = Product::find($producto_id);
-
-        //buscar cortes con la misma referencia producto
-        $corte = Corte::where('id', $corte_id)
-        // ->where('fase', 'LIKE', 'Terminacion')
-        ->select('id', 'total', 'fase')->get();
-
-        $cortes = array();
-
-        $longitud = count($corte);
-
-        for ($i = 0; $i < $longitud; $i++) {
-            array_push($cortes, $corte[$i]['id']);
+        if(is_object($almacen)){
+            $almacen->load('producto')->load('corte');
+            $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
         }
-        //buscar cantidades de tallas con el array de id de cortes
-        $tallas = Talla::whereIn('corte_id', $cortes)->get()->load('corte');
+
+        $tallas = Talla::where('corte_id', $corte_id)->first();
+
+        $recepcion  = Recepcion::where('corte_id', $corte_id)->get()->last();
+        $lavanderia  = Lavanderia::where('corte_id', $corte_id)->get()->last();
 
         //perdidas
         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
-            ->where('corte_id', $cortes)->select('id')->get();
+            ->where('corte_id', $corte_id)->select('id')->get();
 
         $perdidas = array();
 
@@ -465,11 +464,27 @@ class PerdidaController extends Controller
             array_push($perdidas, $perdida[$i]['id']);
         }
 
-        $tallasPerdidas = TallasPerdidas::whereIn('perdida_id', $perdidas)->get()->load('perdida');
+        $tallasPerdidas = TallasPerdidas::where('talla_x', '0')
+        ->whereIn('perdida_id', $perdidas)->get();
 
-        //SEGUNDA
+
+        $tallasPerdidasX = TallasPerdidas::where('talla_x','>', '0')
+        ->whereIn('perdida_id', $perdidas)->get();
+
+        // $perdidaProduccion = TallasPerdidas::where('talla_x', '0')
+        // ->where('fase', 'Produccion')
+        // ->whereIn('perdida_id', $perdidas)->get();
+
+        
+        if(!empty($lavanderia)){
+            $pendiente_lavanderia = $corte->total;
+            $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
+
+        }
+
+       //segundas
         $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
-            ->where('producto_id', $producto_id)->select('id')->get();
+        ->where('corte_id', $corte_id)->select('id')->get();
 
         $segundas = array();
 
@@ -479,37 +494,21 @@ class PerdidaController extends Controller
             array_push($segundas, $segunda[$i]['id']);
         }
 
-        $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get()->load('perdida');
-
-
-        $almacen = Almacen::where('corte_id', $corte_id)->get();
-
-        $almacen_id = [];
-
-        $longitudAlmacen = count($almacen);
-
-        for ($i = 0; $i < $longitudAlmacen; $i++) {
-            array_push($almacen_id, $almacen[$i]['id']);
-        }
-
-        $tallasAlmacen = AlmacenDetalle::whereIn('almacen_id', $almacen_id)->get();
-
-        //producto
-        $producto = Product::find($producto_id);
+        $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
 
         //calcular total real
-        $a = $tallas->sum('a') - $tallasPerdidas->sum('a') - $tallasAlmacen->sum('a');
-        $b = $tallas->sum('b') - $tallasPerdidas->sum('b') - $tallasAlmacen->sum('b');
-        $c = $tallas->sum('c') - $tallasPerdidas->sum('c') - $tallasAlmacen->sum('c');
-        $d = $tallas->sum('d') - $tallasPerdidas->sum('d') - $tallasAlmacen->sum('d');
-        $e = $tallas->sum('e') - $tallasPerdidas->sum('e') - $tallasAlmacen->sum('e');
-        $f = $tallas->sum('f') - $tallasPerdidas->sum('f') - $tallasAlmacen->sum('f');
-        $g = $tallas->sum('g') - $tallasPerdidas->sum('g') - $tallasAlmacen->sum('g');
-        $h = $tallas->sum('h') - $tallasPerdidas->sum('h') - $tallasAlmacen->sum('h');
-        $i = $tallas->sum('i') - $tallasPerdidas->sum('i') - $tallasAlmacen->sum('i');
-        $j = $tallas->sum('j') - $tallasPerdidas->sum('j') - $tallasAlmacen->sum('j');
-        $k = $tallas->sum('k') - $tallasPerdidas->sum('k') - $tallasAlmacen->sum('k');
-        $l = $tallas->sum('l') - $tallasPerdidas->sum('l') - $tallasAlmacen->sum('l');
+        $a = $tallas->a - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a');  
+        $b = $tallas->b - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b');
+        $c = $tallas->c - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c');
+        $d = $tallas->d - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d');
+        $e = $tallas->e - $tallasPerdidas->sum('e') - $tallasSegundas->sum('e');
+        $f = $tallas->f - $tallasPerdidas->sum('f') - $tallasSegundas->sum('f');
+        $g = $tallas->g - $tallasPerdidas->sum('g') - $tallasSegundas->sum('g');
+        $h = $tallas->h - $tallasPerdidas->sum('h') - $tallasSegundas->sum('h');
+        $i = $tallas->i - $tallasPerdidas->sum('i') - $tallasSegundas->sum('i');
+        $j = $tallas->j - $tallasPerdidas->sum('j') - $tallasSegundas->sum('j');
+        $k = $tallas->k - $tallasPerdidas->sum('k') - $tallasSegundas->sum('k');
+        $l = $tallas->l - $tallasPerdidas->sum('l') - $tallasSegundas->sum('l');
 
         //Validacion de numeros negativos
         $a = ($a < 0 ? 0 : $a);
@@ -524,31 +523,91 @@ class PerdidaController extends Controller
         $j = ($j < 0 ? 0 : $j);
         $k = ($k < 0 ? 0 : $k);
         $l = ($l < 0 ? 0 : $l);
-
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
-        $data = [
-            'code' => 200,
-            'status' => 'success',
-            'corte' => date("d-m-20y", strtotime($fecha_corte->fecha_corte)),
-            'a' => $a,
-            'b' => $b,
-            'c' => $c,
-            'd' => $d,
-            'e' => $e,
-            'f' => $f,
-            'g' => $g,
-            'h' => $h,
-            'i' => $i,
-            'j' => $j,
-            'k' => $k,
-            'l' => $l,
-            'total' => $total_real,
-            'ref' => $producto->referencia_producto,
-            'fase' => $fecha_corte->fase,
-            'almacen' => $tallasAlmacen,
-            'perdida' => $tallasPerdidas
-        ];
+        if(!empty($almacen)){
+            $real_terminacion =  $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total');
+            $total_entrada = $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total') 
+            - $tallasPerdidas->sum('total') - $tallasPerdidasX->sum('talla_x');
+
+        }
+
+        $corte = Corte::find($corte_id);
+
+
+        if (is_object($almacen)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'fecha_corte' => $corte->fecha_corte,
+                'fase' => $corte->fase,
+                'ref' => $corte->producto->referencia_producto,
+                'almacen' => $almacen,
+                'detalle' => $detalle,
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l,
+                'total' => $total_real,
+                // 'perdida' => $perdida,
+                'pen_lavanderia' => ($recepcion->pendiente < 0 ) ? 0 : $recepcion->pendiente,
+                'total_recibido' => ($recepcion->total_recibido < 0 ) ? 0 : $recepcion->total_recibido,
+                'pen_produccion' => ($pendiente_lavanderia < 0 ) ? 0 : $pendiente_lavanderia,
+                'perdida_x' => $tallasPerdidasX->sum('talla_x'),
+                'total_perdidas' => $tallasPerdidas->sum('total'),
+                'total_segundas' => $tallasSegundas->sum('total'),
+                'a_alm' => $detalle->sum('a') + $tallasSegundas->sum('a'),
+                'b_alm' => $detalle->sum('b') + $tallasSegundas->sum('b'),
+                'c_alm' => $detalle->sum('c') + $tallasSegundas->sum('c'),
+                'd_alm' => $detalle->sum('d') + $tallasSegundas->sum('d'),
+                'e_alm' => $detalle->sum('e') + $tallasSegundas->sum('e'),
+                'f_alm' => $detalle->sum('f') + $tallasSegundas->sum('f'),
+                'g_alm' => $detalle->sum('g') + $tallasSegundas->sum('g'),
+                'h_alm' => $detalle->sum('h') + $tallasSegundas->sum('h'),
+                'i_alm' => $detalle->sum('i') + $tallasSegundas->sum('i'),
+                'j_alm' => $detalle->sum('j') + $tallasSegundas->sum('j'),
+                'k_alm' => $detalle->sum('k') + $tallasSegundas->sum('k'),
+                'l_alm' => $detalle->sum('l') + $tallasSegundas->sum('l'),
+                'total_alm' => $detalle->sum('total') + $tallasSegundas->sum('total'),
+                'segundas' => $tallasSegundas,
+                'real_terminacion' => ($real_terminacion < 0 ) ? 0 : $real_terminacion,
+                'total_entrada' => ($total_entrada < 0 ) ? 0 : $total_entrada,
+                'tallasPerdidasX' => $tallasPerdidasX,
+                'tallasPerdidas' => $tallasPerdidas,
+                'total_cortado' => $corte->total
+            ];
+        } else {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'fecha_corte' => date("d-m-20y", strtotime($corte->fecha_corte)),
+                'a' => $a,
+                'b' => $b,
+                'c' => $c,
+                'd' => $d,
+                'e' => $e,
+                'f' => $f,
+                'g' => $g,
+                'h' => $h,
+                'i' => $i,
+                'j' => $j,
+                'k' => $k,
+                'l' => $l,
+                'total' => $total_real,
+                'ref' => $corte->producto->referencia_producto,
+                'fase' =>  $corte->fase,
+                // 'almacen' => $detalle,
+                'perdida' => $tallasPerdidas
+            ];
+        }
 
         return response()->json($data, $data['code']);
     }
@@ -572,6 +631,21 @@ class PerdidaController extends Controller
         return View('sistema.perdidas.documentoPerdida', \compact('perdida', 'detalle', 'genero', 'genero_plus'));
 
     }
+
+    public function cortes(Request $request)
+    {
+        $corte = Corte::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'cortes' => $corte
+        ];
+
+
+        return response()->json($data);
+    }
+
 
 
 }

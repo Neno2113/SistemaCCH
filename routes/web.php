@@ -340,6 +340,7 @@ Route::post('/perdida/delete/{id}', 'PerdidaController@destroy');
 Route::post('/perdidacheck/delete/{id}', 'PerdidaController@checkDestroy');
 Route::post('/perdida/verificar', 'PerdidaController@verificarFecha');
 Route::get('/imprimir/perdida/{id}', 'PerdidaController@imprimir');
+Route::get('cortes/perdidas', 'PerdidaController@cortes');
 
 
 //Almacen
@@ -361,6 +362,9 @@ Route::post('/total_recepcion', 'AlmacenController@cantidad');
 Route::post('/validar/total', 'AlmacenController@validar');
 Route::post('almacen/calcular/total', 'AlmacenController@calcularTotales');
 Route::get('/imprimir/DocEA/{id}', 'AlmacenController@imprimir')->name('print');
+Route::get('/atributos', 'AlmacenController@atributos');
+Route::post('/atributo', 'AlmacenController@storeAtributo');
+Route::post('/atributo/delete/{id}', 'AlmacenController@destroyAtributo');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
@@ -449,14 +453,15 @@ Route::get('/latest_products', 'DashboardController@latestProduct');
 Route::get('/latest_cortes', 'DashboardController@latestCortes');
 
 //Nota credito
-Route::get('nota_credito/{id}', 'NotaCreditoController@show');
+Route::get('nota_credito/{id}', 'NotaCreditoController@showFactura');
 Route::get('nc/lastdigit', 'NotaCreditoController@getDigits');
 Route::post('nota-credito', 'NotaCreditoController@store');
 Route::post('nota-credito/detalle/{id}', 'NotaCreditoController@storeDetalle');
 Route::post('nota-credito/delete/{id}', 'NotaCreditoController@destroy');
 Route::get('imprimir_notaCredito/{id}', 'NotaCreditoController@imprimir');
-Route::get('factura/validar/{id}', 'NotaCreditoController@validar');
+Route::get('empaque/validar/{id}', 'NotaCreditoController@validar');
 Route::get('factura-select', 'NotaCreditoController@facturaSelect');
+Route::get('facturacion-select', 'NotaCreditoController@ordenFacturacionSelect');
 
 //Empleado
 Route::post('empleado', 'EmpleadoController@store');

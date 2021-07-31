@@ -630,3 +630,15 @@ label .pers {
     border-color: #dee2e6 #dee2e6 #fff;
     font-weight: bold;
 }
+
+.btn-orange {
+    background-color: #ff9500;
+    color: #000;
+}
+
+
+.btn-orange:hover{
+    background-color: #ff7b00;
+    outline-style: solid;
+    outline-color: #ff6d00 ;
+}

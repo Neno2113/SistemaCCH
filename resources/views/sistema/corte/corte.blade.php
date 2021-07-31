@@ -112,7 +112,7 @@
                     </div>
                     <div class="row mt-2" id="fila3">
                         <div class="col-md-4 mt-3" id="rollo-agregar">
-                            <button type="button" class="btn btn-secondary btn-block mt-4" id="btn-rollos"
+                            <button type="button" class="btn btn-orange btn-block mt-4" id="btn-rollos"
                                 data-toggle="modal" data-target=".bd-rollo-modal-lg">
                                 <i class="fa fa-dolly-flatbed"></i>
                                 {{-- <span class="spinner-grow spinner-grow-sm" role="status" id="spiner" aria-hidden="true"></span> --}}
@@ -122,12 +122,12 @@
                             </button>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-secondary btn-block mt-4" id="btn-tallas"
+                            <button type="button" class="btn btn-orange btn-block mt-4" id="btn-tallas"
                                 data-toggle="modal" data-target=".bd-talla-modal-xl"><i
                                 class="fa fa-cut"></i> Distribucion de tallas </button>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <button type="button" class="btn btn-secondary  btn-block mt-4" data-toggle="modal"
+                            <button type="button" class="btn btn-orange btn-block mt-4" data-toggle="modal"
                                 data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Asignar
                                 SKU</button>
                         </div>

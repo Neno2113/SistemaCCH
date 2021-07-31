@@ -86,7 +86,7 @@ class RecepcionController extends Controller
                 array_push($totales, $talla_perdida[$i]['total']);
             }
             $cant_perdida = array_sum($totales);
-            $total_enviado = $total_enviado - $cant_perdida;
+            $total_enviado = $total_enviado;
 
             if ($devolver_produccion == 1 && is_object($recepcion_total)) {
                 $recepcion = Recepcion::where('corte_id', $corte_id)->get()->last();

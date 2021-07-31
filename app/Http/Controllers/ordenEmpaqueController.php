@@ -8,6 +8,7 @@ use App\ordenPedido;
 use Yajra\DataTables\Facades\DataTables;
 use App\ordenPedidoDetalle;
 use App\OrdenFacturacion;
+use App\ordenFacturacionDetalle;
 use App\ordenEmpaque;
 use App\Perdida;
 use App\Almacen;
@@ -20,6 +21,7 @@ use App\TallasPerdidas;
 use App\Talla;
 use App\Product;
 use App\CurvaProducto;
+use App\NotaCreditoDetalle;
 use App\ordenEmpaqueDetalle;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +34,7 @@ class ordenEmpaqueController extends Controller
             ->join('orden_pedido', 'orden_empaque.orden_pedido_id', 'orden_pedido.id')
             ->select([
                 'orden_pedido.id', 'orden_empaque.no_orden_empaque', 'orden_pedido.sucursal_id',
-                'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega',
+                'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega', 'orden_empaque.id as empaque_id',
                 'orden_pedido.detallada', 'orden_empaque.impreso', 'orden_pedido.cliente_id',
                 'orden_pedido.status_orden_pedido', 'orden_empaque.empacado'
             ]);
@@ -43,6 +45,11 @@ class ordenEmpaqueController extends Controller
             })
             ->addColumn('total', function ($orden) {
                 $ordenDetalle = ordenPedidoDetalle::where('orden_pedido_id', $orden->id)->get();
+
+                return $ordenDetalle->sum('total');
+            })
+            ->addColumn('total_empaque', function ($orden) {
+                $ordenDetalle = ordenEmpaqueDetalle::where('orden_empaque_id', $orden->empaque_id)->get();
 
                 return $ordenDetalle->sum('total');
             })
@@ -191,17 +198,17 @@ class ordenEmpaqueController extends Controller
             // $orden_empaque->impreso = 1;
             $orden_empaque->save();
 
-            $orden_facturacion = new OrdenFacturacion();
+            // $orden_facturacion = new OrdenFacturacion();
 
             // $orden_facturacion->no_orden_facturacion = $no_orden_facturacion;
-            $orden_facturacion->orden_empaque_id = $orden_empaque->id;
-            $orden_facturacion->user_id = \auth()->user()->id;
-            $orden_facturacion->fecha = date('Y/m/d h:i:s');
-            $orden_facturacion->impreso = 0;
+            // $orden_facturacion->orden_empaque_id = $orden_empaque->id;
+            // $orden_facturacion->user_id = \auth()->user()->id;
+            // $orden_facturacion->fecha = date('Y/m/d h:i:s');
+            // $orden_facturacion->impreso = 0;
             // $orden_facturacion->por_transporte = $por_transporte;
             // $orden_facturacion->sec = $sec + 0.01;
 
-            $orden_facturacion->save();
+            // $orden_facturacion->save();
         } else {
             $orden_empaque = $orden_pedido;
             $orden_empaque->impreso = 0;
@@ -256,7 +263,11 @@ class ordenEmpaqueController extends Controller
 
         $orden_empaque = ordenEmpaque::where('orden_pedido_id', $id)->first();
 
-        $empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $orden_empaque->id)->get()->load('producto');;
+        $empaque_detalle = ordenEmpaqueDetalle::where('orden_empaque_id', $orden_empaque->id)->get()->load('producto');
+
+        $orden_facturacion = OrdenFacturacion::where('orden_empaque_id', $orden_empaque->id)->get()->last();
+
+        $facturacion_detalle = ordenFacturacionDetalle::where('orden_facturacion_id', $orden_facturacion->id)->get();
 
         $productos_id = array();
 
@@ -284,7 +295,8 @@ class ordenEmpaqueController extends Controller
 
 
 
-        $pdf = \PDF::loadView('sistema.ordenEmpaque.conduceFacturacion', \compact('orden', 'empaque_detalle', 'orden_empaque', 'productos'));
+        $pdf = \PDF::loadView('sistema.ordenEmpaque.conduceFacturacion', 
+        \compact('orden', 'empaque_detalle', 'orden_empaque', 'productos', 'orden_facturacion', 'facturacion_detalle'));
         return $pdf->download('conduceFacturacion.pdf');
         return  View('sistema.ordenEmpaque.conduceFacturacion', \compact('orden', 'empaque_detalle', 'orden_empaque', 'productos'));
     }
@@ -1611,6 +1623,8 @@ class ordenEmpaqueController extends Controller
             ];
         } else {
             $orden_detalle = ordenPedidoDetalle::find($id);
+            $orden_detalle->orden_empacada = 1;
+          
 
             $empaque_id = $request->input('id');
             $cant_bultos = $request->input('cantidad');
@@ -1643,15 +1657,17 @@ class ordenEmpaqueController extends Controller
                     'message' => 'La cantidad digitada es mayor a la que puede empacar'
                 ];
             } else {
+            
                 if (\is_object($orden_detalle)) {
+                    $orden_detalle->save();
 
                     $empaqueDetalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)
                     ->where('producto_id', $producto)->first();
 
-                    $ordenFacturacion = OrdenFacturacion::find($orden_facturacion_id);
+                    // $ordenFacturacion = OrdenFacturacion::find($orden_facturacion_id);
 
-                    $ordenFacturacion->por_transporte = $transporte;
-                    $ordenFacturacion->save();
+                    // $ordenFacturacion->por_transporte = $transporte;
+                    // $ordenFacturacion->save();
 
                     if(is_object($empaqueDetalle)){
                         $empaqueDetalle->a = $empaqueDetalle->a + $a;
@@ -1671,14 +1687,49 @@ class ordenEmpaqueController extends Controller
 
                         $orden_empaque = ordenEmpaque::find($empaque_id);
 
-                        $data = [
-                            'code' => 200,
-                            'status' => 'success',
-                            'orden_empaque_detalle' => $empaqueDetalle,
-                            'orden_empaque' => $orden_empaque,
-                            'orden' => $orden_detalle
-                           
-                        ];
+                        if(empty($orden_facturacion_id)){
+                            // verificar numero antiguo de la secuencia;
+                            $numero_antiguo = DB::table('orden_facturacion')->latest('updated_at')->first();
+        
+                            if (empty($numero_antiguo) || $numero_antiguo == "") {
+                                $sec = 0.00;
+                            } else {
+                                $sec = $numero_antiguo->sec;
+                            }
+        
+                            $orden_facturacion = new OrdenFacturacion();
+        
+                            $next_sec = number_format($sec + 0.01, 2);
+                            $orden_facturacion->no_orden_facturacion = "OF-" . str_replace('.', '', $next_sec);;
+                            $orden_facturacion->orden_empaque_id = $empaque_id;
+                            $orden_facturacion->user_id = \auth()->user()->id;
+                            $orden_facturacion->fecha = date('Y/m/d h:i:s');
+                            $orden_facturacion->impreso = 0;
+                            $orden_facturacion->por_transporte = $transporte;
+                            $orden_facturacion->sec = number_format($sec + 0.01, 2);
+        
+                            $orden_facturacion->save();
+
+                            $data = [
+                                'code' => 200,
+                                'status' => 'success',
+                                'orden_empaque_detalle' => $empaqueDetalle,
+                                'orden_empaque' => $orden_empaque,
+                                'orden' => $orden_detalle,
+                                'orden_facturacion' => $orden_facturacion
+                               
+                            ];
+                        } else {
+                            $data = [
+                                'code' => 200,
+                                'status' => 'success',
+                                'orden_empaque_detalle' => $empaqueDetalle,
+                                'orden_empaque' => $orden_empaque,
+                                'orden' => $orden_detalle,
+                               
+                            ];
+                        }
+
                     } else {
 
                 
@@ -1708,16 +1759,49 @@ class ordenEmpaqueController extends Controller
                         $orden_empaque_detalle->save();
             
                         $orden_empaque = ordenEmpaque::find($empaque_id);
-            
-            
-                        $data = [
-                            'code' => 200,
-                            'status' => 'success',
-                            'orden_empaque_detalle' => $orden_empaque_detalle,
-                            'orden_empaque' => $orden_empaque,
-                            'suma' => $sumEmpaque,
-                            'orden' => $orden_detalle
-                        ];
+
+                        if(empty($orden_facturacion_id)){
+                            // verificar numero antiguo de la secuencia;
+                            $numero_antiguo = DB::table('orden_facturacion')->latest('updated_at')->first();
+        
+                            if (empty($numero_antiguo) || $numero_antiguo == "") {
+                                $sec = 0.00;
+                            } else {
+                                $sec = $numero_antiguo->sec;
+                            }
+        
+                            $orden_facturacion = new OrdenFacturacion();
+        
+                            $next_sec = number_format($sec + 0.01, 2);
+                            $orden_facturacion->no_orden_facturacion = "OF-" . str_replace('.', '', $next_sec);;
+                            $orden_facturacion->orden_empaque_id = $empaque_id;
+                            $orden_facturacion->user_id = \auth()->user()->id;
+                            $orden_facturacion->fecha = date('Y/m/d h:i:s');
+                            $orden_facturacion->impreso = 0;
+                            $orden_facturacion->por_transporte = $transporte;
+                            $orden_facturacion->sec = number_format($sec + 0.01, 2);
+        
+                            $orden_facturacion->save();
+
+                            $data = [
+                                'code' => 200,
+                                'status' => 'success',
+                                'orden_empaque_detalle' => $orden_empaque_detalle,
+                                'orden_empaque' => $orden_empaque,
+                                'suma' => $sumEmpaque,
+                                'orden' => $orden_detalle,
+                                'orden_facturacion' => $orden_facturacion
+                            ];
+                        } else {
+                            $data = [
+                                'code' => 200,
+                                'status' => 'success',
+                                'orden_empaque_detalle' => $orden_empaque_detalle,
+                                'orden_empaque' => $orden_empaque,
+                                'suma' => $sumEmpaque,
+                                'orden' => $orden_detalle,
+                            ];
+                        }
                     }
                 } else {
                     $data = [
@@ -1987,6 +2071,7 @@ class ordenEmpaqueController extends Controller
 
         $curva_producto = CurvaProducto::where('producto_id', $producto)->first();
 
+    
         if(is_object($curva_producto)){
             $curva_producto->a = round($curva_producto->a, 2);
             $curva_producto->b = round($curva_producto->b, 2);
@@ -2009,100 +2094,379 @@ class ordenEmpaqueController extends Controller
 
             $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto)
             ->where('venta_segunda', '0')
+            ->where('orden_empacada', '1')
             ->get();
             
             $ventasSegundas = ordenPedidoDetalle::where('producto_id', $producto)
             ->where('venta_segunda', '1')
             ->get();
 
+
+            $genero = $ref->genero;
+
+            if($genero == 3 || $genero == 4){
+                if(count($tallasAlmacen) <= 0){
+                    $producto_f = Product::find($producto);
+                    $min = $producto_f->min;
+                    $max = $producto_f->max;
+                    $ref_father = $producto_f->referencia_father;
+                    $almacen = AlmacenDetalle::where('producto_id', $ref_father)
+                    ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
+                    ->get();
+                    $tallasOrdenes_f = ordenPedidoDetalle::where('referencia_father', $ref_father)
+                    ->where('orden_empacada', '1')
+                    ->where('venta_segunda', '0')->get();
+                    $tallasCredito_f = NotaCreditoDetalle::where('referencia_father', $ref_father)->get();
+    
+                    $a = $almacen->sum('a');
+                    $b = $almacen->sum('b');
+                    $c = $almacen->sum('c');
+                    $d = $almacen->sum('d');
+                    $e = $almacen->sum('e');
+                    $f = $almacen->sum('f');
+                    $g = $almacen->sum('g');
+                    $h = $almacen->sum('h');
+                    $i = $almacen->sum('i');
+                    $j = $almacen->sum('j');
+                    $k = $almacen->sum('k');
+                    $l = $almacen->sum('l');
+                    $array = array("a" => $a, "b" => $b, "c" => $c, "d" => $d, "e" => $e, "f" => $f, "g" => $g, "h" => $h, "i" => $i, "j" => $j, "k" => $k, "l" => $l);
+                    $res = array_keys($array);
+                    $result = array_search($min, $res);
+                    $result2 = array_search($max, $res);
+                    $tallas = array_slice($array, $result, $result2);
+                    $a_ref2 = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
+                    $b_ref2 = (array_key_exists("b", $tallas) ? $tallas['b'] : 0);
+                    $c_ref2 = (array_key_exists("c", $tallas) ? $tallas['c'] : 0);
+                    $d_ref2 = (array_key_exists("d", $tallas) ? $tallas['d'] : 0);
+                    $e_ref2 = (array_key_exists("e", $tallas) ? $tallas['e'] : 0);
+                    $f_ref2 = (array_key_exists("f", $tallas) ? $tallas['f'] : 0);
+                    $g_ref2 = (array_key_exists("g", $tallas) ? $tallas['g'] : 0);
+                    $h_ref2 = (array_key_exists("h", $tallas) ? $tallas['h'] : 0);
+                    $i_ref2 = (array_key_exists("i", $tallas) ? $tallas['i'] : 0);
+                    $j_ref2 = (array_key_exists("j", $tallas) ? $tallas['j'] : 0);
+                    $k_ref2 = (array_key_exists("k", $tallas) ? $tallas['k'] : 0);
+                    $l_ref2 = (array_key_exists("l", $tallas) ? $tallas['l'] : 0);
+    
+                    //calcular total real
+                    $a_ref2 = $a_ref2 - $ventasSegundas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a');
+                    $b_ref2 = $b_ref2 - $ventasSegundas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b');
+                    $c_ref2 = $c_ref2 - $ventasSegundas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c');
+                    $d_ref2 = $d_ref2 - $ventasSegundas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d');
+                    $e_ref2 = $e_ref2 - $ventasSegundas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e');
+                    $f_ref2 = $f_ref2 - $ventasSegundas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f');
+                    $g_ref2 = $g_ref2 - $ventasSegundas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g');
+                    $h_ref2 = $h_ref2 - $ventasSegundas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h');
+                    $i_ref2 = $i_ref2 - $ventasSegundas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i');
+                    $j_ref2 = $j_ref2 - $ventasSegundas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j');
+                    $k_ref2 = $k_ref2 - $ventasSegundas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k');
+                    $l_ref2 = $l_ref2 - $ventasSegundas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
+    
+                    $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
+                    $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
+                    
+                    $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
+                    $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
+                    $c_ref2 = ($c_ref2 < 0 ? 0 : $c_ref2);
+                    $d_ref2 = ($d_ref2 < 0 ? 0 : $d_ref2);
+                    $e_ref2 = ($e_ref2 < 0 ? 0 : $e_ref2);
+                    $f_ref2 = ($f_ref2 < 0 ? 0 : $f_ref2);
+                    $g_ref2 = ($g_ref2 < 0 ? 0 : $g_ref2);
+                    $h_ref2 = ($h_ref2 < 0 ? 0 : $h_ref2);
+                    $i_ref2 = ($i_ref2 < 0 ? 0 : $i_ref2);
+                    $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
+                    $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
+                    $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
+
+                    $a_perc = ($a_ref2 / $total_real) * 100;
+                    $b_perc = ($b_ref2 / $total_real) * 100;
+                    $c_perc = ($c_ref2 / $total_real) * 100;
+                    $d_perc = ($d_ref2 / $total_real) * 100;
+                    $e_perc = ($e_ref2 / $total_real) * 100;
+                    $f_perc = ($f_ref2 / $total_real) * 100;
+                    $g_perc = ($g_ref2 / $total_real) * 100;
+                    $h_perc = ($h_ref2 / $total_real) * 100;
+                    $i_perc = ($i_ref2 / $total_real) * 100;
+                    $j_perc = ($j_ref2 / $total_real) * 100;
+                    $k_perc = ($k_ref2 / $total_real) * 100;
+                    $l_perc = ($l_ref2 / $total_real) * 100;
+    
+                    $total_perc_alm = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
+                    $i_perc + $j_perc + $k_perc + $l_perc;
+
+                        //Pedido y detalle
+                    $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $pedido)
+                    ->where('producto_id', $producto)->first();
+
+
+
+                    $data = [
+                        'code' => 200,
+                        'status' => 'success',
+                        // 'tallas' => $tallas,
+                        'producto' => $ref,
+                        'almacen' => $tallasAlmacen,
+                        'ordenesPrimera' => $orden_detalle,
+                        'ordenesSegunda' => $ventasSegundas,
+                        'curva_producto' => $curva_producto,
+                        'total_curva_producto' => $total_curva_producto,
+                        'orden_detalle' => $orden_detalle,
+                        'a_alm' => $a_ref2,
+                        'b_alm' => $b_ref2,
+                        'c_alm' => $c_ref2,
+                        'd_alm' => $d_ref2,
+                        'e_alm' => $e_ref2,
+                        'f_alm' => $f_ref2,
+                        'g_alm' => $g_ref2,
+                        'h_alm' => $h_ref2,
+                        'i_alm' => $i_ref2,
+                        'j_alm' => $j_ref2,
+                        'k_alm' => $k_ref2,
+                        'l_alm' => $l_ref2,
+                        'total_alm' => $total_real,
+                        'a_perc' => round($a_perc, 2),
+                        'b_perc' => round($b_perc, 2),
+                        'c_perc' => round($c_perc, 2),
+                        'd_perc' => round($d_perc, 2),
+                        'e_perc' => round($e_perc, 2),
+                        'f_perc' => round($f_perc, 2),
+                        'g_perc' => round($g_perc, 2),
+                        'h_perc' => round($h_perc, 2),
+                        'i_perc' => round($i_perc, 2),
+                        'j_perc' => round($j_perc, 2),
+                        'k_perc' => round($k_perc, 2),
+                        'l_perc' => round($l_perc, 2),
+                        'total_perc_alm' => round($total_perc_alm)
+                    ];
+                } else {
+                    $producto_f = Product::find($producto);
+                    $min = $producto_f->min;
+                    $max = $producto_f->max;
+                    $ref_father = $producto_f->id;
+                    $almacen = AlmacenDetalle::where('producto_id', $ref_father)
+                        ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
+                        ->get();
+                    $tallasOrdenes_f = ordenPedidoDetalle::where('producto_id', $ref_father)
+                    ->where('orden_empacada', '1')
+                    ->where('venta_segunda', '0')->get();
+                    $tallasCredito_f = NotaCreditoDetalle::where('producto_id', $ref_father)->get();
+    
+                    $a = $almacen->sum('a');
+                    $b = $almacen->sum('b');
+                    $c = $almacen->sum('c');
+                    $d = $almacen->sum('d');
+                    $e = $almacen->sum('e');
+                    $f = $almacen->sum('f');
+                    $g = $almacen->sum('g');
+                    $h = $almacen->sum('h');
+                    $i = $almacen->sum('i');
+                    $j = $almacen->sum('j');
+                    $k = $almacen->sum('k');
+                    $l = $almacen->sum('l');
+                    $array = array("a" => $a, "b" => $b, "c" => $c, "d" => $d, "e" => $e, "f" => $f, "g" => $g, "h" => $h, "i" => $i, "j" => $j, "k" => $k, "l" => $l);
+                    $res = array_keys($array);
+                    $result = array_search($min, $res);
+                    $result2 = array_search($max, $res);
+                    $tallas = array_slice($array, 0, $result);
+                    $a_ref2 = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
+                    $b_ref2 = (array_key_exists("b", $tallas) ? $tallas['b'] : 0);
+                    $c_ref2 = (array_key_exists("c", $tallas) ? $tallas['c'] : 0);
+                    $d_ref2 = (array_key_exists("d", $tallas) ? $tallas['d'] : 0);
+                    $e_ref2 = (array_key_exists("e", $tallas) ? $tallas['e'] : 0);
+                    $f_ref2 = (array_key_exists("f", $tallas) ? $tallas['f'] : 0);
+                    $g_ref2 = (array_key_exists("g", $tallas) ? $tallas['g'] : 0);
+                    $h_ref2 = (array_key_exists("h", $tallas) ? $tallas['h'] : 0);
+                    $i_ref2 = (array_key_exists("i", $tallas) ? $tallas['i'] : 0);
+                    $j_ref2 = (array_key_exists("j", $tallas) ? $tallas['j'] : 0);
+                    $k_ref2 = (array_key_exists("k", $tallas) ? $tallas['k'] : 0);
+                    $l_ref2 = (array_key_exists("l", $tallas) ? $tallas['l'] : 0);
+    
+                    //calcular total real
+                    $a_ref2 = $a_ref2 - $ventasSegundas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a');
+                    $b_ref2 = $b_ref2 - $ventasSegundas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b');
+                    $c_ref2 = $c_ref2 - $ventasSegundas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c');
+                    $d_ref2 = $d_ref2 - $ventasSegundas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d');
+                    $e_ref2 = $e_ref2 - $ventasSegundas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e');
+                    $f_ref2 = $f_ref2 - $ventasSegundas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f');
+                    $g_ref2 = $g_ref2 - $ventasSegundas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g');
+                    $h_ref2 = $h_ref2 - $ventasSegundas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h');
+                    $i_ref2 = $i_ref2 - $ventasSegundas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i');
+                    $j_ref2 = $j_ref2 - $ventasSegundas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j');
+                    $k_ref2 = $k_ref2 - $ventasSegundas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k');
+                    $l_ref2 = $l_ref2 - $ventasSegundas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
+                    // print_r($tallas);
+                    // die();
+                    $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
+                    $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 ;
+                    
+                    $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
+                    $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
+                    $c_ref2 = ($c_ref2 < 0 ? 0 : $c_ref2);
+                    $d_ref2 = ($d_ref2 < 0 ? 0 : $d_ref2);
+                    $e_ref2 = ($e_ref2 < 0 ? 0 : $e_ref2);
+                    $f_ref2 = ($f_ref2 < 0 ? 0 : $f_ref2);
+                    $g_ref2 = ($g_ref2 < 0 ? 0 : $g_ref2);
+                    $h_ref2 = ($h_ref2 < 0 ? 0 : $h_ref2);
+                    $i_ref2 = ($i_ref2 < 0 ? 0 : $i_ref2);
+                    $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
+                    $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
+                    $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
+
+                    $a_perc = ($a_ref2 / $total_real) * 100;
+                    $b_perc = ($b_ref2 / $total_real) * 100;
+                    $c_perc = ($c_ref2 / $total_real) * 100;
+                    $d_perc = ($d_ref2 / $total_real) * 100;
+                    $e_perc = ($e_ref2 / $total_real) * 100;
+                    $f_perc = ($f_ref2 / $total_real) * 100;
+                    $g_perc = ($g_ref2 / $total_real) * 100;
+                    $h_perc = ($h_ref2 / $total_real) * 100;
+                    $i_perc = ($i_ref2 / $total_real) * 100;
+                    $j_perc = ($j_ref2 / $total_real) * 100;
+                    $k_perc = ($k_ref2 / $total_real) * 100;
+                    $l_perc = ($l_ref2 / $total_real) * 100;
+    
+                    $total_perc_alm = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
+                    $i_perc + $j_perc + $k_perc + $l_perc;
+
+                        //Pedido y detalle
+                    $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $pedido)
+                    ->where('producto_id', $producto)->first();
+                     
+                    $data = [
+                        'code' => 200,
+                        'status' => 'success',
+                        // 'tallas' => $tallas,
+                        'producto' => $ref,
+                        'almacen' => $tallasAlmacen,
+                        'ordenesPrimera' => $orden_detalle,
+                        'ordenesSegunda' => $ventasSegundas,
+                        'curva_producto' => $curva_producto,
+                        'total_curva_producto' => $total_curva_producto,
+                        'orden_detalle' => $orden_detalle,
+                        'a_alm' => $a_ref2,
+                        'b_alm' => $b_ref2,
+                        'c_alm' => $c_ref2,
+                        'd_alm' => $d_ref2,
+                        'e_alm' => $e_ref2,
+                        'f_alm' => $f_ref2,
+                        'g_alm' => $g_ref2,
+                        'h_alm' => $h_ref2,
+                        'i_alm' => $i_ref2,
+                        'j_alm' => $j_ref2,
+                        'k_alm' => $k_ref2,
+                        'l_alm' => $l_ref2,
+                        'total_alm' => $total_real,
+                        'a_perc' => round($a_perc, 2),
+                        'b_perc' => round($b_perc, 2),
+                        'c_perc' => round($c_perc, 2),
+                        'd_perc' => round($d_perc, 2),
+                        'e_perc' => round($e_perc, 2),
+                        'f_perc' => round($f_perc, 2),
+                        'g_perc' => round($g_perc, 2),
+                        'h_perc' => round($h_perc, 2),
+                        'i_perc' => round($i_perc, 2),
+                        'j_perc' => round($j_perc, 2),
+                        'k_perc' => round($k_perc, 2),
+                        'l_perc' => round($l_perc, 2),
+                        'total_perc_alm' => round($total_perc_alm)
+                    ];
+                }
+               
+            } else {
+
+                $a_alm = $tallasAlmacen->sum('a') - $ventasSegundas->sum('a') - $tallasOrdenes->sum('a');
+                $b_alm = $tallasAlmacen->sum('b') - $ventasSegundas->sum('b') - $tallasOrdenes->sum('b');
+                $c_alm = $tallasAlmacen->sum('c') - $ventasSegundas->sum('c') - $tallasOrdenes->sum('c');
+                $d_alm = $tallasAlmacen->sum('d') - $ventasSegundas->sum('d') - $tallasOrdenes->sum('d');
+                $e_alm = $tallasAlmacen->sum('e') - $ventasSegundas->sum('e') - $tallasOrdenes->sum('e');
+                $f_alm = $tallasAlmacen->sum('f') - $ventasSegundas->sum('f') - $tallasOrdenes->sum('f');
+                $g_alm = $tallasAlmacen->sum('g') - $ventasSegundas->sum('g') - $tallasOrdenes->sum('g');
+                $h_alm = $tallasAlmacen->sum('h') - $ventasSegundas->sum('h') - $tallasOrdenes->sum('h');
+                $i_alm = $tallasAlmacen->sum('i') - $ventasSegundas->sum('i') - $tallasOrdenes->sum('i');
+                $j_alm = $tallasAlmacen->sum('j') - $ventasSegundas->sum('j') - $tallasOrdenes->sum('j');
+                $k_alm = $tallasAlmacen->sum('k') - $ventasSegundas->sum('k') - $tallasOrdenes->sum('k');
+                $l_alm = $tallasAlmacen->sum('l') - $ventasSegundas->sum('l') - $tallasOrdenes->sum('l');
+
+                $a_alm = ($a_alm <= 0 ? 0 : $a_alm);
+                $b_alm = ($b_alm <= 0 ? 0 : $b_alm);
+                $c_alm = ($c_alm <= 0 ? 0 : $c_alm);
+                $d_alm = ($d_alm <= 0 ? 0 : $d_alm);
+                $e_alm = ($e_alm <= 0 ? 0 : $e_alm);
+                $f_alm = ($f_alm <= 0 ? 0 : $f_alm);
+                $g_alm = ($g_alm <= 0 ? 0 : $g_alm);
+                $h_alm = ($h_alm <= 0 ? 0 : $h_alm);
+                $i_alm = ($i_alm <= 0 ? 0 : $i_alm);
+                $j_alm = ($j_alm <= 0 ? 0 : $j_alm);
+                $k_alm = ($k_alm <= 0 ? 0 : $k_alm);
+                $l_alm = ($l_alm <= 0 ? 0 : $l_alm);
+
+                $total_alm = $a_alm + $b_alm + $c_alm + $d_alm + $e_alm + $f_alm + $g_alm + $h_alm + $i_alm + $j_alm + $k_alm + $l_alm;
+
+
+                $a_perc = ($a_alm / $total_alm) * 100;
+                $b_perc = ($b_alm / $total_alm) * 100;
+                $c_perc = ($c_alm / $total_alm) * 100;
+                $d_perc = ($d_alm / $total_alm) * 100;
+                $e_perc = ($e_alm / $total_alm) * 100;
+                $f_perc = ($f_alm / $total_alm) * 100;
+                $g_perc = ($g_alm / $total_alm) * 100;
+                $h_perc = ($h_alm / $total_alm) * 100;
+                $i_perc = ($i_alm / $total_alm) * 100;
+                $j_perc = ($j_alm / $total_alm) * 100;
+                $k_perc = ($k_alm / $total_alm) * 100;
+                $l_perc = ($l_alm / $total_alm) * 100;
+
+                $total_perc_alm = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
+                $i_perc + $j_perc + $k_perc + $l_perc;
+
+
+                //Pedido y detalle
+                $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $pedido)
+                ->where('producto_id', $producto)->first();
+                
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    // 'tallas' => $tallas,
+                    'producto' => $ref,
+                    'almacen' => $tallasAlmacen,
+                    'ordenesPrimera' => $tallasOrdenes,
+                    'ordenesSegunda' => $ventasSegundas,
+                    'curva_producto' => $curva_producto,
+                    'total_curva_producto' => $total_curva_producto,
+                    'orden_detalle' => $orden_detalle,
+                    'a_alm' => $a_alm,
+                    'b_alm' => $b_alm,
+                    'c_alm' => $c_alm,
+                    'd_alm' => $d_alm,
+                    'e_alm' => $e_alm,
+                    'f_alm' => $f_alm,
+                    'g_alm' => $g_alm,
+                    'h_alm' => $h_alm,
+                    'i_alm' => $i_alm,
+                    'j_alm' => $j_alm,
+                    'k_alm' => $k_alm,
+                    'l_alm' => $l_alm,
+                    'total_alm' => $total_alm,
+                    'a_perc' => round($a_perc, 2),
+                    'b_perc' => round($b_perc, 2),
+                    'c_perc' => round($c_perc, 2),
+                    'd_perc' => round($d_perc, 2),
+                    'e_perc' => round($e_perc, 2),
+                    'f_perc' => round($f_perc, 2),
+                    'g_perc' => round($g_perc, 2),
+                    'h_perc' => round($h_perc, 2),
+                    'i_perc' => round($i_perc, 2),
+                    'j_perc' => round($j_perc, 2),
+                    'k_perc' => round($k_perc, 2),
+                    'l_perc' => round($l_perc, 2),
+                    'total_perc_alm' => round($total_perc_alm)
+                ];
+            }
+
             
-            $a_alm = $tallasAlmacen->sum('a') - $ventasSegundas->sum('a') - $tallasOrdenes->sum('a');
-            $b_alm = $tallasAlmacen->sum('b') - $ventasSegundas->sum('b') - $tallasOrdenes->sum('b');
-            $c_alm = $tallasAlmacen->sum('c') - $ventasSegundas->sum('c') - $tallasOrdenes->sum('c');
-            $d_alm = $tallasAlmacen->sum('d') - $ventasSegundas->sum('d') - $tallasOrdenes->sum('d');
-            $e_alm = $tallasAlmacen->sum('e') - $ventasSegundas->sum('e') - $tallasOrdenes->sum('e');
-            $f_alm = $tallasAlmacen->sum('f') - $ventasSegundas->sum('f') - $tallasOrdenes->sum('f');
-            $g_alm = $tallasAlmacen->sum('g') - $ventasSegundas->sum('g') - $tallasOrdenes->sum('g');
-            $h_alm = $tallasAlmacen->sum('h') - $ventasSegundas->sum('h') - $tallasOrdenes->sum('h');
-            $i_alm = $tallasAlmacen->sum('i') - $ventasSegundas->sum('i') - $tallasOrdenes->sum('i');
-            $j_alm = $tallasAlmacen->sum('j') - $ventasSegundas->sum('j') - $tallasOrdenes->sum('j');
-            $k_alm = $tallasAlmacen->sum('k') - $ventasSegundas->sum('k') - $tallasOrdenes->sum('k');
-            $l_alm = $tallasAlmacen->sum('l') - $ventasSegundas->sum('l') - $tallasOrdenes->sum('l');
 
-            $a_alm = ($a_alm <= 0 ? 0 : $a_alm);
-            $b_alm = ($b_alm <= 0 ? 0 : $b_alm);
-            $c_alm = ($c_alm <= 0 ? 0 : $c_alm);
-            $d_alm = ($d_alm <= 0 ? 0 : $d_alm);
-            $e_alm = ($e_alm <= 0 ? 0 : $e_alm);
-            $f_alm = ($f_alm <= 0 ? 0 : $f_alm);
-            $g_alm = ($g_alm <= 0 ? 0 : $g_alm);
-            $h_alm = ($h_alm <= 0 ? 0 : $h_alm);
-            $i_alm = ($i_alm <= 0 ? 0 : $i_alm);
-            $j_alm = ($j_alm <= 0 ? 0 : $j_alm);
-            $k_alm = ($k_alm <= 0 ? 0 : $k_alm);
-            $l_alm = ($l_alm <= 0 ? 0 : $l_alm);
-
-            $total_alm = $a_alm + $b_alm + $c_alm + $d_alm + $e_alm + $f_alm + $g_alm + $h_alm + $i_alm + $j_alm + $k_alm + $l_alm;
-
-
-            $a_perc = ($a_alm / $total_alm) * 100;
-            $b_perc = ($b_alm / $total_alm) * 100;
-            $c_perc = ($c_alm / $total_alm) * 100;
-            $d_perc = ($d_alm / $total_alm) * 100;
-            $e_perc = ($e_alm / $total_alm) * 100;
-            $f_perc = ($f_alm / $total_alm) * 100;
-            $g_perc = ($g_alm / $total_alm) * 100;
-            $h_perc = ($h_alm / $total_alm) * 100;
-            $i_perc = ($i_alm / $total_alm) * 100;
-            $j_perc = ($j_alm / $total_alm) * 100;
-            $k_perc = ($k_alm / $total_alm) * 100;
-            $l_perc = ($l_alm / $total_alm) * 100;
-
-            $total_perc_alm = $a_perc + $b_perc + $c_perc + $d_perc + $e_perc + $f_perc + $g_perc + $h_perc +
-            $i_perc + $j_perc + $k_perc + $l_perc;
-
-
-            //Pedido y detalle
-            $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $pedido)
-            ->where('producto_id', $producto)->first();
             
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'producto' => $ref,
-                'almacen' => $tallasAlmacen,
-                'ordenesPrimera' => $tallasOrdenes,
-                'ordenesSegunda' => $ventasSegundas,
-                'curva_producto' => $curva_producto,
-                'total_curva_producto' => $total_curva_producto,
-                'orden_detalle' => $orden_detalle,
-                'a_alm' => $a_alm,
-                'b_alm' => $b_alm,
-                'c_alm' => $c_alm,
-                'd_alm' => $d_alm,
-                'e_alm' => $e_alm,
-                'f_alm' => $f_alm,
-                'g_alm' => $g_alm,
-                'h_alm' => $h_alm,
-                'i_alm' => $i_alm,
-                'j_alm' => $j_alm,
-                'k_alm' => $k_alm,
-                'l_alm' => $l_alm,
-                'total_alm' => $total_alm,
-                'a_perc' => round($a_perc, 2),
-                'b_perc' => round($b_perc, 2),
-                'c_perc' => round($c_perc, 2),
-                'd_perc' => round($d_perc, 2),
-                'e_perc' => round($e_perc, 2),
-                'f_perc' => round($f_perc, 2),
-                'g_perc' => round($g_perc, 2),
-                'h_perc' => round($h_perc, 2),
-                'i_perc' => round($i_perc, 2),
-                'j_perc' => round($j_perc, 2),
-                'k_perc' => round($k_perc, 2),
-                'l_perc' => round($l_perc, 2),
-                'total_perc_alm' => round($total_perc_alm)
-            ];
         }
         return response()->json($data, $data['code']);
         
@@ -2136,6 +2500,13 @@ class ordenEmpaqueController extends Controller
                 'status' => 'validation',
                 'message' => 'La cantidad total digitada es mayor a la cantidad pedida'
             ];
+        } elseif($sum_cant < $cantidad){
+            $data = [
+                'code' => 200,
+                'status' => 'validation',
+                'message' => 'La cantidad total digitada es menor a la cantidad pedida'
+            ];
+
         } else {
             $orden_detalle = ordenPedidoDetalle::where('orden_pedido_id', $pedido)
             ->where('producto_id', $producto)->first();

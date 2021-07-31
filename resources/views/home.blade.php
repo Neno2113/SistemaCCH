@@ -72,7 +72,7 @@
   <!-- Left col -->
   <section class="col-md-7 connectedSortable">
     <!-- Custom tabs (Charts with tabs)-->
-    @if (Auth::user()->role == "Administrador")
+    {{-- @if (Auth::user()->role == "Administrador")
     <div class="card">
         <div class="card-header bg-dark">
           <h3 class="card-title">
@@ -95,7 +95,7 @@
           </div>
         </div><!-- /.card-body -->
       </div>
-    @endif
+    @endif --}}
 
     <!-- /.card -->
     <!-- TABLE: LATEST ORDERS -->
@@ -194,7 +194,7 @@
   <section class="col-md-5 connectedSortable">
 
      <!-- Custom tabs (Charts with tabs)-->
-     @if (Auth::user()->role == "Administrador")
+     {{-- @if (Auth::user()->role == "Administrador")
      <div class="card">
         <div class="card-header bg-dark">
           <h3 class="card-title">
@@ -219,7 +219,7 @@
           </div>
         </div><!-- /.card-body -->
       </div>
-     @endif
+     @endif --}}
 
     <!-- PRODUCT LIST -->
     <div class="card">

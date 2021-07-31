@@ -328,19 +328,19 @@ function ver(id_orden) {
             let fila = `
             <tr>
                 <td>${data.detalle[i].producto.referencia_producto}</td>
-                <td class="text-primary"> ${data.detalle[i].a}</td>
-                <td class="text-primary"> ${data.detalle[i].b}</td>
-                <td class="text-primary"> ${data.detalle[i].c}</td>
-                <td class="text-primary"> ${data.detalle[i].d}</td>
-                <td class="text-primary"> ${data.detalle[i].e}</td>
-                <td class="text-primary"> ${data.detalle[i].f}</td>
-                <td class="text-primary"> ${data.detalle[i].g}</td>
-                <td class="text-primary"> ${data.detalle[i].h}</td>
-                <td class="text-primary"> ${data.detalle[i].i}</td>
-                <td class="text-primary"> ${data.detalle[i].j}</td>
-                <td class="text-primary"> ${data.detalle[i].k}</td>
-                <td class="text-primary"> ${data.detalle[i].l}</td>
-                <td class="text-primary">${data.detalle[i].total}</td>
+                <td class="text-dark"> ${data.detalle[i].a}</td>
+                <td class="text-dark"> ${data.detalle[i].b}</td>
+                <td class="text-dark"> ${data.detalle[i].c}</td>
+                <td class="text-dark"> ${data.detalle[i].d}</td>
+                <td class="text-dark"> ${data.detalle[i].e}</td>
+                <td class="text-dark"> ${data.detalle[i].f}</td>
+                <td class="text-dark"> ${data.detalle[i].g}</td>
+                <td class="text-dark"> ${data.detalle[i].h}</td>
+                <td class="text-dark"> ${data.detalle[i].i}</td>
+                <td class="text-dark"> ${data.detalle[i].j}</td>
+                <td class="text-dark"> ${data.detalle[i].k}</td>
+                <td class="text-dark"> ${data.detalle[i].l}</td>
+                <td class="text-danger">${data.detalle[i].total}</td>
                 <td class="text-danger">${data.detalle[i].cantidad}</td>
                 <td></td>
             
@@ -425,7 +425,7 @@ const seleccionar = () => {
 
                 let filaPercProducto = `
                 <tr>
-                    <td>% Prod</td>
+                    <td>% Meta</td>
                     <td class="text-primary">% ${datos.curva_producto.a}</td>
                     <td class="text-primary">% ${datos.curva_producto.b}</td>
                     <td class="text-primary">% ${datos.curva_producto.c}</td>

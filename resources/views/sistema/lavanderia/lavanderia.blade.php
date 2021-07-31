@@ -57,7 +57,7 @@
 
                     </div> --}}
                     <div id="formularioLavanderia">
-                        <div class="row mt-3">
+                        <div class="row mt-1">
                             <div class="col-md-6" id="cortes">
                                 <label for="">Numero de corte</label>
                                 <div id="corteADD">

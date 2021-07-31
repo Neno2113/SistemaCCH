@@ -9,8 +9,8 @@ $(document).ready(function() {
         ordenes();
         disp_venta();
         cortes();
-        venta12meses();
-        venta10dias();
+        // venta12meses();
+        // venta10dias();
         latest_orders();
         latest_products();
         latest_cortes();
