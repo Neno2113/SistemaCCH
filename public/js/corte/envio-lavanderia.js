@@ -1,3 +1,5 @@
+let cantidad_digitada;
+
 $(document).ready(function() {
     var cantidad_guardar;
 
@@ -47,9 +49,9 @@ $(document).ready(function() {
     }
 
 
-    $("#receta_lavado").on('keyup', function(){
-        $("#btn-guardar").attr('disabled', false);
-    })
+    // $("#receta_lavado").on('keyup', function(){
+    //     $("#btn-guardar").attr('disabled', false);
+    // })
 
     $("#fecha_envio").on('change', function(){
         var corte = {
@@ -84,6 +86,7 @@ $(document).ready(function() {
 
                     $("#cantidad").val();
                     $("#restante_enviar").val(cantidad);
+                    cantidad_digitada = cantidad;
                   
                     bootbox.alert("La cantidad recomendada para enviar es: "+cantidad);
                    
@@ -232,6 +235,8 @@ $(document).ready(function() {
         };
         
         let cantidad_enviar = $("#cantidad").val();
+        console.log(cantidad_enviar);
+        console.log(cantidad_digitada);
         if(cantidad_enviar > cantidad_guardar){
             bootbox.confirm({
                 message:
@@ -258,37 +263,39 @@ $(document).ready(function() {
             });
             
         }else{
-            $.ajax({
-                url: "lavanderia",
-                type: "POST",
-                dataType: "json",
-                data: JSON.stringify(lavanderia),
-                contentType: "application/json",
-                success: function(datos) {
-                    if (datos.status == "success") {
-                        bootbox.alert("Registro");
-                        limpiar();
-                        tabla.ajax.reload();
-                        mostrarForm(false);
-                        $('#btn-generar').attr("disabled", false);
-                    } else {
-                        bootbox.alert(
-                            "Ocurrio un error durante la creacion de la composicion"
-                        );
-                    }
-                },
-                error: function(datos) {
-                    console.log(datos.responseJSON.errors); 
-                    let errores = datos.responseJSON.errors;
+
+
+            // $.ajax({
+            //     url: "lavanderia",
+            //     type: "POST",
+            //     dataType: "json",
+            //     data: JSON.stringify(lavanderia),
+            //     contentType: "application/json",
+            //     success: function(datos) {
+            //         if (datos.status == "success") {
+            //             bootbox.alert("Registro");
+            //             limpiar();
+            //             tabla.ajax.reload();
+            //             mostrarForm(false);
+            //             $('#btn-generar').attr("disabled", false);
+            //         } else {
+            //             bootbox.alert(
+            //                 "Ocurrio un error durante la creacion de la composicion"
+            //             );
+            //         }
+            //     },
+            //     error: function(datos) {
+            //         console.log(datos.responseJSON.errors); 
+            //         let errores = datos.responseJSON.errors;
     
-                    Object.entries(errores).forEach(([key, val]) => {
-                        bootbox.alert({
-                            message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
-                            size: 'small'
-                        });
-                    });
-                }
-            });
+            //         Object.entries(errores).forEach(([key, val]) => {
+            //             bootbox.alert({
+            //                 message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+            //                 size: 'small'
+            //             });
+            //         });
+            //     }
+            // });
         }
 
 

@@ -671,6 +671,26 @@ class AlmacenController extends Controller
         ->whereIn('perdida_id', $perdidas)->get();
 
 
+        //perdidas produccion
+        $perdidaProduccion = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+        ->whereIn('fase',  ['Produccion', 'Procesos secos'])
+        ->where('corte_id', $corte_id)->select('id')->get();
+
+        $perdidasProduccion = array();
+
+        // $longitudPerdida = count($perdida);
+
+        for ($i = 0; $i < count($perdidaProduccion); $i++) {
+            array_push($perdidasProduccion, $perdidaProduccion[$i]['id']);
+        }
+
+        $tallasPerdidas = TallasPerdidas::where('talla_x', '0')
+        ->whereIn('perdida_id', $perdidas)->get();
+
+        $tallasPerdidasProd = TallasPerdidas::where('talla_x', '0')
+        ->whereIn('perdida_id', $perdidasProduccion)->get();
+
+
         $tallasPerdidasX = TallasPerdidas::where('talla_x','>', '0')
         ->whereIn('perdida_id', $perdidas)->get();
 
@@ -680,7 +700,7 @@ class AlmacenController extends Controller
 
         
 
-        $pendiente_lavanderia = $almacen->corte->total;
+        $pendiente_lavanderia = $almacen->corte->total - $tallasPerdidasProd->sum('total') - $tallasPerdidasX->sum('total');
         $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
        //segundas
@@ -728,7 +748,7 @@ class AlmacenController extends Controller
 
         $real_terminacion =  $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total');
         $total_entrada = $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total') 
-        - $tallasPerdidas->sum('total') - $tallasPerdidasX->sum('talla_x');
+        - $tallasPerdidasX->sum('talla_x');
 
         $corte = Corte::find($corte_id);
 

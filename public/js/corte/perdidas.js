@@ -203,8 +203,38 @@ $(document).ready(function() {
         }
     })
 
+    $('#fase').on('change', () => {
+        let fase = {
+            corte_id: $("#cortesSearch").val(),
+            fase: $('#fase').val()
+        }
+        console.log(fase);
+        // $.ajax({
+        //     url: "fase-corte",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: JSON.stringify(fase),
+        //     contentType: "application/json",
+        //     success: function(datos) {
+        //         if (datos.status == "success") {
+        //             console.log(datos);
+        //             if(datos.pendiente > 0 ){
+        //                 total_recibido = datos.pendiente;
+        //             }
+        //             console.log(total_recibido);
+        //         } else {
+        //             bootbox.alert("Ocurrio un error !!");
+        //         }
+        //     },
+        //     error: function() {
+
+        //     }
+        // });
+
+    });
+
     $("#cortesSearch").on("change", function(){
-        var corte = {
+        let corte = {
             corte_id: $("#cortesSearch").val(),
         };
 
@@ -961,9 +991,9 @@ $(document).ready(function() {
                     // console.log(a);
                     // console.log(a_total);
                     if(total > total_recibido){
-                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
-                        "<i class='fas fa-exclamation-triangle'></i> La cantidad total de tallas no puede ser mayor a la cantidad total en terminacion"+
-                       "</div>")
+                        bootbox.alert(`<div class='alert alert-danger' role='alert'>
+                        <i class='fas fa-exclamation-triangle'></i> La cantidad total de tallas no puede ser mayor a <strong>${ total_recibido} </strong>
+                       </div>`)
                        $("#btn-guardar").hide();
                     } else if(genero_global == '2'){
 

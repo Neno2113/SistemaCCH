@@ -298,7 +298,7 @@ class LavanderiaController extends Controller
 
                 }
                 $cant_perdida = array_sum($totales);
-                $cantidad_real = $lavanderia->total;
+                $cantidad_real = $lavanderia->total - $cant_perdida;
                 $total_enviado = $lavanderia->total_enviado;
                 return ($cantidad_real - $total_enviado < 0 ) ? 0 : $cantidad_real - $total_enviado;
             })

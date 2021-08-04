@@ -341,6 +341,7 @@ Route::post('/perdidacheck/delete/{id}', 'PerdidaController@checkDestroy');
 Route::post('/perdida/verificar', 'PerdidaController@verificarFecha');
 Route::get('/imprimir/perdida/{id}', 'PerdidaController@imprimir');
 Route::get('cortes/perdidas', 'PerdidaController@cortes');
+Route::post('/fase-corte', 'PerdidaController@verificarCorte');
 
 
 //Almacen

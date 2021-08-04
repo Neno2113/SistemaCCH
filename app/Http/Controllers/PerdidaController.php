@@ -451,21 +451,36 @@ class PerdidaController extends Controller
 
         $recepcion  = Recepcion::where('corte_id', $corte_id)->get()->last();
         $lavanderia  = Lavanderia::where('corte_id', $corte_id)->get()->last();
-
         //perdidas
         $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
             ->where('corte_id', $corte_id)->select('id')->get();
 
         $perdidas = array();
 
-        $longitudPerdida = count($perdida);
 
-        for ($i = 0; $i < $longitudPerdida; $i++) {
+        for ($i = 0; $i < count($perdida); $i++) {
             array_push($perdidas, $perdida[$i]['id']);
+        }
+    
+
+        //perdidas
+        $perdidaProcuccion = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+            ->whereIn('fase',  ['Produccion', 'Procesos secos'])
+            ->where('corte_id', $corte_id)->select('id')->get();
+
+        $perdidasProd = array();
+
+        // $longitudPerdida = count($perdidaProcuccion);
+
+        for ($i = 0; $i < count($perdidaProcuccion); $i++) {
+            array_push($perdidasProd, $perdidaProcuccion[$i]['id']);
         }
 
         $tallasPerdidas = TallasPerdidas::where('talla_x', '0')
         ->whereIn('perdida_id', $perdidas)->get();
+
+        $tallasPerdidasProduccion = TallasPerdidas::where('talla_x', '0')
+        ->whereIn('perdida_id', $perdidasProd)->get();
 
 
         $tallasPerdidasX = TallasPerdidas::where('talla_x','>', '0')
@@ -477,7 +492,7 @@ class PerdidaController extends Controller
 
         
         if(!empty($lavanderia)){
-            $pendiente_lavanderia = $corte->total;
+            $pendiente_lavanderia = $corte->total - $tallasPerdidasProduccion->sum('total');
             $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
         }
@@ -525,14 +540,21 @@ class PerdidaController extends Controller
         $l = ($l < 0 ? 0 : $l);
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
-        if(!empty($almacen)){
+        $corte = Corte::find($corte_id);
+
+        if($corte->fase == 'Almacen'){
             $real_terminacion =  $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total');
             $total_entrada = $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total') 
-            - $tallasPerdidas->sum('total') - $tallasPerdidasX->sum('talla_x');
+            - $tallasPerdidasX->sum('talla_x');
 
         }
 
-        $corte = Corte::find($corte_id);
+     
+
+        if($corte->fase == 'Terminacion'){
+            $total_entrada = $recepcion->total_recibido - $tallasSegundas->sum('total') 
+            - $tallasPerdidasX->sum('talla_x');
+        }
 
 
         if (is_object($almacen)) {
@@ -604,6 +626,7 @@ class PerdidaController extends Controller
                 'total' => $total_real,
                 'ref' => $corte->producto->referencia_producto,
                 'fase' =>  $corte->fase,
+                'total_entrada' => $total_entrada,
                 // 'almacen' => $detalle,
                 'perdida' => $tallasPerdidas
             ];
@@ -612,6 +635,65 @@ class PerdidaController extends Controller
         return response()->json($data, $data['code']);
     }
 
+
+    
+    public function verificarCorte(Request $request){
+
+        $corte_id = $request->input('corte_id');
+        $fase = $request->input('fase');
+
+        $corte = Corte::find($corte_id);
+
+        $tallas = Talla::where('corte_id', $corte_id)->first();
+
+        $recepcion  = Recepcion::where('corte_id', $corte_id)->get()->last();
+        $lavanderia  = Lavanderia::where('corte_id', $corte_id)->get()->last();
+
+        //perdidas
+        $perdida = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
+            ->where('corte_id', $corte_id)->select('id')->get();
+
+        $perdidas = array();
+
+        $longitudPerdida = count($perdida);
+
+        for ($i = 0; $i < $longitudPerdida; $i++) {
+            array_push($perdidas, $perdida[$i]['id']);
+        }
+
+        $tallasPerdidas = TallasPerdidas::where('talla_x', '0')
+        ->whereIn('perdida_id', $perdidas)->get();
+
+
+        $tallasPerdidasX = TallasPerdidas::where('talla_x','>', '0')
+        ->whereIn('perdida_id', $perdidas)->get();
+
+        $pendiente = 0;
+
+        if($fase == 'Produccion' || $fase == 'Procesos Secos'){
+            $pendiente = $corte->total;
+            $pendiente = $pendiente - $lavanderia->total_enviado - $tallasPerdidas->sum('total')
+            - $tallasPerdidasX->sum('total');
+        }
+
+        if($fase == 'Lavanderia'){
+            $pendiente = $recepcion->pendiente;
+        }
+
+        // if($fase == 'Terminacion'){
+        //     $pendiente = $recepcion->pendiente;
+        // }
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'pendiente' => $pendiente
+        ];
+
+        
+
+        return response()->json($data, $data['code']);
+    }
     public function imprimir($id){
 
         $perdida = Perdida::find($id)

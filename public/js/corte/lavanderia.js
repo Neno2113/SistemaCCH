@@ -71,9 +71,9 @@ $(document).ready(function() {
                     let cantidad_corte = datos.total_cortado;
                     let cantidad_perdida = datos.perdidas;
                     let parcial = datos.parcial;
-                    cantidad_guardar = cantidad_corte;
+                  
 
-                    let cantidad = cantidad_corte - cantidad_restante;
+                    let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
                     if(cantidad <= 0){
                         cantidad = 0
                         $("#devolucion").show();
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
                     $("#cantidad").val();
                     $("#restante_enviar").val(cantidad);
-
+                    cantidad_guardar = cantidad;
                     bootbox.alert("La cantidad recomendada para enviar es: "+cantidad);
 
                 } else {
@@ -311,14 +311,18 @@ $(document).ready(function() {
         let cantidad = $("#cantidad").val();
         let  reparar_lav = $("input[name='r3']:checked").val();
         // console.log(reparar_lav);
+        // console.log(cantidad);
+        // console.log(cantidad_guardar);
 
         if(cantidad > cantidad_guardar && reparar_lav == 0){
+            // $('#btn-guardar').attr('disabled', true);
             Swal.fire(
             'Alerta!',
-            'La cantidad digitada no puede ser mayor a la cantidad pendiente por enviar a lavanderia',
+            'La cantidad digitada no puede ser mayor a la cantidad restante por enviar a lavanderia',
             'warning'
             )
         }else{
+            $('#btn-guardar').attr('disabled', false);
 
         $.ajax({
             url: "lavanderia",
