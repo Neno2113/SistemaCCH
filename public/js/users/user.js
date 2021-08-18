@@ -90,7 +90,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Usuario creado!!',
                         'Usuario registrado y creado correctamente.',
                         'success'
                     )
@@ -186,7 +186,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Usuario actualizado!!',
                         'Usuario actualizado correctamente.',
                         'success'
                     )

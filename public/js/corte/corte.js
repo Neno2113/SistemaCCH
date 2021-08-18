@@ -747,7 +747,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Corte Creado!!',
                     'Corte creado correctamente.',
                     'success'
                     )
@@ -929,7 +929,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Corte actualizado!!',
                     'Corte actualizado correctamente.',
                     'success'
                     )
@@ -2359,7 +2359,7 @@ $("#btn-curva").click(function(e) {
         success: function(datos) {
             if (datos.status == "success") {
                 Swal.fire(
-                    'Success',
+                    'Curva creada!!',
                     datos.message,
                     'success'
                 )

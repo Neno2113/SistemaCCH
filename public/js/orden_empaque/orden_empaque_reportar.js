@@ -66,7 +66,7 @@ $(document).ready(function() {
         mostrarForm(false);
         
         Swal.fire(
-        'Success!',
+        'Orden Empacada!',
         'Orden empacada correctamente.',
         'success'
         )
@@ -430,7 +430,7 @@ function redistribuir(id_orden){
         if (result.value) {
             $.get("orden_redistribuir/" + id_orden, function(){
                 Swal.fire(
-                'Success!',
+                'Redistribucion guardada!',
                 'Redistibucion completa.',
                 'success'
                 )
@@ -475,6 +475,52 @@ $('#btn-completar').on('click', (e) => {
                     if (datos.status == "success") {
                         tablaDetalle(orden_id);    
                         $('#btn-completar').hide();
+
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la actualizacion de la composicion"
+                        );
+                    }
+                },
+                error: function() {
+                    bootbox.alert("Recuerde digitar la cantidad de bultos!!");
+                }
+            });
+        }
+      })
+
+
+})
+
+$('#btn-editarEmp').on('click', (e) => {
+    e.preventDefault();
+    Swal.fire({
+        title: '¿Desea editar la orden de empaque?',
+        text: "Va a volver a editar la orden de empaque!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            let data = {
+                orden: orden_id,
+                orden_empaque: $("#id").val()
+            }
+
+            $.ajax({
+                url: "editar-empaque",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        tablaDetalle(orden_id);    
+                        $('#btn-completar').hide();
+                        $('#btn-editarEmp').hide();
+
 
                     } else {
                         bootbox.alert(
@@ -592,12 +638,15 @@ const tablaDetalle = (id) => {
 
             if(data.orden_empaque.empacado == 0){
                 $('#btn-completar').hide(); 
+                $('#btn-editarEmp').hide();
             } else {
                 $('#btn-completar').show();
+                $('#btn-editarEmp').show();
             }
 
             if(data.orden_detalle[i].total <= 0){
                 $('#btn-completar').hide(); 
+                $('#btn-editarEmp').show();
             }
           }
     }

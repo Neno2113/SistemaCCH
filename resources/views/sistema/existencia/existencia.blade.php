@@ -21,15 +21,19 @@
             <div class="card-body bg-white">
                 @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Existencia Talla')->where('ver', 1)->first())
                 <div class="row pt-3 pl-3">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="">Referencia Producto</label>
                         <select name="tags[]" id="productoSearch" class="form-control select2" style="width:100%">
                         </select>
                     </div>
+                    <div class="col-md-2" id="refDos-div">
+                        <label for="">Referencia Grande</label>
+                        <input type="text" name="referenciaDos" id="referenciaDos" class="form-control">
+                    </div>
                     <div class="col-md-3 mt-4 pt-2">
                         <select name="tipo_consulta" id="tipo_consulta" class="form-control">
                             <option value="Totales">Tipo de consulta</option>
-                            <option value="Detallada">Detallada</option>
+                            {{-- <option value="Detallada">Detallada</option> --}}
                             <option value="Totales">Totales</option>
                         </select>
                     </div>
@@ -134,12 +138,12 @@
                     </div>
                 </div>
                 
-                <div class="row d-flex">
+                {{-- <div class="row d-flex">
                     <div class="col-md-3 pb-2 justify-content-end">
                         <button class="btn btn-primary" onclick="printDiv('printArea')"><i class="fas fa-print"></i> Imprimir</button>
                     </div>
                 
-                </div>
+                </div> --}}
                 @else
                 <div class="row" id="alerts">
                     <div class="col-md-12">

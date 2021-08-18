@@ -58,7 +58,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Composicion creada!!',
                     'Composicion creada correctamente.',
                     'success'
                     )
@@ -126,7 +126,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Composicion actualizada!!',
                         'Composicion actualizada.',
                         'success'
                         )

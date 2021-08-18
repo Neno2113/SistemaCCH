@@ -287,7 +287,7 @@ $(document).ready(function() {
             precio_lista: $("#precio_lista").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
-            marca: $("#marca option:selected").text(),
+            marca: $("#marca").val(),
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),
@@ -354,7 +354,7 @@ $(document).ready(function() {
                         }
                     });
                     Swal.fire(
-                        'Success',
+                        'Referencia creada!!',
                         'Referencia creada correctamente!',
                         'success'
                     )
@@ -466,7 +466,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Referencia actualizada!!',
                         'Referencia actualizada correctamente!',
                         'success'
                     )
@@ -995,7 +995,7 @@ const marcas = () => {
 
                 for (let i = 0; i < longitud; i++) {
                     var fila =
-                    ` <option value="${datos.marcas[i].indice}">${datos.marcas[i].indice} - ${datos.marcas[i].nombre}</option>`
+                    ` <option value="${datos.marcas[i].nombre}">${datos.marcas[i].indice} - ${datos.marcas[i].nombre}</option>`
                     $("#marca").append(fila);
                 }
                 $("#marca").select2();

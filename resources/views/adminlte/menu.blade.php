@@ -301,12 +301,12 @@
                                 <p>Aprobar y redistibuir</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ordenes proceso</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="nav-item has-treeview ">
@@ -399,6 +399,24 @@
                             <a href="/sistemaCCH/public/reporte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencias</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte-primera" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Disponibles</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte-segunda" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Segundas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte-pendientes" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pendientes</p>
                             </a>
                         </li>
 
@@ -879,14 +897,14 @@
                             </a>
                         </li>
                         @endif
-                        @if (Auth::user()->permisos()->where('permiso', 'Ordenes proceso')->first())
+                        {{-- @if (Auth::user()->permisos()->where('permiso', 'Ordenes proceso')->first())
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ordenes proceso</p>
                             </a>
                         </li>
-                        @endif
+                        @endif --}}
                     </ul>
                 </li>
                 @endif

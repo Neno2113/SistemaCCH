@@ -111,7 +111,7 @@
                         <div class="row">
                             <div class="col-md-4 mt-2 pt-2">
                                 <button type="button" class="btn btn-outline-dark  btn-block mt-4" data-toggle="modal"
-                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Ver Pedido</button>
+                                data-target=".bd-sku-modal-xl" id="btn-sku"><i class="fas fa-barcode"></i> Ver Empacado</button>
                             </div>
                             {{-- <div class="col-md-4 mt-2" id="comprobante">
                                 <label for="">NCF</label>
@@ -511,7 +511,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Orden de pedido</strong></h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Empacado</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

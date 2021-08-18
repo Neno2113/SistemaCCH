@@ -58,8 +58,9 @@ class LavanderiaController extends Controller
             $corte = Corte::find($corte_id);
             $producto_id = $corte['producto_id'];
             $producto = Product::find($producto_id);
+            $referencia = $producto->referencia_producto;
             $sku = SKU::where('talla', 'LIKE', 'General')
-                ->where('producto_id', 'LIKE', "%$producto_id%")->get()->first();
+                ->where('referencia_producto', $referencia)->get()->first();
 
             $sku_gen = $sku['id'];
 
@@ -305,10 +306,10 @@ class LavanderiaController extends Controller
             ->editColumn('fecha_envio', function ($lavanderia) {
                 return date("d-m-20y", strtotime($lavanderia->fecha_envio));
             })
-            ->addColumn('Ver', function ($lavanderia) {
-                return '<button id="btnEdit" onclick="ver(' . $lavanderia->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
+            // ->addColumn('Ver', function ($lavanderia) {
+            //     return '<button id="btnEdit" onclick="ver(' . $lavanderia->id . ')" class="btn btn-info btn-sm" > <i class="fas fa-eye"></i></button>';
 
-            })
+            // })
             ->addColumn('Opciones', function ($lavanderia) {
                 return
                     // '<button id="btnEdit" onclick="mostrar(' . $lavanderia->id . ')" class="btn btn-warning btn-sm ml-1" > <i class="fas fa-edit"></i></button>' .

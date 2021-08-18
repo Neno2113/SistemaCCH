@@ -26,6 +26,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
+        eliminarEmpty();
     }
 
     //funcion para limpiar el formulario(los inputs)
@@ -321,6 +322,7 @@ $(document).ready(function() {
         e.preventDefault();
         $("#btn-generar").attr("disabled", false);
         mostrarForm(false);
+        eliminarEmpty();
     });
 
 
@@ -376,18 +378,18 @@ function mostrar(id_factura) {
 
             var fila =  "<tr >"+
             "<td class='talla'> "+data.detalle[i].producto.referencia_producto+"</td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].a+" name='a' id='a"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].b+" name='b' id='b"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].c+" name='c' id='c"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].d+" name='d' id='d"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].e+" name='e' id='e"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].f+" name='f' id='f"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].g+" name='g' id='g"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].h+" name='h' id='h"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].i+" name='i' id='i"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].j+" name='j' id='j"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].k+" name='k' id='k"+data.detalle[i].id+"' ></td>"+
-            "<td ><input type='text' class='form-control  red' max="+data.detalle[i].l+" name='l' id='l"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].a+" name='a' id='a"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].b+" name='b' id='b"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].c+" name='c' id='c"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].d+" name='d' id='d"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].e+" name='e' id='e"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].f+" name='f' id='f"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].g+" name='g' id='g"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].h+" name='h' id='h"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].i+" name='i' id='i"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].j+" name='j' id='j"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].k+" name='k' id='k"+data.detalle[i].id+"' ></td>"+
+            "<td ><input type='number' autocomplete='off' class='form-control  red' max="+data.detalle[i].l+" name='l' id='l"+data.detalle[i].id+"' ></td>"+
             "<td ><button type='button' id='btn-detalle"+data.detalle[i].id+"' class='btn btn-info btn-sm' onclick='agregar("+data.detalle[i].id+")'><i class='far fa-save'></i></button></td>"+
             "</tr>";
 
@@ -568,19 +570,7 @@ function agregar(id){
                 k_total = datos.k;
                 l_total = datos.l;
                 // console.log(datos);
-                Swal.fire({
-                    title: '¿Esta seguro de guardar?',
-                    text: "Va a agregarle detalle a la nota de credito!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, guardar'
-                  }).then((result) => {
-                    if (result.value) {
-                        accionAgregar(id);
-                    }
-                  })
+                accionAgregar(id);
 
             } else {
                 bootbox.alert(
@@ -602,6 +592,27 @@ function agregar(id){
     });
 
 
+}
+
+function eliminarEmpty(){
+    $.ajax({
+        url: "nota/empty",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                $("#ordenes").DataTable().ajax.reload();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("Ocurrio un error")
+        }
+    });
 }
 
 function accionAgregar(id){
@@ -670,7 +681,19 @@ function accionAgregar(id){
         "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla L "+
        "</div>")
     }else{
-        agregarDetalle(id)
+        Swal.fire({
+            title: '¿Esta seguro de guardar?',
+            text: "Va a agregar detalle a la nota de credito!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, guardar'
+          }).then((result) => {
+            if (result.value) {
+                agregarDetalle(id)
+            }
+          })
     }
 
 }

@@ -125,9 +125,12 @@ class PerdidaController extends Controller
 
             $total = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l+$x;
 
+            $perdida = Perdida::find($perdida_id);
+
             $tallas = new TallasPerdidas();
 
             $tallas->perdida_id = $perdida_id;
+            $tallas->producto_id = $perdida->producto_id;
             $tallas->a = $a;
             $tallas->b = $b;
             $tallas->c = $c;
@@ -541,8 +544,9 @@ class PerdidaController extends Controller
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         $corte = Corte::find($corte_id);
+      
 
-        if($corte->fase == 'Almacen'){
+        if(is_object($almacen)){
             $real_terminacion =  $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total');
             $total_entrada = $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total') 
             - $tallasPerdidasX->sum('talla_x');
@@ -607,6 +611,8 @@ class PerdidaController extends Controller
                 'total_cortado' => $corte->total
             ];
         } else {
+            $total_entrada = $total_real;
+
             $data = [
                 'code' => 200,
                 'status' => 'success',

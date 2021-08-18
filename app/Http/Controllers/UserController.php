@@ -176,8 +176,8 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'nombre' => 'required|alpha|',
-            'apellido' => 'required|alpha',
+            'nombre' => 'required',
+            'apellido' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ]);

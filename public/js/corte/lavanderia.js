@@ -333,7 +333,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Envio Lavanderia!!',
                         'Corte enviado a lavanderia correctamente.',
                         'success'
                     )
@@ -388,7 +388,7 @@ $(document).ready(function() {
             ajax: "api/lavanderias",
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
-                { data: "Ver", orderable: false, searchable: false },
+                // { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "numero_envio", name: "lavanderia.numero_envio" },
                 { data: "numero_corte", name: "corte.numero_corte" },

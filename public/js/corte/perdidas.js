@@ -208,28 +208,28 @@ $(document).ready(function() {
             corte_id: $("#cortesSearch").val(),
             fase: $('#fase').val()
         }
-        console.log(fase);
-        // $.ajax({
-        //     url: "fase-corte",
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: JSON.stringify(fase),
-        //     contentType: "application/json",
-        //     success: function(datos) {
-        //         if (datos.status == "success") {
-        //             console.log(datos);
-        //             if(datos.pendiente > 0 ){
-        //                 total_recibido = datos.pendiente;
-        //             }
-        //             console.log(total_recibido);
-        //         } else {
-        //             bootbox.alert("Ocurrio un error !!");
-        //         }
-        //     },
-        //     error: function() {
+        // console.log(fase);
+        $.ajax({
+            url: "fase-corte",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(fase),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    console.log(datos);
+                    if(datos.pendiente > 0 ){
+                        total_recibido = datos.pendiente;
+                    }
+                    console.log(total_recibido);
+                } else {
+                    bootbox.alert("Ocurrio un error !!");
+                }
+            },
+            error: function() {
 
-        //     }
-        // });
+            }
+        });
 
     });
 
@@ -262,6 +262,7 @@ $(document).ready(function() {
                     e = e.substr(1, 4);
 
                     $("#fecha").attr('min', year +"-"+ i+"-"+e);
+                    document.getElementById('referencia_corte').value = datos.ref;
                     // console.log(month);
                     // console.log(year);
                     // console.log(i);
@@ -750,7 +751,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Perdida creada!!',
                     'Perdida registrada correctamente.',
                     'success'
                     )

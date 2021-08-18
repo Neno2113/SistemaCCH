@@ -152,6 +152,14 @@ Route::get('/reporte', function () {
     return view('sistema.existencia.reporte');
 })->middleware('auth', 'admin:Reporte');
 
+Route::get('/reporte-primera', function () {
+    return view('sistema.existencia.reportePrimera');
+})->middleware('auth', 'admin:Reporte');
+
+Route::get('/reporte-segunda', function () {
+    return view('sistema.existencia.reporteSegunda');
+})->middleware('auth', 'admin:Reporte');
+
 Route::get('/catelogo-cuenta', function () {
     return view('sistema.product.catalogo');
 })->middleware('auth', 'admin:Catalogo cuenta');
@@ -163,6 +171,10 @@ Route::get('/articulo', function () {
 Route::get('/exportar-peach', function () {
     return view('sistema.existencia.exportarPeach');
 })->middleware('auth', 'admin:ExportarPeach');
+
+Route::get('/reporte-pendientes', function () {
+    return view('sistema.existencia.reportePendientes');
+})->middleware('auth', 'admin:Reporte');
 
 
 // Fin vistas
@@ -372,7 +384,10 @@ Route::get('producto_existencia', 'ExistenciaController@selectProduct');
 Route::post('existencia/consulta', 'ExistenciaController@show');
 Route::post('existencia', 'ExistenciaController@store');
 Route::get('/reporte/existencia/{hasta}', 'ExistenciaController@imprimirReporte')->name('print');
-Route::post('/reporte/fechas', 'ExistenciaController@imprimirReporte')->name('print');
+Route::get('/reporte/primera/{hasta}', 'ExistenciaController@reportePrimera');
+Route::get('/reporte/segunda/{hasta}', 'ExistenciaController@reporteSegunda');
+Route::get('/reporte/pendiente/{hasta}', 'ExistenciaController@reportePendiente');
+// Route::post('/reporte/fechas', 'ExistenciaController@imprimirReporte')->name('print');
 
 //Orden de pedido
 Route::post('ordenPedido/consulta', 'ordenPedidoController@show');
@@ -419,6 +434,7 @@ Route::get('/validar_empaque/{id}', 'ordenEmpaqueController@validar');
 Route::post('/empaque_detalle/{id}', 'ordenEmpaqueController@empaque');
 Route::get('/verificar_empaque/{id}', 'ordenEmpaqueController@verificar');
 Route::post('/empaque_completar', 'ordenEmpaqueController@empaqueCompletar');
+Route::post('/editar-empaque', 'ordenEmpaqueController@editarEmpaque');
 Route::get('orden-productos/{id}', 'ordenEmpaqueController@OrdenProductos');
 Route::post('/producto-curva', 'ordenEmpaqueController@curvas');
 Route::post('/orden_distribuir', 'ordenEmpaqueController@distribucion');
@@ -463,6 +479,7 @@ Route::get('imprimir_notaCredito/{id}', 'NotaCreditoController@imprimir');
 Route::get('empaque/validar/{id}', 'NotaCreditoController@validar');
 Route::get('factura-select', 'NotaCreditoController@facturaSelect');
 Route::get('facturacion-select', 'NotaCreditoController@ordenFacturacionSelect');
+Route::get('nota/empty', 'NotaCreditoController@clearNC');
 
 //Empleado
 Route::post('empleado', 'EmpleadoController@store');

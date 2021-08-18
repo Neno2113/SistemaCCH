@@ -30,6 +30,7 @@ var l_red;
 
 let val_valid;
 let gen;
+let subGenero;
 let detallado;
 let cantidad_wr;
 let precio_valid;
@@ -76,6 +77,7 @@ $(document).ready(function() {
         $("#cantidad").val("");
         $("#precio").val("");
         $("#total").val("");
+        $("#total_alm").val("");
         $("#btn-edit").hide();
         $("#no_orden_pedido").val("");
         // $("#corte_en_proceso").hide();
@@ -92,6 +94,7 @@ $(document).ready(function() {
         $("#btnCancelar").hide();
         // $("#btn-agregarProceso").attr("disabled", true);
         $("#total").val("");
+        $("#total_alm").val("");
         listarRedistribucion();
         listarOrdenesProceso();
         // listarOrden();
@@ -102,6 +105,8 @@ $(document).ready(function() {
         $("#orden_detalle").hide();
         $("#orden_create").show();
         $("#alerta_proceso").hide();
+        $("#cliente_segundas").val("");
+        venta_segunda = '';
     }
 
     var data;
@@ -165,6 +170,7 @@ $(document).ready(function() {
         $("#l").val("");
         $('#total_detalle').html('');
         $("#total").val("");
+        $("#total_alm").val("");
         $("#orden_pedido_id").val("");
         $("#orden_pedido_id_proceso").val("");
         $("#orden_pedido").empty();
@@ -177,17 +183,16 @@ $(document).ready(function() {
         $("#sucursalSearch")
             .val("")
             .trigger("change");
-        $("#productoSearch")
-            .val("")
-            .trigger("change");
+        $("#productoSearch").empty();
         $("#notas").val("");
+        $("#cliente_select").val('');
+        $("#venta_actual").val('');
         $("#fecha_entrega").val("");
         $("#cantidad").val("");
         $("#precio").val("");
         $("#corte_proceso").val("");
         $("#orden_pedido").empty();
-        $("#cliente_segundas").val("");
-        venta_segunda = '';
+      
     }
 
     const limpiarCampos = () => {
@@ -347,6 +352,8 @@ $(document).ready(function() {
                                 $("#orden_create").hide();
                                 $("#orden_detalle").show();
                                 $("#sec_proceso").val(Number(datos.orden.sec));
+                                const cliente_actual = $("#clienteSearch option:selected").text();
+                                $('#cliente_select').html(cliente_actual);
                                 i_2 = datos.orden.sec;
                                 i_2 = (i_2 + 0.01)
                                     .toFixed(2)
@@ -565,36 +572,38 @@ $(document).ready(function() {
             mostrarDetalle(true);
             limpiarCampos();
             consulta();
+            // $('#venta_actual').html('Venta de primera');
         } else if (val == 0) {
             mostrarDetalle(false);
             consulta();
             $("#btn-copia").attr("disabled", false);
+            // $('#venta_actual').html('Venta de segunda');
         }
     });
 
-    function corte_proceso(datos) {
-        $("#corteProceso").empty();
+    // function corte_proceso(datos) {
+    //     $("#corteProceso").empty();
 
-        if(datos == ""){
-
-
-        }else{
-            for (let t = 0; t < datos.corte_proceso.length; t++) {
-                var fila ="<tr>"+
-                    "<td>"+datos.corte_proceso[t].numero_corte+"</td>"+
-                    "<td>"+datos.corte_proceso[t].fase +"</td>"+
-                    "<td>"+datos.corte_proceso[t].fecha_entrega+"</td>"+
-                    "<td>"+datos.corte_proceso[t].producto.referencia_producto+"</td>" +
-                    "<td>"+datos.corte_proceso[t].total+"</td>"+
-                    "<td><button onclick='agregarProceso("+datos.corte_proceso[t].id+")' class='btn btn-primary'><i class='fas fa-cart-plus'></i></button></td>"+
-                    "</tr>";
-                $("#corteProceso").append(fila);
-            }
-        }
+    //     if(datos == ""){
 
 
+    //     }else{
+    //         for (let t = 0; t < datos.corte_proceso.length; t++) {
+    //             var fila ="<tr>"+
+    //                 "<td>"+datos.corte_proceso[t].numero_corte+"</td>"+
+    //                 "<td>"+datos.corte_proceso[t].fase +"</td>"+
+    //                 "<td>"+datos.corte_proceso[t].fecha_entrega+"</td>"+
+    //                 "<td>"+datos.corte_proceso[t].producto.referencia_producto+"</td>" +
+    //                 "<td>"+datos.corte_proceso[t].total+"</td>"+
+    //                 "<td><button onclick='agregarProceso("+datos.corte_proceso[t].id+")' class='btn btn-primary'><i class='fas fa-cart-plus'></i></button></td>"+
+    //                 "</tr>";
+    //             $("#corteProceso").append(fila);
+    //         }
+    //     }
 
-    }
+
+
+    // }
 
     var cont;
     var cantidad;
@@ -629,6 +638,7 @@ $(document).ready(function() {
                     };
                     venta_segunda = 1;
                     ajaxConsulta(ordenDetalle);
+                      $('#venta_actual').html('Venta de segunda');
                 }else{
                     var ordenDetalle = {
                         producto_id: $("#productoSearch").val(),
@@ -636,6 +646,7 @@ $(document).ready(function() {
                     };
                     venta_segunda = 0;
                     ajaxConsulta(ordenDetalle);
+                    $('#venta_actual').html('Venta de primera');
                 }
 
             });
@@ -646,6 +657,7 @@ $(document).ready(function() {
             };
             venta_segunda = 0;
             ajaxConsulta(ordenDetalle);
+            $('#venta_actual').html('Venta de primera');
 
         }
 
@@ -682,7 +694,7 @@ $(document).ready(function() {
                     let cantidad = $("#cantidad").val();
                     let total_alm = datos.total_corte;
 
-                    corte_proceso(datos);
+                    // corte_proceso(datos);
 
                     a_total = datos.a;
                     b_total = datos.b;
@@ -956,7 +968,7 @@ $(document).ready(function() {
         let referencia = $("#productoSearch option:selected").text();
         producto_valid = referencia.substring(0, 9);
         gen = producto_valid.substring(1, 2);
-        let subGenero = producto_valid.substring(3, 4);
+        subGenero = producto_valid.substring(3, 4);
         detallado = $("input[name='r2']:checked").val();
         cantidad_wr = $("#cantidad").val();
         precio_valid = $("#precio").val();
@@ -1445,7 +1457,8 @@ $(document).ready(function() {
                     $("#cantidad").val("");
                     $("#precio").val("");
                     $("#total").val("");
-                    $("#cliente_segundas").val("");
+                    $("#total_alm").val("");
+                    // $("#cliente_segundas").val("");
                     $("#btn-agregar").attr("disabled", true);
                     $("#btn-copia").attr("disabled", false);
                     $("#btn-consultar").attr("disabled", true);

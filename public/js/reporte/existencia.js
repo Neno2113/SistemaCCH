@@ -1,9 +1,12 @@
+let genero;
+let mujer_plus;
 $(document).ready(function() {
 
 
     function init() {
         // $("#btn-consultar").attr('disabled', true);
         $("#codigo").hide();
+        $('#refDos-div').hide();
 
     }
 
@@ -46,8 +49,8 @@ $(document).ready(function() {
         };
 
         val = $("#productoSearch option:selected").text();
-        let genero = val.substring(1, 2);
-        let mujer_plus = val.substring(3, 4);
+        genero = val.substring(1, 2);
+        mujer_plus = val.substring(3, 4);
 
         $.ajax({
             url: "existencia/consulta",
@@ -61,6 +64,13 @@ $(document).ready(function() {
                     var tipo_consulta = $("#tipo_consulta").val();
                     var ref = $("#productoSearch option:selected").text();
 
+                    if(datos.referenciaDos){
+                        $('#refDos-div').show();
+                        $('#referenciaDos').val(datos.referenciaDos.referencia_producto);
+                    } else {
+                        $('#refDos-div').hide();
+                    }
+             
                       // listarCorteDetalle(datos.id);
                       if (genero == "2") {
 
@@ -136,7 +146,7 @@ $(document).ready(function() {
                         $("#th").html("40");
                         $("#ti").html("42");
                         $("#tj").html("44");
-                        $("#tk").html("K");
+                        $("#tk").html("46");
                         $("#tl").html("L");
                     }
 
@@ -308,19 +318,19 @@ $(document).ready(function() {
                         $("#total_venta").html(datos.total_disp);
 
                         // $("#ref_venta").html(ref);
-                        $("#a_venta_seg").html(datos.a_seg);
-                        $("#b_venta_seg").html(datos.b_seg);
-                        $("#c_venta_seg").html(datos.c_seg);
-                        $("#d_venta_seg").html(datos.d_seg);
-                        $("#e_venta_seg").html(datos.e_seg);
-                        $("#f_venta_seg").html(datos.f_seg);
-                        $("#g_venta_seg").html(datos.g_seg);
-                        $("#h_venta_seg").html(datos.h_seg);
-                        $("#i_venta_seg").html(datos.i_seg);
-                        $("#j_venta_seg").html(datos.j_seg);
-                        $("#k_venta_seg").html(datos.k_seg);
-                        $("#l_venta_seg").html(datos.l_seg);
-                        $("#total_venta_seg").html();
+                        $("#a_venta_seg").html(datos.a_dispSeg);
+                        $("#b_venta_seg").html(datos.b_dispSeg);
+                        $("#c_venta_seg").html(datos.c_dispSeg);
+                        $("#d_venta_seg").html(datos.d_dispSeg);
+                        $("#e_venta_seg").html(datos.e_dispSeg);
+                        $("#f_venta_seg").html(datos.f_dispSeg);
+                        $("#g_venta_seg").html(datos.g_dispSeg);
+                        $("#h_venta_seg").html(datos.h_dispSeg);
+                        $("#i_venta_seg").html(datos.i_dispSeg);
+                        $("#j_venta_seg").html(datos.j_dispSeg);
+                        $("#k_venta_seg").html(datos.k_dispSeg);
+                        $("#l_venta_seg").html(datos.l_dispSeg);
+                        $("#total_venta_seg").html(datos.total_dispSeg);
 
 
                         $("#totales").show();
@@ -474,6 +484,7 @@ $(document).ready(function() {
                     }
 
                     $("#btn-consultar").attr('disabled', true);
+                    eliminarColumnas();
 
                 } else {
                     bootbox.alert(
@@ -637,6 +648,35 @@ function mostrar(id_almacen) {
         $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
         $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
     });
+}
+
+function eliminarColumnas(){
+    if(genero == 3 || genero == 4){
+        $("td:nth-child(12) ,th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+        $("td:nth-child(14),th:nth-child(14)").hide();
+        $("td:nth-child(15),th:nth-child(15)").hide();
+
+    }else if(genero == 1){
+        $("td:nth-child(12) ,th:nth-child(12)").show();
+        $("td:nth-child(13),th:nth-child(13)").show();
+        $("td:nth-child(14),th:nth-child(14)").show();
+
+        $("td:nth-child(15),th:nth-child(15)").hide();
+    }else if(genero == 2){
+        $("td:nth-child(12) ,th:nth-child(12)").show();
+        $("td:nth-child(13),th:nth-child(13)").show();
+        $("td:nth-child(14),th:nth-child(14)").show();
+
+        $("td:nth-child(15),th:nth-child(15)").show();
+    }
+
+    if(mujer_plus == 7){
+        $("td:nth-child(12),th:nth-child(12)").hide();
+        $("td:nth-child(13),th:nth-child(13)").hide();
+        $("td:nth-child(14),th:nth-child(14)").hide();
+        $("td:nth-child(15),th:nth-child(15)").hide();
+    }
 }
 
 

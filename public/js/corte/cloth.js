@@ -266,7 +266,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Tela creada!!',
                     'Tela creada correctamente.',
                     'success'
                     )
@@ -378,7 +378,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Tela actualizada!!',
                     'Tela actualizada correctamente.',
                     'success'
                     )

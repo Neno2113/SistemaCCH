@@ -109,7 +109,7 @@ $(document).ready(function() {
         tabla.ajax.reload();
         mostrarForm(false);
         Swal.fire(
-            'Success',
+            'Permiso agregado!!',
             'Permisos agregados correctamente.',
             'success'
         )
@@ -385,7 +385,7 @@ function eliminarAcceso(id){
             if (datos.status == "success") {
                 // console.log(datos);
                 Swal.fire(
-                    'Success',
+                    'Permiso eliminado!!',
                     'Permiso eliminado correctamente.',
                     'success'
                 )

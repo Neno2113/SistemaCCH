@@ -120,52 +120,155 @@
                         <hr>
                     </div>
                     <br>
-                    <div id="orden_detalle">
+                    <div  id="orden_detalle">
+                        <div class="row">
 
-                        <div class="row" id="producto">
-                            <div class="col-md-3 " id="productoBuscar">
-                                <label for="">Referencia Producto</label>
-                                <select name="tags[]" id="productoSearch" class="form-control select2"
-                                    style="width:100%">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                            {{-- <div class="col-md-3 " id="producto">
-                            <label for="">Referencia Producto</label>
-                            <input type="text" name="referencia_producto" id="referencia_producto"
-                                class="form-control font-weight-bold text-center" readonly>
-                             </div> --}}
-                            <div class="col-md-2 mt-2 border-right">
-                                <label for="">¿Detallado?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary5" name="r2" value="1">
-                                        <label for="radioPrimary5">
-                                            Si
-                                        </label>
+                            <div class="col-lg-6">
+                                <div class="row" id="producto">
+                                    <div class="col-md-6 " id="productoBuscar">
+                                        <label for="">Referencia Producto</label>
+                                        <select name="tags[]" id="productoSearch" class="form-control select2"
+                                            style="width:100%">
+                                            <option value=""></option>
+                                        </select>
                                     </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary6" name="r2" value="0" checked>
-                                        <label for="radioPrimary6">
-                                            No
-                                        </label>
+                                    {{-- <div class="col-md-3 " id="producto">
+                                    <label for="">Referencia Producto</label>
+                                    <input type="text" name="referencia_producto" id="referencia_producto"
+                                        class="form-control font-weight-bold text-center" readonly>
+                                     </div> --}}
+                                    <div class="col-md-5 mt-2 border-right">
+                                        <label for="">¿Detallado?</label>
+                                        <div class="form-group clearfix">
+                                            <div class="icheck-primary d-inline">
+                                                <input type="radio" id="radioPrimary5" name="r2" value="1">
+                                                <label for="radioPrimary5">
+                                                    Si
+                                                </label>
+                                            </div>
+                                            <div class="icheck-primary d-inline">
+                                                <input type="radio" id="radioPrimary6" name="r2" value="0" checked>
+                                                <label for="radioPrimary6">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="card card-primary">
+                                        <div class="card-header">
+                                        <h3 class="card-title">About Me</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                        <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                        
+                                        <p class="text-muted">
+                                            B.S. in Computer Science from the University of Tennessee at Knoxville
+                                        </p>
+                        
+                                        <hr>
+                        
+                                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                        
+                                        <p class="text-muted">Malibu, California</p>
+                        
+                                        <hr>
+                        
+                                        <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                        
+                                        <p class="text-muted">
+                                            <span class="tag tag-danger">UI Design</span>
+                                            <span class="tag tag-success">Coding</span>
+                                            <span class="tag tag-info">Javascript</span>
+                                            <span class="tag tag-warning">PHP</span>
+                                            <span class="tag tag-primary">Node.js</span>
+                                        </p>
+                        
+                                        <hr>
+                        
+                                        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                        
+                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                                        </div> --}}
+                                        <!-- /.card-body -->
+                                    {{-- </div> --}}
+                                    {{-- <div class="col-lg-6 col-md-3">
+                                   <!-- About Me Box -->
+                                     
+                                    </div> --}}
+        
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4" id="redistribucion">
+                                        <label for="">Cantidad:</label>
+                                        <input type="text" name="cantidad" id="cantidad" class="form-control text-center"
+                                            data-inputmask='"mask": "9[9[9]]"' data-mask>
+                                    </div>
+                                    <div class="col-lg-5 col-md-4 mt-4">
+                                        <button class="btn btn-success rounded-pill mt-2" name="btn-consultar"
+                                            id="btn-consultar"><i class="fas fa-search"></i> Consultar</button>
+                                    </div>
+                                    <div class="col-md-2 ">
+    
                                     </div>
                                 </div>
+                                
+                            <div class="row " id="tallas">
+                                <div class="col-lg-4 col-md-4 mt-3 " id="precio_div">
+                                    <label for="">Precio:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                        </div>
+                                        <input type="text" name="precio" id="precio" class="form-control text-center"
+                                            data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 mt-3" id="total_div">
+                                    <label for="">Disponible Venta</label>
+                                    <input type="text" name="total" id="total" class="form-control text-center" readonly>
+                                </div>
+                                <div class="col-lg-3 col-md-4 mt-3" id="total_almdiv">
+                                    <label for="">Total Almacen</label>
+                                    <input type="text" name="total" id="total_alm" class="form-control text-center" readonly>
+                                </div>
+                                <div class="col-md-4 mr-3">
+
+                                </div>
+
                             </div>
-                            <div class="col-lg-6 col-md-3" id="corte_en_proceso">
-                                <div class="alert alert-warning alert-dismissible fade show" id="alerta_proceso"
-                                    role="alert">
-                                    <strong><i class="fas fa-exclamation-triangle"></i> Alerta!</strong>
-                                    Se va a generar otra orden de pedido adicional con las referencias que aun no estan
-                                    disponibles.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="row">
+                                  <!-- About Me Box -->
+                                  <div class="col-lg-12 col-md-12  .d-sm-block">
+                                      <div class="card card-primary">
+                                          <div class="card-header">
+                                          <h3 class="card-title">Pedido</h3>
+                                          </div>
+                                          <!-- /.card-header -->
+                                          <div class="card-body">
+                                          <strong><i class="fas fa-shipping-fast"></i> Cliente</strong>
+                          
+                                          <p class="text-muted" id="cliente_select">
+                                             
+                                          </p>
+                                          <hr>
+                                          <strong><i class="fas fa-box-open"></i> Venta Actual</strong>
+                                          <p class="text-muted" id="venta_actual"></p>
+                          
+                                          </div>
+                                          <!-- /.card-body -->
+                                      </div>
+
+                                  </div>
+                                            
                                 </div>
                             </div>
-
                         </div>
-                        <div class="container collapse mt-4" id="listarOrden">
+                   
+                        {{-- <div class="container collapse mt-4" id="listarOrden">
                             <div class="table-responsive">
                                 <table id="orden" class="table table-striped table-bordered datatables"
                                     style="width: 100%;">
@@ -207,50 +310,12 @@
                                 </table>
                             </div>
 
-                        </div>
+                        </div> --}}
 
-                        <div class="row">
-                            <div class="col-lg-2 col-md-4" id="redistribucion">
-                                <label for="">Cantidad:</label>
-                                <input type="text" name="cantidad" id="cantidad" class="form-control text-center"
-                                    data-inputmask='"mask": "9[9[9]]"' data-mask>
-                            </div>
-                            <div class="col-lg-3 col-md-4 mt-4">
-                                <button class="btn btn-success rounded-pill mt-2" name="btn-consultar"
-                                    id="btn-consultar"><i class="fas fa-search"></i> Consultar</button>
-                            </div>
-                            <div class="col-md-2 ">
-
-                            </div>
-                        </div>
-                        <div class="row border-right" id="tallas">
-                            <div class="col-lg-2 col-md-4 mt-3 " id="precio_div">
-                                <label for="">Precio:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                    </div>
-                                    <input type="text" name="precio" id="precio" class="form-control text-center"
-                                        data-inputmask='"mask": "RD$ 999[9]"' data-mask>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-4 mt-3" id="total_div">
-                                <label for="">Disponible Venta</label>
-                                <input type="text" name="total" id="total" class="form-control text-center" readonly>
-                            </div>
-                            <div class="col-lg-2 col-md-4 mt-3" id="total_almdiv">
-                                <label for="">Total Almacen</label>
-                                <input type="text" name="total" id="total_alm" class="form-control text-center" readonly>
-                            </div>
-                            <div class="col-md-4 mr-3">
-
-                            </div>
-
-                        </div>
 
                         <hr>
                         <div class="" id="detallada">
-                            <label for="">Disponible:</label>
+                            <h5 >Disponible</h5>
                             <div class="table-responsive">
                                 <table id="tabla_detalle" class="table table-bordered tabla-detallada  mb-3 text-sm">
                                     <thead class="">
@@ -506,10 +571,120 @@
                         <hr>
 
                         <div class="row" id="agregadas">
+                            <h5 >Detalle pedido</h5>
                             <div class="col-md-12 pt-3 pl-3 pb-3 table-responsive">
                                 <table class="table  table-bordered  tabla-detallada mt-3 ">
                                     <thead class="">
                                         <tr>
+                                            <th >MUJER PLUS</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <th>12W</th>
+                                            <th>14W</th>
+                                            <th>16W</th>
+                                            <th>18W</th>
+                                            <th>20W</th>
+                                            <th>22W</th>
+                                            <th>24W</th>
+                                            <th>26W</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                        </tr>
+                                        <tr>
+                                            <th >MUJER</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <th>0/0</th>
+                                            <th>1/2</th>
+                                            <th>3/4</th>
+                                            <th>5/6</th>
+                                            <th>7/8</th>
+                                            <th>9/10</th>
+                                            <th>11/12</th>
+                                            <th>13/14</th>
+                                            <th>15/16</th>
+                                            <th>17/18</th>
+                                            <th>19/20</th>
+                                            <th>21/22</th>
+                                            <td ></td>
+                                        </tr>
+                                        <tr>
+                                            <th >HOMBRE</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <th>28</th>
+                                            <th>29</th>
+                                            <th>30</th>
+                                            <th>32</th>
+                                            <th>34</th>
+                                            <th>36</th>
+                                            <th>38</th>
+                                            <th>40</th>
+                                            <th>42</th>
+                                            <th>44</th>
+                                            <th>46</th>
+                                            <td ></td>
+                                            <td ></td>
+                                        </tr>
+                                        <tr>
+                                            <th >NIÑO</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <th>2</th>
+                                            <th>4</th>
+                                            <th>6</th>
+                                            <th>8</th>
+                                            <th>10</th>
+                                            <th>12</th>
+                                            <th>14</th>
+                                            <th>16</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                        </tr>
+                                        <tr>
+                                            <th >NIÑA</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <th>2</th>
+                                            <th>4</th>
+                                            <th>6</th>
+                                            <th>8</th>
+                                            <th>10</th>
+                                            <th>12</th>
+                                            <th>14</th>
+                                            <th>16</th>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+                                            <td ></td>
+        
+                                        </tr>
+                                        <tr>
+                                            <th >Referencia</th>
+                                            <th >Precio</th>
+                                            <th >Cantidad</th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th ></th>
+                                            <th >Actions</th>
+                                        </tr>
+                                        {{-- <tr>
 
                                             <th>Referencias</th>
                                             <th>Precio</th>
@@ -527,7 +702,7 @@
                                             <th>K</th>
                                             <th>L</th>
                                             <th>Actions</th>
-                                        </tr>
+                                        </tr> --}}
                                     </thead>
                                     <tbody id="orden_pedido">
 

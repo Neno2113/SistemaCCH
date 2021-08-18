@@ -13,6 +13,18 @@ let i_total;
 let j_total;
 let k_total;
 let l_total;
+let a_perc;
+let b_perc;
+let c_perc;
+let d_perc;
+let e_perc;
+let f_perc;
+let g_perc;
+let h_perc;
+let i_perc;
+let j_perc;
+let k_perc;
+let l_perc;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -195,23 +207,23 @@ function aprobar(id_orden) {
     // })
 }
 
-function redistribuir(id_orden){
-    Swal.fire({
-        title: '¿Esta seguro de redistribuir las tallas?',
-        text: "Va a cambiar el pedido en caso de que se haya hecho detallada!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, guardar'
-      }).then((result) => {
-        if (result.value) {
-            accionRedistribuir(id_orden);
+// function redistribuir(id_orden){
+//     Swal.fire({
+//         title: '¿Esta seguro de redistribuir las tallas?',
+//         text: "Va a cambiar el pedido en caso de que se haya hecho detallada!",
+//         type: 'warning',
+//         showCancelButton: true,
+//         confirmButtonColor: '#3085d6',
+//         cancelButtonColor: '#d33',
+//         confirmButtonText: 'Si, guardar'
+//       }).then((result) => {
+//         if (result.value) {
+//             accionRedistribuir(id_orden);
             
-        }
-      })
+//         }
+//       })
 
-}
+// }
 
 function accionRedistribuir(id_orden){
     $.get("orden_redistribuir/" + id_orden, function(data){
@@ -423,6 +435,20 @@ const seleccionar = () => {
                 k_total = datos.k_alm;
                 l_total = datos.l_alm;
 
+                //Porcentaje meta 
+                a_perc = datos.curva_producto.a;
+                b_perc = datos.curva_producto.b;
+                c_perc = datos.curva_producto.c;
+                d_perc = datos.curva_producto.d;
+                e_perc = datos.curva_producto.e;
+                f_perc = datos.curva_producto.f;
+                g_perc = datos.curva_producto.g;
+                h_perc = datos.curva_producto.h;
+                i_perc = datos.curva_producto.i;
+                j_perc = datos.curva_producto.j;
+                k_perc = datos.curva_producto.k;
+                l_perc = datos.curva_producto.l;
+
                 let filaPercProducto = `
                 <tr>
                     <td>% Meta</td>
@@ -440,6 +466,7 @@ const seleccionar = () => {
                     <td class="text-primary">% ${datos.curva_producto.l}</td>
                     <td class="text-primary">${datos.total_curva_producto}</td>
                     <td class="text-danger"></td>
+                    <td></td>
                     <td></td>
                 
                 
@@ -526,6 +553,7 @@ const seleccionar = () => {
                         }
                      
                     <td class="text-success" id="cant${datos.producto.id}">${datos.orden_detalle.cantidad}</td> 
+                    <td><a onclick="redistribuir(${datos.producto.id}, ${datos.orden_detalle.cantidad})" id="guardar" class="btn btn-danger btn-sm ml-1 text-white"> <i class="fas fa-sort-numeric-up"></i></a></td>
                     <td><a onclick="saveDetail(${datos.producto.id})" id="guardar" class="btn btn-primary btn-sm ml-1 text-white"> <i class="far fa-save"></i></a></td>
                     
     
@@ -551,6 +579,7 @@ const seleccionar = () => {
                   <td class="text-danger">% ${datos.l_perc}</td>
                   <td class="text-danger">${datos.total_perc_alm}</td>
                   <td class="text-danger"></td>
+                  <td></td>
                   <td></td>
               
               
@@ -1019,6 +1048,62 @@ const saveDetail = (id) =>{
         }
       }
 )}
+
+const redistribuir = (id, cant) =>{
+    // alert(product_id);
+    Swal.fire({
+        title: '¿Va a redistribuir esta orden?',
+        text: "Si guarda esta redistribuicion a una orden ya detallada modificara lo pedido!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            calcularRedistribuido( id, cant)
+        }
+      }
+)}
+
+const calcularRedistribuido = (id, cant) => {
+
+    let pedido = Number(cant);
+    // console.log(cant);
+    // console.log(a_perc);
+    // console.log(typeof pedido);
+
+    let a_calc = Math.round( a_perc * cant / 100 );
+    let b_calc = Math.round( b_perc * cant / 100 );
+    let c_calc = Math.round( c_perc * cant / 100 );
+    let d_calc = Math.round( d_perc * cant / 100 );
+    let e_calc = Math.round( e_perc * cant / 100 );
+    let f_calc = Math.round( f_perc * cant / 100 );
+    let g_calc = Math.round( g_perc * cant / 100 );
+    let h_calc = Math.round( h_perc * cant / 100 );
+    let i_calc = Math.round( i_perc * cant / 100 );
+    let j_calc = Math.round( j_perc * cant / 100 );
+    let k_calc = Math.round( k_perc * cant / 100 );
+    let l_calc = Math.round( l_perc * cant / 100 );
+    // console.log(b_calc);
+    let total_calc = a_calc + b_calc + c_calc + d_calc + e_calc + f_calc + g_calc + h_calc + i_calc + j_calc +
+    k_calc + l_calc;
+
+    $('#a'+id).val(a_calc);
+    $('#b'+id).val(b_calc);
+    $('#c'+id).val(c_calc);
+    $('#d'+id).val(d_calc);
+    $('#e'+id).val(e_calc);
+    $('#f'+id).val(f_calc);
+    $('#g'+id).val(g_calc);
+    $('#h'+id).val(h_calc);
+    $('#i'+id).val(i_calc);
+    $('#j'+id).val(j_calc);
+    $('#k'+id).val(k_calc);
+    $('#l'+id).val(l_calc);
+    $('#total'+id).html(total_calc);
+
+}
 
 
 const distribucion = (id) => {

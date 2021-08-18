@@ -674,4 +674,55 @@ class NotaCreditoController extends Controller
         }
     }
 
+
+    function clearNC()
+    {
+        $ordenes_id = NotaCredito::all();
+
+        $ordenes = array();
+
+        $longitud = count($ordenes_id);
+
+        for ($i = 0; $i < $longitud; $i++) {
+            array_push($ordenes, $ordenes_id[$i]['id']);
+        }
+
+        $orden_detalle = NotaCreditoDetalle::whereIn('nota_credito_id', $ordenes)->get();
+
+        $detalles = array();
+
+        $longitudDetalle = count($orden_detalle);
+
+        for ($i = 0; $i < $longitudDetalle; $i++) {
+            array_push($detalles, $orden_detalle[$i]['nota_credito_id']);
+        }
+
+        //verificar diferencia
+
+        $diferencia = array_diff($ordenes, $detalles);
+
+        if (!empty($diferencia)) {
+            $orden = NotaCredito::whereIn('id', $diferencia)->get();
+            $length = count($orden);
+
+            if (!empty($orden)) {
+                for ($i = 0; $i < $length; $i++) {
+                    $orden[$i]->delete();
+                }
+            }
+        }
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'message' => 'Hecho'
+            // 'ordenes' => $ordenes,
+            // 'detalle' => $detalles,
+            // 'diferencia' => $orden
+        ];
+
+
+        return response()->json($data, $data['code']);
+    }
+
 }

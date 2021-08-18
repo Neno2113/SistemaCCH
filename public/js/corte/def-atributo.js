@@ -122,7 +122,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Entrada a almacen creada!!',
                         'Registro a almacen realizado correctamente.',
                         'success'
                     )
@@ -457,7 +457,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Imagenes subidas!!',
                         'Imagenes subidas correctamente',
                         'success'
                     )

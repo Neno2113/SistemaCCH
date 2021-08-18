@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="">No. Corte</label>
                             <div id="corteAdd">
                                 <select name="cortesSearch" id="cortesSearch" class="form-control select2">
@@ -39,7 +39,11 @@
                                 <input type="text" name="numero_corte" id="numero_corte" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-3">
+                            <label for="">Referencia</label>
+                            <input type="text" name="referencia_corte" id="referencia_corte" class="form-control text-center">
+                        </div>
+                        <div class="col-md-4">
                             <label for="">Tipo</label>
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="sec" id="sec" value="">
@@ -50,7 +54,7 @@
                                 <option value="Segundas">Segundas</option> --}}
                             </select>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-md-2 mt-3">
                             <button class="btn btn-secondary mt-3" id="btn-generar"><i class="fas fa-trash-restore"></i>
                                 Generar</button>
                         </div>

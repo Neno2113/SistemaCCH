@@ -203,7 +203,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Cliente creado!!',
                         'Se ha creado el cliente correctamente.',
                         'success'
                         )
@@ -502,7 +502,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Cliente actualizado!!',
                         'Se ha actualizado los datos del cliente correctamente.',
                         'success'
                         )

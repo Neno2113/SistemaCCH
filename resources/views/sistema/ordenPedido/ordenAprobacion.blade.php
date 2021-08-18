@@ -85,6 +85,7 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
+                                    <td class="talla"></td>
                                 </tr>
                                 <tr>
                                     <th class="talla_head">MUJER</th>
@@ -100,6 +101,7 @@
                                     <td class="talla">17/18</td>
                                     <td class="talla">19/20</td>
                                     <td class="talla">21/22</td>
+                                    <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                 </tr>
@@ -119,6 +121,7 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
+                                    <td class="talla"></td>
                                 </tr>
                                 <tr>
                                     <th class="talla_head">NIÑO</th>
@@ -130,6 +133,7 @@
                                     <td class="talla">12</td>
                                     <td class="talla">14</td>
                                     <td class="talla">16</td>
+                                    <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
@@ -153,6 +157,8 @@
                                     <td class="talla"></td>
                                     <td class="talla"></td>
                                     <td class="talla"></td>
+                                    <td class="talla"></td>
+                                    <td class="talla"></td>
                                 </tr>
                                 <tr>
                                     <th class="talla_head">Ref</th>
@@ -170,6 +176,7 @@
                                     <th class="talla_head"></th>
                                     <th class="talla_head">Total</th>
                                     <th class="talla_head">Cant</th>
+                                    <th class="talla_head">Red</th>
                                     <th class="talla_head">Man</th>
                                 </tr>
 
@@ -194,6 +201,7 @@
                                     <th class="talla_head">L</th>
                                     <th class="talla_head">Total</th>
                                     <th class="talla_head">Cant</th>
+                                    <th class="talla_head">Red</th>
                                     <th class="talla_head">Man</th>
                                 </tr>
                             </tfoot>

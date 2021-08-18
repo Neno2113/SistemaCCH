@@ -38,8 +38,8 @@
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <div class="col-md-2 mt-3">
-                            <label for="edad">Edad</label>
+                        <div class="col-md-4 mt-3">
+                            <label for="edad">Fecha Nacimiento</label>
                             <input 
                                 type="date" 
                                 name="fecha_nacimiento" 
@@ -49,7 +49,7 @@
                             >
                             {{-- <label for="edad" class="label"></label> --}}
                         </div>
-                        <div class="col-md-5 mt-3">
+                        <div class="col-md-4 mt-3">
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -60,7 +60,7 @@
                             {{-- </div> --}}
                             {{-- <label for="name" class="label"></label> --}}
                         </div>
-                        <div class="col-md-5 mt-3">
+                        <div class="col-md-4 mt-3">
 
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">

@@ -129,7 +129,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Suplidor creado!!',
                     'Suplidor creado correctamente.',
                     'success'
                     )
@@ -232,7 +232,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Suplidor actualizado!!',
                         'Suplidor actualizado correctamente.',
                         'success'
                         )

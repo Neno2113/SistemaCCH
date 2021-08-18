@@ -146,7 +146,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Emplado registrado!!',
                     'Empleado registrado correctamente.',
                     'success'
                     )
@@ -218,7 +218,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Datos empleado guardados!!',
                         'Datos del empleado guardados correctamente.',
                         'success'
                         )

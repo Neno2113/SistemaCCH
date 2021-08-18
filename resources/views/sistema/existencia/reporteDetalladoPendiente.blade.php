@@ -640,118 +640,89 @@
 </head>
 
 <body >
-    {{-- <header class="clearfix">
-        <div id="logo">
-            <img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
-        </div>
-        {{-- <div id="logo">
-            <h1>CCH</h1>
-        </div> --}}
-
-        {{-- </div>
-    </header> --}}
-    {{-- <p>{{$almacen_mythos}}</p>
-    <p>{{$facturado_m}}</p>
-    <p>{{$nota_credito_m}}</p> --}}
+    {{-- <p>{{$cortes_genius}}</p> --}}
+    {{-- <p>{{var_dump($obj)}}</p> --}}
     <main>
-        <h3>Reporte de existencias</h3>
+        <h3>Reporte de Cortes y fases</h3>
         <p style="width:40%;" >Hasta <span style="font-weight:bolder; ">{{date("d/m/20y", strtotime($hasta))}}</span>
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
             <thead class="tabla-tallas">
                 <tr>
+                    <th class="talla_head">  </th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
-                    <td class="talla">12W</td>
-                    <td class="talla">14W</td>
-                    <td class="talla">16W</td>
-                    <td class="talla">18W</td>
-                    <td class="talla">20W</td>
-                    <td class="talla">22W</td>
-                    <td class="talla">24W</td>
-                    <td class="talla">26W</td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <th class="talla_head"></th>
-                </tr>
-
-                <tr>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
-                    <td class="talla">0/0</td>
-                    <td class="talla">1/2</td>
-                    <td class="talla">3/4</td>
-                    <td class="talla">5/6</td>
-                    <td class="talla">7/8</td>
-                    <td class="talla">9/10</td>
-                    <td class="talla">11/12</td>
-                    <td class="talla">13/14</td>
-                    <td class="talla">15/16</td>
-                    <td class="talla">17/18</td>
-                    <td class="talla">19/20</td>
-                    <td class="talla">21/22</td>
                     <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+             
                 </tr>
 
                 <tr>
                     <th class="talla_head">DEPTO</th>
                     <th class="talla_head">MARCA</th>
                     <th class="talla_head">REF</th>
-                    <td class="talla">28</td>
-                    <td class="talla">29</td>
-                    <td class="talla">30</td>
-                    <td class="talla">32</td>
-                    <td class="talla">34</td>
-                    <td class="talla">36</td>
-                    <td class="talla">38</td>
-                    <td class="talla">40</td>
-                    <td class="talla">42</td>
-                    <td class="talla">44</td>
-                    <td class="talla">46</td>
-                    <td class="talla"></td>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                   
+                </tr>
+            
+                <tr>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
                     <th class="talla_head">TOTAL</th>
+                    <th class="talla_head">PENDIENTE</th>
+                    <th class="talla_head">PENDIENTE</th>
+                    <th class="talla_head">RECIBIDO</th>
+                    <th class="talla_head">TOTAL</th>
+                    <th class="talla_head">TOTAL</th>
+                    <th class="talla_head">TOTAL</th>
+                    <th class="talla_head">TOTAL</th>
+                    
                 </tr>
 
                 <tr>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
-                    <td class="talla">2</td>
-                    <td class="talla">4</td>
-                    <td class="talla">6</td>
-                    <td class="talla">8</td>
-                    <td class="talla">10</td>
-                    <td class="talla">12</td>
-                    <td class="talla">14</td>
-                    <td class="talla">16</td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <th class="talla_head"></th>
+                    <th class="talla_head">CORTE</th>
+                    <th class="talla_head">PRODUCCION</th>
+                    <th class="talla_head">LAVANDERIA</th>
+                    <th class="talla_head">LAVANDERIA</th>
+                    <th class="talla_head">TERMINACION</th>
+                    <th class="talla_head">PERDIDAS</th>
+                    <th class="talla_head">SEGUNDAS</th>
+                    <th class="talla_head">PERDIDA X</th>
+        
                 </tr>
-
                 <tr>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
-                    <td class="talla">2</td>
-                    <td class="talla">4</td>
-                    <td class="talla">6</td>
-                    <td class="talla">8</td>
-                    <td class="talla">10</td>
-                    <td class="talla">12</td>
-                    <td class="talla">14</td>
-                    <td class="talla">16</td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
-                    <td class="talla"></td>
                     <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+                    <th class="talla_head"></th>
+              
                 </tr>
+          
+         
+       
 
             </thead>
             {{-- <thead>
@@ -760,7 +731,7 @@
             <tbody>
          
                 <tr style="font-weight:800; font-size:12px;">
-                    <td>Almacen</td>
+                    <td>Pendientes</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -771,11 +742,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                   
                 </tr>
                 <tr style="font-weight:800;">
                     <td>
@@ -793,169 +760,29 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                @if (count($facturado_m) > 0 )
-                @foreach ($almacen_mythos as $alm_m)
-                @foreach ($facturado_m as $fact_m)
-                @if ($alm_m->producto_id == $fact_m->referencia_father)
-                <tr>
-                    <td></td>
-                    <td></td>
-                
-                    <td>
-                        {{$alm_m->referencia_producto}}
-                    </td>
-                    <td>{{ ($alm_m->a - $fact_m->a) < 0 ? 0 : ($alm_m->a - $fact_m->a) }}</td>
-                    <td>{{ ($alm_m->b - $fact_m->b) < 0 ? 0 : ($alm_m->b - $fact_m->b) }}</td>
-                    <td>{{ ($alm_m->c - $fact_m->c) < 0 ? 0 : ($alm_m->c - $fact_m->c) }}</td>
-                    <td>{{ ($alm_m->d - $fact_m->d) < 0 ? 0 : ($alm_m->d - $fact_m->d) }}</td>
-                    <td>{{ ($alm_m->e - $fact_m->e) < 0 ? 0 : ($alm_m->e - $fact_m->e) }}</td>
-                    <td>{{ ($alm_m->f - $fact_m->f) < 0 ? 0 : ($alm_m->f - $fact_m->f) }}</td>
-                    <td>{{ ($alm_m->g - $fact_m->g) < 0 ? 0 : ($alm_m->g - $fact_m->g) }}</td>
-                    <td>{{ ($alm_m->h - $fact_m->h) < 0 ? 0 : ($alm_m->h - $fact_m->h) }}</td>
-                    <td>{{ ($alm_m->i - $fact_m->i) < 0 ? 0 : ($alm_m->i - $fact_m->i) }}</td>
-                    <td>{{ ($alm_m->j - $fact_m->j) < 0 ? 0 : ($alm_m->j - $fact_m->j) }}</td>
-                    <td>{{ ($alm_m->k - $fact_m->k) < 0 ? 0 : ($alm_m->k - $fact_m->k) }}</td>
-                    <td>{{ ($alm_m->l - $fact_m->l) < 0 ? 0 : ($alm_m->l - $fact_m->l) }}</td>
-                    <td>{{ ($alm_m->total - $fact_m->total) < 0 ? 0 : ($alm_m->total - $fact_m->total) }}</td>
                  
-                
                 </tr>
-                @endif
-             
-                @endforeach
-                @endforeach
-                @else
-                @foreach ($almacen_mythos as $alm_m)
+                @foreach ($cortes_mythos as $corte_m)
                 <tr>
                     <td></td>
                     <td></td>
+                    
                     <td>
-                        {{$alm_m->referencia_producto}}
+                        {{$corte_m->producto->referencia_producto}}
                     </td>
-                    <td>{{ ($alm_m->a ) < 0 ? 0 : ($alm_m->a) }}</td>
-                    <td>{{ ($alm_m->b ) < 0 ? 0 : ($alm_m->b) }}</td>
-                    <td>{{ ($alm_m->c ) < 0 ? 0 : ($alm_m->c) }}</td>
-                    <td>{{ ($alm_m->d ) < 0 ? 0 : ($alm_m->d) }}</td>
-                    <td>{{ ($alm_m->e ) < 0 ? 0 : ($alm_m->e) }}</td>
-                    <td>{{ ($alm_m->f ) < 0 ? 0 : ($alm_m->f) }}</td>
-                    <td>{{ ($alm_m->g ) < 0 ? 0 : ($alm_m->g) }}</td>
-                    <td>{{ ($alm_m->h ) < 0 ? 0 : ($alm_m->h) }}</td>
-                    <td>{{ ($alm_m->i ) < 0 ? 0 : ($alm_m->i) }}</td>
-                    <td>{{ ($alm_m->j ) < 0 ? 0 : ($alm_m->j) }}</td>
-                    <td>{{ ($alm_m->k ) < 0 ? 0 : ($alm_m->k) }}</td>
-                    <td>{{ ($alm_m->l ) < 0 ? 0 : ($alm_m->l) }}</td>
-                    <td>{{ ($alm_m->total) < 0 ? 0 : ($alm_m->total)}}</td>
+                    <td>{{$corte_m->total}}</td>
+                    <td>{{($corte_m->pendiente_prod) < 0 ? 0 : ($corte_m->pendiente_prod)}}</td>
+                    <td>{{$corte_m->pendiente_lavanderia}}</td>
+                    <td>{{$corte_m->recibido_lavanderia}}</td>
+                    <td>{{($corte_m->real_terminacion) < 0 ? 0 : ($corte_m->real_terminacion)}}</td>
+                    <td>{{$corte_m->total_perdidas}}</td>
+                    <td>{{$corte_m->total_segundas}}</td>
+                    <td>{{$corte_m->total_x}}</td>
+                    
                 </tr>
                 @endforeach
-                @endif
-              
-                {{-- @elseif(count($facturado_m) > 0 ))
-                @foreach ($almacen_mythos as $alm_m)
-                @foreach ($facturado_m as $orden)
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        {{$alm_m->referencia_producto}}
-                    </td>
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-
-                    <td>{{($alm_m->a - $orden->a > 0 ) ? ($alm_m->a - $orden->a) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->a }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->b - $orden->b > 0 ) ? ($alm_m->b - $orden->b) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->b }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->c - $orden->c > 0 ) ? ($alm_m->c - $orden->c) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->c}}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->d - $orden->d > 0 ) ? ($alm_m->d - $orden->d) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->d }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->e - $orden->e > 0 ) ? ($alm_m->e - $orden->e) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->e }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->f - $orden->f > 0 ) ? ($alm_m->f - $orden->f) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->f }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->g - $orden->g > 0 ) ? ($alm_m->g - $orden->g) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->g }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->h - $orden->h > 0 ) ? ($alm_m->h - $orden->h) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->h }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->i - $orden->i > 0 ) ? ($alm_m->i - $orden->i) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->i }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->j - $orden->j > 0 ) ? ($alm_m->j - $orden->j) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->j }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->k - $orden->k > 0 ) ? ($alm_m->k - $orden->k) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->k }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->l - $orden->l > 0 ) ? ($alm_m->l - $orden->l) : 0 }}</td>
-                    @else
-                    <td>{{ $alm_m->l }}</td>
-                    @endif
-
-                    @if ($alm_m->producto_id == $orden->referencia_father)
-                    <td>{{($alm_m->total - $orden->total > 0) ? ($alm_m->total - $orden->total) : 0}}</td>
-                    @else
-                    <td>{{ $alm_m->total }}</td>
-                    @endif
+               
                 
-                </tr> --}}
-                 
-                {{-- @endforeach
-                @endforeach
-                @endif --}}
-              
-              
-                {{-- @if ($alm_m->producto_id == $nc->referencia_father) --}}
-             
-
-         
-            
-
                 <tr>
                     <td style="color:#fff;">test</td>
                     <td></td>
@@ -968,11 +795,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                   
                 </tr>
 
                 {{-- Aqui va el Subtotal --}}
@@ -980,21 +803,17 @@
                     <td></td>
                     <td></td>
                     <td>
-                        SUBTOTAL
+                        {{-- SUBTOTAL --}}
                     </td>
-                    <td>{{$a_alm_m}}</td>
-                    <td>{{$b_alm_m}}</td>
-                    <td>{{$c_alm_m}}</td>
-                    <td>{{$d_alm_m}}</td>
-                    <td>{{$e_alm_m}}</td>
-                    <td>{{$f_alm_m}}</td>
-                    <td>{{$g_alm_m}}</td>
-                    <td>{{$h_alm_m}}</td>
-                    <td>{{$i_alm_m}}</td>
-                    <td>{{$j_alm_m}}</td>
-                    <td>{{$k_alm_m}}</td>
-                    <td>{{$l_alm_m}}</td>
-                    <td>{{$total_alm_m}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  
                 </tr>
                 <tr style="font-weight:800;">
                     <td>
@@ -1012,67 +831,27 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  
                 </tr>
-                @if (count($facturado_l) > 0 )
-                @foreach ($almacen_lavish as $alm_l)
-                @foreach ($facturado_l as $fact_l)
-                @if ($alm_l->producto_id == $fact_l->referencia_father)
+                @foreach ($cortes_lavish as $corte_m)
                 <tr>
                     <td></td>
                     <td></td>
-                
+                    
                     <td>
-                        {{$alm_l->referencia_producto}}
+                        {{$corte_m->producto->referencia_producto}}
                     </td>
-                    <td>{{ ($alm_l->a - $fact_l->a) < 0 ? 0 : ($alm_l->a - $fact_l->a) }}</td>
-                    <td>{{ ($alm_l->b - $fact_l->b) < 0 ? 0 : ($alm_l->b - $fact_l->b) }}</td>
-                    <td>{{ ($alm_l->c - $fact_l->c) < 0 ? 0 : ($alm_l->c - $fact_l->c) }}</td>
-                    <td>{{ ($alm_l->d - $fact_l->d) < 0 ? 0 : ($alm_l->d - $fact_l->d) }}</td>
-                    <td>{{ ($alm_l->e - $fact_l->e) < 0 ? 0 : ($alm_l->e - $fact_l->e) }}</td>
-                    <td>{{ ($alm_l->f - $fact_l->f) < 0 ? 0 : ($alm_l->f - $fact_l->f) }}</td>
-                    <td>{{ ($alm_l->g - $fact_l->g) < 0 ? 0 : ($alm_l->g - $fact_l->g) }}</td>
-                    <td>{{ ($alm_l->h - $fact_l->h) < 0 ? 0 : ($alm_l->h - $fact_l->h) }}</td>
-                    <td>{{ ($alm_l->i - $fact_l->i) < 0 ? 0 : ($alm_l->i - $fact_l->i) }}</td>
-                    <td>{{ ($alm_l->j - $fact_l->j) < 0 ? 0 : ($alm_l->j - $fact_l->j) }}</td>
-                    <td>{{ ($alm_l->k - $fact_l->k) < 0 ? 0 : ($alm_l->k - $fact_l->k) }}</td>
-                    <td>{{ ($alm_l->l - $fact_l->l) < 0 ? 0 : ($alm_l->l - $fact_l->l) }}</td>
-                    <td>{{ ($alm_l->total - $fact_l->total) < 0 ? 0 : ($alm_l->total - $fact_l->total) }}</td>
-                 
-                
-                </tr>
-                @endif
-             
-                @endforeach
-                @endforeach
-                @else 
-                @foreach ($almacen_lavish as $alm_l)
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        {{$alm_l->referencia_producto}}
-                    </td>
-                    <td>{{ ($alm_l->a) < 0 ? 0 : ($alm_l->a) }}</td>
-                    <td>{{ ($alm_l->b) < 0 ? 0 : ($alm_l->b) }}</td>
-                    <td>{{ ($alm_l->c) < 0 ? 0 : ($alm_l->c) }}</td>
-                    <td>{{ ($alm_l->d) < 0 ? 0 : ($alm_l->d) }}</td>
-                    <td>{{ ($alm_l->e) < 0 ? 0 : ($alm_l->e) }}</td>
-                    <td>{{ ($alm_l->f) < 0 ? 0 : ($alm_l->f) }}</td>
-                    <td>{{ ($alm_l->g) < 0 ? 0 : ($alm_l->g) }}</td>
-                    <td>{{ ($alm_l->h) < 0 ? 0 : ($alm_l->h) }}</td>
-                    <td>{{ ($alm_l->i) < 0 ? 0 : ($alm_l->i) }}</td>
-                    <td>{{ ($alm_l->j) < 0 ? 0 : ($alm_l->j) }}</td>
-                    <td>{{ ($alm_l->k) < 0 ? 0 : ($alm_l->k) }}</td>
-                    <td>{{ ($alm_l->l) < 0 ? 0 : ($alm_l->l) }}</td>
-                    <td>{{ ($alm_l->total) < 0 ? 0 : ($alm_l->total) }}</td>
+                    <td>{{$corte_m->total}}</td>
+                    <td>{{($corte_m->pendiente_prod) < 0 ? 0 : ($corte_m->pendiente_prod)}}</td>
+                    <td>{{$corte_m->pendiente_lavanderia}}</td>
+                    <td>{{$corte_m->recibido_lavanderia}}</td>
+                    <td>{{($corte_m->real_terminacion) < 0 ? 0 : ($corte_m->real_terminacion)}}</td>
+                    <td>{{$corte_m->total_perdidas}}</td>
+                    <td>{{$corte_m->total_segundas}}</td>
+                    <td>{{$corte_m->total_x}}</td>
+                    
                 </tr>
                 @endforeach
-                @endif
                 <tr>
                     <td style="color:#fff;">test</td>
                     <td></td>
@@ -1085,32 +864,24 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                
                 </tr>
                     {{-- Aqui va el Subtotal --}}
                     <tr style="font-weight:800;">
                         <td></td>
                         <td></td>
                         <td>
-                            SUBTOTAL
+                            
                         </td>
-                        <td>{{($a_alm_l <= 0) ? 0 : $a_alm_l}}</td>
-                        <td>{{($b_alm_l <= 0) ? 0 : $b_alm_l}}</td>
-                        <td>{{($c_alm_l <= 0) ? 0 : $c_alm_l}}</td>
-                        <td>{{($d_alm_l <= 0) ? 0 : $d_alm_l}}</td>
-                        <td>{{($e_alm_l <= 0) ? 0 : $e_alm_l}}</td>
-                        <td>{{($f_alm_l <= 0) ? 0 : $f_alm_l}}</td>
-                        <td>{{($g_alm_l <= 0) ? 0 : $g_alm_l}}</td>
-                        <td>{{($h_alm_l <= 0) ? 0 : $h_alm_l}}</td>
-                        <td>{{($i_alm_l <= 0) ? 0 : $i_alm_l}}</td>
-                        <td>{{($j_alm_l <= 0) ? 0 : $j_alm_l}}</td>
-                        <td>{{($k_alm_l <= 0) ? 0 : $k_alm_l}}</td>
-                        <td>{{($l_alm_l <= 0) ? 0 : $l_alm_l}}</td>
-                        <td>{{($total_alm_l <= 0) ? 0 : $total_alm_l}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      
                     </tr>
                 <tr style="font-weight:800;">
                     <td>
@@ -1128,69 +899,26 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                @if (count($facturado_l) > 0 )
-                @foreach ($almacen_genius as $alm_g)
-                @foreach ($facturado_g as $fact_g)
-                @if ($alm_g->producto_id == $fact_g->referencia_father)
+                   
+                @foreach ($cortes_genius as $corte_m)
                 <tr>
                     <td></td>
                     <td></td>
-                
+                    
                     <td>
-                        {{$alm_g->referencia_producto}}
+                        {{$corte_m->producto->referencia_producto}}
                     </td>
-                    <td>{{ ($alm_g->a - $fact_g->a) < 0 ? 0 : ($alm_g->a - $fact_g->a) }}</td>
-                    <td>{{ ($alm_g->b - $fact_g->b) < 0 ? 0 : ($alm_g->b - $fact_g->b) }}</td>
-                    <td>{{ ($alm_g->c - $fact_g->c) < 0 ? 0 : ($alm_g->c - $fact_g->c) }}</td>
-                    <td>{{ ($alm_g->d - $fact_g->d) < 0 ? 0 : ($alm_g->d - $fact_g->d) }}</td>
-                    <td>{{ ($alm_g->e - $fact_g->e) < 0 ? 0 : ($alm_g->e - $fact_g->e) }}</td>
-                    <td>{{ ($alm_g->f - $fact_g->f) < 0 ? 0 : ($alm_g->f - $fact_g->f) }}</td>
-                    <td>{{ ($alm_g->g - $fact_g->g) < 0 ? 0 : ($alm_g->g - $fact_g->g) }}</td>
-                    <td>{{ ($alm_g->h - $fact_g->h) < 0 ? 0 : ($alm_g->h - $fact_g->h) }}</td>
-                    <td>{{ ($alm_g->i - $fact_g->i) < 0 ? 0 : ($alm_g->i - $fact_g->i) }}</td>
-                    <td>{{ ($alm_g->j - $fact_g->j) < 0 ? 0 : ($alm_g->j - $fact_g->j) }}</td>
-                    <td>{{ ($alm_g->k - $fact_g->k) < 0 ? 0 : ($alm_g->k - $fact_g->k) }}</td>
-                    <td>{{ ($alm_g->l - $fact_g->l) < 0 ? 0 : ($alm_g->l - $fact_g->l) }}</td>
-                    <td>{{ ($alm_g->total - $fact_g->total) < 0 ? 0 : ($alm_g->total - $fact_g->total) }}</td>
-                 
-                
-                </tr>
-                @endif
-             
-                @endforeach
-                @endforeach
-                @else
-                @foreach ($almacen_genius as $alm_g)
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        {{$alm_g->referencia_producto}}
-                    </td>
-                    <td>{{ ($alm_g->a) < 0 ? 0 : ($alm_g->a) }}</td>
-                    <td>{{ ($alm_g->b) < 0 ? 0 : ($alm_g->b) }}</td>
-                    <td>{{ ($alm_g->c) < 0 ? 0 : ($alm_g->c) }}</td>
-                    <td>{{ ($alm_g->d) < 0 ? 0 : ($alm_g->d) }}</td>
-                    <td>{{ ($alm_g->e) < 0 ? 0 : ($alm_g->e) }}</td>
-                    <td>{{ ($alm_g->f) < 0 ? 0 : ($alm_g->f) }}</td>
-                    <td>{{ ($alm_g->g) < 0 ? 0 : ($alm_g->g) }}</td>
-                    <td>{{ ($alm_g->h) < 0 ? 0 : ($alm_g->h) }}</td>
-                    <td>{{ ($alm_g->i) < 0 ? 0 : ($alm_g->i) }}</td>
-                    <td>{{ ($alm_g->j) < 0 ? 0 : ($alm_g->j) }}</td>
-                    <td>{{ ($alm_g->k) < 0 ? 0 : ($alm_g->k) }}</td>
-                    <td>{{ ($alm_g->l) < 0 ? 0 : ($alm_g->l) }}</td>
-                    <td>{{ ($alm_g->total) < 0 ? 0 : ($alm_g->total) }}</td>
-                 
-                
+                    <td>{{$corte_m->total}}</td>
+                    <td>{{($corte_m->pendiente_prod) < 0 ? 0 : ($corte_m->pendiente_prod)}}</td>
+                    <td>{{$corte_m->pendiente_lavanderia}}</td>
+                    <td>{{$corte_m->recibido_lavanderia}}</td>
+                    <td>{{($corte_m->real_terminacion) < 0 ? 0 : ($corte_m->real_terminacion)}}</td>
+                    <td>{{$corte_m->total_perdidas}}</td>
+                    <td>{{$corte_m->total_segundas}}</td>
+                    <td>{{$corte_m->total_x}}</td>
+                    
                 </tr>
                 @endforeach
-                @endif
                 <tr>
                     <td style="color:#fff;">test</td>
                     <td></td>
@@ -1203,11 +931,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                   
                 </tr>
 
 
@@ -1218,19 +942,15 @@
                     <td>
                         SUBTOTAL
                     </td>
-                    <td>{{$a_alm_g}}</td>
-                    <td>{{$b_alm_g}}</td>
-                    <td>{{$c_alm_g}}</td>
-                    <td>{{$d_alm_g}}</td>
-                    <td>{{$e_alm_g}}</td>
-                    <td>{{$f_alm_g}}</td>
-                    <td>{{$g_alm_g}}</td>
-                    <td>{{$h_alm_g}}</td>
-                    <td>{{$i_alm_g}}</td>
-                    <td>{{$j_alm_g}}</td>
-                    <td>{{$k_alm_g}}</td>
-                    <td>{{$l_alm_g}}</td>
-                    <td>{{$total_alm_g}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  
                 </tr>
                 <tr>
                     <td style="color:#fff;">test</td>
@@ -1244,11 +964,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  
                 </tr>
 
                 {{-- Aqui va el Subtotal --}}
@@ -1256,21 +972,17 @@
                     <td></td>
                     <td></td>
                     <td>
-                        SUBTOTAL
+                        {{-- SUBTOTAL --}}
                     </td>
-                    <td>{{($a_sub_alm <= 0) ? 0 : $a_sub_alm}}</td>
-                    <td>{{($b_sub_alm <= 0) ? 0 : $b_sub_alm}}</td>
-                    <td>{{($c_sub_alm <= 0) ? 0 : $c_sub_alm}}</td>
-                    <td>{{($d_sub_alm <= 0) ? 0 : $d_sub_alm}}</td>
-                    <td>{{($e_sub_alm <= 0) ? 0 : $e_sub_alm}}</td>
-                    <td>{{($f_sub_alm <= 0) ? 0 : $f_sub_alm}}</td>
-                    <td>{{($g_sub_alm <= 0) ? 0 : $g_sub_alm}}</td>
-                    <td>{{($h_sub_alm <= 0) ? 0 : $h_sub_alm}}</td>
-                    <td>{{($i_sub_alm <= 0) ? 0 : $i_sub_alm}}</td>
-                    <td>{{($j_sub_alm <= 0) ? 0 : $j_sub_alm}}</td>
-                    <td>{{($k_sub_alm <= 0) ? 0 : $k_sub_alm}}</td>
-                    <td>{{($l_sub_alm <= 0) ? 0 : $l_sub_alm}}</td>
-                    <td>{{($total_sub_alm <= 0) ? 0 : $total_sub_alm}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                   
                 </tr>
                 {{-- Aqui va el Grantotal --}}
                 <tr style="font-weight:800; line-height: 45px;">
@@ -1284,12 +996,8 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td style="font-size: 12px;">{{$total_reporte}}</td>
+                  
+                    <td style="font-size: 12px;"></td>
                 </tr>
             </tbody>
         </table>

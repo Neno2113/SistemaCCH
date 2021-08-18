@@ -36,8 +36,8 @@ class ordenEmpaqueController extends Controller
                 'orden_pedido.id', 'orden_empaque.no_orden_empaque', 'orden_pedido.sucursal_id',
                 'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega', 'orden_empaque.id as empaque_id',
                 'orden_pedido.detallada', 'orden_empaque.impreso', 'orden_pedido.cliente_id',
-                'orden_pedido.status_orden_pedido', 'orden_empaque.empacado'
-            ]);
+                'orden_pedido.status_orden_pedido', 'orden_empaque.empacado', 'orden_pedido.status_orden_pedido'
+            ])->where('status_orden_pedido', 'not like', 'Cancelado');
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function () {
@@ -81,9 +81,9 @@ class ordenEmpaqueController extends Controller
             })
             ->addColumn('Opciones', function ($orden) {
                 if($orden->empacado == '0' || is_null($orden->empacado == 0)){
-                    return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>';
+                    return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-list-ol"></i></button>';
                 } else {
-                    return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-edit"></i></button>' .
+                    return '<button id="test" onclick="mostrar(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-list-ol"></i></button>' .
                     '<a href="empaque/facturar/' . $orden->id . '" class="btn btn-dark btn-sm ml-1" > <i class="fas fa-print"></i></a>';
                 }
                
@@ -175,7 +175,7 @@ class ordenEmpaqueController extends Controller
     public function imprimir($id)
     {
         // verificar numero antiguo de la secuencia;
-        $numero_antiguo = DB::table('orden_empaque')->latest('updated_at')->first();
+        $numero_antiguo = DB::table('orden_empaque')->latest('sec')->first();
 
         if (empty($numero_antiguo) || $numero_antiguo == "") {
             $sec = 0.00;
@@ -635,314 +635,314 @@ class ordenEmpaqueController extends Controller
         $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
         // $cant_total = round($cant_total);
 
-        $cantidad_pedida = $ordenDetalle->cantidad;
-        $diferencia_distri = $cantidad_pedida - $cant_total; 
+        // $cantidad_pedida = $ordenDetalle->cantidad;
+        // $diferencia_distri = $cantidad_pedida - $cant_total; 
 
-        $diferencia = abs($diferencia_distri);
+        // $diferencia = abs($diferencia_distri);
 
-        if($cant_total != $cantidad_pedida){
+        // if($cant_total != $cantidad_pedida){
 
         
-            if($cant_total > $cantidad_pedida){
-                $a_round = round($cantidad * $a_ter, 2);
-                $b_round = round($cantidad * $b_ter, 2);
-                $c_round = round($cantidad * $c_ter, 2);
-                $d_round = round($cantidad * $d_ter, 2);
-                $e_round = round($cantidad * $e_ter, 2);
-                $f_round = round($cantidad * $f_ter, 2);
-                $g_round = round($cantidad * $g_ter, 2);
-                $h_round = round($cantidad * $h_ter, 2);
-                $i_round = round($cantidad * $i_ter, 2);
-                $j_round = round($cantidad * $j_ter, 2);
-                $k_round = round($cantidad * $k_ter, 2);
-                $l_round = round($cantidad * $l_ter, 2);
+        //     if($cant_total > $cantidad_pedida){
+        //         $a_round = round($cantidad * $a_ter, 2);
+        //         $b_round = round($cantidad * $b_ter, 2);
+        //         $c_round = round($cantidad * $c_ter, 2);
+        //         $d_round = round($cantidad * $d_ter, 2);
+        //         $e_round = round($cantidad * $e_ter, 2);
+        //         $f_round = round($cantidad * $f_ter, 2);
+        //         $g_round = round($cantidad * $g_ter, 2);
+        //         $h_round = round($cantidad * $h_ter, 2);
+        //         $i_round = round($cantidad * $i_ter, 2);
+        //         $j_round = round($cantidad * $j_ter, 2);
+        //         $k_round = round($cantidad * $k_ter, 2);
+        //         $l_round = round($cantidad * $l_ter, 2);
         
-                $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
-                $i_round + $j_round + $k_round + $l_round;
-                //Cambios a la redistribucion para corregir problema de total mayor o menos
+        //         $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
+        //         $i_round + $j_round + $k_round + $l_round;
+        //         //Cambios a la redistribucion para corregir problema de total mayor o menos
 
-                $count = 0;
-                while($count <= $diferencia){
+        //         $count = 0;
+        //         while($count <= $diferencia){
 
                  
-                    //Resta de lo redondeado y el resultado
-                    $dif_red_a = $a_round - $a_red; 
-                    $dif_red_b = $b_round - $b_red;
-                    $dif_red_c = $c_round - $c_red;
-                    $dif_red_d = $d_round - $d_red;
-                    $dif_red_e = $e_round - $e_red;
-                    $dif_red_f = $f_round - $f_red;
-                    $dif_red_g = $g_round - $g_red;
-                    $dif_red_h = $h_round - $h_red;
-                    $dif_red_i = $i_round - $i_red;
-                    $dif_red_j = $j_round - $j_red;
-                    $dif_red_k = $k_round - $k_red;
-                    $dif_red_l = $l_round - $l_red;
+        //             //Resta de lo redondeado y el resultado
+        //             $dif_red_a = $a_round - $a_red; 
+        //             $dif_red_b = $b_round - $b_red;
+        //             $dif_red_c = $c_round - $c_red;
+        //             $dif_red_d = $d_round - $d_red;
+        //             $dif_red_e = $e_round - $e_red;
+        //             $dif_red_f = $f_round - $f_red;
+        //             $dif_red_g = $g_round - $g_red;
+        //             $dif_red_h = $h_round - $h_red;
+        //             $dif_red_i = $i_round - $i_red;
+        //             $dif_red_j = $j_round - $j_red;
+        //             $dif_red_k = $k_round - $k_red;
+        //             $dif_red_l = $l_round - $l_red;
             
-                    $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
-                    $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
+        //             $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
+        //             $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
                 
-                    //Absoluto
-                    $a_abs = abs($dif_red_a);
-                    $b_abs = abs($dif_red_b);
-                    $c_abs = abs($dif_red_c);
-                    $d_abs = abs($dif_red_d);
-                    $e_abs = abs($dif_red_e);
-                    $f_abs = abs($dif_red_f);
-                    $g_abs = abs($dif_red_g);
-                    $h_abs = abs($dif_red_h);
-                    $i_abs = abs($dif_red_i);
-                    $j_abs = abs($dif_red_j);
-                    $k_abs = abs($dif_red_k);
-                    $l_abs = abs($dif_red_l);
+        //             //Absoluto
+        //             $a_abs = abs($dif_red_a);
+        //             $b_abs = abs($dif_red_b);
+        //             $c_abs = abs($dif_red_c);
+        //             $d_abs = abs($dif_red_d);
+        //             $e_abs = abs($dif_red_e);
+        //             $f_abs = abs($dif_red_f);
+        //             $g_abs = abs($dif_red_g);
+        //             $h_abs = abs($dif_red_h);
+        //             $i_abs = abs($dif_red_i);
+        //             $j_abs = abs($dif_red_j);
+        //             $k_abs = abs($dif_red_k);
+        //             $l_abs = abs($dif_red_l);
             
-                    //max Value of the ABS
-                    $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
-                    $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
+        //             //max Value of the ABS
+        //             $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
+        //             $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
             
             
-                    // $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
-                    // $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
-                    // $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
-                    // $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
-                    // $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
-                    // $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
-                    // $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
-                    // $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
-                    // $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
-                    // $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
-                    // $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
-                    // $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
+        //             // $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
+        //             // $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
+        //             // $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
+        //             // $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
+        //             // $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
+        //             // $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
+        //             // $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
+        //             // $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
+        //             // $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
+        //             // $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
+        //             // $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
+        //             // $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
             
-                    $a_equal = ($a_abs == $max_abs) ? 1 : 0;
-                    $b_equal = ($b_abs == $max_abs) ? 1 : 0;
-                    $c_equal = ($c_abs == $max_abs) ? 1 : 0;
-                    $d_equal = ($d_abs == $max_abs) ? 1 : 0;
-                    $e_equal = ($e_abs == $max_abs) ? 1 : 0;
-                    $f_equal = ($f_abs == $max_abs) ? 1 : 0;
-                    $g_equal = ($g_abs == $max_abs) ? 1 : 0;
-                    $h_equal = ($h_abs == $max_abs) ? 1 : 0;
-                    $i_equal = ($i_abs == $max_abs) ? 1 : 0;
-                    $j_equal = ($j_abs == $max_abs) ? 1 : 0;
-                    $k_equal = ($k_abs == $max_abs) ? 1 : 0;
-                    $l_equal = ($l_abs == $max_abs) ? 1 : 0;
+        //             $a_equal = ($a_abs == $max_abs) ? 1 : 0;
+        //             $b_equal = ($b_abs == $max_abs) ? 1 : 0;
+        //             $c_equal = ($c_abs == $max_abs) ? 1 : 0;
+        //             $d_equal = ($d_abs == $max_abs) ? 1 : 0;
+        //             $e_equal = ($e_abs == $max_abs) ? 1 : 0;
+        //             $f_equal = ($f_abs == $max_abs) ? 1 : 0;
+        //             $g_equal = ($g_abs == $max_abs) ? 1 : 0;
+        //             $h_equal = ($h_abs == $max_abs) ? 1 : 0;
+        //             $i_equal = ($i_abs == $max_abs) ? 1 : 0;
+        //             $j_equal = ($j_abs == $max_abs) ? 1 : 0;
+        //             $k_equal = ($k_abs == $max_abs) ? 1 : 0;
+        //             $l_equal = ($l_abs == $max_abs) ? 1 : 0;
 
-                    $a_red = $a_red - $a_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $b_red = $b_red - $b_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
+        //             $a_red = $a_red - $a_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $b_red = $b_red - $b_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
                     
-                    $c_red = $c_red - $c_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $d_red = $d_red - $d_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $e_red = $e_red - $e_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $f_red = $f_red - $f_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $g_red = $g_red - $g_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $h_red = $h_red - $h_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $i_red = $i_red - $i_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $j_red = $j_red - $j_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $k_red = $k_red - $k_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $l_red = $l_red - $l_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $count++;
-                }
-            }  
+        //             $c_red = $c_red - $c_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $d_red = $d_red - $d_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $e_red = $e_red - $e_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $f_red = $f_red - $f_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $g_red = $g_red - $g_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $h_red = $h_red - $h_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $i_red = $i_red - $i_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $j_red = $j_red - $j_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $k_red = $k_red - $k_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $l_red = $l_red - $l_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $count++;
+        //         }
+        //     }  
             
-            if($cant_total < $cantidad_pedida){
+        //     if($cant_total < $cantidad_pedida){
 
-                $a_round = round($cantidad * $a_ter, 2);
-                $b_round = round($cantidad * $b_ter, 2);
-                $c_round = round($cantidad * $c_ter, 2);
-                $d_round = round($cantidad * $d_ter, 2);
-                $e_round = round($cantidad * $e_ter, 2);
-                $f_round = round($cantidad * $f_ter, 2);
-                $g_round = round($cantidad * $g_ter, 2);
-                $h_round = round($cantidad * $h_ter, 2);
-                $i_round = round($cantidad * $i_ter, 2);
-                $j_round = round($cantidad * $j_ter, 2);
-                $k_round = round($cantidad * $k_ter, 2);
-                $l_round = round($cantidad * $l_ter, 2);
+        //         $a_round = round($cantidad * $a_ter, 2);
+        //         $b_round = round($cantidad * $b_ter, 2);
+        //         $c_round = round($cantidad * $c_ter, 2);
+        //         $d_round = round($cantidad * $d_ter, 2);
+        //         $e_round = round($cantidad * $e_ter, 2);
+        //         $f_round = round($cantidad * $f_ter, 2);
+        //         $g_round = round($cantidad * $g_ter, 2);
+        //         $h_round = round($cantidad * $h_ter, 2);
+        //         $i_round = round($cantidad * $i_ter, 2);
+        //         $j_round = round($cantidad * $j_ter, 2);
+        //         $k_round = round($cantidad * $k_ter, 2);
+        //         $l_round = round($cantidad * $l_ter, 2);
         
-                $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
-                $i_round + $j_round + $k_round + $l_round;
-                //Cambios a la redistribucion para corregir problema de total mayor o menos
-                $count = 0;
-                while($count <= $diferencia){
+        //         $total_round = $a_round + $b_round + $c_round + $d_round + $e_round + $f_round + $g_round + $h_round +
+        //         $i_round + $j_round + $k_round + $l_round;
+        //         //Cambios a la redistribucion para corregir problema de total mayor o menos
+        //         $count = 0;
+        //         while($count <= $diferencia){
 
                    
                     
-                    //Resta de lo redondeado y el resultado
-                    $dif_red_a = $a_round - $a_red ; 
-                    $dif_red_b = $b_round - $b_red;
-                    $dif_red_c = $c_round - $c_red;
-                    $dif_red_d = $d_round - $d_red;
-                    $dif_red_e = $e_round - $e_red;
-                    $dif_red_f = $f_round - $f_red;
-                    $dif_red_g = $g_round - $g_red;
-                    $dif_red_h = $h_round - $h_red;
-                    $dif_red_i = $i_round - $i_red;
-                    $dif_red_j = $j_round - $j_red;
-                    $dif_red_k = $k_round - $k_red;
-                    $dif_red_l = $l_round - $l_red;
+        //             //Resta de lo redondeado y el resultado
+        //             $dif_red_a = $a_round - $a_red ; 
+        //             $dif_red_b = $b_round - $b_red;
+        //             $dif_red_c = $c_round - $c_red;
+        //             $dif_red_d = $d_round - $d_red;
+        //             $dif_red_e = $e_round - $e_red;
+        //             $dif_red_f = $f_round - $f_red;
+        //             $dif_red_g = $g_round - $g_red;
+        //             $dif_red_h = $h_round - $h_red;
+        //             $dif_red_i = $i_round - $i_red;
+        //             $dif_red_j = $j_round - $j_red;
+        //             $dif_red_k = $k_round - $k_red;
+        //             $dif_red_l = $l_round - $l_red;
             
-                    $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
-                    $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
+        //             $total_dif = $dif_red_a + $dif_red_b + $dif_red_c + $dif_red_d + $dif_red_e + $dif_red_f + $dif_red_g +
+        //             $dif_red_h + $dif_red_i + $dif_red_j + $dif_red_k + $dif_red_l;
                     
-                    //Absoluto
-                    $a_abs = abs($dif_red_a);
-                    $b_abs = abs($dif_red_b);
-                    $c_abs = abs($dif_red_c);
-                    $d_abs = abs($dif_red_d);
-                    $e_abs = abs($dif_red_e);
-                    $f_abs = abs($dif_red_f);
-                    $g_abs = abs($dif_red_g);
-                    $h_abs = abs($dif_red_h);
-                    $i_abs = abs($dif_red_i);
-                    $j_abs = abs($dif_red_j);
-                    $k_abs = abs($dif_red_k);
-                    $l_abs = abs($dif_red_l);
+        //             //Absoluto
+        //             $a_abs = abs($dif_red_a);
+        //             $b_abs = abs($dif_red_b);
+        //             $c_abs = abs($dif_red_c);
+        //             $d_abs = abs($dif_red_d);
+        //             $e_abs = abs($dif_red_e);
+        //             $f_abs = abs($dif_red_f);
+        //             $g_abs = abs($dif_red_g);
+        //             $h_abs = abs($dif_red_h);
+        //             $i_abs = abs($dif_red_i);
+        //             $j_abs = abs($dif_red_j);
+        //             $k_abs = abs($dif_red_k);
+        //             $l_abs = abs($dif_red_l);
             
-                    //max Value of the ABS
-                    $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
-                    $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
+        //             //max Value of the ABS
+        //             $max_abs = max($a_abs, $b_abs, $c_abs, $d_abs, $e_abs, $f_abs, $g_abs, 
+        //             $h_abs, $i_abs, $j_abs, $k_abs, $l_abs);
             
             
-                    // $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
-                    // $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
-                    // $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
-                    // $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
-                    // $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
-                    // $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
-                    // $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
-                    // $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
-                    // $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
-                    // $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
-                    // $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
-                    // $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
+        //             // $a_abs_equal = ($a_abs == $max_abs) ? $max_abs : 0;
+        //             // $b_abs_equal = ($b_abs == $max_abs) ? $max_abs : 0;
+        //             // $c_abs_equal = ($c_abs == $max_abs) ? $max_abs : 0;
+        //             // $d_abs_equal = ($d_abs == $max_abs) ? $max_abs : 0;
+        //             // $e_abs_equal = ($e_abs == $max_abs) ? $max_abs : 0;
+        //             // $f_abs_equal = ($f_abs == $max_abs) ? $max_abs : 0;
+        //             // $g_abs_equal = ($g_abs == $max_abs) ? $max_abs : 0;
+        //             // $h_abs_equal = ($h_abs == $max_abs) ? $max_abs : 0;
+        //             // $i_abs_equal = ($i_abs == $max_abs) ? $max_abs : 0;
+        //             // $j_abs_equal = ($j_abs == $max_abs) ? $max_abs : 0;
+        //             // $k_abs_equal = ($k_abs == $max_abs) ? $max_abs : 0;
+        //             // $l_abs_equal = ($l_abs == $max_abs) ? $max_abs : 0;
             
-                    $a_equal = ($a_abs == $max_abs) ? 1 : 0;
-                    $b_equal = ($b_abs == $max_abs) ? 1 : 0;
-                    $c_equal = ($c_abs == $max_abs) ? 1 : 0;
-                    $d_equal = ($d_abs == $max_abs) ? 1 : 0;
-                    $e_equal = ($e_abs == $max_abs) ? 1 : 0;
-                    $f_equal = ($f_abs == $max_abs) ? 1 : 0;
-                    $g_equal = ($g_abs == $max_abs) ? 1 : 0;
-                    $h_equal = ($h_abs == $max_abs) ? 1 : 0;
-                    $i_equal = ($i_abs == $max_abs) ? 1 : 0;
-                    $j_equal = ($j_abs == $max_abs) ? 1 : 0;
-                    $k_equal = ($k_abs == $max_abs) ? 1 : 0;
-                    $l_equal = ($l_abs == $max_abs) ? 1 : 0;
+        //             $a_equal = ($a_abs == $max_abs) ? 1 : 0;
+        //             $b_equal = ($b_abs == $max_abs) ? 1 : 0;
+        //             $c_equal = ($c_abs == $max_abs) ? 1 : 0;
+        //             $d_equal = ($d_abs == $max_abs) ? 1 : 0;
+        //             $e_equal = ($e_abs == $max_abs) ? 1 : 0;
+        //             $f_equal = ($f_abs == $max_abs) ? 1 : 0;
+        //             $g_equal = ($g_abs == $max_abs) ? 1 : 0;
+        //             $h_equal = ($h_abs == $max_abs) ? 1 : 0;
+        //             $i_equal = ($i_abs == $max_abs) ? 1 : 0;
+        //             $j_equal = ($j_abs == $max_abs) ? 1 : 0;
+        //             $k_equal = ($k_abs == $max_abs) ? 1 : 0;
+        //             $l_equal = ($l_abs == $max_abs) ? 1 : 0;
 
-                    $a_red = $a_red + $a_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $b_red = $b_red + $b_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
+        //             $a_red = $a_red + $a_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $b_red = $b_red + $b_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
                     
-                    $c_red = $c_red + $c_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $d_red = $d_red + $d_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $e_red = $e_red + $e_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $f_red = $f_red + $f_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $g_red = $g_red + $g_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $h_red = $h_red + $h_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $i_red = $i_red + $i_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $j_red = $j_red + $j_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $k_red = $k_red + $k_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $l_red = $l_red + $l_equal;
-                    $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
-                    if($cant_total == $cantidad_pedida){
-                        break;
-                    }
-                    $count++;
-                }
-            }
+        //             $c_red = $c_red + $c_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $d_red = $d_red + $d_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $e_red = $e_red + $e_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $f_red = $f_red + $f_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $g_red = $g_red + $g_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $h_red = $h_red + $h_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $i_red = $i_red + $i_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $j_red = $j_red + $j_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $k_red = $k_red + $k_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $l_red = $l_red + $l_equal;
+        //             $cant_total = $a_red + $b_red + $c_red + $d_red + $e_red + $f_red + $g_red + $h_red + $i_red + $j_red + $k_red + $l_red;
+        //             if($cant_total == $cantidad_pedida){
+        //                 break;
+        //             }
+        //             $count++;
+        //         }
+        //     }
 
-        }
+        // }
 
             
 
@@ -1313,7 +1313,7 @@ class ordenEmpaqueController extends Controller
             'k_red' => $k_red,
             'l_red' => $l_red,
             'total_red' => $cant_total,
-            'pedido' => $cantidad_pedida,
+            // 'pedido' => $cantidad_pedida,
             'redistribuido y redondeo' => 'Redistribuido redondeado',
             // 'a_round' => $a_round,
             // 'b_round' => $b_round,
@@ -1480,6 +1480,51 @@ class ordenEmpaqueController extends Controller
         ];
 
         return response()->json($data, $data['code']);
+    }
+
+    public function editarEmpaque(Request $request){
+
+
+        $orden_id = $request->input('orden');
+        $orden_empaque_id = $request->input('orden_empaque');
+
+        $ordenes_facturacion = ordenFacturacion::where('orden_empaque_id', $orden_empaque_id)->get();
+
+        for ($i=0; $i < count($ordenes_facturacion) ; $i++) { 
+            $ordenes_facturacion[$i]->delete();
+        }
+
+
+        $ordenes_facturacion_detalle = ordenFacturacionDetalle::where('orden_pedido_id', $orden_id)->get();
+
+        for ($i=0; $i < count($ordenes_facturacion_detalle) ; $i++) { 
+            $ordenes_facturacion_detalle[$i]->delete();
+        }
+
+        $detalle_empaque = ordenEmpaqueDetalle::where('orden_empaque_id', $orden_empaque_id)->get();
+
+        for ($i=0; $i < count($detalle_empaque) ; $i++) { 
+            $detalle_empaque[$i]->delete();
+        }
+
+        $empaque = ordenEmpaque::find($orden_empaque_id);
+
+        $empaque->empacado = 0;
+        $empaque->impreso = 0;
+        $empaque->save();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'ordenes_facturacion' => $ordenes_facturacion,
+            'ordenes_facturacion_detalle' => $ordenes_facturacion_detalle,
+            'detalle_empaque' => $detalle_empaque
+         
+        ];
+
+        return response()->json($data, $data['code']);
+
+    
     }
 
 
@@ -2539,4 +2584,7 @@ class ordenEmpaqueController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+
+
 }

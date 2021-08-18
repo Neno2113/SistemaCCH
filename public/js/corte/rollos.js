@@ -126,7 +126,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                    'Success',
+                    'Rollo creado!!',
                     'Rollo creado correctamente.',
                     'success'
                     )
@@ -273,7 +273,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     Swal.fire(
-                        'Success',
+                        'Rollo actualizado!!',
                         'Rollo actualizado correctamente.',
                         'success'
                         )
@@ -322,7 +322,7 @@ $(document).ready(function() {
     $("#btn-finish").on('click', (e) => {
         e.preventDefault();
         Swal.fire(
-            'Success',
+            'Rollo agregado!!',
             'Rollos agregados correctamente.',
             'success'
             );
