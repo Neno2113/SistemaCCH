@@ -340,6 +340,7 @@ $(document).ready(function() {
         $("#no_factura_compra").val('');
         $("#fecha_compra").val('');
         $("#permisos-agregados").empty();
+        $("#btn-guardar").show();
         $("#btn-guardar").attr("disabled", false);
         $("#row-detail").hide();
 

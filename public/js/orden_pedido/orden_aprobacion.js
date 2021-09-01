@@ -163,7 +163,7 @@ function inicio(){
 function aprobar(id_orden) {
     // e.preventDefault();
     $.post("checkAprob/delete/" + id_orden, function(data, status) {
-        console.log(data);
+        // console.log(data);
         if(data.status == 'denied'){
             return Swal.fire(
                 'Acceso denegado!',
@@ -189,6 +189,20 @@ function aprobar(id_orden) {
                         );
                         $("#ordenes_aprobacion").DataTable().ajax.reload();
                         $("#ordenes_red").DataTable().ajax.reload();
+
+                        for (let i = 0; i < data.detalle.length; i++) {
+                            if(data.detalle[i].orden_redistribuida == 0){
+                                Swal.fire(
+                                    "Atencion!",
+                                    "Esta orden tiene una referencia que debe ser redistribuida.",
+                                    "info"
+                                );
+                                $.post("orden-a-redistribuir/" + id_orden, function(data, status){
+                                  
+                                });
+                            }   
+                            
+                        }
                     });
                 }
             });

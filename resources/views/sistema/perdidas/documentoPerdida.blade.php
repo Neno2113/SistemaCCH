@@ -26,11 +26,11 @@
 			width: 21cm;
 			height: 29.7cm;
 			margin: 0 auto;
-			color: #555555;
+			color: #000;
 			background: #FFFFFF;
 			font-family: Arial, sans-serif;
 			font-size: 10px;
-			font-family: SourceSansPro;
+			/* font-family: SourceSansPro; */
 		}
 
 		header {
@@ -145,12 +145,12 @@
 		}
 
 		.tabla-principal {
-			width: 90%;
+			width: 88%;
 			border-collapse: collapse;
 			border-spacing: 0;
 			margin-bottom: 20px;
 			table-layout: auto;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-principal th,
@@ -184,41 +184,41 @@
 
 		.tabla-principal .no {
 			color: #fff;
-			font-size: 13px;
+			font-size: 10px;
 			/* background: #160c70; */
 			text-align: center;
-			border: solid 2px black;
+			border: solid 1px black;
 
 		}
 
 		.tabla-principal .desc {
 			text-align: center;
-			font-size: 13px;
+			font-size: 10px;
 			color: #fff;
-			border: solid 2px black;
+			border: solid 1px black;
 
 		}
 
 		.tabla-principal .unit {
 			/* background-color: #160c70; */
-			font-size: 13px;
+			font-size: 10px;
 			color: #fff;
-			border: solid 2px black;
+			border: solid 1px black;
 			/* font-weight: bold; */
 		}
 
 		.tabla-principal .unit-fiscal {
 			background: #fff;
-			font-size: 13px;
-			border: solid 2px black;
+			font-size: 10px;
+			border: solid 1px black;
 		}
 
 		.tabla-principal .unit_talla {
 			background: #fff;
 			text-align: center;
-			font-size: 11px;
+			font-size: 10px;
 			font-weight: bold;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-principal .qty {}
@@ -226,8 +226,8 @@
 		.tabla-principal .total {
 			/* background: #fff; */
 			color: #fff;
-			font-size: 13px;
-			border: solid 2px black;
+			font-size: 10px;
+			border: solid 1px black;
 		}
 
 		.tabla-principal tbody tr {
@@ -239,10 +239,10 @@
 		.tabla-principal td.qty,
 		.tabla-principal td.no,
 		.tabla-principal td.total {
-			font-size: 1.5em;
+			font-size: 1.2em;
 			/* text-decoration: none; */
 			color: #000;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-principal td.unit-fiscal,
@@ -265,8 +265,8 @@
 		.tabla-principal li {
 			list-style-type: none;
 			text-align: center;
-			padding-bottom: 35px;
-            padding-top: 28px;
+			padding-bottom: 14px;
+            padding-top: 4px;
 		}
 
 		.tabla-principal td.desc-des li {
@@ -389,7 +389,7 @@
 		}
 
 		.tabla-bultos thead th {
-			border: 2px solid black;
+			border: 1px solid black;
 			padding: 5px;
 			text-align: start;
 		}
@@ -397,7 +397,7 @@
 		.tabla-factura {
 			/* float: right; */
 			width: 35%;
-			border: 2px solid black;
+			border: 1px solid black;
 			/* margin-right: 34%; */
 		}
 
@@ -415,8 +415,8 @@
 		}
 
 		.tabla-factura tbody .num_factura {
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
 			text-align: center;
 			padding: 7px;
 			font-size: 12px;
@@ -434,7 +434,7 @@
 			font-size: 10px;
 			padding: 10px;
 			/* padding-bottom: 13px; */
-			border-top: 2px solid black;
+			border-top: 1px solid black;
 
 		}
 
@@ -447,7 +447,7 @@
 
 		.tabla-totales th {
 			font-weight: normal;
-			font-size: 14px;
+			font-size: 11px;
 		}
 
 		.tabla-totales td {
@@ -462,35 +462,35 @@
 
 		.tabla-cliente {
 			float: left;
-			border-top: 2px solid black;
-			border-left: 2px solid black;
-			border-right: 2px solid black;
+			border-top: 1px solid black;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
 			width: 40%;
 
 
 		}
 
 		.tabla-cliente thead th {
-			border-bottom: 2px solid black;
+			border-bottom: 1px solid black;
 			font-size: 11px;
 			padding-left: 11px;
 		}
 
 		.tabla-cliente thead td {
-			border-bottom: 2px solid black;
+			border-bottom: 1px solid black;
 			padding-left: 47px;
 		}
 
 		.tabla-cliente tbody td {
-			border-bottom: 2px solid black;
+			border-bottom: 1px solid black;
 			padding-right: 106px;
 			padding-left: 11px;
 
 		}
 
 		.tabla-cliente tbody th {
-			border-right: 2px solid black;
-			border-bottom: 2px solid black;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
 			font-size: 11px;
 			font-weight: bold;
 			padding-left: 11px;
@@ -503,7 +503,7 @@
 		.tabla-original {
 			float: right;
 			margin-right: 20%;
-			border: 2px solid black;
+			border: 1px solid black;
 			width: 13%;
 			margin-top: 20px;
 			margin-bottom: 100px;
@@ -519,11 +519,11 @@
             border-spacing: 0; */
 			margin-bottom: 20px;
 			table-layout: auto;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-ncf thead th {
-			border-bottom: 2px solid black;
+			border-bottom: 1px solid black;
 			/* border-left: 2px solid black */
 			background-color: #131980;
 			color: #fff;
@@ -586,12 +586,12 @@
 			font-weight: lighter;
 		}
 		.tabla-tallas {
-			width: 90%;
+			width: 85%;
 			border-collapse: collapse;
 			border-spacing: 0;
 			margin-bottom: 20px;
 			table-layout: auto;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-tallas th,
@@ -600,23 +600,23 @@
 			background: #fff;
 			text-align: center;
 			border-bottom: 1px solid #FFFFFF;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 		.tabla-tallas th {
 			white-space: nowrap;
 			font-weight: bold;
 			background-color: #131980;
-			font-size: 13px;
-			border: solid 2px black;
+			font-size: 10px;
+			border: solid 1px black;
 			color: #fff;
 		}
 		.tabla-tallas .talla_head {
 			color: #fff;
-			font-size: 6.5px;
+			font-size: 8.5px;
 		}
 
 		.tabla-tallas .talla {
-			border: 2px solid black;
+			border: 1px solid black;
 			text-align: center;
 			font-weight: bold;
 			font-size: 8px;
@@ -627,8 +627,8 @@
             padding-right: 20px;
 		}
         .tabla-tallas tbody .unit_talla{
-            font-size: 13px;
-            padding-top: 10px;
+            font-size: 10px;
+            padding-top: 4px;
         }
 	</style>
 </head>
@@ -723,199 +723,130 @@
 			</tbody>
 		</table> --}}
 		<table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
+			<thead class="tabla-tallas">
+				<tr>
+					<th class="talla_head">MUJER PLUS:</th>
+					<td class="talla">12W</td>
+					<td class="talla">14W</td>
+					<td class="talla">16W</td>
+					<td class="talla">18W</td>
+					<td class="talla">20W</td>
+					<td class="talla">22W</td>
+					<td class="talla">24W</td>
+					<td class="talla">26W</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">MUJER:</th>
+					<td class="talla" style="width: 41.883px;">0/0</td>
+					<td class="talla" style="width: 39.233px;">1/2</td>
+					<td class="talla" style="width: 39.233px;">3/4</td>
+					<td class="talla" style="width: 39.233px;">5/6</td>
+					<td class="talla" style="width: 39.233px;">7/8</td>
+					<td class="talla" style="width: 39.233px;">9/10</td>
+					<td class="talla" style="width: 41.517px;">11/12</td>
+					<td class="talla" style="width: 43.217px;">13/14</td>
+					<td class="talla" style="width: 41.833px;">15/16</td>
+					<td class="talla" style="width: 42.567px;">17/18</td>
+					<td class="talla" style="width: 42.35px;">19/20</td>
+                    <td class="talla" style="width: 42.15px;">21/22</td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">HOMBRE:</th>
+					<td class="talla">28</td>
+					<td class="talla">29</td>
+					<td class="talla">30</td>
+					<td class="talla">31</td>
+					<td class="talla">32</td>
+					<td class="talla">34</td>
+					<td class="talla">36</td>
+					<td class="talla">38</td>
+					<td class="talla">40</td>
+					<td class="talla">42</td>
+					<td class="talla">44</td>
+                    <td class="talla">46</td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">NIÑO:</th>
+					<td class="talla">2</td>
+					<td class="talla">4</td>
+					<td class="talla">6</td>
+					<td class="talla">8</td>
+					<td class="talla">10</td>
+					<td class="talla">12</td>
+					<td class="talla">14</td>
+					<td class="talla">16</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
+				</tr>
+
+				<tr>
+					<th class="talla_head">NIÑA:</th>
+					<td class="talla">2</td>
+					<td class="talla">4</td>
+					<td class="talla">6</td>
+					<td class="talla">8</td>
+					<td class="talla">10</td>
+					<td class="talla">12</td>
+					<td class="talla">14</td>
+					<td class="talla">16</td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+					<td class="talla"></td>
+                    <td class="talla"></td>
+                    <td class="talla"></td>
+				</tr>
+
+			</thead>
 			<thead>
-				@if ($genero == 2)
-                @if ($genero_plus == 7)
-                <tr>
-                    <th class="unit_talla">12W</th>
-                    <th class="unit_talla">14W</th>
-                    <th class="unit_talla">16W</th>
-                    <th class="unit_talla">18W</th>
-                    <th class="unit_talla">20W</th>
-                    <th class="unit_talla">22W</th>
-                    <th class="unit_talla">24W</th>
-                    <th class="unit_talla">26W</th>
-                    <th class="unit_talla">I</th>
-                    <th class="unit_talla">J</th>
-                    <th class="unit_talla">K</th>
-                    <th class="unit_talla">L</th>
-                    <th class="unit_talla">X</th>
-                    <th class="unit_talla">TOTAL</th>
-                </tr>
-                @else
-                <tr>
-                    <th class="unit_talla">0/0</th>
-                    <th class="unit_talla">1/2</th>
-                    <th class="unit_talla">3/4</th>
-                    <th class="unit_talla">5/6</th>
-                    <th class="unit_talla">7/8</th>
-                    <th class="unit_talla">9/10</th>
-                    <th class="unit_talla">11/12</th>
-                    <th class="unit_talla">13/14</th>
-                    <th class="unit_talla">15/16</th>
-                    <th class="unit_talla">17/18</th>
-                    <th class="unit_talla">19/20</th>
-                    <th class="unit_talla">21/22</th>
-                    <th class="unit_talla">X</th>
-                    <th class="unit_talla">TOTAL</th>
-                </tr>
-                @endif
-                @endif
-                @if ($genero == 1)
-                <tr>
-                    <th class="unit_talla">28</th>
-                    <th class="unit_talla">29</th>
-                    <th class="unit_talla">30</th>
-                    <th class="unit_talla">31</th>
-                    <th class="unit_talla">32</th>
-                    <th class="unit_talla">34</th>
-                    <th class="unit_talla">36</th>
-                    <th class="unit_talla">38</th>
-                    <th class="unit_talla">40</th>
-                    <th class="unit_talla">42</th>
-                    <th class="unit_talla">44</th>
-                    <th class="unit_talla">L</th>
-                    <th class="unit_talla">X</th>
-                    <th class="unit_talla">TOTAL</th>
-                </tr>
-                @endif
-                @if ($genero == 3)
-                <tr>
-                    <th class="unit_talla">2</th>
-                    <th class="unit_talla">4</th>
-                    <th class="unit_talla">6</th>
-                    <th class="unit_talla">8</th>
-                    <th class="unit_talla">10</th>
-                    <th class="unit_talla">12</th>
-                    <th class="unit_talla">14</th>
-                    <th class="unit_talla">16</th>
-                    <th class="unit_talla">I</th>
-                    <th class="unit_talla">J</th>
-                    <th class="unit_talla">K</th>
-                    <th class="unit_talla">L</th>
-                    <th class="unit_talla">X</th>
-                    <th class="unit_talla">TOTAL</th>
-                </tr>
-                    
-                @endif
-                @if ($genero == 4)
-                <tr>
-                    <th class="unit_talla">2</th>
-                    <th class="unit_talla">4</th>
-                    <th class="unit_talla">6</th>
-                    <th class="unit_talla">8</th>
-                    <th class="unit_talla">10</th>
-                    <th class="unit_talla">12</th>
-                    <th class="unit_talla">14</th>
-                    <th class="unit_talla">16</th>
-                    <th class="unit_talla">I</th>
-                    <th class="unit_talla">J</th>
-                    <th class="unit_talla">K</th>
-                    <th class="unit_talla">L</th>
-                    <th class="unit_talla">X</th>
-                    <th class="unit_talla">TOTAL</th>
-                </tr>
-                    
-                @endif
+				<tr>
+					<th style="color:#fff;">REFERENCIA</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th style="color:#fff">TOTAL</th>
+				</tr>
 			</thead>
 			<tbody>
-                @foreach ($detalle as $talla)
-                <tr>
-                    <td class="unit_talla">
-                        @if ($talla->a == 0)
-                        0
-                        @else
-                        {{$talla->a}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->b == 0)
-                        0
-                        @else
-                        {{$talla->b}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->c == 0)
-                        0
-                        @else
-                        {{$talla->c}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->d == 0)
-                        0
-                        @else
-                        {{$talla->d}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->e == 0)
-                        0
-                        @else
-                        {{$talla->e}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->f == 0)
-                        0
-                        @else
-                        {{$talla->f}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->g == 0)
-                        0
-                        @else
-                        {{$talla->g}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->h == 0)
-                        0
-                        @else
-                        {{$talla->h}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->i == 0)
-                        0
-                        @else
-                        {{$talla->i}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->j == 0)
-                        0
-                        @else
-                        {{$talla->j}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->k == 0)
-                        0
-                        @else
-                        {{$talla->k}}
-                        @endif
-
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->l == 0)
-                        0
-                        @else
-                        {{$talla->l}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">
-                        @if ($talla->talla_x == 0)
-                        0
-                        @else
-                        {{$talla->talla_x}}
-                        @endif
-                    </td>
-                    <td class="unit_talla">{{$talla->total}}</td>
-                </tr>
-                @endforeach
+				@foreach ($detalle as $talla)
+				<tr>
+					<td class="unit_talla">{{$talla->producto->referencia_producto}}</td>
+					<td class="unit_talla">{{$talla->a}}</td>
+					<td class="unit_talla">{{$talla->b}}</td>
+					<td class="unit_talla">{{$talla->c}}</td>
+					<td class="unit_talla">{{$talla->d}}</td>
+					<td class="unit_talla">{{$talla->e}}</td>
+					<td class="unit_talla">{{$talla->f}}</td>
+					<td class="unit_talla">{{$talla->g}}</td>
+					<td class="unit_talla">{{$talla->h}}</td>
+					<td class="unit_talla">{{$talla->i}}</td>
+					<td class="unit_talla">{{$talla->j}}</td>
+					<td class="unit_talla">{{$talla->k}}</td>
+					<td class="unit_talla">{{$talla->l}}</td>
+					<td class="unit_talla">{{$talla->total}}</td>
+				</tr>
+				@endforeach
 			</tbody>
 		</table>
 

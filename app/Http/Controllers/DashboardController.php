@@ -13,6 +13,7 @@ use App\TallasPerdidas;
 use App\NotaCreditoDetalle;
 use App\Corte;
 use App\Empleado;
+use App\ordenEmpaqueDetalle;
 use App\ordenFacturacionDetalle;
 use App\Perdida;
 use App\ordenPedidoDetalle;
@@ -69,11 +70,15 @@ class DashboardController extends Controller
 
 
 
-        $facturado = ordenFacturacionDetalle::all();
+        $facturado = ordenEmpaqueDetalle::all();
+
+        $facturado_disp = ordenEmpaqueDetalle::where('empacado', '=', '1')->get();
         // $orden = ordenPedidoDetalle::all();
 
         //perdidas
         $orden_pedido = ordenPedido::where('status_orden_pedido', 'LIKE', 'Vigente')
+        ->orwhere('status_orden_pedido', 'Stanby')
+        ->orwhere('status_orden_pedido', 'Empacado Parcial')
         ->select('id')
         ->get();
 
@@ -89,8 +94,8 @@ class DashboardController extends Controller
 
         $nota_credito = NotaCreditoDetalle::all();
 
-        $existencia = $almacen->sum('total')  + $tallasSegundas->sum('total') + $nota_credito->sum('total');
-        $dispVenta = $existencia - $orden->sum('total') - $tallasSegundas->sum('total');
+        $existencia = $almacen->sum('total') - $facturado->sum('total') + $nota_credito->sum('total');
+        $dispVenta = $almacen->sum('total') - $facturado_disp->sum('total') - $orden->sum('total') + $nota_credito->sum('total');
 
         $data = [
             'code' => '200',
@@ -100,6 +105,7 @@ class DashboardController extends Controller
             'segunda' => $tallasSegundas->sum('total'),
             'facturado' => $facturado->sum('total'),
             'orden' => $orden->sum('total'),
+            'nota_credito' => $nota_credito->sum('total'),
             'dispVenta' => ($dispVenta < 0) ? 0 : $dispVenta,
             'existencia' => ($existencia < 0) ? 0 : $existencia
         ];

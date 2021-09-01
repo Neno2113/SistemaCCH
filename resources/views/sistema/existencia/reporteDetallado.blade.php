@@ -27,11 +27,11 @@
             width: 21cm;
             height: 29.7cm;
             margin: 0 auto;
-            color: #555555;
+            color: #000;
             background: #FFFFFF;
             font-family: Arial, sans-serif;
             font-size: 10px;
-            font-family: 'Roboto', sans-serif;
+            /* font-family: 'Roboto', sans-serif; */
         }
 
         header {
@@ -650,15 +650,26 @@
 
         {{-- </div>
     </header> --}}
-    {{-- <p>{{$almacen_mythos}}</p>
-    <p>{{$facturado_m}}</p>
-    <p>{{$nota_credito_m}}</p> --}}
+    {{-- <p>{{$almacen_mythos->sum('total')}}</p>
+    <p>{{$almacen_lavish->sum('total')}}</p>
+    <p>{{$almacen_genius->sum('total')}}</p>
+    <p>Ordenes</p>
+    <p>{{$orden_m->sum('total')}}</p>
+    <p>{{$orden_l->sum('total')}}</p>
+    <p>Facturado</p>
+    <p>{{$facturado_m->sum('total')}}</p>
+    <p>{{$facturado_l->sum('total')}}</p> --}}
+    {{-- <p>{{$almacen_lavish}}</p> --}}
+    {{-- <p>{{$facturado_l}}</p> --}}
+    {{-- <p>{{$facturado_l}}</p> --}}
+    {{-- <p>{{$orden_l}}</p> --}}
     <main>
         <h3>Reporte de existencias</h3>
         <p style="width:40%;" >Hasta <span style="font-weight:bolder; ">{{date("d/m/20y", strtotime($hasta))}}</span>
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-tallas">
             <thead class="tabla-tallas">
                 <tr>
+                    <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
@@ -681,6 +692,7 @@
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
+                    <th class="talla_head"></th>
                     <td class="talla">0/0</td>
                     <td class="talla">1/2</td>
                     <td class="talla">3/4</td>
@@ -700,6 +712,7 @@
                     <th class="talla_head">DEPTO</th>
                     <th class="talla_head">MARCA</th>
                     <th class="talla_head">REF</th>
+                    <th class="talla_head">UBC</th>
                     <td class="talla">28</td>
                     <td class="talla">29</td>
                     <td class="talla">30</td>
@@ -719,6 +732,7 @@
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
+                    <th class="talla_head"></th>
                     <td class="talla">2</td>
                     <td class="talla">4</td>
                     <td class="talla">6</td>
@@ -735,6 +749,7 @@
                 </tr>
 
                 <tr>
+                    <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
                     <th class="talla_head"></th>
@@ -776,6 +791,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr style="font-weight:800;">
                     <td>
@@ -798,8 +814,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
-                @if (count($facturado_m) > 0 )
+                {{-- @if (count($facturado_m) > 0 )
                 @foreach ($almacen_mythos as $alm_m)
                 @foreach ($facturado_m as $fact_m)
                 @if ($alm_m->producto_id == $fact_m->referencia_father)
@@ -830,13 +847,18 @@
              
                 @endforeach
                 @endforeach
-                @else
+                @else --}}
                 @foreach ($almacen_mythos as $alm_m)
+                @if ($alm_m->total > 0)
+                    
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>
+                    <td style="font-weight: bold; ">
                         {{$alm_m->referencia_producto}}
+                    </td>
+                    <td>
+                        {{$alm_m->ubicacion}}
                     </td>
                     <td>{{ ($alm_m->a ) < 0 ? 0 : ($alm_m->a) }}</td>
                     <td>{{ ($alm_m->b ) < 0 ? 0 : ($alm_m->b) }}</td>
@@ -852,8 +874,10 @@
                     <td>{{ ($alm_m->l ) < 0 ? 0 : ($alm_m->l) }}</td>
                     <td>{{ ($alm_m->total) < 0 ? 0 : ($alm_m->total)}}</td>
                 </tr>
-                @endforeach
                 @endif
+
+                @endforeach
+                {{-- @endif --}}
               
                 {{-- @elseif(count($facturado_m) > 0 ))
                 @foreach ($almacen_mythos as $alm_m)
@@ -973,6 +997,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
 
                 {{-- Aqui va el Subtotal --}}
@@ -982,6 +1007,7 @@
                     <td>
                         SUBTOTAL
                     </td>
+                    <td></td>
                     <td>{{$a_alm_m}}</td>
                     <td>{{$b_alm_m}}</td>
                     <td>{{$c_alm_m}}</td>
@@ -1017,8 +1043,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
-                @if (count($facturado_l) > 0 )
+                {{-- @if (count($facturado_l) > 0 )
                 @foreach ($almacen_lavish as $alm_l)
                 @foreach ($facturado_l as $fact_l)
                 @if ($alm_l->producto_id == $fact_l->referencia_father)
@@ -1045,17 +1072,21 @@
                  
                 
                 </tr>
-                @endif
              
                 @endforeach
                 @endforeach
-                @else 
+                @else  --}}
                 @foreach ($almacen_lavish as $alm_l)
+                @if ($alm_l->total > 0)
+                    
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>
+                    <td style="font-weight: bold; ">
                         {{$alm_l->referencia_producto}}
+                    </td>
+                    <td>
+                        {{$alm_l->ubicacion}}
                     </td>
                     <td>{{ ($alm_l->a) < 0 ? 0 : ($alm_l->a) }}</td>
                     <td>{{ ($alm_l->b) < 0 ? 0 : ($alm_l->b) }}</td>
@@ -1071,10 +1102,15 @@
                     <td>{{ ($alm_l->l) < 0 ? 0 : ($alm_l->l) }}</td>
                     <td>{{ ($alm_l->total) < 0 ? 0 : ($alm_l->total) }}</td>
                 </tr>
-                @endforeach
                 @endif
+
+                @endforeach
+                {{-- @endif --}}
+
+                {{-- @endif --}}
                 <tr>
                     <td style="color:#fff;">test</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1098,6 +1134,7 @@
                         <td>
                             SUBTOTAL
                         </td>
+                        <td></td>
                         <td>{{($a_alm_l <= 0) ? 0 : $a_alm_l}}</td>
                         <td>{{($b_alm_l <= 0) ? 0 : $b_alm_l}}</td>
                         <td>{{($c_alm_l <= 0) ? 0 : $c_alm_l}}</td>
@@ -1133,8 +1170,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
-                @if (count($facturado_l) > 0 )
+                {{-- @if (count($facturado_l) > 0 )
                 @foreach ($almacen_genius as $alm_g)
                 @foreach ($facturado_g as $fact_g)
                 @if ($alm_g->producto_id == $fact_g->referencia_father)
@@ -1165,13 +1203,18 @@
              
                 @endforeach
                 @endforeach
-                @else
+                @else --}}
                 @foreach ($almacen_genius as $alm_g)
+                @if ($alm_g->total > 0)
+                    
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>
+                    <td style="font-weight: bold; ">
                         {{$alm_g->referencia_producto}}
+                    </td>
+                    <td>
+                        {{$alm_g->ubicacion}}
                     </td>
                     <td>{{ ($alm_g->a) < 0 ? 0 : ($alm_g->a) }}</td>
                     <td>{{ ($alm_g->b) < 0 ? 0 : ($alm_g->b) }}</td>
@@ -1189,10 +1232,13 @@
                  
                 
                 </tr>
-                @endforeach
                 @endif
+
+                @endforeach
+                {{-- @endif --}}
                 <tr>
                     <td style="color:#fff;">test</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1218,6 +1264,7 @@
                     <td>
                         SUBTOTAL
                     </td>
+                    <td></td>
                     <td>{{$a_alm_g}}</td>
                     <td>{{$b_alm_g}}</td>
                     <td>{{$c_alm_g}}</td>
@@ -1249,6 +1296,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
 
                 {{-- Aqui va el Subtotal --}}
@@ -1258,6 +1306,7 @@
                     <td>
                         SUBTOTAL
                     </td>
+                    <td></td>
                     <td>{{($a_sub_alm <= 0) ? 0 : $a_sub_alm}}</td>
                     <td>{{($b_sub_alm <= 0) ? 0 : $b_sub_alm}}</td>
                     <td>{{($c_sub_alm <= 0) ? 0 : $c_sub_alm}}</td>
@@ -1275,6 +1324,7 @@
                 {{-- Aqui va el Grantotal --}}
                 <tr style="font-weight:800; line-height: 45px;">
                     <td>GRAN TOTAL</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

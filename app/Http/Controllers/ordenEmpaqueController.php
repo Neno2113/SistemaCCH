@@ -104,6 +104,7 @@ class ordenEmpaqueController extends Controller
                 'users.name', 'cliente.nombre_cliente', 'cliente_sucursales.nombre_sucursal',
                 'orden_pedido.status_orden_pedido', 'orden_pedido.orden_proceso_impresa'
             ])->where('status_orden_pedido', 'LIKE', 'Vigente');
+            // ->where('status_orden_pedido', 'LIKE', 'Vigente');
 
         return DataTables::of($ordenes)
             ->addColumn('Expandir', function () {
@@ -289,7 +290,7 @@ class ordenEmpaqueController extends Controller
         $orden_empaque->impreso = 1;
         $orden_empaque->save();
 
-        $orden->status_orden_pedido = 'Facturado';
+        // $orden->status_orden_pedido = 'Facturado';
         $orden->save();
 
 
@@ -1668,7 +1669,7 @@ class ordenEmpaqueController extends Controller
             ];
         } else {
             $orden_detalle = ordenPedidoDetalle::find($id);
-            $orden_detalle->orden_empacada = 1;
+          
           
 
             $empaque_id = $request->input('id');
@@ -1704,15 +1705,9 @@ class ordenEmpaqueController extends Controller
             } else {
             
                 if (\is_object($orden_detalle)) {
-                    $orden_detalle->save();
 
                     $empaqueDetalle = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)
                     ->where('producto_id', $producto)->first();
-
-                    // $ordenFacturacion = OrdenFacturacion::find($orden_facturacion_id);
-
-                    // $ordenFacturacion->por_transporte = $transporte;
-                    // $ordenFacturacion->save();
 
                     if(is_object($empaqueDetalle)){
                         $empaqueDetalle->a = $empaqueDetalle->a + $a;
@@ -1728,9 +1723,45 @@ class ordenEmpaqueController extends Controller
                         $empaqueDetalle->k = $empaqueDetalle->k + $k;
                         $empaqueDetalle->l = $empaqueDetalle->l + $l;
                         $empaqueDetalle->total = $empaqueDetalle->total + $sumEmpaque;
+                      
                         $empaqueDetalle->save();
 
                         $orden_empaque = ordenEmpaque::find($empaque_id);
+
+                        //Verificar si se termino de empacar para cambiar el estado en la orden de pedido
+                        $orden_pedido = ordenPedido::find($orden_empaque->orden_pedido_id);
+
+                        $detalle_ordenes = ordenPedidoDetalle::where('orden_pedido_id', $orden_pedido->id)->get();
+
+                        $total_orden = $detalle_ordenes->sum('total');
+
+                        $detalle_empacados = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)->get();
+
+                        $total_empacado = $detalle_empacados->sum('total');
+
+
+                        $empaque_detalle_new = ordenEmpaqueDetalle::find($empaqueDetalle->id);
+                        
+                        if($total_orden == $total_empacado){
+                            $orden_pedido->status_orden_pedido = 'Facturado';
+                            for ($i=0; $i < count($detalle_ordenes) ; $i++) { 
+                                $detalle_ordenes[$i]->orden_empacada = 1;
+                                $detalle_ordenes[$i]->save();
+                            }
+                            for ($i=0; $i < count($detalle_empacados) ; $i++) { 
+                                $detalle_empacados[$i]->empacado = 1;
+                                $detalle_empacados[$i]->save();
+                            }
+                            $orden_pedido->save();
+                            
+                        } else {
+                            $orden_detalle->empacado_pendiente = 1;
+                            $orden_pedido->status_orden_pedido = 'Empacado Parcial';
+                            $empaque_detalle_new->empacado = 0;
+                            $orden_pedido->save();
+                        }
+                       
+                        $orden_detalle->save();
 
                         if(empty($orden_facturacion_id)){
                             // verificar numero antiguo de la secuencia;
@@ -1761,7 +1792,9 @@ class ordenEmpaqueController extends Controller
                                 'orden_empaque_detalle' => $empaqueDetalle,
                                 'orden_empaque' => $orden_empaque,
                                 'orden' => $orden_detalle,
-                                'orden_facturacion' => $orden_facturacion
+                                'orden_facturacion' => $orden_facturacion,
+                                'total_orden' =>  $total_orden,
+                                'total_empacado' => $total_empacado
                                
                             ];
                         } else {
@@ -1771,6 +1804,8 @@ class ordenEmpaqueController extends Controller
                                 'orden_empaque_detalle' => $empaqueDetalle,
                                 'orden_empaque' => $orden_empaque,
                                 'orden' => $orden_detalle,
+                                'total_orden' =>  $total_orden,
+                                'total_empacado' => $total_empacado
                                
                             ];
                         }
@@ -1799,11 +1834,20 @@ class ordenEmpaqueController extends Controller
                         $orden_empaque_detalle->cant_bulto = $cant_bultos;
                         $orden_empaque_detalle->total = $sumEmpaque;
                         $orden_empaque_detalle->fecha_empacado = date('Y/m/d h:i:s');
-                        // $orden_empaque_detalle->empacado = 1;
                         $orden_empaque_detalle->facturado = 0;
-                        $orden_empaque_detalle->save();
             
                         $orden_empaque = ordenEmpaque::find($empaque_id);
+
+                        $producto = Product::find($orden_detalle->producto_id);
+                        $ref_f = $producto->referencia_father;
+                        if(empty($ref_f)){
+                            $orden_empaque_detalle->referencia_father = $orden_detalle->producto_id;
+                        }else{
+                            $orden_empaque_detalle->referencia_father = $ref_f;
+                        }
+                
+
+                        $orden_empaque_detalle->save();
 
                         if(empty($orden_facturacion_id)){
                             // verificar numero antiguo de la secuencia;
@@ -1828,6 +1872,41 @@ class ordenEmpaqueController extends Controller
         
                             $orden_facturacion->save();
 
+                            //Verificar si se termino de empacar para cambiar el estado en la orden de pedido
+                            $orden_pedido = ordenPedido::find($orden_empaque->orden_pedido_id);
+
+                            $detalle_ordenes = ordenPedidoDetalle::where('orden_pedido_id', $orden_pedido->id)->get();
+
+                            $total_orden = $detalle_ordenes->sum('total');
+
+                            $detalle_empacados = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)->get();
+
+                            $total_empacado = $detalle_empacados->sum('total');
+
+                            $empaque_detalle_new = ordenEmpaqueDetalle::find($orden_empaque_detalle->id);
+
+                            
+                            if($total_orden == $total_empacado){
+                                $orden_pedido->status_orden_pedido = 'Facturado';
+                                for ($i=0; $i < count($detalle_ordenes) ; $i++) { 
+                                    $detalle_ordenes[$i]->orden_empacada = 1;
+                                    $detalle_ordenes[$i]->save();
+                                }
+                                for ($i=0; $i < count($detalle_empacados) ; $i++) { 
+                                    $detalle_empacados[$i]->empacado = 1;
+                                    $detalle_empacados[$i]->save();
+                                }
+                                
+                                $orden_pedido->save();
+                                
+                            } else{
+                                $orden_pedido->status_orden_pedido = 'Empacado Parcial';
+                                $empaque_detalle_new->empacado = 0;
+                                $orden_pedido->save();
+                            }
+                            // $empaque_detalle_new->save();
+                            $orden_detalle->save();
+
                             $data = [
                                 'code' => 200,
                                 'status' => 'success',
@@ -1835,9 +1914,46 @@ class ordenEmpaqueController extends Controller
                                 'orden_empaque' => $orden_empaque,
                                 'suma' => $sumEmpaque,
                                 'orden' => $orden_detalle,
-                                'orden_facturacion' => $orden_facturacion
+                                'orden_facturacion' => $orden_facturacion,
+                                'total_orden' =>  $total_orden,
+                                'total' => $total_empacado
                             ];
                         } else {
+
+                             //Verificar si se termino de empacar para cambiar el estado en la orden de pedido
+                            $orden_pedido = ordenPedido::find($orden_detalle->orden_pedido_id);
+
+                            $detalle_ordenes = ordenPedidoDetalle::where('orden_pedido_id', $orden_pedido->id)->get();
+
+                            $total_orden = $detalle_ordenes->sum('total');
+
+                            $detalle_empacados = ordenEmpaqueDetalle::where('orden_empaque_id', $empaque_id)->get();
+
+                            $total_empacado = $detalle_empacados->sum('total');
+
+                            $empaque_detalle_new = ordenEmpaqueDetalle::find($orden_empaque_detalle->id);
+
+                            
+                            if($total_orden == $total_empacado){
+                                $orden_pedido->status_orden_pedido = 'Facturado';
+                                for ($i=0; $i < count($detalle_ordenes) ; $i++) { 
+                                    $detalle_ordenes[$i]->orden_empacada = 1;
+                                    $detalle_ordenes[$i]->save();
+                                }
+                                for ($i=0; $i < count($detalle_empacados) ; $i++) { 
+                                    $detalle_empacados[$i]->empacado = 1;
+                                    $detalle_empacados[$i]->save();
+                                }
+                                
+                                $orden_pedido->save();
+                                
+                            } else{
+                                $orden_pedido->status_orden_pedido = 'Empacado Parcial';
+                                $empaque_detalle_new->empacado = 0;
+                                $orden_pedido->save();
+                            }
+                            // $empaque_detalle_new->save();
+                            $orden_detalle->save();
                             $data = [
                                 'code' => 200,
                                 'status' => 'success',
@@ -1845,6 +1961,8 @@ class ordenEmpaqueController extends Controller
                                 'orden_empaque' => $orden_empaque,
                                 'suma' => $sumEmpaque,
                                 'orden' => $orden_detalle,
+                                'total_orden' =>  $total_orden,
+                                'total' => $total_empacado
                             ];
                         }
                     }
@@ -2158,9 +2276,8 @@ class ordenEmpaqueController extends Controller
                     $almacen = AlmacenDetalle::where('producto_id', $ref_father)
                     ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
                     ->get();
-                    $tallasOrdenes_f = ordenPedidoDetalle::where('referencia_father', $ref_father)
-                    ->where('orden_empacada', '1')
-                    ->where('venta_segunda', '0')->get();
+                    $tallasOrdenes_f = ordenEmpaqueDetalle::where('referencia_father', $ref_father)
+                    ->get();
                     $tallasCredito_f = NotaCreditoDetalle::where('referencia_father', $ref_father)->get();
     
                     $a = $almacen->sum('a');
@@ -2208,7 +2325,6 @@ class ordenEmpaqueController extends Controller
                     $l_ref2 = $l_ref2 - $ventasSegundas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
     
                     $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
-                    $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
                     
                     $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
                     $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
@@ -2222,7 +2338,9 @@ class ordenEmpaqueController extends Controller
                     $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
                     $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
                     $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
-
+                    
+                    $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
+                   
                     $a_perc = ($a_ref2 / $total_real) * 100;
                     $b_perc = ($b_ref2 / $total_real) * 100;
                     $c_perc = ($c_ref2 / $total_real) * 100;
@@ -2251,7 +2369,7 @@ class ordenEmpaqueController extends Controller
                         // 'tallas' => $tallas,
                         'producto' => $ref,
                         'almacen' => $tallasAlmacen,
-                        'ordenesPrimera' => $orden_detalle,
+                        'ordenesPrimera' => $tallasOrdenes_f,
                         'ordenesSegunda' => $ventasSegundas,
                         'curva_producto' => $curva_producto,
                         'total_curva_producto' => $total_curva_producto,
@@ -2291,9 +2409,8 @@ class ordenEmpaqueController extends Controller
                     $almacen = AlmacenDetalle::where('producto_id', $ref_father)
                         ->select('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l')
                         ->get();
-                    $tallasOrdenes_f = ordenPedidoDetalle::where('producto_id', $ref_father)
-                    ->where('orden_empacada', '1')
-                    ->where('venta_segunda', '0')->get();
+                    $tallasOrdenes_f = ordenEmpaqueDetalle::where('producto_id', $ref_father)
+                    ->get();
                     $tallasCredito_f = NotaCreditoDetalle::where('producto_id', $ref_father)->get();
     
                     $a = $almacen->sum('a');
@@ -2342,7 +2459,6 @@ class ordenEmpaqueController extends Controller
                     // print_r($tallas);
                     // die();
                     $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
-                    $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 ;
                     
                     $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
                     $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
@@ -2356,7 +2472,8 @@ class ordenEmpaqueController extends Controller
                     $j_ref2 = ($j_ref2 < 0 ? 0 : $j_ref2);
                     $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
                     $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
-
+                    
+                    $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 ;
                     $a_perc = ($a_ref2 / $total_real) * 100;
                     $b_perc = ($b_ref2 / $total_real) * 100;
                     $c_perc = ($c_ref2 / $total_real) * 100;
@@ -2569,8 +2686,14 @@ class ordenEmpaqueController extends Controller
             $orden_detalle->k = $k;
             $orden_detalle->l = $l;
             $orden_detalle->total = $sum_cant;
+            $orden_detalle->orden_redistribuida = 1;
 
             $orden_detalle->save();
+
+            $orden = ordenPedido::find($pedido);
+
+            $orden->status_orden_pedido = 'Vigente';
+            $orden->save();
 
             $data = [
                 'code' => 200,
@@ -2581,6 +2704,58 @@ class ordenEmpaqueController extends Controller
 
 
   
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    function clearOP()
+    {
+        $ordenes_id = ordenFacturacion::all();
+
+        $ordenes = array();
+
+        $longitud = count($ordenes_id);
+
+        for ($i = 0; $i < $longitud; $i++) {
+            array_push($ordenes, $ordenes_id[$i]['id']);
+        }
+
+        $orden_detalle = ordenFacturacionDetalle::whereIn('orden_facturacion_id', $ordenes)->get();
+
+        $detalles = array();
+
+        $longitudDetalle = count($orden_detalle);
+
+        for ($i = 0; $i < $longitudDetalle; $i++) {
+            array_push($detalles, $orden_detalle[$i]['orden_facturacion_id']);
+        }
+
+        //verificar diferencia
+
+        $diferencia = array_diff($detalles, $ordenes);
+
+        if (!empty($diferencia)) {
+            $orden = ordenFacturacionDetalle::whereIn('orden_facturacion_id', $diferencia)->get();
+            $length = count($orden);
+
+            if (!empty($orden)) {
+                for ($i = 0; $i < $length; $i++) {
+                    $orden[$i]->delete();
+                }
+            }
+        }
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'message' => 'Hecho',
+            'diferencia'=> array_diff($detalles, $ordenes),
+            'ordenes' => $ordenes,
+            'detalle' => $detalles,
+            // 'diferencia' => $orden
+        ];
+
 
         return response()->json($data, $data['code']);
     }

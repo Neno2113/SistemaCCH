@@ -27,11 +27,11 @@
             width: 21cm;
             height: 29.7cm;
             margin: 0 auto;
-            color: #555555;
+            color: #000;
             background: #FFFFFF;
             font-family: Arial, sans-serif;
             font-size: 10px;
-            font-family: 'Roboto', sans-serif;
+            /* font-family: 'Roboto', sans-serif; */
         }
 
         header {

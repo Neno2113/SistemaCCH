@@ -26,11 +26,11 @@
 			width: 21cm;
 			height: 29.7cm;
 			margin: 0 auto;
-			color: #555555;
+			color: #000;
 			background: #FFFFFF;
 			font-family: Arial, sans-serif;
 			font-size: 10px;
-			font-family: SourceSansPro;
+			/* font-family: SourceSansPro; */
 		}
 
 		header {
@@ -150,7 +150,7 @@
 			border-spacing: 0;
 			margin-bottom: 20px;
 			table-layout: auto;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-principal th,
@@ -187,7 +187,7 @@
 			font-size: 13px;
 			/* background: #160c70; */
 			text-align: center;
-			border: solid 2px black;
+			border: solid 1px black;
 
 		}
 
@@ -195,7 +195,7 @@
 			text-align: center;
 			font-size: 13px;
 			color: #fff;
-			border: solid 2px black;
+			border: solid 1px black;
 
 		}
 
@@ -203,7 +203,7 @@
 			/* background-color: #160c70; */
 			font-size: 13px;
 			color: #fff;
-			border: solid 2px black;
+			border: solid 1px black;
 			/* font-weight: bold; */
 		}
 
@@ -227,7 +227,7 @@
 			/* background: #fff; */
 			color: #fff;
 			font-size: 13px;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-principal tbody tr {
@@ -242,7 +242,7 @@
 			font-size: 1.2em;
 			/* text-decoration: none; */
 			color: #000;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-principal td.unit-fiscal,
@@ -282,7 +282,7 @@
 		}
 
 		.tabla-principal tbody tr:last-child td {
-			/* border: none; */
+			border: 1px solid black;
 			/* padding-bottom: 350px; */
 		}
 
@@ -399,7 +399,7 @@
 		.tabla-factura {
 			float: right;
 			width: 50%;
-			border: 2px solid black;
+			border: 1px solid black;
 			margin-right: 34%;
 		}
 
@@ -417,8 +417,8 @@
 		}
 
 		.tabla-factura tbody .num_factura {
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
 			text-align: center;
 			padding: 7px;
 			font-size: 12px;
@@ -436,7 +436,7 @@
 			font-size: 10px;
 			padding: 10px;
 			/* padding-bottom: 13px; */
-			border-top: 2px solid black;
+			border-top: 1px solid black;
 
 		}
 
@@ -464,35 +464,35 @@
 
 		.tabla-cliente {
 			float: left;
-			border-top: 2px solid black;
-			border-left: 2px solid black;
-			border-right: 2px solid black;
+			border-top: 1px solid black;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
 			width: 40%;
 
 
 		}
 
 		.tabla-cliente thead th {
-			border-bottom: 2px solid black;
+			border-bottom: 1px solid black;
 			font-size: 11px;
 			padding-left: 11px;
 		}
 
 		.tabla-cliente thead td {
-			border-bottom: 2px solid black;
+			border-bottom: 1px solid black;
 			padding-left: 47px;
 		}
 
 		.tabla-cliente tbody td {
-			border-bottom: 2px solid black;
+			border-bottom: 1px solid black;
 			padding-right: 106px;
 			padding-left: 11px;
 
 		}
 
 		.tabla-cliente tbody th {
-			border-right: 2px solid black;
-			border-bottom: 2px solid black;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
 			font-size: 11px;
 			font-weight: bold;
 			padding-left: 11px;
@@ -521,7 +521,7 @@
             border-spacing: 0; */
 			margin-bottom: 20px;
 			table-layout: auto;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-ncf thead th {
@@ -593,7 +593,7 @@
 			border-spacing: 0;
 			margin-bottom: 20px;
 			table-layout: auto;
-			border: solid 2px black;
+			border: solid 1px black;
 		}
 
 		.tabla-tallas th,
@@ -602,14 +602,14 @@
 			background: #fff;
 			text-align: center;
 			border-bottom: 1px solid #FFFFFF;
-			border: solid 2px black;
+			border: solid 1px #444;
 		}
 		.tabla-tallas th {
 			white-space: nowrap;
 			font-weight: bold;
 			background-color: #131980;
 			font-size: 10px;
-			border: solid 2px black;
+			border: solid 1px black;
 			color: #fff;
 		}
 		.tabla-tallas .talla_head {
@@ -618,7 +618,7 @@
 		}
 
 		.tabla-tallas .talla {
-			border: 2px solid black;
+			border: 1px solid black;
 			text-align: center;
 			font-weight: bold;
 			font-size: 8px;
@@ -767,7 +767,7 @@
 					<td class="talla">40</td>
 					<td class="talla">42</td>
 					<td class="talla">44</td>
-                    <td class="talla"></td>
+                    <td class="talla">46</td>
                     <td class="talla"></td>
 				</tr>
 

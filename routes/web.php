@@ -378,6 +378,9 @@ Route::get('/imprimir/DocEA/{id}', 'AlmacenController@imprimir')->name('print');
 Route::get('/atributos', 'AlmacenController@atributos');
 Route::post('/atributo', 'AlmacenController@storeAtributo');
 Route::post('/atributo/delete/{id}', 'AlmacenController@destroyAtributo');
+Route::get('/ubicaciones', 'AlmacenController@ubicaciones');
+Route::post('/ubicacion/delete/{id}', 'AlmacenController@destroyUbicacion');
+Route::post('/ubicacion', 'AlmacenController@storeUbicacion');
 
 //Existencia
 Route::get('producto_existencia', 'ExistenciaController@selectProduct');
@@ -423,6 +426,7 @@ Route::get('corte/fecha/{id}', 'ordenPedidoController@fechaEntrega');
 Route::get('ordenes/empty', 'ordenPedidoController@clearOP');
 Route::post('sucursal/select', 'ordenPedidoController@selectSucu');
 Route::post('/detalle/delete/{id}', 'ordenPedidoController@destroyProduct');
+Route::post('/orden-a-redistribuir/{id}', 'ordenPedidoController@aRedistribuir');
 
 
 //orden empaque
@@ -438,6 +442,7 @@ Route::post('/editar-empaque', 'ordenEmpaqueController@editarEmpaque');
 Route::get('orden-productos/{id}', 'ordenEmpaqueController@OrdenProductos');
 Route::post('/producto-curva', 'ordenEmpaqueController@curvas');
 Route::post('/orden_distribuir', 'ordenEmpaqueController@distribucion');
+Route::get('facturacion/empty', 'ordenEmpaqueController@clearOP');
 
 //orden facturacion
 Route::get('ordenfacturacion/lastdigit', 'ordenFacturacionController@getDigits');

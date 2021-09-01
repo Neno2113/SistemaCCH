@@ -58,6 +58,7 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#disp_venta").html(datos.dispVenta);
+                    $("#existencia").html(datos.existencia);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }

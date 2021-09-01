@@ -1013,7 +1013,9 @@
                     </ul>
                 </li>
                 @endif
-                @if (Auth::user()->permisos()->where('permiso', 'Existencias')->first())
+                @if (Auth::user()->permisos()->where('permiso', 'Existencia Talla')->first() or Auth::user()->permisos()->where('permiso', 'Reporte Existencias')->first()
+                or Auth::user()->permisos()->where('permiso', 'Reporte Disponibles')->first() or  Auth::user()->permisos()->where('permiso', 'Reporte Segundas')->first()
+                or Auth::user()->permisos()->where('permiso', 'Reporte Pendientes')->first())
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-random"></i>
@@ -1023,12 +1025,46 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @if (Auth::user()->permisos()->where('permiso', 'Existencia Talla')->first())
                         <li class="nav-item">
                             <a href="/sistemaCCH/public/existencia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Existencia</p>
+                                <p>Existencia Talla</p>
                             </a>
                         </li>
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Reporte Existencias')->first())
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Existencia Talla</p>
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Reporte Disponibles')->first())
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte-primera" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Existencia Talla</p>
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Reporte Segundas')->first())
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte-Segundas" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Existencia Talla</p>
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->permisos()->where('permiso', 'Reporte Pendientes')->first())
+                        <li class="nav-item">
+                            <a href="/sistemaCCH/public/reporte-pendientes" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Existencia Talla</p>
+                            </a>
+                        </li>
+                        @endif
                     </ul>
                 </li>
                 @endif

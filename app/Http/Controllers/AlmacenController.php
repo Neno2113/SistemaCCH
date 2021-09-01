@@ -18,6 +18,7 @@ use App\ordenPedidoDetalle;
 use App\CurvaProducto;
 use App\PermisoUsuario;
 use App\SKU;
+use App\Ubicaciones;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -1421,4 +1422,71 @@ class AlmacenController extends Controller
         return response()->json($data, $data['code']);
         
     }
+
+    public function ubicaciones(){
+        $categorias = Ubicaciones::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'ubicaciones' => $categorias
+        ];
+        return response()->json($data, $data['code']);
+    } 
+
+    public function destroyUbicacion($id){
+        $categoria = Ubicaciones::find($id);
+
+        if(is_object($categoria)){
+            $categoria->delete();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'categoria' => $categoria
+            ];
+        } else {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error durante esta operacion'
+            ];
+        }
+        return response()->json($data, $data['code']);
+        
+    }
+
+    public function storeUbicacion(Request $request){
+
+        $validar = $request->validate([
+            'ubicacion' => 'required'
+        ]);
+
+        if(empty($validar)){
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+
+            $nombre = $request->input('ubicacion');
+
+            $categoria = new Ubicaciones();
+
+            $categoria->ubicacion = strtoupper($nombre);
+
+            $categoria->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'ubicacion' => $categoria
+            ];
+
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
 }

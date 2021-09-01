@@ -63,7 +63,6 @@ $(document).ready(function() {
         $("#fila1").hide();
         $("#fila2").hide();
         $("#fila3").hide();
-        productos();
 
     }
 
@@ -407,7 +406,7 @@ $(document).ready(function() {
             $("#rk").html("46");
             $("#i").attr('disabled', false);
             $("#j").attr('disabled', false);
-            $("#k").attr('disabled', true);
+            $("#k").attr('disabled', false);
             $("#l").attr('disabled', true);
             $("#btn-asignar2").html("28");
             $("#btn-asignar3").html("29");
@@ -525,7 +524,7 @@ $(document).ready(function() {
                     h_ref2 = datos.h_ref2;
 
                     if(genero_global == 1){
-                        $("td:nth-child(12),th:nth-child(12)").hide();
+                        $("td:nth-child(12),th:nth-child(12)").show();
                         $("td:nth-child(13),th:nth-child(13)").hide();
 
 
@@ -1127,6 +1126,8 @@ $(document).ready(function() {
             $("#btnAgregar").hide();
             $("#edit-hide").attr("disabled", false);
             $("#edit-hide").show();
+            productos();
+
             // $("#rollo-edit").hide();
         } else {
             $("#listadoUsers").show();
@@ -1955,7 +1956,8 @@ function calcularPorcentajeActual(){
     $("#i_act").val(resulti);
     $("#j_act").val(resultj);
     $("#k_act").val(resultk);
-    $("#k_act").val(resultl);
+    $("#l_act").val(resultl);
+    console.log(k, resultk);
 }
 
 
@@ -1974,6 +1976,7 @@ function calcularPorcentajeNuevo(){
     let l = isNaN(parseFloat($("#l_act").val())) ? 0: parseFloat($("#l_act").val());
     let total = a + b + c + d + e + f + g + h + i + j + k + l;
     total = total.toFixed(2);
+    // console.log(k);
 
     $("#total_actual").html(total+"%");
     // if(total == 100.00){
@@ -1997,7 +2000,7 @@ function calcularTotalCorte(){
     let k = isNaN(parseFloat($("#k").val())) ? 0: parseFloat($("#k").val());
     let l = isNaN(parseFloat($("#l").val())) ? 0: parseFloat($("#l").val());
     let total = a + b + c + d + e + f + g + h + i + j + k + l;
-
+    // console.log(k);
     $("#total_corte").html(total);
 
 }

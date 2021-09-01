@@ -62,6 +62,7 @@ $(document).ready(function() {
         mostrarForm(false);
         $("#btn-edit").hide();
         cortesSearch();
+
     }
 
 
@@ -132,36 +133,7 @@ $(document).ready(function() {
 
     }
 
-    const cortesSearch = () => {
-        $.ajax({
-            url: "cortes/perdidas",
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    var longitud = datos.cortes.length;
-
-                    for (let i = 0; i < longitud; i++) {
-                        var fila =  "<option value="+datos.cortes[i].id +">"+datos.cortes[i].numero_corte+"</option>"
-
-                        $("#cortesSearch").append(fila);
-                    }
-                    $("#cortesSearch").select2();
-
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
-            }
-        });
-    }
+ 
 
     // $("#cortesSearch").select2({
     //     placeholder: "Buscar un numero de corte Ej: 2019-xxx",
@@ -394,6 +366,7 @@ $(document).ready(function() {
 
                     switch (fase) {
                         case "Terminacion":
+                            $('#corte_detalle').show();
                             $("#tipo_perdida").html(
                                 "<option value='Normal'>Total</option>" +
                                 "<option value='Segundas'>Segundas</option>"
@@ -410,6 +383,7 @@ $(document).ready(function() {
                             );
                             break;
                         case "Almacen":
+                            $('#corte_detalle').show();
                             $("#tipo_perdida").html(
                                 "<option value='Normal'>Total</option>" +
                                 "<option value='Segundas'>Segundas</option>"
@@ -425,6 +399,7 @@ $(document).ready(function() {
                         break;
 
                         case "Produccion":
+                            $('#corte_detalle').hide();
                             $("#tipo_perdida").html(
                                 "<option value='Normal'>Total</option>"
                             );
@@ -447,6 +422,7 @@ $(document).ready(function() {
                         break;
 
                         case "Lavanderia":
+                            $('#corte_detalle').hide();
                             $("#tipo_perdida").html(
                                 "<option value='Normal'>Total</option>"
                             );
@@ -991,6 +967,7 @@ $(document).ready(function() {
                     // console.log(genero_global);
                     // console.log(a);
                     // console.log(a_total);
+                    $("#btn-guardar").show();
                     if(total > total_recibido){
                         bootbox.alert(`<div class='alert alert-danger' role='alert'>
                         <i class='fas fa-exclamation-triangle'></i> La cantidad total de tallas no puede ser mayor a <strong>${ total_recibido} </strong>
@@ -1248,6 +1225,7 @@ $(document).ready(function() {
             $("#lavanderiaAdd").show();
             $("#lavanderiaEdit").hide();
             $("#referencia_producto").hide();
+
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -1283,6 +1261,37 @@ $(document).ready(function() {
     init();
 });
 
+const cortesSearch = () => {
+    $.ajax({
+        url: "cortes/perdidas",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.cortes.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =  "<option value="+datos.cortes[i].id +">"+datos.cortes[i].numero_corte+"</option>"
+
+                    $("#cortesSearch").append(fila);
+                }
+                $("#cortesSearch").select2();
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error!!"
+            );
+        }
+    });
+}
+
 function mostrar(id_perdida) {
     $.get("perdida/" + id_perdida, function(data, status) {
         if(data.status == 'denied'){
@@ -1300,9 +1309,9 @@ function mostrar(id_perdida) {
             $("#btn-guardar").hide();
             $("#estandar_recibido").show();
             $("#lavanderia").show();
-            $("#corte").show();
+            // $("#corte").show();
             // $("#corteAdd").hide();
-            $("#corteEdit").show();
+            // $("#corteEdit").show();
             $("#btn-generar").hide();
             $("#productoEdit").show();
             $("#referencia_producto").show();
@@ -1310,8 +1319,9 @@ function mostrar(id_perdida) {
             $("#fila2").show();
             $("#fila3").show();
             $("#btn-close").hide();
+            // cortesSearch();
     
-    
+            $('#cortesSearch').val(data.perdida.corte_id).select2().trigger('change');
             $("#id").val(data.perdida.id);
             $("#no_perdida").val(data.perdida.no_perdida);
             $("#tipo_perdida").val(data.perdida.tipo_perdida).change();

@@ -76,10 +76,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         catalogos();
-        marcas();
-        generos();
-        tipos();
-        categorias();
+    
         $('#range_1').ionRangeSlider({
             min     : 02,
             max     : 16,
@@ -151,13 +148,15 @@ $(document).ready(function() {
         i = i.substr(1, 4);
 
 
-        var marca = $("#marca").val();
+        var marca = $("#marca option:selected").text().substring(0,1);
+
         var genero = $("#genero").val();
         var tipo_producto = $("#tipo_producto").val();
         var categoria = $("#categoria").val();
         var year = $("#year").val().toString().substr(+2);
         var referencia = marca + genero + tipo_producto + categoria + "-" + year + i;
         // $("#btn-sku").attr("disabled", false);
+        console.log(marca);
 
         genero_global = $("#genero").val();
         genero_plus = $("#categoria").val();
@@ -502,6 +501,10 @@ $(document).ready(function() {
             $("#btnAgregar").hide();
             $("#btn-curva").attr("disabled", true);
             $("#boton-sku").hide();
+            marcas();
+            generos();
+            tipos();
+            categorias();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -995,7 +998,7 @@ const marcas = () => {
 
                 for (let i = 0; i < longitud; i++) {
                     var fila =
-                    ` <option value="${datos.marcas[i].nombre}">${datos.marcas[i].indice} - ${datos.marcas[i].nombre}</option>`
+                    `<option value="${datos.marcas[i].nombre}">${datos.marcas[i].indice} - ${datos.marcas[i].nombre}</option>`
                     $("#marca").append(fila);
                 }
                 $("#marca").select2();

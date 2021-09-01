@@ -873,7 +873,7 @@
                     <th>Fecha</th>
                     <th>F. Entrega</th>
                     <th>Total</th>
-                    <th>Detallado</th>
+                    {{-- <th>Detallado</th> --}}
                     <th>Status</th>
                 </tr>
             </thead>
@@ -890,7 +890,7 @@
                     <th>F. Gen</th>
                     <th>F. Entrega</th>
                     <th>Total</th>
-                    <th>Detallado</th>
+                    {{-- <th>Detallado</th> --}}
                     <th>Status</th>
                 </tr>
             </tfoot>

@@ -79,7 +79,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3"></div>
                         <div class="col-md-3 mt-2">
                             {{-- <label for="">Marcar completa</label> --}}
                             <button class="btn btn-warning mt-4" id="btn-editarEmp"><i class="far fa-edit"></i> 
@@ -88,7 +87,7 @@
                         <div class="col-md-3 mt-2">
                             {{-- <label for="">Marcar completa</label> --}}
                             <button class="btn btn-danger mt-4" id="btn-completar"><i class="fas fa-sort-numeric-up"></i> 
-                                Completar orden</button>
+                                Cerrar orden</button>
                         </div>
                      
                     </div>

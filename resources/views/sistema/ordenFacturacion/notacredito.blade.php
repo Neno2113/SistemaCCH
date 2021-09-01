@@ -21,17 +21,43 @@
                 <form action="" id="formulario" class="form-group carta panel-body">
                     <h5>Formulario de Devoluciones</h5>
                     <hr>
-                    <div class="row" id="buscador">
-                        <div class="col-md-6">
-                            <select name="tags[]" id="facturas" class="form-control select2">
-                                <option value="" disabled>Facturas</option>
-                            </select>
-                            <label for="" class="label"></label>
+                    <div id="buscador">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="" class="label"></label>
+                                <select name="tags[]" id="facturas" class="form-control select2">
+                                    <option value="" disabled>Facturas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1 ml-2">
+                                <button type="button" id="btn-buscar" class="btn btn-outline-dark btn-block rounded-pill"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                        <div class="col-md-1 ml-2">
-                            <button type="button" id="btn-buscar" class="btn btn-outline-dark btn-block rounded-pill"><i
-                                    class="fas fa-search"></i></button>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="">Cliente</label>
+                                    <input type="text" name="cliente_of" id="cliente_of"
+                                        class="form-control text-center font-weight-bold" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">Sucursal</label>
+                                    <input type="text" name="sucursal_of" id="sucursal_of"
+                                        class="form-control text-center font-weight-bold" readonly>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="">Orden pedido</label>
+                                    <input type="text" name="orden_pedido_of" id="orden_pedido_of"
+                                        class="form-control text-center font-weight-bold" readonly>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="">Total </label>
+                                    <input type="text" name="total_of" id="total_of"
+                                        class="form-control text-center font-weight-bold" readonly>
+                            </div>
                         </div>
+                  
+              
                     </div>
                     <div id="factura-form">
                         <div class="row">
@@ -443,7 +469,7 @@
 
 
 
-
+                        
             </div>
             <div class="card-footer text-muted ">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
@@ -456,7 +482,10 @@
 
             </form>
         </div>
+        
     </div>
+</div>
+
 </div>
 {{-- </div> --}}
 

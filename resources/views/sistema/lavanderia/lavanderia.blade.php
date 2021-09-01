@@ -214,7 +214,6 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
                     <th>Actions</th>
                     <th># Envio</th>
                     <th># Corte</th>
@@ -233,7 +232,6 @@
             <tfoot>
                 <tr>
                     <th></th>
-                    <th>Ver</th>
                     <th>Actions</th>
                     <th># Envio</th>
                     <th># Corte</th>

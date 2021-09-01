@@ -28,7 +28,7 @@
                             <div id="corteAdd">
                                 <input type="hidden" name="id" id="id">
                                 <label for="">Corte</label>
-                                <select name="tags[]" id="cortesSearch" class="form-control select2" style="width:100%">
+                                <select name="tags[]" id="cortesSearch" class="form-control select2 text-center" style="width:100%">
                                     <option value="" disabled>Seleccione el corte</option>
                                 </select>
                             </div>
@@ -49,14 +49,16 @@
 
                     <br><br>
 
-                    <div class="row mt-2" id="form_producto">
+                    <div class="row " id="form_producto">
                         <div class="col-md-4">
-                            <label for="" >Ubicacion</label>
-                            <input type="text" name="ubicacion" id="ubicacion" class="form-control text-center"
-                                data-inputmask='"mask": "A[A]-9"' data-mask>
+                            <label for="" >Ubicacion</label> <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
+                            data-toggle="modal" data-target=".bd-ubicacion-modal-xl"><i class="fas fa-plus-square"></i></button>
+                            <select name="ubicacion" id="ubicacion" class="form-control">
+                                <option value="" disabled>Ubicacion</option>
+                            </select>
                            
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <label for="" >Tono</label>
                             <select name="tono" id="tono" class="form-control">
                                 <option value="" disabled>Tono</option>
@@ -69,7 +71,7 @@
                             </select>
                           
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <label for="" >Intensidad proceso seco</label>
                             <select name="intensidad_proceso_seco" id="intensidad_proceso_seco" class="form-control">
                                 <option value="" disabled>Intensidad proceso seco</option>
@@ -289,6 +291,60 @@
                                 </tr>
                             </thead>
                             <tbody id="permisos-agregados">
+    
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-ubicacion-modal-xl" tabindex="-1" role="dialog" id="modalRollos"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-h5">Agregar nueva Ubicacion</h5>
+                <hr>
+                <form action="" class="form-group">
+                    <div class="row">
+                  
+                        <div class="col-4">
+                            <label for="">Ubicacion</label>
+                            <input type="text" name="newUbicacion" id="newUbicacion" class="form-control text-center"
+                            data-inputmask='"mask": "a[a]-9[9[9]]"' data-mask style="text-transform: uppercase;">
+                        </div>
+                        <div class="col-4 mt-3">
+                            <button type="button" id="btn-saveUbicacion" class="btn btn-outline-primary rounded-pill mt-3 " ><i class="fas fa-plus"></i> Agregar</button>
+
+                        </div>
+                    </div>
+                  
+                    <div class="row mt-3">
+                        <hr>
+                        <table class="table tabla-existencia table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Ubicacion</th>
+                                    <th id="editar-permisos">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ubicaciones-list">
     
                             </tbody>
                         </table>

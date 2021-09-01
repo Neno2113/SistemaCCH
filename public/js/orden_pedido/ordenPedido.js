@@ -779,6 +779,7 @@ $(document).ready(function() {
                         $("#th").html("40");
                         $("#ti").html("42");
                         $("#tj").html("44");
+                        $("#tk").html("46");
                         $("#da").html("28");
                         $("#db").html("29");
                         $("#dc").html("30");
@@ -1496,12 +1497,12 @@ $(document).ready(function() {
                         if (gen == 1) {
                             if (detallado == 1) {
                                 cantidad = Number(
-                                    a + b + c + d + e + f + g + h + i + j
+                                    a + b + c + d + e + f + g + h + i + j + k + l
                                 );
                                 var fila =
                                     '<tr id="fila'+datos.detalle.id+'"' +
                                     cont +
-                                    '">' +
+                                    '" style="font-size: 18px">' +
                                     "<th id='a_corte' class='font-weight-normal'>" +
                                     producto_valid +
                                     "</th>" +
@@ -1511,38 +1512,42 @@ $(document).ready(function() {
                                     "<th id='a_corte' class='font-weight-normal'>" +
                                     cantidad +
                                     "</th>" +
-                                    "<th id='a_corte' class='font-weight-normal'>" +
+                                    "<th id='a_corte' class='font-weight-bold'>" +
                                     a +
                                     "</th>" +
-                                    "<th id='b_corte' class='font-weight-normal'>" +
+                                    "<th id='b_corte' class='font-weight-bold'>" +
                                     b +
                                     "</th>" +
-                                    "<th id='c_corte' class='font-weight-normal'>" +
+                                    "<th id='c_corte' class='font-weight-bold'>" +
                                     c +
                                     "</th>" +
-                                    "<th id='d_corte' class='font-weight-normal'>" +
+                                    "<th id='d_corte' class='font-weight-bold'>" +
                                     d +
                                     "</th>" +
-                                    "<th id='e_corte' class='font-weight-normal'>" +
+                                    "<th id='e_corte' class='font-weight-bold'>" +
                                     e +
                                     "</th>" +
-                                    "<th id='f_corte' class='font-weight-normal'>" +
+                                    "<th id='f_corte' class='font-weight-bold'>" +
                                     f +
                                     "</th>" +
-                                    "<th id='g_corte' class='font-weight-normal'>" +
+                                    "<th id='g_corte' class='font-weight-bold'>" +
                                     g +
                                     "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'>" +
+                                    "<th id='h_corte' class='font-weight-bold'>" +
                                     h +
                                     "</th>" +
-                                    "<th id='i_corte' class='font-weight-normal'>" +
+                                    "<th id='i_corte' class='font-weight-bold'>" +
                                     i +
                                     "</th>" +
-                                    "<th id='j_corte' class='font-weight-normal'>" +
+                                    "<th id='j_corte' class='font-weight-bold'>" +
                                     j +
                                     "</th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
-                                    "<th id='h_corte' class='font-weight-normal'></th>" +
+                                    "<th id='k_corte' class='font-weight-bold'>" +
+                                    k +
+                                    "</th>" +
+                                    "<th id='l_corte' class='font-weight-bold'>"+
+                                    l +
+                                    "</th>" +
                                     "<th id='h_corte' class='font-weight-normal'>"+
                                     "<button type='button' class='btn btn-danger' onclick='delProducto("+datos.detalle.id+")'>"+
                                     "<i class='far fa-trash-alt'></i>"+
@@ -2067,7 +2072,7 @@ $(document).ready(function() {
                 { data: "fecha", name: "orden_pedido.fecha" },
                 { data: "fecha_entrega", name: "orden_pedido.fecha_entrega" },
                 { data: "total", name: "orden_pedido.total", searchable: false, orderable: false},
-                { data: "detallada", name: "orden_pedido.detallada" },
+                // { data: "detallada", name: "orden_pedido.detallada" },
                 { data: "orden_proceso_impresa", name: "orden_pedido.orden_proceso_impresa" }
             ],
             order: [[2, "desc"]],

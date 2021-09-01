@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     //Funcion que se ejecuta al inicio
     function init() {
-        ordenPedidoCod();
+        // ordenPedidoCod();
         listar();
         listarOrdenes();
         $("#empacado_listo").hide();
@@ -28,33 +28,7 @@ $(document).ready(function() {
         $("#aprovechamiento").val("");
     }
 
-    function ordenPedidoCod() {
-        $.ajax({
-            url: "corte/lastdigit",
-            type: "GET",
-            dataType: "json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    var i = Number(datos.sec);
-                    $("#sec").val(i);
-                    i = (i + 0.01)
-                        .toFixed(2)
-                        .split(".")
-                        .join("");
-                    var year = new Date().getFullYear().toString();
-                    var referencia = year + "-" + i;
 
-                    $("#numero_corte_gen").val(referencia);
-                    $("#corte").val(referencia);
-                } else {
-                    bootbox.alert("Ocurrio un error !!");
-                }
-            },
-            error: function() {
-                bootbox.alert("Ocurrio un error!!");
-            }
-        });
-    }
 
     //funcion que envia los datos del form al backend usando AJAX
     $("#btn-guardar").click(function(e) {
@@ -209,51 +183,6 @@ $(document).ready(function() {
    function test(){
       return console.log("test")
    }
-
-    //funcion para editar
-    $("#btn-edit").click(function(e) {
-        e.preventDefault();
-
-        var corte = {
-            id: $("#id").val(),
-            producto_id: $("#productos").val(),
-            no_marcada: $("#no_marcada").val(),
-            ancho_marcada: $("#ancho_marcada").val(),
-            largo_marcada: $("#largo_marcada").val(),
-            aprovechamiento: $("#aprovechamiento").val()
-        };
-
-        $.ajax({
-            url: "corte/edit",
-            type: "PUT",
-            dataType: "json",
-            data: JSON.stringify(corte),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    bootbox.alert("Se actualizado correctamente el usuario");
-                    limpiar();
-                    $("#cortes")
-                        .DataTable()
-                        .ajax.reload();
-                    $("#id").val("");
-                    $("#listadoUsers").show();
-                    $("#registroForm").hide();
-                    $("#btnCancelar").hide();
-                    $("#btn-edit").hide();
-                    $("#btn-guardar").show();
-                    $("#btnAgregar").show();
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert("Ocurrio un error!!");
-            }
-        });
-    });
 
 
     // function test(e){

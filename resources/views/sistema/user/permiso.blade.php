@@ -78,8 +78,10 @@
                                 <option  disabled>_______________________________________________________</option>
                                 <option disabled>Reportes</option>
                                 <option value="Existencia Talla">Existencia por talla</option>
-                                <option value="Reporte">Reporte existencias</option>
-                                <option value="ExportarPeach">Existencia</option>
+                                <option value="Reporte Existencias">Reporte existencias</option>
+                                <option value="Reporte Disponibles">Reporte Disponibles</option>
+                                <option value="Reporte Segundas">Reporte Segundas</option>
+                                <option value="Reporte Pendientes">Reporte Pendientes</option>
                             </select>
                         </div>
                       

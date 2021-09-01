@@ -178,25 +178,31 @@ class ordenPedidoController extends Controller
                 $total_almn = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
 
                 //ordenes facturadas para calcular total de Almacen
-                $OrdenesEmpacadas = ordenEmpaqueDetalle::where('producto_id', $producto_id)->get();
+                $OrdenesEmpacadas = ordenEmpaqueDetalle::where('producto_id', $producto_id)
+                ->where('empacado', '1')
+                ->get();
+
+                $OrdenesEmpacadasTotal = ordenEmpaqueDetalle::where('producto_id', $producto_id)
+                ->get();
 
                 //calcular total real
-                $a_ref2 = $a_ref2  - $OrdenesEmpacadas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a') + $tallasCanceladas->sum('a');
-                $b_ref2 = $b_ref2  - $OrdenesEmpacadas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b') + $tallasCanceladas->sum('b');
-                $c_ref2 = $c_ref2  - $OrdenesEmpacadas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c') + $tallasCanceladas->sum('c');
-                $d_ref2 = $d_ref2  - $OrdenesEmpacadas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d') + $tallasCanceladas->sum('d');
-                $e_ref2 = $e_ref2  - $OrdenesEmpacadas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e') + $tallasCanceladas->sum('e');
-                $f_ref2 = $f_ref2  - $OrdenesEmpacadas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f') + $tallasCanceladas->sum('f');
-                $g_ref2 = $g_ref2  - $OrdenesEmpacadas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g') + $tallasCanceladas->sum('g');
-                $h_ref2 = $h_ref2  - $OrdenesEmpacadas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h') + $tallasCanceladas->sum('h');
-                $i_ref2 = $i_ref2  - $OrdenesEmpacadas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i') + $tallasCanceladas->sum('i');
-                $j_ref2 = $j_ref2  - $OrdenesEmpacadas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j') + $tallasCanceladas->sum('j');
-                $k_ref2 = $k_ref2  - $OrdenesEmpacadas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k') + $tallasCanceladas->sum('k');
-                $l_ref2 = $l_ref2  - $OrdenesEmpacadas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l') + $tallasCanceladas->sum('l');
-
+                $a_ref2 = $a_ref2  - $OrdenesEmpacadas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a');
+                $b_ref2 = $b_ref2  - $OrdenesEmpacadas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b');
+                $c_ref2 = $c_ref2  - $OrdenesEmpacadas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c');
+                $d_ref2 = $d_ref2  - $OrdenesEmpacadas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d');
+                $e_ref2 = $e_ref2  - $OrdenesEmpacadas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e');
+                $f_ref2 = $f_ref2  - $OrdenesEmpacadas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f');
+                $g_ref2 = $g_ref2  - $OrdenesEmpacadas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g');
+                $h_ref2 = $h_ref2  - $OrdenesEmpacadas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h');
+                $i_ref2 = $i_ref2  - $OrdenesEmpacadas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i');
+                $j_ref2 = $j_ref2  - $OrdenesEmpacadas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j');
+                $k_ref2 = $k_ref2  - $OrdenesEmpacadas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k');
+                $l_ref2 = $l_ref2  - $OrdenesEmpacadas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
+                $total =  $OrdenesEmpacadas->sum('total') - $tallasOrdenes_f->sum('total') + $tallasCredito_f->sum('total');
                
                 $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
-                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
+                // $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
+                $total = $total;
                 
                 $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
                 $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
@@ -213,14 +219,12 @@ class ordenPedidoController extends Controller
 
                
 
-                $totalAlmacen = $total_almn - $OrdenesEmpacadas->sum('total')  + $tallasCredito_f->sum('total')
-                + $tallasCanceladas->sum('total');
+                $totalAlmacen = $total_almn - $OrdenesEmpacadasTotal->sum('total')  + $tallasCredito_f->sum('total');
 
                 $corte_proceso = Corte::where('producto_id', 'LIKE', $producto_id)
                 ->where('fase', 'not like', 'almacen')->get()->load('producto');
                 
                 if (empty($segunda_input)) {
-                    $this->global_disp_venta = $total_real;
                     $data = [
                         'code' => 200,
                         'status' => 'success',
@@ -243,7 +247,9 @@ class ordenPedidoController extends Controller
                         'corte_proceso' => $corte_proceso,
                         'ordenes'=> $tallasOrdenes_f,
                         'Almacen' => $tallasAlmacen,
-                        'ventas_segundas' => $ventas_segundas
+                        'ventas_segundas' => $ventas_segundas,
+                        'tallasCanceladas' => $tallasCanceladas,
+                        'tallasCredito_f' => $tallasCredito_f
                         // 'fecha_entrega' => $fecha_entrega
                     ];
                 } else {
@@ -367,25 +373,33 @@ class ordenPedidoController extends Controller
                 $total_almn = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2;
 
                 //ordenes facturadas para calcular total de Almacen
-                $OrdenesEmpacadas = ordenEmpaqueDetalle::where('producto_id', $ref_father)->get();
+                $OrdenesEmpacadas = ordenEmpaqueDetalle::where('producto_id', $ref_father)
+                ->where('empacado', '1')
+                ->get();
+
+                $OrdenesEmpacadasTotal = ordenEmpaqueDetalle::where('producto_id', $producto_id)
+                ->get();
+    
 
                 //calcular total real
-                $a_ref2 = $a_ref2  - $OrdenesEmpacadas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a') + $tallasCanceladas->sum('a');
-                $b_ref2 = $b_ref2  - $OrdenesEmpacadas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b') + $tallasCanceladas->sum('b');
-                $c_ref2 = $c_ref2  - $OrdenesEmpacadas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c') + $tallasCanceladas->sum('c');
-                $d_ref2 = $d_ref2  - $OrdenesEmpacadas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d') + $tallasCanceladas->sum('d');
-                $e_ref2 = $e_ref2  - $OrdenesEmpacadas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e') + $tallasCanceladas->sum('e');
-                $f_ref2 = $f_ref2  - $OrdenesEmpacadas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f') + $tallasCanceladas->sum('f');
-                $g_ref2 = $g_ref2  - $OrdenesEmpacadas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g') + $tallasCanceladas->sum('g');
-                $h_ref2 = $h_ref2  - $OrdenesEmpacadas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h') + $tallasCanceladas->sum('h');
-                $i_ref2 = $i_ref2  - $OrdenesEmpacadas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i') + $tallasCanceladas->sum('i');
-                $j_ref2 = $j_ref2  - $OrdenesEmpacadas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j') + $tallasCanceladas->sum('j');
-                $k_ref2 = $k_ref2  - $OrdenesEmpacadas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k') + $tallasCanceladas->sum('k');
-                $l_ref2 = $l_ref2  - $OrdenesEmpacadas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l') + $tallasCanceladas->sum('l');
+                $a_ref2 = $a_ref2 - $OrdenesEmpacadas->sum('a') - $tallasOrdenes_f->sum('a') + $tallasCredito_f->sum('a');
+                $b_ref2 = $b_ref2 - $OrdenesEmpacadas->sum('b') - $tallasOrdenes_f->sum('b') + $tallasCredito_f->sum('b');
+                $c_ref2 = $c_ref2 - $OrdenesEmpacadas->sum('c') - $tallasOrdenes_f->sum('c') + $tallasCredito_f->sum('c');
+                $d_ref2 = $d_ref2 - $OrdenesEmpacadas->sum('d') - $tallasOrdenes_f->sum('d') + $tallasCredito_f->sum('d');
+                $e_ref2 = $e_ref2  - $OrdenesEmpacadas->sum('e') - $tallasOrdenes_f->sum('e') + $tallasCredito_f->sum('e');
+                $f_ref2 = $f_ref2  - $OrdenesEmpacadas->sum('f') - $tallasOrdenes_f->sum('f') + $tallasCredito_f->sum('f');
+                $g_ref2 = $g_ref2  - $OrdenesEmpacadas->sum('g') - $tallasOrdenes_f->sum('g') + $tallasCredito_f->sum('g');
+                $h_ref2 = $h_ref2  - $OrdenesEmpacadas->sum('h') - $tallasOrdenes_f->sum('h') + $tallasCredito_f->sum('h');
+                $i_ref2 = $i_ref2  - $OrdenesEmpacadas->sum('i') - $tallasOrdenes_f->sum('i') + $tallasCredito_f->sum('i');
+                $j_ref2 = $j_ref2  - $OrdenesEmpacadas->sum('j') - $tallasOrdenes_f->sum('j') + $tallasCredito_f->sum('j');
+                $k_ref2 = $k_ref2  - $OrdenesEmpacadas->sum('k') - $tallasOrdenes_f->sum('k') + $tallasCredito_f->sum('k');
+                $l_ref2 = $l_ref2  - $OrdenesEmpacadas->sum('l') - $tallasOrdenes_f->sum('l') + $tallasCredito_f->sum('l');
+                $total = $OrdenesEmpacadas->sum('total') - $tallasOrdenes_f->sum('total') + $tallasCredito_f->sum('total');
                 // print_r($tallas);
                 // die();
                 $cantidad_ordenadas = $tallasOrdenes_f->sum('cantidad');
-                $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 ;
+                // $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2 ;
+                $total_real = $total;
                 
                 $a_ref2 = ($a_ref2 < 0 ? 0 : $a_ref2);
                 $b_ref2 = ($b_ref2 < 0 ? 0 : $b_ref2);
@@ -400,11 +414,9 @@ class ordenPedidoController extends Controller
                 $k_ref2 = ($k_ref2 < 0 ? 0 : $k_ref2);
                 $l_ref2 = ($l_ref2 < 0 ? 0 : $l_ref2);
 
-                $totalAlmacen = $total_almn - $OrdenesEmpacadas->sum('total')  + $tallasCredito_f->sum('total')
-                + $tallasCanceladas->sum('total');
+                $totalAlmacen = $total_almn - $OrdenesEmpacadasTotal->sum('total')  + $tallasCredito_f->sum('total');
                 
                 if (empty($segunda_input)) {
-                    $this->global_disp_venta = $total_real;
                     $data = [
                         'code' => 200,
                         'status' => 'success',
@@ -424,11 +436,12 @@ class ordenPedidoController extends Controller
                         'total_corte' => $total_real = $a_ref2 + $b_ref2 + $c_ref2 + $d_ref2 + $e_ref2 + $f_ref2 + $g_ref2 + $h_ref2 + $i_ref2 + $j_ref2 + $k_ref2 + $l_ref2,
                         'corte_proceso' => $corte_proceso,
                         'total_almacen' => $totalAlmacen,
-                        'OrdenesEmpacadas' => $OrdenesEmpacadas->sum('total'),
-                        'ordenes'=> $tallasOrdenes_f->sum('total'),
+                        'OrdenesEmpacadas' => $OrdenesEmpacadas,
+                        'ordenes'=> $tallasOrdenes_f,
                         'Almacen' => $tallasAlmacen,
                         'ventas_segundas' => $ventas_segundas,
-                        'tallas_canceladas' => $tallasCanceladas
+                        'tallas_canceladas' => $tallasCanceladas,
+                        'tallasCredito_f' => $tallasCredito_f
                         // 'fecha_entrega' => $fecha_entrega
                     ];
                 } else {
@@ -504,15 +517,22 @@ class ordenPedidoController extends Controller
 
             }
         }else{
-            $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)->where('venta_segunda', '0')
+            $tallasOrdenes = ordenPedidoDetalle::where('producto_id', $producto_id)
+            ->where('venta_segunda', '0')
             ->where('orden_cancelada', '0')
-            ->where('orden_empacada', '0')->get();
+            ->where('orden_empacada', '0')
+            // ->where('empacado_pendiente', '0')
+            ->get();
 
             //Notas De credito
             $tallasCredito = NotaCreditoDetalle::where('producto_id', $producto_id)->get();
 
             //ordenes facturadas para calcular total de Almacen
             $OrdenesEmpacadas = ordenEmpaqueDetalle::where('producto_id', $producto_id)
+            ->where('empacado', '1')
+            ->get();
+
+            $OrdenesEmpacadasTotal = ordenEmpaqueDetalle::where('producto_id', $producto_id)
             ->get();
 
             $tallasCanceladas = ordenPedidoDetalle::where('producto_id', $producto_id)
@@ -526,21 +546,20 @@ class ordenPedidoController extends Controller
             // for
 
             //calcular total real
-            $a = $tallasAlmacen->sum('a') + $a_ref2  - $OrdenesEmpacadas->sum('a') - $tallasOrdenes->sum('a') + $tallasCredito->sum('a') + $tallasCanceladas->sum('a');
-            $b = $tallasAlmacen->sum('b') + $b_ref2  - $OrdenesEmpacadas->sum('b') - $tallasOrdenes->sum('b') + $tallasCredito->sum('b') + $tallasCanceladas->sum('b');
-            $c = $tallasAlmacen->sum('c') + $c_ref2  - $OrdenesEmpacadas->sum('c') - $tallasOrdenes->sum('c') + $tallasCredito->sum('c') + $tallasCanceladas->sum('c');
-            $d = $tallasAlmacen->sum('d') + $d_ref2  - $OrdenesEmpacadas->sum('d') - $tallasOrdenes->sum('d') + $tallasCredito->sum('d') + $tallasCanceladas->sum('d');
-            $e = $tallasAlmacen->sum('e') + $e_ref2  - $OrdenesEmpacadas->sum('e') - $tallasOrdenes->sum('e') + $tallasCredito->sum('e') + $tallasCanceladas->sum('e');
-            $f = $tallasAlmacen->sum('f') + $f_ref2  - $OrdenesEmpacadas->sum('f') - $tallasOrdenes->sum('f') + $tallasCredito->sum('f') + $tallasCanceladas->sum('f');
-            $g = $tallasAlmacen->sum('g') + $g_ref2  - $OrdenesEmpacadas->sum('g') - $tallasOrdenes->sum('g') + $tallasCredito->sum('g') + $tallasCanceladas->sum('g');
-            $h = $tallasAlmacen->sum('h') + $h_ref2  - $OrdenesEmpacadas->sum('h') - $tallasOrdenes->sum('h') + $tallasCredito->sum('h') + $tallasCanceladas->sum('h');
-            $i = $tallasAlmacen->sum('i') + $i_ref2  - $OrdenesEmpacadas->sum('i') - $tallasOrdenes->sum('i') + $tallasCredito->sum('i') + $tallasCanceladas->sum('i');
-            $j = $tallasAlmacen->sum('j') + $j_ref2  - $OrdenesEmpacadas->sum('j') - $tallasOrdenes->sum('j') + $tallasCredito->sum('j') + $tallasCanceladas->sum('j');
-            $k = $tallasAlmacen->sum('k') + $k_ref2  - $OrdenesEmpacadas->sum('k') - $tallasOrdenes->sum('k') + $tallasCredito->sum('k') + $tallasCanceladas->sum('k');
-            $l = $tallasAlmacen->sum('l') + $l_ref2  - $OrdenesEmpacadas->sum('l') - $tallasOrdenes->sum('l') + $tallasCredito->sum('l') + $tallasCanceladas->sum('l');
-
-            $totalAlmacen = $tallasAlmacen->sum('total') - $OrdenesEmpacadas->sum('total')  + $tallasCredito->sum('total')
-            + $tallasCanceladas->sum('total');
+            $a = $tallasAlmacen->sum('a') + $a_ref2  - $OrdenesEmpacadas->sum('a') - $tallasOrdenes->sum('a') + $tallasCredito->sum('a');
+            $b = $tallasAlmacen->sum('b') + $b_ref2  - $OrdenesEmpacadas->sum('b') - $tallasOrdenes->sum('b') + $tallasCredito->sum('b');
+            $c = $tallasAlmacen->sum('c') + $c_ref2  - $OrdenesEmpacadas->sum('c') - $tallasOrdenes->sum('c') + $tallasCredito->sum('c');
+            $d = $tallasAlmacen->sum('d') + $d_ref2  - $OrdenesEmpacadas->sum('d') - $tallasOrdenes->sum('d') + $tallasCredito->sum('d');
+            $e = $tallasAlmacen->sum('e') + $e_ref2  - $OrdenesEmpacadas->sum('e') - $tallasOrdenes->sum('e') + $tallasCredito->sum('e');
+            $f = $tallasAlmacen->sum('f') + $f_ref2  - $OrdenesEmpacadas->sum('f') - $tallasOrdenes->sum('f') + $tallasCredito->sum('f');
+            $g = $tallasAlmacen->sum('g') + $g_ref2  - $OrdenesEmpacadas->sum('g') - $tallasOrdenes->sum('g') + $tallasCredito->sum('g');
+            $h = $tallasAlmacen->sum('h') + $h_ref2  - $OrdenesEmpacadas->sum('h') - $tallasOrdenes->sum('h') + $tallasCredito->sum('h');
+            $i = $tallasAlmacen->sum('i') + $i_ref2  - $OrdenesEmpacadas->sum('i') - $tallasOrdenes->sum('i') + $tallasCredito->sum('i');
+            $j = $tallasAlmacen->sum('j') + $j_ref2  - $OrdenesEmpacadas->sum('j') - $tallasOrdenes->sum('j') + $tallasCredito->sum('j');
+            $k = $tallasAlmacen->sum('k') + $k_ref2  - $OrdenesEmpacadas->sum('k') - $tallasOrdenes->sum('k') + $tallasCredito->sum('k');
+            $l = $tallasAlmacen->sum('l') + $l_ref2  - $OrdenesEmpacadas->sum('l') - $tallasOrdenes->sum('l') + $tallasCredito->sum('l');
+            $total = $tallasAlmacen->sum('total') - $OrdenesEmpacadas->sum('total') - $tallasOrdenes->sum('total') + $tallasCredito->sum('total');
+            $totalAlmacen = $tallasAlmacen->sum('total') + $tallasCredito->sum('total') - $OrdenesEmpacadasTotal->sum('total');
 
             //Validacion de numeros negativos
             $a = ($a < 0 ? 0 : $a);
@@ -557,10 +576,11 @@ class ordenPedidoController extends Controller
             $l = ($l < 0 ? 0 : $l);
 
             $cantidad_ordenadas = $tallasOrdenes->sum('cantidad');
-            $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+            // $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
+            $total_real = $total;
 
             if (empty($segunda_input)) {
-                $this->global_disp_venta = $total_real;
+                // $this->global_disp_venta = $total_real;
                 //respuesta
                 $data = [
                     'code' => 200,
@@ -582,8 +602,8 @@ class ordenPedidoController extends Controller
                     'total_almacen' => $totalAlmacen,
                     'corte_proceso' => $corte_proceso,
                     'cantidad_ordenadas' => $cantidad_ordenadas,
-                    'OrdenesEmpacadas'=> $OrdenesEmpacadas,
-                    'ordenesAempacar' => $tallasOrdenes,
+                    'OrdenesEmpacadas'=> $OrdenesEmpacadas->sum('total'),
+                    'ordenesAempacar' => $tallasOrdenes->sum('total'),
                     'ventas_segundas'=> $ventas_segundas,
                     'TotalordenesAempacar' => $tallasOrdenes->sum('total'),
                     'TotaltallasAlmacen' => $tallasAlmacen->sum('total'),
@@ -1083,6 +1103,7 @@ class ordenPedidoController extends Controller
         $orden_detalle->precio = $precio;
         $orden_detalle->orden_redistribuida = 0;
         $orden_detalle->orden_empacada = 0;
+        $orden_detalle->empacado_pendiente = 0;
 
         $orden_detalle->save();
 
@@ -1695,17 +1716,24 @@ class ordenPedidoController extends Controller
                     return '<span class="badge badge-pill badge-info">Despachado</span>';
                 } else if ($orden->status_orden_pedido == 'Facturado') {
                     return '<span class="badge badge-pill badge-dark">Facturado</span>';
+                }else if ($orden->status_orden_pedido == 'Empacado Parcial') {
+                    return '<span class="badge badge-pill badge-warning">Empacado Parcial</span>';
+                }else if ($orden->status_orden_pedido == 'A Distribuir') {
+                    return '<span class="badge badge-pill badge-danger">A Distribuir</span>';
                 }
             })
             ->addColumn('Opciones', function ($orden) {
                 if ($orden->status_orden_pedido == 'Vigente') {
-                    return  '<button onclick="ver(' . $orden->id . ')" class="btn btn-warning btn-sm ml-1"><i class="fas fa-random fa-sm"></i></button>'.
+                    return  '<button onclick="ver(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1"><i class="fas fa-random fa-sm"></i></button>'.
                     '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"><i class="fas fa-window-close fa-sm"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Stanby') {
                     return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-outline-dark  btn-sm" id="btn-status"> <i class="far fa-square"></i></button>'.
                     '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"><i class="fas fa-window-close fa-sm"></i></button>';
                 } else if ($orden->status_orden_pedido == 'Cancelado') {
                     return '<button onclick="aprobar(' . $orden->id . ')" class="btn btn-outline-dark  btn-sm  ml-1" id="btn-status"> <i class="far fa-square"></i></button>';
+                }else if($orden->status_orden_pedido == 'A Distribuir'){
+                    return  '<button onclick="ver(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1"><i class="fas fa-random fa-sm"></i></button>'.
+                    '<button onclick="cancelar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"><i class="fas fa-window-close fa-sm"></i></button>';
                 } else {
                     return '<span class="badge badge-pill badge-info">Facturado</span>';
                 }
@@ -1763,6 +1791,33 @@ class ordenPedidoController extends Controller
           // return response()->json($data, $data['code']);
       }
 
+    public function aRedistribuir($id)
+    {
+
+        $orden = ordenPedido::find($id);
+
+        $orden->status_orden_pedido = 'A Distribuir';
+        $orden->detallada = 0;
+        $orden->save();
+
+        // $detalle = ordenPedidoDetalle::where('orden_pedido_id', $id)->get();
+
+        // for ($i=0; $i < count($detalle); $i++) { 
+        //     $detalle[$i]->orden_cancelada = 0;
+        //     $detalle[$i]->save();
+        // }
+
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'orden' => $orden,
+            // 'global_disp_venta' => $this->global_disp_venta
+        ];
+
+        return \response()->json($data, $data['code']);
+    }
+
     public function aprobar($id)
     {
 
@@ -1786,7 +1841,8 @@ class ordenPedidoController extends Controller
             'status' => 'success',
             'orden' => $orden,
             'total' => $detalle->sum('total'),
-            'global_disp_venta' => $this->global_disp_venta
+            'detalle' => $detalle
+            // 'global_disp_venta' => $this->global_disp_venta
         ];
 
         return \response()->json($data, $data['code']);

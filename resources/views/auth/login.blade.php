@@ -29,7 +29,7 @@
             </div>
             <div class="card">
                 {{-- <div class="card-header">{{ __('Login') }}</div> --}}
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Iniciar Sesion</p>
                 <hr>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

@@ -380,8 +380,10 @@ class NotaCreditoController extends Controller
                 'status' => 'success',
                 'facturacion' => $facturacion,
                 'detalle' => $detalle,
+                'total' => $detalle->sum('total'),
                 'cliente' => $orden_pedido->cliente,
                 'sucursal' => $orden_pedido->sucursal,
+                'orden_pedido' => $orden_pedido
                 // 'precio' => $orden_facturacion_unique->precio
             ];
         
@@ -391,12 +393,26 @@ class NotaCreditoController extends Controller
 
     public function ordenFacturacionSelect()
     {
-        $ordenes_facturacion = OrdenFacturacion::all();
+        $ordenes_facturacion = OrdenFacturacion::all()->load('orden_empaque');
+
+        // $ordenes_pedido = ordenPedido::whereIn('id', $ordenes_facturacion->orden_empaque->orden_pedido_id)
+        // ->get();
+        $ordenes_array = array();
+
+        $longitudSegunda = count($ordenes_facturacion);
+
+        for ($i = 0; $i < $longitudSegunda; $i++) {
+            array_push($ordenes_array, $ordenes_facturacion[$i]['orden_empaque']['orden_pedido_id']);
+        }
+
+        $ordenes = ordenPedido::whereIn('id', $ordenes_array)->get()->load('cliente');
+
 
         $data = [
             'code' => 200,
             'status' => 'success',
-            'facturacion' => $ordenes_facturacion
+            'facturacion' => $ordenes_facturacion,
+            'ordenes' => $ordenes
         ];
 
         return response()->json($data, $data['code']);

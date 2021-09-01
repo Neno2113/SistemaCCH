@@ -256,6 +256,10 @@ $(document).ready(function() {
             $("#btn-upload").show();
             $("#btn-buscar").show();
             $("#btn-imprimir").attr("disabled", true);
+            ubicaciones();
+            listarUbicaciones();
+            listarAtributos();
+
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -551,6 +555,60 @@ $(document).ready(function() {
         });
     });
 
+    $("#btn-saveUbicacion").on('click', () => {
+    
+        let data = {
+            ubicacion: $("#newUbicacion").val()
+        }
+    
+
+        $.ajax({
+            url: "ubicacion",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Nueva entrada registrada.'
+                    })
+                    $("#nombre").val('');
+                    ubicaciones();
+                    listarUbicaciones();
+                
+                
+                } else {
+                    bootbox.alert("Se genero la referencia");
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                        size: 'small'
+                    });
+                });
+            }
+        });
+    });
+
     init();
 });
 
@@ -579,7 +637,9 @@ function mostrar(id_almacen){
             $("#form_talla").show();
             $("#btn-buscar").hide();
             // $("#btn-imprimir").hide();
+            ubicaciones();
             listarAtributos();
+            listarUbicaciones();
 
             var fila =  "<option value="+data.almacen.corte_id +">"+data.almacen.corte.numero_corte+"</option>"
 
@@ -587,12 +647,12 @@ function mostrar(id_almacen){
 
             $("#id").val(data.almacen.id);
             $("#cortesSearch").val(data.almacen.corte_id).select2().trigger('change');
-            $("#ubicacion").val(data.almacen.producto.ubicacion);
+            $("#ubicacion").val(data.almacen.producto.ubicacion).select2().trigger('change');
             $("#tono").val(data.almacen.producto.tono);
             $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
-            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
-            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
-            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
+            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).select2().trigger('change');
+            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).select2().trigger('change');
+            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).select2().trigger('change');
 
             total_recibido = data.total_recibido;
 
@@ -741,6 +801,76 @@ const atributos = () => {
     });
 }
 
+const ubicaciones = () => {
+    $("#ubicacion").empty();
+    $("#ubicacion").append(`<option value="" selected disabled>Ubicacion</option>`);
+    $.ajax({
+        url: "ubicaciones",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.ubicaciones.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.ubicaciones[i].ubicacion}">${datos.ubicaciones[i].ubicacion}</option>`
+                    $("#ubicacion").append(fila);
+                }
+                $("#ubicacion").select2();
+
+             
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
+
+
+
+const listarUbicaciones = () => {
+
+    $("#ubicaciones-list").empty();
+
+    $.ajax({
+        url: "ubicaciones",
+        type: "get",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                
+                for (let i = 0; i < datos.ubicaciones.length; i++) {
+                    var fila =
+                    '<tr id="ubc'+datos.ubicaciones[i].id+'">'+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.ubicaciones[i].ubicacion+"' value="+datos.ubicaciones[i].ubicacion+">"+datos.ubicaciones[i].ubicacion+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delUbicacion("+datos.ubicaciones[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                    $("#ubicaciones-list").append(fila);
+                }
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error"
+            );
+        }
+    });
+}
+
+
 
 function eliminar(id_almacen){
     $.post("almacencheck/delete/" + id_almacen, function(data, status) {
@@ -797,6 +927,32 @@ const delCategoria = (id) => {
                 )
                 $("#fila"+id).remove();
                 atributos();
+           
+            })
+        }
+      })
+}
+
+
+const delUbicacion = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar esta ubicacion?',
+        text: "Va a eliminar esta ubicacion!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("ubicacion/delete/" + id, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Ubicacion eliminada correctamente.',
+                'success'
+                )
+                $("#ubc"+id).remove();
+                ubicaciones();
            
             })
         }

@@ -33,6 +33,10 @@ $(document).ready(function() {
     function limpiar() {
         $("#factura_id").val("");
         $("#tipo_nota_credito").val("");
+        $("#cliente_of").val("");
+        $("#sucursal_of").val("");
+        $("#total_of").val("");
+        $('#orden_pedido_of').val('');
         $("#a").val("");
         $("#nc_id").val("");
         $("#ncf").val("");
@@ -335,20 +339,7 @@ function mostrar(id_factura) {
     $("#disponibles").empty("");
     $.get("nota_credito/" + id_factura, function(data, status) {
 
-        $("#listadoUsers").hide();
-        $("#factura-form").show();
-        $("#buscador").hide();
-        $("#btnCancelar").show();
-        $("#btnAgregar").hide();
-        $("#btn-edit").hide();
-        $("#btn-guardar").show();
-        ncCod();
-
-        // $("#btn-generar").hide();
-        $("#edit-hide").hide();
-        $("#edit-hide2").hide();
-        $("#detalle-factura").hide();
-        $("#comprobante").hide();
+     
 
         // var i = Number(data.facturacion.sec);
         // // i = i + 001;
@@ -364,8 +355,12 @@ function mostrar(id_factura) {
         // $("#itbis").val(data.factura.itbis);
         // $("#descuento").val(data.factura.descuento);
         $("#cliente").val(data.cliente.nombre_cliente);
+        $("#cliente_of").val(data.cliente.nombre_cliente);
+        $("#total_of").val(data.total);
         $("#cliente_id").val(data.cliente.id);
         $("#sucursal").val(data.sucursal.nombre_sucursal);
+        $("#sucursal_of").val(data.sucursal.nombre_sucursal);
+        $("#orden_pedido_of").val(data.orden_pedido.no_orden_pedido);
         $("#sucursal_id").val(data.sucursal.id);
         $("sec").val(data.facturacion.sec);
         // $("#fecha_factura").val(data.factura.fecha);
@@ -439,9 +434,30 @@ function mostrar(id_factura) {
 
     });
 }
+
+$("#facturas").on('change', function(){
+    let id = $("#facturas").val();
+    mostrar(id);
+
+});
+
 $("#btn-buscar").click(function(){
     let id = $("#facturas").val();
     mostrar(id);
+    $("#listadoUsers").hide();
+    $("#factura-form").show();
+    $("#buscador").hide();
+    $("#btnCancelar").show();
+    $("#btnAgregar").hide();
+    $("#btn-edit").hide();
+    $("#btn-guardar").show();
+    ncCod();
+
+    // $("#btn-generar").hide();
+    $("#edit-hide").hide();
+    $("#edit-hide2").hide();
+    $("#detalle-factura").hide();
+    $("#comprobante").hide();
 
 });
 
