@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/032ead3e-8756-43a4-9128-752478ad97da/resourceGroups/cch/providers/Microsoft.Web/sites/cchProd-app"
+}
