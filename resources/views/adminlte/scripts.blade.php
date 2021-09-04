@@ -39,7 +39,7 @@
 
 
 <!-- Jquery validation-->
-<script src="{{asset('jquery-validation/dist/jquery.validate.min.js')}}"></script>
+<script src="{{asset('jquery-validation/jquery.validate.min.js')}}"></script>
 
 <!-- Select2-->
 <script src="{{asset('/adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
