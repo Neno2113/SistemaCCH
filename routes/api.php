@@ -56,23 +56,23 @@ Route::post('almacenes/atributos', 'AlmacenController@atributoAlmacen');
 
 Route::get('producto-terminado', 'ProductController@productoTerminado');
 
-Route::get('ordenesList', 'OrdenPedidoController@ordenes');
+Route::get('ordenesList', 'ordenPedidoController@ordenes');
 
-Route::get('ordenes_aprobacion', 'OrdenPedidoController@ordenesAprobacion');
+Route::get('ordenes_aprobacion', 'ordenPedidoController@ordenesAprobacion');
 
-Route::get('ordenes_proceso', 'OrdenPedidoController@ordenesProceso');
+Route::get('ordenes_proceso', 'ordenPedidoController@ordenesProceso');
 
-Route::get('ordenes_aprobacion_empaque', 'OrdenEmpaqueController@ordenesAprobacion');
+Route::get('ordenes_aprobacion_empaque', 'ordenEmpaqueController@ordenesAprobacion');
 
-Route::get('ordenes_empaque', 'OrdenEmpaqueController@ordenesAprobacionImpresion');
+Route::get('ordenes_empaque', 'ordenEmpaqueController@ordenesAprobacionImpresion');
 
-Route::get('ordenes_redistribucion', 'OrdenPedidoController@ordenesRedistribucion');
+Route::get('ordenes_redistribucion', 'ordenPedidoController@ordenesRedistribucion');
 
-Route::get('orden_detalle/{id}', 'OrdenEmpaqueController@empaqueDetalle');
+Route::get('orden_detalle/{id}', 'ordenEmpaqueController@empaqueDetalle');
 
-Route::get('empaque_detalle/{id}', 'OrdenFacturacionController@empaqueDetail');
+Route::get('empaque_detalle/{id}', 'ordenFacturacionController@empaqueDetail');
 
-Route::get('facturacion_detail', 'OrdenFacturacionController@facturacionDetail');
+Route::get('facturacion_detail', 'ordenFacturacionController@facturacionDetail');
 
 Route::get('orden_facturacion', 'FacturaController@orden_facturacion');
 

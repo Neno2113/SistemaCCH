@@ -2041,6 +2041,10 @@ $(document).ready(function() {
             autoWidth: false,
             processing: true,
             responsive: true,
+            ajax:{
+                "url": "api/ordenesList",
+                "type": "GET"
+            },
             dom: "Bfrtip",
             buttons: [
                 "pageLength",
@@ -2057,10 +2061,7 @@ $(document).ready(function() {
                     pageSize: "LEGAL"
                 }
             ],
-            ajax:{
-                "url": "api/ordenesList",
-                "type": "GET"
-            },
+        
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
                 // { data: "Ver", orderable: false, searchable: false },
