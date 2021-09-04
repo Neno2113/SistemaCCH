@@ -41,7 +41,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/home" class="nav-link">
+                            <a href="./home" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -60,19 +60,19 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/user" class="nav-link">
+                            <a href="./user" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Usuarios</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/permiso" class="nav-link">
+                            <a href="./permiso" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Permisos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/employee" class="nav-link">
+                            <a href="./employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Empleados</p>
                             </a>
@@ -92,7 +92,7 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/client" class="nav-link">
+                            <a href="./client" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Clientes</p>
                             </a>
@@ -100,7 +100,7 @@
 
 
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/branch" class="nav-link">
+                            <a href="./branch" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sucursales</p>
                             </a>
@@ -120,7 +120,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/supplier" class="nav-link">
+                            <a href="./supplier" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Suplidores</p>
                             </a>
@@ -152,7 +152,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/sku" class="nav-link">
+                            <a href="./sku" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>SKU</p>
                             </a>
@@ -173,25 +173,25 @@
 
                     <ul class="nav nav-treeview">
                         {{-- <li class="nav-item">
-                            <a href="/sistemaCCH/public/catelogo-cuenta" class="nav-link">
+                            <a href="./catelogo-cuenta" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Catalogo Cuenta</p>
                             </a>
                         </li> --}}
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/product" class="nav-link">
+                            <a href="./product" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Producto</p>
                             </a>
                         </li>
                         {{-- <li class="nav-item">
-                            <a href="/sistemaCCH/public/articulo" class="nav-link">
+                            <a href="./articulo" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Articulo</p>
                             </a>
                         </li> --}}
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
+                            <a href="./producto-terminado" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Producto terminado</p>
                             </a>
@@ -209,19 +209,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/composition" class="nav-link">
+                            <a href="./composition" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Composiciones</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/cloth" class="nav-link">
+                            <a href="./cloth" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Telas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/rollos" class="nav-link">
+                            <a href="./rollos" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rollos</p>
                             </a>
@@ -242,37 +242,37 @@
                         
                         {{-- <li class="nav-header">CORTE Y FASES</li> --}}
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/corte" class="nav-link">
+                            <a href="./corte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Corte</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/lavanderia" class="nav-link">
+                            <a href="./lavanderia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Envio Lavanderia</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/recepcion" class="nav-link">
+                            <a href="./recepcion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Recepcion Lavanderia</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/definir-atributo" class="nav-link">
+                            <a href="./definir-atributo" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Definir atributos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/almacen" class="nav-link">
+                            <a href="./almacen" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Entrada almacen</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/perdida" class="nav-link">
+                            <a href="./perdida" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Perdidas</p>
                             </a>
@@ -290,19 +290,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
+                            <a href="./orden_pedido" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Orden Pedido</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
+                            <a href="./orden_aprobacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Aprobar y redistibuir</p>
                             </a>
                         </li>
                         {{-- <li class="nav-item">
-                            <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
+                            <a href="./ordenes_proceso" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ordenes proceso</p>
                             </a>
@@ -321,13 +321,13 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_empaque_listar" class="nav-link">
+                            <a href="./orden_empaque_listar" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Imprimir Orden</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
+                            <a href="./orden_empaque" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reportar Empaque</p>
                             </a>
@@ -345,13 +345,13 @@
                     <ul class="nav nav-treeview">
             
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/facturacion" class="nav-link">
+                            <a href="./facturacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Generar factura</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/nota_credito" class="nav-link">
+                            <a href="./nota_credito" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Nota de credito</p>
                             </a>
@@ -369,7 +369,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/nota_credito" class="nav-link">
+                            <a href="./nota_credito" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Devolucion</p>
                             </a>
@@ -389,39 +389,39 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/existencia" class="nav-link">
+                            <a href="./existencia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencia por talla</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte" class="nav-link">
+                            <a href="./reporte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencias</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte-primera" class="nav-link">
+                            <a href="./reporte-primera" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Disponibles</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte-segunda" class="nav-link">
+                            <a href="./reporte-segunda" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Segundas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte-pendientes" class="nav-link">
+                            <a href="./reporte-pendientes" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pendientes</p>
                             </a>
                         </li>
 
                         {{-- <li class="nav-item">
-                            <a href="/sistemaCCH/public/exportar-peach" class="nav-link">
+                            <a href="./exportar-peach" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Exportar Peachtree</p>
                             </a>
@@ -446,7 +446,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/home" class="nav-link">
+                            <a href="./home" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -466,7 +466,7 @@
                     <ul class="nav nav-treeview">
                         @if (Auth::user()->permisos()->where('permiso', 'Usuarios')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/user" class="nav-link">
+                            <a href="./user" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Usuario</p>
                             </a>
@@ -474,7 +474,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Empleados')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/employee" class="nav-link">
+                            <a href="./employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Empleado</p>
                             </a>
@@ -494,7 +494,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/employee" class="nav-link">
+                            <a href="./employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Empleado</p>
                             </a>
@@ -514,7 +514,7 @@
                     <ul class="nav nav-treeview">
                         @if (Auth::user()->permisos()->where('permiso', 'Cliente')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/client" class="nav-link">
+                            <a href="./client" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Cliente</p>
                             </a>
@@ -522,7 +522,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Sucursales')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/branch" class="nav-link">
+                            <a href="./branch" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sucursales</p>
                             </a>
@@ -542,7 +542,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/branch" class="nav-link">
+                            <a href="./branch" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sucursales</p>
                             </a>
@@ -561,7 +561,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/supplier" class="nav-link">
+                            <a href="./supplier" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Suplidor</p>
                             </a>
@@ -580,7 +580,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/sku" class="nav-link">
+                            <a href="./sku" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>SKU</p>
                             </a>
@@ -600,7 +600,7 @@
                     <ul class="nav nav-treeview">
                        @if(Auth::user()->permisos()->where('permiso', 'Productos')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/product" class="nav-link">
+                            <a href="./product" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Producto</p>
                             </a>
@@ -608,7 +608,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Producto terminado')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
+                            <a href="./producto-terminado" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Producto terminado</p>
                             </a>
@@ -628,7 +628,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/producto-terminado" class="nav-link">
+                            <a href="./producto-terminado" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Producto terminado</p>
                             </a>
@@ -648,7 +648,7 @@
                     <ul class="nav nav-treeview">
                         @if (Auth::user()->permisos()->where('permiso', 'Composicion')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/composition" class="nav-link">
+                            <a href="./composition" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Composiciones</p>
                             </a>
@@ -656,7 +656,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Telas')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/cloth" class="nav-link">
+                            <a href="./cloth" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Telas</p>
                             </a>
@@ -664,7 +664,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Rollos')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/rollos" class="nav-link">
+                            <a href="./rollos" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rollos</p>
                             </a>
@@ -685,7 +685,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/cloth" class="nav-link">
+                            <a href="./cloth" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Telas</p>
                             </a>
@@ -704,7 +704,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/rollos" class="nav-link">
+                            <a href="./rollos" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rollos</p>
                             </a>
@@ -726,7 +726,7 @@
                     <ul class="nav nav-treeview">
                         @if (Auth::user()->permisos()->where('permiso', 'Corte')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/corte" class="nav-link">
+                            <a href="./corte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Corte</p>
                             </a>
@@ -734,7 +734,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Lavanderia')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/lavanderia" class="nav-link">
+                            <a href="./lavanderia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Enviar lavanderia</p>
                             </a>
@@ -742,7 +742,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Recepcion')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/recepcion" class="nav-link">
+                            <a href="./recepcion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Recibir lavanderia</p>
                             </a>
@@ -750,7 +750,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Definir Atributos')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/definir-atributo" class="nav-link">
+                            <a href="./definir-atributo" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Definir atributos</p>
                             </a>
@@ -758,7 +758,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Entrada Almacen')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/almacen" class="nav-link">
+                            <a href="./almacen" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Entradas almacen</p>
                             </a>
@@ -766,7 +766,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Perdidas')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/perdida" class="nav-link">
+                            <a href="./perdida" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Perdidas</p>
                             </a>
@@ -786,7 +786,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/lavanderia" class="nav-link">
+                            <a href="./lavanderia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Enviar lavanderia</p>
                             </a>
@@ -805,7 +805,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/recepcion" class="nav-link">
+                            <a href="./recepcion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Recibir lavanderia</p>
                             </a>
@@ -824,7 +824,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/definir-atributo" class="nav-link">
+                            <a href="./definir-atributo" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Definir atributos</p>
                             </a>
@@ -843,7 +843,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/almacen" class="nav-link">
+                            <a href="./almacen" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Entradas almacen</p>
                             </a>
@@ -862,7 +862,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/perdida" class="nav-link">
+                            <a href="./perdida" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Perdidas</p>
                             </a>
@@ -883,7 +883,7 @@
                     <ul class="nav nav-treeview">
                         @if (Auth::user()->permisos()->where('permiso', 'Ordenes pedido')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_pedido" class="nav-link">
+                            <a href="./orden_pedido" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Orden Pedido</p>
                             </a>
@@ -891,7 +891,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Aprobar y redistribuir')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
+                            <a href="./orden_aprobacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Aprobacion y redistibucion</p>
                             </a>
@@ -899,7 +899,7 @@
                         @endif
                         {{-- @if (Auth::user()->permisos()->where('permiso', 'Ordenes proceso')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
+                            <a href="./ordenes_proceso" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ordenes proceso</p>
                             </a>
@@ -919,7 +919,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_aprobacion" class="nav-link">
+                            <a href="./orden_aprobacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Aprobacion y redistibucion</p>
                             </a>
@@ -938,7 +938,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/ordenes_proceso" class="nav-link">
+                            <a href="./ordenes_proceso" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ordenes proceso</p>
                             </a>
@@ -958,7 +958,7 @@
                     <ul class="nav nav-treeview">
                         @if (Auth::user()->permisos()->where('permiso', 'Imprimir ordenes empaque')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_empaque_listar" class="nav-link">
+                            <a href="./orden_empaque_listar" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Imprimir Orden</p>
                             </a>
@@ -966,7 +966,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Reportar empaque')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
+                            <a href="./orden_empaque" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reportar Empaque</p>
                             </a>
@@ -986,7 +986,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/orden_empaque" class="nav-link">
+                            <a href="./orden_empaque" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reportar Empaque</p>
                             </a>
@@ -1005,7 +1005,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/nota_credito" class="nav-link">
+                            <a href="./nota_credito" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Devolucion</p>
                             </a>
@@ -1027,7 +1027,7 @@
                     <ul class="nav nav-treeview">
                         @if (Auth::user()->permisos()->where('permiso', 'Existencia Talla')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/existencia" class="nav-link">
+                            <a href="./existencia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencia Talla</p>
                             </a>
@@ -1035,7 +1035,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Reporte Existencias')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte" class="nav-link">
+                            <a href="./reporte" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencia Talla</p>
                             </a>
@@ -1043,7 +1043,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Reporte Disponibles')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte-primera" class="nav-link">
+                            <a href="./reporte-primera" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencia Talla</p>
                             </a>
@@ -1051,7 +1051,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Reporte Segundas')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte-Segundas" class="nav-link">
+                            <a href="./reporte-Segundas" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencia Talla</p>
                             </a>
@@ -1059,7 +1059,7 @@
                         @endif
                         @if (Auth::user()->permisos()->where('permiso', 'Reporte Pendientes')->first())
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/reporte-pendientes" class="nav-link">
+                            <a href="./reporte-pendientes" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Existencia Talla</p>
                             </a>
@@ -1080,7 +1080,7 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="/sistemaCCH/public/facturacion" class="nav-link">
+                            <a href="./facturacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Generar factura</p>
                             </a>
