@@ -4,39 +4,39 @@ $(document).ready(function() {
     var cantidad_guardar;
 
 
-    $("#formulario").validate({
-        rules: {
-            fecha_envio: {
-                required: true,
-                minlength: 1
-            },
-            cantidad: {
-                required: true,
-                minlength: 1,
-                number: true
-            },
-            receta_lavado: {
-                required: true,
-                minlength: 10
-            }
+    // $("#formulario").validate({
+    //     rules: {
+    //         fecha_envio: {
+    //             required: true,
+    //             minlength: 1
+    //         },
+    //         cantidad: {
+    //             required: true,
+    //             minlength: 1,
+    //             number: true
+    //         },
+    //         receta_lavado: {
+    //             required: true,
+    //             minlength: 10
+    //         }
           
-        },
-        messages: {
-            fecha_envio: {
-                required: "La fecha en envio es obligatoria",
-                minlength: "La fecha en envio es obligatoria"
-            },
-            cantidad: {
-                required: "La cantidad es un campo numerico obligatorio.",
-                minlength: "La cantidad es un campo numerico obligatorio.",
-                number: "Este campo solo admite numeros."
-            },
-            receta_lavado: {
-                required: "La receta de lavado es obligatoria",
-                minlength: "La receta de lavado debe conteneer al menos 10 caracteres"
-            }
-        }
-    })
+    //     },
+    //     messages: {
+    //         fecha_envio: {
+    //             required: "La fecha en envio es obligatoria",
+    //             minlength: "La fecha en envio es obligatoria"
+    //         },
+    //         cantidad: {
+    //             required: "La cantidad es un campo numerico obligatorio.",
+    //             minlength: "La cantidad es un campo numerico obligatorio.",
+    //             number: "Este campo solo admite numeros."
+    //         },
+    //         receta_lavado: {
+    //             required: "La receta de lavado es obligatoria",
+    //             minlength: "La receta de lavado debe conteneer al menos 10 caracteres"
+    //         }
+    //     }
+    // })
    
 
     var tabla

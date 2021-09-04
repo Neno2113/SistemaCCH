@@ -56,7 +56,7 @@ Route::post('almacenes/atributos', 'AlmacenController@atributoAlmacen');
 
 Route::get('producto-terminado', 'ProductController@productoTerminado');
 
-Route::post('ordenes', 'OrdenPedidoController@ordenes');
+Route::get('ordenes', 'OrdenPedidoController@ordenes');
 
 Route::get('ordenes_aprobacion', 'OrdenPedidoController@ordenesAprobacion');
 

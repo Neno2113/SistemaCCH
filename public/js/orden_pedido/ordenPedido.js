@@ -2059,7 +2059,7 @@ $(document).ready(function() {
             ],
             ajax:{
                 "url": "api/ordenes",
-                "type": "POST"
+                "type": "GET"
             },
             columns: [
                 { data: "Expandir", orderable: false, searchable: false },
