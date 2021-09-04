@@ -3,37 +3,37 @@ $(document).ready(function() {
     var total_devuelto_gloabl;
 
 
-    $("#formulario").validate({
-            rules: {
-                cortesSearch: {
-                    required: true,
-                    minlength: 1
-                },
-                lavanderias: {
-                    required: true,
-                    minlength: 1
+    // $("#formulario").validate({
+    //         rules: {
+    //             cortesSearch: {
+    //                 required: true,
+    //                 minlength: 1
+    //             },
+    //             lavanderias: {
+    //                 required: true,
+    //                 minlength: 1
 
-                },
-                fecha_recepcion: {
-                    required: true,
-                    minlength: 1
-                },
+    //             },
+    //             fecha_recepcion: {
+    //                 required: true,
+    //                 minlength: 1
+    //             },
 
 
-            },
-            messages: {
-                codigo_composicion: {
-                    required: "El numero de corte es obligatorio"
-                },
-                nombre_composicion: {
-                    required: "La lavanderia es obligatoria"
-                },
-                fecha_recepcion: {
-                    required: "La fecha de recepcion es obligatoria"
-                },
+    //         },
+    //         messages: {
+    //             codigo_composicion: {
+    //                 required: "El numero de corte es obligatorio"
+    //             },
+    //             nombre_composicion: {
+    //                 required: "La lavanderia es obligatoria"
+    //             },
+    //             fecha_recepcion: {
+    //                 required: "La fecha de recepcion es obligatoria"
+    //             },
 
-            }
-    })
+    //         }
+    // })
 
 
 
