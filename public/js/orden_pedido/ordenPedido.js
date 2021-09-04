@@ -2058,7 +2058,7 @@ $(document).ready(function() {
                 }
             ],
             ajax:{
-                "url": "api/ordenes",
+                "url": "api/ordenesList",
                 "type": "GET"
             },
             columns: [
