@@ -1302,7 +1302,7 @@ class ordenPedidoController extends Controller
             // ->addColumn('Ver', function ($orden) {
             //     return '<button onclick="ver(' . $orden->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
             // })
-            ->rawColumns(['Opciones', 'Ver', 'orden_proceso_impresa'])
+            ->rawColumns(['Opciones', 'orden_proceso_impresa'])
             ->make(true);
     }
 
