@@ -449,7 +449,7 @@ Route::get('ordenfacturacion/lastdigit', 'ordenFacturacionController@getDigits')
 Route::get('selectEmpaque', 'ordenFacturacionController@selectEmpaque');
 Route::post('empaque/search', 'ordenFacturacionController@empaqueSearch');
 Route::post('orden_facturacion', 'ordenFacturacionController@store');
-Route::post('factura_detalle', 'ordenFacturacionController@storeDetalle');
+Route::post('factura_detalle', 'OrdenFacturacionController@storeDetalle');
 
 //Factura
 Route::post('secuencia/factura', 'FacturaController@getNoFactura');
