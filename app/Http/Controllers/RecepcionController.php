@@ -176,7 +176,12 @@ class RecepcionController extends Controller
             $lavanderia_id = $request->input('lavanderia_id');
             $lavanderia = Lavanderia::find($lavanderia_id);
 
-            $cantidad_parcial = $lavanderia['cantidad_parcial'];
+            if(!empty($lavanderia)){
+                $cantidad_parcial = $lavanderia['cantidad_parcial'];
+
+            } else {
+                $cantidad_parcial = 0;
+            }
 
             $corte = Corte::find($corte_id);
             $cantidad_total = $corte['total'];
@@ -211,7 +216,12 @@ class RecepcionController extends Controller
             // $cantidad_enviada->save();
 
             $recepcion = Recepcion::where('corte_id', 'LIKE', "$corte_id")->get()->last();
-            $total_recibido = $recepcion['total_recibido'];
+            if(!empty($recepcion)){
+                $total_recibido = $recepcion['total_recibido'];
+
+            }else {
+                $total_recibido = 0;
+            }
 
             $data = [
                 'code' => 200,

@@ -72,8 +72,13 @@ class LavanderiaController extends Controller
             $cant_total = $corte['total'];
 
             $lavenderia_envio = Lavanderia::where('corte_id', 'LIKE', "$corte_id")->get()->last();
+            if(!empty($lavenderia_envio)){
+                $total_enviado = $lavenderia_envio['total_enviado'];
 
-            $total_enviado = $lavenderia_envio['total_enviado'];
+            } else {
+                $total_enviado = 0;
+            }
+
             $total_porcentaje = $total_enviado + $cantidad;
             // if($total_enviado)
 
