@@ -325,10 +325,10 @@ $(document).ready(function() {
                     $("#atributo_no_1").val(datos.producto.atributo_no_1);
                     $("#atributo_no_2").val(datos.producto.atributo_no_2);
                     $("#atributo_no_3").val(datos.producto.atributo_no_3);
-                    $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_frente);
-                    $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_trasero);
-                    $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_perfil);
-                    $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+datos.producto.imagen_bolsillo);
+                    $("#frente").attr("src", './producto/terminado/'+datos.producto.imagen_frente);
+                    $("#trasera").attr("src", './producto/terminado/'+datos.producto.imagen_trasero);
+                    $("#perfil").attr("src", './producto/terminado/'+datos.producto.imagen_perfil);
+                    $("#bolsillo").attr("src", './producto/terminado/'+datos.producto.imagen_bolsillo);
 
                     if (ubicacion != null) {
                         bootbox.confirm({
@@ -658,10 +658,10 @@ function mostrar(id_almacen){
 
             $("#total").html(data.total);
             $("#genero").val(data.almacen.producto.referencia_producto);
-            $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
-            $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
-            $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
-            $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+            $("#frente").attr("src", './producto/terminado/'+data.almacen.producto.imagen_frente)
+            $("#trasera").attr("src", './producto/terminado/'+data.almacen.producto.imagen_trasero)
+            $("#perfil").attr("src", './producto/terminado/'+data.almacen.producto.imagen_perfil)
+            $("#bolsillo").attr("src", './producto/terminado/'+data.almacen.producto.imagen_bolsillo)
             $("#pendiente_produccion").html(data.pen_produccion);
             $("#pendiente_lavanderia").html(data.pen_lavanderia);
             $("#total_terminacion").html(data.total_recibido);

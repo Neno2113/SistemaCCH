@@ -1077,10 +1077,10 @@ function mostrar(id_almacen){
 
             $("#total").html(data.total);
             $("#genero").val(data.almacen.producto.referencia_producto);
-            $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_frente)
-            $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_trasero)
-            $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_perfil)
-            $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.almacen.producto.imagen_bolsillo)
+            $("#frente").attr("src", './producto/terminado/'+data.almacen.producto.imagen_frente)
+            $("#trasera").attr("src", './producto/terminado/'+data.almacen.producto.imagen_trasero)
+            $("#perfil").attr("src", './producto/terminado/'+data.almacen.producto.imagen_perfil)
+            $("#bolsillo").attr("src", './producto/terminado/'+data.almacen.producto.imagen_bolsillo)
             $("#total_cortado").html(data.total_cortado);
             $("#pendiente_produccion").html(data.pen_produccion);
             $("#pendiente_lavanderia").html(data.pen_lavanderia);

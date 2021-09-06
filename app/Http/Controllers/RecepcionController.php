@@ -99,9 +99,14 @@ class RecepcionController extends Controller
                 $recepcion_total->save();
 
             }
+            if(!empty($recepcion_total)){
+                $total_recibido = $recepcion_total['total_recibido'];
+                $total_devuelto = $recepcion_total['total_devuelto'];
 
-            $total_recibido = $recepcion_total['total_recibido'];
-            $total_devuelto = $recepcion_total['total_devuelto'];
+            } else {
+                $total_recibido = 0;
+                $total_devuelto = 0;
+            }
             $total_porcentaje = $cantidad_recibida + $total_recibido;
 
             $porcentaje = ($total_porcentaje / $total_enviado ) * 100;
