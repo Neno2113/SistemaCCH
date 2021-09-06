@@ -33,7 +33,7 @@ class ordenEmpaqueController extends Controller
         $ordenes = DB::table('orden_empaque')
             ->join('orden_pedido', 'orden_empaque.orden_pedido_id', 'orden_pedido.id')
             ->select([
-                'orden_pedido.id', 'orden_empaque.no_orden_empaque', 'orden_pedido.sucursal_id',
+                'orden_pedido.id as id', 'orden_empaque.no_orden_empaque', 'orden_pedido.sucursal_id',
                 'orden_pedido.no_orden_pedido', 'orden_pedido.fecha_entrega', 'orden_empaque.id as empaque_id',
                 'orden_pedido.detallada', 'orden_empaque.impreso', 'orden_pedido.cliente_id',
                 'orden_pedido.status_orden_pedido', 'orden_empaque.empacado', 'orden_pedido.status_orden_pedido'
@@ -1614,19 +1614,19 @@ class ordenEmpaqueController extends Controller
             
         }
 
-        $productos = array();
+        // $productos = array();
 
-        $longitudProducto = count($orden_detalle);
+        // $longitudProducto = count($orden_detalle);
 
-        for ($i = 0; $i < $longitudProducto; $i++) {
-            array_push($productos, $orden_detalle[$i]['producto_id']);
-        }
+        // for ($i = 0; $i < $longitudProducto; $i++) {
+        //     array_push($productos, $orden_detalle[$i]['producto_id']);
+        // }
 
-        $producto = Product::whereIn('id', $productos)->select('referencia_producto')->get()->first();
+        // $producto = Product::whereIn('id', $productos)->select('referencia_producto')->get()->first();
 
-        for ($i = 0; $i < $longitudProducto; $i++) {
-            $producto_ref = $producto[$i]['referencia_producto'];
-        }
+        // for ($i = 0; $i < $longitudProducto; $i++) {
+        //     $producto_ref = $producto[$i]['referencia_producto'];
+        // }
 
 
         if (is_object($orden_pedido)) {

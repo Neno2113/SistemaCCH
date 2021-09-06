@@ -649,9 +649,7 @@ class NotaCreditoController extends Controller
             $orden_empaque_detalle->fecha_empacado = date("d/m/20y h:i:s", strtotime($orden_empaque_detalle->fecha_empacado));
 
             $pdf = \PDF::loadView('sistema.ordenFacturacion.docNotaCredito', \compact(
-                'factura',
                 'orden_pedido',
-                'orden_facturacion_detalle',
                 'productosFactura',
                 'sku',
                 'detalles_totales',
