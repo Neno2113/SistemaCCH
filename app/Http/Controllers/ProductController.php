@@ -471,27 +471,27 @@ class ProductController extends Controller
 
             $product->save();
 
-            $curva =CurvaProducto::where('producto_id', $id)->first();
-            $curva->a = $a;
-            $curva->b = $b;
-            $curva->c = $c;
-            $curva->d = $d;
-            $curva->e = $e;
-            $curva->f = $f;
-            $curva->g = $g;
-            $curva->h = $h;
-            $curva->i = $i;
-            $curva->j = $j;
-            $curva->k = $k;
-            $curva->l = $l;
+            // $curva =CurvaProducto::where('producto_id', $id)->first();
+            // $curva->a = $a;
+            // $curva->b = $b;
+            // $curva->c = $c;
+            // $curva->d = $d;
+            // $curva->e = $e;
+            // $curva->f = $f;
+            // $curva->g = $g;
+            // $curva->h = $h;
+            // $curva->i = $i;
+            // $curva->j = $j;
+            // $curva->k = $k;
+            // $curva->l = $l;
 
-            $curva->save();
+            // $curva->save();
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'product' => $product,
-                'curva' => $curva
+                // 'curva' => $curva
             ];
         }
 

@@ -158,7 +158,7 @@ class LavanderiaController extends Controller
 
 
             $talla = Lavanderia::where('corte_id', 'LIKE', "$corte_id")->get()->last();
-            $total = $talla['cantidad'];
+            // $total = $talla['cantidad'];
 
             $corte = Corte::find($corte_id);
             $producto_id = $corte['producto_id'];
@@ -190,22 +190,34 @@ class LavanderiaController extends Controller
             $cantidad_enviada = Lavanderia::where('corte_id', $corte_id)
                                             ->Where('producto_id', $producto_id)
                                             ->get()->last();
-            $total_parcial = $cantidad_enviada['cantidad_parcial'];
-            $total_enviado = $cantidad_enviada['total_enviado'];
 
-            // // print_r($cantidad_enviada);
-            // var_dump($total_parcial);
-            // die();
+            if(!empty($cantidad_enviada)){
+                $total_parcial = $cantidad_enviada['cantidad_parcial'];
+                $total_enviado = $cantidad_enviada['total_enviado'];
 
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'total_cortado' => $cantidad_total,
-                'total_enviado' => $total_enviado,
-                'perdidas' => $cant_perdida,
-                'parcial' => $total_parcial
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'total_cortado' => $cantidad_total,
+                    'total_enviado' => $total_enviado,
+                    'perdidas' => $cant_perdida,
+                    'parcial' => $total_parcial
+    
+                ];
 
-            ];
+            } else {
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'total_cortado' => $cantidad_total,
+                    'perdidas' => $cant_perdida,
+    
+                ];
+            }
+
+    
+
+         
 
         }
         return \response()->json($data, $data['code']);
