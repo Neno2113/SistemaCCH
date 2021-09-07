@@ -103,14 +103,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @include('adminlte/content')
 
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
+        {{-- <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
             <div class="p-3">
                 <h5>Title</h5>
                 <p>Sidebar content</p>
             </div>
         </aside>
-        <!-- /.control-sidebar -->
+        <!-- /.control-sidebar --> --}}
 
         @include('adminlte/footer')
 
