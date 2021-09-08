@@ -48,7 +48,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     @if (Auth::user()->role == 'Administrador')
-                    <a href="/sistemaCCH/public/user" class="btn btn-default btn-flat">Usuarios</a>
+                    <a href="./user" class="btn btn-default btn-flat">Usuarios</a>
                     @endif
 
                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right"

@@ -25,7 +25,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="login-logo">
-                <a href="../../index2.html"><b>Sistema</b>CCH</a>
+                <a href="../../index2.html"><b>CCH-</b>SRL</a>
             </div>
             <div class="card">
                 {{-- <div class="card-header">{{ __('Login') }}</div> --}}
