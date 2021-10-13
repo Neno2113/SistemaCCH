@@ -236,7 +236,7 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_1" id="porcentaje_mat_1"
-                                class="form-control text-center" data-inputmask='"mask": "999[.99]"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "9[.]9[.9][9[9]]"' data-mask
                                 placeholder="%">
                         </div>
                     </div>
@@ -252,7 +252,7 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_2" id="porcentaje_mat_2"
-                                class="form-control text-center" data-inputmask='"mask": "999[.99]"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "9[.]9[.9][9[9]]"' data-mask
                                 placeholder="%">
                         </div>
                     </div>
@@ -268,7 +268,7 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_3" id="porcentaje_mat_3"
-                                class="form-control text-center" data-inputmask='"mask": "999[.99]"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "9[.]9[.9][9[9]]"' data-mask
                                 placeholder="%">
                         </div>
                     </div>
@@ -284,7 +284,7 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_4" id="porcentaje_mat_4"
-                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "9[.]9[.9][9[9]]"' data-mask
                                 placeholder="%">
                         </div>
                     </div>
@@ -300,7 +300,7 @@
 
                         <div class="col-md-3">
                             <input type="text" name="porcentaje_mat_5" id="porcentaje_mat_5"
-                                class="form-control text-center" data-inputmask='"mask": "99[.99]"' data-mask
+                                class="form-control text-center" data-inputmask='"mask": "9[.]9[.9][9[9]]"' data-mask
                                 placeholder="%">
                         </div>
                     </div>

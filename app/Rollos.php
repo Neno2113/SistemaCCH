@@ -9,8 +9,7 @@ class Rollos extends Model
     protected $table = 'rollos';
 
     protected $fillable = [
-        'id', 'id_suplidor', 'id_tela', 'codigo_rollo', 'num_tono', 'fecha_compra', 'longitud_yarda', 
-        'corte_utilizado'
+        'id', 'id_suplidor', 'id_tela', 'codigo_rollo', 'num_tono', 'fecha_compra', 'longitud_yarda'
     ];
 
     public function suplidor()

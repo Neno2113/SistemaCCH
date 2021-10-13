@@ -993,10 +993,10 @@ class AlmacenController extends Controller
 
         //validar la imagen
         $validate = \Validator::make($request->all(), [
-            'imagen_frente' => 'required|image|mimes:jpg,jpeg,png',
-            'imagen_trasera' => 'required|image|mimes:jpg,jpeg,png',
-            'imagen_perfil' => 'required|image|mimes:jpg,jpeg,png',
-            'imagen_bolsillo' => 'required|image|mimes:jpg,jpeg,png'
+            'imagen_frente' => 'image|mimes:jpg,jpeg,png',
+            'imagen_trasera' => 'image|mimes:jpg,jpeg,png',
+            'imagen_perfil' => 'image|mimes:jpg,jpeg,png',
+            'imagen_bolsillo' => 'image|mimes:jpg,jpeg,png'
         ]);
         // Guardar la imagen
         if ($validate->fails()) {
@@ -1012,10 +1012,10 @@ class AlmacenController extends Controller
             $imagen_bolsillo = $request->file('imagen_bolsillo');
             $corte_id = $request->input('corte_id');
             $corte_id_edit = $request->input('corte_id_edit');
-            $image_name_1 = time() . $imagen_frente->getClientOriginalName();
-            $image_name_2 = time() . $imagen_trasero->getClientOriginalName();
-            $image_name_3 = time() . $imagen_perfil->getClientOriginalName();
-            $image_name_4 = time() . $imagen_bolsillo->getClientOriginalName();
+            $image_name_1 = (!empty($imagen_frente)) ? time() . $imagen_frente->getClientOriginalName() : null;
+            $image_name_2 = (!empty($imagen_trasero)) ? time() . $imagen_trasero->getClientOriginalName() : null;
+            $image_name_3 = (!empty($imagen_perfil)) ? time() . $imagen_perfil->getClientOriginalName() : null;
+            $image_name_4 = (!empty($imagen_bolsillo)) ? time() . $imagen_bolsillo->getClientOriginalName() : null;
 
             if (empty($corte_id) && !empty($corte_id_edit)) {
                 $corte_id = $corte_id_edit;
@@ -1039,10 +1039,21 @@ class AlmacenController extends Controller
                 $producto->save();
             }
 
-            \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
-            \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
-            \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
-            \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
+            if(!empty($imagen_frente)){
+                \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
+            }
+            if(!empty($imagen_trasero)){
+                \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
+
+            }
+            if(!empty($imagen_perfil)){
+                \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
+
+            }
+            if(!empty($imagen_bolsillo)){
+                \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
+
+            }
 
             $data = [
                 'code' => 200,

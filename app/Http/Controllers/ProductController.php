@@ -285,7 +285,11 @@ class ProductController extends Controller
             $skus = SKU::where('producto_id', $id)->get();
             
 
-           
+            $product->precio_lista = number_format($product->precio_lista );
+            $product->precio_venta_publico = number_format($product->precio_venta_publico );
+
+            $product->precio_lista_2 = number_format($product->precio_lista_2 );
+            $product->precio_venta_publico_2 = number_format($product->precio_venta_publico_2 );
 
             $data = [
                 'code' => 200,
@@ -416,6 +420,7 @@ class ProductController extends Controller
         } else {
             $id = $request->input('id', true);
             $referencia = $request->input('referencia', true);
+            $referencia_2 = $request->input('referencia_2', true);
             $descripcion = $request->input('descripcion', true);
             $descripcion_2 = $request->input('descripcion_2', true);
             $precio_lista = $request->input('precio_lista');
@@ -459,6 +464,7 @@ class ProductController extends Controller
             }
 
             $product->referencia_producto = $referencia;
+            $product->referencia_producto_2 = $referencia_2;
             $product->descripcion_2 = $descripcion_2;
             $product->descripcion = $descripcion;
             $product->id_catalogo = 3;
@@ -1137,10 +1143,10 @@ class ProductController extends Controller
 
         //validar la imagen
         $validate = \Validator::make($request->all(), [
-            'imagen_frente' => 'required|image|mimes:jpg,jpeg,png',
-            'imagen_trasera' => 'required|image|mimes:jpg,jpeg,png',
-            'imagen_perfil' => 'required|image|mimes:jpg,jpeg,png',
-            'imagen_bolsillo' => 'required|image|mimes:jpg,jpeg,png',
+            'imagen_frente' => 'image|mimes:jpg,jpeg,png',
+            'imagen_trasera' => 'image|mimes:jpg,jpeg,png',
+            'imagen_perfil' => 'image|mimes:jpg,jpeg,png',
+            'imagen_bolsillo' => 'image|mimes:jpg,jpeg,png',
             'product_id' => 'required'
         ]);
         // Guardar la imagen
@@ -1156,10 +1162,11 @@ class ProductController extends Controller
             $imagen_perfil = $request->file('imagen_perfil');
             $imagen_bolsillo = $request->file('imagen_bolsillo');
             $product_id = $request->input('product_id');
-            $image_name_1 = time() . $imagen_frente->getClientOriginalName();
-            $image_name_2 = time() . $imagen_trasero->getClientOriginalName();
-            $image_name_3 = time() . $imagen_perfil->getClientOriginalName();
-            $image_name_4 = time() . $imagen_bolsillo->getClientOriginalName();
+
+            $image_name_1 = (!empty($imagen_frente)) ? time() . $imagen_frente->getClientOriginalName() : null;
+            $image_name_2 = (!empty($imagen_trasero)) ? time() . $imagen_trasero->getClientOriginalName() : null;
+            $image_name_3 = (!empty($imagen_perfil)) ? time() . $imagen_perfil->getClientOriginalName() : null;
+            $image_name_4 = (!empty($imagen_bolsillo)) ? time() . $imagen_bolsillo->getClientOriginalName() : null;
 
             if(empty($product_id)){
                 $select = DB::select("SHOW TABLE STATUS LIKE 'producto'");
@@ -1175,10 +1182,21 @@ class ProductController extends Controller
             $producto->imagen_bolsillo = $image_name_4;
             $producto->save();
 
-            \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
-            \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
-            \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
-            \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
+            if(!empty($imagen_frente)){
+                \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
+            }
+            if(!empty($imagen_trasero)){
+                \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
+
+            }
+            if(!empty($imagen_perfil)){
+                \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
+
+            }
+            if(!empty($imagen_bolsillo)){
+                \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
+
+            }
 
             $data = [
                 'code' => 200,

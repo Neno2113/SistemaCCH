@@ -255,7 +255,7 @@ $(document).ready(function() {
             porcentaje_mat_5: $("#porcentaje_mat_5").val()
         };
 
-        // console.log(JSON.stringify(cloth));
+        console.log($("#compositions").val());
 
         $.ajax({
             url: "cloth",
@@ -812,10 +812,11 @@ const telas = () => {
         success: function(datos) {
             if (datos.status == "success") {
                 var longitud = datos.categorias.length;
+                console.log(datos);
 
                 for (let i = 0; i < longitud; i++) {
                     var fila =
-                    ` <option value="${datos.categorias[i].indice}">${datos.categorias[i].nombre}</option>`
+                    ` <option value="${datos.categorias[i].nombre}">${datos.categorias[i].nombre}</option>`
                     $("#tipo_tela").append(fila);
                 }
                 $("#tipo_tela").select2();

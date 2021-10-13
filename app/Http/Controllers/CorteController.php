@@ -46,6 +46,7 @@ class CorteController extends Controller
             $largo_marcada = $request->input('largo_marcada');
             $aprovechamiento = $request->input('aprovechamiento');
             $fecha_entrega = $request->input('fecha_entrega');
+            $fecha_creacion = $request->input('fecha_creacion');
 
             $sec = $request->input('sec');
             $fase = 'Produccion';
@@ -74,6 +75,7 @@ class CorteController extends Controller
                 $corte->fase = $fase;
                 $corte->sec = $sec + 0.01;
                 $corte->fecha_entrega = $fecha_entrega;
+                $corte->fecha_creacion = $fecha_creacion;
 
                 $corte->save();
 
@@ -268,7 +270,7 @@ class CorteController extends Controller
         $corte = Corte::find($id);
 
         if (!empty($corte)) {
-            $rollos = RollosDetail::where('corte_utilizado', $corte->numero_core)->get();
+            $rollos = RollosDetail::where("corte_utilizado", $corte->numero_corte)->get();
 
             if(count($rollos) > 0){
                 for ($i=0; $i < count($rollos); $i++) { 
@@ -281,6 +283,7 @@ class CorteController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
+                'rollo'=> $rollos,
                 'corte' => $corte
             ];
         } else {

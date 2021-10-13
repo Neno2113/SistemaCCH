@@ -204,7 +204,7 @@ $(document).ready(function() {
         $("#genero").val(genero);
         genero_global = genero;
         plus_global = genero_plus;
-         setTimeout(verficarReferencia, 2000);
+        setTimeout(verficarReferencia, 1000);
       
 
         if (genero == "2") {
@@ -426,36 +426,36 @@ $(document).ready(function() {
     });
 
 
-    $("#fecha_entrega").click(function(){
-        let fecha = new Date();
-        let dia = fecha.getDate();
-        let year = fecha.getFullYear();
-        let month = fecha.getMonth();
+    // $("#fecha_entrega").click(function(){
+    //     let fecha = new Date();
+    //     let dia = fecha.getDate();
+    //     let year = fecha.getFullYear();
+    //     let month = fecha.getMonth();
 
 
-        if(dia < 15){
-            month = month + 2;
-            var i = Number(month) / 100;
-            i = (i).toFixed(2).split(".").join("");
-            i = i.substr(1, 4);
+    //     if(dia < 15){
+    //         month = month + 2;
+    //         var i = Number(month) / 100;
+    //         i = (i).toFixed(2).split(".").join("");
+    //         i = i.substr(1, 4);
 
-            $("#fecha_entrega").attr('min', year +"-"+ i+"-14")
-            $("#fecha_entrega").attr('max', year +"-"+ i+"-14")
-            $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la primera quincena del mes: "+month);
-        }else if(dia > 15){
-            month = month + 2;
-            var i = Number(month) / 100;
-            i = (i).toFixed(2).split(".").join("");
-            i = i.substr(1, 4);
+    //         $("#fecha_entrega").attr('min', year +"-"+ i+"-14")
+    //         $("#fecha_entrega").attr('max', year +"-"+ i+"-14")
+    //         $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la primera quincena del mes: "+month);
+    //     }else if(dia > 15){
+    //         month = month + 2;
+    //         var i = Number(month) / 100;
+    //         i = (i).toFixed(2).split(".").join("");
+    //         i = i.substr(1, 4);
 
-            $("#fecha_entrega").attr('min', 2020 +"-"+i+"-28")
-            $("#fecha_entrega").attr('max', 2020 +"-"+1+"-28")
-            $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);
-        }
+    //         $("#fecha_entrega").attr('min', 2020 +"-"+i+"-28")
+    //         $("#fecha_entrega").attr('max', 2020 +"-"+1+"-28")
+    //         $("#fecha_entrega").attr('title', "Fecha estimada de entrega es la segunda quincena del mes: "+month);
+    //     }
 
        
 
-    });
+    // });
 
     $('#sec_manual').on('change', () => {
         $('#btn-generar').attr('disabled', false);
@@ -475,8 +475,11 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
-                    //Inventario
+                    //talla 2
+                    $("#referencia_2").val(datos.producto.referencia_producto_2);
+                    // console.log(datos.producto.referencia_producto_2);
 
+                    //Inventario
                     $("#a_alm").html(datos.a_alm);
                     $("#b_alm").html(datos.b_alm);
                     $("#c_alm").html(datos.c_alm);
@@ -551,7 +554,7 @@ $(document).ready(function() {
                         $("#g_perc_ref1").html(datos.g);
                         $("#h_perc_ref1").html(datos.h);
                         $("#total_perc_ref1").html(datos.total_porc + "%");
-                        $("#corte_tallas_2").val(datos.referencia2.referencia_producto);
+                        // $("#corte_tallas_2").val(datos.referencia2.referencia_producto);
 
                         $("#a_perc_ref2").html(datos.a_curva2);
                         $("#b_perc_ref2").html(datos.b_curva2);
@@ -635,6 +638,8 @@ $(document).ready(function() {
 
 
                 } else if(datos.status == 'info') {
+                    $("#referencia_2").val(datos.producto.referencia_producto_2);
+                    // console.log(datos.producto.referencia_producto_2);
                     
                     $("#a_perc_act").html(datos.a + "%");
                     $("#b_perc_act").html(datos.b + "%");
@@ -679,7 +684,7 @@ $(document).ready(function() {
                         $("#g_perc_ref1").html(datos.g);
                         $("#h_perc_ref1").html(datos.h);
                         $("#total_perc_ref1").html(datos.total_porc + "%");
-                        $("#corte_tallas_2").val(datos.referencia2.referencia_producto);
+                        // $("#corte_tallas_2").val(datos.referencia2.referencia_producto);
 
                         $("#a_perc_ref2").html(datos.a_curva2);
                         $("#b_perc_ref2").html(datos.b_curva2);
@@ -728,6 +733,7 @@ $(document).ready(function() {
             sec: $("#sec").val(),
             numero_corte: $("#numero_corte_gen").val(),
             producto: $("#productos").val(),
+            fecha_creacion: $("#fecha_creacion").val(),
             fecha_entrega: $("#fecha_entrega").val(),
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
@@ -1078,6 +1084,7 @@ $(document).ready(function() {
                     $("#corte").val(referencia);
                     $("#numero_corte").val(referencia);
                     $("#corte_tallas").val(referencia);
+                    // $("#corte_tallas_2").val(referencia);
 
                     $("#fila1").show();
                     $("#fila2").show();
@@ -2022,7 +2029,7 @@ function calcularPorcentaje(){
     let total = a + b + c + d + e + f + g + h + i + j + k + l;
 
     $("#total_perc").html(total+"%");
-    if(total == 100.00){
+    if(total == 100.00 || 99.99){
         $("#btn-curva").attr("disabled", false);
     }else{
         $("#btn-curva").attr("disabled", true);
@@ -2254,7 +2261,7 @@ function PorcentajeRef1(){
     let total = a + b + c + d + e + f + g + h;
 
     $("#total_ref1").html(total+"%");
-    if(total == 100.00){
+    if(total == 100.00 || total == 99.99){
         $("#btn-curva").attr("disabled", false);
     }else{
         $("#btn-curva").attr("disabled", true);
@@ -2274,7 +2281,7 @@ function PorcentajeRef2(){
     let total = a + b + c + d + e + f + g + h;
 
     $("#total_ref2").html(total+"%");
-    if(total == 100.00){
+    if(total == 100.00 || total == 99.99){
         $("#btn-curva").attr("disabled", false);
     }else{
         $("#btn-curva").attr("disabled", true);

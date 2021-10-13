@@ -68,7 +68,7 @@
                     <hr>
                     <br>
                     <div class="row" id="fila1">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="" >Referencia Producto</label>
                             <select name="tags[]" id="productos" class="form-control select2">
                                 <option value="" disabled>Referencia producto</option>
@@ -76,13 +76,19 @@
                            
                             {{-- <input type="hidden" name="genero" id="genero"> --}}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <label for="" >Fecha creacion</label>
+                            <input type="text" name="fecha_creacion" 
+                                id="fecha_entrega" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
+                           
+                        </div>
+                        <div class="col-md-3">
                             <label for="" >Fecha disponibilidad</label>
                             <input type="text" name="fecha_entrega" 
                                 id="fecha_entrega" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
                            
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="" >No. Marcada</label>
                             <input type="text"  name="no_marcada" id="no_marcada"
                                 class="form-control">
@@ -301,7 +307,7 @@
                             class="form-control text-center font-weight-bold">
                     </div>
                     <div class="col-md-3 mb-2">
-                        <input type="text" name="corte_tallas_2" id="corte_tallas_2"
+                        <input type="text" name="referencia_2" id="referencia_2"
                             class="form-control text-center font-weight-bold">
                     </div>
                 </div>

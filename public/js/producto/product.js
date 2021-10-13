@@ -430,8 +430,9 @@ $(document).ready(function() {
         var product = {
             id: $("#id").val(),
             referencia: $("#referencia").val(),
-            descripcion: $("#descripcion").val(),
             referencia_2: $("#referencia_2").val(),
+            descripcion: $("#descripcion").val(),
+            descripcion_2: $("#descripcion_2").val(),
             catalogo: $("#tipo_cuenta").val(),
             precio_lista: $("#precio_lista").val(),
             precio_lista_2: $("#precio_lista_2").val(),
@@ -464,6 +465,44 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
+                    var formData = new FormData($("#formUpload")[0]);
+            
+                    $.ajax({
+                        url: "product/imagen",
+                        type: "POST",
+                        data: formData,
+                        dataType: "JSON",
+                        processData: false,
+                        cache: false,
+                        contentType: false,
+                        success: function(datos) {
+                            if (datos.status == "success") {
+                            
+                                $("#imagen_frente").val("");
+                                $("#imagen_trasera").val("");
+                                $("#imagen_perfil").val("");
+                                $("#imagen_bolsillo").val("");
+                            } else {
+                                bootbox.alert(
+                                    "Ocurrio un error durante la creacion de la composicion"
+                                );
+                            }
+                        },
+                        error: function(datos) {
+                            console.log(datos.responseJSON.message);
+                            let errores = datos.responseJSON.message;
+            
+                            Object.entries(errores).forEach(([key, val]) => {
+                                bootbox.alert({
+                                    message:
+                                        "<h4 class='invalid-feedback d-block'>" +
+                                        val +
+                                        "</h4>",
+                                    size: "small"
+                                });
+                            });
+                        }
+                    });
                     Swal.fire(
                         'Referencia actualizada!!',
                         'Referencia actualizada correctamente!',
@@ -785,8 +824,12 @@ function tallas(){
 }
 
 function mostrar(id_prouct) {
+    generos();
+    tipos();
+    categorias();
+    marcas();
     $.post("product/" + id_prouct, function(data, status) {
-
+    
         if(data.status == 'denied'){
             return Swal.fire(
                 'Acceso denegado!',
@@ -794,6 +837,7 @@ function mostrar(id_prouct) {
                 'info'
             )
         } else {
+      
             // data = JSON.parse(data);
             $("#listadoUsers").hide();
             $("#registroForm").show();
@@ -806,8 +850,10 @@ function mostrar(id_prouct) {
             $("#id").val(data.product.id);
             $("#product_id").val(data.product.id);
             $("#referencia").val(data.product.referencia_producto);
+            $("#referencia_2").val(data.product.referencia_producto_2);
             $("#referencia_talla").val(data.product.referencia_producto);
             $("#descripcion").val(data.product.descripcion);
+            $("#descripcion_2").val(data.product.descripcion_2);
             $("#precio_lista").val(data.product.precio_lista);
             $("#precio_lista_2").val(data.product.precio_lista_2);
             $("#precio_venta_publico").val(data.product.precio_venta_publico);
@@ -824,10 +870,10 @@ function mostrar(id_prouct) {
             $("#j").val(data.j);
             $("#k").val(data.k);
             $("#l").val(data.l);
-            $("#frente").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_frente);
-            $("#trasera").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_trasero);
-            $("#perfil").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_perfil);
-            $("#bolsillo").attr("src", '/sistemaCCH/public/producto/terminado/'+data.product.imagen_bolsillo);
+            $("#frente").attr("src", './producto/terminado/'+data.product.imagen_frente);
+            $("#trasera").attr("src", './producto/terminado/'+data.product.imagen_trasero);
+            $("#perfil").attr("src", './producto/terminado/'+data.product.imagen_perfil);
+            $("#bolsillo").attr("src", './producto/terminado/'+data.product.imagen_bolsillo);
             genero_global = data.product.genero;
             genero_plus = data.product.referencia_producto.substring(3, 4);
             let marca = data.product.referencia_producto.substring(0, 1);
@@ -836,16 +882,37 @@ function mostrar(id_prouct) {
             let categoria = data.product.referencia_producto.substring(3, 4);
             let year = data.product.referencia_producto.substring(5, 7);
             let secuence = data.product.referencia_producto.substring(8, 9);
+            // console.log(marca);
+            // console.log(genero);
+            // console.log(tipo_producto);
+            // console.log(categoria);
             $("#year").val(20+year);
             $("#sec_manual").val(secuence);
-            $("#marca").val(marca).attr('selected', 'selected').trigger("change");
-            $("#genero").val(genero).attr('selected', 'selected').trigger("change");
-            $("#tipo_producto").val(tipo_producto).attr('selected', 'selected').trigger("change");
-            $("#categoria").val(categoria).attr('selected', 'selected').trigger("change");
+         
             // $("#skuGeneral").val(data.skuGen.sku);
             tallas();
             eliminarColumnas();
             skus(data);
+         
+            $("#marca").val(data.product.marca).attr('selected', 'selected').trigger("change");
+            $("#genero").val(genero).attr('selected', 'selected').trigger("change");
+            $("#tipo_producto").val(tipo_producto).attr('selected', 'selected').trigger("change");
+            $("#categoria").val(categoria).attr('selected', 'selected').trigger("change");
+
+
+            if (data.product.genero == 3 || data.product.genero == 4) {
+                $("#mostrarRef2").show();
+                $("#precios_2").show();
+                $("#descripcion_ref2").show();
+            } else {
+                $("#mostrarRef2").hide();
+                $("#precios_2").hide();
+                $("#descripcion_ref2").hide();
+                $("#referencia_2").val("");
+                $("#descripcion_2").val("");
+                $("#precio_lista_2").val("");
+                $("#precio_venta_publico_2").val("");
+            }
         }
         
     });
