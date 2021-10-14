@@ -157,17 +157,23 @@ class RollosController extends Controller
             }
         }
 
-        $rollo = Rollos::find($id)->load('suplidor')
-            ->load('tela');
+        $rollo = Rollos::find($id)->load('suplidor');
+       
 
         if (is_object($rollo)) {
             $rollos = RollosDetail::where('id_rollo', $rollo->id)->get();
+
+            //tela
+            $rollo_tela = RollosDetail::where('id_rollo', $rollo->id)->first();
+            $tela = Cloth::find($rollo_tela->id_tela);
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'rollo' => $rollo,
-                'rollos' => $rollos
+                'rollos' => $rollos,
+                'tela' => $tela
+                
             ];
         } else {
             $data = [

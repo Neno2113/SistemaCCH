@@ -9,6 +9,7 @@ var e_ref2;
 var f_ref2;
 var g_ref2;
 var h_ref2;
+let is_edit;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -77,6 +78,10 @@ $(document).ready(function() {
         $("#ancho_marcada").val("");
         $("#largo_marcada").val("");
         $("#aprovechamiento").val("");
+        $("#year").val(2019);
+        $("#sec_manual").val(1);
+        $("#fecha_creacion").val("");
+        $("#total_corte").html("");
         // $("#year").val("");
         // $("#sec").val("");
         $("#a").val("");
@@ -137,37 +142,6 @@ $(document).ready(function() {
 
 
 
-    function productos (){
-
-        $.ajax({
-            url: "testSelectProduct",
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    var longitud = datos.productos.length;
-
-                    for (let i = 0; i < longitud; i++) {
-                        var fila =  "<option value="+datos.productos[i].id +">"+datos.productos[i].referencia_producto+"</option>"
-
-                        $("#productos").append(fila);
-                    }
-                    $("#productos").select2();
-
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error!!"
-                );
-            }
-        });
-    }
      //Select2 cortes para consulta
 
     $("#cortesSearch").select2({
@@ -204,7 +178,10 @@ $(document).ready(function() {
         $("#genero").val(genero);
         genero_global = genero;
         plus_global = genero_plus;
-        setTimeout(verficarReferencia, 1000);
+        if(!is_edit){
+            setTimeout(verficarReferencia, 1000);
+
+        }
       
 
         if (genero == "2") {
@@ -460,6 +437,11 @@ $(document).ready(function() {
     $('#sec_manual').on('change', () => {
         $('#btn-generar').attr('disabled', false);
     })
+    
+    $('#year').on('change', () => {
+        $('#btn-generar').attr('disabled', false);
+    })
+
 
     function verficarReferencia(){
 
@@ -543,8 +525,8 @@ $(document).ready(function() {
                         // $("#fila-totales").hide();
                         $("#fila-perc-ref1").show();
                         $("#fila-perc-ref2").show();
-                        $("#corte_tallas_2").show();
-                        $("#corte_tallas_2").show();
+                        $("#referencia_2").show();
+                        $("#referencia_2").show();
                         $("#a_perc_ref1").html(datos.a);
                         $("#b_perc_ref1").html(datos.b);
                         $("#c_perc_ref1").html(datos.c);
@@ -673,8 +655,8 @@ $(document).ready(function() {
                         // $("#fila-totales").hide();
                         $("#fila-perc-ref1").hide();
                         $("#fila-perc-ref2").hide();
-                        $("#corte_tallas_2").show();
-                        $("#corte_tallas_2").show();
+                        $("#referencia_2").show();
+                        $("#referencia_2").show();
                         $("#a_perc_ref1").html(datos.a);
                         $("#b_perc_ref1").html(datos.b);
                         $("#c_perc_ref1").html(datos.c);
@@ -872,6 +854,7 @@ $(document).ready(function() {
                 { data: "name", name: 'users.name' },
                 { data: "numero_corte", name: 'corte.numero_corte' },
                 { data: "referencia_producto", name: 'producto.referencia_producto' },
+                { data: "sku", name: 'sku' },
                 { data: "fecha_corte", name: 'corte.fecha_corte' },
                 { data: "fecha_entrega", name: 'corte.fecha_entrega' },
                 { data: "fase", name: 'corte.fase' },
@@ -918,7 +901,9 @@ $(document).ready(function() {
         var corte = {
             id: $("#id").val(),
             producto: $("#productos").val(),
+            numero_corte: $("#numero_corte_gen").val(),
             fecha_entrega: $("#fecha_entrega").val(),
+            fecha_creacion: $("#fecha_creacion").val(),
             no_marcada: $("#no_marcada").val(),
             ancho_marcada: $("#ancho_marcada").val(),
             largo_marcada: $("#largo_marcada").val(),
@@ -941,6 +926,7 @@ $(document).ready(function() {
 
                     $("#cortes").DataTable().ajax.reload();
                     $("#id").val("");
+                    $("#rollos").DataTable().ajax.reload();
 
                     var talla = {
                         corte_id: datos.corte.id,
@@ -1134,6 +1120,7 @@ $(document).ready(function() {
             $("#edit-hide").attr("disabled", false);
             $("#edit-hide").show();
             productos();
+            is_edit = false;
 
             // $("#rollo-edit").hide();
         } else {
@@ -1150,7 +1137,7 @@ $(document).ready(function() {
             $("#fila-inventario").hide();
             $("#fila-perc-ref1").hide();
             $("#fila-perc-ref2").hide();
-            $("#corte_tallas_2").hide();
+            $("#referencia_2").hide();
             $("#btn-rollos").removeClass("btn-success").addClass("btn-orange");
             $("#btn-tallas").removeClass("btn-success").addClass("btn-orange");
             $("#btn-sku").removeClass("btn-success").addClass("btn-orange");
@@ -1730,6 +1717,7 @@ $(document).ready(function() {
 });
 
 function mostrar(id_corte) {
+    productos();
     $.post("corte/" + id_corte, function(data, status) {
         if(data.status == 'denied'){
             return Swal.fire(
@@ -1738,6 +1726,7 @@ function mostrar(id_corte) {
                 'info'
             )
         } else {
+            is_edit = true;
             // data = JSON.parse(data);
             $("#listadoUsers").hide();
             $("#registroForm").show();
@@ -1748,7 +1737,7 @@ function mostrar(id_corte) {
             $("#fila1").show();
             $("#fila2").show();
             $("#fila3").show();
-            $("#btn-generar").hide();
+            // $("#btn-generar").hide();
             // $("#edit-hide").hide();
             // $("#rollo-agregar").hide();
             $("#rollo-edit").show();
@@ -1759,15 +1748,21 @@ function mostrar(id_corte) {
             $("#numero_corte_gen").val(data.corte.numero_corte);
             // $("#productos").val(data.corte.producto.referencia_producto);
             $("#fecha_entrega").val(data.corte.fecha_entrega);
+            $("#fecha_creacion").val(data.corte.fecha_creacion);
             // $("#productos").select2('refresh');
             $("#no_marcada").val(data.corte.no_marcada);
             $("#ancho_marcada").val(data.corte.ancho_marcada);
             $("#largo_marcada").val(data.corte.largo_marcada);
             $("#aprovechamiento").val(data.corte.aprovechamiento);
             $("#productos").val(data.corte.producto.id).select2().trigger('change');
+            $("#corte_tallas").val(data.corte.producto.referencia_producto);
             let val = data.corte.producto.referencia_producto;
             let genero = val.substring(1, 2);
             let mujer_plus = val.substring(3, 4);
+            let year = data.corte.numero_corte.substring(0, 4);
+            let secuencia = data.corte.numero_corte.substring(5, 10);
+            $("#year").val(year);
+            $("#sec_manual").val(secuencia);
             genero_global = genero;
             plus_global = mujer_plus;
             $("#a").val(data.a);
@@ -1782,22 +1777,80 @@ function mostrar(id_corte) {
             $("#j").val(data.j);
             $("#k").val(data.k);
             $("#l").val(data.l);
-            $("#a_act").html(data.curva.a + "%");
-            $("#b_act").html(data.curva.b + "%");
-            $("#c_act").html(data.curva.c + "%");
-            $("#d_act").html(data.curva.d + "%");
-            $("#e_act").html(data.curva.e + "%");
-            $("#f_act").html(data.curva.f + "%");
-            $("#g_act").html(data.curva.g + "%");
-            $("#h_act").html(data.curva.h + "%");
-            $("#i_act").html(data.curva.i + "%");
-            $("#j_act").html(data.curva.j + "%");
-            $("#k_act").html(data.curva.k + "%");
-            $("#l_act").html(data.curva.l + "%");
+            $("#total_corte").html(data.total_corte);
+            $("#a_act").val(data.curva.a + "%");
+            $("#b_act").val(data.curva.b + "%");
+            $("#c_act").val(data.curva.c + "%");
+            $("#d_act").val(data.curva.d + "%");
+            $("#e_act").val(data.curva.e + "%");
+            $("#f_act").val(data.curva.f + "%");
+            $("#g_act").val(data.curva.g + "%");
+            $("#h_act").val(data.curva.h + "%");
+            $("#i_act").val(data.curva.i + "%");
+            $("#j_act").val(data.curva.j + "%");
+            $("#k_act").val(data.curva.k + "%");
+            $("#l_act").val(data.curva.l + "%");
+            $("#total_actual").html(data.total_curva + "%");
+
+            //referencia ninos
+            $("#a_ref1").val(data.curva.a + "%");
+            $("#b_ref1").val(data.curva.b + "%");
+            $("#c_ref1").val(data.curva.c + "%");
+            $("#d_ref1").val(data.curva.d + "%");
+            $("#e_ref2").val(data.curva_2.e + "%");
+            $("#f_ref2").val(data.curva_2.f + "%");
+            $("#g_ref2").val(data.curva_2.g + "%");
+            $("#h_ref2").val(data.curva_2.h + "%");
+
+
+    
             eliminarColumnas();
+            checkSkus(data.corte.producto.id);
+
+
+            if(data.rollos.length > 0){
+                $("#btn-rollos").removeClass("btn-orange").addClass("btn-success");
+            }
         }
       
 
+    });
+}
+
+
+
+function productos (){
+
+    $("#productos").empty();
+    $("#productos").append(`<option value="" selected disabled>Referencia producto</option>`);
+
+    $.ajax({
+        url: "testSelectProduct",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.productos.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =  "<option value="+datos.productos[i].id +">"+datos.productos[i].referencia_producto+"</option>"
+
+                    $("#productos").append(fila);
+                }
+                $("#productos").select2();
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error!!"
+            );
+        }
     });
 }
 
@@ -1828,6 +1881,7 @@ function eliminar(id_corte){
                         'success'
                         )
                         $("#cortes_listados").DataTable().ajax.reload();
+                        $("#rollos").DataTable().ajax.reload();
                     })
                 }
               })
@@ -2395,6 +2449,7 @@ function eliminarColumnas(){
         $("td:nth-child(11),th:nth-child(11)").hide();
         $("td:nth-child(12),th:nth-child(12)").hide();
         $("td:nth-child(13),th:nth-child(13)").hide();
+        $("#fila-nuevo").hide();
 
     }else if(genero_global == 1){
         $("td:nth-child(10) ,th:nth-child(10)").show();
@@ -2425,6 +2480,7 @@ const checkSkus = (producto) => {
                 for (let i = 0; i < datos.skus.length; i++) {
                     if(datos.skus[i].talla == 'General'){
                         $("#btn-asignar").attr('disabled', true);
+                        $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                     }else if(datos.skus[i].talla == 'A'){
                         $("#btn-asignar2").attr('disabled', true);
                     }else if(datos.skus[i].talla == 'B'){

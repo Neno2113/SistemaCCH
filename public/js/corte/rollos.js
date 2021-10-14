@@ -65,6 +65,8 @@ $(document).ready(function() {
     }
 
     const suplidores = () => {
+        $("#suplidores").empty();
+        $("#suplidores").append(`<option value="" selected disabled>Suplidores</option>`);
 
         $.ajax({
             url: "suppliers",
@@ -374,18 +376,22 @@ function mostrar(id) {
             $("#btn-finish").show();
             // $("#btn-save").hide();
 
+            $("#suplidores").val(data.rollo.id_suplidor).select2().trigger('change').attr("disabled", true);
+            // telas();
             // console.log(data);
             // $("#suplidores").select2('val', data.rollo.suplidores.nombre);
             $("#id").val(data.rollo.id);
             id_rollo = data.rollo.id;
-            $("#suplidores").val(data.rollo.id_suplidor).select2().trigger('change').attr("disabled", true);
             $("#codigo_rollo").val(data.rollo.codigo_rollo);
             $("#num_tono").val(data.rollo.num_tono);
             $("#no_factura_compra").val(data.rollo.no_factura_compra);
             $("#fecha_compra").val(data.rollo.fecha_compra);
             $("#longitud_yarda").val(data.rollo.longitud_yarda);
             $("#permisos-agregados").empty();
-            $("#cloths").val(data.rollo.id_tela).select2().trigger('change');
+            setTimeout(() => {
+                $("#cloths").val(data.tela.id).attr('selected', 'selected').trigger("change");
+                
+            }, 500);
             // telas();
 
             for (let i = 0; i < data.rollos.length; i++) {
@@ -452,6 +458,7 @@ $("#suplidores").on('change', () => {
 
 function telas(){
     $("#cloths").empty();
+    $("#cloths").append(`<option value="" selected disabled>Telas</option>`);
     var rollo = {
         suplidor: $("#suplidores").val(),
     };

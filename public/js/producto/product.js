@@ -882,10 +882,7 @@ function mostrar(id_prouct) {
             let categoria = data.product.referencia_producto.substring(3, 4);
             let year = data.product.referencia_producto.substring(5, 7);
             let secuence = data.product.referencia_producto.substring(8, 9);
-            // console.log(marca);
-            // console.log(genero);
-            // console.log(tipo_producto);
-            // console.log(categoria);
+ 
             $("#year").val(20+year);
             $("#sec_manual").val(secuence);
          

@@ -134,6 +134,11 @@ class ClothController extends Controller
         }
         $cloth = Cloth::find($id)->load('suplidor');
 
+        $cloth->elasticidad_trama = number_format($cloth->elasticidad_trama);
+        $cloth->elasticidad_urdimbre = number_format($cloth->elasticidad_urdimbre);
+        $cloth->encogimiento_trama = number_format($cloth->encogimiento_trama);
+        $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
+
         if (is_object($cloth)) {
             $data = [
                 'code' => 200,

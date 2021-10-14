@@ -358,9 +358,8 @@ $(document).ready(function() {
                         var corte =
                             "<tr>" +
                             "<td>" +
-                            "<a href='pages/examples/invoice.html'>" +
                             cortes[i].numero_corte +
-                            "</a></td>" +
+                            "</td>" +
                             "<td>" +
                             cortes[i].fase +
                             "</td>" +

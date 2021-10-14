@@ -97,13 +97,24 @@ class CorteController extends Controller
         $cortes = DB::table('corte')->join('users', 'corte.user_id', '=', 'users.id')
             ->join('producto', 'corte.producto_id', '=', 'producto.id')
             ->select([
-                'corte.id', 'users.name', 'users.surname', 'corte.numero_corte', 'producto.referencia_producto', 'producto.referencia_producto_2', 'corte.fecha_corte', 'corte.no_marcada', 'corte.ancho_marcada', 'corte.largo_marcada',
-                'corte.aprovechamiento', 'corte.fase', 'corte.total', 'corte.fecha_entrega'
+                'corte.id', 'users.name', 'users.surname', 'corte.numero_corte', 'producto.referencia_producto', 
+                'producto.referencia_producto_2', 'corte.fecha_corte', 'corte.no_marcada', 'corte.ancho_marcada', 'corte.largo_marcada',
+                'corte.aprovechamiento', 'corte.fase', 'corte.total', 'corte.fecha_entrega' , 'producto.id as producto_id'
             ]);
 
         return DataTables::of($cortes)
             ->addColumn('Expandir', function ($corte) {
                 return "";
+            })
+            ->addColumn('sku', function ($corte) {
+                $sku = SKU::where('producto_id', $corte->producto_id)
+                ->where('talla', 'General')->first();
+                
+                if(!empty($sku)){
+                    return $sku->sku;
+                } else {
+                    return 'Sin asignar';
+                }
             })
             ->editColumn('name', function ($corte) {
                 return "$corte->name $corte->surname";
@@ -170,6 +181,11 @@ class CorteController extends Controller
 
         if (is_object($corte)) {
             $curva = CurvaProducto::where('producto_id', $corte->producto->id)->get()->first();
+            $total_curva = $curva->a + $curva->b + $curva->c + $curva->d + $curva->e + $curva->f + $curva->g + $curva->h +
+            $curva->i + $curva->j + $curva->k + $curva->l;
+
+            //curva 2
+            $curva_2 = CurvaProducto::where('producto_padre', $corte->producto->id)->get()->first();
 
             $data = [
                 'code' => 200,
@@ -185,10 +201,13 @@ class CorteController extends Controller
                 'h' => $tallas->sum('h'),
                 'i' => $tallas->sum('i'),
                 'j' => $tallas->sum('j'),
-                'k' => $tallas->sum('a'),
-                'l' => $tallas->sum('a'),
+                'k' => $tallas->sum('k'),
+                'l' => $tallas->sum('l'),
+                'total_corte' => $tallas->sum('total'),
                 'rollos' => $rollos,
-                'curva' => $curva
+                'curva' => $curva,
+                'total_curva'=>$total_curva,
+                'curva_2' => $curva_2
             ];
         } else {
             $data = [
@@ -218,21 +237,34 @@ class CorteController extends Controller
         } else {
             $id = $request->input('id', true);
             $producto_id = $request->input('producto');
+            $numero_corte = $request->input('numero_corte');
             $producto_id_ref_2 = $request->input('producto');
             $no_marcada = $request->input('no_marcada');
             $ancho_marcada = $request->input('ancho_marcada');
             $largo_marcada = $request->input('largo_marcada');
             $aprovechamiento = $request->input('aprovechamiento');
             $fecha_entrega = $request->input('fecha_entrega');
+            $fecha_creacion = $request->input('fecha_creacion');
             $corte = Corte::find($id);
+
+            //update rollos
+            $rollos = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get();
+            if(count($rollos) > 0){
+                for ($i=0; $i < count($rollos); $i++) { 
+                    $rollos[$i]->corte_utilizado = $numero_corte;
+                    $rollos[$i]->save();
+                }
+            }
 
             $corte->producto_id = $producto_id;
             $corte->producto_id_ref_2 = $producto_id;
+            $corte->numero_corte = $numero_corte;
             $corte->no_marcada = $no_marcada;
             $corte->ancho_marcada = $ancho_marcada;
             $corte->largo_marcada = $largo_marcada;
             $corte->aprovechamiento = trim($aprovechamiento, '%');
             $corte->fecha_entrega = $fecha_entrega;
+            $corte->fecha_creacion = $fecha_creacion;
 
             $corte->save();
 
@@ -283,7 +315,6 @@ class CorteController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'rollo'=> $rollos,
                 'corte' => $corte
             ];
         } else {

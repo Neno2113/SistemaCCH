@@ -255,7 +255,7 @@ $(document).ready(function() {
             porcentaje_mat_5: $("#porcentaje_mat_5").val()
         };
 
-        console.log($("#compositions").val());
+        // console.log($("#compositions").val());
 
         $.ajax({
             url: "cloth",
@@ -331,7 +331,7 @@ $(document).ready(function() {
                 // { data: "composicion_5", name: "tela.composicion_5" },
 
             ],
-            order: [[2, 'asc']],
+            order: [[4, 'asc']],
             rowGroup: {
                 dataSrc: 'nombre'
             }
@@ -641,6 +641,7 @@ $(document).ready(function() {
 });
 
 function mostrar(id_cloth) {
+    telas();
     $.post("cloth/" + id_cloth, function(data, status) {
 
         if(data.status == 'denied'){
@@ -666,13 +667,14 @@ function mostrar(id_cloth) {
             // $("#suplidores").select2(data.suplidor.nombre).trigger("change");
             // $("#suplidores").select2(data.suplidor, {id:data.suplidor.id, item:data.suplidor.nombre}).trigger("change");
             $("#precio_usd").val(data.tela.precio_usd).attr('readonly', false);
-            $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
+            // $("#tipo_tela").val(data.tela.tipo_tela).attr('disabled', false);
             $("#ancho_cortable").val(data.tela.ancho_cortable).attr('readonly', false);
             $("#peso").val(data.tela.peso).attr('readonly', false);
             $("#elasticidad_trama").val(data.tela.elasticidad_trama).attr('readonly', false);
             $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', false);
             $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
             $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
+            $("#tipo_tela").val(data.tela.tipo_tela).attr('selected', 'selected').trigger("change");
     
         }
 

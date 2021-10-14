@@ -79,7 +79,7 @@
                         <div class="col-md-3">
                             <label for="" >Fecha creacion</label>
                             <input type="text" name="fecha_creacion" 
-                                id="fecha_entrega" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
+                                id="fecha_creacion" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
                            
                         </div>
                         <div class="col-md-3">
@@ -176,6 +176,7 @@
                     <th>User</th>
                     <th>No.Corte</th>
                     <th>Producto</th>
+                    <th>SKU</th>
                     <th>Fecha</th>
                     <th>Est.</th>
                     <th>Fase</th>
@@ -194,6 +195,7 @@
                     <th>User</th>
                     <th>No.Corte</th>
                     <th>Producto</th>
+                    <th>SKU</th>
                     <th>Fecha</th>
                     <th>Est.</th>
                     <th>Fase</th>
@@ -497,81 +499,81 @@
                                 <th>% Ref1</th>
                                 <td>
                                     <input type="text" name="" id="a_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
                                 </td>
                                 <td>
                                     <input type="text" name="" id="b_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dc">C</label> --}}
                                     <input type="text" name="" id="c_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dd">D</label> --}}
                                     <input type="text" name="" id="d_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="de">E</label> --}}
                                     <input type="text" name="" id="e_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="df">F</label> --}}
                                     <input type="text" name="" id="f_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dg">G</label> --}}
                                     <input type="text" name="" id="g_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dh">H</label> --}}
                                     <input type="text" name="" id="h_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="di">I</label> --}}
                                     <input type="text" name="" id="i_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dj">J</label> --}}
                                     <input type="text" name="" id="j_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dk">K</label> --}}
                                     <input type="text" name="" id="k_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dl">L</label> --}}
                                     <input type="text" name="" id="l_ref1" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td id="total_ref1"></td>
@@ -580,81 +582,81 @@
                                 <th>% Ref2</th>
                                 <td>
                                     <input type="text" name="" id="a_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
                                 </td>
                                 <td>
                                     <input type="text" name="" id="b_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dc">C</label> --}}
                                     <input type="text" name="" id="c_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dd">D</label> --}}
                                     <input type="text" name="" id="d_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="de">E</label> --}}
                                     <input type="text" name="" id="e_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="df">F</label> --}}
                                     <input type="text" name="" id="f_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dg">G</label> --}}
                                     <input type="text" name="" id="g_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dh">H</label> --}}
                                     <input type="text" name="" id="h_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="di">I</label> --}}
                                     <input type="text" name="" id="i_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dj">J</label> --}}
                                     <input type="text" name="" id="j_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dk">K</label> --}}
                                     <input type="text" name="" id="k_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dl">L</label> --}}
                                     <input type="text" name="" id="l_ref2" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td id="total_ref2"></td>
@@ -663,81 +665,81 @@
                                 <th>%</th>
                                 <td>
                                     <input type="text" name="" id="a_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
                                 </td>
                                 <td>
                                     <input type="text" name="" id="b_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dc">C</label> --}}
                                     <input type="text" name="" id="c_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dd">D</label> --}}
                                     <input type="text" name="" id="d_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="de">E</label> --}}
                                     <input type="text" name="" id="e_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="df">F</label> --}}
                                     <input type="text" name="" id="f_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dg">G</label> --}}
                                     <input type="text" name="" id="g_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dh">H</label> --}}
                                     <input type="text" name="" id="h_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="di">I</label> --}}
                                     <input type="text" name="" id="i_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dj">J</label> --}}
                                     <input type="text" name="" id="j_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dk">K</label> --}}
                                     <input type="text" name="" id="k_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dl">L</label> --}}
                                     <input type="text" name="" id="l_act" class="form-control text-center new no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td id="total_actual"></td>
@@ -749,84 +751,84 @@
 
                                     {{-- <label for="" class="ml-4" id="da">A</label> --}}
                                     <input type="text" name="" id="a_new" class="form-control text-center no-shadow "
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="db">B</label> --}}
                                     <input type="text" name="" id="b_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dc">C</label> --}}
                                     <input type="text" name="" id="c_new" class="form-control text-center no-shadow "
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dd">D</label> --}}
                                     <input type="text" name="" id="d_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="de">E</label> --}}
                                     <input type="text" name="" id="e_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="df">F</label> --}}
                                     <input type="text" name="" id="f_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dg">G</label> --}}
                                     <input type="text" name="" id="g_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dh">H</label> --}}
                                     <input type="text" name="" id="h_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="di">I</label> --}}
                                     <input type="text" name="" id="i_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dj">J</label> --}}
                                     <input type="text" name="" id="j_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dk">K</label> --}}
                                     <input type="text" name="" id="k_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td>
 
                                     {{-- <label for="" class="ml-4" id="dl">L</label> --}}
                                     <input type="text" name="" id="l_new" class="form-control text-center no-shadow"
-                                        data-inputmask='"mask": "9[9][.99]"' data-mask>
+                                        data-inputmask='"mask": "9[9][.][99]"' data-mask>
 
                                 </td>
                                 <td id="total_perc">
