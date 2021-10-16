@@ -864,7 +864,7 @@ $(document).ready(function() {
                 { data: "largo_marcada", name: 'corte.largo_marcada' },
                 { data: "ancho_marcada", name: 'corte.ancho_marcada' },
             ],
-            order: [[7, 'desc']],
+            order: [[8, 'desc']],
             rowGroup: {
                 dataSrc: 'fase'
             }
