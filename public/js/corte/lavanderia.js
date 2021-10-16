@@ -47,68 +47,73 @@ $(document).ready(function() {
         $("[name='envio_nuevo']").bootstrapSwitch();
     }
 
+    $("#cortesSearch").on('change', () => {
+        let corte =  $("#cortesSearch").val();
 
-    // $("#receta_lavado").on('keyup', function(){
-    //     $("#btn-guardar").attr('disabled', false);
-    // })
+        if( corte ){
+            $('#fecha_envio').attr('disabled', false);
+
+            let corte = {
+                corte_id: $("#cortesSearch").val(),
+                producto_id: $("#productos").val(),
+                cantidad: $("#cantidad").val()
+            };
+    
+            $.ajax({
+                url: "cantidades",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(corte),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        let cantidad_restante = datos.total_enviado;
+                        let cantidad_corte = datos.total_cortado;
+                        let cantidad_perdida = datos.perdidas;
+                        let parcial = datos.parcial;
+                      
+    
+                        let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
+                        if(cantidad <= 0){
+                            cantidad = 0
+                            $("#devolucion").show();
+                            Swal.fire(
+                            'Alerta!',
+                            'No podra enviar a lavanderia debido a que el total a enviar es total a 0',
+                            'warning'
+                            )
+                            $('#btn-guardar').attr('disabled', true);
+                        } else {
+                            $('#btn-guardar').attr('disabled', false); 
+                        }
+    
+                        if(cantidad_restante == null || cantidad_restante == 0 && parcial == null || parcial == 0){
+    
+                            cantidad = cantidad_corte - cantidad_perdida;
+                        }
+    
+                        $("#cantidad").val();
+                        $("#restante_enviar").val(cantidad);
+                        cantidad_guardar = cantidad;
+                        bootbox.alert("La cantidad recomendada para enviar es: "+cantidad);
+    
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la creacion de la composicion"
+                        );
+                    }
+                },
+                error: function() {
+                    // bootbox.alert(
+                    //     "Ocurrio un error"
+                    // );
+                }
+            });
+        }
+    })
 
     $("#fecha_envio").on('change', function(){
-        var corte = {
-            corte_id: $("#cortesSearch").val(),
-            producto_id: $("#productos").val(),
-            cantidad: $("#cantidad").val()
-        };
-
-        $.ajax({
-            url: "cantidades",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(corte),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    let cantidad_restante = datos.total_enviado;
-                    let cantidad_corte = datos.total_cortado;
-                    let cantidad_perdida = datos.perdidas;
-                    let parcial = datos.parcial;
-                  
-
-                    let cantidad = cantidad_corte - cantidad_restante - cantidad_perdida;
-                    if(cantidad <= 0){
-                        cantidad = 0
-                        $("#devolucion").show();
-                        Swal.fire(
-                        'Alerta!',
-                        'No podra enviar a lavanderia debido a que el total a enviar es total a 0',
-                        'warning'
-                        )
-                        $('#btn-guardar').attr('disabled', true);
-                    } else {
-                        $('#btn-guardar').attr('disabled', false); 
-                    }
-
-                    if(cantidad_restante == null || cantidad_restante == 0 && parcial == null || parcial == 0){
-
-                        cantidad = cantidad_corte - cantidad_perdida;
-                    }
-
-                    $("#cantidad").val();
-                    $("#restante_enviar").val(cantidad);
-                    cantidad_guardar = cantidad;
-                    bootbox.alert("La cantidad recomendada para enviar es: "+cantidad);
-
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error"
-                );
-            }
-        });
+       
     })
 
     function limpiar() {
@@ -183,49 +188,49 @@ $(document).ready(function() {
         });
     });
 
-    $("#cortesSearch").select2({
-        placeholder: "Buscar un numero de corte Ej: 2019-xxx",
-        ajax: {
-            url: 'cortes',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.numero_corte+' - '+item.fase,
-                            id: item.id
-                        }
-                    })
+    // $("#cortesSearch").select2({
+    //     placeholder: "Buscar un numero de corte Ej: 2019-xxx",
+    //     ajax: {
+    //         url: 'cortes',
+    //         dataType: 'json',
+    //         delay: 250,
+    //         processResults: function(data){
+    //             return {
+    //                 results: $.map(data, function(item){
+    //                     return {
+    //                         text: item.numero_corte+' - '+item.fase,
+    //                         id: item.id
+    //                     }
+    //                 })
 
-                };
+    //             };
 
 
-            },
-            cache: true,
+    //         },
+    //         cache: true,
 
-        }
-    })
+    //     }
+    // })
 
-    $("#cortesSearchEdit").select2({
-        placeholder: "Buscar un numero de corte Ej: 2019-xxx",
-        ajax: {
-            url: 'cortes_edit',
-            dataType: 'json',
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            text: item.numero_corte+' - '+item.fase,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    })
+    // $("#cortesSearchEdit").select2({
+    //     placeholder: "Buscar un numero de corte Ej: 2019-xxx",
+    //     ajax: {
+    //         url: 'cortes_edit',
+    //         dataType: 'json',
+    //         delay: 250,
+    //         processResults: function(data){
+    //             return {
+    //                 results: $.map(data, function(item){
+    //                     return {
+    //                         text: item.numero_corte+' - '+item.fase,
+    //                         id: item.id
+    //                     }
+    //                 })
+    //             };
+    //         },
+    //         cache: true
+    //     }
+    // })
 
     $("#suplidores").select2({
         placeholder: "Buscar una lavanderia por su nombre ",
@@ -398,7 +403,7 @@ $(document).ready(function() {
                 { data: "total", name: "corte.total" },
                 { data: "total_devuelto", name: "lavanderia.total_devuelto" },
                 { data: "nombre", name: "suplidor.nombre" },
-                { data: "status", name: "lavanderia.status" },
+                { data: "status", name: "lavanderia.status", searchable: false },
                 // { data: "estandar_incluido", name: "lavanderia.estandar_incluido" },
 
             ],
@@ -462,8 +467,10 @@ $(document).ready(function() {
     function mostrarForm(flag) {
         limpiar();
         if (flag) {
+            cortes();
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#fecha_envio").attr('disabled', true);
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#corteADD").show();
@@ -640,4 +647,36 @@ function eliminar(id_lavanderia){
         }
     })
   
+}
+
+
+const cortes = () => {
+    $("#cortesSearch").empty();
+    $("#cortesSearch").append(`<option value="" >Buscar corte</option>`);
+    $.ajax({
+        url: "cortes",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.cortes.length;
+                // console.log(datos);
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.cortes[i].id}">${datos.cortes[i].numero_corte}</option>`
+                    $("#cortesSearch").append(fila);
+                }
+                $("#cortesSearch").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
 }

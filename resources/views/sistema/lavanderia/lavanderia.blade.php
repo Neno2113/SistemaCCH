@@ -61,7 +61,7 @@
                             <div class="col-md-6" id="cortes">
                                 <label for="">Numero de corte</label>
                                 <div id="corteADD">
-                                    <select name="tags[]" id="cortesSearch" class="form-control select2">
+                                    <select name="cortesSearch" id="cortesSearch" class="form-control select2">
                                     </select>
                                 </div>
 

@@ -291,6 +291,66 @@ class ProductController extends Controller
             $product->precio_lista_2 = number_format($product->precio_lista_2 );
             $product->precio_venta_publico_2 = number_format($product->precio_venta_publico_2 );
 
+            if (!empty($product->min)) {
+                switch ($product->min) {
+                    case "a":
+                        $product->min = 2;
+                        break;
+                    case "b":
+                        $product->min = 4;
+                        break;
+                    case "c":
+                        $product->min = 6;
+                        break;
+                    case "d":
+                        $product->min = 8;
+                        break;
+                    case  "e":
+                        $product->min = 10;
+                        break;
+                    case "f":
+                        $product->min = 12;
+                        break;
+                    case "g":
+                        $product->min = 14;
+                        break;
+                    case  "h":
+                        $product->min = 16;
+                        break;
+                }
+                $product->min = $product->min;
+            }
+
+            if (!empty($product->max)) {
+                switch ($product->max) {
+                    case "a":
+                        $product->max = 2;
+                        break;
+                    case "b":
+                        $product->max = 4;
+                        break;
+                    case "c":
+                        $product->max = 6;
+                        break;
+                    case "d":
+                        $product->max = 8;
+                        break;
+                    case  "e":
+                        $product->max = 10;
+                        break;
+                    case "f":
+                        $product->max = 12;
+                        break;
+                    case "g":
+                        $product->max = 14;
+                        break;
+                    case  "h":
+                        $product->max = 16;
+                        break;
+                }
+                $product->max = $product->max;
+            }
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
@@ -428,6 +488,8 @@ class ProductController extends Controller
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
+            $min = $request->input('min');
+            $max = $request->input('max');
             $a = $request->input('a');
             $b = $request->input('b');
             $c = $request->input('c');
@@ -474,6 +536,66 @@ class ProductController extends Controller
             $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "_RD$");
             // $product->sec = $sec;
             // $product->id_user = \auth()->user()->id;
+            if (!empty($min)) {
+                switch ($min) {
+                    case 2:
+                        $min = "a";
+                        break;
+                    case 4:
+                        $min = "b";
+                        break;
+                    case 6:
+                        $min = "c";
+                        break;
+                    case 8:
+                        $min = "d";
+                        break;
+                    case  10:
+                        $min = "e";
+                        break;
+                    case 12:
+                        $min = "f";
+                        break;
+                    case 14:
+                        $min = "g";
+                        break;
+                    case  16:
+                        $min = "h";
+                        break;
+                }
+                $product->min = $min;
+            }
+
+            if (!empty($max)) {
+                switch ($max) {
+                    case 2:
+                        $max = "a";
+                        break;
+                    case 4:
+                        $max = "b";
+                        break;
+                    case 6:
+                        $max = "c";
+                        break;
+                    case 8:
+                        $max = "d";
+                        break;
+                    case 10:
+                        $max = "e";
+                        break;
+                    case 12:
+                        $max = "f";
+                        break;
+                    case 14:
+                        $max = "g";
+                        break;
+                    case 16:
+                        $max = "h";
+                        break;
+                }
+                $product->max = $max;
+            }
+
 
             $product->save();
 

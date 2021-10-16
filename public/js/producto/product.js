@@ -77,6 +77,11 @@ $(document).ready(function() {
         mostrarForm(false);
         catalogos();
     
+     
+    }
+
+
+    const slider = () => {
         $('#range_1').ionRangeSlider({
             min     : 02,
             max     : 16,
@@ -133,6 +138,7 @@ $(document).ready(function() {
         $("#trasera").attr("src", '');
         $("#perfil").attr("src", '');
         $("#bolsillo").attr("src", '');
+        $("#sku").val("");
     }
 
     $("#btnGenerar").on("click", function(e) {
@@ -544,6 +550,7 @@ $(document).ready(function() {
             generos();
             tipos();
             categorias();
+            slider();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -638,7 +645,7 @@ $(document).ready(function() {
                     "<td class='font-weight-bold'><input type='hidden' id='sku"+datos.sku.id+"' value="+sku.id+">"+datos.sku.sku+"</td>"+
                     "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+talla+"</td>"+
                     "<td>"+
-                    "<button type='button' id='btn-eliminar' onclick='editSKU("+datos.sku.id+")'   class='btn btn-warning mr-2'><i class='far fa-edit'></i></button>"+
+                    "<button type='button' id='btn-eliminar' onclick='editSKU("+datos.sku.id+")'   class='btn btn-light mr-2'><i class='far fa-edit'></i></button>"+
                     "<button type='button' id='btn-eliminar' onclick='delSKU("+datos.sku.id+")'  class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
                     "</tr>";
                     $("#tallas").append(fila);
@@ -870,10 +877,13 @@ function mostrar(id_prouct) {
             $("#j").val(data.j);
             $("#k").val(data.k);
             $("#l").val(data.l);
-            $("#frente").attr("src", './producto/terminado/'+data.product.imagen_frente);
-            $("#trasera").attr("src", './producto/terminado/'+data.product.imagen_trasero);
-            $("#perfil").attr("src", './producto/terminado/'+data.product.imagen_perfil);
-            $("#bolsillo").attr("src", './producto/terminado/'+data.product.imagen_bolsillo);
+            setTimeout(() => {
+                $("#frente").attr("src", './producto/terminado/'+data.product.imagen_frente);
+                $("#trasera").attr("src", './producto/terminado/'+data.product.imagen_trasero);
+                $("#perfil").attr("src", './producto/terminado/'+data.product.imagen_perfil);
+                $("#bolsillo").attr("src", './producto/terminado/'+data.product.imagen_bolsillo);
+                
+            }, 500);
             genero_global = data.product.genero;
             genero_plus = data.product.referencia_producto.substring(3, 4);
             let marca = data.product.referencia_producto.substring(0, 1);
@@ -882,6 +892,7 @@ function mostrar(id_prouct) {
             let categoria = data.product.referencia_producto.substring(3, 4);
             let year = data.product.referencia_producto.substring(5, 7);
             let secuence = data.product.referencia_producto.substring(8, 9);
+            console.log(categoria);
  
             $("#year").val(20+year);
             $("#sec_manual").val(secuence);
@@ -893,9 +904,36 @@ function mostrar(id_prouct) {
          
             $("#marca").val(data.product.marca).attr('selected', 'selected').trigger("change");
             $("#genero").val(genero).attr('selected', 'selected').trigger("change");
-            $("#tipo_producto").val(tipo_producto).attr('selected', 'selected').trigger("change");
-            $("#categoria").val(categoria).attr('selected', 'selected').trigger("change");
+            setTimeout(() => {
+                $("#tipo_producto").val(tipo_producto).attr('selected', 'selected').trigger("change");
+                $("#categoria").val(categoria).attr('selected', 'selected').trigger("change");
+                
+            }, 500);
 
+            $('#range_1').ionRangeSlider({
+                min     : 02,
+                max     : 16,
+                from    : data.product.min,
+                to      : data.product.max,
+                type    : 'double',
+                step    : 02,
+                prefix  : 'T',
+                skin    : "round",
+                prettify: false,
+                hasGrid : true,
+                onStart: function (data) {
+                    max_global = data.to;
+                    min_global = data.from;
+                },
+                onChange: function (data) {
+    
+                    min_global = data.from;
+                },
+                onFinish: function (data) {
+    
+                    max_global = data.to;
+                },
+            })
 
             if (data.product.genero == 3 || data.product.genero == 4) {
                 $("#mostrarRef2").show();
@@ -1305,7 +1343,7 @@ const skus = ( { sku } ) => {
         "<td class='font-weight-bold'><input type='hidden' id='sku"+sku[i].id+"' value="+sku[i].id+">"+sku[i].sku+"</td>"+
         "<td class='font-weight-bold'><input type='hidden' id='permiso"+sku[i].id+"' value="+sku[i].id+">"+sku[i].talla+"</td>"+
         "<td>" +
-        "<button type='button' id='btn-eliminar' onclick='editSKU("+sku[i].id+")'   class='btn btn-warning mr-2'><i class='far fa-edit'></i></button>"+
+        "<button type='button' id='btn-eliminar' onclick='editSKU("+sku[i].id+")'   class='btn btn-light mr-2'><i class='far fa-edit'></i></button>"+
         "<button type='button' id='btn-eliminar' onclick='delSKU("+sku[i].id+")'  class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
         "</tr>";
         $("#tallas").append(fila);
@@ -1340,8 +1378,8 @@ const delSKU = (id) => {
 
 const editSKU = (id) => {
     Swal.fire({
-        title: '¿Esta seguro de eliminar este producto a este SKU?',
-        text: "Va a eliminar el producto asignado al SKU!",
+        title: '¿Esta seguro de desvincular  este SKU a esta referencia?',
+        text: "Va a desvincular el SKU asignado a la referencia!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

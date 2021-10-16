@@ -583,19 +583,14 @@ class LavanderiaController extends Controller
 
     public function selectCorte(Request $request)
     {
-        $data = [];
+        $cortes = Corte::all();
 
-        if ($request->has('q')) {
-            $search = $request->q;
-            $data = Corte::select("id", "numero_corte", "fase")
-                ->where('fase', 'LIKE', 'Produccion')
-                ->orWhere('fase', 'LIKE', 'Lavanderia')
-                ->orWhere('fase', 'LIKE', 'Terminacion')
-                 ->orWhere('fase', 'LIKE', 'Almacen')
-                ->where('numero_corte', 'LIKE', "%$search%")
-                ->get();
-        }
-        return response()->json($data);
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'cortes' => $cortes
+        ];
+        return response()->json($data, $data['code']);
     }
 
     public function selectCorteEdit(Request $request)
