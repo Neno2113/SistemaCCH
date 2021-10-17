@@ -60,13 +60,18 @@ class LavanderiaController extends Controller
             $producto = Product::find($producto_id);
             $referencia = $producto->referencia_producto;
             $sku = SKU::where('talla', 'LIKE', 'General')
-                ->where('referencia_producto', $referencia)->get()->first();
-
-            $sku_gen = $sku['id'];
-
-            if (empty($sku_gen)) {
+                ->where('producto_id', $producto_id)->get()->first();
+                
+            if (empty($sku)) {
+                $data = [
+                    'code' => 200,
+                    'status' => 'nosku',
+                ];
+                return response()->json($data, $data['code']);
                 $sku_gen = "";
             }
+            $sku_gen = $sku['id'];
+
             $producto->enviado_lavanderia = 1;
             $producto->save();
             $cant_total = $corte['total'];
@@ -134,7 +139,7 @@ class LavanderiaController extends Controller
             $lavanderia->save();
 
             $data = [
-                'code' => 200,
+                'code' => 201,
                 'status' => 'success',
                 'lavanderia' => $lavanderia,
                 'porcentaje' => $porcentaje

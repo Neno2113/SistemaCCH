@@ -346,10 +346,13 @@ $(document).ready(function() {
                     tabla.ajax.reload();
                     mostrarForm(false);
                     $('#btn-generar').attr("disabled", false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
+                } else if(datos.status == "nosku") {
+                    Swal.fire(
+                        'Referencia sin SKU asignado.',
+                        'Para poder enviar este corte debe asignarle SKU a la referencia.',
+                        'info'
+                    )
+
                 }
             },
             error: function(datos) {
