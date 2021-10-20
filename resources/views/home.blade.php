@@ -18,7 +18,7 @@
       <div class="icon">
         <i class="ion ion-scissors"></i>
       </div>
-      <a href="/sistemaCCH/public/corte" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="./corte" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-6">
@@ -32,7 +32,7 @@
       <div class="icon">
         <i class="ion ion-bag"></i>
       </div>
-      <a href="/sistemaCCH/public/orden_pedido" class="small-box-footer">Ver más <i
+      <a href="./orden_pedido" class="small-box-footer">Ver más <i
           class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
@@ -49,7 +49,7 @@
       <div class="icon">
         <i class="ion ion-stats-bars"></i>
       </div>
-      <a href="/sistemaCCH/public/orden_pedido" class="small-box-footer">Ver más <i
+      <a href="./orden_pedido" class="small-box-footer">Ver más <i
           class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
@@ -64,7 +64,7 @@
       <div class="icon">
         <i class="ion ion-pie-graph"></i>
       </div>
-      <a href="/sistemaCCH/public/existencia" class="small-box-footer">Ver más <i
+      <a href="./existencia" class="small-box-footer">Ver más <i
           class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
@@ -143,7 +143,7 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix">
-        <a href="/sistemaCCH/public/orden_pedido" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
+        <a href="./orden_pedido" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
       </div>
       <!-- /.card-footer -->
     </div>
@@ -183,7 +183,7 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix">
-        <a href="/sistemaCCH/public/corte" class="btn btn-sm btn-secondary float-right">Ver todos los cortes</a>
+        <a href="./corte" class="btn btn-sm btn-secondary float-right">Ver todos los cortes</a>
       </div>
       <!-- /.card-footer -->
     </div>
@@ -245,7 +245,7 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer text-center">
-        <a href="/sistemaCCH/public/product" class="uppercase">Ver todos los productos</a>
+        <a href="./product" class="uppercase">Ver todos los productos</a>
       </div>
       <!-- /.card-footer -->
     </div>

@@ -637,9 +637,19 @@ function mostrar(id_almacen){
             $("#form_talla").show();
             $("#btn-buscar").hide();
             // $("#btn-imprimir").hide();
-            ubicaciones();
-            listarAtributos();
-            listarUbicaciones();
+            setTimeout(() => {
+                ubicaciones();
+                
+            }, 500);
+            setTimeout(() => {
+                listarAtributos();
+                
+            }, 500);
+            setTimeout(() => {
+                listarUbicaciones();
+                
+            }, 500);
+
 
             var fila =  "<option value="+data.almacen.corte_id +">"+data.almacen.corte.numero_corte+"</option>"
 
@@ -647,12 +657,15 @@ function mostrar(id_almacen){
 
             $("#id").val(data.almacen.id);
             $("#cortesSearch").val(data.almacen.corte_id).select2().trigger('change');
-            $("#ubicacion").val(data.almacen.producto.ubicacion).select2().trigger('change');
             $("#tono").val(data.almacen.producto.tono);
             $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
-            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).select2().trigger('change');
-            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).select2().trigger('change');
-            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).select2().trigger('change');
+            setTimeout(() => {
+                $("#ubicacion").val(data.almacen.producto.ubicacion).select2().trigger('change');
+                $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).select2().trigger('change');
+                $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).select2().trigger('change');
+                $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).select2().trigger('change');
+                
+            }, 1000);
 
             total_recibido = data.total_recibido;
 
@@ -667,6 +680,7 @@ function mostrar(id_almacen){
             $("#total_terminacion").html(data.total_recibido);
             $("#perdida_x").html(data.perdida_x);
             $("#producto_id").val(data.almacen.producto.id);
+            $("#corte_id").val(data.almacen.corte_id);
 
             $("#disponibles").empty();
             $("#resultados").empty();
@@ -746,9 +760,7 @@ const listarAtributos = () => {
             }
         },
         error: function() {
-            bootbox.alert(
-                "Ocurrio un error"
-            );
+         console.log("Ocurrio un error");
         }
     });
 }
@@ -828,7 +840,7 @@ const ubicaciones = () => {
             }
         },
         error: function() {
-            console.log("No cargaron los productos");
+            console.log("No cargaron las ubicaciones");
         }
     });
 }
@@ -863,9 +875,7 @@ const listarUbicaciones = () => {
             }
         },
         error: function() {
-            bootbox.alert(
-                "Ocurrio un error"
-            );
+            console.log("Ocurrio un error");
         }
     });
 }

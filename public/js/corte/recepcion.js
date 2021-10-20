@@ -45,7 +45,7 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         $("#btn-edit").hide();
-        recepcionCod();
+       
     }
 
     // $("#cantidad_recibida").on('keyup', function(){
@@ -396,6 +396,7 @@ $(document).ready(function() {
             $("#corteEdit").hide();
             $("#lavanderiaAdd").show();
             $("#lavanderiaEdit").hide();
+            recepcionCod();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
@@ -492,6 +493,7 @@ function eliminar(id_recepcion){
                         'Recepcion eliminada correctamente.',
                         'success'
                         )
+                        // recepcionCod();
                         $("#recepciones").DataTable().ajax.reload();
                     })
                 }
