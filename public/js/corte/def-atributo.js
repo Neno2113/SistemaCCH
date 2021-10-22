@@ -783,21 +783,21 @@ const atributos = () => {
 
                 for (let i = 0; i < longitud; i++) {
                     var fila =
-                    ` <option value="${datos.atributos[i].indice}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
+                    ` <option value="${datos.atributos[i].nombre}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
                     $("#atributo_no_1").append(fila);
                 }
                 $("#atributo_no_1").select2();
 
                 for (let i = 0; i < longitud; i++) {
                     var fila =
-                    ` <option value="${datos.atributos[i].indice}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
+                    ` <option value="${datos.atributos[i].nombre}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
                     $("#atributo_no_2").append(fila);
                 }
                 $("#atributo_no_2").select2();
 
                 for (let i = 0; i < longitud; i++) {
                     var fila =
-                    ` <option value="${datos.atributos[i].indice}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
+                    ` <option value="${datos.atributos[i].nombre}">${datos.atributos[i].indice} - ${datos.atributos[i].nombre}</option>`
                     $("#atributo_no_3").append(fila);
                 }
                 $("#atributo_no_3").select2();

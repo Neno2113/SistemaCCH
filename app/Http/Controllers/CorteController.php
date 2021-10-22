@@ -870,10 +870,18 @@ class CorteController extends Controller
 
         $skus = SKU::where('producto_id', $producto)->get();
 
+        //verificar si el producto tiene 2 referencias asignadas SKU
+        $producto_ref = Product::find($producto);
+
+        $sku_ref2 = SKU::where('producto_id', $producto)
+        ->where('referencia_producto',$producto_ref->referencia_producto_2 )
+        ->where('talla', 'General')->get()->first();
+
         $data = [
             'code' => 200,
             'status' => 'success',
             'skus' => $skus,
+            'sku_ref2' => $sku_ref2
         ];
 
         return response()->json($data, $data['code']);

@@ -138,6 +138,21 @@ $(document).ready(function() {
         $("#f_ref2").val("");
         $("#g_ref2").val("");
         $("#h_ref2").val("");
+        $("#btn-asignar").attr("disabled", false);
+        $("#btn-asignar2").attr("disabled", false);
+        $("#btn-asignar3").attr("disabled", false);
+        $("#btn-asignar4").attr("disabled", false);
+        $("#btn-asignar5").attr("disabled", false);
+        $("#btn-asignar6").attr("disabled", false);
+        $("#btn-asignar7").attr("disabled", false);
+        $("#btn-asignar8").attr("disabled", false);
+        $("#btn-asignar9").attr("disabled", false);
+        $("#btn-asignar10").attr("disabled", false);
+        $("#btn-asignar11").attr("disabled", false);
+        $("#btn-asignar12").attr("disabled", false);
+        $("#btn-asignar13").attr("disabled", false);
+        $("#btn-asignar-ref2").attr("disabled", false);
+        
     }
 
 
@@ -298,6 +313,8 @@ $(document).ready(function() {
             $("#fila-ref2").show();
             $("#fila-actual").hide();
             $("#corte_tallas").val(val);
+            $("#btn-asignar-ref2").show();
+            
             $("#ta").html("2");
             $("#tb").html("4");
             $("#tc").html("6");
@@ -1121,6 +1138,7 @@ $(document).ready(function() {
             $("#edit-hide").show();
             productos();
             is_edit = false;
+            $("#btn-asignar-ref2").hide();
 
             // $("#rollo-edit").hide();
         } else {
@@ -1213,6 +1231,38 @@ $(document).ready(function() {
                     bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
                     tabla.ajax.reload();
                     $("#btn-asignar").attr("disabled", true);
+                    $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
+                } else {
+                    bootbox.alert("Error");
+                }
+            },
+            error: function() {
+                bootbox.alert("Ocurrio un error!!");
+            }
+        });
+    });
+
+    $("#btn-asignar-ref2").click(function(e) {
+        e.preventDefault();
+
+        var asignacion = {
+            id: $("#productos").val(),
+            talla: $("#btn-asignar").val(),
+            referencia: $("#productos option:selected").text(),
+            ref2: true
+        };
+
+        $.ajax({
+            url: "sku",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(asignacion),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert("SKU <strong>"+ datos.sku.sku+ "</strong> asignado correctamente");
+                    tabla.ajax.reload();
+                    $("#btn-asignar-ref2").attr("disabled", true);
                     $("#btn-sku").removeClass("btn-orange").addClass("btn-success");
                 } else {
                     bootbox.alert("Error");
@@ -1741,6 +1791,7 @@ function mostrar(id_corte) {
             // $("#edit-hide").hide();
             // $("#rollo-agregar").hide();
             $("#rollo-edit").show();
+            $("#btn-asignar-ref2").hide();
 
 
             // console.log(data);
@@ -2450,6 +2501,7 @@ function eliminarColumnas(){
         $("td:nth-child(12),th:nth-child(12)").hide();
         $("td:nth-child(13),th:nth-child(13)").hide();
         $("#fila-nuevo").hide();
+        $("#btn-asignar-ref2").show();
 
     }else if(genero_global == 1){
         $("td:nth-child(10) ,th:nth-child(10)").show();
@@ -2507,6 +2559,10 @@ const checkSkus = (producto) => {
                         $("#btn-asignar13").attr('disabled', true);
                     }
                     
+                }
+
+                if(datos.sku_ref2){
+                    $("#btn-asignar-ref2").attr('disabled', true);
                 }
 
             } else {

@@ -752,31 +752,71 @@ class ProductController extends Controller
         $producto_id = $request->input('id');
         $talla = $request->input('talla');
         $referencia = $request->input('referencia');
+        $ref2 = $request->input('ref2');
 
-        $val = 0;
-        $sku = SKU::where('asignado', $val)->get()->first();
-        \json_encode($sku);
 
-        if (empty($sku)) {
-            $val = null;
+        if(empty($ref2)){
+
+            $val = 0;
             $sku = SKU::where('asignado', $val)->get()->first();
             \json_encode($sku);
+    
+            if (empty($sku)) {
+                $val = null;
+                $sku = SKU::where('asignado', $val)->get()->first();
+                \json_encode($sku);
+            }
+    
+            $id = $sku['id'];
+    
+    
+            $producto = Product::find($producto_id);
+            $rango = $producto->min;
+    
+            $sku_update = SKU::find($id);
+            $sku_update->producto_id = $producto_id;
+            $sku_update->talla = $talla;
+            $sku_update->referencia_producto = $referencia;
+            $sku_update->asignado = 1;
+    
+            $sku_update->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sku' => $sku_update
+            ];
         }
 
-        $id = $sku['id'];
+        if( !empty($ref2) ){
+            $producto = Product::find($producto_id);
+            $referencia_2 = $producto->referencia_producto_2;
+            $val_2 = 0;
+            $sku_2 = SKU::where('asignado', $val_2)->get()->first();
+            \json_encode($sku_2);
 
+            if (empty($sku_2)) {
+                $val_2 = null;
+                $sku_2 = SKU::where('asignado', $val_2)->get()->first();
+                \json_encode($sku_2);
+            }
 
-        $producto = Product::find($producto_id);
-        $referencia_2 = $producto->referencia_producto_2;
-        $rango = $producto->min;
+            $id_2 = $sku_2['id'];
 
-        $sku_update = SKU::find($id);
-        $sku_update->producto_id = $producto_id;
-        $sku_update->talla = $talla;
-        $sku_update->referencia_producto = $referencia;
-        $sku_update->asignado = 1;
+            $sku_update_2 = SKU::find($id_2);
+            $sku_update_2->producto_id = $producto_id;
+            $sku_update_2->talla = $talla;
+            $sku_update_2->referencia_producto = $referencia_2;
+            $sku_update_2->asignado = 1;
 
-        $sku_update->save();
+            $sku_update_2->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'sku' => $sku_update_2
+            ];
+        }
 
         // if (!empty($referencia_2)) {
 
@@ -803,11 +843,7 @@ class ProductController extends Controller
 
 
 
-        $data = [
-            'code' => 200,
-            'status' => 'success',
-            'sku' => $sku_update
-        ];
+     
 
         return response()->json($data, $data['code']);
     }

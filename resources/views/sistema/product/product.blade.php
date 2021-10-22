@@ -520,16 +520,20 @@
             </div>
             <div class="modal-body">
                 <form action="" id="BrachForm">
-                    <div class="row">
+                    <div class="row mb-3">
                         <h5>Referencia</h5>
-                        <div class="col-md-3  mb-3">
+                        <div class="col-md-3">
                             <input type="text" name="referencia_talla" id="referencia_talla"
-                                class="form-control text-center">
+                                class="form-control text-center" disabled>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="referencia_talla_2" id="referencia_talla_2"
+                                class="form-control text-center" disabled>
                         </div>
                     </div>
                     <h5 class="text-center">Skus</h5>
                     <hr>
-                    <div class="row">
+                    <div class="row ml-3">
                         <div class="col-md-4">
                             <label for="">SKU</label>
                                 <div class="input-group">
@@ -558,6 +562,7 @@
                         <thead>
                             <tr>
                                 <th>SKU</th>
+                                <th>Referencia</th>
                                 <th>Talla</th>
                                 <th>Eliminar</th>
                                 {{-- <th id="tb">B</th>

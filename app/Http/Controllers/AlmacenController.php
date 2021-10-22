@@ -204,10 +204,22 @@ class AlmacenController extends Controller
                 }
 
                 //asignar uno genero
-                $sku_general = SKU::where('producto_id', NULL)->get()->first();
+                $sku_general = SKU::where('referencia_producto', $producto_ref_2->referencia_producto)
+                // ->where('producto_id', $producto_father->id)
+                ->where('talla', 'General')
+                ->get()->last();
+                // print_r($sku_general);
+                // $data = [
+                //     'code' => 200,
+                //     'status' => 'success',
+                //     'sku_general' => $sku_general
+                // ];
+                // die();
+                // return response()->json($data, $data['code']);
+
                 $sku_general->producto_id = $producto_ref_2->id;
-                $sku_general->referencia_producto = $producto_ref_2->referencia_producto;
-                $sku_general->talla = 'General';
+                // $sku_general->referencia_producto = $producto_ref_2->referencia_producto;
+                // $sku_general->talla = 'General';
                 $sku_general->save();
 
                 //asignar curva a la referencia 2
@@ -249,7 +261,8 @@ class AlmacenController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'almacen' => $almacen
+                'almacen' => $almacen,
+                'sku_general' => $sku_general
             ];
         }
 
@@ -1484,6 +1497,8 @@ class AlmacenController extends Controller
             $nombre = $request->input('ubicacion');
 
             $categoria = new Ubicaciones();
+
+            $nombre = trim($nombre, '_');
 
             $categoria->ubicacion = strtoupper($nombre);
 

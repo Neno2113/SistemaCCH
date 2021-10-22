@@ -139,6 +139,7 @@ $(document).ready(function() {
         $("#perfil").attr("src", '');
         $("#bolsillo").attr("src", '');
         $("#sku").val("");
+        $("#referencia_talla_2").hide();
     }
 
     $("#btnGenerar").on("click", function(e) {
@@ -852,6 +853,7 @@ function mostrar(id_prouct) {
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
+            $("#referencia_talla_2").hide();
 
             $("#boton-sku").show();
             $("#id").val(data.product.id);
@@ -892,8 +894,11 @@ function mostrar(id_prouct) {
             let categoria = data.product.referencia_producto.substring(3, 4);
             let year = data.product.referencia_producto.substring(5, 7);
             let secuence = data.product.referencia_producto.substring(8, 9);
-            console.log(categoria);
- 
+
+            if(data.product.referencia_producto_2){
+                $("#referencia_talla_2").show();
+                $("#referencia_talla_2").val(data.product.referencia_producto_2);
+            }
             $("#year").val(20+year);
             $("#sec_manual").val(secuence);
          
@@ -1206,6 +1211,7 @@ const categorias = () => {
 function eliminarColumnas(){
     if(genero_global == 3 || genero_global == 4){
         $("#talla").empty();
+        // $("#referencia_talla_2").show();
         let tallas = `
         <option value="General">General</option>
         <option value="A">2</option>
@@ -1341,6 +1347,7 @@ const skus = ( { sku } ) => {
         let fila =
         '<tr id="fila'+sku[i].id+'">'+
         "<td class='font-weight-bold'><input type='hidden' id='sku"+sku[i].id+"' value="+sku[i].id+">"+sku[i].sku+"</td>"+
+        "<td class='font-weight-bold'><input type='hidden' id='permiso"+sku[i].id+"' value="+sku[i].id+">"+sku[i].referencia_producto+"</td>"+
         "<td class='font-weight-bold'><input type='hidden' id='permiso"+sku[i].id+"' value="+sku[i].id+">"+sku[i].talla+"</td>"+
         "<td>" +
         "<button type='button' id='btn-eliminar' onclick='editSKU("+sku[i].id+")'   class='btn btn-light mr-2'><i class='far fa-edit'></i></button>"+

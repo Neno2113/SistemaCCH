@@ -960,9 +960,13 @@
                     <h5 class="text-center">Asignar SKU por tallas</h5>
                     <hr>
                     <div class="row">
-                        <div class="col-md-2 mr-1">
+                        <div class="col-md-2 ">
                             <button class="btn btn-secondary mb-4" id="btn-asignar" value="General"> <i
                                     class="fas fa-barcode"></i> SKU generico </button>
+                        </div>
+                        <div class="col-md-2 mr-2">
+                            <button class="btn btn-secondary mb-4" id="btn-asignar-ref2" value="General"> <i
+                                    class="fas fa-barcode"></i> SKU generico ref 2</button>
                         </div>
 
                         <div class="col-md-2 mr-1">
