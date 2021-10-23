@@ -644,6 +644,7 @@ $(document).ready(function() {
                     let fila =
                     '<tr id="fila'+datos.sku.id+'">'+
                     "<td class='font-weight-bold'><input type='hidden' id='sku"+datos.sku.id+"' value="+sku.id+">"+datos.sku.sku+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+datos.sku.referencia_producto+"</td>"+
                     "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+talla+"</td>"+
                     "<td>"+
                     "<button type='button' id='btn-eliminar' onclick='editSKU("+datos.sku.id+")'   class='btn btn-light mr-2'><i class='far fa-edit'></i></button>"+
@@ -669,8 +670,8 @@ $(document).ready(function() {
                     })
                 } else if(datos.status == 'validation') {
                     Swal.fire(
-                        'Info!',
-                        'Este SKU ya esta asignado.',
+                        `SKU asignado a la referencia ${datos.sku.referencia_producto}`,
+                        `Este SKU ya esta asignado.`,
                         'info'
                         )
                 }

@@ -397,7 +397,8 @@ class ProductController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'validation',
-                'message' => 'El SKU General ya existe'
+                'message' => 'El SKU General ya existe',
+                'sku' => $sku_gen
             ];
         } else {
             $sku_gen = new SKU();
