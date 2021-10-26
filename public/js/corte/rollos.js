@@ -224,7 +224,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/rollos",
             dom: 'Bfrtip',
-            iDisplayLength: 25,
+            iDisplayLength: 10,
             buttons: [
                 'pageLength',
                 'copyHtml5',
