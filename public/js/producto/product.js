@@ -670,7 +670,7 @@ $(document).ready(function() {
                     })
                 } else if(datos.status == 'validation') {
                     Swal.fire(
-                        `SKU asignado a la referencia ${datos.sku.referencia_producto}`,
+                        `${datos.sku.referencia_producto}`,
                         `Este SKU ya esta asignado.`,
                         'info'
                         )
