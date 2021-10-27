@@ -42,228 +42,241 @@ class AlmacenController extends Controller
             ];
         } else {
             $corte_id = $request->input('corte');
-            $ubicacion = $request->input('ubicacion');
-            $tono = $request->input('tono');
-            $intensidad_proceso_seco = $request->input('intensidad_proceso_seco');
-            $atributo_no_1 = $request->input('atributo_no_1');
-            $atributo_no_2 = $request->input('atributo_no_2');
-            $atributo_no_3 = $request->input('atributo_no_3');
+
+            $almacen_check = Almacen::where('corte_id', $corte_id)->first();
 
 
-            $almacen = new Almacen();
-            $corte = Corte::find($corte_id);
-            $producto_id = $corte['producto_id'];
+            if (!empty($almacen_check)) {
 
-            $ordenes_proceso = ordenPedido::where('corte_en_proceso', 'LIKE', 'Si')->get()->first();
-            if(!empty($ordenes_proceso)){
-                $proceso_detalle = ordenPedidoDetalle::where('orden_pedido_id', $ordenes_proceso->id)
-                ->where('producto_id', $producto_id)->get()->first();
-            }
+                $data = [
+                    'code' => 200,
+                    'status' => 'info',
+                    'message' => 'Este corte ya se le dio entrada a almacen.'
+                ];
+            } else {
 
-            if(!empty($proceso_detalle)){
-                $ordenes_proceso->corte_en_proceso = "No";
-                $orden_father_id = $ordenes_proceso->orden_pedido_father;
-                $orden_father = ordenPedido::find($orden_father_id);
-                $ordenes_proceso->cliente_id = $orden_father->cliente_id;
-                $ordenes_proceso->sucursal_id = $orden_father->sucursal_id;
-                $ordenes_proceso->vendedor_id = $orden_father->vendedor_id;
-                $ordenes_proceso->detallada = $orden_father->detallada;
-                $ordenes_proceso->notas = $orden_father->notas;
-                $ordenes_proceso->generado_internamente = $orden_father->generado_internamente;
-                $ordenes_proceso->save();
-            }
+                $ubicacion = $request->input('ubicacion');
+                $tono = $request->input('tono');
+                $intensidad_proceso_seco = $request->input('intensidad_proceso_seco');
+                $atributo_no_1 = $request->input('atributo_no_1');
+                $atributo_no_2 = $request->input('atributo_no_2');
+                $atributo_no_3 = $request->input('atributo_no_3');
 
-            if (!empty($ubicacion)) {
+
+                $almacen = new Almacen();
+                $corte = Corte::find($corte_id);
+                $producto_id = $corte['producto_id'];
+
+                $ordenes_proceso = ordenPedido::where('corte_en_proceso', 'LIKE', 'Si')->get()->first();
+                if (!empty($ordenes_proceso)) {
+                    $proceso_detalle = ordenPedidoDetalle::where('orden_pedido_id', $ordenes_proceso->id)
+                        ->where('producto_id', $producto_id)->get()->first();
+                }
+
+                if (!empty($proceso_detalle)) {
+                    $ordenes_proceso->corte_en_proceso = "No";
+                    $orden_father_id = $ordenes_proceso->orden_pedido_father;
+                    $orden_father = ordenPedido::find($orden_father_id);
+                    $ordenes_proceso->cliente_id = $orden_father->cliente_id;
+                    $ordenes_proceso->sucursal_id = $orden_father->sucursal_id;
+                    $ordenes_proceso->vendedor_id = $orden_father->vendedor_id;
+                    $ordenes_proceso->detallada = $orden_father->detallada;
+                    $ordenes_proceso->notas = $orden_father->notas;
+                    $ordenes_proceso->generado_internamente = $orden_father->generado_internamente;
+                    $ordenes_proceso->save();
+                }
+
+                if (!empty($ubicacion)) {
+                    $producto = Product::find($producto_id);
+
+                    $producto->ubicacion = $ubicacion;
+                    $producto->tono = $tono;
+                    $producto->intensidad_proceso_seco = $intensidad_proceso_seco;
+                    $producto->atributo_no_1 = $atributo_no_1;
+                    $producto->atributo_no_2 = $atributo_no_2;
+                    $producto->atributo_no_3 = $atributo_no_3;
+                    $producto->producto_terminado = 1;
+
+                    $producto->save();
+                }
+
+                //En caso de que exista otra referencia en el registro de tabla de producto
+                //Se va a generar otra referencia para mejor manejo de las ordenes de pedido en base
+                //a productos.
                 $producto = Product::find($producto_id);
+                $ref2 = $producto->referencia_producto_2;
 
-                $producto->ubicacion = $ubicacion;
-                $producto->tono = $tono;
-                $producto->intensidad_proceso_seco = $intensidad_proceso_seco;
-                $producto->atributo_no_1 = $atributo_no_1;
-                $producto->atributo_no_2 = $atributo_no_2;
-                $producto->atributo_no_3 = $atributo_no_3;
-                $producto->producto_terminado = 1;
+                if (!empty($ref2)) {
+                    $producto_father = Product::find($producto_id);
+                    $select_product = DB::select("SHOW TABLE STATUS LIKE 'producto'");
+                    $nexProductId = $select_product[0]->Auto_increment;
 
-                $producto->save();
+                    //actualizar corte
+                    // $corte->producto_id_ref_2 = $nexProductId;
+                    // $corte->save();
+
+                    $producto_ref_2 = new Product();
+                    $producto_ref_2->id_user = Auth::user()->id;
+                    $producto_ref_2->genero = $producto_father->genero;
+                    $producto_ref_2->marca = $producto_father->marca;
+                    $producto_ref_2->referencia_producto = $ref2;
+                    $producto_ref_2->referencia_father = $producto->id;
+                    $producto_ref_2->descripcion = $producto_father->descripcion_2;
+                    $producto_ref_2->ubicacion = $producto_father->ubicacion;
+                    $producto_ref_2->imagen_frente = $producto_father->imagen_frente;
+                    $producto_ref_2->imagen_trasero = $producto_father->imagen_trasero;
+                    $producto_ref_2->imagen_perfil = $producto_father->imagen_perfil;
+                    $producto_ref_2->imagen_bolsillo = $producto_father->imagen_bolsillo;
+                    $producto_ref_2->tono = $producto_father->tono;
+                    $producto_ref_2->intensidad_proceso_seco = $producto_father->intensidad_proceso_seco;
+                    $producto_ref_2->atributo_no_1 = $producto_father->atributo_no_1;
+                    $producto_ref_2->atributo_no_2 = $producto_father->atributo_no_2;
+                    $producto_ref_2->atributo_no_3 = $producto_father->atributo_no_3;
+                    $producto_ref_2->precio_lista = $producto_father->precio_lista_2;
+                    $producto_ref_2->precio_venta_publico = $producto_father->precio_venta_publico_2;
+                    $producto_ref_2->min = $producto_father->min;
+                    $producto_ref_2->max = $producto_father->max;
+
+                    $producto_ref_2->save();
+
+                    //Asigar los SKU a la nueva referencia
+                    $min = $producto_ref_2->min;
+                    $max = $producto_ref_2->max;
+                    $array = array("a" => 'A', "b" => 'B', "c" => 'C', "d" => 'D', "e" => 'E', "f" => 'F', "g" => 'G', "h" => 'H');
+                    $res = array_keys($array);
+                    $result = array_search($min, $res);
+                    $result2 = array_search($max, $res);
+                    $tallas = array_slice($array, $result, $result2);
+
+                    $a = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
+                    $b = (array_key_exists("b", $tallas) ? $tallas['b'] : 0);
+                    $c = (array_key_exists("c", $tallas) ? $tallas['c'] : 0);
+                    $d = (array_key_exists("d", $tallas) ? $tallas['d'] : 0);
+                    $e = (array_key_exists("e", $tallas) ? $tallas['e'] : 0);
+                    $f = (array_key_exists("f", $tallas) ? $tallas['f'] : 0);
+                    $g = (array_key_exists("g", $tallas) ? $tallas['g'] : 0);
+                    $h = (array_key_exists("h", $tallas) ? $tallas['h'] : 0);
+
+                    $sku_a = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $a)->get()->last();
+
+                    $sku_b = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $b)->get()->last();
+
+                    $sku_c = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $c)->get()->last();
+
+                    $sku_d = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $d)->get()->last();
+
+                    $sku_e = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $e)->get()->last();
+
+                    $sku_f = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $f)->get()->last();
+
+                    $sku_g = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $g)->get()->last();
+
+                    $sku_h = SKU::where('producto_id', $producto_ref_2->referencia_father)
+                        ->where('talla', $h)->get()->last();
+
+
+                    if (is_object($sku_a)) {
+                        $sku_a->producto_id = $producto_ref_2->id;
+                        $sku_a->save();
+                    }
+
+                    if (is_object($sku_b)) {
+                        $sku_b->producto_id = $producto_ref_2->id;
+                        $sku_b->save();
+                    }
+                    if (is_object($sku_c)) {
+                        $sku_c->producto_id = $producto_ref_2->id;
+                        $sku_c->save();
+                    }
+                    if (is_object($sku_d)) {
+                        $sku_d->producto_id = $producto_ref_2->id;
+                        $sku_d->save();
+                    }
+                    if (is_object($sku_e)) {
+                        $sku_e->producto_id = $producto_ref_2->id;
+                        $sku_e->save();
+                    }
+                    if (is_object($sku_f)) {
+                        $sku_f->producto_id = $producto_ref_2->id;
+                        $sku_f->save();
+                    }
+                    if (is_object($sku_g)) {
+                        $sku_g->producto_id = $producto_ref_2->id;
+                        $sku_g->save();
+                    }
+                    if (is_object($sku_h)) {
+                        $sku_h->producto_id = $producto_ref_2->id;
+                        $sku_h->save();
+                    }
+
+                    //asignar uno genero
+                    $sku_general = SKU::where('referencia_producto', $producto_ref_2->referencia_producto)
+                        // ->where('producto_id', $producto_father->id)
+                        ->where('talla', 'General')
+                        ->get()->last();
+                    // print_r($sku_general);
+                    // $data = [
+                    //     'code' => 200,
+                    //     'status' => 'success',
+                    //     'sku_general' => $sku_general
+                    // ];
+                    // die();
+                    // return response()->json($data, $data['code']);
+
+                    $sku_general->producto_id = $producto_ref_2->id;
+                    // $sku_general->referencia_producto = $producto_ref_2->referencia_producto;
+                    // $sku_general->talla = 'General';
+                    $sku_general->save();
+
+                    //asignar curva a la referencia 2
+                    $curva = CurvaProducto::where('producto_id', $producto_father->id)
+                        ->where('producto_padre', $producto_father->id)->get()->last();
+
+                    if (is_object($curva)) {
+                        $curva->producto_id = $producto_ref_2->id;
+                        $curva->curva_ref_2 = "";
+                        $curva->save();
+                    }
+
+                    //Quitar todo rastro de referencia 2 en el registro de la tabla de producto.
+                    $producto_father->referencia_producto_2 = Null;
+                    $producto_father->descripcion_2 = Null;
+                    $producto_father->precio_lista_2 = Null;
+                    $producto_father->precio_venta_publico_2 = Null;
+                    $producto_father->save();
+                }
+
+                $select = DB::select("SHOW TABLE STATUS LIKE 'almacen'");
+                $nextId = $select[0]->Auto_increment;
+                // $almacen_detalle = AlmacenDetalle::where('almacen_id', $nextId)->first();
+                // $total = $almacen_detalle->total;
+
+                $corte->fase = 'Almacen';
+                $corte->save();
+
+                $almacen->producto_id = $producto_id;
+                $almacen->corte_id = $corte_id;
+                $almacen->user_id = \auth()->user()->id;
+
+                // $almacen->total = $total;
+                // $almacen->usado_curva = 0;
+
+                $almacen->save();
+
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'almacen' => $almacen,
+                    'sku_general' => $sku_general
+                ];
             }
-
-            //En caso de que exista otra referencia en el registro de tabla de producto
-            //Se va a generar otra referencia para mejor manejo de las ordenes de pedido en base
-            //a productos.
-            $producto = Product::find($producto_id);
-            $ref2 = $producto->referencia_producto_2;
-
-            if(!empty($ref2)){
-                $producto_father = Product::find($producto_id);
-                $select_product = DB::select("SHOW TABLE STATUS LIKE 'producto'");
-                $nexProductId = $select_product[0]->Auto_increment;
-
-                //actualizar corte
-                // $corte->producto_id_ref_2 = $nexProductId;
-                // $corte->save();
-
-                $producto_ref_2 = new Product();
-                $producto_ref_2->id_user = Auth::user()->id;
-                $producto_ref_2->genero = $producto_father->genero;
-                $producto_ref_2->marca = $producto_father->marca;
-                $producto_ref_2->referencia_producto = $ref2;
-                $producto_ref_2->referencia_father = $producto->id;
-                $producto_ref_2->descripcion = $producto_father->descripcion_2;
-                $producto_ref_2->ubicacion = $producto_father->ubicacion;
-                $producto_ref_2->imagen_frente = $producto_father->imagen_frente;
-                $producto_ref_2->imagen_trasero = $producto_father->imagen_trasero;
-                $producto_ref_2->imagen_perfil = $producto_father->imagen_perfil;
-                $producto_ref_2->imagen_bolsillo = $producto_father->imagen_bolsillo;
-                $producto_ref_2->tono = $producto_father->tono;
-                $producto_ref_2->intensidad_proceso_seco = $producto_father->intensidad_proceso_seco;
-                $producto_ref_2->atributo_no_1 = $producto_father->atributo_no_1;
-                $producto_ref_2->atributo_no_2 = $producto_father->atributo_no_2;
-                $producto_ref_2->atributo_no_3 = $producto_father->atributo_no_3;
-                $producto_ref_2->precio_lista = $producto_father->precio_lista_2;
-                $producto_ref_2->precio_venta_publico = $producto_father->precio_venta_publico_2;
-                $producto_ref_2->min = $producto_father->min;
-                $producto_ref_2->max = $producto_father->max;
-
-                $producto_ref_2->save();
-
-                //Asigar los SKU a la nueva referencia
-                $min = $producto_ref_2->min;
-                $max = $producto_ref_2->max;
-                $array = array("a" => 'A', "b" => 'B', "c" => 'C', "d" => 'D', "e" => 'E', "f" => 'F', "g" => 'G', "h" => 'H');
-                $res = array_keys($array);
-                $result = array_search($min, $res);
-                $result2 = array_search($max, $res);
-                $tallas = array_slice($array, $result, $result2);
-
-                $a = (array_key_exists("a", $tallas) ? $tallas['a'] : 0);
-                $b = (array_key_exists("b", $tallas) ? $tallas['b'] : 0);
-                $c = (array_key_exists("c", $tallas) ? $tallas['c'] : 0);
-                $d = (array_key_exists("d", $tallas) ? $tallas['d'] : 0);
-                $e = (array_key_exists("e", $tallas) ? $tallas['e'] : 0);
-                $f = (array_key_exists("f", $tallas) ? $tallas['f'] : 0);
-                $g = (array_key_exists("g", $tallas) ? $tallas['g'] : 0);
-                $h = (array_key_exists("h", $tallas) ? $tallas['h'] : 0);
-
-                $sku_a = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $a)->get()->last();
-
-                $sku_b = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $b)->get()->last();
-
-                $sku_c = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $c)->get()->last();
-
-                $sku_d = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $d)->get()->last();
-
-                $sku_e = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $e)->get()->last();
-
-                $sku_f = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $f)->get()->last();
-
-                $sku_g = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $g)->get()->last();
-
-                $sku_h = SKU::where('producto_id', $producto_ref_2->referencia_father)
-                ->where('talla', $h)->get()->last();
-
-
-                if(is_object($sku_a)){
-                    $sku_a->producto_id = $producto_ref_2->id;
-                    $sku_a->save();
-                }
-
-                if(is_object($sku_b)){
-                    $sku_b->producto_id = $producto_ref_2->id;
-                    $sku_b->save();
-                }
-                if(is_object($sku_c)){
-                    $sku_c->producto_id = $producto_ref_2->id;
-                    $sku_c->save();
-                }
-                if(is_object($sku_d)){
-                    $sku_d->producto_id = $producto_ref_2->id;
-                    $sku_d->save();
-                }
-                if(is_object($sku_e)){
-                    $sku_e->producto_id = $producto_ref_2->id;
-                    $sku_e->save();
-                }
-                if(is_object($sku_f)){
-                    $sku_f->producto_id = $producto_ref_2->id;
-                    $sku_f->save();
-                }
-                if(is_object($sku_g)){
-                    $sku_g->producto_id = $producto_ref_2->id;
-                    $sku_g->save();
-                }
-                if(is_object($sku_h)){
-                    $sku_h->producto_id = $producto_ref_2->id;
-                    $sku_h->save();
-                }
-
-                //asignar uno genero
-                $sku_general = SKU::where('referencia_producto', $producto_ref_2->referencia_producto)
-                // ->where('producto_id', $producto_father->id)
-                ->where('talla', 'General')
-                ->get()->last();
-                // print_r($sku_general);
-                // $data = [
-                //     'code' => 200,
-                //     'status' => 'success',
-                //     'sku_general' => $sku_general
-                // ];
-                // die();
-                // return response()->json($data, $data['code']);
-
-                $sku_general->producto_id = $producto_ref_2->id;
-                // $sku_general->referencia_producto = $producto_ref_2->referencia_producto;
-                // $sku_general->talla = 'General';
-                $sku_general->save();
-
-                //asignar curva a la referencia 2
-                $curva = CurvaProducto::where('producto_id', $producto_father->id)
-                ->where('producto_padre', $producto_father->id)->get()->last();
-
-                if(is_object($curva)){
-                    $curva->producto_id = $producto_ref_2->id;
-                    $curva->curva_ref_2 = "";
-                    $curva->save();
-                }
-
-                //Quitar todo rastro de referencia 2 en el registro de la tabla de producto.
-                $producto_father->referencia_producto_2 = Null;
-                $producto_father->descripcion_2 = Null;
-                $producto_father->precio_lista_2 = Null;
-                $producto_father->precio_venta_publico_2 = Null;
-                $producto_father->save();
-
-            }
-
-            $select = DB::select("SHOW TABLE STATUS LIKE 'almacen'");
-            $nextId = $select[0]->Auto_increment;
-            // $almacen_detalle = AlmacenDetalle::where('almacen_id', $nextId)->first();
-            // $total = $almacen_detalle->total;
-
-            $corte->fase = 'Almacen';
-            $corte->save();
-
-            $almacen->producto_id = $producto_id;
-            $almacen->corte_id = $corte_id;
-            $almacen->user_id = \auth()->user()->id;
-
-            // $almacen->total = $total;
-            // $almacen->usado_curva = 0;
-
-            $almacen->save();
-
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'almacen' => $almacen,
-                'sku_general' => $sku_general
-            ];
         }
 
         return response()->json($data, $data['code']);
@@ -465,7 +478,7 @@ class AlmacenController extends Controller
                 }
 
                 $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
-    
+
 
                 $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
                 return $detalle->sum('total') + $tallasSegundas->sum('total');
@@ -528,16 +541,15 @@ class AlmacenController extends Controller
         //Chekcing if the user has access to this function
         $user_loginId = Auth::user()->id;
         $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Definir Atributos')
-        ->first();
-        if(Auth::user()->role != 'Administrador'){
-            if($user_login->modificar == 0 || $user_login->modificar == null){
+            ->first();
+        if (Auth::user()->role != 'Administrador') {
+            if ($user_login->modificar == 0 || $user_login->modificar == null) {
                 return  $data = [
                     'code' => 200,
                     'status' => 'denied',
                     'message' => 'No tiene permiso para realizar esta accion.'
                 ];
             }
-    
         }
         $almacen = Almacen::find($id)->load('producto')->load('corte');
         $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
@@ -643,22 +655,21 @@ class AlmacenController extends Controller
         return \response()->json($data, $data['code']);
     }
 
-    
+
     public function showAlmacen($id)
     {
         //Chekcing if the user has access to this function
         $user_loginId = Auth::user()->id;
         $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Entrada Almacen')
-        ->first();
-        if(Auth::user()->role != 'Administrador'){
-            if($user_login->modificar == 0 || $user_login->modificar == null){
+            ->first();
+        if (Auth::user()->role != 'Administrador') {
+            if ($user_login->modificar == 0 || $user_login->modificar == null) {
                 return  $data = [
                     'code' => 200,
                     'status' => 'denied',
                     'message' => 'No tiene permiso para realizar esta accion.'
                 ];
             }
-    
         }
         $almacen = Almacen::find($id)->load('producto')->load('corte');
         $detalle = AlmacenDetalle::where('almacen_id', $almacen->id)->get();
@@ -682,13 +693,13 @@ class AlmacenController extends Controller
         }
 
         $tallasPerdidas = TallasPerdidas::where('talla_x', '0')
-        ->whereIn('perdida_id', $perdidas)->get();
+            ->whereIn('perdida_id', $perdidas)->get();
 
 
         //perdidas produccion
         $perdidaProduccion = Perdida::where('tipo_perdida', 'LIKE', 'Normal')
-        ->whereIn('fase',  ['Produccion', 'Procesos secos'])
-        ->where('corte_id', $corte_id)->select('id')->get();
+            ->whereIn('fase',  ['Produccion', 'Procesos secos'])
+            ->where('corte_id', $corte_id)->select('id')->get();
 
         $perdidasProduccion = array();
 
@@ -699,27 +710,27 @@ class AlmacenController extends Controller
         }
 
         $tallasPerdidas = TallasPerdidas::where('talla_x', '0')
-        ->whereIn('perdida_id', $perdidas)->get();
+            ->whereIn('perdida_id', $perdidas)->get();
 
         $tallasPerdidasProd = TallasPerdidas::where('talla_x', '0')
-        ->whereIn('perdida_id', $perdidasProduccion)->get();
+            ->whereIn('perdida_id', $perdidasProduccion)->get();
 
 
-        $tallasPerdidasX = TallasPerdidas::where('talla_x','>', '0')
-        ->whereIn('perdida_id', $perdidas)->get();
+        $tallasPerdidasX = TallasPerdidas::where('talla_x', '>', '0')
+            ->whereIn('perdida_id', $perdidas)->get();
 
         // $perdidaProduccion = TallasPerdidas::where('talla_x', '0')
         // ->where('fase', 'Produccion')
         // ->whereIn('perdida_id', $perdidas)->get();
 
-        
+
 
         $pendiente_lavanderia = $almacen->corte->total - $tallasPerdidasProd->sum('total') - $tallasPerdidasX->sum('total');
         $pendiente_lavanderia = $pendiente_lavanderia - $lavanderia->total_enviado;
 
-       //segundas
+        //segundas
         $segunda = Perdida::where('tipo_perdida', 'LIKE', 'Segundas')
-        ->where('corte_id', $corte_id)->select('id')->get();
+            ->where('corte_id', $corte_id)->select('id')->get();
 
         $segundas = array();
 
@@ -732,7 +743,7 @@ class AlmacenController extends Controller
         $tallasSegundas = TallasPerdidas::whereIn('perdida_id', $segundas)->get();
 
         //calcular total real
-        $a = $tallas->a - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a');  
+        $a = $tallas->a - $tallasPerdidas->sum('a') - $tallasSegundas->sum('a');
         $b = $tallas->b - $tallasPerdidas->sum('b') - $tallasSegundas->sum('b');
         $c = $tallas->c - $tallasPerdidas->sum('c') - $tallasSegundas->sum('c');
         $d = $tallas->d - $tallasPerdidas->sum('d') - $tallasSegundas->sum('d');
@@ -761,8 +772,8 @@ class AlmacenController extends Controller
         $total_real = $a + $b + $c + $d + $e + $f + $g + $h + $i + $j + $k + $l;
 
         $real_terminacion =  $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total');
-        $total_entrada = $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total') 
-        - $tallasPerdidasX->sum('talla_x');
+        $total_entrada = $recepcion->total_recibido - $detalle->sum('total') - $tallasSegundas->sum('total')
+            - $tallasPerdidasX->sum('talla_x');
 
         $corte = Corte::find($corte_id);
 
@@ -787,9 +798,9 @@ class AlmacenController extends Controller
                 'l' => $l,
                 'total' => $total_real,
                 // 'perdida' => $perdida,
-                'pen_lavanderia' => ($recepcion->pendiente < 0 ) ? 0 : $recepcion->pendiente,
-                'total_recibido' => ($recepcion->total_recibido < 0 ) ? 0 : $recepcion->total_recibido,
-                'pen_produccion' => ($pendiente_lavanderia < 0 ) ? 0 : $pendiente_lavanderia,
+                'pen_lavanderia' => ($recepcion->pendiente < 0) ? 0 : $recepcion->pendiente,
+                'total_recibido' => ($recepcion->total_recibido < 0) ? 0 : $recepcion->total_recibido,
+                'pen_produccion' => ($pendiente_lavanderia < 0) ? 0 : $pendiente_lavanderia,
                 'perdida_x' => $tallasPerdidasX->sum('talla_x'),
                 'total_perdidas' => $tallasPerdidas->sum('total'),
                 'total_segundas' => $tallasSegundas->sum('total'),
@@ -807,8 +818,8 @@ class AlmacenController extends Controller
                 'l_alm' => $detalle->sum('l') + $tallasSegundas->sum('l'),
                 'total_alm' => $detalle->sum('total') + $tallasSegundas->sum('total'),
                 'segundas' => $tallasSegundas,
-                'real_terminacion' => ($real_terminacion < 0 ) ? 0 : $real_terminacion,
-                'total_entrada' => ($total_entrada < 0 ) ? 0 : $total_entrada,
+                'real_terminacion' => ($real_terminacion < 0) ? 0 : $real_terminacion,
+                'total_entrada' => ($total_entrada < 0) ? 0 : $total_entrada,
                 'tallasPerdidasX' => $tallasPerdidasX,
                 'tallasPerdidas' => $tallasPerdidas,
                 'total_cortado' => $corte->total
@@ -890,24 +901,24 @@ class AlmacenController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    public function checkDestroy(){
+    public function checkDestroy()
+    {
         //Chekcing if the user has access to this function
         $user_loginId = Auth::user()->id;
         $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Definir Atributos')
-        ->first();
-        if(Auth::user()->role != 'Administrador'){
-            if($user_login->eliminar == 0 || $user_login->eliminar == null){
+            ->first();
+        if (Auth::user()->role != 'Administrador') {
+            if ($user_login->eliminar == 0 || $user_login->eliminar == null) {
                 return  $data = [
                     'code' => 200,
                     'status' => 'denied',
                     'message' => 'No tiene permiso para realizar esta accion.'
                 ];
             }
-    
         }
-  
-          // return response()->json($data, $data['code']);
-      }
+
+        // return response()->json($data, $data['code']);
+    }
 
     public function destroy($id)
     {
@@ -989,7 +1000,7 @@ class AlmacenController extends Controller
     public function corteSelect(Request $request)
     {
         $corte = Corte::where('fase', 'LIKE', 'Terminacion')
-        ->get();
+            ->get();
 
         $data = [
             'code' => 200,
@@ -1052,20 +1063,17 @@ class AlmacenController extends Controller
                 $producto->save();
             }
 
-            if(!empty($imagen_frente)){
+            if (!empty($imagen_frente)) {
                 \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
             }
-            if(!empty($imagen_trasero)){
+            if (!empty($imagen_trasero)) {
                 \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));
-
             }
-            if(!empty($imagen_perfil)){
+            if (!empty($imagen_perfil)) {
                 \Storage::disk('producto')->put($image_name_3, \File::get($imagen_perfil));
-
             }
-            if(!empty($imagen_bolsillo)){
+            if (!empty($imagen_bolsillo)) {
                 \Storage::disk('producto')->put($image_name_4, \File::get($imagen_bolsillo));
-
             }
 
             $data = [
@@ -1196,8 +1204,8 @@ class AlmacenController extends Controller
                 'k' => $k,
                 'l' => $l,
                 'total' => $total_real,
-                'pen_lavanderia' => ($recepcion->pendiente < 0 ) ? 0 : $recepcion->pendiente,
-                'pen_produccion' => ($pendiente_lavanderia < 0 ) ? 0 : $pendiente_lavanderia,
+                // 'pen_lavanderia' => ($recepcion->pendiente < 0 ) ? 0 : $recepcion->pendiente,
+                'pen_produccion' => ($pendiente_lavanderia < 0) ? 0 : $pendiente_lavanderia,
                 'perdida_x' => $tallasPerdidas->sum('talla_x')
             ];
         } else {
@@ -1378,7 +1386,8 @@ class AlmacenController extends Controller
         return View('sistema.almacen.DocEA', \compact('almacen_detalle', 'producto'));
     }
 
-    public function atributos(){
+    public function atributos()
+    {
         $categorias = AtributosProducto::all();
 
         $data = [
@@ -1387,16 +1396,17 @@ class AlmacenController extends Controller
             'atributos' => $categorias
         ];
         return response()->json($data, $data['code']);
-    } 
+    }
 
-    public function storeAtributo(Request $request){
+    public function storeAtributo(Request $request)
+    {
 
         $validar = $request->validate([
             'indice' => 'required',
             'nombre' => 'required'
         ]);
 
-        if(empty($validar)){
+        if (empty($validar)) {
             $data = [
                 'code' => 400,
                 'status' => 'error',
@@ -1419,16 +1429,16 @@ class AlmacenController extends Controller
                 'status' => 'success',
                 'atributo' => $categoria
             ];
-
         }
 
         return response()->json($data, $data['code']);
     }
 
-    public function destroyAtributo($id){
+    public function destroyAtributo($id)
+    {
         $categoria = AtributosProducto::find($id);
 
-        if(is_object($categoria)){
+        if (is_object($categoria)) {
             $categoria->delete();
 
             $data = [
@@ -1444,10 +1454,10 @@ class AlmacenController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
-        
     }
 
-    public function ubicaciones(){
+    public function ubicaciones()
+    {
         $categorias = Ubicaciones::all();
 
         $data = [
@@ -1456,12 +1466,13 @@ class AlmacenController extends Controller
             'ubicaciones' => $categorias
         ];
         return response()->json($data, $data['code']);
-    } 
+    }
 
-    public function destroyUbicacion($id){
+    public function destroyUbicacion($id)
+    {
         $categoria = Ubicaciones::find($id);
 
-        if(is_object($categoria)){
+        if (is_object($categoria)) {
             $categoria->delete();
 
             $data = [
@@ -1477,16 +1488,16 @@ class AlmacenController extends Controller
             ];
         }
         return response()->json($data, $data['code']);
-        
     }
 
-    public function storeUbicacion(Request $request){
+    public function storeUbicacion(Request $request)
+    {
 
         $validar = $request->validate([
             'ubicacion' => 'required'
         ]);
 
-        if(empty($validar)){
+        if (empty($validar)) {
             $data = [
                 'code' => 400,
                 'status' => 'error',
@@ -1509,10 +1520,8 @@ class AlmacenController extends Controller
                 'status' => 'success',
                 'ubicacion' => $categoria
             ];
-
         }
 
         return response()->json($data, $data['code']);
     }
-
 }

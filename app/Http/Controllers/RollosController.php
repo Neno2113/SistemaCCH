@@ -36,22 +36,37 @@ class RollosController extends Controller
             $id_suplidor = $request->input('suplidor', true);
             $fecha_compra = $request->input('fecha_compra', true);
             $no_factura_compra = $request->input('no_factura_compra', true);
+            $tela = $request->input('tela');
+
+            $rollo_check = RollosDetail::where('id_tela', $tela)->first();
+
+            if(!empty($rollo_check)){
+                $data = [
+                    'code' => 200,
+                    'status' => 'info',
+                    'message' => 'Este rollo ya esta registrado.'
+                ];
+            } else {
+                $rollos = new Rollos();
+                $rollos->id_user = $id_user;
+                $rollos->id_suplidor = $id_suplidor;
+                $rollos->fecha_compra = $fecha_compra;
+                $rollos->no_factura_compra = $no_factura_compra;
+    
+    
+                $rollos->save();
+    
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'rollo' => $rollos
+                ];
+            }
 
 
-            $rollos = new Rollos();
-            $rollos->id_user = $id_user;
-            $rollos->id_suplidor = $id_suplidor;
-            $rollos->fecha_compra = $fecha_compra;
-            $rollos->no_factura_compra = $no_factura_compra;
 
 
-            $rollos->save();
-
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'rollo' => $rollos
-            ];
+         
         }
 
         return response()->json($data, $data['code']);

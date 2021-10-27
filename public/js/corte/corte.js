@@ -573,11 +573,12 @@ $(document).ready(function() {
                     }
 
                     Swal.fire(
-                        'Alerta',
-                        'Esta referencia ya ha sido producia en otros cortes',
+                        'Lo siento',
+                        'Esta referencia ya ha sido producida en otro cortes por lo cual no podra continuar.',
                         'warning'
                     )
-
+                    $("#fila3").hide();
+                    $("#btn-guardar").hide();
 
 
                     var referencias = {
@@ -1173,6 +1174,7 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         $("#btn-generar").show();
+        $("#btn-guardar").show();
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
@@ -1181,9 +1183,9 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-    $("#edit-hide").click(function(){
+    // $("#edit-hide").click(function(){
 
-    });
+    // });
 
     $("#btn-tallas-cerrar").click(function(e){
         e.preventDefault();

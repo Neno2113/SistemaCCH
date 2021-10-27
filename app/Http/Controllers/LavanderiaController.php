@@ -522,25 +522,37 @@ class LavanderiaController extends Controller
     {
         $lavanderia = Lavanderia::find($id);
 
-        if (!empty($lavanderia)) {
-            $corte = Corte::find($lavanderia->corte_id);
-            $corte->fase = 'Produccion';
-            $corte->save();
+        $lavanderia_check = Recepcion::where('corte_id', $lavanderia->corte_id)->first();
 
-            $lavanderia->delete();
-
+        if(!empty($lavanderia_check)){
             $data = [
                 'code' => 200,
-                'status' => 'success',
-                'lavanderia' => $lavanderia
+                'status' => 'info',
+                'msg' => 'No puede eliminar este envio a lavanderia ya que se ha recibido correctamente.'
             ];
         } else {
-            $data = [
-                'code' => 400,
-                'status' => 'error',
-                'message' => 'Ocurrio un error durante esta operacion'
-            ];
-        }
+
+            if (!empty($lavanderia)) {
+                $corte = Corte::find($lavanderia->corte_id);
+                $corte->fase = 'Produccion';
+                $corte->save();
+    
+                $lavanderia->delete();
+    
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'lavanderia' => $lavanderia
+                ];
+            } else {
+                $data = [
+                    'code' => 400,
+                    'status' => 'error',
+                    'message' => 'Ocurrio un error durante esta operacion'
+                ];
+            }
+        }  
+
         return response()->json($data, $data['code']);
     }
 

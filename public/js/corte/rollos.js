@@ -116,7 +116,8 @@ $(document).ready(function() {
         var rollo = {
             suplidor: $("#suplidores").val(),
             fecha_compra: $("#fecha_compra").val(),
-            no_factura_compra: $("#no_factura_compra").val()
+            no_factura_compra: $("#no_factura_compra").val(),
+            tela: $("#cloths").val(),
         };
 
         $.ajax({
@@ -138,7 +139,13 @@ $(document).ready(function() {
                     id_rollo = datos.rollo.id;
                     $("#row-detail").show();
                     $("#btn-guardar").attr("disabled", true);
-                } 
+                } else if(datos.status == 'info'){
+                    Swal.fire(
+                        'Alerta!',
+                        datos.message,
+                        'warning'
+                        )
+                }
             },
             error: function(datos) {
                 console.log(datos.responseJSON.errors);

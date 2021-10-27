@@ -388,7 +388,7 @@ class ProductController extends Controller
         $producto = $request->input('producto');
         $sku = $request->input('sku');
         $talla = $request->input('talla');
-        
+        $referencia = $request->input('referencia');
 
 
         $sku_gen = SKU::where('sku', $sku)->first();
@@ -407,15 +407,22 @@ class ProductController extends Controller
             $sku_gen->producto_id = $producto;
             $sku_gen->talla = $talla;
             $sku_gen->sku = $sku;
-            $sku_gen->referencia_producto = $ref->referencia_producto;
+            if(empty($referencia)){
+                $sku_gen->referencia_producto = $ref->referencia_producto;
+
+            } else {
+                $sku_gen->referencia_producto = $referencia;
+            }
 
             $sku_gen->save();
+
+            $skus = SKU::where('producto_id', $producto)->get();
 
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'sku' => $sku_gen
+                'sku' => $skus
             ];
 
         }

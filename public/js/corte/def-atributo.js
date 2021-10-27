@@ -130,10 +130,12 @@ $(document).ready(function() {
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
+                } else if(datos.status == 'info') {
+                    Swal.fire(
+                        'Alerta',
+                        datos.message,
+                        'warning'
+                    )
                 }
             },
             error: function(datos) {

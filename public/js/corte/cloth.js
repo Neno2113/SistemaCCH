@@ -190,13 +190,12 @@ $(document).ready(function() {
         $("#referencia").val("").attr('readonly', false);
         $("#precio_usd").val("").attr('readonly', false);
         $("#tipo_tela").val("").attr('readonly', false);;
-        $("#ancho_cortable").val("").attr('readonly', false);;
+        $("#ancho_cortable").val("").attr('readonly', false);
         $("#peso").val("").attr('readonly', false);;
         $("#elasticidad_trama").val("").attr('readonly', false);
         $("#encogimiento_trama").val("").attr('readonly', false);
         $("#elasticidad_urdimbre").val("").attr('readonly', false);
         $("#encogimiento_urdimbre").val("").attr('readonly', false);
-        $("#suplidores").val("").trigger("change");
         $("#compositions").val("").trigger("change");
         $("#compositions_2").val("").trigger("change");
         $("#compositions_3").val("").trigger("change");
@@ -568,6 +567,8 @@ $(document).ready(function() {
         e.preventDefault();
         mostrarForm(true);
         $("#compo").show();
+        $("#suplidores").val("").trigger("change");
+
     });
     $("#btnCancelar").click(function(e) {
         e.preventDefault();

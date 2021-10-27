@@ -545,14 +545,21 @@
                                         />
                                 </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3" id="segunda_ref" >
+                            <label for="">Referencia</label>
+                            <select name="productos_ref" id="productos_ref" class="form-control">
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
                             <label >Talla</label>
                             <select name="talla" id="talla" class="form-control">
                              
                             </select>
                         </div>
+                    
 
-                        <div class="col-md-4 mt-4" >
+                        <div class="col-md-3 mt-4" >
                             <button class="btn btn-dark mb-4 mt-2" id="btn-saveSku" > <i
                                     class="fas fa-barcode"></i> Asignar SKU </button>
                         </div>

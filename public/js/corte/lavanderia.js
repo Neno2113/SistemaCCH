@@ -619,7 +619,7 @@ function ver(id_lavanderia) {
 
 function eliminar(id_lavanderia){
     $.post("lavanderiacheck/delete/" + id_lavanderia, function(data, status) {
-        console.log(data);
+        // console.log(data);
         if(data.status == 'denied'){
             return Swal.fire(
                 'Acceso denegado!',
@@ -637,13 +637,22 @@ function eliminar(id_lavanderia){
                 confirmButtonText: 'Si, acepto'
               }).then((result) => {
                 if (result.value) {
-                    $.post("lavanderia/delete/" + id_lavanderia, function(){
-                        Swal.fire(
-                        'Eliminado!',
-                        'Conduce de envio eliminado correctamente.',
-                        'success'
-                        )
-                        $("#lavanderias").DataTable().ajax.reload();
+                    $.post("lavanderia/delete/" + id_lavanderia, function(datos){
+                        if(datos.status == 'success'){
+                            Swal.fire(
+                            'Eliminado!',
+                            'Conduce de envio eliminado correctamente.',
+                            'success'
+                            )
+                            $("#lavanderias").DataTable().ajax.reload();
+
+                        } else if(datos.status == 'info'){
+                            Swal.fire(
+                                'Alerta!!',
+                                datos.msg,
+                                'warning'
+                                )
+                        }
                     })
                 }
               })

@@ -140,6 +140,8 @@ $(document).ready(function() {
         $("#bolsillo").attr("src", '');
         $("#sku").val("");
         $("#referencia_talla_2").hide();
+        $("#productos_ref").hide();
+        $("#segunda_ref").hide();
     }
 
     $("#btnGenerar").on("click", function(e) {
@@ -622,66 +624,82 @@ $(document).ready(function() {
     $("#btn-saveSku").on('click', (e) => {
         e.preventDefault();
 
-        let data = {
-            producto: $("#id").val(),
-            sku: $("#sku").val(),
-            talla: $("#talla").val()
+        const sku_check = document.getElementById('sku').value;
+
+        if(sku_check){
+
+            let data = {
+                producto: $("#id").val(),
+                sku: $("#sku").val(),
+                talla: $("#talla").val(),
+                // ref: $('#productos_ref').val(),
+                referencia: $("#productos_ref option:selected").text()
+            }
+    
+            $.ajax({
+                url: "sku-save",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        $("#sku").val('');
+                        let talla = $(
+                            "#talla option:selected"
+                        ).text();
+    
+                        // let fila =
+                        // '<tr id="fila'+datos.sku.id+'">'+
+                        // "<td class='font-weight-bold'><input type='hidden' id='sku"+datos.sku.id+"' value="+sku.id+">"+datos.sku.sku+"</td>"+
+                        // "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+datos.sku.referencia_producto+"</td>"+
+                        // "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+talla+"</td>"+
+                        // "<td>"+
+                        // "<button type='button' id='btn-eliminar' onclick='editSKU("+datos.sku.id+")'   class='btn btn-light mr-2'><i class='far fa-edit'></i></button>"+
+                        // "<button type='button' id='btn-eliminar' onclick='delSKU("+datos.sku.id+")'  class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                        // "</tr>";
+                        // $("#tallas").append(fila);
+
+                        skus( datos )
+    
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            // timerProgressBar: true,
+                            onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+    
+                        Toast.fire({
+                            type: 'success',
+                            title: 'SKU agregado correctamente!'
+                        })
+                    } else if(datos.status == 'validation') {
+                        Swal.fire(
+                            `${datos.sku.referencia_producto}`,
+                            `Este SKU ya esta asignado.`,
+                            'info'
+                            )
+                    }
+                },
+                error: function() {
+                    bootbox.alert(
+                        "Ocurrio un error, trate rellenando los campos obligatorios(*)"
+                    );
+                }
+            });
+        } else {
+            Swal.fire(
+            `Digite un SKU`,
+            `No digito un SKU.`,
+            'info'
+            )
         }
 
-        $.ajax({
-            url: "sku-save",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(data),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    $("#sku").val('');
-                    let talla = $(
-                        "#talla option:selected"
-                    ).text();
-
-                    let fila =
-                    '<tr id="fila'+datos.sku.id+'">'+
-                    "<td class='font-weight-bold'><input type='hidden' id='sku"+datos.sku.id+"' value="+sku.id+">"+datos.sku.sku+"</td>"+
-                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+datos.sku.referencia_producto+"</td>"+
-                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.sku.id+"' value="+datos.sku.id+">"+talla+"</td>"+
-                    "<td>"+
-                    "<button type='button' id='btn-eliminar' onclick='editSKU("+datos.sku.id+")'   class='btn btn-light mr-2'><i class='far fa-edit'></i></button>"+
-                    "<button type='button' id='btn-eliminar' onclick='delSKU("+datos.sku.id+")'  class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
-                    "</tr>";
-                    $("#tallas").append(fila);
-
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        // timerProgressBar: true,
-                        onOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-
-                    Toast.fire({
-                        type: 'success',
-                        title: 'SKU agregado correctamente!'
-                    })
-                } else if(datos.status == 'validation') {
-                    Swal.fire(
-                        `${datos.sku.referencia_producto}`,
-                        `Este SKU ya esta asignado.`,
-                        'info'
-                        )
-                }
-            },
-            error: function() {
-                bootbox.alert(
-                    "Ocurrio un error, trate rellenando los campos obligatorios(*)"
-                );
-            }
-        });
     })
  
 
@@ -855,6 +873,9 @@ function mostrar(id_prouct) {
             $("#btn-edit").show();
             $("#btn-guardar").hide();
             $("#referencia_talla_2").hide();
+            $("#productos_ref").hide();
+            $("#segunda_ref").hide();
+            $("#productos_ref").empty();
 
             $("#boton-sku").show();
             $("#id").val(data.product.id);
@@ -898,7 +919,20 @@ function mostrar(id_prouct) {
 
             if(data.product.referencia_producto_2){
                 $("#referencia_talla_2").show();
+                $("#productos_ref").show();
+                $("#segunda_ref").show();
                 $("#referencia_talla_2").val(data.product.referencia_producto_2);
+
+            
+                $("#productos_ref").append(
+                    `<option value="${data.product.id}">${data.product.referencia_producto}</option>`
+                );
+
+                $("#productos_ref").append(
+                    `<option value="${data.product.id}">${data.product.referencia_producto_2}</option>`
+                );
+
+
             }
             $("#year").val(20+year);
             $("#sec_manual").val(secuence);
