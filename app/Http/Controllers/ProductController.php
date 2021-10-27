@@ -401,29 +401,76 @@ class ProductController extends Controller
                 'sku' => $sku_gen
             ];
         } else {
-            $sku_gen = new SKU();
+         
+           
 
             $ref = Product::find($producto);
+            $sku_gen = new SKU();
+
             $sku_gen->producto_id = $producto;
             $sku_gen->talla = $talla;
             $sku_gen->sku = $sku;
             if(empty($referencia)){
                 $sku_gen->referencia_producto = $ref->referencia_producto;
+                //Verificar la talla
+                $sku_check = SKU::where('producto_id', $producto)
+                ->where('talla', $talla)->first();
 
+                if(empty($sku_check)){
+
+               
+                    $sku_gen->save();
+                    $skus = SKU::where('producto_id', $producto)->get();
+
+
+                    $data = [
+                        'code' => 200,
+                        'status' => 'success',
+                        'sku' => $skus,
+                        'sku_check' => $sku_check
+                    ];
+                } else {
+                    $data = [
+                        'code' => 200,
+                        'status' => 'talla_exist',
+                        'message' => 'Esta referencia ya tiene un SKU asignado a esta talla',
+                    ];
+                }
             } else {
                 $sku_gen->referencia_producto = $referencia;
+
+                //Verificar la talla
+                $sku_check = SKU::where('producto_id', $producto)
+                ->where('referencia_producto', $referencia)
+                ->where('talla', $talla)->first();
+
+                if(empty($sku_check)){
+                    $sku_gen->save();
+                    $skus = SKU::where('producto_id', $producto)->get();
+
+
+                    $data = [
+                        'code' => 200,
+                        'status' => 'success',
+                        'sku' => $skus,
+                        'sku_check' => $sku_check
+                    ];
+
+                 
+                    
+                } else {
+                    $data = [
+                        'code' => 200,
+                        'status' => 'talla_exist',
+                        'message' => 'Esta referencia ya tiene un SKU asignado a esta talla',
+                    ];
+                }
+
             }
 
-            $sku_gen->save();
+          
 
-            $skus = SKU::where('producto_id', $producto)->get();
-
-
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'sku' => $skus
-            ];
+          
 
         }
 

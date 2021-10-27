@@ -684,6 +684,12 @@ $(document).ready(function() {
                             `Este SKU ya esta asignado.`,
                             'info'
                             )
+                    } else if(datos.status == 'talla_exist'){
+                        Swal.fire(
+                        `SKU asignado.`,
+                        datos.message,
+                        'info'
+                        )
                     }
                 },
                 error: function() {
