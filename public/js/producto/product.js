@@ -921,7 +921,7 @@ function mostrar(id_prouct) {
             let tipo_producto = data.product.referencia_producto.substring(2, 3);
             let categoria = data.product.referencia_producto.substring(3, 4);
             let year = data.product.referencia_producto.substring(5, 7);
-            let secuence = data.product.referencia_producto.substring(8, 9);
+            let secuence = data.product.referencia_producto.substring(7, 9);
 
             if(data.product.referencia_producto_2){
                 $("#referencia_talla_2").show();
@@ -940,6 +940,7 @@ function mostrar(id_prouct) {
 
 
             }
+            console.log(secuence);
             $("#year").val(20+year);
             $("#sec_manual").val(secuence);
          
