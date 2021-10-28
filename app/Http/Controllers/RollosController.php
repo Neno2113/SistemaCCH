@@ -38,12 +38,14 @@ class RollosController extends Controller
             $no_factura_compra = $request->input('no_factura_compra', true);
             $tela = $request->input('tela');
 
-            $rollo_check = Rollos::where('id_suplidor', $id_suplidor)
+            $rollo_check = RollosDetail::where('id_tela', $tela)->first();
+
+            $rollo_fecha = Rollos::where('id_suplidor', $id_suplidor)
             ->where('no_factura_compra', $no_factura_compra)
             ->where('fecha_compra', $fecha_compra)
             ->first();
 
-            if(!empty($rollo_check)){
+            if(!empty($rollo_check) && !empty($rollo_fecha)){
                 $data = [
                     'code' => 200,
                     'status' => 'info',

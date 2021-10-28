@@ -251,7 +251,7 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre", name: "suplidor.nombre" },
-                { data: "tela", name: "rollos.tela", orderable: false, searchable: false },
+                { data: "tela", name: "rollos.tela", },
                 { data: "fecha_compra", name: "rollos.fecha_compra" },
                 { data: "no_factura_compra", name: "rollos.no_factura_compra" },
             ],
