@@ -573,12 +573,18 @@ $(document).ready(function() {
                     }
 
                     Swal.fire(
-                        'Lo siento',
-                        'Esta referencia ya ha sido producida en otro cortes por lo cual no podra continuar.',
+                        'Alerta',
+                        'Esta referencia ya ha sido producia en otros cortes',
                         'warning'
                     )
-                    $("#fila3").hide();
-                    $("#btn-guardar").hide();
+
+                    // Swal.fire(
+                    //     'Lo siento',
+                    //     'Esta referencia ya ha sido producida en otro cortes por lo cual no podra continuar.',
+                    //     'warning'
+                    // )
+                    // $("#fila3").hide();
+                    // $("#btn-guardar").hide();
 
 
                     var referencias = {
