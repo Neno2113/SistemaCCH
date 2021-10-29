@@ -410,6 +410,7 @@
                     <th>Usuario</th>
                     <th>Num. Corte</th>
                     <th>Ref.</th>
+                    <th>Ubicacion</th>
                     <th>Total Alm.</th>
                     <th>Total Corte</th>
                 </tr>
@@ -422,6 +423,7 @@
                     <th>Usuario</th>
                     <th>Num. Corte</th>
                     <th>Ref.</th>
+                    <th>Ubicacion</th>
                     <th>Total Alm.</th>
                     <th>Total Corte</th>
                 </tr>

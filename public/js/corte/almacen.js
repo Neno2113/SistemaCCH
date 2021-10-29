@@ -306,6 +306,7 @@ $(document).ready(function() {
                 { data: "name", name: "users.name" },
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "referencia_producto", name: "producto.referencia_producto"},
+                { data: "ubicacion", name: "producto.ubicacion"},
                 { data: "total", name: "almacen.total" },
                 { data: "totalCorte", name: "corte.total" },
             ],

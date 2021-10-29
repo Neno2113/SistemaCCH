@@ -438,7 +438,8 @@ class AlmacenController extends Controller
             ->join('users', 'almacen.user_id', '=', 'users.id')
             ->select([
                 'almacen.id', 'almacen.total', 'corte.numero_corte', 'corte.id as corte_id', 'corte.total as totalCorte',
-                'corte.fase', 'producto.referencia_producto', 'users.name', 'users.surname'
+                'corte.fase', 'producto.referencia_producto', 'users.name', 'users.surname',
+                'producto.ubicacion'
             ]);
 
         return DataTables::of($almacen)
@@ -447,6 +448,14 @@ class AlmacenController extends Controller
             })
             ->editColumn('name', function ($almacen) {
                 return "$almacen->name $almacen->surname";
+            })
+            ->editColumn('ubicacion', function ($almacen) {
+                
+                if(empty($almacen->ubicacion)){
+                    return 'Sin asignar';
+                } else {
+                    return $almacen->ubicacion;
+                } 
             })
             // ->editColumn('totalCorte', function ($almacen) {
             //     //perdidas
