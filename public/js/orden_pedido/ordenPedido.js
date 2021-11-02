@@ -2909,6 +2909,7 @@ $("#down-l").click(function(e){
     $("#l").val(result);
     sumaDetalles();
 })
+
 $('#a').on('keyup', () => {
     sumaDetalles();
     

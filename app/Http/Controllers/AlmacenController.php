@@ -274,7 +274,7 @@ class AlmacenController extends Controller
                     'code' => 200,
                     'status' => 'success',
                     'almacen' => $almacen,
-                    'sku_general' => $sku_general
+                    // 'sku_general' => $sku_general
                 ];
             }
         }

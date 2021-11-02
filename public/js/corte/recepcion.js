@@ -157,15 +157,15 @@ $(document).ready(function() {
                     }
                 },
                 error: function() {
-                    bootbox.alert(
-                        "Ocurrio un error!!"
-                    );
+                    // bootbox.alert(
+                    //     "Ocurrio un error!!"
+                    // );
                 }
             });
         }
 
 
-    $("#fecha_recepcion").on('change', function(){
+    $("#cortesSearch").on('change', function(){
         var recepcion = {
             corte_id: $("#cortesSearch").val(),
             // lavanderia_id: $("#lavanderias").val(),
@@ -226,9 +226,9 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                bootbox.alert(
-                    "Ocurrio un error"
-                );
+                // bootbox.alert(
+                //     "Ocurrio un error"
+                // );
             }
         });
     })

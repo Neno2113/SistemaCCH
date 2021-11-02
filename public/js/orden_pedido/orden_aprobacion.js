@@ -25,6 +25,7 @@ let i_perc;
 let j_perc;
 let k_perc;
 let l_perc;
+let ref;
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -449,6 +450,19 @@ const seleccionar = () => {
                 k_total = datos.k_alm;
                 l_total = datos.l_alm;
 
+                document.getElementById("a_alm").innerHTML = datos.a_alm;
+                document.getElementById("b_alm").innerHTML = datos.b_alm;
+                document.getElementById("c_alm").innerHTML = datos.c_alm;
+                document.getElementById("d_alm").innerHTML = datos.d_alm;
+                document.getElementById("e_alm").innerHTML = datos.e_alm;
+                document.getElementById("f_alm").innerHTML = datos.f_alm;
+                document.getElementById("g_alm").innerHTML = datos.g_alm;
+                document.getElementById("h_alm").innerHTML = datos.h_alm;
+                document.getElementById("i_alm").innerHTML = datos.i_alm;
+                document.getElementById("j_alm").innerHTML = datos.j_alm;
+                document.getElementById("k_alm").innerHTML = datos.k_alm;
+                document.getElementById("l_alm").innerHTML = datos.l_alm;
+
                 //Porcentaje meta 
                 a_perc = datos.curva_producto.a;
                 b_perc = datos.curva_producto.b;
@@ -465,7 +479,7 @@ const seleccionar = () => {
 
                 let filaPercProducto = `
                 <tr>
-                    <td>% Meta</td>
+                    <td class="text-primary">% Meta</td>
                     <td class="text-primary">% ${datos.curva_producto.a}</td>
                     <td class="text-primary">% ${datos.curva_producto.b}</td>
                     <td class="text-primary">% ${datos.curva_producto.c}</td>
@@ -487,87 +501,88 @@ const seleccionar = () => {
                 </tr>
                 `
                 $("#disponibles").append(filaPercProducto);
+         
 
                 let fila = 
                 `<tr id="fila${datos.producto.id}">
                     <td><input type='hidden'  id='producto${datos.producto.id}'value='${datos.producto.referencia_producto} ' />${datos.producto.referencia_producto}</td>
                       ${
                           (datos.a_alm <= 0) 
-                          ? `<td id="a${datos.producto.id}">0</td>` 
-                          : `<td><input autocomplete="off" type="number"  id="a${datos.producto.id}" name="a" value="${datos.orden_detalle.a}"  class="form-control red" ></td>`
+                          ? `<td id="a">0</td>` 
+                          : `<td><input autocomplete="off" type="number"  id="a" name="a" value="${datos.orden_detalle.a}"  class="form-control red" ></td>`
                       }            
                       ${
                           (datos.b_alm <= 0)
-                          ? `<td id="b${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="b${datos.producto.id}" name="a" value="${datos.orden_detalle.b}"  class="form-control red" ></td>`
+                          ? `<td id="b">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="b" name="a" value="${datos.orden_detalle.b}"  class="form-control red" ></td>`
                       }
       
                       ${
                           (datos.c_alm <= 0)
-                          ? `<td id="c${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="c${datos.producto.id}" name="a" value="${datos.orden_detalle.c}"  class="form-control red" ></td>`
+                          ? `<td id="c">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="c" name="a" value="${datos.orden_detalle.c}"  class="form-control red" ></td>`
                       }
                       
                       ${
                           (datos.d_alm <= 0)
-                          ? `<td id="d${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="d${datos.producto.id}" name="a" value="${datos.orden_detalle.d}"  class="form-control red" ></td>`
+                          ? `<td id="d">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="d" name="a" value="${datos.orden_detalle.d}"  class="form-control red" ></td>`
                       }
       
                       ${
                           (datos.e_alm <= 0)
-                          ? `<td id="e${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="e${datos.producto.id}" name="a" value="${datos.orden_detalle.e}"  class="form-control red" ></td>`
+                          ? `<td id="e">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="e" name="a" value="${datos.orden_detalle.e}"  class="form-control red" ></td>`
                       }
       
                       ${
                           (datos.f_alm <= 0)
-                          ? `<td id="f${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="f${datos.producto.id}" name="a" value="${datos.orden_detalle.f}"  class="form-control red" ></td>`
+                          ? `<td id="f">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="f" name="a" value="${datos.orden_detalle.f}"  class="form-control red" ></td>`
                       }
       
                       ${
                           (datos.g_alm <= 0)
-                          ? `<td id="g${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off" id="g${datos.producto.id}" name="a" value="${datos.orden_detalle.g}"  class="form-control red" ></td>`
+                          ? `<td id="g">0</td>` 
+                          : `<td><input type="number" autocomplete="off" id="g" name="a" value="${datos.orden_detalle.g}"  class="form-control red" ></td>`
                       }
                     
                       ${
                           (datos.h_alm <= 0)
-                          ? `<td id="h${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="h${datos.producto.id}" name="a" value="${datos.orden_detalle.h}" class="form-control red" ></td>`
+                          ? `<td id="h">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="h" name="a" value="${datos.orden_detalle.h}" class="form-control red" ></td>`
                       }
                    
                       ${
                           (datos.i_alm <= 0)
-                          ? `<td id="i${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="i${datos.producto.id}" name="a" value="${datos.orden_detalle.i}"  class="form-control red" ></td>`
+                          ? `<td id="i">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="i" name="a" value="${datos.orden_detalle.i}"  class="form-control red" ></td>`
                       }
                       
                       ${
                           (datos.j_alm <= 0)
-                          ? `<td id="j${datos.producto.id}">0</td>`  
-                          : `<td><input type="number" autocomplete="off"  id="j${datos.producto.id}" name="a" value="${datos.orden_detalle.j}" class="form-control red" ></td>`  
+                          ? `<td id="j">0</td>`  
+                          : `<td><input type="number" autocomplete="off"  id="j" name="a" value="${datos.orden_detalle.j}" class="form-control red" ></td>`  
                       }
                       
                       ${
                           (datos.k_alm <= 0)
-                          ? `<td id="k${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="k${datos.producto.id}" name="a" value="${datos.orden_detalle.k}"  class="form-control red" ></td>`
+                          ? `<td id="k">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="k" name="a" value="${datos.orden_detalle.k}"  class="form-control red" ></td>`
                       }
                       ${
                           (datos.l_alm <= 0)
-                          ? `<td id="l${datos.producto.id}">0</td>` 
-                          : `<td><input type="number" autocomplete="off"  id="l${datos.producto.id}" name="a" value="${datos.orden_detalle.l}" class="form-control red" ></td>`
+                          ? `<td id="l">0</td>` 
+                          : `<td><input type="number" autocomplete="off"  id="l" name="a" value="${datos.orden_detalle.l}" class="form-control red" ></td>`
                         }
                         ${
                             (datos.orden_detalle.total > 0)
-                            ? `<td id="total${datos.producto.id}">${datos.orden_detalle.total}</td>`
-                            : `<td id="total${datos.producto.id}"></td>`
+                            ? `<td id="total">${datos.orden_detalle.total}</td>`
+                            : `<td id="total"></td>`
                         }
                      
                     <td class="text-success" id="cant${datos.producto.id}">${datos.orden_detalle.cantidad}</td> 
-                    <td><a onclick="redistribuir(${datos.producto.id}, ${datos.orden_detalle.cantidad})" id="guardar" class="btn btn-danger btn-sm ml-1 text-white"> <i class="fas fa-sort-numeric-up"></i></a></td>
+                    <td><a onclick="redistribuir(${datos.orden_detalle.cantidad})" id="guardar" class="btn btn-danger btn-sm ml-1 text-white"> <i class="fas fa-sort-numeric-up"></i></a></td>
                     <td><a onclick="saveDetail(${datos.producto.id})" id="guardar" class="btn btn-primary btn-sm ml-1 text-white"> <i class="far fa-save"></i></a></td>
                     
     
@@ -575,6 +590,7 @@ const seleccionar = () => {
                 </tr>`        
               
               $("#disponibles").append(fila);
+              ref = datos.producto.id;
 
               let filaPercAlmacen = `
               <tr>
@@ -600,6 +616,54 @@ const seleccionar = () => {
               </tr>
               `
               $("#disponibles").append(filaPercAlmacen);
+
+              $('#a').on('change', () => {
+                sumaDetalles();
+            })
+            $('#b').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#c').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#d').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#e').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#f').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#g').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#h').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#i').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#j').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#k').on('change', () => {
+                sumaDetalles();
+                
+            })
+            $('#l').on('change', () => {
+                sumaDetalles();
+                
+            })
 
 
             } else {
@@ -1063,7 +1127,7 @@ const saveDetail = (id) =>{
       }
 )}
 
-const redistribuir = (id, cant) =>{
+const redistribuir = (cant) =>{
     // alert(product_id);
     Swal.fire({
         title: '¿Va a redistribuir esta orden?',
@@ -1075,12 +1139,12 @@ const redistribuir = (id, cant) =>{
         confirmButtonText: 'Si, acepto'
       }).then((result) => {
         if (result.value) {
-            calcularRedistribuido( id, cant)
+            calcularRedistribuido( cant)
         }
       }
 )}
 
-const calcularRedistribuido = (id, cant) => {
+const calcularRedistribuido = (cant) => {
 
     let pedido = Number(cant);
     // console.log(cant);
@@ -1103,19 +1167,19 @@ const calcularRedistribuido = (id, cant) => {
     let total_calc = a_calc + b_calc + c_calc + d_calc + e_calc + f_calc + g_calc + h_calc + i_calc + j_calc +
     k_calc + l_calc;
 
-    $('#a'+id).val(a_calc);
-    $('#b'+id).val(b_calc);
-    $('#c'+id).val(c_calc);
-    $('#d'+id).val(d_calc);
-    $('#e'+id).val(e_calc);
-    $('#f'+id).val(f_calc);
-    $('#g'+id).val(g_calc);
-    $('#h'+id).val(h_calc);
-    $('#i'+id).val(i_calc);
-    $('#j'+id).val(j_calc);
-    $('#k'+id).val(k_calc);
-    $('#l'+id).val(l_calc);
-    $('#total'+id).html(total_calc);
+    $('#a').val(a_calc);
+    $('#b').val(b_calc);
+    $('#c').val(c_calc);
+    $('#d').val(d_calc);
+    $('#e').val(e_calc);
+    $('#f').val(f_calc);
+    $('#g').val(g_calc);
+    $('#h').val(h_calc);
+    $('#i').val(i_calc);
+    $('#j').val(j_calc);
+    $('#k').val(k_calc);
+    $('#l').val(l_calc);
+    $('#total').html(total_calc);
 
 }
 
@@ -1125,18 +1189,18 @@ const distribucion = (id) => {
         producto: id,
         pedido: pedido_id,
         cantidad: $('#cant'+id).html(),
-        a: $('#a'+id).html() || $('#a'+id).val(),
-        b: $('#b'+id).html() || $('#b'+id).val(),
-        c: $('#c'+id).html() || $('#c'+id).val(),
-        d: $('#d'+id).html() || $('#d'+id).val(),
-        e: $('#e'+id).html() || $('#e'+id).val(),
-        f: $('#f'+id).html() || $('#f'+id).val(),
-        g: $('#g'+id).html() || $('#g'+id).val(),
-        h: $('#h'+id).html() || $('#h'+id).val(),
-        i: $('#i'+id).html() || $('#i'+id).val(),
-        j: $('#j'+id).html() || $('#j'+id).val(),
-        k: $('#k'+id).html() || $('#k'+id).val(),
-        l: $('#l'+id).html() || $('#l'+id).val(),
+        a: $('#a').html() || $('#a').val(),
+        b: $('#b').html() || $('#b').val(),
+        c: $('#c').html() || $('#c').val(),
+        d: $('#d').html() || $('#d').val(),
+        e: $('#e').html() || $('#e').val(),
+        f: $('#f').html() || $('#f').val(),
+        g: $('#g').html() || $('#g').val(),
+        h: $('#h').html() || $('#h').val(),
+        i: $('#i').html() || $('#i').val(),
+        j: $('#j').html() || $('#j').val(),
+        k: $('#k').html() || $('#k').val(),
+        l: $('#l').html() || $('#l').val(),
     }
 
     // console.log(data);
@@ -1196,4 +1260,28 @@ const distribucion = (id) => {
 }
 
 
+
+
 inicio();
+
+
+
+const sumaDetalles = (ref) => {
+    let a = Number($("#a").val());
+    let b = Number($("#b").val());
+    let c = Number($("#c").val());
+    let d = Number($("#d").val());
+    let e = Number($("#e").val());
+    let f = Number($("#f").val());
+    let g = Number($("#g").val());
+    let h = Number($("#h").val());
+    let i = Number($("#i").val());
+    let j = Number($("#j").val());
+    let k = Number($("#k").val());
+    let l = Number($("#l").val());
+
+    let total = a + b + c + d + e + f + g + h + i + j + k + l;
+
+
+    $('#total').html(total);
+}

@@ -162,18 +162,18 @@
                                 </tr>
                                 <tr>
                                     <th class="talla_head">Ref</th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
-                                    <th class="talla_head"></th>
+                                    <th class="talla_head text-success " id="a_alm"></th>
+                                    <th class="talla_head text-success " id="b_alm"></th>
+                                    <th class="talla_head text-success " id="c_alm"></th>
+                                    <th class="talla_head text-success " id="d_alm"></th>
+                                    <th class="talla_head text-success " id="e_alm"></th>
+                                    <th class="talla_head text-success " id="f_alm"></th>
+                                    <th class="talla_head text-success " id="g_alm"></th>
+                                    <th class="talla_head text-success " id="h_alm"></th>
+                                    <th class="talla_head text-success " id="i_alm"></th>
+                                    <th class="talla_head text-success " id="j_alm"></th>
+                                    <th class="talla_head text-success " id="k_alm"></th>
+                                    <th class="talla_head text-success " id="l_alm"></th>
                                     <th class="talla_head">Total</th>
                                     <th class="talla_head">Cant</th>
                                     <th class="talla_head">Red</th>
