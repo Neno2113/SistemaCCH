@@ -538,6 +538,16 @@ class LavanderiaController extends Controller
                 $corte->save();
     
                 $lavanderia->delete();
+
+                //Eliminar recepciones si existen
+                // $recepciones = Recepcion::where('corte_id', $corte->id)->get();
+
+                // if(!empty($recepciones)){
+                //     for ($i=0; $i < count($recepciones) ; $i++) { 
+                //         $recepciones[$i]->delete();
+                    
+                //     }
+                // }
     
                 $data = [
                     'code' => 200,

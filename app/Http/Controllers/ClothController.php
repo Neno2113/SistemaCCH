@@ -139,6 +139,7 @@ class ClothController extends Controller
         $cloth->encogimiento_trama = number_format($cloth->encogimiento_trama);
         $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
         $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
+        $cloth->ancho_cortable = number_format($cloth->ancho_cortable);
 
         if (is_object($cloth)) {
             $data = [
