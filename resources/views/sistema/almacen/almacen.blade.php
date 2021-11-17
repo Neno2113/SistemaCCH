@@ -91,7 +91,7 @@
 
                             <div class="row">
                                 {{-- <div class="col-md-3"></div> --}}
-                                <div class="table-responsive">
+                                {{-- <div class="table-responsive"> --}}
                                     <div class="col-md-8">
                                         <h5 for="" class="modal-almacen-h5">Pendientes</h5>
                                         <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2"
@@ -126,8 +126,31 @@
 
                                         </table>
                                     </div>
+                                    <div class="col-md-3">
+                                        <h5 for="" class="modal-almacen-h5">Ubicacion</h5>
+                                        <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2"
+                                            >
+                                            <thead class="text-center text-sm">
+                                                <tr>
+                                                    <th>Ubicacion</th>
+                                              
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-sm text-center font-weight-bold">
+                                                <tr>
+                                                    <td id="ubicacion"></td>
+                                               
+                                                </tr>
+                                            </tbody>
+    
+    
+                                        </table>
+                                    </div>
 
-                                </div>
+                                  
+
+                                {{-- </div> --}}
+                           
 
                             </div>
 

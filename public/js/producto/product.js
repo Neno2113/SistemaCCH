@@ -907,6 +907,11 @@ function mostrar(id_prouct) {
             $("#j").val(data.j);
             $("#k").val(data.k);
             $("#l").val(data.l);
+            
+            $("#imagen_frente").val("");
+            $("#imagen_trasera").val("");
+            $("#imagen_perfil").val("");
+            $("#imagen_bolsillo").val("");
             setTimeout(() => {
                 $("#frente").attr("src", './producto/terminado/'+data.product.imagen_frente);
                 $("#trasera").attr("src", './producto/terminado/'+data.product.imagen_trasero);

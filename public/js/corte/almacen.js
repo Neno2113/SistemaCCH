@@ -1083,6 +1083,7 @@ function mostrar(id_almacen){
             $("#perfil").attr("src", './producto/terminado/'+data.almacen.producto.imagen_perfil)
             $("#bolsillo").attr("src", './producto/terminado/'+data.almacen.producto.imagen_bolsillo)
             $("#total_cortado").html(data.total_cortado);
+            $("#ubicacion").html(data.almacen.producto.ubicacion);
             $("#pendiente_produccion").html(data.pen_produccion);
             $("#pendiente_lavanderia").html(data.pen_lavanderia);
             $("#recibido_lavanderia").html(data.total_recibido);
