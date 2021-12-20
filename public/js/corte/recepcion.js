@@ -329,7 +329,7 @@ $(document).ready(function() {
                 { data: "total_recibido", name: "recepcion.total_recibido" },
                 { data: "pendiente", name: "recepcion.pendiente" },
                 { data: "estandar_recibido", name: "recepcion.estandar_recibido" },
-                { data: "lavanderia", name: "recepcion.lavanderia" },
+                { data: "devuelto_produccion", name: "recepcion.devuelto_produccion" },
 
             ],
             order: [[2, 'desc']],

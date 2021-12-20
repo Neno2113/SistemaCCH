@@ -286,7 +286,7 @@ class RecepcionController extends Controller
                 return ($recepcion->estandar_recibido == 1 ? 'Si' : 'No');
             })
             ->editColumn('devuelto_produccion', function ($recepcion) {
-                return ($recepcion->devuelto_produccion <> 0) ?  '<span class="badge badge-danger">Devuelto <i class="fas fa-arrow-left"></i> </span>':
+                return ($recepcion->devuelto_produccion <> 0) ?  '<span class="badge badge-danger">Dev<i class="fas fa-arrow-left"></i> </span>':
                 '<span class="badge badge-success">Recibido <i class="fas fa-check"></i> </span>';
             })
             ->editColumn('fecha_recepcion', function ($recepcion) {
