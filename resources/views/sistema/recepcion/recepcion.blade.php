@@ -178,7 +178,7 @@
                     <th>Total Recibida</th>
                     <th>Pendiente</th>
                     <th>Estandar Rec.</th>
-                    <th>status</th>
+                    <th>Lavanderia</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -193,7 +193,7 @@
                     <th>Total Recibida</th>
                     <th>Pendiente</th>
                     <th>Estandar Rec.</th>
-                    <th>status</th>
+                    <th>Lavanderia</th>
                 </tr>
             </tfoot>
         </table>

@@ -295,13 +295,21 @@ class RecepcionController extends Controller
             // ->editColumn('fecha_envio', function ($recepcion) {
             //     return date("d-m-20y", strtotime($recepcion->fecha_envio));
             // })
+
+            ->addColumn('lavanderia', function ($recepcion) {
+                $lavanderia = Lavanderia::where('corte_id', $recepcion->corte_id)->get()->last()->load('suplidor');
+
+                return (!empty( $lavanderia ) )? '<span class="badge badge-success">'.$lavanderia->suplidor->nombre .'</span>':
+                '';
+          
+            })
             ->addColumn('Opciones', function ($recepcion) {
                 return
                     // '<button id="btnEdit" onclick="mostrar(' . $recepcion->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>' .
                     '<button onclick="eliminar(' . $recepcion->id . ')" class="btn btn-danger btn-sm ml-2"> <i class="fas fa-eraser"></i></button>' .
                     '<a href="imprimir/conduceRecepcion/' . $recepcion->id . '" class="btn btn-secondary btn-sm ml-2"> <i class="fas fa-print"></i></a>';
             })
-            ->rawColumns(['Opciones', 'devuelto_produccion'])
+            ->rawColumns(['Opciones', 'devuelto_produccion', 'lavanderia'])
             ->make(true);
     }
 

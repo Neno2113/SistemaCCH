@@ -14,6 +14,7 @@ use App\Articulo;
 use App\CategoriaProducto;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManagerStatic as Image;
 use stdClass;
 
 class ProductController extends Controller
@@ -1350,6 +1351,33 @@ class ProductController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function resize_image($file, $w, $h, $crop=FALSE) {
+        list($width, $height) = getimagesize($file);
+        $r = $width / $height;
+        if ($crop) {
+            if ($width > $height) {
+                $width = ceil($width-($width*abs($r-$w/$h)));
+            } else {
+                $height = ceil($height-($height*abs($r-$w/$h)));
+            }
+            $newwidth = $w;
+            $newheight = $h;
+        } else {
+            if ($w/$h > $r) {
+                $newwidth = $h*$r;
+                $newheight = $h;
+            } else {
+                $newheight = $w/$r;
+                $newwidth = $w;
+            }
+        }
+        $src = imagecreatefromjpeg($file);
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+    
+        return $dst;
+    }
+
 
     public function upload(Request $request)
     {
@@ -1396,7 +1424,13 @@ class ProductController extends Controller
             $producto->save();
 
             if(!empty($imagen_frente)){
-                \Storage::disk('producto')->put($image_name_1, \File::get($imagen_frente));
+                // $resize_imagen_frente = $this->resize_image($imagen_frente, 300, 500);
+                // $image_resize = Image::make($imagen_frente->getRealPath() );
+                // $img =  $image_resize->resize(300, 500);
+
+            
+                // \Storage::disk('producto')->put($image_name_1, $img);
+                \Storage::disk('producto')->put($image_name_2, \File::get($imagen_frente));
             }
             if(!empty($imagen_trasero)){
                 \Storage::disk('producto')->put($image_name_2, \File::get($imagen_trasero));

@@ -165,6 +165,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         // Laraveles\Spanish\SpanishServiceProvider::class,
 
         /*
@@ -233,6 +234,7 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::Class,  
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

@@ -120,7 +120,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
-      });
+           });
         </script>
 
         <script>
