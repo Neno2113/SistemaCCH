@@ -850,8 +850,8 @@ class AlmacenController extends Controller
         $validar = $request->validate([
             'corte' => 'required',
             'ubicacion' => 'required',
-            'tono' => 'required',
-            'intensidad_proceso_seco' => 'required'
+            // 'tono' => 'required',
+            // 'intensidad_proceso_seco' => 'required'
         ]);
 
         if (empty($validar)) {

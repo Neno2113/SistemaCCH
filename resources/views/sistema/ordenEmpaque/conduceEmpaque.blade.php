@@ -779,7 +779,6 @@
 					<td class="talla">28</td>
 					<td class="talla">29</td>
 					<td class="talla">30</td>
-					<td class="talla">31</td>
 					<td class="talla">32</td>
 					<td class="talla">34</td>
 					<td class="talla">36</td>
@@ -787,6 +786,7 @@
 					<td class="talla">40</td>
 					<td class="talla">42</td>
 					<td class="talla">44</td>
+					<td class="talla">46</td>
                     <td class="talla"></td>
                     <td class="talla"></td>
 				</tr>

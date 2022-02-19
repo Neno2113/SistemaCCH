@@ -737,7 +737,7 @@
         <table border="0" cellspacing="0" cellpadding="0" class="tabla-principal">
             <thead class="tabla-tallas">
                 <tr>
-                    <th class="talla_head">MUJER PLUS:</th>
+                    <th class="talla_head">MUJER PLUS</th>
                     <td class="talla"></td>
                     <td class="talla">12W</td>
                     <td class="talla">14W</td>
@@ -755,7 +755,7 @@
                 </tr>
 
                 <tr>
-                    <th class="talla_head">MUJER:</th>
+                    <th class="talla_head">MUJER</th>
                     <td class="talla" ></td>
                     <td class="talla" >0/0</td>
                     <td class="talla" >1/2</td>
@@ -773,12 +773,11 @@
                 </tr>
 
                 <tr>
-                    <th class="talla_head">HOMBRE:</th>
+                    <th class="talla_head">HOMBRE</th>
                     <td class="talla"></td>
                     <td class="talla">28</td>
                     <td class="talla">29</td>
                     <td class="talla">30</td>
-                    <td class="talla">31</td>
                     <td class="talla">32</td>
                     <td class="talla">34</td>
                     <td class="talla">36</td>
@@ -786,12 +785,13 @@
                     <td class="talla">40</td>
                     <td class="talla">42</td>
                     <td class="talla">44</td>
+                    <td class="talla">46</td>
                     <td class="talla"></td>
                     <td class="talla"></td>
                 </tr>
 
                 <tr>
-                    <th class="talla_head">NIÑO:</th>
+                    <th class="talla_head">NIÑO</th>
                     <td class="talla"></td>
                     <td class="talla">2</td>
                     <td class="talla">4</td>
@@ -809,7 +809,7 @@
                 </tr>
 
                 <tr>
-                    <th class="talla_head">NIÑA:</th>
+                    <th class="talla_head">NIÑA</th>
                     <td class="talla"></td>
                     <td class="talla">2</td>
                     <td class="talla">4</td>

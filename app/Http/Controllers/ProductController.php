@@ -14,8 +14,6 @@ use App\Articulo;
 use App\CategoriaProducto;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\ImageManagerStatic as Image;
-use stdClass;
 
 class ProductController extends Controller
 {
