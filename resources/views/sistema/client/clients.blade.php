@@ -48,18 +48,6 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-4 mt-2">
-                                <label for="celular_principal">Celular principal</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    </div>
-                                    <input type="text" id="celular_principal" 
-                                        class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
-
-                                </div>
-
-                            </div>
-                            <div class="col-md-4 mt-2">
                                 <label for="telefono_1" >Telefono</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
@@ -68,6 +56,17 @@
                                 <input type="text" id="telefono_1"  class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                
+                                </div>
+                            </div>                            
+                            <div class="col-md-4 mt-2">
+                                <label for="celular_principal">Celular principal</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" id="celular_principal" 
+                                        class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
+
                                 </div>
                             </div>
                             <div class="col-md-4 mt-2">
