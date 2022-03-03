@@ -1284,7 +1284,8 @@ class ordenPedidoController extends Controller
                     return '<span class="badge badge-pill badge-danger">No impreso</span>' . 
                     '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
                 } else {
-                    return '<span class="badge badge-pill badge-success">Impreso</span>';
+                    return '<span class="badge badge-pill badge-success">Impreso</span>' . 
+                    '<button onclick="eliminar(' . $orden->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
                 }
             })
             ->editColumn('detallada', function ($orden) {
@@ -1297,7 +1298,7 @@ class ordenPedidoController extends Controller
                 return date("h:i:s A d-m-20y", strtotime($orden->fecha));
             })
             ->addColumn('Opciones', function ($orden) {
-                return '<button onclick="ver(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fa-solid fa-pen-to-square"></i></button>' .
+                return '<button onclick="ver(' . $orden->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-edit"></i></button>' .
                     '<a href="imprimir_orden/conduce/' . $orden->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
             })
             // ->addColumn('Ver', function ($orden) {
