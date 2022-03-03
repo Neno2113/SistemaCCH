@@ -10,7 +10,7 @@
     <!-- Sidebar -->
     <div class="sidebar text-sm">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+<!--    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 @if (!empty(Auth::user()->avatar))
                 <img src="{{URL('/avatar').'/'.Auth::user()->avatar}}" class="img-circle elevation-2" alt="User Image">
@@ -22,7 +22,7 @@
                 <a href="#" class="d-block">{{Auth::user()->name}} {{Auth::user()->surname}}</a>
             </div>
         </div>
-
+-->
         @if (Auth::user()->role == "Administrador")
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent " data-widget="treeview" role="menu"
@@ -32,13 +32,14 @@
 
                 <li class="nav-item has-treeview">
 
-                    <a href="#" class="nav-link">
+                    <a href="./home" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
-                            <i class="right fas fa-angle-left"></i>
+                    <!--        <i class="right fas fa-angle-left"></i> -->
                         </p>
                     </a>
+<!--
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="./home" class="nav-link">
@@ -47,7 +48,7 @@
                             </a>
                         </li>
                     </ul>
-
+-->
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
