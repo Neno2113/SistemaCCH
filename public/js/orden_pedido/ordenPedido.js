@@ -584,7 +584,7 @@ $(document).ready(function() {
     // CRISTOBAL INICIO
     // CRISTOBAL INICIO
     // CRISTOBAL INICIO
-    $("input[name='tags[]']").change(function(e) {
+    $("select[name='tags[]']").change(function(e) {
         e.preventDefault();
 
         let val = $("input[name='r2']:checked").val();
