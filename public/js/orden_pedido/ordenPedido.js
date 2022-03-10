@@ -581,6 +581,30 @@ $(document).ready(function() {
         }
     });
 
+    // CRISTOBAL INICIO
+    // CRISTOBAL INICIO
+    // CRISTOBAL INICIO
+    $("input[name='tags[]']").change(function(e) {
+        e.preventDefault();
+
+        let val = $("input[name='r2']:checked").val();
+
+        if (val == 1) {
+            mostrarDetalle(true);
+            limpiarCampos();
+            consulta();
+            // $('#venta_actual').html('Venta de primera');
+        } else if (val == 0) {
+            mostrarDetalle(false);
+            consulta();
+            $("#btn-copia").attr("disabled", false);
+            // $('#venta_actual').html('Venta de segunda');
+        }
+    });
+    // CRISTOBAL FIN
+    // CRISTOBAL FIN
+    // CRISTOBAL FIN
+
     // function corte_proceso(datos) {
     //     $("#corteProceso").empty();
 
