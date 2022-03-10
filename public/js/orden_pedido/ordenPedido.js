@@ -2283,7 +2283,12 @@ function ver(id_orden) {
         $("#clienteBuscar").hide();
         $("#sucursal").show();
         $("#sucursalBuscar").hide();
-        $("#btn-generar").attr("disabled", true);
+        //CRISTOBAL
+        $("#btn-generar").hide();
+        $("#orden_create").hide();
+        $("#orden_detalle").show();
+        //$("#btn-generar").attr("disabled", true);
+        //CRISTOBAL FIN
         $("#generado_internamente").show();
         $("#tallas").hide();
         $("#producto").hide();
