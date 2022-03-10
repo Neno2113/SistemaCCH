@@ -1012,12 +1012,14 @@ $(document).ready(function() {
                     'Digito una cantidad mayor a la consultada en el sistema.',
                     'info'
                 )  
+                /*
                 .then((result) => {
                     if (result.value) {
                         validarTotalDetalle();
                     } 
                     
                   })
+                  */
                 //CRISTOBAL FIN
                 //CRISTOBAL FIN
             } else if(total_detalle < cantidad_wr) {
