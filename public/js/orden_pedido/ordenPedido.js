@@ -2303,44 +2303,9 @@ function ver(id_orden) {
         $("#client").val(data.orden.cliente.nombre_cliente);
         $("#sucur").val(data.orden.sucursal.nombre_sucursal);
         $("#fecha_entrega").val(data.orden.fecha_entrega).attr("disabled", true);
-        $("#no_orden_pedido").val(data.orden.no_orden_pedido).addClass("font-weight-bold");
+       // $("#no_orden_pedido").val(data.orden.no_orden_pedido).addClass("font-weight-bold");
         $("#generado_internamente").val(result);
 
-        // PRUEBA CRISTOBAL
-        // PRUEBA CRISTOBAL
-        // PRUEBA CRISTOBAL
-        productos(id_orden);
-        $("#ver_pedido").empty();
-        for (let i = 0; i < data.detalle.length; i++) {
-            let fila = `
-            <tr>
-                <td>${data.detalle[i].producto.referencia_producto}</td>
-                <td class="text-dark"> ${data.detalle[i].a}</td>
-                <td class="text-dark"> ${data.detalle[i].b}</td>
-                <td class="text-dark"> ${data.detalle[i].c}</td>
-                <td class="text-dark"> ${data.detalle[i].d}</td>
-                <td class="text-dark"> ${data.detalle[i].e}</td>
-                <td class="text-dark"> ${data.detalle[i].f}</td>
-                <td class="text-dark"> ${data.detalle[i].g}</td>
-                <td class="text-dark"> ${data.detalle[i].h}</td>
-                <td class="text-dark"> ${data.detalle[i].i}</td>
-                <td class="text-dark"> ${data.detalle[i].j}</td>
-                <td class="text-dark"> ${data.detalle[i].k}</td>
-                <td class="text-dark"> ${data.detalle[i].l}</td>
-                <td class="text-danger">${data.detalle[i].total}</td>
-                <td class="text-danger">${data.detalle[i].cantidad}</td>
-                <td></td>
-            
-            
-            </tr>
-            `
-            $("#ver_pedido").append(fila);
-            
-        }
-
-        // FIN PRUEBA CRISTOBAL
-        // FIN PRUEBA CRISTOBAL
-        // FIN PRUEBA CRISTOBAL
     });
 }
 

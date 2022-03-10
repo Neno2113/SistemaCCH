@@ -123,6 +123,7 @@
                     <!--PRUBEA CRISTOBAL -->
                     <!--PRUBEA CRISTOBAL -->
                     <!--PRUBEA CRISTOBAL -->
+                    <!--
                     <div class="row">
                         <div class="col-md-4">
                             <label for="">Producto</label>
@@ -279,6 +280,7 @@
                             </tfoot>
                         </table>
                     </div>
+                    -->
                     <!--FIN PRUBEA CRISTOBAL -->
                     <!--FIN PRUBEA CRISTOBAL -->
                     <!--FIN PRUBEA CRISTOBAL -->
