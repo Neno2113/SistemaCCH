@@ -1006,13 +1006,12 @@ $(document).ready(function() {
             if(total_detalle > cantidad_wr ){
                 //CRISTOBAL INICIO
                 //CRISTOBAL INICIO
-                /*
+                
                 Swal.fire(
                     'Cuidado!',
                     'Digito una cantidad mayor a la consultada en el sistema.',
                     'info'
-                )
-                */
+                )  
                 .then((result) => {
                     if (result.value) {
                         validarTotalDetalle();
@@ -1022,7 +1021,7 @@ $(document).ready(function() {
                 //CRISTOBAL FIN
                 //CRISTOBAL FIN
             } else if(total_detalle < cantidad_wr) {
-                /*
+                
                 Swal.fire({
                     title: '¿Esta seguro de continuar?',
                     text: "La cantidad total es menor a la cantidad consultada en el sistema!",
@@ -1031,8 +1030,7 @@ $(document).ready(function() {
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Si, acepto'
-                  })
-                  */
+                  })  
                   .then((result) => {
                     if (result.value) {
                         validarTotalDetalle();
