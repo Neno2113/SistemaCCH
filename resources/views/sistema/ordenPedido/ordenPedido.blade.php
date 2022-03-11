@@ -365,21 +365,6 @@
         
                                 </div>
                                 
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4" id="redistribucion">
-                                        <label for="">Cantidad:</label>
-                                        <input type="text" name="cantidad" id="cantidad" class="form-control text-center"
-                                            data-inputmask='"mask": "9[9[9]]"' data-mask>
-                                    </div>
-                                    <div class="col-lg-5 col-md-4 mt-4">
-                                        <button class="btn btn-success rounded-pill mt-2" name="btn-consultar"
-                                            id="btn-consultar"><i class="fas fa-search"></i> Consultar</button>
-                                    </div>
-                                    <div class="col-md-2 ">
-    
-                                    </div>
-                                </div>
-                                
                             <div class="row " id="tallas">
                                 <div class="col-lg-4 col-md-4 mt-3 " id="precio_div">
                                     <label for="">Precio:</label>
@@ -404,6 +389,22 @@
                                 </div>
 
                             </div>
+
+                            <div class="row">
+                                    <div class="col-lg-4 col-md-4" id="redistribucion">
+                                        <label for="">Cantidad:</label>
+                                        <input type="text" name="cantidad" id="cantidad" class="form-control text-center"
+                                            data-inputmask='"mask": "9[9[9]]"' data-mask>
+                                    </div>
+                                    <div class="col-lg-5 col-md-4 mt-4">
+                                        <button class="btn btn-success rounded-pill mt-2" name="btn-consultar"
+                                            id="btn-consultar"><i class="fas fa-search"></i> Consultar</button>
+                                    </div>
+                                    <div class="col-md-2 ">
+    
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="col-lg-4">
                                 <div class="row">

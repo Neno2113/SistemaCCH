@@ -84,6 +84,7 @@ $(document).ready(function() {
         $("#detallada").hide();
         // ordenPedidoCod();
         $("#btn-consultar").hide();
+        $("#redistribucion").hide();
         $("#precio_div").hide();
         $("#total_div").hide();
         $("#total_almdiv").hide();
@@ -2234,10 +2235,22 @@ $(document).ready(function() {
         $("#listadoUsers").show();
         eliminarEmpty();
     });
-
+/*
+    //$("#cantidad").on('keyup', function(){
     $("#cantidad").on('keyup', function(){
         $("#btn-consultar").attr("disabled", false);
-    });
+        //CRISTOBAL INICIO
+        $("#redistribucion").attr("disabled", false);
+        //CRISTOBAL FIN
+    });*/
+
+    $('input:radio[id="radioPrimary6"]').change(
+        function(){
+            if ($(this).is(':checked') && $(this).val() == 0) {
+                $("#btn-consultar").attr("disabled", false);
+                $("#redistribucion").attr("disabled", false);
+            }
+        });
 
 
     window.onresize = function() {
