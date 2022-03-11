@@ -584,6 +584,26 @@ $(document).ready(function() {
     // CRISTOBAL INICIO
     // CRISTOBAL INICIO
     // CRISTOBAL INICIO
+    //********************* */
+    $("input[name='r2']").change(function(e) {
+        e.preventDefault();
+
+        let val = $("input[name='r2']:checked").val();
+
+        if (val == 1) {
+            mostrarDetalle(true);
+            limpiarCampos();
+            consulta();
+            // $('#venta_actual').html('Venta de primera');
+        } else if (val == 0) {
+            mostrarDetalle(false);
+            consulta();
+            $("#btn-copia").attr("disabled", false);
+            // $('#venta_actual').html('Venta de segunda');
+        }
+    });
+    //************************ */
+
     $("select[id='productoSearch']").change(function(e) {
         e.preventDefault();
 
