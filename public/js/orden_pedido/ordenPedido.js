@@ -183,7 +183,7 @@ $(document).ready(function() {
         $("#sucursalSearch")
             .val("")
             .trigger("change");
-        $("#productoSearch").empty();
+       // $("#productoSearch").empty();
         $("#notas").val("");
         $("#cliente_select").val('');
         $("#venta_actual").val('');
@@ -1009,6 +1009,11 @@ $(document).ready(function() {
                     'Digito una cantidad mayor a la consultada en el sistema.',
                     'info'
                 )  
+                .then((result) => {
+                    if (result.value) {
+                        validarTotalDetalle();
+                    } 
+                  })
             } else if(total_detalle < cantidad_wr) {       
                 Swal.fire({
                     title: '¿Esta seguro de continuar?',
