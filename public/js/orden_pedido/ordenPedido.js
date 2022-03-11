@@ -585,7 +585,7 @@ $(document).ready(function() {
     // CRISTOBAL INICIO
     // CRISTOBAL INICIO
     //********************* */
-    $("input[name='r2']").change(function(e) {
+    $("input[type='radio'][name='r2']").change(function(e) {
         e.preventDefault();
 
         let val = $("input[name='r2']:checked").val();
