@@ -1481,7 +1481,7 @@ $(document).ready(function() {
                     $("#k").val("");
                     $("#l").val("");
                     $("#fecha_proceso").val("");
-                    $("#productoSearch").val("").select2().trigger('change');
+                //    $("#productoSearch").val("").select2().trigger('change');
                     $("#cantidad").val("");
                     $("#precio").val("");
                     $("#total").val("");
