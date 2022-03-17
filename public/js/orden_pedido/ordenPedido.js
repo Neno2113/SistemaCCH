@@ -610,6 +610,34 @@ $(document).ready(function() {
             // $('#venta_actual').html('Venta de segunda');
         }
     });
+
+
+    $('input[type=radio][name=r2]').change(function(cris) {
+        cris.preventDefault();
+
+        let val = $("input[name='r2']:checked").val();
+        ContenidoSelect = $("#productoSearch").val();
+
+        if (val == 1) {
+            mostrarDetalle(true);
+            limpiarCampos();
+            if (ContenidoSelect != "--") {
+                consulta();
+            }
+            
+            // $('#venta_actual').html('Venta de primera');
+        } else if (val == 0) {
+            mostrarDetalle(false);
+            if (ContenidoSelect != "--") {
+                consulta();
+            }
+            $("#btn-copia").attr("disabled", false);
+            // $('#venta_actual').html('Venta de segunda');
+        }
+    });
+
+
+
     // CRISTOBAL FIN
     // CRISTOBAL FIN
     // CRISTOBAL FIN
