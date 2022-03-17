@@ -596,15 +596,15 @@ $(document).ready(function() {
         if (val == 1) {
             mostrarDetalle(true);
             limpiarCampos();
-            if (ContenidoSelect != null) {
-              //  consulta();
+            if (ContenidoSelect == "--") {
+                consulta();
             }
             
             // $('#venta_actual').html('Venta de primera');
         } else if (val == 0) {
             mostrarDetalle(false);
-            if (ContenidoSelect != "") {
-              //  consulta();
+            if (ContenidoSelect == "--") {
+                consulta();
             }
             $("#btn-copia").attr("disabled", false);
             // $('#venta_actual').html('Venta de segunda');

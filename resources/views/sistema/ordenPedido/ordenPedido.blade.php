@@ -295,7 +295,7 @@
                                         <label for="">Referencia Producto</label>
                                         <select name="tags[]" id="productoSearch" class="form-control select2"
                                             style="width:100%">
-                                            <option value=""></option>
+                                            <option value="--"></option>
                                         </select>
                                     </div>
                                     {{-- <div class="col-md-3 " id="producto">
