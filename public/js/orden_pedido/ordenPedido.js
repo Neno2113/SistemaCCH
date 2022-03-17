@@ -596,7 +596,7 @@ $(document).ready(function() {
         if (val == 1) {
             mostrarDetalle(true);
             limpiarCampos();
-            if (ContenidoSelect != "") {
+            if (ContenidoSelect != null) {
                 consulta();
             }
             
