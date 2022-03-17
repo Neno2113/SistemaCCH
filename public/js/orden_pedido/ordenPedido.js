@@ -2441,7 +2441,6 @@ function ajustarCantidad(){
     $("#corte_en_proceso").show();
     $("input[name='r2'][value='1']").prop("checked", true);
     Swal.close()
-
 }
 
 function cortes_similares(){
