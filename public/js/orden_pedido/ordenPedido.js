@@ -85,7 +85,7 @@ $(document).ready(function() {
         // ordenPedidoCod();
         $("#btn-consultar").hide();
         //cristobal
-        $("#redistribucion").hide();
+    //    $("#redistribucion").hide();
         $("#precio_div").hide();
         $("#total_div").hide();
         $("#total_almdiv").hide();
