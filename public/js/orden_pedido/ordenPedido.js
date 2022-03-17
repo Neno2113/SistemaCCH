@@ -133,7 +133,7 @@ $(document).ready(function() {
             $("#tk").show();
             $("#tl").show();
             $("#detallada").show();
-            $("#redistribucion").hide();
+         //   $("#redistribucion").hide();
             $("#detalles").show();
             $("#corte_en_proceso").show();
         } else {
