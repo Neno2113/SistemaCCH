@@ -597,14 +597,14 @@ $(document).ready(function() {
             mostrarDetalle(true);
             limpiarCampos();
             if (ContenidoSelect != null) {
-                consulta();
+              //  consulta();
             }
             
             // $('#venta_actual').html('Venta de primera');
         } else if (val == 0) {
             mostrarDetalle(false);
             if (ContenidoSelect != "") {
-                consulta();
+              //  consulta();
             }
             $("#btn-copia").attr("disabled", false);
             // $('#venta_actual').html('Venta de segunda');
