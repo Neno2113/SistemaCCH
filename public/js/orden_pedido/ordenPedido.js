@@ -85,7 +85,7 @@ $(document).ready(function() {
         // ordenPedidoCod();
         $("#btn-consultar").hide();
         //cristobal
-     //   $("#redistribucion").hide();
+        $("#redistribucion").hide();
         $("#precio_div").hide();
         $("#total_div").hide();
         $("#total_almdiv").hide();
@@ -133,7 +133,7 @@ $(document).ready(function() {
             $("#tk").show();
             $("#tl").show();
             $("#detallada").show();
-            // $("#redistribucion").hide();
+            $("#redistribucion").hide();
             $("#detalles").show();
             $("#corte_en_proceso").show();
         } else {
@@ -1040,11 +1040,11 @@ $(document).ready(function() {
 
         if(detallado == 1){
             if(total_detalle > cantidad_wr ){
-                Swal.fire(
+            /*    Swal.fire(
                     'Cuidado!',
                     'Digito una cantidad mayor a la consultada en el sistema.',
                     'info'
-                )  
+                )  */
                 .then((result) => {
                     if (result.value) {
                         validarTotalDetalle();
