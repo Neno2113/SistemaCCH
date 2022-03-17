@@ -591,15 +591,21 @@ $(document).ready(function() {
         cri.preventDefault();
 
         let val = $("input[name='r2']:checked").val();
+        ContenidoSelect = $("#productoSearch").val();
 
         if (val == 1) {
             mostrarDetalle(true);
             limpiarCampos();
-            consulta();
+            if (ContenidoSelect != "") {
+                consulta();
+            }
+            
             // $('#venta_actual').html('Venta de primera');
         } else if (val == 0) {
             mostrarDetalle(false);
-            consulta();
+            if (ContenidoSelect != "") {
+                consulta();
+            }
             $("#btn-copia").attr("disabled", false);
             // $('#venta_actual').html('Venta de segunda');
         }
