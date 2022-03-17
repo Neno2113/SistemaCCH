@@ -1040,11 +1040,11 @@ $(document).ready(function() {
 
         if(detallado == 1){
             if(total_detalle > cantidad_wr ){
-            /*    Swal.fire(
+                Swal.fire(
                     'Cuidado!',
                     'Digito una cantidad mayor a la consultada en el sistema.',
                     'info'
-                )  */
+                )
                 .then((result) => {
                     if (result.value) {
                         validarTotalDetalle();
