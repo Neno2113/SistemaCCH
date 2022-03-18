@@ -1027,6 +1027,14 @@ function mostrar(id_almacen){
             $("#imagen_trasera").hide();
             $("#imagen_perfil").hide();
             $("#imagen_bolsillo").hide();
+            setTimeout(() => {
+                ubicaciones();
+                
+            }, 500);
+            setTimeout(() => {
+                listarAtributos();
+                
+            }, 500);
 
             // $("#btn-imprimir").hide();
             let genero = data.almacen.producto.referencia_producto.substring(1, 2);
