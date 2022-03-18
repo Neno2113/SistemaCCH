@@ -256,7 +256,7 @@ $(document).ready(function() {
             $("#imagen_perfil").show();
             $("#imagen_bolsillo").show();
             $("#btn-upload").show();
-            $("#btn-buscar").show();
+        //    $("#btn-buscar").show();
             $("#btn-imprimir").attr("disabled", true);
             ubicaciones();
             listarUbicaciones();
@@ -283,8 +283,9 @@ $(document).ready(function() {
         }
     }
 
-
-    $("#btn-buscar").click(function() {
+//Cristobal
+//    $("#btn-buscar").click(function() {
+    $("select[id='btn-buscar']").change(function() {
         $("#loading").show();
         $("#loading2").show();
         $("#loading3").show();
