@@ -993,7 +993,53 @@ $(document).ready(function() {
 
     }
 
+    $("#btn-guardar-ubi").click(function(e) {
+        e.preventDefault();
 
+        var almaUbi = {
+            corte: $("#cortesSearch").val(),
+            ubicacion: $("#ubicacion").val()
+        };
+
+        $.ajax({
+            url: "almacen",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(almaUbi),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    Swal.fire(
+                        'Ubicacion guardada!!',
+                        'Registro a almacen realizado correctamente.',
+                        'success'
+                    )
+
+                    mostrarForm(false);
+                } else if(datos.status == 'info') {
+                    Swal.fire(
+                        'Alerta',
+                        datos.message,
+                        'warning'
+                    )
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.errors);
+                let errores = datos.responseJSON.errors;
+
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
+                    });
+                });
+            }
+        });
+    });
 
 
     init();
@@ -1060,6 +1106,8 @@ function mostrar(id_almacen){
             $("#id").val(data.almacen.id);
             $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);
             $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
+            // cristobal
+            $("#ubi-selected").val(data.almacen.producto.ubicacion);
             $("#tono").val(data.almacen.producto.tono).trigger("change").attr('disabled', true);
             $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco).trigger("change").attr('disabled', true);
             $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).trigger("change").attr('disabled', true) ;

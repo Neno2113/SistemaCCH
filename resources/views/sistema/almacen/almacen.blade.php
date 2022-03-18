@@ -93,13 +93,14 @@
                         <!--    <div class="col-md-1">
                         
                             </div> -->
-                            <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
+                            <button class="btn btn-dark btn-sm mb-1" id="btn-cat"  type="button"
                                 data-toggle="modal" data-target=".bd-ubicacion-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <div class="col-md-2 mb-2"> 
                                 <select name="ubicacion" id="ubicacion" class="form-control">
-                                    <option value="" disabled>Ubicacion</option> 
+                                    <option id="ubi-selected" value="" >Ubicacion</option> 
                                 </select>
                             </div>
+                            <button type="submit" id="btn-guardar-ubi" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button>
         
                         </div>
                         <div class="div-totales">
