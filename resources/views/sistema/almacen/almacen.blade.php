@@ -60,7 +60,7 @@
                     </div>
                     <br>
                     <hr>
-                    <!-- cristobal -->
+                    <!-- cristobal
                     <div class="row mt-3" id="form_talla">
                         
                         <div class="col-md-4 mt-2">
@@ -71,11 +71,11 @@
                         <br>
                         <hr>
                     </div>
-                    
+                    -->
                     <div class="div" id="entrada-form">
                         <div class="row">
                             <label for="" class="mt-1">Referencia producto: </label>
-                            <div class="col-md-6 mb-2">
+                            <div class="col-md-2 mb-2">
                                 <input type="text" name="genero" id="genero"
                                     class="form-control text-center font-weight-bold" readonly>
                                 <input type="hidden" name="producto_id" id="producto_id">
@@ -89,6 +89,13 @@
                                 <input type="text" class="form-control font-weight-bold text-center"
                                     name="codigo_entrada" id="codigo_entrada" readonly>
                                 <input type="hidden" name="sec" id="sec">
+                            </div>
+                            <label for="" class="mt-1">Ubicacion: </label>
+                            <div class="col-md-2 mb-2">
+                                <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
+                                data-toggle="modal" data-target=".bd-ubicacion-modal-xl"><i class="fas fa-plus-square"></i></button>
+                                <select name="ubicacion" id="ubicacion" class="form-control">
+                                <option value="" disabled>Ubicacion</option> 
                             </div>
                         </div>
                         <div class="div-totales">
@@ -130,6 +137,7 @@
 
                                         </table>
                                     </div>
+                                    <!-- cristobal
                                     <div class="col-md-3">
                                         <h5 for="" class="modal-almacen-h5">Ubicacion</h5>
                                         <table id="corte_detalle" class="table tabla-almacen-totales ml-2 mr-2"
@@ -150,6 +158,7 @@
     
                                         </table>
                                     </div>
+                                    -->
 
                                   
 
@@ -509,6 +518,61 @@
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade bd-ubicacion-modal-xl" tabindex="-1" role="dialog" id="modalRollos"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-h5">Agregar nueva Ubicacion</h5>
+                <hr>
+                <form action="" class="form-group">
+                    <div class="row">
+                  
+                        <div class="col-4">
+                            <label for="">Ubicacion</label>
+                            <input type="text" name="newUbicacion" id="newUbicacion" class="form-control text-center"
+                            data-inputmask='"mask": "a[a]-9[9[9]]"' data-mask style="text-transform: uppercase;">
+                        </div>
+                        <div class="col-4 mt-3">
+                            <button type="button" id="btn-saveUbicacion" class="btn btn-outline-primary rounded-pill mt-3 " ><i class="fas fa-plus"></i> Agregar</button>
+
+                        </div>
+                    </div>
+                  
+                    <div class="row mt-3">
+                        <hr>
+                        <table class="table tabla-existencia table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Ubicacion</th>
+                                    <th id="editar-permisos">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ubicaciones-list">
+    
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
 
 @include(' adminlte/scripts') <script src="{{asset('js/corte/almacen.js')}}"></script>
 

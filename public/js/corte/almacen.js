@@ -396,7 +396,7 @@ $(document).ready(function() {
             $("#btn-edit").hide();
             $("#entrada_alm").hide();
             // cristobal
-         //   $("#entrada-form").show();
+            $("#entrada-form").show();
             eliminarColumnas();
             $("#entrada_alm").removeClass("btn-dark").addClass("btn-primary");
             $("#btn-imprimir").hide();
@@ -411,7 +411,7 @@ $(document).ready(function() {
             $("#btn-guardar").attr("disabled", true);
         }
     }
-    /* Cristobal */
+    /* Cristobal 
     $("#entrada_alm").click(function(){
         $("#entrada-form").show();
         $("#formUpload").hide();
@@ -422,7 +422,7 @@ $(document).ready(function() {
     $("#fecha_entrada").change(function(){
         $("#entrada_alm").show();
     });
-    
+    */
 
 
     function validarTallas(){
@@ -1381,3 +1381,88 @@ function eliminarColumnas(){
     }
 }
 
+$("#btn-saveUbicacion").on('click', () => {
+    
+    let data = {
+        ubicacion: $("#newUbicacion").val()
+    }
+
+
+    $.ajax({
+        url: "ubicacion",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    type: 'success',
+                    title: 'Nueva entrada registrada.'
+                })
+                $("#nombre").val('');
+                ubicaciones();
+                listarUbicaciones();
+            
+            
+            } else {
+                bootbox.alert("Se genero la referencia");
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.errors);
+            let errores = datos.responseJSON.errors;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                    size: 'small'
+                });
+            });
+        }
+    });
+});
+
+const ubicaciones = () => {
+    $("#ubicacion").empty();
+    $("#ubicacion").append(`<option value="" selected disabled>Ubicacion</option>`);
+    $.ajax({
+        url: "ubicaciones",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.ubicaciones.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.ubicaciones[i].ubicacion}">${datos.ubicaciones[i].ubicacion}</option>`
+                    $("#ubicacion").append(fila);
+                }
+                $("#ubicacion").select2();
+
+             
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron las ubicaciones");
+        }
+    });
+}
