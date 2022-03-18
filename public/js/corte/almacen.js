@@ -1466,3 +1466,36 @@ const ubicaciones = () => {
         }
     });
 }
+
+const listarUbicaciones = () => {
+
+    $("#ubicaciones-list").empty();
+
+    $.ajax({
+        url: "ubicaciones",
+        type: "get",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                
+                for (let i = 0; i < datos.ubicaciones.length; i++) {
+                    var fila =
+                    '<tr id="ubc'+datos.ubicaciones[i].id+'">'+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.ubicaciones[i].ubicacion+"' value="+datos.ubicaciones[i].ubicacion+">"+datos.ubicaciones[i].ubicacion+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delUbicacion("+datos.ubicaciones[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                    $("#ubicaciones-list").append(fila);
+                }
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("Ocurrio un error");
+        }
+    });
+}
