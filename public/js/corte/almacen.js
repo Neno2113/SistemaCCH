@@ -397,8 +397,8 @@ $(document).ready(function() {
             $("#entrada_alm").hide();
             // cristobal
             $("#entrada-form").show();
-            $("#fecha_entrada").datepicker({dateFormat:"dd/mm/yy"}).datepicker("setDate",new Date());
-        //    $("#fecha_entrada").val("");
+        //    $("#fecha_entrada").datepicker({dateFormat:"dd/mm/yy"}).datepicker("setDate",new Date());
+         //   $("#fecha_entrada").val("");
             eliminarColumnas();
             $("#entrada_alm").removeClass("btn-dark").addClass("btn-primary");
             $("#btn-imprimir").hide();
