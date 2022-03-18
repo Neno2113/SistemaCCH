@@ -50,7 +50,7 @@
                     <br><br>
 
                     <div class="row " id="form_producto">
-                        <!--
+                        <!-- cristobal -->
                         <div class="col-md-4">
                             <label for="" >Ubicacion</label> <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
                             data-toggle="modal" data-target=".bd-ubicacion-modal-xl"><i class="fas fa-plus-square"></i></button>
@@ -59,7 +59,7 @@
                             </select>
                            
                         </div>
-                        -->
+                        
                         <div class="col-md-4 mt-2">
                             <label for="" >Tono</label>
                             <select name="tono" id="tono" class="form-control">

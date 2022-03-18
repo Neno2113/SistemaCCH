@@ -90,6 +90,7 @@
                                     name="codigo_entrada" id="codigo_entrada" readonly>
                                 <input type="hidden" name="sec" id="sec">
                             </div>
+                            
                             <label for="" class="mt-1">Ubicacion: </label>
                             <div class="col-md-2 mb-2">
                                 <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
