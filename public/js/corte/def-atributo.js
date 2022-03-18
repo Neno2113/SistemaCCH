@@ -257,6 +257,8 @@ $(document).ready(function() {
             $("#imagen_bolsillo").show();
             $("#btn-upload").show();
         //    $("#btn-buscar").show();
+        // cristobal
+            $("#btn-buscar").hide();
             $("#btn-imprimir").attr("disabled", true);
             ubicaciones();
             listarUbicaciones();
@@ -333,6 +335,7 @@ $(document).ready(function() {
                     $("#perfil").attr("src", './producto/terminado/'+datos.producto.imagen_perfil);
                     $("#bolsillo").attr("src", './producto/terminado/'+datos.producto.imagen_bolsillo);
 
+                    /* cristobal
                     if (ubicacion != null) {
                         bootbox.confirm({
                             message:
@@ -367,6 +370,7 @@ $(document).ready(function() {
                         $("#form_producto_2").show();
                         $("#form_talla").show();
                     }
+                    */
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"
