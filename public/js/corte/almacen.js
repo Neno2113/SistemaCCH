@@ -375,6 +375,10 @@ $(document).ready(function() {
 
     function mostrarForm(flag) {
         limpiar();
+        //cristobal
+        ubicaciones();
+        listarUbicaciones();
+        //fin cristobal
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
@@ -1498,4 +1502,29 @@ const listarUbicaciones = () => {
             console.log("Ocurrio un error");
         }
     });
+}
+
+const delUbicacion = (id) => {
+    Swal.fire({
+        title: '¿Esta seguro de eliminar esta ubicacion?',
+        text: "Va a eliminar esta ubicacion!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            $.post("ubicacion/delete/" + id, function(){
+                Swal.fire(
+                'Eliminado!',
+                'Ubicacion eliminada correctamente.',
+                'success'
+                )
+                $("#ubc"+id).remove();
+                ubicaciones();
+           
+            })
+        }
+      })
 }
