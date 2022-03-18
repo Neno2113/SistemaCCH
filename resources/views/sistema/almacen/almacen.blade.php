@@ -90,11 +90,11 @@
                             </div>
 
                             <label for="" class="mt-1">Ubicacion: </label>
-                            <div class="col-md-1">
+                        <!--    <div class="col-md-1">
+                        
+                            </div> -->
                             <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
                                 data-toggle="modal" data-target=".bd-ubicacion-modal-xl"><i class="fas fa-plus-square"></i></button>
-                            </div>
-                            
                             <div class="col-md-2 mb-2"> 
                                 <select name="ubicacion" id="ubicacion" class="form-control">
                                     <option value="" disabled>Ubicacion</option> 
