@@ -334,8 +334,12 @@ $(document).ready(function() {
                     $("#trasera").attr("src", './producto/terminado/'+datos.producto.imagen_trasero);
                     $("#perfil").attr("src", './producto/terminado/'+datos.producto.imagen_perfil);
                     $("#bolsillo").attr("src", './producto/terminado/'+datos.producto.imagen_bolsillo);
-
-                    /* cristobal
+                    
+                    $("#formUpload").show();
+                    $("#form_producto").show();
+                    $("#form_producto_2").show();
+                    $("#form_talla").show();
+                    /*
                     if (ubicacion != null) {
                         bootbox.confirm({
                             message:
