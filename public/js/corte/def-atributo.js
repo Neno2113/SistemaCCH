@@ -285,7 +285,7 @@ $(document).ready(function() {
 
 //Cristobal
 //    $("#btn-buscar").click(function() {
-    $("select[id='btn-buscar']").change(function() {
+    $("select[id='cortesSearch']").change(function() {
         $("#loading").show();
         $("#loading2").show();
         $("#loading3").show();
