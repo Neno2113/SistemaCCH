@@ -374,6 +374,12 @@ $(document).ready(function() {
     });
 
     function mostrarForm(flag) {
+        var d = new Date();
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var fechaNow = d.getFullYear() + '/' +
+    ((''+month).length<2 ? '0' : '') + month + '/' +
+    ((''+day).length<2 ? '0' : '') + day;
         limpiar();
         if (flag) {
             $("#listadoUsers").hide();
@@ -397,8 +403,7 @@ $(document).ready(function() {
             $("#entrada_alm").hide();
             // cristobal
             $("#entrada-form").show();
-        //    $("#fecha_entrada").datepicker({dateFormat:"dd/mm/yy"}).datepicker("setDate",new Date());
-         //   $("#fecha_entrada").val("");
+            $("#fecha_entrada").val(fechaNow);
             eliminarColumnas();
             $("#entrada_alm").removeClass("btn-dark").addClass("btn-primary");
             $("#btn-imprimir").hide();
@@ -413,7 +418,7 @@ $(document).ready(function() {
             $("#btn-guardar").attr("disabled", true);
         }
     }
-    /* Cristobal
+    /* Cristobal */
     $("#entrada_alm").click(function(){
         $("#entrada-form").show();
         $("#formUpload").hide();

@@ -60,7 +60,7 @@
                     </div>
                     <br>
                     <hr>
-                    <!--
+                    <!-- cristobal -->
                     <div class="row mt-3" id="form_talla">
                         
                         <div class="col-md-4 mt-2">
@@ -71,7 +71,7 @@
                         <br>
                         <hr>
                     </div>
-                    -->
+                    
                     <div class="div" id="entrada-form">
                         <div class="row">
                             <label for="" class="mt-1">Referencia producto: </label>
