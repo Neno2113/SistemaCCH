@@ -31,7 +31,7 @@
                     <hr>
 
                     <div class="row" id="corte-div">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="" class="d-flex justify-content-center pers">Corte</label>
                             <div id="corteAdd">
                                 <input type="hidden" name="id" id="id">
@@ -47,19 +47,20 @@
                             <input type="text" name="numero_corte" id="numero_corte"
                                 class="form-control font-weight-bold  text-center" readonly>
                         </div>
-                        <div class="col-md-1 mt-1">
+                        <div class="col-md-2 mt-1">
                             <button type="button" id="btn-buscar" class="btn btn-secondary btn-block rounded-pill"><i
                                     class="fas fa-search"></i></button>
                         </div>
-                        <br>
-                        <hr>
-                    </div>
-
-                    <div class="row mt-3" id="form_talla">
                         <div class="col-md-4">
                             <label for="" class="d-flex justify-content-center pers">Fecha</label>
                             <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control">
                         </div>
+                        <br>
+                        <hr>
+                    </div>
+                    <!--
+                    <div class="row mt-3" id="form_talla">
+                        
                         <div class="col-md-4 mt-2">
                             <button type="button" class="btn btn-primary btn-block mt-4  rounded-pill" id="entrada_alm"
                                 data-toggle="modal">
@@ -68,6 +69,7 @@
                         <br>
                         <hr>
                     </div>
+                    -->
                     <div class="div" id="entrada-form">
                         <div class="row">
                             <label for="" class="mt-1">Referencia producto: </label>
