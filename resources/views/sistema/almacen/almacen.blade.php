@@ -58,6 +58,8 @@
                         <br>
                         <hr>
                     </div>
+                    <br>
+                    <hr>
                     <!--
                     <div class="row mt-3" id="form_talla">
                         

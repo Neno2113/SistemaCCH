@@ -395,7 +395,8 @@ $(document).ready(function() {
             $("#btnAgregar").show();
             $("#btn-edit").hide();
             $("#entrada_alm").hide();
-            $("#entrada-form").hide();
+            // cristobal
+            $("#entrada-form").show();
             eliminarColumnas();
             $("#entrada_alm").removeClass("btn-dark").addClass("btn-primary");
             $("#btn-imprimir").hide();
@@ -417,11 +418,11 @@ $(document).ready(function() {
         $("#form_talla").hide();
         $("#corte-div").hide();
     });
-    */
+
     $("#fecha_entrada").change(function(){
-    //  $("#entrada_alm").show();
-        $("#entrada-form").show();
+        $("#entrada_alm").show();
     });
+    */
 
 
     function validarTallas(){
