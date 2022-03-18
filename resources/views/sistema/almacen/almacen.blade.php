@@ -97,7 +97,7 @@
                             
                             <div class="col-md-2 mb-2"> 
                                 <select name="ubicacion" id="ubicacion" class="form-control">
-                                <option value="" disabled>Ubicacion</option> 
+                                    <option value="" disabled>Ubicacion</option> 
                                 </select>
                             </div>
         
