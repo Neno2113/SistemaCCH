@@ -997,7 +997,6 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almaUbi = {
-            corte: $("#cortesSearch").val(),
             ubicacion: $("#ubicacion").val()
         };
 
