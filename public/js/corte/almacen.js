@@ -422,7 +422,7 @@ $(document).ready(function() {
     $("#fecha_entrada").change(function(){
         $("#entrada_alm").show();
     });
-    */
+    
 
 
     function validarTallas(){
