@@ -835,6 +835,7 @@ $(document).ready(function() {
             almacen_id: $("#id").val(),
             codigo_entrada: $("#codigo_entrada").val(),
             sec: $("#sec").val(),
+            ubicacion: $("#ubicacion").val(),
             fecha: $("#fecha_entrada").val()
         }
 
