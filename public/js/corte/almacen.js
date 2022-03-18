@@ -402,7 +402,7 @@ $(document).ready(function() {
             $("#btn-edit").hide();
             $("#entrada_alm").hide();
             // cristobal
-            $("#entrada-form").show();
+         //   $("#entrada-form").show();
             $("#fecha_entrada").val(fechaNow);
             eliminarColumnas();
             $("#entrada_alm").removeClass("btn-dark").addClass("btn-primary");
