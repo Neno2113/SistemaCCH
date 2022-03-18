@@ -81,9 +81,7 @@
                                 <input type="hidden" name="producto_id" id="producto_id">
                                 <input type="hidden" name="almacen_id" id="almacen_id">
                             </div>
-                            <div class="col-md-1">
 
-                            </div>
                             <label for="" class="mt-1">Entrada almacen: </label>
                             <div class="col-md-2 mb-2">
                                 <input type="text" class="form-control font-weight-bold text-center"
@@ -92,10 +90,12 @@
                             </div>
 
                             <label for="" class="mt-1">Ubicacion: </label>
-                            <!--
-                            <div class="col-md-2 mb-2">
-                                <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
+                            <div class="col-md-1">
+                            <button class="btn btn-dark btn-sm mb-2" id="btn-cat"  type="button"
                                 data-toggle="modal" data-target=".bd-ubicacion-modal-xl"><i class="fas fa-plus-square"></i></button>
+                            </div>
+                            <!--
+                            <div class="col-md-2 mb-2"> 
                                 <select name="ubicacion" id="ubicacion" class="form-control">
                                 <option value="" disabled>Ubicacion</option> 
                             </div>
