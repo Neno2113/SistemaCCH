@@ -410,16 +410,17 @@ $(document).ready(function() {
             $("#btn-guardar").attr("disabled", true);
         }
     }
-
+    /* Cristobal
     $("#entrada_alm").click(function(){
         $("#entrada-form").show();
         $("#formUpload").hide();
         $("#form_talla").hide();
         $("#corte-div").hide();
     });
-
+    */
     $("#fecha_entrada").change(function(){
-        $("#entrada_alm").show();
+    //  $("#entrada_alm").show();
+        $("#entrada-form").show();
     });
 
 
