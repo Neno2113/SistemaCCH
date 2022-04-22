@@ -510,7 +510,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Orden de pedido</strong></h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Edicion de Corte</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -519,108 +519,22 @@
                 <table id="tablaPedido" class="table  mt-2 mb-3 mr-5 tabla-tallas text-sm" style="width:102%;">
                     <thead class="tabla-tallas">
                         <tr>
-                            <th class="talla_head">PLUS</th>
-                            <td class="talla">12W</td>
-                            <td class="talla">14W</td>
-                            <td class="talla">16W</td>
-                            <td class="talla">18W</td>
-                            <td class="talla">20W</td>
-                            <td class="talla">22W</td>
-                            <td class="talla">24W</td>
-                            <td class="talla">26W</td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
+                            <th class="talla_head">TALLAS</th>
+                            <th id="sa">A</th>
+                            <th id="sb">B</th>
+                            <th id="sc">C</th>
+                            <th id="sd">D</th>
+                            <th id="se">E</th>
+                            <th id="sf">F</th>
+                            <th id="sg">G</th>
+                            <th id="sh">H</th>
+                            <th id="si">I</th>
+                            <th id="sj">J</th>
+                            <th id="sk">K</th>
+                            <th id="sl">L</th>
+                            <th id="">Total</th>
                         </tr>
-                        <tr>
-                            <th class="talla_head">MUJER</th>
-                            <td class="talla">0/0 </td>
-                            <td class="talla">1/2 </td>
-                            <td class="talla">3/4 </td>
-                            <td class="talla">5/6 </td>
-                            <td class="talla">7/8 </td>
-                            <td class="talla">9/10 </td>
-                            <td class="talla">11/12</td>
-                            <td class="talla">13/14</td>
-                            <td class="talla">15/16</td>
-                            <td class="talla">17/18</td>
-                            <td class="talla">19/20</td>
-                            <td class="talla">21/22</td>
-                            <td class="talla"></td>
-                        </tr>
-                        <tr>
-                            <th class="talla_head">HOMBRE</th>
-                            <td class="talla">28</td>
-                            <td class="talla">29</td>
-                            <td class="talla">30</td>
-                            <td class="talla">32</td>
-                            <td class="talla">34</td>
-                            <td class="talla">36</td>
-                            <td class="talla">38</td>
-                            <td class="talla">40</td>
-                            <td class="talla">42</td>
-                            <td class="talla">44</td>
-                            <td class="talla">46</td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                        </tr>
-                        <tr>
-                            <th class="talla_head">NIÑO</th>
-                            <td class="talla">2</td>
-                            <td class="talla">4</td>
-                            <td class="talla">6</td>
-                            <td class="talla">8</td>
-                            <td class="talla">10</td>
-                            <td class="talla">12</td>
-                            <td class="talla">14</td>
-                            <td class="talla">16</td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                        </tr>
-                        <tr>
-                            <th class="talla_head">NIÑA</th>
-                            <td class="talla">2</td>
-                            <td class="talla">4</td>
-                            <td class="talla">6</td>
-                            <td class="talla">8</td>
-                            <td class="talla">10</td>
-                            <td class="talla">12</td>
-                            <td class="talla">14</td>
-                            <td class="talla">16</td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                            <td class="talla"></td>
-                        </tr>
-                        <tr>
-                            <th class="talla_head">Ref</th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head"></th>
-                            <th class="talla_head">Total</th>
-                            <th class="talla_head">Cant</th>
-                        </tr>
-
                     </thead>
-                    <tbody id="ver_pedido" class="text-sm">
-
-                    </tbody>
                     <tfoot>
                         <tr>
                             <th class="talla_head">Ref</th>
