@@ -371,6 +371,9 @@
                         <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
                                 class="fas fa-plus"></i>
                             Agregar</button>
+                        <button class="btn btn-warning rounded-pill" name="btn-editar" id="btn-editar"><i
+                                class="fas fa-plus"></i>
+                            Editar</button>
                         <a class="btn btn-secondary rounded-pill float-right text-white" name="btn-imprimir"
                             id="btn-imprimir"><i class="fas fa-print"></i>
                             Imprimir</a>
