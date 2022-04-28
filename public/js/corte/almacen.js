@@ -150,6 +150,18 @@ $(document).ready(function() {
         $("#j_m").val("");
         $("#k_m").val("");
         $("#l_m").val("");
+        $("#a_mm").val("");
+        $("#b_mm").val("");
+        $("#c_mm").val("");
+        $("#d_mm").val("");
+        $("#e_mm").val("");
+        $("#f_mm").val("");
+        $("#g_mm").val("");
+        $("#h_mm").val("");
+        $("#i_mm").val("");
+        $("#j_mm").val("");
+        $("#k_mm").val("");
+        $("#l_mm").val("");
     }
 
     $("#cortesSearch").select2({
@@ -803,6 +815,13 @@ $(document).ready(function() {
 
     });
 
+    $("#btn-aplicar").click(function(t){
+        t.preventDefault();
+        agregarDetalleAplicar();
+
+
+    });
+
     function agregarDetalle(){
         let a = validarNan(parseInt($("#a").val())) == "" ? validarNan(parseInt($("#a_m").val())) : validarNan(parseInt($("#a").val()));
         let b = validarNan(parseInt($("#b").val())) == "" ? validarNan(parseInt($("#b_m").val())) : validarNan(parseInt($("#b").val()));
@@ -840,6 +859,135 @@ $(document).ready(function() {
         }
 
         if(total_zero <= 0){
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'No puede realizar esta accion, verifique si digito las cantidades correctamente!.'
+            })
+        }else{
+            $.ajax({
+                url: "almacen/detalle",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(tallas),
+                contentType: "application/json",
+                success: function(datos) {
+                    if (datos.status == "success") {
+                        var cont;
+                        var fila =
+                        '<tr id="fila'+cont +'">'+
+                        "<td><input type='hidden' name='a[]' id='a[]' value="+a+">"+a+"</td>"+
+                        "<td><input type='hidden' name='b[]' id='b[]' value="+b+">"+b+"</td>"+
+                        "<td><input type='hidden' name='c[]' id='c[]' value="+c+">"+c+"</td>"+
+                        "<td><input type='hidden' name='d[]' id='d[]' value="+d+">"+d+"</td>"+
+                        "<td><input type='hidden' name='e[]' id='e[]' value="+e+">"+e+"</td>"+
+                        "<td><input type='hidden' name='f[]' id='f[]' value="+f+">"+f+"</td>"+
+                        "<td><input type='hidden' name='g[]' id='g[]' value="+g+">"+g+"</td>"+
+                        "<td><input type='hidden' name='h[]' id='h[]' value="+h+">"+h+"</td>"+
+                        "<td><input type='hidden' name='i[]' id='i[]' value="+i+">"+i+"</td>"+
+                        "<td><input type='hidden' name='j[]' id='j[]' value="+j+">"+j+"</td>"+
+                        "<td><input type='hidden' name='k[]' id='k[]' value="+k+">"+k+"</td>"+
+                        "<td><input type='hidden' name='l[]' id='l[]' value="+l+">"+l+"</td>"+
+                        "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.detalle.total+">"+datos.detalle.total+"</td>"+
+                        "</tr>";
+                        cont++;
+                    $("#disponibles").append(fila);
+                    limpiarDetalle();
+                    calcularTotales();
+                    entradaCod();
+                    $("#btn-imprimir").show();
+                    $("#entrada_alm").removeClass("btn-primary").addClass("btn-dark");
+                    $("#btn-imprimir").attr("href", 'imprimir/DocEA/'+datos.detalle.id);
+                    eliminarColumnas();
+                    // Swal.fire({
+                    //     position: 'top-end',
+                    //     type: 'success',
+                    //     width: '500px',
+                    //     title: 'Entrada a almacen realizada correctamente',
+                    //     showConfirmButton: false,
+                    //     timer: 1500
+                    // })
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Entrada guardada'
+                    })
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la creacion de la composicion"
+                        );
+                    }
+                },
+                error: function(datos) {
+                    console.log(datos.responseJSON.errors);
+                    let errores = datos.responseJSON.errors;
+
+                    Object.entries(errores).forEach(([key, val]) => {
+                        bootbox.alert({
+                            message:
+                                "<h4 class='invalid-feedback d-block'>" +
+                                val +
+                                "</h4>",
+                            size: "small"
+                        });
+                    });
+                }
+            });
+        }
+
+
+
+    }
+
+    function agregarDetalleAplicar(){
+        let a = validarNan(parseInt($("#a").val())) == "" ? validarNan(parseInt($("#a_mm").val())) : validarNan(parseInt($("#a").val()));
+        let b = validarNan(parseInt($("#b").val())) == "" ? validarNan(parseInt($("#b_mm").val())) : validarNan(parseInt($("#b").val()));
+        let c = validarNan(parseInt($("#c").val())) == "" ? validarNan(parseInt($("#c_mm").val())) : validarNan(parseInt($("#c").val()));
+        let d = validarNan(parseInt($("#d").val())) == "" ? validarNan(parseInt($("#d_mm").val())) : validarNan(parseInt($("#d").val()));
+        let e = validarNan(parseInt($("#e").val())) == "" ? validarNan(parseInt($("#e_mm").val())) : validarNan(parseInt($("#e").val()));
+        let f = validarNan(parseInt($("#f").val())) == "" ? validarNan(parseInt($("#f_mm").val())) : validarNan(parseInt($("#f").val()));
+        let g = validarNan(parseInt($("#g").val())) == "" ? validarNan(parseInt($("#g_mm").val())) : validarNan(parseInt($("#g").val()));
+        let h = validarNan(parseInt($("#h").val())) == "" ? validarNan(parseInt($("#h_mm").val())) : validarNan(parseInt($("#h").val()));
+        let i = validarNan(parseInt($("#i").val())) == "" ? validarNan(parseInt($("#i_mm").val())) : validarNan(parseInt($("#i").val()));
+        let j = validarNan(parseInt($("#j").val())) == "" ? validarNan(parseInt($("#j_mm").val())) : validarNan(parseInt($("#j").val()));
+        let k = validarNan(parseInt($("#k").val())) == "" ? validarNan(parseInt($("#k_mm").val())) : validarNan(parseInt($("#k").val()));
+        let l = validarNan(parseInt($("#l").val())) == "" ? validarNan(parseInt($("#l_mm").val())) : validarNan(parseInt($("#l").val()));
+        let total_zero = a + b + c + d + e + f + g + h + i + j + k + l;
+
+        var tallas = {
+            a: a,
+            b: b,
+            c: c,
+            d: d,
+            e: e,
+            f: f,
+            g: g,
+            h: h,
+            i: i,
+            j: j,
+            k: k,
+            l: l,
+            producto_id: $("#producto_id").val(),
+            almacen_id: $("#id").val(),
+            codigo_entrada: $("#codigo_entrada").val()+"-E",
+            sec: $("#sec").val(),
+            ubicacion: $("#ubicacion").val(),
+            fecha: $("#fecha_entrada").val()
+        }
+
+        if(total_zero = 0){
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
@@ -1203,7 +1351,7 @@ function mostrar(id_almacen){
 
             var resultados =
                 '<tr id="fila">'+
-                "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+1+"</td>"+
+                "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+"</td>"+
                 "<td><input type='hidden' name='b[]' id='b[]' value="+data.b_alm+">"+data.b_alm+"</td>"+
                 "<td><input type='hidden' name='c[]' id='c[]' value="+data.c_alm+">"+data.c_alm+"</td>"+
                 "<td><input type='hidden' name='d[]' id='d[]' value="+data.d_alm+">"+data.d_alm+"</td>"+
