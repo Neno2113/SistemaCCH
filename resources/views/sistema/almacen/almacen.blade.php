@@ -520,24 +520,24 @@
                     <thead class="tabla-tallas">
                         <tr>
                             <th class="talla_head">TALLAS</th>
-                            <th id="sa">A</th>
-                            <th id="sb">B</th>
-                            <th id="sc">C</th>
-                            <th id="sd">D</th>
-                            <th id="se">E</th>
-                            <th id="sf">F</th>
-                            <th id="sg">G</th>
-                            <th id="sh">H</th>
-                            <th id="si">I</th>
-                            <th id="sj">J</th>
-                            <th id="sk">K</th>
-                            <th id="sl">L</th>
+                            <th id="s-a">A</th>
+                            <th id="s-b">B</th>
+                            <th id="s-c">C</th>
+                            <th id="s-d">D</th>
+                            <th id="s-e">E</th>
+                            <th id="s-f">F</th>
+                            <th id="s-g">G</th>
+                            <th id="s-h">H</th>
+                            <th id="s-i">I</th>
+                            <th id="s-j">J</th>
+                            <th id="s-k">K</th>
+                            <th id="s-l">L</th>
                             <th id="">Total</th>
                         </tr>
                     </thead>
                     <tfoot>
                     <tr id="edicciones">
-                        <td></td>
+                        <td>CANTIDADES</td>
                         <td>
                             <input name="a" id="a"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
@@ -653,6 +653,8 @@
                     </tfoot>
                 </table>
             <div class="modal-footer ">
+            <button class="btn btn-primary rounded-pill" name="btn-aplicar" id="btn-aplicar"><i
+                                class="fas fa-plus"></i>Aplicar</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
             </div>
