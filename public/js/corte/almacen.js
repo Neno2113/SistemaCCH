@@ -1203,7 +1203,7 @@ function mostrar(id_almacen){
 
             var resultados =
                 '<tr id="fila">'+
-                "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+"</td>"+
+                "<td><input type='hidden' name='a[]' id='a[]' value="+data.a_alm+">"+data.a_alm+1+"</td>"+
                 "<td><input type='hidden' name='b[]' id='b[]' value="+data.b_alm+">"+data.b_alm+"</td>"+
                 "<td><input type='hidden' name='c[]' id='c[]' value="+data.c_alm+">"+data.c_alm+"</td>"+
                 "<td><input type='hidden' name='d[]' id='d[]' value="+data.d_alm+">"+data.d_alm+"</td>"+

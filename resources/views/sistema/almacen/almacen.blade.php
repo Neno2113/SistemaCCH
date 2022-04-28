@@ -655,7 +655,7 @@
             <div class="modal-footer ">
             <button class="btn btn-primary rounded-pill" name="btn-aplicar" id="btn-aplicar"><i
                                 class="fas fa-plus"></i>Aplicar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
             </div>
         </div>
