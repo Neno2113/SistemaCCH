@@ -376,7 +376,7 @@
                             data-target=".edicion-corte"><i
                                 class="fas fa-not-equal"></i>
                             Editar</a>
-                        <a href="javascript:alert('Hello World!');" id="alertar"> Bonton </a>
+                        <a href="javascript:agregarDetalleAplicar();" id="alertar"> Bonton </a>
                         <a class="btn btn-secondary rounded-pill float-right text-white" name="btn-imprimir"
                             id="btn-imprimir"><i class="fas fa-print"></i>
                             Imprimir</a>
