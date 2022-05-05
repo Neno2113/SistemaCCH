@@ -368,7 +368,7 @@
                         </div>
                         <br>
                         <hr>
-                    <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
+                    <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
                                 class="fas fa-plus"></i>
                             Agregar</button> 
                         
