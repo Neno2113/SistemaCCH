@@ -704,6 +704,269 @@ $(document).ready(function() {
         });
     }
 
+
+    function validarTallasAplicar(){
+        let a = validarNan(parseInt($("#a-e").val())) == "" ? validarNan(parseInt($("#a_mm").val())) : validarNan(parseInt($("#a-e").val()));
+        let b = validarNan(parseInt($("#b-e").val())) == "" ? validarNan(parseInt($("#b_mm").val())) : validarNan(parseInt($("#b-e").val()));
+        let c = validarNan(parseInt($("#c-e").val())) == "" ? validarNan(parseInt($("#c_mm").val())) : validarNan(parseInt($("#c-e").val()));
+        let d = validarNan(parseInt($("#d-e").val())) == "" ? validarNan(parseInt($("#d_mm").val())) : validarNan(parseInt($("#d-e").val()));
+        let e = validarNan(parseInt($("#e-e").val())) == "" ? validarNan(parseInt($("#e_mm").val())) : validarNan(parseInt($("#e-e").val()));
+        let f = validarNan(parseInt($("#f-e").val())) == "" ? validarNan(parseInt($("#f_mm").val())) : validarNan(parseInt($("#f-e").val()));
+        let g = validarNan(parseInt($("#g-e").val())) == "" ? validarNan(parseInt($("#g_mm").val())) : validarNan(parseInt($("#g-e").val()));
+        let h = validarNan(parseInt($("#h-e").val())) == "" ? validarNan(parseInt($("#h_mm").val())) : validarNan(parseInt($("#h-e").val()));
+        let i = validarNan(parseInt($("#i-e").val())) == "" ? validarNan(parseInt($("#i_mm").val())) : validarNan(parseInt($("#i-e").val()));
+        let j = validarNan(parseInt($("#j-e").val())) == "" ? validarNan(parseInt($("#j_mm").val())) : validarNan(parseInt($("#j-e").val()));
+        let k = validarNan(parseInt($("#k-e").val())) == "" ? validarNan(parseInt($("#k_mm").val())) : validarNan(parseInt($("#k-e").val()));
+        let l = validarNan(parseInt($("#l-e").val())) == "" ? validarNan(parseInt($("#l_mm").val())) : validarNan(parseInt($("#l-e").val()));
+
+        var validar = {
+            a: a,
+            b: b,
+            c: c,
+            d: d,
+            e: e,
+            f: f,
+            g: g,
+            h: h,
+            i: i,
+            j: j,
+            k: k,
+            l: l,
+            almacen_id: $("#id").val()
+        };
+
+
+        $("#entrada_alm").removeClass("btn-secondary").addClass("btn-success");
+        $.ajax({
+            url: "validar/total",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(validar),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let total = datos.total;
+                    var a = datos.a;
+                    var b = datos.b;
+                    var c = datos.c;
+                    var d = datos.d;
+                    var e = datos.e;
+                    var f = datos.f;
+                    var g = datos.g;
+                    var h = datos.h;
+                    var i = datos.i;
+                    var j = datos.j;
+                    var k = datos.k;
+                    var l = datos.l;
+
+                    if(total <= 0 ){
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'No puede introducir 0 al almacen.'
+                        })
+                    }else{
+                        if(total > total_recibido){
+                            bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                            "<i class='fas fa-exclamation-triangle'></i> La cantidad total de tallas no puede ser mayor a la cantidad total de entrada.!!"+
+                           "</div>")
+
+                        }else{
+                            if(genero_global == 2){
+                                if(genero_plus_global == 7){
+                                    if(a > a_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 12W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(b > b_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 14W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(c > c_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 16W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }
+                                    else if(d > d_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 18W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(e > e_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 20W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(f > f_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 22W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(g > g_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 24W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(h > h_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 26W a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else{
+                                        agregarDetalleAplicar()
+                                    }
+                                }else{
+                                    if(a > a_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 0/0 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(b > b_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 1/2 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(c > c_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 3/4 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }
+                                    else if(d > d_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 5/6 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(e > e_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 7/8 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(f > f_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 9/10 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(g > g_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 11/12 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(h > h_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 13/14 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(i > i_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 15/16 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(j > j_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 17/18 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(k > k_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 19/20 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else if(l > l_total){
+                                        bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                        "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 21/22 a la cantidad total del corte y las perdidas"+
+                                       "</div>")
+                                    }else{
+                                        agregarDetalleAplicar()
+                                    }
+                                }
+                            }else if(genero_global == 3 || genero_global == 4){
+                                if(a > a_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 2 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(b > b_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 4 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(c > c_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 6 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }
+                                else if(d > d_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 8 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(e > e_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 10 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(f > f_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 12 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(g > g_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 14 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(h > h_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 16 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else{
+                                    agregarDetalleAplicar()
+                                }
+                            }else if(genero_global == 1){
+                                if(a > a_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 28 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(b > b_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 29 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(c > c_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 30 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }
+                                else if(d > d_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 32 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(e > e_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 34 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(f > f_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 36 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(g > g_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 38 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(h > h_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 40 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(i > i_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 42 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else if(j > j_total){
+                                    bootbox.alert("<div class='alert alert-danger' role='alert'>"+
+                                    "<i class='fas fa-exclamation-triangle'></i> Digito una cantidad mayor en la talla 44 a la cantidad total del corte y las perdidas"+
+                                   "</div>")
+                                }else{
+                                    agregarDetalleAplicar()
+                                }
+                            }
+                        }
+                    }
+
+                    } else {
+                        bootbox.alert(
+                            "Ocurrio un error durante la creacion de la composicion"
+                        );
+                    }
+                },
+                error: function() {
+                   console.log("ocurrio un error")
+                }
+        });
+    }
+
+
+
+
+
+
     //funcion que validar si el total de tallas es mayor a la cantidad recibida en recepcion
     $("#btn-close").click(function(e){
         e.preventDefault();
@@ -817,7 +1080,8 @@ $(document).ready(function() {
 
     $("#btn-aplicar").click(function(z){
         z.preventDefault();
-        agregarDetalleAplicar();
+        validarTallasAplicar();
+       // agregarDetalleAplicar();
 
 
     });
