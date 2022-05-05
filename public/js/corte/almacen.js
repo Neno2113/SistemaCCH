@@ -1085,6 +1085,10 @@ $(document).ready(function() {
      //   agregarDetalleAplicar();
     });
 
+    $("#alertar").click(function(){
+        alert("Hello! I am an alert box!!");
+    });
+
     function agregarDetalle(){
         let a = validarNan(parseInt($("#a").val())) == "" ? validarNan(parseInt($("#a_m").val())) : validarNan(parseInt($("#a").val()));
         let b = validarNan(parseInt($("#b").val())) == "" ? validarNan(parseInt($("#b_m").val())) : validarNan(parseInt($("#b").val()));
