@@ -541,7 +541,7 @@
                         <td>
                             <input name="a-e" id="a-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                               autocomplete="off">
                             <input type="number" name="a_mm" id="a_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
                                 autocomplete="off">
@@ -550,7 +550,7 @@
 
                             <input type="text" name="b-e" id="b-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="b_mm" id="b_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
                                 autocomplete="off">
@@ -559,7 +559,7 @@
 
                             <input type="text" name="c-e" id="c-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="c_mm" id="c_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
                                 autocomplete="off">
@@ -568,7 +568,7 @@
                             {{-- <label for="" class="ml-4" id="td">D</label> --}}
                             <input type="text" name="d-e" id="d-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="d_mm" id="d_mm"
                                 class="form-control text-center no-shadow  d-none d-md-block d-lg-none"
                                 autocomplete="off">
@@ -577,7 +577,7 @@
                             {{-- <label for="" class="ml-4" id="te">E</label> --}}
                             <input type="text" name="e-e" id="e-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="e_mm" id="e_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
                                autocomplete="off">
