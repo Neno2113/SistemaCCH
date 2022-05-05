@@ -653,8 +653,10 @@
                     </tfoot>
                 </table>
             <div class="modal-footer ">
-            <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
+            <button name="btn-aplicarEditar" id="btn-aplicarEditar"><i
                                 class="fas fa-plus"></i> Aplicar</button>
+        <!--    <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
+                                class="fas fa-plus"></i> Aplicar</button> -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
             </div>
