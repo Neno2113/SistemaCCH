@@ -368,9 +368,13 @@
                         </div>
                         <br>
                         <hr>
-                        <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
+                        <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
                                 class="fas fa-plus"></i>
                             Agregar</button>
+                    <!--    <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
+                                class="fas fa-plus"></i>
+                            Agregar</button> -->
+                        
                         <a class="btn btn-warning rounded-pill" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
                             data-target=".edicion-corte"><i
                                 class="fas fa-not-equal"></i>
@@ -423,10 +427,8 @@
             <div class="card-footer">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
                         class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
-                <button type="submit" id="btn-aplicarEditar" class="btn btn-info mt-2 float-right"><i
+                <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
-                <!-- <button type="submit" id="btn-guardar" class="btn btn-info mt-2 float-right"><i
-                        class="far fa-save fa-lg"></i> Guardar</button>  -->   
                 <button type="submit" id="btn-edit" class="btn  btn-warning mt-2 float-right"><i
                         class="far fa-edit fa-lg"></i> Editar</button>
             </div>
