@@ -376,7 +376,7 @@
                             data-target=".edicion-corte"><i
                                 class="fas fa-not-equal"></i>
                             Editar</a>
-                        <a href="javascript:void(0)" onclick="agregarDetalleAplicar()" id="alertar"> Bonton </a>
+                        <button onclick="agregarDetalleAplicar()" id="alertar"> Bonton </button>
                         <a class="btn btn-secondary rounded-pill float-right text-white" name="btn-imprimir"
                             id="btn-imprimir"><i class="fas fa-print"></i>
                             Imprimir</a>
