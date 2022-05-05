@@ -1078,7 +1078,8 @@ $(document).ready(function() {
 
     });
 
-    $("#btn-aplicarEditar").click(function(){
+    $("#btn-aplicarEditar").click(function(t){
+        t.preventDefault();
         alert("Hello! I am an alert box!!");
     //    validarTallasAplicar();
      //   agregarDetalleAplicar();

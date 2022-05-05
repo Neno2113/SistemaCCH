@@ -368,12 +368,9 @@
                         </div>
                         <br>
                         <hr>
-                        <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
+                    <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
                                 class="fas fa-plus"></i>
-                            Agregar</button>
-                    <!--    <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
-                                class="fas fa-plus"></i>
-                            Agregar</button> -->
+                            Agregar</button> 
                         
                         <a class="btn btn-warning rounded-pill" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
                             data-target=".edicion-corte"><i
