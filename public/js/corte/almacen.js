@@ -815,8 +815,8 @@ $(document).ready(function() {
 
     });
 
-    $("#btn-aplicar").click(function(t){
-        t.preventDefault();
+    $("#btn-aplicar").click(function(z){
+        z.preventDefault();
         agregarDetalleAplicar();
 
 
@@ -952,18 +952,18 @@ $(document).ready(function() {
     }
 
     function agregarDetalleAplicar(){
-        let a = validarNan(parseInt($("#a").val())) == "" ? validarNan(parseInt($("#a_mm").val())) : validarNan(parseInt($("#a").val()));
-        let b = validarNan(parseInt($("#b").val())) == "" ? validarNan(parseInt($("#b_mm").val())) : validarNan(parseInt($("#b").val()));
-        let c = validarNan(parseInt($("#c").val())) == "" ? validarNan(parseInt($("#c_mm").val())) : validarNan(parseInt($("#c").val()));
-        let d = validarNan(parseInt($("#d").val())) == "" ? validarNan(parseInt($("#d_mm").val())) : validarNan(parseInt($("#d").val()));
-        let e = validarNan(parseInt($("#e").val())) == "" ? validarNan(parseInt($("#e_mm").val())) : validarNan(parseInt($("#e").val()));
-        let f = validarNan(parseInt($("#f").val())) == "" ? validarNan(parseInt($("#f_mm").val())) : validarNan(parseInt($("#f").val()));
-        let g = validarNan(parseInt($("#g").val())) == "" ? validarNan(parseInt($("#g_mm").val())) : validarNan(parseInt($("#g").val()));
-        let h = validarNan(parseInt($("#h").val())) == "" ? validarNan(parseInt($("#h_mm").val())) : validarNan(parseInt($("#h").val()));
-        let i = validarNan(parseInt($("#i").val())) == "" ? validarNan(parseInt($("#i_mm").val())) : validarNan(parseInt($("#i").val()));
-        let j = validarNan(parseInt($("#j").val())) == "" ? validarNan(parseInt($("#j_mm").val())) : validarNan(parseInt($("#j").val()));
-        let k = validarNan(parseInt($("#k").val())) == "" ? validarNan(parseInt($("#k_mm").val())) : validarNan(parseInt($("#k").val()));
-        let l = validarNan(parseInt($("#l").val())) == "" ? validarNan(parseInt($("#l_mm").val())) : validarNan(parseInt($("#l").val()));
+        let a = validarNan(parseInt($("#a-e").val())) == "" ? validarNan(parseInt($("#a_mm").val())) : validarNan(parseInt($("#a-e").val()));
+        let b = validarNan(parseInt($("#b-e").val())) == "" ? validarNan(parseInt($("#b_mm").val())) : validarNan(parseInt($("#b-e").val()));
+        let c = validarNan(parseInt($("#c-e").val())) == "" ? validarNan(parseInt($("#c_mm").val())) : validarNan(parseInt($("#c-e").val()));
+        let d = validarNan(parseInt($("#d-e").val())) == "" ? validarNan(parseInt($("#d_mm").val())) : validarNan(parseInt($("#d-e").val()));
+        let e = validarNan(parseInt($("#e-e").val())) == "" ? validarNan(parseInt($("#e_mm").val())) : validarNan(parseInt($("#e-e").val()));
+        let f = validarNan(parseInt($("#f-e").val())) == "" ? validarNan(parseInt($("#f_mm").val())) : validarNan(parseInt($("#f-e").val()));
+        let g = validarNan(parseInt($("#g-e").val())) == "" ? validarNan(parseInt($("#g_mm").val())) : validarNan(parseInt($("#g-e").val()));
+        let h = validarNan(parseInt($("#h-e").val())) == "" ? validarNan(parseInt($("#h_mm").val())) : validarNan(parseInt($("#h-e").val()));
+        let i = validarNan(parseInt($("#i-e").val())) == "" ? validarNan(parseInt($("#i_mm").val())) : validarNan(parseInt($("#i-e").val()));
+        let j = validarNan(parseInt($("#j-e").val())) == "" ? validarNan(parseInt($("#j_mm").val())) : validarNan(parseInt($("#j-e").val()));
+        let k = validarNan(parseInt($("#k-e").val())) == "" ? validarNan(parseInt($("#k_mm").val())) : validarNan(parseInt($("#k-e").val()));
+        let l = validarNan(parseInt($("#l-e").val())) == "" ? validarNan(parseInt($("#l_mm").val())) : validarNan(parseInt($("#l-e").val()));
         let total_zero = a + b + c + d + e + f + g + h + i + j + k + l;
 
         var tallas = {
