@@ -1074,8 +1074,6 @@ $(document).ready(function() {
     $("#btn-agregar").click(function(t){
         t.preventDefault();
         validarTallas();
-
-
     });
 
     $("#btn-aplicarEditar").click(function(t){
