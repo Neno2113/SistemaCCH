@@ -1079,9 +1079,12 @@ $(document).ready(function() {
     });
 
     $("#btn-aplicarEditar").click(function(z){
+        bootbox.alert(
+            "Tamo llegando"
+        );
         z.preventDefault();
-     //   validarTallasAplicar();
-        agregarDetalleAplicar();
+        validarTallasAplicar();
+     //   agregarDetalleAplicar();
 
 
     });
