@@ -686,12 +686,6 @@ $(document).ready(function() {
                         }
                     }
 
-
-
-
-
-
-
                     } else {
                         bootbox.alert(
                             "Ocurrio un error durante la creacion de la composicion"

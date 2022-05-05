@@ -376,7 +376,6 @@
                             data-target=".edicion-corte"><i
                                 class="fas fa-not-equal"></i>
                             Editar</a>
-                        <button onclick="agregarDetalleAplicar()" id="alertar"> Bonton </button>
                         <a class="btn btn-secondary rounded-pill float-right text-white" name="btn-imprimir"
                             id="btn-imprimir"><i class="fas fa-print"></i>
                             Imprimir</a>
@@ -512,7 +511,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Entrada para ajustar cantidades</strong></h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>Ajustar Cantidades</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -655,10 +654,8 @@
                     </tfoot>
                 </table>
             <div class="modal-footer ">
-            <button name="btn-aplicarEditar" id="btn-aplicarEditar"><i
-                                class="fas fa-plus"></i> Aplicar</button>
-        <!--    <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
-                                class="fas fa-plus"></i> Aplicar</button> -->
+            <button class="btn btn-primary rounded-pill" name="btn-aplicarEditar" id="btn-aplicarEditar"><i
+                                class="fas fa-plus"></i> Aplicar</button> 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
             </div>
