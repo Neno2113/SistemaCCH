@@ -1067,6 +1067,7 @@ $(document).ready(function() {
 
     $("#btn-agregar").click(function(t){
         t.preventDefault();
+        alert("Hello! I am an alert box!!");
         validarTallas();
     });
 
@@ -1075,10 +1076,6 @@ $(document).ready(function() {
         alert("Hello! I am an alert box!!");
     //    validarTallasAplicar();
      //   agregarDetalleAplicar();
-    });
-
-    $("#alertar").click(function(){
-        alert("Hello! I am an alert box!!");
     });
 
     function agregarDetalle(){
