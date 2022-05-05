@@ -1078,10 +1078,10 @@ $(document).ready(function() {
 
     });
 
-    $("#btn-aplicar").click(function(z){
-     //   z.preventDefault();
+    $("#btn-aplicarEditar").click(function(z){
+        z.preventDefault();
      //   validarTallasAplicar();
-       // agregarDetalleAplicar();
+        agregarDetalleAplicar();
 
 
     });
