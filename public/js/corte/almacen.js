@@ -1079,7 +1079,7 @@ $(document).ready(function() {
     });
 
     $("#btn-aplicar").click(function(z){
-        z.preventDefault();
+     //   z.preventDefault();
      //   validarTallasAplicar();
        // agregarDetalleAplicar();
 
