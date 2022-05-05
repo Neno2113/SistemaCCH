@@ -586,65 +586,65 @@
                             {{-- <label for="" class="ml-4" id="tf">F</label> --}}
                             <input type="text" name="f-e" id="f-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="f_mm" id="f_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                         </td>
                         <td>
                             {{-- <label for="" class="ml-4" id="tg">G</label> --}}
                             <input type="text" name="g-e" id="g-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="g_mm" id="g_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                         </td>
                         <td>
                             {{-- <label for="" class="ml-4" id="th">H</label> --}}
                             <input type="text" name="h-e" id="h-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                               autocomplete="off">
                             <input type="number" name="h_mm" id="h_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                         </td>
                         <td>
                             {{-- <label for="" class="ml-4" id="ti">I</label> --}}
                             <input type="text" name="i-e" id="i-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="i_mm" id="i_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                         </td>
                         <td>
                             {{-- <label for="" class="ml-4" id="tj">J</label> --}}
                             <input type="text" name="j-e" id="j-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="j_mm" id="j_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                data-inputmask='"mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                         </td>
                         <td>
                             {{-- <label for="" class="ml-4" id="tk">K</label> --}}
                             <input type="text" name="k-e" id="k-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='" mask": "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                             <input type="number" name="k_mm" id="k_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                data-inputmask='"mask" : "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                         </td>
                         <td>
                             {{-- <label for="" class="ml-4" id="tl">L</label> --}}
                             <input type="text" name="l-e" id="l-e"
                                 class="form-control text-center no-shadow d-md-none d-lg-block"
-                                data-inputmask='"mask" : "999"' data-mask autocomplete="off">
+                                autocomplete="off">
 
                             <input type="number" name="l_mm" id="l_mm"
                                 class="form-control text-center no-shadow d-none d-md-block d-lg-none"
-                                data-inputmask='"mask" : "999"' data-mask autocomplete="off">
+                                autocomplete="off">
                         </td>
                         <td>
 

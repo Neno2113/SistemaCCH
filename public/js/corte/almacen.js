@@ -987,7 +987,7 @@ $(document).ready(function() {
             fecha: $("#fecha_entrada").val()
         }
 
-        if(total_zero = 0){
+        if(total_zero == 0){
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
