@@ -1078,15 +1078,10 @@ $(document).ready(function() {
 
     });
 
-    $("#btn-aplicarEditar").click(function(z){
-        bootbox.alert(
-            "Tamo llegando"
-        );
-        z.preventDefault();
-        validarTallasAplicar();
+    $("#btn-aplicarEditar").click(function(){
+        alert("Hello! I am an alert box!!");
+    //    validarTallasAplicar();
      //   agregarDetalleAplicar();
-
-
     });
 
     function agregarDetalle(){
