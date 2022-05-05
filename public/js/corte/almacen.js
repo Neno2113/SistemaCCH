@@ -1064,13 +1064,13 @@ $(document).ready(function() {
             }
         });
     });
-
+/*
     $("#btn-agregar").click(function(t){
     //    t.preventDefault();
         alert("Hello! I am an alert box!!");
     //    validarTallas();
     });
-
+*/
     $("#btn-aplicarEditar").click(function(t){
         t.preventDefault();
         alert("Hello! I am an alert box!!");
