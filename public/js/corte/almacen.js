@@ -1080,7 +1080,7 @@ $(document).ready(function() {
 
     $("#btn-aplicar").click(function(z){
         z.preventDefault();
-        validarTallasAplicar();
+     //   validarTallasAplicar();
        // agregarDetalleAplicar();
 
 
