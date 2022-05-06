@@ -70,16 +70,18 @@ $(document).ready(function() {
             return val;
         }
     }
-/*
-    $("#stackedCheck1Edit").click(function() {
-        alert("CLIQUEADO!!");
-        if ($('input[name="stackedCheck1Edit"]').is(':checked')){
-            $("#btn-editar-corte").attr("style", "display:inline-block");
-        }else{
-            $("#btn-editar-corte").attr("style", "display:none");
+    // On change switch editat
+    $(".SwitchEditable").on( 'change', function() {
+        if( $(this).is(':checked') ) {
+            // Hacer algo si el checkbox ha sido seleccionado
+            alert("El checkbox con valor " + $(this).val() + " ha sido seleccionado");
+        } else {
+            // Hacer algo si el checkbox ha sido deseleccionado
+            alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
         }
-    }
-*/
+    });
+
+
     function entradaCod() {
         $("#sec").val("");
         $("#codigo_entrada").val("");

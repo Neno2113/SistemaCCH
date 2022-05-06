@@ -373,7 +373,7 @@
                             Agregar</button> 
                         
                         <label class="switchE">
-                            <input type="checkbox" id="SwitchEditable">
+                            <input type="checkbox" id="SwitchEditable" class="SwitchEditable">
                             <span class="sliderE round"></span> 
                         </label>
                         <label for="SwitchEditable">Activar modo editable</label>
