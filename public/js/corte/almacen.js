@@ -73,11 +73,9 @@ $(document).ready(function() {
 
     $("#stackedCheck1Edit").click(function() {
         alert("CLIQUEADO!!");
-        if ($('input[name="stackedCheck1Edit"]').is(':checked'))
-        {
+        if ($('input[name="stackedCheck1Edit"]').is(':checked')){
             $("#btn-editar-corte").attr("style", "display:inline-block");
-        }else
-        {
+        }else{
             $("#btn-editar-corte").attr("style", "display:none");
         }
     }
