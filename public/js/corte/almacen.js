@@ -70,7 +70,7 @@ $(document).ready(function() {
             return val;
         }
     }
-
+/*
     $("#stackedCheck1Edit").click(function() {
         alert("CLIQUEADO!!");
         if ($('input[name="stackedCheck1Edit"]').is(':checked')){
@@ -79,7 +79,7 @@ $(document).ready(function() {
             $("#btn-editar-corte").attr("style", "display:none");
         }
     }
-
+*/
     function entradaCod() {
         $("#sec").val("");
         $("#codigo_entrada").val("");
