@@ -371,17 +371,18 @@
                         <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
                                 class="fas fa-plus"></i>
                             Agregar</button> 
-                        
-                        <label class="switchE">
-                            <input type="checkbox" id="SwitchEditable" class="SwitchEditable">
-                            <span class="sliderE round"></span> 
-                        </label>
-                        <label for="SwitchEditable">Activar modo editable</label>
-                        
-                        <a class="btn btn-warning rounded-pill" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
-                            data-target=".edicion-corte"><i
-                                class="fas fa-not-equal"></i>
-                            Editar</a>
+                            @if (Auth::user()->role == "Administrador")
+                                <label class="switchE">
+                                    <input type="checkbox" id="SwitchEditable" class="SwitchEditable">
+                                    <span class="sliderE round"></span> 
+                                </label>
+                                <label for="SwitchEditable">Activar modo editable</label>
+                                
+                                <a class="btn btn-warning rounded-pill" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
+                                    data-target=".edicion-corte"><i
+                                        class="fas fa-not-equal"></i>
+                                    Editar</a>
+                            @endif
                         <a class="btn btn-secondary rounded-pill float-right text-white" name="btn-imprimir"
                             id="btn-imprimir"><i class="fas fa-print"></i>
                             Imprimir</a>
