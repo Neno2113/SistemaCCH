@@ -1067,15 +1067,15 @@ $(document).ready(function() {
 
     $("#btn-agregar").click(function(t){
         t.preventDefault();
-        alert("Hello! I am AGREGAR BOTON");
-    //    validarTallas();
+    //    alert("Hello! I am AGREGAR BOTON");
+        validarTallas();
     });
 
     $("#btn-aplicarEditar").click(function(t){
         t.preventDefault();
-        alert("Hello! I am BOTON EDITAR");
+    //    alert("Hello! I am BOTON EDITAR");
     //    validarTallasAplicar();
-     //   agregarDetalleAplicar();
+        agregarDetalleAplicar();
     });
 
     function agregarDetalle(){
