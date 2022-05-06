@@ -71,13 +71,13 @@ $(document).ready(function() {
         }
     }
 
-    function ActivarEditar() {
-        var checkBoxEdit = document.getElementById("stackedCheck1Edit");
-        var BotonEdit = document.getElementById("btn-editar-corte");
-        if (checkBoxEdit.checked == true){
-            BotonEdit.style.display = "inline-block";
-        } else {
-            BotonEdit.style.display = "none";
+    $("#stackedCheck1Edit").click(function() {
+        if ($('input[name="stackedCheck1Edit"]').is(':checked'))
+        {
+            $("#btn-editar-corte").attr("style", "display:inline-block");
+        }else
+        {
+            $("#btn-editar-corte").attr("style", "display:none");
         }
     }
 
