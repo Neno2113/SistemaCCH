@@ -63,6 +63,14 @@ $(document).ready(function() {
         }
     }
 
+    function validarNanEdit(val) {
+        if (isNaN(val)) {
+            return 0;
+        } else {
+            return val;
+        }
+    }
+
     function entradaCod() {
         $("#sec").val("");
         $("#codigo_entrada").val("");
@@ -1208,18 +1216,18 @@ $(document).ready(function() {
     }
 
     function agregarDetalleAplicar(){
-        let a = validarNan(parseInt($("#a-e").val())) == "" ? validarNan(parseInt($("#a_mm").val())) : validarNan(parseInt($("#a-e").val()));
-        let b = validarNan(parseInt($("#b-e").val())) == "" ? validarNan(parseInt($("#b_mm").val())) : validarNan(parseInt($("#b-e").val()));
-        let c = validarNan(parseInt($("#c-e").val())) == "" ? validarNan(parseInt($("#c_mm").val())) : validarNan(parseInt($("#c-e").val()));
-        let d = validarNan(parseInt($("#d-e").val())) == "" ? validarNan(parseInt($("#d_mm").val())) : validarNan(parseInt($("#d-e").val()));
-        let e = validarNan(parseInt($("#e-e").val())) == "" ? validarNan(parseInt($("#e_mm").val())) : validarNan(parseInt($("#e-e").val()));
-        let f = validarNan(parseInt($("#f-e").val())) == "" ? validarNan(parseInt($("#f_mm").val())) : validarNan(parseInt($("#f-e").val()));
-        let g = validarNan(parseInt($("#g-e").val())) == "" ? validarNan(parseInt($("#g_mm").val())) : validarNan(parseInt($("#g-e").val()));
-        let h = validarNan(parseInt($("#h-e").val())) == "" ? validarNan(parseInt($("#h_mm").val())) : validarNan(parseInt($("#h-e").val()));
-        let i = validarNan(parseInt($("#i-e").val())) == "" ? validarNan(parseInt($("#i_mm").val())) : validarNan(parseInt($("#i-e").val()));
-        let j = validarNan(parseInt($("#j-e").val())) == "" ? validarNan(parseInt($("#j_mm").val())) : validarNan(parseInt($("#j-e").val()));
-        let k = validarNan(parseInt($("#k-e").val())) == "" ? validarNan(parseInt($("#k_mm").val())) : validarNan(parseInt($("#k-e").val()));
-        let l = validarNan(parseInt($("#l-e").val())) == "" ? validarNan(parseInt($("#l_mm").val())) : validarNan(parseInt($("#l-e").val()));
+        let a = validarNanEdit(parseInt($("#a-e").val())) == "" ? validarNanEdit(parseInt($("#a_mm").val())) : validarNanEdit(parseInt($("#a-e").val()));
+        let b = validarNanEdit(parseInt($("#b-e").val())) == "" ? validarNanEdit(parseInt($("#b_mm").val())) : validarNanEdit(parseInt($("#b-e").val()));
+        let c = validarNanEdit(parseInt($("#c-e").val())) == "" ? validarNanEdit(parseInt($("#c_mm").val())) : validarNanEdit(parseInt($("#c-e").val()));
+        let d = validarNanEdit(parseInt($("#d-e").val())) == "" ? validarNanEdit(parseInt($("#d_mm").val())) : validarNanEdit(parseInt($("#d-e").val()));
+        let e = validarNanEdit(parseInt($("#e-e").val())) == "" ? validarNanEdit(parseInt($("#e_mm").val())) : validarNanEdit(parseInt($("#e-e").val()));
+        let f = validarNanEdit(parseInt($("#f-e").val())) == "" ? validarNanEdit(parseInt($("#f_mm").val())) : validarNanEdit(parseInt($("#f-e").val()));
+        let g = validarNanEdit(parseInt($("#g-e").val())) == "" ? validarNanEdit(parseInt($("#g_mm").val())) : validarNanEdit(parseInt($("#g-e").val()));
+        let h = validarNanEdit(parseInt($("#h-e").val())) == "" ? validarNanEdit(parseInt($("#h_mm").val())) : validarNanEdit(parseInt($("#h-e").val()));
+        let i = validarNanEdit(parseInt($("#i-e").val())) == "" ? validarNanEdit(parseInt($("#i_mm").val())) : validarNanEdit(parseInt($("#i-e").val()));
+        let j = validarNanEdit(parseInt($("#j-e").val())) == "" ? validarNanEdit(parseInt($("#j_mm").val())) : validarNanEdit(parseInt($("#j-e").val()));
+        let k = validarNanEdit(parseInt($("#k-e").val())) == "" ? validarNanEdit(parseInt($("#k_mm").val())) : validarNanEdit(parseInt($("#k-e").val()));
+        let l = validarNanEdit(parseInt($("#l-e").val())) == "" ? validarNanEdit(parseInt($("#l_mm").val())) : validarNanEdit(parseInt($("#l-e").val()));
         let total_zero = a + b + c + d + e + f + g + h + i + j + k + l;
 
         var tallas = {
@@ -1242,14 +1250,14 @@ $(document).ready(function() {
             ubicacion: $("#ubicacion").val(),
             fecha: $("#fecha_entrada").val()
         }
-/*
+
         if(total_zero == 0){
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
                 text: 'No puede realizar esta accion, verifique si digito las cantidades correctamente!'
             })
-        }else{ */
+        }else{ 
             $.ajax({
                 url: "almacen/detalle",
                 type: "POST",
@@ -1330,7 +1338,7 @@ $(document).ready(function() {
                     });
                 }
             });
-    /*    } */
+        } 
 
 
 

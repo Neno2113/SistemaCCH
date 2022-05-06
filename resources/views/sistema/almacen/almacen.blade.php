@@ -368,11 +368,13 @@
                         </div>
                         <br>
                         <hr>
-                    <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
+                        <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
                                 class="fas fa-plus"></i>
                             Agregar</button> 
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Activar modo editable</label>
                         
-                        <a class="btn btn-warning rounded-pill" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
+                        <a class="btn btn-warning rounded-pill float-right" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
                             data-target=".edicion-corte"><i
                                 class="fas fa-not-equal"></i>
                             Editar</a>
