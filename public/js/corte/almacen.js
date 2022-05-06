@@ -70,14 +70,13 @@ $(document).ready(function() {
             return val;
         }
     }
-    // On change switch editat
+    // On change switch editable
     $(".SwitchEditable").on( 'change', function() {
         if( $(this).is(':checked') ) {
-            // Hacer algo si el checkbox ha sido seleccionado
-            alert("El checkbox con valor " + $(this).val() + " ha sido seleccionado");
+            $("#btn-editar-corte").show();
         } else {
-            // Hacer algo si el checkbox ha sido deseleccionado
-            alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
+            $("#btn-editar-corte").hide();
+        
         }
     });
 
@@ -435,6 +434,7 @@ $(document).ready(function() {
             eliminarColumnas();
             $("#entrada_alm").removeClass("btn-dark").addClass("btn-primary");
             $("#btn-imprimir").hide();
+            $("#btn-editar-corte").hide();
             // $("#btn-guardar").show();
             $("#referencia_producto").hide();
             $("#numero_corte").hide();

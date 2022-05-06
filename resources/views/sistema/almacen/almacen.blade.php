@@ -379,7 +379,7 @@
                         <label for="SwitchEditable">Activar modo editable</label>
                         
                         <a class="btn btn-warning rounded-pill" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
-                            data-target=".edicion-corte" ><i
+                            data-target=".edicion-corte"><i
                                 class="fas fa-not-equal"></i>
                             Editar</a>
                         <a class="btn btn-secondary rounded-pill float-right text-white" name="btn-imprimir"
