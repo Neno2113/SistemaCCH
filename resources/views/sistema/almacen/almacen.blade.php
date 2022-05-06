@@ -371,9 +371,11 @@
                         <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
                                 class="fas fa-plus"></i>
                             Agregar</button> 
-                        <input id="stackedCheck1Edit" name="stackedCheck1Edit" class="form-check-input" type="checkbox" data-toggle="toggle">
-                        <label for="stackedCheck1Edit" class="form-check-label">Activar modo editable</label>
-                        <input type="checkbox" name="my-checkbox" checked>
+                        
+                        <label class="switchE">
+                            <input type="checkbox">
+                            <span class="sliderE round"></span>
+                        </label>
                         
                         <a class="btn btn-warning rounded-pill" name="btn-editar-corte" id="btn-editar-corte" data-toggle="modal"
                             data-target=".edicion-corte" style="display:none"><i
