@@ -71,6 +71,16 @@ $(document).ready(function() {
         }
     }
 
+    function ActivarEditar() {
+        var checkBoxEdit = document.getElementById("stackedCheck1Edit");
+        var BotonEdit = document.getElementById("btn-editar-corte");
+        if (checkBoxEdit.checked == true){
+            BotonEdit.style.display = "inline-block";
+        } else {
+            BotonEdit.style.display = "none";
+        }
+    }
+
     function entradaCod() {
         $("#sec").val("");
         $("#codigo_entrada").val("");
