@@ -1242,14 +1242,14 @@ $(document).ready(function() {
             ubicacion: $("#ubicacion").val(),
             fecha: $("#fecha_entrada").val()
         }
-
+/*
         if(total_zero == 0){
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'No puede realizar esta accion, verifique si digito las cantidades correctamente!.'
+                text: 'No puede realizar esta accion, verifique si digito las cantidades correctamente!'
             })
-        }else{
+        }else{ */
             $.ajax({
                 url: "almacen/detalle",
                 type: "POST",
@@ -1330,7 +1330,7 @@ $(document).ready(function() {
                     });
                 }
             });
-        }
+    /*    } */
 
 
 
