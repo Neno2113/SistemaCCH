@@ -358,13 +358,12 @@
 
                                     </tbody>
                                     <tfoot class="resultados text-center" id="resultados">
-                                        <h4>LEYENDA</h4>
-                                    <p>Numeros en color <span class="">NEGRO</span> = Entradas</p>
-                                    <p>Numeros en color <span class="text-danger">ROJO</span> = Segundas</p>
-                                    <p>Numeros en color <span class="text-warning">AMARILLO</span> = Ajsutes manuales de personal administrativo</p>
                                     </tfoot>
 
-
+                                    <h5>LEYENDA</h5>
+                                    <p><span class="">NEGRO</span> = Entradas <br/>
+                                    <span class="text-danger">ROJO</span> = Segundas <br/>
+                                    <span class="text-warning">AMARILLO</span> = Ajsutes manuales de personal administrativo</p>
                                 </table>
                             </div>
 
