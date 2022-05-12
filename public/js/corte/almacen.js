@@ -1608,7 +1608,7 @@ function mostrar(id_almacen){
                     
                     let Editado = data.detalle[t].codigo_entrada.substring(data.detalle[t].codigo_entrada.length - 1);
                     if (Editado == "E" ) {
-                        var varClass = "class='text-warning'";
+                        var varClass = "class='text-purple'";
                     }else {
                         let varClass ="class=''";
                     }

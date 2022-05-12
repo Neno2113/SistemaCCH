@@ -359,15 +359,13 @@
                                     </tbody>
                                     <tfoot class="resultados text-center" id="resultados">
                                     </tfoot>
-
-                                    <h5>LEYENDA</h5>
-                                    <p><span class="">NEGRO</span> = Entradas <br/>
-                                    <span class="text-danger">ROJO</span> = Segundas <br/>
-                                    <span class="text-warning">AMARILLO</span> = Ajsutes manuales de personal administrativo</p>
                                 </table>
                             </div>
-
                         </div>
+                            <h4>Leyenda</h4>
+                            <p><span class="">NEGRO</span> = Entradas <br/>
+                            <span class="text-danger">ROJO</span> = Segundas <br/>
+                            <span class="text-purple">PURPURA</span> = Ajsutes manuales de personal administrativo</p>
                         <br>
                         <hr>
                         <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
