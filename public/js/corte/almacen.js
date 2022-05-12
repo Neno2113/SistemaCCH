@@ -1605,10 +1605,9 @@ function mostrar(id_almacen){
             }
 
             for (let t = 0; t < data.detalle.length; t++) {
+                    var varClass ="class=''";
                     if (data.detalle[t].codigo_entrada.substring(data.detalle[t].codigo_entrada.length - 1) === "E" ) {
-                        let varClass ="class='text-warning'";
-                    }else {
-                        let varClass ="class=''";
+                        var varClass = "class='text-warning'";
                     }
 
                 let fila =
