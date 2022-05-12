@@ -1606,7 +1606,7 @@ function mostrar(id_almacen){
                 "<td class='text-danger'><input type='hidden' name='k[]' id='k[]' value="+data.segundas[i].k+">"+data.segundas[i].k+"</td>"+
                 "<td class='text-danger'><input type='hidden' name='l[]' id='l[]' value="+data.segundas[i].l+">"+data.segundas[i].l+"</td>"+
                 "<td class='text-danger'><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.segundas[i].total+">"+data.segundas[i].total+"</td>"+
-                "<td class='text-danger' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+fechaReal+">"+fechaReal+"</td>"+
+                "<td class='text-danger fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+fechaReal+">"+fechaReal+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
@@ -1615,9 +1615,9 @@ function mostrar(id_almacen){
                     
                     let Editado = data.detalle[t].codigo_entrada.substring(data.detalle[t].codigo_entrada.length - 1);
                     if (Editado == "E" ) {
-                        var varClass = "class='text-primary'";
+                        var varClass = "class='text-primary fechaT'";
                     }else {
-                        let varClass ="class=''";
+                        varClass ="class='fechaT'";
                     }
 
                 var fechaAno = data.detalle[t].created_at.substring(2,4);

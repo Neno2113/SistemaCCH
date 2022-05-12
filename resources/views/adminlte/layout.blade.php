@@ -143,6 +143,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .sliderE.round:before {
         border-radius: 50%;
         }
+
+        .fechaT:hover {
+            -ms-transform: scale(1.5);
+            -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+        }
     </style>
 
     <!-- PACE -->
