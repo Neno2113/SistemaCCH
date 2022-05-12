@@ -1167,7 +1167,7 @@ $(document).ready(function() {
                         "<td><input type='hidden' name='k[]' id='k[]' value="+k+">"+k+"</td>"+
                         "<td><input type='hidden' name='l[]' id='l[]' value="+l+">"+l+"</td>"+
                         "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.detalle.total+">"+datos.detalle.total+"</td>"+
-                        "<td class='fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+fecha+">"+fecha+"</td>"+
+                        "<td class='fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value=''></td>"+
                         "</tr>";
                         cont++;
                     $("#disponibles").append(fila);
@@ -1298,7 +1298,7 @@ $(document).ready(function() {
                         "<td><input type='hidden' name='k[]' id='k[]' value="+k+">"+k+"</td>"+
                         "<td><input type='hidden' name='l[]' id='l[]' value="+l+">"+l+"</td>"+
                         "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.detalle.total+">"+datos.detalle.total+"</td>"+
-                        "<td class='fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="fecha+">"+fecha+"</td>"+
+                        "<td class='fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value=''></td>"+
                         "</tr>";
                         cont++;
                     $("#disponibles").append(fila);
