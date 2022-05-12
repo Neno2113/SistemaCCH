@@ -1605,15 +1605,15 @@ function mostrar(id_almacen){
             }
 
             for (let t = 0; t < data.detalle.length; t++) {
-                /*    if (data.detalle[t].codigo_entrada.substring(data.detalle[t].codigo_entrada.length - 1) == "E" ) {
-                        varClass ="class='text-danger'";
+                    if (data.detalle[t].codigo_entrada.substring(data.detalle[t].codigo_entrada.length - 1) == "E" ) {
+                        varClass ="class='text-warning'";
                     }else {
                         varClass ="";
-                    }*/
-                    varClass ="";
+                    }
+    
                 let fila =
                 '<tr id="fila">'+
-                "<td "+varClass+"><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].codigo_entrada+">"+data.detalle[t].codigo_entrada+"</td>"+
+                "<td "+varClass+"><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].codigo_entrada+"</td>"+
                 "<td "+varClass+"><input type='hidden' name='b[]' id='b[]' value="+data.detalle[t].b+">"+data.detalle[t].b+"</td>"+
                 "<td "+varClass+"><input type='hidden' name='c[]' id='c[]' value="+data.detalle[t].c+">"+data.detalle[t].c+"</td>"+
                 "<td "+varClass+"><input type='hidden' name='d[]' id='d[]' value="+data.detalle[t].d+">"+data.detalle[t].d+"</td>"+
