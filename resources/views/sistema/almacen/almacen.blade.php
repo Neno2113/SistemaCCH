@@ -239,6 +239,7 @@
                                             <th id="sk">K</th>
                                             <th id="sl">L</th>
                                             <th id="">Total</th>
+                                            <th id="">Fecha</th>
                                         </tr>
                                         <tr id="entradas">
                                             <td>
@@ -352,6 +353,9 @@
                                             <td>
 
                                             </td>
+                                            <td>
+
+                                            </td>
                                         </tr>
                                     </thead>
                                     <tbody id="disponibles">
@@ -362,10 +366,9 @@
                                 </table>
                             </div>
                         </div>
-                            <h4>Leyenda</h4>
                             <p><span class="">NEGRO</span> = Entradas <br/>
                             <span class="text-danger">ROJO</span> = Segundas <br/>
-                            <span class="text-purple">PURPURA</span> = Ajsutes manuales de personal administrativo</p>
+                            <span class="text-primary">AZUL</span> = Ajsutes manuales de personal administrativo</p>
                         <br>
                         <hr>
                         <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i

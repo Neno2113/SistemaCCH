@@ -1600,6 +1600,7 @@ function mostrar(id_almacen){
                 "<td class='text-danger'><input type='hidden' name='k[]' id='k[]' value="+data.segundas[i].k+">"+data.segundas[i].k+"</td>"+
                 "<td class='text-danger'><input type='hidden' name='l[]' id='l[]' value="+data.segundas[i].l+">"+data.segundas[i].l+"</td>"+
                 "<td class='text-danger'><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.segundas[i].total+">"+data.segundas[i].total+"</td>"+
+                "<td class='text-danger'><input type='hidden' id='fecha[]' name='fecha[]' value="+data.segundas[i].created_at+">"+data.segundas[i].created_at+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
@@ -1608,7 +1609,7 @@ function mostrar(id_almacen){
                     
                     let Editado = data.detalle[t].codigo_entrada.substring(data.detalle[t].codigo_entrada.length - 1);
                     if (Editado == "E" ) {
-                        var varClass = "class='text-purple'";
+                        var varClass = "class='text-primary'";
                     }else {
                         let varClass ="class=''";
                     }
@@ -1628,6 +1629,7 @@ function mostrar(id_almacen){
                 "<td "+varClass+"><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
                 "<td "+varClass+"><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
                 "<td "+varClass+"><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
+                "<td "+varClass+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.detalle[t].created_at+">"+data.detalle[t].created_at+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
@@ -1647,6 +1649,7 @@ function mostrar(id_almacen){
                 "<td><input type='hidden' name='k[]' id='k[]' value="+data.k_alm+">"+data.k_alm+"</td>"+
                 "<td><input type='hidden' name='l[]' id='l[]' value="+data.l_alm+">"+data.l_alm+"</td>"+
                 "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.total_alm+">"+data.total_alm+"</td>"+
+                "<td></td>"+
                 "</tr>";
                 $("#resultados").append(resultados);
 
