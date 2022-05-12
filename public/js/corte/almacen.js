@@ -1606,7 +1606,7 @@ function mostrar(id_almacen){
 
             for (let t = 0; t < data.detalle.length; t++) {
                     
-                    let Editado = data.detalle.codigo_entrada.substring(data.detalle.codigo_entrada.length - 1);
+                    let Editado = data.detalle[t].codigo_entrada.substring(data.detalle[t].codigo_entrada.length - 1);
                     if (Editado == "E" ) {
                         var varClass = "class='text-warning'";
                     }else {
