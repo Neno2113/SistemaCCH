@@ -1585,6 +1585,12 @@ function mostrar(id_almacen){
             var estiloFecha = "style='font-size: 12px;line-height: 12px;'";
             
             for (let i = 0; i < data.segundas.length; i++) {
+                var fechaAno = data.detalle[i].created_at.substring(2,4);
+                var fechaMes = data.detalle[i].created_at.substring(5,7);
+                var fechaDia = data.detalle[i].created_at.substring(8,10);
+                var fechaHora = data.detalle[i].created_at.substring(11,19);
+                var fechaReal = fechaDia+"-"+fechaMes+"-"+fechaAno+" "+fechaHora;
+
                 let fila =
                 '<tr id="fila">'+
                 "<td class='text-danger' ><input type='hidden' name='a[]' id='a[]' value="+data.segundas[i].a+">"+data.segundas[i].a+"</td>"+
@@ -1600,7 +1606,7 @@ function mostrar(id_almacen){
                 "<td class='text-danger'><input type='hidden' name='k[]' id='k[]' value="+data.segundas[i].k+">"+data.segundas[i].k+"</td>"+
                 "<td class='text-danger'><input type='hidden' name='l[]' id='l[]' value="+data.segundas[i].l+">"+data.segundas[i].l+"</td>"+
                 "<td class='text-danger'><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.segundas[i].total+">"+data.segundas[i].total+"</td>"+
-                "<td class='text-danger' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.detalle[i].created_at.substring(2,19)+">"+data.detalle[i].created_at.substring(2,19)+"</td>"+
+                "<td class='text-danger' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+fechaReal+">"+fechaReal+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
@@ -1613,6 +1619,12 @@ function mostrar(id_almacen){
                     }else {
                         let varClass ="class=''";
                     }
+
+                var fechaAno = data.detalle[i].created_at.substring(2,4);
+                var fechaMes = data.detalle[i].created_at.substring(5,7);
+                var fechaDia = data.detalle[i].created_at.substring(8,10);
+                var fechaHora = data.detalle[i].created_at.substring(11,19);
+                var fechaReal = fechaDia+"-"+fechaMes+"-"+fechaAno+" "+fechaHora;
 
                 let fila =
                 '<tr id="fila">'+
@@ -1629,7 +1641,7 @@ function mostrar(id_almacen){
                 "<td "+varClass+"><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
                 "<td "+varClass+"><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
                 "<td "+varClass+"><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
-                "<td "+varClass+" "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.detalle[t].created_at.substring(2,19)+">"+data.detalle[t].created_at.substring(2,19)+"</td>"+
+                "<td "+varClass+" "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+fechaReal+">"+fechaReal+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
