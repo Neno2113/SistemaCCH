@@ -1605,11 +1605,11 @@ function mostrar(id_almacen){
             }
 
             for (let t = 0; t < data.detalle.length; t++) {
-                if (substr(data.detalle[t].a.codigo_entrada.length - 1) == "E" ) {
-                     varClass ="class='text-danger'";
-                }else {
-                    varClass ="";
-                }
+                    if (data.detalle[t].a.codigo_entrada.substring(data.detalle[t].a.codigo_entrada.length - 1) == "E" ) {
+                        varClass ="class='text-danger'";
+                    }else {
+                        varClass ="";
+                    }
                 let fila =
                 '<tr id="fila">'+
                 "<td "+varClass+"><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].a+">"+data.detalle[t].a+"</td>"+
