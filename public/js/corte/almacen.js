@@ -1610,6 +1610,7 @@ function mostrar(id_almacen){
                     }else {
                         varClass ="";
                     }*/
+                    varClass ="";
                 let fila =
                 '<tr id="fila">'+
                 "<td "+varClass+"><input type='hidden' name='a[]' id='a[]' value="+data.detalle[t].codigo_entrada+">"+data.detalle[t].codigo_entrada+"</td>"+
