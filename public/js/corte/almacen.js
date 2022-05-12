@@ -1600,7 +1600,7 @@ function mostrar(id_almacen){
                 "<td class='text-danger'><input type='hidden' name='k[]' id='k[]' value="+data.segundas[i].k+">"+data.segundas[i].k+"</td>"+
                 "<td class='text-danger'><input type='hidden' name='l[]' id='l[]' value="+data.segundas[i].l+">"+data.segundas[i].l+"</td>"+
                 "<td class='text-danger'><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.segundas[i].total+">"+data.segundas[i].total+"</td>"+
-                "<td class='text-danger' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.detalle[t].created_at.substring(2,19)+">"+data.detalle[t].created_at.substring(2,19)+"</td>"+
+                "<td class='text-danger' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.detalle[i].created_at.substring(2,19)+">"+data.detalle[i].created_at.substring(2,19)+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
