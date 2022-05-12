@@ -13,6 +13,9 @@ var i_total;
 var j_total;
 var k_total;
 var l_total;
+
+var estiloFecha = "style='font-size: 12px;line-height: 12px;'";
+
 $(document).ready(function() {
     $("[data-mask]").inputmask();
 
@@ -1164,6 +1167,7 @@ $(document).ready(function() {
                         "<td><input type='hidden' name='k[]' id='k[]' value="+k+">"+k+"</td>"+
                         "<td><input type='hidden' name='l[]' id='l[]' value="+l+">"+l+"</td>"+
                         "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.detalle.total+">"+datos.detalle.total+"</td>"+
+                        "<td class='fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+fecha+">"+fecha+"</td>"+
                         "</tr>";
                         cont++;
                     $("#disponibles").append(fila);
@@ -1293,6 +1297,7 @@ $(document).ready(function() {
                         "<td><input type='hidden' name='k[]' id='k[]' value="+k+">"+k+"</td>"+
                         "<td><input type='hidden' name='l[]' id='l[]' value="+l+">"+l+"</td>"+
                         "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.detalle.total+">"+datos.detalle.total+"</td>"+
+                        "<td class='fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="fecha+">"+fecha+"</td>"+
                         "</tr>";
                         cont++;
                     $("#disponibles").append(fila);
@@ -1385,6 +1390,7 @@ $(document).ready(function() {
                     "<td><input type='hidden' name='k[]' id='k[]' value="+datos.k+">"+datos.k+"</td>"+
                     "<td><input type='hidden' name='l[]' id='l[]' value="+datos.l+">"+datos.l+"</td>"+
                     "<td><input type='hidden' id='total_talla[]' name='total_talla[]' value="+datos.total+">"+datos.total+"</td>"+
+                    "<td></td>"+
                     "</tr>";
 
                 $("#resultados").append(resultado);
