@@ -1582,7 +1582,7 @@ function mostrar(id_almacen){
 
             $("#disponibles").empty();
             $("#resultados").empty();
-
+            var estiloFecha = "style='font-size: 12px;line-height: 12px;'";
             
             for (let i = 0; i < data.segundas.length; i++) {
                 let fila =
@@ -1600,7 +1600,7 @@ function mostrar(id_almacen){
                 "<td class='text-danger'><input type='hidden' name='k[]' id='k[]' value="+data.segundas[i].k+">"+data.segundas[i].k+"</td>"+
                 "<td class='text-danger'><input type='hidden' name='l[]' id='l[]' value="+data.segundas[i].l+">"+data.segundas[i].l+"</td>"+
                 "<td class='text-danger'><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.segundas[i].total+">"+data.segundas[i].total+"</td>"+
-                "<td class='text-danger'><input type='hidden' id='fecha[]' name='fecha[]' value="+data.segundas[i].created_at+">"+data.segundas[i].created_at+"</td>"+
+                "<td class='text-danger' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.segundas[i].created_at+">"+data.segundas[i].created_at+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
@@ -1629,7 +1629,7 @@ function mostrar(id_almacen){
                 "<td "+varClass+"><input type='hidden' name='k[]' id='k[]' value="+data.detalle[t].k+">"+data.detalle[t].k+"</td>"+
                 "<td "+varClass+"><input type='hidden' name='l[]' id='l[]' value="+data.detalle[t].l+">"+data.detalle[t].l+"</td>"+
                 "<td "+varClass+"><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.detalle[t].total+">"+data.detalle[t].total+"</td>"+
-                "<td "+varClass+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.detalle[t].created_at+">"+data.detalle[t].created_at+"</td>"+
+                "<td "+varClass+" "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+data.detalle[t].created_at+">"+data.detalle[t].created_at+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
             }
