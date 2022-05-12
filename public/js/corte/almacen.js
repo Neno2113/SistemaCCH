@@ -1620,10 +1620,10 @@ function mostrar(id_almacen){
                         let varClass ="class=''";
                     }
 
-                var fechaAno = data.detalle[i].created_at.substring(2,4);
-                var fechaMes = data.detalle[i].created_at.substring(5,7);
-                var fechaDia = data.detalle[i].created_at.substring(8,10);
-                var fechaHora = data.detalle[i].created_at.substring(11,19);
+                var fechaAno = data.detalle[t].created_at.substring(2,4);
+                var fechaMes = data.detalle[t].created_at.substring(5,7);
+                var fechaDia = data.detalle[t].created_at.substring(8,10);
+                var fechaHora = data.detalle[t].created_at.substring(11,19);
                 var fechaReal = fechaDia+"-"+fechaMes+"-"+fechaAno+" "+fechaHora;
 
                 let fila =
