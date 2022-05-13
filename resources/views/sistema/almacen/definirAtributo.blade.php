@@ -56,8 +56,7 @@
                             data-toggle="modal" data-target=".bd-ubicacion-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="ubicacion" id="ubicacion" class="form-control">
                                 <option value="" disabled>Ubicacion</option>
-                            </select>
-                           
+                            </select> 
                         </div>
                         
                         <div class="col-md-4 mt-2">
