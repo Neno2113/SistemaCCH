@@ -1600,19 +1600,19 @@ function mostrar(id_almacen){
 
                 let fila =
                 '<tr id="fila">'+
-                "<td class='text-danger' ><input type='hidden' name='a[]' id='a[]' value="+data.segundas[i].a+">"+data.segundas[i].a+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='b[]' id='b[]' value="+data.segundas[i].b+">"+data.segundas[i].b+"</td>"+
-                "<td class='text-danger'> <input type='hidden' name='c[]' id='c[]' value="+data.segundas[i].c+">"+data.segundas[i].c+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='d[]' id='d[]' value="+data.segundas[i].d+">"+data.segundas[i].d+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='e[]' id='e[]' value="+data.segundas[i].e+">"+data.segundas[i].e+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='f[]' id='f[]' value="+data.segundas[i].f+">"+data.segundas[i].f+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='g[]' id='g[]' value="+data.segundas[i].g+">"+data.segundas[i].g+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='h[]' id='h[]' value="+data.segundas[i].h+">"+data.segundas[i].h+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='i[]' id='i[]' value="+data.segundas[i].i+">"+data.segundas[i].i+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='j[]' id='j[]' value="+data.segundas[i].j+">"+data.segundas[i].j+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='k[]' id='k[]' value="+data.segundas[i].k+">"+data.segundas[i].k+"</td>"+
-                "<td class='text-danger'><input type='hidden' name='l[]' id='l[]' value="+data.segundas[i].l+">"+data.segundas[i].l+"</td>"+
-                "<td class='text-danger'><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.segundas[i].total+">"+data.segundas[i].total+"</td>"+
+                "<td class='text-danger fechaT' ><input type='hidden' name='a[]' id='a[]' value="+data.segundas[i].a+">"+data.segundas[i].a+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='b[]' id='b[]' value="+data.segundas[i].b+">"+data.segundas[i].b+"</td>"+
+                "<td class='text-danger fechaT'> <input type='hidden' name='c[]' id='c[]' value="+data.segundas[i].c+">"+data.segundas[i].c+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='d[]' id='d[]' value="+data.segundas[i].d+">"+data.segundas[i].d+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='e[]' id='e[]' value="+data.segundas[i].e+">"+data.segundas[i].e+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='f[]' id='f[]' value="+data.segundas[i].f+">"+data.segundas[i].f+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='g[]' id='g[]' value="+data.segundas[i].g+">"+data.segundas[i].g+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='h[]' id='h[]' value="+data.segundas[i].h+">"+data.segundas[i].h+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='i[]' id='i[]' value="+data.segundas[i].i+">"+data.segundas[i].i+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='j[]' id='j[]' value="+data.segundas[i].j+">"+data.segundas[i].j+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='k[]' id='k[]' value="+data.segundas[i].k+">"+data.segundas[i].k+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' name='l[]' id='l[]' value="+data.segundas[i].l+">"+data.segundas[i].l+"</td>"+
+                "<td class='text-danger fechaT'><input type='hidden' id='total_talla[]' name='total_talla[]' value="+data.segundas[i].total+">"+data.segundas[i].total+"</td>"+
                 "<td class='text-danger fechaT' "+estiloFecha+"><input type='hidden' id='fecha[]' name='fecha[]' value="+fechaReal+">"+fechaReal+"</td>"+
                 "</tr>";
                 $("#disponibles").append(fila);
