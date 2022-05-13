@@ -1508,10 +1508,6 @@ function mostrar(id_almacen){
                 ubicaciones();
                 
             }, 500);
-            setTimeout(() => {
-                listarAtributos();
-                
-            }, 500);
 
             // $("#btn-imprimir").hide();
             let genero = data.almacen.producto.referencia_producto.substring(1, 2);
