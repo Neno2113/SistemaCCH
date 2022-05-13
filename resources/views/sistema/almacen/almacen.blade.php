@@ -368,7 +368,7 @@
                         </div>
                             <p><span class="">NEGRO</span> = Entradas <br/>
                             <span class="text-danger">ROJO</span> = Segundas <br/>
-                            <span class="text-primary">AZUL</span> = Ajsutes manuales de personal administrativo</p>
+                            <span class="text-primary">AZUL</span> = Ajustes manuales de personal administrativo</p>
                         <br>
                         <hr>
                         <button class="btn btn-primary rounded-pill" name="btn-agregar" id="btn-agregar"><i
