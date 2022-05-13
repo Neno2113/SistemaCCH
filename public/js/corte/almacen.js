@@ -249,7 +249,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almacen = {
-            corte: $("#cortesSearch").val(),
+            corte: $("#cortesSearchEdit").val(),
             ubicacion: $("#ubicacion").val()
          /*   tono: $("#tono").val(),
             intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
