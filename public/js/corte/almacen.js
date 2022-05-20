@@ -1413,7 +1413,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: "almacen",
+            url: "almacen/edit",
             type: "POST",
             dataType: "json",
             data: JSON.stringify(almaUbi),
