@@ -354,11 +354,13 @@ $(document).ready(function() {
             producto_id: $("#producto_id").val(),
             corte: $("#numero_corte_value").val(),
             ubicacion: $("#ubicacion").val(),
+            /*
             tono: $("#tono").val(),
             intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
             atributo_no_1: $("#atributo_no_1").val(),
             atributo_no_2: $("#atributo_no_2").val(),
             atributo_no_3: $("#atributo_no_3").val(),
+            */
         };
 
         $.ajax({
@@ -1521,11 +1523,11 @@ function mostrar(id_almacen){
          //   $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
             // cristobal
          //   $("#ubi-selected").val(data.almacen.producto.ubicacion);
-            $("#tono").val(data.almacen.producto.tono).trigger("change").attr('disabled', true);
-            $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco).trigger("change").attr('disabled', true);
-            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).trigger("change").attr('disabled', true) ;
-            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).trigger("change").attr('disabled', true) ;
-            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).trigger("change").attr('disabled', true) ;
+            $("#tono").val(data.almacen.producto.tono);
+            $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
+            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
+            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
+            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
             $("#ra").html(data.a);
             $("#rb").html(data.b);
             $("#rc").html(data.c);
