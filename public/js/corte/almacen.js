@@ -1407,7 +1407,7 @@ $(document).ready(function() {
     $("#btn-guardar-ubi").click(function(e) {
         e.preventDefault();
 
-        var almaUbi = {
+        var almacen = {
             corte: $("#numero_corte_value").val(),
             ubicacion: $("#ubicacion").val(),
         };
@@ -1416,7 +1416,7 @@ $(document).ready(function() {
             url: "almacen/edit",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(almaUbi),
+            data: JSON.stringify(almacen),
             contentType: "application/json",
             success: function(datos) {
                 if (datos.status == "success") {
