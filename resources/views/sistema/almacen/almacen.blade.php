@@ -44,6 +44,7 @@
                                 </select>
                             </div>
 
+                            <input type="hidden" name="numero_corte_value" id="numero_corte_value">
                             <input type="text" name="numero_corte" id="numero_corte"
                                 class="form-control font-weight-bold  text-center" readonly>
                         </div>

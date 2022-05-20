@@ -249,7 +249,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almacen = {
-            corte: $("#cortesSearchEdit").val(),
+            corte: $("#numero_corte_value").val(),
             ubicacion: $("#ubicacion").val()
          /*   tono: $("#tono").val(),
             intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
@@ -1533,6 +1533,7 @@ function mostrar(id_almacen){
 
             $("#id").val(data.almacen.id);
             $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);
+            $("#numero_corte_value").val(data.almacen.corte.numero_corte);
             $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
             // cristobal
             $("#ubi-selected").val(data.almacen.producto.ubicacion);
