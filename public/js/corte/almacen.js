@@ -245,72 +245,6 @@ $(document).ready(function() {
         }
     });
 
-    $("#btn-guardar-ubi").click(function(e) {
-        e.preventDefault();
-
-        var almacen = {
-            corte: $("#numero_corte_value").val(),
-            ubicacion: $("#ubicacion").val()
-         /*   tono: $("#tono").val(),
-            intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
-            atributo_no_1: $("#atributo_no_1").val(),
-            atributo_no_2: $("#atributo_no_2").val(),
-            atributo_no_3: $("#atributo_no_3").val(), */
-            // a: $("#a").val(),
-            // b: $("#b").val(),
-            // c: $("#c").val(),
-            // d: $("#d").val(),
-            // e: $("#e").val(),
-            // f: $("#f").val(),
-            // g: $("#g").val(),
-            // h: $("#h").val(),
-            // i: $("#i").val(),
-            // j: $("#j").val(),
-            // k: $("#k").val(),
-            // l: $("#l").val()
-        };
-
-
-        $.ajax({
-            url: "almacen",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(almacen),
-            contentType: "application/json",
-            success: function(datos) {
-                if (datos.status == "success") {
-                    Swal.fire(
-                        'Entrada a realizada.',
-                        'Registro a almacen realizado correctamente.',
-                        'success'
-                    )
-
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
-                } else {
-                    bootbox.alert(
-                        "Ocurrio un error durante la creacion de la composicion"
-                    );
-                }
-            },
-            error: function(datos) {
-                console.log(datos.responseJSON.errors);
-                let errores = datos.responseJSON.errors;
-
-                Object.entries(errores).forEach(([key, val]) => {
-                    bootbox.alert({
-                        message:
-                            "<h4 class='invalid-feedback d-block'>" +
-                            val +
-                            "</h4>",
-                        size: "small"
-                    });
-                });
-            }
-        });
-    });
-
     function listar() {
         tabla = $("#almacenes").DataTable({
             serverSide: true,
@@ -397,6 +331,51 @@ $(document).ready(function() {
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert("Ocurrio un error!!");
+            }
+        });
+    });
+
+
+    $("#btn-asignar-ubicacion").click(function(e) {
+        e.preventDefault();
+
+        var almacen = {
+            id: $("#id").val(),
+            producto_id: $("#productos").val(),
+            corte: $("#cortesSearchEdit").val(),
+            ubicacion: $("#ubicacion").val(),
+            tono: $("#tono").val(),
+            intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
+            atributo_no_1: $("#atributo_no_1").val(),
+            atributo_no_2: $("#atributo_no_2").val(),
+            atributo_no_3: $("#atributo_no_3").val(),
+        };
+
+        $.ajax({
+            url: "almacen/edit",
+            type: "PUT",
+            dataType: "json",
+            data: JSON.stringify(almacen),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    bootbox.alert(
+                        "Se actualizado correctamente la ubicacion"
+                    );
+                    limpiar();
+                    tabla.ajax.reload();
+                    $("#id").val("");
+                    $("#referencia_producto").hide();
+                    $("#numero_corte").hide();
+                    mostrarForm(false);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la ubicacion"
                     );
                 }
             },
@@ -1429,7 +1408,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almaUbi = {
-            corte: $("#cortesSearch").val(),
+            corte: $("#numero_corte_value").val(),
             ubicacion: $("#ubicacion").val(),
         };
 

@@ -34,7 +34,11 @@
                         <div class="col-md-4">
                             <label for="" class="d-flex justify-content-center pers">Corte</label>
                             <div id="corteAdd">
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="tono" id="tono">
+                                <input type="hidden" name="intensidad_proceso_seco" id="intensidad_proceso_seco">
+                                <input type="hidden" name="atributo_no_1" id="atributo_no_1">
+                                <input type="hidden" name="atributo_no_2" id="atributo_no_2">
+                                <input type="hidden" name="atributo_no_3" id="atributo_no_3">
                                 <select name="tags[]" id="cortesSearch" class="form-control select2" style="width:100%">
                                 </select>
                             </div>
@@ -101,7 +105,8 @@
                                     <option id="ubi-selected" value="" >Ubicacion</option> 
                                 </select>
                             </div>
-                            <button type="submit" id="btn-guardar-ubi" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button>
+                            <button type="submit" id="btn-asignar-ubicacion" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button>
+                            <!-- <button type="submit" id="btn-guardar-ubi" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button> -->
         
                         </div>
                         <div class="div-totales">
