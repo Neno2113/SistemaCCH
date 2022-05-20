@@ -105,8 +105,8 @@
                                     <option id="ubi-selected" value="" >Ubicacion</option> 
                                 </select>
                             </div>
-                          <!--  <button type="submit" id="btn-asignar-ubicacion" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button> -->
-                             <button type="submit" id="btn-guardar-ubi" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button> 
+                           <button type="submit" id="btn-asignar-ubicacion" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button> 
+                            <!--  <button type="submit" id="btn-guardar-ubi" class="btn btn-primary mt-1 float-right"><i class="far fa-save fa-lg"></i></button> -->
         
                         </div>
                         <div class="div-totales">

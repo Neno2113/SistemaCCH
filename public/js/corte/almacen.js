@@ -346,8 +346,8 @@ $(document).ready(function() {
 
         var almacen = {
             id: $("#id").val(),
-            producto_id: $("#productos").val(),
-            corte: $("#cortesSearchEdit").val(),
+        //    producto_id: $("#productos").val(),
+            corte: $("#numero_corte_value").val(),
             ubicacion: $("#ubicacion").val(),
             tono: $("#tono").val(),
             intensidad_proceso_seco: $("#intensidad_proceso_seco").val(),
