@@ -66,6 +66,11 @@ $(document).ready(function() {
         }
     }
 
+    $("#ubicacion").keyup(function(){
+        let val =  $("#ubicacion").val();
+        $("#ubicacion").val(val.toUpperCase());
+    });
+
     function validarNanEdit(val) {
         if (isNaN(val)) {
             return 0;
@@ -345,8 +350,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almacen = {
-            id: $("#id").val(),
-        //    producto_id: $("#productos").val(),
+            id: $("#almacen_id").val(),
+            producto_id: $("#producto_id").val(),
             corte: $("#numero_corte_value").val(),
             ubicacion: $("#ubicacion").val(),
             tono: $("#tono").val(),
@@ -1513,9 +1518,9 @@ function mostrar(id_almacen){
             $("#id").val(data.almacen.id);
             $("#numero_corte").val('Corte: '+data.almacen.corte.numero_corte);
             $("#numero_corte_value").val(data.almacen.corte.numero_corte);
-            $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
+         //   $("#ubicacion").val(data.almacen.producto.ubicacion).attr('readonly', true);
             // cristobal
-            $("#ubi-selected").val(data.almacen.producto.ubicacion);
+         //   $("#ubi-selected").val(data.almacen.producto.ubicacion);
             $("#tono").val(data.almacen.producto.tono).trigger("change").attr('disabled', true);
             $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco).trigger("change").attr('disabled', true);
             $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).trigger("change").attr('disabled', true) ;
@@ -1546,6 +1551,13 @@ function mostrar(id_almacen){
             k_total = data.k;
             l_total = data.l;
             total_recibido = data.total_entrada;
+
+            setTimeout(() => {
+                $("#ubicacion").val(data.almacen.producto.ubicacion).select2().trigger('change');
+                $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).select2().trigger('change');
+                $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).select2().trigger('change');
+                $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).select2().trigger('change'); 
+            }, 1000);
 
             $("#total").html(data.total);
             $("#genero").val(data.almacen.producto.referencia_producto);
