@@ -1524,10 +1524,10 @@ function mostrar(id_almacen){
             // cristobal
          //   $("#ubi-selected").val(data.almacen.producto.ubicacion);
             $("#tono").val(data.almacen.producto.tono);
-            $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
-            $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
-            $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
-            $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
+         //   $("#intensidad_proceso_seco").val(data.almacen.producto.intensidad_proceso_seco);
+         //   $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
+         //   $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
+         //   $("#atributo_no_3").val(data.almacen.producto.atributo_no_3);
             $("#ra").html(data.a);
             $("#rb").html(data.b);
             $("#rc").html(data.c);
@@ -1556,9 +1556,9 @@ function mostrar(id_almacen){
 
             setTimeout(() => {
                 $("#ubicacion").val(data.almacen.producto.ubicacion).select2().trigger('change');
-                $("#atributo_no_1").val(data.almacen.producto.atributo_no_1).select2().trigger('change');
-                $("#atributo_no_2").val(data.almacen.producto.atributo_no_2).select2().trigger('change');
-                $("#atributo_no_3").val(data.almacen.producto.atributo_no_3).select2().trigger('change'); 
+                $("#atributo_no_1").val(data.almacen.producto.atributo_no_1);
+                $("#atributo_no_2").val(data.almacen.producto.atributo_no_2);
+                $("#atributo_no_3").val(data.almacen.producto.atributo_no_3); 
             }, 1000);
 
             $("#total").html(data.total);
