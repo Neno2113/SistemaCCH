@@ -377,7 +377,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 mt-3" id="total_div">
-                                    <label for="">Disponible Venta</label>
+                                    <label for="">Disp. Venta</label>
                                     <input type="text" name="total" id="total" class="form-control text-center" readonly>
                                 </div>
                                 <div class="col-lg-3 col-md-4 mt-3" id="total_almdiv">

@@ -408,10 +408,7 @@ $(document).ready(function() {
 
     function mostrarForm(flag) {
         limpiar();
-        //cristobal
-        ubicaciones();
-        listarUbicaciones();
-        //fin cristobal
+          
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
@@ -425,6 +422,11 @@ $(document).ready(function() {
             $("#btn-upload").show();
             $("#btn-buscar").show();
             $("#btn-imprimir").attr("disabled", true);
+
+            //cristobal
+            ubicaciones();
+            listarUbicaciones();
+            //fin cristobal
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
