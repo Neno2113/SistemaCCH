@@ -1429,8 +1429,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almaUbi = {
-            corte: $("#numero_corte").val(),
-            ubicacion: $("#ubicacion").val()
+            corte: $("#cortesSearch").val(),
+            ubicacion: $("#ubicacion").val(),
         };
 
         $.ajax({
