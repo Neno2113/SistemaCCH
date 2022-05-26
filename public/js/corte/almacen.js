@@ -360,6 +360,7 @@ $(document).ready(function() {
             atributo_no_1: $("#atributo_no_1").val(),
             atributo_no_2: $("#atributo_no_2").val(),
             atributo_no_3: $("#atributo_no_3").val(),
+            /*
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),
@@ -372,6 +373,7 @@ $(document).ready(function() {
             j: $("#j").val(),
             k: $("#k").val(),
             l: $("#l").val()
+            */
         };
 
         $.ajax({
