@@ -910,6 +910,63 @@ class AlmacenController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    //CRISTOBAL
+
+    public function updateUbi(Request $request)
+    {
+        $validar = $request->validate([
+            'corte' => 'required',
+            'ubicacion' => 'required',
+            // 'tono' => 'required',
+            // 'intensidad_proceso_seco' => 'required'
+        ]);
+
+        if (empty($validar)) {
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Error en la validacion de datos'
+            ];
+        } else {
+            $id = $request->input('id', true);
+            $corte_id = $request->input('corte');
+            $ubicacion = $request->input('ubicacion');
+
+            $almacen = Almacen::find($id);
+            $corte = Corte::find($corte_id);
+            $producto_id = $corte['producto_id'];
+
+            if (!empty($ubicacion)) {
+                $producto = Product::find($producto_id);
+
+                $producto->ubicacion = $ubicacion;
+
+                $producto->save();
+            }
+
+
+            $corte->fase = 'Almacen';
+            $corte->save();
+
+            $almacen->producto_id = $producto_id;
+            $almacen->corte_id = $corte_id;
+            $almacen->user_id = \auth()->user()->id;
+            $almacen->usado_curva = 0;
+
+            $almacen->save();
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'almacen' => $almacen
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+
+    //FIN CRISTOBAL
+
     public function checkDestroy()
     {
         //Chekcing if the user has access to this function

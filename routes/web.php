@@ -366,6 +366,8 @@ Route::post('/almacen/detalle', 'AlmacenController@storeDetalle');
 Route::get('almacen/{id}', 'AlmacenController@show');
 Route::get('almacen-entrada/{id}', 'AlmacenController@showAlmacen');
 Route::put('/almacen/edit', 'AlmacenController@update');
+//CRISTOBAL
+Route::put('/almacen/updateubi', 'AlmacenController@updateUbi');
 Route::post('/almacen/delete/{id}', 'AlmacenController@destroy');
 Route::post('/almacencheck/delete/{id}', 'AlmacenController@checkDestroy');
 Route::post('/almacen/producto', 'AlmacenController@corteProducto');
