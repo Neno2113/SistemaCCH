@@ -350,7 +350,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         var almacen = {
-            id: $("#almacen_id").val(),
+        //    id: $("#almacen_id").val(),
+            id: $("#id").val(),
             producto_id: $("#producto_id").val(),
             corte: $("#numero_corte_value").val(),
             ubicacion: $("#ubicacion").val(),
