@@ -1423,7 +1423,7 @@ $(document).ready(function() {
 
 
     }
-
+    /*
     $("#btn-guardar-ubi").click(function(e) {
         e.preventDefault();
 
@@ -1471,7 +1471,7 @@ $(document).ready(function() {
             }
         });
     });
-
+    */
 
     init();
 });
