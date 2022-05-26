@@ -35,6 +35,7 @@
                             <label for="" class="d-flex justify-content-center pers">Corte</label>
                             <div id="corteAdd">
                                 <input type="hidden" name="tono" id="tono">
+                                <input type="hidden" name="id" id="id">
                                 <input type="hidden" name="intensidad_proceso_seco" id="intensidad_proceso_seco">
                                 <input type="hidden" name="atributo_no_1" id="atributo_no_1">
                                 <input type="hidden" name="atributo_no_2" id="atributo_no_2">
