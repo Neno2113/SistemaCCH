@@ -27,7 +27,7 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" class="form-group carta panel-body" enctype="multipart/form-data">
-                    <h5>Formulario de entrada a almacen!</h5>
+                    <h5>Formulario de entrada a almacen</h5>
                     <hr>
 
                     <div class="row" id="corte-div">
