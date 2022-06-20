@@ -13,7 +13,7 @@
       <div class="inner">
         <h3 id="cortes_home"></h3>
 
-        <p>Cortes en proceso</p>
+        <p>CORTES EN PRODUCCION</p>
       </div>
       <div class="icon">
         <i class="ion ion-scissors"></i>
@@ -21,13 +21,30 @@
       <a href="./corte" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
+
   <div class="col-lg-3 col-6">
     <!-- small box -->
     <div class="small-box bg-info">
       <div class="inner">
         <h3 id="cant_orden"></h3>
 
-        <p>Nuevas Ordenes</p>
+        <p>CORTES EN LAVANDERIA</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+      <a href="./orden_pedido" class="small-box-footer">Ver más <i
+          class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>  
+
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3 id="cant_orden"></h3>
+
+        <p>ORDENES NUEVAS</p>
       </div>
       <div class="icon">
         <i class="ion ion-bag"></i>
@@ -44,7 +61,7 @@
       <div class="inner">
         <h3 id="disp_venta"></h3>
 
-        <p>Disponible para la venta</p>
+        <p>DISPONIBLE PARA VENTA/p>
       </div>
       <div class="icon">
         <i class="ion ion-stats-bars"></i>
@@ -53,9 +70,10 @@
           class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
+<!--
   <div class="col-lg-3 col-6">
     <!-- small box -->
-    <div class="small-box bg-danger">
+<!--    <div class="small-box bg-danger">
       <div class="inner">
         <h3 id="existencia"></h3>
 
@@ -68,6 +86,7 @@
           class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
+-->
 </div>
 <!-- Main row -->
 <div class="row  ml-1 mr-1">
