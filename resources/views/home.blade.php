@@ -40,7 +40,7 @@
 
   <div class="col-lg-3 col-6">
     <!-- small box -->
-    <div class="small-box bg-info">
+    <div class="small-box bg-danger">
       <div class="inner">
         <h3 id="cant_orden"></h3>
 
@@ -61,7 +61,7 @@
       <div class="inner">
         <h3 id="disp_venta"></h3>
 
-        <p>DISPONIBLE PARA VENTA/p>
+        <p>DISPONIBLE PARA VENTA</p>
       </div>
       <div class="icon">
         <i class="ion ion-stats-bars"></i>
