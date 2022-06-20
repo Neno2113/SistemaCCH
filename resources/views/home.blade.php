@@ -26,7 +26,7 @@
     <!-- small box -->
     <div class="small-box bg-info">
       <div class="inner">
-        <h3 id="cant_orden"></h3>
+        <h3 id="corte_lavanderia"></h3>
 
         <p>CORTES EN LAVANDERIA</p>
       </div>
@@ -122,7 +122,7 @@
     <!-- TABLE: LATEST ORDERS -->
     <div class="card">
       <div class="card-header bg-dark">
-        <h3 class="card-title">Ultimas Ordenes generadas</h3>
+        <h3 class="card-title">Últimas Ordenes Generadas</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -139,9 +139,10 @@
           <table class="table m-0">
             <thead>
               <tr>
-                <th>Orden ID</th>
+                <th>No. de orden</th>
                 <th>Cliente</th>
-                <th>Status</th>
+                <th>Sucursal</th>
+                <th>Estatus</th>
                 <th>Fecha Entrega</th>
               </tr>
             </thead>
@@ -167,10 +168,58 @@
       <!-- /.card-footer -->
     </div>
 
+    <!-- TABLE: LATEST EMPAQUE ORDERS -->
+    <div class="card">
+      <div class="card-header bg-dark">
+        <h3 class="card-title">Últimas Ordenes de Empaque</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table m-0">
+            <thead>
+              <tr>
+                <th>Orden ID</th>
+                <th>Cliente</th>
+                <th>Status</th>
+                <th>Fecha Entrega</th>
+              </tr>
+            </thead>
+            <tbody id="latest_empaque_orders">
+              {{-- <tr id="">
+                <td><a href="pages/examples/invoice.html">OP-001</a></td>
+                <td>Lordish</td>
+                <td><span class="badge badge-secondary">StanBy</span></td>
+                <td>
+                  <div class="sparkbar" data-color="#00a65a" data-height="20">31-12-2019</div>
+                </td>
+              </tr> --}}
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer clearfix">
+        <a href="./orden_pedido" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
+      </div>
+      <!-- /.card-footer -->
+    </div>
+
      <!-- TABLE: LATEST CORTES -->
      <div class="card ">
       <div class="card-header bg-dark">
-        <h3 class="card-title">Ultimos cortes creados</h3>
+        <h3 class="card-title">Ultimos Cortes Creados</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">

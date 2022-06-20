@@ -283,11 +283,14 @@ $(document).ready(function() {
                         var orden =
                             "<tr>" +
                             "<td>" +
-                            "<a href='pages/examples/invoice.html'>" +
+                            "<a href='#'>" +
                             ordenes[i].no_orden_pedido +
                             "</a></td>" +
                             "<td>" +
                             ordenes[i].cliente.nombre_cliente +
+                            "</td>" +
+                            "<td>" +
+                            ordenes[i].cliente_sucursales.nombre_sucursal +
                             "</td>" +
                             "<td>" +
                             ordenes[i].status_orden_pedido +
