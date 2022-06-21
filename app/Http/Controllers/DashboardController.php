@@ -151,7 +151,7 @@ class DashboardController extends Controller
 
     public function latestOrders(){
         $ordenes = ordenPedido::whereNotNull('cliente_id')
-        ->orderBy('id', 'DESC')->take(5)->get()->load('cliente','cliente_sucursales');
+        ->orderBy('id', 'DESC')->take(5)->get()->load('cliente')->load('cliente_sucursales');
 
         if(!empty($ordenes)){
             $data = [
