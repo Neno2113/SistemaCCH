@@ -314,7 +314,7 @@ $(document).ready(function() {
                             ordenes[i].sucursal.nombre_sucursal +
                             "</td>" +
                             "<td>" +
-                            if(ordenes[i].status_orden_pedido == "Stanby" ? "Pendiente" : "Aprobado")  +
+                            ordenes[i].status_orden_pedido  +
                             "</td>" +
                             "<td>" +
                             "<div class='sparkbar' data-color='#00a65a' data-height='20'>" +
