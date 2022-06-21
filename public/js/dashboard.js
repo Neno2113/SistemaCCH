@@ -311,7 +311,7 @@ $(document).ready(function() {
                             ordenes[i].cliente.nombre_cliente +
                             "</td>" +
                             "<td>" +
-                            ordenes[i].cliente_sucursales.nombre_sucursal +
+                          //  ordenes[i].cliente_sucursales.nombre_sucursal +
                             "</td>" +
                             "<td>" +
                             ordenes[i].status_orden_pedido +
