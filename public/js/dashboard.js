@@ -301,6 +301,11 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let ordenes = datos.ordenes;
                     for (let i = 0; i < datos.ordenes.length; i++) {
+                        if (ordenes[i].status_orden_pedido == "Standby"){
+                            var estatus = "Pendiente";
+                        }else {
+                            var estatus = ordenes[i].status_orden_pedido;
+                        }
                         var orden =
                             "<tr>" +
                             "<td>" +
@@ -314,7 +319,7 @@ $(document).ready(function() {
                             ordenes[i].sucursal.nombre_sucursal +
                             "</td>" +
                             "<td>" +
-                            ordenes[i].status_orden_pedido  +
+                            estatus  +
                             "</td>" +
                             "<td>" +
                             "<div class='sparkbar' data-color='#00a65a' data-height='20'>" +
