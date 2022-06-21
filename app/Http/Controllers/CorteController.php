@@ -467,9 +467,7 @@ class CorteController extends Controller
 
     public function corte_home()
     {
-        $corte = Corte::where('fase', 'LIKE', 'Produccion')
-            ->orwhere('fase', 'LIKE', 'Lavanderia')
-            ->orwhere('fase', 'LIKE', 'Terminacion')->count();
+        $corte = Corte::where('fase', 'LIKE', 'Produccion')->count();
 
         $data = [
             'code' => 200,
@@ -479,6 +477,21 @@ class CorteController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    // CRISTOBAL
+    public function lavanderia_home()
+    {
+        $lavanderia = Corte::where('fase', 'LIKE', 'Lavanderia')->count();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'lavanderia' => $lavanderia
+        ];
+
+        return response()->json($data, $data['code']);
+    }
+
 
     public function verificarCorte(Request $request)
     {

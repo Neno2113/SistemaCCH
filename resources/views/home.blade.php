@@ -13,7 +13,7 @@
       <div class="inner">
         <h3 id="cortes_home"></h3>
 
-        <p>CORTES EN PRODUCCION</p>
+        <p>CORTES EN PROCESO</p>
       </div>
       <div class="icon">
         <i class="ion ion-scissors"></i>
@@ -26,7 +26,7 @@
     <!-- small box -->
     <div class="small-box bg-info">
       <div class="inner">
-        <h3 id="corte_lavanderia"></h3>
+        <h3 id="lavanderia_home"></h3>
 
         <p>CORTES EN LAVANDERIA</p>
       </div>

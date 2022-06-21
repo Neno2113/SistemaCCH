@@ -9,6 +9,8 @@ $(document).ready(function() {
         ordenes();
         disp_venta();
         cortes();
+        //cristobal
+        lavanderia();
         // venta12meses();
         // venta10dias();
         latest_orders();
@@ -77,6 +79,25 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#cortes_home").html(datos.corte);
+                } else {
+                    bootbox.alert("Ocurrio un error !!");
+                }
+            },
+            error: function() {
+                bootbox.alert("Ocurrio un error!!");
+            }
+        });
+    }
+
+    //cristobal
+    function lavanderia() {
+        $.ajax({
+            url: "lavanderia_home",
+            type: "get",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    $("#lavanderia_home").html(datos.lavanderia);
                 } else {
                     bootbox.alert("Ocurrio un error !!");
                 }

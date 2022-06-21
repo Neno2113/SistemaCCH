@@ -296,6 +296,8 @@ Route::post('/corte/delete/{id}', 'CorteController@destroy');
 Route::post('/cortecheck/delete/{id}', 'CorteController@checkDestroy');
 Route::get('cortes', 'CorteController@selectCorte');
 Route::get('cortes_home', 'CorteController@corte_home');
+//cristobal
+Route::get('lavanderia_home', 'CorteController@lavanderia_home');
 Route::post('verificacion/corte', 'CorteController@verificarCorte');
 Route::post('verificacion/producto', 'CorteController@verificarReferencia');
 Route::get('testSelectProduct', 'CorteController@testSelect2');
