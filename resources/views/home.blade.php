@@ -44,7 +44,7 @@
       <div class="inner">
         <h3 id="cant_orden"></h3>
 
-        <p>ORDENES NUEVAS</p>
+        <p>NUEVAS ORDENES</p>
       </div>
       <div class="icon">
         <i class="ion ion-bag"></i>

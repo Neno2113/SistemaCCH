@@ -2054,8 +2054,8 @@ class ordenPedidoController extends Controller
     public function home_orden()
     {
         $orden = ordenPedido::where('status_orden_pedido', 'LIKE', 'Stanby')
-        ->orWhere('status_orden_pedido', 'LIKE', 'Vigente')
-        ->where('corte_en_proceso', 'LIKE', 'No')
+      /*  ->orWhere('status_orden_pedido', 'LIKE', 'Vigente')
+        ->where('corte_en_proceso', 'LIKE', 'No')*/
         ->count();
 
         $data = [
