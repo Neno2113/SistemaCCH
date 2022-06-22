@@ -361,7 +361,7 @@ $(document).ready(function() {
                     for (let i = 0; i < datos.ordenes.length; i++) {
                         //REFORMATEANDO LA FECHA A DD-MM-YYYY
                         var reformatoFecha = ordenes[i].fecha.split('-');
-                        reformatoFecha = (reformatoFecha[2] + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
+                        reformatoFecha = (reformatoFecha[2].substr(0, 2) + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
 
                     
                         var orden =
