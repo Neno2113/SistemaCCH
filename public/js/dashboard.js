@@ -363,7 +363,17 @@ $(document).ready(function() {
                         var reformatoFecha = ordenes[i].fecha.split('-');
                         reformatoFecha = (reformatoFecha[2].substr(0, 2) + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
 
-                    
+                        if (ordenes[i].impreso == "null"){
+                            var impreso = "No Impreso";
+                        }else {
+                            var impreso = "Impreso";
+                        }
+                        if (ordenes[i].empacado == 0){
+                            var empacado = "No Empacado";
+                        }else{
+                            var empacado = "Empacado";
+                        }
+
                         var orden =
                             "<tr>" +
                             "<td>" +
@@ -371,10 +381,10 @@ $(document).ready(function() {
                             ordenes[i].no_orden_empaque +
                             "</a></td>" +
                             "<td>" +
-                            ordenes[i].impreso +
+                            impreso +
                             "</td>" +
                             "<td>" +
-                            ordenes[i].empacado +
+                            empacado +
                             "</td>" +
                             "<td>" +
                          //   ordenes[i].fecha_entrega +
