@@ -363,7 +363,7 @@ $(document).ready(function() {
                         var reformatoFecha = ordenes[i].fecha.split('-');
                         reformatoFecha = (reformatoFecha[2].substr(0, 2) + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
 
-                        if (ordenes[i].impreso == "null"){
+                        if (ordenes[i].impreso == null){
                             var impreso = "No Impreso";
                         }else {
                             var impreso = "Impreso";
