@@ -305,6 +305,8 @@ $(document).ready(function() {
                             var estatus = "Pendiente de Aprobacion";
                         }else if (ordenes[i].status_orden_pedido == "Vigente"){
                             var estatus = "Aprobada y Redistribuida";
+                        }else if (ordenes[i].status_orden_pedido == "A Distribuir") {
+                            var estatus = "Aprobada";
                         }else {
                             var estatus = ordenes[i].status_orden_pedido;
                         }
@@ -325,7 +327,7 @@ $(document).ready(function() {
                             "</td>" +
                             "<td>" +
                             "<div class='sparkbar' data-color='#00a65a' data-height='20'>" +
-                            ordenes[i].fecha_entrega +
+                            ordenes[i].fecha_entrega.toLocaleDateString('en-GB'); +
                             "</div>" +
                             "</td>" +
                             "</tr>";
