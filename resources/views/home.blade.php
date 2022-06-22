@@ -59,7 +59,9 @@
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
-        <h3 id="disp_venta"></h3>
+       <!-- <h3 id="disp_venta"></h3> -->
+        <h3 id="">0</h3>
+
 
         <p>DISPONIBLE PARA VENTA</p>
       </div>
