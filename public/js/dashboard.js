@@ -301,6 +301,10 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let ordenes = datos.ordenes;
                     for (let i = 0; i < datos.ordenes.length; i++) {
+                        //REFORMATEANDO LA FECHA A DD-MM-YYYY
+                        var reformatoFecha = ordenes[i].fecha_entrega.split('-');
+                        reformatoFecha = (reformatoFecha[2] + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
+                        
                         if (ordenes[i].status_orden_pedido == "Stanby"){
                             var estatus = "Pendiente de Aprobacion";
                         }else if (ordenes[i].status_orden_pedido == "Vigente"){
@@ -327,7 +331,8 @@ $(document).ready(function() {
                             "</td>" +
                             "<td>" +
                             "<div class='sparkbar' data-color='#00a65a' data-height='20'>" +
-                            ordenes[i].fecha_entrega.toLocaleDateString('en-GB') +
+                         //   ordenes[i].fecha_entrega +
+                            reformatoFecha +
                             "</div>" +
                             "</td>" +
                             "</tr>";
