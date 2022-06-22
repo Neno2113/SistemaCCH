@@ -221,7 +221,7 @@
      <!-- TABLE: LATEST CORTES -->
      <div class="card ">
       <div class="card-header bg-dark">
-        <h3 class="card-title">Ultimos Cortes Creados</h3>
+        <h3 class="card-title">Últimos Cortes Creados</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -239,7 +239,7 @@
             <thead>
               <tr class="">
                 <th>Corte ID</th>
-                <th>Fase</th>
+                <th>Fecha Inicio</th>
                 <th>Producto</th>
                 <th>Total</th>
               </tr>

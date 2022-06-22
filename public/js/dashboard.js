@@ -448,13 +448,17 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let cortes = datos.cortes;
                     for (let i = 0; i < datos.cortes.length; i++) {
+                        //REFORMATEANDO LA FECHA A DD-MM-YYYY
+                        var reformatoFecha = cortes[i].fecha_creacion.split('-');
+                        reformatoFecha = (reformatoFecha[2].substr(0, 2) + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
+
                         var corte =
                             "<tr>" +
                             "<td>" +
                             cortes[i].numero_corte +
                             "</td>" +
                             "<td>" +
-                            cortes[i].fase +
+                            reformatoFecha +
                             "</td>" +
                             "<td>" +
                             cortes[i].producto.referencia_producto +
