@@ -14,6 +14,7 @@ $(document).ready(function() {
         // venta12meses();
         // venta10dias();
         latest_orders();
+        latest_empaques();
         latest_products();
         latest_cortes();
     }
@@ -304,7 +305,8 @@ $(document).ready(function() {
                         //REFORMATEANDO LA FECHA A DD-MM-YYYY
                         var reformatoFecha = ordenes[i].fecha_entrega.split('-');
                         reformatoFecha = (reformatoFecha[2] + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
-                        
+
+                        //CAMBIO DE PALABRAS EN LOS ESTATUS
                         if (ordenes[i].status_orden_pedido == "Stanby"){
                             var estatus = "Pendiente de Aprobacion";
                         }else if (ordenes[i].status_orden_pedido == "Vigente"){
@@ -337,6 +339,49 @@ $(document).ready(function() {
                             "</td>" +
                             "</tr>";
                         $("#latest_orders").append(orden);
+                    }
+                } else {
+                    bootbox.alert("Ocurrio un error !!");
+                }
+            },
+            error: function() {
+                console.log("error");
+            }
+        });
+    }
+
+    function latest_empaques() {
+        $.ajax({
+            url: "latest_empaques",
+            type: "get",
+            dataType: "json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    let ordenes = datos.ordenes;
+                    for (let i = 0; i < datos.ordenes.length; i++) {
+                        //REFORMATEANDO LA FECHA A DD-MM-YYYY
+                        var reformatoFecha = ordenes[i].fecha.split('-');
+                        reformatoFecha = (reformatoFecha[2] + '-' + reformatoFecha[1] + '-' + reformatoFecha[0]);
+
+                    
+                        var orden =
+                            "<tr>" +
+                            "<td>" +
+                            "<a href='#'>" +
+                            ordenes[i].no_orden_empaque +
+                            "</a></td>" +
+                            "<td>" +
+                            ordenes[i].impreso +
+                            "</td>" +
+                            "<td>" +
+                            ordenes[i].empacado +
+                            "</td>" +
+                            "<td>" +
+                         //   ordenes[i].fecha_entrega +
+                            reformatoFecha +
+                            "</td>" +
+                            "</tr>";
+                        $("#latest_empaque_orders").append(orden);
                     }
                 } else {
                     bootbox.alert("Ocurrio un error !!");

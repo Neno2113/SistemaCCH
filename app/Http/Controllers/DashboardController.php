@@ -14,6 +14,7 @@ use App\NotaCreditoDetalle;
 use App\Corte;
 use App\Empleado;
 use App\ordenEmpaqueDetalle;
+use App\ordenEmpaque;
 use App\ordenFacturacionDetalle;
 use App\Perdida;
 use App\ordenPedidoDetalle;
@@ -152,6 +153,28 @@ class DashboardController extends Controller
     public function latestOrders(){
         $ordenes = ordenPedido::whereNotNull('cliente_id')
         ->orderBy('id', 'DESC')->take(5)->get()->load('cliente','sucursal');
+
+
+        if(!empty($ordenes)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'ordenes' => $ordenes
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function latestEmpaques(){
+        $ordenes = ordenEmpaque::whereNotNull('orden_pedido_id')
+        ->orderBy('id', 'DESC')->take(5)->get()->load('orden_pedido');
 
 
         if(!empty($ordenes)){

@@ -475,6 +475,7 @@ Route::get('/venta12meses', 'DashboardController@ventas12meses');
 Route::get('/venta10dias', 'DashboardController@ventas10dias');
 Route::get('/dispVentas', 'DashboardController@totalVenta');
 Route::get('/latest_orders', 'DashboardController@latestOrders');
+Route::get('/latest_empaques', 'DashboardController@latestEmpaques');
 Route::get('/latest_products', 'DashboardController@latestProduct');
 Route::get('/latest_cortes', 'DashboardController@latestCortes');
 

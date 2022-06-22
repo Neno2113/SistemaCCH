@@ -190,10 +190,10 @@
           <table class="table m-0">
             <thead>
               <tr>
-                <th>Orden ID</th>
-                <th>Cliente</th>
-                <th>Status</th>
-                <th>Fecha Entrega</th>
+                <th>No. de orden</th>
+                <th>Impreso</th>
+                <th>Empacado</th>
+                <th>Fecha</th>
               </tr>
             </thead>
             <tbody id="latest_empaque_orders">
@@ -213,7 +213,7 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix">
-        <a href="./orden_pedido" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
+        <a href="./orden_empaque_listar" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
       </div>
       <!-- /.card-footer -->
     </div>
