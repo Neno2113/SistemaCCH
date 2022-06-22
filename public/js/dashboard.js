@@ -327,7 +327,7 @@ $(document).ready(function() {
                             "</td>" +
                             "<td>" +
                             "<div class='sparkbar' data-color='#00a65a' data-height='20'>" +
-                            ordenes[i].fecha_entrega.toLocaleDateString('en-GB'); +
+                            ordenes[i].fecha_entrega.toLocaleDateString('en-GB') +
                             "</div>" +
                             "</td>" +
                             "</tr>";
