@@ -302,7 +302,9 @@ $(document).ready(function() {
                     let ordenes = datos.ordenes;
                     for (let i = 0; i < datos.ordenes.length; i++) {
                         if (ordenes[i].status_orden_pedido == "Stanby"){
-                            var estatus = "Pendiente";
+                            var estatus = "Pendiente de Aprobacion";
+                        }else if(ordenes[i].status_orden_pedido == "Vigente"){
+                            var estatus = "Aprobada y Redistribuida";
                         }else {
                             var estatus = ordenes[i].status_orden_pedido;
                         }
