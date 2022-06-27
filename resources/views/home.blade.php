@@ -260,7 +260,9 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix">
-        <a href="./corte" class="btn btn-sm btn-secondary float-right">Ver todos los cortes</a>
+      <!--  <a href="./corte" class="btn btn-sm btn-secondary float-right">Ver todos los cortes</a> -->
+        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todos los cortes</a>
+        
       </div>
       <!-- /.card-footer -->
     </div>
@@ -342,7 +344,9 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer text-center">
-        <a href="./product" class="uppercase">Ver todos los productos</a>
+      <!--  <a href="./product" class="uppercase">Ver todos los productos</a> -->
+        <a href="javascript:void(0)" class="uppercase">Ver todos los productos</a>
+        
       </div>
       <!-- /.card-footer -->
     </div>
