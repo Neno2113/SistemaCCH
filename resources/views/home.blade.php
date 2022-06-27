@@ -18,7 +18,8 @@
       <div class="icon">
         <i class="ion ion-scissors"></i>
       </div>
-      <a href="./corte" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
+    <!--  <a href="./corte" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a> -->
+      <a href="javascript:void(0)" class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -33,7 +34,9 @@
       <div class="icon">
         <i class="ion ion-bag"></i>
       </div>
-      <a href="./orden_pedido" class="small-box-footer">Ver más <i
+    <!--  <a href="./orden_pedido" class="small-box-footer">Ver más <i
+          class="fas fa-arrow-circle-right"></i></a> -->
+          <a href="javascript:void(0)" class="small-box-footer">Ver más <i
           class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>  
@@ -49,7 +52,9 @@
       <div class="icon">
         <i class="ion ion-bag"></i>
       </div>
-      <a href="./orden_pedido" class="small-box-footer">Ver más <i
+    <!--  <a href="./orden_pedido" class="small-box-footer">Ver más <i
+          class="fas fa-arrow-circle-right"></i></a> -->
+      <a href="javascript:void(0)" class="small-box-footer">Ver más <i
           class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
@@ -165,7 +170,8 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix">
-        <a href="./orden_pedido" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
+      <!--  <a href="./orden_pedido" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a> -->
+        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
       </div>
       <!-- /.card-footer -->
     </div>
@@ -213,7 +219,8 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix">
-        <a href="./orden_empaque_listar" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
+      <!--  <a href="./orden_empaque_listar" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a> -->
+        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
       </div>
       <!-- /.card-footer -->
     </div>
@@ -296,7 +303,7 @@
     <!-- PRODUCT LIST -->
     <div class="card">
       <div class="card-header bg-dark">
-        <h3 class="card-title">Referencias creadas recientemente</h3>
+        <h3 class="card-title">Referencias Creadas Recientemente</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -308,10 +315,30 @@
         </div>
       </div>
       <!-- /.card-header -->
+      <!--
       <div class="card-body p-0">
         <ul class="products-list product-list-in-card pl-2 pr-2" id="productos">
 
         </ul>
+      </div>
+     -->
+      <div class="card-body p-0 ">
+        <div class="table-responsive">
+          <table class="table m-0">
+            <thead>
+              <tr class="">
+                <th>Referencias</th>
+                <th>Descripción</th>
+                <th>Precio Lista</th>
+                <th>Precio Venta</th>
+              </tr>
+            </thead>
+            <tbody id="productos">
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
       </div>
       <!-- /.card-body -->
       <div class="card-footer text-center">

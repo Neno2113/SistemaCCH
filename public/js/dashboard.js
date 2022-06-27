@@ -412,6 +412,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let productos = datos.productos;
                     for (let i = 0; i < datos.productos.length; i++) {
+                        /*
                         var producto =
                             "<li class='item'>" +
                             "<div class='product-info'>" +
@@ -425,6 +426,23 @@ $(document).ready(function() {
                             "</span>" +
                             "</div>" +
                             "</li>";
+                        */
+                            var producto =
+                            "<tr>" +
+                            "<td>" +
+                            "<a href='#'>" +
+                            productos[i].referencia_producto +
+                            "</a></td>" +
+                            "<td>" +
+                            productos[i].descripcion +
+                            "</td>" +
+                            "<td>" +
+                            productos[i].precio_lista +
+                            "</td>" +
+                            "<td>" +
+                            productos[i].precio_venta_publico +
+                            "</td>" +
+                            "</tr>";
                             $("#productos").append(producto);
                     }
 
