@@ -412,21 +412,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     let productos = datos.productos;
                     for (let i = 0; i < datos.productos.length; i++) {
-                        /*
-                        var producto =
-                            "<li class='item'>" +
-                            "<div class='product-info'>" +
-                            "<a href='javascript:void(0)' class='product-title'>" +
-                            productos[i].referencia_producto +
-                            "<span class='badge badge-warning float-right'>$" +
-                            productos[i].precio_lista +
-                            "</span></a>" +
-                            "<span class='product-description'>" +
-                            productos[i].descripcion +
-                            "</span>" +
-                            "</div>" +
-                            "</li>";
-                        */
+
                             var producto =
                             "<tr>" +
                             "<td>" +
