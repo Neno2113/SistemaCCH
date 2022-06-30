@@ -126,7 +126,7 @@ $(document).ready(function() {
                 "type": "POST"
             },
             dom: 'Bfrtip',
-            iDisplayLength: 5,
+            iDisplayLength: 10,
             buttons: [
                 'pageLength',
                 'copyHtml5',
