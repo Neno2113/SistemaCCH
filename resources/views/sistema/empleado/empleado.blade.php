@@ -91,6 +91,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" id="fila-detail-2">
+                        <div class="col-md-4 mt-3">
+                            <label for="codigo">Codigo Empleado</label>
+                            <input type="text" name="codigo" id="codigo"  class="form-control">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="departamento" >Departamento</label>
+                            <select name="departamento" id="departamento" class="form-control">
+                                <option value="" disabled>Departamento</option>
+                                <option>Administrador</option>
+                                <option>Oficina</option>
+                                <option>Soporte</option>
+                                <option>Operario</option>
+                                <option>General</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="telefono_2" >Celular</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                            <input type="text" id="telefono_2"  name="telefono_2"
+                                class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                           
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="" id="fila-address">
                         <br>
