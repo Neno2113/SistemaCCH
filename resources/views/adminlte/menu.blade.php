@@ -59,6 +59,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./employee" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Empleados</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="./user" class="nav-link">
@@ -74,12 +80,7 @@
                             </a>
                         </li>
                         -->
-                        <li class="nav-item">
-                            <a href="./employee" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Empleados</p>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </li>
                 <li class="nav-item has-treeview ">
