@@ -119,11 +119,57 @@
                             <input type="text" name="sector" placeholder="Sector" id="sector" class="form-control">
                             
                             </div>
+                        </div>   
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="" >Provincia</label>
+                            <select name="provincia" id="provincia" class="form-control select2">
+                                <option value="" disabled>Provincia</option>
+                                <option>Santo Domingo</option>
+                                <option>Distrito Nacional</option>
+                                <option>Santiago</option>
+                                <option>San Cristóbal</option>
+                                <option>La Vega</option>
+                                <option>Puerto Plata</option>
+                                <option>San Pedro de Macorís</option>
+                                <option>Duarte</option>
+                                <option>La Altagracia</option>
+                                <option>La Romana</option>
+                                <option>San Juan</option>
+                                <option>Espaillat</option>
+                                <option>Azua</option>
+                                <option>Barahona</option>
+                                <option>Monte Plata</option>
+                                <option>Peravia</option>
+                                <option>Monseñor Nouel</option>
+                                <option>Valverde</option>
+                                <option>Sánchez Ramírez</option>
+                                <option>María Trinidad Sánchez</option>
+                                <option>Montecristi</option>
+                                <option>Samaná</option>
+                                <option>Bahoruco</option>
+                                <option>Hermanas Mirabal</option>
+                                <option>El Seibo</option>
+                                <option>Hato Mayor</option>
+                                <option>Dajabón</option>
+                                <option>Elías Piña</option>
+                                <option>San José de Ocoa</option>
+                                <option>Santiago Rodríguez</option>
+                                <option>Independencia</option>
+                                <option>Pedernales</option>
+                            </select>  
                         </div>
-                        
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for="" >Referencias</label>
+                                <input type="text" name="sitios_cercanos" id="sitios_cercanos"
+                                     class="form-control">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="" id="fila-address">
+                    <div class="" id="fila-laboral">
                         <br>
                         <br>
                         <h5>Informacion Laboral</h5>
@@ -132,93 +178,72 @@
                         <div class="col-md-4 mt-3">
                             <label for="codigo">Codigo Empleado</label>
                             <input type="text" name="codigo" id="codigo"  class="form-control">
-                        </div>
+                        </div>   
                         <div class="col-md-4 mt-3">
-                            <label for="departamento" >Departamento</label>
+                            <label for="" >Departamento</label>
                             <select name="departamento" id="departamento" class="form-control">
                                 <option value="" disabled>Departamento</option>
-                                <option>Administrador</option>
-                                <option>Oficina</option>
-                                <option>Soporte</option>
-                                <option>Operario</option>
-                                <option>General</option>
+                                <option>ADMINISTRACION</option>
+                                <option>OFICINA</option>
+                                <option>SOPORTE</option>
+                                <option>OPERARIO</option>
+                                <option>GENERAL</option>
+                                <option>VENTA</option>
+                                <option>CORTE</option>
+                                <option>PRODUCCION</option>
+                                <option>ARTESANIA</option>
+                                <option>TERMINACION</option>
+                                <option>AlMACEN PRODUCTO TERMINADO</option>
+                                
                             </select>
                         </div>
-
-                        <div class="row mt-3">
+                        <div class="col-md-4 mt-3">
+                            <label for="cargo" >Cargo</label>
+                            <select name="cargo" id="cargo" class="form-control select2">
+                                <option value="" disabled>Cargo</option>
+                                <option>OPERARIO-1738 - OPERARIO</option>
+                                <option>OPERARIO-1738 - COCER</option>
+                                <option>OPERARIO-1738 - SUPERVISOR CALIDAD</option>
+                                <option>OPERARIO-1738 - ENCARGADO ARTESANIA</option>
+                                <option>OPERARIO-1738 - OPERARIO ARTESANIA</option>
+                                <option>OPERARIO-1738 - PLANCHADORA</option>
+                                <option>OPERARIO-1738 - ENCARGADO OPERACIONES</option>
+                                <option>OPERARIO-1738 - MECANICO</option>
+                                <option>OPERARIO-1738 - REVISORA CALIDAD</option>
+                                <option>OPERARIO-1738 - CORTE</option>
+                                <option>OPERARIO-1738 - AYUDANTE CORTE</option>
+                                <option>OPERARIO-1738 - MUETRISTA</option>
+                                <option>OPERARIO-1738 - ENCARGADO DE PONER ETIQUETAS</option>
+                                <option>OPERARIO-1738 - LIMPIEZA DE HILOS</option>
+                                <option>DISEÑADOR-4115 - DISEÑADOR</option>
+                                <option>DISEÑADOR-4115 - PATRONISTA</option>
+                                <option>VENDEDOR-219 - VENDEDORA</option>
+                                <option>VENDEDOR-219 - PROMOTORA</option>
+                                <option>CONTADOR-4374</option>
+                                <option>AUXILIAR CONTADOR-5103 - AUXILIAR</option>
+                                <option>CHOFER, AUTOMOVIL-4840</option>
+                                <option>SERENO-822</option>
+                                <option>DIRECTOR PRODUCCION Y OPERACIONES/RESTAURACION-4069 - AYUDANTE SUPERVISOR
+                                </option>
+                                <option>CONSERJE-4635</option>
+                                <option>VIGILANTE-327</option>
+                                <option>PRESIDENTE, EMPRESA-1343</option>
+                                <option>ALMACENISTA-5064 - PRODUCTOS TERMINADOS</option>
+                                <option>INGENIERO, SISTEMAS INFORMATICOS-3247</option>
+                                <option>GERENTE GENERAL, EMPRESA/INDUSTRIAS MANUFACTURERAS-3394</option>
+                            </select>
                             
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mt-3">
+                            <label for="tipo_contracto" >Contrato</label>
+                            <select name="tipo_contrato" id="tipo_contrato" class="form-control">
+                                <option value="" disabled>Tipo de contrato</option>
+                                <option value="Temporero">Temporero</option>
+                                <option value="Fijo">Fijo</option>
+                            </select>
                             
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-4">
-                                <label for="" >Referencias</label>
-                                <input type="text" name="sitios_cercanos" id="sitios_cercanos"
-                                     class="form-control">
-                               
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4 mt-3">
-                                <label for="" >Departamento</label>
-                                <select name="departamento" id="departamento" class="form-control">
-                                    <option value="" disabled>Departamento</option>
-                                    <option>ADMINISTRACION</option>
-                                    <option>VENTA</option>
-                                    <option>CORTE</option>
-                                    <option>PRODUCCION</option>
-                                    <option>ARTESANIA</option>
-                                    <option>TERMINACION</option>
-                                    <option>AlMACEN PRODUCTO TERMINADO</option>
-                                </select>
-                              
-                            </div>
-                            <div class="col-md-4 mt-3">
-                                <label for="cargo" >Cargo</label>
-                                <select name="cargo" id="cargo" class="form-control select2">
-                                    <option value="" disabled>Cargo</option>
-                                    <option>OPERARIO-1738 - OPERARIO</option>
-                                    <option>OPERARIO-1738 - COCER</option>
-                                    <option>OPERARIO-1738 - SUPERVISOR CALIDAD</option>
-                                    <option>OPERARIO-1738 - ENCARGADO ARTESANIA</option>
-                                    <option>OPERARIO-1738 - OPERARIO ARTESANIA</option>
-                                    <option>OPERARIO-1738 - PLANCHADORA</option>
-                                    <option>OPERARIO-1738 - ENCARGADO OPERACIONES</option>
-                                    <option>OPERARIO-1738 - MECANICO</option>
-                                    <option>OPERARIO-1738 - REVISORA CALIDAD</option>
-                                    <option>OPERARIO-1738 - CORTE</option>
-                                    <option>OPERARIO-1738 - AYUDANTE CORTE</option>
-                                    <option>OPERARIO-1738 - MUETRISTA</option>
-                                    <option>OPERARIO-1738 - ENCARGADO DE PONER ETIQUETAS</option>
-                                    <option>OPERARIO-1738 - LIMPIEZA DE HILOS</option>
-                                    <option>DISEÑADOR-4115 - DISEÑADOR</option>
-                                    <option>DISEÑADOR-4115 - PATRONISTA</option>
-                                    <option>VENDEDOR-219 - VENDEDORA</option>
-                                    <option>VENDEDOR-219 - PROMOTORA</option>
-                                    <option>CONTADOR-4374</option>
-                                    <option>AUXILIAR CONTADOR-5103 - AUXILIAR</option>
-                                    <option>CHOFER, AUTOMOVIL-4840</option>
-                                    <option>SERENO-822</option>
-                                    <option>DIRECTOR PRODUCCION Y OPERACIONES/RESTAURACION-4069 - AYUDANTE SUPERVISOR
-                                    </option>
-                                    <option>CONSERJE-4635</option>
-                                    <option>VIGILANTE-327</option>
-                                    <option>PRESIDENTE, EMPRESA-1343</option>
-                                    <option>ALMACENISTA-5064 - PRODUCTOS TERMINADOS</option>
-                                    <option>INGENIERO, SISTEMAS INFORMATICOS-3247</option>
-                                    <option>GERENTE GENERAL, EMPRESA/INDUSTRIAS MANUFACTURERAS-3394</option>
-                                </select>
-                               
-                            </div>
-                            <div class="col-md-4 mt-3">
-                                <label for="tipo_contracto" >Contrato</label>
-                                <select name="tipo_contrato" id="tipo_contrato" class="form-control">
-                                    <option value="" disabled>Tipo de contrato</option>
-                                    <option value="Temporero">Temporero</option>
-                                    <option value="Fijo">Fijo</option>
-                                </select>
-                               
-                            </div>
                         </div>
                     </div>
                     <div class="div" id="fila-bancaria">
