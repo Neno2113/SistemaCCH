@@ -404,8 +404,8 @@ $(document).ready(function() {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#fila-address").show();
-            $("#fila-bancaria").hide();
-            $("#fila-dependientes").hide();
+            $("#fila-bancaria").show();
+            $("#fila-dependientes").show();
             $('.collapse').collapse('hide');
         } else {
             $("#listadoUsers").show();

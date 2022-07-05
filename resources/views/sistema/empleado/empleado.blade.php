@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_1" >Telefono</label>
+                            <label for="telefono_1" >Teléfono</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -108,15 +108,12 @@
                             </select>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_2" >Celular</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                            <input type="text" id="telefono_2"  name="telefono_2"
-                                class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                           
-                            </div>
+                            <label for="estado_civil" >Estado Civil</label>
+                            <select name="estado_civil" id="estado_civil" class="form-control">
+                                <option value="" disabled>Estado Civil</option>
+                                <option>Casado@</option>
+                                <option>Solter@</option>
+                            </select>
                         </div>
                     </div>
 
