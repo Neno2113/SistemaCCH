@@ -110,7 +110,7 @@
                         <div class="col-md-4 mt-3">
                             <label for="estado_civil" >Estado Civil</label>
                             <select name="estado_civil" id="estado_civil" class="form-control">
-                                <option value="" disabled>Estado Civil</option>
+                                <option value="" disabled selected>Estado Civil</option>
                                 <option>Casado@</option>
                                 <option>Solter@</option>
                             </select>
