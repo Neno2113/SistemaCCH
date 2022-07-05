@@ -93,21 +93,6 @@
                     </div>
                     <div class="row" id="fila-detail-2">
                         <div class="col-md-4 mt-3">
-                            <label for="codigo">Codigo Empleado</label>
-                            <input type="text" name="codigo" id="codigo"  class="form-control">
-                        </div>
-                        <div class="col-md-4 mt-3">
-                            <label for="departamento" >Departamento</label>
-                            <select name="departamento" id="departamento" class="form-control">
-                                <option value="" disabled>Departamento</option>
-                                <option>Administrador</option>
-                                <option>Oficina</option>
-                                <option>Soporte</option>
-                                <option>Operario</option>
-                                <option>General</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mt-3">
                             <label for="estado_civil" >Estado Civil</label>
                             <select name="estado_civil" id="estado_civil" class="form-control">
                                 <option value="" disabled selected>Estado Civil</option>
@@ -115,16 +100,7 @@
                                 <option>Solter@</option>
                             </select>
                         </div>
-                    </div>
-
-                    <div class="" id="fila-address">
-                        <br>
-                        <br>
-                        <h5>Direccion</h5>
-                        <hr>
-
-                        <div class="row mt-3">
-                            <div class="col-md-4">
+                        <div class="col-md-4">
                                 <label for="" >Calle</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -183,6 +159,33 @@
                                 </select>
                                
                             </div>
+                    </div>
+
+                    <div class="" id="fila-address">
+                        <br>
+                        <br>
+                        <h5>Informacion Laboral</h5>
+                        <hr>
+
+                        <div class="col-md-4 mt-3">
+                            <label for="codigo">Codigo Empleado</label>
+                            <input type="text" name="codigo" id="codigo"  class="form-control">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="departamento" >Departamento</label>
+                            <select name="departamento" id="departamento" class="form-control">
+                                <option value="" disabled>Departamento</option>
+                                <option>Administrador</option>
+                                <option>Oficina</option>
+                                <option>Soporte</option>
+                                <option>Operario</option>
+                                <option>General</option>
+                            </select>
+                        </div>
+
+                        <div class="row mt-3">
+                            
+                            
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4">
