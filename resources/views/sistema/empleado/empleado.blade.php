@@ -87,10 +87,10 @@
                                 </div>
                             <input type="text" id="telefono_2"  name="telefono_2"
                                 class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                           
                             </div>
                         </div>
                     </div>
+
                     <div class="row" id="fila-detail-2">
                         <div class="col-md-4">
                             <label for="estado_civil" >Estado Civil</label>
@@ -100,65 +100,27 @@
                                 <option>Solter@</option>
                             </select>
                         </div>
-                            <div class="col-md-4">
-                                <label for="" >Calle</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                    </div>
-                                <input type="text" name="calle" placeholder="Calle" id="calle" class="form-control">
-                             
+                        <div class="col-md-4">
+                            <label for="" >Calle</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
+                            <input type="text" name="calle" placeholder="Calle" id="calle" class="form-control">
+                            
                             </div>
-                            <div class="col-md-4">
-                                <label for="" >Sector</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                    </div>
-                                <input type="text" name="sector" placeholder="Sector" id="sector" class="form-control">
-                              
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" >Sector</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 </div>
+                            <input type="text" name="sector" placeholder="Sector" id="sector" class="form-control">
+                            
                             </div>
-                            <div class="col-md-4">
-                                <label for="" >Provincia</label>
-                                <select name="provincia" id="provincia" class="form-control select2">
-                                    <option value="" disabled>Provincia</option>
-                                    <option>Santo Domingo</option>
-                                    <option>Distrito Nacional</option>
-                                    <option>Santiago</option>
-                                    <option>San Cristóbal</option>
-                                    <option>La Vega</option>
-                                    <option>Puerto Plata</option>
-                                    <option>San Pedro de Macorís</option>
-                                    <option>Duarte</option>
-                                    <option>La Altagracia</option>
-                                    <option>La Romana</option>
-                                    <option>San Juan</option>
-                                    <option>Espaillat</option>
-                                    <option>Azua</option>
-                                    <option>Barahona</option>
-                                    <option>Monte Plata</option>
-                                    <option>Peravia</option>
-                                    <option>Monseñor Nouel</option>
-                                    <option>Valverde</option>
-                                    <option>Sánchez Ramírez</option>
-                                    <option>María Trinidad Sánchez</option>
-                                    <option>Montecristi</option>
-                                    <option>Samaná</option>
-                                    <option>Bahoruco</option>
-                                    <option>Hermanas Mirabal</option>
-                                    <option>El Seibo</option>
-                                    <option>Hato Mayor</option>
-                                    <option>Dajabón</option>
-                                    <option>Elías Piña</option>
-                                    <option>San José de Ocoa</option>
-                                    <option>Santiago Rodríguez</option>
-                                    <option>Independencia</option>
-                                    <option>Pedernales</option>
-                                </select>
-                               
-                            </div>
+                        </div>
+                        
                     </div>
 
                     <div class="" id="fila-address">
