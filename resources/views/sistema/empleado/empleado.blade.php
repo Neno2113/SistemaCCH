@@ -160,12 +160,9 @@
                                 <option>Pedernales</option>
                             </select>  
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-4">
-                                <label for="" >Referencias</label>
-                                <input type="text" name="sitios_cercanos" id="sitios_cercanos"
-                                     class="form-control">
-                            </div>
+                        <div class="col-md-4">
+                            <label for="" >Referencias</label>
+                            <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
                         </div>
                     </div>
 
@@ -179,7 +176,7 @@
                             <label for="codigo">Codigo Empleado</label>
                             <input type="text" name="codigo" id="codigo"  class="form-control">
                         </div>   
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4">
                             <label for="" >Departamento</label>
                             <select name="departamento" id="departamento" class="form-control">
                                 <option value="" disabled>Departamento</option>
@@ -197,7 +194,7 @@
                                 
                             </select>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4">
                             <label for="cargo" >Cargo</label>
                             <select name="cargo" id="cargo" class="form-control select2">
                                 <option value="" disabled>Cargo</option>
@@ -236,7 +233,7 @@
                         </div>  
                     </div>
                     <div class="row">
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-4">
                             <label for="tipo_contracto" >Contrato</label>
                             <select name="tipo_contrato" id="tipo_contrato" class="form-control">
                                 <option value="" disabled>Tipo de contrato</option>
