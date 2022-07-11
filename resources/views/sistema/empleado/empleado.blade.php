@@ -176,7 +176,9 @@
                         <div class="col-md-4 mt-3">
                             <label for="codigo">Codigo Empleado</label>
                             <input type="text" name="codigo" id="codigo"  class="form-control">
-                        </div>   
+                        </div>  
+                    </div> 
+                    <div class="row"> 
                         <div class="col-md-4">
                             <label for="" >Departamento</label>
                             <select name="departamento" id="departamento" class="form-control">
@@ -246,6 +248,7 @@
                     <div class="div" id="fila-bancaria">
                         <br>
                         <br>
+                        <h5>Informacion Financiera</h5>
                         <hr>
                         <div class="row">
                             <div class="col-md-4">
@@ -284,7 +287,6 @@
                                     <option>Banco Caribe</option>
                                     <option>Banco Ademi</option>
                                     <option>Banco Promerica</option>
-
                                 </select>
                               
                             </div>
@@ -305,32 +307,14 @@
                     </div>
 
 
-                    <div class="row" id="fila-dependientes">
+                    <div class="" id="fila-dependientes">
                         <br>
                         <br>
+                        <h5>Informacion Dependientes</h5>
                         <hr>
-                        <div class="col-md-4 mt-4">
-                            <label for="autorizacion_credito_req">¿Tiene esposo/a?</label>
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary1" name="r1" value="1">
-                                    <label for="radioPrimary1">
-                                        Si
-                                    </label>
-                                </div>
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
-                                    <label for="radioPrimary2">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse mt-5" id="collapseExample">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="" >Nombre Esposo/a</label>
+                                <label for="" >Nombre esposo/a</label>
                                 <input type="text" name="nombre_esposa"  id="nombre_esposa"
                                     class="form-control">
                                
@@ -360,9 +344,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12 mt-4">
+                            <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
+                            <div class="form-group clearfix">
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary1" name="r1" value="1">
+                                    <label for="radioPrimary1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="icheck-primary d-inline">
+                                    <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
+                                    <label for="radioPrimary2">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse mt-5" id="collapseExample">
                         <div class="row">
                             <div class="col-md-2 mt-2">
-                                <label for="">Cantidad de hijos</label>
+                                <label for="">Cantidad de dependientes</label>
                                 <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
                                     class="form-control text-center"
                                     data-inputmask='"mask": "9"' data-mask>
@@ -374,7 +377,9 @@
                                 <thead class="text-center dependientes-encabezado">
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Asegurado</th>
+                                        <th>Parentesco</th>
+                                        <th>Edad</th>
+                                    <!--    <th>Asegurado</th> -->
                                     </tr>
                                 </thead>
                                 <tbody id="hijos" class="bg-white">

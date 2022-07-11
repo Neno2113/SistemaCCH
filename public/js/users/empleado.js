@@ -255,10 +255,12 @@ $(document).ready(function() {
             for (let i = 0; i < cantidad; i++) {
                 var fila =  "<tr >"+
                 "<td><input type='text' name='nombre_dependiente_"+[i]+"' id='nombre_dependiente_"+[i]+"' class='form-control'></td>"+
-                "<td class='text-center'><div class='custom-control custom-checkbox'>"+
-                "<input class='custom-control-input' type='checkbox' id='hijo_"+[i]+"' value='1' name='hijo_"+[i]+"'>"+
-                "<label for='hijo_"+[i]+"' class='custom-control-label'>Marcar si esta asegurado</label></div>"+
-                "</td>"+
+                "<td><input type='text' name='parentesco_dependiente_"+[i]+"' id='parentesco_dependiente_"+[i]+"' class='form-control'></td>"+
+                "<td><input type='number' name='edad_dependiente_"+[i]+"' id='edad_dependiente_"+[i]+"' class='form-control'></td>"+
+             //   "<td class='text-center'><div class='custom-control custom-checkbox'>"+
+             //   "<input class='custom-control-input' type='checkbox' id='hijo_"+[i]+"' value='1' name='hijo_"+[i]+"'>"+
+            //    "<label for='hijo_"+[i]+"' class='custom-control-label'>Marcar si esta asegurado</label></div>"+
+            //    "</td>"+
                 "</tr>";
 
                 $("#hijos").append(fila);
