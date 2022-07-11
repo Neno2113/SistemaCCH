@@ -344,7 +344,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-4">
+                        <div class="col-md-6 mt-4">
                             <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-primary d-inline">
@@ -361,17 +361,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="collapse mt-5" id="collapseExample">
-                        <div class="row">
-                            <div class="col-md-2 mt-2">
+                        <div class="col-md-3 mt-4" id="collapseExample">
                                 <label for="">Cantidad de dependientes</label>
                                 <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
                                     class="form-control text-center"
                                     data-inputmask='"mask": "9"' data-mask>
-                             
-                            </div>
                         </div>
+                    </div>
+                    <div class="collapse mt-5" id="collapseExample">
+                     <!--   <div class="row">
+                            
+                        </div>
+                    -->
                         <div class="row mt-4">
                             <table class="table tabla-dependientes">
                                 <thead class="text-center dependientes-encabezado">
