@@ -61,7 +61,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                          <!--   <a href="./employee" class="nav-link"> -->
-                            <a href="" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Empleados</p>
                             </a>
@@ -69,7 +69,7 @@
 
                         <li class="nav-item">
                          <!--    <a href="./user" class="nav-link"> -->
-                            <a href="" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Acceso</p>
                             </a>
