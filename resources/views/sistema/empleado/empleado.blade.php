@@ -344,29 +344,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mt-4">
-                            <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
-                            <div class="form-group clearfix">
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary1" name="r1" value="1">
-                                    <label for="radioPrimary1">
-                                        Si
-                                    </label>
-                                </div>
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
-                                    <label for="radioPrimary2">
-                                        No
-                                    </label>
+                        <div class="row">
+                            <div class="col-md-6 mt-4">
+                                <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary1" name="r1" value="1">
+                                        <label for="radioPrimary1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
+                                        <label for="radioPrimary2">
+                                            No
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 mt-4" id="collapseExample">
-                                <label for="">Cantidad de dependientes</label>
-                                <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
-                                    class="form-control text-center"
-                                    data-inputmask='"mask": "9"' data-mask>
-                        </div>
+                            <div class="col-md-3 mt-4" id="collapseExample">
+                                    <label for="">Cantidad de dependientes</label>
+                                    <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
+                                        class="form-control text-center"
+                                        data-inputmask='"mask": "9"' data-mask>
+                            </div>
+                        </div>  
                     </div>
                     <div class="collapse mt-5" id="collapseExample">
                      <!--   <div class="row">
