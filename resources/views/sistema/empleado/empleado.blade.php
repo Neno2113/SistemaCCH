@@ -171,7 +171,8 @@
                         <br>
                         <h5>Informacion Laboral</h5>
                         <hr>
-
+                    </div>
+                    <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="codigo">Codigo Empleado</label>
                             <input type="text" name="codigo" id="codigo"  class="form-control">
@@ -231,8 +232,7 @@
                             </select>
                             
                         </div>  
-                    </div>
-                    <div class="row">
+                    
                         <div class="col-md-4">
                             <label for="tipo_contracto" >Contrato</label>
                             <select name="tipo_contrato" id="tipo_contrato" class="form-control">
