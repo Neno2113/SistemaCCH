@@ -255,6 +255,7 @@ $(document).ready(function() {
             for (let i = 0; i < cantidad; i++) {
                 var fila =  "<tr >"+
                 "<td><input type='text' name='nombre_dependiente_"+[i]+"' id='nombre_dependiente_"+[i]+"' class='form-control'></td>"+
+                "<td><select name='parentesco_dependiente_"+[i]+"' id='parentesco_dependiente_"+[i]+"' class='form-control'><option value="" disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>"+
                 "<td><input type='text' name='parentesco_dependiente_"+[i]+"' id='parentesco_dependiente_"+[i]+"' class='form-control'></td>"+
                 "<td><input type='number' name='edad_dependiente_"+[i]+"' id='edad_dependiente_"+[i]+"' class='form-control'></td>"+
              //   "<td class='text-center'><div class='custom-control custom-checkbox'>"+

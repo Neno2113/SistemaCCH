@@ -258,7 +258,7 @@
                         </div>
                     </div>
 
-                    <div class="" id="fila-dependientes">
+                    <div class="" id="fila-refrencias">
                         <br>
                         <br>
                         <h5>Referencia Personal</h5>
@@ -271,13 +271,12 @@
                                
                             </div>
                             <div class="col-md-4">
-                                <label for="parentesco_ref1" >Parentesco Referencia 1</label>
+                            <label for="parentesco_ref" >Parentesco</label>
                                 <input type="text" name="parentesco_ref1"
                                     id="parentesco_ref1" class="form-control">
-                              
                             </div>
                             <div class="col-md-4">
-                                <label for="telefono_ref1" >Telefono Referencia 1</label>
+                                <label for="telefono_ref1" >teléfono</label>
                                 <input type="text" name="telefono_ref1"
                                     id="telefono_ref1" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
                                     data-mask>
@@ -292,44 +291,56 @@
                                
                             </div>
                             <div class="col-md-4">
-                                <label for="parentesco_ref2" >Parentesco Referencia 2</label>
+                                <label for="parentesco_ref2" >Parentesco</label>
                                 <input type="text" name="parentesco_ref2"
                                     id="parentesco_ref2" class="form-control">
                               
                             </div>
                             <div class="col-md-4">
-                                <label for="telefono_ref2" >Telefono Referencia 2</label>
+                                <label for="telefono_ref2" >teléfono</label>
                                 <input type="text" name="telefono_ref2"
                                     id="telefono_ref2" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
                                     data-mask>
                               
                             </div>
                         </div>
+                    </div>
+
+                    <div class="" id="fila-experiencias">
+                        <br>
+                        <br>
+                        <h5>Experencia Laboral</h5>
+                        <hr>
                         <div class="row">
-                            <div class="col-md-2 mt-4">
-                                <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary1" name="r1" value="1">
-                                        <label for="radioPrimary1">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
-                                        <label for="radioPrimary2">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 mt-4" id="collapseExample">
-                                    <label for="">Cantidad Dependientes</label>
-                                    <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
-                                        class="form-control text-center"
-                                        data-inputmask='"mask": "9"' data-mask>
-                            </div>
-                        </div>  
+                            <table class="table tabla-experiencia">
+                                <thead class="text-center experiencia-encabezado">
+                                    <tr>
+                                        <th>Cargo</th>
+                                        <th>Tiempo</th>
+                                        <th>Empresa</th>
+                                        <th>Supervisor</th>
+                                        <th>Teléfono</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="experiencia" class="bg-white">
+                                    <tr>
+                                        <td><input type='text' name="cargo_experiencia_1" id="cargo_experiencia_1" class='form-control'></td>
+                                        <td><input type='text' name="tiempo_experiencia_1" id="tiempo_experiencia_1" class='form-control'></td>
+                                        <td><input type='text' name="empresa_experiencia_1" id="empresa_experiencia_1" class='form-control'></td>
+                                        <td><input type='text' name="supervisor_experiencia_1" id="supervisor_experiencia_1" class='form-control'></td>
+                                        <td><input type='text' name="telefono_experiencia_1" id="telefono_experiencia_1" class='form-control'></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type='text' name="cargo_experiencia_2" id="cargo_experiencia_2" class='form-control'></td>
+                                        <td><input type='text' name="tiempo_experiencia_2" id="tiempo_experiencia_2" class='form-control'></td>
+                                        <td><input type='text' name="empresa_experiencia_2" id="empresa_experiencia_2" class='form-control'></td>
+                                        <td><input type='text' name="supervisor_experiencia_2" id="supervisor_experiencia_2" class='form-control'></td>
+                                        <td><input type='text' name="telefono_experiencia_2" id="telefono_experiencia_2" class='form-control'></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="" id="fila-laboral">
