@@ -311,7 +311,9 @@
                         <br>
                         <h5>Experencia Laboral</h5>
                         <hr>
-                        <div class="row">
+                    </div>
+                    <div class="collapse mt-5" id="collapseExample">
+                        <div class="row mt-4">
                             <table class="table tabla-experiencia">
                                 <thead class="text-center experiencia-encabezado">
                                     <tr>
@@ -342,6 +344,7 @@
                             </table>
                         </div>
                     </div>
+                    
 
                     <div class="" id="fila-laboral">
                         <br>
