@@ -179,20 +179,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-3">
                                 <label for="" >Nombre esposo/a</label>
                                 <input type="text" name="nombre_esposa"  id="nombre_esposa"
                                     class="form-control">
                                
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-3">
                                 <label for="" >Telefono esposo/a</label>
                                 <input type="text" name="telefono_esposa"
                                     id="telefono_esposa" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
                                     data-mask>
                               
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-3">
                                 <label for="autorizacion_credito_req">¿Esposa incluida en seguro?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
@@ -284,19 +284,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2">
                                 <label for="nombre_ref2" >Nombre Referencia 2</label>
                                 <input type="text" name="nombre_ref2"  id="nombre_ref2"
                                     class="form-control">
                                
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2">
                                 <label for="parentesco_ref2" >Parentesco</label>
                                 <input type="text" name="parentesco_ref2"
                                     id="parentesco_ref2" class="form-control">
                               
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2">
                                 <label for="telefono_ref2" >teléfono</label>
                                 <input type="text" name="telefono_ref2"
                                     id="telefono_ref2" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
