@@ -101,7 +101,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="" >Calle</label>
+                            <label for="calle" >Dirección</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
@@ -164,6 +164,172 @@
                             <label for="" >Referencias</label>
                             <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
                         </div>
+                    </div>
+
+                    <div class="" id="fila-dependientes">
+                        <br>
+                        <br>
+                        <h5>Informacion Personal</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="condicion_medica" >Condicion Medica (Que Ud. o algun familiar directo padezca)</label>
+                                <input type="text" name="condicion_medica"  id="condicion_medica"
+                                    class="form-control"> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="" >Nombre esposo/a</label>
+                                <input type="text" name="nombre_esposa"  id="nombre_esposa"
+                                    class="form-control">
+                               
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" >Telefono esposo/a</label>
+                                <input type="text" name="telefono_esposa"
+                                    id="telefono_esposa" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
+                                    data-mask>
+                              
+                            </div>
+                            <div class="col-md-4">
+                                <label for="autorizacion_credito_req">¿Esposa incluida en seguro?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary3" name="r2" value="1">
+                                        <label for="radioPrimary3">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary4" value="0" name="r2" checked>
+                                        <label for="radioPrimary4">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mt-4">
+                                <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary1" name="r1" value="1">
+                                        <label for="radioPrimary1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
+                                        <label for="radioPrimary2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-4" id="collapseExample">
+                                    <label for="">Cantidad Dependientes</label>
+                                    <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
+                                        class="form-control text-center"
+                                        data-inputmask='"mask": "9"' data-mask>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="collapse mt-5" id="collapseExample">
+                     <!--   <div class="row">
+                            
+                        </div>
+                    -->
+                        <div class="row mt-4">
+                            <table class="table tabla-dependientes">
+                                <thead class="text-center dependientes-encabezado">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Parentesco</th>
+                                        <th>Edad</th>
+                                    <!--    <th>Asegurado</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody id="hijos" class="bg-white">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="" id="fila-dependientes">
+                        <br>
+                        <br>
+                        <h5>Referencia Personal</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nombre_ref1" >Nombre Referencia 1</label>
+                                <input type="text" name="nombre_ref1"  id="nombre_ref1"
+                                    class="form-control">
+                               
+                            </div>
+                            <div class="col-md-4">
+                                <label for="parentesco_ref1" >Parentesco Referencia 1</label>
+                                <input type="text" name="parentesco_ref1"
+                                    id="parentesco_ref1" class="form-control">
+                              
+                            </div>
+                            <div class="col-md-4">
+                                <label for="telefono_ref1" >Telefono Referencia 1</label>
+                                <input type="text" name="telefono_ref1"
+                                    id="telefono_ref1" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
+                                    data-mask>
+                              
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nombre_ref2" >Nombre Referencia 2</label>
+                                <input type="text" name="nombre_ref2"  id="nombre_ref2"
+                                    class="form-control">
+                               
+                            </div>
+                            <div class="col-md-4">
+                                <label for="parentesco_ref2" >Parentesco Referencia 2</label>
+                                <input type="text" name="parentesco_ref2"
+                                    id="parentesco_ref2" class="form-control">
+                              
+                            </div>
+                            <div class="col-md-4">
+                                <label for="telefono_ref2" >Telefono Referencia 2</label>
+                                <input type="text" name="telefono_ref2"
+                                    id="telefono_ref2" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
+                                    data-mask>
+                              
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mt-4">
+                                <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
+                                <div class="form-group clearfix">
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary1" name="r1" value="1">
+                                        <label for="radioPrimary1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
+                                        <label for="radioPrimary2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-4" id="collapseExample">
+                                    <label for="">Cantidad Dependientes</label>
+                                    <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
+                                        class="form-control text-center"
+                                        data-inputmask='"mask": "9"' data-mask>
+                            </div>
+                        </div>  
                     </div>
 
                     <div class="" id="fila-laboral">
@@ -307,90 +473,7 @@
                     </div>
 
 
-                    <div class="" id="fila-dependientes">
-                        <br>
-                        <br>
-                        <h5>Informacion Dependientes</h5>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label for="" >Nombre esposo/a</label>
-                                <input type="text" name="nombre_esposa"  id="nombre_esposa"
-                                    class="form-control">
-                               
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" >Telefono esposo/a</label>
-                                <input type="text" name="telefono_esposa"
-                                    id="telefono_esposa" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
-                                    data-mask>
-                              
-                            </div>
-                            <div class="col-md-4">
-                                <label for="autorizacion_credito_req">¿Esposa incluida en seguro?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary3" name="r2" value="1">
-                                        <label for="radioPrimary3">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary4" value="0" name="r2" checked>
-                                        <label for="radioPrimary4">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mt-4">
-                                <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary1" name="r1" value="1">
-                                        <label for="radioPrimary1">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
-                                        <label for="radioPrimary2">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mt-4" id="collapseExample">
-                                    <label for="">Cantidad de dependientes</label>
-                                    <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
-                                        class="form-control text-center"
-                                        data-inputmask='"mask": "9"' data-mask>
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="collapse mt-5" id="collapseExample">
-                     <!--   <div class="row">
-                            
-                        </div>
-                    -->
-                        <div class="row mt-4">
-                            <table class="table tabla-dependientes">
-                                <thead class="text-center dependientes-encabezado">
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Parentesco</th>
-                                        <th>Edad</th>
-                                    <!--    <th>Asegurado</th> -->
-                                    </tr>
-                                </thead>
-                                <tbody id="hijos" class="bg-white">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    
 
 
             </div>
