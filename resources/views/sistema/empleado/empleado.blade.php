@@ -164,6 +164,16 @@
                             <label for="" >Referencias</label>
                             <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
                         </div>
+                        <div class="col-md-4">
+                            <label for="">Fecha de Ingreso</label>
+                            <input 
+                            type="date" 
+                            name="fecha_ingreso" 
+                            id="fecha_ingreso" 
+                            class="form-control"
+                            value="2000-01-01"    
+                        >
+                        </div>
                     </div>
 
                     <div class="" id="fila-dependientes">
@@ -172,7 +182,7 @@
                         <h5>Informacion Personal</h5>
                         <hr>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label for="condicion_medica" >Condicion Medica (Que Ud. o algun familiar directo padezca)</label>
                                 <input type="text" name="condicion_medica"  id="condicion_medica"
                                     class="form-control"> 
@@ -301,6 +311,52 @@
                                 <input type="text" name="telefono_ref2"
                                     id="telefono_ref2" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
                                     data-mask>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="" id="fila-academica">
+                        <br>
+                        <br>
+                        <h5>Formacion Academica</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="primaria" >Primaria</label>
+                                <input type="text" name="primaria"  id="primaria"
+                                    class="form-control">
+                               
+                            </div>
+                            <div class="col-md-4">
+                            <label for="bachiller" >Bachiller</label>
+                                <input type="text" name="bachiller"
+                                    id="bachiller" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="nivel-superior" >Nivel Superior</label>
+                                <input type="text" name="nivel-superior"
+                                    id="nivel-superior" class="form-control">
+                              
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mt-2">
+                                <label for="grado-titulo" >Grado y Titulo</label>
+                                <input type="text" name="grado-titulo"  id="grado-titulo"
+                                    class="form-control">
+                               
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <label for="especialidad" >Especialidad</label>
+                                <input type="text" name="especialidad"
+                                    id="especialidad" class="form-control">
+                              
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <label for="fecha-exp" >Fecha de Exp.</label>
+                                <input type="text" name="fecha-exp"
+                                    id="fecha-exp" class="form-control">
                               
                             </div>
                         </div>
