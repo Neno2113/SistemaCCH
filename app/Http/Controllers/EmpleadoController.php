@@ -125,10 +125,10 @@ class EmpleadoController extends Controller
             $user->email = $email;
             $user->codigo = $codigo;
             $user->password = $pwd;
-            $user->role = $role;
-            $user->direccion = $direccion;
-            $user->telefono = $telefono;
-            $user->celular = $celular;
+            $user->role = $departamento;
+            $user->direccion = $calle;
+            $user->telefono = $telefono_1;
+            $user->celular = $telefono_2;
             $user->surname = $apellido;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->first_login = 0;
@@ -139,6 +139,7 @@ class EmpleadoController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
+                'user' => $user,
                 'empleado' => $empleado
             ];
         }
