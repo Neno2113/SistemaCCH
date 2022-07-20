@@ -7,6 +7,8 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Empleado;
 use App\EmpleadoDetalle;
 use App\PermisoUsuario;
+//cristobal
+use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +21,10 @@ class EmpleadoController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
-            'telefono_1' => 'required',
-            'email' => 'required|email|unique:empleado',
+            'telefono_2' => 'required',
+            'email' => 'email|unique:empleado',
             'cargo' => 'required',
-            'departamento' => 'required',
-            'calle' => 'required',
-            'sector' => 'required',
-            'provincia' => 'required'
+
         ]);
 
         if (empty($validar)) {
@@ -44,13 +43,61 @@ class EmpleadoController extends Controller
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
-            $cargo = $request->input('cargo');
-            $departamento = $request->input('departamento');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
+            $estado_civil = $request->input('estado_civil');
+            $referencia = $request->input('referencia');
+
+            
+            $fecha_ingreso = $request->input('fecha_ingreso');
+            $condicion_medica = $request->input('condicion_medica');
+            $nombre_esposa = $request->input('nombre_esposa');
+            $telefono_esposa = $request->input('telefono_esposa');
+            $esposa_asegurada_si = $request->input('esposa_asegurada_si');
+            $esposa_asegurada_no = $request->input('esposa_asegurada_no');
+            $cantidad_dependientes = $request->input('cantidad_dependientes');
+
+            for ($i=0; $i < $cantidad_dependientes; $i++) { 
+                $nombre_dependiente_[$i] = $request->input('nombre_dependiente_'.[$i]);
+                $parentesco_dependiente_[$i] = $request->input('parentesco_dependiente_'.[$i]);
+                $edad_dependiente_[$i] = $request->input('edad_dependiente_'.[$i]);
+            }
+            
+            $nombre_ref1 = $request->input('nombre_ref1');
+            $parentesco_ref1 = $request->input('parentesco_ref1');
+            $telefono_ref1 = $request->input('telefono_ref1');
+            $nombre_ref2 = $request->input('nombre_ref2');
+            $parentesco_ref2 = $request->input('parentesco_ref2');
+            $telefono_ref2 = $request->input('telefono_ref2');
+            $primaria = $request->input('primaria');
+            $bachiller = $request->input('bachiller');
+            $nivel_superior = $request->input('nivel_superior');
+            $grado_titulo = $request->input('grado_titulo');
+            $especialidad = $request->input('especialidad');
+            $fecha_exp = $request->input('fecha_exp');
+            $cargo_experiencia_1 = $request->input('cargo_experiencia_1');
+            $cargo_experiencia_2 = $request->input('cargo_experiencia_2');
+            $tiempo_experiencia_1 = $request->input('tiempo_experiencia_1');
+            $tiempo_experiencia_2 = $request->input('tiempo_experiencia_2');
+            $empresa_experiencia_1 = $request->input('empresa_experiencia_1');
+            $empresa_experiencia_2 = $request->input('empresa_experiencia_2');
+            $supervisor_experiencia_1 = $request->input('supervisor_experiencia_1');
+            $supervisor_experiencia_2 = $request->input('supervisor_experiencia_2');
+            $telefono_experiencia_1 = $request->input('telefono_experiencia_1');
+            $telefono_experiencia_2 = $request->input('telefono_experiencia_2');
+
+            $codigo = $request->input('codigo');
+            $cargo = $request->input('cargo');
+            $departamento = $request->input('departamento');
             $tipo_contrato = $request->input('tipo_contrato');
+            $forma_pago = $request->input('forma_pago');
+            $sueldo = $request->input('sueldo');
+            $valor_hora = $request->input('valor_hora');
+            $banco_tarjeta_cobro = $request->input('banco_tarjeta_cobro');
+            $no_cuenta = $request->input('no_cuenta');
+            $nss = $request->input('nss');
 
 
             $empleado = new Empleado();
@@ -69,8 +116,25 @@ class EmpleadoController extends Controller
             $empleado->email = $email;
             $empleado->tipo_contrato = $tipo_contrato;
 
-
             $empleado->save();
+
+            $pwd = Hash::make($cedula);
+
+            $user = new User();
+            $user->name = $nombre;
+            $user->email = $email;
+            $user->codigo = $codigo;
+            $user->password = $pwd;
+            $user->role = $role;
+            $user->direccion = $direccion;
+            $user->telefono = $telefono;
+            $user->celular = $celular;
+            $user->surname = $apellido;
+            $user->fecha_nacimiento = $fecha_nacimiento;
+            $user->first_login = 0;
+            $user->avatar = $avatar;
+
+            $user->save();
 
             $data = [
                 'code' => 200,

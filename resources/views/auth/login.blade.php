@@ -41,7 +41,7 @@
 
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input id="email" type="email" placeholder="Email"
+                                    <input id="email" type="text" placeholder="Email o Codigo"
                                         class="form-control @error('email')  is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     <div class="input-group-append">

@@ -334,16 +334,16 @@
                                     id="bachiller" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <label for="nivel-superior" >Nivel Superior</label>
-                                <input type="text" name="nivel-superior"
-                                    id="nivel-superior" class="form-control">
+                                <label for="nivel_superior" >Nivel Superior</label>
+                                <input type="text" name="nivel_superior"
+                                    id="nivel_superior" class="form-control">
                               
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 mt-2">
-                                <label for="grado-titulo" >Grado y Titulo</label>
-                                <input type="text" name="grado-titulo"  id="grado-titulo"
+                                <label for="grado_titulo" >Grado y Titulo</label>
+                                <input type="text" name="grado_titulo"  id="grado_titulo"
                                     class="form-control">
                                
                             </div>
@@ -354,8 +354,8 @@
                               
                             </div>
                             <div class="col-md-4 mt-2">
-                                <label for="fecha-exp" >Fecha de Exp.</label>
-                                <input type="text" name="fecha-exp"
+                                <label for="fecha_exp" >Fecha de Exp.</label>
+                                <input type="text" name="fecha_exp"
                                     id="fecha-exp" class="form-control">
                               
                             </div>
