@@ -110,8 +110,7 @@ $(document).ready(function() {
         $("#nombre_dependiente_4").val("").attr('readonly', false);
         $("#nombre_dependiente_5").val("").attr('readonly', false);
         $("#nombre_dependiente_6").val("").attr('readonly', false);
-        $("#nombre_dependiente_7").val("").attr('readonly', false);
-        $("#nombre_dependiente_1").val("").attr('readonly', false);
+        $("#nombre_dependiente_0").val("").attr('readonly', false);
 
 
     }
