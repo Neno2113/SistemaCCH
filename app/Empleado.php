@@ -9,7 +9,7 @@ class Empleado extends Model
     protected $table = 'empleado';
 
     protected $fillable = [
-        'id', 'nombre', 'apellido', 'calle', 'sector', 'provincia', 'sitios_cercanos', 'telefono_1',
+        'id', 'user_id', 'nombre', 'apellido', 'calle', 'sector', 'provincia', 'sitios_cercanos', 'telefono_1',
         'telefono_2', 'email', 'cedula', 'departamento', 'casado', 'cargo', 
        // 'fecha_contratacion',
       //  'fecha_termino_contrato', 'tipo_contrato', 'forma_pago', 'sueldo', 'valor_hora', 'banco_tarjeta_cobro',
@@ -17,6 +17,11 @@ class Empleado extends Model
      //   'esposa_asegurada_si','esposa_asegurada_no', 'cantidad_dependientes','nombre_dependiente_0',
      //   'parentesco_dependiente_0','edad_dependiente_0','nombre_dependiente_1'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }
 
 /*

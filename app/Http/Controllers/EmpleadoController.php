@@ -8,7 +8,7 @@ use App\Empleado;
 use App\EmpleadoDetalle;
 use App\PermisoUsuario;
 //cristobal
-// use App\User;
+ use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
@@ -89,7 +89,7 @@ class EmpleadoController extends Controller
             $telefono_experiencia_1 = $request->input('telefono_experiencia_1');
             $telefono_experiencia_2 = $request->input('telefono_experiencia_2');
 
-            $codigo = $request->input('codigo');
+            
             
             
             $tipo_contrato = $request->input('tipo_contrato');
@@ -100,10 +100,32 @@ class EmpleadoController extends Controller
             $no_cuenta = $request->input('no_cuenta');
             $nss = $request->input('nss');
             */
+            $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
 
+            $pwd = Hash::make($cedula);
+
+            $user = new User();
+            $user->name = $nombre;
+            $user->email = $email;
+            $user->codigo = $codigo;
+            $user->password = $pwd;
+            $user->role = $departamento;
+            $user->direccion = $calle;
+            $user->telefono = $telefono_1;
+            $user->celular = $telefono_2;
+            $user->surname = $apellido;
+            $user->fecha_nacimiento = $fecha_nacimiento;
+            $user->first_login = 0;
+            $user->avatar = $avatar;
+
+            $user->save();
+
+            $user_id = $user->id;
+
             $empleado = new Empleado();
+            $empleado->user_id = $user_id;
             $empleado->nombre = $nombre;
             $empleado->apellido = $apellido;
             $empleado->calle = $calle;
@@ -121,28 +143,12 @@ class EmpleadoController extends Controller
 
             $empleado->save();
 
-            $pwd = Hash::make($cedula);
-/*
-            $user = new User();
-            $user->name = $nombre;
-            $user->email = $email;
-            $user->codigo = $codigo;
-            $user->password = $pwd;
-            $user->role = $departamento;
-            $user->direccion = $calle;
-            $user->telefono = $telefono_1;
-            $user->celular = $telefono_2;
-            $user->surname = $apellido;
-            $user->fecha_nacimiento = $fecha_nacimiento;
-            $user->first_login = 0;
-            $user->avatar = $avatar;
+            
 
-            $user->save();
-*/
             $data = [
                 'code' => 200,
                 'status' => 'success',
-            //    'user' => $user,
+                'user' => $user,
                 'empleado' => $empleado
             ];
         }
