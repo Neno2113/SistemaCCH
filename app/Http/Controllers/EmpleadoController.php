@@ -23,7 +23,7 @@ class EmpleadoController extends Controller
             'cedula' => 'required|unique:empleado',
             'telefono_2' => 'required',
             'email' => 'email|unique:empleado',
-        //    'cargo' => 'required',
+            'cargo' => 'required',
 
         ]);
 
