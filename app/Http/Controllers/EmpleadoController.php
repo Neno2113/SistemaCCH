@@ -139,7 +139,7 @@ class EmpleadoController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'user' => $user,
+            //    'user' => $user,
                 'empleado' => $empleado
             ];
         }
