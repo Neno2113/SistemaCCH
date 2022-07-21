@@ -38,13 +38,13 @@ class EmpleadoController extends Controller
 
             $nombre = $request->input('nombre');
             $apellido = $request->input('apellido');
-            $calle = $request->input('calle', true);
+        //    $calle = $request->input('calle', true);
             $sector = $request->input('sector');
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
-            $telefono_1 = $request->input('telefono_1');
+        //    $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
             /*
@@ -111,14 +111,14 @@ class EmpleadoController extends Controller
             $user->email = $email;
             $user->codigo = $codigo;
             $user->password = $pwd;
-            $user->role = $departamento;
-            $user->direccion = $calle;
-            $user->telefono = $telefono_1;
+        //    $user->role = $departamento;
+        //    $user->direccion = $calle;
+        //    $user->telefono = $telefono_1;
             $user->celular = $telefono_2;
             $user->surname = $apellido;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->first_login = 0;
-            $user->avatar = $avatar;
+        //    $user->avatar = $avatar;
 
             $user->save();
 /*
