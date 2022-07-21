@@ -8,7 +8,7 @@ use App\Empleado;
 use App\EmpleadoDetalle;
 use App\PermisoUsuario;
 //cristobal
-use App\User;
+// use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
@@ -119,7 +119,7 @@ class EmpleadoController extends Controller
             $empleado->save();
 
             $pwd = Hash::make($cedula);
-
+/*
             $user = new User();
             $user->name = $nombre;
             $user->email = $email;
@@ -135,7 +135,7 @@ class EmpleadoController extends Controller
             $user->avatar = $avatar;
 
             $user->save();
-
+*/
             $data = [
                 'code' => 200,
                 'status' => 'success',
