@@ -23,7 +23,7 @@ class EmpleadoController extends Controller
             'cedula' => 'required|unique:empleado',
             'telefono_2' => 'required',
             'email' => 'email|unique:empleado',
-            'cargo' => 'required',
+        //    'cargo' => 'required',
 
         ]);
 
@@ -47,6 +47,7 @@ class EmpleadoController extends Controller
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
+            /*
             $estado_civil = $request->input('estado_civil');
             $referencia = $request->input('referencia');
 
@@ -89,8 +90,8 @@ class EmpleadoController extends Controller
             $telefono_experiencia_2 = $request->input('telefono_experiencia_2');
 
             $codigo = $request->input('codigo');
-            $cargo = $request->input('cargo');
-            $departamento = $request->input('departamento');
+            
+            
             $tipo_contrato = $request->input('tipo_contrato');
             $forma_pago = $request->input('forma_pago');
             $sueldo = $request->input('sueldo');
@@ -98,7 +99,9 @@ class EmpleadoController extends Controller
             $banco_tarjeta_cobro = $request->input('banco_tarjeta_cobro');
             $no_cuenta = $request->input('no_cuenta');
             $nss = $request->input('nss');
-
+            */
+            $cargo = $request->input('cargo');
+            $departamento = $request->input('departamento');
 
             $empleado = new Empleado();
             $empleado->nombre = $nombre;
@@ -114,7 +117,7 @@ class EmpleadoController extends Controller
             $empleado->telefono_1 = $telefono_1;
             $empleado->telefono_2 = $telefono_2;
             $empleado->email = $email;
-            $empleado->tipo_contrato = $tipo_contrato;
+        //    $empleado->tipo_contrato = $tipo_contrato;
 
             $empleado->save();
 

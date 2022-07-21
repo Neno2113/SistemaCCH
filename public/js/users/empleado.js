@@ -129,7 +129,8 @@ $(document).ready(function() {
             cedula: $("#cedula").val(),
             telefono_1: $("#telefono_1").val(),
             telefono_2: $("#telefono_2").val(),
-            email: $("#email").val(),
+            email: $("#email").val()
+            /*
             estado_civil: $("#estado_civil").val(),
             referencia: $("#referencia").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
@@ -191,7 +192,7 @@ $(document).ready(function() {
             valor_hora: $("#valor_hora").val(),
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
-            nss: $("#nss").val()
+            nss: $("#nss").val() */
 
         };
 
@@ -220,13 +221,12 @@ $(document).ready(function() {
             error: function(datos) {
                 console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
-/*
                 Object.entries(errores).forEach(([key, val]) => {
                     bootbox.alert({
                         message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
                         size: 'small'
                     }); 
-                }); */
+                }); 
             }
         });
 
