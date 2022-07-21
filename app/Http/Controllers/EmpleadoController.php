@@ -111,17 +111,17 @@ class EmpleadoController extends Controller
             $user->email = $email;
             $user->codigo = $codigo;
             $user->password = $pwd;
-            $user->role = $departamento;
-            $user->direccion = $calle;
-            $user->telefono = $telefono_1;
-            $user->celular = $telefono_2;
-            $user->surname = $apellido;
-            $user->fecha_nacimiento = $fecha_nacimiento;
-            $user->first_login = 0;
-            $user->avatar = $avatar;
+        //    $user->role = $departamento;
+        //    $user->direccion = $calle;
+        //    $user->telefono = $telefono_1;
+        //    $user->celular = $telefono_2;
+        //    $user->surname = $apellido;
+        //    $user->fecha_nacimiento = $fecha_nacimiento;
+        //    $user->first_login = 0;
+        //    $user->avatar = $avatar;
 
             $user->save();
-            $user_id = $user->id;
+/*            $user_id = $user->id;
 
             $empleado = new Empleado();
             $empleado->user_id = $user_id;
@@ -143,7 +143,7 @@ class EmpleadoController extends Controller
 
             $empleado->save();
 
-            
+  */          
 
             $data = [
                 'code' => 200,
