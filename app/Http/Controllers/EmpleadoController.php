@@ -7,7 +7,9 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Empleado;
 use App\EmpleadoDetalle;
 use App\PermisoUsuario;
+
 //cristobal
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
