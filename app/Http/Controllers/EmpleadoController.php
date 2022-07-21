@@ -103,7 +103,7 @@ class EmpleadoController extends Controller
             $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
-/*
+
             $pwd = Hash::make($cedula);
 
             $user = new User();
@@ -121,11 +121,10 @@ class EmpleadoController extends Controller
             $user->avatar = $avatar;
 
             $user->save();
-
             $user_id = $user->id;
-*/
+
             $empleado = new Empleado();
-            $empleado->user_id = 39;
+            $empleado->user_id = $user_id;
             $empleado->nombre = $nombre;
             $empleado->codigo = $codigo;
             $empleado->apellido = $apellido;
