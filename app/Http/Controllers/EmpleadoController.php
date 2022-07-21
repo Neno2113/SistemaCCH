@@ -122,7 +122,7 @@ class EmpleadoController extends Controller
         //    $user->first_login = 0;
         //    $user->avatar = $avatar;
 
- //           $user->save();
+               $user->save();
 /*            $user_id = $user->id;
 
             $empleado = new Empleado();
