@@ -38,13 +38,13 @@ class EmpleadoController extends Controller
             ];
         } else {
 
-            $nombre = $request->input('nombre');
-            $apellido = $request->input('apellido');
+            $nombre = $request->input('nombre', true);
+            $apellido = $request->input('apellido', true);
             $calle = $request->input('calle', true);
             $sector = $request->input('sector');
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
-            $cedula = $request->input('cedula');
+            $cedula = $request->input('cedula', true);
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
@@ -104,7 +104,7 @@ class EmpleadoController extends Controller
             */
             $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
-            $departamento = $request->input('departamento');
+            $departamento = $request->input('departamento', true);
 
             $pwd = Hash::make($cedula);
 
@@ -122,7 +122,7 @@ class EmpleadoController extends Controller
         //    $user->first_login = 0;
         //    $user->avatar = $avatar;
 
-            $user->save();
+ //           $user->save();
 /*            $user_id = $user->id;
 
             $empleado = new Empleado();
