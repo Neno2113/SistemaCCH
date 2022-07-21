@@ -38,13 +38,13 @@ class EmpleadoController extends Controller
 
             $nombre = $request->input('nombre');
             $apellido = $request->input('apellido');
-        //    $calle = $request->input('calle', true);
+            $calle = $request->input('calle', true);
             $sector = $request->input('sector');
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
-        //    $telefono_1 = $request->input('telefono_1');
+            $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
             /*
