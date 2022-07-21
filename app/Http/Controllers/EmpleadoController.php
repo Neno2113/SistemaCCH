@@ -8,7 +8,7 @@ use App\Empleado;
 use App\EmpleadoDetalle;
 use App\PermisoUsuario;
 //cristobal
- use App\User;
+use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
@@ -127,6 +127,7 @@ class EmpleadoController extends Controller
             $empleado = new Empleado();
             $empleado->user_id = $user_id;
             $empleado->nombre = $nombre;
+            $empleado->codigo = $codigo;
             $empleado->apellido = $apellido;
             $empleado->calle = $calle;
             $empleado->sector = $sector;

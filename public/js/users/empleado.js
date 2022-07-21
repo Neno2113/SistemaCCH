@@ -219,6 +219,7 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
+                console.log(datos.status);
                 console.log(datos.responseJSON.errors);
                 let errores = datos.responseJSON.errors;
                 Object.entries(errores).forEach(([key, val]) => {
