@@ -225,8 +225,8 @@ $(document).ready(function() {
                     bootbox.alert({
                         message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
                         size: 'small'
-                    }); */
-                });
+                    }); 
+                }); */
             }
         });
 
