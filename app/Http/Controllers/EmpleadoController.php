@@ -126,7 +126,7 @@ class EmpleadoController extends Controller
 */
 
             $empleado = new Empleado();
-            $empleado->user_id = "39";
+            $empleado->user_id = 39;
             $empleado->nombre = $nombre;
             $empleado->codigo = $codigo;
             $empleado->apellido = $apellido;
@@ -145,7 +145,7 @@ class EmpleadoController extends Controller
 
             $empleado->save();
 
-      */      
+            
 
             $data = [
                 'code' => 200,
