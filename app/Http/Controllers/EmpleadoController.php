@@ -44,7 +44,7 @@ class EmpleadoController extends Controller
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
-            $telefono_1 = $request->input('telefono_1');
+        //    $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
             /*
@@ -124,7 +124,6 @@ class EmpleadoController extends Controller
 
             $user_id = $user->id;
 */
-
             $empleado = new Empleado();
             $empleado->user_id = 39;
             $empleado->nombre = $nombre;
@@ -150,8 +149,8 @@ class EmpleadoController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'user' => $user
-             //   'empleado' => $empleado
+            //    'user' => $user,
+                'empleado' => $empleado
             ];
         }
 
