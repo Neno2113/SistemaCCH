@@ -129,8 +129,8 @@ class EmpleadoController extends Controller
         //    $user->first_login = 0;
         //    $user->avatar = $avatar;
 
-               $user->save();
-/*            $user_id = $user->id;
+            $user->save();
+            $user_id = $user->id;
 
             $empleado = new Empleado();
             $empleado->user_id = $user_id;
@@ -151,14 +151,13 @@ class EmpleadoController extends Controller
         //    $empleado->tipo_contrato = $tipo_contrato;
 
             $empleado->save();
-
-  */          
+        
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'user' => $user,
-            //    'empleado' => $empleado
+                'empleado' => $empleado
             ];
         }
 
