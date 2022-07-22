@@ -129,7 +129,8 @@ $(document).ready(function() {
             cedula: $("#cedula").val(),
             telefono_1: $("#telefono_1").val(),
             telefono_2: $("#telefono_2").val(),
-            email: $("#email").val()
+            email: $("#email").val(),
+            codigo: $("#codigo").val(),
             /*
             estado_civil: $("#estado_civil").val(),
             referencia: $("#referencia").val(),
@@ -183,7 +184,7 @@ $(document).ready(function() {
             supervisor_experiencia_2: $("#supervisor_experiencia_2").val(),
             telefono_experiencia_1: $("#telefono_experiencia_1").val(),
             telefono_experiencia_2: $("#telefono_experiencia_2").val(),
-            codigo: $("#codigo").val(),
+            */
             departamento: $("#departamento").val(),
             cargo: $("#cargo").val(),
             tipo_contrato: $("#tipo_contrato").val(),
@@ -192,7 +193,7 @@ $(document).ready(function() {
             valor_hora: $("#valor_hora").val(),
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
-            nss: $("#nss").val() */
+            nss: $("#nss").val() 
 
         };
 

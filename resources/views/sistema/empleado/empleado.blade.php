@@ -37,7 +37,7 @@
                           
                         </div>
                         <div class="col-md-3">
-                            <label for="rnc" >Identificacion</label>
+                            <label for="cedula" >Identificacion</label>
                             <input type="text" name="cedula" id="cedula" 
                                 class="form-control text-center" data-inputmask='"mask": "999-9999999-9"' data-mask>
                             
@@ -190,13 +190,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 mt-3">
-                                <label for="" >Nombre esposo/a</label>
+                                <label for="nombre_esposa" >Nombre esposo/a</label>
                                 <input type="text" name="nombre_esposa"  id="nombre_esposa"
                                     class="form-control">
                                
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="" >Telefono esposo/a</label>
+                                <label for="telefono_esposa" >Telefono esposo/a</label>
                                 <input type="text" name="telefono_esposa"
                                     id="telefono_esposa" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
                                     data-mask>
@@ -416,7 +416,7 @@
                     </div> 
                     <div class="row"> 
                         <div class="col-md-4">
-                            <label for="" >Departamento</label>
+                            <label for="departamento" >Departamento</label>
                             <select name="departamento" id="departamento" class="form-control">
                                 <option value="" disabled>Departamento</option>
                                 <option>ADMINISTRACION</option>
@@ -511,7 +511,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 mt-3">
-                                <label for="" >Banco</label>
+                                <label for="banco_tarjeta_cobro" >Banco</label>
                                 <select name="banco_tarjeta_cobro" id="banco_tarjeta_cobro"
                                     class="form-control select2">
                                     <option disabled>Banco tarjeta cobro</option>
@@ -528,13 +528,13 @@
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label for="" >No. de cuenta</label>
+                                <label for="no_cuenta" >No. de cuenta</label>
                                 <input type="text" name="no_cuenta" placeholder="No. de cuenta" id="no_cuenta"
                                     class="form-control">
                                
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="" >No. Seguridad social</label>
+                                <label for="nss" >No. Seguridad social</label>
                                 <input type="text" name="nss" id="nss"
                                     class="form-control text-center" data-inputmask='"mask": "999999999[9[9]]"' data-mask>
                               
