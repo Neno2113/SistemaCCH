@@ -14,6 +14,11 @@ use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Http\Response;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+
 class EmpleadoController extends Controller
 {
     public function store(Request $request)
@@ -37,18 +42,19 @@ class EmpleadoController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-
-            $nombre = $request->input('nombre', true);
-            $apellido = $request->input('apellido', true);
-            $calle = $request->input('calle', true);
+/*
+            $nombre = $request->input('nombre');
+            $apellido = $request->input('apellido');
+            $calle = $request->input('calle');
             $sector = $request->input('sector');
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
-            $cedula = $request->input('cedula', true);
+            $cedula = $request->input('cedula');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
+            */
             /*
             $estado_civil = $request->input('estado_civil');
             $referencia = $request->input('referencia');
@@ -102,17 +108,22 @@ class EmpleadoController extends Controller
             $no_cuenta = $request->input('no_cuenta');
             $nss = $request->input('nss');
             */
-            $codigo = $request->input('codigo');
-            $cargo = $request->input('cargo');
-            $departamento = $request->input('departamento', true);
+   //         $codigo = $request->input('codigo');
+    //        $cargo = $request->input('cargo');
+    //        $departamento = $request->input('departamento');
 
-            $pwd = Hash::make($cedula);
+     //       $pwd = Hash::make($cedula);
 
             $user = new User();
-            $user->name = $nombre;
-            $user->email = $email;
-            $user->codigo = $codigo;
-            $user->password = $pwd;
+    //        $user->name = $nombre;
+    //        $user->email = $email;
+    //        $user->codigo = $codigo;
+    //        $user->password = $pwd;
+            $user->name = 'carlangas';
+            $user->surname = 'carlans';
+            $user->email = 'carl@gmail.com';
+            $user->codigo = 'co11';
+            $user->password = '123';
         //    $user->role = $departamento;
         //    $user->direccion = $calle;
         //    $user->telefono = $telefono_1;
@@ -150,8 +161,8 @@ class EmpleadoController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-            //    'user' => $user,
-                'empleado' => $empleado
+                'user' => $user,
+            //    'empleado' => $empleado
             ];
         }
 
