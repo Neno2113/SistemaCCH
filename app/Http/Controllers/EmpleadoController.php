@@ -115,14 +115,11 @@ class EmpleadoController extends Controller
             $pwd = Hash::make($cedula);
 
             $user = new User();
-    //        $user->name = $nombre;
-    //        $user->email = $email;
-    //        $user->codigo = $codigo;
+            $user->name = $nombre;
+            $user->surname = $apellido;
+            $user->email = $email;
+            $user->codigo = $codigo;
     //        $user->password = $pwd;
-            $user->name = 'carlangas';
-            $user->surname = 'carlans';
-            $user->email = 'carl@gmail.com';
-            $user->codigo = 'co11';
             $user->password = '123';
         //    $user->role = $departamento;
         //    $user->direccion = $calle;
