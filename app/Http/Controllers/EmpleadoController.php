@@ -119,8 +119,7 @@ class EmpleadoController extends Controller
             $user->surname = $apellido;
             $user->email = $email;
             $user->codigo = $codigo;
-    //        $user->password = $pwd;
-            $user->password = '123';
+            $user->password = $pwd;
         //    $user->role = $departamento;
         //    $user->direccion = $calle;
         //    $user->telefono = $telefono_1;
