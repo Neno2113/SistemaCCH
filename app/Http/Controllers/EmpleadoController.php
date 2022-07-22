@@ -42,7 +42,7 @@ class EmpleadoController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-/*
+
             $nombre = $request->input('nombre');
             $apellido = $request->input('apellido');
             $calle = $request->input('calle');
@@ -54,7 +54,7 @@ class EmpleadoController extends Controller
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
-            */
+            
             /*
             $estado_civil = $request->input('estado_civil');
             $referencia = $request->input('referencia');
@@ -108,11 +108,11 @@ class EmpleadoController extends Controller
             $no_cuenta = $request->input('no_cuenta');
             $nss = $request->input('nss');
             */
-   //         $codigo = $request->input('codigo');
-    //        $cargo = $request->input('cargo');
-    //        $departamento = $request->input('departamento');
+            $codigo = $request->input('codigo');
+            $cargo = $request->input('cargo');
+            $departamento = $request->input('departamento');
 
-     //       $pwd = Hash::make($cedula);
+            $pwd = Hash::make($cedula);
 
             $user = new User();
     //        $user->name = $nombre;
