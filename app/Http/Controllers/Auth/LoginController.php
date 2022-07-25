@@ -56,7 +56,8 @@ class LoginController extends Controller
         $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'codigo';
         if(auth()->attempt(array($fieldType => $input['email'], 'password' => $input['password'])))
         {
-            return redirect()->route('/home');
+         //   return redirect()->route('/home');
+            return redirect('/home');
         }else{
             return redirect()->route('login')
                 ->with('error','Email-Address And Password Are Wrong.');
