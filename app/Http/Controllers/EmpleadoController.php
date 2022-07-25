@@ -108,7 +108,7 @@ class EmpleadoController extends Controller
             $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
-/*
+
             $pwd = Hash::make($password);
 
             $user = new User();
@@ -122,14 +122,14 @@ class EmpleadoController extends Controller
             $user->celular = $telefono_2;
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
-            $user->first_login = 1;
+//            $user->first_login = 1;
             $user->avatar = $avatar;
 
             $user->save();
             $user_id = $user->id;
-*/
+
             $empleado = new Empleado();
-            $empleado->user_id = 37;
+            $empleado->user_id = $user_id;
             $empleado->nombre = $nombre;
             $empleado->apellido = $apellido;
             $empleado->codigo = $codigo;
@@ -162,7 +162,7 @@ class EmpleadoController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-//                'user' => $user,
+                'user' => $user,
                 'empleado' => $empleado
             ];
         }
