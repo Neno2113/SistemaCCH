@@ -26,12 +26,12 @@
                         <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-3">
 
-                            <label for="nombre" >Nombre</label>
+                            <label for="nombre" >Nombre *</label>
                             <input type="text" name="nombre" id="nombre"  class="form-control">
                          
                         </div>
                         <div class="col-md-3">
-                            <label for="apellido" >Apellido</label>
+                            <label for="apellido" >Apellido *</label>
                             <input type="text" name="apellido" id="apellido" 
                                 class="form-control">
                           
@@ -43,7 +43,7 @@
                             
                         </div>
                         <div class="col-md-3">
-                            <label for="">Fecha Nacimiento</label>
+                            <label for="">Fecha Nacimiento *</label>
                             <input 
                             type="date" 
                             name="fecha_nacimiento" 
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="telefono_2" >Celular</label>
+                            <label for="telefono_2" >Celular *</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>

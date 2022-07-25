@@ -50,16 +50,16 @@ class EmpleadoController extends Controller
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
+            $password = str_replace('-','',$cedula);
+            $cedula = $request->input('cedula');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
             
-            /*
             $estado_civil = $request->input('estado_civil');
             $referencia = $request->input('referencia');
 
-            
             $fecha_ingreso = $request->input('fecha_ingreso');
             $condicion_medica = $request->input('condicion_medica');
             $nombre_esposa = $request->input('nombre_esposa');
@@ -96,9 +96,6 @@ class EmpleadoController extends Controller
             $supervisor_experiencia_2 = $request->input('supervisor_experiencia_2');
             $telefono_experiencia_1 = $request->input('telefono_experiencia_1');
             $telefono_experiencia_2 = $request->input('telefono_experiencia_2');
-
-            
-            
             
             $tipo_contrato = $request->input('tipo_contrato');
             $forma_pago = $request->input('forma_pago');
@@ -107,27 +104,26 @@ class EmpleadoController extends Controller
             $banco_tarjeta_cobro = $request->input('banco_tarjeta_cobro');
             $no_cuenta = $request->input('no_cuenta');
             $nss = $request->input('nss');
-            */
+            
             $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
 
-            $pwd = Hash::make($cedula);
+            $pwd = Hash::make($password);
 
             $user = new User();
             $user->name = $nombre;
             $user->surname = $apellido;
             $user->email = $email;
-            $user->codigo = $codigo;
             $user->password = $pwd;
-        //    $user->role = $departamento;
-        //    $user->direccion = $calle;
-        //    $user->telefono = $telefono_1;
-        //    $user->celular = $telefono_2;
-        //    $user->surname = $apellido;
-        //    $user->fecha_nacimiento = $fecha_nacimiento;
-        //    $user->first_login = 0;
-        //    $user->avatar = $avatar;
+            $user->codigo = $codigo;
+            $user->role = $departamento;
+            $user->telefono = $telefono_1;
+            $user->celular = $telefono_2;
+            $user->direccion = $calle;
+            $user->fecha_nacimiento = $fecha_nacimiento;
+            $user->first_login = 1;
+            $user->avatar = $avatar;
 
             $user->save();
             $user_id = $user->id;
@@ -135,20 +131,30 @@ class EmpleadoController extends Controller
             $empleado = new Empleado();
             $empleado->user_id = $user_id;
             $empleado->nombre = $nombre;
-            $empleado->codigo = $codigo;
             $empleado->apellido = $apellido;
+            $empleado->codigo = $codigo;
             $empleado->calle = $calle;
             $empleado->sector = $sector;
             $empleado->provincia = $provincia;
             $empleado->sitios_cercanos = $sitios_cercanos;
-            $empleado->cedula = $cedula;
-            $empleado->cargo = $cargo;
-            $empleado->departamento = $departamento;
-            $empleado->fecha_nacimiento = $fecha_nacimiento;
             $empleado->telefono_1 = $telefono_1;
             $empleado->telefono_2 = $telefono_2;
             $empleado->email = $email;
-        //    $empleado->tipo_contrato = $tipo_contrato;
+            $empleado->cedula = $cedula;
+            $empleado->fecha_nacimiento = $fecha_nacimiento;
+            $empleado->departamento = $departamento;
+            $empleado->estado_civil = $estado_civil;
+            $empleado->cargo = $cargo;
+            $empleado->fecha_contratacion = $fecha_ingreso;
+            $empleado->tipo_contrato = $tipo_contrato;
+            $empleado->forma_pago = $forma_pago;
+            $empleado->sueldo = $sueldo;
+            $empleado->valor_hora = $valor_hora;
+            $empleado->banco_tarjeta_cobro = $banco_tarjeta_cobro;
+            $empleado->no_cuenta = $no_cuenta;
+            $empleado->nss = $nss;
+            $empleado->cantidad_dependientes = $cantidad_dependientes;
+            $empleado->condicion_medica = $condicion_medica;
 
             $empleado->save();
         
