@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+//use Illuminate\Support\Str;
 
 use Illuminate\Http\Response;
 use App\Exports\UsersExport;
