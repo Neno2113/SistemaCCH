@@ -123,7 +123,7 @@ class EmpleadoController extends Controller
             $user->celular = $telefono_2;
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
-//            $user->first_login = 1;
+            $user->first_login = '1';
 //            $user->avatar = $avatar;
 
             $user->save();
