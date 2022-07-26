@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Response;
 use App\Exports\UsersExport;
@@ -50,8 +51,7 @@ class EmpleadoController extends Controller
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
-            $password = str_replace('-','',$cedula);
-            $cedula = $request->input('cedula');
+            $password = Str::replaceArray('-', [''], $cedula);
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
@@ -115,16 +115,15 @@ class EmpleadoController extends Controller
             $user->name = $nombre;
             $user->surname = $apellido;
             $user->email = $email;
-//            $user->password = $pwd;
-            $user->password = 'wepaaa';
+            $user->password = $pwd;
             $user->codigo = $codigo;
             $user->role = $departamento;
             $user->telefono = $telefono_1;
             $user->celular = $telefono_2;
             $user->direccion = $calle;
-//            $user->fecha_nacimiento = $fecha_nacimiento;
-//            $user->first_login = 1;
-//            $user->avatar = $avatar;
+            $user->fecha_nacimiento = $fecha_nacimiento;
+            $user->first_login = 1;
+            $user->avatar = $avatar;
 
             $user->save();
             $user_id = $user->id;
