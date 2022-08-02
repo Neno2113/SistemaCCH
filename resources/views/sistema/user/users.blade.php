@@ -207,9 +207,13 @@
           
             <div class="col-12">
                 @if (Auth::user()->role == "Administrador" )
+                <!--
                 <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-user-plus"></i> Agregar </button>
+                -->
                 @elseif (Auth::user()->permisos()->where('permiso', 'Usuarios')->where('agregar', 1)->first() )
+                <!--
                 <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-user-plus"></i> Agregar </button>
+                -->
                 @endif
                 <h4 class="text-center  text-white">Listado de usuarios</h4>
             </div>
