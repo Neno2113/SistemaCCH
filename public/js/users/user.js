@@ -329,7 +329,7 @@ function mostrarPermiso(id_user) {
             $("#registroFormP").show();
             $("#permisoCard").show();
             $("#btnCancelar").show();
-            // $("#btn-edit").show();
+            $("#btn-edit").hide();
             // $("#btn-agregar").hide();
             // $("#btn-guardar").hide();
             $("#btnAgregar").hide();

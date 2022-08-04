@@ -272,6 +272,151 @@ class UserController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    //CRISTOBAL
+    public function permisos()
+    {
+        $permisos = DB::table('users')
+            ->select([
+                'users.name', 'users.surname', 'users.id',
+                'users.role', 'users.email'
+            ])->where('role', 'NOT LIKE', 'Administrador');
+
+        return DataTables::of($permisos)
+        ->editColumn('name', function($permiso){
+            return $permiso->name." ". $permiso->surname;
+        })
+        ->addColumn('Expandir', function ($permiso) {
+            return "";
+        })
+        ->addColumn('Opciones', function ($permiso) {
+            return '<button onclick="mostrar(' . $permiso->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-user-cog"></i></button>';
+        })
+            ->rawColumns(['Opciones'])
+            ->make(true);
+    } 
+
+    public function permisoAdd(Request $request){
+        
+        $permiso = $request->input('permiso');
+        $acceso = $request->input('acceso');
+
+        $permiso_usuario = PermisoUsuario::find($permiso);
+
+        if(!empty($permiso_usuario)){
+
+            if($acceso == 'r'){
+                $permiso_usuario->ver = 1;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'a'){
+                $permiso_usuario->agregar = 1;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'w'){
+                $permiso_usuario->modificar = 1;
+                $permiso_usuario->ver = 1;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'd'){
+                $permiso_usuario->eliminar = 1;
+                $permiso_usuario->ver = 1;
+                $permiso_usuario->save();
+            }
+            
+            return $data = [
+                'code' => 200,
+                'status' => 'success',
+                'permiso' => $permiso_usuario,
+                'acceso' => $acceso
+            ];
+
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No encontro el permiso'
+            ];
+        }
+        // $data = [
+        //     'code' => 404,
+        //     'status' => 'error',
+        //     'message' => $permiso_usuario
+        // ];
+        return response()->json($data, $data['code']);
+    }
+
+
+    public function permisoRemove(Request $request){
+        
+        $permiso = $request->input('permiso');
+        $acceso = $request->input('acceso');
+
+        $permiso_usuario = PermisoUsuario::find($permiso);
+
+        if(is_object($permiso_usuario)){
+
+            if($acceso == 'r'){
+                $permiso_usuario->ver = 0;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'a'){
+                $permiso_usuario->agregar = 0;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'w'){
+                $permiso_usuario->modificar = 0;
+                $permiso_usuario->save();
+            }
+
+            if($acceso == 'd'){
+                $permiso_usuario->eliminar = 0;
+                $permiso_usuario->save();
+            }
+
+            return $data = [
+                'code' => 200,
+                'status' => 'success',
+                'permiso' => $permiso_usuario,
+                'acceso' => $acceso
+            ];
+
+        } else {
+           return $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No encontro el permiso'
+            ];
+        }
+     
+        return response()->json($data, $data['code']);
+    }
+
+    public function showPermiso($id){
+        $permiso_usuario = PermisoUsuario::find($id);
+
+        if(!empty($permiso_usuario)){
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'permiso' => $permiso_usuario
+            ];
+        }else{
+            $data = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Ocurrio un error'
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+    //FIN CRISTOBAL
+
 
     public function users()
     {

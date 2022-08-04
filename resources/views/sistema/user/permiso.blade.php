@@ -94,7 +94,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5 mt-3 ml-2">
-                            <button type="button" id="btn-agregar" name="btn-agregar" class="btn btn-primary"><i class="fas fa-key"></i> Agregar</button>
+                            <button type="button" id="btn-agregar" name="btn-agregarP" class="btn btn-primary"><i class="fas fa-key"></i> Agregar</button>
                         </div>
                     </div>
                   

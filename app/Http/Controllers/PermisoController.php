@@ -68,6 +68,7 @@ class PermisoController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
     public function usuarios(){
         $usuarios = User::all();
 
@@ -100,7 +101,7 @@ class PermisoController extends Controller
         })
             ->rawColumns(['Opciones'])
             ->make(true);
-    }
+    } 
 
     public function destroy($id)
     {
@@ -125,9 +126,6 @@ class PermisoController extends Controller
     }
 
     public function show($id){
-
- 
-     
 
         $permiso_usuario = PermisoUsuario::where('user_id', $id)->get()->load('user');
 
