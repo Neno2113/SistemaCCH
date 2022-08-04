@@ -326,7 +326,7 @@ function mostrarPermiso(id_user) {
             )
         } else {
             $("#listadoUsers").hide();
-            $("#registroForm").show();
+            $("#registroFormP").show();
             $("#permisoCard").show();
             $("#btnCancelar").show();
             // $("#btn-edit").show();
