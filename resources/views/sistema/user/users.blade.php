@@ -108,7 +108,7 @@
     </div>
 
     {{-- <div class="col-5"> --}}
-    <div class="col-12">
+    <div class="col-10">
         <div class="card  mb-3" id="userForm">
             <div class="card-header bg-dark ">
                 <div class="card-tools">
@@ -121,7 +121,7 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
-                    <h5>Datos de acceso</h5>
+                    <h5>Datos de acceso para: <span id="nameAcceso"></span></h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-6 mt-3">
