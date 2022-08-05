@@ -719,6 +719,7 @@ function mostrar(id_user) {
             // console.log(data);
             $("#id").val(data.user.id);
             $("#name").val(data.user.name).attr('readonly', false);
+            $("#nameAcceso").append(data.user.name).attr('readonly', false);
             $("#surname").val(data.user.surname).attr('readonly', false);
             $("#fecha_nacimiento").val(data.user.fecha_nacimiento).attr('readonly', false);
             $("#telefono").val(data.user.telefono).attr('readonly', false);
@@ -733,7 +734,7 @@ function mostrar(id_user) {
                 $("#email").hide();
                 $("#codigo").show();
             }
-            $("#password").val(data.user.password).attr('readonly', false);
+            $("#password").val('********').attr('readonly', false);
             $("#role").val(data.user.role).attr('disabled', false);
             $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
             $("#image_name").val(data.user.avatar);
