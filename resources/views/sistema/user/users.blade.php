@@ -295,7 +295,7 @@
             <div class="card-footer  text-muted ">
                 <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
                 <button type="submit" id="btn-guardarP" class="btn btn-info mt-1 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
+             <!--   <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i class="far fa-edit fa-lg"></i> Editar</button> -->
 
             </div>
             </form>
@@ -321,7 +321,7 @@
                         <table class="table tabla-existencia table-bordered">
                             <thead class="text-center">
                                 <tr>
-                                    <th>Usuario</th>
+                                <!--    <th>Usuario</th> -->
                                     <th>Acceso</th>
                                     <th>Permisos</th>
                                     <th id="editar-permisos">Eliminar</th>
