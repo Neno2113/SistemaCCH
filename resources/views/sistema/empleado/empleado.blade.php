@@ -419,7 +419,7 @@
                             <label for="departamento" >Departamento</label>
                             <select name="departamento" id="departamento" class="form-control">
                                 <option value="" disabled>Departamento</option>
-                                <option>ADMINISTRACION</option>
+                                <option>ADMINISTRADOR</option>
                                 <option>OFICINA</option>
                                 <option>SOPORTE</option>
                                 <option>OPERARIO</option>

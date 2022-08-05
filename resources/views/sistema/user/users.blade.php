@@ -7,6 +7,7 @@
 @section('content')
 
 <div class="row ">
+    {{--
     <div class="col-7">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header bg-dark ">
@@ -91,10 +92,9 @@
                     </div>
 
                 </form>
-
-
-
             </div>
+
+
             <div class="flex-row p-2 card-footer">
                 <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left "></i>
                     Cancelar</button>
@@ -107,7 +107,10 @@
 
         </div>
     </div>
-    <div class="col-5">
+    --}}
+
+    {{-- <div class="col-5"> --}}
+    <div class="col-12">
         <div class="card  mb-3" id="userForm">
             <div class="card-header bg-dark ">
                 <div class="card-tools">
@@ -124,8 +127,9 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6 mt-3">
-                            <label for="password"> Email</label>
+                            <label for="email"> Usuario</label>
                             <input type="Email" name="email" id="email"  class="form-control">
+                            <input type="text" name="codigo" id="codigo"  class="form-control">
                            
                         </div>
                         <div class="col-md-6 mt-3" id="ver-contra">
@@ -145,6 +149,13 @@
                                 <option>Oficina</option>
                                 <option>Soporte</option>
                                 <option>General</option>
+                                <option>Operario</option>
+                                <option>Venta</option>
+                                <option>Corte</option>
+                                <option>Produccion</option>
+                                <option>Artesania</option>
+                                <option>Terminacion</option>
+                                <option>Almacen Producto Terminado</option>
                             </select>
                           
                         </div>
@@ -157,7 +168,7 @@
                 <div class="row mt-3" id="vatar">
                     <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="exampleInputFile">Avatar</label>
+                            <label for="exampleInputFile">Foto</label>
                             <img src="" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
                             <div class="input-group mt-4">
                                 <div class="custom-file">

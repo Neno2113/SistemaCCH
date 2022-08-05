@@ -309,7 +309,7 @@ $(document).ready(function() {
         limpiar();
         if (flag) {
             $("#listadoUsers").hide();
-            $("#registroForm").show();
+        //    $("#registroForm").show();
             $("#userForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
@@ -706,7 +706,7 @@ function mostrar(id_user) {
         } else {
 
             $("#listadoUsers").hide();
-            $("#registroForm").show();
+        //    $("#registroForm").show();
             $("#userForm").show();
             $("#btnCancelar").show();
             $("#btn-edit").show();
@@ -725,6 +725,15 @@ function mostrar(id_user) {
             $("#celular").val(data.user.celular).attr('readonly', false);
             $("#direccion").val(data.user.direccion).attr('readonly', false);
             $("#email").val(data.user.email).attr('readonly', false);
+            $("#codigo").val(data.user.codigo).attr('readonly', false);
+            if((data.user.role == 'Administrador') || (data.user.role == 'Oficina') || (data.user.role == 'Soporte')){
+                $("#codigo").hide();
+                $("#email").show();
+            }else {
+                $("#email").hide();
+                $("#codigo").show();
+            }
+            $("#password").val(data.user.password).attr('readonly', false);
             $("#role").val(data.user.role).attr('disabled', false);
             $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
             $("#image_name").val(data.user.avatar);
@@ -736,7 +745,7 @@ function mostrar(id_user) {
 function ver(id_user) {
     $.post("user/" + id_user, function(data, status) {
         $("#listadoUsers").hide();
-        $("#registroForm").show();
+    //    $("#registroForm").show();
         $("#btnCancelar").show();
         $("#btnAgregar").hide();
         $("#btn-guardar").hide();
