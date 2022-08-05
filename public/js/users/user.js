@@ -47,8 +47,43 @@ $(document).ready(function() {
 
     function init() {
         listar();
+        usuarios();
         mostrarForm(false);
         $("#btn-edit").hide();
+        $("#permisos").select2();
+    }
+
+    function usuarios (){
+
+        $.ajax({
+            url: "usuarios",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.usuarios.length;
+
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.usuarios[i].id +">"+datos.usuarios[i].name+" "+datos.usuarios[i].surname+"</option>"
+
+                        $("#usuario").append(fila);
+                    }
+                    $("#usuario").attr('disabled', true);
+                    $("#usuario").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de la composicion"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
     }
 
     function limpiar() {
