@@ -434,6 +434,54 @@
 
 </div>
 
+<!-- CRISTOBAL -->
+<div class="modal fade bd-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark ">
+        <h5 class="modal-title font-weight-bold">Permisos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="" class="modal-body">
+        <form>
+            <div class="row justify-content-md-center">
+              <div class="col-3">
+              
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" name="permiso" type="checkbox" id="ver" value="r">
+                    <label for="ver" class="custom-control-label">Ver</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" name="permiso" type="checkbox" id="agregar" value="a">
+                    <label for="agregar" class="custom-control-label">Agregar</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" name="permiso" type="checkbox" id="modificar" value="w">
+                    <label for="modificar" class="custom-control-label">Modificar</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" name="permiso" type="checkbox" id="eliminar" value="d">
+                    <label for="eliminar" class="custom-control-label">Eliminar</label>
+                  </div>
+           
+                </div>
+              </div>
+            </div>
+        </form>
+      
+        {{-- <div class="modal-footer">
+            <button type="button" id="btn-close" class="btn btn-primary" data-dismiss="modal"> Cerrar</button>
+        </div> --}}
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- FIN CRISTOBAL -->
 
 
 @include('adminlte/scripts')
