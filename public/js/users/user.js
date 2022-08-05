@@ -99,6 +99,20 @@ $(document).ready(function() {
         $("#ver-contra").show();
     }
 
+    $("#btn-guardarP").click(function(e) {
+        e.preventDefault();
+
+        limpiar();
+        tabla.ajax.reload();
+        mostrarForm(false);
+        Swal.fire(
+            'Permiso agregado!!',
+            'Permisos agregados correctamente.',
+            'success'
+        )
+
+    });
+
     $("#btn-guardar").click(function(e) {
         // validacion(e);
         e.preventDefault();
@@ -311,6 +325,7 @@ $(document).ready(function() {
             $("#btnAgregar").show();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
+            $("#btn-guardarP").show();
         }
     }
 
@@ -350,6 +365,71 @@ $(document).ready(function() {
 
 //CRISTOBAL
 
+$("#btn-agregarP").on('click', function(e){
+    e.preventDefault();
+
+    agregar();
+});
+
+
+function agregar(){
+
+    var permiso = {
+        permiso: $("#permisos").val(),
+        usuario: $("#usuario").val()
+    };
+
+    $.ajax({
+        url: "permiso",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(permiso),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    type: 'success',
+                    title: 'Permiso agregado correctamente.'
+                })
+                let usuario = $("#usuario option:selected").text();
+                let permiso = $("#permisos option:selected").text();
+                var cont;
+                var fila =
+                '<tr id="fila'+datos.permiso.id+'">'+
+                "<td class=''><input type='hidden' id='usuario"+datos.permiso.user.id+"' value="+datos.permiso.user.id+">"+datos.permiso.user.name+"</td>"+
+                "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.permiso.id+"' value="+datos.permiso.id+">"+datos.permiso.permiso+"</td>"+
+                "<td><button type='button' id='btn-eliminar' onclick='verUser("+datos.permiso.id+")' data-toggle='modal' data-target='.bd-edit-modal-lg' class='btn btn-dark'><i class='fas fa-users-cog'></i></button></td>"+
+                "<td><button type='button' id='btn-eliminar' onclick='delAcceso("+datos.permiso.id+")' class='btn btn-danger'><i class='fas fa-user-lock'></i></i></button></td>"+
+                "</tr>";
+                $("#permisos-agregados").append(fila);
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                );
+            }
+        },
+        error: function(datos) {
+            Swal.fire(
+                'Error',
+                'Este usuario ya tiene este permiso asignado.',
+                'error'
+            )
+        }
+    });
+}
+
 function mostrarPermiso(id_user) {
     $.get("permiso/" + id_user, function(data, status) {
 
@@ -387,11 +467,171 @@ function mostrarPermiso(id_user) {
             }
         }
 
-     
-
-
     });
 }
+
+function delAcceso(id){
+    Swal.fire({
+        title: '¿Esta seguro de quitarle este acceso a este usuario?',
+        text: "Eliminar acceso",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, acepto'
+      }).then((result) => {
+        if (result.value) {
+            eliminarAcceso(id);
+        }
+      })
+}
+
+function eliminarAcceso(id){
+
+    $.ajax({
+        url: "permiso/delete/"+id,
+        type: "POST",
+        dataType: "json",
+        // data: JSON.stringify(permiso),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                // console.log(datos);
+                Swal.fire(
+                    'Permiso eliminado!!',
+                    'Permiso eliminado correctamente.',
+                    'success'
+                )
+                $("#fila"+id).remove();
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.errors);
+            let errores = datos.responseJSON.errors;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                    size: 'small'
+                });
+            });
+        }
+    });
+}
+
+const verUser = (id) => {
+    permiso_id = id;
+    $.ajax({
+        url: "permiso/access/"+id,
+        type: "GET",
+        dataType: "json",
+        // data: JSON.stringify(permiso),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                // console.log(datos);
+                if(datos.permiso.agregar == 1){
+                    $('#agregar').prop('checked', true).trigger("change");
+                } else {
+                    $('#agregar').prop('checked', false).trigger("change");
+                }
+                if(datos.permiso.ver == 1){
+                    $('#ver').prop('checked', true).trigger("change");
+                } else {
+                    $('#ver').prop('checked', false).trigger("change");
+                }
+                if(datos.permiso.modificar == 1){
+                    $('#modificar').prop('checked', true).trigger("change");
+                } else {
+                    $('#modificar').prop('checked', false).trigger("change");
+                }
+                if(datos.permiso.eliminar == 1){
+                    $('#eliminar').prop('checked', true).trigger("change");
+                } else {
+                    $('#eliminar').prop('checked', false).trigger("change");
+                }
+           
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion del usuario verifique los datos suministrados!!"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.errors);
+            let errores = datos.responseJSON.errors;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:"<h4 class='invalid-feedback d-block'>"+val+"</h4>",
+                    size: 'small'
+                });
+            });
+        }
+    });
+}
+
+
+$('input[name="permiso"]').click(function(){
+
+    if($(this).prop("checked") == true){
+        const permiso = {
+            permiso: permiso_id,
+            acceso: $(this).val()
+        }
+        console.log(permiso);
+
+        $.ajax({
+            url: "permiso-add",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify(permiso),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+
+                }
+            },
+            error: function() {
+                console.log("Ocurrio un error");
+            }
+        });
+   
+    }
+
+    else if($(this).prop("checked") == false){
+        const permiso = {
+            permiso: permiso_id,
+            acceso: $(this).val()
+        }
+        // console.log(permiso);
+
+        $.ajax({
+            url: "permiso-remove",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify(permiso),
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+
+                }
+            },
+            error: function() {
+                console.log("Ocurrio un error");
+            }
+        });
+    }
+});
+
+//FIN CRISTOBAL
+
 
 $("#btnConfirm").on('click', (e) => {
     e.preventDefault();

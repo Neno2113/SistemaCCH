@@ -284,7 +284,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5 mt-3 ml-2">
-                            <button type="button" id="btn-agregar" name="btn-agregar" class="btn btn-primary"><i class="fas fa-key"></i> Agregar</button>
+                            <button type="button" id="btn-agregarP" name="btn-agregarP" class="btn btn-primary"><i class="fas fa-key"></i> Agregar</button>
                         </div>
                     </div>
                   
@@ -294,7 +294,7 @@
             </div>
             <div class="card-footer  text-muted ">
                 <button class="btn  btn-danger mt-1" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-                <button type="submit" id="btn-guardar" class="btn btn-info mt-1 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
+                <button type="submit" id="btn-guardarP" class="btn btn-info mt-1 float-right"><i class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-1 float-right"><i class="far fa-edit fa-lg"></i> Editar</button>
 
             </div>
