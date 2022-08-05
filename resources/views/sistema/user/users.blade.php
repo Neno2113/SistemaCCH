@@ -7,7 +7,6 @@
 @section('content')
 
 <div class="row ">
-    {{--
     <div class="col-7">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header bg-dark ">
@@ -107,7 +106,6 @@
 
         </div>
     </div>
-    --}}
 
     {{-- <div class="col-5"> --}}
     <div class="col-12">
