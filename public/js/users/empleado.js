@@ -306,20 +306,20 @@ $(document).ready(function() {
     });
 
     $("#cantidad_dependientes").change(function(){
-        $("#nombre_dependiente_0").remove();
-        $("#nombre_dependiente_1").remove();
-        $("#nombre_dependiente_2").remove();
-        $("#nombre_dependiente_3").remove();
-        $("#nombre_dependiente_4").remove();
-        $("#nombre_dependiente_5").remove();
-        $("#nombre_dependiente_6").remove();
+        $("#tr_dependiente_0").remove();
+        $("#tr_dependiente_1").remove();
+        $("#tr_dependiente_2").remove();
+        $("#tr_dependiente_3").remove();
+        $("#tr_dependiente_4").remove();
+        $("#tr_dependiente_5").remove();
+        $("#tr_dependiente_6").remove();
         let cantidad = $("#cantidad_dependientes").val()
 
         if(cantidad > 7){
             bootbox.alert("=(  No se puede registrar mas de 7 dependientes por empleado.");
         }else{
             for (let i = 0; i < cantidad; i++) {
-                var fila =  "<tr >"+
+                var fila =  "<tr id='tr_dependiente_"+[i]+"'>"+
                 "<td><input type='text' name='nombre_dependiente_"+[i]+"' id='nombre_dependiente_"+[i]+"' class='form-control'></td>"+
                 "<td><select name='parentesco_dependiente_"+[i]+"' id='parentesco_dependiente_"+[i]+"' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>"+
                 "<td><input type='number' name='edad_dependiente_"+[i]+"' id='edad_dependiente_"+[i]+"' class='form-control'></td>"+
