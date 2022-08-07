@@ -140,13 +140,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-3">
-                            <label for="role" >Rol</label>
+                            <label for="role" >Departamento</label>
                             <select name="role" id="role" class="form-control">
-                                <option value="" disabled>Rol</option>
+                                <option value="" disabled>Departamento</option>
                                 <option>Administrador</option>
                                 <option>Oficina</option>
                                 <option>Soporte</option>
-                                <option>General</option>
                                 <option>Operario</option>
                                 <option>Venta</option>
                                 <option>Corte</option>
@@ -154,6 +153,7 @@
                                 <option>Artesania</option>
                                 <option>Terminacion</option>
                                 <option>Almacen Producto Terminado</option>
+                                <option>General</option>
                             </select>
                           
                         </div>

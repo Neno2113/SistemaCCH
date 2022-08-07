@@ -419,17 +419,17 @@
                             <label for="departamento" >Departamento</label>
                             <select name="departamento" id="departamento" class="form-control">
                                 <option value="" disabled>Departamento</option>
-                                <option>ADMINISTRADOR</option>
-                                <option>OFICINA</option>
-                                <option>SOPORTE</option>
-                                <option>OPERARIO</option>
-                                <option>GENERAL</option>
-                                <option>VENTA</option>
-                                <option>CORTE</option>
-                                <option>PRODUCCION</option>
-                                <option>ARTESANIA</option>
-                                <option>TERMINACION</option>
-                                <option>AlMACEN PRODUCTO TERMINADO</option>
+                                <option>Administrador</option>
+                                <option>Oficina</option>
+                                <option>Soporte</option>
+                                <option>Operario</option>
+                                <option>Venta</option>
+                                <option>Corte</option>
+                                <option>Produccion</option>
+                                <option>Artesania</option>
+                                <option>Terminacion</option>
+                                <option>Almacen Producto Terminado</option>
+                                <option>General</option>
                                 
                             </select>
                         </div>

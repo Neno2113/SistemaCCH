@@ -306,6 +306,13 @@ $(document).ready(function() {
     });
 
     $("#cantidad_dependientes").change(function(){
+        $("#nombre_dependiente_0").remove();
+        $("#nombre_dependiente_1").remove();
+        $("#nombre_dependiente_2").remove();
+        $("#nombre_dependiente_3").remove();
+        $("#nombre_dependiente_4").remove();
+        $("#nombre_dependiente_5").remove();
+        $("#nombre_dependiente_6").remove();
         let cantidad = $("#cantidad_dependientes").val()
 
         if(cantidad > 7){
@@ -499,6 +506,7 @@ $(document).ready(function() {
     });
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
+
         mostrarForm(false);
     });
 
