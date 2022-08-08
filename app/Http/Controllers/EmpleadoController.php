@@ -142,7 +142,7 @@ class EmpleadoController extends Controller
             $empleado->telefono_1 = $telefono_1;
             $empleado->telefono_2 = $telefono_2;
             $empleado->email = $email;
-            $empleado->cedula = $cedula;
+            $empleado->cedula = $cedula_sin_guion;
             $empleado->fecha_nacimiento = $fecha_nacimiento;
             $empleado->departamento = $departamento;
             $empleado->estado_civil = $estado_civil;
