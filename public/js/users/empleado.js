@@ -131,8 +131,9 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-/*            
+           
             estado_civil: $("#estado_civil").val(),
+/* 
             fecha_ingreso: $("#fecha_ingreso").val(),
             condicion_medica: $("#condicion_medica").val(),
             cantidad_dependientes: $("#cantidad_dependientes").val(),
