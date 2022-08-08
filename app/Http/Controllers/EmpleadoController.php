@@ -110,7 +110,7 @@ class EmpleadoController extends Controller
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
 
-//            $pwd = Hash::make($password);
+//          $pwd = Hash::make($password);
             $pwd = Hash::make($cedula_sin_guion);
 
             $user = new User();
@@ -125,7 +125,7 @@ class EmpleadoController extends Controller
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->first_login = '1';
-//            $user->avatar = $avatar;
+//          $user->avatar = $avatar;
 
             $user->save();
             $user_id = $user->id;
