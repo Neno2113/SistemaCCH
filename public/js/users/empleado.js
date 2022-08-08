@@ -133,7 +133,6 @@ $(document).ready(function() {
             codigo: $("#codigo").val(),
             
             estado_civil: $("#estado_civil").val(),
-            referencia: $("#referencia").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
             condicion_medica: $("#condicion_medica").val(),
             cantidad_dependientes: $("#cantidad_dependientes").val(),
