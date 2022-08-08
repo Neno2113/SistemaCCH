@@ -98,6 +98,8 @@
                                 <option value="" disabled selected>Estado Civil</option>
                                 <option value="Casado">Casado@</option>
                                 <option value="Soltero">Solter@</option>
+                                <option value="Union Libre">Union Libre</option>
+                                <option value="Viudo">Viud@</option>
                             </select>
                         </div>
                         <div class="col-md-4">
