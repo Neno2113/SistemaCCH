@@ -96,8 +96,8 @@
                             <label for="estado_civil" >Estado Civil</label>
                             <select name="estado_civil" id="estado_civil" class="form-control">
                                 <option value="" disabled selected>Estado Civil</option>
-                                <option>Casado@</option>
-                                <option>Solter@</option>
+                                <option value="Casado">Casado@</option>
+                                <option value="Soltero">Solter@</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -165,7 +165,7 @@
                             <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="">Fecha de Ingreso</label>
+                            <label for="fecha_ingreso">Fecha de Ingreso</label>
                             <input 
                             type="date" 
                             name="fecha_ingreso" 
@@ -501,12 +501,12 @@
                             <div class="col-md-4">
                                 <label for="sueldo" >Sueldo</label>
                                 <input type="text" name="sueldo"  id="sueldo"
-                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[99]"' data-mask>
+                                    class="form-control text-center" data-inputmask='"mask": "999[99]"' data-mask>
                             </div>
                             <div class="col-md-4">
                                 <label for="valor_hora" >Valor hora</label>
                                 <input type="text" name="valor_hora" id="valor_hora"
-                                    class="form-control text-center" data-inputmask='"mask": "RD$ 999[9]"' data-mask>
+                                    class="form-control text-center" data-inputmask='"mask": "999[9]"' data-mask>
                             </div>
                         </div>
                         <div class="row">

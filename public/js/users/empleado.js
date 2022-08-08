@@ -131,7 +131,7 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-            /*
+            
             estado_civil: $("#estado_civil").val(),
             referencia: $("#referencia").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
@@ -184,7 +184,7 @@ $(document).ready(function() {
             supervisor_experiencia_2: $("#supervisor_experiencia_2").val(),
             telefono_experiencia_1: $("#telefono_experiencia_1").val(),
             telefono_experiencia_2: $("#telefono_experiencia_2").val(),
-            */
+
             departamento: $("#departamento").val(),
             cargo: $("#cargo").val(),
             tipo_contrato: $("#tipo_contrato").val(),
