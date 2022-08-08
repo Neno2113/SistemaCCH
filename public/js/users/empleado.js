@@ -137,7 +137,7 @@ $(document).ready(function() {
             fecha_ingreso: $("#fecha_ingreso").val(),
             condicion_medica: $("#condicion_medica").val(),
             
-            cantidad_dependientes: $("#cantidad_dependientes").val(),
+ //           cantidad_dependientes: $("#cantidad_dependientes").val(),
 /*
             nombre_esposa: $("#nombre_esposa").val(),
             telefono_esposa: $("#telefono_esposa").val(),
