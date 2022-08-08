@@ -68,13 +68,13 @@ class EmpleadoController extends Controller
             $esposa_asegurada_si = $request->input('esposa_asegurada_si');
             $esposa_asegurada_no = $request->input('esposa_asegurada_no');
             $cantidad_dependientes = $request->input('cantidad_dependientes');
-
+/*
             for ($i=0; $i < $cantidad_dependientes; $i++) { 
                 $nombre_dependiente_[$i] = $request->input('nombre_dependiente_'.[$i]);
                 $parentesco_dependiente_[$i] = $request->input('parentesco_dependiente_'.[$i]);
                 $edad_dependiente_[$i] = $request->input('edad_dependiente_'.[$i]);
             }
-            
+ */           
             $nombre_ref1 = $request->input('nombre_ref1');
             $parentesco_ref1 = $request->input('parentesco_ref1');
             $telefono_ref1 = $request->input('telefono_ref1');
