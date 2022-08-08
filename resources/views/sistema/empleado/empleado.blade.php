@@ -242,7 +242,7 @@
                             </div>
                             <div class="col-md-2 mt-4" id="collapseExample">
                                     <label for="cantidad_dependientes">Cantidad Dependientes</label>
-                                    <input type="text" name="cantidad_dependientes" id="cantidad_dependientes"
+                                    <input type="number" name="cantidad_dependientes" id="cantidad_dependientes"
                                         class="form-control text-center"
                                         data-inputmask='"mask": "9"' data-mask>
                             </div>
