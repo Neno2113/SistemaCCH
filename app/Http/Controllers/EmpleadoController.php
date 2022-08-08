@@ -51,6 +51,7 @@ class EmpleadoController extends Controller
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
+            $cedula_sin_guion = $request->input('cedula_sin_guion');
 //            $password = Str::replaceArray('-', [''], $cedula);
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
@@ -110,7 +111,7 @@ class EmpleadoController extends Controller
             $departamento = $request->input('departamento');
 
 //            $pwd = Hash::make($password);
-            $pwd = Hash::make($cedula);
+            $pwd = Hash::make($cedula_sin_guion);
 
             $user = new User();
             $user->name = $nombre;

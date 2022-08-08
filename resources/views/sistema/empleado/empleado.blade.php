@@ -37,7 +37,7 @@
                           
                         </div>
                         <div class="col-md-3">
-                            <label for="cedula" >Identificacion</label>
+                            <label for="cedula" >Identificacion *</label>
                             <input type="text" name="cedula" id="cedula" 
                                 class="form-control text-center" data-inputmask='"mask": "999-9999999-9"' data-mask>
                             

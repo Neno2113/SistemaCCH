@@ -127,6 +127,7 @@ $(document).ready(function() {
             sitios_cercanos: $("#sitios_cercanos").val(),
             fecha_nacimiento: $("#fecha_nacimiento").val(),
             cedula: $("#cedula").val(),
+            cedula_sin_guion: $("#cedula").val().replace('-',''),
             telefono_1: $("#telefono_1").val(),
             telefono_2: $("#telefono_2").val(),
             email: $("#email").val(),
