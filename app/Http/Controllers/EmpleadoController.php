@@ -153,6 +153,7 @@ class EmpleadoController extends Controller
             $empleado->valor_hora = $valor_hora;
             $empleado->banco_tarjeta_cobro = $banco_tarjeta_cobro;
             $empleado->no_cuenta = $no_cuenta;
+            $empleado->nss = $nss;
             
             $empleado->condicion_medica = $condicion_medica;
 
@@ -162,7 +163,6 @@ class EmpleadoController extends Controller
             $empleado_detalle = new EmpleadoDetalle();
             $empleado_detalle->empleado_id = $empleado_id;
             $empleado_detalle->user_id = $user_id;
-            $empleado_detalle->nss = $nss;
             $empleado_detalle->cantidad_dependientes = $cantidad_dependientes;
             $empleado_detalle->nombre_esposa = $nombre_esposa;
             $empleado_detalle->telefono_esposa = $telefono_esposa;
