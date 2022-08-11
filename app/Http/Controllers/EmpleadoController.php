@@ -64,8 +64,8 @@ class EmpleadoController extends Controller
             $condicion_medica = $request->input('condicion_medica');
             $nombre_esposa = $request->input('nombre_esposa');
             $telefono_esposa = $request->input('telefono_esposa');
-            $esposa_asegurada_si = $request->input('esposa_asegurada_si');
-            $esposa_asegurada_no = $request->input('esposa_asegurada_no');
+    //        $esposa_asegurada_si = $request->input('esposa_asegurada_si');
+    //        $esposa_asegurada_no = $request->input('esposa_asegurada_no');
 
             $cantidad_dependientes = $request->input('cantidad_dependientes');
 /*
@@ -166,7 +166,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->cantidad_dependientes = $cantidad_dependientes;
             $empleado_detalle->nombre_esposa = $nombre_esposa;
             $empleado_detalle->telefono_esposa = $telefono_esposa;
-            $empleado_detalle->esposa_en_nss = $esposa_asegurada_;
+    //        $empleado_detalle->esposa_en_nss = $esposa_asegurada_;
             /*
             $empleado_detalle->nombre_dependiente_0 = $nombre_dependiente_0;
             $empleado_detalle->parentesco_dependiente_0 = $parentesco_dependiente_0;
