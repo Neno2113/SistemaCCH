@@ -52,7 +52,6 @@ class EmpleadoController extends Controller
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
             $cedula_sin_guion = $request->input('cedula_sin_guion');
-//            $password = Str::replaceArray('-', [''], $cedula);
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
@@ -67,14 +66,15 @@ class EmpleadoController extends Controller
             $telefono_esposa = $request->input('telefono_esposa');
             $esposa_asegurada_si = $request->input('esposa_asegurada_si');
             $esposa_asegurada_no = $request->input('esposa_asegurada_no');
+
             $cantidad_dependientes = $request->input('cantidad_dependientes');
-/*
+
             for ($i=0; $i < $cantidad_dependientes; $i++) { 
                 $nombre_dependiente_[$i] = $request->input('nombre_dependiente_'.[$i]);
                 $parentesco_dependiente_[$i] = $request->input('parentesco_dependiente_'.[$i]);
                 $edad_dependiente_[$i] = $request->input('edad_dependiente_'.[$i]);
             }
- */           
+            
             $nombre_ref1 = $request->input('nombre_ref1');
             $parentesco_ref1 = $request->input('parentesco_ref1');
             $telefono_ref1 = $request->input('telefono_ref1');
@@ -110,7 +110,6 @@ class EmpleadoController extends Controller
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
 
-//          $pwd = Hash::make($password);
             $pwd = Hash::make($cedula_sin_guion);
 
             $user = new User();
@@ -154,18 +153,73 @@ class EmpleadoController extends Controller
             $empleado->valor_hora = $valor_hora;
             $empleado->banco_tarjeta_cobro = $banco_tarjeta_cobro;
             $empleado->no_cuenta = $no_cuenta;
-            $empleado->nss = $nss;
-            $empleado->cantidad_dependientes = $cantidad_dependientes;
+            
             $empleado->condicion_medica = $condicion_medica;
 
             $empleado->save();
+            $empleado_id = $empleado->id;
+
+            $empleado_detalle = new EmpleadoDetalle();
+            $empleado_detalle->empleado_id = $empleado_id;
+            $empleado_detalle->user_id = $user_id;
+            $empleado_detalle->nss = $nss;
+            $empleado_detalle->cantidad_dependientes = $cantidad_dependientes;
+            $empleado_detalle->nombre_esposa = $nombre_esposa;
+            $empleado_detalle->telefono_esposa = $telefono_esposa;
+            $empleado_detalle->esposa_en_nss = $esposa_asegurada_;
+            $empleado_detalle->nombre_dependiente_0 = $nombre_dependiente_0;
+            $empleado_detalle->parentesco_dependiente_0 = $parentesco_dependiente_0;
+            $empleado_detalle->edad_dependiente_0 = $edad_dependiente_0;
+            $empleado_detalle->nombre_dependiente_1 = $nombre_dependiente_1;
+            $empleado_detalle->parentesco_dependiente_1 = $parentesco_dependiente_1;
+            $empleado_detalle->edad_dependiente_1 = $edad_dependiente_1;
+            $empleado_detalle->nombre_dependiente_2 = $nombre_dependiente_2;
+            $empleado_detalle->parentesco_dependiente_2 = $parentesco_dependiente_2;
+            $empleado_detalle->edad_dependiente_2 = $edad_dependiente_2;
+            $empleado_detalle->nombre_dependiente_3 = $nombre_dependiente_3;
+            $empleado_detalle->parentesco_dependiente_3 = $parentesco_dependiente_3;
+            $empleado_detalle->edad_dependiente_3 = $edad_dependiente_3;
+            $empleado_detalle->nombre_dependiente_4 = $nombre_dependiente_4;
+            $empleado_detalle->parentesco_dependiente_4 = $parentesco_dependiente_4;
+            $empleado_detalle->edad_dependiente_4 = $edad_dependiente_4;
+            $empleado_detalle->nombre_dependiente_5 = $nombre_dependiente_5;
+            $empleado_detalle->parentesco_dependiente_5 = $parentesco_dependiente_5;
+            $empleado_detalle->edad_dependiente_5 = $edad_dependiente_5;
+            $empleado_detalle->nombre_dependiente_6 = $nombre_dependiente_6;
+            $empleado_detalle->parentesco_dependiente_6 = $parentesco_dependiente_6;
+            $empleado_detalle->edad_dependiente_6 = $edad_dependiente_6;
+            $empleado_detalle->nombre_ref1 = $nombre_ref1;
+            $empleado_detalle->parentesco_ref1 = $parentesco_ref1;
+            $empleado_detalle->telefono_ref1 = $telefono_ref1;
+            $empleado_detalle->nombre_ref2 = $nombre_ref2;
+            $empleado_detalle->parentesco_ref2 = $parentesco_ref2;
+            $empleado_detalle->telefono_ref2 = $telefono_ref2;
+            $empleado_detalle->primaria = $primaria;
+            $empleado_detalle->bachiller = $bachiller;
+            $empleado_detalle->nivel_superior = $nivel_superior;
+            $empleado_detalle->grado_titulo = $grado_titulo;
+            $empleado_detalle->especialidad = $especialidad;
+            $empleado_detalle->fecha_exp = $fecha_exp;
+            $empleado_detalle->cargo_experiencia_1 = $cargo_experiencia_1;
+            $empleado_detalle->tiempo_experiencia_1 = $tiempo_experiencia_1;
+            $empleado_detalle->empresa_experiencia_1 = $empresa_experiencia_1;
+            $empleado_detalle->supervisor_experiencia_1 = $supervisor_experiencia_1;
+            $empleado_detalle->telefono_experiencia_1 = $telefono_experiencia_1;
+            $empleado_detalle->cargo_experiencia_2  = $cargo_experiencia_2;
+            $empleado_detalle->tiempo_experiencia_2 = $tiempo_experiencia_2;
+            $empleado_detalle->empresa_experiencia_2 = $empresa_experiencia_2;
+            $empleado_detalle->supervisor_experiencia_2 = $supervisor_experiencia_2;
+            $empleado_detalle->telefono_experiencia_2 = $telefono_experiencia_2;
+            
+            $empleado_detalle->save();
         
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'user' => $user,
-                'empleado' => $empleado
+                'empleado' => $empleado,
+                'empleado_detalle' => $empleado_detalle
             ];
         }
 

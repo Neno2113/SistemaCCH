@@ -138,7 +138,7 @@ $(document).ready(function() {
             condicion_medica: $("#condicion_medica").val(),
             
             cantidad_dependientes: $("#cantidad_dependientes").val(),
-/*
+
             nombre_esposa: $("#nombre_esposa").val(),
             telefono_esposa: $("#telefono_esposa").val(),
             esposa_asegurada_si: $("#radioPrimary3").val(),
@@ -186,7 +186,7 @@ $(document).ready(function() {
             supervisor_experiencia_2: $("#supervisor_experiencia_2").val(),
             telefono_experiencia_1: $("#telefono_experiencia_1").val(),
             telefono_experiencia_2: $("#telefono_experiencia_2").val(),
-*/
+
             departamento: $("#departamento").val(),
             cargo: $("#cargo").val(),
             tipo_contrato: $("#tipo_contrato").val(),
