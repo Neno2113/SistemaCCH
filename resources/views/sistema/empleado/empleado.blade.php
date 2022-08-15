@@ -231,22 +231,6 @@
                                     <option value="Si">Si</option>
                                     <option value="No">No</option>
                                 </select>
-                                <!--
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary3" name="r2" value="1">
-                                        <label for="radioPrimary3">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary4" value="0" name="r2" checked>
-                                        <label for="radioPrimary4">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                -->
                             </div>
                         </div>
                         <div class="row">

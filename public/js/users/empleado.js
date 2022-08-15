@@ -164,6 +164,7 @@ $(document).ready(function() {
             nombre_dependiente_6: $("#nombre_dependiente_6").val(),
             parentesco_dependiente_6: $("#parentesco_dependiente_6").val(),
             edad_dependiente_6: $("#edad_dependiente_6").val(),
+            
             nombre_ref1: $("#nombre_ref1").val(),
             parentesco_ref1: $("#parentesco_ref1").val(),
             telefono_ref1: $("#telefono_ref1").val(),

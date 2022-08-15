@@ -189,7 +189,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->nombre_esposa = $nombre_esposa;
             $empleado_detalle->telefono_esposa = $telefono_esposa;
             $empleado_detalle->esposa_en_nss = $esposa_en_nss;
-            /*
+            
             $empleado_detalle->nombre_dependiente_0 = $nombre_dependiente_0;
             $empleado_detalle->parentesco_dependiente_0 = $parentesco_dependiente_0;
             $empleado_detalle->edad_dependiente_0 = $edad_dependiente_0;
@@ -211,7 +211,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->nombre_dependiente_6 = $nombre_dependiente_6;
             $empleado_detalle->parentesco_dependiente_6 = $parentesco_dependiente_6;
             $empleado_detalle->edad_dependiente_6 = $edad_dependiente_6;
-            */
+            
             $empleado_detalle->nombre_ref1 = $nombre_ref1;
             $empleado_detalle->parentesco_ref1 = $parentesco_ref1;
             $empleado_detalle->telefono_ref1 = $telefono_ref1;
