@@ -56,23 +56,23 @@
                     </div>
 
                     <div class="col-md-4 mt-3" id="vatar">
-                        <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="exampleInputFile">Foto</label>
-                                <img src="" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
-                                <div class="input-group mt-4">
-                                    <div class="custom-file">
-                                        <input type="file" class="form-control" name="avatar" id="avatar">
-                                        <input type="hidden" name="image_name" id="image_name" value="">
-                                        {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
-                                    </div>
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn-primary" id="btn-upload">
-                                            <i class="fas fa-upload"></i> Subir</button>
-                                    </div>
+                <!--    <form action="" method="POST" id="formUpload" enctype="multipart/form-data"> -->
+                        <div class="form-group">
+                            <label for="exampleInputFile">Foto</label>
+                            <img src="" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
+                            <div class="input-group mt-4">
+                                <div class="custom-file">
+                                    <input type="file" class="form-control" name="avatar" id="avatar">
+                                    <input type="hidden" name="image_name" id="image_name" value="">
+                                    {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
+                                </div>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn-primary" id="btn-upload">
+                                        <i class="fas fa-upload"></i> Subir</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                <!--    </form> -->
                     </div>
 
                     <div class="row" id="fila-detail">
@@ -398,14 +398,16 @@
                                         <td><input type='text' name="tiempo_experiencia_1" id="tiempo_experiencia_1" class='form-control'></td>
                                         <td><input type='text' name="empresa_experiencia_1" id="empresa_experiencia_1" class='form-control'></td>
                                         <td><input type='text' name="supervisor_experiencia_1" id="supervisor_experiencia_1" class='form-control'></td>
-                                        <td><input type='text' name="telefono_experiencia_1" id="telefono_experiencia_1" class='form-control'></td>
+                                        <td><input type='text' name="telefono_experiencia_1" id="telefono_experiencia_1" class='form-control' data-inputmask='"mask": "(999) 999-9999"'
+                                    data-mask></td>
                                     </tr>
                                     <tr>
                                         <td><input type='text' name="cargo_experiencia_2" id="cargo_experiencia_2" class='form-control'></td>
                                         <td><input type='text' name="tiempo_experiencia_2" id="tiempo_experiencia_2" class='form-control'></td>
                                         <td><input type='text' name="empresa_experiencia_2" id="empresa_experiencia_2" class='form-control'></td>
                                         <td><input type='text' name="supervisor_experiencia_2" id="supervisor_experiencia_2" class='form-control'></td>
-                                        <td><input type='text' name="telefono_experiencia_2" id="telefono_experiencia_2" class='form-control'></td>
+                                        <td><input type='text' name="telefono_experiencia_2" id="telefono_experiencia_2" class='form-control' data-inputmask='"mask": "(999) 999-9999"'
+                                    data-mask></td>
                                     </tr>
 
                                 </tbody>
