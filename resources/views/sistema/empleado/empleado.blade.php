@@ -24,25 +24,46 @@
                     <hr>
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
 
                             <label for="nombre" >Nombre *</label>
                             <input type="text" name="nombre" id="nombre"  class="form-control">
                          
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="apellido" >Apellido *</label>
                             <input type="text" name="apellido" id="apellido" 
                                 class="form-control">
                           
                         </div>
-                        <div class="col-md-3">
+
+                        <div class="col-md-4" id="vatar">
+                            <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Foto</label>
+                                    <img src="" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
+                                    <div class="input-group mt-4">
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control" name="avatar" id="avatar">
+                                            <input type="hidden" name="image_name" id="image_name" value="">
+                                            {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn-primary" id="btn-upload">
+                                                <i class="fas fa-upload"></i> Subir</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-4">
                             <label for="cedula" >Identificacion *</label>
                             <input type="text" name="cedula" id="cedula" 
                                 class="form-control text-center" data-inputmask='"mask": "999-9999999-9"' data-mask>
                             
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="">Fecha Nacimiento *</label>
                             <input 
                             type="date" 
@@ -52,26 +73,7 @@
                             value="2000-01-01"    
                         >
                         </div>
-                    </div>
 
-                    <div class="row mt-3" id="vatar">
-                        <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="exampleInputFile">Foto</label>
-                                <img src="" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
-                                <div class="input-group mt-4">
-                                    <div class="custom-file">
-                                        <input type="file" class="form-control" name="avatar" id="avatar">
-                                        <input type="hidden" name="image_name" id="image_name" value="">
-                                        {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
-                                    </div>
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn-primary" id="btn-upload">
-                                            <i class="fas fa-upload"></i> Subir</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
 
                     <div class="row" id="fila-detail">
