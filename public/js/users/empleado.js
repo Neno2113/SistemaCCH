@@ -141,8 +141,7 @@ $(document).ready(function() {
 
             nombre_esposa: $("#nombre_esposa").val(),
             telefono_esposa: $("#telefono_esposa").val(),
-            esposa_asegurada_si: $("#radioPrimary3").val(),
-            esposa_asegurada_no: $("#radioPrimary4").val(),
+            esposa_en_nss: $("#esposa_en_nss").val(),
             nombre_dependiente_0: $("#nombre_dependiente_0").val(),
             parentesco_dependiente_0: $("#parentesco_dependiente_0").val(),
             edad_dependiente_0: $("#edad_dependiente_0").val(),
@@ -175,7 +174,7 @@ $(document).ready(function() {
             nivel_superior: $("#nivel_superior").val(),
             grado_titulo: $("#grado_titulo").val(),
             especialidad: $("#especialidad").val(),
-            fecha_exp: $("#fecha-exp").val(),
+            fecha_exp: $("#fecha_exp").val(),
             cargo_experiencia_1: $("#cargo_experiencia_1").val(),
             cargo_experiencia_2: $("#cargo_experiencia_2").val(),
             tiempo_experiencia_1: $("#tiempo_experiencia_1").val(),

@@ -225,7 +225,13 @@
                               
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="autorizacion_credito_req">¿Esposa incluida en seguro?</label>
+                                <label for="autorizacion_credito_req">¿Esposa Incluida en Seguro?</label>
+                                <select name="esposa_en_nss" id="esposa_en_nss" class="form-control">
+                                    <option value="" disabled selected>¿Esposa incluida?</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
+
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
                                         <input type="radio" id="radioPrimary3" name="r2" value="1">
