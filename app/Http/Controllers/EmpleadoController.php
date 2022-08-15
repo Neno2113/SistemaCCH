@@ -64,8 +64,8 @@ class EmpleadoController extends Controller
             $condicion_medica = $request->input('condicion_medica');
             $nombre_esposa = $request->input('nombre_esposa');
             $telefono_esposa = $request->input('telefono_esposa');
-    //        $esposa_asegurada_si = $request->input('esposa_asegurada_si');
-    //        $esposa_asegurada_no = $request->input('esposa_asegurada_no');
+            $esposa_asegurada_si = $request->input('esposa_asegurada_si');
+            $esposa_asegurada_no = $request->input('esposa_asegurada_no');
 
             $cantidad_dependientes = $request->input('cantidad_dependientes');
 /*
