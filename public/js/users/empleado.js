@@ -142,6 +142,7 @@ $(document).ready(function() {
             nombre_esposa: $("#nombre_esposa").val(),
             telefono_esposa: $("#telefono_esposa").val(),
             esposa_en_nss: $("#esposa_en_nss").val(),
+            
             nombre_dependiente_0: $("#nombre_dependiente_0").val(),
             parentesco_dependiente_0: $("#parentesco_dependiente_0").val(),
             edad_dependiente_0: $("#edad_dependiente_0").val(),
