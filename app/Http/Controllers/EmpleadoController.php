@@ -66,14 +66,7 @@ class EmpleadoController extends Controller
             $telefono_esposa = $request->input('telefono_esposa');
             $esposa_en_nss = $request->input('esposa_en_nss');
 
-            $cantidad_dependientes = $request->input('cantidad_dependientes');
-/*
-            for ($i=0; $i < $cantidad_dependientes; $i++) { 
-                $nombre_dependiente_[$i] = $request->input('nombre_dependiente_'.[$i]);
-                $parentesco_dependiente_[$i] = $request->input('parentesco_dependiente_'.[$i]);
-                $edad_dependiente_[$i] = $request->input('edad_dependiente_'.[$i]);
-            }
- */           
+            $cantidad_dependientes = $request->input('cantidad_dependientes');         
 
             $nombre_dependiente_0 = $request->input('nombre_dependiente_0');
             $parentesco_dependiente_0 = $request->input('parentesco_dependiente_0');

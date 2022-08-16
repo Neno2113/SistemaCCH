@@ -602,8 +602,8 @@
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-guardar-detalle" class="btn btn-info mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
-                <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
-                        class="far fa-edit fa-lg"></i> Editar</button>
+                <button type="submit" id="btn-edit" class="btn btn-info mt-2 float-right"><i
+                        class="far fa-edit fa-lg"></i> Guardar</button>
             </div>
         </div>
 
