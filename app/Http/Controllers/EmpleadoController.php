@@ -75,13 +75,13 @@ class EmpleadoController extends Controller
             }
  */           
 
- 
             $nombre_dependiente_0 = $request->input('nombre_dependiente_0');
             $parentesco_dependiente_0 = $request->input('parentesco_dependiente_0');
             $edad_dependiente_0 = $request->input('edad_dependiente_0');
             $nombre_dependiente_1 = $request->input('nombre_dependiente_1');
             $parentesco_dependiente_1 = $request->input('parentesco_dependiente_1');
             $edad_dependiente_1 = $request->input('edad_dependiente_1');
+            /*
             $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
             $parentesco_dependiente_2 = $request->input('parentesco_dependiente_'2);
             $edad_dependiente_2 = $request->input('edad_dependiente_2');
@@ -97,7 +97,7 @@ class EmpleadoController extends Controller
             $nombre_dependiente_6 = $request->input('nombre_dependiente_6');
             $parentesco_dependiente_6 = $request->input('parentesco_dependiente_6');
             $edad_dependiente_6 = $request->input('edad_dependiente_6');
-
+*/
             $nombre_ref1 = $request->input('nombre_ref1');
             $parentesco_ref1 = $request->input('parentesco_ref1');
             $telefono_ref1 = $request->input('telefono_ref1');
