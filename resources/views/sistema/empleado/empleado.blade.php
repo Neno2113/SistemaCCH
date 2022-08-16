@@ -284,6 +284,31 @@
                                         <td><select name='parentesco_dependiente_1' id='parentesco_dependiente_1' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
                                         <td><input type='number' name='edad_dependiente_1' id='edad_dependiente_1' class='form-control'></td>
                                     </tr>
+                                    <tr id='tr_dependiente_2'>
+                                        <td><input type='text' name='nombre_dependiente_2' id='nombre_dependiente_2' class='form-control'></td>
+                                        <td><select name='parentesco_dependiente_2' id='parentesco_dependiente_2' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
+                                        <td><input type='number' name='edad_dependiente_2' id='edad_dependiente_2' class='form-control'></td>
+                                    </tr>
+                                    <tr id='tr_dependiente_3'>
+                                        <td><input type='text' name='nombre_dependiente_3' id='nombre_dependiente_3' class='form-control'></td>
+                                        <td><select name='parentesco_dependiente_3' id='parentesco_dependiente_3' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
+                                        <td><input type='number' name='edad_dependiente_3' id='edad_dependiente_3' class='form-control'></td>
+                                    </tr>
+                                    <tr id='tr_dependiente_4'>
+                                        <td><input type='text' name='nombre_dependiente_4' id='nombre_dependiente_4' class='form-control'></td>
+                                        <td><select name='parentesco_dependiente_4' id='parentesco_dependiente_4' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
+                                        <td><input type='number' name='edad_dependiente_4' id='edad_dependiente_4' class='form-control'></td>
+                                    </tr>
+                                    <tr id='tr_dependiente_5'>
+                                        <td><input type='text' name='nombre_dependiente_5' id='nombre_dependiente_5' class='form-control'></td>
+                                        <td><select name='parentesco_dependiente_5' id='parentesco_dependiente_5' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
+                                        <td><input type='number' name='edad_dependiente_5' id='edad_dependiente_5' class='form-control'></td>
+                                    </tr>
+                                    <tr id='tr_dependiente_6'>
+                                        <td><input type='text' name='nombre_dependiente_6' id='nombre_dependiente_6' class='form-control'></td>
+                                        <td><select name='parentesco_dependiente_6' id='parentesco_dependiente_6' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
+                                        <td><input type='number' name='edad_dependiente_6' id='edad_dependiente_6' class='form-control'></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
