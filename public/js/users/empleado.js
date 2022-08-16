@@ -149,7 +149,8 @@ $(document).ready(function() {
             nombre_dependiente_1: $("#nombre_dependiente_1").val(),
             parentesco_dependiente_1: $("#parentesco_dependiente_1").val(),
             edad_dependiente_1: $("#edad_dependiente_1").val(),
-         /*   nombre_dependiente_2: $("#nombre_dependiente_2").val(),
+         /* 
+            nombre_dependiente_2: $("#nombre_dependiente_2").val(),
             parentesco_dependiente_2: $("#parentesco_dependiente_2").val(),
             edad_dependiente_2: $("#edad_dependiente_2").val(),
             nombre_dependiente_3: $("#nombre_dependiente_3").val(),

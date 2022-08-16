@@ -274,7 +274,16 @@
                                     </tr>
                                 </thead>
                                 <tbody id="hijos" class="bg-white">
-
+                                    <tr id='tr_dependiente_0'>
+                                        <td><input type='text' name='nombre_dependiente_0' id='nombre_dependiente_0' class='form-control'></td>
+                                        <td><select name='parentesco_dependiente_0' id='parentesco_dependiente_0' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
+                                        <td><input type='number' name='edad_dependiente_0' id='edad_dependiente_0' class='form-control'></td>
+                                    </tr>
+                                    <tr id='tr_dependiente_1'>
+                                        <td><input type='text' name='nombre_dependiente_1' id='nombre_dependiente_1' class='form-control'></td>
+                                        <td><select name='parentesco_dependiente_1' id='parentesco_dependiente_1' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>
+                                        <td><input type='number' name='edad_dependiente_1' id='edad_dependiente_1' class='form-control'></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
