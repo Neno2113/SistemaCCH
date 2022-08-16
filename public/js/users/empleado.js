@@ -568,28 +568,45 @@ function mostrar(id_empleado) {
         $("#telefono_esposa").val(data.empleado_detalle.telefono_esposa).attr('readonly', false);
         $("#cantidad_dependientes").val(data.empleado_detalle.cantidad_dependientes).attr('readonly', false);
         $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
+        $("#fecha_ingreso").val(data.empleado.fecha_ingreso).attr('readonly', false);
+        $("#condicion_medica").val(data.empleado.condicion_medica).attr('readonly', false);
+        $("#estado_civil").val(data.empleado.estado_civil).attr('readonly', false);
+        $("#esposa_en_nss").val(data.empleado.esposa_en_nss).attr('readonly', false);
+
         $("#hijos").empty();
 
         let longitud  = data.empleado_detalle.cantidad_dependientes;
 
         for (let i = 0; i < longitud; i++) {
-        var fila =  "<tr >"+
+        var fila =  "<tr id='tr_dependiente_"+[i]+"'>"+
         "<td><input type='text' name='nombre_dependiente_"+[i]+"' id='nombre_dependiente_"+[i]+"' class='form-control'></td>"+
-        "<td class='text-center'><div class='custom-control custom-checkbox'>"+
-        "<input class='custom-control-input' type='checkbox' id='hijo_"+[i]+"' value='1' name='hijo_"+[i]+"'>"+
-        "<label for='hijo_"+[i]+"' class='custom-control-label font-weight-normal'>Marcar si esta asegurado</label></div>"+
-        "</td>"+
+        "<td><select name='parentesco_dependiente_"+[i]+"' id='parentesco_dependiente_"+[i]+"' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>"+
+        "<td><input type='number' name='edad_dependiente_"+[i]+"' id='edad_dependiente_"+[i]+"' class='form-control'></td>"+
         "</tr>";
 
         $("#hijos").append(fila);
         }
-        $("#nombre_dependiente_0").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
-        $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_2).attr('readonly', false);
-        $("#nombre_dependiente_2").val(data.empleado_detalle.nombre_dependiente_3).attr('readonly', false);
-        $("#nombre_dependiente_3").val(data.empleado_detalle.nombre_dependiente_4).attr('readonly', false);
-        $("#nombre_dependiente_4").val(data.empleado_detalle.nombre_dependiente_5).attr('readonly', false);
-        $("#nombre_dependiente_5").val(data.empleado_detalle.nombre_dependiente_6).attr('readonly', false);
-        $("#nombre_dependiente_6").val(data.empleado_detalle.nombre_dependiente_7).attr('readonly', false);
+        $("#nombre_dependiente_0").val(data.empleado_detalle.nombre_dependiente_0).attr('readonly', false);
+        $("#parentesco_dependiente_0").val(data.empleado_detalle.parentesco_dependiente_0).attr('readonly', false);
+        $("#edad_dependiente_0").val(data.empleado_detalle.edad_dependiente_0).attr('readonly', false);
+        $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
+        $("#parentesco_dependiente_1").val(data.empleado_detalle.parentesco_dependiente_1).attr('readonly', false);
+        $("#edad_dependiente_1").val(data.empleado_detalle.edad_dependiente_1).attr('readonly', false);
+        $("#nombre_dependiente_2").val(data.empleado_detalle.nombre_dependiente_2).attr('readonly', false);
+        $("#parentesco_dependiente_2").val(data.empleado_detalle.parentesco_dependiente_2).attr('readonly', false);
+        $("#edad_dependiente_2").val(data.empleado_detalle.edad_dependiente_2).attr('readonly', false);
+        $("#nombre_dependiente_3").val(data.empleado_detalle.nombre_dependiente_3).attr('readonly', false);
+        $("#parentesco_dependiente_3").val(data.empleado_detalle.parentesco_dependiente_3).attr('readonly', false);
+        $("#edad_dependiente_3").val(data.empleado_detalle.edad_dependiente_3).attr('readonly', false);
+        $("#nombre_dependiente_4").val(data.empleado_detalle.nombre_dependiente_4).attr('readonly', false);
+        $("#parentesco_dependiente_4").val(data.empleado_detalle.parentesco_dependiente_4).attr('readonly', false);
+        $("#edad_dependiente_4").val(data.empleado_detalle.edad_dependiente_4).attr('readonly', false);
+        $("#nombre_dependiente_5").val(data.empleado_detalle.nombre_dependiente_5).attr('readonly', false);
+        $("#parentesco_dependiente_5").val(data.empleado_detalle.parentesco_dependiente_5).attr('readonly', false);
+        $("#edad_dependiente_5").val(data.empleado_detalle.edad_dependiente_5).attr('readonly', false);
+        $("#nombre_dependiente_6").val(data.empleado_detalle.nombre_dependiente_6).attr('readonly', false);
+        $("#parentesco_dependiente_6").val(data.empleado_detalle.parentesco_dependiente_6).attr('readonly', false);
+        $("#edad_dependiente_6").val(data.empleado_detalle.edad_dependiente_6).attr('readonly', false);
 
         if(data.empleado_detalle.dependiente_1_nss == 1){
             $("input[name='hijo_0']").prop('checked', true);
