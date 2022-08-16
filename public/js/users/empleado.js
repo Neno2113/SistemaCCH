@@ -148,8 +148,7 @@ $(document).ready(function() {
             edad_dependiente_0: $("#edad_dependiente_0").val(),
             nombre_dependiente_1: $("#nombre_dependiente_1").val(),
             parentesco_dependiente_1: $("#parentesco_dependiente_1").val(),
-            edad_dependiente_1: $("#edad_dependiente_1").val(),
-         /* 
+            edad_dependiente_1: $("#edad_dependiente_1").val(), 
             nombre_dependiente_2: $("#nombre_dependiente_2").val(),
             parentesco_dependiente_2: $("#parentesco_dependiente_2").val(),
             edad_dependiente_2: $("#edad_dependiente_2").val(),
@@ -165,7 +164,7 @@ $(document).ready(function() {
             nombre_dependiente_6: $("#nombre_dependiente_6").val(),
             parentesco_dependiente_6: $("#parentesco_dependiente_6").val(),
             edad_dependiente_6: $("#edad_dependiente_6").val(),
-          */  
+          
             nombre_ref1: $("#nombre_ref1").val(),
             parentesco_ref1: $("#parentesco_ref1").val(),
             telefono_ref1: $("#telefono_ref1").val(),

@@ -81,7 +81,7 @@ class EmpleadoController extends Controller
             $nombre_dependiente_1 = $request->input('nombre_dependiente_1');
             $parentesco_dependiente_1 = $request->input('parentesco_dependiente_1');
             $edad_dependiente_1 = $request->input('edad_dependiente_1');
-/*            $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
+            $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
             $parentesco_dependiente_2 = $request->input('parentesco_dependiente_'2);
             $edad_dependiente_2 = $request->input('edad_dependiente_2');
             $nombre_dependiente_3 = $request->input('nombre_dependiente_3');
@@ -96,7 +96,7 @@ class EmpleadoController extends Controller
             $nombre_dependiente_6 = $request->input('nombre_dependiente_6');
             $parentesco_dependiente_6 = $request->input('parentesco_dependiente_6');
             $edad_dependiente_6 = $request->input('edad_dependiente_6');
-*/
+
             $nombre_ref1 = $request->input('nombre_ref1');
             $parentesco_ref1 = $request->input('parentesco_ref1');
             $telefono_ref1 = $request->input('telefono_ref1');
@@ -196,7 +196,6 @@ class EmpleadoController extends Controller
             $empleado_detalle->nombre_dependiente_1 = $nombre_dependiente_1;
             $empleado_detalle->parentesco_dependiente_1 = $parentesco_dependiente_1;
             $empleado_detalle->edad_dependiente_1 = $edad_dependiente_1;
-         /*
             $empleado_detalle->nombre_dependiente_2 = $nombre_dependiente_2;
             $empleado_detalle->parentesco_dependiente_2 = $parentesco_dependiente_2;
             $empleado_detalle->edad_dependiente_2 = $edad_dependiente_2;
@@ -212,7 +211,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->nombre_dependiente_6 = $nombre_dependiente_6;
             $empleado_detalle->parentesco_dependiente_6 = $parentesco_dependiente_6;
             $empleado_detalle->edad_dependiente_6 = $edad_dependiente_6;
-         */   
+           
             $empleado_detalle->nombre_ref1 = $nombre_ref1;
             $empleado_detalle->parentesco_ref1 = $parentesco_ref1;
             $empleado_detalle->telefono_ref1 = $telefono_ref1;
