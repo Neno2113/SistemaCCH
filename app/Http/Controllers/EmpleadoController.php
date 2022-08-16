@@ -81,18 +81,15 @@ class EmpleadoController extends Controller
             $nombre_dependiente_1 = $request->input('nombre_dependiente_1');
             $parentesco_dependiente_1 = $request->input('parentesco_dependiente_1');
             $edad_dependiente_1 = $request->input('edad_dependiente_1');
-/*
             $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
-            $parentesco_dependiente_2 = $request->input('parentesco_dependiente_'2);
+            $parentesco_dependiente_2 = $request->input('parentesco_dependiente_2');
             $edad_dependiente_2 = $request->input('edad_dependiente_2');
-*/
             $nombre_dependiente_3 = $request->input('nombre_dependiente_3');
             $parentesco_dependiente_3 = $request->input('parentesco_dependiente_3');
             $edad_dependiente_3 = $request->input('edad_dependiente_3');
             $nombre_dependiente_4 = $request->input('nombre_dependiente_4');
             $parentesco_dependiente_4 = $request->input('parentesco_dependiente_4');
             $edad_dependiente_4 = $request->input('edad_dependiente_4');
-
             $nombre_dependiente_5 = $request->input('nombre_dependiente_5');
             $parentesco_dependiente_5 = $request->input('parentesco_dependiente_5');
             $edad_dependiente_5 = $request->input('edad_dependiente_5');
