@@ -568,7 +568,7 @@ function mostrar(id_empleado) {
             $("#telefono_esposa").val(data.empleado_detalle.telefono_esposa).attr('readonly', false);
             $("#cantidad_dependientes").val(data.empleado_detalle.cantidad_dependientes).attr('readonly', false);
             $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
-            $("#fecha_contratacion").val(data.empleado.fecha_ingreso).attr('readonly', false);
+            $("#fecha_ingreso").val(data.empleado.fecha_contratacion).attr('readonly', false);
             $("#condicion_medica").val(data.empleado.condicion_medica).attr('readonly', false);
             $("#estado_civil").val(data.empleado.estado_civil).attr('readonly', false);
             $("#esposa_en_nss").val(data.empleado_detalle.esposa_en_nss).attr('readonly', false);
@@ -626,18 +626,18 @@ function mostrar(id_empleado) {
             $("#cargo_experiencia_1").val(data.empleado_detalle.cargo_experiencia_1).attr('readonly', false);
             $("#tiempo_experiencia_1").val(data.empleado_detalle.tiempo_experiencia_1).attr('readonly', false);
             $("#empresa_experiencia_1").val(data.empleado_detalle.empresa_experiencia_1).attr('readonly', false);
-            $("#empresa_experiencia_1").val(data.empleado_detalle.empresa_experiencia_1).attr('readonly', false);
+            $("#supervisor_experiencia_1").val(data.empleado_detalle.supervisor_experiencia_1).attr('readonly', false);
             $("#telefono_experiencia_1").val(data.empleado_detalle.telefono_experiencia_1).attr('readonly', false);
             $("#cargo_experiencia_2").val(data.empleado_detalle.cargo_experiencia_2).attr('readonly', false);
             $("#tiempo_experiencia_2").val(data.empleado_detalle.tiempo_experiencia_2).attr('readonly', false);
             $("#empresa_experiencia_2").val(data.empleado_detalle.empresa_experiencia_2).attr('readonly', false);
-            $("#empresa_experiencia_2").val(data.empleado_detalle.empresa_experiencia_2).attr('readonly', false);
+            $("#supervisor_experiencia_1").val(data.empleado_detalle.supervisor_experiencia_2).attr('readonly', false);
             $("#telefono_experiencia_2").val(data.empleado_detalle.telefono_experiencia_2).attr('readonly', false);
 
             if(data.empleado_detalle.cantidad_dependientes > 0){
-                $("#radioPrimary1").prop('checked', true);
+                $("input[name='r1']").prop('checked', true);
             }else {
-                $("#radioPrimary2").prop('checked', true);
+                $("input[name='r2']").prop('checked', true);
             }
         
         }
