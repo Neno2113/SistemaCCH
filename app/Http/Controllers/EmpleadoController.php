@@ -442,7 +442,6 @@ class EmpleadoController extends Controller
             $id = $request->input('id');
             $nombre = $request->input('nombre');
 
-            return redirect()->back() ->with('alert', $id);
 /*           
             $apellido = $request->input('apellido');
             $calle = $request->input('calle');
