@@ -498,9 +498,9 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function() {
+            error: function(datos) {
                 bootbox.alert(
-                    "Ocurrio un error!!"
+                    "Ocurrio un error!! "+datos.status
                 );
             }
         });
