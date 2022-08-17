@@ -392,7 +392,7 @@ $(document).ready(function() {
         var empleado = {
             id: $("#id").val(),
             nombre: $("#nombre").val()
-            /*
+            
             apellido: $("#apellido").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
@@ -470,7 +470,7 @@ $(document).ready(function() {
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
             nss: $("#nss").val() 
-            */
+            
             
         };
 
