@@ -471,7 +471,7 @@ $(document).ready(function() {
             nss: $("#nss").val() 
         };
 
-        // console.log(JSON.stringify(empleado));
+         console.log(JSON.stringify(empleado));
         $.ajax({
             url: "empleado/edit",
             type: "PUT",
