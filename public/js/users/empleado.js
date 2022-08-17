@@ -500,8 +500,7 @@ $(document).ready(function() {
             },
             error: function(datos) {
                 bootbox.alert(
-                    "Ocurrio un error!! "+datos.code,
-                    datos.message
+                    "Ocurrio un error!! "+datos.message
                 );
             }
         });
