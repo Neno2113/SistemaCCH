@@ -414,7 +414,7 @@ class EmpleadoController extends Controller
             $data = [
                 'code' => 404,
                 'status' => 'error',
-                'message' => 'No existe el usuario :('
+                'message' => 'No existe el usuario'
             ];
         }
 
