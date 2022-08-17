@@ -522,7 +522,7 @@ class EmpleadoController extends Controller
             $departamento = $request->input('departamento');
 
             $empleado = Empleado::find($id);
-            $user_id = $empleado->user_id;
+//            $user_id = $empleado->user_id;
 
             /*
             if (preg_match('/_/', $sueldo)) {
@@ -559,7 +559,7 @@ class EmpleadoController extends Controller
             $empleado->nss = $nss;
             $empleado->condicion_medica = $condicion_medica;
             $empleado->save();
-
+/*
             //Actualizar detalle
             $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)
             ->get()
@@ -616,7 +616,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->telefono_experiencia_2 = $telefono_experiencia_2;
 
             $empleado_detalle->save();
-/*
+
             //Actualizar usuario
             $user = User::where('id', $user_id)
             ->get()
@@ -637,8 +637,8 @@ class EmpleadoController extends Controller
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'empleado' => $empleado,
-                'empleado_detalle' => $empleado_detalle
+                'empleado' => $empleado
+ //               'empleado_detalle' => $empleado_detalle
  //               'user' => $user
             ];
         }
