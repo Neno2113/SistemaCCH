@@ -521,7 +521,10 @@ class EmpleadoController extends Controller
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
 
-            $empleado = Empleado::find($id);
+ //           $empleado = Empleado::find($id);
+            $empleado  = Empleado::where('id', $id)
+            ->get()
+            ->first();
 //            $user_id = $empleado->user_id;
 
             /*
