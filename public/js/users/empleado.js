@@ -631,13 +631,15 @@ function mostrar(id_empleado) {
             $("#cargo_experiencia_2").val(data.empleado_detalle.cargo_experiencia_2).attr('readonly', false);
             $("#tiempo_experiencia_2").val(data.empleado_detalle.tiempo_experiencia_2).attr('readonly', false);
             $("#empresa_experiencia_2").val(data.empleado_detalle.empresa_experiencia_2).attr('readonly', false);
-            $("#supervisor_experiencia_1").val(data.empleado_detalle.supervisor_experiencia_2).attr('readonly', false);
+            $("#supervisor_experiencia_2").val(data.empleado_detalle.supervisor_experiencia_2).attr('readonly', false);
             $("#telefono_experiencia_2").val(data.empleado_detalle.telefono_experiencia_2).attr('readonly', false);
 
             if(data.empleado_detalle.cantidad_dependientes > 0){
                 $("input[name='r1']").prop('checked', true);
+                $("input[name='r2']").prop('checked', false);
             }else {
                 $("input[name='r2']").prop('checked', true);
+                $("input[name='r1']").prop('checked', false);
             }
         
         }
