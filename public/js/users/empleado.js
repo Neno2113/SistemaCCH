@@ -404,7 +404,7 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-           
+          /* 
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
             condicion_medica: $("#condicion_medica").val(),
@@ -469,12 +469,14 @@ $(document).ready(function() {
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
             nss: $("#nss").val() 
+            */
         };
 
-        // console.log(JSON.stringify(empleado));
+         console.log(JSON.stringify(empleado));
+         /*
         $.ajax({
             url: "empleado/edit",
-            type: "POST",
+            type: "PUT",
             dataType: "json",
             data: JSON.stringify(empleado),
             contentType: "application/json",
@@ -492,16 +494,18 @@ $(document).ready(function() {
 
                 } else {
                     bootbox.alert(
-                        "Ocurrio un error durante la actualizacion de la composicion"
+                        "Ocurrio un error durante la actualizacion"
                     );
                 }
             },
             error: function() {
                 bootbox.alert(
-                    "Ocurrio un error!!"
+                    "Ocurrio un error!!",
+                    datos.code
                 );
             }
         });
+        */
 
     });
 
