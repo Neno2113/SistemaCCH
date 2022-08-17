@@ -621,7 +621,7 @@ function mostrar(id_empleado) {
             $("#nivel_superior").val(data.empleado_detalle.nivel_superior).attr('readonly', false);
             $("#grado_titulo").val(data.empleado_detalle.grado_titulo).attr('readonly', false);
             $("#especialidad").val(data.empleado_detalle.especialidad).attr('readonly', false);
-            $("#fecha_exp").val(data.empleado_detalle.fecha-exp).attr('readonly', false);
+            $("#fecha_exp").val(data.empleado_detalle.fecha_exp).attr('readonly', false);
 
             $("#cargo_experiencia_1").val(data.empleado_detalle.cargo_experiencia_1).attr('readonly', false);
             $("#tiempo_experiencia_1").val(data.empleado_detalle.tiempo_experiencia_1).attr('readonly', false);
