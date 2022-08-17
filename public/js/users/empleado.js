@@ -404,7 +404,7 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-          /* 
+          
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
             condicion_medica: $("#condicion_medica").val(),
@@ -469,11 +469,11 @@ $(document).ready(function() {
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
             nss: $("#nss").val() 
-            */
+            
         };
 
-         console.log(JSON.stringify(empleado));
-         /*
+        // console.log(JSON.stringify(empleado));
+         
         $.ajax({
             url: "empleado/edit",
             type: "PUT",
@@ -505,7 +505,6 @@ $(document).ready(function() {
                 );
             }
         });
-        */
 
     });
 
@@ -560,7 +559,7 @@ $(document).ready(function() {
 });
 
 function mostrar(id_empleado) {
-    $.get("empleado/" + id_empleado, function(data, status) {
+    $.get("empleado/id/" + id_empleado, function(data, status) {
 
         if(data.status == 'denied'){
             return Swal.fire(
@@ -690,7 +689,7 @@ function mostrar(id_empleado) {
 }
 
 function show(id_empleado) {
-    $.get("empleado/" + id_empleado, function(data, status) {
+    $.get("empleado/id/" + id_empleado, function(data, status) {
 
         $("#listadoUsers").hide();
         $("#registroForm").show();
@@ -714,7 +713,7 @@ function show(id_empleado) {
 
 
 function ver(id_empleado) {
-    $.get("empleado/" + id_empleado, function(data, status) {
+    $.get("empleado/id/" + id_empleado, function(data, status) {
 
         $("#listadoUsers").hide();
         $("#registroForm").show();
