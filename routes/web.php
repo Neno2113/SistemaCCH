@@ -495,7 +495,7 @@ Route::get('nota/empty', 'NotaCreditoController@clearNC');
 Route::post('empleado', 'EmpleadoController@store');
 Route::post('empleado/detalle', 'EmpleadoController@storeDetalle');
 Route::get('empleado/{id}', 'EmpleadoController@show');
-Route::put('empleado/edit', 'EmpleadoController@update');
+Route::post('empleado/edit', 'EmpleadoController@update');
 Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 Route::post('empleadocheck/delete/{id}', 'EmpleadoController@checkDestroy');
 

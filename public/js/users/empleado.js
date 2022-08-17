@@ -474,7 +474,7 @@ $(document).ready(function() {
         // console.log(JSON.stringify(empleado));
         $.ajax({
             url: "empleado/edit",
-            type: "PUT",
+            type: "POST",
             dataType: "json",
             data: JSON.stringify(empleado),
             contentType: "application/json",
