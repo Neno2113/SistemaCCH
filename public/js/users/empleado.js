@@ -391,7 +391,8 @@ $(document).ready(function() {
 
         var empleado = {
             id: $("#id").val(),
-            nombre: $("#nombre").val(),
+            nombre: $("#nombre").val()
+            /*
             apellido: $("#apellido").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
@@ -469,6 +470,7 @@ $(document).ready(function() {
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
             nss: $("#nss").val() 
+            */
             
         };
 
@@ -500,7 +502,7 @@ $(document).ready(function() {
             },
             error: function(datos) {
                 bootbox.alert(
-                    "Ocurrio un error!! "+datos.message
+                    "Ocurrio un error!! "+datos.code
                 );
             }
         });

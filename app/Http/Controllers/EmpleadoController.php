@@ -441,6 +441,7 @@ class EmpleadoController extends Controller
         } else {
             $id = $request->input('id');
             $nombre = $request->input('nombre');
+/*           
             $apellido = $request->input('apellido');
             $calle = $request->input('calle');
             $sector = $request->input('sector');
@@ -520,7 +521,7 @@ class EmpleadoController extends Controller
             $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
             $departamento = $request->input('departamento');
-
+*/
             $empleado = Empleado::find($id);
  //           $empleado  = DB::table('empleado')->where('id',$id)->first();
 //            $user_id = $empleado->user_id;
@@ -536,6 +537,7 @@ class EmpleadoController extends Controller
 
             //Actualizar empleado
             $empleado->nombre = $nombre;
+/*
             $empleado->apellido = $apellido;
             $empleado->codigo = $codigo;
             $empleado->calle = $calle;
@@ -559,6 +561,7 @@ class EmpleadoController extends Controller
             $empleado->no_cuenta = $no_cuenta;
             $empleado->nss = $nss;
             $empleado->condicion_medica = $condicion_medica;
+            */
             $empleado->save();
 /*
             //Actualizar detalle
