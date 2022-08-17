@@ -618,7 +618,9 @@ class EmpleadoController extends Controller
             $empleado_detalle->save();
 
             //Actualizar usuario
-            $user  = User::find($user_id);
+            $user = User::where('id', $user_id)
+            ->get()
+            ->first();
             
             $user->name = $nombre;
             $user->surname = $apellido;
