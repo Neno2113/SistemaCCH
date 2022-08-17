@@ -426,9 +426,9 @@ class EmpleadoController extends Controller
         $validar = $request->validate([
             'id' => 'required|numeric',
             'nombre' => 'required',
-            'apellido' => 'required',
-            'cedula' => 'required|unique:empleado',
-            'telefono_2' => 'required',
+        //    'apellido' => 'required',
+        //    'cedula' => 'required|unique:empleado',
+        //    'telefono_2' => 'required',
         ]);
 
         if (empty($validar)) {
@@ -441,6 +441,8 @@ class EmpleadoController extends Controller
         } else {
             $id = $request->input('id');
             $nombre = $request->input('nombre');
+
+            return redirect()->back() ->with('alert', $id);
 /*           
             $apellido = $request->input('apellido');
             $calle = $request->input('calle');
