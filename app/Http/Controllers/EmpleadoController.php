@@ -425,18 +425,10 @@ class EmpleadoController extends Controller
     {
         $validar = $request->validate([
             'id' => 'required|numeric',
-            'forma_pago' => 'required',
-            'banco_tarjeta_cobro' => 'required',
             'nombre' => 'required',
             'apellido' => 'required',
-            'cedula' => 'required',
-            'telefono_1' => 'required',
-            'email' => 'required|email',
-            'cargo' => 'required',
-            'departamento' => 'required',
-            'calle' => 'required',
-            'sector' => 'required',
-            'provincia' => 'required'
+            'cedula' => 'required|unique:empleado',
+            'telefono_2' => 'required',
         ]);
 
         if (empty($validar)) {
@@ -455,69 +447,117 @@ class EmpleadoController extends Controller
             $provincia = $request->input('provincia');
             $sitios_cercanos = $request->input('sitios_cercanos');
             $cedula = $request->input('cedula');
-            $cargo = $request->input('cargo');
-            $departamento = $request->input('departamento');
+            $cedula_sin_guion = $request->input('cedula_sin_guion');
+            $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
+            
+            $estado_civil = $request->input('estado_civil');
+            $referencia = $request->input('referencia');
+
+            $fecha_ingreso = $request->input('fecha_ingreso');
+            $condicion_medica = $request->input('condicion_medica');
+            $nombre_esposa = $request->input('nombre_esposa');
+            $telefono_esposa = $request->input('telefono_esposa');
+            $esposa_en_nss = $request->input('esposa_en_nss');
+
+            $cantidad_dependientes = $request->input('cantidad_dependientes');         
+
+            $nombre_dependiente_0 = $request->input('nombre_dependiente_0');
+            $parentesco_dependiente_0 = $request->input('parentesco_dependiente_0');
+            $edad_dependiente_0 = $request->input('edad_dependiente_0');
+            $nombre_dependiente_1 = $request->input('nombre_dependiente_1');
+            $parentesco_dependiente_1 = $request->input('parentesco_dependiente_1');
+            $edad_dependiente_1 = $request->input('edad_dependiente_1');
+            $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
+            $parentesco_dependiente_2 = $request->input('parentesco_dependiente_2');
+            $edad_dependiente_2 = $request->input('edad_dependiente_2');
+            $nombre_dependiente_3 = $request->input('nombre_dependiente_3');
+            $parentesco_dependiente_3 = $request->input('parentesco_dependiente_3');
+            $edad_dependiente_3 = $request->input('edad_dependiente_3');
+            $nombre_dependiente_4 = $request->input('nombre_dependiente_4');
+            $parentesco_dependiente_4 = $request->input('parentesco_dependiente_4');
+            $edad_dependiente_4 = $request->input('edad_dependiente_4');
+            $nombre_dependiente_5 = $request->input('nombre_dependiente_5');
+            $parentesco_dependiente_5 = $request->input('parentesco_dependiente_5');
+            $edad_dependiente_5 = $request->input('edad_dependiente_5');
+            $nombre_dependiente_6 = $request->input('nombre_dependiente_6');
+            $parentesco_dependiente_6 = $request->input('parentesco_dependiente_6');
+            $edad_dependiente_6 = $request->input('edad_dependiente_6');
+
+            $nombre_ref1 = $request->input('nombre_ref1');
+            $parentesco_ref1 = $request->input('parentesco_ref1');
+            $telefono_ref1 = $request->input('telefono_ref1');
+            $nombre_ref2 = $request->input('nombre_ref2');
+            $parentesco_ref2 = $request->input('parentesco_ref2');
+            $telefono_ref2 = $request->input('telefono_ref2');
+            $primaria = $request->input('primaria');
+            $bachiller = $request->input('bachiller');
+            $nivel_superior = $request->input('nivel_superior');
+            $grado_titulo = $request->input('grado_titulo');
+            $especialidad = $request->input('especialidad');
+            $fecha_exp = $request->input('fecha_exp');
+            $cargo_experiencia_1 = $request->input('cargo_experiencia_1');
+            $cargo_experiencia_2 = $request->input('cargo_experiencia_2');
+            $tiempo_experiencia_1 = $request->input('tiempo_experiencia_1');
+            $tiempo_experiencia_2 = $request->input('tiempo_experiencia_2');
+            $empresa_experiencia_1 = $request->input('empresa_experiencia_1');
+            $empresa_experiencia_2 = $request->input('empresa_experiencia_2');
+            $supervisor_experiencia_1 = $request->input('supervisor_experiencia_1');
+            $supervisor_experiencia_2 = $request->input('supervisor_experiencia_2');
+            $telefono_experiencia_1 = $request->input('telefono_experiencia_1');
+            $telefono_experiencia_2 = $request->input('telefono_experiencia_2');
+            
             $tipo_contrato = $request->input('tipo_contrato');
-            $fecha_nacimiento = $request->input('fecha_nacimiento');
             $forma_pago = $request->input('forma_pago');
             $sueldo = $request->input('sueldo');
             $valor_hora = $request->input('valor_hora');
             $banco_tarjeta_cobro = $request->input('banco_tarjeta_cobro');
             $no_cuenta = $request->input('no_cuenta');
             $nss = $request->input('nss');
-            $casado = $request->input('casado');
-            $nombre_esposa = $request->input('nombre_esposa');
-            $telefono_esposa = $request->input('telefono_esposa');
-            $esposa_seguro = $request->input('esposa_seguro');
-            $cantidad_dependientes = $request->input('cantidad_dependientes');
-            $nombre_dependiente_1 = $request->input('nombre_dependiente_1');
-            $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
-            $nombre_dependiente_3 = $request->input('nombre_dependiente_3');
-            $nombre_dependiente_4 = $request->input('nombre_dependiente_4');
-            $nombre_dependiente_5 = $request->input('nombre_dependiente_5');
-            $nombre_dependiente_6 = $request->input('nombre_dependiente_6');
-            $nombre_dependiente_7 = $request->input('nombre_dependiente_7');
-            $dependiente_1_nss = $request->input('dependiente_1_nss');
-            $dependiente_2_nss = $request->input('dependiente_2_nss');
-            $dependiente_3_nss = $request->input('dependiente_3_nss');
-            $dependiente_4_nss = $request->input('dependiente_4_nss');
-            $dependiente_5_nss = $request->input('dependiente_5_nss');
-            $dependiente_6_nss = $request->input('dependiente_6_nss');
-            $dependiente_7_nss = $request->input('dependiente_7_nss');
+            
+            $codigo = $request->input('codigo');
+            $cargo = $request->input('cargo');
+            $departamento = $request->input('departamento');
 
             $empleado = Empleado::find($id);
+            $user_id = $empleado->user_id;
 
+            /*
             if (preg_match('/_/', $sueldo)) {
                 $sueldo = trim($sueldo, "RD$");
             } else {
                 $sueldo = trim($sueldo, "RD$");
                 $sueldo = str_replace(',', '', $sueldo);
             }
+            */
 
             //Actualizar empleado
             $empleado->nombre = $nombre;
             $empleado->apellido = $apellido;
+            $empleado->codigo = $codigo;
             $empleado->calle = $calle;
             $empleado->sector = $sector;
             $empleado->provincia = $provincia;
             $empleado->sitios_cercanos = $sitios_cercanos;
-            $empleado->cedula = $cedula;
-            $empleado->cargo = $cargo;
-            $empleado->fecha_nacimiento = $fecha_nacimiento;
-            $empleado->departamento = $departamento;
             $empleado->telefono_1 = $telefono_1;
             $empleado->telefono_2 = $telefono_2;
             $empleado->email = $email;
+            $empleado->cedula = $cedula;
+            $empleado->fecha_nacimiento = $fecha_nacimiento;
+            $empleado->departamento = $departamento;
+            $empleado->estado_civil = $estado_civil;
+            $empleado->cargo = $cargo;
+            $empleado->fecha_contratacion = $fecha_ingreso;
             $empleado->tipo_contrato = $tipo_contrato;
-            $empleado->casado = $casado;
             $empleado->forma_pago = $forma_pago;
             $empleado->sueldo = $sueldo;
-            $empleado->valor_hora = trim($valor_hora, "RD$");
+            $empleado->valor_hora = $valor_hora;
             $empleado->banco_tarjeta_cobro = $banco_tarjeta_cobro;
             $empleado->no_cuenta = $no_cuenta;
+            $empleado->nss = $nss;
+            $empleado->condicion_medica = $condicion_medica;
             $empleado->save();
 
             //Actualizar detalle
@@ -525,33 +565,82 @@ class EmpleadoController extends Controller
             ->get()
             ->first();
 
-            $empleado_detalle->nss = $nss;
+            $empleado_detalle->cantidad_dependientes = $cantidad_dependientes;
             $empleado_detalle->nombre_esposa = $nombre_esposa;
             $empleado_detalle->telefono_esposa = $telefono_esposa;
-            $empleado_detalle->esposa_en_nss = $esposa_seguro;
-            $empleado_detalle->cantidad_dependientes = $cantidad_dependientes;
+            $empleado_detalle->esposa_en_nss = $esposa_en_nss;
+            
+            $empleado_detalle->nombre_dependiente_0 = $nombre_dependiente_0;
+            $empleado_detalle->parentesco_dependiente_0 = $parentesco_dependiente_0;
+            $empleado_detalle->edad_dependiente_0 = $edad_dependiente_0;
             $empleado_detalle->nombre_dependiente_1 = $nombre_dependiente_1;
+            $empleado_detalle->parentesco_dependiente_1 = $parentesco_dependiente_1;
+            $empleado_detalle->edad_dependiente_1 = $edad_dependiente_1;
             $empleado_detalle->nombre_dependiente_2 = $nombre_dependiente_2;
+            $empleado_detalle->parentesco_dependiente_2 = $parentesco_dependiente_2;
+            $empleado_detalle->edad_dependiente_2 = $edad_dependiente_2;
             $empleado_detalle->nombre_dependiente_3 = $nombre_dependiente_3;
+            $empleado_detalle->parentesco_dependiente_3 = $parentesco_dependiente_3;
+            $empleado_detalle->edad_dependiente_3 = $edad_dependiente_3;
             $empleado_detalle->nombre_dependiente_4 = $nombre_dependiente_4;
+            $empleado_detalle->parentesco_dependiente_4 = $parentesco_dependiente_4;
+            $empleado_detalle->edad_dependiente_4 = $edad_dependiente_4;
             $empleado_detalle->nombre_dependiente_5 = $nombre_dependiente_5;
+            $empleado_detalle->parentesco_dependiente_5 = $parentesco_dependiente_5;
+            $empleado_detalle->edad_dependiente_5 = $edad_dependiente_5;
             $empleado_detalle->nombre_dependiente_6 = $nombre_dependiente_6;
-            $empleado_detalle->nombre_dependiente_7 = $nombre_dependiente_7;
-            $empleado_detalle->dependiente_1_nss = $dependiente_1_nss;
-            $empleado_detalle->dependiente_2_nss = $dependiente_2_nss;
-            $empleado_detalle->dependiente_3_nss = $dependiente_3_nss;
-            $empleado_detalle->dependiente_4_nss = $dependiente_4_nss;
-            $empleado_detalle->dependiente_5_nss = $dependiente_5_nss;
-            $empleado_detalle->dependiente_6_nss = $dependiente_6_nss;
-            $empleado_detalle->dependiente_7_nss = $dependiente_7_nss;
+            $empleado_detalle->parentesco_dependiente_6 = $parentesco_dependiente_6;
+            $empleado_detalle->edad_dependiente_6 = $edad_dependiente_6;
+           
+            $empleado_detalle->nombre_ref1 = $nombre_ref1;
+            $empleado_detalle->parentesco_ref1 = $parentesco_ref1;
+            $empleado_detalle->telefono_ref1 = $telefono_ref1;
+            $empleado_detalle->nombre_ref2 = $nombre_ref2;
+            $empleado_detalle->parentesco_ref2 = $parentesco_ref2;
+            $empleado_detalle->telefono_ref2 = $telefono_ref2;
+            $empleado_detalle->primaria = $primaria;
+            $empleado_detalle->bachiller = $bachiller;
+            $empleado_detalle->nivel_superior = $nivel_superior;
+            $empleado_detalle->grado_titulo = $grado_titulo;
+            $empleado_detalle->especialidad = $especialidad;
+            $empleado_detalle->fecha_exp = $fecha_exp;
+            $empleado_detalle->cargo_experiencia_1 = $cargo_experiencia_1;
+            $empleado_detalle->tiempo_experiencia_1 = $tiempo_experiencia_1;
+            $empleado_detalle->empresa_experiencia_1 = $empresa_experiencia_1;
+            $empleado_detalle->supervisor_experiencia_1 = $supervisor_experiencia_1;
+            $empleado_detalle->telefono_experiencia_1 = $telefono_experiencia_1;
+            $empleado_detalle->cargo_experiencia_2  = $cargo_experiencia_2;
+            $empleado_detalle->tiempo_experiencia_2 = $tiempo_experiencia_2;
+            $empleado_detalle->empresa_experiencia_2 = $empresa_experiencia_2;
+            $empleado_detalle->supervisor_experiencia_2 = $supervisor_experiencia_2;
+            $empleado_detalle->telefono_experiencia_2 = $telefono_experiencia_2;
 
             $empleado_detalle->save();
+
+            //Actualizar usuario
+            $user_id = $empleado->user_id;
+            $user  = User::find($user_id);
+            ->get()
+            ->first();
+            
+            $user->name = $nombre;
+            $user->surname = $apellido;
+            $user->email = $email;
+            $user->password = $pwd;
+            $user->codigo = $codigo;
+            $user->role = $departamento;
+            $user->telefono = $telefono_1;
+            $user->celular = $telefono_2;
+            $user->direccion = $calle;
+            $user->fecha_nacimiento = $fecha_nacimiento;
+            $user->save();
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'empleado' => $empleado,
-                'empleado_detalle' => $empleado_detalle
+                'empleado_detalle' => $empleado_detalle,
+                'user' => $user
             ];
         }
 
