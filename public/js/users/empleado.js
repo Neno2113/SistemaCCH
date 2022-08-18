@@ -499,7 +499,7 @@ $(document).ready(function() {
                     );
                 }
             },
-            error: function(datos) {
+            error: function() {
                 bootbox.alert(
                     "Ocurrio un error!!"
                 );
