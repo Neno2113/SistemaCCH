@@ -473,7 +473,7 @@ $(document).ready(function() {
         };
 
         // console.log(JSON.stringify(empleado));
-         /*
+         
         $.ajax({
             url: "empleado/edit",
             type: "PUT",
@@ -504,7 +504,7 @@ $(document).ready(function() {
                 );
             }
         });
-        */
+        
 
     });
 
@@ -583,7 +583,7 @@ function mostrar(id_empleado) {
             $("#fila-address").show();
             $("#fila-detail").show();
 
-
+            /*
             $("#id").val(data.empleado.id);
             $("#nombre").val(data.empleado.nombre).attr('readonly', false);
             $("#apellido").val(data.empleado.apellido).attr('readonly', false);
@@ -674,6 +674,7 @@ function mostrar(id_empleado) {
             $("#empresa_experiencia_2").val(data.empleado_detalle.empresa_experiencia_2).attr('readonly', false);
             $("#supervisor_experiencia_2").val(data.empleado_detalle.supervisor_experiencia_2).attr('readonly', false);
             $("#telefono_experiencia_2").val(data.empleado_detalle.telefono_experiencia_2).attr('readonly', false);
+            */
 /*
             if(data.empleado_detalle.cantidad_dependientes > 0){
                 $("input[name='r1']").prop('checked', true);
