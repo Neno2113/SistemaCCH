@@ -247,11 +247,11 @@ $(document).ready(function() {
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
             nss: $("#nss").val(),
-            casado: $("input[name='r1']:checked").val(),
+        //    casado: $("input[name='r1']:checked").val(),
             nombre_esposa: $("#nombre_esposa").val(),
             telefono_esposa: $("#telefono_esposa").val(),
-            casado: $("input[name='r1']:checked").val(),
-            esposa_seguro: $("input[name='r2']:checked").val(),
+        //    casado: $("input[name='r1']:checked").val(),
+        //    esposa_seguro: $("input[name='r2']:checked").val(),
             cantidad_dependientes: $("#cantidad_dependientes").val(),
             nombre_dependiente_1: $("#nombre_dependiente_0").val(),
             nombre_dependiente_2: $("#nombre_dependiente_1").val(),
@@ -500,8 +500,7 @@ $(document).ready(function() {
             },
             error: function() {
                 bootbox.alert(
-                    "Ocurrio un error!!",
-                    datos.code
+                    "Ocurrio un error!!"
                 );
             }
         });

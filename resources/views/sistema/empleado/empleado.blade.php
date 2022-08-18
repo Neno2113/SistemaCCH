@@ -235,7 +235,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2 mt-4">
-                                <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
+                                <label for="autorizacion_credito_req">Mostrar dependientes?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
                                         <input type="radio" id="radioPrimary1" name="r1" value="1">
@@ -244,7 +244,7 @@
                                         </label>
                                     </div>
                                     <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary2" value="0" name="r2" checked>
+                                        <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
                                         <label for="radioPrimary2">
                                             No
                                         </label>
@@ -401,17 +401,8 @@
                             </div>
                             <div class="col-md-4 mt-2">
                                 <label for="fecha_exp" >Fecha de Exp.</label>
-                                <input 
-                                    type="date" 
-                                    name="fecha_exp" 
-                                    id="fecha_exp" 
-                                    class="form-control"
-                                    value="2000-01-01"    
-                                >
-                                <!--
-                                <input type="text" name="fecha_exp"
-                                    id="fecha-exp" class="form-control">
-                            -->
+                                <input type="date" name="fecha_exp" id="fecha_exp" class="form-control"value="2000-01-01">
+                                
                             </div>
                         </div>
                     </div>
@@ -597,9 +588,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    
 
 
             </div>
