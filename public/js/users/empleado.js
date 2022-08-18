@@ -391,8 +391,7 @@ $(document).ready(function() {
 
         var empleado = {
             id: $("#id").val(),
-            nombre: $("#nombre").val()
-            
+            nombre: $("#nombre").val(),
             apellido: $("#apellido").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
