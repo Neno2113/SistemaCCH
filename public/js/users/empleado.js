@@ -391,8 +391,7 @@ $(document).ready(function() {
 
         var empleado = {
             id: $("#id").val(),
-            nombre: $("#nombre").val()
-            /*
+            nombre: $("#nombre").val(),
             apellido: $("#apellido").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
@@ -405,7 +404,7 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-          
+          /* 
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
             condicion_medica: $("#condicion_medica").val(),
@@ -501,10 +500,12 @@ $(document).ready(function() {
             },
             error: function() {
                 bootbox.alert(
-                    "Ocurrio un error!!"
+                    "Ocurrio un error!!",
+                    datos.code
                 );
             }
         });
+        
 
     });
 

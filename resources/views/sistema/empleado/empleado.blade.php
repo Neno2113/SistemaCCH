@@ -235,7 +235,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2 mt-4">
-                                <label for="autorizacion_credito_req">¿Mostrar dependientes?</label>
+                                <label for="autorizacion_credito_req">¿Tiene dependientes?</label>
                                 <div class="form-group clearfix">
                                     <div class="icheck-primary d-inline">
                                         <input type="radio" id="radioPrimary1" name="r1" value="1">
@@ -244,7 +244,7 @@
                                         </label>
                                     </div>
                                     <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
+                                        <input type="radio" id="radioPrimary2" value="0" name="r2" checked>
                                         <label for="radioPrimary2">
                                             No
                                         </label>
@@ -411,7 +411,7 @@
                                 <!--
                                 <input type="text" name="fecha_exp"
                                     id="fecha-exp" class="form-control">
-                                -->
+                            -->
                             </div>
                         </div>
                     </div>
