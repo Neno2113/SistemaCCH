@@ -473,7 +473,7 @@ $(document).ready(function() {
         };
 
         // console.log(JSON.stringify(empleado));
-         
+         /*
         $.ajax({
             url: "empleado/edit",
             type: "PUT",
@@ -504,7 +504,7 @@ $(document).ready(function() {
                 );
             }
         });
-        
+        */
 
     });
 
