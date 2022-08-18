@@ -573,8 +573,8 @@ function mostrar(id_empleado) {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
-            $("#btn-edit").show();
-            $("#btn-guardar").hide();
+        //    $("#btn-edit").show();
+        //    $("#btn-guardar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
             $("#btn-guardar-detalle").hide();
@@ -688,7 +688,7 @@ function mostrar(id_empleado) {
 
     });
 }
-
+/*
 function show(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
 
@@ -711,7 +711,7 @@ function show(id_empleado) {
 
     });
 }
-
+*/
 
 function ver(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
