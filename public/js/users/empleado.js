@@ -557,7 +557,7 @@ $(document).ready(function() {
 
     init();
 });
-
+/*
 function mostrar(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
 
@@ -839,3 +839,4 @@ function eliminar(id_client){
     })
     
 }
+*/
