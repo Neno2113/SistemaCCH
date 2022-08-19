@@ -80,7 +80,7 @@ $(document).ready(function() {
     }
 
 
-
+/*
     function limpiar() {
         $("#nombre").val("").attr('readonly', false);
         $("#apellido").val("").attr('readonly', false);
@@ -556,8 +556,10 @@ $(document).ready(function() {
 
 
     init();
-});
-/*
+    */
+}); 
+
+
 function mostrar(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
 
@@ -839,4 +841,3 @@ function eliminar(id_client){
     })
     
 }
-*/
