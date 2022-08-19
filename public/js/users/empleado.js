@@ -837,6 +837,5 @@ function eliminar(id_client){
         }
    
     })
-    
+ */   
 }
-*/
