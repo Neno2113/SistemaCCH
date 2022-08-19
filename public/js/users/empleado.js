@@ -63,7 +63,7 @@ $(document).ready(function() {
     //         }
     //     }
     // })
-
+/*
 
     var tabla;
 
@@ -404,7 +404,7 @@ $(document).ready(function() {
             telefono_2: $("#telefono_2").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-          /* 
+           
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
             condicion_medica: $("#condicion_medica").val(),
@@ -469,7 +469,7 @@ $(document).ready(function() {
             banco_tarjeta_cobro: $("#banco_tarjeta_cobro").val(),
             no_cuenta: $("#no_cuenta").val(),
             nss: $("#nss").val() 
-            */
+            
         };
 
         // console.log(JSON.stringify(empleado));
@@ -583,7 +583,7 @@ function mostrar(id_empleado) {
             $("#fila-address").show();
             $("#fila-detail").show();
 
-            /*
+            
             $("#id").val(data.empleado.id);
             $("#nombre").val(data.empleado.nombre).attr('readonly', false);
             $("#apellido").val(data.empleado.apellido).attr('readonly', false);
@@ -674,16 +674,16 @@ function mostrar(id_empleado) {
             $("#empresa_experiencia_2").val(data.empleado_detalle.empresa_experiencia_2).attr('readonly', false);
             $("#supervisor_experiencia_2").val(data.empleado_detalle.supervisor_experiencia_2).attr('readonly', false);
             $("#telefono_experiencia_2").val(data.empleado_detalle.telefono_experiencia_2).attr('readonly', false);
-            */
-/*
-            if(data.empleado_detalle.cantidad_dependientes > 0){
-                $("input[name='r1']").prop('checked', true);
-                $("input[name='r2']").prop('checked', false);
-            }else {
-                $("input[name='r2']").prop('checked', true);
-                $("input[name='r1']").prop('checked', false);
-            }
- */       
+            
+
+ //           if(data.empleado_detalle.cantidad_dependientes > 0){
+ //               $("input[name='r1']").prop('checked', true);
+ //               $("input[name='r2']").prop('checked', false);
+ //           }else {
+ //               $("input[name='r2']").prop('checked', true);
+ //               $("input[name='r1']").prop('checked', false);
+ //           }
+        
         }
 
     });
@@ -712,7 +712,7 @@ function show(id_empleado) {
     });
 }
 
-/*
+
 function ver(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
 
@@ -802,7 +802,7 @@ function ver(id_empleado) {
 
     });
 }
-*/
+
 
 function eliminar(id_client){
     $.post("empleadocheck/delete/" + id_client, function(data, status) {
@@ -839,3 +839,4 @@ function eliminar(id_client){
     })
     
 }
+*/
