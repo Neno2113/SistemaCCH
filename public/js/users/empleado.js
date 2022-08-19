@@ -80,7 +80,7 @@ $(document).ready(function() {
     }
 
 
-/*
+
     function limpiar() {
         $("#nombre").val("").attr('readonly', false);
         $("#apellido").val("").attr('readonly', false);
@@ -554,7 +554,7 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-
+/*
     init();
     */
 }); 
