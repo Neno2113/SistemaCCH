@@ -688,7 +688,7 @@ function mostrar(id_empleado) {
 
     });
 }
-/*
+
 function show(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
 
@@ -711,8 +711,8 @@ function show(id_empleado) {
 
     });
 }
-*/
 
+/*
 function ver(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
 
@@ -802,6 +802,7 @@ function ver(id_empleado) {
 
     });
 }
+*/
 
 function eliminar(id_client){
     $.post("empleadocheck/delete/" + id_client, function(data, status) {
