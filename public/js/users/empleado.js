@@ -71,7 +71,7 @@ $(document).ready(function() {
         $("#provincia").select2();
         $("#banco_tarjeta_cobro").select2();
         $("#cargo").select2();
-        listar();
+    //    listar();
         mostrarForm(false);
         $("#btn-edit").hide();
         $("#results").hide();
@@ -554,9 +554,8 @@ $(document).ready(function() {
         mostrarForm(false);
     });
 
-/*
     init();
-    */
+    
 }); 
 
 
