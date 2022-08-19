@@ -63,7 +63,7 @@ $(document).ready(function() {
     //         }
     //     }
     // })
-/*
+
 
     var tabla;
 
@@ -837,5 +837,5 @@ function eliminar(id_client){
         }
    
     })
- */   
-})
+    
+}
