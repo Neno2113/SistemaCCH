@@ -702,12 +702,12 @@ class EmpleadoController extends Controller
         
         $empleadoActual = Empleado::find($id)->get();
 
-        $user_id = $empleadoActual->user_id;
-        $user = User::where('id', $user_id)->get();
-        $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
+    //    $user_id = $empleadoActual->user_id;
+    //    $user = User::where('id', $user_id)->get();
+    //    $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
 
      //   $orden->fecha = date("h:i:s A d-m-20y", strtotime($orden->fecha));
-        
+        /*
         $pdf = \PDF::loadView('sistema.empleado.empleadoImpresion', \compact(
             'empleadoActual',
             'user',
@@ -719,7 +719,7 @@ class EmpleadoController extends Controller
             'user',
             'empleado_detalle'
         ));
-        
+        */
     }
 
 }
