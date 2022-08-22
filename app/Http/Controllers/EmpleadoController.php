@@ -699,6 +699,7 @@ class EmpleadoController extends Controller
     public function imprimir($id)
     {
         //orden normal
+        /*
         $empleadoActual = Empleado::find($id)->load('user');
 
         $user_id = $empleadoActual->user_id;
@@ -706,7 +707,7 @@ class EmpleadoController extends Controller
         $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
 
      //   $orden->fecha = date("h:i:s A d-m-20y", strtotime($orden->fecha));
-        /*
+        
         $pdf = \PDF::loadView('sistema.empleado.empleadoImpresion', \compact(
             'empleadoActual',
             'user',
