@@ -706,9 +706,95 @@ function show(id_empleado) {
         $("#fila-detail").hide();
 
         $("#id").val(data.empleado.id);
-        $("#nombre").val(data.empleado.nombre).attr('readonly', true);
-        $("#apellido").val(data.empleado.apellido).attr('readonly', true);
-        $("#cedula").val(data.empleado.cedula).attr('readonly', true);
+        $("#nombre").val(data.empleado.nombre).attr('readonly', false);
+        $("#apellido").val(data.empleado.apellido).attr('readonly', false);
+        $("#cedula").val(data.empleado.cedula).attr('readonly', false);
+        $("#calle").val(data.empleado.calle).attr('readonly', false);
+        $("#sector").val(data.empleado.sector).attr('readonly', false);
+        $("#provincia").val(data.empleado.provincia).trigger("change").attr('disabled', false);
+        $("#sitios_cercanos").val(data.empleado.sitios_cercanos).attr('readonly', false);
+        $("#email").val(data.empleado.email).attr('readonly', false);
+        $("#fecha_nacimiento").val(data.empleado.fecha_nacimiento).attr('readonly', false);
+        $("#telefono_1").val(data.empleado.telefono_1).attr('readonly', false);
+        $("#telefono_2").val(data.empleado.telefono_2).attr('readonly', false);
+        $("#departamento").val(data.empleado.departamento).trigger("change").attr('disabled', false);
+        $("#cargo").val(data.empleado.cargo).trigger("change").attr('disabled', false);
+        $("#tipo_contrato").val(data.empleado.tipo_contrato).attr('disabled', false);
+        $("#forma_pago").val(data.empleado.forma_pago).attr('disabled', false);
+        $("#sueldo").val(data.empleado.sueldo).attr('readonly', false);
+        $("#valor_hora").val(data.empleado.valor_hora).attr('readonly', false);
+        $("#banco_tarjeta_cobro").val(data.empleado.banco_tarjeta_cobro).trigger("change").attr('disabled', false);
+        $("#no_cuenta").val(data.empleado.no_cuenta).attr('readonly', false);
+        $("#nss").val(data.empleado.nss).attr('readonly', false);
+        $("#nombre_esposa").val(data.empleado_detalle.nombre_esposa).attr('readonly', false);
+        $("#telefono_esposa").val(data.empleado_detalle.telefono_esposa).attr('readonly', false);
+        $("#cantidad_dependientes").val(data.empleado_detalle.cantidad_dependientes).attr('readonly', false);
+        $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
+        $("#fecha_ingreso").val(data.empleado.fecha_contratacion).attr('readonly', false);
+        $("#condicion_medica").val(data.empleado.condicion_medica).attr('readonly', false);
+        $("#estado_civil").val(data.empleado.estado_civil).attr('readonly', false);
+        $("#esposa_en_nss").val(data.empleado_detalle.esposa_en_nss).attr('readonly', false);
+        $("#codigo").val(data.empleado.codigo).attr('readonly', false);
+
+        $("#hijos").empty();
+
+        let longitud  = data.empleado_detalle.cantidad_dependientes;
+
+        for (let i = 0; i < longitud; i++) {
+        var fila =  "<tr id='tr_dependiente_"+[i]+"'>"+
+        "<td><input type='text' name='nombre_dependiente_"+[i]+"' id='nombre_dependiente_"+[i]+"' class='form-control'></td>"+
+        "<td><select name='parentesco_dependiente_"+[i]+"' id='parentesco_dependiente_"+[i]+"' class='form-control'><option value='' disabled>Parentesco</option><option>Padre</option><option>Madre</option><option>Hijo</option><option>Hija</option><option>Esposa</option><option>Esposo</option></select></td>"+
+        "<td><input type='number' name='edad_dependiente_"+[i]+"' id='edad_dependiente_"+[i]+"' class='form-control'></td>"+
+        "</tr>";
+
+        $("#hijos").append(fila);
+        }
+        $("#nombre_dependiente_0").val(data.empleado_detalle.nombre_dependiente_0).attr('readonly', false);
+        $("#parentesco_dependiente_0").val(data.empleado_detalle.parentesco_dependiente_0).attr('readonly', false);
+        $("#edad_dependiente_0").val(data.empleado_detalle.edad_dependiente_0).attr('readonly', false);
+        $("#nombre_dependiente_1").val(data.empleado_detalle.nombre_dependiente_1).attr('readonly', false);
+        $("#parentesco_dependiente_1").val(data.empleado_detalle.parentesco_dependiente_1).attr('readonly', false);
+        $("#edad_dependiente_1").val(data.empleado_detalle.edad_dependiente_1).attr('readonly', false);
+        $("#nombre_dependiente_2").val(data.empleado_detalle.nombre_dependiente_2).attr('readonly', false);
+        $("#parentesco_dependiente_2").val(data.empleado_detalle.parentesco_dependiente_2).attr('readonly', false);
+        $("#edad_dependiente_2").val(data.empleado_detalle.edad_dependiente_2).attr('readonly', false);
+        $("#nombre_dependiente_3").val(data.empleado_detalle.nombre_dependiente_3).attr('readonly', false);
+        $("#parentesco_dependiente_3").val(data.empleado_detalle.parentesco_dependiente_3).attr('readonly', false);
+        $("#edad_dependiente_3").val(data.empleado_detalle.edad_dependiente_3).attr('readonly', false);
+        $("#nombre_dependiente_4").val(data.empleado_detalle.nombre_dependiente_4).attr('readonly', false);
+        $("#parentesco_dependiente_4").val(data.empleado_detalle.parentesco_dependiente_4).attr('readonly', false);
+        $("#edad_dependiente_4").val(data.empleado_detalle.edad_dependiente_4).attr('readonly', false);
+        $("#nombre_dependiente_5").val(data.empleado_detalle.nombre_dependiente_5).attr('readonly', false);
+        $("#parentesco_dependiente_5").val(data.empleado_detalle.parentesco_dependiente_5).attr('readonly', false);
+        $("#edad_dependiente_5").val(data.empleado_detalle.edad_dependiente_5).attr('readonly', false);
+        $("#nombre_dependiente_6").val(data.empleado_detalle.nombre_dependiente_6).attr('readonly', false);
+        $("#parentesco_dependiente_6").val(data.empleado_detalle.parentesco_dependiente_6).attr('readonly', false);
+        $("#edad_dependiente_6").val(data.empleado_detalle.edad_dependiente_6).attr('readonly', false);
+
+        $("#nombre_ref1").val(data.empleado_detalle.nombre_ref1).attr('readonly', false);
+        $("#parentesco_ref1").val(data.empleado_detalle.parentesco_ref1).attr('readonly', false);
+        $("#telefono_ref1").val(data.empleado_detalle.telefono_ref1).attr('readonly', false);
+        $("#nombre_ref2").val(data.empleado_detalle.nombre_ref2).attr('readonly', false);
+        $("#parentesco_ref2").val(data.empleado_detalle.parentesco_ref2).attr('readonly', false);
+        $("#telefono_ref2").val(data.empleado_detalle.telefono_ref2).attr('readonly', false);
+
+        $("#primaria").val(data.empleado_detalle.primaria).attr('readonly', false);
+        $("#bachiller").val(data.empleado_detalle.bachiller).attr('readonly', false);
+        $("#nivel_superior").val(data.empleado_detalle.nivel_superior).attr('readonly', false);
+        $("#grado_titulo").val(data.empleado_detalle.grado_titulo).attr('readonly', false);
+        $("#especialidad").val(data.empleado_detalle.especialidad).attr('readonly', false);
+        $("#fecha_exp").val(data.empleado_detalle.fecha_exp).attr('readonly', false);
+
+        $("#cargo_experiencia_1").val(data.empleado_detalle.cargo_experiencia_1).attr('readonly', false);
+        $("#tiempo_experiencia_1").val(data.empleado_detalle.tiempo_experiencia_1).attr('readonly', false);
+        $("#empresa_experiencia_1").val(data.empleado_detalle.empresa_experiencia_1).attr('readonly', false);
+        $("#supervisor_experiencia_1").val(data.empleado_detalle.supervisor_experiencia_1).attr('readonly', false);
+        $("#telefono_experiencia_1").val(data.empleado_detalle.telefono_experiencia_1).attr('readonly', false);
+        $("#cargo_experiencia_2").val(data.empleado_detalle.cargo_experiencia_2).attr('readonly', false);
+        $("#tiempo_experiencia_2").val(data.empleado_detalle.tiempo_experiencia_2).attr('readonly', false);
+        $("#empresa_experiencia_2").val(data.empleado_detalle.empresa_experiencia_2).attr('readonly', false);
+        $("#supervisor_experiencia_2").val(data.empleado_detalle.supervisor_experiencia_2).attr('readonly', false);
+        $("#telefono_experiencia_2").val(data.empleado_detalle.telefono_experiencia_2).attr('readonly', false);
 
     });
 }
