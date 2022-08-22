@@ -564,7 +564,7 @@ class EmpleadoController extends Controller
             $empleado->condicion_medica = $condicion_medica;
             
             $empleado->save();
-/*
+
             //Actualizar detalle
             $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)
             ->get()
@@ -638,13 +638,13 @@ class EmpleadoController extends Controller
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->save();
-*/
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'empleado' => $empleado
- //               'empleado_detalle' => $empleado_detalle
- //               'user' => $user
+                'empleado' => $empleado,
+                'empleado_detalle' => $empleado_detalle,
+                'user' => $user
             ];
         }
 
