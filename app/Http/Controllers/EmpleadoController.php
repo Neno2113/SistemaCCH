@@ -525,7 +525,7 @@ class EmpleadoController extends Controller
 
             $empleado = Empleado::find($id);
  //           $empleado  = DB::table('empleado')->where('id',$id)->first();
-//            $user_id = $empleado->user_id;
+            $user_id = $empleado->user_id;
 
             /*
             if (preg_match('/_/', $sueldo)) {
@@ -621,7 +621,7 @@ class EmpleadoController extends Controller
             $empleado_detalle->telefono_experiencia_2 = $telefono_experiencia_2;
 
             $empleado_detalle->save();
-/*
+
             //Actualizar usuario
             $user = User::where('id', $user_id)
             ->get()
@@ -638,13 +638,13 @@ class EmpleadoController extends Controller
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->save();
-*/
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'empleado' => $empleado,
-                'empleado_detalle' => $empleado_detalle
-//                'user' => $user
+                'empleado_detalle' => $empleado_detalle,
+                'user' => $user
             ];
         }
 
