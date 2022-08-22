@@ -346,11 +346,11 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#clients").DataTable({
             serverSide: true,
-            responsive: true,/*
+            responsive: true,
             ajax:{
                 "url": "api/empleados",
                 "type": "POST"
-            }, */
+            }, 
             dom: 'Bfrtip',
             iDisplayLength: 10,
             buttons: [
