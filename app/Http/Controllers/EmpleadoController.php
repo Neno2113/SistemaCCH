@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Str;
+
+use App\Factura;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 use Illuminate\Http\Response;
 use App\Exports\UsersExport;
@@ -696,16 +699,16 @@ class EmpleadoController extends Controller
     public function imprimir($id)
     {
         //orden normal
-        $empleado = Empleado::find($id)->load('user');
+        $empleadoActual = Empleado::find($id)->load('user');
 
-        $user_id = $empleado->user_id;
+        $user_id = $empleadoActual->user_id;
         $user = User::where('id', $user_id)->get();
         $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
 
      //   $orden->fecha = date("h:i:s A d-m-20y", strtotime($orden->fecha));
 
         $pdf = \PDF::loadView('sistema.empleado.empleadoImpresion', \compact(
-            'empleado',
+            'empleadoActual',
             'user',
             'empleado_detalle'
         ))->setPaper('a4');

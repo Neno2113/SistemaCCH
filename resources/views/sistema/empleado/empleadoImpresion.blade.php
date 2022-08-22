@@ -678,7 +678,7 @@
 				</tbody>
 
 			</table>
-
+<!--
 			<table class="tabla-factura">
 				<thead>
 					<tr>
@@ -697,8 +697,9 @@
 					</tr>
 				</tbody>
 			</table>
+		-->
 		</div>
-
+<!--
 		<table cellspacing="0" class="tabla-ncf">
 			<thead>
 				<tr>
@@ -918,8 +919,9 @@
 				</tr>
 			</table>
 		</div>
-
+				-->
 		<div id="thanks">CONDUCE DE ORDEN DE PEDIDO</div>
+		<!--
 		<div id="notices">
 			<div>NOTAS:</div>
 			<p class="notice">{{$orden->notas}}</p>
@@ -931,10 +933,12 @@
 
 			<div class="firma_recibido">RECIBIDO POR:</div>
 		</div>
+				-->
 	</main>
 	<footer class="pagina1">
 		Factura generada desde SistemaCCH.
 	</footer>
+	<!--
     @if ($corte_proceso == false)
     @foreach ($ordenProceso as $orden_proceso)
     <header class="clearfix">
@@ -953,6 +957,7 @@
 		</div>
 		</div>
 	</header>
+
 	<main>
 		<div id="details" class="clearfix">
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
@@ -1248,6 +1253,7 @@
 			<div class="firma_recibido">RECIBIDO POR:</div>
 		</div>
 	</main>
+	
 	<footer class="pagina1">
 		Factura generada desde SistemaCCH.
 	</footer>
@@ -1256,6 +1262,7 @@
 
 
     @endif
+				-->
 </body>
 
 </html>
