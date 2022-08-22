@@ -366,14 +366,14 @@ class EmpleadoController extends Controller
                 return $diff->y;
              })
             ->addColumn('Opciones', function ($empleado) {
-                if($empleado->detallado == 1){ 
+            /*    if($empleado->detallado == 1){ 
                     return '<button id="btnEdit" onclick="mostrar(' . $empleado->id . ')" class="btn btn-warning btn-sm mr-1 ml-1" ><i class="fas fa-user-edit"></i></button>';
                 //    '<button onclick="eliminar(' . $empleado->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
-                 }else{ 
+                 }else{ */
                     return '<button id="btnEdit" onclick="show(' . $empleado->id . ')" class="btn btn-primary btn-sm mr-1" ><i class="fas fa-address-card"></i></button>'.
                     '<button id="btnEdit" onclick="mostrar(' . $empleado->id . ')" class="btn btn-warning btn-sm mr-1 ml-1" ><i class="fas fa-user-edit"></i></button>';
                 //    '<button onclick="eliminar(' . $empleado->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
-                 } 
+           //      } 
             }) 
             ->rawColumns(['Ver', 'Opciones'])
             ->make(true);

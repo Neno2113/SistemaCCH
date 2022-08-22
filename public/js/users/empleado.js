@@ -235,7 +235,7 @@ $(document).ready(function() {
         });
 
     });
-
+/*
     $("#btn-guardar-detalle").click(function(e) {
         e.preventDefault();
 
@@ -307,6 +307,7 @@ $(document).ready(function() {
         });
 
     });
+    */
 
     $("#cantidad_dependientes").change(function(){
         $("#tr_dependiente_0").remove();
