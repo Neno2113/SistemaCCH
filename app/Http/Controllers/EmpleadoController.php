@@ -693,17 +693,12 @@ class EmpleadoController extends Controller
     }
 
 }
-
+/*
 public function imprimir($id)
     {
         //orden normal
         $empleado = Empleado::find($id)->load('user');
-        /*
-            ->load('user')
-            ->load('vendedor')
-            ->load('sucursal')
-            ->load('producto');
-        */
+
         $user_id = $empleado->user_id;
         $user = User::where('id', $user_id)->get();
         $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
@@ -722,3 +717,4 @@ public function imprimir($id)
             'empleado_detalle'
         ));
     }
+    */
