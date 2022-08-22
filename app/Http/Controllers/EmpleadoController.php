@@ -699,8 +699,8 @@ class EmpleadoController extends Controller
     public function imprimir($id)
     {
         //orden normal
-        /*
-        $empleadoActual = Empleado::find($id)->load('user');
+        
+        $empleadoActual = Empleado::find($id)->get();
 
         $user_id = $empleadoActual->user_id;
         $user = User::where('id', $user_id)->get();
@@ -715,11 +715,11 @@ class EmpleadoController extends Controller
         ))->setPaper('a4');
         return $pdf->download('detalleEmpleado.pdf');
         return View('sistema.empleado.empleadoImpresion', \compact(
-            'empleado',
+            'empleadoActual',
             'user',
             'empleado_detalle'
         ));
-        */
+        
     }
 
 }
