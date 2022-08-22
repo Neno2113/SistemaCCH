@@ -424,7 +424,7 @@ class EmpleadoController extends Controller
     public function update(Request $request)
     {
         $validar = $request->validate([
-            'id' => 'required|numeric',
+            'id' => 'required',
             'nombre' => 'required',
         //    'apellido' => 'required',
         //    'cedula' => 'required|unique:empleado',
