@@ -498,6 +498,7 @@ Route::get('empleado/id/{id}', 'EmpleadoController@show');
 Route::put('empleado/edit', 'EmpleadoController@update');
 Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 Route::post('empleadocheck/delete/{id}', 'EmpleadoController@checkDestroy');
+Route::get('/imprimir_empleado/empleado/{id}', 'EmpleadoController@imprimir');
 
 //Permiso
 Route::get('usuarios', 'PermisoController@usuarios');

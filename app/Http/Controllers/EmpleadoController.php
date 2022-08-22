@@ -370,7 +370,8 @@ class EmpleadoController extends Controller
                     return '<button id="btnEdit" onclick="mostrar(' . $empleado->id . ')" class="btn btn-warning btn-sm mr-1 ml-1" ><i class="fas fa-user-edit"></i></button>';
                 //    '<button onclick="eliminar(' . $empleado->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
                  }else{ 
-                    return '<button id="btnEdit" onclick="show(' . $empleado->id . ')" class="btn btn-primary btn-sm mr-1" ><i class="fas fa-address-card"></i></button>'.
+                //    return '<button id="btnEdit" onclick="show(' . $empleado->id . ')" class="btn btn-primary btn-sm mr-1" ><i class="fas fa-address-card"></i></button>'.
+                    return '<a href="imprimir_empleado/empleado/' . $empleado->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>'.
                     '<button id="btnEdit" onclick="mostrar(' . $empleado->id . ')" class="btn btn-warning btn-sm mr-1 ml-1" ><i class="fas fa-user-edit"></i></button>';
                 //    '<button onclick="eliminar(' . $empleado->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
                  } 
@@ -693,3 +694,32 @@ class EmpleadoController extends Controller
     }
 
 }
+
+public function imprimir($id)
+    {
+        //orden normal
+        $empleado = Empleado::find($id)->load('user');
+        /*
+            ->load('user')
+            ->load('vendedor')
+            ->load('sucursal')
+            ->load('producto');
+        */
+        $user_id = $empleado->user_id;
+        $user = User::where('id', $user_id)->get();
+        $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
+
+     //   $orden->fecha = date("h:i:s A d-m-20y", strtotime($orden->fecha));
+
+        $pdf = \PDF::loadView('sistema.empleado.empleadoImpresion', \compact(
+            'empleado',
+            'user',
+            'empleado_detalle'
+        ))->setPaper('a4');
+        return $pdf->download('detalleEmpleado.pdf');
+        return View('sistema.empleado.empleadoImpresion', \compact(
+            'empleado',
+            'user',
+            'empleado_detalle'
+        ));
+    }
