@@ -692,9 +692,7 @@ class EmpleadoController extends Controller
         return response()->json($data, $data['code']);
     }
 
-}
-/*
-public function imprimir($id)
+    public function imprimir($id)
     {
         //orden normal
         $empleado = Empleado::find($id)->load('user');
@@ -717,4 +715,8 @@ public function imprimir($id)
             'empleado_detalle'
         ));
     }
-    */
+
+}
+
+
+    
