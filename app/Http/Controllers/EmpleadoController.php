@@ -712,21 +712,21 @@ class EmpleadoController extends Controller
     //    $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
 
      //   $orden->fecha = date("h:i:s A d-m-20y", strtotime($orden->fecha));
-        /*
+        
         $pdf = \PDF::loadView('sistema.empleado.empleadoImpresion', \compact(
-            'empleadoActual',
+            'empleadoActual'
         //    'user',
-            'empleado_detalle'
+        //    'empleado_detalle'
         ))->setPaper('a4'); 
-        return $pdf->download('detalleEmpleado.pdf');
+        return $pdf->download('detalleEmpleado.pdf'); /*
         return View('sistema.empleado.empleadoImpresion', \compact(
             'empleadoActual',
             'user',
             'empleado_detalle'
-        )); */
-
-        $data = ['nombre' => 'Kika'];
-        $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
+        )); 
+*/
+    //    $data = ['nombre' => 'Kika'];
+    //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
   
         return $pdf->download('prueba.pdf');
     //    return $pdf->stream('prueba.pdf');
