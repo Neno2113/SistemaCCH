@@ -716,13 +716,13 @@ class EmpleadoController extends Controller
             'empleadoActual',
             'user',
             'empleado_detalle'
-        ))->setPaper('a4');
+        ))->setPaper('a4'); /*
         return $pdf->download('detalleEmpleado.pdf');
         return View('sistema.empleado.empleadoImpresion', \compact(
             'empleadoActual',
             'user',
             'empleado_detalle'
-        ));
+        )); */
         
     }
 
