@@ -714,7 +714,7 @@ class EmpleadoController extends Controller
         
         $pdf = \PDF::loadView('sistema.empleado.empleadoImpresion', \compact(
             'empleadoActual',
-            'user',
+        //    'user',
             'empleado_detalle'
         ))->setPaper('a4'); /*
         return $pdf->download('detalleEmpleado.pdf');
