@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Factura;
 use Illuminate\Support\Facades\DB;
-use PDF;
+//use PDF;
 
 use Illuminate\Http\Response;
 use App\Exports\UsersExport;
