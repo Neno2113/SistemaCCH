@@ -725,10 +725,10 @@ class EmpleadoController extends Controller
         )); */
 
         $data = ['title' => 'Welcome to ItSolutionStuff.com'];
-        $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
+        $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $empleadoActual);
   
         return $pdf->download('prueba.pdf');
-        return View('sistema.empleado.empleadoImpresion', $data);
+    //    return View('sistema.empleado.empleadoImpresion', $data);
         
     }
 
