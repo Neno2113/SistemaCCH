@@ -701,7 +701,8 @@ class EmpleadoController extends Controller
         //orden normal
         
         $empleadoActual = Empleado::find($id)->get()->load('user');
-        $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)->get();
+    //    $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)->get();
+        $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id);
 
     //    $user_id = $empleado_detalle->('user_id');
     //    $user = User::where('id', $user_id)->get();
