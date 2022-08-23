@@ -18,12 +18,12 @@ class Empleado extends Model
      //   'parentesco_dependiente_0','edad_dependiente_0','nombre_dependiente_1'
     ];
 
-    /*
+    
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
     }
-    */
+    
 }
 
 /*
