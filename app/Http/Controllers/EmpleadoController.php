@@ -727,7 +727,7 @@ class EmpleadoController extends Controller
         )); 
 */
         $data = ['nombre' => $nombre];
-        $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('empleado_detalle'));
+        $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
   
     //    return $pdf->download('prueba.pdf');
         return $pdf->stream('prueba.pdf');
