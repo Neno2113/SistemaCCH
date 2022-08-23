@@ -701,6 +701,29 @@ class EmpleadoController extends Controller
         //orden normal
         $empleado = Empleado::find($id);
         $nombre = $empleado->nombre;
+        $apellido = $empleado->apellido;
+        $codigo = $empleado->codigo; 
+        $calle = $empleado->calle;
+        $sector = $empleado->sector;
+        $provincia = $empleado->provincia;
+        $sitios_cercanos = $empleado->sitios_cercanos;
+        $telefono_1 = $empleado->telefono_1;
+        $telefono_2 = $empleado->telefono_2;
+        $email = $empleado->email;
+        $cedula = $empleado->cedula;
+        $fecha_nacimiento =$empleado->fecha_nacimiento;
+        $departamento = $empleado->departamento;
+        $estado_civil = $empleado->estado_civil;
+        $cargo = $empleado->cargo;
+        $fecha_ingreso = $empleado->fecha_contratacion;
+        $tipo_contrato = $empleado->tipo_contrato;
+        $forma_pago = $empleado->forma_pago;
+        $sueldo = $empleado->sueldo;
+        $valor_hora = $empleado->valor_hora;
+        $banco_tarjeta_cobro = $empleado->banco_tarjeta_cobro;
+        $no_cuenta = $empleado->no_cuenta;
+        $nss = $empleado->nss;
+        $condicion_medica = $empleado->condicion_medica;
     //    $empleadoActual = Empleado::find($id)->load('user');
     //    $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)->get();
     //    $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id);
@@ -726,7 +749,32 @@ class EmpleadoController extends Controller
             'empleado_detalle'
         )); 
 */
-        $data = ['nombre' => $nombre];
+        $data = [
+            'nombre' => $nombre,
+            'apellido' = $apellido,
+            'codigo' = $codigo,
+            'calle' = $calle,
+            'sector' = $sector,
+            'provincia' = $provincia,
+            'sitios_cercanos' = $sitios_cercanos,
+            'telefono_1' = $telefono_1,
+            'telefono_2' = $telefono_2,
+            'email' = $email,
+            'cedula' = $cedula,
+            'fecha_nacimiento' = $fecha_nacimiento,
+            'departamento' = $departamento,
+            'estado_civil' = $estado_civil,
+            'cargo' = $cargo,
+            'fecha_ingreso' = $fecha_ingreso,
+            'tipo_contrato' = $tipo_contrato,
+            'forma_pago' = $forma_pago,
+            'sueldo' = $sueldo,
+            'valor_hora' = $valor_hora,
+            'banco_tarjeta_cobro' = $banco_tarjeta_cobro,
+            'no_cuenta' = $no_cuenta,
+            'nss' = $nss,
+            'condicion_medica' = $condicion_medica
+        ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data)->setPaper('a4'); ;
   
