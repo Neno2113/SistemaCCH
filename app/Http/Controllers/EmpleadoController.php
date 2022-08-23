@@ -728,6 +728,7 @@ class EmpleadoController extends Controller
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
   
         return $pdf->download('prueba.pdf');
+        return View('sistema.empleado.empleadoImpresion', $data);
         
     }
 
