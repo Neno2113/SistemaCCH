@@ -628,7 +628,7 @@
 		}
 	</style>
 </head>
-
+<!--
 <body>
 	<header class="clearfix">
 		<div id="logo">
@@ -697,8 +697,8 @@
 					</tr>
 				</tbody>
 			</table>
-		-->
-		</div>
+		--><!--
+		</div> -->
 <!--
 		<table cellspacing="0" class="tabla-ncf">
 			<thead>
@@ -1262,7 +1262,7 @@
 
 
     @endif
-				-->
+				--> <!--
 </body>
-
+				-->
 </html>
