@@ -725,7 +725,7 @@ class EmpleadoController extends Controller
             'empleado_detalle'
         )); */
 
-        $data = ['nombre' => $empleado_detalle->nombre_esposa];
+        $data = ['nombre' => 'Kika'];
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
   
         return $pdf->download('prueba.pdf');
