@@ -416,6 +416,10 @@
 			text-align: center; */
 		}
 
+		.tabla-factura td {
+			border-bottom: 1px solid black;
+		}
+
 		.tabla-factura tbody .num_factura {
 		/*	border-top: 1px solid black;
 			border-bottom: 1px solid black;
