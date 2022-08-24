@@ -414,6 +414,8 @@
 			padding-right: 16px; 
 			padding-top: 7px;
 			text-align: center; */
+			border-bottom: 1px solid black;
+			border-right: 1px solid black;
 		}
 
 		.tabla-factura td {
@@ -472,8 +474,6 @@
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 			width: 40%;
-
-
 		}
 
 		.tabla-cliente thead th {
