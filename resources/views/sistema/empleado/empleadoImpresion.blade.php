@@ -657,7 +657,7 @@
 				<tbody>
 					<tr>
 						<th>Nombre</th>
-						<td>{{ $nombre }}</td>
+						<td>{{ $nombre }} {{ $apellido }</td>
 					</tr>
 					<tr>
 						<th class="direccion">Direccion</th>
