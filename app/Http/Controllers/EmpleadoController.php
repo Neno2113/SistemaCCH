@@ -749,7 +749,7 @@ class EmpleadoController extends Controller
             'empleado_detalle'
         )); 
 */
-        $data = ['nombre' => $nombre, 'apellido' => $apellido];
+        $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'telefono_2' => $telefono_2, 'email' => $email, 'cedula' => $cedula];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
   
