@@ -634,9 +634,7 @@
 		<div id="logo">
 			<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
 		</div>
-		{{-- <div id="logo">
-            <h1>CCH</h1>
-        </div> --}}
+
 		<div id="company">
 			<h2 class="name">Confecciones Carmen Herrera</h2>
 			<div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
@@ -658,7 +656,7 @@
 				<tbody>
 					<tr>
 						<th>Nombre</th>
-						<td>{{$nombre}}</td>
+						<td></td>
 					</tr>
 					<tr>
 						<th class="direccion">Direccion</th>
