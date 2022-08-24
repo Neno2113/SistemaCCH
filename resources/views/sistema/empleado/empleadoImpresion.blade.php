@@ -650,14 +650,14 @@
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
 					<tr>
-						<th>Cliente Empleado</th>
+						<th>Codigo Empleado</th>
 						<td></td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th>Nombre</th>
-						<td></td>
+						<td>{{$nombree}}</td>
 					</tr>
 					<tr>
 						<th class="direccion">Direccion</th>
