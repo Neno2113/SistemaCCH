@@ -486,7 +486,7 @@
 		.tabla-cliente tbody td {
 			border-bottom: 1px solid black;
 		/*	padding-right: 106px; */
-			padding: 11px 2px 2px 2px;
+			padding: 2px 2px 2px 11px;
 
 		}
 
