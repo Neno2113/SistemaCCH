@@ -658,7 +658,7 @@
 				<tbody>
 					<tr>
 						<th>Nombre</th>
-						<td>{{$nombre}} {{$apellido}}</td>
+						<td>{{$nombre}}</td>
 					</tr>
 					<tr>
 						<th class="direccion">Direccion</th>
