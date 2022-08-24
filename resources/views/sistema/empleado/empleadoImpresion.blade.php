@@ -404,39 +404,39 @@
 		}
 
 		.tabla-factura thead .factura {
-			font-weight: bolder;
+		/*	font-weight: bolder; */
 			color: #000;
 		}
 
 		.tabla-factura th {
-			font-size: 14px;
-			/* padding-left: 19px;
-			padding-right: 16px; */
+		/*	font-size: 14px; 
+		 	padding-left: 19px;
+			padding-right: 16px; 
 			padding-top: 7px;
-			text-align: center;
+			text-align: center; */
 		}
 
 		.tabla-factura tbody .num_factura {
-			border-top: 1px solid black;
+		/*	border-top: 1px solid black;
 			border-bottom: 1px solid black;
 			text-align: center;
 			padding: 7px;
 			font-size: 12px;
-			color: #c85b5b;
+			color: #c85b5b; */
 		}
 
 		.tabla-factura tbody .fecha {
-			text-align: center;
+		/*	text-align: center;
 			font-size: 10px;
-			padding: 6px;
+			padding: 6px; */
 		}
 
 		.tabla-factura tbody .page {
-			text-align: center;
+		/*	text-align: center;
 			font-size: 10px;
 			padding: 10px;
-			/* padding-bottom: 13px; */
-			border-top: 1px solid black;
+			padding-bottom: 13px;
+			border-top: 1px solid black; */
 
 		}
 
@@ -678,7 +678,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table class="">
+			<table class="tabla-factura">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
