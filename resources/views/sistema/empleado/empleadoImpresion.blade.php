@@ -651,7 +651,7 @@
 				<thead class="cod">
 					<tr>
 						<th>Codigo Empleado</th>
-						<td></td>
+						<td>{{ $codigo }}</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -661,17 +661,20 @@
 					</tr>
 					<tr>
 						<th class="direccion">Direccion</th>
-						<td class="direccion"><</td> </tr> <tr>
+						<td class="direccion">{{ $calle }}, {{ $sector }}
+							{{ $provincia }}, {{ $sitios_cercanos }}</td> 
+					</tr> 
+					<tr>
 						<th>Email</th>
-						<td></td>
+						<td>{{ $email }}</td>
 					</tr>
 					<tr>
 						<th>Telefonos</th>
-						<td></td>
+						<td>{{ $telefono_1 }} / {{ $telefono_2 }}</td>
 					</tr>
 					<tr>
 						<th>Cedula</th>
-						<td></td>
+						<td>{{ $cedula }}</td>
 					</tr>
 				</tbody>
 
