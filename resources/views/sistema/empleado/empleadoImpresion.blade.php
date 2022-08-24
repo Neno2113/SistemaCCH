@@ -485,8 +485,8 @@
 
 		.tabla-cliente tbody td {
 			border-bottom: 1px solid black;
-			padding-right: 106px;
-			padding-left: 11px;
+		/*	padding-right: 106px; */
+			padding: 11px 2px 2px 2px;
 
 		}
 
@@ -661,7 +661,7 @@
 					</tr>
 					<tr>
 						<th class="direccion">Direccion</th>
-						<td class="direccion">{{ $calle }}, {{ $sector }}
+						<td class="direccion">{{ $calle }}, {{ $sector }},
 							{{ $provincia }}, {{ $sitios_cercanos }}</td> 
 					</tr> 
 					<tr>
