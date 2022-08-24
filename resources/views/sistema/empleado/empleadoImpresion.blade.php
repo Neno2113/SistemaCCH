@@ -632,6 +632,7 @@
 <body>
 	<header class="clearfix">
 		<div id="logo">
+		<h1 class="name">INFORME DE EMPLEADO</h1>
 			<img src="">
 		</div>
 
