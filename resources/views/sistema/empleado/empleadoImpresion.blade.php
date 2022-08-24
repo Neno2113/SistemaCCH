@@ -678,25 +678,23 @@
 					</tr>
 				</tbody>
 			</table>
-			<table class="tabla-factura">
-				<thead>
+			<table class="">
+				<tbody>
 					<tr>
 						<th>Estado Civil</th>
 						<td>{{ $estado_civil }}</td>
 					</tr>
-				</thead>
-				<tbody>
 					<tr>
 						<th>Fecha Nacimiento</th>
-						<td></td>
+						<td>{{ $fecha_nacimiento }}</td>
 					</tr>
 					<tr>
-					<th>Fecha Nacimiento</th>
-						<td></td>
+						<th>Fecha de Ingreso</th>
+						<td>{{ $fecha_ingreso }}</td>
 					</tr>
 					<tr>
-					<th>Fecha Nacimiento</th>
-						<td></td>
+						<th>Departamento</th>
+						<td>{{ $departamento }}</td>
 					</tr>
 				</tbody>
 			</table>
