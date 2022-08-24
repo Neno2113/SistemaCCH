@@ -374,7 +374,7 @@ class EmpleadoController extends Controller
                 //    '<button onclick="eliminar(' . $empleado->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
                  }else{ */
                 //    return '<button id="btnEdit" onclick="show(' . $empleado->id . ')" class="btn btn-primary btn-sm mr-1" ><i class="fas fa-address-card"></i></button>'.
-                    return '<a href="imprimir_empleado/empleado/' . $empleado->id . '" class="btn btn-secondary btn-sm ml-1"> <i class="fas fa-print"></i></a>'.
+                    return '<a href="imprimir_empleado/empleado/' . $empleado->id . '" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-print"></i></a>'.
                     '<button id="btnEdit" onclick="mostrar(' . $empleado->id . ')" class="btn btn-warning btn-sm mr-1 ml-1" ><i class="fas fa-user-edit"></i></button>';
                 //    '<button onclick="eliminar(' . $empleado->id . ')" class="btn btn-danger btn-sm ml-1"> <i class="fas fa-eraser"></i></button>';
            //      } 
@@ -749,7 +749,9 @@ class EmpleadoController extends Controller
             'empleado_detalle'
         )); 
 */
-        $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'telefono_2' => $telefono_2, 'email' => $email, 'cedula' => $cedula];
+        $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'telefono_2' => $telefono_2, 'email' => $email, 'cedula' => $cedula,
+        'estado_civil' => $estado_civil
+    ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
   

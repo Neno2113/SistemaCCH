@@ -677,7 +677,26 @@
 						<td>{{ $cedula }}</td>
 					</tr>
 				</tbody>
-
+			</table>
+			<table class="tabla-factura">
+				<thead>
+					<tr>
+						<th>Estado Civil</th>
+						<td>{{ $estado_civil }}</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Fecha Nacimiento</th>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="fecha">Fecha:{{$orden->fecha}}</td>
+					</tr>
+					<tr>
+						<td class="page">Pagina 1</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	</main>
