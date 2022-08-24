@@ -691,10 +691,12 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td class="fecha">Fecha:{{$orden->fecha}}</td>
+					<th>Fecha Nacimiento</th>
+						<td></td>
 					</tr>
 					<tr>
-						<td class="page">Pagina 1</td>
+					<th>Fecha Nacimiento</th>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>
