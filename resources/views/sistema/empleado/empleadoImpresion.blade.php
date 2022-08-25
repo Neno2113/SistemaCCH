@@ -428,11 +428,19 @@
 			font-size: 11px;
 			border-right: 1px solid black;
 			border-bottom: 1px solid black;
-			padding: 2px;
+			padding: 2px 4px 2px 5px;
+		}
+
+		.tabla-factura tbody .mas_espacio {
+			text-align: left;
+			font-size: 11px;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			padding: 2px 4px 2px 5px;
 		}
 
 		.tabla-factura tbody td {
-			padding: 2px 2px 2px 11px;
+			padding: 2px 4px 2px 11px;
 			border-bottom: 1px solid black;
 		/*	font-size: 11px;
 			text-align: center;
@@ -491,7 +499,7 @@
 			border-bottom: 1px solid black;
 		/*	padding-right: 106px; */
 			padding: 2px 2px 2px 11px;
-
+			padding-left: 11px !important;
 		}
 
 		.tabla-cliente tbody th {
