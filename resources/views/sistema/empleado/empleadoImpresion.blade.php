@@ -427,8 +427,7 @@
 			font-size: 11px;
 			border-right: 1px solid black;
 			border-bottom: 1px solid black;
-			padding-left: 4px;
-			padding-right: 4px;
+			padding: 4px;
 		}
 
 		.tabla-factura tbody .mas_espacio {
@@ -436,7 +435,7 @@
 		}
 
 		.tabla-factura tbody td {
-			padding: 2px 2px 2px 11px;
+			padding: 4px 4px 4px 11px;
 			border-bottom: 1px solid black;
 		/*	font-size: 11px;
 			text-align: center;
