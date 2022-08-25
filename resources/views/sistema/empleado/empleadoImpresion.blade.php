@@ -699,10 +699,6 @@
 						<td>{{ $departamento }}</td>
 					</tr>
 					<tr>
-						<th>Cargo</th>
-						<td>{{ $cargo }}</td>
-					</tr>
-					<tr>
 						<th>Tipo Contrato</th>
 						<td>{{ $tipo_contrato }}</td>
 					</tr>
