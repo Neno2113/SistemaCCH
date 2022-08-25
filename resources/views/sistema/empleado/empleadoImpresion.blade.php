@@ -438,8 +438,8 @@
 		.tabla-factura tbody td {
 			padding: 2px 2px 2px 11px;
 			border-bottom: 1px solid black;
-			font-size: 11px;
-		/*	text-align: center;
+		/*	font-size: 11px;
+			text-align: center;
 			font-size: 10px;
 			padding: 10px;
 			padding-bottom: 13px;
