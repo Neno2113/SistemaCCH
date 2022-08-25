@@ -681,7 +681,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table class="tabla-factura">
+			<table class="tabla-cliente">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
