@@ -43,7 +43,6 @@
 		#logo {
 			float: left;
 			margin-top: 5px;
-			margin-right: 100px;
 		}
 
 		#logo img {
@@ -472,6 +471,7 @@
 			border-right: 1px solid black;
 			width: 40%;
 			margin-right: 2%;
+			margin-left: 100px;
 		}
 
 		.tabla-cliente thead th {
