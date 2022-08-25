@@ -397,13 +397,16 @@
 		}
 
 		.tabla-factura table, .tabla-factura th, .tabla-factura td {
-			border: 1px solid black;
-			border-spacing: 0px;
+		/*	border: 1px solid black; 
+			border-spacing: 0px; */
 		}
 
 		.tabla-factura {
 			float: left;
 			width: 50%;
+			border-top: 1px solid black;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
 		/*	border: 1px solid black; */
 			margin-left: 20%;
 		}
@@ -436,10 +439,13 @@
 		.tabla-factura tbody th {
 			text-align: left;
 			font-size: 11px;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
 		}
 
 		.tabla-factura tbody td {
 			padding: 2px 2px 2px 11px;
+			border-bottom: 1px solid black;
 		/*	text-align: center;
 			font-size: 10px;
 			padding: 10px;
