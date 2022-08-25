@@ -403,12 +403,13 @@
 
 		.tabla-factura {
 			float: left;
-			width: 50%;
+		/*	width: 50%; */
 			border-top: 1px solid black;
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 		/*	border: 1px solid black; */
-			margin-left: 20%;
+			margin-left: 5%;
+			border-spacing: 0px;
 		}
 
 		.tabla-factura thead .factura {
@@ -441,6 +442,8 @@
 			font-size: 11px;
 			border-right: 1px solid black;
 			border-bottom: 1px solid black;
+			padding-left: 4px;
+			padding-right: 4px;
 		}
 
 		.tabla-factura tbody td {
