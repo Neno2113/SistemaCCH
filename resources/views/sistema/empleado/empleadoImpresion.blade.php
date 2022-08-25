@@ -482,7 +482,7 @@
 
 		.tabla-cliente thead td {
 			border-bottom: 1px solid black;
-			padding-left: 11px;
+			padding: 2px 2px 2px 11px;
 		}
 
 		.tabla-cliente tbody td {
@@ -693,6 +693,22 @@
 					<tr>
 						<th>Fecha de Ingreso</th>
 						<td>{{ $fecha_ingreso }}</td>
+					</tr>
+					<tr>
+						<th>Departamento</th>
+						<td>{{ $departamento }}</td>
+					</tr>
+					<tr>
+						<th>Departamento</th>
+						<td>{{ $departamento }}</td>
+					</tr>
+					<tr>
+						<th>Departamento</th>
+						<td>{{ $departamento }}</td>
+					</tr>
+					<tr>
+						<th>Departamento</th>
+						<td>{{ $departamento }}</td>
 					</tr>
 					<tr>
 						<th>Departamento</th>
