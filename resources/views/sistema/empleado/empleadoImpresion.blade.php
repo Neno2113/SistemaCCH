@@ -470,8 +470,8 @@
 			border-top: 1px solid black;
 			border-left: 1px solid black;
 			border-right: 1px solid black;
-			width: 60%; 
-			margin-right: 2%;
+			width: 50%; 
+			margin-right: 4%;
 			margin-left: 140px; 
 		}
 
