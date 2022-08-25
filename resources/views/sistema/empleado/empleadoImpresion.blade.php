@@ -396,10 +396,6 @@
 			text-align: start;
 		}
 
-		.tabla-factura table, .tabla-factura th, .tabla-factura td {
-		/*	border: 1px solid black; 
-			border-spacing: 0px; */
-		}
 
 		.tabla-factura {
 			float: left;
@@ -426,15 +422,9 @@
 			border: 1px solid black; */
 		}
 
-	
-
-		.tabla-factura tbody .num_factura {
-		/*	border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			text-align: center;
-			padding: 7px;
-			font-size: 12px;
-			color: #c85b5b; */
+		.tabla-factura tbody {
+			margin-left: 5%;
+			float: left;
 		}
 
 		.tabla-factura tbody th {
@@ -449,6 +439,7 @@
 		.tabla-factura tbody td {
 			padding: 2px 2px 2px 11px;
 			border-bottom: 1px solid black;
+			font-size: 11px;
 		/*	text-align: center;
 			font-size: 10px;
 			padding: 10px;
