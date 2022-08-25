@@ -46,7 +46,7 @@
 		}
 
 		#logo img {
-			height: 52px;
+			height: 100px;
 		}
 
 		#company {
@@ -430,10 +430,6 @@
 			padding: 3px;
 		}
 
-		.tabla-factura tbody .mas_espacio {
-			padding: 5px;
-		}
-
 		.tabla-factura tbody td {
 			padding: 3px 3px 3px 11px;
 			border-bottom: 1px solid black;
@@ -474,7 +470,7 @@
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 			width: 40%;
-			margin-right: 5%;
+			margin-right: 2%;
 		}
 
 		.tabla-cliente thead th {
@@ -653,6 +649,9 @@
 	</header>
 	<main>
 		<div id="details" class="clearfix">
+			<div id="logo">
+				<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
+			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
 					<tr>
