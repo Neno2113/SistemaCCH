@@ -470,7 +470,7 @@
 			border-top: 1px solid black;
 			border-left: 1px solid black;
 			border-right: 1px solid black;
-			width: 50%; 
+			width: 58%; 
 			margin-right: 4%;
 			margin-left: 140px; 
 		}
