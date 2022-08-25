@@ -431,6 +431,10 @@
 			padding-right: 4px;
 		}
 
+		.tabla-factura tbody .mas_espacio {
+			padding: 2px 2px 2px 11px;
+		}
+
 		.tabla-factura tbody td {
 			padding: 2px 2px 2px 11px;
 			border-bottom: 1px solid black;
@@ -471,6 +475,7 @@
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 			width: 40%;
+			margin-right: 5%;
 		}
 
 		.tabla-cliente thead th {
@@ -704,7 +709,7 @@
 					</tr>
 					<tr>
 						<th>Seguridad Sociales</th>
-						<td>{{ $nss }}</td>
+						<td class="mas_espacio">{{ $nss }}</td>
 					</tr>
 					<tr>
 						<th>Departamento</th>
