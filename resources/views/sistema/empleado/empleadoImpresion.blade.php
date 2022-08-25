@@ -43,6 +43,7 @@
 		#logo {
 			float: left;
 			margin-top: 5px;
+			margin-right: 100px;
 		}
 
 		#logo img {
