@@ -396,6 +396,10 @@
 			text-align: start;
 		}
 
+		.tabla-factura table, .tabla-factura th, .tabla-factura td {
+			border: 1px solid black;
+		}
+
 		.tabla-factura {
 			float: right;
 			width: 50%;
@@ -413,13 +417,11 @@
 		 	padding-left: 19px;
 			padding-right: 16px; 
 			padding-top: 7px;
-			text-align: center; */
-			border: 1px solid black;
+			text-align: center; 
+			border: 1px solid black; */
 		}
 
-		.tabla-factura td {
-			border: 1px solid black;
-		}
+	
 
 		.tabla-factura tbody .num_factura {
 		/*	border-top: 1px solid black;
@@ -681,7 +683,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table border="0" cellpadding="0" class="tabla-factura">
+			<table cellpadding="0" class="tabla-factura">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
