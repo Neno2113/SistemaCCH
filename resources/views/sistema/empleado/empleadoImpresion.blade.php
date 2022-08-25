@@ -471,7 +471,7 @@
 			border-right: 1px solid black;
 			width: 40%;
 			margin-right: 2%;
-			margin-left: 100px;
+			margin-left: 110px;
 		}
 
 		.tabla-cliente thead th {
@@ -651,7 +651,8 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="logo">
-				<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}">
+			<!--	<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}"> -->
+				<img src="">
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
