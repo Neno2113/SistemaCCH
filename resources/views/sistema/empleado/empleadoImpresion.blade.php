@@ -476,7 +476,7 @@
 			border-right: 1px solid black;
 			width: 59%; 
 			margin-right: 4%;
-			margin-left: 135px; 
+			margin-left: 140px; 
 		}
 
 		.tabla-cliente thead th {
