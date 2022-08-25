@@ -431,7 +431,7 @@
 			padding-right: 4px;
 		}
 
-		.tabla-factura tbody .mas_espacio {
+		.mas_espacio {
 			padding: 3px 2px 3px 11px;
 		}
 
