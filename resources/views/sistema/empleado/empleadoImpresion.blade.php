@@ -398,6 +398,7 @@
 
 		.tabla-factura table, .tabla-factura th, .tabla-factura td {
 			border: 1px solid black;
+			border-spacing: 0px;
 		}
 
 		.tabla-factura {
@@ -474,7 +475,7 @@
 			border-top: 1px solid black;
 			border-left: 1px solid black;
 			border-right: 1px solid black;
-			width: 30%;
+			width: 40%;
 		}
 
 		.tabla-cliente thead th {
