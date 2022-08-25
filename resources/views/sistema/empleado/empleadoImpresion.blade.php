@@ -46,7 +46,7 @@
 		}
 
 		#logo img {
-			height: 180px;
+			height: 130px;
 		}
 
 		#company {
