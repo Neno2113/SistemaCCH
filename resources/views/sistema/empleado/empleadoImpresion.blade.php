@@ -433,13 +433,13 @@
 			color: #c85b5b; */
 		}
 
-		.tabla-factura tbody .fecha {
-		/*	text-align: center;
-			font-size: 10px;
-			padding: 6px; */
+		.tabla-factura tbody th {
+			text-align: left;
+			font-size: 11px;
 		}
 
-		.tabla-factura tbody .page {
+		.tabla-factura tbody td {
+			padding: 2px 2px 2px 11px;
 		/*	text-align: center;
 			font-size: 10px;
 			padding: 10px;
@@ -480,13 +480,14 @@
 
 		.tabla-cliente thead th {
 			border-bottom: 1px solid black;
+			border-right: 1px solid black;
 			font-size: 11px;
 			padding-left: 11px;
 		}
 
 		.tabla-cliente thead td {
 			border-bottom: 1px solid black;
-			padding-left: 47px;
+			padding-left: 11px;
 		}
 
 		.tabla-cliente tbody td {
