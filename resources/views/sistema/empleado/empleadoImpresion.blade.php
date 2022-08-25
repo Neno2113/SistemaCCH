@@ -404,7 +404,7 @@
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 		/*	border: 1px solid black; */
-			margin-left: 5%;
+		/*	margin-left: 5%; */
 			border-spacing: 0px;
 		}
 
@@ -420,11 +420,6 @@
 			padding-top: 7px;
 			text-align: center; 
 			border: 1px solid black; */
-		}
-
-		.tabla-factura tbody {
-			margin-left: 5%;
-			float: left;
 		}
 
 		.tabla-factura tbody th {
