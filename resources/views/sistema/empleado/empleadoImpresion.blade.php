@@ -401,10 +401,10 @@
 		}
 
 		.tabla-factura {
-			float: right;
+			float: left;
 			width: 50%;
 		/*	border: 1px solid black; */
-			margin-right: 34%;
+			margin-left: 20%;
 		}
 
 		.tabla-factura thead .factura {
@@ -474,7 +474,7 @@
 			border-top: 1px solid black;
 			border-left: 1px solid black;
 			border-right: 1px solid black;
-			width: 40%;
+			width: 30%;
 		}
 
 		.tabla-cliente thead th {
