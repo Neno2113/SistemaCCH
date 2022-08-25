@@ -681,7 +681,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table class="tabla-cliente">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
