@@ -699,16 +699,16 @@
 						<td>{{ $departamento }}</td>
 					</tr>
 					<tr>
-						<th>Departamento</th>
-						<td>{{ $departamento }}</td>
+						<th>Cargo</th>
+						<td>{{ $cargo }}</td>
 					</tr>
 					<tr>
-						<th>Departamento</th>
-						<td>{{ $departamento }}</td>
+						<th>Tipo Contrato</th>
+						<td>{{ $tipo_contrato }}</td>
 					</tr>
 					<tr>
-						<th>Departamento</th>
-						<td>{{ $departamento }}</td>
+						<th>Seguridad Sociales</th>
+						<td>{{ $nss }}</td>
 					</tr>
 					<tr>
 						<th>Departamento</th>
