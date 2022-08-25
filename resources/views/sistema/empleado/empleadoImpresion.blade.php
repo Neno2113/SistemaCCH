@@ -431,8 +431,8 @@
 			padding-right: 4px;
 		}
 
-		.mas_espacio {
-			padding: 3px 2px 3px 11px;
+		.tabla-factura tbody .mas_espacio {
+			padding: 5px;
 		}
 
 		.tabla-factura tbody td {
@@ -708,7 +708,7 @@
 						<td>{{ $tipo_contrato }}</td>
 					</tr>
 					<tr>
-						<th>Seguridad Sociales</th>
+						<th class="mas_espacio">Seguridad Sociales</th>
 						<td class="mas_espacio">{{ $nss }}</td>
 					</tr>
 					<tr>
