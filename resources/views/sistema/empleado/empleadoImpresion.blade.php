@@ -89,7 +89,7 @@
 		h2.name {
 			font-size: 1.2em;
 			font-weight: normal;
-			margin: 0;
+			margin: 5px 0px;
 			text-align: center;
 		}
 
