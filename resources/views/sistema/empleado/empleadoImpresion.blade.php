@@ -93,6 +93,11 @@
 			text-align: center;
 		}
 
+		h2.session{
+		/*	margin: 5px 0px; */
+			text-align: center;
+		}
+
 		#invoice {
 			float: right;
 			text-align: right;
@@ -728,7 +733,7 @@
 				</tbody>
 			</table>
 		</div>
-		<h2 class="name">Información Personal</h2>
+		<h2 class="session">Información Personal</h2>
 		<table cellspacing="0" class="tabla-ncf">
 			<thead>
 				<tr>
