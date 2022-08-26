@@ -90,6 +90,7 @@
 			font-size: 1.2em;
 			font-weight: normal;
 			margin: 0;
+			text-align: center;
 		}
 
 		#invoice {
@@ -727,6 +728,7 @@
 				</tbody>
 			</table>
 		</div>
+		<h2 class="name">INFORME DE EMPLEADO</h2>
 		<table cellspacing="0" class="tabla-ncf">
 			<thead>
 				<tr>

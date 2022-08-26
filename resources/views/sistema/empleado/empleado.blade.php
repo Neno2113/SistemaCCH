@@ -212,20 +212,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 mt-3">
-                                <label for="nombre_esposa" >Nombre esposo/a</label>
+                                <label for="nombre_esposa" >Nombre Esposo/a</label>
                                 <input type="text" name="nombre_esposa"  id="nombre_esposa"
                                     class="form-control">
                                
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="telefono_esposa" >Telefono esposo/a</label>
+                                <label for="telefono_esposa" >Telefono Esposo/a</label>
                                 <input type="text" name="telefono_esposa"
                                     id="telefono_esposa" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
                                     data-mask>
                               
                             </div>
                             <div class="col-md-4 mt-3">
-                                <label for="esposa_en_nss">¿Esposa Incluida en Seguro?</label>
+                                <label for="esposa_en_nss">¿Esposo/a Incluida en Seguro?</label>
                                 <select name="esposa_en_nss" id="esposa_en_nss" class="form-control">
                                     <option value="" disabled selected>¿Esposa incluida?</option>
                                     <option value="Si">Si</option>
