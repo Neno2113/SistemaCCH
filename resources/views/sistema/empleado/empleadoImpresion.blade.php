@@ -579,6 +579,11 @@
 			color: #c85b5b;
 		}
 
+		.tabla-ncf tbody td {
+			/* padding-left: 50px; */
+			border-bottom: 1px solid black;
+		}
+
 		.tabla-bultos thead .hora_empaque {
 			font-weight: lighter;
 		}
