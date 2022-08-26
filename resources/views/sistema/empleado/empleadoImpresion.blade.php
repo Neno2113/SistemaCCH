@@ -728,7 +728,7 @@
 				</tbody>
 			</table>
 		</div>
-		<h2 class="name">IInformacion Personal</h2>
+		<h2 class="name">Información Personal</h2>
 		<table cellspacing="0" class="tabla-ncf">
 			<thead>
 				<tr>
