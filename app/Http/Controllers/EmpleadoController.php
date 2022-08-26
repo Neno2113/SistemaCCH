@@ -725,7 +725,10 @@ class EmpleadoController extends Controller
         $nss = $empleado->nss;
         $condicion_medica = $empleado->condicion_medica;
     //    $empleadoActual = Empleado::find($id)->load('user');
-        $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id);
+        $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)
+        ->get()
+        ->first();
+        
         $nombre_ref1 = $empleado_detalle->nombre_ref1;
         $parentesco_ref1 = $empleado_detalle->parentesco_ref1;
         $telefono_ref1 = $empleado_detalle->telefono_ref1;
