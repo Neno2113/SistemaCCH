@@ -732,7 +732,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>{{$nombre_ref1 }}</td>
+					<td>{{ $nombre_ref1 }}</td>
 					<td>{{ $parentesco_ref1 }}</td>
 					<td>{{ $telefono_ref1 }}</td>
 				</tr>
