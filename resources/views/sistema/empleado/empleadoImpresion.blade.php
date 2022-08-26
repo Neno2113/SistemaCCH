@@ -732,14 +732,14 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>{{$nombre_ref1}}</td>
-					<td>{{$parentesco_ref1}}</td>
-					<td>{{$telefono_ref1}}</td>
+					<td>{{$nombre_ref1 }}</td>
+					<td>{{ $parentesco_ref1 }}</td>
+					<td>{{ $telefono_ref1 }}</td>
 				</tr>
 				<tr>
-					<td>{{$nombre_ref2}}</td>
-					<td>{{$parentesco_ref2}}</td>
-					<td>{{$telefono_ref2}}</td>
+					<td>{{ $nombre_ref2 }}</td>
+					<td>{{ $parentesco_ref2 }}</td>
+					<td>{{ $telefono_ref2 }}</td>
 				</tr>
 			</tbody>
 		</table>
