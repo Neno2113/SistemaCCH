@@ -757,7 +757,7 @@ class EmpleadoController extends Controller
 */
         $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'telefono_2' => $telefono_2, 'email' => $email, 'cedula' => $cedula,
         'estado_civil' => $estado_civil, 'departamento' => $departamento, 'fecha_nacimiento' => $fecha_nacimiento, 'fecha_ingreso' => $fecha_ingreso, 'cargo' => $cargo, 'tipo_contrato' => $tipo_contrato, 'nss' => $nss, 'forma_pago' => $forma_pago, 'nombre_ref1' => $nombre_ref1, 
-        'parentesco_ref1' => $parentesco_ref1, 'telefono_ref1' => $telefono_ref1, 'nombre_ref2' => $nombre_ref2, 'parentesco_ref2' => $parentesco_ref2, 'telefono_ref2' => $telefono_ref2,
+        'parentesco_ref1' => $parentesco_ref1, 'telefono_ref1' => $telefono_ref1, 'nombre_ref2' => $nombre_ref2, 'parentesco_ref2' => $parentesco_ref2, 'telefono_ref2' => $telefono_ref2
     ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
