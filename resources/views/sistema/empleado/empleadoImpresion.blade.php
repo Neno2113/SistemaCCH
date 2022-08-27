@@ -612,7 +612,7 @@
 		}
 
 		.tabla-depentientes {
-			width: 300px;
+			width: 600px;
 			/* border-collapse: collapse;
             border-spacing: 0; */
 			margin-bottom: 10px;
@@ -633,6 +633,7 @@
 			text-align: center;
 			font-size: 11px;
 			color: #000;
+			border-bottom: 1px solid black;
 		}
 
 		.tabla-bultos thead .hora_empaque {
