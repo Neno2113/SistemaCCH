@@ -618,6 +618,7 @@
 			margin-bottom: 10px;
 			table-layout: auto;
 			border: solid 1px black;
+			margin-left: 40%;
 		}
 
 		.tabla-depentientes thead th {
