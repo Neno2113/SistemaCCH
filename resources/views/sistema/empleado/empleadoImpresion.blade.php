@@ -523,6 +523,14 @@
 			margin-right: 4%;
 		}
 
+		.tabla-info tbody th {
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			font-size: 11px;
+			font-weight: bold;
+			padding-left: 11px;
+		}
+
 		.tabla-info tbody td {
 			border-bottom: 1px solid black;
 			padding: 2px 2px 2px 11px;
@@ -751,13 +759,11 @@
 		</div>
 		<div id="details" class="clearfix">	
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
-				<thead class="cod">
+				<tbody>
 					<tr>
 						<th>Condicion Medica</th>
 						<td>{{ $condicion_medica }}</td>
 					</tr>
-				</thead>
-				<tbody>
 					<tr>
 						<th>Nombre de Esposo/a</th>
 						<td>{{ $nombre_esposa }}</td>
