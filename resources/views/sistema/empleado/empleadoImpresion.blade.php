@@ -736,7 +736,7 @@
 			<h2 class="session">Información Personal</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
+			<table border="0" cellspacing="0" cellpadding="0" class="">
 				<thead class="cod">
 					<tr>
 						<th>Condicion Medica</th>
