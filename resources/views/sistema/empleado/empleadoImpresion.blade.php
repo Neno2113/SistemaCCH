@@ -514,6 +514,20 @@
 			padding: 12px;
 		}
 
+		.tabla-info {
+			float: left;
+			border-top: 1px solid black;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+			width: 59%; 
+			margin-right: 4%;
+		}
+
+		.tabla-info tbody td {
+			border-bottom: 1px solid black;
+			padding: 2px 2px 2px 11px;
+		}
+
 		.tabla-original {
 			float: right;
 			margin-right: 20%;
@@ -736,7 +750,7 @@
 			<h2 class="session">Información Personal</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
 				<thead class="cod">
 					<tr>
 						<th>Condicion Medica</th>
