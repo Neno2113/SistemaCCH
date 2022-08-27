@@ -832,6 +832,27 @@
 						<td>{{ $edad_dependiente_2 }}</td>
 					</tr>
 					<tr>
+						<td>{{ $nombre_dependiente_0 }}</td>
+						<td>{{ $parentesco_dependiente_0 }}</td>
+						<td>{{ $edad_dependiente_0 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_1 }}</td>
+						<td>{{ $parentesco_dependiente_1 }}</td>
+						<td>{{ $edad_dependiente_1 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_2 }}</td>
+						<td>{{ $parentesco_dependiente_2 }}</td>
+						<td>{{ $edad_dependiente_2 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_2 }}</td>
+						<td>{{ $parentesco_dependiente_2 }}</td>
+						<td>{{ $edad_dependiente_2 }}</td>
+					</tr>
+					<!--
+					<tr>
 						<td>{{ $nombre_dependiente_3 }}</td>
 						<td>{{ $parentesco_dependiente_3 }}</td>
 						<td>{{ $edad_dependiente_3 }}</td>
@@ -851,6 +872,7 @@
 						<td>{{ $parentesco_dependiente_6 }}</td>
 						<td>{{ $edad_dependiente_6 }}</td>
 					</tr>
+					-->
 				</tbody>
 			</table>
 		</div>
