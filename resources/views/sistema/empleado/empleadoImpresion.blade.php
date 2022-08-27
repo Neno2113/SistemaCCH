@@ -612,7 +612,7 @@
 		}
 
 		.tabla-depentientes {
-			width: 800px;
+			width: 700px;
 			/* border-collapse: collapse;
             border-spacing: 0; */
 			margin-bottom: 10px;
@@ -830,11 +830,6 @@
 						<td>{{ $nombre_dependiente_2 }}</td>
 						<td>{{ $parentesco_dependiente_2 }}</td>
 						<td>{{ $edad_dependiente_2 }}</td>
-					</tr>
-					<tr>
-						<td>{{ $nombre_dependiente_3 }}</td>
-						<td>{{ $parentesco_dependiente_3 }}</td>
-						<td>{{ $edad_dependiente_3 }}</td>
 					</tr>
 					<tr>
 						<td>{{ $nombre_dependiente_3 }}</td>
