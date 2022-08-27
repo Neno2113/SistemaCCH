@@ -533,7 +533,7 @@
 
 		.tabla-info tbody td {
 			border-bottom: 1px solid black;
-			padding: 3px 2px 3px 11px;
+			padding: 4px 2px 4px 11px;
 		}
 
 		.tabla-original {
@@ -612,7 +612,7 @@
 		}
 
 		.tabla-depentientes {
-			width: 600px;
+			width: 800px;
 			/* border-collapse: collapse;
             border-spacing: 0; */
 			margin-bottom: 10px;
@@ -812,19 +812,49 @@
 					<tr>
 						<th class="op">NOMBRE</th>
 						<th class="terminos_pago">PARENTESCO</th>
-						<th class="vendedor">TELEFONO</th>
+						<th class="vendedor">EDAD</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>{{ $nombre_ref1 }}</td>
-						<td>{{ $parentesco_ref1 }}</td>
-						<td>{{ $telefono_ref1 }}</td>
+						<td>{{ $nombre_dependiente_0 }}</td>
+						<td>{{ $parentesco_dependiente_0 }}</td>
+						<td>{{ $edad_dependiente_0 }}</td>
 					</tr>
 					<tr>
-						<td>{{ $nombre_ref2 }}</td>
-						<td>{{ $parentesco_ref2 }}</td>
-						<td>{{ $telefono_ref2 }}</td>
+						<td>{{ $nombre_dependiente_1 }}</td>
+						<td>{{ $parentesco_dependiente_1 }}</td>
+						<td>{{ $edad_dependiente_1 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_2 }}</td>
+						<td>{{ $parentesco_dependiente_2 }}</td>
+						<td>{{ $edad_dependiente_2 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_3 }}</td>
+						<td>{{ $parentesco_dependiente_3 }}</td>
+						<td>{{ $edad_dependiente_3 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_3 }}</td>
+						<td>{{ $parentesco_dependiente_3 }}</td>
+						<td>{{ $edad_dependiente_3 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_4 }}</td>
+						<td>{{ $parentesco_dependiente_4 }}</td>
+						<td>{{ $edad_dependiente_4 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_5 }}</td>
+						<td>{{ $parentesco_dependiente_5 }}</td>
+						<td>{{ $edad_dependiente_5 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_dependiente_6 }}</td>
+						<td>{{ $parentesco_dependiente_6 }}</td>
+						<td>{{ $edad_dependiente_6 }}</td>
 					</tr>
 				</tbody>
 			</table>
