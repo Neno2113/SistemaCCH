@@ -734,8 +734,9 @@
 		</div>
 		<div>
 			<h2 class="session">Información Personal</h2>
-		</div>	
-		<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
+		</div>
+		<div id="details" class="clearfix">	
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
 					<tr>
 						<th>Condicion Medica</th>
@@ -761,28 +762,33 @@
 					</tr>
 				</tbody>
 			</table>
-		<h2 class="session">Referencia Personal</h2>
-		<table cellspacing="0" class="tabla-ncf">
-			<thead>
-				<tr>
-					<th class="op">NOMBRE</th>
-					<th class="terminos_pago">PARENTESCO</th>
-					<th class="vendedor">TELEFONO</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>{{ $nombre_ref1 }}</td>
-					<td>{{ $parentesco_ref1 }}</td>
-					<td>{{ $telefono_ref1 }}</td>
-				</tr>
-				<tr>
-					<td>{{ $nombre_ref2 }}</td>
-					<td>{{ $parentesco_ref2 }}</td>
-					<td>{{ $telefono_ref2 }}</td>
-				</tr>
-			</tbody>
-		</table>
+		</div>
+		<div>
+			<h2 class="session">Referencia Personal</h2>
+		</div>
+		<div id="details" class="clearfix">	
+			<table cellspacing="0" class="tabla-ncf">
+				<thead>
+					<tr>
+						<th class="op">NOMBRE</th>
+						<th class="terminos_pago">PARENTESCO</th>
+						<th class="vendedor">TELEFONO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ $nombre_ref1 }}</td>
+						<td>{{ $parentesco_ref1 }}</td>
+						<td>{{ $telefono_ref1 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_ref2 }}</td>
+						<td>{{ $parentesco_ref2 }}</td>
+						<td>{{ $telefono_ref2 }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</main>
 	<footer class="pagina1">
 		Factura generada desde SistemaCCH.
