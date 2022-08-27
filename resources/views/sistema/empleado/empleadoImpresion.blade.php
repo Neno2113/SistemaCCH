@@ -533,7 +533,7 @@
 
 		.tabla-info tbody td {
 			border-bottom: 1px solid black;
-			padding: 2px 2px 2px 11px;
+			padding: 3px 2px 3px 11px;
 		}
 
 		.tabla-original {
@@ -572,7 +572,7 @@
 		.tabla-ncf tbody td {
 			/* padding-left: 28px; */
 			text-align: center;
-			font-size: 12px;
+			font-size: 11px;
 			color: #000;
 		}
 
@@ -609,6 +609,29 @@
 		.tabla-ncf tbody td {
 			/* padding-left: 50px; */
 			border-bottom: 1px solid black;
+		}
+
+		.tabla-depentientes {
+			width: 55%;
+			/* border-collapse: collapse;
+            border-spacing: 0; */
+			margin-bottom: 10px;
+			table-layout: auto;
+			border: solid 1px black;
+		}
+
+		.tabla-depentientes thead th {
+			border-bottom: 2px solid black;
+			/* border-left: 2px solid black */
+			background-color: #131980;
+			color: #fff;
+			text-align: center;
+		}
+
+		.tabla-depentientes tbody td {
+			text-align: center;
+			font-size: 11px;
+			color: #000;
 		}
 
 		.tabla-bultos thead .hora_empaque {
@@ -779,6 +802,27 @@
 					<tr>
 						<th>Cantidad de Dependientes</th>
 						<td>{{ $cantidad_dependientes }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<table cellspacing="0" class="tabla-ncf">
+				<thead>
+					<tr>
+						<th class="op">NOMBRE</th>
+						<th class="terminos_pago">PARENTESCO</th>
+						<th class="vendedor">TELEFONO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ $nombre_ref1 }}</td>
+						<td>{{ $parentesco_ref1 }}</td>
+						<td>{{ $telefono_ref1 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $nombre_ref2 }}</td>
+						<td>{{ $parentesco_ref2 }}</td>
+						<td>{{ $telefono_ref2 }}</td>
 					</tr>
 				</tbody>
 			</table>
