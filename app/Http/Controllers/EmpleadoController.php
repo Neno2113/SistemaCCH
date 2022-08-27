@@ -724,18 +724,46 @@ class EmpleadoController extends Controller
         $no_cuenta = $empleado->no_cuenta;
         $nss = $empleado->nss;
         $condicion_medica = $empleado->condicion_medica;
-    //    $empleadoActual = Empleado::find($id)->load('user');
+
         $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)
         ->get()
         ->first();
+        $user_id = $empleado_detalle->user_id;
+        $nombre_esposa = $empleado_detalle->nombre_esposa;
+        $telefono_esposa = $empleado_detalle->telefono_esposa;
+        $esposa_en_nss = $empleado_detalle->esposa_en_nss;
+        $cantidad_dependientes = $empleado_detalle->cantidad_dependientes;
+        $nombre_dependiente_0 = $empleado_detalle->nombre_dependiente_0;
+        $parentesco_dependiente_0 = $empleado_detalle->parentesco_dependiente_0;
+        $edad_dependiente_0 = $empleado_detalle->edad_dependiente_0;
+        $nombre_dependiente_1 = $empleado_detalle->nombre_dependiente_1;
+        $parentesco_dependiente_1 = $empleado_detalle->parentesco_dependiente_1;
+        $edad_dependiente_1 = $empleado_detalle->edad_dependiente_1;
+        $nombre_dependiente_2 = $empleado_detalle->nombre_dependiente_2;
+        $parentesco_dependiente_2 = $empleado_detalle->parentesco_dependiente_2;
+        $edad_dependiente_2 = $empleado_detalle->edad_dependiente_2;
+        $nombre_dependiente_3 = $empleado_detalle->nombre_dependiente_3;
+        $parentesco_dependiente_3 = $empleado_detalle->parentesco_dependiente_3;
+        $edad_dependiente_3 = $empleado_detalle->edad_dependiente_3;
+        $nombre_dependiente_4 = $empleado_detalle->nombre_dependiente_4;
+        $parentesco_dependiente_4 = $empleado_detalle->parentesco_dependiente_4;
+        $edad_dependiente_4 = $empleado_detalle->edad_dependiente_4;
+        $nombre_dependiente_5 = $empleado_detalle->nombre_dependiente_5;
+        $parentesco_dependiente_5 = $empleado_detalle->parentesco_dependiente_5;
+        $edad_dependiente_5 = $empleado_detalle->edad_dependiente_5;
+        $nombre_dependiente_6 = $empleado_detalle->nombre_dependiente_6;
+        $parentesco_dependiente_6 = $empleado_detalle->parentesco_dependiente_6;
+        $edad_dependiente_6 = $empleado_detalle->edad_dependiente_6;
         
+
+
         $nombre_ref1 = $empleado_detalle->nombre_ref1;
         $parentesco_ref1 = $empleado_detalle->parentesco_ref1;
         $telefono_ref1 = $empleado_detalle->telefono_ref1;
         $nombre_ref2 = $empleado_detalle->nombre_ref2;
         $parentesco_ref2 = $empleado_detalle->parentesco_ref2;
         $telefono_ref2 = $empleado_detalle->telefono_ref2;
-    //    $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id);
+
 
     //    $user_id = $empleado_detalle->('user_id');
     //    $user = User::where('id', $user_id)->get();
@@ -760,7 +788,12 @@ class EmpleadoController extends Controller
 */
         $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'telefono_2' => $telefono_2, 'email' => $email, 'cedula' => $cedula,
         'estado_civil' => $estado_civil, 'departamento' => $departamento, 'fecha_nacimiento' => $fecha_nacimiento, 'fecha_ingreso' => $fecha_ingreso, 'cargo' => $cargo, 'tipo_contrato' => $tipo_contrato, 'nss' => $nss, 'forma_pago' => $forma_pago, 'nombre_ref1' => $nombre_ref1, 
-        'parentesco_ref1' => $parentesco_ref1, 'telefono_ref1' => $telefono_ref1, 'nombre_ref2' => $nombre_ref2, 'parentesco_ref2' => $parentesco_ref2, 'telefono_ref2' => $telefono_ref2
+        'parentesco_ref1' => $parentesco_ref1, 'telefono_ref1' => $telefono_ref1, 'nombre_ref2' => $nombre_ref2, 'parentesco_ref2' => $parentesco_ref2, 'telefono_ref2' => $telefono_ref2, 'telefono_ref2' => $telefono_ref2, 'nombre_esposa' => $nombre_esposa, 
+        'telefono_esposa' => $telefono_esposa, 'esposa_en_nss' => $esposa_en_nss, 'cantidad_dependientes' => $cantidad_dependientes, 'nombre_dependiente_0' => $nombre_dependiente_0, 'parentesco_dependiente_0' => $parentesco_dependiente_0, 'edad_dependiente_0' => $edad_dependiente_0,
+        'nombre_dependiente_1' => $nombre_dependiente_1, 'parentesco_dependiente_1' => $parentesco_dependiente_1, 'edad_dependiente_1' => $edad_dependiente_1, 'nombre_dependiente_2' => $nombre_dependiente_2, 'parentesco_dependiente_2' => $parentesco_dependiente_2, 
+        'edad_dependiente_2' => $edad_dependiente_2, 'nombre_dependiente_3' => $nombre_dependiente_3, 'parentesco_dependiente_3' => $parentesco_dependiente_3, 'edad_dependiente_3' => $edad_dependiente_3, 'nombre_dependiente_4' => $nombre_dependiente_4, 
+        'parentesco_dependiente_4' => $parentesco_dependiente_4, 'edad_dependiente_4' => $edad_dependiente_4, 'nombre_dependiente_5' => $nombre_dependiente_5, 'parentesco_dependiente_5' => $parentesco_dependiente_5, 'edad_dependiente_5' => $edad_dependiente_5,
+        'nombre_dependiente_6' => $nombre_dependiente_6, 'parentesco_dependiente_6' => $parentesco_dependiente_6, 'edad_dependiente_6' => $edad_dependiente_6, 'condicion_medica' => $condicion_medica
     ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);

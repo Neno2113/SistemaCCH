@@ -89,8 +89,7 @@
 		h2.name {
 			font-size: 1.2em;
 			font-weight: normal;
-			margin: 5px 0px;
-			text-align: center;
+			margin: 0;
 		}
 
 		h2.session{
@@ -733,7 +732,36 @@
 				</tbody>
 			</table>
 		</div>
-		<h2 class="session">Información Personal</h2>
+		<div>
+			<h2 class="session">Información Personal</h2>
+		</div>	
+		<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
+				<thead class="cod">
+					<tr>
+						<th>Condicion Medica</th>
+						<td>{{ $condicion_medica }}</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Nombre de Esposo/a</th>
+						<td>{{ $nombre_esposa }}</td>
+					</tr>
+					<tr>
+						<th>Telefono de Esposo/a</th>
+						<td>{{ $telefono_esposa }}</td>
+					</tr>
+					<tr>
+						<th>¿Esposa Incluida en Seguro?</th>
+						<td>{{ $esposa_en_nss }}</td>
+					</tr>
+					<tr>
+						<th>Cantidad de Dependientes</th>
+						<td>{{ $cantidad_dependientes }}</td>
+					</tr>
+				</tbody>
+			</table>
+		<h2 class="session">Referencia Personal</h2>
 		<table cellspacing="0" class="tabla-ncf">
 			<thead>
 				<tr>
