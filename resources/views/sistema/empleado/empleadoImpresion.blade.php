@@ -612,13 +612,13 @@
 		}
 
 		.tabla-depentientes {
-			width: 55%;
+			width: 300px;
 			/* border-collapse: collapse;
             border-spacing: 0; */
 			margin-bottom: 10px;
 			table-layout: auto;
 			border: solid 1px black;
-			margin-left: 400px;
+			margin-left: 320px;
 		}
 
 		.tabla-depentientes thead th {
