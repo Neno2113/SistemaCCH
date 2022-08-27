@@ -805,7 +805,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellspacing="0" class="tabla-ncf">
+			<table cellspacing="0" class="tabla-depentientes">
 				<thead>
 					<tr>
 						<th class="op">NOMBRE</th>
