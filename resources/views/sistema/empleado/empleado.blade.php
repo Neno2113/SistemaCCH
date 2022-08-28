@@ -365,7 +365,7 @@
                     <div class="" id="fila-academica">
                         <br>
                         <br>
-                        <h5>Formacion Academica</h5>
+                        <h5>Formación Academica</h5>
                         <hr>
                         <div class="row">
                             <div class="col-md-4">

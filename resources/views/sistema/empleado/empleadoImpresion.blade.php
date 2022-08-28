@@ -922,6 +922,39 @@
 				</tbody>
 			</table>
 		</div>
+		<div>
+			<h2 class="session">Formación Academica</h2>
+		</div>
+		<div id="details" class="clearfix">	
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
+				<tbody>
+					<tr>
+						<th>Primaria</th>
+						<td>{{ $primaria }}</td>
+					</tr>
+					<tr>
+						<th>Bachiller</th>
+						<td>{{ $bachiller }}</td>
+					</tr>
+					<tr>
+						<th>Nivel Superior</th>
+						<td>{{ $nivel_superior }}</td>
+					</tr>
+					<tr>
+						<th>Grado y Titulo</th>
+						<td>{{ $Grado_titulo }}</td>
+					</tr>
+					<tr>
+						<th>Especialidad</th>
+						<td>{{ $especialidad }}</td>
+					</tr>
+					<tr>
+						<th>Fecha de Exp.</th>
+						<td>{{ $fecha_exp }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</main>
 	<footer class="pagina1">
 		Factura generada desde SistemaCCH.

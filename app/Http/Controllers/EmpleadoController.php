@@ -773,6 +773,13 @@ class EmpleadoController extends Controller
         $supervisor_experiencia_2 = $empleado_detalle->supervisor_experiencia_2;
         $telefono_experiencia_2 = $empleado_detalle->telefono_experiencia_2;
 
+        $primaria = $empleado_detalle->primaria;
+        $bachiller = $empleado_detalle->bachiller;
+        $nivel_superior = $empleado_detalle->nivel_superior;
+        $grado_titulo = $empleado_detalle->grado_titulo;
+        $especialidad = $empleado_detalle->especialidad;
+        $fecha_exp = $empleado_detalle->fecha_exp;
+
 
 
     //    $user_id = $empleado_detalle->('user_id');
@@ -805,7 +812,8 @@ class EmpleadoController extends Controller
         'parentesco_dependiente_4' => $parentesco_dependiente_4, 'edad_dependiente_4' => $edad_dependiente_4, 'nombre_dependiente_5' => $nombre_dependiente_5, 'parentesco_dependiente_5' => $parentesco_dependiente_5, 'edad_dependiente_5' => $edad_dependiente_5,
         'nombre_dependiente_6' => $nombre_dependiente_6, 'parentesco_dependiente_6' => $parentesco_dependiente_6, 'edad_dependiente_6' => $edad_dependiente_6, 'condicion_medica' => $condicion_medica, 'cargo_experiencia_1' => $cargo_experiencia_1, 
         'tiempo_experiencia_1' => $tiempo_experiencia_1, 'empresa_experiencia_1' => $empresa_experiencia_1, 'supervisor_experiencia_1' => $supervisor_experiencia_1, 'telefono_experiencia_1' => $telefono_experiencia_1, 'cargo_experiencia_2' => $cargo_experiencia_2, 
-        'tiempo_experiencia_2' => $tiempo_experiencia_2, 'empresa_experiencia_2' => $empresa_experiencia_2, 'supervisor_experiencia_2' => $supervisor_experiencia_2, 'telefono_experiencia_2' => $telefono_experiencia_2
+        'tiempo_experiencia_2' => $tiempo_experiencia_2, 'empresa_experiencia_2' => $empresa_experiencia_2, 'supervisor_experiencia_2' => $supervisor_experiencia_2, 'telefono_experiencia_2' => $telefono_experiencia_2, 'primaria' => $primaria, 'bachiller' => $bachiller,
+        'nivel_superior' => $nivel_superior, 'grado_titulo' => $grado_titulo, 'especialidad' => $especialidad, 'fecha_exp' => $fecha_exp
     ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
