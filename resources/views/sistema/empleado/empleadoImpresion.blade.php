@@ -636,6 +636,13 @@
 			border-bottom: 1px solid black;
 		}
 
+		.tabla-depentientes thead th .titulo-dependientes{
+			background-color: #fff;
+			color: #000;
+			text-align: center;
+			font-size: 13px;
+		}
+
 		.tabla-bultos thead .hora_empaque {
 			font-weight: lighter;
 		}
@@ -810,7 +817,7 @@
 			<table cellspacing="0" class="tabla-depentientes">
 				<thead>
 					<tr>
-						<th class="">DEPENDIENTES</th>
+						<th class="titulo-dependientes" colspan="3">DEPENDIENTES</th>
 					</tr>
 					<tr>
 						<th class="op">NOMBRE</th>
