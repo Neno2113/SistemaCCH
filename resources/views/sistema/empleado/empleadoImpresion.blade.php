@@ -93,8 +93,17 @@
 		}
 
 		h2.session{
-		/*	margin: 5px 0px; */
 			text-align: center;
+		}
+
+		h2.session-1{
+			float: left;
+			margin-left: 20px;
+		}
+
+		h2.session-2{
+			float: left;
+			margin-left: 250px;
 		}
 
 		#invoice {
@@ -952,6 +961,38 @@
 					<tr>
 						<th>Fecha de Exp.</th>
 						<td>{{ $fecha_exp }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<table cellpadding="0" class="tabla-factura">
+				<tbody>
+					<tr>
+						<th>Estado Civil</th>
+						<td>{{ $estado_civil }}</td>
+					</tr>
+					<tr>
+						<th>Fecha Nacimiento</th>
+						<td>{{ $fecha_nacimiento }}</td>
+					</tr>
+					<tr>
+						<th>Fecha de Ingreso</th>
+						<td>{{ $fecha_ingreso }}</td>
+					</tr>
+					<tr>
+						<th>Departamento</th>
+						<td>{{ $departamento }}</td>
+					</tr>
+					<tr>
+						<th>Tipo Contrato</th>
+						<td>{{ $tipo_contrato }}</td>
+					</tr>
+					<tr>
+						<th class="mas_espacio">Seguridad Sociales</th>
+						<td class="mas_espacio">{{ $nss }}</td>
+					</tr>
+					<tr>
+						<th>Departamento</th>
+						<td>{{ $departamento }}</td>
 					</tr>
 				</tbody>
 			</table>
