@@ -810,6 +810,9 @@
 			<table cellspacing="0" class="tabla-depentientes">
 				<thead>
 					<tr>
+						<th class="">DEPENDIENTES</th>
+					</tr>
+					<tr>
 						<th class="op">NOMBRE</th>
 						<th class="terminos_pago">PARENTESCO</th>
 						<th class="vendedor">EDAD</th>
@@ -832,27 +835,6 @@
 						<td>{{ $edad_dependiente_2 }}</td>
 					</tr>
 					<tr>
-						<td>{{ $nombre_dependiente_0 }}</td>
-						<td>{{ $parentesco_dependiente_0 }}</td>
-						<td>{{ $edad_dependiente_0 }}</td>
-					</tr>
-					<tr>
-						<td>{{ $nombre_dependiente_1 }}</td>
-						<td>{{ $parentesco_dependiente_1 }}</td>
-						<td>{{ $edad_dependiente_1 }}</td>
-					</tr>
-					<tr>
-						<td>{{ $nombre_dependiente_2 }}</td>
-						<td>{{ $parentesco_dependiente_2 }}</td>
-						<td>{{ $edad_dependiente_2 }}</td>
-					</tr>
-					<tr>
-						<td>{{ $nombre_dependiente_2 }}</td>
-						<td>{{ $parentesco_dependiente_2 }}</td>
-						<td>{{ $edad_dependiente_2 }}</td>
-					</tr>
-					<!--
-					<tr>
 						<td>{{ $nombre_dependiente_3 }}</td>
 						<td>{{ $parentesco_dependiente_3 }}</td>
 						<td>{{ $edad_dependiente_3 }}</td>
@@ -872,7 +854,6 @@
 						<td>{{ $parentesco_dependiente_6 }}</td>
 						<td>{{ $edad_dependiente_6 }}</td>
 					</tr>
-					-->
 				</tbody>
 			</table>
 		</div>
