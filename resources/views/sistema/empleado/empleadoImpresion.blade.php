@@ -636,7 +636,7 @@
 			border-bottom: 1px solid black;
 		}
 
-		.tabla-depentientes thead th .titulo-dependientes{
+		.tabla-depentientes thead .titulo-dependientes{
 			background-color: #fff;
 			color: #000;
 			text-align: center;
