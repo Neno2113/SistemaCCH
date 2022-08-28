@@ -942,7 +942,7 @@
 					</tr>
 					<tr>
 						<th>Grado y Titulo</th>
-						<td>{{ $Grado_titulo }}</td>
+						<td>{{ $grado_titulo }}</td>
 					</tr>
 					<tr>
 						<th>Especialidad</th>
