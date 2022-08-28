@@ -933,7 +933,6 @@
 		</div>
 		<div>
 			<h2 class="session-1">Formación Academica</h2>
-			<h2 class="session-2">Información Laboral</h2>
 		</div>
 		<div id="details" class="clearfix">	
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
@@ -964,6 +963,11 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+		<div>
+			<h2 class="session-2">Información Laboral</h2>
+		</div>
+		<div id="details" class="clearfix">	
 			<table cellpadding="0" class="">
 				<tbody>
 					<tr>
