@@ -890,6 +890,38 @@
 				</tbody>
 			</table>
 		</div>
+		<div>
+			<h2 class="session">Experiencia Laboral</h2>
+		</div>
+		<div id="details" class="clearfix">	
+			<table cellspacing="0" class="tabla-ncf">
+				<thead>
+					<tr>
+						<th class="op">CARGO</th>
+						<th class="terminos_pago">TIEMPO</th>
+						<th class="vendedor">EMPRESA</th>
+						<th class="vendedor">SUPERVISOR</th>
+						<th class="vendedor">TELEFONO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ $cargo_experiencia_1 }}</td>
+						<td>{{ $tiempo_experiencia_1 }}</td>
+						<td>{{ $empresa_experiencia_1 }}</td>
+						<td>{{ $supervisor_experiencia_1 }}</td>
+						<td>{{ $telefono_experiencia_1 }}</td>
+					</tr>
+					<tr>
+						<td>{{ $cargo_experiencia_2 }}</td>
+						<td>{{ $tiempo_experiencia_2 }}</td>
+						<td>{{ $empresa_experiencia_2 }}</td>
+						<td>{{ $supervisor_experiencia_1 }}</td>
+						<td>{{ $telefono_experiencia_2 }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</main>
 	<footer class="pagina1">
 		Factura generada desde SistemaCCH.
