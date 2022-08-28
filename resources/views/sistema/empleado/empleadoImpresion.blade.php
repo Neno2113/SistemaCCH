@@ -964,7 +964,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura">
+			<table cellpadding="0" class="">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
