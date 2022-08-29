@@ -724,6 +724,7 @@ class EmpleadoController extends Controller
         $no_cuenta = $empleado->no_cuenta;
         $nss = $empleado->nss;
         $condicion_medica = $empleado->condicion_medica;
+        $fecha_termino_contrato = $empleado->fecha_termino_contrato;
 
         $empleado_detalle  = EmpleadoDetalle::where('empleado_id', $id)
         ->get()
@@ -780,29 +781,6 @@ class EmpleadoController extends Controller
         $especialidad = $empleado_detalle->especialidad;
         $fecha_exp = $empleado_detalle->fecha_exp;
 
-
-
-    //    $user_id = $empleado_detalle->('user_id');
-    //    $user = User::where('id', $user_id)->get();
-
-    //    $user_id = $empleadoActual->user_id;
-    //    $user = User::where('id', $user_id)->get();
-    //    $empleado_detalle = EmpleadoDetalle::where('empleado_id', $id)->get();
-
-     //   $orden->fecha = date("h:i:s A d-m-20y", strtotime($orden->fecha));
-         /*
-        $pdf = \PDF::loadView('sistema.empleado.empleadoImpresion', \compact(
-            'empleadoActual'
-        //    'user',
-        //    'empleado_detalle'
-        ))->setPaper('a4'); 
-    //    return $pdf->download('detalleEmpleado.pdf');
-        return View('sistema.empleado.empleadoImpresion', \compact(
-            'empleadoActual',
-            'user',
-            'empleado_detalle'
-        )); 
-*/
         $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'telefono_2' => $telefono_2, 'email' => $email, 'cedula' => $cedula,
         'estado_civil' => $estado_civil, 'departamento' => $departamento, 'fecha_nacimiento' => $fecha_nacimiento, 'fecha_ingreso' => $fecha_ingreso, 'cargo' => $cargo, 'tipo_contrato' => $tipo_contrato, 'nss' => $nss, 'forma_pago' => $forma_pago, 'nombre_ref1' => $nombre_ref1, 
         'parentesco_ref1' => $parentesco_ref1, 'telefono_ref1' => $telefono_ref1, 'nombre_ref2' => $nombre_ref2, 'parentesco_ref2' => $parentesco_ref2, 'telefono_ref2' => $telefono_ref2, 'telefono_ref2' => $telefono_ref2, 'nombre_esposa' => $nombre_esposa, 
@@ -813,7 +791,8 @@ class EmpleadoController extends Controller
         'nombre_dependiente_6' => $nombre_dependiente_6, 'parentesco_dependiente_6' => $parentesco_dependiente_6, 'edad_dependiente_6' => $edad_dependiente_6, 'condicion_medica' => $condicion_medica, 'cargo_experiencia_1' => $cargo_experiencia_1, 
         'tiempo_experiencia_1' => $tiempo_experiencia_1, 'empresa_experiencia_1' => $empresa_experiencia_1, 'supervisor_experiencia_1' => $supervisor_experiencia_1, 'telefono_experiencia_1' => $telefono_experiencia_1, 'cargo_experiencia_2' => $cargo_experiencia_2, 
         'tiempo_experiencia_2' => $tiempo_experiencia_2, 'empresa_experiencia_2' => $empresa_experiencia_2, 'supervisor_experiencia_2' => $supervisor_experiencia_2, 'telefono_experiencia_2' => $telefono_experiencia_2, 'primaria' => $primaria, 'bachiller' => $bachiller,
-        'nivel_superior' => $nivel_superior, 'grado_titulo' => $grado_titulo, 'especialidad' => $especialidad, 'fecha_exp' => $fecha_exp
+        'nivel_superior' => $nivel_superior, 'grado_titulo' => $grado_titulo, 'especialidad' => $especialidad, 'fecha_exp' => $fecha_exp, 'cargo' => $cargo, 'tipo_contrato' => $tipo_contrato, 'forma_pago' => $forma_pago, 'sueldo' => $sueldo, 'valor_hora' => $valor_hora,
+        'banco_tarjeta_cobro' => $banco_tarjeta_cobro, 'no_cuenta' => $no_cuenta, 'fecha_termino_contrato' => $fecha_termino_contrato
     ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
