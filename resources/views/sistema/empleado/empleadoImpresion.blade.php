@@ -551,7 +551,7 @@
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 		/*	width: 50%; */
-			width: 600px;
+			width: 480px;
 		/*	margin-right: 4%; */
 		}
 
