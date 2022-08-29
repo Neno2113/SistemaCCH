@@ -561,6 +561,7 @@
 			font-size: 11px;
 			font-weight: bold;
 			padding-left: 5px;
+			text-align: left;
 		}
 
 		.tabla-laboral tbody td {
