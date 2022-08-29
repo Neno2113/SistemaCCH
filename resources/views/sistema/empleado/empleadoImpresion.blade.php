@@ -552,6 +552,8 @@
 			border-right: 1px solid black;
 		/*	width: 50%; */
 			width: 395px;
+			border-spacing: 10px;
+    		border-collapse: separate;
 		}
 
 		.tabla-laboral tbody th {
@@ -751,8 +753,8 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="logo">
-			<!--	<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}"> -->
-				<img src="{{ public_path('avatar.jpg') }}"> 
+				<img src="{{ asset('adminlte/img/LOGO_CCH-01.jpg' )}}"> 
+			<!--	<img src="{{ public_path('avatar.jpg') }}"> -->
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
@@ -958,7 +960,7 @@
 			<h2 class="session">Formación Academica</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 300px;">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
 				<tbody>
 					<tr>
 						<th>Primaria</th>
