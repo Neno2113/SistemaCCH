@@ -751,8 +751,8 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="logo">
-				<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}"> 
-			<!--	<img src=""> -->
+			<!--	<img src="{{asset('adminlte/img/LOGO_CCH-01.jpg')}}"> -->
+				<img src="{{ public_path('avatar.jpg') }}"> 
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
