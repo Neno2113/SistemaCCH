@@ -490,7 +490,7 @@
 			border-right: 1px solid black;
 			width: 59%; 
 			margin-right: 4%;
-			margin-left: 140px; 
+			margin-left: 150px; 
 		}
 
 		.tabla-cliente thead th {
@@ -553,7 +553,6 @@
 		/*	width: 50%; */
 			width: 395px;
 			border-spacing: 0x;
-    		border-collapse: collapse;
 		}
 
 		.tabla-laboral tbody th {
