@@ -552,7 +552,7 @@
 			border-right: 1px solid black;
 		/*	width: 50%; */
 			width: 395px;
-		/*	margin-right: 4%; */
+			margin-left: 300px; 
 		}
 
 		.tabla-laboral tbody th {
@@ -786,7 +786,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura" style="width:200px;">
+			<table cellpadding="0" class="tabla-factura" style="width:300px;">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
