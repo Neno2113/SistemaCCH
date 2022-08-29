@@ -552,7 +552,6 @@
 			border-right: 1px solid black;
 		/*	width: 50%; */
 			width: 395px;
-			margin-left: 300px; 
 		}
 
 		.tabla-laboral tbody th {
@@ -786,7 +785,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura" style="width:300px;">
+			<table cellpadding="0" class="tabla-factura" style="width:280px;">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
@@ -959,7 +958,7 @@
 			<h2 class="session">Formación Academica</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 300px;">
 				<tbody>
 					<tr>
 						<th>Primaria</th>
