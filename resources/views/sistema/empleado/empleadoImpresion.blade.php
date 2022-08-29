@@ -966,32 +966,36 @@
 			<table cellpadding="0" class="tabla-info">
 				<tbody>
 					<tr>
-						<th>Estado Civil</th>
-						<td>{{ $estado_civil }}</td>
+						<th>Cargo</th>
+						<td>{{ $cargo }}</td>
 					</tr>
 					<tr>
-						<th>Fecha Nacimiento</th>
-						<td>{{ $fecha_nacimiento }}</td>
-					</tr>
-					<tr>
-						<th>Fecha de Ingreso</th>
-						<td>{{ $fecha_ingreso }}</td>
-					</tr>
-					<tr>
-						<th>Departamento</th>
-						<td>{{ $departamento }}</td>
-					</tr>
-					<tr>
-						<th>Tipo Contrato</th>
+						<th>Contrato</th>
 						<td>{{ $tipo_contrato }}</td>
 					</tr>
 					<tr>
-						<th class="mas_espacio">Seguridad Sociales</th>
-						<td class="mas_espacio">{{ $nss }}</td>
+						<th>Forma de Pago</th>
+						<td>{{ $forma_pago }}</td>
 					</tr>
 					<tr>
-						<th>Departamento</th>
-						<td>{{ $departamento }}</td>
+						<th>Sueldo</th>
+						<td>{{ $sueldo }}</td>
+					</tr>
+					<tr>
+						<th>Valor Hora</th>
+						<td>{{ $valor_hora }}</td>
+					</tr>
+					<tr>
+						<th>Banco</th>
+						<td>{{ $banco_tarjeta_cobro }}</td>
+					</tr>
+					<tr>
+						<th>No. de Cuenta</th>
+						<td>{{ $no_cuenta }}</td>
+					</tr>
+					<tr>
+						<th>Fecha Termino de Contrato</th>
+						<td>{{ $fecha_termino_contrato }}</td>
 					</tr>
 				</tbody>
 			</table>
