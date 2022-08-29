@@ -392,7 +392,7 @@
 		}
 
 		footer {
-			page-break-after: always;
+		/*	page-break-after: always; */
 		}
 
 		. .tabla-principal-totales {
@@ -499,7 +499,7 @@
 		.tabla-cliente tbody td {
 			border-bottom: 1px solid black;
 		/*	padding-right: 106px; */
-			padding: 2px 2px 2px 11px;
+			padding: 2px 2px 2px 15px;
 		}
 
 		.tabla-cliente tbody th {
