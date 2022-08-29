@@ -552,7 +552,7 @@
 			border-right: 1px solid black;
 		/*	width: 50%; */
 			width: 395px;
-			border-spacing: 10px;
+			border-spacing: 0x;
     		border-collapse: separate;
 		}
 
@@ -753,8 +753,7 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="logo">
-				<img src="{{ asset('adminlte/img/LOGO_CCH-01.jpg' )}}"> 
-			<!--	<img src="{{ public_path('avatar.jpg') }}"> -->
+				<img src="{{ public_path('adminlte/img/images.png') }}">
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
@@ -787,7 +786,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura" style="width:280px;">
+			<table cellpadding="0" class="tabla-factura" style="width:250px;">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
