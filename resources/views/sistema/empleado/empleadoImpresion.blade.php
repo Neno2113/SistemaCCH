@@ -43,11 +43,12 @@
 		#logo {
 			float: left;
 			margin-top: 5px;
-			margin-right: -140px;
+			margin-right: -130px;
 		}
 
 		#logo img {
-			height: 130px;
+		/*	height: 130px; */
+			width: 130px;
 		}
 
 		#company {
@@ -949,7 +950,7 @@
 			<h2 class="session">Formación Academica</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 20px;">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 30px;">
 				<tbody>
 					<tr>
 						<th>Primaria</th>
