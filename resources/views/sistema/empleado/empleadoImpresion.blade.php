@@ -551,7 +551,7 @@
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 		/*	width: 50%; */
-			width: 395px;
+		/*	width: 395px; */
 			border-spacing: 0x;
 		}
 
@@ -958,7 +958,7 @@
 			<h2 class="session">Formación Academica</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table cellspacing="0" cellpadding="0" class="tabla-info" style="float: left; width: 300px; margin-right: 0px;">
+			<table cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 10px;">
 				<tbody>
 					<tr>
 						<th>Primaria</th>
