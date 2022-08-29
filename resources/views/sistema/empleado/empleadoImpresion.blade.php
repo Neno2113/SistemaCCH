@@ -550,7 +550,8 @@
 			border-top: 1px solid black;
 			border-left: 1px solid black;
 			border-right: 1px solid black;
-			width: 50%; 
+		/*	width: 50%; */
+			width: 750px;
 		/*	margin-right: 4%; */
 		}
 
