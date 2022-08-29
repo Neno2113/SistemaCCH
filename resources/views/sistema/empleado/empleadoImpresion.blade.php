@@ -450,7 +450,6 @@
 			padding: 10px;
 			padding-bottom: 13px;
 			border-top: 1px solid black; */
-
 		}
 
 		.tabla-totales {
@@ -551,9 +550,9 @@
 			border-right: 1px solid black;
 			border-bottom: 1px solid black;
 			font-size: 11px;
-			font-weight: bold;
-			padding-left: 5px;
+		/*	font-weight: bold; */
 			text-align: left;
+			padding: 2px 4px 2px 5px;
 		}
 
 		.tabla-laboral tbody td {
