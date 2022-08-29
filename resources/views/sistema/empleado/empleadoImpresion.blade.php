@@ -977,7 +977,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura">
+			<table cellpadding="0" class="tabla-factura" style="width: 500px;">
 				<tbody>
 					<tr>
 						<th>Cargo</th>
