@@ -186,8 +186,8 @@ Route::put('/user/edit', 'UserController@update');
 Route::post('/user/delete/{id}', 'UserController@destroy');
 Route::post('/usercheck/delete/{id}', 'UserController@checkDestroy');
 Route::post('/user/{id}', 'UserController@show');
-Route::post('/avatar', 'UserController@upload');
-Route::get('/avatar/{filname}', 'UserController@getImage');
+//Route::post('/avatar', 'UserController@upload');
+//Route::get('/avatar/{filname}', 'UserController@getImage');
 Route::get('exportar/test', 'ExistenciaController@userExport');
 Route::post('/user/active/{id}', 'UserController@activar');
 Route::post('/user/desactive/{id}', 'UserController@desactivar');
@@ -499,6 +499,9 @@ Route::put('empleado/edit', 'EmpleadoController@update');
 Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 Route::post('empleadocheck/delete/{id}', 'EmpleadoController@checkDestroy');
 Route::get('/imprimir_empleado/empleado/{id}', 'EmpleadoController@imprimir');
+//CRISTOBAL
+Route::post('image-upload', 'EmpleadoController@imageUpload')->name('image.upload');
+Route::get('image-upload', 'EmpleadoController@imageUploadPost')->name('image.upload.post');
 
 //Permiso
 Route::get('usuarios', 'PermisoController@usuarios');

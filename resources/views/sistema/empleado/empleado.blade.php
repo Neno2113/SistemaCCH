@@ -56,13 +56,13 @@
                     </div>
 
                     <div class="col-md-4 mt-3" id="vatar">
-                <!--    <form action="" method="POST" id="formUpload" enctype="multipart/form-data"> -->
+                    <form action="{{ route('image.upload.post') }}" method="POST" id="" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleInputFile">Foto</label>
                             <img src="" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
                             <div class="input-group mt-4">
                                 <div class="custom-file">
-                                    <input type="file" class="form-control" name="avatar" id="avatar">
+                                    <input type="file" class="form-control" name="image" id="avatar">
                                     <input type="hidden" name="image_name" id="image_name" value="">
                                     {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
                                 </div>
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                         </div>
-                <!--    </form> -->
+                    </form>
                     </div>
 
                     <div class="row" id="fila-detail">

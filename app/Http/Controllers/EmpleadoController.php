@@ -32,7 +32,7 @@ class EmpleadoController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
-            'telefono_2' => 'required',
+            'telefono_2' => 'required'
         //    'email' => 'email|unique:empleado',
         //    'cargo' => 'required',
 
@@ -47,6 +47,9 @@ class EmpleadoController extends Controller
             ];
         } else {
 
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('adminlte/img/empleados'), $imageName);
+
             $nombre = $request->input('nombre');
             $apellido = $request->input('apellido');
             $calle = $request->input('calle');
@@ -59,6 +62,7 @@ class EmpleadoController extends Controller
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
             $email = $request->input('email');
+            $avatar = $request->input('avatar');
             
             $estado_civil = $request->input('estado_civil');
             $referencia = $request->input('referencia');
@@ -244,6 +248,28 @@ class EmpleadoController extends Controller
         }
 
         return response()->json($data, $data['code']);
+    }
+
+    //CRISTOBAL
+    public function imageUpload()
+    {
+        return view('imageUpload');
+    }
+
+    public function imageUploadPost(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+  
+        $imageName = time().'.'.$request->image->extension();  
+   
+        $request->image->move(public_path('adminlte/img/empleados'), $imageName);
+   
+        return back()
+            ->with('success','You have successfully upload image.')
+            ->with('image',$imageName);
+   
     }
 
     public function storeDetalle(Request $request)
