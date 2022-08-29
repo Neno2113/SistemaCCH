@@ -963,7 +963,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="">
+			<table cellpadding="0" class="tabla-info">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
