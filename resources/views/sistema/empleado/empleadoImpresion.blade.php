@@ -977,7 +977,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-laboral">
+			<table cellpadding="0" class="tabla-factura">
 				<tbody>
 					<tr>
 						<th>Cargo</th>
@@ -1016,7 +1016,7 @@
 		</div>
 	</main>
 	<footer class="pagina1">
-		Factura generada desde SistemaCCH.
+		Fin de documento.
 	</footer>
 	
 </body>
