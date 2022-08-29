@@ -499,9 +499,7 @@ Route::put('empleado/edit', 'EmpleadoController@update');
 Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 Route::post('empleadocheck/delete/{id}', 'EmpleadoController@checkDestroy');
 Route::get('/imprimir_empleado/empleado/{id}', 'EmpleadoController@imprimir');
-//CRISTOBAL
-Route::post('image-upload', 'EmpleadoController@imageUpload')->name('image.upload');
-Route::get('image-upload', 'EmpleadoController@imageUploadPost')->name('image.upload.post');
+
 
 //Permiso
 Route::get('usuarios', 'PermisoController@usuarios');
