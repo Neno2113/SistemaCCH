@@ -553,6 +553,7 @@
 		/*	width: 50%; */
 		/*	width: 395px; */
 			border-spacing: 0x;
+			border-collapse: collapse;
 		}
 
 		.tabla-laboral tbody th {
