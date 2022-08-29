@@ -430,7 +430,7 @@
 
 
 		.tabla-factura tbody th {
-			text-align: left;
+			text-align: center;
 			font-size: 11px;
 			border-right: 1px solid black;
 			border-bottom: 1px solid black;
@@ -949,7 +949,7 @@
 			<h2 class="session">Formación Academica</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 10px;">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 20px;">
 				<tbody>
 					<tr>
 						<th>Primaria</th>
@@ -977,7 +977,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura" style="width: 400px;">
+			<table cellpadding="0" class="tabla-factura" style="width: 380px;">
 				<tbody>
 					<tr>
 						<th>Cargo</th>
