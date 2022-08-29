@@ -43,7 +43,7 @@
 		#logo {
 			float: left;
 			margin-top: 5px;
-			margin-right: -130px;
+			margin-right: -135px;
 		}
 
 		#logo img {
@@ -978,7 +978,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura" style="width: 385px;">
+			<table cellpadding="0" class="tabla-factura" style="width: 390px;">
 				<tbody>
 					<tr>
 						<th>Cargo</th>
