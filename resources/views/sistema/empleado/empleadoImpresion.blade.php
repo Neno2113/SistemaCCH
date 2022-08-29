@@ -786,7 +786,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-factura">
+			<table cellpadding="0" class="tabla-factura" style="width:200px;">
 				<tbody>
 					<tr>
 						<th>Estado Civil</th>
@@ -987,7 +987,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-laboral">
+			<table cellspacing="0" cellpadding="0" class="tabla-laboral">
 				<tbody>
 					<tr>
 						<th>Cargo</th>
