@@ -958,7 +958,7 @@
 			<h2 class="session">Formación Academica</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="float: left; width: 300px; margin-right: 0px;">
+			<table cellspacing="0" cellpadding="0" class="tabla-info" style="float: left; width: 300px; margin-right: 0px;">
 				<tbody>
 					<tr>
 						<th>Primaria</th>
@@ -986,7 +986,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellspacing="0" cellpadding="0" class="tabla-laboral">
+			<table cellpadding="0" class="tabla-laboral">
 				<tbody>
 					<tr>
 						<th>Cargo</th>
