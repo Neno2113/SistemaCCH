@@ -545,6 +545,28 @@
 			padding: 4px 2px 4px 11px;
 		}
 
+		.tabla-laboral {
+			float: left;
+			border-top: 1px solid black;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+			width: 50%; 
+		/*	margin-right: 4%; */
+		}
+
+		.tabla-laboral tbody th {
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			font-size: 11px;
+			font-weight: bold;
+			padding-left: 5px;
+		}
+
+		.tabla-laboral tbody td {
+			border-bottom: 1px solid black;
+			padding: 4px 2px 4px 11px;
+		}
+
 		.tabla-original {
 			float: right;
 			margin-right: 20%;
@@ -963,7 +985,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<table cellpadding="0" class="tabla-info">
+			<table cellpadding="0" class="tabla-laboral">
 				<tbody>
 					<tr>
 						<th>Cargo</th>
