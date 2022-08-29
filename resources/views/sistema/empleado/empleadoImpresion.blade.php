@@ -428,14 +428,6 @@
 			color: #000;
 		}
 
-		.tabla-factura th {
-		/*	font-size: 14px; 
-		 	padding-left: 19px;
-			padding-right: 16px; 
-			padding-top: 7px;
-			text-align: center; 
-			border: 1px solid black; */
-		}
 
 		.tabla-factura tbody th {
 			text-align: left;
@@ -553,7 +545,6 @@
 		/*	width: 50%; */
 		/*	width: 395px; */
 			border-spacing: 0x;
-			border-collapse: collapse;
 		}
 
 		.tabla-laboral tbody th {
@@ -959,7 +950,7 @@
 			<h2 class="session">Formación Academica</h2>
 		</div>
 		<div id="details" class="clearfix">	
-			<table cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 10px;">
+			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 10px;">
 				<tbody>
 					<tr>
 						<th>Primaria</th>
