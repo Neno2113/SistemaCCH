@@ -551,7 +551,7 @@
 			border-left: 1px solid black;
 			border-right: 1px solid black;
 		/*	width: 50%; */
-			width: 40px;
+			width: 400px;
 		/*	margin-right: 4%; */
 		}
 
@@ -645,7 +645,7 @@
 		}
 
 		.tabla-depentientes {
-			width: 720px;
+			width: 710px;
 			/* border-collapse: collapse;
             border-spacing: 0; */
 			margin-bottom: 10px;
