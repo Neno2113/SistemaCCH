@@ -963,12 +963,6 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<!--
-		<div>
-			<h2 class="session-2">Información Laboral</h2>
-		</div>
-		<div id="details" class="clearfix">	
 			<table cellpadding="0" class="">
 				<tbody>
 					<tr>
@@ -1002,7 +996,6 @@
 				</tbody>
 			</table>
 		</div>
-		-->
 	</main>
 	<footer class="pagina1">
 		Factura generada desde SistemaCCH.
