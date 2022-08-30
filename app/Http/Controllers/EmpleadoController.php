@@ -435,7 +435,7 @@ class EmpleadoController extends Controller
             'id' => 'required',
             'nombre' => 'required',
             'apellido' => 'required',
-            'cedula' => 'required|unique:empleado',
+            'cedula' => 'required',
             'celular' => 'required'
         ]);
 
