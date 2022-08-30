@@ -33,8 +33,7 @@ class EmpleadoController extends Controller
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
             'celular' => 'required'
-        //    'email' => 'email|unique:empleado',
-        //    'cargo' => 'required',
+            'fecha_nacimiento' => 'after:2000-01-01'
 
         ]);
 
@@ -437,8 +436,7 @@ class EmpleadoController extends Controller
             'apellido' => 'required',
             'cedula' => 'required',
             'celular' => 'required',
-            'fecha_nacimiento' => 'different:fecha_2000_01_01'
-        //    'fecha_nacimiento' => 'after:01-01-2000'
+            'fecha_nacimiento' => 'after:2000-01-01'
         ]);
 
         if (empty($validar)) {
