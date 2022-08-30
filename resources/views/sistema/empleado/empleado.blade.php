@@ -410,7 +410,7 @@
                     <div class="" id="fila-experiencias">
                         <br>
                         <br>
-                        <h5>Experencia Laboral</h5>
+                        <h5>Experiencia Laboral</h5>
                         <hr>
                     </div>
                     <div>
