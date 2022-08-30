@@ -448,7 +448,7 @@ class EmpleadoController extends Controller
             ];
         } else {
             $id = $request->input('id');
-            $nombre = $request->input('nombre');     
+            $nombre = strtoupper($request->input('nombre'));     
                   
             $apellido = $request->input('apellido');
             $calle = $request->input('calle');
