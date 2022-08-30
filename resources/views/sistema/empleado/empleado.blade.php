@@ -118,7 +118,7 @@
                                 <option value="" disabled selected>Estado Civil</option>
                                 <option value="Casado">CASADO</option>
                                 <option value="Soltero">SOLTERO</option>
-                                <option value="Union Libre">UNION LIBRE</option>
+                                <option value="Union Libre">Union Libre</option>
                                 <option value="Viudo">VIUDO</option>
                             </select>
                         </div>
@@ -472,7 +472,7 @@
                                 <option>CORTE</option>
                                 <option>PRODUCCION</option>
                                 <option>ARTESANIA</option>
-                                <option>TERMINACION</option>
+                                <option>Terminacion</option>
                                 <option>ALMACEN PRODUCTO TERMINADO</option>
                                 <option>GENERAL</option>
                                 
@@ -520,7 +520,7 @@
                             <label for="tipo_contracto" >Contrato</label>
                             <select name="tipo_contrato" id="tipo_contrato" class="form-control">
                                 <option value="" disabled>TIPO DE CONTRATO</option>
-                                <option value="TEMPORERO">TEMPORERO</option>
+                                <option value="Temporero">Temporero</option>
                                 <option value="FIJO">FIJO</option>
                             </select>
                             
@@ -538,7 +538,7 @@
                                     <option value="" disabled>FORMA DE PAGO</option>
                                     <option value="POR HORA">POR HORA</option>
                                     <option value="SUELDO FIJO">SUELDO FIJO</option>
-                                    <option value="AJUSTE">AJUSTE</option>
+                                    <option value="Ajuste">Ajuste</option>
                                     <option value="COMBINADO">COMBINADO</option>
                                 </select>
                                
