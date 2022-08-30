@@ -51,6 +51,7 @@
                             class="form-control"
                             value="2000-01-01"    
                         >
+                        <input type="hidden" name="fecha_2000_01_01" id="fecha_2000_01_01" class="form-control" value="2000-01-01" >
                         </div>
 
                     </div>

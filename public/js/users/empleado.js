@@ -399,6 +399,7 @@ $(document).ready(function() {
             provincia: $("#provincia").val(),
             sitios_cercanos: $("#sitios_cercanos").val(),
             fecha_nacimiento: $("#fecha_nacimiento").val(),
+            fecha_2000_01_01: $("#fecha_2000_01_01").val(),
             cedula: $("#cedula").val(),
             cedula_sin_guion: $("#cedula").val().replace(/\-/g,''),
             telefono_1: $("#telefono_1").val(),
@@ -501,7 +502,7 @@ $(document).ready(function() {
             },
             error: function() {
                 bootbox.alert(
-                    "Ocurrio un error!!"
+                    "Ocurrio un error, verifique que los campos estan debidamente llenados!"
                 );
             }
         });
