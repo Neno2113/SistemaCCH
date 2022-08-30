@@ -51,77 +51,77 @@ class EmpleadoController extends Controller
         //    $request->image->move(public_path('adminlte/img/empleados'), $imageName);
 
             $nombre = strtoupper($request->input('nombre'));
-            $apellido = $request->input('apellido');
-            $calle = $request->input('calle');
-            $sector = $request->input('sector');
-            $provincia = $request->input('provincia');
-            $sitios_cercanos = $request->input('sitios_cercanos');
+            $apellido = strtoupper($request->input('apellido'));
+            $calle = strtoupper($request->input('calle'));
+            $sector = strtoupper($request->input('sector'));
+            $provincia = strtoupper($request->input('provincia'));
+            $sitios_cercanos = strtoupper($request->input('sitios_cercanos'));
             $cedula = $request->input('cedula');
             $cedula_sin_guion = $request->input('cedula_sin_guion');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
-            $email = $request->input('email');
-            $avatar = $request->input('avatar');
+            $email = strtoupper($request->input('email'));
+        //    $avatar = $request->input('avatar');
             
             $estado_civil = $request->input('estado_civil');
-            $referencia = $request->input('referencia');
+            $referencia = strtoupper($request->input('referencia'));
 
             $fecha_ingreso = $request->input('fecha_ingreso');
-            $condicion_medica = $request->input('condicion_medica');
-            $nombre_esposa = $request->input('nombre_esposa');
+            $condicion_medica = strtoupper($request->input('condicion_medica'));
+            $nombre_esposa = strtoupper($request->input('nombre_esposa'));
             $telefono_esposa = $request->input('telefono_esposa');
             $esposa_en_nss = $request->input('esposa_en_nss');
 
             $cantidad_dependientes = $request->input('cantidad_dependientes');         
 
-            $nombre_dependiente_0 = $request->input('nombre_dependiente_0');
-            $parentesco_dependiente_0 = $request->input('parentesco_dependiente_0');
+            $nombre_dependiente_0 = strtoupper($request->input('nombre_dependiente_0'));
+            $parentesco_dependiente_0 = strtoupper($request->input('parentesco_dependiente_0'));
             $edad_dependiente_0 = $request->input('edad_dependiente_0');
-            $nombre_dependiente_1 = $request->input('nombre_dependiente_1');
-            $parentesco_dependiente_1 = $request->input('parentesco_dependiente_1');
+            $nombre_dependiente_1 = strtoupper($request->input('nombre_dependiente_1'));
+            $parentesco_dependiente_1 = strtoupper($request->input('parentesco_dependiente_1'));
             $edad_dependiente_1 = $request->input('edad_dependiente_1');
-            $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
-            $parentesco_dependiente_2 = $request->input('parentesco_dependiente_2');
+            $nombre_dependiente_2 = strtoupper($request->input('nombre_dependiente_2'));
+            $parentesco_dependiente_2 = strtoupper($request->input('parentesco_dependiente_2'));
             $edad_dependiente_2 = $request->input('edad_dependiente_2');
-            $nombre_dependiente_3 = $request->input('nombre_dependiente_3');
-            $parentesco_dependiente_3 = $request->input('parentesco_dependiente_3');
+            $nombre_dependiente_3 = strtoupper($request->input('nombre_dependiente_3'));
+            $parentesco_dependiente_3 = strtoupper($request->input('parentesco_dependiente_3'));
             $edad_dependiente_3 = $request->input('edad_dependiente_3');
-            $nombre_dependiente_4 = $request->input('nombre_dependiente_4');
-            $parentesco_dependiente_4 = $request->input('parentesco_dependiente_4');
+            $nombre_dependiente_4 = strtoupper($request->input('nombre_dependiente_4'));
+            $parentesco_dependiente_4 = strtoupper($request->input('parentesco_dependiente_4'));
             $edad_dependiente_4 = $request->input('edad_dependiente_4');
-            $nombre_dependiente_5 = $request->input('nombre_dependiente_5');
-            $parentesco_dependiente_5 = $request->input('parentesco_dependiente_5');
+            $nombre_dependiente_5 = strtoupper($request->input('nombre_dependiente_5'));
+            $parentesco_dependiente_5 = strtoupper($request->input('parentesco_dependiente_5'));
             $edad_dependiente_5 = $request->input('edad_dependiente_5');
-            $nombre_dependiente_6 = $request->input('nombre_dependiente_6');
-            $parentesco_dependiente_6 = $request->input('parentesco_dependiente_6');
+            $nombre_dependiente_6 = strtoupper($request->input('nombre_dependiente_6'));
+            $parentesco_dependiente_6 = strtoupper($request->input('parentesco_dependiente_6'));
             $edad_dependiente_6 = $request->input('edad_dependiente_6');
 
-            $nombre_ref1 = $request->input('nombre_ref1');
-            $parentesco_ref1 = $request->input('parentesco_ref1');
+            $nombre_ref1 = strtoupper($request->input('nombre_ref1'));
+            $parentesco_ref1 = strtoupper($request->input('parentesco_ref1'));
             $telefono_ref1 = $request->input('telefono_ref1');
-            $nombre_ref2 = $request->input('nombre_ref2');
-            $parentesco_ref2 = $request->input('parentesco_ref2');
+            $nombre_ref2 = strtoupper($request->input('nombre_ref2'));
+            $parentesco_ref2 = strtoupper($request->input('parentesco_ref2'));
             $telefono_ref2 = $request->input('telefono_ref2');
-            $primaria = $request->input('primaria');
-            $bachiller = $request->input('bachiller');
-            $nivel_superior = $request->input('nivel_superior');
-            $grado_titulo = $request->input('grado_titulo');
-            $especialidad = $request->input('especialidad');
+            $primaria = strtoupper($request->input('primaria'));
+            $bachiller = strtoupper($request->input('bachiller'));
+            $nivel_superior = strtoupper($request->input('nivel_superior'));
+            $grado_titulo = strtoupper($request->input('grado_titulo'));
+            $especialidad = strtoupper($request->input('especialidad'));
             $fecha_exp = $request->input('fecha_exp');
-            $cargo_experiencia_1 = $request->input('cargo_experiencia_1');
-            $cargo_experiencia_2 = $request->input('cargo_experiencia_2');
-            $tiempo_experiencia_1 = $request->input('tiempo_experiencia_1');
-            $tiempo_experiencia_2 = $request->input('tiempo_experiencia_2');
-            $empresa_experiencia_1 = $request->input('empresa_experiencia_1');
-            $empresa_experiencia_2 = $request->input('empresa_experiencia_2');
-            $supervisor_experiencia_1 = $request->input('supervisor_experiencia_1');
-            $supervisor_experiencia_2 = $request->input('supervisor_experiencia_2');
+            $cargo_experiencia_1 = strtoupper($request->input('cargo_experiencia_1'));
+            $cargo_experiencia_2 = strtoupper($request->input('cargo_experiencia_2'));
+            $tiempo_experiencia_1 = strtoupper($request->input('tiempo_experiencia_1'));
+            $tiempo_experiencia_2 = strtoupper($request->input('tiempo_experiencia_2'));
+            $empresa_experiencia_1 = strtoupper($request->input('empresa_experiencia_1'));
+            $empresa_experiencia_2 = strtoupper($request->input('empresa_experiencia_2'));
+            $supervisor_experiencia_1 = strtoupper($request->input('supervisor_experiencia_1'));
+            $supervisor_experiencia_2 = strtoupper($request->input('supervisor_experiencia_2'));
             $telefono_experiencia_1 = $request->input('telefono_experiencia_1');
             $telefono_experiencia_2 = $request->input('telefono_experiencia_2');
             
             $tipo_contrato = $request->input('tipo_contrato');
-            $forma_pago = $request->input('forma_pago');
+            $forma_pago = strtoupper($request->input('forma_pago'));
             $sueldo = $request->input('sueldo');
             $valor_hora = $request->input('valor_hora');
             $banco_tarjeta_cobro = $request->input('banco_tarjeta_cobro');
@@ -130,7 +130,7 @@ class EmpleadoController extends Controller
             
             $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
-            $departamento = $request->input('departamento');
+            $departamento = strtoupper($request->input('departamento'));
 
             $pwd = Hash::make($cedula_sin_guion);
 
@@ -434,9 +434,9 @@ class EmpleadoController extends Controller
         $validar = $request->validate([
             'id' => 'required',
             'nombre' => 'required',
-        //    'apellido' => 'required',
-        //    'cedula' => 'required|unique:empleado',
-        //    'telefono_2' => 'required',
+            'apellido' => 'required',
+            'cedula' => 'required|unique:empleado',
+            'telefono_2' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -450,85 +450,85 @@ class EmpleadoController extends Controller
             $id = $request->input('id');
             $nombre = strtoupper($request->input('nombre'));     
                   
-            $apellido = $request->input('apellido');
-            $calle = $request->input('calle');
-            $sector = $request->input('sector');
-            $provincia = $request->input('provincia');
-            $sitios_cercanos = $request->input('sitios_cercanos');
+            $apellido = strtoupper($request->input('apellido'));
+            $calle = strtoupper($request->input('calle'));
+            $sector = strtoupper($request->input('sector'));
+            $provincia = strtoupper($request->input('provincia'));
+            $sitios_cercanos = strtoupper($request->input('sitios_cercanos'));
             $cedula = $request->input('cedula');
             $cedula_sin_guion = $request->input('cedula_sin_guion');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
             $telefono_2 = $request->input('telefono_2');
-            $email = $request->input('email');
+            $email = strtoupper($request->input('email'));
             
             $estado_civil = $request->input('estado_civil');
-            $referencia = $request->input('referencia');
+            $referencia = strtoupper($request->input('referencia'));
 
             $fecha_ingreso = $request->input('fecha_ingreso');
-            $condicion_medica = $request->input('condicion_medica');
-            $nombre_esposa = $request->input('nombre_esposa');
+            $condicion_medica = strtoupper($request->input('condicion_medica'));
+            $nombre_esposa = strtoupper($request->input('nombre_esposa'));
             $telefono_esposa = $request->input('telefono_esposa');
             $esposa_en_nss = $request->input('esposa_en_nss');
 
             $cantidad_dependientes = $request->input('cantidad_dependientes');         
 
-            $nombre_dependiente_0 = $request->input('nombre_dependiente_0');
-            $parentesco_dependiente_0 = $request->input('parentesco_dependiente_0');
+            $nombre_dependiente_0 = strtoupper($request->input('nombre_dependiente_0'));
+            $parentesco_dependiente_0 = strtoupper($request->input('parentesco_dependiente_0'));
             $edad_dependiente_0 = $request->input('edad_dependiente_0');
-            $nombre_dependiente_1 = $request->input('nombre_dependiente_1');
-            $parentesco_dependiente_1 = $request->input('parentesco_dependiente_1');
+            $nombre_dependiente_1 = strtoupper($request->input('nombre_dependiente_1'));
+            $parentesco_dependiente_1 = strtoupper($request->input('parentesco_dependiente_1'));
             $edad_dependiente_1 = $request->input('edad_dependiente_1');
-            $nombre_dependiente_2 = $request->input('nombre_dependiente_2');
-            $parentesco_dependiente_2 = $request->input('parentesco_dependiente_2');
+            $nombre_dependiente_2 = strtoupper($request->input('nombre_dependiente_2'));
+            $parentesco_dependiente_2 = strtoupper($request->input('parentesco_dependiente_2'));
             $edad_dependiente_2 = $request->input('edad_dependiente_2');
-            $nombre_dependiente_3 = $request->input('nombre_dependiente_3');
-            $parentesco_dependiente_3 = $request->input('parentesco_dependiente_3');
+            $nombre_dependiente_3 = strtoupper($request->input('nombre_dependiente_3'));
+            $parentesco_dependiente_3 = strtoupper($request->input('parentesco_dependiente_3'));
             $edad_dependiente_3 = $request->input('edad_dependiente_3');
-            $nombre_dependiente_4 = $request->input('nombre_dependiente_4');
-            $parentesco_dependiente_4 = $request->input('parentesco_dependiente_4');
+            $nombre_dependiente_4 = strtoupper($request->input('nombre_dependiente_4'));
+            $parentesco_dependiente_4 = strtoupper($request->input('parentesco_dependiente_4'));
             $edad_dependiente_4 = $request->input('edad_dependiente_4');
-            $nombre_dependiente_5 = $request->input('nombre_dependiente_5');
-            $parentesco_dependiente_5 = $request->input('parentesco_dependiente_5');
+            $nombre_dependiente_5 = strtoupper($request->input('nombre_dependiente_5'));
+            $parentesco_dependiente_5 = strtoupper($request->input('parentesco_dependiente_5'));
             $edad_dependiente_5 = $request->input('edad_dependiente_5');
-            $nombre_dependiente_6 = $request->input('nombre_dependiente_6');
-            $parentesco_dependiente_6 = $request->input('parentesco_dependiente_6');
+            $nombre_dependiente_6 = strtoupper($request->input('nombre_dependiente_6'));
+            $parentesco_dependiente_6 = strtoupper($request->input('parentesco_dependiente_6'));
             $edad_dependiente_6 = $request->input('edad_dependiente_6');
 
-            $nombre_ref1 = $request->input('nombre_ref1');
-            $parentesco_ref1 = $request->input('parentesco_ref1');
+            $nombre_ref1 = strtoupper($request->input('nombre_ref1'));
+            $parentesco_ref1 = strtoupper($request->input('parentesco_ref1'));
             $telefono_ref1 = $request->input('telefono_ref1');
-            $nombre_ref2 = $request->input('nombre_ref2');
-            $parentesco_ref2 = $request->input('parentesco_ref2');
+            $nombre_ref2 = strtoupper($request->input('nombre_ref2'));
+            $parentesco_ref2 = strtoupper($request->input('parentesco_ref2'));
             $telefono_ref2 = $request->input('telefono_ref2');
-            $primaria = $request->input('primaria');
-            $bachiller = $request->input('bachiller');
-            $nivel_superior = $request->input('nivel_superior');
-            $grado_titulo = $request->input('grado_titulo');
-            $especialidad = $request->input('especialidad');
+            $primaria = strtoupper($request->input('primaria'));
+            $bachiller = strtoupper($request->input('bachiller'));
+            $nivel_superior = strtoupper($request->input('nivel_superior'));
+            $grado_titulo = strtoupper($request->input('grado_titulo'));
+            $especialidad = strtoupper($request->input('especialidad'));
             $fecha_exp = $request->input('fecha_exp');
-            $cargo_experiencia_1 = $request->input('cargo_experiencia_1');
-            $cargo_experiencia_2 = $request->input('cargo_experiencia_2');
-            $tiempo_experiencia_1 = $request->input('tiempo_experiencia_1');
-            $tiempo_experiencia_2 = $request->input('tiempo_experiencia_2');
-            $empresa_experiencia_1 = $request->input('empresa_experiencia_1');
-            $empresa_experiencia_2 = $request->input('empresa_experiencia_2');
-            $supervisor_experiencia_1 = $request->input('supervisor_experiencia_1');
-            $supervisor_experiencia_2 = $request->input('supervisor_experiencia_2');
+            $cargo_experiencia_1 = strtoupper($request->input('cargo_experiencia_1'));
+            $cargo_experiencia_2 = strtoupper($request->input('cargo_experiencia_2'));
+            $tiempo_experiencia_1 = strtoupper($request->input('tiempo_experiencia_1'));
+            $tiempo_experiencia_2 = strtoupper($request->input('tiempo_experiencia_2'));
+            $empresa_experiencia_1 = strtoupper($request->input('empresa_experiencia_1'));
+            $empresa_experiencia_2 = strtoupper($request->input('empresa_experiencia_2'));
+            $supervisor_experiencia_1 = strtoupper($request->input('supervisor_experiencia_1'));
+            $supervisor_experiencia_2 = strtoupper($request->input('supervisor_experiencia_2'));
             $telefono_experiencia_1 = $request->input('telefono_experiencia_1');
             $telefono_experiencia_2 = $request->input('telefono_experiencia_2');
             
             $tipo_contrato = $request->input('tipo_contrato');
-            $forma_pago = $request->input('forma_pago');
+            $forma_pago = strtoupper($request->input('forma_pago'));
             $sueldo = $request->input('sueldo');
             $valor_hora = $request->input('valor_hora');
-            $banco_tarjeta_cobro = $request->input('banco_tarjeta_cobro');
+            $banco_tarjeta_cobro = strtoupper($request->input('banco_tarjeta_cobro'));
             $no_cuenta = $request->input('no_cuenta');
             $nss = $request->input('nss');
             
             $codigo = $request->input('codigo');
             $cargo = $request->input('cargo');
-            $departamento = $request->input('departamento');
+            $departamento = strtoupper($request->input('departamento'));
             
 
             $empleado = Empleado::find($id);

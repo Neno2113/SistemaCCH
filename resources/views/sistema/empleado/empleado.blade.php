@@ -116,10 +116,10 @@
                             <label for="estado_civil" >Estado Civil</label>
                             <select name="estado_civil" id="estado_civil" class="form-control">
                                 <option value="" disabled selected>Estado Civil</option>
-                                <option value="Casado">Casado@</option>
-                                <option value="Soltero">Solter@</option>
-                                <option value="Union Libre">Union Libre</option>
-                                <option value="Viudo">Viud@</option>
+                                <option value="Casado">CASADO</option>
+                                <option value="Soltero">SOLTERO</option>
+                                <option value="Union Libre">UNION LIBRE</option>
+                                <option value="Viudo">VIUDO</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -468,8 +468,6 @@
                                 <option value="" disabled>Departamento</option>
                                 <option>Administrador</option>
                                 <option>Oficina</option>
-                                <option>Soporte</option>
-                                <option>Operario</option>
                                 <option>Venta</option>
                                 <option>Corte</option>
                                 <option>Produccion</option>
@@ -522,8 +520,8 @@
                             <label for="tipo_contracto" >Contrato</label>
                             <select name="tipo_contrato" id="tipo_contrato" class="form-control">
                                 <option value="" disabled>Tipo de contrato</option>
-                                <option value="Temporero">Temporero</option>
-                                <option value="Fijo">Fijo</option>
+                                <option value="TEMPORERO">Temporero</option>
+                                <option value="FIJO">Fijo</option>
                             </select>
                             
                         </div>
