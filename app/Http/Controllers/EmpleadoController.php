@@ -47,10 +47,10 @@ class EmpleadoController extends Controller
             ];
         } else {
 
-            $imageName = time().'.'.$request->image->extension();  
-            $request->image->move(public_path('adminlte/img/empleados'), $imageName);
+        //    $imageName = time().'.'.$request->image->extension();  
+        //    $request->image->move(public_path('adminlte/img/empleados'), $imageName);
 
-            $nombre = $request->input('nombre');
+            $nombre = strtoupper($request->input('nombre'));
             $apellido = $request->input('apellido');
             $calle = $request->input('calle');
             $sector = $request->input('sector');
