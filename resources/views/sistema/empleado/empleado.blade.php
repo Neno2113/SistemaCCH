@@ -465,23 +465,23 @@
                         <div class="col-md-4">
                             <label for="departamento" >Departamento</label>
                             <select name="departamento" id="departamento" class="form-control">
-                                <option value="" disabled>Departamento</option>
-                                <option>Administrador</option>
-                                <option>Oficina</option>
-                                <option>Venta</option>
-                                <option>Corte</option>
-                                <option>Produccion</option>
-                                <option>Artesania</option>
-                                <option>Terminacion</option>
-                                <option>Almacen Producto Terminado</option>
-                                <option>General</option>
+                                <option value="" disabled>DEPARTAMENTO</option>
+                                <option>ADMINISTRADOR</option>
+                                <option>OFICINA</option>
+                                <option>VENTA</option>
+                                <option>CORTE</option>
+                                <option>PRODUCCION</option>
+                                <option>ARTESANIA</option>
+                                <option>TERMINACION</option>
+                                <option>ALMACEN PRODUCTO TERMINADO</option>
+                                <option>GENERAL</option>
                                 
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="cargo" >Cargo</label>
                             <select name="cargo" id="cargo" class="form-control select2">
-                                <option value="" disabled>Cargo</option>
+                                <option value="" disabled>CARGO</option>
                                 <option>OPERARIO-1738 - OPERARIO</option>
                                 <option>OPERARIO-1738 - COCER</option>
                                 <option>OPERARIO-1738 - SUPERVISOR CALIDAD</option>
@@ -519,9 +519,9 @@
                         <div class="col-md-4">
                             <label for="tipo_contracto" >Contrato</label>
                             <select name="tipo_contrato" id="tipo_contrato" class="form-control">
-                                <option value="" disabled>Tipo de contrato</option>
-                                <option value="TEMPORERO">Temporero</option>
-                                <option value="FIJO">Fijo</option>
+                                <option value="" disabled>TIPO DE CONTRATO</option>
+                                <option value="TEMPORERO">TEMPORERO</option>
+                                <option value="FIJO">FIJO</option>
                             </select>
                             
                         </div>
@@ -535,11 +535,11 @@
                             <div class="col-md-4">
                                 <label for="forma_pago" >Forma pago</label>
                                 <select name="forma_pago" id="forma_pago" class="form-control">
-                                    <option value="" disabled>Forma de pago</option>
-                                    <option value="Por Hora">Por Hora</option>
-                                    <option value="Sueldo Fijo">Sueldo Fijo</option>
-                                    <option value="Ajuste">Ajuste</option>
-                                    <option value="Combinado">Combinado</option>
+                                    <option value="" disabled>FORMA DE PAGO</option>
+                                    <option value="POR HORA">POR HORA</option>
+                                    <option value="SUELDO FIJO">SUELDO FIJO</option>
+                                    <option value="AJUSTE">AJUSTE</option>
+                                    <option value="COMBINADO">COMBINADO</option>
                                 </select>
                                
                             </div>
