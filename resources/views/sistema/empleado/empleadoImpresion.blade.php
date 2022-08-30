@@ -769,7 +769,7 @@
 					</tr>
 					<tr>
 						<th>Telefonos</th>
-						<td>{{ $telefono_1 }} / {{ $telefono_2 }}</td>
+						<td>{{ $telefono_1 }} / {{ $celular }}</td>
 					</tr>
 					<tr>
 						<th>Cedula</th>

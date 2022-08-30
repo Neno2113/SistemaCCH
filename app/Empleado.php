@@ -10,7 +10,7 @@ class Empleado extends Model
 
     protected $fillable = [
         'id', 'user_id', 'nombre', 'apellido', 'calle', 'sector', 'provincia', 'sitios_cercanos', 'telefono_1',
-        'telefono_2', 'email', 'cedula', 'departamento', 'casado', 'cargo' 
+        'celular', 'email', 'cedula', 'departamento', 'casado', 'cargo' 
        // 'fecha_contratacion',
       //  'fecha_termino_contrato', 'tipo_contrato', 'forma_pago', 'sueldo', 'valor_hora', 'banco_tarjeta_cobro',
      //   'no_cuenta','estado_civil', 'referencia','fecha_ingreso','condicion_medica','nombre_esposa','telefono_esposa',

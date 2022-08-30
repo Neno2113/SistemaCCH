@@ -32,7 +32,7 @@ class EmpleadoController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
-            'telefono_2' => 'required'
+            'celular' => 'required'
         //    'email' => 'email|unique:empleado',
         //    'cargo' => 'required',
 
@@ -60,7 +60,7 @@ class EmpleadoController extends Controller
             $cedula_sin_guion = $request->input('cedula_sin_guion');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
-            $telefono_2 = $request->input('telefono_2');
+            $celular = $request->input('celular');
             $email = strtoupper($request->input('email'));
         //    $avatar = $request->input('avatar');
             
@@ -142,7 +142,7 @@ class EmpleadoController extends Controller
             $user->codigo = $codigo;
             $user->role = $departamento;
             $user->telefono = $telefono_1;
-            $user->celular = $telefono_2;
+            $user->celular = $celular;
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->first_login = '1';
@@ -161,7 +161,7 @@ class EmpleadoController extends Controller
             $empleado->provincia = $provincia;
             $empleado->sitios_cercanos = $sitios_cercanos;
             $empleado->telefono_1 = $telefono_1;
-            $empleado->telefono_2 = $telefono_2;
+            $empleado->celular = $celular;
             $empleado->email = $email;
             $empleado->cedula = $cedula;
             $empleado->fecha_nacimiento = $fecha_nacimiento;
@@ -436,7 +436,7 @@ class EmpleadoController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
-            'telefono_2' => 'required'
+            'celular' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -459,7 +459,7 @@ class EmpleadoController extends Controller
             $cedula_sin_guion = $request->input('cedula_sin_guion');
             $fecha_nacimiento = $request->input('fecha_nacimiento');
             $telefono_1 = $request->input('telefono_1');
-            $telefono_2 = $request->input('telefono_2');
+            $celular = $request->input('celular');
             $email = strtoupper($request->input('email'));
             
             $estado_civil = $request->input('estado_civil');
@@ -553,7 +553,7 @@ class EmpleadoController extends Controller
             $empleado->provincia = $provincia;
             $empleado->sitios_cercanos = $sitios_cercanos;
             $empleado->telefono_1 = $telefono_1;
-            $empleado->telefono_2 = $telefono_2;
+            $empleado->celular = $celular;
             $empleado->email = $email;
             $empleado->cedula = $cedula;
             $empleado->fecha_nacimiento = $fecha_nacimiento;
@@ -642,7 +642,7 @@ class EmpleadoController extends Controller
             $user->codigo = $codigo;
             $user->role = $departamento;
             $user->telefono = $telefono_1;
-            $user->celular = $telefono_2;
+            $user->celular = $celular;
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->save();
@@ -712,7 +712,7 @@ class EmpleadoController extends Controller
         $provincia = $empleado->provincia;
         $sitios_cercanos = $empleado->sitios_cercanos;
         $telefono_1 = $empleado->telefono_1;
-        $telefono_2 = $empleado->telefono_2;
+        $celular = $empleado->celular;
         $email = $empleado->email;
         $cedula = $empleado->cedula;
         $fecha_nacimiento =$empleado->fecha_nacimiento;
@@ -785,7 +785,7 @@ class EmpleadoController extends Controller
         $especialidad = $empleado_detalle->especialidad;
         $fecha_exp = $empleado_detalle->fecha_exp;
 
-        $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'telefono_2' => $telefono_2, 'email' => $email, 'cedula' => $cedula,
+        $data = ['nombre' => $nombre, 'apellido' => $apellido, 'codigo' => $codigo, 'calle' => $calle, 'sector' => $sector, 'provincia' => $provincia, 'sitios_cercanos' => $sitios_cercanos, 'telefono_1' => $telefono_1, 'celular' => $celular, 'email' => $email, 'cedula' => $cedula,
         'estado_civil' => $estado_civil, 'departamento' => $departamento, 'fecha_nacimiento' => $fecha_nacimiento, 'fecha_ingreso' => $fecha_ingreso, 'cargo' => $cargo, 'tipo_contrato' => $tipo_contrato, 'nss' => $nss, 'forma_pago' => $forma_pago, 'nombre_ref1' => $nombre_ref1, 
         'parentesco_ref1' => $parentesco_ref1, 'telefono_ref1' => $telefono_ref1, 'nombre_ref2' => $nombre_ref2, 'parentesco_ref2' => $parentesco_ref2, 'telefono_ref2' => $telefono_ref2, 'telefono_ref2' => $telefono_ref2, 'nombre_esposa' => $nombre_esposa, 
         'telefono_esposa' => $telefono_esposa, 'esposa_en_nss' => $esposa_en_nss, 'cantidad_dependientes' => $cantidad_dependientes, 'nombre_dependiente_0' => $nombre_dependiente_0, 'parentesco_dependiente_0' => $parentesco_dependiente_0, 'edad_dependiente_0' => $edad_dependiente_0,

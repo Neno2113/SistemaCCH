@@ -90,7 +90,7 @@ $(document).ready(function() {
         $("#sitios_cercanos").val("").attr('readonly', false);
         $("#cedula").val("").attr('readonly', false);
         $("#telefono_1").val("").attr('readonly', false);
-        $("#telefono_2").val("").attr('readonly', false);
+        $("#celular").val("").attr('readonly', false);
         $("#cargo").val("").trigger("change").attr('disabled', false);
         $("#email").val("").attr('readonly', false);
         $("#tipo_contrato").val("").trigger("change").attr('disabled', false);
@@ -129,7 +129,7 @@ $(document).ready(function() {
             cedula: $("#cedula").val(),
             cedula_sin_guion: $("#cedula").val().replace(/\-/g,''),
             telefono_1: $("#telefono_1").val(),
-            telefono_2: $("#telefono_2").val(),
+            celular: $("#celular").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
            
@@ -402,7 +402,7 @@ $(document).ready(function() {
             cedula: $("#cedula").val(),
             cedula_sin_guion: $("#cedula").val().replace(/\-/g,''),
             telefono_1: $("#telefono_1").val(),
-            telefono_2: $("#telefono_2").val(),
+            celular: $("#celular").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
            
@@ -597,7 +597,7 @@ function mostrar(id_empleado) {
             $("#email").val(data.empleado.email).attr('readonly', false);
             $("#fecha_nacimiento").val(data.empleado.fecha_nacimiento).attr('readonly', false);
             $("#telefono_1").val(data.empleado.telefono_1).attr('readonly', false);
-            $("#telefono_2").val(data.empleado.telefono_2).attr('readonly', false);
+            $("#celular").val(data.empleado.celular).attr('readonly', false);
             $("#departamento").val(data.empleado.departamento).trigger("change").attr('disabled', false);
             $("#cargo").val(data.empleado.cargo).trigger("change").attr('disabled', false);
             $("#tipo_contrato").val(data.empleado.tipo_contrato).attr('disabled', false);
@@ -717,7 +717,7 @@ function show(id_empleado) {
         $("#email").val(data.empleado.email).attr('readonly', false);
         $("#fecha_nacimiento").val(data.empleado.fecha_nacimiento).attr('readonly', false);
         $("#telefono_1").val(data.empleado.telefono_1).attr('readonly', false);
-        $("#telefono_2").val(data.empleado.telefono_2).attr('readonly', false);
+        $("#celular").val(data.empleado.celular).attr('readonly', false);
         $("#departamento").val(data.empleado.departamento).trigger("change").attr('disabled', false);
         $("#cargo").val(data.empleado.cargo).trigger("change").attr('disabled', false);
         $("#tipo_contrato").val(data.empleado.tipo_contrato).attr('disabled', false);
@@ -828,7 +828,7 @@ function ver(id_empleado) {
         $("#sitios_cercanos").val(data.empleado.sitios_cercanos).attr('readonly', true);
         $("#email").val(data.empleado.email).attr('readonly', true);
         $("#telefono_1").val(data.empleado.telefono_1).attr('readonly', true);
-        $("#telefono_2").val(data.empleado.telefono_2).attr('readonly', true);
+        $("#celular").val(data.empleado.celular).attr('readonly', true);
         $("#departamento").val(data.empleado.departamento).trigger("change").attr('disabled', true);;
         $("#cargo").val(data.empleado.cargo).trigger("change").attr('disabled', false);
         $("#tipo_contrato").val(data.empleado.tipo_contrato).attr('disabled', true);
