@@ -32,7 +32,7 @@ class EmpleadoController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
-            'celular' => 'required'
+            'celular' => 'required',
             'fecha_nacimiento' => 'after:2000-01-01'
 
         ]);
