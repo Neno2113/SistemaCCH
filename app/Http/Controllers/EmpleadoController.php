@@ -360,7 +360,7 @@ class EmpleadoController extends Controller
             })
         
             ->editColumn('nombre', function ($empleado) {
-                return $empleado->nombre." ".$empleado->apellido;
+                return substr($empleado->nombre, 0, 10).". ".substr($empleado->apellido, 0, 9).".";
             })
             /*
             ->editColumn('cargo', function ($empleado) {
