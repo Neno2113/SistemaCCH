@@ -438,7 +438,8 @@ class EmpleadoController extends Controller
             'apellido' => 'required',
             'cedula' => 'required',
             'celular' => 'required',
-            'fecha_nacimiento' => 'after:1950-01-01'
+            'fecha_nacimiento' => 'after:1950-01-01',
+            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if (empty($validar)) {
@@ -449,8 +450,13 @@ class EmpleadoController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
+         //   $imageName = time().'.'.$request->image->extension();
+         //   $request->image->move(public_path('images'), $imageName); 
+
             $id = $request->input('id');
-            $nombre = strtoupper($request->input('nombre'));     
+            $nombre = strtoupper($request->input('nombre'));
+            $avatar = time().'.'.$request->image->extension();
+            
                   
             $apellido = strtoupper($request->input('apellido'));
             $calle = strtoupper($request->input('calle'));
@@ -640,6 +646,7 @@ class EmpleadoController extends Controller
             $user->name = $nombre;
             $user->surname = $apellido;
             $user->email = $email;
+            $user->avatar = $avatar;
 //            $user->password = $pwd;
             $user->codigo = $codigo;
             $user->role = $departamento;
