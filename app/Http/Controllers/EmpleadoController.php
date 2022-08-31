@@ -33,7 +33,8 @@ class EmpleadoController extends Controller
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
             'celular' => 'required',
-            'fecha_nacimiento' => 'after:1950-01-01'
+            'fecha_nacimiento' => 'after:1950-01-01',
+            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
 
