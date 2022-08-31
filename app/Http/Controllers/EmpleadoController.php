@@ -439,7 +439,7 @@ class EmpleadoController extends Controller
             'cedula' => 'required',
             'celular' => 'required',
             'fecha_nacimiento' => 'after:1950-01-01',
-            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+        //    'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if (empty($validar)) {
