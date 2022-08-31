@@ -82,36 +82,82 @@ $(document).ready(function() {
 
 
     function limpiar() {
+
         $("#nombre").val("").attr('readonly', false);
         $("#apellido").val("").attr('readonly', false);
         $("#calle").val("").attr('readonly', false);
         $("#sector").val("").attr('readonly', false);
-        $("#provincia").val("").trigger("change").attr('disabled', false);
+        $("#provincia").val("").attr('readonly', false);
         $("#sitios_cercanos").val("").attr('readonly', false);
+        $("#fecha_nacimiento").val("").attr('readonly', false);
         $("#cedula").val("").attr('readonly', false);
+        $("#cedula").val().replace(/\-/g,''),
         $("#telefono_1").val("").attr('readonly', false);
         $("#celular").val("").attr('readonly', false);
-        $("#cargo").val("").trigger("change").attr('disabled', false);
         $("#email").val("").attr('readonly', false);
-        $("#tipo_contrato").val("").trigger("change").attr('disabled', false);
-        $("#departamento").val("").trigger("change").attr('disabled', false);
-        $("#forma_pago").val("").attr('disabled', false);
-        $("#sueldo").val("").attr('readonly', false);
-        $("#valor_hora").val("").attr('readonly', false);
-        $("#banco_tarjeta_cobro").val("").attr('disabled', false);
-        $("#no_cuenta").val("").attr('readonly', false);
-        $("#nss").val("").attr('readonly', false);
+        $("#codigo").val("").attr('readonly', false);
+           
+        $("#estado_civil").val("").attr('readonly', false);
+        $("#fecha_ingreso").val("").attr('readonly', false);
+        $("#condicion_medica").val("").attr('readonly', false);
+        $("#cantidad_dependientes").val("").attr('readonly', false);
         $("#nombre_esposa").val("").attr('readonly', false);
         $("#telefono_esposa").val("").attr('readonly', false);
-        $("#cantidad_dependientes").val("").attr('readonly', false);
-        $("#nombre_dependiente_1").val("").attr('readonly', false);
-        $("#nombre_dependiente_2").val("").attr('readonly', false);
-        $("#nombre_dependiente_3").val("").attr('readonly', false);
-        $("#nombre_dependiente_4").val("").attr('readonly', false);
-        $("#nombre_dependiente_5").val("").attr('readonly', false);
-        $("#nombre_dependiente_6").val("").attr('readonly', false);
+        $("#esposa_en_nss").val("").attr('readonly', false);
         $("#nombre_dependiente_0").val("").attr('readonly', false);
+        $("#parentesco_dependiente_0").val("").attr('readonly', false);
+        $("#edad_dependiente_0").val("").attr('readonly', false);
+        $("#nombre_dependiente_1").val("").attr('readonly', false);
+        $("#parentesco_dependiente_1").val("").attr('readonly', false);
+        $("#edad_dependiente_1").val("").attr('readonly', false); 
+        $("#nombre_dependiente_2").val("").attr('readonly', false);
+        $("#parentesco_dependiente_2").val("").attr('readonly', false);
+        $("#edad_dependiente_2").val("").attr('readonly', false);
+        $("#nombre_dependiente_3").val("").attr('readonly', false);
+        $("#parentesco_dependiente_3").val("").attr('readonly', false);
+        $("#edad_dependiente_3").val("").attr('readonly', false);
+        $("#nombre_dependiente_4").val("").attr('readonly', false);
+        $("#parentesco_dependiente_4").val("").attr('readonly', false);
+        $("#edad_dependiente_4").val("").attr('readonly', false);
+        $("#nombre_dependiente_5").val("").attr('readonly', false);
+        $("#parentesco_dependiente_5").val("").attr('readonly', false);
+        $("#edad_dependiente_5").val("").attr('readonly', false);
+        $("#nombre_dependiente_6").val("").attr('readonly', false);
+        $("#parentesco_dependiente_6").val("").attr('readonly', false);
+        $("#edad_dependiente_6").val("").attr('readonly', false);
+          
+        $("#nombre_ref1").val("").attr('readonly', false);
+        $("#parentesco_ref1").val("").attr('readonly', false);
+        $("#telefono_ref1").val("").attr('readonly', false);
+        $("#nombre_ref2").val("").attr('readonly', false);
+        $("#parentesco_ref2").val("").attr('readonly', false);
+        $("#telefono_ref2").val("").attr('readonly', false);
+        $("#primaria").val("").attr('readonly', false);
+        $("#bachiller").val("").attr('readonly', false);
+        $("#nivel_superior").val("").attr('readonly', false);
+        $("#grado_titulo").val("").attr('readonly', false);
+        $("#especialidad").val("").attr('readonly', false);
+        $("#fecha_exp").val("").attr('readonly', false);
+        $("#cargo_experiencia_1").val("").attr('readonly', false);
+        $("#cargo_experiencia_2").val("").attr('readonly', false);
+        $("#tiempo_experiencia_1").val("").attr('readonly', false);
+        $("#tiempo_experiencia_2").val("").attr('readonly', false);
+        $("#empresa_experiencia_1").val("").attr('readonly', false);
+        $("#empresa_experiencia_2").val("").attr('readonly', false);
+        $("#supervisor_experiencia_1").val("").attr('readonly', false);
+        $("#supervisor_experiencia_2").val("").attr('readonly', false);
+        $("#telefono_experiencia_1").val("").attr('readonly', false);
+        $("#telefono_experiencia_2").val("").attr('readonly', false);
 
+        $("#departamento").val("").attr('readonly', false);
+        $("#cargo").val("").attr('readonly', false);
+        $("#tipo_contrato").val("").attr('readonly', false);
+        $("#forma_pago").val("").attr('readonly', false);
+        $("#sueldo").val("").attr('readonly', false);
+        $("#valor_hora").val("").attr('readonly', false);
+        $("#banco_tarjeta_cobro").val("").attr('readonly', false);
+        $("#no_cuenta").val("").attr('readonly', false);
+        $("#nss").val("").attr('readonly', false);
 
     }
 

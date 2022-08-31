@@ -147,39 +147,39 @@
                         <div class="col-md-4">
                             <label for="" >Provincia</label>
                             <select name="provincia" id="provincia" class="form-control select2">
-                                <option value="" disabled>Provincia</option>
-                                <option>Santo Domingo</option>
-                                <option>Distrito Nacional</option>
-                                <option>Santiago</option>
-                                <option>San Cristóbal</option>
-                                <option>La Vega</option>
-                                <option>Puerto Plata</option>
-                                <option>San Pedro de Macorís</option>
-                                <option>Duarte</option>
-                                <option>La Altagracia</option>
-                                <option>La Romana</option>
-                                <option>San Juan</option>
-                                <option>Espaillat</option>
-                                <option>Azua</option>
-                                <option>Barahona</option>
-                                <option>Monte Plata</option>
-                                <option>Peravia</option>
-                                <option>Monseñor Nouel</option>
-                                <option>Valverde</option>
-                                <option>Sánchez Ramírez</option>
-                                <option>María Trinidad Sánchez</option>
-                                <option>Montecristi</option>
-                                <option>Samaná</option>
-                                <option>Bahoruco</option>
-                                <option>Hermanas Mirabal</option>
-                                <option>El Seibo</option>
-                                <option>Hato Mayor</option>
-                                <option>Dajabón</option>
-                                <option>Elías Piña</option>
-                                <option>San José de Ocoa</option>
-                                <option>Santiago Rodríguez</option>
-                                <option>Independencia</option>
-                                <option>Pedernales</option>
+                                <option value="" disabled>PROVINCIA</option>
+                                <option>SANTO DOMINGO</option>
+                                <option>DISTRITO NACIONAL</option>
+                                <option>SANTIAGO</option>
+                                <option>SAN CRISTOBAL</option>
+                                <option>LA VEGA</option>
+                                <option>PUERTO PLATA</option>
+                                <option>SAN PEDRO DE MACORIS</option>
+                                <option>DUARTE</option>
+                                <option>LA ALTAGRACIA</option>
+                                <option>LA ROMANA</option>
+                                <option>SAN JUAN</option>
+                                <option>ESPAILLAT</option>
+                                <option>AZUA</option>
+                                <option>BARAHONA</option>
+                                <option>MONTE PLATA</option>
+                                <option>PERAVIA</option>
+                                <option>MONSEÑOR NOUEL</option>
+                                <option>VALVERDE</option>
+                                <option>SANCHEZ RAMIREZ</option>
+                                <option>MARIA TRINIDAD SANCHEZ</option>
+                                <option>MONTECRISTI</option>
+                                <option>SAMANA</option>
+                                <option>BAHORUCO</option>
+                                <option>HERMANAS MIRABAL</option>
+                                <option>EL SEIBO</option>
+                                <option>HATO MAYOR</option>
+                                <option>DAJABON</option>
+                                <option>ELIAS PIÑA</option>
+                                <option>SAN JOSE DE OCOA</option>
+                                <option>SANTIAGO RODRIGUEZ</option>
+                                <option>INDEPENDENCIA</option>
+                                <option>PEDERNALES</option>
                             </select>  
                         </div>
                         <div class="col-md-4">
