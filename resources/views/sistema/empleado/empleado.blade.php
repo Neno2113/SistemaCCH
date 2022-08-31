@@ -559,15 +559,15 @@
                                 <label for="banco_tarjeta_cobro" >Banco</label>
                                 <select name="banco_tarjeta_cobro" id="banco_tarjeta_cobro"
                                     class="form-control select2">
-                                    <option value="" disabled>Banco tarjeta cobro</option>
-                                    <option value="Banco Popular">Banco Popular</option>
-                                    <option value="Banreservas">Banreservas</option>
-                                    <option value="Banco BHD Leon">Banco BHD Leon</option>
-                                    <option value="Scotiabank">Scotiabank</option>
-                                    <option value="Banco Santa Cruz">Banco Santa Cruz</option>
-                                    <option value="Banco Caribe">Banco Caribe</option>
-                                    <option value="Banco Ademi">Banco Ademi</option>
-                                    <option value="Banco Promerica">Banco Promerica</option>
+                                    <option value="" disabled>BANCO</option>
+                                    <option value="BANCO POPULAR">BANCO POPULAR</option>
+                                    <option value="BANRESERVAS">BANRESERVAS</option>
+                                    <option value="BANCO BHD LEON">BANCO BHD LEON</option>
+                                    <option value="SCOTIABANK">SCOTIABANK</option>
+                                    <option value="BANCO SANTA CRUZ">BANCO SANTA CRUZ</option>
+                                    <option value="BANCO CARIBE">BANCO CARIBE</option>
+                                    <option value="BANCO ADEMI">BANCO ADEMI</option>
+                                    <option value="BANCO PROMERICA">BANCO PROMERICA</option>
                                 </select>
                               
                             </div>
