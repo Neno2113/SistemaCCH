@@ -360,7 +360,7 @@ class EmpleadoController extends Controller
             })
         
             ->editColumn('nombre', function ($empleado) {
-                return substr($empleado->nombre, 0, 10).". ".substr($empleado->apellido, 0, 9).".";
+                return substr($empleado->nombre, 0, 10)." ".substr($empleado->apellido, 0, 9);
             })
             /*
             ->editColumn('cargo', function ($empleado) {
@@ -370,7 +370,8 @@ class EmpleadoController extends Controller
                 $bDay = new DateTime($empleado->fecha_contratacion);
                 $today = new DateTime(date('m.d.y'));
                 $diff = $today->diff($bDay);
-                return $diff->d;
+                return $diff;
+            //    return $diff->d;
              })
             ->addColumn('Opciones', function ($empleado) {
             /*    if($empleado->detallado == 1){ 
