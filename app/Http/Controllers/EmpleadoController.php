@@ -33,8 +33,8 @@ class EmpleadoController extends Controller
             'apellido' => 'required',
             'cedula' => 'required|unique:empleado',
             'celular' => 'required',
-            'fecha_nacimiento' => 'after:1950-01-01',
-            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'fecha_nacimiento' => 'after:1950-01-01'
+        //    'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if (empty($validar)) {
@@ -438,7 +438,7 @@ class EmpleadoController extends Controller
             'apellido' => 'required',
             'cedula' => 'required',
             'celular' => 'required',
-            'fecha_nacimiento' => 'after:1950-01-01',
+            'fecha_nacimiento' => 'after:1950-01-01'
         //    'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
@@ -455,7 +455,15 @@ class EmpleadoController extends Controller
 
             $id = $request->input('id');
             $nombre = strtoupper($request->input('nombre'));
-            $avatar = time().'.'.$request->file('avatar')->extension();
+            
+            if ($files = $request->file('avatar')) {
+                // Define upload path
+                    $destinationPath = public_path('/adminlte/img/'); // upload path
+                // Upload Orginal Image           
+                    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                    $files->move($destinationPath, $profileImage);
+        
+                 }
             
                   
             $apellido = strtoupper($request->input('apellido'));
