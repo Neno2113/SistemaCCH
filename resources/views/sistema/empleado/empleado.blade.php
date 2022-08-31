@@ -49,7 +49,7 @@
                             name="fecha_nacimiento" 
                             id="fecha_nacimiento" 
                             class="form-control"
-                            value="2000-01-01"    
+                            value="1950-01-01"    
                         >
                         </div>
 
