@@ -947,7 +947,7 @@
 			</table>
 		</div>
 		<div>
-			<h2 class="session">Formación Academica</h2>
+			<h2 class="session">Formación Academica                    /                    Información Laboral</h2>
 		</div>
 		<div id="details" class="clearfix">	
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 30px;">
