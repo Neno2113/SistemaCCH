@@ -811,7 +811,7 @@
 			</table>
 		</div>
 		<div>
-			<h2 class="session">Información Personal</h2>
+			<h2 class="session">Información Personal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</div>
 		<div id="details" class="clearfix">	
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
@@ -889,7 +889,7 @@
 			</table>
 		</div>
 		<div>
-			<h2 class="session">Referencia Personal</h2>
+			<h2 class="session">Referencia Personal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</div>
 		<div id="details" class="clearfix">	
 			<table cellspacing="0" class="tabla-ncf">
@@ -915,7 +915,7 @@
 			</table>
 		</div>
 		<div>
-			<h2 class="session">Experiencia Laboral</h2>
+			<h2 class="session">Experiencia Laboral &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</div>
 		<div id="details" class="clearfix">	
 			<table cellspacing="0" class="tabla-ncf">
@@ -947,7 +947,7 @@
 			</table>
 		</div>
 		<div>
-			<h2 class="session">Formación Academica &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Información Laboral</h2>
+			<h2 class="session">Formación Academica &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Información Laboral &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</div>
 		<div id="details" class="clearfix">	
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 30px;">
