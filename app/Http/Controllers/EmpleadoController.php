@@ -369,11 +369,9 @@ class EmpleadoController extends Controller
             ->editColumn('tiempo_laborando', function ($empleado){
                 $bDay = new DateTime($empleado->fecha_contratacion);
                 $today = new DateTime(date('y.m.d'));
-            //    $today = new DateTime(date('m.d.y'));
                 $diff = $today->diff($bDay);
-                $days = $diff->format('%a');
+                $days = $diff->format('%a dias');
                 return $days;
-            //    return $diff->d;
              })
             ->addColumn('Opciones', function ($empleado) {
             /*    if($empleado->detallado == 1){ 
