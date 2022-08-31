@@ -455,7 +455,7 @@ class EmpleadoController extends Controller
 
             $id = $request->input('id');
             $nombre = strtoupper($request->input('nombre'));
-            $avatar = time().'.'.$request->image->extension();
+            $avatar = time().'.'.$request->file('avatar')->extension();
             
                   
             $apellido = strtoupper($request->input('apellido'));
