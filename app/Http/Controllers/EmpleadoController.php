@@ -366,7 +366,7 @@ class EmpleadoController extends Controller
             ->editColumn('cargo', function ($empleado) {
                 return substr($empleado->cargo, 0, 20);
             }) */
-            ->editColumn('tiempo_laborando', function ($user){
+            ->editColumn('tiempo_laborando', function ($empleado){
                 $bDay = new DateTime($empleado->fecha_contratacion);
                 $today = new DateTime(date('m.d.y'));
                 $diff = $today->diff($bDay);
