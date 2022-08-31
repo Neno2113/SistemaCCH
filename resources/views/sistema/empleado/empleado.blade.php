@@ -627,10 +627,11 @@
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Departamento</th>
-                    <th>Cargo</th>
+                    <th>Codigo</th>
                     <th>Contrato</th>
-                    <th>Email</th>
-                    <th>Edad</th>
+                    <th>Fecha Ingreso</th>
+                    <th>Tiempo Laborando</th>
+                    <th>Celular</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -640,10 +641,11 @@
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Departamento</th>
-                    <th>Cargo</th>
+                    <th>Codigo</th>
                     <th>Contrato</th>
-                    <th>Email</th>
-                    <th>Edad</th>
+                    <th>Fecha Ingreso</th>
+                    <th>Tiempo Laborando</th>
+                    <th>Celular</th>
                 </tr>
             </tfoot>
         </table>
