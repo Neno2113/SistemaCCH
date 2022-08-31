@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+    base.keypress(function(e) {
+        var code = e.keyCode || e.which;
+        if(code == 13)
+            return false;
+    });
+        
     $("[data-mask]").inputmask();
 
     // $("#formulario").validate({
