@@ -400,7 +400,7 @@ $(document).ready(function() {
                 "type": "POST"
             }, 
             dom: 'Bfrtip',
-            iDisplayLength: 10,
+            iDisplayLength: 20,
             buttons: [
             'pageLength',
             'copyHtml5',
