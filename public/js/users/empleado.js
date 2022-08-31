@@ -151,12 +151,12 @@ $(document).ready(function() {
         $("#telefono_experiencia_2").val("").attr('readonly', false);
 
         $("#departamento").val("").attr('readonly', false);
-        $("#cargo").val("").attr('readonly', false);
+        $("#cargo").val('').trigger('change');
         $("#tipo_contrato").val("").attr('readonly', false);
         $("#forma_pago").val("").attr('readonly', false);
         $("#sueldo").val("").attr('readonly', false);
         $("#valor_hora").val("").attr('readonly', false);
-        $("#banco_tarjeta_cobro").val("").attr('readonly', false);
+        $("#banco_tarjeta_cobro").val('').trigger('change');
         $("#no_cuenta").val("").attr('readonly', false);
         $("#nss").val("").attr('readonly', false);
 
