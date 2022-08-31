@@ -1,11 +1,12 @@
 $(document).ready(function() {
 
-    base.keypress(function(e) {
-        var code = e.keyCode || e.which;
-        if(code == 13)
+    $(window).keydown(function(event){
+        if((event.keyCode == 13) && ($(event.target)[0]!=$("textarea")[0])) {
+            event.preventDefault();
             return false;
+        }
     });
-        
+
     $("[data-mask]").inputmask();
 
     // $("#formulario").validate({
