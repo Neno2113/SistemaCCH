@@ -370,7 +370,7 @@ class EmpleadoController extends Controller
                 $bDay = new DateTime($empleado->fecha_contratacion);
                 $today = new DateTime(date('y.m.d'));
                 $diff = $today->diff($bDay);
-                $days = $diff->format('%a dias');
+                $days = $diff->format('%a Días');
                 return $days;
              })
             ->addColumn('Opciones', function ($empleado) {
