@@ -462,6 +462,7 @@ $(document).ready(function() {
             celular: $("#celular").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
+            avatar: $("#avatar").val(),
            
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
