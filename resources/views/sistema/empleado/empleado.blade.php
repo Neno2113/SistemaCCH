@@ -146,7 +146,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for="" >Provincia</label>
-                            <select name="provincia" id="provincia" class="form-control select2">
+                            <select name="provincia" id="provincia" class="form-control select2"> 
+                        <!--    <select name="provincia" id="provincia" class="form-control"> -->
                                 <option value="" disabled>PROVINCIA</option>
                                 <option>SANTO DOMINGO</option>
                                 <option>DISTRITO NACIONAL</option>
@@ -480,7 +481,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="cargo" >Cargo</label>
-                            <select name="cargo" id="cargo" class="form-control select2">
+                        <!--    <select name="cargo" id="cargo" class="form-control select2"> -->
+                            <select name="cargo" id="cargo" class="form-control">
                                 <option value="" disabled>CARGO</option>
                                 <option>OPERARIO-1738 - OPERARIO</option>
                                 <option>OPERARIO-1738 - COCER</option>

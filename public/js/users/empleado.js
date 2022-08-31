@@ -87,7 +87,8 @@ $(document).ready(function() {
         $("#apellido").val("").attr('readonly', false);
         $("#calle").val("").attr('readonly', false);
         $("#sector").val("").attr('readonly', false);
-        $("#provincia").val("").attr('readonly', false);
+      //  $("#provincia").val("").attr('readonly', false);
+        $("#provincia").empty().trigger('change');
         $("#sitios_cercanos").val("").attr('readonly', false);
         $("#fecha_nacimiento").val("").attr('readonly', false);
         $("#cedula").val("").attr('readonly', false);
