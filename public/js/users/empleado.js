@@ -423,7 +423,7 @@ $(document).ready(function() {
                 { data: "departamento" },
                 { data: "codigo" },
                 { data: "tipo_contrato" },
-                { data: "fecha_ingreso" },
+                { data: "fecha_contratacion" },
                 { data: "tiempo_laborando" },
                 { data: "celular" },
 

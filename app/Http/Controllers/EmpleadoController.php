@@ -370,7 +370,7 @@ class EmpleadoController extends Controller
                 $bDay = new DateTime($empleado->fecha_contratacion);
                 $today = new DateTime(date('m.d.y'));
                 $diff = $today->diff($bDay);
-                return $diff->y;
+                return $diff->d;
              })
             ->addColumn('Opciones', function ($empleado) {
             /*    if($empleado->detallado == 1){ 
