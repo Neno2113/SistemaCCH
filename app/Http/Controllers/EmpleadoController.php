@@ -458,11 +458,11 @@ class EmpleadoController extends Controller
             
             if ($files = $request->input('avatar')) {
                 // Define upload path
-                //    $destinationPath = public_path('/adminlte/img/'); // upload path
+                    $destinationPath = public_path('/adminlte/img/'); // upload path
                 // Upload Orginal Image           
                 //    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                     $imageName = time().'_'.$files;
-                //    $files->move($destinationPath, $profileImage);
+                    $files->move($destinationPath, $imageName);
         
             } else {
                 
