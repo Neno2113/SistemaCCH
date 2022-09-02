@@ -461,16 +461,16 @@ class EmpleadoController extends Controller
                 //    $destinationPath = public_path('/adminlte/img/'); // upload path
                 // Upload Orginal Image           
                 //    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                    $imageName = time().'.'.$request->files->extension();
                 //    $files->move($destinationPath, $profileImage);
-                $apellido = strtoupper($request->input('nombre'));
         
             } else {
-                $apellido = strtoupper($request->input('apellido'));
+                
 
             }
             
                   
-            
+            $apellido = strtoupper($request->input('apellido'));
             $calle = strtoupper($request->input('calle'));
             $sector = strtoupper($request->input('sector'));
             $provincia = strtoupper($request->input('provincia'));
