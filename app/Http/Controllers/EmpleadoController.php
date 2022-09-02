@@ -464,10 +464,13 @@ class EmpleadoController extends Controller
                 //    $files->move($destinationPath, $profileImage);
                 $apellido = strtoupper($request->input('nombre'));
         
-                 }
+            } else {
+                $apellido = strtoupper($request->input('apellido'));
+
+            }
             
                   
-       //     $apellido = strtoupper($request->input('apellido'));
+            
             $calle = strtoupper($request->input('calle'));
             $sector = strtoupper($request->input('sector'));
             $provincia = strtoupper($request->input('provincia'));
