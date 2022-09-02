@@ -456,7 +456,7 @@ class EmpleadoController extends Controller
             $id = $request->input('id');
             $nombre = strtoupper($request->input('nombre'));
             
-            if ($files = $request->file('avatar')) {
+            if ($files = $request->input('avatar')) {
                 // Define upload path
                 //    $destinationPath = public_path('/adminlte/img/'); // upload path
                 // Upload Orginal Image           
