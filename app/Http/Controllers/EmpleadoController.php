@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Factura;
 use Illuminate\Support\Facades\DB;
 use PDF;
-use Validator,Redirect,Response,File;
+//use Validator,Redirect,Response,File;
 
 use Illuminate\Http\Response;
 use App\Exports\UsersExport;
