@@ -663,7 +663,7 @@ class EmpleadoController extends Controller
             $user->name = $nombre;
             $user->surname = $apellido;
             $user->email = $email;
-            $user->avatar = $imageName;
+//            $user->avatar = $imageName;
 //            $user->password = $pwd;
             $user->codigo = $codigo;
             $user->role = $departamento;
