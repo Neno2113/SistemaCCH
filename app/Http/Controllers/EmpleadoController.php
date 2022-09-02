@@ -463,7 +463,7 @@ class EmpleadoController extends Controller
                 // Upload Orginal Image           
                 //    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                 //    $imageName = time().'_'.$files;
-                    $imageName = time();
+                    $imageName = time()."jpg";
                     $files->move($destinationPath, $imageName);
         
             } else {
