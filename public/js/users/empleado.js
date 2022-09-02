@@ -463,7 +463,7 @@ $(document).ready(function() {
             email: $("#email").val(),
             codigo: $("#codigo").val(),
         //    avatar: $("#avatar").val(),
-            avatar: $("#avatar")[0].files[0],
+            avatar: $("#avatar").prop('files')[0],
            
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
