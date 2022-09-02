@@ -464,7 +464,7 @@ class EmpleadoController extends Controller
                 //    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                 //    $imageName = time().'_'.$files;
                     $imageName = time()."jpg";
-                    $files->move($destinationPath, $imageName);
+                //    $files->move($destinationPath, $imageName);
         
             } else {
                 
@@ -660,7 +660,7 @@ class EmpleadoController extends Controller
             $user->name = $nombre;
             $user->surname = $apellido;
             $user->email = $email;
-            $user->avatar = $imageName;
+            $user->avatar = $destinationPath;
 //            $user->password = $pwd;
             $user->codigo = $codigo;
             $user->role = $departamento;
