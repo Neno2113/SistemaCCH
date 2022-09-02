@@ -455,7 +455,7 @@ class EmpleadoController extends Controller
 
             $id = $request->input('id');
             $nombre = strtoupper($request->input('nombre'));
-            
+            /*
             if ($files = $request->file('avatar')) {
                 // Define upload path
                 //    $destinationPath = public_path('/adminlte/img/'); // upload path
@@ -464,7 +464,7 @@ class EmpleadoController extends Controller
                 //    $files->move($destinationPath, $profileImage);
         
                  }
-            
+            */
                   
             $apellido = strtoupper($request->input('apellido'));
             $calle = strtoupper($request->input('calle'));
@@ -654,7 +654,7 @@ class EmpleadoController extends Controller
             $user->name = $nombre;
             $user->surname = $apellido;
             $user->email = $email;
-            $user->avatar = $profileImage;
+//            $user->avatar = $profileImage;
 //            $user->password = $pwd;
             $user->codigo = $codigo;
             $user->role = $departamento;
