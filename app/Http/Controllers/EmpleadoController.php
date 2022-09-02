@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Factura;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Validator,Redirect,Response,File;
 
 use Illuminate\Http\Response;
 use App\Exports\UsersExport;
@@ -461,7 +462,8 @@ class EmpleadoController extends Controller
                     $destinationPath = public_path('/adminlte/img/empleados/'); // upload path
                 // Upload Orginal Image           
                 //    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-                    $imageName = time().'_'.$files;
+                //    $imageName = time().'_'.$files;
+                    $imageName = time();
                     $files->move($destinationPath, $imageName);
         
             } else {
