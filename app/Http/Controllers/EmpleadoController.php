@@ -457,23 +457,25 @@ class EmpleadoController extends Controller
             $id = $request->input('id');
             $nombre = strtoupper($request->input('nombre'));
             
-            if ($files = $request->input('avatar')) {
+            // if ($files = $request->input('avatar')) {
+            if ($files = $request->file('avatar')) {
                 // Define upload path
-                    $destinationPath = public_path('adminlte/img/empleados'); // upload path
+                //    $destinationPath = public_path('adminlte/img/empleados'); // upload path
                 // Upload Orginal Image           
                 //    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                 //    $imageName = time().'_'.$files;
-                    $imageName = $files;
+                //    $imageName = $files;
                 //    $imageName = time()."jpg";
                 //    $files->move($destinationPath, $imageName);
+                $apellido = strtoupper($request->input('nombre'));
         
             } else {
                 
-
+                $apellido = strtoupper($request->input('apellido'));
             }
             
                   
-            $apellido = strtoupper($request->input('apellido'));
+         //   $apellido = strtoupper($request->input('apellido'));
             $calle = strtoupper($request->input('calle'));
             $sector = strtoupper($request->input('sector'));
             $provincia = strtoupper($request->input('provincia'));
