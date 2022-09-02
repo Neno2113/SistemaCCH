@@ -462,11 +462,12 @@ class EmpleadoController extends Controller
                 // Upload Orginal Image           
                     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
                 //    $files->move($destinationPath, $profileImage);
+                $apellido = strtoupper($request->input('nombre'));
         
                  }
             
                   
-            $apellido = strtoupper($request->input('apellido'));
+       //     $apellido = strtoupper($request->input('apellido'));
             $calle = strtoupper($request->input('calle'));
             $sector = strtoupper($request->input('sector'));
             $provincia = strtoupper($request->input('provincia'));
