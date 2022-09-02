@@ -462,7 +462,8 @@ $(document).ready(function() {
             celular: $("#celular").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-            avatar: $("#avatar").val(),
+        //    avatar: $("#avatar").val(),
+            avatar: $("#avatar").prop('files')[0];
            
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
