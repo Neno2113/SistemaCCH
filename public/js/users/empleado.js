@@ -463,7 +463,7 @@ $(document).ready(function() {
             email: $("#email").val(),
             codigo: $("#codigo").val(),
         //    avatar: $("#avatar").val(),
-            avatar: $("#avatar").prop('files')[0],
+            avatar: $("#image_name").val(),
            
             estado_civil: $("#estado_civil").val(),
             fecha_ingreso: $("#fecha_ingreso").val(),
@@ -617,6 +617,26 @@ $(document).ready(function() {
     init();
     
 }); 
+
+$("#btn-upload").click(function(e) {
+    // e.preventDefault();
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        type: 'success',
+        title: 'Imagen cargada.'
+    })
+});
 
 
 function mostrar(id_empleado) {
