@@ -19,9 +19,28 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="col-md-4 mt-3" id="vatar">
+                    <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Foto</label>
+                            <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
+                            <div class="input-group mt-4">
+                                <div class="custom-file">
+                                    <input type="file" class="form-control" name="avatar" id="avatar">
+                                    <input type="hidden" name="image_name" id="image_name" value="">
+                                    {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
+                                </div>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn-primary" id="btn-upload">
+                                        <i class="fas fa-upload"></i> Subir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form> 
+                </div>
+                <h5>Formulario de registro de empleados</h5>
+                <hr>
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
-                    <h5>Formulario de registro de empleados</h5>
-                    <hr>
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-3">
@@ -53,26 +72,6 @@
                         >
                         </div>
 
-                    </div>
-
-                    <div class="col-md-4 mt-3" id="vatar">
-                    <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="exampleInputFile">Foto</label>
-                            <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
-                            <div class="input-group mt-4">
-                                <div class="custom-file">
-                                    <input type="file" class="form-control" name="avatar" id="avatar">
-                                    <input type="hidden" name="image_name" id="image_name" value="">
-                                    {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
-                                </div>
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn-primary" id="btn-upload">
-                                        <i class="fas fa-upload"></i> Subir</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form> 
                     </div>
 
                     <div class="row" id="fila-detail">
