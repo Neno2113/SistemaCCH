@@ -499,6 +499,8 @@ Route::put('empleado/edit', 'EmpleadoController@update');
 Route::post('empleado/delete/{id}', 'EmpleadoController@destroy');
 Route::post('empleadocheck/delete/{id}', 'EmpleadoController@checkDestroy');
 Route::get('/imprimir_empleado/empleado/{id}', 'EmpleadoController@imprimir');
+Route::post('/avatar', 'EmpleadoController@upload');
+//Route::get('/avatar/{filname}', 'UserController@getImage');
 
 
 //Permiso

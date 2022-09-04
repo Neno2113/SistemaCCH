@@ -431,6 +431,48 @@ class EmpleadoController extends Controller
         return \response()->json($data, $data['code']);
     }
 
+    public function upload(Request $request)
+    {
+        //validar la imagen
+        $validate = \Validator::make($request->all(), [
+            'avatar' => 'required|image|mimes:jpg,jpeg,png',
+
+        ]);
+        // Guardar la imagen
+        if ($validate->fails()) {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => $validate->errors()
+            ];
+        } else {
+            $avatar = $request->file('avatar');
+            $image_name_1 = time() . $avatar->getClientOriginalName();
+            // echo $id;
+            // die();
+
+
+            if (!empty($avatar)) {
+            \Storage::disk('avatar')->put($image_name_1, \File::get($avatar));
+            } else {
+                $data = [
+                    'code' => 400,
+                    'status' => 'error',
+                    'message' => 'WTF'
+                ];
+            }
+
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'avatar' =>$image_name_1
+            ];
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
     public function update(Request $request)
     {
         $validar = $request->validate([

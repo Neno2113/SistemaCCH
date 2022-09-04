@@ -638,6 +638,46 @@ $("#btn-upload").click(function(e) {
     })
 });
 
+$("#formUpload").submit(function(e) {
+    e.preventDefault();
+    var formData = new FormData($(this)[0]);
+    // console.log( JSON.stringify(formData));
+    $.ajax({
+        url: "avatar",
+        type: "POST",
+        data: formData,
+        dataType: "JSON",
+        processData: false,
+        cache: false,
+        contentType: false,
+        success: function(datos) {
+            if (datos.status == "success") {
+
+                $("#avatar").val("");
+                $("#image_name").val(datos.avatar);
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la creacion de la composicion"
+                );
+            }
+        },
+        error: function(datos) {
+            console.log(datos.responseJSON.message);
+            let errores = datos.responseJSON.message;
+
+            Object.entries(errores).forEach(([key, val]) => {
+                bootbox.alert({
+                    message:
+                        "<h4 class='invalid-feedback d-block'>" +
+                        val +
+                        "</h4>",
+                    size: "small"
+                });
+            });
+        }
+    });
+});
+
 
 function mostrar(id_empleado) {
     $.get("empleado/id/" + id_empleado, function(data, status) {
