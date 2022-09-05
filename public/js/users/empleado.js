@@ -462,7 +462,6 @@ $(document).ready(function() {
             celular: $("#celular").val(),
             email: $("#email").val(),
             codigo: $("#codigo").val(),
-        //    avatar: $("#avatar").val(),
             avatar: $("#image_name").val(),
            
             estado_civil: $("#estado_civil").val(),
@@ -653,7 +652,7 @@ $("#formUpload").submit(function(e) {
         success: function(datos) {
             if (datos.status == "success") {
 
-                $("#avatar").val("");
+                $("#avatar").attr("src", '/avatar/'+datos.avatar);
                 $("#image_name").val(datos.avatar);
             } else {
                 bootbox.alert(
@@ -735,6 +734,9 @@ function mostrar(id_empleado) {
             $("#estado_civil").val(data.empleado.estado_civil).attr('readonly', false);
             $("#esposa_en_nss").val(data.empleado_detalle.esposa_en_nss).attr('readonly', false);
             $("#codigo").val(data.empleado.codigo).attr('readonly', false);
+            
+            $("#avatar-img").attr("src", '/avatar/'+data.user.avatar)
+            $("#image_name").val(data.user.avatar);
 
             $("#hijos").empty();
 

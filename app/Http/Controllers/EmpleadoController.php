@@ -482,7 +482,7 @@ class EmpleadoController extends Controller
             'cedula' => 'required',
             'celular' => 'required',
             'fecha_nacimiento' => 'after:1950-01-01'
-        //    'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+        
         ]);
 
         if (empty($validar)) {
@@ -497,27 +497,9 @@ class EmpleadoController extends Controller
          //   $request->image->move(public_path('images'), $imageName); 
 
             $id = $request->input('id');
-            $nombre = strtoupper($request->input('nombre'));
-            
-            // if ($files = $request->input('avatar')) {
-            if ($files = $request->file('avatar')) {
-                // Define upload path
-                //    $destinationPath = public_path('adminlte/img/empleados'); // upload path
-                // Upload Orginal Image           
-                //    $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-                //    $imageName = time().'_'.$files;
-                //    $imageName = $files;
-                //    $imageName = time()."jpg";
-                //    $files->move($destinationPath, $imageName);
-                $apellido = strtoupper($request->input('nombre'));
-        
-            } else {
-                
-                $apellido = strtoupper($request->input('apellido'));
-            }
-            
+            $nombre = strtoupper($request->input('nombre'));   
                   
-         //   $apellido = strtoupper($request->input('apellido'));
+            $apellido = strtoupper($request->input('apellido'));
             $calle = strtoupper($request->input('calle'));
             $sector = strtoupper($request->input('sector'));
             $provincia = strtoupper($request->input('provincia'));
@@ -528,6 +510,7 @@ class EmpleadoController extends Controller
             $telefono_1 = $request->input('telefono_1');
             $celular = $request->input('celular');
             $email = strtoupper($request->input('email'));
+            $avatar = $request->input('avatar');
             
             $estado_civil = $request->input('estado_civil');
             $referencia = strtoupper($request->input('referencia'));
@@ -705,7 +688,7 @@ class EmpleadoController extends Controller
             $user->name = $nombre;
             $user->surname = $apellido;
             $user->email = $email;
-//            $user->avatar = $imageName;
+            $user->avatar = $avatar;
 //            $user->password = $pwd;
             $user->codigo = $codigo;
             $user->role = $departamento;

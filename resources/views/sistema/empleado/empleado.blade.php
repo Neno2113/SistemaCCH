@@ -23,7 +23,7 @@
                     <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleInputFile">Foto</label>
-                            <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" class="rounded img-fluid img-thumbnail">
+                            <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px;" class="rounded img-fluid img-thumbnail">
                             <div class="input-group mt-4">
                                 <div class="custom-file">
                                     <input type="file" class="form-control" name="avatar" id="avatar">
