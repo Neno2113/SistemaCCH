@@ -652,7 +652,7 @@ $("#formUpload").submit(function(e) {
         success: function(datos) {
             if (datos.status == "success") {
 
-                $("#avatar-img").attr("src", "{{asset('avatar/')}}"+datos.avatar);
+                $("#avatar-img").attr("src", 'https://app.cchsrl.com/avatar/'+datos.avatar);
                 $("#avatar").val("");
                 $("#image_name").val(datos.avatar);
             } else {

@@ -19,6 +19,8 @@
                 </div>
             </div>
             <div class="card-body">
+                <h5>Formulario de registro de empleados</h5>
+                <hr>
                 <div class="col-md-4 mt-3" id="vatar">
                     <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                         <div class="form-group">
@@ -38,8 +40,6 @@
                         </div>
                     </form> 
                 </div>
-                <h5>Formulario de registro de empleados</h5>
-                <hr>
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
