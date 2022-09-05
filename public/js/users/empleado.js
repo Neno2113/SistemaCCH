@@ -652,7 +652,7 @@ $("#formUpload").submit(function(e) {
         success: function(datos) {
             if (datos.status == "success") {
 
-                $("#avatar").attr("src", '/sistemaCCH/public/avatar/'+datos.avatar);
+                $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+datos.avatar);
                 $("#image_name").val(datos.avatar);
             } else {
                 bootbox.alert(
