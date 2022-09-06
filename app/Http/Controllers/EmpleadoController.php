@@ -35,7 +35,6 @@ class EmpleadoController extends Controller
             'cedula' => 'required|unique:empleado',
             'celular' => 'required',
             'fecha_nacimiento' => 'after:1950-01-01'
-        //    'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if (empty($validar)) {
@@ -46,9 +45,6 @@ class EmpleadoController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-
-        //    $imageName = time().'.'.$request->image->extension();  
-        //    $request->image->move(public_path('adminlte/img/empleados'), $imageName);
 
             $nombre = strtoupper($request->input('nombre'));
             $apellido = strtoupper($request->input('apellido'));
@@ -62,7 +58,7 @@ class EmpleadoController extends Controller
             $telefono_1 = $request->input('telefono_1');
             $celular = $request->input('celular');
             $email = strtoupper($request->input('email'));
-        //    $avatar = $request->input('avatar');
+            $avatar = $request->input('avatar');
             
             $estado_civil = $request->input('estado_civil');
             $referencia = strtoupper($request->input('referencia'));
@@ -146,7 +142,7 @@ class EmpleadoController extends Controller
             $user->direccion = $calle;
             $user->fecha_nacimiento = $fecha_nacimiento;
             $user->first_login = '1';
-//          $user->avatar = $avatar;
+            $user->avatar = $avatar;
 
             $user->save();
             $user_id = $user->id;

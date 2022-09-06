@@ -29,7 +29,7 @@
                             <div class="input-group mt-4">
                                 <div class="custom-file">
                                     <input type="file" class="form-control" name="avatar" id="avatar">
-                                    <input type="hidden" name="image_name" id="image_name" value="">
+                                    <input type="hidden" name="image_name" id="image_name" value="1662435439images.png">
                                     {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
                                 </div>
                                 <div class="input-group-append">
