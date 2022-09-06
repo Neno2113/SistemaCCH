@@ -107,7 +107,7 @@
 
         </div>
     </div>
-     -->
+     
     {{-- <div class="col-5"> --}}
     <div class="col-10">
         <div class="card  mb-3" id="userForm">
@@ -207,6 +207,7 @@
 
         </div>
     </div>
+    -->
 </div>
 
 <!-- CRISTOBAL -->
