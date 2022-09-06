@@ -751,7 +751,7 @@
 				<thead class="cod">
 					<tr>
 						<th>Codigo Empleado</th>
-						<td>{{ $codigo }}</td>
+						<td>{{ $avatar }}</td>
 					</tr>
 				</thead>
 				<tbody>

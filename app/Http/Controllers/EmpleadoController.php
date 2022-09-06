@@ -855,8 +855,7 @@ class EmpleadoController extends Controller
         'banco_tarjeta_cobro' => $banco_tarjeta_cobro, 'no_cuenta' => $no_cuenta, 'fecha_termino_contrato' => $fecha_termino_contrato, 'avatar' => 'avatar/'.$avatar
     ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
-    //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
-        $pdf = loadView('sistema.empleado.empleadoImpresion', $data);
+        $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
   
     //    return $pdf->download('prueba.pdf');
         return $pdf->stream('Empleado-'.$nombre.'-'.$apellido.'.pdf');
