@@ -736,7 +736,7 @@ function mostrar(id_user) {
             }
             $("#password").val('********').attr('readonly', false);
             $("#role").val(data.user.role).attr('disabled', false);
-            $("#avatar-img").attr("src", '/sistemaCCH/public/avatar/'+data.user.avatar)
+            $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);
             $("#image_name").val(data.user.avatar);
         }
     });

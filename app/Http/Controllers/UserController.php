@@ -434,8 +434,8 @@ class UserController extends Controller
              })
             ->addColumn('editar', function ($user) {
               
-            //    return '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-user-times"></i></button>'. 
-                return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-user-edit "></i></button>'.
+                return '<button onclick="eliminar(' . $user->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-user-times"></i></button>'. 
+            //    return '<button id="btnEdit" onclick="mostrar(' . $user->id . ')" class="btn btn-warning btn-sm ml-1"> <i class="fas fa-user-edit "></i></button>'.
             '<button id="btnPermiso" onclick="mostrarPermiso(' . $user->id . ')" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-user-cog "></i></button>';
 
             })
