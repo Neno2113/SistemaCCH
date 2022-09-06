@@ -456,6 +456,11 @@ class EmpleadoController extends Controller
 
             if (!empty($avatar)) {
             \Storage::disk('avatar')->put($image_name_1, \File::get($avatar));
+            //CRISTOBAL PRUEBA
+            File::move(
+                Storage::disk('avatar')->path($image_name_1),
+                public_path('adminlte/img/'.$image_name_1)
+            );
             } else {
                 $data = [
                     'code' => 400,
