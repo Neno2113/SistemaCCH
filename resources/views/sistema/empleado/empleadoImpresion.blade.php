@@ -744,7 +744,7 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="logo">
-				<img src="{{ asset('storage/public/avatar/1662435439images.png') }}">
+				<img src="{{ asset('storage/app/public/avatar/1662435439images.png') }}">
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
