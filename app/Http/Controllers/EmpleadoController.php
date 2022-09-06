@@ -499,8 +499,6 @@ class EmpleadoController extends Controller
                 'message' => 'Error en la validacion de datos'
             ];
         } else {
-         //   $imageName = time().'.'.$request->image->extension();
-         //   $request->image->move(public_path('images'), $imageName); 
 
             $id = $request->input('id');
             $nombre = strtoupper($request->input('nombre'));   
@@ -588,7 +586,6 @@ class EmpleadoController extends Controller
             
 
             $empleado = Empleado::find($id);
- //           $empleado  = DB::table('empleado')->where('id',$id)->first();
 
             /*
             if (preg_match('/_/', $sueldo)) {
