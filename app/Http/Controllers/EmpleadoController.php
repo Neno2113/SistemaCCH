@@ -852,7 +852,7 @@ class EmpleadoController extends Controller
         'tiempo_experiencia_1' => $tiempo_experiencia_1, 'empresa_experiencia_1' => $empresa_experiencia_1, 'supervisor_experiencia_1' => $supervisor_experiencia_1, 'telefono_experiencia_1' => $telefono_experiencia_1, 'cargo_experiencia_2' => $cargo_experiencia_2, 
         'tiempo_experiencia_2' => $tiempo_experiencia_2, 'empresa_experiencia_2' => $empresa_experiencia_2, 'supervisor_experiencia_2' => $supervisor_experiencia_2, 'telefono_experiencia_2' => $telefono_experiencia_2, 'primaria' => $primaria, 'bachiller' => $bachiller,
         'nivel_superior' => $nivel_superior, 'grado_titulo' => $grado_titulo, 'especialidad' => $especialidad, 'fecha_exp' => $fecha_exp, 'cargo' => $cargo, 'tipo_contrato' => $tipo_contrato, 'forma_pago' => $forma_pago, 'sueldo' => $sueldo, 'valor_hora' => $valor_hora,
-        'banco_tarjeta_cobro' => $banco_tarjeta_cobro, 'no_cuenta' => $no_cuenta, 'fecha_termino_contrato' => $fecha_termino_contrato, 'avatar' => $avatar
+        'banco_tarjeta_cobro' => $banco_tarjeta_cobro, 'no_cuenta' => $no_cuenta, 'fecha_termino_contrato' => $fecha_termino_contrato, 'avatar' => 'src="avatar/'.$avatar.'"'
     ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
