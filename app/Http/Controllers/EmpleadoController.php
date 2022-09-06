@@ -414,11 +414,17 @@ class EmpleadoController extends Controller
             ->get()
             ->first();
 
+            $user_id = $empleado_detalle->user_id;
+            $user = User::where('id', $user_id)
+            ->get()
+            ->first();
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'empleado' => $empleado,
-                'empleado_detalle' => $empleado_detalle
+                'empleado_detalle' => $empleado_detalle,
+                'user' => $user
             ];
         } else {
             $data = [
