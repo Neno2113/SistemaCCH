@@ -95,7 +95,6 @@ $(document).ready(function() {
         $("#apellido").val("").attr('readonly', false);
         $("#calle").val("").attr('readonly', false);
         $("#sector").val("").attr('readonly', false);
-      //  $("#provincia").val("").attr('readonly', false);
         $("#provincia").val('').trigger('change');
         $("#sitios_cercanos").val("").attr('readonly', false);
         $("#fecha_nacimiento").val("").attr('readonly', false);
@@ -105,6 +104,10 @@ $(document).ready(function() {
         $("#celular").val("").attr('readonly', false);
         $("#email").val("").attr('readonly', false);
         $("#codigo").val("").attr('readonly', false);
+
+        $("#avatar-img").attr("src", '/avatar/1662435439images.png');
+        $("#avatar").val("").attr('readonly', false);
+        $("#image_name").val("").attr('readonly', false);
            
         $("#estado_civil").val("").attr('readonly', false);
         $("#fecha_ingreso").val("").attr('readonly', false);
@@ -652,7 +655,7 @@ $("#formUpload").submit(function(e) {
         success: function(datos) {
             if (datos.status == "success") {
 
-                $("#avatar-img").attr("src", 'https://app.cchsrl.com/avatar/'+datos.avatar);
+                $("#avatar-img").attr("src", '/avatar/'+datos.avatar);
                 $("#avatar").val("");
                 $("#image_name").val(datos.avatar);
             } else {
@@ -736,7 +739,7 @@ function mostrar(id_empleado) {
             $("#esposa_en_nss").val(data.empleado_detalle.esposa_en_nss).attr('readonly', false);
             $("#codigo").val(data.empleado.codigo).attr('readonly', false);
             
-            $("#avatar-img").attr("src", './avatar/'+data.user.avatar);
+            $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);
             $("#image_name").val(data.user.avatar);
 
             $("#hijos").empty();
