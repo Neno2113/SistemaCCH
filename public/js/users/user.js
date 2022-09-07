@@ -834,7 +834,7 @@ const desactivar = (id) => {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, acepto'
+        confirmButtonText: 'Si, acepto',
         onOpen: function() {
             $('#datetimepicker').datetimepicker({
                 format: 'DD/MM/YYYY hh:mm A',
