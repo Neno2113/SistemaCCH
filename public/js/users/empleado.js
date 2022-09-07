@@ -705,7 +705,6 @@ function mostrar(id_empleado) {
             $("#fila-bancaria").show();
             $("#fila-address").show();
             $("#fila-detail").show();
-
             
             $("#id").val(data.empleado.id);
             $("#nombre").val(data.empleado.nombre).attr('readonly', false);
@@ -738,7 +737,7 @@ function mostrar(id_empleado) {
             $("#esposa_en_nss").val(data.empleado_detalle.esposa_en_nss).attr('readonly', false);
             $("#codigo").val(data.empleado.codigo).attr('readonly', false);
 
-            $("#fecha_ingreso_1").append(data.historico.fecha_igresos);
+            $("#fecha_ingreso_1").append(data.empleado.fecha_contratacion);
             
             
             $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);
