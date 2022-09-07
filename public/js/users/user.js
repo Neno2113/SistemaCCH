@@ -829,6 +829,7 @@ const desactivar = (id) => {
     Swal.fire({
         title: '¿Esta seguro de desactivar este usuario?',
         text: "Este usuario no podra accesar al sistema!",
+        html:'<h2>Fecha de Termino de Contrato</h2><br/><input id="datetimepicker" class="form-control" autofocus>',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
