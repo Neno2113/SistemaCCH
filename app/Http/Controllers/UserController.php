@@ -551,7 +551,7 @@ class UserController extends Controller
     }
 
 
-    public function desactivar($id){
+    public function desactivar($id, $fecha){
 
         $user = User::find($id);
 

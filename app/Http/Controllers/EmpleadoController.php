@@ -246,6 +246,38 @@ class EmpleadoController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function desactivar($id, $fecha){
+
+        $user = User::find($id);
+
+        $empleado = Empleado::where('user_id', $id)
+        ->get()
+        ->first();
+
+        if(empty($user)){
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No se encontro el usuario'
+            ];
+        } else {
+            $user->active = 0;
+            $user->save();
+
+            $empleado->fecha_termino_contrato = $fecha;
+            $empleado->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'user' =>$user
+            ];
+
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
     public function storeDetalle(Request $request)
     {
 

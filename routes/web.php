@@ -190,7 +190,8 @@ Route::post('/avatar', 'UserController@upload');
 Route::get('/avatar/{filname}', 'UserController@getImage');
 Route::get('exportar/test', 'ExistenciaController@userExport');
 Route::post('/user/active/{id}', 'UserController@activar');
-Route::post('/user/desactive/{id}', 'UserController@desactivar');
+//Route::post('/user/desactive/{id}', 'UserController@desactivar');
+//Route::post('/user/desactive/{id}/{fecha}', 'UserController@desactivar');
 
 
 //Rutas composition
@@ -501,6 +502,7 @@ Route::post('empleadocheck/delete/{id}', 'EmpleadoController@checkDestroy');
 Route::get('/imprimir_empleado/empleado/{id}', 'EmpleadoController@imprimir');
 Route::post('/avatar', 'EmpleadoController@upload');
 //Route::get('/avatar/{filname}', 'UserController@getImage');
+Route::post('/empleado/desactive/{id}/{fecha}', 'EmpleadoController@desactivar');
 
 
 //Permiso
