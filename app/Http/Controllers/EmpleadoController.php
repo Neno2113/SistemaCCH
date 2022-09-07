@@ -452,10 +452,10 @@ class EmpleadoController extends Controller
             $image_name_1 = time() . $avatar->getClientOriginalName();
             // echo $id;
             // die();
-
-
             if (!empty($avatar)) {
             \Storage::disk('avatar')->put($image_name_1, \File::get($avatar));
+            $destinationPath = public_path().'/adminlte/img';
+            $avatar->move($destinationPath,$image_name_1);
             
             } else {
                 $data = [
