@@ -400,7 +400,7 @@
                             </div>
                             <div class="col-md-4 mt-2">
                                 <label for="fecha_exp" >Fecha de Exp.</label>
-                                <input type="date" name="fecha_exp" id="fecha_exp" class="form-control"value="2000-01-01">
+                                <input type="date" name="fecha_exp" id="fecha_exp" class="form-control" value="2000-01-01">
                                 
                             </div>
                         </div>
