@@ -586,6 +586,20 @@
                         </div>
                     </div>
 
+                    <!-- CRISTOBAL HISTORICO LABORAL -->
+                    <div class="div" id="fila-bancaria">
+                        <br>
+                        <br>
+                        <h5>Historico Laboral en la Empresa</h5>
+                        <hr>
+                        <div class="row">
+                            
+                        </div>
+                        <div class="row">
+                            
+                        </div>
+                    </div>
+
 
             </div>
             <div class="card-footer  text-muted ">
