@@ -829,12 +829,18 @@ const desactivar = (id) => {
     Swal.fire({
         title: '¿Esta seguro de desactivar este usuario?',
         text: "Este usuario no podra accesar al sistema!",
-        html:'<h2>Fecha de Termino de Contrato</h2><br/><input id="datetimepicker" class="form-control" autofocus>',
+        html:'<p><b>Fecha de Termino de Contrato</b></p><br/><input id="datetimepicker" class="form-control" autofocus>',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, acepto'
+        onOpen: function() {
+            $('#datetimepicker').datetimepicker({
+                format: 'DD/MM/YYYY hh:mm A',
+                defaultDate: new Date()
+            });
+        }
       }).then((result) => {
         if (result.value) {
             $.post("user/desactive/" + id, function(data){
