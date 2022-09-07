@@ -744,7 +744,7 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="logo">
-			<img src="{{ public_path('adminlte/img/images.png') }}">
+			<img src="https://app.cchsrl.com/avatar/1662438617foto-perfil.jpg">
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
