@@ -605,10 +605,15 @@
                                     <tr>
                                         <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">1</th>
                                         <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="fecha_ingreso_1"></td>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="fecha_termino_1"></td>
                                     </tr>
                                     <tr>
                                         <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">2</th>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">3</th>
                                         <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
                                         <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
                                     </tr>
