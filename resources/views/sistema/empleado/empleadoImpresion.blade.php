@@ -744,7 +744,7 @@
 	<main>
 		<div id="details" class="clearfix">
 			<div id="logo">
-			<img src="https://i.pinimg.com/originals/58/fe/5a/58fe5a39aeb5d1d37e7803fa31894509.jpg">
+				<img src="{{ public_path('adminlte/img/1662553137foto-perfil.jpg') }}">
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0" class="tabla-cliente">
 				<thead class="cod">
