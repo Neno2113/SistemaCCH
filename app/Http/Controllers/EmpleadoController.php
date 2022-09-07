@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Empleado;
 use App\EmpleadoDetalle;
+use App\Historico;
 use App\PermisoUsuario;
 
 //cristobal
@@ -447,12 +448,17 @@ class EmpleadoController extends Controller
             ->get()
             ->first();
 
+            $historico = Historico::where('empleado_id', $id)
+            ->get()
+            ->first();
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'empleado' => $empleado,
                 'empleado_detalle' => $empleado_detalle,
-                'user' => $user
+                'user' => $user,
+                'historico' => $historico
             ];
         } else {
             $data = [

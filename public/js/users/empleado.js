@@ -84,7 +84,6 @@ $(document).ready(function() {
         $("#btn-edit").hide();
         $("#results").hide();
 
-
     }
 
 
@@ -738,6 +737,9 @@ function mostrar(id_empleado) {
             $("#estado_civil").val(data.empleado.estado_civil).attr('readonly', false);
             $("#esposa_en_nss").val(data.empleado_detalle.esposa_en_nss).attr('readonly', false);
             $("#codigo").val(data.empleado.codigo).attr('readonly', false);
+
+            $("#fecha_ingreso_1").append(data.historico.fecha_igreso);
+            
             
             $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);
             $("#image_name").val(data.user.avatar);
