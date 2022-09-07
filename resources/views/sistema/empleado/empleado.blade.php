@@ -593,24 +593,24 @@
                         <h5>Historico Laboral en la Empresa</h5>
                         <hr>
                         <div class="row">
-                            <table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
+                            <table border="0" cellspacing="0" cellpadding="0" class="tabla-historico" style="border: 1px solid black;">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
-                                        <td>Fecha de Ingreso</td>
-                                        <td>Fecha de Termino</td>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">No.</th>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Fecha de Ingreso</th>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Fecha de Termino</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th>1</th>
-                                        <td></td>
-                                        <td></td>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">1</th>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
                                     </tr>
                                     <tr>
-                                        <th>2</th>
-                                        <td></td>
-                                        <td></td>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">2</th>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
                                     </tr>
                                 </tbody>
                             </table>
