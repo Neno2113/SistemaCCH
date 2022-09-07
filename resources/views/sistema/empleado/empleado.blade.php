@@ -596,15 +596,16 @@
                             <table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
                                 <thead>
                                     <tr>
-                                        <th>Condicion Medica</th>
-                                        <td>{{ $condicion_medica }}</td>
+                                        <th>No.</th>
+                                        <td>Fecha de Ingreso</td>
+                                        <td>Fecha de Termino</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th>No.</th>
-                                        <td>Fecha de Ingreso</td>
-                                        <td>Fecha de Termino</td>
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <th>1</th>
