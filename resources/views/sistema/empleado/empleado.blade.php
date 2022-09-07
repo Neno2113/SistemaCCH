@@ -593,13 +593,28 @@
                         <h5>Historico Laboral en la Empresa</h5>
                         <hr>
                         <div class="row">
-                            
-                        </div>
-                        <div class="row">
-                            
+                            <table border="0" cellspacing="0" cellpadding="0" class="tabla-info">
+                                <thead>
+                                    <tr>
+                                        <th>Condicion Medica</th>
+                                        <td>{{ $condicion_medica }}</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>No.</th>
+                                        <td>Fecha de Ingreso</td>
+                                        <td>Fecha de Termino</td>
+                                    </tr>
+                                    <tr>
+                                        <th>1</th>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
 
             </div>
             <div class="card-footer  text-muted ">
