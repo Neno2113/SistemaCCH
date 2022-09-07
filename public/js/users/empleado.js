@@ -738,7 +738,7 @@ function mostrar(id_empleado) {
             $("#esposa_en_nss").val(data.empleado_detalle.esposa_en_nss).attr('readonly', false);
             $("#codigo").val(data.empleado.codigo).attr('readonly', false);
 
-            $("#fecha_ingreso_1").append(data.historico.fecha_igreso);
+            $("#fecha_ingreso_1").append(data.historico.fecha_igresos);
             
             
             $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);
