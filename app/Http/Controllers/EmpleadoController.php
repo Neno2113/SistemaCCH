@@ -892,13 +892,13 @@ class EmpleadoController extends Controller
         $historico_laboral = Historico::where('empleado_id', $id)
         ->get();
 
-        $no_evento_1 = $historico_laboral[0]->evento;
+        $no_evento_1 = "1";
         $evento_1 = $historico_laboral[0]->evento;
         $fecha_evento_1 = $historico_laboral[0]->fecha;
-        $no_evento_2 = $historico_laboral[1]->evento;
+        $no_evento_2 = "2";
         $evento_2 = $historico_laboral[1]->evento;
         $fecha_evento_2 = $historico_laboral[1]->fecha;
-        $no_evento_3 = $historico_laboral[2]->evento;
+        $no_evento_3 = "3";
         $evento_3 = $historico_laboral[2]->evento;
         $fecha_evento_3 = $historico_laboral[2]->fecha;
 
