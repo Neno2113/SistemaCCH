@@ -888,10 +888,10 @@ class EmpleadoController extends Controller
         ->get()
         ->first();
         $avatar = $user->avatar;
-
+/*
         $historico_laboral = Historico::where('empleado_id', $id)
         ->get();
-
+*/
         $no_evento_1 = "1";
         $evento_1 = "ENTRADA";
         $fecha_evento_1 = "ayer";
