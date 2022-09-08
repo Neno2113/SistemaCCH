@@ -1029,9 +1029,9 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th>{{ $no_evento_1 }}</th>
-						<td>{{ $evento_1 }}</td>
-						<td>{{ $fecha_evento_1 }}</td>
+						<th>{{  }}</th>
+						<td>{{  }}</td>
+						<td>{{  }}</td>
 					</tr>
 				</tbody>
 			</table>

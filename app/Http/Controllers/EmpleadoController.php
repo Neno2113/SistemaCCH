@@ -890,7 +890,7 @@ class EmpleadoController extends Controller
         $avatar = $user->avatar;
 /*
         $historico_laboral = Historico::where('empleado_id', $id)
-        ->get();
+            ->get();
 */
         $no_evento_1 = "1";
         $evento_1 = "ENTRADA";
