@@ -31,7 +31,7 @@
                             </div>
                             <input type="hidden" name="id" id="id" value="">
                             <div class="col-md-4 mt-2">
-                                <label for="nombre_cliente">Nombre </label>
+                                <label for="nombre_cliente">Nombre Comercial</label>
                                 <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control">
 
                             </div>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>                            
                             <div class="col-md-4 mt-2">
-                                <label for="celular_principal">Celular principal</label>
+                                <label for="celular_principal">Celular de Contacto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -69,6 +69,7 @@
 
                                 </div>
                             </div>
+                            <!--
                             <div class="col-md-4 mt-2">
                                 <label for="telefono_2" >Telefono 2</label>
                                 <div class="input-group">
@@ -80,9 +81,11 @@
                                
                                 </div>
                             </div>
+                            -->
                       
                         </div>
                         <div class="row mt-2">
+                            <!--
                             <div class="col-md-6 mt-1">
                                 <label for="telefono_2" >Telefono 3</label>
                                 <div class="input-group">
@@ -94,6 +97,7 @@
                                 
                                 </div>
                             </div>
+                            -->
                             <div class="col-md-6 mt-1">
                                 <label for="email_principal" >Email</label>
                                 <div class="input-group">
@@ -376,7 +380,7 @@
                     <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>Cliente</th>
+                    <th>Nombre Comercial</th>
                     <th>RNC</th>
                     <th>Contacto</th>
                     <th>Email</th>
@@ -390,7 +394,7 @@
                     <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-                    <th>Cliente</th>
+                    <th>Nombre Comercial</th>
                     <th>RNC</th>
                     <th>Contacto</th>
                     <th>Email</th>

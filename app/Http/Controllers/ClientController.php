@@ -23,12 +23,12 @@ class ClientController extends Controller
             'codigo_cliente' => 'required',
          //   'rnc' => 'required',
             'contacto_cliente_principal' => 'required|alpha',
-            'telefono_1' => 'required',
+            'telefono_1' => 'required'
          //   'email_principal' => 'required|email',
-            'condiciones_credito' => 'required',
-            'calle' => 'required',
+         //   'condiciones_credito' => 'required',
+         //   'calle' => 'required',
         //    'sector' => 'required',
-            'provincia' => 'required'
+        //    'provincia' => 'required'
         ]);
 
         if (empty($validar)) {
