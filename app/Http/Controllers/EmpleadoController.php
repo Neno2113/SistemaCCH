@@ -893,9 +893,13 @@ class EmpleadoController extends Controller
         ->get();
 
         $no_evento_1 = "1";
+        $evento_1 = "ENTRADA";
+        $fecha_evento_1 = "ayer";
+        /*
+        $no_evento_1 = "1";
         $evento_1 = $historico_laboral[0]->evento;
         $fecha_evento_1 = $historico_laboral[0]->fecha;
-        /*
+        
         $no_evento_2 = "2";
         $evento_2 = $historico_laboral[1]->evento;
         $fecha_evento_2 = $historico_laboral[1]->fecha;
