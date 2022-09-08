@@ -23,7 +23,8 @@ class ClientController extends Controller
             'codigo_cliente' => 'required',
          //   'rnc' => 'required',
             'contacto_cliente_principal' => 'required|alpha',
-            'telefono_1' => 'required'
+            'telefono_1' => 'required',
+            'celular_principal' => 'required'
          //   'email_principal' => 'required|email',
          //   'condiciones_credito' => 'required',
          //   'calle' => 'required',
@@ -49,8 +50,8 @@ class ClientController extends Controller
             $contacto_cliente_principal = $request->input('contacto_cliente_principal', true);
             $rnc = $request->input('rnc');
             $telefono_1 = $request->input('telefono_1', true);
-            $telefono_2 = $request->input('telefono_2', true);
-            $telefono_3 = $request->input('telefono_3', true);
+        //    $telefono_2 = $request->input('telefono_2', true);
+        //    $telefono_3 = $request->input('telefono_3', true);
             $celular_principal = $request->input('celular_principal', true);
             $email_principal = $request->input('email_principal', true);
             $condiciones_credito = $request->input('condiciones_credito', true);
@@ -71,8 +72,8 @@ class ClientController extends Controller
             $cliente->rnc = trim($rnc, "_");
             $cliente->contacto_cliente_principal = $contacto_cliente_principal;
             $cliente->telefono_1 = $telefono_1;
-            $cliente->telefono_2 = $telefono_2;
-            $cliente->telefono_3 = $telefono_3;
+        //    $cliente->telefono_2 = $telefono_2;
+        //    $cliente->telefono_3 = $telefono_3;
             $cliente->celular_principal = $celular_principal;
             $cliente->email_principal = $email_principal;
             $cliente->condiciones_credito = $condiciones_credito;

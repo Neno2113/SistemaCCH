@@ -19,7 +19,7 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
-                    <h5>Registro clientes</h5>
+                    <h5>Registro Cliente</h5>
                     <hr>
                     <div class="Datos">
                         <div class="row mt-2">
@@ -88,13 +88,13 @@
                         <hr>
                         <div class="row mt-2">
                             <div class="col-md-5 mt-2">
-                                <label for="contacto_cliente" >Contacto Cliente</label>
+                                <label for="contacto_cliente" >Nombre Contacto</label>
                                 <input type="text" name="contacto_cliente_principal" 
                                     id="contacto_cliente_principal" class="form-control">
                                
                             </div>
                             <div class="col-md-4 mt-2">
-                                <label for="celular_principal">Celular de Contacto</label>
+                                <label for="celular_principal">Celular Contacto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-6 mt-1">
-                                <label for="email_principal" >Email</label>
+                                <label for="email_principal" >Email Contacto</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-at"></i></span>
@@ -150,7 +150,7 @@
             </div>
             <div class="card-body">
                 <form action="" id="formulario" name="formulario" class="form-group carta panel-body">
-                    <h5></h5>
+                    <h5>Dirección Cliente</h5>
                     <hr>
                     <div class="Datos">
                         <div class="row mt-5">
