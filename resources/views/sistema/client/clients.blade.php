@@ -121,17 +121,18 @@
                         <hr>   
                         <div id="autorizaciones">
                             <div class="row" id="radios">
+                                <!--
                                 <div class="col-md-6">
                                     <label for="autorizacion_credito_req">¿Autorizacion de credito requerida?</label>
                                     <div class="form-group clearfix">
                                         <div class="icheck-primary d-inline">
-                                            <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
+                                            <input type="radio" id="radioPrimary1" name="r1" value="1" >
                                             <label for="radioPrimary1">
                                                 Si
                                             </label>
                                         </div>
                                         <div class="icheck-primary d-inline">
-                                            <input type="radio" id="radioPrimary2" value="0" name="r1">
+                                            <input type="radio" id="radioPrimary2" value="0" name="r1" checked>
                                             <label for="radioPrimary2">
                                                 No
                                             </label>
@@ -140,6 +141,7 @@
                                     <input type="text" name="autorizacion_credito_req" id="autorizacion_credito_req"
                                         class="form-control" readonly>
                                 </div>
+                                -->
                                 <div class="col-md-6">
                                     <label for="autorizacion_credito_req">¿Acepta redistribucion de tallas?</label>
                                     <div class="form-group clearfix">
