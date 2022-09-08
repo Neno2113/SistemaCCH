@@ -88,7 +88,7 @@
                         <br>
                         <hr>
                         <div class="row mt-2">
-                            <div class="col-md-5 mt-2">
+                            <div class="col-md-4 mt-2">
                                 <label for="contacto_cliente" >Nombre Contacto</label>
                                 <input type="text" name="contacto_cliente_principal" 
                                     id="contacto_cliente_principal" class="form-control">
@@ -105,9 +105,7 @@
 
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-6 mt-1">
+                            <div class="col-md-4 mt-2">
                                 <label for="email_principal" >Email Contacto</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
@@ -118,13 +116,107 @@
                                
                                 </div>
                             </div>
-                          
                         </div>
-                        <hr>
+                        <br>
+                        <hr>   
+                        <div id="autorizaciones">
+                            <div class="row" id="radios">
+                                <div class="col-md-6">
+                                    <label for="autorizacion_credito_req">¿Autorizacion de credito requerida?</label>
+                                    <div class="form-group clearfix">
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
+                                            <label for="radioPrimary1">
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary2" value="0" name="r1">
+                                            <label for="radioPrimary2">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="autorizacion_credito_req" id="autorizacion_credito_req"
+                                        class="form-control" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="autorizacion_credito_req">¿Acepta redistribucion de tallas?</label>
+                                    <div class="form-group clearfix">
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary3" name="r2" value="1" checked>
+                                            <label for="radioPrimary3">
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary4" name="r2" value="0">
+                                            <label for="radioPrimary4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="redistribucion_tallas" id="redistribucion_tallas"
+                                        class="form-control" readonly>
+                                </div>
+                            
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mt-2">
+                                    <label for="autorizacion_credito_req">¿Acepta segundas?</label>
+                                    <div class="form-group clearfix">
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary7" name="r4" value="1">
+                                            <label for="radioPrimary7">
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary8" name="r4" value="0" checked>
+                                            <label for="radioPrimary8">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="acepta_segundas" id="acepta_segundas" class="form-control"
+                                        readonly>
+
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <label for="autorizacion_credito_req">Exige factura desglosada por tallas?(*):</label>
+                                    <div class="form-group clearfix">
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary5" name="r3" value="1">
+                                            <label for="radioPrimary5">
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary6" name="r3" value="0" checked>
+                                            <label for="radioPrimary6">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="factura_desglosada_tallas" id="factura_desglosada_tallas"
+                                        class="form-control" readonly>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <label for="">Nota</label>
+                                    <textarea name="notas" id="notas"  cols="30" rows="1"
+                                        class="form-control"></textarea>
+                                    <label for="notas" ></label>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row mt-2">
+
+                        </div>
                      
                     </div>
-                
-
             </div>
 
             <div class="card-footer  text-muted ">
@@ -237,99 +329,6 @@
                         <hr>
                     </div>
                     <br>
-                    <div id="autorizaciones">
-                        <div class="row" id="radios">
-                            <div class="col-md-6">
-                                <label for="autorizacion_credito_req">¿Autorizacion de credito requerida?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary1" name="r1" value="1" checked>
-                                        <label for="radioPrimary1">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary2" value="0" name="r1">
-                                        <label for="radioPrimary2">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <input type="text" name="autorizacion_credito_req" id="autorizacion_credito_req"
-                                    class="form-control" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="autorizacion_credito_req">¿Acepta redistribucion de tallas?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary3" name="r2" value="1" checked>
-                                        <label for="radioPrimary3">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary4" name="r2" value="0">
-                                        <label for="radioPrimary4">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <input type="text" name="redistribucion_tallas" id="redistribucion_tallas"
-                                    class="form-control" readonly>
-                            </div>
-                           
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mt-2">
-                                <label for="autorizacion_credito_req">¿Acepta segundas?</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary7" name="r4" value="1">
-                                        <label for="radioPrimary7">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary8" name="r4" value="0" checked>
-                                        <label for="radioPrimary8">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <input type="text" name="acepta_segundas" id="acepta_segundas" class="form-control"
-                                    readonly>
-
-                            </div>
-                            <div class="col-md-6 mt-2">
-                                <label for="autorizacion_credito_req">Exige factura desglosada por tallas?(*):</label>
-                                <div class="form-group clearfix">
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary5" name="r3" value="1">
-                                        <label for="radioPrimary5">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary6" name="r3" value="0" checked>
-                                        <label for="radioPrimary6">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <input type="text" name="factura_desglosada_tallas" id="factura_desglosada_tallas"
-                                    class="form-control" readonly>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-12 mt-2">
-                                <label for="">Nota</label>
-                                <textarea name="notas" id="notas"  cols="30" rows="1"
-                                    class="form-control"></textarea>
-                                <label for="notas" ></label>
-                            </div>
-                        </div>
-                    </div>
 
             </div>
 
