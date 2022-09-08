@@ -804,7 +804,7 @@ const activar = (id) => {
     Swal.fire({
         title: '¿Esta seguro de activar este usuario?',
         text: "Va a darle acceso a este usuario!",
-        html:'<p><b>Nueva Fecha de Contratación</b></p><br/><input type="date" id="selectfecha" class="form-control" value="2022-01-01" autofocus>',
+        html:'<p><b>Nueva Fecha de Contratación</b></p><br/><input type="date" id="selectfechaEn" class="form-control" value="2022-01-01" autofocus>',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -812,7 +812,7 @@ const activar = (id) => {
         confirmButtonText: 'Si, acepto'
       }).then((result) => {
         if (result.value) {
-            var fecha = $('#selectfecha').val();
+            var fecha = $('#selectfechaEn').val();
             $.post("empleado/active/" + id + "/" + fecha, function(data){
                 Swal.fire(
                 'Usuario activado!',

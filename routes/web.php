@@ -503,7 +503,7 @@ Route::get('/imprimir_empleado/empleado/{id}', 'EmpleadoController@imprimir');
 Route::post('/avatar', 'EmpleadoController@upload');
 //Route::get('/avatar/{filname}', 'UserController@getImage');
 Route::post('/empleado/desactive/{id}/{fecha}', 'EmpleadoController@desactivar');
-Route::post('/empleado/active/{id}/{fecha}', 'UserController@activar');
+Route::post('/empleado/active/{id}/{fecha}', 'EmpleadoController@activar');
 
 
 //Permiso
