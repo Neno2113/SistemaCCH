@@ -57,18 +57,19 @@
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                
                                 </div>
-                            </div>                            
-                            <div class="col-md-4 mt-2">
-                                <label for="celular_principal">Celular de Contacto</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    </div>
-                                    <input type="text" id="celular_principal" 
-                                        class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
-
-                                </div>
-                            </div>
+                            </div>  
+                            <div class="col-md-7 mt-2">
+                                <label for="condiciones_credito" >Condiciones de credito</label>
+                                <select name="condiciones_credito" id="condiciones_credito" class="form-control">
+                                    <option value="" disabled>Condiciones de credito</option>
+                                    <option value="0">Al contado</option>
+                                    <option value="30">30 dias</option>
+                                    <option value="60">60 dias</option>
+                                    <option value="90">90 dias</option>
+                                    <option value="120">120 dias</option>
+                                </select>
+                              
+                            </div>                          
                             <!--
                             <div class="col-md-4 mt-2">
                                 <label for="telefono_2" >Telefono 2</label>
@@ -84,34 +85,7 @@
                             -->
                       
                         </div>
-                        <div class="row mt-2">
-                            <!--
-                            <div class="col-md-6 mt-1">
-                                <label for="telefono_2" >Telefono 3</label>
-                                <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="telefono_3"  class="form-control"
-                                    data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                                
-                                </div>
-                            </div>
-                            -->
-                            <div class="col-md-6 mt-1">
-                                <label for="email_principal" >Email</label>
-                                <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                </div>
-                                <input type="email" name="email_principal" placeholder="Email principal"
-                                    id="email_principal" class="form-control">
-                               
-                                </div>
-                            </div>
-                          
-                        </div>
-
+                        <hr>
                         <div class="row mt-2">
                             <div class="col-md-5 mt-2">
                                 <label for="contacto_cliente" >Contacto Cliente</label>
@@ -119,18 +93,31 @@
                                     id="contacto_cliente_principal" class="form-control">
                                
                             </div>
-                            <div class="col-md-7 mt-2">
-                                <label for="condiciones_credito" >Condiciones de credito</label>
-                                <select name="condiciones_credito" id="condiciones_credito" class="form-control">
-                                    <option value="" disabled>Condiciones de credito</option>
-                                    <option value="0">Al contado</option>
-                                    <option value="30">30 dias</option>
-                                    <option value="60">60 dias</option>
-                                    <option value="90">90 dias</option>
-                                    <option value="120">120 dias</option>
-                                </select>
-                              
+                            <div class="col-md-4 mt-2">
+                                <label for="celular_principal">Celular de Contacto</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" id="celular_principal" 
+                                        class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
+
+                                </div>
                             </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6 mt-1">
+                                <label for="email_principal" >Email</label>
+                                <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                </div>
+                                <input type="email" name="email_principal" placeholder="Email de Contacto"
+                                    id="email_principal" class="form-control">
+                               
+                                </div>
+                            </div>
+                          
                         </div>
                         <hr>
                      
