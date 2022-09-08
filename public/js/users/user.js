@@ -812,6 +812,7 @@ const activar = (id) => {
         confirmButtonText: 'Si, acepto'
       }).then((result) => {
         if (result.value) {
+            var fecha = $('#selectfecha').val();
             $.post("empleado/active/" + id + "/" + fecha, function(data){
                 Swal.fire(
                 'Usuario activado!',
