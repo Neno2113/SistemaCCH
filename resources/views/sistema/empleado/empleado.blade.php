@@ -186,7 +186,7 @@
                             <input type="text" name="sitios_cercanos" id="sitios_cercanos" class="form-control">
                         </div>
                         <div class="col-md-4">
-                            <label for="fecha_ingreso">Fecha de Ingreso</label>
+                            <label for="fecha_ingreso">Fecha de Ingreso *</label>
                             <input 
                             type="date" 
                             name="fecha_ingreso" 
