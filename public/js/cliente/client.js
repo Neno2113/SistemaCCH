@@ -187,7 +187,9 @@ $(document).ready(function() {
             celular_principal: $("#celular_principal").val(),
             email_principal: $("#email_principal").val(),
             condiciones_credito: $("#condiciones_credito").val(),
-            autorizacion_credito_req: $("input[name='r1']:checked").val(),
+        //    autorizacion_credito_req: $("input[name='r1']:checked").val(),
+            //TEMPORALMENTE NO SE REQUIERE AUTORIZACION PARA NINGUN CLIENTE
+            autorizacion_credito_req: '0',
             notas: $("#notas").val(),
             redistribucion_tallas: $("input[name='r2']:checked").val(),
             factura_desglosada_talla: $("input[name='r3']:checked").val(),
