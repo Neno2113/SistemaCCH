@@ -601,7 +601,7 @@
                                         <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Fecha de Evento</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="eventos_laborales">
                                     <tr>
                                         <th style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="no_evento_1"></th>
                                         <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="evento_1"></td>
