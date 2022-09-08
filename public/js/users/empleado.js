@@ -741,7 +741,7 @@ function mostrar(id_empleado) {
 
             for (let z = 0; z < cant_historicos; z++) {
                 var fila_historico =  "<tr>"+
-                "<th style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+[z]+"</th>"+
+                "<th style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+[z+1]+"</th>"+
                 "<td style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+data.historico[z].evento+"</td>"+
                 "<td style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+data.historico[z].fecha+"</td>"+
                 "</tr>";
