@@ -263,7 +263,10 @@ class EmpleadoController extends Controller
         $empleado = Empleado::where('user_id', $id)
         ->get()
         ->first();
-    //CONTINUAR AQUI CON FECHA DE SALIDAD HISTORICO CRISTOBAL
+    
+        $empleado_id = $empleado->id;
+
+        $historico_laboral = new Historico();
 
         if(empty($user)){
             $data = [
@@ -277,6 +280,12 @@ class EmpleadoController extends Controller
 
             $empleado->fecha_termino_contrato = $fecha;
             $empleado->save();
+
+            $historico_laboral->empleado_id = $empleado_id;
+            $historico_laboral->user_id = $id;
+            $historico_laboral->fecha = $fecha;
+            $historico_laboral->evento = "SALIDA";
+            $historico_laboral->save();
 
             $data = [
                 'code' => 200,
