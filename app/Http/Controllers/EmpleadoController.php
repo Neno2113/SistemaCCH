@@ -256,6 +256,48 @@ class EmpleadoController extends Controller
         return response()->json($data, $data['code']);
     }
 
+    public function activar($id, $fecha){
+
+        $user = User::find($id);
+
+        $empleado = Empleado::where('user_id', $id)
+        ->get()
+        ->first();
+    
+        $empleado_id = $empleado->id;
+
+        $historico_laboral = new Historico();
+
+        if(empty($user)){
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No se encontro el usuario'
+            ];
+        } else {
+            $user->active = 1;
+            $user->save();
+
+            $empleado->fecha_contratacion = $fecha;
+            $empleado->save();
+
+            $historico_laboral->empleado_id = $empleado_id;
+            $historico_laboral->user_id = $id;
+            $historico_laboral->fecha = $fecha;
+            $historico_laboral->evento = "INGRESO";
+            $historico_laboral->save();
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'user' =>$user
+            ];
+
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
     public function desactivar($id, $fecha){
 
         $user = User::find($id);
