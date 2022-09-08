@@ -593,7 +593,7 @@
                         <h5>Historico Laboral en la Empresa</h5>
                         <hr>
                         <div class="row">
-                            <table border="0" cellspacing="0" cellpadding="0" class="tabla-historico" style="border: 1px solid black;">
+                            <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
                                 <thead>
                                     <tr>
                                         <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">No.</th>
