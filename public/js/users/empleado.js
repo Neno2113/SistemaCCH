@@ -435,7 +435,7 @@ $(document).ready(function() {
                 { data: "codigo" },
                 { data: "tipo_contrato" },
                 { data: "fecha_contratacion" },
-                { data: "tiempo_laborando" },
+                { data: "tiempo_laborando", searchable: false },
                 { data: "celular" },
 
             ],
