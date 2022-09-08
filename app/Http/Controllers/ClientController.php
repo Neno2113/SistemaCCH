@@ -22,7 +22,7 @@ class ClientController extends Controller
             'nombre_cliente' => 'required|unique:cliente',
             'codigo_cliente' => 'required',
          //   'rnc' => 'required',
-            'contacto_cliente_principal' => 'required|alpha',
+            'contacto_cliente_principal' => 'required',
             'telefono_1' => 'required',
             'celular_principal' => 'required'
          //   'email_principal' => 'required|email',
