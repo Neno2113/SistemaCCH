@@ -603,7 +603,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="no_evento_1">1</th>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="no_evento_1"></th>
                                         <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="evento_1"></td>
                                         <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="fecha_1"></td>
                                     </tr>
