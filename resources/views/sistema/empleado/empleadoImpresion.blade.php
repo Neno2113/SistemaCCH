@@ -1015,27 +1015,6 @@
 				</tbody>
 			</table>
 		</div>
-		<div>
-			<h2 class="session">Historial Laboral </h2>
-		</div>
-		<div id="details" class="clearfix">	
-			<table border="0" cellspacing="0" cellpadding="0" class="tabla-info" style="margin-right: 30px;">
-				<thead>
-					<tr>
-						<th>No</th>
-						<td>Evento</td>
-						<td>Fecha de Evento</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th></th>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 	</main>
 	<footer class="pagina1">
 		Fin de documento.

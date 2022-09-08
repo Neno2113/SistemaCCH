@@ -888,25 +888,6 @@ class EmpleadoController extends Controller
         ->get()
         ->first();
         $avatar = $user->avatar;
-/*
-        $historico_laboral = Historico::where('empleado_id', $id)
-            ->get();
-*/
-        $no_evento_1 = "1";
-        $evento_1 = "ENTRADA";
-        $fecha_evento_1 = "ayer";
-        /*
-        $no_evento_1 = "1";
-        $evento_1 = $historico_laboral[0]->evento;
-        $fecha_evento_1 = $historico_laboral[0]->fecha;
-        
-        $no_evento_2 = "2";
-        $evento_2 = $historico_laboral[1]->evento;
-        $fecha_evento_2 = $historico_laboral[1]->fecha;
-        $no_evento_3 = "3";
-        $evento_3 = $historico_laboral[2]->evento;
-        $fecha_evento_3 = $historico_laboral[2]->fecha;
-        */
 
         $nombre_esposa = $empleado_detalle->nombre_esposa;
         $telefono_esposa = $empleado_detalle->telefono_esposa;
@@ -970,7 +951,7 @@ class EmpleadoController extends Controller
         'tiempo_experiencia_1' => $tiempo_experiencia_1, 'empresa_experiencia_1' => $empresa_experiencia_1, 'supervisor_experiencia_1' => $supervisor_experiencia_1, 'telefono_experiencia_1' => $telefono_experiencia_1, 'cargo_experiencia_2' => $cargo_experiencia_2, 
         'tiempo_experiencia_2' => $tiempo_experiencia_2, 'empresa_experiencia_2' => $empresa_experiencia_2, 'supervisor_experiencia_2' => $supervisor_experiencia_2, 'telefono_experiencia_2' => $telefono_experiencia_2, 'primaria' => $primaria, 'bachiller' => $bachiller,
         'nivel_superior' => $nivel_superior, 'grado_titulo' => $grado_titulo, 'especialidad' => $especialidad, 'fecha_exp' => $fecha_exp, 'cargo' => $cargo, 'tipo_contrato' => $tipo_contrato, 'forma_pago' => $forma_pago, 'sueldo' => $sueldo, 'valor_hora' => $valor_hora,
-        'banco_tarjeta_cobro' => $banco_tarjeta_cobro, 'no_cuenta' => $no_cuenta, 'fecha_termino_contrato' => $fecha_termino_contrato, 'avatar' => $avatar, 'no_evento_1' => $no_evento_1, 'evento_1' => $evento_1, 'fecha_evento_1' => $fecha_evento_1
+        'banco_tarjeta_cobro' => $banco_tarjeta_cobro, 'no_cuenta' => $no_cuenta, 'fecha_termino_contrato' => $fecha_termino_contrato, 'avatar' => $avatar
     ];
     //    $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', compact('data'));
         $pdf = PDF::loadView('sistema.empleado.empleadoImpresion', $data);
