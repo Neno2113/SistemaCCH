@@ -234,13 +234,21 @@ class EmpleadoController extends Controller
             
             $empleado_detalle->save();
         
+            $historico_laboral = new Historico();
+            $historico_laboral->empleado_id = $empleado_id;
+            $historico_laboral->user_id = $user_id;
+            $historico_laboral->fecha = $fecha_ingreso;
+            $historico_laboral->evento = "INGRESO";
+
+            $historico_laboral->save();
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'user' => $user,
                 'empleado' => $empleado,
-                'empleado_detalle' => $empleado_detalle
+                'empleado_detalle' => $empleado_detalle,
+                'historico_laboral' => $historico_laboral
             ];
         }
 
@@ -254,6 +262,7 @@ class EmpleadoController extends Controller
         $empleado = Empleado::where('user_id', $id)
         ->get()
         ->first();
+    //CONTINUAR AQUI CON FECHA DE SALIDAD HISTORICO CRISTOBAL
 
         if(empty($user)){
             $data = [

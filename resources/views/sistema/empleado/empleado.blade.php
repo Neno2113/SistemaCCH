@@ -602,21 +602,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="eventos_laborales">
-                                    <tr>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="no_evento_1"></th>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="evento_1"></td>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="fecha_1"></td>
-                                    </tr>
-                                    <tr>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">2</th>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
-                                    </tr>
-                                    <tr>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">3</th>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;"></td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>

@@ -9,7 +9,7 @@ class Historico extends Model
     protected $table = 'historico_laboral';
 
     protected $fillable = [
-        'id', 'empleado_id', 'user_id', 'fecha', 'evento', 'no_evento'
+        'id', 'empleado_id', 'user_id', 'fecha', 'evento'
     ];
     
 }

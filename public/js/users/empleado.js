@@ -741,17 +741,13 @@ function mostrar(id_empleado) {
 
             for (let z = 0; z < cant_historicos; z++) {
                 var fila_historico =  "<tr>"+
-                "<th style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+data.historico[z].no_evento+"</th>"+
+                "<th style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+[z]+"</th>"+
                 "<td style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+data.historico[z].evento+"</td>"+
                 "<td style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+data.historico[z].fecha+"</td>"+
                 "</tr>";
     
                 $("#eventos_laborales").append(fila_historico);
                 }
-            
-    //        $("#no_evento_1").append(cant_historicos);
-    //        $("#evento_1").append(data.historico[0].evento);
-    //        $("#fecha_1").append(data.historico[0].fecha);
             
             
             $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);
