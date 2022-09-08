@@ -596,9 +596,9 @@
                             <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
                                 <thead>
                                     <tr>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">No.</th>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Evento</th>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Fecha de Evento</th>
+                                        <th>No.</th>
+                                        <th>Evento</th>
+                                        <th>Fecha de Evento</th>
                                     </tr>
                                 </thead>
                                 <tbody id="eventos_laborales">

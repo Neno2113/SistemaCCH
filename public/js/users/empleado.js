@@ -741,9 +741,9 @@ function mostrar(id_empleado) {
 
             for (let z = 0; z < cant_historicos; z++) {
                 var fila_historico =  "<tr>"+
-                "<th style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+[z+1]+"</th>"+
-                "<td style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+data.historico[z].evento+"</td>"+
-                "<td style='border: 1px solid black; padding: 3px 10px 3px 10px;'>"+data.historico[z].fecha+"</td>"+
+                "<th>"+[z+1]+"</th>"+
+                "<td>"+data.historico[z].evento+"</td>"+
+                "<td>"+data.historico[z].fecha+"</td>"+
                 "</tr>";
     
                 $("#eventos_laborales").append(fila_historico);
