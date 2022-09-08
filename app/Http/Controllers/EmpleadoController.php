@@ -449,8 +449,7 @@ class EmpleadoController extends Controller
             ->first();
 
             $historico = Historico::where('empleado_id', $id)
-            ->get()
-            ->first();
+            ->get();
 
             $data = [
                 'code' => 200,

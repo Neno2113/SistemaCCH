@@ -597,15 +597,15 @@
                                 <thead>
                                     <tr>
                                         <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">No.</th>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Fecha de Ingreso</th>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Fecha de Termino</th>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Evento</th>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">Fecha de Evento</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">1</th>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="fecha_ingreso_1"></td>
-                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="fecha_termino_1"></td>
+                                        <th style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="no_evento_1">1</th>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="evento_1"></td>
+                                        <td style="border: 1px solid black; padding: 3px 10px 3px 10px;" id="fecha_1"></td>
                                     </tr>
                                     <tr>
                                         <th style="border: 1px solid black; padding: 3px 10px 3px 10px;">2</th>

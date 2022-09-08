@@ -738,8 +738,9 @@ function mostrar(id_empleado) {
             $("#codigo").val(data.empleado.codigo).attr('readonly', false);
 
             
-            $("#fecha_ingreso_1").append(data.historico.fecha_ingreso);
-            $("#fecha_termino_1").append(data.historico.fecha_termino);
+            $("#no_evento_1").append(data.historico.no_evento);
+            $("#evento_1").append(data.historico.evento);
+            $("#fecha_1").append(data.historico.fecha);
             
             
             $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);
