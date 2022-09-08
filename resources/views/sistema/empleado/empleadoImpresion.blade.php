@@ -1029,9 +1029,9 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th>{{  }}</th>
-						<td>{{  }}</td>
-						<td>{{  }}</td>
+						<th></th>
+						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>
