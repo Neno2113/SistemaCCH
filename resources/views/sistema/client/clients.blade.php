@@ -85,6 +85,7 @@
                             -->
                       
                         </div>
+                        <br>
                         <hr>
                         <div class="row mt-2">
                             <div class="col-md-5 mt-2">
@@ -153,7 +154,7 @@
                     <h5>Dirección Cliente</h5>
                     <hr>
                     <div class="Datos">
-                        <div class="row mt-5">
+                        <div class="row mt-2">
                             <div class="col-md-6">
                                 <label for="" >Calle</label>
                                 <div class="input-group">
@@ -217,7 +218,7 @@
                                
                             </div>
                             <div class="col-md-6">
-                                <label for="" >Sitios cercanos</label>
+                                <label for="sitios_cercanos" >Referencia</label>
                                 <input type="text" name="sitios_cercanos" 
                                     id="sitios_cercanos" class="form-control">
                                
