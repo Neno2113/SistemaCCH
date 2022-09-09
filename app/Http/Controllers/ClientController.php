@@ -273,6 +273,9 @@ class ClientController extends Controller
             ->editColumn('redistribucion_tallas', function ($client) {
                 return ($client->redistribucion_tallas == 1 ? 'Si' : 'No');
             })
+            ->editColumn('notas', function ($client) {
+                return substr($client->notas, 0, 20);
+            }) 
             ->editColumn('condiciones_credito', function ($client) {
                 if($client->condiciones_credito == '60' ){
                     return $client->condiciones_credito . ' dias'; 
