@@ -346,6 +346,13 @@
         </form>
     </div>
 </div>
+<div class="row">
+    <div class="col-7" id="registroForm">
+        <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
+        class="far fa-save fa-lg"></i> Guardar</button>
+    </div>
+</div>
+
 {{-- </div> --}}
 
 <div class="card" id="listadoUsers">
