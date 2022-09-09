@@ -168,7 +168,7 @@ $(document).ready(function() {
                 "type": "POST"
             },
             dom: 'Bfrtip',
-            iDisplayLength: 5,
+            iDisplayLength: 20,
             buttons: [
                 'pageLength',
                 'copyHtml5',

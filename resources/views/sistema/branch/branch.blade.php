@@ -30,7 +30,7 @@
                     <th>Cliente</th>
                     {{-- <th>Codigo sucursal</th> --}}
                     <th>Sucursal</th>
-                    <th>Telefono suc.</th>
+                    <th>Tel. Sucursal</th>
                     <th>Ubicación</th>
 
                 </tr>
@@ -44,7 +44,7 @@
                     <th>Cliente</th>
                     {{-- <th>Codigo sucursal</th> --}}
                     <th>Sucursal</th>
-                    <th>Telefono suc.</th>
+                    <th>Tel. Sucursal</th>
                     <th>Ubicación</th>
                 </tr>
             </tfoot>
@@ -120,6 +120,37 @@
                                 </div>
                                 <input type="text"  id="telefono_sucursal" class="form-control"
                                     data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label for="contacto_cliente_sucursal" >Nombre Contacto *</label>
+                            <input type="text" name="contacto_cliente_sucursal" 
+                                id="contacto_cliente_sucursal" class="form-control">
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <label for="celular_sucursal">Celular Contacto *</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="text" id="celular_sucursal" 
+                                    class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="email_sucursal" >Email Contacto</label>
+                            <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                            </div>
+                            <input type="email" name="email_sucursal" placeholder="Email de Contacto"
+                                id="email_sucursal" class="form-control">
                             </div>
                         </div>
                     </div>

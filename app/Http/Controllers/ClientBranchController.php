@@ -123,7 +123,7 @@ class ClientBranchController extends Controller
             'id' => 'required',
             'client_id' => 'required',
             'nombre_sucursal' => 'required',
-            'telefono_sucursal' => 'required',
+        //    'telefono_sucursal' => 'required',
             'calle' => 'required',
             'provincia' => 'required'
         ]);
