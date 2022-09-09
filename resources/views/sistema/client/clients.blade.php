@@ -110,7 +110,7 @@
                                         class="form-control" readonly>
                                 </div>
                                 -->
-                                <div class="col-md-6">
+                                <div class="col-md-6 mt-2">
                                     <label for="autorizacion_credito_req">¿Acepta redistribucion de tallas?</label>
                                     <div class="form-group clearfix">
                                         <div class="icheck-primary d-inline">
