@@ -102,6 +102,9 @@ $(document).ready(function() {
     function limpiar() {
         $("#nombre_sucursal").val("").attr('readonly', false);
         $("#telefono_sucursal").val("").attr('readonly', false);
+        $("#contacto_cliente_sucursal").val("").attr('readonly', false);
+        $("#celular_sucursal").val("").attr('readonly', false);
+        $("#email_sucursal").val("").attr('readonly', false);
         $("#calle").val("").attr('readonly', false);
         $("#sector").val("").attr('readonly', false);
         $("#provincia").val("").trigger("change").attr('disabled', false);
