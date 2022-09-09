@@ -434,7 +434,7 @@ $(document).ready(function() {
                 "type": "POST"
             },
             dom: 'Bfrtip',
-            iDisplayLength: 5,
+            iDisplayLength: 20,
             buttons: [
             'pageLength',
             'copyHtml5',
@@ -454,12 +454,12 @@ $(document).ready(function() {
                 { data: "Expandir", orderable: false, searchable: false },
                 { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
-                { data: "nombre_cliente" },
-                { data: "rnc" },
+                { data: "nombre_cliente" }, 
                 { data: "contacto_cliente_principal" },
-                { data: "email_principal" },
-                { data: "condiciones_credito" },
-                { data: 'acepta_segundas' }
+                { data: "celular_principal" },
+                { data: "condiciones_credito", searchable: false },
+                { data: "notas" },
+                { data: 'redistribucion_tallas', searchable: false }
 
             ],
             order: [[2, 'asc']],

@@ -376,25 +376,25 @@
                     <th>Editar</th>
                     <th>Eliminar</th>
                     <th>Nombre Comercial</th>
-                    <th>RNC</th>
                     <th>Contacto</th>
-                    <th>Email</th>
+                    <th>Celular</th>
                     <th>Credito</th>
-                    <th>Segundas</th>
+                    <th>Notas</th>
+                    <th>Redistribucion</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
+                    <<th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     <th>Nombre Comercial</th>
-                    <th>RNC</th>
                     <th>Contacto</th>
-                    <th>Email</th>
+                    <th>Celular</th>
                     <th>Credito</th>
-                    <th>Segundas</th>
+                    <th>Notas</th>
+                    <th>Redistribucion</th>
                 </tr>
             </tfoot>
         </table>
