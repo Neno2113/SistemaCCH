@@ -20,11 +20,11 @@ class ClientController extends Controller
 
         $validar = $request->validate([
             'nombre_cliente' => 'required|unique:cliente',
-            'codigo_cliente' => 'required',
+            'codigo_cliente' => 'required'
          //   'rnc' => 'required',
-            'contacto_cliente_principal' => 'required',
-            'telefono_1' => 'required',
-            'celular_principal' => 'required'
+         //   'contacto_cliente_principal' => 'required',
+         //   'telefono_1' => 'required',
+         //   'celular_principal' => 'required'
          //   'email_principal' => 'required|email',
          //   'condiciones_credito' => 'required',
          //   'calle' => 'required',
