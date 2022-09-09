@@ -375,9 +375,8 @@
         <table id="clients" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
-                    <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th>Ver</th>
+                    <th>Opciones</th>
                     <th>Nombre Comercial</th>
                     <th>Contacto</th>
                     <th>Celular</th>
@@ -389,9 +388,8 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th>Ver</th>
+                    <th>Opciones</th>
                     <th>Nombre Comercial</th>
                     <th>Contacto</th>
                     <th>Celular</th>
