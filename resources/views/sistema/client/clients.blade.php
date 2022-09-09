@@ -344,7 +344,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-10" id="" style="margin-bottom: 10px;">
+    <div class="col-10" id="registroForm" style="margin-bottom: 10px;">
         <button class="btn btn-danger mt-2 float-right" id="btnCancelar"><i
         class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
         
