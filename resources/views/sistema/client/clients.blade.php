@@ -171,15 +171,6 @@
 
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12 mt-2">
-                                    <label for="">Nota</label>
-                                    <textarea name="notas" id="notas"  cols="30" rows="1"
-                                        class="form-control"></textarea>
-                                    <label for="notas" ></label>
-                                </div>
-                            </div>
                         </div> 
                         <br>
                         <hr>
