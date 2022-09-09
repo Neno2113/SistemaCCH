@@ -24,12 +24,12 @@ class ClientController extends Controller
          //   'rnc' => 'required',
             'contacto_cliente_principal' => 'required',
          //   'telefono_1' => 'required',
-            'celular_principal' => 'required'
+            'celular_principal' => 'required',
          //   'email_principal' => 'required|email',
          //   'condiciones_credito' => 'required',
-         //   'calle' => 'required',
+            'calle' => 'required',
         //    'sector' => 'required',
-        //    'provincia' => 'required'
+            'provincia' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -143,11 +143,11 @@ class ClientController extends Controller
             'id' => 'required',
             'nombre_cliente' => 'required',
             'contacto_cliente_principal' => 'required',
-            'telefono_1' => 'required',
-            'email_principal' => 'required|email',
-            'condiciones_credito' => 'required',
+        //    'telefono_1' => 'required',
+        //    'email_principal' => 'required|email',
+        //    'condiciones_credito' => 'required',
             'calle' => 'required',
-            'sector' => 'required',
+        //    'sector' => 'required',
             'provincia' => 'required'
         ]);
 
