@@ -428,7 +428,7 @@ $(document).ready(function() {
             }
             ],
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
+            //    { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre" },
                 { data: "departamento" },
