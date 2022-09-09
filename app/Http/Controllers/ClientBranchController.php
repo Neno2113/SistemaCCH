@@ -19,7 +19,7 @@ class ClientBranchController extends Controller
         $validar = $request->validate([
             'client_id' => 'required',
             'nombre_sucursal' => 'required|unique:cliente_sucursales',
-            'telefono_sucursal' => 'required',
+        //    'telefono_sucursal' => 'required',
             'calle' => 'required',
             'provincia' => 'required'
         ]);

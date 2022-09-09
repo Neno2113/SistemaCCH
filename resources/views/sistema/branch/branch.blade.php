@@ -31,7 +31,7 @@
                     {{-- <th>Codigo sucursal</th> --}}
                     <th>Sucursal</th>
                     <th>Telefono suc.</th>
-                    <th>Direccion</th>
+                    <th>Ubicación</th>
 
                 </tr>
             </thead>
@@ -45,7 +45,7 @@
                     {{-- <th>Codigo sucursal</th> --}}
                     <th>Sucursal</th>
                     <th>Telefono suc.</th>
-                    <th>Direccion</th>
+                    <th>Ubicación</th>
                 </tr>
             </tfoot>
         </table>
@@ -98,7 +98,7 @@
                 <form action="" id="BrachForm">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="Cliente">Cliente</label>
+                            <label for="Cliente">Cliente *</label>
                             <input type="hidden" name="id" id="id">
                             <select name="tags[]" id="clientes" class="form-control select2">
                                 <option value="" disabled>Selecciona o busca un cliente</option>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-4">
-                            <label for="nombre_sucursal">Nombre Sucursal</label>
+                            <label for="nombre_sucursal">Nombre Sucursal *</label>
                             <input type="text"  id="nombre_sucursal" class="form-control"
                                 placeholder="Puede ser el nombre mas la direccion">
                         </div>
@@ -127,7 +127,7 @@
                     <hr>
                     <div class="row mt-4">
                         <div class="col-md-4">
-                            <label for="calle">Calle</label>
+                            <label for="calle">Calle *</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="provincia">Provincia</label>
+                            <label for="provincia">Provincia *</label>
                             <select name="provincia" id="provincia" class="form-control select2" style="width:100%">
                                 <option value="" disabled>Provincia</option>
                                 <option>Santo Domingo</option>

@@ -24,14 +24,14 @@
                     <div class="Datos">
                         <div class="row mt-2">
                             <div class="col-md-4 mt-2">
-                                <label for="nombre_cliente">Codigo Cliente</label>
+                                <label for="nombre_cliente">Codigo Cliente *</label>
                                 <input type="text" name="codigo_cliente"
                                     id="codigo_cliente" class="form-control">
 
                             </div>
                             <input type="hidden" name="id" id="id" value="">
                             <div class="col-md-4 mt-2">
-                                <label for="nombre_cliente">Nombre Comercial</label>
+                                <label for="nombre_cliente">Nombre Comercial *</label>
                                 <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control">
 
                             </div>
@@ -89,13 +89,13 @@
                         <hr>
                         <div class="row mt-2">
                             <div class="col-md-4 mt-2">
-                                <label for="contacto_cliente" >Nombre Contacto</label>
+                                <label for="contacto_cliente" >Nombre Contacto *</label>
                                 <input type="text" name="contacto_cliente_principal" 
                                     id="contacto_cliente_principal" class="form-control">
                                
                             </div>
                             <div class="col-md-4 mt-2">
-                                <label for="celular_principal">Celular Contacto</label>
+                                <label for="celular_principal">Celular Contacto *</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
