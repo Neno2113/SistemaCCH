@@ -161,11 +161,29 @@
                                     <input type="text" name="redistribucion_tallas" id="redistribucion_tallas"
                                         class="form-control" readonly>
                                 </div>
-                            
+                                <div class="col-md-6 mt-2">
+                                    <label for="autorizacion_credito_req">¿Exige factura desglosada por tallas?(*):</label>
+                                    <div class="form-group clearfix">
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary5" name="r3" value="1">
+                                            <label for="radioPrimary5">
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            <input type="radio" id="radioPrimary6" name="r3" value="0" checked>
+                                            <label for="radioPrimary6">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="factura_desglosada_tallas" id="factura_desglosada_tallas"
+                                        class="form-control" readonly>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mt-2">
-                                    <label for="autorizacion_credito_req">¿Acepta segundas?</label>
+                                    <label for="autorizacion_credito_req">¿Acepta Segundas?</label>
                                     <div class="form-group clearfix">
                                         <div class="icheck-primary d-inline">
                                             <input type="radio" id="radioPrimary7" name="r4" value="1">
@@ -183,25 +201,6 @@
                                     <input type="text" name="acepta_segundas" id="acepta_segundas" class="form-control"
                                         readonly>
 
-                                </div>
-                                <div class="col-md-6 mt-2">
-                                    <label for="autorizacion_credito_req">Exige factura desglosada por tallas?(*):</label>
-                                    <div class="form-group clearfix">
-                                        <div class="icheck-primary d-inline">
-                                            <input type="radio" id="radioPrimary5" name="r3" value="1">
-                                            <label for="radioPrimary5">
-                                                Si
-                                            </label>
-                                        </div>
-                                        <div class="icheck-primary d-inline">
-                                            <input type="radio" id="radioPrimary6" name="r3" value="0" checked>
-                                            <label for="radioPrimary6">
-                                                No
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <input type="text" name="factura_desglosada_tallas" id="factura_desglosada_tallas"
-                                        class="form-control" readonly>
                                 </div>
                             </div>
                             <hr>

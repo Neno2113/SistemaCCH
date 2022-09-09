@@ -533,7 +533,7 @@ $(document).ready(function() {
 
     });
 
-    $("#provincia").change(function(){
+    $("#condiciones_credito").change(function(){
         $("#autorizaciones").show();
     });
 
