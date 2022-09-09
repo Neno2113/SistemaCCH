@@ -117,6 +117,9 @@ $(document).ready(function() {
             client_id : $("#clientes").val(),
             nombre_sucursal: $("#nombre_sucursal").val(),
             telefono_sucursal: $("#telefono_sucursal").val(),
+            contacto_cliente_sucursal: $("#contacto_cliente_sucursal").val(),
+            celular_sucursal: $("#celular_sucursal").val(),
+            email_sucursal: $("#email_sucursal").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
@@ -216,6 +219,9 @@ $(document).ready(function() {
             client_id : $("#clientes").val(),
             nombre_sucursal: $("#nombre_sucursal").val(),
             telefono_sucursal: $("#telefono_sucursal").val(),
+            contacto_cliente_sucursal: $("#contacto_cliente_sucursal").val(),
+            celular_sucursal: $("#celular_sucursal").val(),
+            email_sucursal: $("#email_sucursal").val(),
             calle: $("#calle").val(),
             sector: $("#sector").val(),
             provincia: $("#provincia").val(),
@@ -311,6 +317,9 @@ function mostrar(id_branch) {
             $("#clientes").val(data.branch.cliente_id).select2().trigger('change');
             $("#nombre_sucursal").val(data.branch.nombre_sucursal).attr("readonly", false);
             $("#telefono_sucursal").val(data.branch.telefono_sucursal).attr("readonly", false);
+            $("#contacto_cliente_sucursal").val(data.branch.contacto_cliente_sucursal).attr("readonly", false);
+            $("#celular_sucursal").val(data.branch.celular_sucursal).attr("readonly", false);
+            $("#email_sucursal").val(data.branch.email_sucursal).attr("readonly", false);
             $("#calle").val(data.branch.calle).attr("readonly", false);
             $("#sector").val(data.branch.sector).attr("readonly", false);
             $("#provincia").val(data.branch.provincia).trigger("change").attr("disabled", false);

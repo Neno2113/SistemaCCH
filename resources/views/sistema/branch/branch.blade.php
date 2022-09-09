@@ -127,13 +127,13 @@
                     <hr>
                     <div class="row mt-4">
                         <div class="col-md-4">
-                            <label for="contacto_cliente_sucursal" >Nombre Contacto *</label>
+                            <label for="contacto_cliente_sucursal" >Nombre Contacto</label>
                             <input type="text" name="contacto_cliente_sucursal" 
                                 id="contacto_cliente_sucursal" class="form-control">
                             
                         </div>
                         <div class="col-md-4">
-                            <label for="celular_sucursal">Celular Contacto *</label>
+                            <label for="celular_sucursal">Celular Contacto</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>

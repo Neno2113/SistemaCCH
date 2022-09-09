@@ -36,6 +36,9 @@ class ClientBranchController extends Controller
             $nombre_sucursal = $request->input('nombre_sucursal', true);
             $cliente_id = $request->input('client_id', true);
             $telefono_sucursal = $request->input('telefono_sucursal', true);
+            $contacto_cliente_sucursal = $request->input('contacto_cliente_sucursal', true);
+            $celular_sucursal = $request->input('celular_sucursal', true);
+            $email_sucursal = $request->input('email_sucursal', true);
             $calle = $request->input('calle', true);
             $sector = $request->input('sector', true);
             $provincia = $request->input('provincia', true);
@@ -49,6 +52,9 @@ class ClientBranchController extends Controller
             $client_branch->codigo_sucursal = $codigo_sucursal;
             $client_branch->nombre_sucursal = $nombre_sucursal;
             $client_branch->telefono_sucursal = $telefono_sucursal;
+            $client_branch->contacto_cliente_sucursal = $contacto_cliente_sucursal;
+            $client_branch->celular_sucursal = $celular_sucursal;
+            $client_branch->email_sucursal = $email_sucursal;
             $client_branch->calle = $calle;
             $client_branch->sector = $sector;
             $client_branch->provincia = $provincia;
@@ -140,6 +146,9 @@ class ClientBranchController extends Controller
             $nombre_sucursal = $request->input('nombre_sucursal', true);
             $cliente_id = $request->input('client_id', true);
             $telefono_sucursal = $request->input('telefono_sucursal', true);
+            $contacto_cliente_sucursal = $request->input('contacto_cliente_sucursal', true);
+            $celular_sucursal = $request->input('celular_sucursal', true);
+            $email_sucursal = $request->input('email_sucursal', true);
             $calle = $request->input('calle', true);
             $sector = $request->input('sector', true);
             $provincia = $request->input('provincia', true);
@@ -150,6 +159,9 @@ class ClientBranchController extends Controller
             $client_branch->cliente_id =  $cliente_id;
             $client_branch->nombre_sucursal = $nombre_sucursal;
             $client_branch->telefono_sucursal = $telefono_sucursal;
+            $client_branch->contacto_cliente_sucursal = $contacto_cliente_sucursal;
+            $client_branch->celular_sucursal = $celular_sucursal;
+            $client_branch->email_sucursal = $email_sucursal;
             $client_branch->calle = $calle;
             $client_branch->sector = $sector;
             $client_branch->provincia = $provincia;

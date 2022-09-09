@@ -9,7 +9,7 @@ class ClientBranch extends Model
     protected $table = 'cliente_sucursales';
 
     protected $fillable = [
-        'cliente_id','codigo_sucursal','nombre_sucursal','telefono_sucursal','direccion'
+        'cliente_id','codigo_sucursal','nombre_sucursal','telefono_sucursal', 'contacto_cliente_sucursal', 'celular_sucursal', 'email_sucursal','direccion'
     ];
 
     public function cliente(){
