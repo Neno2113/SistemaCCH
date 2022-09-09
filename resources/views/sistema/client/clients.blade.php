@@ -387,7 +387,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <<th></th>
+                    <th></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     <th>Nombre Comercial</th>
