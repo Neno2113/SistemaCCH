@@ -724,6 +724,7 @@ function ver(id_client) {
 
         $("#listadoUsers").hide();
         $("#registroForm").show();
+        $("#datosForm").show();
         $("#registroFormBotones").show();
         $("#btnCancelar").show();
         $("#btnAgregar").hide();
@@ -759,6 +760,7 @@ function ver(id_client) {
         }
 
         // console.log(typeof data.client.autorizacion_credito_req);
+        $("#codigo_cliente").val(data.client.codigo_cliente).attr('readonly', true);
         $("#nombre_cliente").val(data.client.nombre_cliente).attr('readonly', true);
         $("#rnc").val(data.client.rnc).attr('readonly', true);
         $("#calle").val(data.client.calle).attr('readonly', true);
