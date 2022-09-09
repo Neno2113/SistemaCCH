@@ -513,6 +513,7 @@ $(document).ready(function() {
                     tabla.ajax.reload();
                     $("#listadoUsers").show();
                     $("#registroForm").hide();
+                    $("#datosForm").hide();
                     $("#registroFormBotones").hide();
                     $("#btnCancelar").hide();
                     $("#btn-edit").hide();
