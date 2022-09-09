@@ -346,9 +346,10 @@
     </div>
 </div>
 <div class="row">
-    <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
-    class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
-    <div class="col-7" id="">
+    <div class="col-10" id="" style="margin-bottom: 10px;">
+        <button class="btn btn-danger mt-2 float-right" id="btnCancelar"><i
+        class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
+        &nbsp;&nbsp;
         <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
         class="far fa-save fa-lg"></i> Guardar</button>
     </div>
