@@ -513,6 +513,7 @@ $(document).ready(function() {
                     tabla.ajax.reload();
                     $("#listadoUsers").show();
                     $("#registroForm").hide();
+                    $("#registroFormBotones").hide();
                     $("#btnCancelar").hide();
                     $("#btn-edit").hide();
                     $("#btn-guardar").show();
@@ -543,6 +544,7 @@ $(document).ready(function() {
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#registroFormBotones").show();
             $("#datosForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
@@ -551,6 +553,7 @@ $(document).ready(function() {
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#registroFormBotones").hide();
             $("#datosForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
@@ -590,6 +593,7 @@ function mostrar(id_client) {
         } else { 
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#registroFormBotones").show();
             $("#datosForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
@@ -720,6 +724,7 @@ function ver(id_client) {
 
         $("#listadoUsers").hide();
         $("#registroForm").show();
+        $("#registroFormBotones").show();
         $("#btnCancelar").show();
         $("#btnAgregar").hide();
         $("#btn-guardar").hide();
