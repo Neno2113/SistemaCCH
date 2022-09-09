@@ -348,7 +348,7 @@
         <button class="btn btn-danger mt-2 float-right" id="btnCancelar"><i
         class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
         
-        <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
+        <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right" style="margin-right:20px;"><i
         class="far fa-save fa-lg"></i> Guardar</button> &nbsp;&nbsp;&nbsp;&nbsp;
     </div>
 </div>
