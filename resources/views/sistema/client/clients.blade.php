@@ -86,38 +86,6 @@
                       
                         </div>
                         <br>
-                        <hr>
-                        <div class="row mt-2">
-                            <div class="col-md-4 mt-2">
-                                <label for="contacto_cliente" >Nombre Contacto *</label>
-                                <input type="text" name="contacto_cliente_principal" 
-                                    id="contacto_cliente_principal" class="form-control">
-                               
-                            </div>
-                            <div class="col-md-4 mt-2">
-                                <label for="celular_principal">Celular Contacto *</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    </div>
-                                    <input type="text" id="celular_principal" 
-                                        class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
-
-                                </div>
-                            </div>
-                            <div class="col-md-4 mt-2">
-                                <label for="email_principal" >Email Contacto</label>
-                                <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                </div>
-                                <input type="email" name="email_principal" placeholder="Email de Contacto"
-                                    id="email_principal" class="form-control">
-                               
-                                </div>
-                            </div>
-                        </div>
-                        <br>
                         <hr>   
                         <div id="autorizaciones">
                             <div class="row" id="radios">
@@ -212,7 +180,50 @@
                                     <label for="notas" ></label>
                                 </div>
                             </div>
-                        </div>  
+                        </div> 
+                        <br>
+                        <hr>
+                        <div class="row mt-2">
+                            <div class="col-md-4 mt-2">
+                                <label for="contacto_cliente" >Nombre Contacto *</label>
+                                <input type="text" name="contacto_cliente_principal" 
+                                    id="contacto_cliente_principal" class="form-control">
+                               
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <label for="celular_principal">Celular Contacto *</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" id="celular_principal" 
+                                        class="form-control " data-inputmask='"mask": "(999) 999-9999"' data-mask>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <label for="email_principal" >Email Contacto</label>
+                                <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                </div>
+                                <input type="email" name="email_principal" placeholder="Email de Contacto"
+                                    id="email_principal" class="form-control">
+                               
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 mt-2">
+                                <label for="">Nota</label>
+                                <textarea name="notas" id="notas"  cols="30" rows="1"
+                                    class="form-control"></textarea>
+                                <label for="notas" ></label>
+                            </div>
+                        </div>
+ 
                         <div class="row mt-2">
 
                         </div>
@@ -248,7 +259,7 @@
                     <div class="Datos">
                         <div class="row mt-2">
                             <div class="col-md-6">
-                                <label for="" >Calle</label>
+                                <label for="" >Calle *</label>
                                 <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
@@ -271,7 +282,7 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-6">
-                                <label for="" >Provincia</label>
+                                <label for="" >Provincia *</label>
                                 <select name="provincia" id="provincia" class="form-control select2">
                                     <option value="" disabled>Provincia</option>
                                     <option>Santo Domingo</option>
