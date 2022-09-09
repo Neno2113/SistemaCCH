@@ -24,9 +24,9 @@
         <table id="branches" class="table  table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
-                    <th></th>
+                    {{-- <th></th> --}}
                     {{-- <th>Ver</th> --}}
-                    <th>Actions</th>
+                    <th>Opciones</th>
                     <th>Cliente</th>
                     {{-- <th>Codigo sucursal</th> --}}
                     <th>Sucursal</th>
@@ -38,7 +38,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
+                    {{-- <th></th> --}}
                     {{-- <th>Ver</th> --}}
                     <th>Actions</th>
                     <th>Cliente</th>

@@ -643,7 +643,7 @@
         <table id="clients" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
-                    <th></th>
+                <!--    <th></th> -->
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Departamento</th>
@@ -657,7 +657,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
+                <!--     <th></th> -->
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Departamento</th>
