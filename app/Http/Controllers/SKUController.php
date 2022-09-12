@@ -50,12 +50,6 @@ class SKUController extends Controller
         return DataTables::eloquent($skus)
             ->addColumn('Editar', function ($sku) {
                 $producto = $sku->producto_id;
-                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
-                    $num_corte = $corte->numero_corte;
-                } else {
-                    $num_corte = 'N/A';
-                }
-                
                 if(isset($producto)){
                 //    return '<button id="btnEdit" onclick="mostrar(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
                         return '<p>'.$num_corte.'</p>';
@@ -65,6 +59,15 @@ class SKUController extends Controller
             })
             ->addColumn('Expandir', function ($sku) {
                 return "";
+            })
+            ->editColumn('corte', function ($empleado) {
+                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
+                    $num_corte = $corte->numero_corte;
+                    
+                } else {
+                    $num_corte = '';
+                }
+                return $num_corte;
             })
             ->rawColumns(['Editar'])
             ->make(true);

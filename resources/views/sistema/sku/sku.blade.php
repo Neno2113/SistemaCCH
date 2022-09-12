@@ -77,6 +77,7 @@
                         <th>Opcion</th>
                         <th>SKU</th>
                         <th>Producto</th>
+                        <th>Corte</th>
                         <th>Talla</th>
 
                     </tr>
@@ -88,6 +89,7 @@
                         <th>Opcion</th>
                         <th>SKU</th>
                         <th>Producto</th>
+                        <th>Corte</th>
                         <th>Talla</th>
                     </tr>
                 </tfoot>

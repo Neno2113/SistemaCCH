@@ -102,6 +102,7 @@ $(document).ready(function() {
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "sku" },
                 { data: "referencia_producto" },
+                { data: "corte" },
                 { data: "talla" },
 
             ],
