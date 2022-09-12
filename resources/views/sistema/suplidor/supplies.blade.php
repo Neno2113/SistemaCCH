@@ -432,7 +432,7 @@
                           
                         </div>
                         <div class="col-md-4">
-                            <label for="">Referencas cercanas</label>
+                            <label for="">Referencia</label>
                             <input type="text"  name="sitios_cercanos"
                                 id="sitios_cercanos" class="form-control">
                           
