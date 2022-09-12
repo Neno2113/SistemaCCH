@@ -107,7 +107,7 @@ $(document).ready(function() {
             ],
             order: [[3, 'desc']],
             rowGroup: {
-                dataSrc: ''
+                dataSrc: 'referencia_producto'
             }
         });
     }
