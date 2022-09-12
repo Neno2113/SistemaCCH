@@ -93,13 +93,13 @@ class SKUController extends Controller
             ->editColumn('talla', function ($sku){
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
-                if($product = Product::where('id', $producto)->get()->first()) {
-                    $genero = $product->genero;   
+            //    if($product = Product::where('id', $producto)->get()->first()) {
+            //        $genero = $product->genero;   
                 //    $mujer_plus = Str::substr($referencia, 3, 4);
 
                 //    return $mujer_plus;
                     
-                }
+            //    }
              })
         //    ->rawColumns(['Editar', 'Corte', 'Temporada', 'Marcada'])
             ->rawColumns(['Corte', 'Temporada', 'Marcada'])
