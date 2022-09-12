@@ -15,15 +15,15 @@ class SupplierController extends Controller
 
         $validar = $request->validate([
             'nombre' => 'required|unique:suplidor',
-            'rnc' => 'required',
+        //    'rnc' => 'required',
             'codigo_suplidor' => 'required',
             'calle' => 'required',
-            'provincia' => 'required',
-            'contacto_suplidor' => 'required',
-            'telefono_1' => 'required',
-            'email' => 'required|email',
-            'terminos_de_pago' => 'required',
-            'tipo_suplidor' => 'required'
+            'pais' => 'required'
+        //    'contacto_suplidor' => 'required',
+        //    'telefono_1' => 'required',
+        //    'email' => 'required|email',
+        //    'terminos_de_pago' => 'required',
+        //    'tipo_suplidor' => 'required'
         ]);
 
         if (empty($validar)) {
@@ -123,13 +123,13 @@ class SupplierController extends Controller
     {
         $validar = $request->validate([
             'nombre' => 'required',
-            'rnc' => 'required',
+        //    'rnc' => 'required',
             'calle' => 'required',
-            'provincia' => 'required',
-            'contacto_suplidor' => 'required',
-            'telefono_1' => 'required',
-            'email' => 'required|email',
-            'terminos_de_pago' => 'required'
+            'pais' => 'required'
+        //    'contacto_suplidor' => 'required',
+        //    'telefono_1' => 'required',
+        //    'email' => 'required|email',
+        //    'terminos_de_pago' => 'required'
         ]);
 
         if (empty($validar)) {
