@@ -165,7 +165,7 @@ $(document).ready(function() {
                 "type": "POST"
             },
             dom: 'Bfrtip',
-            iDisplayLength: 5,
+            iDisplayLength: 20,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -188,10 +188,10 @@ $(document).ready(function() {
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "nombre" },
                 { data: "tipo_suplidor" },
-                { data: "rnc" },
                 { data: "contacto_suplidor" },
+                { data: "celular" },
                 // { data: "email" },
-                { data: "terminos_de_pago" },
+                { data: "telefono_1" },
             ],
             order: [[4, 'asc']],
             rowGroup: {

@@ -490,7 +490,7 @@
     </div>
     <div class="card-body">
         @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Suplidores')->where('ver', 1)->first())
-        <table id="suppliers" class="table table-hover table-bordered datatables text-sm" style="width:100%">
+        <table id="suppliers" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
                     <th></th>
@@ -498,10 +498,10 @@
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Tipo</th>
-                    <th>RNC</th>
                     <th>Contacto</th>
+                    <th>Celular</th>
                     {{-- <th>Email</th> --}}
-                    <th>Terminos de pago</th>
+                    <th>Telefono</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -512,10 +512,10 @@
                     <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Tipo</th>
-                    <th>RNC</th>
                     <th>Contacto</th>
+                    <th>Celular</th>
                     {{-- <th>Email</th> --}}
-                    <th>Terminos de pago</th>
+                    <th>Telefono</th>
                 </tr>
             </tfoot>
         </table>
