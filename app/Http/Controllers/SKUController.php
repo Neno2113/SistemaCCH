@@ -60,6 +60,7 @@ class SKUController extends Controller
                 return "";
             })
             ->editColumn('corte', function ($sku) {
+                $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
                     $num_corte = $corte->numero_corte;   
                 } else {
