@@ -54,7 +54,7 @@ class SKUController extends Controller
                 $num_corte = $corte->numero_corte;
                 if(isset($producto)){
                 //    return '<button id="btnEdit" onclick="mostrar(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
-                        return '<p>'.$producto.'</p>';
+                        return '<p>'.$num_corte.'</p>';
                 }else{
                     return "";
                 }
