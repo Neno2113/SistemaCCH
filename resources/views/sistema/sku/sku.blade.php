@@ -62,7 +62,7 @@
                 @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Sku')->where('agregar', 1)->first() )
                 <button class="btn btn-primary float-left" id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
                 @endif
-                <h4 class="text-white text-center">Listado de skus</h4>
+                <h4 class="text-white text-center">Listado de SKUs</h4>
             </div>
         </div>
 
