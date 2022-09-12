@@ -51,7 +51,8 @@ class SKUController extends Controller
                 $producto = $sku->producto_id;
                 $corte = Corte::where('producto_id', $producto)->get()->first();
                 if(isset($producto)){
-                    return '<button id="btnEdit" onclick="mostrar(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
+                //    return '<button id="btnEdit" onclick="mostrar(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
+                    return '<p>' . $corte->numero_corte . '</p>';
                 }else{
                     return "";
                 }
