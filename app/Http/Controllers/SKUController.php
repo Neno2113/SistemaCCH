@@ -45,13 +45,17 @@ class SKUController extends Controller
 
     public function skus()
     {
-    //    $skus = SKU::query()->where('referencia_producto', '<>', '');
-        $skus = SKU::query()->where('producto_id', '=', 161);
+        $skus = SKU::query()->where('referencia_producto', '<>', '');
+    //    $skus = SKU::query()->where('producto_id', '=', 161);
         return DataTables::eloquent($skus)
             ->addColumn('Editar', function ($sku) {
                 $producto = $sku->producto_id;
-                $corte = Corte::where('producto_id', $producto)->get()->first();
-                $num_corte = $corte->numero_corte;
+                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
+                    $num_corte = $corte->numero_corte;
+                } else {
+                    $num_corte = 'N/A';
+                }
+                
                 if(isset($producto)){
                 //    return '<button id="btnEdit" onclick="mostrar(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
                         return '<p>'.$num_corte.'</p>';
