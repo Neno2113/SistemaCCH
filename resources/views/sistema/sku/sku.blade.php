@@ -73,8 +73,8 @@
             <table id="skus" class="table table-striped table-bordered datatables">
                 <thead>
                     <tr>
-                    <!--    <th></th> -->
-                        <th>Opcion</th>
+                    <!--    <th></th> --> 
+                    <!--    <th>Opcion</th> -->
                         <th>SKU</th>
                         <th>Producto</th>
                         <th>Corte</th>
@@ -88,7 +88,7 @@
                 <tfoot>
                     <tr>
                     <!--    <th></th> -->
-                        <th>Opcion</th>
+                    <!--    <th>Opcion</th> -->
                         <th>SKU</th>
                         <th>Producto</th>
                         <th>Corte</th>
