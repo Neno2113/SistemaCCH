@@ -82,7 +82,7 @@
                     <hr><br>
                     <div class="row mt-1">
                         <div class="col-md-3 mt-3">
-                            <label for="contacto_suplidor">Contacto suplidor</label>
+                            <label for="contacto_suplidor">Contacto Suplidor</label>
                             <input type="text" name="contacto_suplidor" id="contacto_suplidor" class="form-control">
                         </div>
                         <div class="col-md-3 mt-3">
@@ -481,7 +481,7 @@
         <table id="suppliers" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
-                    <th></th>
+                 <!--   <th></th> -->
                     <th>Ver</th>
                     <th>Opciones</th>
                     <th>Nombre</th>
@@ -495,7 +495,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
+                <!--    <th></th> -->
                     <th>Ver</th>
                     <th>Opciones</th>
                     <th>Nombre</th>

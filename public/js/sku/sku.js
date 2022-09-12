@@ -98,7 +98,7 @@ $(document).ready(function() {
                 ],
             ajax: "api/skus",
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
+            //    { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar" },
                 { data: "sku" },
                 { data: "referencia_producto", searchable: false },
