@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SKU;
+use App\Corte;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -48,6 +49,7 @@ class SKUController extends Controller
         return DataTables::eloquent($skus)
             ->addColumn('Editar', function ($sku) {
                 $producto = $sku->producto_id;
+                $corte = Corte::where('producto_id', $producto)->get()->first();
                 if(isset($producto)){
                     return '<button id="btnEdit" onclick="mostrar(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
                 }else{
