@@ -53,10 +53,7 @@ class SKUController extends Controller
                 }else{
                     return "";
                 }
-
-
             })
-
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
