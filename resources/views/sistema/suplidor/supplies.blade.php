@@ -24,12 +24,12 @@
                     <div class="row ">
                         <input type="hidden" name="id" id="id" value="">
                         <div class="col-md-4 mt-1">
-                            <label for="nombre">Codigo Suplidor</label>
+                            <label for="nombre">Codigo Suplidor *</label>
                             <input type="text" name="codigo_suplidor" id="codigo_suplidor" class="form-control">
 
                         </div>
                         <div class="col-md-4 mt-1">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Nombre Comercial *</label>
                             <input type="text" name="nombre" id="nombre" class="form-control">
 
                         </div>
@@ -44,11 +44,6 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-3 mt-3">
-                            <label for="contacto_suplidor">Contacto suplidor</label>
-                            <input type="text" name="contacto_suplidor" id="contacto_suplidor" class="form-control">
-
-                        </div>
-                        <div class="col-md-3 mt-3">
                             <label for="telefono_1">Telefono 1</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -59,16 +54,13 @@
 
                             </div>
                         </div>
+                    </div>
+                    <br>
+                    <hr><br>
+                    <div class="row mt-1">
                         <div class="col-md-3 mt-3">
-                            <label for="telefono_2">Telefono 2</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                </div>
-                                <input type="text" id="telefono_2" class="form-control"
-                                    data-inputmask='"mask": "(99[9]) 999[9]-9999[9][-99]"' data-mask>
-
-                            </div>
+                            <label for="contacto_suplidor">Contacto suplidor</label>
+                            <input type="text" name="contacto_suplidor" id="contacto_suplidor" class="form-control">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label for="celular">Celular</label>
