@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SKU;
 use App\Corte;
+use App\Product;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
