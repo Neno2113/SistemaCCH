@@ -45,7 +45,8 @@ class SKUController extends Controller
 
     public function skus()
     {
-        $skus = SKU::query()->where('referencia_producto', '<>', '');
+    //    $skus = SKU::query()->where('referencia_producto', '<>', '');
+        $skus = SKU::query()->where('producto_id', '==', '161');
         return DataTables::eloquent($skus)
             ->addColumn('Editar', function ($sku) {
                 $producto = $sku->producto_id;
