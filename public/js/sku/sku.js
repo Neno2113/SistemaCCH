@@ -80,7 +80,7 @@ $(document).ready(function() {
             serverSide: true,
             // responsive: true,
             dom: 'Bfrtip',
-            // iDisplayLength: 20,
+            iDisplayLength: 20,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -107,7 +107,7 @@ $(document).ready(function() {
             ],
             order: [[3, 'desc']],
         /*    rowGroup: {
-                dataSrc: ''
+                dataSrc: 'referencia_producto'
             } */
         });
     }
