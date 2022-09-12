@@ -106,9 +106,9 @@ $(document).ready(function() {
 
             ],
             order: [[3, 'desc']],
-            rowGroup: {
+        /*    rowGroup: {
                 dataSrc: ''
-            }
+            } */
         });
     }
 
