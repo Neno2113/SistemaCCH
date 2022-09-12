@@ -77,7 +77,16 @@ class SKUController extends Controller
                 }
                 return $fecha_corte;
             })
-            ->rawColumns(['Editar', 'Corte', 'Temporada'])
+            ->addColumn('Marcada', function ($sku) {
+                $producto = $sku->producto_id;
+                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
+                    $marcada = $corte->no_marcada;   
+                } else {
+                    $marcada = '';
+                }
+                return $marcada;
+            })
+            ->rawColumns(['Editar', 'Corte', 'Temporada', 'Marcada'])
             ->make(true);
     }
 
