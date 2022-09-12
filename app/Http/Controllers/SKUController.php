@@ -46,7 +46,7 @@ class SKUController extends Controller
     {
         $skus = SKU::query()->where('referencia_producto', '<>', '');
         return DataTables::eloquent($skus)
-        /*
+        /
             ->addColumn('Editar', function ($sku) {
                 $producto = $sku->producto_id;
                 if(isset($producto)){
@@ -61,7 +61,7 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
-            ->rawColumns(['Editar']) */
+            ->rawColumns(['Editar'])
             ->make(true);
     }
 
