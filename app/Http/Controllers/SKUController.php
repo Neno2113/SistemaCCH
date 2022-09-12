@@ -59,7 +59,7 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
-            ->editColumn('corte', function ($empleado) {
+            ->editColumn('corte', function ($sku) {
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
                     $num_corte = $corte->numero_corte;   
                 } else {
