@@ -99,16 +99,16 @@ $(document).ready(function() {
             ajax: "api/skus",
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
+            //    { data: "Editar", orderable: false, searchable: false },
                 { data: "sku" },
                 { data: "referencia_producto" },
                 { data: "talla" },
 
             ],
             order: [[3, 'desc']],
-            rowGroup: {
+        /*    rowGroup: {
                 dataSrc: 'referencia_producto'
-            }
+            } */
         });
     }
 
