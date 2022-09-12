@@ -9,6 +9,7 @@ use App\Product;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class SKUController extends Controller
 {
@@ -73,7 +74,7 @@ class SKUController extends Controller
             })
             ->addColumn('Temporada', function ($sku) {
                 $producto = $sku->producto_id;
-                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
+                if($corte = Product::where('producto_id', $producto)->get()->first()) {
                     $fecha_corte = $corte->fecha_corte;   
                 } else {
                     $fecha_corte = '';
@@ -89,6 +90,17 @@ class SKUController extends Controller
                 }
                 return $marcada;
             })
+            ->editColumn('talla', function ($sku){
+                $producto = $sku->producto_id;
+                $referencia = $sku->referencia_producto;
+                if($product = Product::where('id', $producto)->get()->first()) {
+                    $genero = $product->genero;   
+                    $mujer_plus = Str::substr($referencia, 3, 4);
+
+                    return $mujer_plus;
+                    
+                }
+             })
         //    ->rawColumns(['Editar', 'Corte', 'Temporada', 'Marcada'])
             ->rawColumns(['Corte', 'Temporada', 'Marcada'])
             ->make(true);
