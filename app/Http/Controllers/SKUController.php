@@ -95,7 +95,9 @@ class SKUController extends Controller
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 2, 1);
-
+                    $min_talla = $product->min;   
+                    $max_talla = $product->max;   
+                    
                     if ($genero == "2") {
                         if ($mujer_plus == 7) {
                             $a = '12W';
@@ -151,6 +153,60 @@ class SKUController extends Controller
                             $j = '44';
                             $k = '46';
                     }
+
+                    if ($min_talla == 'a') {
+                        $min_talla = $a;
+                    } else if ($min_talla == 'b') {
+                        $min_talla = $b;
+                    } else if ($min_talla == 'c') {
+                        $min_talla = $c;
+                    } else if ($min_talla == 'd') {
+                        $min_talla = $d;
+                    } else if ($min_talla == 'e') {
+                        $min_talla = $e;
+                    } else if ($min_talla == 'f') {
+                        $min_talla = $f;
+                    } else if ($min_talla == 'g') {
+                        $min_talla = $g;
+                    } else if ($min_talla == 'h') {
+                        $min_talla = $h;
+                    } else if ($min_talla == 'i') {
+                        $min_talla = $i;
+                    } else if ($min_talla == 'j') {
+                        $min_talla = $j;
+                    } else if ($min_talla == 'k') {
+                        $min_talla = $k;
+                    } else if ($min_talla == 'l') {
+                        $min_talla = $l;
+                    } 
+
+                    if ($max_talla == 'a') {
+                        $max_talla = $a;
+                    } else if ($max_talla == 'b') {
+                        $max_talla = $b;
+                    } else if ($max_talla == 'c') {
+                        $max_talla = $c;
+                    } else if ($max_talla == 'd') {
+                        $max_talla = $d;
+                    } else if ($max_talla == 'e') {
+                        $max_talla = $e;
+                    } else if ($max_talla == 'f') {
+                        $max_talla = $f;
+                    } else if ($max_talla == 'g') {
+                        $max_talla = $g;
+                    } else if ($max_talla == 'h') {
+                        $max_talla = $h;
+                    } else if ($max_talla == 'i') {
+                        $max_talla = $i;
+                    } else if ($max_talla == 'j') {
+                        $max_talla = $j;
+                    } else if ($max_talla == 'k') {
+                        $max_talla = $k;
+                    } else if ($max_talla == 'l') {
+                        $max_talla = $l;
+                    } 
+
+                    return $min_talla. ' '.$max_talla;
                     
                 }
              })
