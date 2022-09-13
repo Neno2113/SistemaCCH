@@ -80,7 +80,6 @@ class SKUController extends Controller
                 }
                 return $fecha_corte;
             })
-            
             ->addColumn('Marcada', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
@@ -95,10 +94,63 @@ class SKUController extends Controller
                 $referencia = $sku->referencia_producto;
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $genero = $product->genero;   
-                //    $mujer_plus = Str::substr($referencia, 3, 4);
-                    return substr($referencia, 3, 4);
+                    $mujer_plus = substr($referencia, 2, 1);
 
-                //    return $mujer_plus;
+                    if ($genero == "2") {
+                        if ($mujer_plus == 7) {
+                            $a = '12W';
+                            $b = '14W';
+                            $c = '16W';
+                            $d = '18W';
+                            $e = '20W';
+                            $f = '22W';
+                            $g = '24W';
+                            $h = '26W';
+                        } else {
+                            $a = '0/0';
+                            $b = '1/2';
+                            $c = '3/4';
+                            $d = '5/6';
+                            $e = '7/8';
+                            $f = '9/10';
+                            $g = '11/12';
+                            $h = '13/14';
+                            $i = '15/16';
+                            $j = '17/18';
+                            $k = '19/20';
+                            $l = '21/22';
+                        }
+                    } else if ($genero == "3") {
+                            $a = '2';
+                            $b = '4';
+                            $c = '6';
+                            $d = '8';
+                            $e = '10';
+                            $f = '12';
+                            $g = '14';
+                            $h = '16';
+                    } else if ($genero == "4") {
+                            $a = '2';
+                            $b = '4';
+                            $c = '6';
+                            $d = '8';
+                            $e = '10';
+                            $f = '12';
+                            $g = '14';
+                            $h = '16';
+                    } else if ($genero == "1") {
+                            $a = '28';
+                            $b = '29';
+                            $c = '30';
+                            $d = '32';
+                            $e = '34';
+                            $f = '36';
+                            $g = '38';
+                            $h = '40';
+                            $i = '42';
+                            $j = '44';
+                            $k = '46';
+                    }
                     
                 }
              })
