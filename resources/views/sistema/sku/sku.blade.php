@@ -78,8 +78,8 @@
                         <th>SKU</th>
                         <th>Producto</th>
                          <th>Corte</th>
-                        <th>Fecha</th>
-                    <!--    <th>Marcada</th>
+                    <!--    <th>Fecha</th>
+                        <th>Marcada</th>
                         <th>Talla</th> -->
 
                     </tr>
@@ -92,8 +92,8 @@
                         <th>SKU</th>
                         <th>Producto</th>
                         <th>Corte</th>
-                        <th>Fecha</th>
-                    <!--    <th>Marcada</th>
+                    <!--     <th>Fecha</th>
+                       <th>Marcada</th>
                         <th>Talla</th> -->
                     </tr>
                 </tfoot>
