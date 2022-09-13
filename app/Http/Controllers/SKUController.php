@@ -96,6 +96,7 @@ class SKUController extends Controller
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $genero = $product->genero;   
                 //    $mujer_plus = Str::substr($referencia, 3, 4);
+                    return substr($referencia, 3, 4);
 
                 //    return $mujer_plus;
                     
