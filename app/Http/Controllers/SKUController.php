@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SKU;
 use App\Corte;
-// use App\Product;
+use App\Product;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -62,7 +62,6 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
-            /*
             ->addColumn('Corte', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
@@ -81,6 +80,7 @@ class SKUController extends Controller
                 }
                 return $fecha_corte;
             })
+            /*
             ->addColumn('Marcada', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
@@ -101,7 +101,7 @@ class SKUController extends Controller
                     
             //    }
         //     })
-        //    ->rawColumns(['Editar'])
+            ->rawColumns(['Corte', 'Fecha'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
