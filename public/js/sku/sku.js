@@ -99,7 +99,7 @@ $(document).ready(function() {
             ajax: "api/skus",
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
+            //    { data: "Editar", orderable: false, searchable: false },
                 { data: "sku" },
                 { data: "referencia_producto" },
             /*    { data: "Corte", orderable: true, searchable: true },

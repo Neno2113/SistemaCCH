@@ -49,6 +49,7 @@ class SKUController extends Controller
         $skus = SKU::query()->where('referencia_producto', '<>', '');
     //    $skus = SKU::query()->where('producto_id', '=', 161);
         return DataTables::eloquent($skus)
+            /*
             ->addColumn('Editar', function ($sku) {
                 $producto = $sku->producto_id;
                 if(isset($producto)){
@@ -57,6 +58,7 @@ class SKUController extends Controller
                     return "";
                 }
             })
+            */
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
@@ -99,7 +101,7 @@ class SKUController extends Controller
                     
             //    }
         //     })
-            ->rawColumns(['Editar'])
+        //    ->rawColumns(['Editar'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
