@@ -98,7 +98,7 @@ class SKUController extends Controller
                     
             //    }
         //     })
-            ->rawColumns(['Editar', 'Corte', 'Temporada', 'Marcada'])
+            ->rawColumns(['Editar', 'Corte', 'Fecha', 'Marcada'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
