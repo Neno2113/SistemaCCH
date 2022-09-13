@@ -91,15 +91,15 @@ class SKUController extends Controller
                 return $marcada;
             })
             ->editColumn('talla', function ($sku) {
-             //   $producto = $sku->producto_id;
-            //    $referencia = $sku->referencia_producto;
-            //    if($product = Product::where('id', $producto)->get()->first()) {
-            //        $genero = $product->genero;   
+                $producto = $sku->producto_id;
+                $referencia = $sku->referencia_producto;
+                if($product = Product::where('id', $producto)->get()->first()) {
+                    $genero = $product->genero;   
                 //    $mujer_plus = Str::substr($referencia, 3, 4);
 
                 //    return $mujer_plus;
                     
-            //    }
+                }
              })
             ->rawColumns(['Corte', 'Fecha', 'Marcada'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
