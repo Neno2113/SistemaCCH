@@ -70,18 +70,17 @@ class SKUController extends Controller
                     $num_corte = '';
                 }
                 return $num_corte;
-            })
-            /*
+            })   
             ->addColumn('Fecha', function ($sku) {
                 $producto = $sku->producto_id;
-                if($corte = Product::where('producto_id', $producto)->get()->first()) {
+                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
                     $fecha_corte = $corte->fecha_corte;   
                 } else {
                     $fecha_corte = '';
                 }
                 return $fecha_corte;
             })
-            
+            /*
             ->addColumn('Marcada', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
@@ -102,7 +101,7 @@ class SKUController extends Controller
                     
             //    }
         //     })
-            ->rawColumns(['Corte'])
+            ->rawColumns(['Corte', 'Fecha'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }

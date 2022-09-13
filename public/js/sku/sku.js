@@ -103,8 +103,8 @@ $(document).ready(function() {
                 { data: "sku" },
                 { data: "referencia_producto" },
                 { data: "Corte", orderable: true, searchable: true },
-            /*    { data: "Fecha", orderable: true, searchable: true },
-                { data: "Marcada", orderable: true, searchable: true },
+                { data: "Fecha", orderable: true, searchable: true },
+            /*    { data: "Marcada", orderable: true, searchable: true },
                 { data: "talla" }, */
 
             ],
