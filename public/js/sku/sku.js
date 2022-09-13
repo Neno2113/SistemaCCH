@@ -104,8 +104,8 @@ $(document).ready(function() {
                 { data: "referencia_producto" },
                 { data: "Corte", orderable: true, searchable: true },
                 { data: "Fecha", orderable: true, searchable: true },
-            /*    { data: "Marcada", orderable: true, searchable: true },
-                { data: "talla" }, */
+                { data: "Marcada", orderable: true, searchable: true },
+                { data: "talla" }, 
 
             ],
             order: [[1, 'desc']],

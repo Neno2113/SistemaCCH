@@ -79,22 +79,22 @@
                         <th>Producto</th>
                          <th>Corte</th>
                         <th>Fecha</th>
-                    <!--    <th>Marcada</th>
-                        <th>Talla</th> -->
+                        <th>Marcada</th>
+                        <th>Talla</th> 
 
                     </tr>
                 </thead>
                 <tbody></tbody>
                 <tfoot>
                     <tr>
-                    <!--    <th></th> -->
-                    <!--    <th>Opcion</th> --> 
+                    <!--     <th></th> --> 
+                    <!--     <th>Opcion</th> --> 
                         <th>SKU</th>
                         <th>Producto</th>
                         <th>Corte</th>
                         <th>Fecha</th>
-                    <!--   <th>Marcada</th>
-                        <th>Talla</th> -->
+                        <th>Marcada</th>
+                        <th>Talla</th>
                     </tr>
                 </tfoot>
             </table>

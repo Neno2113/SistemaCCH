@@ -80,7 +80,7 @@ class SKUController extends Controller
                 }
                 return $fecha_corte;
             })
-            /*
+            
             ->addColumn('Marcada', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
@@ -89,8 +89,8 @@ class SKUController extends Controller
                     $marcada = '';
                 }
                 return $marcada;
-            }) */
-        //    ->editColumn('talla', function ($sku) {
+            })
+            ->editColumn('talla', function ($sku) {
              //   $producto = $sku->producto_id;
             //    $referencia = $sku->referencia_producto;
             //    if($product = Product::where('id', $producto)->get()->first()) {
@@ -100,8 +100,8 @@ class SKUController extends Controller
                 //    return $mujer_plus;
                     
             //    }
-        //     })
-            ->rawColumns(['Corte', 'Fecha'])
+             })
+            ->rawColumns(['Corte', 'Fecha', 'Marcada'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
