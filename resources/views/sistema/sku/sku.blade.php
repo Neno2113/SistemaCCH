@@ -77,10 +77,10 @@
                         <th>Opcion</th> 
                         <th>SKU</th>
                         <th>Producto</th>
-                        <th>Corte</th>
+                    <!--     <th>Corte</th>
                         <th>Fecha</th>
                         <th>Marcada</th>
-                        <th>Talla</th>
+                        <th>Talla</th> -->
 
                     </tr>
                 </thead>
@@ -91,10 +91,10 @@
                         <th>Opcion</th>
                         <th>SKU</th>
                         <th>Producto</th>
-                        <th>Corte</th>
+                    <!--    <th>Corte</th>
                         <th>Fecha</th>
                         <th>Marcada</th>
-                        <th>Talla</th>
+                        <th>Talla</th> -->
                     </tr>
                 </tfoot>
             </table>
