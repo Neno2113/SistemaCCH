@@ -79,7 +79,7 @@
                         <th>Producto</th>
                          <th>Corte</th>
                         <th>Fecha</th>
-                        <th>Marcada</th>
+                        <th>Tela</th>
                         <th>Talla</th> 
 
                     </tr>
@@ -93,7 +93,7 @@
                         <th>Producto</th>
                         <th>Corte</th>
                         <th>Fecha</th>
-                        <th>Marcada</th>
+                        <th>Tela</th>
                         <th>Talla</th>
                     </tr>
                 </tfoot>
