@@ -108,7 +108,7 @@ $(document).ready(function() {
                 { data: "talla" }, */
 
             ],
-            order: [[2, 'desc']],
+            order: [[1, 'desc']],
         /*    rowGroup: {
                 dataSrc: 'referencia_producto'
             } */
