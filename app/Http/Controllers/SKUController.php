@@ -206,7 +206,7 @@ class SKUController extends Controller
                         $max_talla = $l;
                     } 
 
-                    return $min_talla. ' '.$max_talla;
+                    return $min_talla. ' - '.$max_talla;
                     
                 }
              })
