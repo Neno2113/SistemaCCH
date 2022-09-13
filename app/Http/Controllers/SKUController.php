@@ -83,7 +83,7 @@ class SKUController extends Controller
             ->addColumn('Marcada', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
-                    $marcada = $corte->no_marcada;   
+                    $marcada = substr($corte->no_marcada, 6, -3);
                 } else {
                     $marcada = '';
                 }
