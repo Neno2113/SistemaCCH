@@ -397,7 +397,7 @@ $(document).ready(function() {
             serverSide: true,
             autoWidth: false,
             responsive: true,
-            iDisplayLength: 5,
+            iDisplayLength: 25,
             ajax: "api/products",
             dom: "Bfrtip",
             buttons: [
