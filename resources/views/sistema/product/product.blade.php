@@ -457,6 +457,7 @@
                 <hr>
                 <form action="" class="form-group">
                     <div class="row">
+                        <!--
                         <div class="col-4">
                             <label for="">Tipo</label>
                             <select name="tipo" id="tipo" class="form-control">
@@ -466,6 +467,7 @@
                                 <option value="categoria">Categoria</option>
                             </select>
                         </div>
+                        -->
                         <div class="col-4">
                             <label for="">Indice</label>
                             <input type="text" name="indice" id="indice" class="form-control text-center">
