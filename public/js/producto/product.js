@@ -712,25 +712,25 @@ $(document).ready(function() {
     $("#btn-cat").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-cat").val();
-        $("#tipo").val(select);
+    //    $("#tipo").val(select);
         listarCategorias(select);
     })
     $("#btn-mar").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-mar").val();
-        $("#tipo").val(select);
+    //    $("#tipo").val(select);
         listarCategorias(select);
     })
     $("#btn-gen").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-gen").val();
-        $("#tipo").val(select);
+    //    $("#tipo").val(select);
         listarCategorias(select);
     })
     $("#btn-tipo").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-tipo").val();
-        $("#tipo").val(select);
+    //    $("#tipo").val(select);
         listarCategorias(select);
     })
 
@@ -1087,7 +1087,8 @@ const listarCategorias = (tipo) => {
                 for (let i = 0; i < datos.categorias.length; i++) {
                     var fila =
                     '<tr id="fila'+datos.categorias[i].id+'">'+
-                    "<td class=''><input type='hidden' id='usuario"+datos.categorias[i].id+"' value="+datos.categorias[i].id+">"+datos.categorias[i].tipo+"</td>"+
+                //    "<td class=''><input type='hidden' id='usuario"+datos.categorias[i].id+"' value="+datos.categorias[i].id+">"+datos.categorias[i].tipo+"</td>"+
+                    "<input type='hidden' id='usuario"+datos.categorias[i].id+"' value="+datos.categorias[i].id+">"+datos.categorias[i].tipo+
                     "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.categorias[i].indice+"' value="+datos.categorias[i].indice+">"+datos.categorias[i].indice+"</td>"+
                     "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.categorias[i].nombre+"' value="+datos.categorias[i].nombre+">"+datos.categorias[i].nombre+"</td>"+
                     "<td><button type='button' id='btn-eliminar' onclick='delCategoria("+datos.categorias[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
