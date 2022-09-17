@@ -427,9 +427,9 @@ $(document).ready(function() {
                 { data: "descripcion", name: "producto.descripcion" }
             ],
             order: [[4, "desc"]],
-            rowGroup: {
+           /* rowGroup: {
                 dataSrc: "name"
-            }
+            } */
         });
     }
 
