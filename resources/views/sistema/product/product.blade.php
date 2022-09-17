@@ -468,6 +468,7 @@
                             </select>
                         </div>
                         -->
+                        <input type="hidden" name="tipo" id="tipo" value="tipo_producto">
                         <div class="col-4">
                             <label for="">Indice</label>
                             <input type="text" name="indice" id="indice" class="form-control text-center">

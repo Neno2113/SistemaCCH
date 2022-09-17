@@ -712,25 +712,25 @@ $(document).ready(function() {
     $("#btn-cat").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-cat").val();
-    //    $("#tipo").val(select);
+        $("#tipo").val(select);
         listarCategorias(select);
     })
     $("#btn-mar").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-mar").val();
-    //    $("#tipo").val(select);
+        $("#tipo").val(select);
         listarCategorias(select);
     })
     $("#btn-gen").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-gen").val();
-    //    $("#tipo").val(select);
+        $("#tipo").val(select);
         listarCategorias(select);
     })
     $("#btn-tipo").on('click', (e) => {
         e.preventDefault();
         let select = $("#btn-tipo").val();
-    //    $("#tipo").val(select);
+        $("#tipo").val(select);
         listarCategorias(select);
     })
 
