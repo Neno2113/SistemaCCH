@@ -1093,8 +1093,11 @@ const listarCategorias = (tipo) => {
                     "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.categorias[i].nombre+"' value="+datos.categorias[i].nombre+">"+datos.categorias[i].nombre+"</td>"+
                     "<td><button type='button' id='btn-eliminar' onclick='delCategoria("+datos.categorias[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
                     "</tr>";
+                    var LastIndice = datos.categorias[i].indice;
                     $("#permisos-agregados").append(fila);
                 }
+            //    var InputLastIndice = "<input type='hidden' id='LastIndice' value="+LastIndice+">";
+                    $("#permisos-agregados").append("<input type='hidden' id='LastIndice' value="+LastIndice+">");
 
             } else {
                 bootbox.alert(
