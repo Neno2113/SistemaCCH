@@ -276,7 +276,14 @@ class ProductController extends Controller
             }
     
         }
-        $product = Product::select('id')->orderBy('id', 'desc')->first();
+    //    $product = Product::select('id')->orderBy('id', 'desc')->first();
+        $product=[
+            [
+                "id" => 1,
+                "name" => "James"
+            ]
+        
+        ];
 
         $data = [
             'code' => 200,
