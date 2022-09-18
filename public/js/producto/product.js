@@ -1075,6 +1075,7 @@ const EliminarProducto = (id) => {
 const listarCategorias = (tipo) => {
 
     $("#permisos-agregados").empty();
+    $("#Input-indice").empty();
 
     $.ajax({
         url: "listar/"+tipo,
@@ -1097,11 +1098,12 @@ const listarCategorias = (tipo) => {
                     $("#permisos-agregados").append(fila);
                 }
 
-                    var tipoModal = $("tipos").val();
+                    var tipoModal = $("#tipo").val();
                     if (tipoModal == "marca") {
                         $("#Input-indice").append("<label for='indice'>Indice</label><input type='text' name='indice' id='indice' class='form-control text-center'>");
                     }else {
-                        $("#Input-indice").append("<label for='indice'>El indice sera generado automaticamente</label><input type='hidden' name='indice' id='indice' value='"+LastIndice+1+"' class='form-control text-center'>");
+                        var LastIndice = LastIndice + 1;
+                        $("#Input-indice").append("<label for='indice'>El indice sera generado automaticamente</label><input type='hidden' name='indice' id='indice' value='"+LastIndice+"' class='form-control text-center'>");
                     //    $("#permisos-agregados").append("<input type='hidden' id='LastIndice' value="+LastIndice+">");
                     }
 
