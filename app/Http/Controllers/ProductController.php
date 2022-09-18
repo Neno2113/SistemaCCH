@@ -281,10 +281,11 @@ class ProductController extends Controller
         $data = [
             'code' => 200,
             'status' => 'success',
-            'product' => $product,
+            'product' => $product
         ];
 
-        return \response()->json($data, $data['code']);
+    //    return \response()->json($data, $data['code']);
+        return response()->json($data, $data['code']);
 
     }
 
