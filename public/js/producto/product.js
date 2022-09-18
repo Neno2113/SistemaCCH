@@ -640,7 +640,7 @@ $(document).ready(function() {
                 $("#id").val(data.product.id);
 
             }
-        }
+        });
         
     })
     //CRISTOBAL
