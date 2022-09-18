@@ -626,7 +626,6 @@ $(document).ready(function() {
         e.preventDefault();
         let referTemp = $("#referencia").val();
         $("#referencia_talla").val(referTemp);
-        listarCategorias(select);
     })
     //CRISTOBAL
 
