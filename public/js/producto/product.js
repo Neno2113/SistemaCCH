@@ -1140,10 +1140,13 @@ const delCategoria = (id) => {
                 'success'
                 )
                 $("#fila"+id).remove();
+                $("#indice").val('');
+                $("#nombre").val('');
                 marcas();
                 generos();
                 tipos();
                 categorias();
+                listarCategorias($("#tipo").val());
             })
         }
       })
