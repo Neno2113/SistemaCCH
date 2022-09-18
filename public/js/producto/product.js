@@ -1094,7 +1094,7 @@ const listarCategorias = (tipo) => {
                     "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.categorias[i].nombre+"' value="+datos.categorias[i].nombre+">"+datos.categorias[i].nombre+"</td>"+
                     "<td><button type='button' id='btn-eliminar' onclick='delCategoria("+datos.categorias[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
                     "</tr>";
-                    let LastIndice = parseInt(datos.categorias[i].indice);
+                    var LastIndice = parseInt(datos.categorias[i].indice);
                     $("#permisos-agregados").append(fila);
                 }
 
