@@ -621,6 +621,15 @@ $(document).ready(function() {
 
     })
 
+    //CRISTOBAL
+    $("#btn-sku").on('click', (e) => {
+        e.preventDefault();
+        let referTemp = $("#referencia").val();
+        $("#referencia_talla").val(referTemp);
+        listarCategorias(select);
+    })
+    //CRISTOBAL
+
     $("#btn-saveSku").on('click', (e) => {
         e.preventDefault();
 
