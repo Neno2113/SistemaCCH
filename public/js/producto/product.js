@@ -569,11 +569,36 @@ $(document).ready(function() {
             $("#btn-guardar").attr("disabled", true);
         }
     }
-
+    /*
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         mostrarForm(true);
-    });
+    }); */
+
+    function btnAgregar() {
+        mostrarForm(true);
+
+        $.post("product/buscarlastid", function(data, status) {
+    
+            if(data.status == 'denied'){
+                return Swal.fire(
+                    'Acceso denegado!',
+                    'No tiene permiso para realizar esta accion.',
+                    'info'
+                )
+            } else {
+          
+            //    $("#id").val(data.product.id);
+    
+            }
+        });
+
+    }
+
+    ///////////////////////
+    
+
+    ///////////////////
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
         mostrarForm(false);
@@ -626,22 +651,6 @@ $(document).ready(function() {
         e.preventDefault();
         let referTemp = $("#referencia").val();
         $("#referencia_talla").val(referTemp);
-        
-        $.post("product/buscarlastid", function(data, status) {
-    
-            if(data.status == 'denied'){
-                return Swal.fire(
-                    'Acceso denegado!',
-                    'No tiene permiso para realizar esta accion.',
-                    'info'
-                )
-            } else {
-          
-            //    $("#id").val(data.product.id);
-
-            }
-        });
-        
     })
     //CRISTOBAL
 
