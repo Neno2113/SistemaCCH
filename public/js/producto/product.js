@@ -575,7 +575,7 @@ $(document).ready(function() {
         mostrarForm(true);
     }); */
 
-    function btnAgregar() {
+    function ProductAgregar() {
         mostrarForm(true);
 
         $.post("product/buscarlastid", function(data, status) {
