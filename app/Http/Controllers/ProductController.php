@@ -277,18 +277,11 @@ class ProductController extends Controller
     
         }
     //    $product = Product::select('id')->orderBy('id', 'desc')->first();
-        $product=[
-            [
-                "id" => 1,
-                "name" => "James"
-            ]
-        
-        ];
 
         $data = [
             'code' => 200,
-            'status' => 'success',
-            'product' => $product
+            'status' => 'success'
+        //    'product' => $product
         ];
 
     //    return \response()->json($data, $data['code']);
