@@ -569,15 +569,14 @@ $(document).ready(function() {
             $("#btn-guardar").attr("disabled", true);
         }
     }
-    /*
+    
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         mostrarForm(true);
-    }); */
+        buscarID();
+    });
 
-    function ProductAgregar() {
-        mostrarForm(true);
-
+    function buscarID() {
         $.post("product/buscarlastid", function(data, status) {
     
             if(data.status == 'denied'){
