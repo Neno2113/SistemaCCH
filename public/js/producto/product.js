@@ -626,6 +626,22 @@ $(document).ready(function() {
         e.preventDefault();
         let referTemp = $("#referencia").val();
         $("#referencia_talla").val(referTemp);
+        
+        $.post("product/buscarlastid", function(data, status) {
+    
+            if(data.status == 'denied'){
+                return Swal.fire(
+                    'Acceso denegado!',
+                    'No tiene permiso para realizar esta accion.',
+                    'info'
+                )
+            } else {
+          
+                $("#id").val(data.product.id);
+
+            }
+        }
+        
     })
     //CRISTOBAL
 

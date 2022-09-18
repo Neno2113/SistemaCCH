@@ -260,6 +260,36 @@ class ProductController extends Controller
             ->make(true);
     }
 
+    //CRISTOBAL
+    public function buscarLastId() {
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Productos')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+        $product = Product::select('id')->orderBy('id', 'desc')->first();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'product' => $product,
+        ];
+
+        return \response()->json($data, $data['code']);
+
+    }
+
+    //CRISTOBAL
+
     public function show($id)
     {
         //Chekcing if the user has access to this function
