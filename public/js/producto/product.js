@@ -548,7 +548,7 @@ $(document).ready(function() {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-curva").attr("disabled", true);
-            $("#boton-sku").hide();
+            $("#boton-sku").show();
             marcas();
             generos();
             tipos();
