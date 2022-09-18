@@ -1096,8 +1096,14 @@ const listarCategorias = (tipo) => {
                     var LastIndice = datos.categorias[i].indice;
                     $("#permisos-agregados").append(fila);
                 }
-            //    var InputLastIndice = "<input type='hidden' id='LastIndice' value="+LastIndice+">";
-                    $("#permisos-agregados").append("<input type='hidden' id='LastIndice' value="+LastIndice+">");
+
+                    var tipoModal = $("tipos").val();
+                    if (tipoModal == "marca") {
+                        $("#Input-indice").append("<label for='indice'>Indice</label><input type='text' name='indice' id='indice' class='form-control text-center'>");
+                    }else {
+                        $("#Input-indice").append("<label for='indice'>El indice sera generado automaticamente</label><input type='hidden' name='indice' id='indice' value='"+LastIndice+1+"' class='form-control text-center'>");
+                    //    $("#permisos-agregados").append("<input type='hidden' id='LastIndice' value="+LastIndice+">");
+                    }
 
             } else {
                 bootbox.alert(

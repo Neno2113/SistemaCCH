@@ -469,10 +469,12 @@
                         </div>
                         -->
                         <input type="hidden" name="tipo" id="tipo" value="tipo_producto">
-                        <div class="col-4">
-                            <label for="">Indice</label>
-                            <input type="text" name="indice" id="indice" class="form-control text-center">
-                        </div>
+                            <div class="col-4" id="Input-indice">
+                                <!--
+                                <label for="indice">Indice</label>
+                                <input type="text" name="indice" id="indice" class="form-control text-center">
+                                -->
+                            </div>
                         <div class="col-4">
                             <label for="">Nombre</label>
                             <input type="text" name="nombre" id="nombre" class="form-control text-center">
