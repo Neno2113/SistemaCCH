@@ -637,7 +637,7 @@ $(document).ready(function() {
                 )
             } else {
           
-                $("#id").val(data.product.id);
+            //    $("#id").val(data.product.id);
 
             }
         });
