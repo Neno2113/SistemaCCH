@@ -417,6 +417,7 @@ $(document).ready(function() {
             ],
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
+                { data: "ID" },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
              
@@ -426,7 +427,7 @@ $(document).ready(function() {
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
             ],
-            order: [[3, "desc"]],
+            order: [[1, "desc"]],
            /* rowGroup: {
                 dataSrc: "name"
             } */
@@ -574,7 +575,7 @@ $(document).ready(function() {
         e.preventDefault();
         mostrarForm(true);
 
-        let lastid = $('#lastID:first').val();
+        let lastid = $('#lastID:last').val();
         $("#id").val(lastid); 
     });
 
