@@ -241,7 +241,7 @@
         <table id="products" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
-                    <th>ID</th> 
+                    <!-- <th></th> -->
                     <th>Editar</th>
                     <th>Eliminar</th>
                     <th>Referencia producto</th>
@@ -254,7 +254,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th>ID</th>
+                  <!--  <th></th> -->
                     <th>Editar</th>
                     <th>Eliminar</th>
                     <th>Referencia producto</th>

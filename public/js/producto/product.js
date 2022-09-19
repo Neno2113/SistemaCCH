@@ -433,7 +433,6 @@ $(document).ready(function() {
             ],
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
-                { data: "id", name: "producto.id" },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
              
@@ -443,7 +442,7 @@ $(document).ready(function() {
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
             ],
-            order: [[0, "desc"]],
+            order: [[2, "desc"]],
            /* rowGroup: {
                 dataSrc: "name"
             } */
