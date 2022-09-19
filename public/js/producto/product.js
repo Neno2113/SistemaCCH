@@ -575,7 +575,8 @@ $(document).ready(function() {
         e.preventDefault();
         mostrarForm(true);
 
-        let lastid = $('#lastID:last').val();
+    //   let lastid = $('#lastID:last').val();
+        let lastid = $("#lastID input:last").val();
         $("#id").val(lastid); 
     });
 
