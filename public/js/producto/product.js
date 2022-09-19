@@ -416,7 +416,7 @@ $(document).ready(function() {
                 }
             ],
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
+            //    { data: "Expandir", orderable: false, searchable: false },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
              
@@ -573,7 +573,6 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         mostrarForm(true);
-        buscarID();
     });
 
     $("#btnCancelar").click(function(e) {
