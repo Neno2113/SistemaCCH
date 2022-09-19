@@ -579,7 +579,6 @@ $(document).ready(function() {
         $("#sec_manual").val('');
         $("#year").val('');
 
-    //   let lastid = $('#lastID:last').val();
         let lastid = parseInt($("#lastID").val());
         lastid += 1;
         $("#id").val(lastid); 
@@ -637,6 +636,10 @@ $(document).ready(function() {
         e.preventDefault();
         let referTemp = $("#referencia").val();
         $("#referencia_talla").val(referTemp); 
+
+        genero_global = $("#referencia").val().substring(1, 2);
+        genero_plus = $("#referencia").val().substring(3, 4);
+        eliminarColumnas();
     })
     //CRISTOBAL
 
@@ -965,7 +968,7 @@ function mostrar(id_prouct) {
 
 
             }
-            console.log(secuence);
+         //   console.log(secuence);
             $("#year").val(20+year);
             $("#sec_manual").val(secuence);
          
