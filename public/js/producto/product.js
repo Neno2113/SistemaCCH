@@ -321,12 +321,30 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#product_id").val(datos.producto.id);
+
+                    // CRISTOBAL
                     $("#id").val(datos.producto.id);
                     $("#referencia_talla").val(datos.producto.referencia_producto);
 
                     genero_global = datos.producto.genero;
                     genero_plus = datos.producto.referencia_producto.substring(3, 4);
                     eliminarColumnas();
+
+                    if(datos.producto.referencia_producto_2){
+                        $("#referencia_talla_2").show();
+                        $("#productos_ref").show();
+                        $("#segunda_ref").show();
+                        $("#referencia_talla_2").val(datos.producto.referencia_producto_2);
+        
+                        $("#productos_ref").append(
+                            `<option value="${datos.producto.id}">${datos.producto.referencia_producto}</option>`
+                        );
+        
+                        $("#productos_ref").append(
+                            `<option value="${datos.producto.id}">${datos.producto.referencia_producto_2}</option>`
+                        );
+                    }
+                    // CRISTOBAL
 
                     var formData = new FormData($("#formUpload")[0]);
             
