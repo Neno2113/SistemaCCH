@@ -573,6 +573,9 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         mostrarForm(true);
+
+        let lastid = $('#lastID:last').val();
+        $("#id").val(lastid); 
     });
 
     $("#btnCancelar").click(function(e) {
@@ -626,7 +629,7 @@ $(document).ready(function() {
     $("#btn-sku").on('click', (e) => {
         e.preventDefault();
         let referTemp = $("#referencia").val();
-        $("#referencia_talla").val(referTemp);
+        $("#referencia_talla").val(referTemp); 
     })
     //CRISTOBAL
 
