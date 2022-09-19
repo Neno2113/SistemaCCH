@@ -392,7 +392,7 @@ class ProductController extends Controller
         $sku = $request->input('sku');
         $talla = $request->input('talla');
         $referencia = $request->input('referencia');
-        $refe = $request->input('refe');
+    //    $refe = $request->input('refe');
 
 
         $sku_gen = SKU::where('sku', $sku)->first();
@@ -415,8 +415,8 @@ class ProductController extends Controller
             $sku_gen->talla = $talla;
             $sku_gen->sku = $sku;
             if(empty($referencia)){
-            //    $sku_gen->referencia_producto = $ref->referencia_producto;
-                $sku_gen->referencia_producto = $refe;
+                $sku_gen->referencia_producto = $ref->referencia_producto;
+            //    $sku_gen->referencia_producto = $refe;
                 //Verificar la talla
                 $sku_check = SKU::where('producto_id', $producto)
                 ->where('talla', $talla)->first();

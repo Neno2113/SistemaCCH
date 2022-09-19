@@ -321,7 +321,12 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
                     $("#product_id").val(datos.producto.id);
-                    
+                    $("#id").val(datos.producto.id);
+                    $("#referencia_talla").val(datos.producto.referencia_producto);
+
+                    genero_global = datos.producto.genero;
+                    genero_plus = datos.producto.referencia_producto.substring(3, 4);
+                    eliminarColumnas();
 
                     var formData = new FormData($("#formUpload")[0]);
             
@@ -368,6 +373,8 @@ $(document).ready(function() {
                     )
 
                     $(".bd-sku-modal-xl").modal('show');
+
+ 
                   /*
                     limpiar();
                     tabla.ajax.reload();
@@ -581,10 +588,11 @@ $(document).ready(function() {
         $("#talla").empty();
         $("#sec_manual").val('');
         $("#year").val('');
-
+        /*
         let lastid = parseInt($("#lastID").val());
         lastid += 1;
         $("#id").val(lastid); 
+        */
     });
 
     $("#btnCancelar").click(function(e) {
@@ -635,15 +643,18 @@ $(document).ready(function() {
     })
 
     //CRISTOBAL
+    /*
     $("#btn-sku").on('click', (e) => {
         e.preventDefault();
         let referTemp = $("#referencia").val();
         $("#referencia_talla").val(referTemp); 
-
+        
         genero_global = $("#referencia").val().substring(1, 2);
         genero_plus = $("#referencia").val().substring(3, 4);
         eliminarColumnas();
+        
     })
+    */
     //CRISTOBAL
 
     $("#btn-saveSku").on('click', (e) => {
@@ -657,7 +668,7 @@ $(document).ready(function() {
                 producto: $("#id").val(),
                 sku: $("#sku").val(),
                 talla: $("#talla").val(),
-                refe: $("#referencia_talla").val(),
+                // refe: $("#referencia_talla").val(),
                 // ref: $('#productos_ref').val(),
                 referencia: $("#productos_ref option:selected").text()
             }

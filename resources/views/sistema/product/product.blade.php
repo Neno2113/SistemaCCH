@@ -116,7 +116,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-3 mt-2">
-                            <label for="">Precio lista</label>
+                            <label for="">Precio lista *</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -196,7 +196,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mt-3">
-                            <label for="">Descripcion</label>
+                            <label for="">Descripción *</label>
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control"></textarea>
 
