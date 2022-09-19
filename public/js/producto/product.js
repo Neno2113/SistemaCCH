@@ -417,7 +417,7 @@ $(document).ready(function() {
             ],
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
-                { data: "ID", orderable: true },
+                { data: "id", name: "producto.id" },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
              
