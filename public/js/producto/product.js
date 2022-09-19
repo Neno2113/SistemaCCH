@@ -576,8 +576,8 @@ $(document).ready(function() {
         mostrarForm(true);
         $("#tallas").empty();
         $("#talla").empty();
-        $("#sec_manual").empty();
-        $("#year").empty();
+        $("#sec_manual").val('');
+        $("#year").val('');
 
     //   let lastid = $('#lastID:last').val();
         let lastid = parseInt($("#lastID").val());
