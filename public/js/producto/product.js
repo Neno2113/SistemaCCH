@@ -576,28 +576,6 @@ $(document).ready(function() {
         buscarID();
     });
 
-    function buscarID() {
-        $.post("product/buscarlastid", function(data, status) {
-    
-            if(data.status == 'denied'){
-                return Swal.fire(
-                    'Acceso denegado!',
-                    'No tiene permiso para realizar esta accion.',
-                    'info'
-                )
-            } else {
-          
-            //    $("#id").val(data.product.id);
-    
-            }
-        });
-
-    }
-
-    ///////////////////////
-    
-
-    ///////////////////
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
         mostrarForm(false);
