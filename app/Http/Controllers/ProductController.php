@@ -251,7 +251,7 @@ class ProductController extends Controller
                 return "RD$ " . number_format($product->precio_venta_publico);
             })
             ->addColumn('ID', function ($product) {
-                return $product->id.'<input type="hidden" id="lastID" value="'.$product->id.'">';
+                return $product->id;
             })
             ->addColumn('Editar', function ($product) {
                 return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-warning btn-sm" > <i class="fas fa-edit"></i></button>'.
