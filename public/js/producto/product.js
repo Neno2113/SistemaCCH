@@ -426,7 +426,7 @@ $(document).ready(function() {
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
             ],
-            order: [[4, "desc"]],
+            order: [[3, "desc"]],
            /* rowGroup: {
                 dataSrc: "name"
             } */
