@@ -392,8 +392,6 @@ class ProductController extends Controller
         $sku = $request->input('sku');
         $talla = $request->input('talla');
         $referencia = $request->input('referencia');
-    //    $refe = $request->input('refe');
-
 
         $sku_gen = SKU::where('sku', $sku)->first();
 
@@ -406,8 +404,6 @@ class ProductController extends Controller
             ];
         } else {
          
-           
-
             $ref = Product::find($producto);
             $sku_gen = new SKU();
 
@@ -423,10 +419,8 @@ class ProductController extends Controller
 
                 if(empty($sku_check)){
 
-               
                     $sku_gen->save();
                     $skus = SKU::where('producto_id', $producto)->get();
-
 
                     $data = [
                         'code' => 200,

@@ -262,7 +262,6 @@ Route::post('/product', 'ProductController@store');
 Route::post('/product/imagen', 'ProductController@upload');
 Route::post('/product_ref', 'ProductController@guardarReferencias');
 Route::post('/product/{id}', 'ProductController@show');
-//Route::post('/product/buscarlastid', 'ProductController@buscarLastId');
 Route::post('/product-terminado/{id}', 'ProductController@showTerminado');
 Route::put('/product/edit', 'ProductController@update');
 Route::post('/product/delete/{id}', 'ProductController@destroy');

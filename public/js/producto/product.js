@@ -384,21 +384,9 @@ $(document).ready(function() {
                             });
                         }
                     });
-                    Swal.fire(
-                        'Referencia creada!!',
-                        'Referencia creada correctamente!',
-                        'success'
-                    )
-
+                
                     $(".bd-sku-modal-xl").modal('show');
 
- 
-                  /*
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
-                    $("#referencia_talla").val("");
-                */
                 } else {
                  //   bootbox.alert("Se genero la referencia");
                     bootbox.alert("¿¿¿¿¿?????");
@@ -577,7 +565,7 @@ $(document).ready(function() {
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-curva").attr("disabled", true);
-            $("#boton-sku").show();
+            $("#boton-sku").hide();
             marcas();
             generos();
             tipos();
@@ -611,6 +599,21 @@ $(document).ready(function() {
         lastid += 1;
         $("#id").val(lastid); 
         */
+    });
+
+    $("#terminarSKU, #cerrarSKU").click(function(e) {
+        e.preventDefault();
+        Swal.fire(
+            'Referencia creada!!',
+            'Referencia creada correctamente!',
+            'success'
+        )
+
+        limpiar();
+        tabla.ajax.reload();
+        mostrarForm(false);
+        $("#referencia_talla").val("");
+ 
     });
 
     $("#btnCancelar").click(function(e) {
@@ -686,7 +689,6 @@ $(document).ready(function() {
                 producto: $("#id").val(),
                 sku: $("#sku").val(),
                 talla: $("#talla").val(),
-                // refe: $("#referencia_talla").val(),
                 // ref: $('#productos_ref').val(),
                 referencia: $("#productos_ref option:selected").text()
             }

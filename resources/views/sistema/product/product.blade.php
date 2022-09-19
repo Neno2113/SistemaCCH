@@ -213,7 +213,7 @@
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i
                         class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button>
                 <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
-                        class="far fa-save fa-lg"></i> Guardar</button>
+                        class="far fa-save fa-lg"></i> Guardar y Continuar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
                         class="far fa-edit fa-lg"></i> Guardar</button>
             </div>
@@ -519,7 +519,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center" id="exampleModalLabel"><strong> Asignacion de SKU</strong></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="cerrarSKU">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -674,7 +674,7 @@
                     </div> --}}
             </div>
             <div class="modal-footer ">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="terminarSKU">Terminar</button>
             </div>
             </form>
         </div>
