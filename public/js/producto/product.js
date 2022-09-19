@@ -367,7 +367,7 @@ $(document).ready(function() {
                         'success'
                     )
 
-                    $(".bd-sku-modal-xl").modal('show');
+                //    $(".bd-sku-modal-xl").modal('show');
                   /*
                     limpiar();
                     tabla.ajax.reload();
