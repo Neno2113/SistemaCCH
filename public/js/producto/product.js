@@ -576,8 +576,9 @@ $(document).ready(function() {
         mostrarForm(true);
 
     //   let lastid = $('#lastID:last').val();
-        let lastid = $("#lastID").val();
-        $("#id").val(lastid++); 
+        let lastid = lastid($("#lastID").val());
+        lastid += 1;
+        $("#id").val(lastid); 
     });
 
     $("#btnCancelar").click(function(e) {
