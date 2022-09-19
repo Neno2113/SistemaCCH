@@ -417,7 +417,7 @@ $(document).ready(function() {
             ],
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
-                { data: "ID", name: "producto.id" },
+                { data: "ID" },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
              
@@ -427,7 +427,7 @@ $(document).ready(function() {
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
             ],
-            order: [[1, "desc"]],
+            order: [[0, "desc"]],
            /* rowGroup: {
                 dataSrc: "name"
             } */
