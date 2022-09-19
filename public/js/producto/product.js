@@ -366,14 +366,17 @@ $(document).ready(function() {
                         'Referencia creada correctamente!',
                         'success'
                     )
-                  
+
+                    $(".bd-sku-modal-xl").modal('show');
+                  /*
                     limpiar();
                     tabla.ajax.reload();
                     mostrarForm(false);
                     $("#referencia_talla").val("");
-
+                */
                 } else {
-                    bootbox.alert("Se genero la referencia");
+                 //   bootbox.alert("Se genero la referencia");
+                    bootbox.alert("¿¿¿¿¿?????");
                 }
             },
             error: function(datos) {
