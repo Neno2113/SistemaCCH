@@ -254,7 +254,7 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
+                    <th>ID</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     <th>Referencia producto</th>
