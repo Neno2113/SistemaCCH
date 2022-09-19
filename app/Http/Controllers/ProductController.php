@@ -1287,8 +1287,9 @@ class ProductController extends Controller
             })
 
             ->addColumn('Editar', function ($catalogo) {
-                return '<button id="btnEdit" value="'.$catalogo->id.'" onclick="mostrar(' . $catalogo->id . ')" class="btn btn-warning btn-sm mr-1"><i class="fas fa-edit"></i></button>'.
-                '<button onclick="eliminar(' . $catalogo->id . ')" class="btn btn-danger btn-sm ml-1"><i class="fas fa-eraser"></i></button>';
+                return '<button id="btnEdit" onclick="mostrar(' . $catalogo->id . ')" class="btn btn-warning btn-sm mr-1"><i class="fas fa-edit"></i></button>'.
+                '<button onclick="eliminar(' . $catalogo->id . ')" class="btn btn-danger btn-sm ml-1"><i class="fas fa-eraser"></i></button>'.
+                '<input type="hidden" id="lastID" value="'.$catalogo->id.'">';
             })
 
             ->rawColumns(['Editar'])
