@@ -574,6 +574,8 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         e.preventDefault();
         mostrarForm(true);
+        $("#tallas").empty();
+        $("#talla").empty();
 
     //   let lastid = $('#lastID:last').val();
         let lastid = parseInt($("#lastID").val());
@@ -647,6 +649,7 @@ $(document).ready(function() {
                 producto: $("#id").val(),
                 sku: $("#sku").val(),
                 talla: $("#talla").val(),
+                refe: $("#referencia_talla").val(),
                 // ref: $('#productos_ref').val(),
                 referencia: $("#productos_ref option:selected").text()
             }
