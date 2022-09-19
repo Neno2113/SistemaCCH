@@ -576,7 +576,7 @@ $(document).ready(function() {
         mostrarForm(true);
 
     //   let lastid = $('#lastID:last').val();
-        let lastid = lastid($("#lastID").val());
+        let lastid = parseInt($("#lastID").val());
         lastid += 1;
         $("#id").val(lastid); 
     });
