@@ -240,29 +240,29 @@ class SKUController extends Controller
     
                         return $min_talla. ' - '.$max_talla;
                     } else {
-                        if ($talla == 'a') {
+                        if ($talla == 'A') {
                             $talla = $a;
-                        } else if ($talla == 'b') {
+                        } else if ($talla == 'B') {
                             $talla = $b;
-                        } else if ($talla == 'c') {
+                        } else if ($talla == 'C') {
                             $talla = $c;
-                        } else if ($talla == 'd') {
+                        } else if ($talla == 'D') {
                             $talla = $d;
-                        } else if ($talla == 'e') {
+                        } else if ($talla == 'E') {
                             $talla = $e;
-                        } else if ($talla == 'f') {
+                        } else if ($talla == 'F') {
                             $talla = $f;
-                        } else if ($talla == 'g') {
+                        } else if ($talla == 'G') {
                             $talla = $g;
-                        } else if ($talla == 'h') {
+                        } else if ($talla == 'H') {
                             $talla = $h;
-                        } else if ($talla == 'i') {
+                        } else if ($talla == 'I') {
                             $talla = $i;
-                        } else if ($talla == 'j') {
+                        } else if ($talla == 'J') {
                             $talla = $j;
-                        } else if ($talla == 'k') {
+                        } else if ($talla == 'K') {
                             $talla = $k;
-                        } else if ($talla == 'l') {
+                        } else if ($talla == 'L') {
                             $talla = $l;
                         } 
 
