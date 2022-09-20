@@ -46,7 +46,7 @@ class ProductController extends Controller
             $precio_lista = $request->input('precio_lista');
             $genero = $request->input('genero');
             //CRISTOBAL
-            $mujer_plus = substr($referencia, 2, 1);
+            $mujer_plus = substr($referencia, 3, 1);
             $catalogo = $request->input('catalogo');
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
@@ -92,8 +92,7 @@ class ProductController extends Controller
             $product->referencia_producto = $referencia;
             $product->referencia_producto_2 = $referencia_2;
             $product->id_user = \auth()->user()->id;
-            // $product->sec = $sec + 0.1;
-            $product->sec = $mujer_plus;
+            $product->sec = $sec + 0.1;
             $product->enviado_lavanderia = 0;
             $product->id_catalogo = 3;
             $product->descripcion = $descripcion;

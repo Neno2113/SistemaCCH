@@ -94,7 +94,7 @@ class SKUController extends Controller
                 $referencia = $sku->referencia_producto;
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $genero = $product->genero;   
-                    $mujer_plus = substr($referencia, 2, 1);
+                    $mujer_plus = substr($referencia, 3, 1);
                     $min_talla = $product->min;   
                     $max_talla = $product->max;   
                     
