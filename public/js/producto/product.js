@@ -1015,6 +1015,8 @@ function mostrar(id_prouct) {
             eliminarColumnas();
             skus(data);
          
+            $("#entalle_braqueta").val(data.product.entalle_braqueta).attr('selected', 'selected').trigger("change");
+            $("#entalle_piernas").val(data.product.entalle_piernas).attr('selected', 'selected').trigger("change");
             $("#marca").val(data.product.marca).attr('selected', 'selected').trigger("change");
             $("#genero").val(genero).attr('selected', 'selected').trigger("change");
             setTimeout(() => {
