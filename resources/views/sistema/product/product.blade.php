@@ -116,13 +116,39 @@
                     <div class="row">
                         <div class="col-md-3 mt-4">
                             <label for="entalle_braqueta">Entalle de Bragueta</label>
-                            <input type="text" value="" id="entalle_braqueta" name="entalle_braqueta"
-                                class="form-control text-center" onfocus="(this.type='number')" autocomplete="off">
-                            <label for="" class="d-flex justify-content-center pers"></label>
+                            <select name="entalle_braqueta" id="entalle_braqueta" class="form-control">
+                                <option value="" disabled>Entalle de Bragueta</option>
+                                <option value="20"><b>20</b></option>
+                                <option value="21"><b>21</b></option>
+                                <option value="22"><b>22</b></option>
+                                <option value="23"><b>23</b></option>
+                                <option value="24"><b>24</b></option>
+                                <option value="25"><b>25</b></option>
+                                <option value="26"><b>26</b></option>
+                                <option value="27"><b>27</b></option>
+                                <option value="28"><b>28</b></option>
+                                <option value="29"><b>29</b></option>
+                                <option value="30"><b>30</b></option>
+                                <option value="31"><b>31</b></option> 
+                            </select>
                         </div>
                         <div class="col-md-3 mt-4">
-                            <label for="entalle_pierna">Entalle de Entre Pierna</label>
-                            <input type="number" min="1" max="999" step="1" id="entalle_pierna" name="entalle_pierna" autocomplete="off" class="form-control text-center">
+                            <label for="entalle_piernas">Entalle de Entre Piernas</label>
+                            <select name="entalle_piernas" id="entalle_piernas" class="form-control">
+                                <option value="" disabled>Entalle de Entre Piernas</option>
+                                <option value="20"><b>20</b></option>
+                                <option value="21"><b>21</b></option>
+                                <option value="22"><b>22</b></option>
+                                <option value="23"><b>23</b></option>
+                                <option value="24"><b>24</b></option>
+                                <option value="25"><b>25</b></option>
+                                <option value="26"><b>26</b></option>
+                                <option value="27"><b>27</b></option>
+                                <option value="28"><b>28</b></option>
+                                <option value="29"><b>29</b></option>
+                                <option value="30"><b>30</b></option>
+                                <option value="31"><b>31</b></option> 
+                            </select>
                         </div>
                     </div>
                     <br>
