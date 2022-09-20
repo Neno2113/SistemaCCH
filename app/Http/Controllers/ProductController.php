@@ -45,6 +45,8 @@ class ProductController extends Controller
             $descripcion_2 = $request->input('descripcion_2', true);
             $precio_lista = $request->input('precio_lista');
             $genero = $request->input('genero');
+            //CRISTOBAL
+            $mujer_plus = substr($referencia, 2, 1);
             $catalogo = $request->input('catalogo');
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
@@ -161,11 +163,19 @@ class ProductController extends Controller
                     $product->max = $max;
                 }
 
-            }else {
-                $product->min = "a";
-                $product->max = "l";
-            }
-            
+            } else if ($genero == "2") {
+                if ($mujer_plus == "7") {
+                    $product->min = "a";
+                    $product->max = "h";
+                } else {
+                    $product->min = "a";
+                    $product->max = "l";
+                }
+            } else if ($genero == "1") {
+                    $product->min = "a";
+                    $product->max = "k";
+        }
+
 
             $product->save();
             // $curva = New CurvaProducto();
