@@ -112,6 +112,19 @@
                         </div>
 
                     </div>
+                    <!-- Cristobal -->
+                    <div class="row">
+                        <div class="col-md-3 mt-4">
+                            <label for="entalle_braqueta">Entalle de Bragueta</label>
+                            <input type="text" value="" id="entalle_braqueta" name="entalle_braqueta"
+                                class="form-control text-center" onfocus="(this.type='number')" autocomplete="off">
+                            <label for="" class="d-flex justify-content-center pers"></label>
+                        </div>
+                        <div class="col-md-3 mt-4">
+                            <label for="entalle_pierna">Entalle de Entre Pierna</label>
+                            <input type="number" min="1" max="999" step="1" id="entalle_pierna" name="entalle_pierna" autocomplete="off" class="form-control text-center">
+                        </div>
+                    </div>
                     <br>
                     <hr>
                     <div class="row">
