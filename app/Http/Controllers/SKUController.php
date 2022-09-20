@@ -93,6 +93,8 @@ class SKUController extends Controller
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
                 if($product = Product::where('id', $producto)->get()->first()) {
+                    $referencia2 = $product->referencia_producto_2;
+                    $referencia1 = $product->referencia_producto;
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 3, 1);
                     $min_talla = $product->min;   
@@ -122,7 +124,7 @@ class SKUController extends Controller
                             $k = '19/20';
                             $l = '21/22';
                         }
-                    } else if ($genero == "3") {
+                    } else if ($genero == "3" || $genero == "4") {
                             $a = '2';
                             $b = '4';
                             $c = '6';
@@ -131,15 +133,43 @@ class SKUController extends Controller
                             $f = '12';
                             $g = '14';
                             $h = '16';
-                    } else if ($genero == "4") {
-                            $a = '2';
-                            $b = '4';
-                            $c = '6';
-                            $d = '8';
-                            $e = '10';
-                            $f = '12';
-                            $g = '14';
-                            $h = '16';
+                        if ($referencia == $referencia1) {
+                            switch ($product->min) {
+                                case "a":
+                                    $min_talla = "";
+                                    $max_talla = "";
+                                    break;
+                                case "b":
+                                    $min_talla = "a";
+                                    $max_talla = "a";
+                                    break;
+                                case "c":
+                                    $min_talla = "a";
+                                    $max_talla = "b";
+                                    break;
+                                case "d":
+                                    $min_talla = "a";
+                                    $max_talla = "c";
+                                    break;
+                                case "e":
+                                    $min_talla = "a";
+                                    $max_talla = "d";
+                                    break;
+                                case "f":
+                                    $min_talla = "a";
+                                    $max_talla = "e";
+                                    break;
+                                case "g":
+                                    $min_talla = "a";
+                                    $max_talla = "f";
+                                    break;
+                                case "h":
+                                    $min_talla = "a";
+                                    $max_talla = "g";
+                                    break;
+                            }
+
+                        }
                     } else if ($genero == "1") {
                             $a = '28';
                             $b = '29';
