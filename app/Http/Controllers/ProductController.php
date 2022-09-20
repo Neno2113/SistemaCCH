@@ -93,8 +93,6 @@ class ProductController extends Controller
             $product->marca = $marca;
             $product->entalle_bragueta = $entalle_bragueta;
             $product->entalle_piernas = $entalle_piernas;
-            $product->entalle_bragueta = "20";
-            $product->entalle_piernas = "28";
             $product->referencia_producto = $referencia;
             $product->referencia_producto_2 = $referencia_2;
             $product->id_user = \auth()->user()->id;
