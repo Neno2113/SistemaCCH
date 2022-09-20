@@ -473,6 +473,8 @@ $(document).ready(function() {
             precio_lista_2: $("#precio_lista_2").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
             precio_venta_publico: $("#precio_venta_publico").val(),
+            entalle_bragueta: $("#entalle_bragueta").val(),
+            entalle_piernas: $("#entalle_piernas").val(),
 
             a: $("#a").val(),
             b: $("#b").val(),
@@ -1015,7 +1017,7 @@ function mostrar(id_prouct) {
             eliminarColumnas();
             skus(data);
          
-            $("#entalle_braqueta").val(data.product.entalle_braqueta).attr('selected', 'selected').trigger("change");
+            $("#entalle_bragueta").val(data.product.entalle_bragueta).attr('selected', 'selected').trigger("change");
             $("#entalle_piernas").val(data.product.entalle_piernas).attr('selected', 'selected').trigger("change");
             $("#marca").val(data.product.marca).attr('selected', 'selected').trigger("change");
             $("#genero").val(genero).attr('selected', 'selected').trigger("change");

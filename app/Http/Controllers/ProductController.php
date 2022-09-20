@@ -563,6 +563,8 @@ class ProductController extends Controller
             $precio_lista_2 = $request->input('precio_lista_2');
             $precio_venta_publico = $request->input('precio_venta_publico');
             $precio_venta_publico_2 = $request->input('precio_venta_publico_2');
+            $entalle_bragueta = $request->input('entalle_bragueta');
+            $entalle_piernas = $request->input('entalle_piernas');
             $min = $request->input('min');
             $max = $request->input('max');
             $a = $request->input('a');
@@ -604,6 +606,8 @@ class ProductController extends Controller
             $product->referencia_producto_2 = $referencia_2;
             $product->descripcion_2 = $descripcion_2;
             $product->descripcion = $descripcion;
+            $product->entalle_bragueta = $entalle_bragueta;
+            $product->entalle_piernas = $entalle_piernas;
             $product->id_catalogo = 3;
             $product->precio_lista = trim($precio_lista, "_RD$");
             $product->precio_lista_2 = trim($precio_lista_2, "_RD$");
