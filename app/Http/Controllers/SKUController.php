@@ -99,7 +99,7 @@ class SKUController extends Controller
                     $max_talla = $product->max;   
                     
                     if ($genero == "2") {
-                        if ($mujer_plus == 7) {
+                        if ($mujer_plus == "7") {
                             $a = '12W';
                             $b = '14W';
                             $c = '16W';
