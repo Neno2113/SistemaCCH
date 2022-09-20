@@ -148,7 +148,8 @@ $(document).ready(function() {
         $("#segunda_ref").hide();
     }
 
-    $("#btnGenerar").on("click", function(e) {
+//    $("#btnGenerar").on("click", function(e) {
+    $("#sec_manual").keyup(function(e){
         e.preventDefault();
 
         let sec_manual = $("#sec_manual").val();
