@@ -93,99 +93,99 @@ class SKUController extends Controller
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
                 $talla = $sku->talla;
-                if ($talla == "General") {
-                    if($product = Product::where('id', $producto)->get()->first()) {
-                        $referencia2 = $product->referencia_producto_2;
-                        $referencia1 = $product->referencia_producto;
-                        $genero = $product->genero;   
-                        $mujer_plus = substr($referencia, 3, 1);
-                        $min_talla = $product->min;   
-                        $max_talla = $product->max;   
-                        
-                        if ($genero == "2") {
-                            if ($mujer_plus == "7") {
-                                $a = '12W';
-                                $b = '14W';
-                                $c = '16W';
-                                $d = '18W';
-                                $e = '20W';
-                                $f = '22W';
-                                $g = '24W';
-                                $h = '26W';
-                            } else {
-                                $a = '0/0';
-                                $b = '1/2';
-                                $c = '3/4';
-                                $d = '5/6';
-                                $e = '7/8';
-                                $f = '9/10';
-                                $g = '11/12';
-                                $h = '13/14';
-                                $i = '15/16';
-                                $j = '17/18';
-                                $k = '19/20';
-                                $l = '21/22';
-                            }
-                        } else if ($genero == "3" || $genero == "4") {
-                                $a = '2';
-                                $b = '4';
-                                $c = '6';
-                                $d = '8';
-                                $e = '10';
-                                $f = '12';
-                                $g = '14';
-                                $h = '16';
-                            if ($referencia == $referencia1) {
-                                switch ($product->min) {
-                                    case "a":
-                                        $min_talla = "";
-                                        $max_talla = "";
-                                        break;
-                                    case "b":
-                                        $min_talla = "a";
-                                        $max_talla = "a";
-                                        break;
-                                    case "c":
-                                        $min_talla = "a";
-                                        $max_talla = "b";
-                                        break;
-                                    case "d":
-                                        $min_talla = "a";
-                                        $max_talla = "c";
-                                        break;
-                                    case "e":
-                                        $min_talla = "a";
-                                        $max_talla = "d";
-                                        break;
-                                    case "f":
-                                        $min_talla = "a";
-                                        $max_talla = "e";
-                                        break;
-                                    case "g":
-                                        $min_talla = "a";
-                                        $max_talla = "f";
-                                        break;
-                                    case "h":
-                                        $min_talla = "a";
-                                        $max_talla = "g";
-                                        break;
-                                }
-    
-                            }
-                        } else if ($genero == "1") {
-                                $a = '28';
-                                $b = '29';
-                                $c = '30';
-                                $d = '32';
-                                $e = '34';
-                                $f = '36';
-                                $g = '38';
-                                $h = '40';
-                                $i = '42';
-                                $j = '44';
-                                $k = '46';
+                if($product = Product::where('id', $producto)->get()->first()) {
+                    $referencia2 = $product->referencia_producto_2;
+                    $referencia1 = $product->referencia_producto;
+                    $genero = $product->genero;   
+                    $mujer_plus = substr($referencia, 3, 1);
+                    $min_talla = $product->min;   
+                    $max_talla = $product->max;   
+                    
+                    if ($genero == "2") {
+                        if ($mujer_plus == "7") {
+                            $a = '12W';
+                            $b = '14W';
+                            $c = '16W';
+                            $d = '18W';
+                            $e = '20W';
+                            $f = '22W';
+                            $g = '24W';
+                            $h = '26W';
+                        } else {
+                            $a = '0/0';
+                            $b = '1/2';
+                            $c = '3/4';
+                            $d = '5/6';
+                            $e = '7/8';
+                            $f = '9/10';
+                            $g = '11/12';
+                            $h = '13/14';
+                            $i = '15/16';
+                            $j = '17/18';
+                            $k = '19/20';
+                            $l = '21/22';
                         }
-    
+                    } else if ($genero == "3" || $genero == "4") {
+                            $a = '2';
+                            $b = '4';
+                            $c = '6';
+                            $d = '8';
+                            $e = '10';
+                            $f = '12';
+                            $g = '14';
+                            $h = '16';
+                        if ($referencia == $referencia1) {
+                            switch ($product->min) {
+                                case "a":
+                                    $min_talla = "";
+                                    $max_talla = "";
+                                    break;
+                                case "b":
+                                    $min_talla = "a";
+                                    $max_talla = "a";
+                                    break;
+                                case "c":
+                                    $min_talla = "a";
+                                    $max_talla = "b";
+                                    break;
+                                case "d":
+                                    $min_talla = "a";
+                                    $max_talla = "c";
+                                    break;
+                                case "e":
+                                    $min_talla = "a";
+                                    $max_talla = "d";
+                                    break;
+                                case "f":
+                                    $min_talla = "a";
+                                    $max_talla = "e";
+                                    break;
+                                case "g":
+                                    $min_talla = "a";
+                                    $max_talla = "f";
+                                    break;
+                                case "h":
+                                    $min_talla = "a";
+                                    $max_talla = "g";
+                                    break;
+                            }
+
+                        }
+                    } else if ($genero == "1") {
+                            $a = '28';
+                            $b = '29';
+                            $c = '30';
+                            $d = '32';
+                            $e = '34';
+                            $f = '36';
+                            $g = '38';
+                            $h = '40';
+                            $i = '42';
+                            $j = '44';
+                            $k = '46';
+                    }
+
+                    if ($talla == "General") {
                         if ($min_talla == 'a') {
                             $min_talla = $a;
                         } else if ($min_talla == 'b') {
@@ -239,10 +239,35 @@ class SKUController extends Controller
                         } 
     
                         return $min_talla. ' - '.$max_talla;
-                        
-                    }
-                }else {
-                    return $talla;
+                    } else {
+                        if ($talla == 'a') {
+                            $talla = $a;
+                        } else if ($talla == 'b') {
+                            $talla = $b;
+                        } else if ($talla == 'c') {
+                            $talla = $c;
+                        } else if ($talla == 'd') {
+                            $talla = $d;
+                        } else if ($talla == 'e') {
+                            $talla = $e;
+                        } else if ($talla == 'f') {
+                            $talla = $f;
+                        } else if ($talla == 'g') {
+                            $talla = $g;
+                        } else if ($talla == 'h') {
+                            $talla = $h;
+                        } else if ($talla == 'i') {
+                            $talla = $i;
+                        } else if ($talla == 'j') {
+                            $talla = $j;
+                        } else if ($talla == 'k') {
+                            $talla = $k;
+                        } else if ($talla == 'l') {
+                            $talla = $l;
+                        } 
+
+                        return $talla;
+                    }  
                 }
              })
             ->rawColumns(['Corte', 'Fecha', 'Marcada'])
