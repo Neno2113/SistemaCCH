@@ -124,6 +124,8 @@ $(document).ready(function() {
         $("#precio_lista_2").val("");
         $('#referencia_talla').val('');
         $("#precio_venta_publico_2").val("");
+        $("#entalle_bragueta").val("");
+        $("#entalle_piernas").val("");
         $("#a").val("");
         $("#b").val("");
         $("#c").val("");
