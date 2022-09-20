@@ -91,8 +91,8 @@ class ProductController extends Controller
             $product = new Product();
             $product->genero = $genero;
             $product->marca = $marca;
-        //    $product->entalle_bragueta = $entalle_braqueta;
-        //    $product->entalle_piernas = $entalle_piernas;
+            $product->entalle_bragueta = $entalle_bragueta;
+            $product->entalle_piernas = $entalle_piernas;
             $product->entalle_bragueta = "20";
             $product->entalle_piernas = "28";
             $product->referencia_producto = $referencia;
