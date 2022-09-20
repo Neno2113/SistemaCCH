@@ -115,8 +115,8 @@
                     <!-- Cristobal -->
                     <div class="row">
                         <div class="col-md-3 mt-4">
-                            <label for="entalle_braqueta">Entalle de Bragueta</label>
-                            <select name="entalle_braqueta" id="entalle_braqueta" class="form-control">
+                            <label for="entalle_bragueta">Entalle de Bragueta</label>
+                            <select name="entalle_bragueta" id="entalle_bragueta" class="form-control">
                                 <option value="" disabled selected>Entalle de Bragueta</option>
                                 <option value="20"><b>20</b></option>
                                 <option value="21"><b>21</b></option>

@@ -66,6 +66,8 @@ class ProductController extends Controller
             $k = $request->input('k');
             $l = $request->input('l');
             $marca = $request->input('marca');
+            $entalle_bragueta = $request->input('entalle_bragueta');
+            $entalle_piernas = $request->input('entalle_piernas');
 
                //validaciones
             $a = intval(trim($a, "_"));
@@ -89,6 +91,8 @@ class ProductController extends Controller
             $product = new Product();
             $product->genero = $genero;
             $product->marca = $marca;
+            $product->entalle_bragueta = $entalle_braqueta;
+            $product->entalle_piernas = $entalle_piernas;
             $product->referencia_producto = $referencia;
             $product->referencia_producto_2 = $referencia_2;
             $product->id_user = \auth()->user()->id;

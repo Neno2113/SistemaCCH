@@ -298,6 +298,8 @@ $(document).ready(function() {
             precio_venta_publico: $("#precio_venta_publico").val(),
             precio_venta_publico_2: $("#precio_venta_publico_2").val(),
             marca: $("#marca").val(),
+            entalle_bragueta: $("#entalle_bragueta").val(),
+            entalle_piernas: $("#entalle_piernas").val(),
             a: $("#a").val(),
             b: $("#b").val(),
             c: $("#c").val(),
