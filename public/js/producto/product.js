@@ -167,7 +167,7 @@ $(document).ready(function() {
         var year = $("#year").val().toString().substr(+2);
         var referencia = marca + genero + tipo_producto + categoria + "-" + year + i;
         // $("#btn-sku").attr("disabled", false);
-        console.log(marca);
+        //console.log(marca);
 
         genero_global = $("#genero").val();
         genero_plus = $("#categoria").val();
