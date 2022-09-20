@@ -93,7 +93,7 @@
 
                         </div>
                         <div class="col-md-3 mt-4">
-                            <label for="">Referencia</label>
+                            <label for="">Referencia *</label>
                             <input type="text" name="referencia" id="referencia" class="form-control text-center" readonly>
 
                             <input type="hidden" name="" id="sec" value="">

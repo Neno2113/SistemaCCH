@@ -100,65 +100,72 @@ class ProductController extends Controller
             $product->precio_venta_publico = trim($precio_venta_publico, "RD$");
             $product->precio_venta_publico_2 = trim($precio_venta_publico_2, "RD$");
 
-            if (!empty($min)) {
-                switch ($min) {
-                    case 2:
-                        $min = "a";
-                        break;
-                    case 4:
-                        $min = "b";
-                        break;
-                    case 6:
-                        $min = "c";
-                        break;
-                    case 8:
-                        $min = "d";
-                        break;
-                    case  10:
-                        $min = "e";
-                        break;
-                    case 12:
-                        $min = "f";
-                        break;
-                    case 14:
-                        $min = "g";
-                        break;
-                    case  16:
-                        $min = "h";
-                        break;
+            if($genero == "3" || $genero == "4") {
+                if (!empty($min)) {
+                    switch ($min) {
+                        case 2:
+                            $min = "a";
+                            break;
+                        case 4:
+                            $min = "b";
+                            break;
+                        case 6:
+                            $min = "c";
+                            break;
+                        case 8:
+                            $min = "d";
+                            break;
+                        case  10:
+                            $min = "e";
+                            break;
+                        case 12:
+                            $min = "f";
+                            break;
+                        case 14:
+                            $min = "g";
+                            break;
+                        case  16:
+                            $min = "h";
+                            break;
+                    }
+                    $product->min = $min;
                 }
-                $product->min = $min;
-            }
+    
+                if (!empty($max)) {
+                    switch ($max) {
+                        case 2:
+                            $max = "a";
+                            break;
+                        case 4:
+                            $max = "b";
+                            break;
+                        case 6:
+                            $max = "c";
+                            break;
+                        case 8:
+                            $max = "d";
+                            break;
+                        case 10:
+                            $max = "e";
+                            break;
+                        case 12:
+                            $max = "f";
+                            break;
+                        case 14:
+                            $max = "g";
+                            break;
+                        case 16:
+                            $max = "h";
+                            break;
+                    }
+                    $product->max = $max;
+                }
 
-            if (!empty($max)) {
-                switch ($max) {
-                    case 2:
-                        $max = "a";
-                        break;
-                    case 4:
-                        $max = "b";
-                        break;
-                    case 6:
-                        $max = "c";
-                        break;
-                    case 8:
-                        $max = "d";
-                        break;
-                    case 10:
-                        $max = "e";
-                        break;
-                    case 12:
-                        $max = "f";
-                        break;
-                    case 14:
-                        $max = "g";
-                        break;
-                    case 16:
-                        $max = "h";
-                        break;
-                }
-                $product->max = $max;
+            }else {
+                $product->min = "a";
+                $product->max = "l";
             }
+            
 
             $product->save();
             // $curva = New CurvaProducto();
