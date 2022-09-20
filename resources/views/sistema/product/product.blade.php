@@ -117,7 +117,7 @@
                         <div class="col-md-3 mt-4">
                             <label for="entalle_bragueta">Entalle de Bragueta</label>
                             <select name="entalle_bragueta" id="entalle_bragueta" class="form-control">
-                                <option value="" disabled selected>Entalle de Bragueta</option>
+                                <option value="0" disabled selected>Entalle de Bragueta</option>
                                 <option value="20"><b>20</b></option>
                                 <option value="21"><b>21</b></option>
                                 <option value="22"><b>22</b></option>
@@ -135,7 +135,7 @@
                         <div class="col-md-3 mt-4">
                             <label for="entalle_piernas">Entalle de Entre Piernas</label>
                             <select name="entalle_piernas" id="entalle_piernas" class="form-control">
-                                <option value="" disabled selected>Entalle de Entre Piernas</option>
+                                <option value="0" disabled selected>Entalle de Entre Piernas</option>
                                 <option value="20"><b>20</b></option>
                                 <option value="21"><b>21</b></option>
                                 <option value="22"><b>22</b></option>
