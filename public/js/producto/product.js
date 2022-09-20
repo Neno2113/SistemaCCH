@@ -76,6 +76,8 @@ $(document).ready(function() {
         listar();
         mostrarForm(false);
         catalogos();
+        //Cristobal
+        $("#btn-rollos").hide();
     
      
     }
