@@ -384,6 +384,11 @@ $(document).ready(function() {
                             });
                         }
                     });
+                    Swal.fire(
+                        '¡¡Referencia Creada!!',
+                        'Procede a asignar los SKUs correspondientes.',
+                        'success'
+                    )
                 
                     $(".bd-sku-modal-xl").modal('show');
 
@@ -433,6 +438,7 @@ $(document).ready(function() {
             ],
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
+                { data: "id", name: "producto.id" },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
              
@@ -442,7 +448,7 @@ $(document).ready(function() {
                 { data: "precio_venta_publico", name: "producto.precio_venta_publico"},
                 { data: "descripcion", name: "producto.descripcion" }
             ],
-            order: [[2, "desc"]],
+            order: [[0, "desc"]],
            /* rowGroup: {
                 dataSrc: "name"
             } */
@@ -602,11 +608,6 @@ $(document).ready(function() {
 
     $("#terminarSKU, #cerrarSKU").click(function(e) {
         e.preventDefault();
-        Swal.fire(
-            'Referencia creada!!',
-            'Referencia creada correctamente!',
-            'success'
-        )
 
         limpiar();
         tabla.ajax.reload();
