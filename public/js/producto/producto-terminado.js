@@ -48,12 +48,14 @@ $(document).ready(function() {
                 }
                 ],
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
+            //    { data: "Expandir", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
                 { data: "tono", name: "producto.tono" },
                 { data: "intensidad_proceso_seco", name: "producto.intensidad_proceso_seco" },
                 { data: "atributo_no_1", name: "producto.atributo_no_1" },
+                { data: "atributo_no_2", name: "producto.atributo_no_2" },
+                { data: "atributo_no_3", name: "producto.atributo_no_3" },
                 { data: "descripcion", name: "producto.descripcion" }
             ],
             order: [[2, "desc"]],

@@ -935,10 +935,11 @@ class ProductController extends Controller
             ->where('producto.producto_terminado', 'LIKE', '1');
 
         return DataTables::of($products)
+        /*
             ->addColumn('Expandir', function ($product) {
                 return "";
             })
-            /*
+            
             ->editColumn('precio_lista', function ($product) {
                 return number_format($product->precio_lista) . " RD$";
             }) 

@@ -155,24 +155,28 @@
         <table id="producto-terminado" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
-                    <th></th>
+                <!--    <th></th> -->
                     <th>Ver</th>
                     <th>Referencia producto</th>
                     <th>Lavado</th>
                     <th>Acabado</th>
                     <th>Atributo 1</th>
+                    <th>Atributo 2</th>
+                    <th>Atributo 3</th>
                     <th>Descripcion</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
+                <!--    <th></th> -->
                     <th>Ver</th>
                     <th>Referencia producto</th>
                     <th>Lavado</th>
                     <th>Acabado</th>
                     <th>Atributo 1</th>
+                    <th>Atributo 2</th>
+                    <th>Atributo 3</th>
                     <th>Descripcion</th>
                 </tr>
             </tfoot>
