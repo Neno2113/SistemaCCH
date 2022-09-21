@@ -49,7 +49,7 @@ class SKUController extends Controller
 
         $skus = DB::table('sku')->join('corte', 'sku.producto_id', '=', 'corte.producto_id')
             ->select([
-                'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto'
+                'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla'
             ]);
 
         return DataTables::of($skus)
