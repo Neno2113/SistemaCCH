@@ -747,7 +747,7 @@ function mostrar(id_empleado) {
                 "</tr>";
     
                 $("#eventos_laborales").append(fila_historico);
-                }
+            }
             
             
             $("#avatar-img").attr("src", '/avatar/'+data.user.avatar);

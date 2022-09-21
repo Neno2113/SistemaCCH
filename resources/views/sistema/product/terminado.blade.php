@@ -131,6 +131,11 @@
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control mt-2 text-center" readonly></textarea>
                         </div>
+                        <div class="col-md-4" id="lista_cortes">
+                            <label for="cortes">Cortes</label>
+                        <!--    <input type="text" name="cortes" id="cortes" class="form-control text-center "
+                                readonly> -->
+                        </div>
                     </div>
                     <br>
                     <hr>

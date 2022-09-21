@@ -11,6 +11,7 @@ use App\SKU;
 use App\CurvaProducto;
 use App\CatalogoCuenta;
 use App\Articulo;
+use App\Corte;
 use App\CategoriaProducto;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
@@ -503,7 +504,8 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if (is_object($product)) {
-            $curva = CurvaProducto::where('producto_id', $product->id)->first();
+        //    $curva = CurvaProducto::where('producto_id', $product->id)->first();
+            $cortes = Corte::where('producto_id', $id)->get();
 
             $product->precio_lista = number_format($product->precio_lista);
             $product->precio_venta_publico = number_format($product->precio_venta_publico);
@@ -512,6 +514,7 @@ class ProductController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'product' => $product,
+                'cortes' => $cortes
                 // 'a' => str_replace('.00', '', $curva->a),
                 // 'b' => str_replace('.00', '', $curva->b),
                 // 'c' => str_replace('.00', '', $curva->c),
