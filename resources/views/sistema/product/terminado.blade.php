@@ -131,8 +131,10 @@
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control mt-2 text-center" readonly></textarea>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
-                            <label for="cortes">Cortes</label>
+                            <label for="cortes">Hostorial de Cortes</label>
                             <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
                                 <thead>
                                     <tr>
@@ -141,6 +143,20 @@
                                     </tr>
                                 </thead>
                                 <tbody id="lista_cortes">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="cortes">SKUs</label>
+                            <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
+                                <thead>
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>Talla</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista_skus">
 
                                 </tbody>
                             </table>
