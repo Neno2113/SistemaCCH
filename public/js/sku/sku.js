@@ -78,7 +78,7 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#skus").DataTable({
             serverSide: true,
-            responsive: true,
+            // responsive: true,
             dom: 'Bfrtip',
             iDisplayLength: 20,
             buttons: [
