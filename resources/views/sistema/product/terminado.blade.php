@@ -132,6 +132,8 @@
                                 class="form-control mt-2 text-center" readonly></textarea>
                         </div>
                     </div>
+                    <br>
+                    <hr>
                     <div class="row">
                         <div class="col-md-4">
                             <label for="cortes">Hostorial de Cortes</label>

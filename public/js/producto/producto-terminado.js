@@ -142,13 +142,22 @@ function mostrar(id_prouct) {
         $("#imagen_bolsillo_img").attr("src", './producto/terminado/'+data.product.imagen_bolsillo);
 
         let cant_cortes = data.cortes.length;
-
             for (let z = 0; z < cant_cortes; z++) {
                 var fila_cortes =  "<tr>"+
                 "<td>"+[z+1]+"</td>"+
                 "<td>"+data.cortes[z].numero_corte+"</td>"+
                 "</tr>";
                 $("#lista_cortes").append(fila_cortes);
+            }
+
+        let cant_skus = data.skus.length;
+
+            for (let x = 0; x < cant_skus; x++) {
+                var fila_skus =  "<tr>"+
+                "<td>"+data.skus[x].sku+"</td>"+
+                "<td>"+data.skus[x].talla+"</td>"+
+                "</tr>";
+                $("#lista_skus").append(fila_skus);
             }
         
     });
