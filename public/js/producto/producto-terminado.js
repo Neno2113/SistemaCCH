@@ -21,6 +21,7 @@ $(document).ready(function() {
         $("#descripcion_2").val("");
         $("#precio_lista_2").val("");
         $("#precio_venta_publico_2").val("");
+        $("#imagen_frente_img").attr("src", '/avatar/1663764719foto%20jeans%20default.jpg');
     }
 
     var tabla
