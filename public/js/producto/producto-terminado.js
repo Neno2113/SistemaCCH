@@ -145,7 +145,7 @@ function mostrar(id_prouct) {
 
             for (let z = 0; z < cant_cortes; z++) {
                 var fila_cortes =  "<tr>"+
-                "<th>"+[z+1]+"</th>"+
+                "<td>"+[z+1]+"</td>"+
                 "<td>"+data.cortes[z].numero_corte+"</td>"+
                 "</tr>";
                 $("#lista_cortes").append(fila_cortes);

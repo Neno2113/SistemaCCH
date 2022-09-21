@@ -131,10 +131,19 @@
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control mt-2 text-center" readonly></textarea>
                         </div>
-                        <div class="col-md-4" id="lista_cortes">
+                        <div class="col-md-4">
                             <label for="cortes">Cortes</label>
-                        <!--    <input type="text" name="cortes" id="cortes" class="form-control text-center "
-                                readonly> -->
+                            <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Corte</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista_cortes">
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <br>
