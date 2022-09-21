@@ -150,12 +150,93 @@ function mostrar(id_prouct) {
                 $("#lista_cortes").append(fila_cortes);
             }
 
+            var mujer_plus = data.product.referencia_producto.substring(3, 4);
+            if (data.product.genero == "2") {
+                if (mujer_plus == "7") {
+                    var a = '12W';
+                    var b = '14W';
+                    var c = '16W';
+                    var d = '18W';
+                    var e = '20W';
+                    var f = '22W';
+                    var g = '24W';
+                    var h = '26W';
+                    var all = "12W - 26W";
+                } else {
+                    var a = '0/0';
+                    var b = '1/2';
+                    var c = '3/4';
+                    var d = '5/6';
+                    var e = '7/8';
+                    var f = '9/10';
+                    var g = '11/12';
+                    var h = '13/14';
+                    var i = '15/16';
+                    var j = '17/18';
+                    var k = '19/20';
+                    var l = '21/22';
+                    var all = "0/0 - 21/22";
+                }
+            } else if (data.product.genero == "3" || data.product.genero == "4") {
+                    var a = '2';
+                    var b = '4';
+                    var c = '6';
+                    var d = '8';
+                    var e = '10';
+                    var f = '12';
+                    var g = '14';
+                    var h = '16';
+                    var all = "2 - 16";
+            } else if (data.product.genero == "1") {
+                    var a = '28';
+                    var b = '29';
+                    var c = '30';
+                    var d = '32';
+                    var e = '34';
+                    var f = '36';
+                    var g = '38';
+                    var h = '40';
+                    var i = '42';
+                    var j = '44';
+                    var k = '46';
+                    var all = "28 - 46";
+            }
+
         let cant_skus = data.skus.length;
 
             for (let x = 0; x < cant_skus; x++) {
+                if (data.skus[x].talla == "General") {
+                    var talla = all;
+                }
+                if (data.skus[x].talla == 'A') {
+                    var talla = a;
+                } else if (data.skus[x].talla == 'B') {
+                    var talla = b;
+                } else if (data.skus[x].talla == 'C') {
+                    var talla = c;
+                } else if (data.skus[x].talla == 'D') {
+                    var talla = d;
+                } else if (data.skus[x].talla == 'E') {
+                    var talla = e;
+                } else if (data.skus[x].talla == 'F') {
+                    var talla = f;
+                } else if (data.skus[x].talla == 'G') {
+                    var talla = g;
+                } else if (data.skus[x].talla == 'H') {
+                    var talla = h;
+                } else if (data.skus[x].talla == 'I') {
+                    var talla = i;
+                } else if (data.skus[x].talla == 'J') {
+                    var talla = j;
+                } else if (data.skus[x].talla == 'K') {
+                    var talla = k;
+                } else if (data.skus[x].talla == 'L') {
+                    var talla = l;
+                } 
+                
                 var fila_skus =  "<tr>"+
                 "<td>"+data.skus[x].sku+"</td>"+
-                "<td>"+data.skus[x].talla+"</td>"+
+                "<td>"+talla+"</td>"+
                 "</tr>";
                 $("#lista_skus").append(fila_skus);
             }
