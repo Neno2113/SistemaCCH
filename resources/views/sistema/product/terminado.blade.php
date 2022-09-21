@@ -158,9 +158,9 @@
                     <th></th>
                     <th>Ver</th>
                     <th>Referencia producto</th>
-                    <th>Tono</th>
-                    <th>Precio lista</th>
-                    <th>Precio venta publico</th>
+                    <th>Lavado</th>
+                    <th>Acabado</th>
+                    <th>Atributo 1</th>
                     <th>Descripcion</th>
                 </tr>
             </thead>
@@ -170,9 +170,9 @@
                     <th></th>
                     <th>Ver</th>
                     <th>Referencia producto</th>
-                    <th>Tono</th>
-                    <th>Precio lista</th>
-                    <th>Precio venta publico</th>
+                    <th>Lavado</th>
+                    <th>Acabado</th>
+                    <th>Atributo 1</th>
                     <th>Descripcion</th>
                 </tr>
             </tfoot>

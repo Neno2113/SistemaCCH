@@ -930,7 +930,7 @@ class ProductController extends Controller
     public function productoTerminado()
     {
         $products = DB::table('producto')->select([
-            'producto.id', 'producto.referencia_producto', 'producto.descripcion', 'producto.tono', 'producto.precio_lista', 'producto.precio_venta_publico'
+            'producto.id', 'producto.referencia_producto', 'producto.descripcion', 'producto.tono', 'producto.intensidad_proceso_seco', 'producto.atributo_no_1', 'producto.atributo_no_2', 'producto.atributo_no_3'
         ])
             ->where('producto.producto_terminado', 'LIKE', '1');
 
@@ -938,13 +938,13 @@ class ProductController extends Controller
             ->addColumn('Expandir', function ($product) {
                 return "";
             })
+            /*
             ->editColumn('precio_lista', function ($product) {
                 return number_format($product->precio_lista) . " RD$";
-            })
+            }) 
             ->editColumn('precio_venta_publico', function ($product) {
                 return number_format($product->precio_lista) . " RD$";
-            })
-
+            }) */
 
             ->addColumn('Opciones', function ($product) {
                 return '<button id="btnEdit" onclick="mostrar(' . $product->id . ')" class="btn btn-dark btn-sm" > <i class="fas fa-eye fa-lg"></i></button>';

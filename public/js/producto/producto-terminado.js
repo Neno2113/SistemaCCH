@@ -52,8 +52,8 @@ $(document).ready(function() {
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "referencia_producto", name: "producto.referencia_producto" },
                 { data: "tono", name: "producto.tono" },
-                { data: "precio_lista", name: "producto.precio_lista" },
-                { data: "precio_venta_publico", name: "producto.precio_venta_publico" },
+                { data: "intensidad_proceso_seco", name: "producto.intensidad_proceso_seco" },
+                { data: "atributo_no_1", name: "producto.atributo_no_1" },
                 { data: "descripcion", name: "producto.descripcion" }
             ],
             order: [[2, "desc"]],
