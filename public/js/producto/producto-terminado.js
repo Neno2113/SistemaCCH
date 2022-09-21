@@ -21,7 +21,14 @@ $(document).ready(function() {
         $("#descripcion_2").val("");
         $("#precio_lista_2").val("");
         $("#precio_venta_publico_2").val("");
+        $("#imagen_frente").attr("href", '/avatar/1663764719foto%20jeans%20default.jpg');
         $("#imagen_frente_img").attr("src", '/avatar/1663764719foto%20jeans%20default.jpg');
+        $("#imagen_trasera").attr("href", '/avatar/1663764719foto%20jeans%20default.jpg');
+        $("#imagen_trasera_img").attr("src", '/avatar/1663764719foto%20jeans%20default.jpg');
+        $("#imagen_perfil").attr("href", '/avatar/1663764719foto%20jeans%20default.jpg');
+        $("#imagen_perfil_img").attr("src", '/avatar/1663764719foto%20jeans%20default.jpg');
+        $("#imagen_bolsillo").attr("href", '/avatar/1663764719foto%20jeans%20default.jpg');
+        $("#imagen_bolsillo_img").attr("src", '/avatar/1663764719foto%20jeans%20default.jpg');
     }
 
     var tabla
@@ -133,14 +140,14 @@ function mostrar(id_prouct) {
         $("#precio_lista_2").val(data.product.precio_lista_2);
         $("#precio_venta_publico").val(data.product.precio_venta_publico+" RD$");
         $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
-        $("#imagen_frente").attr("href", './producto/terminado/'+data.product.imagen_frente);
-        $("#imagen_frente_img").attr("src", './producto/terminado/'+data.product.imagen_frente);
-        $("#imagen_trasera").attr("href", './producto/terminado/'+data.product.imagen_trasero);
-        $("#imagen_trasera_img").attr("src", './producto/terminado/'+data.product.imagen_trasero);
-        $("#imagen_perfil").attr("href", './producto/terminado/'+data.product.imagen_perfil);
-        $("#imagen_perfil_img").attr("src", './producto/terminado/'+data.product.imagen_perfil);
-        $("#imagen_bolsillo").attr("href", './producto/terminado/'+data.product.imagen_bolsillo);
-        $("#imagen_bolsillo_img").attr("src", './producto/terminado/'+data.product.imagen_bolsillo);
+    //    $("#imagen_frente").attr("href", './producto/terminado/'+data.product.imagen_frente);
+    //    $("#imagen_frente_img").attr("src", './producto/terminado/'+data.product.imagen_frente);
+    //    $("#imagen_trasera").attr("href", './producto/terminado/'+data.product.imagen_trasero);
+    //    $("#imagen_trasera_img").attr("src", './producto/terminado/'+data.product.imagen_trasero);
+    //    $("#imagen_perfil").attr("href", './producto/terminado/'+data.product.imagen_perfil);
+    //    $("#imagen_perfil_img").attr("src", './producto/terminado/'+data.product.imagen_perfil);
+    //    $("#imagen_bolsillo").attr("href", './producto/terminado/'+data.product.imagen_bolsillo);
+    //    $("#imagen_bolsillo_img").attr("src", './producto/terminado/'+data.product.imagen_bolsillo);
 
         let cant_cortes = data.cortes.length;
             for (let z = 0; z < cant_cortes; z++) {
