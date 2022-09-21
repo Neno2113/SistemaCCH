@@ -10,6 +10,11 @@ class SKU extends Model
 
 
     protected $fillable = [
-        'id', 'sku', 'talla', 'created_at', 'updated_at'
+        'id', 'producto_id', 'sku', 'talla', 'created_at', 'updated_at'
     ];
+
+    public function corte()
+    {
+        return $this->belongsTo('App\Corte', 'producto_id');
+    }
 }
