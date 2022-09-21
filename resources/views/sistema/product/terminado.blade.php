@@ -126,7 +126,7 @@
                     <br>
                     <hr>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <label for="">Descripcion</label>
                             <textarea name="descripcion" id="descripcion" cols="30" rows="1"
                                 class="form-control mt-2 text-center" readonly></textarea>
