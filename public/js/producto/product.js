@@ -446,7 +446,6 @@ $(document).ready(function() {
                 { data: "id", name: "producto.id" },
                 { data: "Editar", orderable: false, searchable: false },
                 { data: "Eliminar", orderable: false, searchable: false },
-             
                 { data: "referencia_producto", name: "producto.referencia_producto"},
                 { data: "name", name: "users.name" },
                 { data: "precio_lista", name: "producto.precio_lista" },

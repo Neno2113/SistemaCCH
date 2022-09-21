@@ -58,7 +58,11 @@ $(document).ready(function() {
                 { data: "atributo_no_3", name: "producto.atributo_no_3" },
                 { data: "descripcion", name: "producto.descripcion" }
             ],
-            order: [[2, "desc"]],
+            order: [[1, "desc"]],
+            /*
+            rowGroup: {
+                dataSrc: "name"
+            } */
         });
     }
 
