@@ -105,7 +105,7 @@
                             <input type="hidden" name="" id="sec" value="">
                         </div>
                         <div class="col-md-4 align-self-center mt-4">
-                            <button class="d-inline btn btn-primary rounded-pill mt-3" id="btnGenerar">Generar</button>
+                        <!--    <button class="d-inline btn btn-primary rounded-pill mt-3" id="btnGenerar">Generar</button> -->
                             {{-- <button type="button" class="d-inline btn btn-secondary rounded-pill ml-3" id="btn-curva"
                                 data-toggle="modal" data-target=".bd-curva-modal-xl">
                                 <i class="fas fa-percentage"></i> Porcentaje por Talla</button> --}}

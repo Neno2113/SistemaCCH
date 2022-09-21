@@ -78,8 +78,6 @@ $(document).ready(function() {
         catalogos();
         //Cristobal
         $("#btn-rollos").hide();
-        //Cristobal
-        $("#btnGenerar").hide();
     }
 
 
@@ -578,8 +576,6 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
-            //cristobal
-            $("#btnGenerar").hide();
             $("#btn-curva").attr("disabled", true);
             $("#boton-sku").hide();
             marcas();
@@ -944,8 +940,6 @@ function mostrar(id_prouct) {
             $("#registroForm").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
-            //cristobal
-            $("#btnGenerar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
             $("#referencia_talla_2").hide();
