@@ -46,9 +46,17 @@ class SKUController extends Controller
 
     public function skus()
     {
-        $skus = SKU::query()->where('referencia_producto', '<>', '');
-    //    $skus = SKU::query()->where('producto_id', '=', 161);
-        return DataTables::eloquent($skus)
+
+        $skus = DB::table('sku')->join('corte', 'sku.producto_id', '=', 'corte..producto_id')
+            ->select([
+                'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto'
+            ]);
+
+        return DataTables::of($skus)
+        ///////////////////////////////////////////////
+    //    $skus = SKU::query()->where('referencia_producto', '<>', '');
+ 
+   //     return DataTables::eloquent($skus)
             /*
             ->addColumn('Editar', function ($sku) {
                 $producto = $sku->producto_id;
@@ -62,6 +70,7 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
+            /*
             ->addColumn('Corte', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
@@ -89,6 +98,7 @@ class SKUController extends Controller
                 }
                 return $marcada;
             })
+            */
             ->editColumn('talla', function ($sku) {
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
@@ -270,7 +280,7 @@ class SKUController extends Controller
                     }  
                 }
              })
-            ->rawColumns(['Corte', 'Fecha', 'Marcada'])
+         //   ->rawColumns(['Corte', 'Fecha', 'Marcada'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
