@@ -102,9 +102,9 @@ $(document).ready(function() {
             //    { data: "Editar", orderable: false, searchable: false },
                 { data: "sku", name: "sku.sku"},
                 { data: "referencia_producto", name: "sku.referencia_producto"},
-                { data: "Corte", name: "corte.numero_corte"},
-                { data: "Fecha", name: "corte.fecha_corte"},
-                { data: "Marcada", name: "corte.no_marcada"},
+                { data: "corte", name: "corte.numero_corte"},
+                { data: "fecha", name: "corte.fecha_corte"},
+                { data: "marcada", name: "corte.no_marcada"},
                 { data: "talla", name: "sku.talla"} 
 
             ],
