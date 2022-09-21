@@ -98,7 +98,7 @@ class SKUController extends Controller
                 }
                 return $marcada;
             })
-            */
+            
             ->editColumn('talla', function ($sku) {
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
@@ -280,6 +280,7 @@ class SKUController extends Controller
                     }  
                 }
              })
+             */
          //   ->rawColumns(['Corte', 'Fecha', 'Marcada'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
