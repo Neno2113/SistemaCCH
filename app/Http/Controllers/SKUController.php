@@ -70,7 +70,15 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
-            /*
+            ->editColumn('corte', function ($sku) {
+                if ($corte->numero_corte){
+                    $num_corte = $corte->numero_corte;
+                } else {
+                    $num_corte = '';
+                }
+                return $num_corte;  
+            })
+            /* 
             ->addColumn('Corte', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
@@ -79,7 +87,8 @@ class SKUController extends Controller
                     $num_corte = '';
                 }
                 return $num_corte;
-            })   
+            })  
+            
             ->addColumn('Fecha', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
