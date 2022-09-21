@@ -100,12 +100,12 @@ $(document).ready(function() {
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
             //    { data: "Editar", orderable: false, searchable: false },
-                { data: "sku" },
-                { data: "referencia_producto" },
+                { data: "sku", name: "sku.sku" },
+                { data: "referencia_producto", name: "sku.referencia_producto" },
                 { data: "Corte", name: "corte.numero_corte" },
                 { data: "Fecha", name: "corte.fecha_corte" },
                 { data: "Marcada", name: "corte.no_marcada" },
-                { data: "talla" }, 
+                { data: "talla", name: "sku.talla"  }, 
 
             ],
             order: [[1, 'desc']],
