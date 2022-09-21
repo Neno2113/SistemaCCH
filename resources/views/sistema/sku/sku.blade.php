@@ -77,7 +77,7 @@
                     <!--    <th>Opcion</th> --> 
                         <th>SKU</th>
                         <th>Producto</th>
-                         <th>Corte</th>
+                        <th>Corte</th>
                         <th>Fecha</th>
                         <th>Tela</th>
                         <th>Talla</th> 

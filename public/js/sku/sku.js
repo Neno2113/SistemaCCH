@@ -78,7 +78,7 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#skus").DataTable({
             serverSide: true,
-            // responsive: true,
+            responsive: true,
             dom: 'Bfrtip',
             iDisplayLength: 20,
             buttons: [
@@ -100,12 +100,20 @@ $(document).ready(function() {
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
             //    { data: "Editar", orderable: false, searchable: false },
-                { data: "sku", name: "sku.sku"},
-                { data: "referencia_producto", name: "sku.referencia_producto"},
-                { data: "corte", name: "corte.numero_corte"},
-                { data: "fecha", name: "corte.fecha_corte"},
-                { data: "marcada", name: "corte.no_marcada"},
-                { data: "talla", name: "sku.talla"} 
+            //    { data: "sku", name: "sku.sku"},
+            //    { data: "referencia_producto", name: "sku.referencia_producto"},
+            //    { data: "corte", name: "corte.numero_corte"},
+            //    { data: "fecha", name: "corte.fecha_corte"},
+            //    { data: "marcada", name: "corte.no_marcada"},
+            //    { data: "talla", name: "sku.talla"} 
+
+                { data: "sku"},
+                { data: "referencia_producto"},
+                { data: "numero_corte"},
+                { data: "fecha_corte"},
+                { data: "no_marcada"},
+                { data: "talla"} 
+
 
             ],
             order: [[1, 'desc']],
