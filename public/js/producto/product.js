@@ -78,8 +78,8 @@ $(document).ready(function() {
         catalogos();
         //Cristobal
         $("#btn-rollos").hide();
-    
-     
+        //Cristobal
+        $("#btnGenerar").hide();
     }
 
 
