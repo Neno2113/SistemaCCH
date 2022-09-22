@@ -78,6 +78,30 @@ class SKUController extends Controller
                 }
                 return $num_corte;  
             })
+            ->editColumn('fecha', function ($sku) {
+                if ($corte->fecha_corte){
+                    $fecha_corte = $corte->fecha_corte;
+                } else {
+                    $fecha_corte = '';
+                }
+                return $fecha_corte;  
+            })
+            ->editColumn('marcada', function ($sku) {
+                if ($corte->no_marcada){
+                    $marcada = substr($corte->no_marcada, 6, -3);
+                } else {
+                    $marcada = '';
+                }
+                return $marcada;  
+            })
+            ->editColumn('talla', function ($sku) {
+                if ($sku->talla){
+                    $talla = $sku->talla;
+                } else {
+                    $talla = '';
+                }
+                return $talla;  
+            })
             /* 
             ->addColumn('Corte', function ($sku) {
                 $producto = $sku->producto_id;
