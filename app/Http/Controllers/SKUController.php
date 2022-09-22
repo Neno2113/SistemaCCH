@@ -51,28 +51,9 @@ class SKUController extends Controller
             ->select([
                 'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla'
             ]);
-        /*
-        $skus = DB::table('sku')->select(['producto_id', 'sku', 'referencia_producto', 'talla'])
-        ->join('corte', 'sku.producto_id', '=', 'corte.producto_id')
-        ->select([
-            'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada'
-        ]);
-        */
+
         return DataTables::of($skus)
         ///////////////////////////////////////////////
-    //    $skus = SKU::query()->where('referencia_producto', '<>', '');
- 
-   //     return DataTables::eloquent($skus)
-            /*
-            ->addColumn('Editar', function ($sku) {
-                $producto = $sku->producto_id;
-                if(isset($producto)){
-                    return '<button id="btnEdit" onclick="mostrar(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
-                }else{
-                    return "";
-                }
-            })
-            */
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
@@ -100,54 +81,6 @@ class SKUController extends Controller
                 }
                 return $marcada;  
             })
-            /*
-            ->editColumn('talla', function ($sku) {
-                if ($sku->talla){
-                    $talla = $sku->talla;
-                } else {
-                    $talla = '';
-                }
-                return $talla;  
-            })
-            
-            ->addColumn('Corte', function ($sku) {
-                $producto = $sku->producto_id;
-                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
-                    $num_corte = $corte->numero_corte;   
-                } else {
-                    $num_corte = '';
-                }
-                return $num_corte;
-            })  
-            
-            ->addColumn('Fecha', function ($sku) {
-                $producto = $sku->producto_id;
-                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
-                    $fecha_corte = $corte->fecha_corte;   
-                } else {
-                    $fecha_corte = '';
-                }
-                return $fecha_corte;
-            })
-            ->addColumn('Marcada', function ($sku) {
-                $producto = $sku->producto_id;
-                if($corte = Corte::where('producto_id', $producto)->get()->first()) {
-                    $marcada = substr($corte->no_marcada, 6, -3);
-                } else {
-                    $marcada = '';
-                }
-                return $marcada;
-            })
-            
-            ->editColumn('talla', function ($sku) {
-                if ($sku->talla){
-                    $talla = $sku->talla;
-                } else {
-                    $talla = '';
-                }
-                return $talla;  
-            })
-            */
             ->editColumn('talla', function ($sku) {
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
