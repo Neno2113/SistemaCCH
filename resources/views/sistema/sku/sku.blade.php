@@ -82,7 +82,7 @@
                         <th>Tela</th>
                         <th>Talla</th> 
                         <th>Ent. Bragueta</th> 
-                    <!--     <th>Ent. E. Piernas </th> -->
+                        <th>Ent. E. Piernas </th>
 
                     </tr>
                 </thead>
@@ -98,7 +98,7 @@
                         <th>Tela</th>
                         <th>Talla</th>
                         <th>Ent. Bragueta</th> 
-                    <!--    <th>Ent. E. Piernas </th> -->
+                        <th>Ent. E. Piernas </th>
                     </tr>
                 </tfoot>
             </table>
