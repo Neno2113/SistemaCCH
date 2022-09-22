@@ -94,6 +94,7 @@ class SKUController extends Controller
                 }
                 return $marcada;  
             })
+            /* 
             ->editColumn('talla', function ($sku) {
                 if ($sku->talla){
                     $talla = $sku->talla;
@@ -102,7 +103,7 @@ class SKUController extends Controller
                 }
                 return $talla;  
             })
-            /* 
+            
             ->addColumn('Corte', function ($sku) {
                 $producto = $sku->producto_id;
                 if($corte = Corte::where('producto_id', $producto)->get()->first()) {
