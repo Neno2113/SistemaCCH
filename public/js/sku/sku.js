@@ -78,9 +78,10 @@ $(document).ready(function() {
     function listar() {
         tabla = $("#skus").DataTable({
             serverSide: true,
+            autoWidth: false,
             // responsive: true,
-            dom: 'Bfrtip',
             iDisplayLength: 20,
+            dom: 'Bfrtip',
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -107,12 +108,12 @@ $(document).ready(function() {
             //    { data: "marcada", name: "corte.no_marcada"},
             //    { data: "talla", name: "sku.talla"} 
 
-                { data: "sku"},
-                { data: "referencia_producto"},
-                { data: "numero_corte"},
-                { data: "fecha_corte"},
-                { data: "no_marcada"},
-                { data: "talla"} 
+                { data: "sku", name: "sku.sku" },
+                { data: "referencia_producto", name: "sku.referencia_producto" },
+                { data: "numero_corte", name: "corte.numero_corte" },
+                { data: "fecha_corte", name: "corte.fecha_corte" },
+                { data: "no_marcada", name: "corte.no_marcada" },
+                { data: "talla", name: "sku.talla" } 
 
 
             ],
