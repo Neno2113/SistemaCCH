@@ -85,13 +85,22 @@ class SKUController extends Controller
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
                 $talla = $sku->talla;
+
+                if ($sku->$referencia_producto_2) {
+                    $referencia2 = $sku->referencia_producto_2;
+                    $referencia1 = $sku->referencia_producto;
+                    $genero = $sku->genero;   
+                    $mujer_plus = substr($referencia, 3, 1);
+                    $min_talla = $sku->min;   
+                    $max_talla = $sku->max;   
+                /*
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $referencia2 = $product->referencia_producto_2;
                     $referencia1 = $product->referencia_producto;
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 3, 1);
                     $min_talla = $product->min;   
-                    $max_talla = $product->max;   
+                    $max_talla = $product->max;   */
                     
                     if ($genero == "2") {
                         if ($mujer_plus == "7") {
