@@ -70,7 +70,7 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
-            ->editColumn('corte', function ($sku) {
+            ->editColumn('numero_corte', function ($sku) {
                 if ($corte->numero_corte){
                     $num_corte = $corte->numero_corte;
                 } else {
