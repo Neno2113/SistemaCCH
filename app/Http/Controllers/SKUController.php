@@ -49,7 +49,7 @@ class SKUController extends Controller
         
         $skus = DB::table('sku')->leftJoin('corte', 'sku.producto_id', '=', 'corte.producto_id')->leftJoin('producto', 'sku.producto_id', '=', 'producto.id')
             ->select([
-                'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla'
+                'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla', 'producto.referencia_producto AS referencia1', 'producto.referencia_producto_2', 'producto.genero', 'producto.min', 'producto.max'
             ]);
 
         return DataTables::of($skus)
@@ -86,13 +86,21 @@ class SKUController extends Controller
                 $referencia = $sku->referencia_producto;
                 $talla = $sku->talla;
 
+                if ($sku->$referencia_producto_2) {
+                    $referencia2 = $sku->referencia_producto_2;
+                    $referencia1 = $sku->referencia1;
+                    $genero = $sku->genero;   
+                    $mujer_plus = substr($referencia, 3, 1);
+                    $min_talla = $sku->min;   
+                    $max_talla = $sku->max;   
+                /*
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $referencia2 = $product->referencia_producto_2;
                     $referencia1 = $product->referencia_producto;
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 3, 1);
                     $min_talla = $product->min;   
-                    $max_talla = $product->max;  
+                    $max_talla = $product->max;   */
                     
                     if ($genero == "2") {
                         if ($mujer_plus == "7") {

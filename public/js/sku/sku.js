@@ -113,8 +113,8 @@ $(document).ready(function() {
                 { data: "numero_corte", name: "corte.numero_corte" },
                 { data: "fecha_corte", name: "corte.fecha_corte" },
                 { data: "no_marcada", name: "corte.no_marcada" },
-                { data: "talla", name: "sku.talla" } 
-
+                { data: "talla", name: "sku.talla" }
+            //    { data: "entalle_bragueta", name: "producto.entalle_bragueta" } 
 
             ],
             order: [[1, 'desc']],
