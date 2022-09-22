@@ -115,7 +115,6 @@ $(document).ready(function() {
                 { data: "no_marcada", name: "corte.no_marcada" },
                 { data: "talla", name: "sku.talla" }
             //    { data: "entalle_bragueta", name: "producto.entalle_bragueta" } 
-
             ],
             order: [[1, 'desc']],
         /*    rowGroup: {
