@@ -47,7 +47,7 @@ class SKUController extends Controller
     public function skus()
     {
         
-        $skus = DB::table('sku')->leftJoin('corte', 'sku.producto_id', '=', 'corte.producto_id')
+        $skus = DB::table('sku')->leftJoin('corte', 'sku.producto_id', '=', 'corte.producto_id')->leftJoin('producto', 'sku.producto_id', '=', 'producto.id')
             ->select([
                 'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla'
             ]);

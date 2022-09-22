@@ -81,8 +81,8 @@
                         <th>Fecha</th>
                         <th>Tela</th>
                         <th>Talla</th> 
-                        <th>Ent. Bragueta</th> 
-                        <th>Ent. E. Piernas </th> 
+                    <!--    <th>Ent. Bragueta</th> 
+                        <th>Ent. E. Piernas </th> -->
 
                     </tr>
                 </thead>
@@ -97,8 +97,8 @@
                         <th>Fecha</th>
                         <th>Tela</th>
                         <th>Talla</th>
-                        <th>Ent. Bragueta</th> 
-                        <th>Ent. E. Piernas </th> 
+                    <!--    <th>Ent. Bragueta</th> 
+                        <th>Ent. E. Piernas </th> -->
                     </tr>
                 </tfoot>
             </table>
