@@ -78,6 +78,7 @@ class SKUController extends Controller
                 }
                 return $num_corte;  
             })
+            /*
             ->editColumn('fecha', function ($sku) {
                 if ($corte->fecha_corte){
                     $fecha_corte = $corte->fecha_corte;
@@ -86,7 +87,7 @@ class SKUController extends Controller
                 }
                 return $fecha_corte;  
             })
-            /* 
+             
             ->editColumn('marcada', function ($sku) {
                 if ($corte->no_marcada){
                     $marcada = substr($corte->no_marcada, 6, -3);
