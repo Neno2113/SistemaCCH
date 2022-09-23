@@ -83,7 +83,7 @@ class SKUController extends Controller
                 return $marcada;  
             })
             ->editColumn('entalle_bragueta', function ($sku) {
-                if ($sku->entalle_bragueta){
+                if (is_numeric($sku->entalle_bragueta)){
                     /*
                     $bragueta = DB::table('CategoriaProducto')->where('tipo', 'entalle_bragueta')->where('indice', $sku->entalle_bragueta)->select([
                         'nombre'
