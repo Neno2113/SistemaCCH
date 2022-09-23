@@ -77,13 +77,13 @@
                             {{-- <input type="hidden" name="genero" id="genero"> --}}
                         </div>
                         <div class="col-md-3">
-                            <label for="" >Fecha creacion</label>
+                            <label for="" >Fecha Inicio</label>
                             <input type="text" name="fecha_creacion" 
                                 id="fecha_creacion" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
                            
                         </div>
                         <div class="col-md-3">
-                            <label for="" >Fecha disponibilidad</label>
+                            <label for="" >Fecha Disponibilidad</label>
                             <input type="text" name="fecha_entrega" 
                                 id="fecha_entrega" class="form-control" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="bottom">
                            
@@ -104,7 +104,7 @@
                            
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label for="" >Largo marcada</label>
+                            <label for="" >Largo Marcada</label>
                             <input type="text"  name="largo_marcada" id="largo_marcada"
                                 class="form-control text-center" >
                            

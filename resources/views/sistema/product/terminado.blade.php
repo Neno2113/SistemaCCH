@@ -96,11 +96,11 @@
                                 readonly>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Tono</label>
+                            <label for="">Lavado</label>
                             <input type="text" name="tono" id="tono" class="form-control text-center " readonly>
                         </div>
                         <div class="col-md-4">
-                            <label for="">Intensidad proceso seco</label>
+                            <label for="">Acabado</label>
                             <input type="text" name="intensidad_proceso_seco" id="intensidad_proceso_seco"
                                 class="form-control text-center " readonly>
                         </div>
@@ -135,8 +135,8 @@
                     <br>
                     <hr>
                     <div class="row">
-                        <div class="col-md-4">
-                            <label for="cortes">Hostorial de Cortes</label>
+                        <div class="col-md-3">
+                            <label for="cortes">Historial de Cortes</label>
                             <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
                                 <thead>
                                     <tr>
@@ -149,7 +149,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="cortes">SKUs</label>
                             <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
                                 <thead>
@@ -162,6 +162,16 @@
 
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Ubicación</label>
+                            <input type="text" name="ubicacion" id="ubicacion" class="form-control text-center "
+                                readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Cantidad</label>
+                            <input type="text" name="cantidad" id="cantidad" class="form-control text-center "
+                                readonly>
                         </div>
                     </div>
                     <br>
