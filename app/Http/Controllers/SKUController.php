@@ -94,7 +94,7 @@ class SKUController extends Controller
                     */
                     if($bragueta = CategoriaProducto::where('tipo', 'entalle_bragueta')->where('indice', $sku->entalle_bragueta)->get()->first()) {
                         $entalle_bragueta = $bragueta->nombre;
-                    } else{
+                    } else {
                         $entalle_bragueta = '';
                     }
                     
