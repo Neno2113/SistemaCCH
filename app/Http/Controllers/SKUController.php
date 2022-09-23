@@ -103,6 +103,19 @@ class SKUController extends Controller
                 }
                 return $entalle_bragueta;  
             })
+            ->editColumn('entalle_piernas', function ($sku) {
+                if (is_numeric($sku->entalle_piernas)){
+                    if($piernas = CategoriaProducto::where('tipo', 'entalle_piernas')->where('indice', $sku->entalle_piernas)->get()->first()) {
+                        $entalle_piernas = $piernas->nombre;
+                    } else {
+                        $entalle_piernas = '';
+                    }
+                    
+                } else {
+                    $entalle_piernas = '';
+                }
+                return $entalle_piernas;  
+            })
             ->editColumn('talla', function ($sku) {
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
