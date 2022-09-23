@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SKU;
 use App\Corte;
 use App\Product;
+use App\CategoriaProducto;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -80,6 +81,16 @@ class SKUController extends Controller
                     $marcada = '';
                 }
                 return $marcada;  
+            })
+            ->editColumn('entalle_bragueta', function ($sku) {
+                if ($sku->entalle_bragueta){
+                    if($bragueta = CategoriaProducto::where('tipo', 'entalle_bragueta')->where('indice', $sku->entalle_bragueta)->get()->first()) {
+                        $entalle_bragueta = $bragueta->nombre;
+                    }
+                } else {
+                    $entalle_bragueta = '';
+                }
+                return $entalle_bragueta;  
             })
             ->editColumn('talla', function ($sku) {
                 $producto = $sku->producto_id;
