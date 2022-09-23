@@ -581,6 +581,7 @@ $(document).ready(function() {
             generos();
             tipos();
             categorias();
+            entalle_braguetas();
             slider();
         } else {
             $("#listadoUsers").show();
@@ -849,6 +850,7 @@ $(document).ready(function() {
                     generos();
                     tipos();
                     categorias();
+                    entalle_braguetas();
                     listarCategorias($("#tipo").val());
                 
                 
@@ -935,6 +937,7 @@ function mostrar(id_prouct) {
     generos();
     tipos();
     categorias();
+    entalle_braguetas();
     marcas();
     $.post("product/" + id_prouct, function(data, status) {
     
@@ -1227,6 +1230,7 @@ const delCategoria = (id) => {
                 generos();
                 tipos();
                 categorias();
+                entalle_braguetas();
                 listarCategorias($("#tipo").val());
             })
         }
