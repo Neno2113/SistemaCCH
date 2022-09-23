@@ -496,7 +496,8 @@
                             <label for="">Nombre</label>
                             <input type="text" name="nombre" id="nombre" class="form-control text-center">
                         </div>
-                        <div class="col-4">
+                        <div class="col-4 mt-2" style="text-align: center;">
+                            <br/> 
                             <button type="button" id="btn-save" class="btn btn-primary" ><i class="fas fa-save"></i> Agregar</button>
                         </div>
                     </div>
