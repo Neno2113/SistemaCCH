@@ -1350,6 +1350,35 @@ const categorias = () => {
         }
     });
 }
+const entalle_braguetas = () => {
+    $("#entalle_bragueta").empty();
+    $("#entalle_bragueta").append(`<option value="" selected disabled>Entalle de Bragueta</option>`);
+    $.ajax({
+        url: "entalle_bragueta",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.entalle_braguetas.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.entalle_braguetas[i].indice}">${datos.entalle_braguetas[i].indice} - ${datos.entalle_braguetas[i].nombre}</option>`
+                    $("#entalle_bragueta").append(fila);
+                }
+                $("#entalle_bragueta").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
 
 function eliminarColumnas(){
     if(genero_global == 3 || genero_global == 4){

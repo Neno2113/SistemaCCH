@@ -1533,6 +1533,28 @@ class ProductController extends Controller
         return response()->json($data, $data['code']);
     } 
 
+    public function catBragueta(){
+        $entalle_braguetas = CategoriaProducto::where('tipo', 'entalle_bragueta')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'entalle_braguetas' => $entalle_braguetas
+        ];
+        return response()->json($data, $data['code']);
+    } 
+
+    public function catPiernas(){
+        $entalle_piernas = CategoriaProducto::where('tipo', 'entalle_piernas')->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'entalle_piernas' => $entalle_piernas
+        ];
+        return response()->json($data, $data['code']);
+    } 
+
     public function storeCategoria(Request $request){
 
         $validar = $request->validate([

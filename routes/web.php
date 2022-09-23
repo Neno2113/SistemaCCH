@@ -275,6 +275,8 @@ Route::get('/marcas', 'ProductController@catMarcas');
 Route::get('/generos', 'ProductController@catGenero');
 Route::get('/tipos', 'ProductController@catTipo');
 Route::get('/categorias', 'ProductController@catCategoria');
+Route::get('/entalle_bragueta', 'ProductController@catBragueta');
+Route::get('/entalle_pierna', 'ProductController@catPiernas');
 Route::post('/categoria', 'ProductController@storeCategoria');
 Route::get('/listar/{tipo}', 'ProductController@showCategorias');
 Route::post('/categoria/delete/{id}', 'ProductController@destroyCategoria');
