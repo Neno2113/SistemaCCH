@@ -796,6 +796,18 @@ $(document).ready(function() {
         $("#tipo").val(select);
         listarCategorias(select);
     })
+    $("#btn-bra").on('click', (e) => {
+        e.preventDefault();
+        let select = $("#btn-bra").val();
+        $("#tipo").val(select);
+        listarCategorias(select);
+    })
+    $("#btn-pier").on('click', (e) => {
+        e.preventDefault();
+        let select = $("#btn-pier").val();
+        $("#tipo").val(select);
+        listarCategorias(select);
+    })
 
     init();
     $("#btn-save").on('click', () => {

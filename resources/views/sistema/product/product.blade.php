@@ -122,7 +122,7 @@
                             </select>
                         </div>
                         <div class="col-md-3 mt-4">
-                            <label for="entalle_piernas">Entalle de Entre Piernas</label><button class="btn btn-primary btn-sm mb-2" id="btn-pier" value="entalle_piernas" type="button"
+                            <label for="entalle_piernas">Entalle de Entre Piernas</label> <button class="btn btn-primary btn-sm mb-2" id="btn-pier" value="entalle_piernas" type="button"
                             data-toggle="modal" data-target=".bd-marca-modal-xl"><i class="fas fa-plus-square"></i></button>
                             <select name="entalle_piernas" id="entalle_piernas" class="form-control">
                             {{-- <option value="" disabled selected>Entalle de Entre Piernas</option> --}}
