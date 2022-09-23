@@ -496,7 +496,9 @@
                             <label for="">Nombre</label>
                             <input type="text" name="nombre" id="nombre" class="form-control text-center">
                         </div>
-                       
+                        <div class="col-4">
+                            <button type="button" id="btn-save" class="btn btn-primary" ><i class="fas fa-save"></i> Agregar</button>
+                        </div>
                     </div>
                   
                     <div class="row mt-3">
@@ -522,7 +524,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="btn-close" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                <button type="button" id="btn-save" class="btn btn-primary" ><i class="fas fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>
