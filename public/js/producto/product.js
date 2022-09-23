@@ -582,6 +582,7 @@ $(document).ready(function() {
             tipos();
             categorias();
             entalle_braguetas();
+            entalle_piernas();
             slider();
         } else {
             $("#listadoUsers").show();
@@ -851,6 +852,7 @@ $(document).ready(function() {
                     tipos();
                     categorias();
                     entalle_braguetas();
+                    entalle_piernas();
                     listarCategorias($("#tipo").val());
                 
                 
@@ -938,6 +940,7 @@ function mostrar(id_prouct) {
     tipos();
     categorias();
     entalle_braguetas();
+    entalle_piernas();
     marcas();
     $.post("product/" + id_prouct, function(data, status) {
     
@@ -1231,6 +1234,7 @@ const delCategoria = (id) => {
                 tipos();
                 categorias();
                 entalle_braguetas();
+                entalle_piernas();
                 listarCategorias($("#tipo").val());
             })
         }
@@ -1372,6 +1376,35 @@ const entalle_braguetas = () => {
                     $("#entalle_bragueta").append(fila);
                 }
                 $("#entalle_bragueta").select2();
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            console.log("No cargaron los productos");
+        }
+    });
+}
+const entalle_piernas = () => {
+    $("#entalle_piernas").empty();
+    $("#entalle_piernas").append(`<option value="" selected disabled>Entalle de Entre Piernas</option>`);
+    $.ajax({
+        url: "entalle_pierna",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.entalle_piernas.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila =
+                    ` <option value="${datos.entalle_piernas[i].indice}">${datos.entalle_piernas[i].indice} - ${datos.entalle_piernas[i].nombre}</option>`
+                    $("#entalle_piernas").append(fila);
+                }
+                $("#entalle_piernas").select2();
             } else {
                 bootbox.alert(
                     "Ocurrio un error durante la actualizacion de la composicion"
