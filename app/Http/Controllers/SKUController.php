@@ -88,7 +88,7 @@ class SKUController extends Controller
                     $bragueta = DB::table('categorias_producto')->where([
                         ['tipo', 'entalle_bragueta'],
                         ['indice', $sku->entalle_bragueta]
-                        ])->select('nombre');
+                        ])->select('categorias_producto.nombre');
 
                     $entalle_bragueta = $bragueta->nombre;
                     /*
