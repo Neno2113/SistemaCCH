@@ -1179,7 +1179,11 @@ const listarCategorias = (tipo) => {
                     if (tipoModal == "marca") {
                         $("#Input-indice").append("<label for='indice'>Indice</label><input type='text' name='indice' id='indice' class='form-control text-center'>");
                     }else {
-                        LastIndice += 1;
+                        if (LastIndice == NaN) {
+                            LastIndice = 0;
+                        } else {
+                            LastIndice += 1;
+                        }
                         $("#Input-indice").append("<label for='indice'>El indice sera generado automaticamente</label><input type='hidden' name='indice' id='indice' value='"+LastIndice+"' class='form-control text-center'>");
                     //    $("#permisos-agregados").append("<input type='hidden' id='LastIndice' value="+LastIndice+">");
                     }
