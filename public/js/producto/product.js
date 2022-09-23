@@ -1179,7 +1179,7 @@ const listarCategorias = (tipo) => {
                     if (tipoModal == "marca") {
                         $("#Input-indice").append("<label for='indice'>Indice</label><input type='text' name='indice' id='indice' class='form-control text-center'>");
                     }else {
-                        if (LastIndice == NaN) {
+                        if (is_nan(LastIndice)) {
                             LastIndice = 0;
                         } else {
                             LastIndice += 1;
