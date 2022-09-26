@@ -141,7 +141,6 @@ function mostrar(id_prouct) {
         $("#precio_venta_publico").val(data.product.precio_venta_publico+" RD$");
         $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
         $("#cantidad").val(data.almacen.total);
-        console.log("A ver "+data.almacen.total);
     //    $("#imagen_frente").attr("href", './producto/terminado/'+data.product.imagen_frente);
     //    $("#imagen_frente_img").attr("src", './producto/terminado/'+data.product.imagen_frente);
     //    $("#imagen_trasera").attr("href", './producto/terminado/'+data.product.imagen_trasero);
@@ -217,11 +216,14 @@ function mostrar(id_prouct) {
             for (let x = 0; x < cant_skus; x++) {
                 if (data.skus[x].talla == "General") {
                     var talla = all;
+                    var qty = data.almacen.total;
                 }
                 if (data.skus[x].talla == 'A') {
                     var talla = a;
+                    var qty = data.almacen.a;
                 } else if (data.skus[x].talla == 'B') {
                     var talla = b;
+                    var qty = data.almacen.b;
                 } else if (data.skus[x].talla == 'C') {
                     var talla = c;
                 } else if (data.skus[x].talla == 'D') {
@@ -247,6 +249,7 @@ function mostrar(id_prouct) {
                 var fila_skus =  "<tr>"+
                 "<td>"+data.skus[x].sku+"</td>"+
                 "<td>"+talla+"</td>"+
+                "<td>"+qty+"</td>"+
                 "</tr>";
                 $("#lista_skus").append(fila_skus);
             }

@@ -150,12 +150,13 @@
                             </table>
                         </div>
                         <div class="col-md-3">
-                            <label for="cortes">SKUs</label>
+                            <label for="cortes">SKUs Detalle</label>
                             <table border="0" cellspacing="0" cellpadding="0"  class="table table-hover table-bordered datatables" style="border: 1px solid black;">
                                 <thead>
                                     <tr>
                                         <th>SKU</th>
                                         <th>Talla</th>
+                                        <th>Cant.</th>
                                     </tr>
                                 </thead>
                                 <tbody id="lista_skus">
@@ -164,12 +165,7 @@
                             </table>
                         </div>
                         <div class="col-md-3">
-                            <label for="">Ubicación</label>
-                            <input type="text" name="ubicacion" id="ubicacion" class="form-control text-center "
-                                readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="">Cantidad</label>
+                            <label for="">Cantidad Total</label>
                             <input type="text" name="cantidad" id="cantidad" class="form-control text-center "
                                 readonly>
                         </div>
