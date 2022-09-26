@@ -509,7 +509,7 @@ class ProductController extends Controller
         //    $curva = CurvaProducto::where('producto_id', $product->id)->first();
             $cortes = Corte::where('producto_id', $id)->get();
             $skus = SKU::where('producto_id', $id)->get();
-            $almacen = Almacen::where('producto_id', $id)->get();
+            $almacen = CurvaProducto::where('producto_id', $id)->get();
 
             $product->precio_lista = number_format($product->precio_lista);
             $product->precio_venta_publico = number_format($product->precio_venta_publico);
