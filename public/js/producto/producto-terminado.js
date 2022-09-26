@@ -226,24 +226,34 @@ function mostrar(id_prouct) {
                     var qty = data.almacen.b;
                 } else if (data.skus[x].talla == 'C') {
                     var talla = c;
+                    var qty = data.almacen.c;
                 } else if (data.skus[x].talla == 'D') {
                     var talla = d;
+                    var qty = data.almacen.d;
                 } else if (data.skus[x].talla == 'E') {
                     var talla = e;
+                    var qty = data.almacen.e;
                 } else if (data.skus[x].talla == 'F') {
                     var talla = f;
+                    var qty = data.almacen.f;
                 } else if (data.skus[x].talla == 'G') {
                     var talla = g;
+                    var qty = data.almacen.g;
                 } else if (data.skus[x].talla == 'H') {
                     var talla = h;
+                    var qty = data.almacen.h;
                 } else if (data.skus[x].talla == 'I') {
                     var talla = i;
+                    var qty = data.almacen.i;
                 } else if (data.skus[x].talla == 'J') {
                     var talla = j;
+                    var qty = data.almacen.j;
                 } else if (data.skus[x].talla == 'K') {
                     var talla = k;
+                    var qty = data.almacen.k;
                 } else if (data.skus[x].talla == 'L') {
                     var talla = l;
+                    var qty = data.almacen.l;
                 } 
                 
                 var fila_skus =  "<tr>"+
