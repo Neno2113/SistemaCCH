@@ -141,6 +141,7 @@ function mostrar(id_prouct) {
         $("#precio_venta_publico").val(data.product.precio_venta_publico+" RD$");
         $("#precio_venta_publico_2").val(data.product.precio_venta_publico_2);
         $("#cantidad").val(data.cortes[0].numero_corte);
+        console.log("A ver"+data.cortes[0].numero_corte);
     //    $("#imagen_frente").attr("href", './producto/terminado/'+data.product.imagen_frente);
     //    $("#imagen_frente_img").attr("src", './producto/terminado/'+data.product.imagen_frente);
     //    $("#imagen_trasera").attr("href", './producto/terminado/'+data.product.imagen_trasero);
