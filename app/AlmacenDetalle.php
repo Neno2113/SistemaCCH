@@ -9,7 +9,7 @@ class AlmacenDetalle extends Model
     protected $table = 'almacen_detalle';
 
     protected $fillable = [
-        'id', 'almacen_id', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+        'id', 'almacen_id', 'producto_id', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
         'i', 'j', 'k', 'l'
     ];
 

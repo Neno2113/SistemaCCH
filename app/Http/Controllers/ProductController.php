@@ -14,6 +14,7 @@ use App\Articulo;
 use App\Corte;
 use App\CategoriaProducto;
 use App\PermisoUsuario;
+use App\AlmacenDetalle;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -507,6 +508,7 @@ class ProductController extends Controller
         //    $curva = CurvaProducto::where('producto_id', $product->id)->first();
             $cortes = Corte::where('producto_id', $id)->get();
             $skus = SKU::where('producto_id', $id)->get();
+            $almacen = AlmacenDetalle::where('producto_id', $id)->get();
 
             $product->precio_lista = number_format($product->precio_lista);
             $product->precio_venta_publico = number_format($product->precio_venta_publico);
@@ -516,7 +518,9 @@ class ProductController extends Controller
                 'status' => 'success',
                 'product' => $product,
                 'cortes' => $cortes,
-                'skus' => $skus
+                'skus' => $skus,
+                'almacen' => $almacen
+
                 // 'a' => str_replace('.00', '', $curva->a),
                 // 'b' => str_replace('.00', '', $curva->b),
                 // 'c' => str_replace('.00', '', $curva->c),
