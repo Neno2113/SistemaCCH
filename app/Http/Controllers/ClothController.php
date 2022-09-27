@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Imports\ImportRollos;
+use App\RollosDetail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClothController extends Controller
@@ -162,7 +163,101 @@ class ClothController extends Controller
 
     public function upload(Request $request)
     {
-        Excel::import(new ImportRollos, request()->file('rollo'));
+        $file = $request->file('rollo');
+        if ($file) {
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
+            $tempPath = $file->getRealPath();
+            $fileSize = $file->getSize(); //Get size of uploaded file in bytes
+
+            //Check for file extension and size
+         //   $this->checkUploadedFileProperties($extension, $fileSize);
+            //Where uploaded file will be stored on the server 
+            $location = 'uploads'; //Created an "uploads" folder for that
+            // Upload file
+            $file->move($location, $filename);
+
+            // In case the uploaded file path is to be stored in the database 
+            $filepath = public_path($location . "/" . $filename);
+            // Reading file
+            $file = fopen($filepath, "r");
+            $importData_arr = array(); // Read through the file and store the contents as an array
+            $i = 0;
+
+            //Read the contents of the uploaded file 
+            while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+            $num = count($filedata);
+            // Skip first row (Remove below comment if you want to skip the first row)
+                if ($i == 0) {
+                $i++;
+                continue;
+                }
+            for ($c = 0; $c < $num; $c++) {
+                $importData_arr[$i][] = $filedata[$c];
+            }
+                $i++;
+            }
+            fclose($file); //Close after reading
+
+            $j = 0;
+            foreach ($importData_arr as $importData) {
+            $numero = $importData[1]; //Get user names
+            $tono = $importData[2]; //Get user names
+            $longitud = $importData[3]; //Get the user emails
+            $j++;
+
+            try {
+                
+                $rollos_detail = new RollosDetail();
+
+                $rollos_detail->id_rollo = '61';
+                $rollos_detail->id_tela = '24';
+                $rollos_detail->numero = $numero;
+                $rollos_detail->tono = $tono;
+                $rollos_detail->longitud = $longitud;
+
+                $rollos_detail->save();
+
+
+
+                ////////////////////////////////////
+                /*
+                DB::beginTransaction();
+                Player::create([
+                'name' => $importData[1],
+                'club' => $importData[2],
+                'email' => $importData[3],
+                'position' => $importData[4],
+                'age' => $importData[5],
+                'salary' => $importData[6]
+                ]);
+                //Send Email
+            //    $this->sendEmail($email, $name);
+                DB::commit();
+                */
+            } catch (\Exception $e) {
+                //throw $th;
+            //    DB::rollBack();
+                }
+            }
+
+            return response()->json([
+                'message' => "$j records successfully uploaded"
+                ]);
+        } else {
+        //no file was uploaded
+        throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
+        }
+          
+
+
+
+
+
+
+
+            
+    //    Excel::import(new ImportRollos, request()->file('rollo'));
     //    Excel::import(new ImportRollos, $request->file('rollo')); 
     //    return back();
         /*
@@ -200,18 +295,19 @@ class ClothController extends Controller
                 ];
             }
         
-*/
+
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'probar' => 'funcioando'
             ];
             
-            /*
+            
         }
-        */
+        
         
         return response()->json($data, $data['code']);
+        */
     }
 
     public function update(Request $request)
