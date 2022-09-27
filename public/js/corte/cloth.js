@@ -232,7 +232,7 @@ $(document).ready(function() {
     $("#formUpload").submit(function(e) {
         e.preventDefault();
         var formData = new FormData($(this)[0]);
-        console.log( JSON.stringify(formData));
+        // console.log( JSON.stringify(formData));
         $.ajax({
             url: "filerollos",
             type: "POST",

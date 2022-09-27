@@ -642,7 +642,7 @@ $("#btn-upload").click(function(e) {
 $("#formUpload").submit(function(e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
-    console.log( JSON.stringify(formData));
+    // console.log( JSON.stringify(formData));
     $.ajax({
         url: "avatar",
         type: "POST",
