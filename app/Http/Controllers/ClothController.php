@@ -202,8 +202,8 @@ class ClothController extends Controller
 */
             $data = [
                 'code' => 200,
-                'status' => 'success'
-            //    'avatar' =>$image_name_1
+                'status' => 'success',
+                'probar' => 'funcioando'
             ];
             
             /*
