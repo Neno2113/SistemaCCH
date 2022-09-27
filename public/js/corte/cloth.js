@@ -234,7 +234,7 @@ $(document).ready(function() {
         var formData = new FormData($(this)[0]);
         // console.log( JSON.stringify(formData));
         $.ajax({
-            url: "filerollos",
+            url: "/filerollos",
             type: "POST",
             data: formData,
             dataType: "JSON",
