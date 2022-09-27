@@ -162,6 +162,9 @@ class ClothController extends Controller
 
     public function upload(Request $request)
     {
+        Excel::import(new ImportRollos, request()->file('file'));
+        return back();
+        /*
         //validar el archivo
         $validate = \Validator::make($request->all(), [
             'rollo' => 'required|in:xlsx,xls',
@@ -176,8 +179,8 @@ class ClothController extends Controller
             ];
         } else {
 
-            Excel::import(new ImportRollos, request()->file('file'));
-            
+           
+         
 
         //    $avatar = $request->file('avatar');
         //    $image_name_1 = time() . $avatar->getClientOriginalName();
@@ -188,14 +191,14 @@ class ClothController extends Controller
         //    $destinationPath = public_path().'/adminlte/img';
         //    $avatar->move($destinationPath,$image_name_1);
             
-        /*    } else {
+           } else {
                 $data = [
                     'code' => 400,
                     'status' => 'error',
                     'message' => 'WTF'
                 ];
             }
-        */
+        
 
             $data = [
                 'code' => 200,
@@ -203,7 +206,8 @@ class ClothController extends Controller
                 'avatar' =>$image_name_1
             ];
         }
-        return back();
+        */
+        
     //    return response()->json($data, $data['code']);
     }
 

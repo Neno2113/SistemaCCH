@@ -17,9 +17,9 @@ class ImportRollos implements ToModel
         return new RollosDetail([
             'id_rollo' => '61',
             'id_tela' => '24',
-            'numero'     => $row[0],
-            'tono'    => $row[1], 
-            'longitud'    => $row[2], 
+            'numero' => $row[0],
+            'tono' => $row[1], 
+            'longitud' => $row[2], 
         ]);
     }
 }
