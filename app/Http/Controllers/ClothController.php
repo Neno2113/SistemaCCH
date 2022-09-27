@@ -163,6 +163,7 @@ class ClothController extends Controller
 
     public function upload(Request $request)
     {
+        /*
         $file = $request->file('rollo');
         if ($file) {
             $filename = $file->getClientOriginalName();
@@ -235,6 +236,7 @@ class ClothController extends Controller
             //    $this->sendEmail($email, $name);
                 DB::commit();
                 */
+                /*
             } catch (\Exception $e) {
                 //throw $th;
             //    DB::rollBack();
@@ -249,14 +251,8 @@ class ClothController extends Controller
         throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
         }
           
+        */
 
-
-
-
-
-
-
-            
     //    Excel::import(new ImportRollos, request()->file('rollo'));
     //    Excel::import(new ImportRollos, $request->file('rollo')); 
     //    return back();
