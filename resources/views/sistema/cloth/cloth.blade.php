@@ -122,6 +122,25 @@
                         class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
+            <div class="col-md-4 mt-3" id="vatar">
+                <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputFile">Foto</label>
+                    <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
+                        <div class="input-group mt-4">
+                            <div class="custom-file">
+                                <input type="file" class="form-control" name="avatar" id="avatar">
+                                <input type="hidden" name="image_name" id="image_name" value="1662435439images.png">
+                                {{-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> --}}
+                            </div>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn-primary" id="btn-upload">
+                                    <i class="fas fa-upload"></i> Subir</button>
+                            </div>
+                        </div>
+                    </div>
+                </form> 
+            </div>
         </div>
     </div>
 </div>
