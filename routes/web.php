@@ -243,7 +243,7 @@ Route::get('suplidor/select', 'ClothController@supplidorSelect');
 Route::post('/tela/delete/{id}', 'ClothController@destroyCategoriaTela');
 Route::get('/telas', 'ClothController@showCategoriasTela');
 Route::post('/tela-cat', 'ClothController@storeCategoriaTela');
-Route::post('/filerollos', 'ClothController@upload');
+Route::post('filerollos', 'ClothController@upload');
 
 //Rutas rollos
 Route::get('cloths', 'RollosController@selectCloth');
