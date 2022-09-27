@@ -11,6 +11,8 @@ use App\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use App\Imports\ImportRollos;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClothController extends Controller
 {
@@ -156,6 +158,53 @@ class ClothController extends Controller
             ];
         }
         return \response()->json($data, $data['code']);
+    }
+
+    public function upload(Request $request)
+    {
+        //validar el archivo
+        $validate = \Validator::make($request->all(), [
+            'rollo' => 'required|in:xlsx,xls',
+        ]);
+
+        // Guardar el archivo
+        if ($validate->fails()) {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => $validate->errors()
+            ];
+        } else {
+
+            Excel::import(new ImportRollos, request()->file('file'));
+            
+
+        //    $avatar = $request->file('avatar');
+        //    $image_name_1 = time() . $avatar->getClientOriginalName();
+            // echo $id;
+            // die();
+        //    if (!empty($avatar)) {
+        //    \Storage::disk('avatar')->put($image_name_1, \File::get($avatar));
+        //    $destinationPath = public_path().'/adminlte/img';
+        //    $avatar->move($destinationPath,$image_name_1);
+            
+        /*    } else {
+                $data = [
+                    'code' => 400,
+                    'status' => 'error',
+                    'message' => 'WTF'
+                ];
+            }
+        */
+
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'avatar' =>$image_name_1
+            ];
+        }
+        return back();
+    //    return response()->json($data, $data['code']);
     }
 
     public function update(Request $request)

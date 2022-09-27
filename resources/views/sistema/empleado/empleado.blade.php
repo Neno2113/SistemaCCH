@@ -20,7 +20,7 @@
             </div>
             <div class="card-body">
                 <h5>Formulario de registro de empleados</h5>
-                <hr>
+                <hr> 
                 <div class="col-md-4 mt-3" id="vatar">
                     <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                         <div class="form-group">

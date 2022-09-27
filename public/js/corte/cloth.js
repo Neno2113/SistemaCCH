@@ -209,6 +209,67 @@ $(document).ready(function() {
         $("#porcentaje_mat_total").val("");
     }
 
+    $("#btn-upload").click(function(e) {
+        // e.preventDefault();
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    
+        Toast.fire({
+            type: 'success',
+            title: 'Archivo Cargado.'
+        })
+    });
+
+    $("#formUpload").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData($(this)[0]);
+        // console.log( JSON.stringify(formData));
+        $.ajax({
+            url: "filerollos",
+            type: "POST",
+            data: formData,
+            dataType: "JSON",
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function(datos) {
+                if (datos.status == "success") {
+    
+                 //   $("#avatar-img").attr("src", '/avatar/'+datos.avatar);
+                 //   $("#avatar").val("");
+                 //   $("#image_name").val(datos.avatar);
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la creacion de la composicion"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.message);
+                let errores = datos.responseJSON.message;
+    
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
+                    });
+                });
+            }
+        });
+    });
+
    
 
 
