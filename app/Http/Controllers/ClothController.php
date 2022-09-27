@@ -163,7 +163,7 @@ class ClothController extends Controller
     public function upload(Request $request)
     {
         Excel::import(new ImportRollos, request()->file('file'));
-        return back();
+    //    return back();
         /*
         //validar el archivo
         $validate = \Validator::make($request->all(), [
@@ -210,7 +210,7 @@ class ClothController extends Controller
         }
         */
         
-    //    return response()->json($data, $data['code']);
+        return response()->json($data, $data['code']);
     }
 
     public function update(Request $request)
