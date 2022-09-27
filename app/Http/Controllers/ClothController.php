@@ -162,8 +162,8 @@ class ClothController extends Controller
 
     public function upload(Request $request)
     {
-    //    Excel::import(new ImportRollos, request()->file('file'));
-        Excel::import(new ImportRollos, $request->file('rollo')); 
+        Excel::import(new ImportRollos, request()->file('rollo'));
+    //    Excel::import(new ImportRollos, $request->file('rollo')); 
     //    return back();
         /*
         //validar el archivo
