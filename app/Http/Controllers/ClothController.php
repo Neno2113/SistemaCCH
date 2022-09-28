@@ -250,7 +250,7 @@ class ClothController extends Controller
                     'code' => 200,
                     'status' => 'success',
                     'location' => $location,
-                    'filepath' => $filepath
+                    'filepath' => $$file
                 ];
 
             /*
