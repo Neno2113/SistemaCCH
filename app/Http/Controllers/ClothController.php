@@ -186,7 +186,7 @@ class ClothController extends Controller
             $file = fopen($filepath, "r");
             $importData_arr = array(); // Read through the file and store the contents as an array
             $i = 0;
-/*
+
             //Read the contents of the uploaded file 
             while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
                 $num = count($filedata);
@@ -201,7 +201,7 @@ class ClothController extends Controller
                     $i++;
             }
             fclose($file); //Close after reading
-
+/*
             $j = 0;
             foreach ($importData_arr as $importData) {
                 $numero = $importData[1]; //Get user names
@@ -248,7 +248,7 @@ class ClothController extends Controller
                     'code' => 200,
                     'status' => 'success',
                     'location' => $location,
-                    'filepath' => $tempPath
+                    'filepath' => $importData_arr[1][0]
                 ];
 
             /*
