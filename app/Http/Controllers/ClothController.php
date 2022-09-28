@@ -171,8 +171,7 @@ class ClothController extends Controller
             $tempPath = $file->getRealPath();
             $fileSize = $file->getSize(); //Get size of uploaded file in bytes
 
-            
-            
+ 
             //Check for file extension and size
          //   $this->checkUploadedFileProperties($extension, $fileSize);
             //Where uploaded file will be stored on the server 
@@ -221,7 +220,6 @@ class ClothController extends Controller
                     $rollos_detail->longitud = $longitud;
 
                     $rollos_detail->save();
-
 
 
                     ////////////////////////////////////
