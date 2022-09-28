@@ -175,7 +175,7 @@ class ClothController extends Controller
             checkUploadedFileProperties($extension, $fileSize);
             //Where uploaded file will be stored on the server 
             $location = public_path().'/uploads'; //Created an "uploads" folder for that
-            // Upload file
+ /*           // Upload file
             $file->move($location, $filename);
 
             // In case the uploaded file path is to be stored in the database 
@@ -185,7 +185,7 @@ class ClothController extends Controller
             $file = fopen($filepath, "r");
             $importData_arr = array(); // Read through the file and store the contents as an array
             $i = 0;
-/*
+
             //Read the contents of the uploaded file 
             while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
                 $num = count($filedata);
