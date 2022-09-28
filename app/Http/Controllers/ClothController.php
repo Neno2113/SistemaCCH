@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\Imports\ImportRollos;
 use App\RollosDetail;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Response;
 
 class ClothController extends Controller
 {
