@@ -185,7 +185,7 @@ class ClothController extends Controller
             $file = fopen($filepath, "r");
             $importData_arr = array(); // Read through the file and store the contents as an array
             $i = 0;
-
+/*
             //Read the contents of the uploaded file 
             while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
                 $num = count($filedata);
@@ -225,12 +225,12 @@ class ClothController extends Controller
                 //    DB::rollBack();
                 }
             }
-
+*/
                 $data = [
                     'code' => 200,
                     'status' => 'success',
                     'location' => $location,
-                    'filepath' => $j
+                    'filepath' => $fileSize
                 ];
 
                 
@@ -246,14 +246,14 @@ class ClothController extends Controller
     {
         $valid_extension = array("csv","csv"); //Only want csv and excel files
         $maxFileSize = 5097152; // Uploaded file size limit is 5mb aproximadamente
-        if (in_array(strtolower($extension), $valid_extension)) {
+    /*    if (in_array(strtolower($extension), $valid_extension)) {
             if ($fileSize <= $maxFileSize) {
             } else {
                 throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
             }
         } else {
-           // throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
-        }
+            throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
+        } */
     }
 
     public function update(Request $request)
