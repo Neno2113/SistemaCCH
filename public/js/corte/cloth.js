@@ -234,7 +234,7 @@ $(document).ready(function() {
         var formData = new FormData($(this)[0]);
         // console.log( JSON.stringify(formData));
         $.ajax({
-            url: "/filerollos",
+            url: "filerollos",
             type: "POST",
             data: formData,
             dataType: "JSON",
@@ -254,8 +254,8 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.messageX);
-                let errores = datos.responseJSON.messageX;
+                console.log(datos.responseJSON.message);
+                let errores = datos.responseJSON.message;
     
                 Object.entries(errores).forEach(([key, val]) => {
                     bootbox.alert({
