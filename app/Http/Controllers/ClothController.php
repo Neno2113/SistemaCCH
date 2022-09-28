@@ -248,7 +248,7 @@ class ClothController extends Controller
                     'code' => 200,
                     'status' => 'success',
                     'location' => $location,
-                    'filepath' => $importData_arr[1][0]
+                    'filepath' => $fileSize
                 ];
 
             /*
