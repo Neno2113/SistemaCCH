@@ -244,9 +244,10 @@ class ClothController extends Controller
 
     public function checkUploadedFileProperties($extension, $fileSize)
     {
+        /* 
         $valid_extension = array("csv","csv"); //Only want csv and excel files
         $maxFileSize = 5097152; // Uploaded file size limit is 5mb aproximadamente
-    /*    if (in_array(strtolower($extension), $valid_extension)) {
+       if (in_array(strtolower($extension), $valid_extension)) {
             if ($fileSize <= $maxFileSize) {
             } else {
                 throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
