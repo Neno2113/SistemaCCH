@@ -172,7 +172,7 @@ class ClothController extends Controller
 
 
             //Check for file extension and size
-     //       checkUploadedFileProperties($extension, $fileSize);
+            $this->checkUploadedFileProperties($extension, $fileSize);
             //Where uploaded file will be stored on the server 
             $location = public_path().'/uploads'; //Created an "uploads" folder for that
  /*           // Upload file
