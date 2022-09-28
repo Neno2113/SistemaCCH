@@ -201,7 +201,7 @@ class ClothController extends Controller
                     $i++;
             }
             fclose($file); //Close after reading
-
+/*
             $j = 0;
             foreach ($importData_arr as $importData) {
                 $numero = $importData[1]; //Get user names
@@ -237,13 +237,13 @@ class ClothController extends Controller
                 //    $this->sendEmail($email, $name);
                     DB::commit();
                     */
-                  
+ /*                 
                 } catch (\Exception $e) {
                     //throw $th;
                 //    DB::rollBack();
                 }
             }
- 
+ */
                 $data = [
                     'code' => 200,
                     'status' => 'success',
