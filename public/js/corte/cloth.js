@@ -254,8 +254,8 @@ $(document).ready(function() {
                 }
             },
             error: function(datos) {
-                console.log(datos.responseJSON.message);
-                let errores = datos.responseJSON.message;
+                console.log(datos.responseJSON.messageX);
+                let errores = datos.responseJSON.messageX;
     
                 Object.entries(errores).forEach(([key, val]) => {
                     bootbox.alert({
