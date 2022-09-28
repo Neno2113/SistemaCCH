@@ -188,7 +188,7 @@ class ClothController extends Controller
             $i = 0;
 
             //Read the contents of the uploaded file 
-            while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+            while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
                 $num = count($filedata);
                 // Skip first row (Remove below comment if you want to skip the first row)
                     if ($i == 0) {
