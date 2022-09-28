@@ -171,25 +171,18 @@ class ClothController extends Controller
             $tempPath = $file->getRealPath();
             $fileSize = $file->getSize(); //Get size of uploaded file in bytes
 
-            $data = [
-                'code' => 200,
-                'status' => 'success',
-                'filename' => $filename,
-                'extension' => $extension,
-                'tempPath' => $tempPath,
-                'fileSize' => $fileSize
-            ];
             
-            /*
+            
             //Check for file extension and size
          //   $this->checkUploadedFileProperties($extension, $fileSize);
             //Where uploaded file will be stored on the server 
-            $location = 'uploads'; //Created an "uploads" folder for that
+            $location = public_path().'uploads'; //Created an "uploads" folder for that
             // Upload file
             $file->move($location, $filename);
 
             // In case the uploaded file path is to be stored in the database 
-            $filepath = public_path($location . "/" . $filename);
+        //    $filepath = public_path($location . "/" . $filename);
+            $filepath = $location."/".$filename;
             // Reading file
             $file = fopen($filepath, "r");
             $importData_arr = array(); // Read through the file and store the contents as an array
@@ -246,17 +239,23 @@ class ClothController extends Controller
                 //    $this->sendEmail($email, $name);
                     DB::commit();
                     */
-                    /*
+                    
                 } catch (\Exception $e) {
                     //throw $th;
                 //    DB::rollBack();
                     }
             }
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'cantidad' => $j
+                ];
 
+            /*
             return response()->json([
                 'message' => "$j records successfully uploaded"
-                ]);
-                */
+                ]); */
+                
         } else {
         //no file was uploaded
        // throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
