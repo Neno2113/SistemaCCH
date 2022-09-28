@@ -247,6 +247,9 @@ $(document).ready(function() {
                  //   $("#avatar-img").attr("src", '/avatar/'+datos.avatar);
                  //   $("#avatar").val("");
                  //   $("#referencia").val(datos.probar);
+                 bootbox.alert(
+                    "Ok"
+                );
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"

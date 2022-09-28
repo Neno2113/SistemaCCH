@@ -163,7 +163,7 @@ class ClothController extends Controller
 
     public function upload(Request $request)
     {
-        /*
+        
         $file = $request->file('rollo');
         if ($file) {
             $filename = $file->getClientOriginalName();
@@ -187,60 +187,60 @@ class ClothController extends Controller
 
             //Read the contents of the uploaded file 
             while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
-            $num = count($filedata);
-            // Skip first row (Remove below comment if you want to skip the first row)
-                if ($i == 0) {
-                $i++;
-                continue;
+                $num = count($filedata);
+                // Skip first row (Remove below comment if you want to skip the first row)
+                    if ($i == 0) {
+                    $i++;
+                    continue;
+                    }
+                for ($c = 0; $c < $num; $c++) {
+                    $importData_arr[$i][] = $filedata[$c];
                 }
-            for ($c = 0; $c < $num; $c++) {
-                $importData_arr[$i][] = $filedata[$c];
-            }
-                $i++;
+                    $i++;
             }
             fclose($file); //Close after reading
 
             $j = 0;
             foreach ($importData_arr as $importData) {
-            $numero = $importData[1]; //Get user names
-            $tono = $importData[2]; //Get user names
-            $longitud = $importData[3]; //Get the user emails
-            $j++;
+                $numero = $importData[1]; //Get user names
+                $tono = $importData[2]; //Get user names
+                $longitud = $importData[3]; //Get the user emails
+                $j++;
 
-            try {
-                
-                $rollos_detail = new RollosDetail();
+                try {
+                    
+                    $rollos_detail = new RollosDetail();
 
-                $rollos_detail->id_rollo = '61';
-                $rollos_detail->id_tela = '24';
-                $rollos_detail->numero = $numero;
-                $rollos_detail->tono = $tono;
-                $rollos_detail->longitud = $longitud;
+                    $rollos_detail->id_rollo = '61';
+                    $rollos_detail->id_tela = '24';
+                    $rollos_detail->numero = $numero;
+                    $rollos_detail->tono = $tono;
+                    $rollos_detail->longitud = $longitud;
 
-                $rollos_detail->save();
+                    $rollos_detail->save();
 
 
 
-                ////////////////////////////////////
-                /*
-                DB::beginTransaction();
-                Player::create([
-                'name' => $importData[1],
-                'club' => $importData[2],
-                'email' => $importData[3],
-                'position' => $importData[4],
-                'age' => $importData[5],
-                'salary' => $importData[6]
-                ]);
-                //Send Email
-            //    $this->sendEmail($email, $name);
-                DB::commit();
-                */
-                /*
-            } catch (\Exception $e) {
-                //throw $th;
-            //    DB::rollBack();
-                }
+                    ////////////////////////////////////
+                    /*
+                    DB::beginTransaction();
+                    Player::create([
+                    'name' => $importData[1],
+                    'club' => $importData[2],
+                    'email' => $importData[3],
+                    'position' => $importData[4],
+                    'age' => $importData[5],
+                    'salary' => $importData[6]
+                    ]);
+                    //Send Email
+                //    $this->sendEmail($email, $name);
+                    DB::commit();
+                    */
+                    
+                } catch (\Exception $e) {
+                    //throw $th;
+                //    DB::rollBack();
+                    }
             }
 
             return response()->json([
@@ -251,7 +251,7 @@ class ClothController extends Controller
         throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
         }
           
-        */
+        
 
     //    Excel::import(new ImportRollos, request()->file('rollo'));
     //    Excel::import(new ImportRollos, $request->file('rollo')); 
