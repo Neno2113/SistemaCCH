@@ -244,7 +244,7 @@ class ClothController extends Controller
 
     public function checkUploadedFileProperties($extension, $fileSize)
     {
-        /* 
+        
         $valid_extension = array("csv","csv"); //Only want csv and excel files
         $maxFileSize = 5097152; // Uploaded file size limit is 5mb aproximadamente
        if (in_array(strtolower($extension), $valid_extension)) {
@@ -254,7 +254,7 @@ class ClothController extends Controller
             }
         } else {
             throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
-        } */
+        }
     }
 
     public function update(Request $request)
