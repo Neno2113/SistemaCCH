@@ -163,97 +163,97 @@ class ClothController extends Controller
 
     public function upload(Request $request)
     {
-         //validar el archivo
-         $validate = \Validator::make($request->all(), [
-            'rollo' => 'required|in:csv'
-        ]);
+        $file = $request->file('rollo');
+        if ($file) {
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
+            $tempPath = $file->getRealPath();
+            $fileSize = $file->getSize(); //Get size of uploaded file in bytes
 
-        if ($validate->fails()) {
-            $data = [
-                'code' => 404,
-                'status' => 'error',
-                'message' => $validate->errors()
-            ];
-        } else {
 
-            $file = $request->file('rollo');
-            if ($file) {
-                $filename = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
-                $tempPath = $file->getRealPath();
-                $fileSize = $file->getSize(); //Get size of uploaded file in bytes
+            //Check for file extension and size
+           $this->checkUploadedFileProperties($extension, $fileSize);
+            //Where uploaded file will be stored on the server 
+            $location = public_path().'/uploads'; //Created an "uploads" folder for that
+            // Upload file
+            $file->move($location, $filename);
 
-    
-                //Check for file extension and size
-            //   $this->checkUploadedFileProperties($extension, $fileSize);
-                //Where uploaded file will be stored on the server 
-                $location = public_path().'/uploads'; //Created an "uploads" folder for that
-                // Upload file
-                $file->move($location, $filename);
+            // In case the uploaded file path is to be stored in the database 
+        //    $filepath = public_path($location . "/" . $filename);
+            $filepath = $location."/".$filename;
+            // Reading file
+            $file = fopen($filepath, "r");
+            $importData_arr = array(); // Read through the file and store the contents as an array
+            $i = 0;
 
-                // In case the uploaded file path is to be stored in the database 
-            //    $filepath = public_path($location . "/" . $filename);
-                $filepath = $location."/".$filename;
-                // Reading file
-                $file = fopen($filepath, "r");
-                $importData_arr = array(); // Read through the file and store the contents as an array
-                $i = 0;
-
-                //Read the contents of the uploaded file 
-                while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
-                    $num = count($filedata);
-                    // Skip first row (Remove below comment if you want to skip the first row)
-                        if ($i == 0) {
-                        $i++;
-                        continue;
-                        }
-                    for ($c = 0; $c < $num; $c++) {
-                        $importData_arr[$i][] = $filedata[$c];
+            //Read the contents of the uploaded file 
+            while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
+                $num = count($filedata);
+                // Skip first row (Remove below comment if you want to skip the first row)
+                    if ($i == 0) {
+                    $i++;
+                    continue;
                     }
-                        $i++;
+                for ($c = 0; $c < $num; $c++) {
+                    $importData_arr[$i][] = $filedata[$c];
                 }
-                fclose($file); //Close after reading
-
-                $j = 0;
-                foreach ($importData_arr as $importData) {
-                    $numero = $importData[0]; //Get user names
-                    $tono = $importData[1]; //Get user names
-                    $longitud = $importData[2]; //Get the user emails
-                    $j++;
-
-                    try {
-                        
-                        $rollos_detail = new RollosDetail();
-
-                        $rollos_detail->id_rollo = '61';
-                        $rollos_detail->id_tela = '24';
-                        $rollos_detail->numero = $numero;
-                        $rollos_detail->tono = $tono;
-                        $rollos_detail->longitud = $longitud;
-
-                        $rollos_detail->save();
-                    
-                    } catch (\Exception $e) {
-                        //throw $th;
-                    //    DB::rollBack();
-                    }
-                }
-
-                    $data = [
-                        'code' => 200,
-                        'status' => 'success',
-                        'location' => $location,
-                        'filepath' => $j
-                    ];
-
-                    
-            } else {
-            //no file was uploaded
-            throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
+                    $i++;
             }
+            fclose($file); //Close after reading
+
+            $j = 0;
+            foreach ($importData_arr as $importData) {
+                $numero = $importData[0]; //Get user names
+                $tono = $importData[1]; //Get user names
+                $longitud = $importData[2]; //Get the user emails
+                $j++;
+
+                try {
+                    
+                    $rollos_detail = new RollosDetail();
+
+                    $rollos_detail->id_rollo = '61';
+                    $rollos_detail->id_tela = '24';
+                    $rollos_detail->numero = $numero;
+                    $rollos_detail->tono = $tono;
+                    $rollos_detail->longitud = $longitud;
+
+                    $rollos_detail->save();
+                
+                } catch (\Exception $e) {
+                    //throw $th;
+                //    DB::rollBack();
+                }
+            }
+
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'location' => $location,
+                    'filepath' => $j
+                ];
+
+                
+        } else {
+        //no file was uploaded
+        throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
         }
-        return response()->json($data, $data['code']);
-        
+
+        return response()->json($data, $data['code']); 
+    }
+
+    public function checkUploadedFileProperties($extension, $fileSize)
+    {
+        $valid_extension = array("csv"); //Only want csv and excel files
+        $maxFileSize = 5097152; // Uploaded file size limit is 5mb aproximadamente
+        if (in_array(strtolower($extension), $valid_extension)) {
+        if ($fileSize <= $maxFileSize) {
+        } else {
+        throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
+        }
+        } else {
+        throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
+        }
     }
 
     public function update(Request $request)
