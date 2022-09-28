@@ -171,6 +171,16 @@ class ClothController extends Controller
             $tempPath = $file->getRealPath();
             $fileSize = $file->getSize(); //Get size of uploaded file in bytes
 
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'filename' => $filename,
+                'extension' => $extension,
+                'tempPath' => $tempPath,
+                'fileSize' => $fileSize
+            ];
+            
+            /*
             //Check for file extension and size
          //   $this->checkUploadedFileProperties($extension, $fileSize);
             //Where uploaded file will be stored on the server 
@@ -236,7 +246,7 @@ class ClothController extends Controller
                 //    $this->sendEmail($email, $name);
                     DB::commit();
                     */
-                    
+                    /*
                 } catch (\Exception $e) {
                     //throw $th;
                 //    DB::rollBack();
@@ -246,9 +256,10 @@ class ClothController extends Controller
             return response()->json([
                 'message' => "$j records successfully uploaded"
                 ]);
+                */
         } else {
         //no file was uploaded
-        throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
+       // throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
         }
           
         
@@ -301,9 +312,9 @@ class ClothController extends Controller
             
         }
         
-        
-        return response()->json($data, $data['code']);
         */
+        return response()->json($data, $data['code']);
+        
     }
 
     public function update(Request $request)

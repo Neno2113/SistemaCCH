@@ -248,7 +248,7 @@ $(document).ready(function() {
                  //   $("#avatar").val("");
                  //   $("#referencia").val(datos.probar);
                  bootbox.alert(
-                    "Ok"
+                    datos.filename+" --- "+datos.tempPath
                 );
                 } else {
                     bootbox.alert(
