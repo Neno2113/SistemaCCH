@@ -8,7 +8,7 @@
 
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-7">
         <div class="card  mb-3" id="registroForm">
             <div class="card-header bg-dark ">
                 <div class="card-tools">
@@ -122,24 +122,65 @@
                         class="far fa-edit fa-lg"></i> Editar</button>
             </div>
             </form>
-            <div class="col-md-4 mt-3" id="vatar">
-                <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="exampleInputFile">Agregar Rollos</label>
-                    <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
-                        <div class="input-group mt-4">
-                            <div class="custom-file">
-                                <input type="file" class="form-control" name="rollo" id="rollo">
-                            <!--    <input type="hidden" name="image_name" id="image_name" value="1662435439images.png"> -->
-                            </div>
-                            <div class="input-group-append">
-                                <button type="submit" class="btn-primary" id="btn-upload">
-                                    <i class="fas fa-upload"></i> Subir</button>
-                            </div>
-                        </div>
-                    </div>
-                </form> 
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card  mb-3" id="rollosForm">
+            <div class="card-header bg-dark">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button>
+                </div>
             </div>
+            <div class="card-body">
+                
+                <h5>Rollos</h5>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 mt-3" id="vatar">
+                        <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Agregar Rollos</label>
+                            <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
+                                <div class="input-group mt-4">
+                                    <div class="custom-file">
+                                        <input type="file" class="form-control" name="rollo" id="rollo">
+                                    <!--    <input type="hidden" name="image_name" id="image_name" value="1662435439images.png"> -->
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn-primary" id="btn-upload">
+                                            <i class="fas fa-upload"></i> Subir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form> 
+                    </div>   
+                </div>
+                <div class="row">
+                    <table class="table tabla-existencia table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Numero</th>
+                                <th>Tono</th>
+                                <th>Longitud</th>
+                                <th id="editar-permisos">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="permisos-agregados">
+
+                        </tbody>
+                    </table>
+                </div>
+                   
+                  
+            </div>
+            <div class="card-footer  text-muted">
+                {{-- <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button> --}}
+                <button type="submit" id="btn-finish" class="btn  btn-primary mt-2 float-right"><i class="far fa-save"></i> Guardar</button>
+            </div>
+           
         </div>
     </div>
 </div>
