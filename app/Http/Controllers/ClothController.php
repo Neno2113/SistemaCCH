@@ -164,6 +164,7 @@ class ClothController extends Controller
 
     public function upload(Request $request)
     {
+        /*
         $status = "success";
         $file = $request->file('rollo');  
         if ($file) {
@@ -255,6 +256,7 @@ class ClothController extends Controller
         }
 
         return response()->json($data, $data['code']); 
+        */
     }
 
     public function checkUploadedFileProperties($extension, $fileSize)
