@@ -80,9 +80,9 @@
                         </div>
                         <div class="col-md-4 mt-4">
                             <label for="cloths" >Telas</label>
-                            <select name="tags[]" id="cloths"  class="form-control select2">
+                        <!--    <select name="tags[]" id="cloths"  class="form-control select2">
 
-                            </select>
+                            </select> -->
                            
                         </div>
                     </div>
