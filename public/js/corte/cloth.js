@@ -615,12 +615,12 @@ $(document).ready(function() {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#btnCancelar").show();
-            $("#rollosForm").hide();
+            $("#rollosForm").show();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
-            $("#rollosForm").show();
+            $("#rollosForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#btn-edit").hide();
