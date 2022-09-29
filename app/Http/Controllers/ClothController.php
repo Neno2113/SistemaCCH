@@ -167,7 +167,7 @@ class ClothController extends Controller
         
         //validar csv
         $validate = \Validator::make($request->all(), [
-            'avatar' => 'required|image|mimes:csv,txt',
+            'rollo' => 'required|image|mimes:csv,txt',
         ]);
         // Guardar la imagen
         if ($validate->fails()) {
