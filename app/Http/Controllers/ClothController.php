@@ -176,7 +176,6 @@ class ClothController extends Controller
 
             //Check for file extension and size
             $this->checkUploadedFileProperties($extension, $fileSize);
-            if ($status == "success"){
 
                 //Where uploaded file will be stored on the server 
                 $location = public_path().'/uploads'; //Created an "uploads" folder for that
@@ -236,19 +235,6 @@ class ClothController extends Controller
                     'location' => $location,
                     'filepath' => $fileSize
                 ];
-            } elseif ($status == "file-very-large" ){
-                $data = [
-                    'code' => 200,
-                    'status' => 'file-very-large'
-                ];
-
-            } else {
-                $data = [
-                    'code' => 200,
-                    'status' => 'file-no-valid'
-                ];
-                
-            }
       
         } else {
         //no file was uploaded
@@ -270,13 +256,22 @@ class ClothController extends Controller
         $maxFileSize = 5097152; // Uploaded file size limit is 5mb aproximadamente
        if (in_array(strtolower($extension), $valid_extension)) {
             if ($fileSize <= $maxFileSize) {
-                $status = "success";
             } else {
-                $status = "file-very-large";
+                $data = [
+                    'code' => 200,
+                    'status' => 'file-very-large'
+                ];
+
+                return response()->json($data, $data['code']); 
             //    throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
             }
         } else {
-            $status = "file-no-valid";
+            $data = [
+                'code' => 200,
+                'status' => 'not-csv-file'
+            ];
+
+            return response()->json($data, $data['code']); 
          //   throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
         }
     }
