@@ -165,7 +165,7 @@ class ClothController extends Controller
     public function upload(Request $request)
     {
         
-        $estatus = "success";
+        $status = "success";
         $file = $request->file('rollo');  
         if ($file) {
             $filename = $file->getClientOriginalName();
@@ -176,7 +176,7 @@ class ClothController extends Controller
 
             //Check for file extension and size
             $this->checkUploadedFileProperties($extension, $fileSize);
-            if ($estatus == "success"){
+            if ($status == "success"){
 
                 //Where uploaded file will be stored on the server 
                 $location = public_path().'/uploads'; //Created an "uploads" folder for that
@@ -184,7 +184,7 @@ class ClothController extends Controller
                 $file->move($location, $filename);
 
                 // In case the uploaded file path is to be stored in the database 
- /               //    $filepath = public_path($location . "/" . $filename);
+                //    $filepath = public_path($location . "/" . $filename);
                 $filepath = $location."/".$filename;
                 // Reading file
                 $file = fopen($filepath, "r");
@@ -236,7 +236,7 @@ class ClothController extends Controller
                     'location' => $location,
                     'filepath' => $fileSize
                 ];
-            } elseif ($estatus == "file-very-large" ){
+            } elseif ($status == "file-very-large" ){
                 $data = [
                     'code' => 200,
                     'status' => 'file-very-large'
@@ -267,11 +267,11 @@ class ClothController extends Controller
        if (in_array(strtolower($extension), $valid_extension)) {
             if ($fileSize <= $maxFileSize) {
             } else {
-                $estatus = "file-very-large";
+                $status = "file-very-large";
             //    throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
             }
         } else {
-            $estatus = "file-no-valid";
+            $status = "file-no-valid";
          //   throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
         }
     }
