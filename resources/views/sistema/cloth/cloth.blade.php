@@ -135,11 +135,10 @@
                 </div>
             </div>
             <div class="card-body">
-                
                 <h5>Rollos</h5>
                 <hr>
                 <div class="row">
-                    <div class="col-md-4 mt-3" id="vatar">
+                    <div class="col-md-12" id="vatar">
                         <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="exampleInputFile">Agregar Rollos</label>

@@ -615,10 +615,12 @@ $(document).ready(function() {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#btnCancelar").show();
+            $("#rollosForm").hide();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#rollosForm").show();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
             $("#btn-edit").hide();
@@ -719,6 +721,7 @@ function mostrar(id_cloth) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#btnCancelar").show();
+            $("#rollosForm").show();
             $("#btnAgregar").hide();
             $("#btn-edit").show();
             $("#btn-guardar").hide();
