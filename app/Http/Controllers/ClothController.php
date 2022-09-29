@@ -253,6 +253,10 @@ class ClothController extends Controller
         } else {
         //no file was uploaded
     //    throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
+            $data = [
+                'code' => 200,
+                'status' => 'file-no-valid'
+            ];
         }
 
         return response()->json($data, $data['code']); 
@@ -262,10 +266,11 @@ class ClothController extends Controller
     public function checkUploadedFileProperties($extension, $fileSize)
     {
         
-        $valid_extension = array("csv","csv"); //Only want csv and excel files
+        $valid_extension = array("csv","html"); //Only want csv and excel files
         $maxFileSize = 5097152; // Uploaded file size limit is 5mb aproximadamente
        if (in_array(strtolower($extension), $valid_extension)) {
             if ($fileSize <= $maxFileSize) {
+                $status = "success";
             } else {
                 $status = "file-very-large";
             //    throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
