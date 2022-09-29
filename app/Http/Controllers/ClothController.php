@@ -165,7 +165,7 @@ class ClothController extends Controller
     public function upload(Request $request)
     {
         
-        $status = "success";
+        $estatus = "success";
         $file = $request->file('rollo');  
         if ($file) {
             $filename = $file->getClientOriginalName();
@@ -176,7 +176,7 @@ class ClothController extends Controller
 
             //Check for file extension and size
             $this->checkUploadedFileProperties($extension, $fileSize);
-            if ($status == "success"){
+            if ($estatus == "success"){
 
                 //Where uploaded file will be stored on the server 
                 $location = public_path().'/uploads'; //Created an "uploads" folder for that
@@ -236,7 +236,7 @@ class ClothController extends Controller
                     'location' => $location,
                     'filepath' => $fileSize
                 ];
-            } elseif ($status == "file-very-large" ){
+            } elseif ($estatus == "file-very-large" ){
                 $data = [
                     'code' => 200,
                     'status' => 'file-very-large'
@@ -267,11 +267,11 @@ class ClothController extends Controller
        if (in_array(strtolower($extension), $valid_extension)) {
             if ($fileSize <= $maxFileSize) {
             } else {
-                $status = "file-very-large";
+                $estatus = "file-very-large";
             //    throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
             }
         } else {
-            $status = "file-no-valid";
+            $estatus = "file-no-valid";
          //   throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
         }
     }
