@@ -165,7 +165,7 @@ class ClothController extends Controller
     public function upload(Request $request)
     {
         
-        $status = "success";
+   //     $status = "success";
         $file = $request->file('rollo');  
         if ($file) {
             $filename = $file->getClientOriginalName();
