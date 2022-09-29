@@ -64,6 +64,28 @@
                            
                         </div>
                     </div>
+                    /////////
+                    <div class="row">
+                        <div class="col-md-4 mt-4">
+                            <label for="no_factura_compra" >No. Factura</label>
+                            <input type="text" placeholder="Factura" name="no_factura_compra" id="no_factura_compra"
+                                class="form-control">
+                           
+                        </div>
+                        <div class="col-md-4 mt-4">
+                            <label for="fecha_compra" >Fecha de compra</label>
+                            <input type="text" type="date" placeholder="Fecha Compra" name="fecha_compra" id="fecha_compra" 
+                                class="form-control">
+                          
+                        </div>
+                        <div class="col-md-4 mt-4">
+                            <label for="cloths" >Telas</label>
+                            <select name="tags[]" id="cloths"  class="form-control select2">
+
+                            </select>
+                           
+                        </div>
+                    </div>
 
                     <br>
                     <hr>

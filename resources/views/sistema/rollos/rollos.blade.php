@@ -36,7 +36,7 @@
                             <select name="tags[]" id="cloths"  class="form-control select2">
 
                             </select>
-                           
+                        
                         </div>
                         
                     </div>
