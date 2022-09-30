@@ -156,6 +156,8 @@
                     <div class="col-md-12" id="vatar">
                         <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                             <div class="form-group">
+                            <input type="hidden" name="id_tela" id="id_tela" value="">
+                            <input type="hidden" name="id_rollo" id="id_rollo" value="">
                                 <label for="exampleInputFile">Agregar Rollos</label>
                             <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
                                 <div class="input-group mt-4">

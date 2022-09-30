@@ -114,6 +114,7 @@ class ClothController extends Controller
             }
 
             $cloth->save();
+            $id_tela = $cloth->id;
 
             $rollos = new Rollos();
             $rollos->id_user = $id_user;
@@ -122,12 +123,13 @@ class ClothController extends Controller
             $rollos->no_factura_compra = $no_factura_compra;
 
             $rollos->save();
+            $id_rollo = $rollos->id;
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'tela' => $cloth,
-                'rollo' => $rollos
+                'tela' => $id_tela,
+                'rollo' => $id_rollo
             ];
         }
         return response()->json($data, $data['code']);
@@ -191,6 +193,8 @@ class ClothController extends Controller
             ];
         } else {
             $file = $request->file('rollo');  
+            $id_rollo = $request->input('id_rollo');  
+            $id_tela = $request->input('id_tela');
             if ($file) {
                 $filename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
@@ -236,8 +240,8 @@ class ClothController extends Controller
                         
                         $rollos_detail = new RollosDetail();
 
-                        $rollos_detail->id_rollo = '61';
-                        $rollos_detail->id_tela = '24';
+                        $rollos_detail->id_rollo = $id_rollo;
+                        $rollos_detail->id_tela = $id_tela;
                         $rollos_detail->numero = $numero;
                         $rollos_detail->tono = $tono;
                         $rollos_detail->longitud = $longitud;

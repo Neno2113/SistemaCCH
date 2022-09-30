@@ -202,6 +202,8 @@ $(document).ready(function() {
         $("#encogimiento_trama").val("").attr('readonly', false);
         $("#elasticidad_urdimbre").val("").attr('readonly', false);
         $("#encogimiento_urdimbre").val("").attr('readonly', false);
+        $("#fecha_compra").val("").attr('readonly', false);
+        $("#no_factura_compra").val("").attr('readonly', false);
         $("#compositions").val("").trigger("change");
         $("#compositions_2").val("").trigger("change");
         $("#compositions_3").val("").trigger("change");
@@ -341,7 +343,9 @@ $(document).ready(function() {
                     'Tela creada correctamente.',
                     'success'
                     )
-
+                    
+                    $("#id_tela").val(datos.tela);
+                    $("#id_rollo").val(datos.rollo);
                     $("#btn-upload").attr("disabled", false);
                     $("#btn-upload").attr("class", "btn-primary");
                 //    limpiar();
