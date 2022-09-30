@@ -252,13 +252,13 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
     
-                    for (let i = 0; i < data.rollos.length; i++) {
+                    for (let i = 0; i < datos.rollos.length; i++) {
                         var fila =
-                        '<tr id="fila'+data.rollos[i].id+'">'+
-                        "<td class=''><input type='hidden' id='usuario"+data.rollos[i].id+"' value="+data.rollos[i].id+">"+data.rollos[i].numero+"</td>"+
-                        "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.rollos[i].tono+"' value="+data.rollos[i].tono+">"+data.rollos[i].tono+"</td>"+
-                        "<td class='font-weight-bold'><input type='hidden' id='permiso"+data.rollos[i].longitud+"' value="+data.rollos[i].longitud+">"+data.rollos[i].longitud+"</td>"+
-                        "<td><button type='button' id='btn-eliminar' onclick='delRollo("+data.rollos[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                        '<tr id="fila'+datos.rollos[i].id+'">'+
+                        "<td class=''><input type='hidden' id='usuario"+datos.rollos[i].id+"' value="+datos.rollos[i].id+">"+datos.rollos[i].numero+"</td>"+
+                        "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.rollos[i].tono+"' value="+datos.rollos[i].tono+">"+datos.rollos[i].tono+"</td>"+
+                        "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.rollos[i].longitud+"' value="+datos.rollos[i].longitud+">"+datos.rollos[i].longitud+"</td>"+
+                        "<td><button type='button' id='btn-eliminar' onclick='delRollo("+datos.rollos[i].id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
