@@ -43,6 +43,7 @@ $(document).ready(function() {
         tipoTelas();
         mostrarForm(false);
         $("#btn-edit").hide();
+        $("#btn-upload").attr("disabled", true);
         suplidores();
 /*
         $("#suplidores").on('change', function(){
@@ -339,6 +340,8 @@ $(document).ready(function() {
                     'Tela creada correctamente.',
                     'success'
                     )
+
+                    $("#btn-upload").attr("disabled", false);
                 //    limpiar();
                 //    tabla.ajax.reload();
                 //    mostrarForm(false);
