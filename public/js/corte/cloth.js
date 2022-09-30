@@ -252,12 +252,16 @@ $(document).ready(function() {
             success: function(datos) {
                 if (datos.status == "success") {
     
-                 //   $("#avatar-img").attr("src", '/avatar/'+datos.avatar);
-                 //   $("#avatar").val("");
-                 //   $("#referencia").val(datos.probar);
-                 bootbox.alert(
-                    datos.location+" --- "+datos.filepath
-                );
+                /*
+                    var fila =
+                    '<tr id="fila'+datos.rollo.id+'">'+
+                    "<td class=''><input type='hidden' id='usuario"+datos.rollo.id+"' value="+datos.rollo.numero+">"+datos.rollo.numero+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.rollo.tono+"' value="+datos.rollo.tono+">"+datos.rollo.tono+"</td>"+
+                    "<td class='font-weight-bold'><input type='hidden' id='permiso"+datos.rollo.longitud+"' value="+datos.rollo.longitud+">"+datos.rollo.longitud+"</td>"+
+                    "<td><button type='button' id='btn-eliminar' onclick='delRollo("+datos.rollo.id+")' class='btn btn-danger'><i class='far fa-trash-alt'></i></button></td>"+
+                    "</tr>";
+                */
+                    $("#permisos-agregados").append(fila);
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la carga del archivo"
@@ -281,9 +285,18 @@ $(document).ready(function() {
         });
     });
 
-   
+    $("#btn-terminar").click(function(e){
+        e.preventDefault();
 
+        limpiar();
+        tabla.ajax.reload();
+        mostrarForm(false);
+        $("#btn-composicion").removeClass("btn-success").addClass("btn-orange");
+        $("#btn-upload").attr("disabled", true);
+        $("#btn-upload").attr("class", "btn-secundary");
 
+    });
+    
 
     $("#btn-guardar").click(function(e){
         e.preventDefault();
