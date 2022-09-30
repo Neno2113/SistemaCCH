@@ -256,6 +256,19 @@ class ClothController extends Controller
         return response()->json($data, $data['code']); 
         
     }
+/*
+    public function selectTela(Request $request)
+    {
+        $id = $request->input('suplidor');
+        $tela = Cloth::where('id_suplidor', $id)->get();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'tela' => $tela
+        ];
+        return response()->json($data);
+    } */
 
     public function update(Request $request)
     {

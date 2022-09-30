@@ -63,33 +63,9 @@
                             </select>
                            
                         </div>
-                    </div>
-                    /////////
-                    <div class="row">
-                        <div class="col-md-4 mt-4">
-                            <label for="no_factura_compra" >No. Factura</label>
-                            <input type="text" placeholder="Factura" name="no_factura_compra" id="no_factura_compra"
-                                class="form-control">
-                           
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            <label for="fecha_compra" >Fecha de compra</label>
-                            <input type="text" type="date" placeholder="Fecha Compra" name="fecha_compra" id="fecha_compra" 
-                                class="form-control">
-                          
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            <label for="cloths" >Telas</label>
-                        <!--    <select name="tags[]" id="cloths"  class="form-control select2">
-
-                            </select> -->
-                           
-                        </div>
-                    </div>
-
+                    </div>                
                     <br>
                     <hr>
-                    <br>
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="referencia" >Peso</label>
@@ -134,6 +110,23 @@
                             
                         </div>
                     </div>
+                    <h5>Factura de Rollos</h5>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4 mt-4">
+                            <label for="no_factura_compra" >No. Factura</label>
+                            <input type="text" placeholder="Factura" name="no_factura_compra" id="no_factura_compra"
+                                class="form-control">
+                           
+                        </div>
+                        <div class="col-md-4 mt-4">
+                            <label for="fecha_compra" >Fecha de compra</label>
+                            <input type="text" type="date" placeholder="Fecha Compra" name="fecha_compra" id="fecha_compra" 
+                                class="form-control">
+                          
+                        </div>
+                    </div>
             </div>
             <div class="card-footer  text-muted ">
                 <button class="btn btn-danger mt-2" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
@@ -157,7 +150,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <h5>Rollos</h5>
+                <h5>Detalle de Rollos</h5>
                 <hr>
                 <div class="row">
                     <div class="col-md-12" id="vatar">

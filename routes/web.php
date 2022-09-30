@@ -244,6 +244,7 @@ Route::post('/tela/delete/{id}', 'ClothController@destroyCategoriaTela');
 Route::get('/telas', 'ClothController@showCategoriasTela');
 Route::post('/tela-cat', 'ClothController@storeCategoriaTela');
 Route::post('/filerollos', 'ClothController@upload');
+// Route::post('telas/select', 'ClothController@selectTela');
 
 //Rutas rollos
 Route::get('cloths', 'RollosController@selectCloth');

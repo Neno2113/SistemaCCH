@@ -40,11 +40,15 @@ $(document).ready(function() {
 
     function init() {
         listar();
-        telas();
+        tipoTelas();
         mostrarForm(false);
         $("#btn-edit").hide();
         suplidores();
-
+/*
+        $("#suplidores").on('change', function(){
+            $("#cloths").val(null).trigger('change');
+        });
+*/
 
         $("#composiciones").select2({
             placeholder: "Busca una composicion",
@@ -634,6 +638,7 @@ $(document).ready(function() {
         mostrarForm(true);
         $("#compo").show();
         $("#suplidores").val("").trigger("change");
+        $("#cloths").val('').select2().trigger('change').attr("disabled", false);
 
     });
     $("#btnCancelar").click(function(e) {
@@ -680,7 +685,7 @@ $(document).ready(function() {
                     })
                     // $("#indice").val('');
                     $("#nombre").val('');
-                    telas();
+                    tipoTelas();
                   
                     listarCategorias();
                 
@@ -708,7 +713,7 @@ $(document).ready(function() {
 });
 
 function mostrar(id_cloth) {
-    telas();
+    tipoTelas();
     $.post("cloth/" + id_cloth, function(data, status) {
 
         if(data.status == 'denied'){
@@ -743,6 +748,10 @@ function mostrar(id_cloth) {
             $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
             $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
             $("#tipo_tela").val(data.tela.tipo_tela).attr('selected', 'selected').trigger("change");
+            setTimeout(() => {
+                $("#cloths").val(data.tela.id).attr('selected', 'selected').trigger("change");
+                
+            }, 500);
     
         }
 
@@ -871,14 +880,14 @@ const delCategoria = (id) => {
                 'success'
                 )
                 $("#fila"+id).remove();
-                telas();
+                tipoTelas();
             })
         }
       })
 }
 
 
-const telas = () => {
+const tipoTelas = () => {
     $("#tipo_tela").empty();
     $("#tipo_tela").append(`<option value="" disabled>Tipo tela</option>`);
     $.ajax({
@@ -908,3 +917,42 @@ const telas = () => {
         }
     });
 }
+/*
+function telas(){
+    $("#cloths").empty();
+    $("#cloths").append(`<option value="" selected disabled>Telas</option>`);
+    var rollo = {
+        suplidor: $("#suplidores").val(),
+    };
+
+    $.ajax({
+        url: "telas/select",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(rollo),
+        contentType: "application/json",
+        success: function(datos) {
+            if (datos.status == "success") {
+                var longitud = datos.tela.length;
+
+                for (let i = 0; i < longitud; i++) {
+                    var fila ="<option value=" +datos.tela[i].id +">"+datos.tela[i].referencia+"</option>";
+                    $("#cloths").append(fila);
+                }
+                $("#cloths").select2();
+
+            } else {
+                bootbox.alert(
+                    "Ocurrio un error durante la actualizacion de la composicion"
+                );
+            }
+        },
+        error: function() {
+            bootbox.alert(
+                "Ocurrio un error"
+            );
+        }
+    });
+
+}
+*/
