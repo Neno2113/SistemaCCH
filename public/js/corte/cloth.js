@@ -482,6 +482,8 @@ $(document).ready(function() {
                     $("#btn-edit").hide();
                     $("#btn-guardar").show();
                     $("#btnAgregar").show();
+                    $("#terminar_row").hide();
+                    
 
                 } else {
                     bootbox.alert(
@@ -642,12 +644,14 @@ $(document).ready(function() {
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#terminar_row").show();
             $("#btnCancelar").show();
             $("#rollosForm").show();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
             $("#registroForm").hide();
+            $("#terminar_row").hide();
             $("#rollosForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
@@ -749,6 +753,7 @@ function mostrar(id_cloth) {
         } else {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#terminar_row").show();
             $("#btnCancelar").show();
             $("#rollosForm").show();
             $("#btnAgregar").hide();
@@ -787,6 +792,7 @@ function ver(id_cloth) {
     $.post("cloth/" + id_cloth, function(data, status) {
         $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#terminar_row").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
             $("#btn-edit").hide();
