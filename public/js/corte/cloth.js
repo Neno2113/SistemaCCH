@@ -43,7 +43,8 @@ $(document).ready(function() {
         tipoTelas();
         mostrarForm(false);
         $("#btn-edit").hide();
-        $("#btn-upload").attr("disabled", true);
+        $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
+        $("#btn-upload").attr("class", "btn-secundary");
         suplidores();
 /*
         $("#suplidores").on('change', function(){
@@ -342,6 +343,7 @@ $(document).ready(function() {
                     )
 
                     $("#btn-upload").attr("disabled", false);
+                    $("#btn-upload").attr("class", "btn-primary");
                 //    limpiar();
                 //    tabla.ajax.reload();
                 //    mostrarForm(false);
