@@ -258,7 +258,7 @@ class ClothController extends Controller
                 $data = [
                     'code' => 200,
                     'status' => 'success',
-                    'rollo' => $rollos
+                    'rollos' => $rollos
                 ];
         
             } else {
