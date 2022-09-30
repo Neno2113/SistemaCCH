@@ -253,10 +253,12 @@ class ClothController extends Controller
                     //    DB::rollBack();
                     }
                 }
+                $rollos = RollosDetail::where('id_rollo', $id_rollo)->where('id_tela', $id_tela)->get();
+
                 $data = [
                     'code' => 200,
                     'status' => 'success',
-                    'rollo' => $rollos_detail
+                    'rollo' => $rollos
                 ];
         
             } else {
