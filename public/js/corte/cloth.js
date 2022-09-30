@@ -310,6 +310,8 @@ $(document).ready(function() {
             elasticidad_urdimbre: $("#elasticidad_urdimbre").val(),
             encogimiento_trama: $("#encogimiento_trama").val(),
             encogimiento_urdimbre: $("#encogimiento_urdimbre").val(),
+            fecha_compra: $("#fecha_compra").val(),
+            no_factura_compra: $("#no_factura_compra").val(),
             composiciones: $("#composiciones").val(),
             composiciones_2: $("#composiciones_2").val(),
             composiciones_3: $("#composiciones_3").val(),
