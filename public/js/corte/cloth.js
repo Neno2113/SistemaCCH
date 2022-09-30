@@ -339,10 +339,10 @@ $(document).ready(function() {
                     'Tela creada correctamente.',
                     'success'
                     )
-                    limpiar();
-                    tabla.ajax.reload();
-                    mostrarForm(false);
-                    $("#btn-composicion").removeClass("btn-success").addClass("btn-orange");
+                //    limpiar();
+                //    tabla.ajax.reload();
+                //    mostrarForm(false);
+                //    $("#btn-composicion").removeClass("btn-success").addClass("btn-orange");
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la creacion de la composicion"

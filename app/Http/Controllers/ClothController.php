@@ -114,7 +114,7 @@ class ClothController extends Controller
             }
 
             $cloth->save();
-
+/*
             $rollos = new Rollos();
             $rollos->id_user = $id_user;
             $rollos->id_suplidor = $id_suplidor;
@@ -122,12 +122,12 @@ class ClothController extends Controller
             $rollos->no_factura_compra = $no_factura_compra;
 
             $rollos->save();
-
+*/
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'tela' => $cloth,
-                'rollo' => $rollo
+                'tela' => $cloth
+            //    'rollo' => $rollo
             ];
         }
         return response()->json($data, $data['code']);
