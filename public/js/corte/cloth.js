@@ -671,8 +671,7 @@ $(document).ready(function() {
     });
     $("#btnCancelar").click(function(e) {
         e.preventDefault();
-      //  mostrarForm(false);
-        mostrarForm(true);
+        mostrarForm(false);
     });
 
 
