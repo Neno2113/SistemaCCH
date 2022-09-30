@@ -288,8 +288,8 @@ $(document).ready(function() {
     $("#btn-terminar").click(function(e){
         e.preventDefault();
 
-        limpiar();
-        tabla.ajax.reload();
+    //    limpiar();
+    //    tabla.ajax.reload();
         mostrarForm(false);
         $("#btn-composicion").removeClass("btn-success").addClass("btn-orange");
         $("#btn-upload").attr("disabled", true);
