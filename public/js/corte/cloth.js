@@ -289,7 +289,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         limpiar();
-    //    tabla.ajax.reload();
+        tabla.ajax.reload();
     //    listar();
     //    tipoTelas();
         mostrarForm(false);
