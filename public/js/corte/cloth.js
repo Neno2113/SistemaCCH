@@ -491,6 +491,7 @@ $(document).ready(function() {
                     $("#btn-guardar").show();
                     $("#btnAgregar").show();
                     $("#terminar_row").hide();
+                    $("#rollosForm").hide();
                     
 
                 } else {
