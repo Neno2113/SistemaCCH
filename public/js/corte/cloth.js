@@ -215,6 +215,7 @@ $(document).ready(function() {
         $("#porcentaje_mat_4").val("").attr('readonly', false);
         $("#porcentaje_mat_5").val("").attr('readonly', false);
         $("#porcentaje_mat_total").val("");
+        $("#permisos-agregados").empty();
     }
 
     $("#btn-upload").click(function(e) {

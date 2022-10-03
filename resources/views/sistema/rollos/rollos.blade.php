@@ -141,7 +141,7 @@
     </div>
     <div class="card-body">
         @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Rollos')->where('ver', 1)->first())
-        <table id="rollos" class="table table-hover table-bordered datatables text-sm" style="width:100%">
+        <table id="rollos" class="table table-hover table-bordered datatables" style="width:100%">
             <thead>
                 <tr>
                     <th></th>
