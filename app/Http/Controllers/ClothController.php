@@ -201,6 +201,7 @@ class ClothController extends Controller
             $file = $request->file('rollo');  
             $id_rollo = $request->input('id_rollo');  
             $id_tela = $request->input('id_tela');
+            
             if ($file) {
                 $filename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
@@ -323,6 +324,8 @@ class ClothController extends Controller
             $elasticidad_urdimbre = $request->input('elasticidad_urdimbre', true);
             $encogimiento_trama = $request->input('encogimiento_trama', true);
             $encogimiento_urdimbre = $request->input('encogimiento_urdimbre', true);
+            $fecha_compra = $request->input('fecha_compra', true);
+            $no_factura_compra = $request->input('no_factura_compra', true);
             // $composicion = $request->input('composiciones', true);
             // $composicion_2 = $request->input('composiciones_2', true);
             // $composicion_3 = $request->input('composiciones_3', true);
@@ -380,6 +383,15 @@ class ClothController extends Controller
             // }
 
             $cloth->save();
+
+            $rollos = Rollos::;
+
+            $rollos->id_user = $id_user;
+            $rollos->id_suplidor = $id_suplidor;
+            $rollos->fecha_compra = $fecha_compra;
+            $rollos->no_factura_compra = $no_factura_compra;
+
+            $rollos->save();
 
             $data = [
                 'code' => 200,

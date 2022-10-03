@@ -461,7 +461,9 @@ $(document).ready(function() {
             porcentaje_mat_2: $("#porcentaje_mat_2").val(),
             porcentaje_mat_3: $("#porcentaje_mat_3").val(),
             porcentaje_mat_4: $("#porcentaje_mat_4").val(),
-            porcentaje_mat_5: $("#porcentaje_mat_5").val()
+            porcentaje_mat_5: $("#porcentaje_mat_5").val(),
+            fecha_compra: $("#fecha_compra").val(),
+            no_factura_compra: $("#no_factura_compra").val()
         };
 
         // console.log(JSON.stringify(cloth));
@@ -787,6 +789,8 @@ function mostrar(id_cloth) {
             $("#no_factura_compra").val(data.rollo.no_factura_compra).attr('readonly', false);
             $("#fecha_compra").val(data.rollo.fecha_compra).attr('readonly', false);
             $("#tipo_tela").val(data.tela.tipo_tela).attr('selected', 'selected').trigger("change");
+            $("#id_tela").val(data.tela.id).attr('readonly', false);
+            $("#id_rollo").val(data.rollo.id).attr('selected', 'selected').trigger("change");
             setTimeout(() => {
                 $("#cloths").val(data.tela.id).attr('selected', 'selected').trigger("change");
                 

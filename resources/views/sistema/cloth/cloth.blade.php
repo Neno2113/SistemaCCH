@@ -136,7 +136,7 @@
                 <button type="submit" id="btn-guardar" class="btn btn-primary mt-2 float-right"><i
                         class="far fa-save fa-lg"></i> Guardar</button>
                 <button type="submit" id="btn-edit" class="btn btn-warning mt-2 float-right"><i
-                        class="far fa-edit fa-lg"></i> Editar</button>
+                        class="far fa-edit fa-lg"></i> Guardar</button>
             </div>
             </form>
         </div>
@@ -204,8 +204,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12" id="terminar_row">
-        <div class="card-footer  text-muted">
+    <div class="col-12" id="terminar_row" style="margin-bottom: 5px;">
+        <div class="card  text-muted">
             <button class="btn btn-success mt-2 float-right" id="btn-terminar"><i class="fas fa-arrow-alt-circle-right fa-lg"></i> Terminar</button>
         </div>
     </div>
