@@ -290,12 +290,12 @@ $(document).ready(function() {
 
         limpiar();
     //    tabla.ajax.reload();
-        listar();
-        tipoTelas();
+    //    listar();
+    //    tipoTelas();
         mostrarForm(false);
-        $("#btn-composicion").removeClass("btn-success").addClass("btn-orange");
-        $("#btn-upload").attr("disabled", true);
-        $("#btn-upload").attr("class", "btn-secundary");
+    //    $("#btn-composicion").removeClass("btn-success").addClass("btn-orange");
+    //    $("#btn-upload").attr("disabled", true);
+    //    $("#btn-upload").attr("class", "btn-secundary");
 
     });
     
