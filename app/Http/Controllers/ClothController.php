@@ -162,6 +162,7 @@ class ClothController extends Controller
 
         $rollosdetails = RollosDetail::where('id_tela', $id)->get()->first();
         $rollo = Rollos::where('id', $rollosdetails->id_rollo)->get()->first();
+        $rollos = RollosDetail::where('id_rollo', $rollo->id)->get();
 
         if (is_object($cloth)) {
             $data = [
@@ -169,7 +170,8 @@ class ClothController extends Controller
                 'status' => 'success',
                 'tela' => $cloth,
                 'suplidor' => $cloth->suplidor,
-                'rollo' => $rollo
+                'rollo' => $rollo,
+                'rollos' => $rollos
             ];
         } else {
             $data = [
