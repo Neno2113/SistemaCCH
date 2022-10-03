@@ -952,7 +952,7 @@ const tipoTelas = () => {
                 console.log(datos);
 
                 for (let i = 0; i < longitud; i++) {
-                    var fila =
+                    let fila =
                     ` <option value="${datos.categorias[i].nombre}">${datos.categorias[i].nombre}</option>`
                     $("#tipo_tela").append(fila);
                 }
