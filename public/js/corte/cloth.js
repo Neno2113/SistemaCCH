@@ -397,7 +397,7 @@ $(document).ready(function() {
             responsive: true,
             ajax: "api/cloths",
             dom: 'Bfrtip',
-            iDisplayLength: 5,
+            iDisplayLength: 25,
             buttons: [
                 'pageLength',
                 'copyHtml5',
@@ -414,8 +414,8 @@ $(document).ready(function() {
                 }
                 ],
             columns: [
-                { data: "Expandir", orderable: false, searchable: false },
-                { data: "Ver", orderable: false, searchable: false },
+            //    { data: "Expandir", orderable: false, searchable: false },
+            //    { data: "Ver", orderable: false, searchable: false },
                 { data: "Opciones", orderable: false, searchable: false },
                 { data: "referencia", name: 'tela.referencia' },
                 { data: "nombre", name: "suplidor.nombre" },

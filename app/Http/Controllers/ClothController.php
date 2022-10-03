@@ -468,13 +468,15 @@ class ClothController extends Controller
             ->editColumn('nombre', function($cloth){
                 return substr($cloth->nombre, 0, 20);
             })
+            /*
             ->addColumn('Ver', function ($cloth) {
                 return '<button onclick="ver(' . $cloth->id . ')" class="btn btn-info btn-sm"> <i class="fas fa-eye"></i></button>';
-            })
+            }) */
             ->addColumn('Opciones', function ($cloth) {
-                return '<button onclick="eliminar(' . $cloth->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser fa-1x"></i></button>'.
-                '<button id="btnEdit" onclick="mostrar(' . $cloth->id . ')" class="btn btn-warning btn-sm ml-1" > <i class="fas fa-edit fa-1x"></i></button>';
+            //    return '<button onclick="eliminar(' . $cloth->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser fa-1x"></i></button>'.
+                return '<button id="btnEdit" onclick="mostrar(' . $cloth->id . ')" class="btn btn-warning btn-sm ml-1" > <i class="fas fa-edit fa-1x"></i></button>';
             })
+        //    ->rawColumns(['Ver', 'Opciones'])
             ->rawColumns(['Ver', 'Opciones'])
             ->make(true);
     }
