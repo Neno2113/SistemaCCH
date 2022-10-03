@@ -667,8 +667,8 @@ $(document).ready(function() {
         e.preventDefault();
         mostrarForm(true);
         $("#compo").show();
-    //    $("#suplidores").val("").trigger("change");
-        $("#cloths").val('').select2().trigger('change').attr("disabled", false);
+        $("#suplidores").val("").trigger("change");
+    //    $("#cloths").val('').select2().trigger('change').attr("disabled", false);
 
     });
     $("#btnCancelar").click(function(e) {
