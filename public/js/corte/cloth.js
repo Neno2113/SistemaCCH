@@ -784,6 +784,8 @@ function mostrar(id_cloth) {
             $("#elasticidad_urdimbre").val(data.tela.elasticidad_urdimbre).attr('readonly', false);
             $("#encogimiento_trama").val(data.tela.encogimiento_trama).attr('readonly', false);
             $("#encogimiento_urdimbre").val(data.tela.encogimiento_urdimbre).attr('readonly', false);
+            $("#no_factura_compra").val(data.rollo.no_factura_compra).attr('readonly', false);
+            $("#fecha_compra").val(data.rollo.fecha_compra).attr('readonly', false);
             $("#tipo_tela").val(data.tela.tipo_tela).attr('selected', 'selected').trigger("change");
             setTimeout(() => {
                 $("#cloths").val(data.tela.id).attr('selected', 'selected').trigger("change");

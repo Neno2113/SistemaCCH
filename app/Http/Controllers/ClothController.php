@@ -160,12 +160,16 @@ class ClothController extends Controller
         $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
         $cloth->ancho_cortable = number_format($cloth->ancho_cortable);
 
+        $rollosdetails = RollosDetail::where('id_tela', $id)->get()->first();
+        $rollo = Rollos::where('id', $rollosdetails->id_rollo)->get()->first();
+
         if (is_object($cloth)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'tela' => $cloth,
-                'suplidor' => $cloth->suplidor
+                'suplidor' => $cloth->suplidor,
+                'rollo' => $rollo
             ];
         } else {
             $data = [
