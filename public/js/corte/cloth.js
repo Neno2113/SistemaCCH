@@ -363,6 +363,9 @@ $(document).ready(function() {
                     $("#id_rollo").val(datos.rollo);
                     $("#btn-upload").attr("disabled", false);
                     $("#btn-upload").attr("class", "btn-primary");
+                    $("#terminar_row").show();
+                    $("#btnCancelar").hide();
+                    
                 //    limpiar();
                 //    tabla.ajax.reload();
                 //    mostrarForm(false);
@@ -648,6 +651,7 @@ $(document).ready(function() {
             $("#registroForm").show();
             $("#terminar_row").show();
             $("#btnCancelar").show();
+            $("#terminar_row").hide();
             $("#rollosForm").show();
             $("#btnAgregar").hide();
         } else {
@@ -656,6 +660,7 @@ $(document).ready(function() {
             $("#terminar_row").hide();
             $("#rollosForm").hide();
             $("#btnCancelar").hide();
+            $("#terminar_row").hide();
             $("#btnAgregar").show();
             $("#btn-edit").hide();
             $("#btn-guardar").show();

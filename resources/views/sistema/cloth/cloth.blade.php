@@ -206,7 +206,7 @@
 <div class="row">
     <div class="col-12" id="terminar_row">
         <div class="card-footer  text-muted">
-            <button class="btn btn-danger mt-2 float-right" id="btn-terminar"><i class="fas fa-arrow-alt-circle-right fa-lg"></i> Terminar</button>
+            <button class="btn btn-success mt-2 float-right" id="btn-terminar"><i class="fas fa-arrow-alt-circle-right fa-lg"></i> Terminar</button>
         </div>
     </div>
 </div>
