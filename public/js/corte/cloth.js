@@ -790,7 +790,7 @@ function mostrar(id_cloth) {
             $("#fecha_compra").val(data.rollo.fecha_compra).attr('readonly', false);
             $("#tipo_tela").val(data.tela.tipo_tela).attr('selected', 'selected').trigger("change");
             $("#id_tela").val(data.tela.id).attr('readonly', false);
-            $("#id_rollo").val(data.rollo.id).attr('selected', 'selected').trigger("change");
+            $("#id_rollo").val(data.rollo.id).attr('readonly', false);
             setTimeout(() => {
                 $("#cloths").val(data.tela.id).attr('selected', 'selected').trigger("change");
                 
