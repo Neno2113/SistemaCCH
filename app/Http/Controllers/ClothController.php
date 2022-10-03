@@ -398,7 +398,7 @@ class ClothController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'tela' => $cloth,
-                'rollo' => $rollo
+                'rollo' => $rollos
             ];
         }
 
