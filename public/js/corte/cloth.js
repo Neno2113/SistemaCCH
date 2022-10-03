@@ -478,7 +478,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     Swal.fire(
                     'Tela actualizada!!',
-                    'Tela actualizada correctamente.',
+                    'Tela actualizada correctamente.'+datos.rollo.no_factura_compra,
                     'success'
                     )
                     limpiar();
