@@ -384,9 +384,8 @@ class ClothController extends Controller
             // }
 
             $cloth->save();
-
-            
-            $rollos = Rollos::find($id_rollo);
+   
+            $rollos = Rollos::where('id', $id_rollo)->get()->first();
         //    $rollos->id_user = $id_user;
             $rollos->id_suplidor = $id_suplidor;
             $rollos->fecha_compra = $fecha_compra;
