@@ -325,6 +325,8 @@ class ClothController extends Controller
             $encogimiento_urdimbre = $request->input('encogimiento_urdimbre', true);
             $fecha_compra = $request->input('fecha_compra', true);
             $no_factura_compra = $request->input('no_factura_compra', true);
+            $id_tela = $request->input('id_tela', true);
+            $id_rollo = $request->input('id_rollo', true);
             // $composicion = $request->input('composiciones', true);
             // $composicion_2 = $request->input('composiciones_2', true);
             // $composicion_3 = $request->input('composiciones_3', true);
@@ -383,20 +385,20 @@ class ClothController extends Controller
 
             $cloth->save();
 
-            /****************************
-            $rollos = new Rollos();
-            $rollos->id_user = $id_user;
+            
+            $rollos = Rollos::find($id_rollo);
+        //    $rollos->id_user = $id_user;
             $rollos->id_suplidor = $id_suplidor;
             $rollos->fecha_compra = $fecha_compra;
             $rollos->no_factura_compra = $no_factura_compra;
 
             $rollos->save();
-            ***************************/
 
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'tela' => $cloth
+                'tela' => $cloth,
+                'rollo' => $rollo
             ];
         }
 
