@@ -723,7 +723,7 @@ $(document).ready(function() {
                     $("#nombre").val('');
                     tipoTelas();
                   
-                    listarCategorias();
+                //    listarCategorias();
                 
                 
                 } else {
@@ -768,7 +768,7 @@ function mostrar(id_cloth) {
             $("#btn-edit").show();
             $("#btn-guardar").hide();
             $("#compo").hide();
-            listarCategorias();
+        //    listarCategorias();
             // console.log(data.tela.suplidor.nombre);
     
             $("#id").val(data.tela.id);
@@ -819,7 +819,7 @@ function ver(id_cloth) {
             $("#btn-edit").hide();
             $("#btn-guardar").hide();
             $("#compo").hide();
-            listarCategorias();
+        //    listarCategorias();
             // console.log(data.tela.suplidor.nombre);
     
             $("#id").val(data.tela.id);
@@ -877,7 +877,7 @@ function eliminar(id_cloth){
 
 }
 
-
+/*
 const listarCategorias = () => {
 
     $("#permisos-agregados").empty();
@@ -911,7 +911,7 @@ const listarCategorias = () => {
             );
         }
     });
-}
+} */
 
 const delCategoria = (id) => {
     Swal.fire({
