@@ -132,7 +132,7 @@
         <div class="row">
             <div class="col-12">
                 @if (Auth::user()->role == "Administrador" || Auth::user()->permisos()->where('permiso', 'Rollos')->where('agregar', 1)->first() )
-                <button class="btn btn-primary float-left " id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button>
+            <!--    <button class="btn btn-primary float-left " id="btnAgregar"><i class="fas fa-plus"></i> Agregar</button> -->
                 @endif
                 <h4 class="text-white text-center">Listado de rollos</h4>
             </div>
