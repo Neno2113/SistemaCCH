@@ -100,7 +100,7 @@ $(document).ready(function() {
             ajax: "api/skus",
             columns: [
             //    { data: "Expandir", orderable: false, searchable: false },
-                { data: "Editar", orderable: false, searchable: false },
+            //    { data: "Editar", orderable: false, searchable: false },
             //    { data: "sku", name: "sku.sku"},
             //    { data: "referencia_producto", name: "sku.referencia_producto"},
             //    { data: "corte", name: "corte.numero_corte"},
