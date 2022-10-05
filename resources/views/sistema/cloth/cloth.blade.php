@@ -232,9 +232,12 @@
                 <!--    <th></th>
                     <th>Ver</th> -->
                     <th>Actions</th>
-                    <th>Ref.</th>
+                    <th>Nombre Tela</th>
                     <th>Suplidor</th>
                     <th>Tela</th>
+                <!--    <th>No. Factura</th>
+                    <th>Precio</th>
+                    <th>Cant. Rollos</th> -->
                     <th>Peso</th>
                     {{-- <th>Compo.</th>
                     <th>Compo. 2</th>
@@ -251,9 +254,12 @@
                     <th></th>
                     <th>Ver</th> -->
                     <th>Actions</th>
-                    <th>Ref.</th>
+                    <th>Nombre Tela</th>
                     <th>Suplidor</th>
                     <th>Tela</th>
+                <!--    <th>No. Factura</th>
+                    <th>Precio</th>
+                    <th>Cant. Rollos</th> -->
                     <th>Peso</th>
                     {{-- <th>Compo.</th>
                     <th>Compo. 2</th>

@@ -563,11 +563,10 @@ class EmpleadoController extends Controller
                 ];
             }
 
-
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'avatar' =>$image_name_1
+                'avatar' => $image_name_1
             ];
         }
 

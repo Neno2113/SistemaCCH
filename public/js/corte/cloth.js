@@ -420,8 +420,9 @@ $(document).ready(function() {
                 { data: "referencia", name: 'tela.referencia' },
                 { data: "nombre", name: "suplidor.nombre" },
                 { data: "tipo_tela", name: "tela.tipo_tela" },
+            //    { data: "precio_usd", name: "tela.precio_usd" },
                 { data: "peso", name: "tela.peso" },
-                // { data: "composicion", name: "tela.composicion" },
+                
                 // { data: "composicion_2", name: "tela.composicion_2" },
                 // { data: "composicion_3", name: "tela.composicion_3" },
                 // { data: "composicion_4", name: "tela.composicion_4" },

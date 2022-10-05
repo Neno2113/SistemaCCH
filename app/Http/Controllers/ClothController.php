@@ -474,6 +474,7 @@ class ClothController extends Controller
     public function cloths()
     {
         $cloths = DB::table('tela')->join('suplidor', 'tela.id_suplidor', '=', 'suplidor.id')
+          //  ->Join('rollos_detail', 'tela.id', '=', 'rollos_detail.id_tela')
             ->select([
                 'tela.id', 'tela.referencia', 'suplidor.nombre', 'tela.precio_usd', 'tela.composicion', 'tela.composicion_2',
                 'tela.composicion_3', 'tela.composicion_4', 'tela.composicion_5', 'tela.tipo_tela', 'tela.ancho_cortable', 'tela.peso',

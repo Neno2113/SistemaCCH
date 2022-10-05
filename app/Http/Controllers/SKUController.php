@@ -10,6 +10,7 @@ use App\CategoriaProducto;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class SKUController extends Controller
 {
