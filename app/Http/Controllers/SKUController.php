@@ -315,7 +315,7 @@ class SKUController extends Controller
                     }  
                 }
              })
-         //   ->rawColumns(['Corte', 'Fecha', 'Marcada'])
+            ->rawColumns(['Editar'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
