@@ -60,13 +60,13 @@ class SKUController extends Controller
                 return "";
             })
             ->editColumn('Editar', function ($sku) {
-                return "Print-".$sku->producto_id;
-            //    $producto = $sku->producto_id;
-            //    if(isset($producto)){
-            //        return '<button id="print" onclick="print(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
-            //    }else{
-            //        return "";
-            //    }
+            //    return "Print-".$sku->producto_id;
+                $producto = $sku->producto_id;
+                if(isset($producto)) {
+                    return '<button id="print" onclick="print(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
+                } else {
+                    return "";
+                }
             }) 
             ->editColumn('numero_corte', function ($sku) {
                 if ($sku->numero_corte){
