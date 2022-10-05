@@ -60,7 +60,7 @@ class SKUController extends Controller
                 return "";
             })
             ->editColumn('Editar', function ($sku) {
-                return "Print";
+                return "Print-".$sku->producto_id;
             //    $producto = $sku->producto_id;
             //    if(isset($producto)){
             //        return '<button id="print" onclick="print(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
