@@ -59,6 +59,14 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
+            ->editColumn('Editar', function ($sku) {
+                $producto = $sku->producto_id;
+                if(isset($producto)){
+                    return '<button id="print" onclick="print(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
+                }else{
+                    return "";
+                }
+            })
             ->editColumn('numero_corte', function ($sku) {
                 if ($sku->numero_corte){
                     $num_corte = $sku->numero_corte;

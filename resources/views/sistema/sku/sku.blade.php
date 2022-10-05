@@ -74,7 +74,7 @@
                 <thead>
                     <tr>
                     <!--    <th></th> --> 
-                    <!--    <th>Opcion</th> --> 
+                        <th>Opcion</th>
                         <th>SKU</th>
                         <th>Producto</th>
                         <th>Corte</th>
@@ -90,7 +90,7 @@
                 <tfoot>
                     <tr>
                     <!--     <th></th> --> 
-                    <!--     <th>Opcion</th> --> 
+                         <th>Opcion</th>
                         <th>SKU</th>
                         <th>Producto</th>
                         <th>Corte</th>
