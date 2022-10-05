@@ -59,11 +59,11 @@ class SKUController extends Controller
             ->addColumn('Expandir', function ($sku) {
                 return "";
             })
-            ->editColumn('Editar', function ($sku) {
+            ->addColumn('Editar', function ($sku) {
             //    return "Print-".$sku->producto_id;
             //    $producto = $sku->producto_id;
                 if ($sku->producto_id) {
-                    return '<button id="print" onclick="print(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"> <i class="fas fa-eraser"></i></button>';
+                    return '<button id="print" onclick="print(' . $sku->id . ')" class="btn btn-danger btn-sm mr-1"><i class="fas fa-eraser"></i></button>';
                 } else {
                     return "";
                 }
@@ -316,7 +316,7 @@ class SKUController extends Controller
                     }  
                 }
              })
-        //    ->rawColumns(['Editar'])
+            ->rawColumns(['Editar'])
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
