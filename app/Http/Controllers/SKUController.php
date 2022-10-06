@@ -346,10 +346,10 @@ class SKUController extends Controller
 
         $output = $pdf->output();
 
-    return new Response($output, 200, [
-        'Content-Type' => 'application/pdf',
-        'Content-Disposition' =>  'inline; filename="'myfilename.pdf"',
-    ]);
+        return new Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' =>  'inline; filename="'invoice.pdf"',
+        ]);
 
     }
     
