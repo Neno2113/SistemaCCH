@@ -11,6 +11,7 @@ use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Illuminate\Http\Response;
 
 class SKUController extends Controller
 {
@@ -341,7 +342,14 @@ class SKUController extends Controller
         $data = ['nombre' => 'Etiqueta', 'apellido' => 'Lavish'];
         $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
-        return $pdf->stream('Etiquetas-123.pdf');
+     //   return $pdf->stream('Etiquetas-123.pdf');
+
+        $output = $pdf->output();
+
+    return new Response($output, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' =>  'inline; filename="'myfilename.pdf"',
+    ]);
 
     }
     
