@@ -733,7 +733,7 @@
 	</script>
 </head>
 
-<body>
+<body onload="window.print();">
 	<header class="clearfix">
 		<div id="logo">
 		<h1 class="name">IMPRESION DE ETIQUETAS</h1>
