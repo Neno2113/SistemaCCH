@@ -63,7 +63,7 @@ class SKUController extends Controller
             //    return "Print-".$sku->producto_id;
             //    $producto = $sku->producto_id;
                 if ($sku->producto_id) {
-                    return '<button id="print" onclick="print(' . $sku->id . ')" class="btn btn-success btn-sm mr-1"><i class="fas fa-print"></i></button>';
+                    return '<button id="printLabel" onclick="printLabel(' . $sku->id . ')" class="btn btn-success btn-sm mr-1"><i class="fas fa-print"></i></button>';
                 } else {
                     return "";
                 }
