@@ -745,6 +745,7 @@
 	<footer class="pagina1">
 		Fin de documento.
 	</footer>
+	<script type="text/javascript"> try { this.print(); } catch (e) { window.onload = window.print; } </script>
 	
 </body>
 
