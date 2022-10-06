@@ -342,8 +342,8 @@ class SKUController extends Controller
         $data = ['nombre' => 'Etiqueta', 'apellido' => 'Lavish'];
         $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
-        return $pdf->print('Etiquetas-123.pdf');
-    //    return view('sistema.sku.skuImpresion');
+    //    return $pdf->stream('Etiquetas-123.pdf');
+        return view('sistema.sku.skuImpresion', $data);
 
 
 

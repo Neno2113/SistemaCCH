@@ -742,7 +742,7 @@
 			<div>C/ Diego Tristan, casi esq. Ave. la pista<br /> Hainamosa, Santo Domingo Este</div>
 			<div>(809) 699-8400</div>
 			<div><a href="mailto:oper.cch.srl@gmail.com">oper.cch.srl@gmail.com</a></div>
-			<div>RNC: 130-746974</div>
+			<div>{{ $nombre }}</div>
 		</div>
 		</div>
 	</header>
