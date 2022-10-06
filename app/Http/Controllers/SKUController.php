@@ -63,7 +63,8 @@ class SKUController extends Controller
             //    return "Print-".$sku->producto_id;
             //    $producto = $sku->producto_id;
                 if ($sku->producto_id) {
-                    return '<button id="printLabel" onclick="printlabel(' . $sku->id . ')" class="btn btn-success btn-sm mr-1"><i class="fas fa-print"></i></button>';
+                //    return '<button id="printLabel" onclick="printlabel(' . $sku->id . ')" class="btn btn-success btn-sm mr-1"><i class="fas fa-print"></i></button>';
+                    return '<a href="print_label/' . $sku->id . '" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
                 } else {
                     return "";
                 }
@@ -334,4 +335,14 @@ class SKUController extends Controller
 
         return response()->json($data, $data['code']);
     }
+
+    public function imprimirlabel($id)
+    {
+        $data = ['nombre' => 'Etiqueta', 'apellido' => 'Lavish'];
+        $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
+  
+        return $pdf->stream('Etiquetas-123.pdf');
+
+    }
+    
 }
