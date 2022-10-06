@@ -184,6 +184,10 @@ $(document).ready(function() {
         }
     }
 
+    function printLabel(id) {
+        bootbox.alert("Se procedera a imprimir la referencia con id "+id);
+    }
+
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
     });
