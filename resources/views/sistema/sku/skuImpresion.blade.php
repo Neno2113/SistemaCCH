@@ -10,6 +10,11 @@
 			src: url(SourceSansPro-Regular.ttf);
 		}
 
+		html {
+			width: 142.24mm !important;
+		}
+		
+
 		.clearfix:after {
 			content: "";
 			display: table;
