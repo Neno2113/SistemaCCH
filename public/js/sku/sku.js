@@ -184,7 +184,7 @@ $(document).ready(function() {
         }
     }
 
-    function printLabel(id) {
+    function printlabel(id) {
         bootbox.alert("Se procedera a imprimir la referencia con id "+id);
     }
 
