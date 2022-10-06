@@ -728,17 +728,9 @@
 			padding-bottom: 250px;
 		}
 	</style>
-	<script type="text/javascript"> 
-		try { 
-			this.print(); 
-			} 
-		catch (e) { 
-			window.onload = window.print; 
-			} 
-	</script>
 </head>
 
-<body onload="window.print();">
+<body onload="window.print()">
 	<header class="clearfix">
 		<div id="logo">
 		<h1 class="name">IMPRESION DE ETIQUETAS</h1>
