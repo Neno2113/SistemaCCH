@@ -340,7 +340,7 @@ class SKUController extends Controller
     public function imprimirlabel($id)
     {
         $skus = SKU::find($id);
-        $data = ['referencia' => $skus->referencia_producto, 'sku' => $skus->referencia_producto];
+        $data = ['referencia' => $skus->referencia_producto, 'sku' => $skus->sku, 'talla' => $skus->talla];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
     //    return $pdf->stream('Etiquetas-123.pdf');
