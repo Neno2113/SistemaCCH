@@ -341,9 +341,9 @@ class SKUController extends Controller
     {
         $skus = SKU::find($id);
         $producto = Product::where('id', $skus->producto_id)->get()->first();
-        $producto = Corte::where('producto_id', $skus->producto_id)->get()->first();
+        $corte = Corte::where('producto_id', $skus->producto_id)->get()->first();
 
-        $data = ['referencia' => $skus->referencia_producto, 'sku' => $skus->sku, 'talla' => $skus->talla, 'entalle_bragueta' => $skus->entalle_bragueta, 'entalle_piernas' => $skus->entalle_piernas, 'fecha_corte' => $skus->fecha_corte];
+        $data = ['referencia' => $skus->referencia_producto, 'sku' => $skus->sku, 'talla' => $skus->talla, 'entalle_bragueta' => $producto->entalle_bragueta, 'entalle_piernas' => $producto->entalle_piernas, 'fecha_corte' => $corte->fecha_corte];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
     //    return $pdf->stream('Etiquetas-123.pdf');
