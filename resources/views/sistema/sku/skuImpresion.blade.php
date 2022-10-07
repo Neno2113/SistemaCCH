@@ -184,7 +184,7 @@
 	<tr>
 	<td class="pad" style="padding-top:5px;">
 	<div style="color:#000000;font-size:14px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
-	<p style="margin: 0;">{{ $sku }}</p>
+	<p style="margin: 0;">{{ $entalle_bragueta }}</p>
 	</div>
 	</td>
 	</tr>
@@ -193,7 +193,7 @@
 	<tr>
 	<td class="pad" style="padding-bottom:5px;">
 	<div style="color:#000000;font-size:14px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
-	<p style="margin: 0;">SKYNNI LEG</p>
+	<p style="margin: 0;">{{ $entalle_piernas }}</p>
 	</div>
 	</td>
 	</tr>
@@ -229,7 +229,7 @@
 	<tr>
 	<td class="pad" style="padding-top:5px;padding-bottom:5px;">
 	<div style="color:#000000;font-size:14px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
-	<p style="margin: 0;">2022-10</p>
+	<p style="margin: 0;">{{ $fecha_corte }}</p>
 	</div>
 	</td>
 	</tr>
@@ -337,7 +337,7 @@
 	<tr>
 	<td class="pad" style="padding-top:5px;padding-bottom:5px;">
 	<div style="color:#000000;font-size:14px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
-	<p style="margin: 0;">32 - 46</p>
+	<p style="margin: 0;">{{ $talla }}</p>
 	</div>
 	</td>
 	</tr>
