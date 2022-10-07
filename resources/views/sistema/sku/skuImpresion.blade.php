@@ -148,7 +148,7 @@
 	<tr>
 	<td class="pad" style="padding-top:5px;padding-bottom:5px;">
 	<div style="color:#000000;font-size:14px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
-	<p style="margin: 0;">P105-2023</p>
+	<p style="margin: 0;">{{ $referencia }}</p>
 	</div>
 	</td>
 	</tr>
@@ -184,7 +184,7 @@
 	<tr>
 	<td class="pad" style="padding-top:5px;">
 	<div style="color:#000000;font-size:14px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
-	<p style="margin: 0;">SKYNNY LEG</p>
+	<p style="margin: 0;">{{ $sku }}</p>
 	</div>
 	</td>
 	</tr>
