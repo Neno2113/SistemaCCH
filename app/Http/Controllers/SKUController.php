@@ -345,7 +345,7 @@ class SKUController extends Controller
         $bragueta = CategoriaProducto::where('tipo', 'entalle_bragueta')->where('indice', $producto->entalle_bragueta)->get()->first();
             $entalle_bragueta = $bragueta->nombre;
         $pierna = CategoriaProducto::where('tipo', 'entalle_piernas')->where('indice', $producto->entalle_piernas)->get()->first();
-            $entalle_piernas = $bragueta->nombre;
+            $entalle_piernas = $pierna->nombre;
 
     
             $referencia2 = $producto->referencia_producto_2;
