@@ -351,9 +351,10 @@ class SKUController extends Controller
             $referencia2 = $producto->referencia_producto_2;
             $referencia1 = $producto->referencia_producto;
             $genero = $producto->genero;   
-            $mujer_plus = substr($sku->referencia_producto, 3, 1);
+            $mujer_plus = substr($referencia1, 3, 1);
             $min_talla = $producto->min;   
             $max_talla = $producto->max;   
+            $talla = $skus->talla;
             
             if ($genero == "2") {
                 if ($mujer_plus == "7") {
