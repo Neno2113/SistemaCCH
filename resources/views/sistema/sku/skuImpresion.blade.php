@@ -361,7 +361,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 	<tr>
 	<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-	<div align="center" class="alignment" style="line-height:10px"><img src="https://cdn-dfhjh.nitrocdn.com/BzQnABYFnLkAUVnIDRwDtFjmHEaLtdtL/assets/static/optimized/rev-cb9d5e8/wp-content/uploads/2015/02/barcode-13.png" style="display: block; height: auto; border: 0; width: 288px; max-width: 100%;" width="288"/></div>
+	<div align="center" class="alignment" style="line-height:10px"><img src="https://barcode.tec-it.com/barcode.ashx?data=1234567789&code=Code128&translate-esc=true&dmsize=Default" style="display: block; height: auto; border: 0; width: 288px; max-width: 100%;" width="288"/></div>
 	</td>
 	</tr>
 	</table>
