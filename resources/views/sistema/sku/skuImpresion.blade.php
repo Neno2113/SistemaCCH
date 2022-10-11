@@ -54,10 +54,21 @@
 				max-height: 0px;
 				overflow: hidden;
 			}
+
+			.row-content {
+				width: 100% !important;
+			}
+
+			.stack .column {
+				width: 100%;
+				display: block;
+			}
+
 			@page {
 				size: 3.20cm 5.60cm;
 			/*	margin: 30mm 45mm 30mm 45mm; */
 				/* change the margins as you want them to be. */
+				
 			}
 			@media print {
 				body{
