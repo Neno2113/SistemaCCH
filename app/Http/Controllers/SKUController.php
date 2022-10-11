@@ -525,8 +525,9 @@ class SKUController extends Controller
             //    return $talla;
 
             }  
-            $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$skus->sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
             
+            $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$skus->sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
+
         $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'fecha_corte' => $corte->fecha_corte];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
