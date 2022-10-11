@@ -55,14 +55,6 @@
 				overflow: hidden;
 			}
 
-			.row-content {
-				width: 100% !important;
-			}
-
-			.stack .column {
-				width: 100%;
-			/*	display: block; */
-			}
 
 			@page {
 				size: 3.20cm 5.60cm;
@@ -78,7 +70,7 @@
 					/* change the margins as you want them to be. */
 				} 
 			}
-			/*
+			
 			@media (max-width:500px) {
 				.desktop_hide table.icons-inner {
 					display: inline-block !important;
@@ -118,7 +110,7 @@
 					display: table !important;
 					max-height: none !important;
 				}
-			} */
+			} 
 		</style>
 	</head>
 <body style="margin: 0; background-color: #ffffff; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
