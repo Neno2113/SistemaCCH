@@ -56,6 +56,7 @@
 			}
 			@page {
 				size: 3.20cm 5.60cm;
+				border-style: solid;
 			/*	margin: 30mm 45mm 30mm 45mm; */
 				/* change the margins as you want them to be. */
 			}
