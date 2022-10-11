@@ -69,6 +69,10 @@
 				/*	margin: 30mm 45mm 30mm 45mm; */
 					/* change the margins as you want them to be. */
 				} 
+				
+				td {
+					font-size: 0.8em;
+				}
 			}
 			
 			@media (max-width:500px) {
