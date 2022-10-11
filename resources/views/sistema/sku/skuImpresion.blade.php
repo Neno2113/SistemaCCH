@@ -61,7 +61,7 @@
 
 			.stack .column {
 				width: 100%;
-				display: block;
+			/*	display: block; */
 			}
 
 			@page {
