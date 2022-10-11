@@ -54,6 +54,14 @@
 				max-height: 0px;
 				overflow: hidden;
 			}
+			@media print {
+				body{
+					width: 14.224cm;
+					height: 8.128cm;
+				/*	margin: 30mm 45mm 30mm 45mm; */
+					/* change the margins as you want them to be. */
+				} 
+			}
 
 			@media (max-width:500px) {
 				.desktop_hide table.icons-inner {
