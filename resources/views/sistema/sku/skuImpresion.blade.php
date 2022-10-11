@@ -385,7 +385,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 	<tr>
 	<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-	<div align="center" class="alignment" style="line-height:10px"><img src="https://barcode.tec-it.com/barcode.ashx?data=7426883587255&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96" style="display: block; height: auto; border: 0; max-width: 100%;"/></div>
+	<div align="center" class="alignment" style="line-height:10px"><img src="https://barcode.tec-it.com/barcode.ashx?data={{ $sku }}&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96" style="display: block; height: auto; border: 0; max-width: 100%;"/></div>
 	</td>
 	</tr>
 	</table>
