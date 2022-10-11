@@ -55,14 +55,14 @@
 				overflow: hidden;
 			}
 			@page {
-				size: 5.6cm 3.20cm;
+				size: 3.20cm 5.60cm;
 			/*	margin: 30mm 45mm 30mm 45mm; */
 				/* change the margins as you want them to be. */
 			}
 			@media print {
 				body{
-					width: 5.6cm;
-					height: 3.20cm;
+					width: 3.20cm;
+					height: 5.60cm;
 				/*	margin: 30mm 45mm 30mm 45mm; */
 					/* change the margins as you want them to be. */
 				} 
