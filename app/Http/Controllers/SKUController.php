@@ -65,7 +65,7 @@ class SKUController extends Controller
             //    $producto = $sku->producto_id;
                 if ($sku->producto_id) {
                 //    return '<button id="printLabel" onclick="printlabel(' . $sku->id . ')" class="btn btn-success btn-sm mr-1"><i class="fas fa-print"></i></button>';
-                    return '<a href="print_labell/' . $sku->id . '" target="_blank" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
+                    return '<a href="print_label/' . $sku->id . '" target="_blank" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
                 } else {
                     return "";
                 }
@@ -525,7 +525,7 @@ class SKUController extends Controller
             //    return $talla;
 
             }  
-            
+
             $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$skus->sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
 
         $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'fecha_corte' => $corte->fecha_corte];
