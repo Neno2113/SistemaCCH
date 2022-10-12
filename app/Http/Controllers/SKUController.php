@@ -65,7 +65,8 @@ class SKUController extends Controller
             //    $producto = $sku->producto_id;
                 if ($sku->producto_id) {
                 //    return '<button id="printLabel" onclick="printlabel(' . $sku->id . ')" class="btn btn-success btn-sm mr-1"><i class="fas fa-print"></i></button>';
-                    return '<a href="print_label/' . $sku->id . '" target="_blank" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
+                //    return '<a href="print_label/' . $sku->id . '" target="_blank" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
+                    return '<button id="print_label" onclick="mostrar(' . $sku->id . ')" class="btn btn-primary btn-sm ml-1" > <i class="fas fa-print"></i></button>';
                 } else {
                     return "";
                 }
@@ -335,6 +336,63 @@ class SKUController extends Controller
         ];
 
         return response()->json($data, $data['code']);
+    }
+
+    public function show($id)
+    {
+        /*
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Telas')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+        $cloth = Cloth::find($id)->load('suplidor');
+
+        $cloth->elasticidad_trama = number_format($cloth->elasticidad_trama);
+        $cloth->elasticidad_urdimbre = number_format($cloth->elasticidad_urdimbre);
+        $cloth->encogimiento_trama = number_format($cloth->encogimiento_trama);
+        $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
+        $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
+        $cloth->ancho_cortable = number_format($cloth->ancho_cortable);
+
+        $rollosdetails = RollosDetail::where('id_tela', $id)->get()->first();
+        $rollo = Rollos::where('id', $rollosdetails->id_rollo)->get()->first();
+        $rollos = RollosDetail::where('id_rollo', $rollo->id)->get();
+
+        if (is_object($cloth)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'tela' => $cloth,
+                'suplidor' => $cloth->suplidor,
+                'rollo' => $rollo,
+                'rollos' => $rollos
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'No existe el usuario'
+            ];
+        }
+        */
+        $data = [
+                'code' => 200,
+                'status' => 'success',
+                'tela' => 'hola'
+            ];
+
+        return \response()->json($data, $data['code']);
+        
     }
 
     public function imprimirlabel($id)
