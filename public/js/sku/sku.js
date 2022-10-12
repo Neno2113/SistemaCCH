@@ -174,10 +174,12 @@ $(document).ready(function() {
         if (flag) {
             $("#listadoUsers").hide();
             $("#registroForm").show();
+            $("#tallasSku").show();
             $("#btnCancelar").show();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
+            $("#tallasSku").hide();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();

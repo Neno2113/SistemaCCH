@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row"> 
-    <div class="col-5">
+    <div class="col-12">
         <div class="card  mb-3" id="tallasSku">
             <div class="card-header bg-dark">
                 <div class="card-tools">
@@ -201,7 +201,7 @@
 
     @include('adminlte/scripts')
     <script src="{{asset('js/sku/sku.js')}}"></script>
-
+<!--
     <script>
         function mostrar(id_composition) {
         $.post("composition/" + id_composition, function(data, status) {
@@ -234,6 +234,7 @@
     }
 
     </script>
+-->
 
 
 
