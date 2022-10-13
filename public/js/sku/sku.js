@@ -213,7 +213,7 @@ function mostrar(id_sku) {
             $("#btn-guardar").show();
             $("#btnAgregar").hide();
             $("#tallasSku").show();
-         /*   
+          
             var fila =
             '<tr id="fila'+data.sku.id+'">'+
             "<td class=''>"+data.sku.sku+"</td>"+
@@ -224,7 +224,7 @@ function mostrar(id_sku) {
             $("#permisos-agregados").append(fila);
         //    $("#id").val(data.tela.id);
         //    $("#referencia").val(data.tela.referencia).attr('readonly', false);
-*/
+ /* 
             for (let i = 0; i < data.sku.length; i++) {
                 var fila =
                 '<tr id="fila'+data.sku[i].id+'">'+
@@ -236,7 +236,7 @@ function mostrar(id_sku) {
                 $("#permisos-agregados").append(fila);
             }
         
-            
+          */  
     
         }
      
