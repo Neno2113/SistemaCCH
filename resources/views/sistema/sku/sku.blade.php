@@ -21,12 +21,12 @@
                 <h5>Listado de Tallas</h5>
                 <hr>
                 <div class="row">
-                    <div class="col-md-12" id="vatar">
+                    <div class="col-md-6" id="vatar">
                         <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                             <div class="form-group">
                             <input type="hidden" name="id_tela" id="id_tela" value="">
                             <input type="hidden" name="id_rollo" id="id_rollo" value="">
-                                <label for="exampleInputFile">Agregar Rollos</label>
+                                <label for="exampleInputFile">Agregar hoja de sku especiales</label>
                             <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
                                 <div class="input-group mt-4">
                                     <div class="custom-file">
@@ -46,10 +46,10 @@
                     <table class="table tabla-existencia table-bordered">
                         <thead class="text-center">
                             <tr>
-                                <th>Numero</th>
-                                <th>Tono</th>
-                                <th>Longitud</th>
-                                <th id="editar-permisos">Eliminar</th>
+                                <th>SKU</th>
+                                <th>Referencia</th>
+                                <th>Talla</th>
+                                <th id="editar-permisos">Cantidad</th>
                             </tr>
                         </thead>
                         <tbody id="permisos-agregados">
