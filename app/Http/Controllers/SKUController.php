@@ -340,7 +340,7 @@ class SKUController extends Controller
 
     public function show($id)
     {
-        /*
+        
         //Chekcing if the user has access to this function
         $user_loginId = Auth::user()->id;
         $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Telas')
@@ -355,41 +355,22 @@ class SKUController extends Controller
             }
     
         }
-        $cloth = Cloth::find($id)->load('suplidor');
+        $sku = SKU::find($id);
 
-        $cloth->elasticidad_trama = number_format($cloth->elasticidad_trama);
-        $cloth->elasticidad_urdimbre = number_format($cloth->elasticidad_urdimbre);
-        $cloth->encogimiento_trama = number_format($cloth->encogimiento_trama);
-        $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
-        $cloth->encogimiento_urdimbre = number_format($cloth->encogimiento_urdimbre);
-        $cloth->ancho_cortable = number_format($cloth->ancho_cortable);
 
-        $rollosdetails = RollosDetail::where('id_tela', $id)->get()->first();
-        $rollo = Rollos::where('id', $rollosdetails->id_rollo)->get()->first();
-        $rollos = RollosDetail::where('id_rollo', $rollo->id)->get();
-
-        if (is_object($cloth)) {
+        if (is_object($sku)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'tela' => $cloth,
-                'suplidor' => $cloth->suplidor,
-                'rollo' => $rollo,
-                'rollos' => $rollos
+                'sku' => $sku
             ];
         } else {
             $data = [
                 'code' => 404,
                 'status' => 'error',
-                'message' => 'No existe el usuario'
+                'message' => 'Hay algun problema 008'
             ];
         }
-        */
-        $data = [
-                'code' => 200,
-                'status' => 'success',
-                'tela' => 'hola'
-            ];
 
         return \response()->json($data, $data['code']);
         
@@ -583,7 +564,7 @@ class SKUController extends Controller
             //    return $talla;
 
             }  
-            if ((strlen($skus->sku) <= 10)){
+            if ((strlen($skus->sku) <= 12)){
                 $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$skus->sku."&code=Code128&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
             } else {
                 $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$skus->sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
@@ -595,8 +576,6 @@ class SKUController extends Controller
   
     //    return $pdf->stream('Etiquetas-123.pdf');
         return view('sistema.sku.skuImpresion', $data);
-
-
 
     }
     
