@@ -216,9 +216,9 @@ function mostrar(id_sku) {
           
             var fila =
             '<tr id="fila'+data.sku.id+'">'+
-            "<td class=''>"+data.sku.sku+"</td>"+
-            "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
+            "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
+            "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
             "<td class='font-weight-bold'><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+data.sku.producto_id+"'></td>"+
             "</tr>";
             $("#permisos-agregados").append(fila);
