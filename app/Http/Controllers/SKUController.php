@@ -356,7 +356,8 @@ class SKUController extends Controller
     
         }
     //    $sku = SKU::find($id);
-        $sku = SKU::where('id', $id)->get()->first();
+    //    $sku = SKU::where('id', $id)->get()->first();
+        $sku = '1231234';
 
 
         if (is_object($sku)) {
