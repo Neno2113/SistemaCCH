@@ -12,6 +12,8 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Illuminate\Http\Response;
+use App\PermisoUsuario;
+use Illuminate\Support\Facades\Auth;
 
 class SKUController extends Controller
 {
@@ -339,8 +341,7 @@ class SKUController extends Controller
     }
 
     public function show($id)
-    {
-        
+    {  
         //Chekcing if the user has access to this function
         $user_loginId = Auth::user()->id;
         $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Telas')
@@ -355,10 +356,8 @@ class SKUController extends Controller
             }
     
         }
-    //    $sku = SKU::find($id);
+        $sku = SKU::find($id);
     //    $sku = SKU::where('id', $id)->get()->first();
-        $sku = '1231234';
-
 
         if (is_object($sku)) {
             $data = [
