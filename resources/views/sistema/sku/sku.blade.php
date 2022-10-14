@@ -49,7 +49,8 @@
                                 <th>SKU</th>
                                 <th>Referencia</th>
                                 <th>Talla</th>
-                                <th id="editar-permisos">Cantidad</th>
+                                <th>Cantidad</th>
+                                <th>Imprimir</th>
                             </tr>
                         </thead>
                         <tbody id="permisos-agregados">

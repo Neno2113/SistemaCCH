@@ -220,6 +220,7 @@ function mostrar(id_sku) {
             "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
             "<td class='font-weight-bold'><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
+            "<td><button type='button' id='btn-print' class='btn btn-danger'><i class='far fa-print'></i></button></td>"+
             "</tr>";
             $("#permisos-agregados").append(fila);
         //    $("#id").val(data.tela.id);
@@ -232,6 +233,7 @@ function mostrar(id_sku) {
                 "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
                 "<td class=''>"+data.skus[i].talla+"</td>"+
                 "<td class=''><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
+                "<td><button type='button' id='btn-print' class='btn btn-danger'><i class='far fa-print'></i></button></td>"+
                 "</tr>";
                 $("#permisos-agregados").append(fila);
             }
