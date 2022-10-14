@@ -49,6 +49,7 @@
                     <table class="table tabla-existencia table-bordered">
                         <thead class="text-center">
                             <tr>
+                                <th>Selección</th>
                                 <th>SKU</th>
                                 <th>Referencia</th>
                                 <th>Talla</th>
