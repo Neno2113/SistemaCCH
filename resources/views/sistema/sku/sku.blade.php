@@ -64,12 +64,11 @@
                    
                   
             </div>
-            <!--
+            
             <div class="card-footer  text-muted">
-                {{-- <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Cancelar</button> --}}
-                <button type="submit" id="btn-finish" class="btn  btn-primary mt-2 float-right"><i class="far fa-save"></i> Guardar</button>
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
             </div>
-            -->
+            
         </div>
     </div>
 </div>    
