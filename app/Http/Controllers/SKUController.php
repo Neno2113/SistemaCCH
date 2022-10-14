@@ -68,7 +68,7 @@ class SKUController extends Controller
                 if ($sku->producto_id) {
                 //    return '<button id="printLabel" onclick="printlabel(' . $sku->id . ')" class="btn btn-success btn-sm mr-1"><i class="fas fa-print"></i></button>';
                 //    return '<a href="print_label/' . $sku->id . '" target="_blank" class="btn btn-primary btn-sm ml-1"> <i class="fas fa-print"></i></a>';
-                    return '<button id="print_label" onclick="mostrar(' . $sku->id . ')" class="btn btn-primary btn-sm ml-1" > <i class="fas fa-print"></i></button>';
+                    return '<button id="print_label" onclick="mostrar(' . $sku->id . ')" class="btn btn-primary btn-sm ml-1" > <i class="fa fa-external-link"></i></button>';
                 } else {
                     return "";
                 }
