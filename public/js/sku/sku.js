@@ -228,10 +228,10 @@ function mostrar(id_sku) {
             for (let i = 0; i < data.skus.length; i++) {
                 var fila =
                 '<tr id="fila'+data.skus[i].id+'">'+
-                "<td class='font-weight-bold'>"+data.skus[i].sku+"</td>"+
-                "<td class='font-weight-bold'>"+data.skus[i].referencia_producto+"</td>"+
-                "<td class='font-weight-bold'>"+data.skus[i].talla+"</td>"+
-                "<td class='font-weight-bold'><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
+                "<td class=''>"+data.skus[i].sku+"</td>"+
+                "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
+                "<td class=''>"+data.skus[i].talla+"</td>"+
+                "<td class=''><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
                 "</tr>";
                 $("#permisos-agregados").append(fila);
             }
