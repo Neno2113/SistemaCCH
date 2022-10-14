@@ -219,24 +219,24 @@ function mostrar(id_sku) {
             "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
-            "<td class='font-weight-bold'><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+data.sku.producto_id+"'></td>"+
+            "<td class='font-weight-bold'><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
             "</tr>";
             $("#permisos-agregados").append(fila);
         //    $("#id").val(data.tela.id);
         //    $("#referencia").val(data.tela.referencia).attr('readonly', false);
- /* 
-            for (let i = 0; i < data.sku.length; i++) {
+  
+            for (let i = 0; i < data.skus.length; i++) {
                 var fila =
-                '<tr id="fila'+data.sku[i].id+'">'+
-                "<td class=''>"+data.sku[i].sku+"</td>"+
-                "<td class='font-weight-bold'>"+data.sku[i].talla+"</td>"+
-                "<td class='font-weight-bold'>"+data.sku[i].referencia_producto+"</td>"+
-                "<td class='font-weight-bold'><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+data.sku[i].producto_id+"'></td>"+
+                '<tr id="fila'+data.skus[i].id+'">'+
+                "<td class='font-weight-bold'>"+data.skus[i].sku+"</td>"+
+                "<td class='font-weight-bold'>"+data.skus[i].referencia_producto+"</td>"+
+                "<td class='font-weight-bold'>"+data.skus[i].talla+"</td>"+
+                "<td class='font-weight-bold'><input type='number' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
                 "</tr>";
                 $("#permisos-agregados").append(fila);
             }
         
-          */  
+ 
     
         }
      
