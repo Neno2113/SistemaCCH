@@ -357,13 +357,15 @@ class SKUController extends Controller
     
         }
         $sku = SKU::find($id);
-    //    $sku = SKU::where('id', $id)->get()->first();
+        $refrencia = $sku->referencia_producto;
+        $skus = SKU::where('referencia_producto', $refrencia)->get();
 
         if (is_object($sku)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
-                'sku' => $sku
+                'sku' => $sku,
+                'skus' => $skus
             ];
         } else {
             $data = [
