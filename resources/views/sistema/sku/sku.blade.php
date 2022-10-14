@@ -40,7 +40,10 @@
                                 </div>
                             </div>
                         </form> 
-                    </div>   
+                    </div>  
+                    <div class="col-md-6" id="boton-imprimir-general"> 
+                        <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i> Imprimir Todo</button>
+                    </div>
                 </div>
                 <div class="row">
                     <table class="table tabla-existencia table-bordered">
