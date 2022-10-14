@@ -216,7 +216,7 @@ function mostrar(id_sku) {
           
             var fila =
             '<tr id="fila'+data.sku.id+'">'+
-            "<td class=''><input type='radio' id='radiocheck' value='"+data.sku.id+"' name='radiocheck'></td>"+
+            "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
             "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
@@ -230,7 +230,7 @@ function mostrar(id_sku) {
             for (let i = 0; i < data.skus.length; i++) {
                 var fila =
                 '<tr id="fila'+data.skus[i].id+'">'+
-                "<td class=''><input type='radio' id='radiocheck' value='"+data.sku.id+"' name='radiocheck'></td>"+
+                "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
                 "<td class=''>"+data.skus[i].sku+"</td>"+
                 "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
                 "<td class=''>"+data.skus[i].talla+"</td>"+
