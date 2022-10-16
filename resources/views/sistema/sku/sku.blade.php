@@ -74,11 +74,13 @@
     </div>
 </div>    
 <div class="container">
+    <!--
     <div class="row mt-3 ml-3">
 
         <button class="btn btn-danger mb-3" id="btnCancelarx"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
             Cancelar</button>
     </div>
+-->
 
     @if(Session::has('msg'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">

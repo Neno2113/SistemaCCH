@@ -213,6 +213,7 @@ function mostrar(id_sku) {
             $("#btn-guardar").show();
             $("#btnAgregar").hide();
             $("#tallasSku").show();
+            $("#btnCancelar").show();
           
             var fila =
             '<tr id="fila'+data.sku.id+'">'+
