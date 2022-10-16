@@ -179,7 +179,7 @@ $(document).ready(function() {
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
-        //    $("#tallasSku").hide();
+            $("#tallasSku").hide();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
             $("#btnAgregar").show();
