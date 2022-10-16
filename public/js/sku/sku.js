@@ -148,7 +148,7 @@ $(document).ready(function() {
                     $("#nombre_composicion").val("");
                     $("#listadoUsers").show();
                     $("#registroForm").hide();
-                    $("#btnCancelar2").hide();
+                    $("#btnCancelar").hide();
                     $("#btn-edit").hide();
                     $("#btn-guardar").show();
                     $("#btnAgregar").show();
@@ -175,13 +175,13 @@ $(document).ready(function() {
             $("#listadoUsers").hide();
             $("#registroForm").show();
             $("#tallasSku").show();
-            $("#btnCancelar2").show();
+            $("#btnCancelar").show();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
             $("#tallasSku").hide();
             $("#registroForm").hide();
-            $("#btnCancelar2").hide();
+            $("#btnCancelar").hide();
             $("#btnAgregar").show();
         }
     }
@@ -189,7 +189,7 @@ $(document).ready(function() {
     $("#btnAgregar").click(function(e) {
         mostrarForm(true);
     });
-    $("#btnCancelar2").click(function(e) {
+    $("#btnCancelar").click(function(e) {
         mostrarForm(false);
     });
 
@@ -208,7 +208,7 @@ function mostrar(id_sku) {
         } else {
             $("#listadoUsers").hide();
             $("#registroForm").hide();
-            $("#btnCancelar2").hide();
+            $("#btnCancelar").hide();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
             $("#btnAgregar").hide();

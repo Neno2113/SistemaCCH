@@ -67,7 +67,7 @@
             </div>
             
             <div class="card-footer  text-muted">
-                <button class="btn btn-danger mt-2 float-left" id="btnCancelar2"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
+                <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
             </div>
             
         </div>
@@ -76,7 +76,7 @@
 <div class="container">
     <div class="row mt-3 ml-3">
 
-        <button class="btn btn-danger mb-3" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+        <button class="btn btn-danger mb-3" id="btnCancelarx"><i class="fas fa-arrow-alt-circle-left fa-lg"></i>
             Cancelar</button>
     </div>
 
