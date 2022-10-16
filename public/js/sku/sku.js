@@ -149,6 +149,7 @@ $(document).ready(function() {
                     $("#listadoUsers").show();
                     $("#registroForm").hide();
                     $("#btnCancelar").hide();
+                    $("#btnCancelarx").hide();
                     $("#btn-edit").hide();
                     $("#btn-guardar").show();
                     $("#btnAgregar").show();
@@ -176,12 +177,14 @@ $(document).ready(function() {
             $("#registroForm").show();
         //    $("#tallasSku").show();
             $("#btnCancelar").show();
+            $("#btnCancelarx").show();
             $("#btnAgregar").hide();
         } else {
             $("#listadoUsers").show();
             $("#tallasSku").hide();
             $("#registroForm").hide();
             $("#btnCancelar").hide();
+            $("#btnCancelarx").hide();
             $("#btnAgregar").show();
         }
     }
@@ -190,6 +193,9 @@ $(document).ready(function() {
         mostrarForm(true);
     });
     $("#btnCancelar").click(function(e) {
+        mostrarForm(false);
+    });
+    $("#btnCancelarx").click(function(e) {
         mostrarForm(false);
     });
 
@@ -208,7 +214,7 @@ function mostrar(id_sku) {
         } else {
             $("#listadoUsers").hide();
             $("#registroForm").hide();
-            $("#btnCancelar").hide();
+            $("#btnCancelarx").hide();
             $("#btn-edit").hide();
             $("#btn-guardar").show();
             $("#btnAgregar").hide();
