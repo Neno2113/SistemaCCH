@@ -36,6 +36,7 @@ $(document).ready(function() {
     function limpiar() {
         $("#codigo_composicion").val("");
         $("#nombre_composicion").val("");
+        $("#permisos-agregados").empty();
 
     }
 
