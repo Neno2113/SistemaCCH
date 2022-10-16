@@ -42,7 +42,7 @@
                         </form> 
                     </div>  
                     <div class="col-md-6 mt-5 text-center" id="boton-imprimir-general"> 
-                        <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i> Imprimir Todo</button>
+                        <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i> Imprimir Selección</button>
                     </div>
                 </div>
                 <div class="row">
