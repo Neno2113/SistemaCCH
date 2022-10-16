@@ -176,7 +176,7 @@ $(document).ready(function() {
             $("#listadoUsers").hide();
             $("#registroForm").show();
         //    $("#tallasSku").show();
-            $("#btnCancelar").show();
+        //    $("#btnCancelar").show();
             $("#btnCancelarx").show();
             $("#btnAgregar").hide();
         } else {
