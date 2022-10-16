@@ -54,7 +54,7 @@ class SKUController extends Controller
         
         $skus = DB::table('sku')->where('talla', 'General')->leftJoin('producto', 'sku.producto_id', '=', 'producto.id')->leftJoin('corte', 'sku.producto_id', '=', 'corte.producto_id')
             ->select([
-                'sku.id', 'sku.producto_id', 'MAX(corte.numero_corte)', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla', 'producto.referencia_producto AS preferencia1', 'producto.referencia_producto_2', 'producto.genero', 'producto.entalle_bragueta', 'producto.entalle_piernas', 'producto.min', 'producto.max'
+                'sku.id', 'sku.producto_id', MAX('corte.numero_corte'), 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla', 'producto.referencia_producto AS preferencia1', 'producto.referencia_producto_2', 'producto.genero', 'producto.entalle_bragueta', 'producto.entalle_piernas', 'producto.min', 'producto.max'
             ])->groupBy('sku.referencia_producto');
 
         return DataTables::of($skus)
