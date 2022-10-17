@@ -12,6 +12,14 @@ class SupplierController extends Controller
 {
     public function store(Request $request)
     {
+        function firstNumPos($text, $number){
+            preg_match_all('!\d+!', $text, $match);
+            foreach ($match[0] as $value) {
+                if ($value > $number) {
+                    return strpos($text, $value);
+                }
+            }
+        }
 
         $validar = $request->validate([
             'nombre' => 'required|unique:suplidor',
@@ -35,6 +43,25 @@ class SupplierController extends Controller
             ];
         } else {
             $nombre = $request->input('nombre', true);
+            /////////////////////////////////////
+            $espAbrev = substr_count($nombre, ' ');
+
+            if ($espAbrev >= 1){
+
+                $abreNumPos = firstNumPos($nombre, 0);
+                if (is_numeric($abreNumPos) && $abreNumPos > 0) {$lastNumber = substr($nombre,$abreNumPos,1);} else {$lastNumber = '';}
+
+                $palabras = explode(" ", $nombre);
+                $abreviacion = substr($palabras[0],0,1).substr($palabras[1],0,1).$lastNumber;
+            } else {
+
+                $abreNumPos = firstNumPos($nombre, 0);
+                if (is_numeric($abreNumPos) && $abreNumPos > 0) {$lastNumber = substr($nombre,$abreNumPos,1);} else {$lastNumber = '';}
+                $abreviacion = substr($nombre,0,2).$lastNumber;
+            }
+
+            /////////////////////////////////////
+
             $codigo_suplidor = $request->input('codigo_suplidor', true);
             $calle = $request->input('calle', true);
             $sector = $request->input('sector', true);
@@ -68,7 +95,8 @@ class SupplierController extends Controller
             $suplidor->tipo_suplidor = $tipo_suplidor;
             $suplidor->terminos_de_pago = $terminos_pago;
             $suplidor->nota = $nota;
-
+            $suplidor->abreviacion = $abreviacion;
+            
 
             $suplidor->save();
 
