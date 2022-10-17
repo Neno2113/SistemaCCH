@@ -38,7 +38,7 @@ class SupplierController extends Controller
             /////////////////////////////////////
             $espAbrev = substr_count($nombre, ' ');
 
-            if ($espAbrev = 1){
+            if ($espAbrev == 1){
 
                 $palabras = explode(" ", $nombre);
                 $abreviacion = substr($palabras[0],0,1).substr($palabras[1],0,2);
