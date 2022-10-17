@@ -93,12 +93,15 @@ class SKUController extends Controller
                 return $fecha_corte;  
             })
             ->editColumn('no_marcada', function ($sku) {
-                if ($sku->no_marcada){
-                    $marcada = substr($sku->no_marcada, 6, -3);
+                if ($sku->numero_corte){
+                    $rollo = RollosDetail::where('corte_utilizado', $sku->numero_corte)->get()->first();
+                    $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
+                    $nombreTela = $tela->referencia;
+                //    $marcada = substr($sku->no_marcada, 6, -3);
                 } else {
-                    $marcada = '';
+                    $nombreTela = '';
                 }
-                return $marcada;  
+                return $nombreTela;  
             })
             ->editColumn('entalle_bragueta', function ($sku) {
                 if (is_numeric($sku->entalle_bragueta)){
