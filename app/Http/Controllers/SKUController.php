@@ -409,12 +409,18 @@ class SKUController extends Controller
             $telaAbrev = substr_count($tela->referencia, ' ');
 
             if ($telaAbrev >= 1){
+
                 $telaNumPos = firstNumPos($tela->referencia, 0);
                 if (is_numeric($telaNumPos)) {$lastNumber = substr($tela->referencia,$telaNumPos,1);} else {$lastNumber = '';}
-                $telaAbrev = substr($tela->referencia,0,2).$lastNumber;
+
+                $palabras = explode(" ", $tela->referencia);
+                $telaAbrev = substr($palabras[0],0,1).substr($palabras[1],0,1).$lastNumber;
             } else {
             //    $telaNumPos = firstNumPos($tela->referencia, 0);
             //    $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
+                $telaNumPos = firstNumPos($tela->referencia, 0);
+                if (is_numeric($telaNumPos)) {$lastNumber = substr($tela->referencia,$telaNumPos,1);} else {$lastNumber = '';}
+                $telaAbrev = substr($tela->referencia,0,2).$lastNumber;
             }
 
             $fabric = "SFL-".$telaAbrev;
