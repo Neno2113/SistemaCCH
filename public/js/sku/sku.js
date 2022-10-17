@@ -247,7 +247,7 @@ function mostrar(id_sku) {
                     "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
                     "<td class=''>"+data.skus[i].talla+"</td>"+
                     "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
-                    "<td><a href='print_label/"+data.sku[i].id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                    "<td><a href='print_label/"+data.skus[i].id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                     "</tr>";
                     $("#permisos-agregados").append(fila);
                 }
