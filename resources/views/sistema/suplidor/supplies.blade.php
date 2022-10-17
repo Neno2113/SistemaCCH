@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <label for="tipo_suplidor">Tipo Suplidor</label>
+                            <label for="tipo_suplidor">Tipo Suplidor *</label>
                             <select name="tipo_suplidor" id="tipo_suplidor" class="form-control">
                                 <option value="" disabled>Tipo Suplidor</option>
                                 <option value="">Elige un tipo...</option>
