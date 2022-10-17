@@ -390,14 +390,16 @@ class SKUController extends Controller
             $entalle_bragueta = $bragueta->nombre;
         $pierna = CategoriaProducto::where('tipo', 'entalle_piernas')->where('indice', $producto->entalle_piernas)->get()->first();
             $entalle_piernas = $pierna->nombre;
-        $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
+        
         $wash = "DG-".mt_rand(10000,99999);
         if ($corte->numero_corte) {
+            $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
             $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
             $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
             $fabric = "SFL-".$tela->referencia;
         } else {
             $fabric = "No Available";
+            $season = "No Available";
         }
         
 
