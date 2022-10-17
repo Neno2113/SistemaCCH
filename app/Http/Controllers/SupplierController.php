@@ -12,6 +12,14 @@ class SupplierController extends Controller
 {
     public function store(Request $request)
     {
+        function firstNumPos($text, $number){
+            preg_match_all('!\d+!', $text, $match);
+            foreach ($match[0] as $value) {
+                if ($value > $number) {
+                    return strpos($text, $value);
+                }
+            }
+        }
 
         $validar = $request->validate([
             'nombre' => 'required|unique:suplidor',
@@ -38,19 +46,25 @@ class SupplierController extends Controller
             /////////////////////////////////////
             $espAbrev = substr_count($nombre, ' ');
 
-            if ($espAbrev = 1){
+            if ($espAbrev == 1){
+
+                $abreNumPos = firstNumPos($nombre, 0);
+                if (is_numeric($abreNumPos) && $abreNumPos > 0) {$lastNumber = substr($nombre,$abreNumPos,1);} else {$lastNumber = '';}
 
                 $palabras = explode(" ", $nombre);
-                $abreviacion = substr($palabras[0],0,1).substr($palabras[1],0,2);
-
+                $abreviacion = substr($palabras[0],0,1).substr($palabras[1],0,1).$lastNumber;
             } elseif ($espAbrev > 1){
 
-                $palabras = explode(" ", $nombre);
-                $abreviacion = substr($palabras[0],0,1).substr($palabras[1],0,1).substr($palabras[2],0,1);
+                $abreNumPos = firstNumPos($nombre, 0);
+                if (is_numeric($abreNumPos) && $abreNumPos > 0) {$lastNumber = substr($nombre,$abreNumPos,1);} else {$lastNumber = '';}
 
+                $palabras = explode(" ", $nombre);
+                $abreviacion = substr($palabras[0],0,1).substr($palabras[1],0,1).$lastNumber;
             } else {
 
-                $abreviacion = substr($nombre,0,3);
+                $abreNumPos = firstNumPos($nombre, 0);
+                if (is_numeric($abreNumPos) && $abreNumPos > 0) {$lastNumber = substr($nombre,$abreNumPos,1);} else {$lastNumber = '';}
+                $abreviacion = substr($nombre,0,2).$lastNumber;
             }
 
             /////////////////////////////////////
