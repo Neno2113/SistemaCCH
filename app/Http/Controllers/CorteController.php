@@ -48,6 +48,17 @@ class CorteController extends Controller
             $fecha_entrega = $request->input('fecha_entrega');
             $fecha_creacion = $request->input('fecha_creacion');
 
+                $wash = "DG-".mt_rand(10000,99999);
+                $wash_verificar = Corte::where('wash', $wash)->get()->first();
+            if (is_object($wash_verificar)) {
+                $wash = "DG-".mt_rand(10000,99999);
+                $wash_verificar = Corte::where('wash', $wash)->get()->first();
+                if (is_object($wash_verificar)) {
+                    $wash = "DG-".mt_rand(10000,99999);
+                } 
+            } 
+            
+
             $sec = $request->input('sec');
             $fase = 'Produccion';
 
@@ -74,6 +85,7 @@ class CorteController extends Controller
                 $corte->aprovechamiento = trim($aprovechamiento, '%');
                 $corte->fase = $fase;
                 $corte->sec = $sec + 0.01;
+                $corte->wash = $wash;
                 $corte->fecha_entrega = $fecha_entrega;
                 $corte->fecha_creacion = $fecha_creacion;
 
