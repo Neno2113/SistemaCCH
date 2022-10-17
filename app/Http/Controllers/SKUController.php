@@ -413,7 +413,7 @@ class SKUController extends Controller
                 $telaNumPos = firstNumPos($tela->referencia, 0);
                 $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
             }
-            $fabric = "SFL-".$tela->referencia;
+            $fabric = "SFL-".$telaAbrev;
         } else {
             $fabric = "No Available";
             $season = "No Available";
