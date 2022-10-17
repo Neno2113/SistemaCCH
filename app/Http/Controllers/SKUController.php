@@ -389,6 +389,7 @@ class SKUController extends Controller
         $pierna = CategoriaProducto::where('tipo', 'entalle_piernas')->where('indice', $producto->entalle_piernas)->get()->first();
             $entalle_piernas = $pierna->nombre;
         $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
+        $wash = "DG-".mt_rand(10000,99999);
 
     
             $referencia2 = $producto->referencia_producto_2;
@@ -575,7 +576,7 @@ class SKUController extends Controller
             }
             
 
-        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season];
+        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
     //    return $pdf->stream('Etiquetas-123.pdf');
