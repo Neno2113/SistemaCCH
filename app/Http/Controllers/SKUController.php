@@ -381,6 +381,15 @@ class SKUController extends Controller
         
     }
 
+    public function firstNumPos($text, $number){
+        preg_match_all('!\d+!', $text, $match);
+        foreach ($match[0] as $value) {
+            if ($value > $number) {
+                return strpos($text, $value);
+            }
+        }
+    }
+
     public function imprimirlabel($id)
     {
         $skus = SKU::find($id);
@@ -396,6 +405,14 @@ class SKUController extends Controller
             $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
             $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
             $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
+            $telaAbrev = substr_count($tela->referencia, ' ');
+            if ($telaAbrev >= 1){
+                $telaNumPos = firstNumPos($tela->referencia, 0);
+                $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
+            } else {
+                $telaNumPos = firstNumPos($tela->referencia, 0);
+                $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
+            }
             $fabric = "SFL-".$tela->referencia;
         } else {
             $fabric = "No Available";
