@@ -406,13 +406,15 @@ class SKUController extends Controller
             $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
             $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
             $telaAbrev = substr_count($tela->referencia, ' ');
+
             if ($telaAbrev >= 1){
-                $telaNumPos = firstNumPos($tela->referencia, 0);
-                $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
+            //    $telaNumPos = firstNumPos($tela->referencia, 0);
+            //    $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
             } else {
-                $telaNumPos = firstNumPos($tela->referencia, 0);
-                $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
+            //    $telaNumPos = firstNumPos($tela->referencia, 0);
+            //    $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
             }
+
             $fabric = "SFL-".$telaAbrev;
         } else {
             $fabric = "No Available";
