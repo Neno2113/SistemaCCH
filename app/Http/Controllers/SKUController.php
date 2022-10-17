@@ -408,7 +408,7 @@ class SKUController extends Controller
             $telaAbrev = substr_count($tela->referencia, ' ');
 
             if ($telaAbrev >= 1){
-            //    $telaNumPos = firstNumPos($tela->referencia, 0);
+                $telaNumPos = firstNumPos($tela->referencia, 0);
             //    $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
             } else {
             //    $telaNumPos = firstNumPos($tela->referencia, 0);
