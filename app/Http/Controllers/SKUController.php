@@ -396,6 +396,8 @@ class SKUController extends Controller
             $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
             $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
             $fabric = "SFL-".$tela->referencia;
+        } else {
+            $fabric = "No Available";
         }
         
 
