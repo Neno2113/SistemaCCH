@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 use App\RollosDetail;
 use App\Cloth;
+use App\Supplier;
 use Illuminate\Http\Response;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
@@ -406,6 +407,7 @@ class SKUController extends Controller
             $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
             $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
             $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
+            $suplidor = Supplier::where('id', $telea->id_suplidor)->get()->first();
             $telaAbrev = substr_count($tela->referencia, ' ');
 
             if ($telaAbrev >= 1){
@@ -416,14 +418,13 @@ class SKUController extends Controller
                 $palabras = explode(" ", $tela->referencia);
                 $telaAbrev = substr($palabras[0],0,1).substr($palabras[1],0,1).$lastNumber;
             } else {
-            //    $telaNumPos = firstNumPos($tela->referencia, 0);
-            //    $telaAbrev = substr($tela->referencia,0,2).substr($tela->referencia,$telaNumPos,1);
+
                 $telaNumPos = firstNumPos($tela->referencia, 0);
                 if (is_numeric($telaNumPos) && $telaNumPos > 0) {$lastNumber = substr($tela->referencia,$telaNumPos,1);} else {$lastNumber = '';}
                 $telaAbrev = substr($tela->referencia,0,2).$lastNumber;
             }
 
-            $fabric = "SFL-".$telaAbrev;
+            $fabric = $suplidor->abreviacion."-".$telaAbrev;
         } else {
             $fabric = "No Available";
             $season = "No Available";
