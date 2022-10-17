@@ -381,17 +381,18 @@ class SKUController extends Controller
         
     }
 
-    public function firstNumPos($text, $number){
-        preg_match_all('!\d+!', $text, $match);
-        foreach ($match[0] as $value) {
-            if ($value > $number) {
-                return strpos($text, $value);
-            }
-        }
-    }
 
     public function imprimirlabel($id)
     {
+        function firstNumPos($text, $number){
+            preg_match_all('!\d+!', $text, $match);
+            foreach ($match[0] as $value) {
+                if ($value > $number) {
+                    return strpos($text, $value);
+                }
+            }
+        }
+
         $skus = SKU::find($id);
         $producto = Product::where('id', $skus->producto_id)->get()->first();
         $corte = Corte::where('producto_id', $skus->producto_id)->get()->first();
