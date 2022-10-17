@@ -401,9 +401,9 @@ class SKUController extends Controller
             $entalle_bragueta = $bragueta->nombre;
         $pierna = CategoriaProducto::where('tipo', 'entalle_piernas')->where('indice', $producto->entalle_piernas)->get()->first();
             $entalle_piernas = $pierna->nombre;
-        $wash = "DG-".mt_rand(10000,99999);
+        //$wash = "DG-".mt_rand(10000,99999);
 
-        if ($funciona = $corte->numero_corte) {
+        if (is_object($corte)) {
             $wash = $corte->wash;
             $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
             $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
