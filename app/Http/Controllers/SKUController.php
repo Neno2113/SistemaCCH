@@ -575,10 +575,10 @@ class SKUController extends Controller
             
 
         $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'fecha_corte' => $corte->fecha_corte];
-    //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
+        $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
-    //    return $pdf->stream('Etiquetas-123.pdf');
-        return view('sistema.sku.skuImpresion', $data);
+        return $pdf->stream('Etiquetas-123.pdf');
+    //    return view('sistema.sku.skuImpresion', $data);
 
     }
     
