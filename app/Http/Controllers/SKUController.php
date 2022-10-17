@@ -404,6 +404,7 @@ class SKUController extends Controller
         $wash = "DG-".mt_rand(10000,99999);
 
         if ($funciona = $corte->numero_corte) {
+            $wash = $corte->wash;
             $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
             $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
             $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
