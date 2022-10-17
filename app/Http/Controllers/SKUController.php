@@ -401,10 +401,19 @@ class SKUController extends Controller
         $producto = Product::where('id', $skus->producto_id)->get()->first();
         $corte = Corte::where('producto_id', $skus->producto_id)->get()->first();
         $bragueta = CategoriaProducto::where('tipo', 'entalle_bragueta')->where('indice', $producto->entalle_bragueta)->get()->first();
-            $entalle_bragueta = $bragueta->nombre;
+            if (is_object($bragueta)) {
+                $entalle_bragueta = $bragueta->nombre;
+            } else {
+                $entalle_bragueta = "No Available";
+            }
+            
         $pierna = CategoriaProducto::where('tipo', 'entalle_piernas')->where('indice', $producto->entalle_piernas)->get()->first();
-            $entalle_piernas = $pierna->nombre;
-        //$wash = "DG-".mt_rand(10000,99999);
+            if (is_object($pierna)) {
+                $entalle_piernas = $pierna->nombre;
+            } else {
+                $entalle_piernas = "No Available";
+            }
+            
 
         if (is_object($corte)) {
             $wash = $corte->wash;
