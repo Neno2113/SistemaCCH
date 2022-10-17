@@ -11,6 +11,8 @@ use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use App\RollosDetail;
+use App\Cloth;
 use Illuminate\Http\Response;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
@@ -390,6 +392,9 @@ class SKUController extends Controller
             $entalle_piernas = $pierna->nombre;
         $season = substr($corte->fecha_corte,2,2)."-".substr($corte->fecha_corte,5,2);
         $wash = "DG-".mt_rand(10000,99999);
+        $rollo = RollosDetail::where('corte_utilizado', $corte->numero_corte)->get()->first();
+        $tela = Cloth::where('id', $rollo->id_tela)->get()->first();
+        $fabric = "SFL-".$tela->referencia;
 
     
             $referencia2 = $producto->referencia_producto_2;
@@ -576,7 +581,7 @@ class SKUController extends Controller
             }
             
 
-        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash];
+        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash, 'fabric' => $fabric];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
     //    return $pdf->stream('Etiquetas-123.pdf');
