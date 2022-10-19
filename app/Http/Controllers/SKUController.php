@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 use App\RollosDetail;
 use App\Cloth;
+use App\Talla;
 use App\Supplier;
 use Illuminate\Http\Response;
 use App\PermisoUsuario;
@@ -365,13 +366,17 @@ class SKUController extends Controller
         $sku = SKU::find($id);
         $refrencia = $sku->referencia_producto;
         $skus = SKU::where('referencia_producto', $refrencia)->get();
+        $corte = Corte::where('producto_id', $sku->producto_id)->get()->first();
+        $tallas = Talla::where('corte_id', $corte->id)->get()->first();
+        $canTotal = $tallas->total;
 
         if (is_object($sku)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
                 'sku' => $sku,
-                'skus' => $skus
+                'skus' => $skus,
+                'canTotal' => $canTotal
             ];
         } else {
             $data = [

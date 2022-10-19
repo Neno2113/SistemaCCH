@@ -228,7 +228,7 @@ function mostrar(id_sku) {
             "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
-            "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
+            "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+data.sku.canTotal+"'></td>"+
             "<td><a href='print_label/"+data.sku.id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
             "</tr>";
             $("#permisos-agregados").append(fila);
