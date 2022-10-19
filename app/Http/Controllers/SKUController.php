@@ -368,6 +368,7 @@ class SKUController extends Controller
         $skus = SKU::where('referencia_producto', $refrencia)->get();
         $corte = Corte::where('producto_id', $sku->producto_id)->get()->first();
         $tallas = Talla::where('corte_id', $corte->id)->get()->first();
+        $producto = Product::where('id', $sku->producto_id)->get()->first();
 
         if (is_object($sku)) {
             $data = [
@@ -375,7 +376,8 @@ class SKUController extends Controller
                 'status' => 'success',
                 'sku' => $sku,
                 'skus' => $skus,
-                'tallas' => $tallas
+                'tallas' => $tallas,
+                'producto' => $producto
             ];
         } else {
             $data = [

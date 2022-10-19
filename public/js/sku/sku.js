@@ -221,6 +221,12 @@ function mostrar(id_sku) {
             $("#btnAgregar").hide();
             $("#tallasSku").show();
             $("#btnCancelar").show();
+
+            if (data.producto.genero == 1) {
+                var total = data.tallas.total + 6;
+            } else {
+                var total = data.tallas.total + 8;
+            }
           
             var fila =
             '<tr id="fila'+data.sku.id+'">'+
@@ -228,7 +234,7 @@ function mostrar(id_sku) {
             "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
             "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
-            "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+data.tallas.total+"'></td>"+
+            "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
             "<td><a href='print_label/"+data.sku.id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
             "</tr>";
             $("#permisos-agregados").append(fila);
