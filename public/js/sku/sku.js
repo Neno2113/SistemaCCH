@@ -243,6 +243,47 @@ function mostrar(id_sku) {
         //    $("#referencia").val(data.tela.referencia).attr('readonly', false);
   
             for (let i = 0; i < data.skus.length; i++) {
+                switch (data.skus[i].talla) {
+                    case "A": 
+                    var total = data.tallas.a + 1;  
+                        break;
+                    case "B": 
+                    var total = data.tallas.b + 1; 
+                        break;
+                    case "C": 
+                    var total = data.tallas.c + 1;  
+                        break;
+                    case "D": 
+                    var total = data.tallas.d + 1;  
+                        break;
+                    case "E": 
+                    var total = data.tallas.e + 1; 
+                        break;
+                    case "F": 
+                    var total = data.tallas.f + 1;  
+                        break;
+                    case "G": 
+                    var total = data.tallas.g + 1;  
+                        break;
+                    case "H": 
+                    var total = data.tallas.h + 1;  
+                        break;
+                    case "I": 
+                    var total = data.tallas.i + 1;   
+                        break;
+                    case "J": 
+                    var total = data.tallas.j + 1;   
+                        break;
+                    case "K": 
+                    var total = data.tallas.k + 1;   
+                        break;
+                    case "L": 
+                    var total = data.tallas.l + 1;   
+                        break;
+                    default:
+                    var total = 0;   
+                        break;
+                }
                 if (data.skus[i].talla == "General") {
 
                 } else {
@@ -252,7 +293,7 @@ function mostrar(id_sku) {
                     "<td class=''>"+data.skus[i].sku+"</td>"+
                     "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
                     "<td class=''>"+data.skus[i].talla+"</td>"+
-                    "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='10'></td>"+
+                    "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
                     "<td><a href='print_label/"+data.skus[i].id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                     "</tr>";
                     $("#permisos-agregados").append(fila);
