@@ -227,6 +227,7 @@ function mostrar(id_sku) {
             } else {
                 var total = data.tallas.total + 8;
             }
+            var mujer_plus = data.sku.referencia_producto.substring(3, 4);
           
             var fila =
             '<tr id="fila'+data.sku.id+'">'+
@@ -243,6 +244,85 @@ function mostrar(id_sku) {
         //    $("#referencia").val(data.tela.referencia).attr('readonly', false);
   
             for (let i = 0; i < data.skus.length; i++) {
+                ///////////////////////////////////////
+                ///////////////////////////////////////
+                if (data.producto.genero == "2") {
+                    if (mujer_plus == "7") {
+                        var a = '12W';
+                        var b = '14W';
+                        var c = '16W';
+                        var d = '18W';
+                        var e = '20W';
+                        var f = '22W';
+                        var g = '24W';
+                        var h = '26W';
+                    } else {
+                        var a = '0/0';
+                        var b = '1/2';
+                        var c = '3/4';
+                        var d = '5/6';
+                        var e = '7/8';
+                        var f = '9/10';
+                        var g = '11/12';
+                        var h = '13/14';
+                        var i = '15/16';
+                        var j = '17/18';
+                        var k = '19/20';
+                        var l = '21/22';
+                    }
+                } else if (data.producto.genero == "3" || data.producto.genero == "4") {
+                        var a = '2';
+                        var b = '4';
+                        var c = '6';
+                        var d = '8';
+                        var e = '10';
+                        var f = '12';
+                        var g = '14';
+                        var h = '16';
+                } else if (data.producto.genero == "1") {
+                        var a = '28';
+                        var b = '29';
+                        var c = '30';
+                        var d = '32';
+                        var e = '34';
+                        var f = '36';
+                        var g = '38';
+                        var h = '40';
+                        var i = '42';
+                        var j = '44';
+                        var k = '46';
+                }
+
+                if (data.skus[i].talla == 'A') {
+                    var talla = a;
+                } else if (data.skus[i].talla == 'B') {
+                    var talla = b;
+                } else if (data.skus[i].talla == 'C') {
+                    var talla = c;
+                } else if (data.skus[i].talla == 'D') {
+                    var talla = d;
+                } else if (data.skus[i].talla == 'E') {
+                    var talla = e;
+                } else if (data.skus[i].talla == 'F') {
+                    var talla = f;
+                } else if (data.skus[i].talla == 'G') {
+                    var talla = g;
+                } else if (data.skus[i].talla == 'H') {
+                    var talla = h;
+                } else if (data.skus[i].talla == 'I') {
+                    var talla = i;
+                } else if (data.skus[i].talla == 'J') {
+                    var talla = j;
+                } else if (data.skus[i].talla == 'K') {
+                    var talla = k;
+                } else if (data.skus[i].talla == 'L') {
+                    var talla = l;
+                } 
+
+
+
+                ///////////////////////////////////////
+                ///////////////////////////////////////
                 switch (data.skus[i].talla) {
                     case "A": 
                     var total = data.tallas.a + 1;  
@@ -292,7 +372,7 @@ function mostrar(id_sku) {
                     "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
                     "<td class=''>"+data.skus[i].sku+"</td>"+
                     "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
-                    "<td class=''>"+data.skus[i].talla+"</td>"+
+                    "<td class=''>"+talla+"</td>"+
                     "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
                     "<td><a href='print_label/"+data.skus[i].id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                     "</tr>";
