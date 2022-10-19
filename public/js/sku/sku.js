@@ -265,7 +265,7 @@ function mostrar(id_sku) {
                         var f = '9/10';
                         var g = '11/12';
                         var h = '13/14';
-                        var i = '15/16';
+                        var y = '15/16';
                         var j = '17/18';
                         var k = '19/20';
                         var l = '21/22';
@@ -288,7 +288,7 @@ function mostrar(id_sku) {
                         var f = '36';
                         var g = '38';
                         var h = '40';
-                        var i = '42';
+                        var y = '42';
                         var j = '44';
                         var k = '46';
                 }
@@ -310,7 +310,7 @@ function mostrar(id_sku) {
                 } else if (data.skus[i].talla == 'H') {
                     var talla = h;
                 } else if (data.skus[i].talla == 'I') {
-                    var talla = i;
+                    var talla = y;
                 } else if (data.skus[i].talla == 'J') {
                     var talla = j;
                 } else if (data.skus[i].talla == 'K') {
@@ -363,7 +363,7 @@ function mostrar(id_sku) {
                     default:
                     var total = 0;   
                         break;
-                }
+                    }
                 if (data.skus[i].talla == "General") {
 
                 } else {
