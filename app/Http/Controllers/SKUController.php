@@ -58,7 +58,7 @@ class SKUController extends Controller
         
         $skus = DB::table('sku')->where('talla', 'General')->leftJoin('producto', 'sku.producto_id', '=', 'producto.id')->leftJoin('corte', 'sku.producto_id', '=', 'corte.producto_id')
             ->select([
-                'sku.id', 'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'sku.sku', 'sku.referencia_producto', 'sku.talla', 'producto.referencia_producto AS preferencia1', 'producto.referencia_producto_2', 'producto.genero', 'producto.entalle_bragueta', 'producto.entalle_piernas', 'producto.min', 'producto.max'
+                'sku.id', 'sku.producto_id', 'corte.numero_corte', 'corte.fecha_corte', 'corte.no_marcada', 'corte.id AS corteid', 'sku.sku', 'sku.referencia_producto', 'sku.talla', 'producto.referencia_producto AS preferencia1', 'producto.referencia_producto_2', 'producto.genero', 'producto.entalle_bragueta', 'producto.entalle_piernas', 'producto.min', 'producto.max'
             ])->groupBy('sku.referencia_producto');
 
         return DataTables::of($skus)
@@ -157,7 +157,7 @@ class SKUController extends Controller
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 3, 1);
                     
-                    $tallas = Talla::where('corte_id', $sku->numero_corte)->get()->first();
+                    $tallas = Talla::where('corte_id', $sku->corteid)->get()->first();
                     /*
                     if ($tallas->a > 0) {
                         $min_talla = "a"; 
