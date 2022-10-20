@@ -285,6 +285,42 @@ class SKUController extends Controller
                                     break;
                             }
 
+                        } else {
+                            switch ($product->min) {
+                                case "a":
+                                    $min_talla = "a";
+                                    $max_talla = "h";
+                                    break;
+                                case "b":
+                                    $min_talla = "b";
+                                    $max_talla = "h";
+                                    break;
+                                case "c":
+                                    $min_talla = "c";
+                                    $max_talla = "h";
+                                    break;
+                                case "d":
+                                    $min_talla = "d";
+                                    $max_talla = "h";
+                                    break;
+                                case "e":
+                                    $min_talla = "e";
+                                    $max_talla = "h";
+                                    break;
+                                case "f":
+                                    $min_talla = "f";
+                                    $max_talla = "h";
+                                    break;
+                                case "g":
+                                    $min_talla = "g";
+                                    $max_talla = "h";
+                                    break;
+                                case "h":
+                                    $min_talla = "h";
+                                    $max_talla = "h";
+                                    break;
+                            }
+
                         }
                     } else if ($genero == "1") {
                             $a = '28';
