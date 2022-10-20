@@ -156,8 +156,61 @@ class SKUController extends Controller
                     $referencia1 = $product->referencia_producto;
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 3, 1);
-                    $min_talla = $product->min;   
-                    $max_talla = $product->max;   
+                    $tallas = Talla::where('corte_id', $sku->numero_corte)->get()->first();
+                    if ($tallas->a > 0) {
+                        $min_talla = "a"; 
+                    } elseif ($tallas->b > 0) {
+                        $min_talla = "b"; 
+                    } elseif ($tallas->c > 0) {
+                        $min_talla = "c"; 
+                    } elseif ($tallas->d > 0) {
+                        $min_talla = "d"; 
+                    } elseif ($tallas->e > 0) {
+                        $min_talla = "e"; 
+                    } elseif ($tallas->f > 0) {
+                        $min_talla = "f"; 
+                    } elseif ($tallas->g > 0) {
+                        $min_talla = "g"; 
+                    } elseif ($tallas->h > 0) {
+                        $min_talla = "h"; 
+                    } elseif ($tallas->i > 0) {
+                        $min_talla = "i"; 
+                    } elseif ($tallas->j > 0) {
+                        $min_talla = "j"; 
+                    } elseif ($tallas->k > 0) {
+                        $min_talla = "k"; 
+                    } elseif ($tallas->l > 0) {
+                        $min_talla = "l"; 
+                    }
+
+                    if ($tallas->l > 0) {
+                        $max_talla = "l"; 
+                    } elseif ($tallas->k > 0) {
+                        $max_talla = "k"; 
+                    } elseif ($tallas->j > 0) {
+                        $max_talla = "j"; 
+                    } elseif ($tallas->i > 0) {
+                        $max_talla = "i"; 
+                    } elseif ($tallas->h > 0) {
+                        $max_talla = "h"; 
+                    } elseif ($tallas->g > 0) {
+                        $max_talla = "g"; 
+                    } elseif ($tallas->f > 0) {
+                        $max_talla = "f"; 
+                    } elseif ($tallas->e > 0) {
+                        $max_talla = "e"; 
+                    } elseif ($tallas->d > 0) {
+                        $max_talla = "d"; 
+                    } elseif ($tallas->c > 0) {
+                        $max_talla = "c"; 
+                    } elseif ($tallas->b > 0) {
+                        $max_talla = "b"; 
+                    } elseif ($tallas->a > 0) {
+                        $max_talla = "a"; 
+                    }
+                /// ME QUEDE AQUIIIIIIII
+                //    $min_talla = $product->min;   
+                //    $max_talla = $product->max;   
                     
                     if ($genero == "2") {
                         if ($mujer_plus == "7") {
@@ -192,6 +245,7 @@ class SKUController extends Controller
                             $f = '12';
                             $g = '14';
                             $h = '16';
+                            
                         if ($referencia == $referencia1) {
                             switch ($product->min) {
                                 case "a":
