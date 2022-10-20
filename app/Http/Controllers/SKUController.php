@@ -156,8 +156,9 @@ class SKUController extends Controller
                     $referencia1 = $product->referencia_producto;
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 3, 1);
-                    /*
+                    
                     $tallas = Talla::where('corte_id', $sku->numero_corte)->get()->first();
+                    /*
                     if ($tallas->a > 0) {
                         $min_talla = "a"; 
                     } elseif ($tallas->b > 0) {
