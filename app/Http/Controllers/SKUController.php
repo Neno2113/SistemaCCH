@@ -156,6 +156,7 @@ class SKUController extends Controller
                     $referencia1 = $product->referencia_producto;
                     $genero = $product->genero;   
                     $mujer_plus = substr($referencia, 3, 1);
+                    /*
                     $tallas = Talla::where('corte_id', $sku->numero_corte)->get()->first();
                     if ($tallas->a > 0) {
                         $min_talla = "a"; 
@@ -208,9 +209,10 @@ class SKUController extends Controller
                     } elseif ($tallas->a > 0) {
                         $max_talla = "a"; 
                     }
+                    */
                 /// ME QUEDE AQUIIIIIIII
-                //    $min_talla = $product->min;   
-                //    $max_talla = $product->max;   
+                    $min_talla = $product->min;   
+                    $max_talla = $product->max;   
                     
                     if ($genero == "2") {
                         if ($mujer_plus == "7") {
