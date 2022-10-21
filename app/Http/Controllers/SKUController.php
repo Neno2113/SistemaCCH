@@ -488,7 +488,7 @@ class SKUController extends Controller
     }
 
 
-    public function imprimirlabel($id, $cantidad, $talla)
+    public function imprimirlabel($id, $cantidad)
     {
         function firstNumPos($text, $number){
             preg_match_all('!\d+!', $text, $match);
