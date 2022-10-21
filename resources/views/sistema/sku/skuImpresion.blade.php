@@ -427,7 +427,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" class="html_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 	<tr>
 	<td class="pad">
-	<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 11px;"><!-- Reemplazar div con precio --><div style="/* background-color: #000; */height: 23px;"></div> <!-- Fin reemplazar div con precio --> </div></div>
+	<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 11px;"><!-- Reemplazar div con precio --><div style="/* background-color: #000; */height: 31px;"></div> <!-- Fin reemplazar div con precio --> </div></div>
 	</td>
 	</tr>
 	</table>
@@ -758,7 +758,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" class="html_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 	<tr>
 	<td class="pad">
-	<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 11px;"><!-- Reemplazar div con precio --><div style="/* background-color: #000; */height: 23px;"></div> <!-- Fin reemplazar div con precio --> </div></div>
+	<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 11px;"><!-- Reemplazar div con precio --><div style="/* background-color: #000; */height: 31px;"></div> <!-- Fin reemplazar div con precio --> </div></div>
 	</td>
 	</tr>
 	</table>
