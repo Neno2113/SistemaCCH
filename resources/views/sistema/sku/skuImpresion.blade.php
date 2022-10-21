@@ -416,41 +416,14 @@
 	</tr>
 	</tbody>
 	</table>
-	<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-10" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-	<tbody>
-	<tr>
-	<td>
-	<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 480px;" width="480">
-	<tbody>
-	<tr>
-	<td  style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-	<table border="0" cellpadding="0" cellspacing="0" class="icons_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-	<tr>
-	<td class="pad" style="vertical-align: middle; color: #9d9d9d; font-family: inherit; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;">
-	<table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-	<tr>
-	<td class="alignment" style="vertical-align: middle; text-align: center;">
-	<!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
-	<!--[if !vml]><!-->
-	</td>
-	</tr>
-	</table>
-	</td>
-	</tr>
-	</table>
-	</td>
-	</tr>
-	</tbody>
-	</table>
-	</td>
-	</tr>
-	</tbody>
-	</table>
 	</td>
 	</tr>
 	</tbody>
 	</table><!-- End -->
 </body>
+<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
 
 
@@ -741,36 +714,6 @@
 	<tr>
 	<td class="pad">
 	<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 9px;">SUGGESTED RETAIL PRICE </div></div>
-	</td>
-	</tr>
-	</table>
-	</td>
-	</tr>
-	</tbody>
-	</table>
-	</td>
-	</tr>
-	</tbody>
-	</table>
-	<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-10" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-	<tbody>
-	<tr>
-	<td>
-	<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 480px;" width="480">
-	<tbody>
-	<tr>
-	<td  style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-	<table border="0" cellpadding="0" cellspacing="0" class="icons_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-	<tr>
-	<td class="pad" style="vertical-align: middle; color: #9d9d9d; font-family: inherit; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;">
-	<table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-	<tr>
-	<td class="alignment" style="vertical-align: middle; text-align: center;">
-	<!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
-	<!--[if !vml]><!-->
-	</td>
-	</tr>
-	</table>
 	</td>
 	</tr>
 	</table>
