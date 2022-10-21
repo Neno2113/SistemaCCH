@@ -118,6 +118,10 @@
 		</style>
 	</head>
 <body style="margin: 0; background-color: #ffffff; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+	<?php for ($i=0; $i < $cantidad; $i++) { 
+		echo $cantidad;
+	}
+	?>
 	<table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;" width="100%">
 	<tbody>
 	<tr>
