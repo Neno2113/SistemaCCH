@@ -466,7 +466,7 @@ class SKUController extends Controller
         $tallas = Talla::where('corte_id', $corte->id)->get()->first();
         $producto = Product::where('id', $sku->producto_id)->get()->first();
 
-        if (is_object($sku)) {
+        if (is_object($corte)) {
             $data = [
                 'code' => 200,
                 'status' => 'success',
@@ -478,8 +478,8 @@ class SKUController extends Controller
         } else {
             $data = [
                 'code' => 404,
-                'status' => 'error',
-                'message' => 'Hay algun problema 008'
+                'status' => 'Error',
+                'message' => 'Este producto aun no tiene corte'
             ];
         }
 
