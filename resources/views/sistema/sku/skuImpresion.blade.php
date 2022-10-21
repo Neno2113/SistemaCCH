@@ -404,7 +404,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" class="html_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 	<tr>
 	<td class="pad">
-	<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class">SUGGESTED RETAIL PRICE </div></div>
+	<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 9px;">SUGGESTED RETAIL PRICE </div></div>
 	</td>
 	</tr>
 	</table>
