@@ -213,176 +213,182 @@ function mostrar(id_sku) {
                 'info'
             )
         } else {
-            $("#listadoUsers").hide();
-            $("#registroForm").hide();
-            $("#btnCancelarx").hide();
-            $("#btn-edit").hide();
-            $("#btn-guardar").show();
-            $("#btnAgregar").hide();
-            $("#tallasSku").show();
-            $("#btnCancelar").show();
+            if (data.status == "success") {
 
-            if (data.producto.genero == 1) {
-                var total = data.tallas.total + 6;
-            } else {
-                var total = data.tallas.total + 8;
-            }
-            var mujer_plus = data.sku.referencia_producto.substring(3, 4);
-          
-            var fila =
-            '<tr id="fila'+data.sku.id+'">'+
-            "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
-            "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
-            "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
-            "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
-            "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
-            "<td><a href='print_label/"+data.sku.id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
-            "</tr>";
-            $("#permisos-agregados").append(fila);
-        //    <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i></button>
-        //    $("#id").val(data.tela.id);
-        //    $("#referencia").val(data.tela.referencia).attr('readonly', false);
-  
-            for (let i = 0; i < data.skus.length; i++) {
-                ///////////////////////////////////////
-                ///////////////////////////////////////
-                if (data.producto.genero == "2") {
-                    if (mujer_plus == "7") {
-                        var a = '12W';
-                        var b = '14W';
-                        var c = '16W';
-                        var d = '18W';
-                        var e = '20W';
-                        var f = '22W';
-                        var g = '24W';
-                        var h = '26W';
-                    } else {
-                        var a = '0/0';
-                        var b = '1/2';
-                        var c = '3/4';
-                        var d = '5/6';
-                        var e = '7/8';
-                        var f = '9/10';
-                        var g = '11/12';
-                        var h = '13/14';
-                        var y = '15/16';
-                        var j = '17/18';
-                        var k = '19/20';
-                        var l = '21/22';
-                    }
-                } else if (data.producto.genero == "3" || data.producto.genero == "4") {
-                        var a = '2';
-                        var b = '4';
-                        var c = '6';
-                        var d = '8';
-                        var e = '10';
-                        var f = '12';
-                        var g = '14';
-                        var h = '16';
-                } else if (data.producto.genero == "1") {
-                        var a = '28';
-                        var b = '29';
-                        var c = '30';
-                        var d = '32';
-                        var e = '34';
-                        var f = '36';
-                        var g = '38';
-                        var h = '40';
-                        var y = '42';
-                        var j = '44';
-                        var k = '46';
-                }
+                $("#listadoUsers").hide();
+                $("#registroForm").hide();
+                $("#btnCancelarx").hide();
+                $("#btn-edit").hide();
+                $("#btn-guardar").show();
+                $("#btnAgregar").hide();
+                $("#tallasSku").show();
+                $("#btnCancelar").show();
 
-                if (data.skus[i].talla == 'A') {
-                    var talla = a;
-                } else if (data.skus[i].talla == 'B') {
-                    var talla = b;
-                } else if (data.skus[i].talla == 'C') {
-                    var talla = c;
-                } else if (data.skus[i].talla == 'D') {
-                    var talla = d;
-                } else if (data.skus[i].talla == 'E') {
-                    var talla = e;
-                } else if (data.skus[i].talla == 'F') {
-                    var talla = f;
-                } else if (data.skus[i].talla == 'G') {
-                    var talla = g;
-                } else if (data.skus[i].talla == 'H') {
-                    var talla = h;
-                } else if (data.skus[i].talla == 'I') {
-                    var talla = y;
-                } else if (data.skus[i].talla == 'J') {
-                    var talla = j;
-                } else if (data.skus[i].talla == 'K') {
-                    var talla = k;
-                } else if (data.skus[i].talla == 'L') {
-                    var talla = l;
-                } 
-
-
-
-                ///////////////////////////////////////
-                ///////////////////////////////////////
-                switch (data.skus[i].talla) {
-                    case "A": 
-                    var total = data.tallas.a + 1;  
-                        break;
-                    case "B": 
-                    var total = data.tallas.b + 1; 
-                        break;
-                    case "C": 
-                    var total = data.tallas.c + 1;  
-                        break;
-                    case "D": 
-                    var total = data.tallas.d + 1;  
-                        break;
-                    case "E": 
-                    var total = data.tallas.e + 1; 
-                        break;
-                    case "F": 
-                    var total = data.tallas.f + 1;  
-                        break;
-                    case "G": 
-                    var total = data.tallas.g + 1;  
-                        break;
-                    case "H": 
-                    var total = data.tallas.h + 1;  
-                        break;
-                    case "I": 
-                    var total = data.tallas.i + 1;   
-                        break;
-                    case "J": 
-                    var total = data.tallas.j + 1;   
-                        break;
-                    case "K": 
-                    var total = data.tallas.k + 1;   
-                        break;
-                    case "L": 
-                    var total = data.tallas.l + 1;   
-                        break;
-                    default:
-                    var total = 0;   
-                        break;
-                    }
-                if (data.skus[i].talla == "General") {
-
+                if (data.producto.genero == 1) {
+                    var total = data.tallas.total + 6;
                 } else {
-                    var fila =
-                    '<tr id="fila'+data.skus[i].id+'">'+
-                    "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
-                    "<td class=''>"+data.skus[i].sku+"</td>"+
-                    "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
-                    "<td class=''>"+talla+"</td>"+
-                    "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
-                    "<td><a href='print_label/"+data.skus[i].id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
-                    "</tr>";
-                    $("#permisos-agregados").append(fila);
+                    var total = data.tallas.total + 8;
                 }
-                
+                var mujer_plus = data.sku.referencia_producto.substring(3, 4);
+            
+                var fila =
+                '<tr id="fila'+data.sku.id+'">'+
+                "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
+                "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
+                "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
+                "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
+                "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
+                "<td><a href='print_label/"+data.sku.id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                "</tr>";
+                $("#permisos-agregados").append(fila);
+            //    <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i></button>
+            //    $("#id").val(data.tela.id);
+            //    $("#referencia").val(data.tela.referencia).attr('readonly', false);
+    
+                for (let i = 0; i < data.skus.length; i++) {
+                    ///////////////////////////////////////
+                    ///////////////////////////////////////
+                    if (data.producto.genero == "2") {
+                        if (mujer_plus == "7") {
+                            var a = '12W';
+                            var b = '14W';
+                            var c = '16W';
+                            var d = '18W';
+                            var e = '20W';
+                            var f = '22W';
+                            var g = '24W';
+                            var h = '26W';
+                        } else {
+                            var a = '0/0';
+                            var b = '1/2';
+                            var c = '3/4';
+                            var d = '5/6';
+                            var e = '7/8';
+                            var f = '9/10';
+                            var g = '11/12';
+                            var h = '13/14';
+                            var y = '15/16';
+                            var j = '17/18';
+                            var k = '19/20';
+                            var l = '21/22';
+                        }
+                    } else if (data.producto.genero == "3" || data.producto.genero == "4") {
+                            var a = '2';
+                            var b = '4';
+                            var c = '6';
+                            var d = '8';
+                            var e = '10';
+                            var f = '12';
+                            var g = '14';
+                            var h = '16';
+                    } else if (data.producto.genero == "1") {
+                            var a = '28';
+                            var b = '29';
+                            var c = '30';
+                            var d = '32';
+                            var e = '34';
+                            var f = '36';
+                            var g = '38';
+                            var h = '40';
+                            var y = '42';
+                            var j = '44';
+                            var k = '46';
+                    }
+
+                    if (data.skus[i].talla == 'A') {
+                        var talla = a;
+                    } else if (data.skus[i].talla == 'B') {
+                        var talla = b;
+                    } else if (data.skus[i].talla == 'C') {
+                        var talla = c;
+                    } else if (data.skus[i].talla == 'D') {
+                        var talla = d;
+                    } else if (data.skus[i].talla == 'E') {
+                        var talla = e;
+                    } else if (data.skus[i].talla == 'F') {
+                        var talla = f;
+                    } else if (data.skus[i].talla == 'G') {
+                        var talla = g;
+                    } else if (data.skus[i].talla == 'H') {
+                        var talla = h;
+                    } else if (data.skus[i].talla == 'I') {
+                        var talla = y;
+                    } else if (data.skus[i].talla == 'J') {
+                        var talla = j;
+                    } else if (data.skus[i].talla == 'K') {
+                        var talla = k;
+                    } else if (data.skus[i].talla == 'L') {
+                        var talla = l;
+                    } 
+
+
+
+                    ///////////////////////////////////////
+                    ///////////////////////////////////////
+                    switch (data.skus[i].talla) {
+                        case "A": 
+                        var total = data.tallas.a + 1;  
+                            break;
+                        case "B": 
+                        var total = data.tallas.b + 1; 
+                            break;
+                        case "C": 
+                        var total = data.tallas.c + 1;  
+                            break;
+                        case "D": 
+                        var total = data.tallas.d + 1;  
+                            break;
+                        case "E": 
+                        var total = data.tallas.e + 1; 
+                            break;
+                        case "F": 
+                        var total = data.tallas.f + 1;  
+                            break;
+                        case "G": 
+                        var total = data.tallas.g + 1;  
+                            break;
+                        case "H": 
+                        var total = data.tallas.h + 1;  
+                            break;
+                        case "I": 
+                        var total = data.tallas.i + 1;   
+                            break;
+                        case "J": 
+                        var total = data.tallas.j + 1;   
+                            break;
+                        case "K": 
+                        var total = data.tallas.k + 1;   
+                            break;
+                        case "L": 
+                        var total = data.tallas.l + 1;   
+                            break;
+                        default:
+                        var total = 0;   
+                            break;
+                        }
+                    if (data.skus[i].talla == "General") {
+
+                    } else {
+                        var fila =
+                        '<tr id="fila'+data.skus[i].id+'">'+
+                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
+                        "<td class=''>"+data.skus[i].sku+"</td>"+
+                        "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
+                        "<td class=''>"+talla+"</td>"+
+                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
+                        "<td><a href='print_label/"+data.skus[i].id+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        "</tr>";
+                        $("#permisos-agregados").append(fila);
+                    }
+                    
+                }
+
+            } else {
+                bootbox.alert(
+                    data.message
+                );
             }
         
- 
-    
         }
      
     });
