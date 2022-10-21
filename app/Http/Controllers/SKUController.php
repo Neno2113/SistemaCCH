@@ -569,8 +569,6 @@ class SKUController extends Controller
             $season = "No Available";
         }
         
-
-    
             $referencia2 = $producto->referencia_producto_2;
             $referencia1 = $producto->referencia_producto;
             $genero = $producto->genero;   
@@ -755,7 +753,7 @@ class SKUController extends Controller
             }
             
 
-        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash, 'fabric' => $fabric, 'cantidad' => "3"];
+        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash, 'fabric' => $fabric, 'cantidad' => $cantidad];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
     //    return $pdf->stream('Etiquetas-123.pdf');
