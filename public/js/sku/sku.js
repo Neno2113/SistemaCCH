@@ -203,6 +203,11 @@ $(document).ready(function() {
     init();
 });
 
+function redirigir(num,id) {
+    var newTotal = $("#cantidad"+num).val();
+    $("#enlaceprint"+num).attr("href", "print_label/"+id+"/"+newTotal+"");
+}
+
 function mostrar(id_sku) {
     $.post("sku_id/" + id_sku, function(data, status) {
 
@@ -237,8 +242,8 @@ function mostrar(id_sku) {
                 "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
                 "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
                 "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
-                "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
-                "<td><a href='print_label/"+data.sku.id+"/"+total+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad0' value='"+total+"'></td>"+
+                "<td><a href='print_label/"+data.sku.id+"/"+total+"' target='_blank' id='enlaceprint0' onclick='redirigir(0,"+data.sku.id+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                 "</tr>";
                 $("#permisos-agregados").append(fila);
             //    <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i></button>
@@ -375,8 +380,8 @@ function mostrar(id_sku) {
                         "<td class=''>"+data.skus[i].sku+"</td>"+
                         "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
                         "<td class=''>"+talla+"</td>"+
-                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad' value='"+total+"'></td>"+
-                        "<td><a href='print_label/"+data.skus[i].id+"/"+total+"' target='_blank' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad"+i+"' value='"+total+"'></td>"+
+                        "<td><a href='print_label/"+data.skus[i].id+"/"+total+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus[i].id+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
