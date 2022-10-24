@@ -21,7 +21,7 @@
                 <h5>Listado de Tallas</h5>
                 <hr>
                 <div class="row">
-                    <div class="col-md-6" id="vatar">
+                    <div class="col-md-4" id="vatar">
                         <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                             <div class="form-group">
                             <input type="hidden" name="id_tela" id="id_tela" value="">
@@ -40,7 +40,15 @@
                                 </div>
                             </div>
                         </form> 
-                    </div>  
+                    </div> 
+                    <div class="col-md-2">
+                            <label for="nombre_cliente" >Cliente</label>
+                            <select name="tags[]" id="clientes" class="form-control select2">
+                                <option value="" disabled>Cliente</option>
+                            </select>
+
+                          
+                        </div> 
                     <div class="col-md-6 mt-5 text-center" id="boton-imprimir-general"> 
                         <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i> Imprimir Selección</button>
                     </div>
