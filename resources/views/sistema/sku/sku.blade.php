@@ -28,7 +28,7 @@
                             <input type="hidden" name="id_rollo" id="id_rollo" value="">
                                 <label for="exampleInputFile">Agregar hoja de sku especiales</label>
                             <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
-                                <div class="input-group mt-4">
+                                <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="form-control" name="rollo" id="rollo">
                                     <!--    <input type="hidden" name="image_name" id="image_name" value="1662435439images.png"> -->
@@ -49,7 +49,7 @@
 
                           
                         </div> 
-                    <div class="col-md-6 mt-5 text-center" id="boton-imprimir-general"> 
+                    <div class="col-md-6 mt-4 text-center" id="boton-imprimir-general"> 
                         <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i> Imprimir Selección</button>
                     </div>
                 </div>
