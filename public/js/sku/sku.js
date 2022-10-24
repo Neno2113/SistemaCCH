@@ -47,6 +47,8 @@ $(document).ready(function() {
     $("#clientes").change(function(){
         $("#btn-upload").attr("disabled", false);
         $("#btn-upload").attr("class", "btn-primary");
+        $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
+        $("#btn-upload").attr("class", "btn-secundary");
 
     });
 
