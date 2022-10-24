@@ -147,7 +147,7 @@
 		</tr>
 		</tbody>
 		</table>
-		<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 5px" width="100%">
 		<tbody>
 		<tr>
 		<td>
@@ -382,7 +382,7 @@
 		<td  style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
 		<table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 		<tr>
-		<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
+		<td class="pad" style="width:100%;padding-right:5px;padding-left:5px;">
 		<div align="center" class="alignment" style="line-height:10px"><img src="{{ $sku }}" style="display: block; height: auto; border: 0; max-width: 100%;"/></div>
 		</td>
 		</tr>
@@ -429,7 +429,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="html_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 		<tr>
 		<td class="pad">
-		<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 11px;"><!-- Reemplazar div con precio --><div style="/* background-color: #000; */height: 31px;"></div> <!-- Fin reemplazar div con precio --> </div></div>
+		<div align="center" style="font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;"><div class="our-class" style="font-size: 11px;"><!-- Reemplazar div con precio --><div style="background-color: #000; height: 31px;"></div> <!-- Fin reemplazar div con precio --> </div></div>
 		</td>
 		</tr>
 		</table>
