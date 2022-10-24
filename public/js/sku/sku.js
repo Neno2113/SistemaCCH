@@ -39,6 +39,10 @@ $(document).ready(function() {
     function limpiar() {
         $("#codigo_composicion").val("");
         $("#nombre_composicion").val("");
+        $("#cliente_id").val("");
+        $("#nombre_cliente").val("");
+        $("#referencia").val("");
+        $("#product_id").val("");
         $("#permisos-agregados").empty();
         $("#clientes").val("").trigger("change");
         $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
@@ -49,6 +53,10 @@ $(document).ready(function() {
     $("#clientes").change(function(){
         $("#btn-upload").attr("disabled", false);
         $("#btn-upload").attr("class", "btn-primary");
+        $("#cliente_id").val($('select[name=clientes] option').filter(':selected').val());
+        $("#nombre_cliente").val($('#clientes').find('option:selected').text());
+        $("#referencia").val($("#referencia_product").val()); 
+        $("#product_id").val($("#prod_id").val());
 
     });
 
@@ -72,6 +80,55 @@ $(document).ready(function() {
         })
     });
 
+    $("#formUpload").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData($(this)[0]);
+        // console.log( JSON.stringify(formData));
+        $.ajax({
+            url: "fileskus",
+            type: "POST",
+            data: formData,
+            dataType: "JSON",
+            processData: false,
+            cache: false,
+            contentType: false,
+            success: function(datos) {
+                if (datos.status == "success") {
+                    for (let i = 0; i < datos.skus_esp.length; i++) {
+                        var fila =
+                        '<tr id="fila'+data.skus_esp[i].id+'">'+
+                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.skus_esp[i].id+"' name='checkboxtalla'></td>"+
+                        "<td class='font-weight-bold'>"+data.skus_esp[i].sku_especial+"</td>"+
+                        "<td class='font-weight-bold'>"+data.skus_esp[i].referencia_producto+"</td>"+
+                        "<td class='font-weight-bold'>"+data.skus_esp[i].talla+"</td>"+
+                        "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad0' value='"+data.skus_esp[i].cantidad+"'></td>"+
+                        "<td><a href='print_label/"+data.skus_esp[i].id+"/"+data.skus_esp[i].cantidad+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus_esp[i].id+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        "</tr>";
+                        $("#permisos-agregados").append(fila);
+                    }
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la carga del archivo"
+                    );
+                }
+            },
+            error: function(datos) {
+                console.log(datos.responseJSON.message);
+                let errores = datos.responseJSON.message;
+    
+                Object.entries(errores).forEach(([key, val]) => {
+                    bootbox.alert({
+                        message:
+                            "<h4 class='invalid-feedback d-block'>" +
+                            val +
+                            "</h4>",
+                        size: "small"
+                    });
+                });
+            }
+        });
+    });
+
     function clientes (){
 
         $.ajax({
@@ -84,7 +141,7 @@ $(document).ready(function() {
                     var longitud = datos.cliente.length;
 
                     for (let i = 0; i < longitud; i++) {
-                        var fila =  "<option value="+datos.cliente[i].id +">"+datos.cliente[i].nombre_cliente+"</option>"
+                        var fila =  "<option value="+datos.cliente[i].id +">"+datos.cliente[i].nombre_cliente+"</option>";
 
                         $("#clientes").append(fila);
                     }
@@ -304,7 +361,7 @@ function mostrar(id_sku) {
                 '<tr id="fila'+data.sku.id+'">'+
                 "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
                 "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
-                "<td class='font-weight-bold'>"+data.sku.referencia_producto+"</td>"+
+                "<td class='font-weight-bold' id='referencia_product'><input type='hidden' name='prod_id' id='prod_id' value='"+data.sku.producto_id+"'>"+data.sku.referencia_producto+"</td>"+
                 "<td class='font-weight-bold'>"+data.sku.talla+"</td>"+
                 "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad0' value='"+total+"'></td>"+
                 "<td><a href='print_label/"+data.sku.id+"/"+total+"' target='_blank' id='enlaceprint0' onclick='redirigir(0,"+data.sku.id+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
@@ -442,7 +499,7 @@ function mostrar(id_sku) {
                         '<tr id="fila'+data.skus[i].id+'">'+
                         "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
                         "<td class=''>"+data.skus[i].sku+"</td>"+
-                        "<td class=''>"+data.skus[i].referencia_producto+"</td>"+
+                        "<td class='' id='referencia_product'>"+data.skus[i].referencia_producto+"</td>"+
                         "<td class=''>"+talla+"</td>"+
                         "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad"+i+"' value='"+total+"'></td>"+
                         "<td><a href='print_label/"+data.skus[i].id+"/"+total+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus[i].id+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+

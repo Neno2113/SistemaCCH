@@ -16,6 +16,7 @@ use App\Cloth;
 use App\Talla;
 use App\Supplier;
 use App\Client;
+use App\SkuEspecial;
 use Illuminate\Http\Response;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
@@ -454,6 +455,108 @@ class SKUController extends Controller
         ];
 
         return response()->json($data, $data['code']);
+    }
+
+    public function upload(Request $request)
+    {
+        
+        //validar csv
+        $validate = \Validator::make($request->all(), [
+            'skus' => 'required|mimes:csv,txt',
+        ]);
+        // Guardar la imagen
+        if ($validate->fails()) {
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'message' => $validate->errors()
+            ];
+        } else {
+            $file = $request->file('skus');  
+            $referencia = $request->input('referencia');  
+            $product_id = $request->input('product_id');  
+            $cliente_id = $request->input('cliente_id');  
+            $nombre_cliente = $request->input('nombre_cliente');
+            if ($file) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
+                $tempPath = $file->getRealPath();
+                $fileSize = $file->getSize(); //Get size of uploaded file in bytes
+
+                    //Where uploaded file will be stored on the server 
+                $location = public_path().'/uploads'; //Created an "uploads" folder for that
+                // Upload file
+                $file->move($location, $filename);
+
+                // In case the uploaded file path is to be stored in the database 
+                //    $filepath = public_path($location . "/" . $filename);
+                $filepath = $location."/".$filename;
+                // Reading file
+                $file = fopen($filepath, "r");
+                $importData_arr = array(); // Read through the file and store the contents as an array
+                $i = 0;
+
+                //Read the contents of the uploaded file 
+                while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
+                    $num = count($filedata);
+                    // Skip first row (Remove below comment if you want to skip the first row)
+                        if ($i == 0) {
+                        $i++;
+                        continue;
+                        }
+                    for ($c = 0; $c < $num; $c++) {
+                        $importData_arr[$i][] = $filedata[$c];
+                    }
+                        $i++;
+                }
+                fclose($file); //Close after reading
+
+                $j = 0;
+                foreach ($importData_arr as $importData) {
+                    $sku_e = $importData[0]; //Get sku
+                    $talla = $importData[1]; //Get talla
+                    $cant = $importData[2]; //Get cantidad
+                    $j++;
+
+                    try {
+                        
+                        $sku_especial = new SkuEspecial();
+
+                        $sku_especial->producto_id = $product_id;
+                        $sku_especial->referencia_producto = $referencia;
+                        $sku_especial->sku_especial = $sku_e;
+                        $sku_especial->cantidad = $cant;
+                        $sku_especial->talla = $talla;
+                        $sku_especial->cliente_id = $cliente_id;
+                        $sku_especial->nombre_cliente = $nombre_cliente;
+
+                        $sku_especial->save();
+                    
+                    } catch (\Exception $e) {
+                        //throw $th;
+                    //    DB::rollBack();
+                    }
+                }
+                $skus_esp = SkuEspecial::where('product_id', $product_id)->where('cliente_id', $cliente_id)->get();
+
+                $data = [
+                    'code' => 200,
+                    'status' => 'success',
+                    'skus_esp' => $skus_esp
+                ];
+        
+            } else {
+            //no file was uploaded
+        //    throw new \Exception('No file was uploaded', Response::HTTP_BAD_REQUEST);
+                $data = [
+                    'code' => 200,
+                    'status' => 'file-no-valid'
+                ];
+            }
+        }
+
+        return response()->json($data, $data['code']); 
+        
     }
 
     public function show($id)

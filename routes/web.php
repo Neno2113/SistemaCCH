@@ -291,6 +291,7 @@ Route::get('/sku_disp', 'SKUController@sku_disponibles');
 Route::get('print_label/{id}/{cant}', 'SKUController@imprimirlabel');
 Route::post('/sku_id/{id}', 'SKUController@show');
 Route::get('cliente/select', 'SKUController@clienteSelect');
+Route::post('/fileskus', 'SKUController@upload');
  
 
 //Corte

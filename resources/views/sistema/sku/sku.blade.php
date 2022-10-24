@@ -24,13 +24,15 @@
                     <div class="col-md-4" id="vatar">
                         <form action="" method="POST" id="formUpload" enctype="multipart/form-data">
                             <div class="form-group">
-                            <input type="hidden" name="id_tela" id="id_tela" value="">
-                            <input type="hidden" name="id_rollo" id="id_rollo" value="">
+                             <input type="hidden" name="cliente_id" id="cliente_id" value="">
+                             <input type="hidden" name="nombre_cliente" id="nombre_cliente" value="">
+                             <input type="hidden" name="referencia" id="referencia" value="">
+                             <input type="hidden" name="product_id" id="product_id" value="">
                                 <label for="exampleInputFile">Agregar hoja de sku especiales</label>
                             <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="form-control" name="rollo" id="rollo">
+                                        <input type="file" class="form-control" name="skus" id="skus">
                                     <!--    <input type="hidden" name="image_name" id="image_name" value="1662435439images.png"> -->
                                     </div>
                                     <div class="input-group-append">
@@ -43,7 +45,7 @@
                     </div> 
                     <div class="col-md-2">
                             <label for="nombre_cliente" >Cliente</label>
-                            <select name="tags[]" id="clientes" class="form-control select2">
+                            <select name="clientes" id="clientes" class="form-control select2">
                                 <option value="" disabled selected>Cliente</option>
                             </select>
 
