@@ -29,7 +29,7 @@ $(document).ready(function() {
 
     function init() {
         listar();
-        mostrarForm(false);
+    //    mostrarForm(false);
     //    clientes();
         $("#btn-edit").hide();
         $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
