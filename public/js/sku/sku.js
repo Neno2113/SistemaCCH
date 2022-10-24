@@ -32,6 +32,8 @@ $(document).ready(function() {
         mostrarForm(false);
         clientes();
         $("#btn-edit").hide();
+        $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
+        $("#btn-upload").attr("class", "btn-secundary");
     }
 
     function limpiar() {
@@ -41,6 +43,32 @@ $(document).ready(function() {
         $("#clientes").val("").trigger("change");
 
     }
+
+    $("#clientes").change(function(){
+        $("#btn-upload").attr("disabled", false);
+        $("#btn-upload").attr("class", "btn-primary");
+
+    });
+
+    $("#btn-upload").click(function(e) {
+        // e.preventDefault();
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    
+        Toast.fire({
+            type: 'success',
+            title: 'Archivo Cargado.'
+        })
+    });
 
     function clientes (){
 
