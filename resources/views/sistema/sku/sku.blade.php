@@ -45,7 +45,7 @@
                     </div> 
                     <div class="col-md-2">
                             <label for="nombre_cliente" >Cliente</label>
-                            <select name="clientes" id="clientes" class="form-control select2">
+                            <select name="tags[]" id="clientes" class="form-control select2">
                                 <option value="" disabled selected>Cliente</option>
                             </select>
 
