@@ -38,6 +38,7 @@ $(document).ready(function() {
         $("#codigo_composicion").val("");
         $("#nombre_composicion").val("");
         $("#permisos-agregados").empty();
+        $("#clientes").val("").attr('readonly', false);
 
     }
 
