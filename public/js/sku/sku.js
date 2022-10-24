@@ -41,14 +41,14 @@ $(document).ready(function() {
         $("#nombre_composicion").val("");
         $("#permisos-agregados").empty();
         $("#clientes").val("").trigger("change");
+        $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
+        $("#btn-upload").attr("class", "btn-secundary");
 
     }
 
     $("#clientes").change(function(){
         $("#btn-upload").attr("disabled", false);
         $("#btn-upload").attr("class", "btn-primary");
-        $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
-        $("#btn-upload").attr("class", "btn-secundary");
 
     });
 
