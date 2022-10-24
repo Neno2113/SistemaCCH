@@ -30,6 +30,7 @@ $(document).ready(function() {
     function init() {
         listar();
         mostrarForm(false);
+        clientes();
         $("#btn-edit").hide();
     }
 
@@ -38,6 +39,38 @@ $(document).ready(function() {
         $("#nombre_composicion").val("");
         $("#permisos-agregados").empty();
 
+    }
+
+    function clientes (){
+
+        $.ajax({
+            url: "cliente/select",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(datos) {
+                if (datos.status == "success") {
+                    var longitud = datos.cliente.length;
+
+                    for (let i = 0; i < longitud; i++) {
+                        var fila =  "<option value="+datos.cliente[i].id +">"+datos.cliente[i].nombre_cliente+"</option>"
+
+                        $("#clientes").append(fila);
+                    }
+                    $("#clientes").select2();
+
+                } else {
+                    bootbox.alert(
+                        "Ocurrio un error durante la actualizacion de los clientes"
+                    );
+                }
+            },
+            error: function() {
+                bootbox.alert(
+                    "Ocurrio un error!!"
+                );
+            }
+        });
     }
 
 

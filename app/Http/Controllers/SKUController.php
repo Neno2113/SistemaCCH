@@ -15,6 +15,7 @@ use App\RollosDetail;
 use App\Cloth;
 use App\Talla;
 use App\Supplier;
+use App\Client;
 use Illuminate\Http\Response;
 use App\PermisoUsuario;
 use Illuminate\Support\Facades\Auth;
@@ -438,6 +439,18 @@ class SKUController extends Controller
             'code' => 200,
             'status' => 'success',
             'sku' => $skus
+        ];
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function clienteSelect(){
+        $cliente = Client::all();
+
+        $data = [
+            'code' => 200,
+            'status' => 'success',
+            'cliente' => $cliente
         ];
 
         return response()->json($data, $data['code']);
