@@ -28,7 +28,7 @@ $(document).ready(function() {
     var tabla
 
     function init() {
-        listar();
+     //   listar();
     //    mostrarForm(false);
     //    clientes();
         $("#btn-edit").hide();
