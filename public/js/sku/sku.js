@@ -496,7 +496,7 @@ function mostrar(id_sku) {
                     if (data.skus[i].talla == "General") {
 
                     } else {
-                        
+                        /*
                         var fila =
                         '<tr id="fila'+data.skus[i].id+'">'+
                         "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku[i].id+"' name='checkboxtalla'></td>"+
@@ -507,7 +507,7 @@ function mostrar(id_sku) {
                         "<td><a href='print_label/"+data.skus[i].id+"/"+total+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus[i].id+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
-                        
+                        */
                     }
                     
                 }
