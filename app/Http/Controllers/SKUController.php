@@ -214,10 +214,7 @@ class SKUController extends Controller
                             $max_talla = "a"; 
                         }
                     }
-                    
-                    
-                    
-                    
+ 
                     if ($genero == "2") {
                         if ($mujer_plus == "7") {
                             $a = '12W';
