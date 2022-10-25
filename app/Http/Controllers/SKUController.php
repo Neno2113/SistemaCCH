@@ -429,7 +429,7 @@ class SKUController extends Controller
             ->make(true);
     }
     */
-
+/*
 
     public function sku_disponibles()
     {
@@ -443,7 +443,7 @@ class SKUController extends Controller
 
         return response()->json($data, $data['code']);
     }
-/*
+
     public function clienteSelect(){
         $cliente = Client::all();
 
