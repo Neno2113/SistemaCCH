@@ -456,7 +456,7 @@ class SKUController extends Controller
 
         return response()->json($data, $data['code']);
     }
-
+/*
     public function upload(Request $request)
     {
         
@@ -558,7 +558,7 @@ class SKUController extends Controller
         return response()->json($data, $data['code']); 
         
     }
-
+*/
     public function show($id)
     {  
         //Chekcing if the user has access to this function
