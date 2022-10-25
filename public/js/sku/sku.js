@@ -39,7 +39,7 @@ $(document).ready(function() {
     function limpiar() {
         $("#codigo_composicion").val("");
         $("#nombre_composicion").val("");
-        $("#cliente_id").val("");
+/*        $("#cliente_id").val("");
         $("#nombre_cliente").val("");
         $("#referencia").val("");
         $("#product_id").val("");
@@ -47,10 +47,10 @@ $(document).ready(function() {
         $("#clientes").val("").trigger("change");
         $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
         $("#btn-upload").attr("class", "btn-secundary");
-
+*/
     }
-
-    $("#clientes").change(function(){
+/*
+    $("#clientes").change(function() {
         $("#btn-upload").attr("disabled", false);
         $("#btn-upload").attr("class", "btn-primary");
         $("#cliente_id").val($('select[name=clientes] option').filter(':selected').val());
@@ -128,7 +128,7 @@ $(document).ready(function() {
             }
         });
     });
-
+    */
     function clientes (){
 
         $.ajax({
