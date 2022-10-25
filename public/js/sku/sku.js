@@ -128,7 +128,7 @@ $(document).ready(function() {
             }
         });
     });
-    */
+    
     function clientes (){
 
         $.ajax({
@@ -160,7 +160,7 @@ $(document).ready(function() {
             }
         });
     }
-
+*/
 
 
     // $("#btn-guardar").click(function(e){
