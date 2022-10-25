@@ -356,7 +356,7 @@ function mostrar(id_sku) {
                     var total = data.tallas.total + 8;
                 }
                 var mujer_plus = data.sku.referencia_producto.substring(3, 4);
-            
+            /*
                 var fila =
                 '<tr id="fila'+data.sku.id+'">'+
                 "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
@@ -367,6 +367,7 @@ function mostrar(id_sku) {
                 "<td><a href='print_label/"+data.sku.id+"/"+total+"' target='_blank' id='enlaceprint0' onclick='redirigir(0,"+data.sku.id+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                 "</tr>";
                 $("#permisos-agregados").append(fila);
+                */
             //    <button type='button' id='btn-print' class='btn btn-danger'><i class='fas fa-print'></i></button>
             //    $("#id").val(data.tela.id);
             //    $("#referencia").val(data.tela.referencia).attr('readonly', false);
@@ -495,9 +496,10 @@ function mostrar(id_sku) {
                     if (data.skus[i].talla == "General") {
 
                     } else {
+                        
                         var fila =
                         '<tr id="fila'+data.skus[i].id+'">'+
-                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
+                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku[i].id+"' name='checkboxtalla'></td>"+
                         "<td class=''>"+data.skus[i].sku+"</td>"+
                         "<td class='' id='referencia_product'>"+data.skus[i].referencia_producto+"</td>"+
                         "<td class=''>"+talla+"</td>"+
@@ -505,6 +507,7 @@ function mostrar(id_sku) {
                         "<td><a href='print_label/"+data.skus[i].id+"/"+total+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus[i].id+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
+                        
                     }
                     
                 }
