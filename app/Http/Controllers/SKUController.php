@@ -54,7 +54,7 @@ class SKUController extends Controller
             return redirect('/sku');
         }
     }
-
+/*
     public function skus()
     {
         
@@ -115,7 +115,7 @@ class SKUController extends Controller
                         ])->select('categorias_producto.nombre');
 
                     $entalle_bragueta = $bragueta->nombre;
-                    */
+                    *//*
                     if($bragueta = CategoriaProducto::where('tipo', 'entalle_bragueta')->where('indice', $sku->entalle_bragueta)->get()->first()) {
                         $entalle_bragueta = $bragueta->nombre;
                     } else {
@@ -144,7 +144,7 @@ class SKUController extends Controller
                 $producto = $sku->producto_id;
                 $referencia = $sku->referencia_producto;
                 $talla = $sku->talla;
-/*
+                /*
                 if ($sku->$referencia_producto_2) {
                     $referencia2 = $sku->referencia_producto_2;
                     $referencia1 = $sku->referencia_producto;
@@ -153,6 +153,7 @@ class SKUController extends Controller
                     $min_talla = $sku->min;   
                     $max_talla = $sku->max;   
                 */
+                /*
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $referencia2 = $product->referencia_producto_2;
                     $referencia1 = $product->referencia_producto;
@@ -427,6 +428,7 @@ class SKUController extends Controller
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
+    */
 
 
     public function sku_disponibles()
