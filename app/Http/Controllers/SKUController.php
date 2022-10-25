@@ -15,7 +15,7 @@ use App\RollosDetail;
 use App\Cloth;
 use App\Talla;
 use App\Supplier;
-//use App\Client;s
+//use App\Client;
 //use App\SkuEspecial;
 use Illuminate\Http\Response;
 use App\PermisoUsuario;
@@ -573,8 +573,8 @@ class SKUController extends Controller
     
         }
         $sku = SKU::find($id);
-        $refrencia = $sku->referencia_producto;
-        $skus = SKU::where('referencia_producto', $refrencia)->get();
+        $referencia = $sku->referencia_producto;
+        $skus = SKU::where('referencia_producto', $referencia)->get();
         $corte = Corte::where('producto_id', $sku->producto_id)->get()->first();
         $tallas = Talla::where('corte_id', $corte->id)->get()->first();
         $producto = Product::where('id', $sku->producto_id)->get()->first();
