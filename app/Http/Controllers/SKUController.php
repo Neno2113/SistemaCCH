@@ -441,7 +441,7 @@ class SKUController extends Controller
 
         return response()->json($data, $data['code']);
     }
-
+/*
     public function clienteSelect(){
         $cliente = Client::all();
 
@@ -453,7 +453,7 @@ class SKUController extends Controller
 
         return response()->json($data, $data['code']);
     }
-/*
+
     public function upload(Request $request)
     {
         
@@ -600,7 +600,7 @@ class SKUController extends Controller
         
     }
 
-
+/*
     public function imprimirlabel($id, $cantidad)
     {
         function firstNumPos($text, $number){
@@ -930,5 +930,5 @@ class SKUController extends Controller
         return view('sistema.sku.skuImpresion', $data);
 
     }
-    
+    */
 }
