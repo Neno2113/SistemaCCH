@@ -245,7 +245,7 @@ $(document).ready(function() {
             } */
         });
     }
-
+    /*
     $("#btn-edit").click(function(e) {
         e.preventDefault();
 
@@ -290,7 +290,7 @@ $(document).ready(function() {
         });
 
     });
-
+    */
 
     function mostrarForm(flag) {
         limpiar();
