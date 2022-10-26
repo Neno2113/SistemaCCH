@@ -109,7 +109,7 @@ $(document).ready(function() {
                     }
                     */
                     bootbox.alert(
-                        "Llego a success"
+                        "product_id "+datos.product_id+" -- referencia "+datos.referencia+" -- cliente_id"+datos.cliente_id+" -- nombre_cliente"+datos.nombre_cliente
                     );
                 } else {
                     bootbox.alert(

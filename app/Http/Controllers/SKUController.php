@@ -540,7 +540,11 @@ class SKUController extends Controller
 
                 $data = [
                     'code' => 200,
-                    'status' => 'success'
+                    'status' => 'success',
+                    'product_id' => $product_id,
+                    'referencia' => $referencia,
+                    'cliente_id' => $cliente_id,
+                    'nombre_cliente' => $nombre_cliente
                 //    'skus_esp' => $skus_esp
                 ];
         
