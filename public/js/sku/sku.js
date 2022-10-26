@@ -65,7 +65,7 @@ $(document).ready(function() {
     });
 
     function agregarSkusEspeciales(cliente_id, product_id) {
-        $.post("skuespecial_cliente_id/"+cliente_id+"/product_id"+product_id, function(data, status) {
+        $.post("skuespecial_cliente_id/"+cliente_id+"/"+product_id, function(data, status) {
             if(data.status == 'denied'){
                 return Swal.fire(
                     'Acceso denegado!',
