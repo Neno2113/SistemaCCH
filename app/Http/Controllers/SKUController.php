@@ -54,7 +54,7 @@ class SKUController extends Controller
             return redirect('/sku');
         }
     }
-/*
+
     public function skus()
     {
         
@@ -115,7 +115,7 @@ class SKUController extends Controller
                         ])->select('categorias_producto.nombre');
 
                     $entalle_bragueta = $bragueta->nombre;
-                    *//*
+                    */
                     if($bragueta = CategoriaProducto::where('tipo', 'entalle_bragueta')->where('indice', $sku->entalle_bragueta)->get()->first()) {
                         $entalle_bragueta = $bragueta->nombre;
                     } else {
@@ -153,7 +153,7 @@ class SKUController extends Controller
                     $min_talla = $sku->min;   
                     $max_talla = $sku->max;   
                 */
-                /*
+                
                 if($product = Product::where('id', $producto)->get()->first()) {
                     $referencia2 = $product->referencia_producto_2;
                     $referencia1 = $product->referencia_producto;
@@ -428,8 +428,8 @@ class SKUController extends Controller
         //    ->rawColumns(['Corte', 'Fecha', 'Marcada'])
             ->make(true);
     }
-    */
-/*
+    
+
 
     public function sku_disponibles()
     {
@@ -601,8 +601,7 @@ class SKUController extends Controller
         return \response()->json($data, $data['code']);
         
     }
-*/
-/*
+
     public function imprimirlabel($id, $cantidad)
     {
         function firstNumPos($text, $number){
@@ -932,5 +931,5 @@ class SKUController extends Controller
         return view('sistema.sku.skuImpresion', $data);
 
     }
-    */
+    
 }
