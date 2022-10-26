@@ -79,6 +79,7 @@
             
             <div class="card-footer  text-muted">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
+                <span style="background-color: #d4f0ff;">SKU General</span> <span style="background-color: #a9bacb;">SKU Especiales</span>
             </div>
             
         </div>
