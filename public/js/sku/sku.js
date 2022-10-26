@@ -91,8 +91,8 @@ $(document).ready(function() {
                         "<td class=''>"+data.skus[i].sku_especial+"</td>"+
                         "<td class='' id='referencia_product'>"+data.skus[i].referencia_producto+"</td>"+
                         "<td class=''>"+data.skus[i].talla+"</td>"+
-                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidade"+i+"' value='"+data.skus[i].cantidad+"'></td>"+
-                        "<td><a href='print_label/"+data.skus[i].id+"/"+data.skus[i].cantidad+"/especial' target='_blank' id='enlaceprinte"+i+"' onclick='redirigir(e"+i+","+data.skus[i].id+","+2+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad1111"+i+"' value='"+data.skus[i].cantidad+"'></td>"+
+                        "<td><a href='print_label/"+data.skus[i].id+"/"+data.skus[i].cantidad+"/especial' target='_blank' id='enlaceprint1111"+i+"' onclick='redirigir(1111"+i+","+data.skus[i].id+","+2+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
@@ -148,8 +148,8 @@ $(document).ready(function() {
                         "<td class=''>"+datos.skus_esp[i].sku_especial+"</td>"+
                         "<td class=''>"+datos.skus_esp[i].referencia_producto+"</td>"+
                         "<td class=''>"+datos.skus_esp[i].talla+"</td>"+
-                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidade"+i+"' value='"+datos.skus_esp[i].cantidad+"'></td>"+
-                        "<td><a href='print_label/"+datos.skus_esp[i].id+"/"+datos.skus_esp[i].cantidad+"/especial' target='_blank' id='enlaceprinte"+i+"' onclick='redirigir(e"+i+","+datos.skus_esp[i].id+","+2+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad1111"+i+"' value='"+datos.skus_esp[i].cantidad+"'></td>"+
+                        "<td><a href='print_label/"+datos.skus_esp[i].id+"/"+datos.skus_esp[i].cantidad+"/especial' target='_blank' id='enlaceprint1111"+i+"' onclick='redirigir(1111"+i+","+datos.skus_esp[i].id+","+2+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
