@@ -109,7 +109,7 @@ $(document).ready(function() {
                     }
                     */
                     bootbox.alert(
-                        "product_id "+datos.product_id+" -- referencia "+datos.referencia+" -- cliente_id"+datos.cliente_id+" -- nombre_cliente"+datos.nombre_cliente
+                        "filename "+datos.filename+" -- tempPath "+datos.tempPath+" -- location "+datos.location+" -- nombre_cliente "+datos.nombre_cliente
                     );
                 } else {
                     bootbox.alert(
