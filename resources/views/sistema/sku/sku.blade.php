@@ -29,7 +29,7 @@
                              <input type="hidden" name="referencia" id="referencia" value="">
                              <input type="hidden" name="product_id" id="product_id" value=""> 
                              <input type="hidden" name="id_sku" id="id_sku" value=""> 
-                                <label for="exampleInputFile">Agregar hoja de sku especiales</label>
+                                <label for="exampleInputFile">Subir csv de sku especiales (sku, talla y cant)</label>
                             <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -79,7 +79,7 @@
             
             <div class="card-footer  text-muted">
                 <button class="btn btn-danger mt-2 float-left" id="btnCancelar"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver</button>
-                <span style="background-color: #d4f0ff;">SKU General</span> <span style="background-color: #a9bacb;">SKU Especiales</span>
+                <div class="col-md-6 mt-3" style="margin-left: 10pc;"> Leyenda: <span style="background-color: #d4f0ff; padding: 5px;">SKU General</span> <span style="background-color: #a9bacb; padding: 5px;">SKU Especiales</span></div>
             </div>
             
         </div>
