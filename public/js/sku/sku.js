@@ -499,7 +499,7 @@ function mostrar(id_sku) {
                         
                         var fila =
                         '<tr id="fila'+data.skus[i].id+'">'+
-                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku[i].id+"' name='checkboxtalla'></td>"+
+                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.skus[i].id+"' name='checkboxtalla'></td>"+
                         "<td class=''>"+data.skus[i].sku+"</td>"+
                         "<td class='' id='referencia_product'>"+data.skus[i].referencia_producto+"</td>"+
                         "<td class=''>"+talla+"</td>"+
