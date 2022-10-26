@@ -652,8 +652,10 @@ class SKUController extends Controller
         }
         if ($tipo == "general") {
             $skus = SKU::find($id);
+            $barcode_sku = $skus->sku;
         } else {
             $skus = SkuEspecial::find($id);
+            $barcode_sku = $skus->sku_especial;
         }
 
         $producto = Product::where('id', $skus->producto_id)->get()->first();
@@ -958,11 +960,12 @@ class SKUController extends Controller
 
             //    return $talla;
 
-            }  
+            }
+
             if ((strlen($skus->sku) <= 12)){
-                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$skus->sku."&code=Code128&translate-esc=true&unit=Px&modulewidth=2.5&dpi=96";
+                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=Code128&translate-esc=true&unit=Px&modulewidth=2.5&dpi=96";
             } else {
-                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$skus->sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
+                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
             }
             
 
