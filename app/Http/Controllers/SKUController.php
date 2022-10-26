@@ -536,12 +536,12 @@ class SKUController extends Controller
                     //    DB::rollBack();
                     }
                 }
-                $skus_esp = SkuEspecial::where('product_id', $product_id)->where('cliente_id', $cliente_id)->get();
+            //    $skus_esp = SkuEspecial::where('product_id', $product_id)->where('cliente_id', $cliente_id)->get();
 
                 $data = [
                     'code' => 200,
-                    'status' => 'success',
-                    'skus_esp' => $skus_esp
+                    'status' => 'success'
+                //    'skus_esp' => $skus_esp
                 ];
         
             } else {

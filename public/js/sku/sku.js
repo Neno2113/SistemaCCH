@@ -83,7 +83,7 @@ $(document).ready(function() {
     $("#formUpload").submit(function(e) {
         e.preventDefault();
         var formData = new FormData($(this)[0]);
-        // console.log( JSON.stringify(formData));
+         console.log( JSON.stringify(formData));
         $.ajax({
             url: "fileskus",
             type: "POST",
@@ -94,6 +94,7 @@ $(document).ready(function() {
             contentType: false,
             success: function(datos) {
                 if (datos.status == "success") {
+                    /*
                     for (let i = 0; i < datos.skus_esp.length; i++) {
                         var fila =
                         '<tr id="fila'+data.skus_esp[i].id+'">'+
@@ -106,6 +107,7 @@ $(document).ready(function() {
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
+                    */
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la carga del archivo"
