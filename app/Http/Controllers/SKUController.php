@@ -519,17 +519,17 @@ class SKUController extends Controller
 
                     try {
                         
-                        $sku_especial = new SkuEspecial();
+                        $sku_especi = new SkuEspecial();
 
-                        $sku_especial->producto_id = $product_id;
-                        $sku_especial->referencia_producto = $referencia;
-                        $sku_especial->sku_especial = $sku_e;
-                        $sku_especial->cantidad = $cant;
-                        $sku_especial->talla = $talla;
-                        $sku_especial->cliente_id = $cliente_id;
-                        $sku_especial->nombre_cliente = $nombre_cliente;
+                        $sku_especi->producto_id = intval($product_id);
+                        $sku_especi->referencia_producto = $referencia;
+                        $sku_especi->sku_especial = $sku_e;
+                        $sku_especi->cantidad = intval($cant);
+                        $sku_especi->talla = $talla;
+                        $sku_especi->cliente_id = intval($cliente_id);
+                        $sku_especi->nombre_cliente = $nombre_cliente;
 
-                        $sku_especial->save();
+                        $sku_especi->save();
                     
                     } catch (\Exception $e) {
                         //throw $th;
