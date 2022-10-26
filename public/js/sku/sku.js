@@ -60,8 +60,10 @@ $(document).ready(function() {
         var cliente_id = $("#cliente_id").val();
         var product_id = $("#product_id").val();
 
-        agregarSkusEspeciales(cliente_id, product_id);
-
+        if (cliente_id) {
+            agregarSkusEspeciales(cliente_id, product_id);
+        }
+        
     });
 
     function agregarSkusEspeciales(cliente_id, product_id) {
@@ -78,7 +80,7 @@ $(document).ready(function() {
                         var fila =
                         '<tr id="fila'+data.skus[i].id+'" style="background-color: #d7e8f9;">'+
                         "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.skus[i].id+"' name='checkboxtalla'></td>"+
-                        "<td class=''>"+data.skus[i].sku+"</td>"+
+                        "<td class=''>"+data.skus[i].sku_especial+"</td>"+
                         "<td class='' id='referencia_product'>"+data.skus[i].referencia_producto+"</td>"+
                         "<td class=''>"+data.skus[i].talla+"</td>"+
                         "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad"+i+"' value='"+data.skus[i].cantidad+"'></td>"+
