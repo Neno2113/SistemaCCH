@@ -471,7 +471,7 @@ class SKUController extends Controller
                 'message' => $validate->errors()
             ];
         } else {
-            $file = $request->file('skus');  
+            $file = $request->file('skus_esp');  
             $referencia = $request->input('referencia');  
             $product_id = $request->input('product_id');  
             $cliente_id = $request->input('cliente_id');  
