@@ -650,7 +650,7 @@ class SKUController extends Controller
                 }
             }
         }
-        if ($tipo == "general") {
+        if ($tipo == "1") {
             $skus = SKU::find($id);
             $barcode_sku = $skus->sku;
         } else {
