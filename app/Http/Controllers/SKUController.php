@@ -603,6 +603,48 @@ class SKUController extends Controller
         
     }
 
+    public function showEspecial($cliente_id, $product_id)
+    {  
+        //Chekcing if the user has access to this function
+        $user_loginId = Auth::user()->id;
+        $user_login = PermisoUsuario::where('user_id', $user_loginId)->where('permiso', 'Telas')
+        ->first();
+        if(Auth::user()->role != 'Administrador'){
+            if($user_login->modificar == 0 || $user_login->modificar == null){
+                return  $data = [
+                    'code' => 200,
+                    'status' => 'denied',
+                    'message' => 'No tiene permiso para realizar esta accion.'
+                ];
+            }
+    
+        }
+    //    $sku = SKU::find($id);
+    //    $referencia = $sku->referencia_producto;
+    //    $skus = SKU::where('referencia_producto', $referencia)->get();
+        $skus_esp = SkuEspecial::where('producto_id', $product_id)->where('cliente_id', $cliente_id)->get();
+    //    $corte = Corte::where('producto_id', $sku->producto_id)->get()->first();
+   //     $tallas = Talla::where('corte_id', $corte->id)->get()->first();
+    //    $producto = Product::where('id', $sku->producto_id)->get()->first();
+
+        if (is_object($skus_esp)) {
+            $data = [
+                'code' => 200,
+                'status' => 'success',
+                'skus' => $skus_esp
+            ];
+        } else {
+            $data = [
+                'code' => 404,
+                'status' => 'Error',
+                'message' => 'Este cliente no tiene codigos especiales'
+            ];
+        }
+
+        return \response()->json($data, $data['code']);
+        
+    }
+
     public function imprimirlabel($id, $cantidad)
     {
         function firstNumPos($text, $number){

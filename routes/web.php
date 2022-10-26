@@ -290,6 +290,7 @@ Route::Post('/text-read', 'SKUController@read_file');
 Route::get('/sku_disp', 'SKUController@sku_disponibles');
 Route::get('print_label/{id}/{cant}', 'SKUController@imprimirlabel');
 Route::post('/sku_id/{id}', 'SKUController@show');
+Route::post('/skuespecial_cliente_id/{cliente_id}/{product_id}', 'SKUController@showEspecial');
 Route::get('cliente/select', 'SKUController@clienteSelect');
 Route::post('/fileskus', 'SKUController@upload');
  

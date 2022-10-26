@@ -57,8 +57,45 @@ $(document).ready(function() {
         $("#nombre_cliente").val($('#clientes').find('option:selected').text());
         $("#referencia").val($("#referencia_product").text()); 
         $("#product_id").val($("#prod_id").val());
+        var cliente_id = $("#cliente_id").val();
+        var product_id = $("#product_id").val();
+
+        agregarSkusEspeciales(cliente_id, product_id);
 
     });
+
+    function agregarSkusEspeciales(cliente_id, product_id) {
+        $.post("skuespecial_cliente_id/"+cliente_id+"/product_id"+product_id, function(data, status) {
+            if(data.status == 'denied'){
+                return Swal.fire(
+                    'Acceso denegado!',
+                    'No tiene permiso para realizar esta accion.',
+                    'info'
+                )
+            } else {
+                if (data.status == "success") {
+                    for (let i = 0; i < data.skus.length; i++) {
+                        var fila =
+                        '<tr id="fila'+data.skus[i].id+'" style="background-color: #d7e8f9;">'+
+                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.skus[i].id+"' name='checkboxtalla'></td>"+
+                        "<td class=''>"+data.skus[i].sku+"</td>"+
+                        "<td class='' id='referencia_product'>"+data.skus[i].referencia_producto+"</td>"+
+                        "<td class=''>"+data.skus[i].talla+"</td>"+
+                        "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad"+i+"' value='"+data.skus[i].cantidad+"'></td>"+
+                        "<td><a href='print_label/"+data.skus[i].id+"/"+total+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus[i].id+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        "</tr>";
+                        $("#permisos-agregados").append(fila);
+                    }
+
+                } else {
+                    bootbox.alert(
+                        data.message
+                    );
+                }
+            }
+
+        });
+    }
 
     $("#btn-upload").click(function(e) {
         // e.preventDefault();
@@ -96,7 +133,7 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     for (let i = 0; i < datos.skus_esp.length; i++) {
                         var fila =
-                        '<tr id="fila'+datos.skus_esp[i].id+'" style="background-color: #ffeeb5;">'+
+                        '<tr id="fila'+datos.skus_esp[i].id+'" style="background-color: #d7e8f9;">'+
                         "<td class=''><input type='checkbox' id='checkboxtalla' value='"+datos.skus_esp[i].id+"' name='checkboxtalla'></td>"+
                         "<td class='font-weight-bold'>"+datos.skus_esp[i].sku_especial+"</td>"+
                         "<td class='font-weight-bold'>"+datos.skus_esp[i].referencia_producto+"</td>"+
