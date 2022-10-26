@@ -53,7 +53,10 @@ $(document).ready(function() {
     $("#clientes").change(function() {
         $("#permisos-agregados").empty();
         var id_sku = $("#id_sku").val();
-        mostrar(id_sku);
+
+        if (id_sku) {
+            mostrar(id_sku);
+        }
 
         $("#btn-upload").attr("disabled", false);
         $("#btn-upload").attr("class", "btn-primary");
