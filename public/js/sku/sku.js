@@ -55,7 +55,7 @@ $(document).ready(function() {
         $("#btn-upload").attr("class", "btn-primary");
         $("#cliente_id").val($('select[name=clientes] option').filter(':selected').val());
         $("#nombre_cliente").val($('#clientes').find('option:selected').text());
-        $("#referencia").val($("#referencia_product").val()); 
+        $("#referencia").val($("#referencia_product").text()); 
         $("#product_id").val($("#prod_id").val());
 
     });
