@@ -28,7 +28,7 @@
                              <input type="hidden" name="nombre_cliente" id="nombre_cliente" value="">
                              <input type="hidden" name="referencia" id="referencia" value="">
                              <input type="hidden" name="product_id" id="product_id" value=""> 
-                             <input type="hidden" name="id_sku" id="is_sku" value=""> 
+                             <input type="hidden" name="id_sku" id="id_sku" value=""> 
                                 <label for="exampleInputFile">Agregar hoja de sku especiales</label>
                             <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
                                 <div class="input-group">
