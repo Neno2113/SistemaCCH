@@ -65,7 +65,7 @@ $(document).ready(function() {
     });
 
     function agregarSkusEspeciales(cliente_id, product_id) {
-        $.post("skuespecial_cliente_id/"+cliente_id+"/"+product_id, function(data, status) {
+        $.post("skuespecial/"+cliente_id+"/"+product_id, function(data, status) {
             if(data.status == 'denied'){
                 return Swal.fire(
                     'Acceso denegado!',
@@ -82,7 +82,7 @@ $(document).ready(function() {
                         "<td class='' id='referencia_product'>"+data.skus[i].referencia_producto+"</td>"+
                         "<td class=''>"+data.skus[i].talla+"</td>"+
                         "<td class=''><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad"+i+"' value='"+data.skus[i].cantidad+"'></td>"+
-                        "<td><a href='print_label/"+data.skus[i].id+"/"+total+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus[i].id+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        "<td><a href='print_label/"+data.skus[i].id+"/"+data.skus[i].cantidad+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus[i].id+");'class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
