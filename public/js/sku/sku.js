@@ -108,6 +108,9 @@ $(document).ready(function() {
                         $("#permisos-agregados").append(fila);
                     }
                     */
+                    bootbox.alert(
+                        "Llego a success"
+                    );
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la carga del archivo"
