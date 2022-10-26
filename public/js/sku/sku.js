@@ -51,19 +51,19 @@ $(document).ready(function() {
     }
 
     $("#clientes").change(function() {
-        $("#permisos-agregados").empty();
-        var id_sku = $("#id_sku").val();
-
-        if (id_sku) {
-            mostrar(id_sku);
-        }
-
         $("#btn-upload").attr("disabled", false);
         $("#btn-upload").attr("class", "btn-primary");
         $("#cliente_id").val($('select[name=clientes] option').filter(':selected').val());
         $("#nombre_cliente").val($('#clientes').find('option:selected').text());
         $("#referencia").val($("#referencia_product").text()); 
         $("#product_id").val($("#prod_id").val());
+        
+        $("#permisos-agregados").empty();
+        var id_sku = $("#id_sku").val();
+
+        if (id_sku) {
+            mostrar(id_sku);
+        }
         
         var cliente_id = $("#cliente_id").val();
         var product_id = $("#product_id").val();
