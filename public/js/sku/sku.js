@@ -96,13 +96,13 @@ $(document).ready(function() {
                 if (datos.status == "success") {
                     for (let i = 0; i < datos.skus_esp.length; i++) {
                         var fila =
-                        '<tr id="fila'+data.skus_esp[i].id+'" style="background-color: #ffeeb5;">'+
-                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.skus_esp[i].id+"' name='checkboxtalla'></td>"+
-                        "<td class='font-weight-bold'>"+data.skus_esp[i].sku_especial+"</td>"+
-                        "<td class='font-weight-bold'>"+data.skus_esp[i].referencia_producto+"</td>"+
-                        "<td class='font-weight-bold'>"+data.skus_esp[i].talla+"</td>"+
-                        "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad0' value='"+data.skus_esp[i].cantidad+"'></td>"+
-                        "<td><a href='print_label/"+data.skus_esp[i].id+"/"+data.skus_esp[i].cantidad+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+data.skus_esp[i].id+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
+                        '<tr id="fila'+datos.skus_esp[i].id+'" style="background-color: #ffeeb5;">'+
+                        "<td class=''><input type='checkbox' id='checkboxtalla' value='"+datos.skus_esp[i].id+"' name='checkboxtalla'></td>"+
+                        "<td class='font-weight-bold'>"+datos.skus_esp[i].sku_especial+"</td>"+
+                        "<td class='font-weight-bold'>"+datos.skus_esp[i].referencia_producto+"</td>"+
+                        "<td class='font-weight-bold'>"+datos.skus_esp[i].talla+"</td>"+
+                        "<td class='font-weight-bold'><input type='number' class='text-center' placeholder='Cantidad' name='cantidad' id='cantidad0' value='"+datos.skus_esp[i].cantidad+"'></td>"+
+                        "<td><a href='print_label/"+datos.skus_esp[i].id+"/"+datos.skus_esp[i].cantidad+"' target='_blank' id='enlaceprint"+i+"' onclick='redirigir("+i+","+datos.skus_esp[i].id+");' class='btn btn-primary ml-1'> <i class='fas fa-print'></i></a></td>"+
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
