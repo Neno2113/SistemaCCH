@@ -288,7 +288,7 @@ Route::post('/sku/edit/{id}', 'ProductController@editSKU');
 //SKU
 Route::Post('/text-read', 'SKUController@read_file');
 Route::get('/sku_disp', 'SKUController@sku_disponibles');
-Route::get('print_label/{id}/{cant}', 'SKUController@imprimirlabel');
+Route::get('print_label/{id}/{cant}/{tipo}', 'SKUController@imprimirlabel');
 Route::post('/sku_id/{id}', 'SKUController@show');
 Route::post('/skuespecial/{cliente_id}/{product_id}', 'SKUController@showEspecial');
 Route::get('cliente/select', 'SKUController@clienteSelect');

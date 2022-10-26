@@ -619,13 +619,8 @@ class SKUController extends Controller
             }
     
         }
-    //    $sku = SKU::find($id);
-    //    $referencia = $sku->referencia_producto;
-    //    $skus = SKU::where('referencia_producto', $referencia)->get();
+
         $skus_esp = SkuEspecial::where('producto_id', $product_id)->where('cliente_id', $cliente_id)->get();
-    //    $corte = Corte::where('producto_id', $sku->producto_id)->get()->first();
-   //     $tallas = Talla::where('corte_id', $corte->id)->get()->first();
-    //    $producto = Product::where('id', $sku->producto_id)->get()->first();
 
         if (is_object($skus_esp)) {
             $data = [
@@ -645,7 +640,7 @@ class SKUController extends Controller
         
     }
 
-    public function imprimirlabel($id, $cantidad)
+    public function imprimirlabel($id, $cantidad, $tipo)
     {
         function firstNumPos($text, $number){
             preg_match_all('!\d+!', $text, $match);
@@ -654,6 +649,11 @@ class SKUController extends Controller
                     return strpos($text, $value);
                 }
             }
+        }
+        if ($tipo == "general") {
+            $skus = SKU::find($id);
+        } else {
+            $skus = SkuEspecial::find($id);
         }
 
         $skus = SKU::find($id);
