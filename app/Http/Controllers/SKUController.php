@@ -541,9 +541,9 @@ class SKUController extends Controller
                 $data = [
                     'code' => 200,
                     'status' => 'success',
-                    'filename' => $filename,
-                    'tempPath' => $tempPath,
-                    'location' => $location,
+                    'sku_e' => $sku_e,
+                    'talla' => $talla,
+                    'cant' => $cant,
                     'nombre_cliente' => $nombre_cliente
                 //    'skus_esp' => $skus_esp
                 ];
