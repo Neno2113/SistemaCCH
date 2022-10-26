@@ -656,7 +656,6 @@ class SKUController extends Controller
             $skus = SkuEspecial::find($id);
         }
 
-        $skus = SKU::find($id);
         $producto = Product::where('id', $skus->producto_id)->get()->first();
         $corte = Corte::where('producto_id', $skus->producto_id)->get()->first();
         $bragueta = CategoriaProducto::where('tipo', 'entalle_bragueta')->where('indice', $producto->entalle_bragueta)->get()->first();
