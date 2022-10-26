@@ -407,7 +407,7 @@ function mostrar(id_sku) {
                 var mujer_plus = data.sku.referencia_producto.substring(3, 4);
             
                 var fila =
-                '<tr id="fila'+data.sku.id+'" style="background-color: #d4f0ff;">'+
+                '<tr id="fila'+data.sku.id+'" style="/*background-color: #d4f0ff;*/">'+
                 "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.sku.id+"' name='checkboxtalla'></td>"+
                 "<td class='font-weight-bold'>"+data.sku.sku+"</td>"+
                 "<td class='font-weight-bold' id='referencia_product'><input type='hidden' name='prod_id' id='prod_id' value='"+data.sku.producto_id+"'>"+data.sku.referencia_producto+"</td>"+
