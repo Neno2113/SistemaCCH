@@ -94,10 +94,9 @@ $(document).ready(function() {
             contentType: false,
             success: function(datos) {
                 if (datos.status == "success") {
-                    /*
                     for (let i = 0; i < datos.skus_esp.length; i++) {
                         var fila =
-                        '<tr id="fila'+data.skus_esp[i].id+'">'+
+                        '<tr id="fila'+data.skus_esp[i].id+'" style="background-color: #ffeeb5;">'+
                         "<td class=''><input type='checkbox' id='checkboxtalla' value='"+data.skus_esp[i].id+"' name='checkboxtalla'></td>"+
                         "<td class='font-weight-bold'>"+data.skus_esp[i].sku_especial+"</td>"+
                         "<td class='font-weight-bold'>"+data.skus_esp[i].referencia_producto+"</td>"+
@@ -107,10 +106,7 @@ $(document).ready(function() {
                         "</tr>";
                         $("#permisos-agregados").append(fila);
                     }
-                    */
-                    bootbox.alert(
-                        "sku_e "+datos.sku_e+" -- talla "+datos.talla+" -- cant "+datos.cant+" -- nombre_cliente "+datos.nombre_cliente
-                    );
+
                 } else {
                     bootbox.alert(
                         "Ocurrio un error durante la carga del archivo"

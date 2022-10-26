@@ -537,16 +537,12 @@ class SKUController extends Controller
                     $nombre_cliente = "hay un error al almacenar en la database";
                     }
                 }
-            //    $skus_esp = SkuEspecial::where('product_id', $product_id)->where('cliente_id', $cliente_id)->get();
+                $skus_esp = SkuEspecial::where('product_id', $product_id)->where('cliente_id', $cliente_id)->get();
 
                 $data = [
                     'code' => 200,
                     'status' => 'success',
-                    'sku_e' => $sku_e,
-                    'talla' => $talla,
-                    'cant' => $cant,
-                    'nombre_cliente' => $nombre_cliente
-                //    'skus_esp' => $skus_esp
+                    'skus_esp' => $skus_esp
                 ];
         
             } else {
