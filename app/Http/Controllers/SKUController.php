@@ -461,7 +461,7 @@ class SKUController extends Controller
         
         //validar csv
         $validate = \Validator::make($request->all(), [
-            'skus' => 'required|mimes:csv,txt',
+            'skus_esp' => 'required|mimes:csv,txt',
         ]);
         // Guardar la imagen
         if ($validate->fails()) {
