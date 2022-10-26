@@ -534,6 +534,7 @@ class SKUController extends Controller
                     } catch (\Exception $e) {
                         //throw $th;
                     //    DB::rollBack();
+                    $nombre_cliente = "hay un error al almacenar en la database";
                     }
                 }
             //    $skus_esp = SkuEspecial::where('product_id', $product_id)->where('cliente_id', $cliente_id)->get();
