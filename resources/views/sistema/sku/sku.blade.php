@@ -32,7 +32,7 @@
                             <!--    <img src="{{asset('adminlte/img/images.png')}}" alt="" id="avatar-img" style="height: 150px; width: auto;" class="rounded img-fluid img-thumbnail"> -->
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="form-control" name="skus" id="skus">
+                                        <input type="file" class="form-control" name="skus_esp" id="skus_esp">
                                     <!--    <input type="hidden" name="image_name" id="image_name" value="1662435439images.png"> -->
                                     </div>
                                     <div class="input-group-append">
