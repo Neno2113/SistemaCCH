@@ -44,7 +44,8 @@ $(document).ready(function() {
         $("#referencia").val("");
         $("#product_id").val("");
         $("#permisos-agregados").empty();
-        $("#clientes").val("").trigger("change");
+    //    $("#clientes").val("").trigger("change");
+        $("#clientes").val("");
         $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
         $("#btn-upload").attr("class", "btn-secundary");
 
