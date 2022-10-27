@@ -43,6 +43,7 @@ $(document).ready(function() {
         $("#nombre_cliente").val("");
         $("#referencia").val("");
         $("#product_id").val("");
+    //    $("#clientes").val("").trigger("change");
         $("#permisos-agregados").empty();
         $("#btn-upload").attr("disabled", true,'class', 'btn-secundary');
         $("#btn-upload").attr("class", "btn-secundary");
@@ -377,7 +378,6 @@ function redirigir(num,id,tipo) {
 }
 
 function mostrar(id_sku) {
-    $("#clientes").val("").trigger("change");
     $.post("sku_id/" + id_sku, function(data, status) {
 
         if(data.status == 'denied'){
