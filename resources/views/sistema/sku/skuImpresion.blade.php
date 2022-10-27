@@ -382,7 +382,7 @@
 		<td  style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
 		<table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 		<tr>
-		<td class="pad" style="width:100%;padding-right:5px;padding-left:5px;">
+		<td class="pad" style="width:100%;padding-right:10px;padding-left:10px;">
 		<div align="center" class="alignment" style="line-height:10px"><img src="{{ $sku }}" style="display: block; height: auto; border: 0; max-width: 100%;"/></div>
 		</td>
 		</tr>
