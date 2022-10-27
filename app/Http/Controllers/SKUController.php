@@ -964,8 +964,10 @@ class SKUController extends Controller
 
             if ((strlen($skus->sku) <= 12)){
                 $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=Code128&translate-esc=true&unit=Fit&imagetype=Svg&modulewidth=2.5&dpi=96";
+                $tipo_barcode = "code128";
             } else {
                 $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=EAN13&translate-esc=true&unit=Fit&dpi=96&imagetype=Svg&modulewidth=2";
+                $tipo_barcode = "ean13";
             }
 /*
         $data[];
@@ -975,7 +977,7 @@ class SKUController extends Controller
         array_push($data,'bucle' => 2);
         */
 
-        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash, 'fabric' => $fabric, 'cantidad' => $cantidad];
+        $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash, 'fabric' => $fabric, 'cantidad' => $cantidad, 'tipo_barcode' => $tipo_barcode];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);
   
     //    return $pdf->stream('Etiquetas-123.pdf');
