@@ -967,7 +967,13 @@ class SKUController extends Controller
             } else {
                 $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
             }
-            
+/*
+        $data[];
+        for ($x=0; $x < 2; $x++) { 
+            array_push($data, 'referencia'.$x => $skus->referencia_producto, 'sku'.$x => $barcode, 'talla'.$x => $talla, 'entalle_bragueta'.$x => $entalle_bragueta, 'entalle_piernas'.$x => $entalle_piernas, 'season'.$x => $season, 'wash'.$x => $wash, 'fabric'.$x => $fabric, 'cantidad'.$x => $cantidad);
+        }
+        array_push($data,'bucle' => 2);
+        */
 
         $data = ['referencia' => $skus->referencia_producto, 'sku' => $barcode, 'talla' => $talla, 'entalle_bragueta' => $entalle_bragueta, 'entalle_piernas' => $entalle_piernas, 'season' => $season, 'wash' => $wash, 'fabric' => $fabric, 'cantidad' => $cantidad];
     //    $pdf = PDF::loadView('sistema.sku.skuImpresion', $data);

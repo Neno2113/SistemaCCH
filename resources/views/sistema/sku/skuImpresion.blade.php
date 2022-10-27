@@ -158,7 +158,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;"><strong>REFERENCE:</strong></p>
 		</div>
 		</td>
@@ -169,7 +169,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;">{{ $referencia }}</p>
 		</div>
 		</td>
@@ -194,7 +194,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;"><strong>FIT:</strong></p>
 		</div>
 		</td>
@@ -205,7 +205,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;">{{ $entalle_bragueta }}</p>
 		</div>
 		</td>
@@ -214,7 +214,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-bottom:5px; */">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;">{{ $entalle_piernas }}</p>
 		</div>
 		</td>
@@ -239,7 +239,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;"><strong>SEASON:</strong></p>
 		</div>
 		</td>
@@ -250,7 +250,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;">{{ $season }}</p>
 		</div>
 		</td>
@@ -275,7 +275,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;"><strong>FABRIC NO:</strong></p>
 		</div>
 		</td>
@@ -286,7 +286,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;">{{ $fabric }}</p>
 		</div>
 		</td>
@@ -311,7 +311,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;"><strong>WASH NO:</strong></p>
 		</div>
 		</td>
@@ -322,7 +322,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;">{{ $wash }}</p>
 		</div>
 		</td>
@@ -347,7 +347,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;"><strong>SIZE RANGE:</strong></p>
 		</div>
 		</td>
@@ -358,7 +358,7 @@
 		<table border="0" cellpadding="0" cellspacing="0" class="paragraph_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
 		<tr>
 		<td class="pad" style="/* padding-top:5px; */padding-bottom:2px;">
-		<div style="color:#000000;font-size:8px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+		<div style="color:#000000;font-size:9px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
 		<p style="margin: 0;">{{ $talla }}</p>
 		</div>
 		</td>
