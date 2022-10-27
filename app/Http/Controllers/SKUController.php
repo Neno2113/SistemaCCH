@@ -963,7 +963,7 @@ class SKUController extends Controller
             }
 
             if ((strlen($skus->sku) <= 12)){
-                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=Code128&translate-esc=true&unit=Px&modulewidth=2.5&dpi=96";
+                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=Code128&translate-esc=true&unit=Fit&imagetype=Svg&modulewidth=2.5&dpi=96";
             } else {
                 $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=EAN13&translate-esc=true&unit=Px&modulewidth=2&dpi=96";
             }
