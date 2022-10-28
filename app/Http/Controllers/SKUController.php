@@ -963,10 +963,12 @@ class SKUController extends Controller
             }
 
             if ((strlen($skus->sku) <= 12)){
-                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=Code128&translate-esc=true&unit=Fit&imagetype=Svg&modulewidth=2.5&dpi=96";
+            //    $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=Code128&translate-esc=true&unit=Fit&imagetype=Svg&modulewidth=2.5&dpi=96";
+                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=&translate-esc=true&unit=Px&dpi=300&imagetype=Png&modulewidth=8";
                 $tipo_barcode = "code128";
             } else {
-                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=EAN13&translate-esc=true&unit=Fit&dpi=96&imagetype=Svg&modulewidth=2";
+            //    $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=EAN13&translate-esc=true&unit=Fit&dpi=96&imagetype=Svg&modulewidth=2";
+                $barcode = "https://barcode.tec-it.com/barcode.ashx?data=".$barcode_sku."&code=EAN13&translate-esc=true&unit=Px&dpi=300&imagetype=Png&modulewidth=8";
                 $tipo_barcode = "ean13";
             }
 /*
